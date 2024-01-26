@@ -3,7 +3,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {

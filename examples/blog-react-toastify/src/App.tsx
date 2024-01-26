@@ -44,7 +44,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     i18nProvider={i18nProvider}
                     routerProvider={routerBindings}
                     resources={[

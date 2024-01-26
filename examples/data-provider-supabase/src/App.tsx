@@ -5,7 +5,7 @@ import {
     Authenticated,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
@@ -288,7 +288,7 @@ const App: React.FC = () => {
                             },
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     /**
                      * Multiple subscriptions are currently not supported with the supabase JS client v2 and @refinedev/supabase v4.
                      * Therefore, enabling global live mode will cause unexpected behaviors.

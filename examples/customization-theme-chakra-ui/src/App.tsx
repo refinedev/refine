@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ErrorComponent,
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";

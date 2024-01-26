@@ -6,7 +6,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
     ErrorComponent,
     ThemedLayoutV2,

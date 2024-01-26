@@ -62,7 +62,7 @@ function App() {
                     <Refine
                         dataProvider={dataProvider(gqlClient)}
                         liveProvider={liveProvider(wsClient)}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerBindings}
                         resources={[
                             {

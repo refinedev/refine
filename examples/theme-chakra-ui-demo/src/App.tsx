@@ -3,7 +3,7 @@ import {
     AuthPage,
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";

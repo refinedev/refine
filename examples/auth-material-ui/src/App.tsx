@@ -8,7 +8,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     AuthPage,
 } from "@refinedev/mui";
@@ -192,7 +192,7 @@ const App: React.FC = () => {
                             "https://api.fake-rest.refine.dev",
                         )}
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

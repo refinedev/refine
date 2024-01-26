@@ -26,11 +26,13 @@ import { ClientStyleContext } from "~/contexts/ClientStyleContext";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-export const meta: MetaFunction = () => ([{
-    charset: "utf-8",
-    title: "Remix + Refine + Material UI App",
-    viewport: "width=device-width,initial-scale=1",
-}]);
+export const meta: MetaFunction = () => [
+    {
+        charset: "utf-8",
+        title: "Remix + Refine + Material UI App",
+        viewport: "width=device-width,initial-scale=1",
+    },
+];
 
 interface DocumentProps {
     children: React.ReactNode;
@@ -99,7 +101,7 @@ export default function App() {
                         <Refine
                             routerProvider={routerProvider}
                             dataProvider={dataProvider(API_URL)}
-                            notificationProvider={notificationProvider}
+                            notificationProvider={useNotificationProvider}
                             authProvider={authProvider}
                             resources={[
                                 {

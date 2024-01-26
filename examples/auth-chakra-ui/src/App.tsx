@@ -9,7 +9,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";

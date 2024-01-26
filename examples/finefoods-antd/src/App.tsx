@@ -2,7 +2,7 @@ import React from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
 } from "@refinedev/antd";
@@ -81,7 +81,7 @@ const App: React.FC = () => {
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,
                         }}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "dashboard",

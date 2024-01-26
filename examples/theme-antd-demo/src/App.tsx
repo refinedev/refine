@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ErrorComponent,
     RefineThemes,
     ThemedLayoutV2,
@@ -55,7 +55,7 @@ const App: React.FC = () => {
                             },
                         },
                     ]}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     options={{
                         syncWithLocation: true,
                         warnWhenUnsavedChanges: true,

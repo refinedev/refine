@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
     WelcomePage,
     ErrorComponent,
@@ -30,7 +30,7 @@ function App() {
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         options={{
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,

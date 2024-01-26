@@ -10,6 +10,9 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import UndoOutlined from "@mui/icons-material/UndoOutlined";
 
+/**
+ * @deprecated `notificationProvider` is deprecated due to consistent naming convention between UI libraries. Please use `useNotificationProvider` export as your notification provider.
+ */
 export const notificationProvider = (): NotificationProvider => {
     const { closeSnackbar, enqueueSnackbar } = useSnackbar();
 
@@ -82,3 +85,5 @@ export const notificationProvider = (): NotificationProvider => {
 
     return notificationProvider;
 };
+
+export const useNotificationProvider = notificationProvider;

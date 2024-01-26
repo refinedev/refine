@@ -10,6 +10,9 @@ import { IconCheck, IconRotate2, IconX } from "@tabler/icons";
 
 import { RingCountdown } from "@components";
 
+/**
+ * @deprecated `notificationProvider` is deprecated due to consistent naming convention between UI libraries. Please use `useNotificationProvider` export as your notification provider.
+ */
 export const notificationProvider = (): NotificationProvider => {
     const activeNotifications: string[] = [];
 
@@ -174,3 +177,5 @@ export const notificationProvider = (): NotificationProvider => {
 
     return notificationProvider;
 };
+
+export const useNotificationProvider = notificationProvider;

@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     ThemedLayoutV2,
     RefineThemes,
@@ -37,7 +37,7 @@ function App() {
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "blog_posts",

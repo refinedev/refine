@@ -39,7 +39,7 @@ function App() {
             <GitHubBanner />
             <RefineKbarProvider>
                 <Refine
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}

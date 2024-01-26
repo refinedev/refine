@@ -4,6 +4,9 @@ import { useToast } from "@chakra-ui/react";
 
 import { UndoableNotification } from "@components/undoableNotification";
 
+/**
+ * @deprecated `notificationProvider` is deprecated due to consistent naming convention between UI libraries. Please use `useNotificationProvider` export as your notification provider.
+ */
 export const notificationProvider = (): NotificationProvider => {
     const toast = useToast({
         position: "top-right",
@@ -64,3 +67,5 @@ export const notificationProvider = (): NotificationProvider => {
         close: (key) => toast.close(key),
     };
 };
+
+export const useNotificationProvider = notificationProvider;

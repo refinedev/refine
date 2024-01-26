@@ -3,7 +3,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import {
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ThemedSiderV2,
 } from "@refinedev/antd";
@@ -57,7 +57,7 @@ function App() {
                     <Refine
                         dataProvider={dataProvider(client)}
                         liveProvider={liveProvider(webSocketClient)}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerBindings}
                         resources={[
                             {
