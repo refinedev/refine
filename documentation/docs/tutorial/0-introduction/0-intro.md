@@ -11,7 +11,7 @@ tutorial:
 ## What are we going to build?
 
  <div className="centered-image"  >
-<a href="https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543">
+<a href="https://refine.new/preview/0b55628b-e3c9-468d-a228-78044bfe967b">
   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/tutorial-generic-app.png" alt="tutorial antd" />
   </a>
 </div>
@@ -20,7 +20,7 @@ Since Refine is a meta framework designed for building all types of CRUD apps, s
 
 You will be guided through the process of building a CRUD app, including authentication, CRUD operation components, and fully functional pages, all built using the Refine framework
 
-You can take a look at the similar app that we'll be constructing in this tutorial by following this [link](https://refine.new/preview/a4f6eb83-2dd7-453b-b26a-4d3f48eeb543).
+You can take a look at the similar app that we'll be constructing in this tutorial by following this [link](https://refine.new/preview/0b55628b-e3c9-468d-a228-78044bfe967b).
 
 **We'll cover the following topics:**
 
