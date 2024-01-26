@@ -759,7 +759,6 @@ export const dataProvider: DataProvider = {
     };
   },
   getMany: async ({ resource, ids, meta }) => {
-    console.log("????");
     const params = new URLSearchParams();
 
     if (ids) {
