@@ -10,7 +10,7 @@ In this step, we'll be implementing a basic `authProvider` with `check` method t
 
 Refine can work with any authentication solution with its easy to implement `authProvider` interface. We'll create an implementation for our fake REST API which also provides a simple authentication endpoints.
 
-To learn more about the supported auth providers, refer to the [Supported AuthenticAuthation Providers](/docs/guides-concepts/authentication/#supported-auth-providers) section in the Authentication guide.
+To learn more about the supported auth providers, refer to the [Supported Authentication Providers](/docs/guides-concepts/authentication/#supported-auth-providers) section in the Authentication guide.
 
 ## Creating an Auth Provider
 
