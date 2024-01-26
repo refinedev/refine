@@ -27,13 +27,13 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // highlight-start
 const fetcher = async (url: string, options?: RequestInit) => {
-    return fetch(url, {
-        ...options,
-        headers: {
-            ...options?.headers,
-            Authorization: localStorage.getItem("my_access_token"),
-        },
-    });
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options?.headers,
+      Authorization: localStorage.getItem("my_access_token"),
+    },
+  });
 };
 // highlight-end
 
@@ -61,7 +61,9 @@ export const dataProvider: DataProvider = {
     }
 
     // highlight-next-line
-    const response = await fetcher(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+    const response = await fetcher(
+      `${API_URL}/${resource}?${params.toString()}`,
+    );
 
     if (response.status !== 200) throw response;
 
@@ -70,8 +72,8 @@ export const dataProvider: DataProvider = {
     const total = Number(response.headers.get("x-total-count"));
 
     return {
-        data,
-        total,
+      data,
+      total,
     };
   },
   getMany: async ({ resource, ids, meta }) => {
@@ -83,7 +85,7 @@ export const dataProvider: DataProvider = {
 
     // highlight-next-line
     const response = await fetcher(
-      \`\${API_URL}/\${resource}?\${params.toString()}\`,
+      `${API_URL}/${resource}?${params.toString()}`,
     );
 
     if (response.status !== 200) throw response;
@@ -94,7 +96,7 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     // highlight-next-line
-    const response = await fetcher(\`\${API_URL}/\${resource}/\${id}\`);
+    const response = await fetcher(`${API_URL}/${resource}/${id}`);
 
     if (response.status !== 200) throw response;
 
@@ -104,7 +106,7 @@ export const dataProvider: DataProvider = {
   },
   create: async ({ resource, variables }) => {
     // highlight-next-line
-    const response = await fetcher(\`\${API_URL}/\${resource}\`, {
+    const response = await fetcher(`${API_URL}/${resource}`, {
       method: "POST",
       body: JSON.stringify(variables),
       headers: {
@@ -120,7 +122,7 @@ export const dataProvider: DataProvider = {
   },
   update: async ({ resource, id, variables }) => {
     // highlight-next-line
-    const response = await fetcher(\`\${API_URL}/\${resource}/\${id}\`, {
+    const response = await fetcher(`${API_URL}/${resource}/${id}`, {
       method: "PATCH",
       body: JSON.stringify(variables),
       headers: {
