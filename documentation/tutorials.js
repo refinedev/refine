@@ -56,7 +56,6 @@ module.exports = {
                     "authentication/logging-in-out/index", // useLogin, useLogout, login, logout
                     "authentication/user-identity/index", // useGetIdentity, getIdentity
                     "authentication/data-provider-integration/index", // onError, dataProvider
-                    "authentication/auth-pages/index", // refactoring login and logout pages
                 ],
             },
             {
