@@ -30,16 +30,16 @@ export const useCan = ({
     action,
     resource,
     params,
-    queryOptions: userQueryOptions, // Rename to avoid conflict with internal queryOptions
+    queryOptions: hookQueryOptions,
 }: UseCanProps): UseQueryResult<CanReturnType> => {
-    const { can } = useContext(AccessControlContext);
+    const { can, options: globalOptions } = useContext(AccessControlContext);
     const { keys, preferLegacyKeys } = useKeys();
 
-    const { queryOptions: globalQueryOptions } = useContext(AccessControlContext)?.options || {};
+    const { queryOptions: globalQueryOptions } = globalOptions || {};
 
     const mergedQueryOptions = {
         ...globalQueryOptions,
-        ...userQueryOptions,
+        ...hookQueryOptions,
     };
 
     /**

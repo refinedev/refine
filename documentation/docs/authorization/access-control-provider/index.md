@@ -45,7 +45,7 @@ const accessControlProvider: IAccessControlContext = {
 
 It's possible to globally configure buttons' behavior by passing `options` to the `accessControlProvider`.
 You can still change the behavior of the buttons independently; however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
-By default, `enableAccessControl` is **true**, `hideIfUnauthorized` is **false**, and `queryOptions` is provided with default values.
+By default, `enableAccessControl` is **true**, `hideIfUnauthorized` is **false**, and `queryOptions` is **undefined**.
 
 ## Usage
 
@@ -146,9 +146,7 @@ const useCan: ({
     resource,
     params,
     queryOptions,
-}: UseCanProps* & {
-    queryOptions?: UseQueryOptions<CanReturnType>;
-}) => UseQueryResult<CanReturnType*>
+}: CanParams) => UseQueryResult<CanReturnType*>
 ```
 
 ### `<CanAccess />`

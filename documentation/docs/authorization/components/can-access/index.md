@@ -51,11 +51,11 @@ export const MyComponent = () => {
 };
 ```
 
-### Properties
+## Properties
 
 It also accepts all the properties of [`useCan`](/docs/authorization/hooks/use-can#properties).
 
-#### onUnauthorized
+### onUnauthorized
 
 Callback to be called when [`useCan`][use-can] returns false.
 
@@ -69,7 +69,7 @@ Callback to be called when [`useCan`][use-can] returns false.
 </CanAccess>
 ```
 
-#### fallback
+### fallback
 
 Component to render if [`useCan`][use-can] returns false. If `undefined`, it renders `null`.
 
@@ -79,7 +79,7 @@ Component to render if [`useCan`][use-can] returns false. If `undefined`, it ren
 </CanAccess>
 ```
 
-#### queryOptions
+### queryOptions
 
 Accepts `UseQueryOptions<CanReturnType>` to customize the caching behavior of the underlying query.
 

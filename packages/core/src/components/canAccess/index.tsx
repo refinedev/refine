@@ -63,7 +63,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
     fallback,
     onUnauthorized,
     children,
-    queryOptions: componentQueryOptions, // Rename queryOptions to avoid 
+    queryOptions: componentQueryOptions,
     ...rest
 }) => {
     const {

@@ -2,4 +2,4 @@
 "@refinedev/core": minor
 ---
 
-Ability to configure useCan's queryOptions globally and through CanAccess component.
+feat: ability to configure useCan's queryOptions globally and through CanAccess component. #5472
