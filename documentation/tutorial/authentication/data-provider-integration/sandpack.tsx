@@ -2,7 +2,6 @@ import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
-import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -12,36 +11,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
             }}
             files={{
                 "App.tsx": {
-                    code: AppTsxCode,
-                },
-                "styles.css": {
-                    code: StylesCssCode,
-                    hidden: true,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductTsxCode,
-                    // hidden: true,
-                },
-                "edit-product.tsx": {
-                    code: EditProductTsxCode,
-                    // hidden: true,
-                },
-                "create-product.tsx": {
-                    code: CreateProductTsxCode,
-                    // hidden: true,
-                },
-                "list-products.tsx": {
-                    code: ListProductsTsxCode,
-                    active: true,
-                    // hidden: true,
-                },
-            }}
-            finalFiles={{
-                "App.tsx": {
-                    code: AppTsxWithAuthenticatedComponent,
+                    code: AppTsxWithHeaderComponent,
                 },
                 "styles.css": {
                     code: StylesCssCode,
@@ -68,7 +38,51 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     // hidden: true,
                 },
                 "auth-provider.ts": {
-                    code: AuthProviderTsxWithCheckMethod,
+                    code: AuthProviderTsxWithGetIdentityMethod,
+                },
+                "login.tsx": {
+                    code: LoginComponentWithUseLogin,
+                },
+                "header.tsx": {
+                    code: HeaderComponentWithUseGetIdentity,
+                },
+            }}
+            finalFiles={{
+                "App.tsx": {
+                    code: AppTsxWithHeaderComponent,
+                },
+                "styles.css": {
+                    code: StylesCssCode,
+                    hidden: true,
+                },
+                "data-provider.ts": {
+                    code: DataProviderWithAuthentication,
+                },
+                "show-product.tsx": {
+                    code: ShowProductTsxCode,
+                    // hidden: true,
+                },
+                "edit-product.tsx": {
+                    code: EditProductTsxCode,
+                    // hidden: true,
+                },
+                "create-product.tsx": {
+                    code: CreateProductTsxCode,
+                    // hidden: true,
+                },
+                "list-products.tsx": {
+                    code: ListProductsWithProtectedProductsResource,
+                    active: true,
+                    // hidden: true,
+                },
+                "auth-provider.ts": {
+                    code: AuthProviderWithOnErrorMethod,
+                },
+                "login.tsx": {
+                    code: LoginComponentWithUseLogin,
+                },
+                "header.tsx": {
+                    code: HeaderComponentWithUseGetIdentity,
                 },
             }}
         >
@@ -144,28 +158,6 @@ table tr:nth-child(even) {
   cursor: default;
 }
 
-`.trim();
-
-const AppTsxCode = /* tsx */ `
-import { Refine } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
-
-export default function App(): JSX.Element {
-  return (
-    <Refine dataProvider={dataProvider}>
-      {/* <ShowProduct /> */}
-      {/* <EditProduct /> */}
-      <ListProducts />
-      {/* <CreateProduct /> */}
-    </Refine>
-  );
-}
 `.trim();
 
 const DataProviderTsCode = /* ts */ `
@@ -538,78 +530,140 @@ export const ListProducts = () => {
 };
 `.trim();
 
-// protecting-content
+// logging in out
 
-const AuthProviderTsxCode = /* tsx */ `
-// TODO: change this
-import { AuthProvider } from "@refinedev/core";
+const LoginComponentWithUseLogin = /* tsx */ `
+import React from "react";
+import { useLogin } from "@refinedev/core";
 
-export const authProvider: AuthProvider = {
-    login: async ({ email, password }) => { throw new Error("Not implemented"); },
-    logout: async () => { throw new Error("Not implemented"); },
-    check: async () => { throw new Error("Not implemented"); },
-    onError: async (error) => { throw new Error("Not implemented"); },
-    // optional methods
-    register: async (params) => { throw new Error("Not implemented"); },
-    forgotPassword: async (params) => { throw new Error("Not implemented"); },
-    updatePassword: async (params) => { throw new Error("Not implemented"); },
-    getIdentity: async () => { throw new Error("Not implemented"); },
-    getPermissions: async () => { throw new Error("Not implemented"); },
+export const Login = () => {
+    const { mutate, isLoading } = useLogin();
+
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      // Using FormData to get the form values and convert it to an object.
+      const data = Object.fromEntries(new FormData(event.target).entries());
+      // Calling mutate to submit with the data we've collected from the form.
+      mutate(data);
+    };
+
+    return (
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={onSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  defaultValue="demo@demo.com"
+                />
+
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  defaultValue="demodemo"
+                />
+
+                {isLoading && <span>loading...</span>}
+                <button
+                    type="submit"
+                    disabled={isLoading}
+                >Submit</button>
+            </form>
+        </div>
+    );
 };
 `.trim();
 
-const AppTsxWithAuthProvider = /* tsx */ `
-import { Refine } from "@refinedev/core";
+const HeaderComponentWithUseGetIdentity = /* tsx */ `
+import React from "react";
+import { useLogout, useGetIdentity } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
+  const { data: identity } = useGetIdentity();
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
-
-export default function App(): JSX.Element {
   return (
-    <Refine
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-    >
-      {/* <ShowProduct /> */}
-      {/* <EditProduct /> */}
-      <ListProducts />
-      {/* <CreateProduct /> */}
-    </Refine>
+    <>
+      <h2>
+        <span>Welcome, </span>
+        <span>{identity?.name ?? ""}</span>
+      </h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={mutate}
+      >
+        Logout
+      </button>
+    </>
   );
-}
+};
 `.trim();
 
-const AuthProviderTsxWithCheckMethod = /* tsx */ `
+// user identity
+
+const AuthProviderTsxWithGetIdentityMethod = /* tsx */ `
 // TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
-    check: async () => {
-      // When logging in, we'll obtain an access token from our API and store it in the local storage.
-      // Now let's check if the token exists in the local storage.
-      // In the later steps, we'll be implementing the login and logout methods.
-      const token = localStorage.getItem("my_access_token");
-  
-      return { authenticated: Boolean(token) };
+    getIdentity: async () => {
+      const response = await fetch("https://api.fake-rest.refine.dev/auth/me", {
+          headers: {
+              Authorization: localStorage.getItem("my_access_token"),
+          },
+      });
+
+      if (response.status !== 200) {
+        return null;
+      }
+
+      const data = await response.json();
+
+      return data;
     },
-    login: async ({ email, password }) => { throw new Error("Not implemented"); },
-    logout: async () => { throw new Error("Not implemented"); },
+    logout: async () => {
+        localStorage.removeItem("my_access_token");
+        return { success: true };
+    },
+    // login method receives an object with all the values you've provided to the useLogin hook.
+    login: async ({ email, password }) => {
+        const response = await fetch("https://api.fake-rest.refine.dev/auth/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+
+        if (data.token) {
+            localStorage.setItem("my_access_token", data.token);
+            return { success: true };
+        }
+
+        return { success: false };
+    },
+    check: async () => {
+        const token = localStorage.getItem("my_access_token");
+
+        return { authenticated: Boolean(token) };
+    },
     onError: async (error) => { throw new Error("Not implemented"); },
     // optional methods
     register: async (params) => { throw new Error("Not implemented"); },
     forgotPassword: async (params) => { throw new Error("Not implemented"); },
     updatePassword: async (params) => { throw new Error("Not implemented"); },
-    getIdentity: async () => { throw new Error("Not implemented"); },
     getPermissions: async () => { throw new Error("Not implemented"); },
 };
 `.trim();
 
-const AppTsxWithAuthenticatedComponent = /* tsx */ `
+const AppTsxWithHeaderComponent = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 
 import { dataProvider } from "./data-provider";
@@ -620,6 +674,9 @@ import { EditProduct } from "./edit-product";
 import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
+import { Login } from "./login";
+import { Header } from "./header";
+
 export default function App(): JSX.Element {
   return (
     <Refine
@@ -628,8 +685,9 @@ export default function App(): JSX.Element {
     >
       <Authenticated
         key="protected"
-        fallback={<div>Not authenticated</div>}
+        fallback={<Login />}
       >
+        <Header />
         {/* <ShowProduct /> */}
         {/* <EditProduct /> */}
         <ListProducts />
@@ -640,43 +698,344 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
+// data provider integration
+
+const DataProviderWithAuthentication = /* ts */ `
+import type { DataProvider } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const fetcher = async (url: string, options?: RequestInit) => fetch(url, {
+        ...options,
+        headers: {
+            ...options?.headers,
+            Authorization: localStorage.getItem("my_access_token"),
+        },
+    });
+
+export const dataProvider: DataProvider = {
+  getList: async ({ resource, pagination, filters, sorters, meta }) => {
+    const params = new URLSearchParams();
+
+    if (pagination) {
+      params.append("_start", (pagination.current - 1) * pagination.pageSize);
+      params.append("_end", pagination.current * pagination.pageSize);
+    }
+
+    if (sorters && sorters.length > 0) {
+      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
+      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
+    }
+
+    if (filters && filters.length > 0) {
+      filters.forEach((filter) => {
+        if ("field" in filter && filter.operator === "eq") {
+          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
+          params.append(filter.field, filter.value);
+        }
+      });
+    }
+
+    const response = await fetcher(\`\${API_URL}/\${resource}?\${params.toString()}\`);
+
+    if (response.status !== 200) throw response;
+
+    const data = await response.json();
+
+    const total = Number(response.headers.get("x-total-count"));
+
+
+    return {
+        data,
+        total,
+    };
+  },
+  getMany: async ({ resource, ids, meta }) => {
+    const params = new URLSearchParams();
+
+    if (ids) {
+      ids.forEach((id) => params.append("id", id));
+    }
+
+    const response = await fetcher(
+      \`\${API_URL}/\${resource}?\${params.toString()}\`,
+    );
+
+    if (response.status !== 200) throw response;
+
+    const data = await response.json();
+
+    return { data };
+  },
+  getOne: async ({ resource, id, meta }) => {
+    const response = await fetcher(\`\${API_URL}/\${resource}/\${id}\`);
+
+    if (response.status !== 200) throw response;
+
+    const data = await response.json();
+
+    return { data };
+  },
+  create: async ({ resource, variables }) => {
+    const response = await fetcher(\`\${API_URL}/\${resource}\`, {
+      method: "POST",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.status !== 200) throw response;
+
+    const data = await response.json();
+
+    return { data };
+  },
+  update: async ({ resource, id, variables }) => {
+    const response = await fetcher(\`\${API_URL}/\${resource}/\${id}\`, {
+      method: "PATCH",
+      body: JSON.stringify(variables),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.status !== 200) throw response;
+
+    const data = await response.json();
+
+    return { data };
+  },
+  /* ... */
+};
+`.trim();
+
+const ListProductsWithProtectedProductsResource = /* tsx */ `
+import { useTable, useMany } from "@refinedev/core";
+
+export const ListProducts = () => {
+  const {
+    tableQueryResult: { data, isLoading },
+    current,
+    setCurrent,
+    pageCount,
+    sorters,
+    setSorters,
+  } = useTable({
+    resource: "protected-products",
+    pagination: { current: 1, pageSize: 10 },
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+  });
+
+  const { data: categories } = useMany({
+    resource: "categories",
+    ids: data?.data?.map((product) => product.category?.id) ?? [],
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const onPrevious = () => {
+    if (current > 1) {
+      setCurrent(current - 1);
+    }
+  };
+
+  const onNext = () => {
+    if (current < pageCount) {
+      setCurrent(current + 1);
+    }
+  };
+
+  const onPage = (page: number) => {
+    setCurrent(page);
+  };
+
+  const getSorter = (field: string) => {
+    const sorter = sorters?.find((sorter) => sorter.field === field);
+
+    if (sorter) {
+      return sorter.order;
+    }
+  }
+
+  const onSort = (field: string) => {
+    const sorter = getSorter(field);
+    setSorters(
+        sorter === "desc" ? [] : [
+        {
+            field,
+            order: sorter === "asc" ? "desc" : "asc",
+        },
+        ]
+    );
+  }
+
+  const indicator = { asc: "⬆️", desc: "⬇️" };
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <table>
+        <thead>
+          <tr>
+            <th onClick={() => onSort("id")}>
+              ID {indicator[getSorter("id")]}
+            </th>
+            <th onClick={() => onSort("name")}>
+              Name {indicator[getSorter("name")]}
+            </th>
+            <th>
+              Category
+            </th>
+            <th onClick={() => onSort("material")}>
+              Material {indicator[getSorter("material")]}
+            </th>
+            <th onClick={() => onSort("price")}>
+              Price {indicator[getSorter("price")]}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.data?.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>
+                {
+                  categories?.data?.find(
+                    (category) => category.id == product.category?.id,
+                  )?.title
+                }
+              </td>
+              <td>{product.material}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="pagination">
+        <button type="button" onClick={onPrevious}>
+          {"<"}
+        </button>
+        <div>
+          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
+          <span className="current">{current}</span>
+          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+        </div>
+        <button type="button" onClick={onNext}>
+          {">"}
+        </button>
+      </div>
+    </div>
+  );
+};
+`.trim();
+
+const AuthProviderWithOnErrorMethod = /* tsx */ `
+// TODO: change this
+import { AuthProvider } from "@refinedev/core";
+
+export const authProvider: AuthProvider = {
+    onError: async (error) => {
+        if (error?.status === 401) {
+            return {
+                logout: true,
+                error: { message: "Unauthorized" },
+            }
+        }
+
+        return {};
+    },
+    getIdentity: async () => {
+      const response = await fetch("https://api.fake-rest.refine.dev/auth/me", {
+          headers: {
+              Authorization: localStorage.getItem("my_access_token"),
+          },
+      });
+
+      if (response.status !== 200) {
+        return null;
+      }
+
+      const data = await response.json();
+
+      return data;
+    },
+    logout: async () => {
+        localStorage.removeItem("my_access_token");
+        return { success: true };
+    },
+    // login method receives an object with all the values you've provided to the useLogin hook.
+    login: async ({ email, password }) => {
+        const response = await fetch("https://api.fake-rest.refine.dev/auth/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+
+        if (data.token) {
+            localStorage.setItem("my_access_token", data.token);
+            return { success: true };
+        }
+
+        return { success: false };
+    },
+    check: async () => {
+        const token = localStorage.getItem("my_access_token");
+
+        return { authenticated: Boolean(token) };
+    },
+    // optional methods
+    register: async (params) => { throw new Error("Not implemented"); },
+    forgotPassword: async (params) => { throw new Error("Not implemented"); },
+    updatePassword: async (params) => { throw new Error("Not implemented"); },
+    getPermissions: async () => { throw new Error("Not implemented"); },
+};
+`.trim();
+
 // actions
 
-// protecting-content actions
+// data provider integration actions
 
-export const CreateAuthProviderFile = () => {
-    const { sandpack } = useSandpack();
-
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "/auth-provider.ts": {
-                        code: AuthProviderTsxCode,
-                    },
-                });
-                sandpack.openFile("/auth-provider.ts");
-                sandpack.setActiveFile("/auth-provider.ts");
-            }}
-            name="auth-provider.ts"
-        />
-    );
-};
-
-export const AddAuthProviderToAppTsx = () => {
+export const AddAuthenticationToDataProvider = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithAuthProvider);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile(
+                    "/data-provider.ts",
+                    DataProviderWithAuthentication,
+                );
+                sandpack.setActiveFile("/data-provider.ts");
             }}
         />
     );
 };
 
-export const AddCheckMethodToAuthProvider = () => {
+export const AddProtectedProductsResourceToListProducts = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile(
+                    "/list-products.tsx",
+                    ListProductsWithProtectedProductsResource,
+                );
+                sandpack.setActiveFile("/list-products.tsx");
+            }}
+        />
+    );
+};
+
+export const AddOnErrorMethodToAuthProvider = () => {
     const { sandpack } = useSandpack();
 
     return (
@@ -684,25 +1043,9 @@ export const AddCheckMethodToAuthProvider = () => {
             onClick={() => {
                 sandpack.updateFile(
                     "/auth-provider.ts",
-                    AuthProviderTsxWithCheckMethod,
+                    AuthProviderWithOnErrorMethod,
                 );
                 sandpack.setActiveFile("/auth-provider.ts");
-            }}
-        />
-    );
-};
-
-export const AddAuthenticatedComponentToAppTsx = () => {
-    const { sandpack } = useSandpack();
-
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/App.tsx",
-                    AppTsxWithAuthenticatedComponent,
-                );
-                sandpack.setActiveFile("/App.tsx");
             }}
         />
     );
