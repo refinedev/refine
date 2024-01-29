@@ -41,26 +41,15 @@ export const dataProvider: DataProvider = {
   getList: async ({ resource, pagination, filters, sorters, meta }) => {
     const params = new URLSearchParams();
 
-    if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
-    }
+    if (pagination) { /* ... */ }
 
-    if (sorters && sorters.length > 0) {
-      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
-      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
-    }
+    if (sorters && sorters.length > 0) { /* ... */ }
 
-    if (filters && filters.length > 0) {
-      filters.forEach((filter) => {
-        if ("field" in filter && filter.operator === "eq") {
-          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
-          params.append(filter.field, filter.value);
-        }
-      });
-    }
+    if (filters && filters.length > 0) { /* ... */ }
 
-    // highlight-next-line
+    // removed-line
+    const response = await fetch(
+    // added-line
     const response = await fetcher(
       `${API_URL}/${resource}?${params.toString()}`,
     );
@@ -79,11 +68,11 @@ export const dataProvider: DataProvider = {
   getMany: async ({ resource, ids, meta }) => {
     const params = new URLSearchParams();
 
-    if (ids) {
-      ids.forEach((id) => params.append("id", id));
-    }
+    if (ids) { /* ... */ }
 
-    // highlight-next-line
+    // removed-line
+    const response = await fetch(
+    // added-line
     const response = await fetcher(
       `${API_URL}/${resource}?${params.toString()}`,
     );
@@ -95,7 +84,9 @@ export const dataProvider: DataProvider = {
     return { data };
   },
   getOne: async ({ resource, id, meta }) => {
-    // highlight-next-line
+    // removed-line
+    const response = await fetcher(`${API_URL}/${resource}/${id}`);
+    // added-line
     const response = await fetcher(`${API_URL}/${resource}/${id}`);
 
     if (response.status !== 200) throw response;
@@ -105,7 +96,9 @@ export const dataProvider: DataProvider = {
     return { data };
   },
   create: async ({ resource, variables }) => {
-    // highlight-next-line
+    // removed-line
+    const response = await fetch(`${API_URL}/${resource}`, {
+    // added-line
     const response = await fetcher(`${API_URL}/${resource}`, {
       method: "POST",
       body: JSON.stringify(variables),
@@ -121,7 +114,9 @@ export const dataProvider: DataProvider = {
     return { data };
   },
   update: async ({ resource, id, variables }) => {
-    // highlight-next-line
+    // removed-line
+    const response = await fetch(`${API_URL}/${resource}/${id}`, {
+    // added-line
     const response = await fetcher(`${API_URL}/${resource}/${id}`, {
       method: "PATCH",
       body: JSON.stringify(variables),
