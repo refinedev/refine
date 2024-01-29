@@ -8,7 +8,7 @@ import { Sandpack } from "./sandpack.tsx";
 
 Now we've learned the data fetching and manipulation essentials of Refine. In this unit, we'll learn how to add authentication to our application and the essentials of authentication in Refine.
 
-Refine provides an easy to manage authentication interface that can be used with any authentication provider with very little effort.
+Refine provides an easy to manage authentication interface that can be used with any authentication provider with minimal effort.
 
 This unit will cover the following topics:
 

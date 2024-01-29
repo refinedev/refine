@@ -60,9 +60,9 @@ export const authProvider: AuthProvider = {
 
 ## Using the `useGetIdentity` Hook
 
-After implementing the `getIdentity` method, we'll be able to call `useGetIdentity` hook and get the user's identity from our API. We'll use this hook inside our `<Header />` component to greet the user.
+After implementing the `getIdentity` method, we'll be able to call `useGetIdentity` hook and get the user's identity from our API.
 
-Let's use the `useGetIdentity` hook inside our `<Header />` component.
+Now, we'll use the `useGetIdentity` hook inside our `<Header />` component to greet the user.
 
 Try to add the following lines to your `src/header.tsx` file:
 
@@ -94,10 +94,10 @@ Now when we login, we should be able to see a welcome message with the user's na
 
 :::simple Note
 
-Our fake REST API returns "John Doe" as the user's name, regardless of the token we send. This is just for demonstration purposes.
+For the purpose of demonstration, our fake REST API returns "John Doe" as the user's name, regardless of the token sent.
 
 :::
 
-Now we've set up with the basic authentication flow, in the next step, we'll be learning about how to integrate it with our data provider.
+At this point, we've set up with the basic authentication flow, in the next step, we'll be learning about how to integrate it with our data provider.
 
 </Sandpack>

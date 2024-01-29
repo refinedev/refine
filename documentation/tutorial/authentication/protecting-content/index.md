@@ -6,9 +6,9 @@ import { Sandpack, CreateAuthProviderFile, AddAuthProviderToAppTsx, AddCheckMeth
 
 <Sandpack>
 
-In this step, we'll be implementing a basic `authProvider` with `check` method to validate the user's authentication status. With this, we'll be able to protect our content from unauthenticated users.
+In this step, we'll be implementing a basic `authProvider` with `check` method to validate the user's authentication status, allowing us to protect our content from unauthenticated users.
 
-Refine can work with any authentication solution with its easy to implement `authProvider` interface. We'll create an implementation for our fake REST API which also provides a simple authentication endpoints.
+Refine can work with any authentication solution with its easy to implement `authProvider` interface. We'll set up an implementation for our fake REST API, which also provides a simple authentication endpoints.
 
 To learn more about the supported auth providers, refer to the [Supported Authentication Providers](/docs/guides-concepts/authentication/#supported-auth-providers) section in the Authentication guide.
 
@@ -56,11 +56,10 @@ export default function App(): JSX.Element {
 
 ## Implementing the `check` Method
 
-The `check` method is used to check the user's authentication status. It should return a `Promise` which resolves to an object.
+The `check` method is used by `useIsAuthenticated` hook and the `<Authenticated />` component to check the user's authentication status. It should return a `Promise` which resolves to an object.
 
 If the user is authenticated, the object should contain `authenticated: true` property. Otherwise, it should contain `authenticated: false` property.
 
-This method is used by the `useIsAuthenticated` hook and the `<Authenticated />` component.
 
 We'll obtain an access token through the `login` method from our API and store it inside the local storage. Now let's check if the token exists in the local storage or not.
 

@@ -12,7 +12,7 @@ In the previous step, we've added the `<Authenticated />` component to our `src/
 
 The `login` method will be used to authenticate the user and other related operations such as storing the token etc. It should return a `Promise` which resolves to an object. The object should contain `success` property to indicate whether the login operation was successful or not.
 
-Our fake REST API requires us to send a `POST` request to `/auth/login` endpoint with the `email` and `password` in the request body. It will return a `token` in the response body.
+Our fake REST API requires us to send a `POST` request to `/auth/login` endpoint with the `email` and `password` parameters in the request body. It will return a `token` in the response body.
 
 We'll also be storing the `token` in the `localStorage` for later use.
 
@@ -222,7 +222,7 @@ export const authProvider: AuthProvider = {
 
 ## Using the `useLogout` Hook
 
-After implementing the `logout` method, we'll be able to call `useLogout` hook and logout our users. Let's create a component called `Header` and mount it inside our `<Refine />` component.
+After implementing the `logout` method, we'll be able to call `useLogout` hook and logout our users. Let's create a component called `Header` to add a logout button and mount it inside our `<Refine />` component.
 
 <CreateHeaderComponentFile />
 

@@ -6,17 +6,17 @@ import { Sandpack, AddAuthenticationToDataProvider, AddProtectedProductsResource
 
 <Sandpack>
 
-Now that we've implemented the authentication logic, we'll be integrating it with our data provider to protect our resources from unauthenticated users.
+Having implemented the authentication logic, we will now integrate it with our data provider to protect our resources from unauthenticated users.
 
-We've obtained the `token` from our API and stored it in the `localStorage` in the previous steps. Now, we'll be adding the `Authorization` header to our requests to our API.
+We've obtained the `token` from our API and stored it in the `localStorage` in the previous steps. Now, we'll be adding the `Authorization` header to our API requests.
 
-We'll also be learning about the `onError` method of the auth provider to handle the errors thrown from the data providers related to authentication.
+We'll also be learning about the `onError` method of the auth provider to handle the authentication-related errors that are thrown by the data provider.
 
 ## Adding the `Authorization` Header
 
-Our fake REST API has some resources that require authentication to access them. Authentication will be done by sending the `token` in the `Authorization` header.
+Our fake REST API has some resources that require authentication to access them. The authentication will be done by sending the `token` in the `Authorization` header.
 
-Let's replace our data provider's `fetch` with a custom wrapper that adds the `Authorization` header to the requests. This way, we'll be able to protect our resources from unauthenticated users and handle this step in a single place.
+Let's replace our data provider's `fetch` method with a custom wrapper that adds the `Authorization` header to the requests. This way, we'll be able to protect our resources from unauthenticated users and handle this step in a single place.
 
 Try to add the following lines to your `src/data-provider.ts` file:
 
@@ -247,12 +247,12 @@ Finally, we'll be able to handle the `401 Unauthorized` error thrown from the da
 
 ## Summary
 
-Now we have our authentication integrated with Refine, additional methods can be implemented in the same way and used with the respective hooks of Refine.
+Now we have our authentication mechanism integrated with Refine, additional methods can be implemented in the same way and used with the respective hooks of Refine.
 
 All of the built-in data providers of Refine have the ability to customize the client/fetcher instance. They can be used to handle authentication in the same way as we did in this tutorial without requiring a custom data provider.
 
 In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router and Next.js.
 
-Current way of handling authentication will be refactored but the concepts will remain the same.
+Current way of handling authentication can be refactored but the concepts will remain the same.
 
 </Sandpack>
