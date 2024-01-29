@@ -10,7 +10,10 @@ import {
 import React from "react";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
+import {
+    RefineSnackbarProvider,
+    useNotificationProvider,
+} from "@refinedev/mui";
 
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider, {
