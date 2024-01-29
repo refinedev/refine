@@ -24,7 +24,7 @@ const App: React.FC = () => {
             <GitHubBanner />
             <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     resources={[

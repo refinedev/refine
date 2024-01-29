@@ -156,7 +156,7 @@ const App: React.FC = () => {
                     )}
                     authProvider={authProvider}
                     routerProvider={routerProvider}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "posts",

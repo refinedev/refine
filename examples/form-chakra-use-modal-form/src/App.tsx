@@ -25,7 +25,7 @@ const App: React.FC = () => (
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
-                notificationProvider={notificationProvider()}
+                notificationProvider={useNotificationProvider()}
                 resources={[
                     {
                         name: "posts",

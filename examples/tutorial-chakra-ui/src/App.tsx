@@ -29,7 +29,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "blog_posts",

@@ -27,7 +27,7 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "posts",

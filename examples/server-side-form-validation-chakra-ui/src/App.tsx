@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <GitHubBanner />
             <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     routerProvider={routerProvider}
                     dataProvider={{
                         ...dataProvider("https://api.fake-rest.refine.dev"),
