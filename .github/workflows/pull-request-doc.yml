@@ -10,6 +10,7 @@ on:
       - "documentation/**"
 jobs:
   documentation:
+    if: github.repository_owner == 'refinedev'
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-pr-doc
