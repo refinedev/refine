@@ -33,9 +33,6 @@ import {
 } from "../styles";
 import { ThemedTitleV2 } from "@components";
 
-const { Text, Title } = Typography;
-const { useToken } = theme;
-
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
@@ -54,7 +51,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     title,
     hideForm,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const [form] = Form.useForm<LoginFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -83,7 +80,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         );
 
     const CardTitle = (
-        <Title
+        <Typography.Title
             level={3}
             style={{
                 color: token.colorPrimaryTextHover,
@@ -91,7 +88,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             }}
         >
             {translate("pages.login.title", "Sign in to your account")}
-        </Title>
+        </Typography.Title>
     );
 
     const renderProviders = () => {
@@ -124,13 +121,13 @@ export const LoginPage: React.FC<LoginProps> = ({
                     })}
                     {!hideForm && (
                         <Divider>
-                            <Text
+                            <Typography.Text
                                 style={{
                                     color: token.colorTextLabel,
                                 }}
                             >
                                 {translate("pages.login.divider", "or")}
-                            </Text>
+                            </Typography.Text>
                         </Divider>
                     )}
                 </>
@@ -262,7 +259,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         marginTop: hideForm ? 16 : 8,
                     }}
                 >
-                    <Text style={{ fontSize: 12 }}>
+                    <Typography.Text style={{ fontSize: 12 }}>
                         {translate(
                             "pages.login.buttons.noAccount",
                             "Don’t have an account?",
@@ -276,7 +273,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         >
                             {translate("pages.login.signup", "Sign up")}
                         </ActiveLink>
-                    </Text>
+                    </Typography.Text>
                 </div>
             )}
         </Card>

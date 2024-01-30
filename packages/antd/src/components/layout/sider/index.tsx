@@ -28,8 +28,6 @@ import { Title as DefaultTitle } from "@components";
 import { drawerButtonStyles } from "./styles";
 import { RefineLayoutSiderProps } from "../types";
 
-const { SubMenu } = Menu;
-
 export const Sider: React.FC<RefineLayoutSiderProps> = ({
     Title: TitleFromProps,
     render,
@@ -82,13 +80,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                             resource: item,
                         }}
                     >
-                        <SubMenu
+                        <Menu.SubMenu
                             key={item.key}
                             icon={icon ?? <UnorderedListOutlined />}
                             title={label}
                         >
                             {renderTreeView(children, selectedKey)}
-                        </SubMenu>
+                        </Menu.SubMenu>
                     </CanAccess>
                 );
             }

@@ -1,8 +1,6 @@
 import React from "react";
 import { Typography } from "antd";
 
-const { Text } = Typography;
-
 function toLocaleStringSupportsOptions() {
     return !!(
         typeof Intl == "object" &&
@@ -27,10 +25,10 @@ export const NumberField: React.FC<NumberFieldProps> = ({
     const number = Number(value);
 
     return (
-        <Text {...rest}>
+        <Typography.Text {...rest}>
             {toLocaleStringSupportsOptions()
                 ? number.toLocaleString(locale, options)
                 : number}
-        </Text>
+        </Typography.Text>
     );
 };

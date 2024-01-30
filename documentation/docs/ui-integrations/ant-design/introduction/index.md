@@ -368,3 +368,22 @@ To learn more about the theme configuration of Ant Design, please refer to the [
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` components and finally the `AntdInferencer` component, which combines all in one place.
 
 To learn more about Inferencer, please refer to the [Ant Design Inferencer](/docs/ui-integrations/ant-design/components/inferencer) docs.
+
+## Known Issues
+
+Next.js Pages Router with version 14.0.0 and above gives the following error when using `@ant-design` package:
+
+```bash title="Compile errors"
+Server Error
+SyntaxError: Unexpected token 'export'
+
+This error happened while generating the page. Any console logs will be displayed in the terminal window.
+Call Stack
+<unknown>
+/Users/user/Desktop/refine/node_modules/ (ant-design/icons-svg/es/asn/AccountBookFilled.js (3)
+```
+
+You can find issue details from the official Ant Design repository:
+
+- https://github.com/ant-design/ant-design/issues/43510
+- https://github.com/ant-design/ant-design/issues/46053

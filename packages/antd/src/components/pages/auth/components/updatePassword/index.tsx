@@ -29,9 +29,6 @@ import {
 } from "../styles";
 import { ThemedTitleV2 } from "@components";
 
-const { Title } = Typography;
-const { useToken } = theme;
-
 type UpdatePasswordProps = UpdatePasswordPageProps<
     LayoutProps,
     CardProps,
@@ -50,7 +47,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     formProps,
     title,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
     const authProvider = useActiveAuthProvider();
@@ -74,7 +71,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         );
 
     const CardTitle = (
-        <Title
+        <Typography.Title
             level={3}
             style={{
                 color: token.colorPrimaryTextHover,
@@ -82,7 +79,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             }}
         >
             {translate("pages.updatePassword.title", "Set New Password")}
-        </Title>
+        </Typography.Title>
     );
 
     const CardContent = (

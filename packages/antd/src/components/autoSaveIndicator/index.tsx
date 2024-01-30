@@ -68,8 +68,7 @@ const Message = ({
     icon: React.ReactNode;
 }) => {
     const translate = useTranslate();
-    const { useToken } = theme;
-    const { token } = useToken();
+    const { token } = theme.useToken();
 
     return (
         <Typography.Text
