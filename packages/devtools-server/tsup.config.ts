@@ -13,6 +13,9 @@ export default defineConfig((tsupOptions) => ({
             ...options.define,
             __DEVELOPMENT__: tsupOptions.watch ? "true" : "false",
         };
+        options.banner = {
+            js: '"use client"',
+        };
     },
     esbuildPlugins: [
         NodeResolvePlugin({
