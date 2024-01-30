@@ -1,5 +1,6 @@
-module.exports = {
-    experimental: {
-        newNextLinkBehavior: true,
-    },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    reactStrictMode: true,
 };
+
+module.exports = nextConfig;

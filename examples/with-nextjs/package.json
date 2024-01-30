@@ -17,7 +17,7 @@
     "@refinedev/nextjs-router": "^5.5.5",
     "@refinedev/simple-rest": "^5.0.1",
     "cross-env": "^7.0.3",
-    "next": "^13.5.4",
+    "next": "^14.1.0",
     "nookies": "^2.5.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
