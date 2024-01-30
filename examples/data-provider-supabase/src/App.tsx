@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -27,7 +27,7 @@ import "@refinedev/antd/dist/reset.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
 import { supabaseClient } from "../src/utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password, providerName }) => {
         // sign in with oauth
         try {

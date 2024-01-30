@@ -606,7 +606,7 @@ Earlier on, the `authProvider` object was created by the CLI Wizard inside the `
 <p>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import { AuthHelper } from "@refinedev/strapi-v4";
 
 import { API_URL, TOKEN_KEY } from "./constants";
@@ -616,7 +616,7 @@ import axios from "axios";
 export const axiosInstance = axios.create();
 const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     const { data, status } = await strapiAuthHelper.login(email, password);
     if (status === 200) {

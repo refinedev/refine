@@ -1,31 +1,25 @@
 import { FC } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
-import { useModalForm, useSelect } from "@refinedev/antd";
+import { useModalForm } from "@refinedev/antd";
 import { HttpError, RedirectAction, useNavigation } from "@refinedev/core";
-import {
-    GetFields,
-    GetFieldsFromList,
-    GetVariables,
-} from "@refinedev/nestjs-query";
+import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
 import {
-    CompaniesSelectQuery,
-    ContactsSelectQuery,
-    QuoteCreateMutation,
-    QuoteCreateMutationVariables,
-    UsersSelectQuery,
+    QuotesCreateQuoteMutation,
+    QuotesCreateQuoteMutationVariables,
 } from "@/graphql/types";
-import {
-    COMPANIES_SELECT_QUERY,
-    CONTACTS_SELECT_QUERY,
-    USERS_SELECT_QUERY,
-} from "@/graphql/queries";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useContactsSelect } from "@/hooks/useContactsSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 
-import { QUOTE_CREATE_MUTATION, QUOTE_UPDATE_MUTATION } from "./queries";
+import {
+    QUOTES_CREATE_QUOTE_MUTATION,
+    QUOTES_UPDATE_QUOTE_MUTATION,
+} from "../../queries";
 
 type Props = {
     action: "create" | "edit";
@@ -46,9 +40,9 @@ export const QuotesFormModal: FC<Props> = ({
     const [searchParams] = useSearchParams();
 
     const { formProps, modalProps, close } = useModalForm<
-        GetFields<QuoteCreateMutation>,
+        GetFields<QuotesCreateQuoteMutation>,
         HttpError,
-        GetVariables<QuoteCreateMutationVariables>
+        GetVariables<QuotesCreateQuoteMutationVariables>
     >({
         resource: "quotes",
         action,
@@ -58,8 +52,8 @@ export const QuotesFormModal: FC<Props> = ({
         meta: {
             gqlMutation:
                 action === "create"
-                    ? QUOTE_CREATE_MUTATION
-                    : QUOTE_UPDATE_MUTATION,
+                    ? QUOTES_CREATE_QUOTE_MUTATION
+                    : QUOTES_UPDATE_QUOTE_MUTATION,
         },
         onMutationSuccess: () => {
             onMutationSuccess?.();
@@ -69,47 +63,17 @@ export const QuotesFormModal: FC<Props> = ({
     const {
         selectProps: selectPropsCompanies,
         queryResult: { isLoading: isLoadingCompanies },
-    } = useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
-        resource: "companies",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            gqlQuery: COMPANIES_SELECT_QUERY,
-        },
-    });
+    } = useCompaniesSelect();
 
     const {
         selectProps: selectPropsContacts,
         queryResult: { isLoading: isLoadingContact },
-    } = useSelect<GetFieldsFromList<ContactsSelectQuery>>({
-        resource: "contacts",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            gqlQuery: CONTACTS_SELECT_QUERY,
-        },
-    });
+    } = useContactsSelect();
 
     const {
         selectProps: selectPropsSalesOwners,
         queryResult: { isLoading: isLoadingSalesOwners },
-    } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
-        resource: "users",
-        pagination: {
-            mode: "off",
-        },
-        optionLabel: "name",
-        optionValue: "id",
-        meta: {
-            gqlQuery: USERS_SELECT_QUERY,
-        },
-    });
+    } = useUsersSelect();
 
     const loading =
         isLoadingCompanies || isLoadingContact || isLoadingSalesOwners;

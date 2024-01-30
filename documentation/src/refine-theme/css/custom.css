@@ -71,8 +71,8 @@
     @apply prose-blockquote:dark:bg-gray-700 prose-blockquote:dark:text-gray-100 prose-blockquote:dark:border-l-gray-500;
 
     @apply prose-code:text-base 2xl:prose-code:text-base;
-    @apply prose-code:translate-y-0.5;
-    @apply prose-code:inline-flex;
+    /* @apply prose-code:translate-y-0.5; */
+    @apply prose-code:inline-block;
     @apply prose-code:text-gray-700 prose-code:bg-gray-400 prose-code:bg-opacity-10;
     @apply prose-code:dark:text-gray-0 prose-code:dark:bg-gray-400 prose-code:dark:bg-opacity-10;
     @apply prose-code:px-1 prose-code:py-0 prose-code:rounded prose-code:font-jetBrains-mono prose-code:before:content-none prose-code:after:content-none;
@@ -84,11 +84,11 @@
 }
 
 .refine-prose li code {
-    @apply align-text-bottom;
+    @apply align-baseline;
 }
 
 .refine-prose table code {
-    @apply !align-text-bottom;
+    @apply !align-baseline;
 }
 
 .refine-prose li::marker {
@@ -221,15 +221,15 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-    @apply !text-refine-react-light-link dark:!text-refine-react-dark-link !align-text-bottom;
+    @apply !text-refine-react-light-link dark:!text-refine-react-dark-link !align-baseline;
 }
 
 p:has(> code) code {
-    @apply mx-0.5 !align-text-bottom;
+    @apply mx-0.5 !align-baseline;
 }
 
 li a:has(> code) code {
-    @apply !mx-0 !align-text-bottom;
+    @apply !mx-0 !align-baseline;
 }
 
 /* admonition overrides */
@@ -535,4 +535,8 @@ h3 del code,
 h4 del code {
     @apply !line-through;
     @apply !text-gray-400 dark:!text-gray-500;
+}
+
+.docs-wrapper *::selection {
+    @apply bg-refine-selection text-gray-800;
 }

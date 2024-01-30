@@ -193,7 +193,7 @@ pnpm un @refinedev/react-table
 You can update installed packages to their latest version using the `update` command. This command adheres to the ranges specified in the `package.json` file. Its aliases are `up` and  `upgrade`.
 
 ```sh
-# Update pacakge
+# Update package
 pnpm update @refinedev/react-table
 
 # Alternative to the update command

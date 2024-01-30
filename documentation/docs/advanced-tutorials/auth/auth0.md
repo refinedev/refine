@@ -104,7 +104,7 @@ In Refine, authentication and authorization processes are performed with the aut
 <p>
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings, Authenticated } from "@refinedev/core";
+import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
 import { ThemedLayoutV2, ReadyPage, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
@@ -128,7 +128,7 @@ const App = () => {
     return <span>loading...</span>;
   }
 
-  const authProvider: AuthBindings = {
+  const authProvider: AuthProvider = {
     login: async () => {
       return {
         success: true,

@@ -131,7 +131,7 @@ register({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `register` method of the `authProvider`:
 
 ```tsx
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   register: ({ redirectPath }) => {
     // ...

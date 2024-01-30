@@ -58,9 +58,9 @@ export default function App() {
 
 const AuthProviderCode = `
 import React from "react";
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     onError: async (error: HttpError) => {
         // simulating a HTTP error
         if (error.statusCode === 401) {
