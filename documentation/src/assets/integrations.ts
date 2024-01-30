@@ -23,7 +23,6 @@ import {
     Nest,
     NestQuery,
     Nextjs,
-    Nhost,
     React,
     Remix,
     Rest,
@@ -127,14 +126,6 @@ export const integrations: IntegrationsType = {
             status: "stable",
         },
         {
-            name: "Nhost",
-            icon: Nhost,
-            description:
-                "<strong>Nhost</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
-            url: "https://www.npmjs.com/package/@refinedev/nhost",
-            status: "stable",
-        },
-        {
             name: "Appwrite",
             icon: Appwrite,
             description:
@@ -155,14 +146,6 @@ export const integrations: IntegrationsType = {
             description:
                 "<strong>Medusa</strong> connector for your e-commerce projects.",
             url: "https://www.npmjs.com/package/@refinedev/medusa",
-            status: "stable",
-        },
-        {
-            name: "Strapi - GraphQL",
-            icon: Strapi,
-            description:
-                "<strong>Strapi</strong> connector for <strong>GraphQL API</strong>.",
-            url: "https://www.npmjs.com/package/@refinedev/strapi-graphql",
             status: "stable",
         },
     ],

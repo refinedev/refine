@@ -23,7 +23,6 @@ export { default as Mui } from "./mui";
 export { default as Nest } from "./nest";
 export { default as NestQuery } from "./nest-query";
 export { default as Nextjs } from "./nextjs";
-export { default as Nhost } from "./nhost";
 export { default as React } from "./react";
 export { default as Remix } from "./remix";
 export { default as Rest } from "./rest";

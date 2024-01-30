@@ -8,19 +8,9 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeho
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-##     Best UI Frameworks for React.js
-
+## Best UI Frameworks for React.js
 
 In this post, I have listed some of the best React frameworks that are most popular and that I believe will be popular in 2022.
-
-
 
 ### What is React?
 
@@ -39,7 +29,6 @@ Table of Contents
   - [4. React Bootstrap ](#4-react-bootstrap-)
   - [5. refine ](#5-refine-)
 
-
 ### 1. Create React App <a name="cra"></a>
 
 [Create React App](https://create-react-app.dev/docs/getting-started) is a comfortable environment for learning React, and is the best way to start building a new single-page application in React.
@@ -56,10 +45,10 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+
 **Example**
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/create-react-app.png" alt="create-react-app" />
-
 
 ### 2. Material UI <a name="material-ui"></a>
 
@@ -74,13 +63,12 @@ npm install @mui/material @emotion/react @emotion/styled
 // with yarn
 yarn add @mui/material @emotion/react @emotion/styled
 ```
+
 **Example**
 
 [Link](https://mui.com/getting-started/templates/dashboard/)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/material-ui.png" alt="material-ui" />
-
-
 
 ### 3. Ant Design <a name="antd"></a>
 
@@ -94,12 +82,11 @@ npm install antd
 yarn add antd
 ```
 
-**Example** 
+**Example**
 
 [Link](https://preview.pro.ant.design/dashboard/analysis/)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/antd.png" alt="antd" />
-
 
 ### 4. React Bootstrap <a name="react-bootstrap"></a>
 
@@ -109,12 +96,12 @@ This [UI Kit](https://react-bootstrap.github.io/getting-started/introduction) li
 npm install react-bootstrap bootstrap@5.1.3
 
 ```
+
 **Example**
 
 [Link](https://demos.creative-tim.com/light-bootstrap-dashboard-react/#/admin/dashboard)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/react-bootstrap.png" alt="react-bootstrap" />
-
 
 ### 5. refine <a name="refine"></a>
 
@@ -125,7 +112,7 @@ npm install react-bootstrap bootstrap@5.1.3
 ​
 ⚙️ Experience effortless setup in just a minute using a single command via **zero-configuration**.
 
-🔌 Seamlessly connect to over **15 backend services** such as [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
+🔌 Seamlessly connect to over **15 backend services** such as [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/).
 
 🌐 Enable **server-side rendering (SSR)** support using **Next.js** or **Remix**.
 
@@ -159,20 +146,16 @@ The recommended way is using the [superplate](https://github.com/pankod/superpla
 ```
 npm create refine-app@latest
 ```
+
 **Examples**
 
 [Link](https://example.admin.refine.dev/?current=1&pageSize=5)
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine.png" alt="refine-admin" />
-
 
 [Link](https://example.refine.dev)
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine-2.png" alt="refine" />
-
-
 
 If you enjoyed this article, please hit that little heart button and share with others!
 This will help us grow our community so we can all learn more together.

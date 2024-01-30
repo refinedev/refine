@@ -16,3 +16,6 @@ indent_size = 2
 
 [*.mdx]
 indent_size = 2
+
+[documentation/**/*.tsx]
+indent_size = 2

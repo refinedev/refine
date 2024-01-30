@@ -24,13 +24,13 @@ import "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { authProvider, axiosInstance } from "./authProvider";
 
-import { CompanyList } from "pages/company";
-import { ClientList } from "pages/client";
-import { ContactsList, ContactEdit } from "pages/contacts";
-import { InvoiceList, InvoiceCreate, InvoiceEdit } from "pages/invoice";
-import { MissionList } from "pages/mission";
+import { CompanyList } from "@/pages/company";
+import { ClientList } from "@/pages/client";
+import { ContactsList, ContactEdit } from "@/pages/contacts";
+import { InvoiceList, InvoiceCreate, InvoiceEdit } from "@/pages/invoice";
+import { MissionList } from "@/pages/mission";
 
-import { API_URL } from "../src/constants";
+import { API_URL } from "./constants";
 import { ConfigProvider, App as AntdApp } from "antd";
 
 function App() {
