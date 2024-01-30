@@ -341,41 +341,6 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
         ),
     },
     {
-        name: "@refinedev/nhost",
-        description:
-            "NHost data provider and live provider integrations for refine",
-        install: `npm install @refinedev/nhost @nhost/nhost-js @nhost/react-auth`,
-        usage: dedent(
-            `
-            import { NhostClient } from "@nhost/nhost-js";
-            import dataProvider, { graphqlWS } from "@refinedev/nhost";
-
-            const nhost = new NhostClient({ backendUrl: "NHOST_API_URL" });
-
-            const gqlWsClient = graphqlWS.createClient({
-                url: WS_URL,
-                connectionParams: () => ({
-                    headers: {
-                        Authorization: \`Bearer \${nhost.auth.getJWTToken()}\`,
-                    },
-                })
-            });
-
-            const App = () => {
-                return (
-                    <Refine
-                        dataProvider={dataProvider(nhost)}
-                        liveProvider={liveProvider(gqlWsClient)}
-                        /* ... */
-                    >
-                        {/* ... */}
-                    </Refine>
-                );
-            };
-            `.trim(),
-        ),
-    },
-    {
         name: "@refinedev/react-hook-form",
         description: "React Hook Form integration for refine",
         install: `npm install @refinedev/react-hook-form react-hook-form`,
@@ -526,29 +491,6 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 return (
                     <Refine
                         dataProvider={DataProvider("API_URL", axiosInstance)}
-                        /* ... */
-                    >
-                        {/* ... */}
-                    </Refine>
-                );
-            };
-            `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/strapi-graphql",
-        description: "Strapi GraphQL integration of refine",
-        install: `npm install @refinedev/strapi-graphql`,
-        usage: dedent(
-            `
-            import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-
-            const client = new GraphQLClient("API_URL");
-
-            const App = () => {
-                return (
-                    <Refine
-                    dataProvider={dataProvider(client)}
                         /* ... */
                     >
                         {/* ... */}

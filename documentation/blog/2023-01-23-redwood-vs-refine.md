@@ -108,29 +108,24 @@ Here is what the `App.tsx` file should look like:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            routerProvider={routerProvider}
-            resources={}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      catchAll={<ErrorComponent />}
+      routerProvider={routerProvider}
+      resources={}
+    />
+  );
 }
 
 export default App;
@@ -148,9 +143,9 @@ const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
 ```
 
@@ -210,12 +205,7 @@ Check your `App.tsx` file and it should now look like this:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -224,22 +214,22 @@ import routerProvider from "@refinedev/react-router-v6";
 import { TestList } from "pages/tests";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "test",
-                    list: TestList,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      catchAll={<ErrorComponent />}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "test",
+          list: TestList,
+        },
+      ]}
+    />
+  );
 }
 
 export default App;
@@ -249,14 +239,14 @@ Now, let's create a page to display some sample data. Open the newly created `li
 
 ```typescript
 export const TestList = () => {
-    return (
-        <>
-            <h1>TestPage</h1>
-            <p>
-                Find me in <code>./src/pages/tests/list.tsx</code>
-            </p>
-        </>
-    );
+  return (
+    <>
+      <h1>TestPage</h1>
+      <p>
+        Find me in <code>./src/pages/tests/list.tsx</code>
+      </p>
+    </>
+  );
 };
 ```
 
@@ -279,20 +269,19 @@ import { Link, routes } from "@redwoodjs/router";
 import { MetaTags } from "@redwoodjs/web";
 
 const TestPage = () => {
-    return (
-        <>
-            <MetaTags title="Test" description="Test page" />
+  return (
+    <>
+      <MetaTags title="Test" description="Test page" />
 
-            <h1>TestPage</h1>
-            <p>
-                Find me in <code>./web/src/pages/TestPage/TestPage.tsx</code>
-            </p>
-            <p>
-                My default route is named <code>test</code>, link to me with `
-                <Link to={routes.test()}>Test</Link>`
-            </p>
-        </>
-    );
+      <h1>TestPage</h1>
+      <p>
+        Find me in <code>./web/src/pages/TestPage/TestPage.tsx</code>
+      </p>
+      <p>
+        My default route is named <code>test</code>, link to me with `<Link to={routes.test()}>Test</Link>`
+      </p>
+    </>
+  );
 };
 
 export default TestPage;
@@ -305,8 +294,6 @@ To test it out, run [http://localhost:8910/test](http://localhost:8910/test) in 
 </div>
 
 <br/>
-
-
 
 ## Data sources
 
@@ -398,12 +385,7 @@ Check your `App.tsx` file and change it to the following:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import {
-    notificationProvider,
-    Layout,
-    ReadyPage,
-    ErrorComponent,
-} from "@refinedev/antd";
+import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -412,25 +394,25 @@ import routerProvider from "@refinedev/react-router-v6";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 function App() {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            catchAll={<ErrorComponent />}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      catchAll={<ErrorComponent />}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 }
 
 export default App;
@@ -440,68 +422,46 @@ Next, open the `list.tsx` file and replace the current content with the followin
 
 ```typescript
 import {
-    List,
-    Table,
-    TextField,
-    useTable,
-    DateField,
-    Space,
-    EditButton,
-    DeleteButton,
-    ShowButton,
+  List,
+  Table,
+  TextField,
+  useTable,
+  DateField,
+  Space,
+  EditButton,
+  DeleteButton,
+  ShowButton,
 } from "@refinedev/antd";
 import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
+  const { tableProps } = useTable<IPost>();
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    key="id"
-                    title="ID"
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    key="title"
-                    title="Title"
-                    render={(value) => <TextField value={value} />}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    key="createdAt"
-                    title="Created At"
-                    render={(value) => <DateField value={value} format="LLL" />}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" key="id" title="ID" render={(value) => <TextField value={value} />} />
+        <Table.Column dataIndex="title" key="title" title="Title" render={(value) => <TextField value={value} />} />
+        <Table.Column
+          dataIndex="createdAt"
+          key="createdAt"
+          title="Created At"
+          render={(value) => <DateField value={value} format="LLL" />}
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -509,9 +469,9 @@ Notice we already imported an interface to work with TypeScript. Create a new fo
 
 ```typescript
 export interface IPost {
-    id: number;
-    title: string;
-    createdAt: string;
+  id: number;
+  title: string;
+  createdAt: string;
 }
 ```
 
@@ -531,25 +491,25 @@ import { Create, Form, Input, useForm } from "@refinedev/antd";
 import { IPost } from "interfaces";
 
 export const PostCreate: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };
 ```
 
@@ -569,25 +529,25 @@ import { Edit, Form, Input, useForm } from "@refinedev/antd";
 import { IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };
 ```
 
@@ -612,16 +572,16 @@ import { IPost } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-        </Show>
-    );
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
+    </Show>
+  );
 };
 ```
 
@@ -657,24 +617,22 @@ import type { CellSuccessProps, CellFailureProps } from "@redwoodjs/web";
 import Post from "src/components/Post/Post";
 
 export const QUERY = gql`
-    query FindPostById($id: Int!) {
-        post: post(id: $id) {
-            id
-            title
-        }
+  query FindPostById($id: Int!) {
+    post: post(id: $id) {
+      id
+      title
     }
+  }
 `;
 
 export const Loading = () => <div>Loading...</div>;
 
 export const Empty = () => <div>Post not found</div>;
 
-export const Failure = ({ error }: CellFailureProps) => (
-    <div className="rw-cell-error">{error?.message}</div>
-);
+export const Failure = ({ error }: CellFailureProps) => <div className="rw-cell-error">{error?.message}</div>;
 
 export const Success = ({ post }: CellSuccessProps<FindPostById>) => {
-    return <Post post={post} />;
+  return <Post post={post} />;
 };
 ```
 
@@ -684,11 +642,11 @@ After that Redwood created a separate page for each CRUD action in the `pages` f
 import PostCell from "src/components/Post/PostCell";
 
 type PostPageProps = {
-    id: number;
+  id: number;
 };
 
 const PostPage = ({ id }: PostPageProps) => {
-    return <PostCell id={id} />;
+  return <PostCell id={id} />;
 };
 
 export default PostPage;
@@ -756,15 +714,15 @@ import App from "./App";
 const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
-        <Auth0Provider
-            domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
-            clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
-            redirectUri={window.location.origin}
-        >
-            <App />
-        </Auth0Provider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <Auth0Provider
+      domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID as string}
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
+  </React.StrictMode>,
 );
 ```
 
@@ -811,35 +769,30 @@ import { AntdLayout, Button } from "@refinedev/antd";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login: React.FC = () => {
-    const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
-    return (
-        <AntdLayout
-            style={{
-                backgroundSize: "cover",
-            }}
-        >
-            <div style={{ height: "100vh", display: "flex" }}>
-                <div style={{ maxWidth: "200px", margin: "auto" }}>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        onClick={() => loginWithRedirect()}
-                    >
-                        Sign in to refine app
-                    </Button>
-                </div>
-            </div>
-        </AntdLayout>
-    );
+  return (
+    <AntdLayout
+      style={{
+        backgroundSize: "cover",
+      }}
+    >
+      <div style={{ height: "100vh", display: "flex" }}>
+        <div style={{ maxWidth: "200px", margin: "auto" }}>
+          <Button type="primary" size="large" block onClick={() => loginWithRedirect()}>
+            Sign in to refine app
+          </Button>
+        </div>
+      </div>
+    </AntdLayout>
+  );
 };
 ```
 
 Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -855,91 +808,91 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
+  const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
 
-    if (isLoading) {
-        return <span>loading...</span>;
-    }
+  if (isLoading) {
+    return <span>loading...</span>;
+  }
 
-    const authProvider: AuthBindings = {
-        login: async () => {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        logout: async () => {
-            logout({ returnTo: window.location.origin });
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        },
-        onError: async (error) => {
-            console.error(error);
-            return { error };
-        },
-        check: async () => {
-            try {
-                const token = await getIdTokenClaims();
-                if (token) {
-                    axios.defaults.headers.common = {
-                        Authorization: `Bearer ${token.__raw}`,
-                    };
-                    return {
-                        authenticated: true,
-                        redirectTo: "/",
-                    };
-                } else {
-                    return {
-                        authenticated: false,
-                        redirectTo: "/login",
-                        error: {
-                            message: "Check failed",
-                            name: "Token not found",
-                        },
-                    };
-                }
-            } catch (error) {
-                return {
-                    authenticated: false,
-                    redirectTo: "/login",
-                    error: error,
-                };
-            }
-        },
-        getPermissions: async () => null,
-        getIdentity: async () => {
-            if (user) {
-                return {
-                    ...user,
-                    avatar: user.picture,
-                };
-            }
-            return null;
-        },
-    };
+  const authProvider: AuthProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    logout: async () => {
+      logout({ returnTo: window.location.origin });
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    check: async () => {
+      try {
+        const token = await getIdTokenClaims();
+        if (token) {
+          axios.defaults.headers.common = {
+            Authorization: `Bearer ${token.__raw}`,
+          };
+          return {
+            authenticated: true,
+            redirectTo: "/",
+          };
+        } else {
+          return {
+            authenticated: false,
+            redirectTo: "/login",
+            error: {
+              message: "Check failed",
+              name: "Token not found",
+            },
+          };
+        }
+      } catch (error) {
+        return {
+          authenticated: false,
+          redirectTo: "/login",
+          error: error,
+        };
+      }
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
+      if (user) {
+        return {
+          ...user,
+          avatar: user.picture,
+        };
+      }
+      return null;
+    },
+  };
 
-    return (
-        <Refine
-            LoginPage={Login}
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL, axios)}
-            routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      LoginPage={Login}
+      authProvider={authProvider}
+      dataProvider={dataProvider(API_URL, axios)}
+      routerProvider={routerProvider}
+      notificationProvider={notificationProvider}
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -989,23 +942,23 @@ import "./scaffold.css";
 import "./index.css";
 
 const auth0 = new Auth0Client({
-    domain: process.env.AUTH0_DOMAIN,
-    client_id: process.env.AUTH0_CLIENT_ID,
-    redirect_uri: process.env.AUTH0_REDIRECT_URI,
-    cacheLocation: "localstorage",
-    audience: process.env.AUTH0_AUDIENCE,
+  domain: process.env.AUTH0_DOMAIN,
+  client_id: process.env.AUTH0_CLIENT_ID,
+  redirect_uri: process.env.AUTH0_REDIRECT_URI,
+  cacheLocation: "localstorage",
+  audience: process.env.AUTH0_AUDIENCE,
 });
 
 const App = () => (
-    <FatalErrorBoundary page={FatalErrorPage}>
-        <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-            <AuthProvider client={auth0} type="auth0">
-                <RedwoodApolloProvider>
-                    <Routes />
-                </RedwoodApolloProvider>
-            </AuthProvider>
-        </RedwoodProvider>
-    </FatalErrorBoundary>
+  <FatalErrorBoundary page={FatalErrorPage}>
+    <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+      <AuthProvider client={auth0} type="auth0">
+        <RedwoodApolloProvider>
+          <Routes />
+        </RedwoodApolloProvider>
+      </AuthProvider>
+    </RedwoodProvider>
+  </FatalErrorBoundary>
 );
 
 export default App;
@@ -1020,61 +973,52 @@ import { Toaster } from "@redwoodjs/web/toast";
 import { useAuth } from "@redwoodjs/auth";
 
 type LayoutProps = {
-    title: string;
-    titleTo: string;
-    buttonLabel: string;
-    buttonTo: string;
-    children: React.ReactNode;
+  title: string;
+  titleTo: string;
+  buttonLabel: string;
+  buttonTo: string;
+  children: React.ReactNode;
 };
 
-const ScaffoldLayout = ({
-    title,
-    titleTo,
-    buttonLabel,
-    buttonTo,
-    children,
-}: LayoutProps) => {
-    const { logIn, logOut, isAuthenticated } = useAuth();
+const ScaffoldLayout = ({ title, titleTo, buttonLabel, buttonTo, children }: LayoutProps) => {
+  const { logIn, logOut, isAuthenticated } = useAuth();
 
-    return !isAuthenticated ? (
-        <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
-            <button
-                style={{
-                    padding: "10px 15px",
-                    backgroundColor: "#0063D1",
-                    border: "none",
-                    borderRadius: "5px",
-                    color: "white",
-                    cursor: "pointer",
-                }}
-                onClick={logIn}
-            >
-                Sign In to Redwood app
-            </button>
-        </div>
-    ) : (
-        <div className="rw-scaffold">
-            <Toaster toastOptions={{ className: "rw-toast", duration: 6000 }} />
-            <header className="rw-header">
-                <h1 className="rw-heading rw-heading-primary">
-                    <Link to={routes[titleTo]()} className="rw-link">
-                        {title}
-                    </Link>
-                </h1>
+  return !isAuthenticated ? (
+    <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
+      <button
+        style={{
+          padding: "10px 15px",
+          backgroundColor: "#0063D1",
+          border: "none",
+          borderRadius: "5px",
+          color: "white",
+          cursor: "pointer",
+        }}
+        onClick={logIn}
+      >
+        Sign In to Redwood app
+      </button>
+    </div>
+  ) : (
+    <div className="rw-scaffold">
+      <Toaster toastOptions={{ className: "rw-toast", duration: 6000 }} />
+      <header className="rw-header">
+        <h1 className="rw-heading rw-heading-primary">
+          <Link to={routes[titleTo]()} className="rw-link">
+            {title}
+          </Link>
+        </h1>
 
-                <Link
-                    to={routes[buttonTo]()}
-                    className="rw-button rw-button-green"
-                >
-                    <div className="rw-button-icon">+</div> {buttonLabel}
-                </Link>
-                <button className="link-button" onClick={logOut}>
-                    Log Out
-                </button>
-            </header>
-            <main className="rw-main">{children}</main>
-        </div>
-    );
+        <Link to={routes[buttonTo]()} className="rw-button rw-button-green">
+          <div className="rw-button-icon">+</div> {buttonLabel}
+        </Link>
+        <button className="link-button" onClick={logOut}>
+          Log Out
+        </button>
+      </header>
+      <main className="rw-main">{children}</main>
+    </div>
+  );
 };
 
 export default ScaffoldLayout;
@@ -1088,31 +1032,17 @@ import { Set, Router, Route } from "@redwoodjs/router";
 import ScaffoldLayout from "src/layouts/ScaffoldLayout";
 
 const Routes = () => {
-    return (
-        <Router>
-            <Set
-                wrap={ScaffoldLayout}
-                title="Posts"
-                titleTo="posts"
-                buttonLabel="New Post"
-                buttonTo="newPost"
-            >
-                <Route
-                    path="/posts/new"
-                    page={PostNewPostPage}
-                    name="newPost"
-                />
-                <Route
-                    path="/posts/{id:Int}/edit"
-                    page={PostEditPostPage}
-                    name="editPost"
-                />
-                <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
-                <Route path="/posts" page={PostPostsPage} name="posts" />
-                <Route path="/" page={PostPostsPage} name="posts" />
-            </Set>
-        </Router>
-    );
+  return (
+    <Router>
+      <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
+        <Route path="/posts/new" page={PostNewPostPage} name="newPost" />
+        <Route path="/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+        <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
+        <Route path="/posts" page={PostPostsPage} name="posts" />
+        <Route path="/" page={PostPostsPage} name="posts" />
+      </Set>
+    </Router>
+  );
 };
 
 export default Routes;

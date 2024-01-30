@@ -650,7 +650,7 @@
     },
     {
       "from": "/docs/benchmarks/",
-      "to": "/docs/further-readings/benchmarks/"
+      "to": "/docs/"
     },
     {
       "from": "/docs/general-concepts/",
@@ -821,7 +821,7 @@
       "from": "/docs/api-reference/mui",
       "to": "/docs/ui-integrations/material-ui/introduction"
     },
-{
+    {
       "from": "/docs/examples/table/react-table/advanced-react-table",
       "to": "/docs/examples/table/tanstack-table/advanced-tanstack-table"
     },
@@ -2018,10 +2018,6 @@
       "to": "/docs/data/packages/strapi-v4"
     },
     {
-      "from": "/docs/packages/data-providers/strapi-graphql",
-      "to": "/docs/data/packages/strapi-graphql"
-    },
-    {
       "from": "/docs/packages/data-providers/supabase",
       "to": "/docs/data/packages/supabase"
     },
@@ -2068,6 +2064,30 @@
     {
       "from": "/docs/advanced-tutorials/import-export/csv-export/",
       "to": "/docs/guides-concepts/import-export"
+    },
+    {
+      "from": "/docs/further-readings/benchmarks/",
+      "to": "/docs"
+    },
+    {
+      "from": "/blog/refine-react-admin-invoice-genarator",
+      "to": "/blog/refine-react-admin-invoice-generator"
+    },
+    {
+      "from": "/docs/packages/data-providers/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/data/packages/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/data-provider/strapi-graphql/",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/data-provider/nhost/",
+      "to": "/docs/guides-concepts/data-fetching"
     }
   ]
 }

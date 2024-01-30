@@ -3,6 +3,7 @@ import { FC } from "react";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Space, Tag } from "antd";
+
 import { UsersSelectQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";

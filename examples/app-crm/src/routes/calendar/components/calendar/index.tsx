@@ -12,9 +12,8 @@ import { Text } from "@/components";
 import { Event } from "@/graphql/schema.types";
 import { CalendarEventsQuery } from "@/graphql/types";
 
-import { CALENDAR_EVENTS_QUERY } from "./queries";
-
 import styles from "./index.module.css";
+import { CALENDAR_EVENTS_QUERY } from "./queries";
 
 const FullCalendarWrapper = lazy(() => import("./full-calendar"));
 

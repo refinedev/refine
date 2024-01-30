@@ -9,7 +9,7 @@ import {
 import { Table } from "antd";
 
 import { IMission } from "interfaces";
-import { CreateMission, EditMission } from "components/mission";
+import { CreateMission, EditMission } from "@/components/mission";
 
 export const MissionList: React.FC = () => {
     const { tableProps } = useTable<IMission>();

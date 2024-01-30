@@ -29,7 +29,7 @@ import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-
 import {
     AccessControlProvider,
     AuditLogProvider,
-    AuthBindings,
+    AuthProvider,
     DashboardPageProps,
     I18nProvider,
     IDataContextProvider,
@@ -72,9 +72,9 @@ export interface RefineProps {
     dataProvider: IDataContextProvider | IDataMultipleContextProvider;
     /**
      * `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
-     * @type [`AuthBindings`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+     * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
      */
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     /**
      * `legacyAuthProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
      * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)

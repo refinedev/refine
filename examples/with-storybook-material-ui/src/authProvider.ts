@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 export const TOKEN_KEY = "refine-auth";
 
@@ -7,7 +7,7 @@ const password = "1234";
 
 localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ username, password }) => {
         localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
         return {

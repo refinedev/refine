@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
@@ -15,7 +15,7 @@ const mockLegacyAuthProvider = {
         Promise.resolve({ name: "username", avatar: "localhost:3000" }),
 };
 
-const mockAuthProvider: AuthBindings = {
+const mockAuthProvider: AuthProvider = {
     check: () => Promise.resolve({ authenticated: true }),
     login: () => Promise.resolve({ success: true }),
     logout: () => Promise.resolve({ success: true }),

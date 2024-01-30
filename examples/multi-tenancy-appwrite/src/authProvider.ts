@@ -1,9 +1,9 @@
 import { AppwriteException } from "@refinedev/appwrite";
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { account } from "./utility";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);

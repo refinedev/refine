@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -36,7 +36,7 @@ const App: React.FC = () => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async () => {
             return {
                 success: true,

@@ -20,7 +20,6 @@ import { AdministrationUsersQuery } from "@/graphql/types";
 
 import { RoleTag } from "./components";
 import { ADMINISTRATION_USERS_QUERY } from "./queries";
-
 import styles from "./settings.module.css";
 
 export const SettingsPage = () => {

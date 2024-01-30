@@ -38,7 +38,7 @@ In this example, we will show the login with Metamask Wallet. If you want, you c
 <p>
 
 ```tsx title="/src/authprovider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
@@ -54,7 +54,7 @@ const web3Modal = new Web3Modal({
 
 let provider: any | null = null;
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async () => {
     if (window.ethereum) {
       provider = await web3Modal.connect();

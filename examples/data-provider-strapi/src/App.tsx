@@ -1,7 +1,7 @@
 import {
     GitHubBanner,
     Refine,
-    AuthBindings,
+    AuthProvider,
     Authenticated,
 } from "@refinedev/core";
 import {
@@ -33,7 +33,7 @@ const App: React.FC = () => {
     const axiosInstance = axios.create();
     const strapiAuthHelper = AuthHelper(API_URL);
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ email, password }) => {
             const { data, status } = await strapiAuthHelper.login(
                 email,
