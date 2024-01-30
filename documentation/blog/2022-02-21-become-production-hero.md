@@ -12,7 +12,7 @@ With 2022, a new future in our careers as software developers. We will meet new 
 
 <!--truncate-->
 
-### Production Oriented Approach 🧰 
+### Production Oriented Approach 🧰
 
 `{ Production }`
 
@@ -25,7 +25,7 @@ So is speed exactly everything?
 3 main components affect production in traditional production methods.
 
 Speed 💨
-Quality👌 
+Quality👌
 Time ⌛
 
 Can you imagine what a development environment would be like where we provided all 3 components at the same time?
@@ -44,8 +44,6 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - React Location
 - Next.js Router
 
-	
-
 #### Data Provider
 
 - Rest API
@@ -57,12 +55,10 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Strapi GraphQL
 - Supabase
 - Hasura
-- Nhost
 - Medusa
 - Appwrite
 - Firebase
 - Directus
-	
 
 #### State Management
 
@@ -82,10 +78,9 @@ Yes, of course.Both for React and Next.
 
 Realtime support to your app via liveProvider, there's even an [example](https://refine.dev/docs/examples/live-provider/ably/) made for you with Ably.
 
-
 ### What makes Refine Unique?
 
-Refine stands out with its wide _**routing**_, **_access control_** options, supporting the ability to use _**any UI Framework**_ and **_NextJS SSR_** support when compared to  React Admin, retool, adminBro.
+Refine stands out with its wide _**routing**_, **_access control_** options, supporting the ability to use _**any UI Framework**_ and **_NextJS SSR_** support when compared to React Admin, retool, adminBro.
 
 ### Look at your productivity without worrying about is everything on the way
 
@@ -94,7 +89,3 @@ As you can see, you can find all the support you need to develop a data-intensiv
 If you want to take a closer look at [Refine](https://refine.dev/)
 
 If you say you don't want to be alone while developing a product, the community is ready to meet you. Click for the [Discord link](https://discord.gg/refine).
-
-
-
-

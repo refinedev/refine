@@ -223,7 +223,7 @@ With its production-ready status, this template offers a solid foundation for bu
             "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.jpg",
         ],
         runOnYourLocalPath: "pixels",
-        liveDemo: "https://store.refine.dev/",
+        liveDemo: "https://pixels.refine.dev/",
         github: "https://github.com/refinedev/refine/tree/master/examples/pixels",
         tutorial: "https://refine.dev/week-of-refine-supabase/",
         reactPlatform: "Vite",
