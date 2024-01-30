@@ -414,7 +414,6 @@ const integrationToIconMap = {
         <Icons.NestQuery {...props} />
     ),
     "Next.js": (props: SVGProps<SVGSVGElement>) => <Icons.Nextjs {...props} />,
-    Nhost: (props: SVGProps<SVGSVGElement>) => <Icons.Nhost {...props} />,
     React: (props: SVGProps<SVGSVGElement>) => <Icons.React {...props} />,
     Remix: (props: SVGProps<SVGSVGElement>) => <Icons.Remix {...props} />,
     "Rest API": (props: SVGProps<SVGSVGElement>) => (
