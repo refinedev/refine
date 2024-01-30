@@ -10,7 +10,7 @@ on:
       - "documentation/**"
 jobs:
   documentation:
-    if: ${{ github.repository }} == 'refinedev/refine'
+    if: github.repository == 'refinedev/refine'
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-pr-doc
