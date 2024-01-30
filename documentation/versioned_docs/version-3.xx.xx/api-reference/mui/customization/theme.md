@@ -558,7 +558,7 @@ import {
   ReadyPage,
   CssBaseline,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   AppBar,
   IconButton,
   Box,
@@ -602,7 +602,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <RefineSnackbarProvider>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           ReadyPage={ReadyPage}
@@ -643,7 +643,7 @@ import {
   ReadyPage,
   CssBaseline,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   AppBar,
   IconButton,
   Box,
@@ -688,7 +688,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <RefineSnackbarProvider>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           ReadyPage={ReadyPage}
@@ -733,7 +733,7 @@ import {
   LightTheme,
   // highlight-start
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   // highlight-end
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -749,7 +749,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           ReadyPage={ReadyPage}
           Layout={Layout}
           catchAll={<ErrorComponent />}

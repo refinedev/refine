@@ -159,7 +159,7 @@ export const authProvider: AuthProvider = {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, LoginPage } from "@refinedev/antd";
+import { useNotificationProvider, Layout, LoginPage } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 //highlight-start
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -176,7 +176,7 @@ function App() {
   return (
     <Refine
       routerProvider={routerProvider}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       //highlight-start
       dataProvider={dataProvider}
@@ -348,7 +348,7 @@ function App() {
     return (
         <Refine
             routerProvider={routerProvider}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             Layout={Layout}
             dataProvider={dataProvider}
             authProvider={authProvider}

@@ -102,7 +102,7 @@ It comes with the `App.tsx` file with the following code:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -179,7 +179,7 @@ function App() {
   return (
     <Refine
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
       catchAll={<ErrorComponent />}
@@ -473,7 +473,7 @@ Also notice the newly created list page was automatically imported and passed in
 ```typescript
 <Refine
   dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-  notificationProvider={notificationProvider}
+  notificationProvider={useNotificationProvider}
   Layout={Layout}
   ReadyPage={ReadyPage}
   catchAll={<ErrorComponent />}

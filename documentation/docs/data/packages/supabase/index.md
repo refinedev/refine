@@ -495,7 +495,7 @@ If you head over to `localhost:5173`, you'll see a welcome page.
 ```tsx live previewOnly previewHeight=800px url=http://localhost:5173
 setInitialRoutes(["/"]);
 
-import { notificationProvider, WelcomePage } from "@refinedev/antd";
+import { useNotificationProvider, WelcomePage } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -509,7 +509,7 @@ const App: React.FC = () => {
       <Refine
         routerProvider={routerBindings}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
       >
         <Routes>
           <Route index element={<WelcomePage />} />

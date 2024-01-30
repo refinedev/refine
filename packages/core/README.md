@@ -2,7 +2,7 @@
 <a href="https://refine.dev/">
     <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
-  
+
 <br/>
 <br/>
 
@@ -163,7 +163,7 @@ Let's consume a public `fake REST API` and add two resources (_blog_posts_ and _
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   ThemedLayout,
 } from "@refinedev/antd";
@@ -182,7 +182,7 @@ const App: React.FC = () => {
       <Refine
         routerProvider={routerProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         resources={[
           {
             name: "blog_posts",

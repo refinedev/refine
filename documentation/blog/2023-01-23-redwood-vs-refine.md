@@ -108,7 +108,7 @@ Here is what the `App.tsx` file should look like:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -118,7 +118,7 @@ function App() {
   return (
     <Refine
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
       catchAll={<ErrorComponent />}
@@ -205,7 +205,7 @@ Check your `App.tsx` file and it should now look like this:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -217,7 +217,7 @@ function App() {
   return (
     <Refine
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
       catchAll={<ErrorComponent />}
@@ -385,7 +385,7 @@ Check your `App.tsx` file and change it to the following:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -397,7 +397,7 @@ function App() {
   return (
     <Refine
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
       catchAll={<ErrorComponent />}
@@ -793,7 +793,7 @@ Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
 import { Refine, AuthProvider } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
@@ -879,7 +879,7 @@ const App: React.FC = () => {
       authProvider={authProvider}
       dataProvider={dataProvider(API_URL, axios)}
       routerProvider={routerProvider}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       catchAll={<ErrorComponent />}
       resources={[

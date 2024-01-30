@@ -73,7 +73,7 @@ import {
   ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
   AuthPage,
 } from "@refinedev/mui";
@@ -97,7 +97,7 @@ export default function App() {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider}
-                notificationProvider={notificationProvider}
+                notificationProvider={useNotificationProvider}
                 resources={[
                     {
                         name: "products",

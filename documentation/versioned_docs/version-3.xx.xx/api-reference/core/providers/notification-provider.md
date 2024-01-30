@@ -54,7 +54,7 @@ const App = () => {
   return (
     <Refine
       //highlight-next-line
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       routerProvider={routerProvider}
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
     />
@@ -95,7 +95,7 @@ import { notificationProvider } from "@pankod/refine-antd";
 return (
   <Refine
     //...
-    notificationProvider={notificationProvider}
+    notificationProvider={useNotificationProvider}
   />
 );
 ```
@@ -106,7 +106,7 @@ return (
 
 ```tsx
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
 } from "@pankod/refine-mui";
 
@@ -114,7 +114,7 @@ return (
   <RefineSnackbarProvider>
     <Refine
       //...
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
     />
   </RefineSnackbarProvider>
 );
@@ -126,7 +126,7 @@ return (
 
 ```tsx
 import {
-  notificationProvider,
+  useNotificationProvider,
   NotificationsProvider,
 } from "@pankod/refine-mantine";
 
@@ -134,7 +134,7 @@ return (
   <NotificationsProvider position="top-right">
     <Refine
       //...
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
     />
   </NotificationsProvider>
 );

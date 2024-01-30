@@ -38,7 +38,7 @@ import {
   GlobalStyles,
   ThemeProvider,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -53,7 +53,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
@@ -183,7 +183,7 @@ import {
   GlobalStyles,
   ThemeProvider,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -201,7 +201,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}

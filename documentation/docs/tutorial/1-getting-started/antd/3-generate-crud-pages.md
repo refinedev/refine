@@ -40,7 +40,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -57,7 +57,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -134,7 +134,7 @@ When you navigate to the `localhost:3000`, Refine will redirect you to the initi
 setInitialRoutes(["/blog-posts"]);
 
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -151,7 +151,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           //highlight-start
           resources={[
             {
@@ -208,7 +208,7 @@ You should see the create page for the `blog_posts` resource that was generated 
 setInitialRoutes(["/blog-posts/create"]);
 
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -225,7 +225,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           //highlight-start
           resources={[
             {
@@ -282,7 +282,7 @@ You should see the edit page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -299,7 +299,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           //highlight-start
           resources={[
             {
@@ -356,7 +356,7 @@ You should see the show page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/show/123"]);
 
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -373,7 +373,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           //highlight-start
           resources={[
             {

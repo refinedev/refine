@@ -101,7 +101,7 @@ import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -167,7 +167,7 @@ const App = () => {
       dataProvider={dataProvider(API_URL, axios)}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       resources={[
         {

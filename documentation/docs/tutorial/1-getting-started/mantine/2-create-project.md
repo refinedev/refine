@@ -89,7 +89,7 @@ setInitialRoutes(["/"]);
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, LightTheme, Layout, ErrorComponent, WelcomePage } from "@refinedev/mantine";
+import { useNotificationProvider, LightTheme, Layout, ErrorComponent, WelcomePage } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MantineProvider, Global } from "@mantine/core";
@@ -103,7 +103,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
           >
             <Routes>
               <Route index element={<WelcomePage />} />

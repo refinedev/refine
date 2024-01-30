@@ -79,7 +79,7 @@ First things first, open your command line tool, cd to your folder of choice, an
 npm create refine-app@latest tutorial
 ```
 
-After running the command, you’ll be prompted to choose your preferences for the project.  
+After running the command, you’ll be prompted to choose your preferences for the project.
 Select the following options to proceed:
 
 ```bash
@@ -172,7 +172,7 @@ export default Create;
  </p>
 </details>
 
-Here, we created a regular HTML form using a form element and the Material UI TextField form control components.  
+Here, we created a regular HTML form using a form element and the Material UI TextField form control components.
 Each `<TextField />` will be used for getting the first name, last name, address, employment status, place of work, role, and phone number values. We also created an interface object of the form, we’ll be using this later in the article.
 
 This file will serve as our resource page, which we're going to pass to the `<Refine />` component inside the `App.tsx` file.
@@ -187,7 +187,7 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from "@refinedev/mui";
+import { useNotificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -207,7 +207,7 @@ function App() {
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               // highlight-start
               resources={[
                 {

@@ -247,7 +247,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { useNotificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, {
   NavigateToResource,
@@ -266,7 +266,7 @@ function App() {
     <BrowserRouter>
       <ConfigProvider theme={RefineThemes.Blue}>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           // highlight-start
