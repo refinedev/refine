@@ -4,6 +4,18 @@ title: General Concepts
 
 Refine is an extensible framework designed for rapidly building web applications. It offers a modern, **hook-based architecture**, a **pluggable system of providers**, and a robust **state management** solution. This section provides an overview of the key concepts in Refine.
 
+## Headless Concept
+
+While Refine offers various integrations for different routers, UI libraries, authentication, authorization, notification providers, and more, at it's core, all these integrations are built on top of `@refinedev/core` package.
+
+The `@refinedev/core` package is designed with **library agnostic** principles, acts as a central contract for all other Refine integrations by providing **unified interfaces**, **hooks**, and **components**.
+
+Integrations such as `@refinedev/nextjs`, or `@refinedev/mui`, are simple wrappers between the underlying libraries and `@refinedev/core`.
+
+This makes it straightforward to mix & match different frameworks, libraries, and integrations according to your needs.
+
+If you want to redirect users to a certain page after a form submission, show a notification after a successful mutation, or redirect unauthenticated users to login page, you don't need to use different APIs for different libraries.
+
 ## Resource Concept
 
 In Refine, a **resource** is a central concept representing an **entity**, which ties together various aspects of your application.
