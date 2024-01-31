@@ -404,6 +404,6 @@ mutation ($input: updatePostInput) {
 
 ## Example
 
-<CodeSandboxExample path="data-provider-strapi-graphql" />
+<CodeSandboxExample path="--branch v3 data-provider-strapi-graphql" />
 
 [data-provider]: /docs/3.xx.xx/api-reference/core/providers/data-provider/

@@ -230,7 +230,7 @@ Check out the following examples to see how changesets should be formatted:
 "@refinedev/core": minor
 ---
 
-feat: added x feature
+feat: added x feature #ISSUE_ID
 
 Now with x feature, you can do y.
 
@@ -244,7 +244,7 @@ or
 "@refinedev/mantine": patch
 ---
 
-fix: issue with x.
+fix: issue with x. #ISSUE_ID
 
 We had an edge where it causes x issue to happen, now it's fixed.
 

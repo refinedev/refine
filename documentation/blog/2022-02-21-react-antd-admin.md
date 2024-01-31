@@ -28,7 +28,7 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Medusa, Appwrite, and Firebase.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Medusa, Appwrite, and Firebase.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
