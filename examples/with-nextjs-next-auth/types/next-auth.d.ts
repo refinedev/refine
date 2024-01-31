@@ -1,4 +1,4 @@
-import { DefaultSession } from "next-auth";
+import { DefaultSession } from "types/next-auth";
 
 declare module "next-auth" {
     /**
