@@ -35,7 +35,6 @@
     "typescript": "^4.7.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
-    "eslint-config-next": "14.1.0",
     "@types/js-cookie": "^3.0.6"
   }
 }

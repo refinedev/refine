@@ -34,6 +34,7 @@ describe("with-nextjs-auth", () => {
             });
         });
 
+        // Not working on React Server Components
         // it("should has 'to' param on URL after redirected to /login", () => {
         //     login();
         //     cy.location("pathname").should("eq", "/blog-posts");
