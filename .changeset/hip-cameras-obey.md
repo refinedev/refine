@@ -8,6 +8,7 @@
 "@refinedev/nextjs-router": patch
 "@refinedev/react-hook-form": patch
 "@refinedev/react-table": patch
+"@refinedev/kbar": patch
 ---
 
 chore: add "use client" directive to exported files to work with nextjs app router
