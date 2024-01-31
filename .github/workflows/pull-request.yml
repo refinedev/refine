@@ -13,6 +13,8 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
+        with:
+          helpURL: "https://refine.dev/docs/guides-concepts/contributing/#committing-your-work-and-preparing-a-pull-request"
   lint:
     runs-on: ubuntu-latest
     name: Lint
