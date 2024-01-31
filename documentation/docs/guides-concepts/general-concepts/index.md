@@ -495,7 +495,45 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 ### Audit Log Provider
 
-**Audit Log Provider**
+Audit Log Provider centralizes retrieving audit logs in Refine applications.
+
+It can be useful to show previous changes to your resources.
+
+```tsx title="App.tsx"
+import { AuditLogProvider, Refine } from "@refinedev/core";
+
+const auditLogProvider: AuditLogProvider = {
+  get: async (params) => {
+    const { resource, meta, action, author, metaData } = params;
+
+    const response = await fetch(`https://example.com/api/audit-logs/${resource}/${meta.id}`, {
+      method: "GET",
+    });
+
+    const data = await response.json();
+
+    return data;
+  },
+};
+
+export const App = () => {
+  return <Refine auditLogProvider={auditLogProvider}>{/* ... */}</Refine>;
+};
+```
+
+> See the [Audit Logs](/docs/guides-concepts/audit-logs/) guide for more information.
+
+#### Hooks
+
+You can use `useLogList` hook to retrieve audit logs for your resources in your components. It uses `AuditLogProvider`'s `get` method under the hood.
+
+```tsx
+import { useLogList } from "@refinedev/core";
+
+const productsAuditLogResults = useLogList({
+  resource: "products",
+});
+```
 
 ## UI Integrations
 
