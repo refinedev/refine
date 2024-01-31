@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "documentation/docs"
   pull_request:
     branches:
       - master
+    paths:
+      - "documentation/docs"
 
 jobs:
   misspell:
