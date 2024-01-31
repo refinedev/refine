@@ -12,7 +12,7 @@ const tutorialData = require("./tutorial-units");
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
-    title: "refine",
+    title: "Refine",
     tagline: "Build your React-based CRUD applications, without constraints",
     url: "https://refine.dev",
     baseUrl: "/",
