@@ -13,6 +13,7 @@ module.exports = {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
         "^antd/es/": "antd/lib/",
+        "^@ant-design/pro-layout/es": "@ant-design/pro-layout/lib",
     },
     displayName: "inferencer",
     transform: {
