@@ -3,7 +3,6 @@
 "@refinedev/chakra-ui": patch
 "@refinedev/core": patch
 "@refinedev/inferencer": patch
-"@refinedev/live-previews": patch
 "@refinedev/mantine": patch
 "@refinedev/mui": patch
 "@refinedev/nextjs-router": patch
