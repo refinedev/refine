@@ -260,11 +260,11 @@ const buildNotification = (
 
 const buildSuccessNotification = (
     successNotification: SuccessNotificationResponse,
-  ): OpenNotificationParams => {
+): OpenNotificationParams => {
     return {
-      message: successNotification.message || "Success",
-      description: successNotification.description || "Operation completed successfully",
-      key: "update-password-success",
-      type: "success",
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "update-password-success",
+        type: "success",
     };
 };

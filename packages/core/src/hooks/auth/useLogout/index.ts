@@ -227,11 +227,11 @@ const buildNotification = (
 
 const buildSuccessNotification = (
     successNotification: SuccessNotificationResponse,
-  ): OpenNotificationParams => {
+): OpenNotificationParams => {
     return {
-      message: successNotification.message || "Success",
-      description: successNotification.description || "Operation completed successfully",
-      key: "logout-success",
-      type: "success",
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "logout-success",
+        type: "success",
     };
 };

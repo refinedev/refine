@@ -124,7 +124,12 @@ export function useRegister<TVariables = {}>({
     >({
         mutationKey: keys().auth().action("register").get(preferLegacyKeys),
         mutationFn: registerFromContext,
-        onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+        onSuccess: async ({
+            success,
+            redirectTo,
+            error,
+            successNotification,
+        }) => {
             if (success) {
                 close?.("register-error");
 
@@ -223,11 +228,11 @@ const buildNotification = (
 
 const buildSuccessNotification = (
     successNotification: SuccessNotificationResponse,
-  ): OpenNotificationParams => {
+): OpenNotificationParams => {
     return {
-      message: successNotification.message || "Success",
-      description: successNotification.description || "Operation completed successfully",
-      key: "register-success",
-      type: "success",
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "register-success",
+        type: "success",
     };
 };

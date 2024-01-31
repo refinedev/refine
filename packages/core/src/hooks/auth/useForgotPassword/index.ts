@@ -161,17 +161,6 @@ export function useForgotPassword<TVariables = {}>({
         },
     });
 
-    const buildSuccessNotification = (
-        successNotification: SuccessNotificationResponse,
-      ): OpenNotificationParams => {
-        return {
-          message: successNotification.message || "Success",
-          description: successNotification.description || "Operation completed successfully",
-          key: "forgot-password-success",
-          type: "success",
-        };
-    };
-
     const v3LegacyAuthProviderCompatibleMutation = useMutation<
         TForgotPasswordData,
         Error | RefineError,
@@ -218,5 +207,16 @@ const buildNotification = (
         description: error?.message || "Error while resetting password",
         key: "forgot-password-error",
         type: "error",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+): OpenNotificationParams => {
+    return {
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "forgot-password-success",
+        type: "success",
     };
 };

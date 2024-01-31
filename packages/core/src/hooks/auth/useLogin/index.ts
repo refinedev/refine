@@ -149,7 +149,12 @@ export function useLogin<TVariables = {}>({
     >({
         mutationKey: keys().auth().action("login").get(preferLegacyKeys),
         mutationFn: loginFromContext,
-        onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+        onSuccess: async ({
+            success,
+            redirectTo,
+            error,
+            successNotification,
+        }) => {
             if (success) {
                 close?.("login-error");
 
@@ -258,11 +263,11 @@ const buildNotification = (
 
 const buildSuccessNotification = (
     successNotification: SuccessNotificationResponse,
-  ): OpenNotificationParams => {
+): OpenNotificationParams => {
     return {
-      message: successNotification.message || "Success",
-      description: successNotification.description || "Operation completed successfully",
-      key: "login-success",
-      type: "success",
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "login-success",
+        type: "success",
     };
 };
