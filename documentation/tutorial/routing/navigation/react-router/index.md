@@ -18,13 +18,14 @@ We'll use the `useNavigation` hook and create buttons to navigate to the create,
 
 ## Adding a Link to the List Page and to the Create Page
 
-We'll be using the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products. Let's update our `<Header />` component and add a link to the list page of the products.
+We'll be using the `useNavigation` hook from `@refinedev/core` and the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products. Let's update our `<Header />` component and add a link to the list page of the products.
 
 Try to update your `src/header.tsx` file with the following lines:
 
 ```tsx title="src/header.tsx"
 import React from "react";
-import { useLogout, useGetIdentity } from "@refinedev/core";
+// highlight-next-line
+import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 
 // highlight-next-line
 import { Link } from "react-router-dom";
@@ -33,6 +34,11 @@ export const Header = () => {
   const { mutate, isLoading } = useLogout();
   const { data: identity } = useGetIdentity();
 
+  // You can also use methods like list or create to trigger navigation.
+  // We're using url methods to provide more semantically correct html.
+  // highlight-next-line
+  const { listUrl, createUrl } = useNavigation();
+
   return (
     <>
       <h2>
@@ -40,8 +46,8 @@ export const Header = () => {
         <span>{identity?.name ?? ""}</span>
       </h2>
       {/* highlight-start */}
-      <Link to="/products">List Products</Link>
-      <Link to="/products/create">Create Product</Link>
+      <Link to={listUrl("protected-products")}>List Products</Link>
+      <Link to={createUrl("protected-products")}>Create Product</Link>
       {/* highlight-end */}
       <button type="button" disabled={isLoading} onClick={mutate}>
         Logout
@@ -55,13 +61,16 @@ export const Header = () => {
 
 ## Adding Show and Edit Buttons to the List Page
 
-We'll be using the `useNavigation` hook to trigger the navigations. Let's update our `<ListProducts />` component and add buttons to show and edit the products.
+We'll be using the same duo of `useNavigation` hook and the `<Link />` component of the `react-router-dom` library to create links to the show page and the edit page of the products. Let's update our `<ListProducts />` component and add links to show and edit the products.
 
 Try to update your `src/list-products.tsx` file with the following lines:
 
 ```tsx title="src/list-products.tsx"
 // highlight-next-line
 import { useTable, useMany, useNavigation } from "@refinedev/core";
+
+// highlight-next-line
+import { Link } from "react-router-dom";
 
 export const ListProducts = () => {
   const {
@@ -76,8 +85,10 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
+  // You can also use methods like show or list to trigger navigation.
+  // We're using url methods to provide more semantically correct html.
   // highlight-next-line
-  const { show, edit } = useNavigation();
+  const { showUrl, editUrl } = useNavigation();
 
   /* ... */
 
@@ -121,18 +132,8 @@ export const ListProducts = () => {
               <td>{product.price}</td>
               {/* highlight-start */}
               <td>
-                <button
-                  type="button"
-                  onClick={() => show("protected-products", product.id)}
-                >
-                  Show
-                </button>
-                <button
-                  type="button"
-                  onClick={() => edit("protected-products", product.id)}
-                >
-                  Edit
-                </button>
+                <Link to={showUrl("protected-products", product.id)}>Show</Link>
+                <Link to={editUrl("protected-products", product.id)}>Edit</Link>
               </td>
               {/* highlight-end */}
             </tr>

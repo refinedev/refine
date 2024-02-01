@@ -747,7 +747,7 @@ export const Header = () => {
 
 const HeaderWithLinks = /* tsx */ `
 import React from "react";
-import { useLogout, useGetIdentity } from "@refinedev/core";
+import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 
 import { Link } from "react-router-dom";
 
@@ -755,15 +755,19 @@ export const Header = () => {
   const { mutate, isLoading } = useLogout();
   const { data: identity } = useGetIdentity();
 
+  // You can also use methods like list or create to trigger navigation.
+  // We're using url methods to provide more semantically correct html.
+  const { listUrl, createUrl } = useNavigation();
+
   return (
     <>
       <h2>
         <span>Welcome, </span>
         <span>{identity?.name ?? ""}</span>
       </h2>
-      <Link to="/products">List Products</Link>
+      <Link to={listUrl("protected-products")}>List Products</Link>
       {" "}
-      <Link to="/products/create">Create Product</Link>
+      <Link to={createUrl("protected-products")}>Create Product</Link>
       {" "}
       <button type="button" disabled={isLoading} onClick={mutate}>
         Logout
@@ -775,6 +779,8 @@ export const Header = () => {
 
 const ListProductsWithNavigation = /* tsx */ `
 import { useTable, useMany, useNavigation } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const ListProducts = () => {
   const {
@@ -789,7 +795,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { show, edit } = useNavigation();
+  // You can also use methods like show or list to trigger navigation.
+  // We're using url methods to provide more semantically correct html.
+  const { showUrl, editUrl } = useNavigation();
 
   const { data: categories } = useMany({
     resource: "categories",
@@ -879,12 +887,12 @@ export const ListProducts = () => {
               <td>{product.material}</td>
               <td>{product.price}</td>
               <td>
-                <button type="button" onClick={() => show("protected-products", product.id)}>
+                <Link to={showUrl("protected-products", product.id)}>
                   Show
-                </button>
-                <button type="button" onClick={() => edit("protected-products", product.id)}>
+                </Link>
+                <Link to={editUrl("protected-products", product.id)}>
                   Edit
-                </button>
+                </Link>
               </td>
             </tr>
           ))}

@@ -6,7 +6,7 @@ import { Sandpack, AddAuthenticationToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-In this step, we'll be updating our routes to handle authentication by using the `<Authenticated />` component and the `<NavigateToResource />` component to redirect users to our main `products` resource.
+Before starting to add our resources and their respective routes, we'll be moving our authentication logic to work with routing. To achieve this, we'll be using the `<Authenticated />` component and the `<NavigateToResource />` component to redirect users to our products list page.
 
 ## `<Authenticated />` and Routing
 
@@ -31,33 +31,26 @@ const MyRoute = () => {
 };
 ```
 
-## Index Route
+## Wrapping Routes with `<Authenticated />`
 
-Since we've defined a single resource `products` and defined the routes with the `/products` prefix, we'll be needing an index route to redirect users to the `/products` routes.
-
-For this case, there can be multiple approaches depending on your routing library. Regardless of the library, Refine provides a `<NavigateToResource />` component to redirect users to the list route of a resource.
-
-```tsx
-import { NavigateToResource } from "@refinedev/react-router-v6";
-
-const IndexRoute = () => {
-  return <NavigateToResource resource="protected-products" />;
-};
-```
-
-## Updating Routes
-
-Now we'll be updating our routes to handle authentication and redirects by taking advantage of the `<Authenticated />` and `<NavigateToResource />` components.
+Now we'll be updating our `src/App.tsx` with a wrapper route that handles the authentication and mount our `<ListProducts />` component if the user is authenticated. If the user is not authenticated, they will be redirected to the `/login` route.
 
 Try to update your `src/App.tsx` file with the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 // highlight-next-line
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
-// highlight-next-line
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+// highlight-start
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+// highlight-end
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -77,17 +70,8 @@ export default function App(): JSX.Element {
         dataProvider={dataProvider}
         authProvider={authProvider}
         routerProvider={routerProvider}
-        resources={[
-          {
-            name: "protected-products",
-            list: "/products",
-            show: "/products/:id",
-            edit: "/products/:id/edit",
-            create: "/products/create",
-            meta: { label: "Products" },
-          },
-        ]}
       >
+        {/* highlight-start */}
         <Routes>
           <Route
             element={
@@ -100,31 +84,20 @@ export default function App(): JSX.Element {
               </Authenticated>
             }
           >
-            {/* We're defining an index route to redirect users to the `/products` route */}
-            <Route
-              index
-              element={<NavigateToResource resource="protected-products" />}
-            />
-            <Route path="/products">
-              <Route index element={<ListProducts />} />
-              <Route path=":id" element={<ShowProduct />} />
-              <Route path=":id/edit" element={<EditProduct />} />
-              <Route path="create" element={<CreateProduct />} />
-            </Route>
+            <Route index element={<ListProducts />} />
           </Route>
           <Route
             element={
-              // Notice that now we're using the `fallback` prop to render the `<Outlet />` component if the user is not authenticated.
-              // If the user is authenticated, they will be redirected to the `/products` route.
-              // `/login` route will be rendered if the user is not authenticated.
               <Authenticated key="auth-pages" fallback={<Outlet />}>
-                <NavigateToResource resource="protected-products" />
+                {/* We're redirecting the user to `/` if they are authenticated and trying to access the `/login` route */}
+                <Navigate to="/" />
               </Authenticated>
             }
           >
             <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
+        {/* highlight-end */}
       </Refine>
     </BrowserRouter>
   );
@@ -133,8 +106,14 @@ export default function App(): JSX.Element {
 
 <AddAuthenticationToApp />
 
-Now we've updated our routes to handle authentication, redirect to the appropriate routes depending on the authentication status and redirect to the `/products` route from the index route.
+:::info
 
-In the next step, we'll be updating our components to benefit from the parameter inference of Refine.
+Notice that we're currently only mounted the `<ListProducts />` component. We'll be adding the rest of the routes in the next step.
+
+:::
+
+Now we've updated our routes to handle authentication, redirect to the appropriate routes depending on the authentication status and redirect to the `/` route from the index route.
+
+In the next step, we'll be learning about how to define routes and inform Refine about the related routes per resource.
 
 </Sandpack>

@@ -59,8 +59,8 @@ module.exports = {
                 id: "routing",
                 items: [
                     "routing/intro/:routerSelection/index",
-                    "routing/resource-definition/:routerSelection/index",
                     "routing/authentication/:routerSelection/index",
+                    "routing/resource-definition/:routerSelection/index",
                     "routing/inferring-parameters/:routerSelection/index",
                     "routing/navigation/:routerSelection/index",
                     "routing/redirects/:routerSelection/index",

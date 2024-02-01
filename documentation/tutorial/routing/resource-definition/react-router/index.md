@@ -6,14 +6,13 @@ import { Sandpack, AddRoutesToApp, AddResourcesToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-So far, we've created components to interact with our data. In this step, we'll be creating routes for these components and define our resources to inform Refine about their corresponding routes.
+So far, we've integrated our authentication logic into our routes. In this step, we'll be creating routes for these components and define our resources to inform Refine about their corresponding routes.
 
 To learn more about the Resource concept, refer to the [Resource Concept](/docs/guides-concepts/general-concepts/#resource-concept) section in the General Concepts guide.
 
 ## Creating Routes
 
-We've wrapped our app with the `<BrowserRouter />` component in the previous step. Now, we'll be creating routes for our components with the `<Route />` and `<Routes />` components.
-
+We've wrapped our routes with the `<Authenticated />` component in the previous step. Now we'll be creating routes under the `/products` path to place our components.
 We'll use the following routes to place our components:
 
 - `/products` - `<ListProducts />`
@@ -21,14 +20,21 @@ We'll use the following routes to place our components:
 - `/products/:id/edit` - `<EditProduct />`
 - `/products/create` - `<CreateProduct />`
 
+We'll also be defining an index route at `/` and redirecting it to `/products` using the `<Navigate />` component.
+
 Try to add the following code to your `src/App.tsx` file:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 
-// highlight-next-line
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -49,16 +55,37 @@ export default function App(): JSX.Element {
         authProvider={authProvider}
         routerProvider={routerProvider}
       >
-        {/* highlight-start */}
         <Routes>
-          <Route path="/products">
-            <Route index element={<ListProducts />} />
-            <Route path=":id" element={<ShowProduct />} />
-            <Route path=":id/edit" element={<EditProduct />} />
-            <Route path="create" element={<CreateProduct />} />
+          <Route
+            element={
+              <Authenticated key="authenticated-routes" redirectOnFail="/login">
+                <Header />
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            {/* highlight-start */}
+            <Route index element={<Navigate to="/products" />} />
+            <Route path="/products">
+              <Route index element={<ListProducts />} />
+              <Route path=":id" element={<ShowProduct />} />
+              <Route path=":id/edit" element={<EditProduct />} />
+              <Route path="create" element={<CreateProduct />} />
+            </Route>
+            {/* highlight-end */}
+          </Route>
+          <Route
+            element={
+              <Authenticated key="auth-pages" fallback={<Outlet />}>
+                {/* highlight-start */}
+                <Navigate to="/products" />
+                {/* highlight-end */}
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
-        {/* highlight-end */}
       </Refine>
     </BrowserRouter>
   );
@@ -66,12 +93,6 @@ export default function App(): JSX.Element {
 ```
 
 <AddRoutesToApp />
-
-:::info
-
-Notice that we're currently not using the `<Login />`, `<Header />` and `<Authenticated />` components. We'll update our routes to use these components in the next steps.
-
-:::
 
 ## Defining Resources
 
@@ -100,9 +121,9 @@ Try to add the following code to your `src/App.tsx` file:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -136,11 +157,41 @@ export default function App(): JSX.Element {
         // highlight-end
       >
         <Routes>
-          <Route path="/products">
-            <Route index element={<ListProducts />} />
-            <Route path=":id" element={<ShowProduct />} />
-            <Route path=":id/edit" element={<EditProduct />} />
-            <Route path="create" element={<CreateProduct />} />
+          <Route
+            element={
+              <Authenticated key="authenticated-routes" redirectOnFail="/login">
+                <Header />
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route
+              index
+              // highlight-start
+              // We're also replacing the <Navigate /> component with the <NavigateToResource /> component.
+              // It's tailored version of the <Navigate /> component that will redirect to the resource's list route.
+              element={<NavigateToResource resource="protected-products" />}
+              // highlight-end
+            />
+            <Route path="/products">
+              <Route index element={<ListProducts />} />
+              <Route path=":id" element={<ShowProduct />} />
+              <Route path=":id/edit" element={<EditProduct />} />
+              <Route path="create" element={<CreateProduct />} />
+            </Route>
+          </Route>
+          <Route
+            element={
+              <Authenticated key="auth-pages" fallback={<Outlet />}>
+                {/* highlight-start */}
+                {/* We're also replacing the <Navigate /> component with the <NavigateToResource /> component. */}
+                {/* It's tailored version of the <Navigate /> component that will redirect to the resource's list route. */}
+                <NavigateToResource resource="protected-products" />
+                {/* highlight-end */}
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
       </Refine>
@@ -151,6 +202,8 @@ export default function App(): JSX.Element {
 
 <AddResourcesToApp />
 
-Now we've defined our routes and resources, in the next step, we'll be updating our route components to handle authentication and layouts.
+Now we've defined our routes and resources, we're ready to start refactoring our components to benefit from the features provided by Refine.
+
+In the next step, we'll be updating our components to benefit from the parameter inference of Refine.
 
 </Sandpack>

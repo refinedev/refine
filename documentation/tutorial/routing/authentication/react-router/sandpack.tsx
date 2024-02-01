@@ -167,7 +167,7 @@ const AppTsx = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -187,25 +187,17 @@ export default function App(): JSX.Element {
           dataProvider={dataProvider}
           authProvider={authProvider}
           routerProvider={routerProvider}
-          resources={[
-            {
-                name: "protected-products",
-                list: "/products",
-                show: "/products/:id",
-                edit: "/products/:id/edit",
-                create: "/products/create",
-                meta: { label: "Products" },
-            }
-          ]}
       >
-        <Routes>
-            <Route path="/products">
-                <Route index element={<ListProducts />} />
-                <Route path=":id" element={<ShowProduct />} />
-                <Route path=":id/edit" element={<EditProduct />} />
-                <Route path="create" element={<CreateProduct />} />
-            </Route>
-        </Routes>
+        <Authenticated
+          key="protected"
+          fallback={<Login />}
+        >
+          <Header />
+          {/* <ShowProduct /> */}
+          {/* <EditProduct /> */}
+          <ListProducts />
+          {/* <CreateProduct /> */}
+        </Authenticated>
       </Refine>
     </BrowserRouter>
   );
@@ -733,9 +725,15 @@ export const Header = () => {
 
 const AppTsxWithAuthentication = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router-v6";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -752,49 +750,34 @@ export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Refine
-          dataProvider={dataProvider}
-          authProvider={authProvider}
-          routerProvider={routerProvider}
-          resources={[
-            {
-                name: "protected-products",
-                list: "/products",
-                show: "/products/:id",
-                edit: "/products/:id/edit",
-                create: "/products/create",
-                meta: { label: "Products" },
-            }
-          ]}
+        dataProvider={dataProvider}
+        authProvider={authProvider}
+        routerProvider={routerProvider}
       >
         <Routes>
-            <Route
-                element={(
-                    <Authenticated key="authenticated-routes" redirectOnFail="/login">
-                        <Header />
-                        <Outlet />
-                    </Authenticated>
-                )}
-            >
-                <Route
-                    index
-                    element={<NavigateToResource resource="protected-products" />}
-                />
-                <Route path="/products">
-                    <Route index element={<ListProducts />} />
-                    <Route path=":id" element={<ShowProduct />} />
-                    <Route path=":id/edit" element={<EditProduct />} />
-                    <Route path="create" element={<CreateProduct />} />
-                </Route>
-            </Route>
-            <Route
-                element={(
-                    <Authenticated key="auth-pages" fallback={<Outlet />}>
-                        <NavigateToResource resource="protected-products" />
-                    </Authenticated>
-                )}
-            >
-                <Route path="/login" element={<Login />} />
-            </Route>
+          <Route
+            element={
+              // We're wrapping our routes with the \`<Authenticated />\` component
+              // We're omitting the \`fallback\` prop to redirect users to the login page if they are not authenticated.
+              // If the user is authenticated, we'll render the \`<Header />\` component and the \`<Outlet />\` component to render the inner routes.
+              <Authenticated key="authenticated-routes" redirectOnFail="/login">
+                <Header />
+                <Outlet />
+              </Authenticated>
+            }
+          >
+            <Route index element={<ListProducts />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated key="auth-pages" fallback={<Outlet />}>
+                {/* We're redirecting the user to "/" if they are authenticated and trying to access the "/login" route */}
+                <Navigate to="/" />
+              </Authenticated>
+            }
+          >
+            <Route path="/login" element={<Login />} />
+          </Route>
         </Routes>
       </Refine>
     </BrowserRouter>
