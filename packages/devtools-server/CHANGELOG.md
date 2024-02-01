@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.1.23
+
+### Patch Changes
+
+-   [#5574](https://github.com/refinedev/refine/pull/5574) [`ee0f7867c3`](https://github.com/refinedev/refine/commit/ee0f7867c3648dcbf1e2504f430a0b5814d91019) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: upgrade @ory/client package version to 1.5.2 #5530
+
+-   Updated dependencies [[`ee0f7867c3`](https://github.com/refinedev/refine/commit/ee0f7867c3648dcbf1e2504f430a0b5814d91019)]:
+    -   @refinedev/devtools-ui@1.1.16
+
 ## 1.1.22
 
 ### Patch Changes
