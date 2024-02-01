@@ -6,6 +6,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
+            showNavigator
             dependencies={{
                 "@refinedev/core": "latest",
                 "@refinedev/react-router-v6": "latest",
