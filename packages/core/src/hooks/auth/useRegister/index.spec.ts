@@ -1,15 +1,14 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
-    TestWrapper,
     act,
-    mockRouterBindings,
     mockLegacyRouterProvider,
+    mockRouterBindings,
     queryClient,
+    TestWrapper,
 } from "@test";
 
 import { useRegister } from ".";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
 const mockGo = jest.fn();
 
@@ -577,37 +576,39 @@ describe("useRegister Hook", () => {
         ).toHaveLength(1);
     });
 
-    it('should open success notification when successNotification is passed', async () => {
+    it("should open success notification when successNotification is passed", async () => {
         const openNotificationMock = jest.fn();
-      
+
         const successNotification = {
-          message: 'Success!'
+            message: "Success!",
+            description: "Operation completed successfully",
         };
-      
+
         const { result } = renderHook(() => useRegister(), {
-          wrapper: TestWrapper({
-            notificationProvider: {
-              open: openNotificationMock  
-            },
-            authProvider: {
-                ...mockAuthProvider,
-                register: () => Promise.resolve({
-                    success: true,
-                    successNotification
-                })
-            }
-          })
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    register: () =>
+                        Promise.resolve({
+                            success: true,
+                            successNotification,
+                        }),
+                },
+            }),
         });
-      
-        await act(async() => {
-          result.current.mutate({}); 
+
+        await act(async () => {
+            result.current.mutate({});
         });
-      
+
         expect(openNotificationMock).toHaveBeenCalledWith({
-          key: 'register-success',
-          type: 'success',
-          message: 'Success!',
-          description: 'Operation completed successfully'
+            key: "register-success",
+            type: "success",
+            message: "Success!",
+            description: "Operation completed successfully",
         });
     });
 });
