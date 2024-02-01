@@ -24,6 +24,7 @@ import {
     translatePrettyString,
     getMetaProps,
     idQuoteWrapper,
+    deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -66,6 +67,12 @@ export const renderer = ({
         imports.push(["useTranslate", "@refinedev/core"]);
     }
 
+    // has gqlQuery or gqlMutation in "meta"
+    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+    if (hasGql) {
+        imports.push(["gql", "graphql-tag", true]);
+    }
+
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
     );
@@ -103,7 +110,7 @@ export const renderer = ({
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
                         meta,
-                        "getMany",
+                        ["getMany"],
                     )}
                 });
                 `;
@@ -128,7 +135,7 @@ export const renderer = ({
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
                         meta,
-                        "getOne",
+                        ["getOne"],
                     )}
                 });
             `;
@@ -600,18 +607,16 @@ export const renderer = ({
                     ${getMetaProps(
                         resource?.identifier ?? resource?.name,
                         meta,
-                        "getOne",
+                        ["getOne"],
                     )}
                 }`
-                : getMetaProps(
-                      resource?.identifier ?? resource?.name,
-                      meta,
+                : getMetaProps(resource?.identifier ?? resource?.name, meta, [
                       "getOne",
-                  )
+                  ])
                 ? `{${getMetaProps(
                       resource?.identifier ?? resource?.name,
                       meta,
-                      "getOne",
+                      ["getOne"],
                   )}}`
                 : ""
         });

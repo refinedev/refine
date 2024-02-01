@@ -163,7 +163,7 @@ export type InferencerComponentProps = {
             [key in
                 | keyof Pick<
                       DataProvider,
-                      "getList" | "getMany" | "getOne" | "update"
+                      "getList" | "getMany" | "getOne" | "update" | "create"
                   >
                 | "default"]?: Record<string, any>;
         };

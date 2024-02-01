@@ -24,6 +24,7 @@ import {
     noOp,
     getVariableName,
     getMetaProps,
+    deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -65,6 +66,12 @@ export const renderer = ({
 
     if (i18n) {
         imports.push(["useTranslate", "@refinedev/core"]);
+    }
+
+    // has gqlQuery or gqlMutation in "meta"
+    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+    if (hasGql) {
+        imports.push(["gql", "graphql-tag", true]);
     }
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -109,7 +116,7 @@ export const renderer = ({
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
                         meta,
-                        "getMany",
+                        ["getMany"],
                     )}
                 });
                 `;
@@ -613,11 +620,9 @@ export const renderer = ({
         const { tableProps } = useTable({
             syncWithLocation: true,
             ${isCustomPage ? ` resource: "${resource.name}",` : ""}
-            ${getMetaProps(
-                resource?.identifier ?? resource?.name,
-                meta,
+            ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
                 "getList",
-            )}
+            ])}
         });
     
         ${relationHooksCode}
