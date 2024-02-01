@@ -157,7 +157,12 @@ export const authProvider: AuthProvider = {
         };
     },
     onError: async (error) => {
-        console.error(error);
+        if (error?.statusCode === "UNAUTHENTICATED") {
+            return {
+                logout: true,
+            };
+        }
+
         return { error };
     },
     check: async () => {
