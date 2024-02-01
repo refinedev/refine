@@ -208,7 +208,12 @@ const authProvider: AuthProvider = {
         };
     },
     onError: async (error) => {
-        console.error(error);
+        if (error?.code === "PGRST301" || error?.code === 401) {
+            return {
+                logout: true,
+            };
+        }
+
         return { error };
     },
     check: async () => {
@@ -278,11 +283,11 @@ const App: React.FC = () => {
                     authProvider={authProvider}
                     resources={[
                         {
-                            name: "posts",
-                            list: "/posts",
-                            create: "/posts/create",
-                            edit: "/posts/edit/:id",
-                            show: "/posts/show/:id",
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                            show: "/blog-posts/show/:id",
                             meta: {
                                 canDelete: true,
                             },
@@ -316,11 +321,11 @@ const App: React.FC = () => {
                             <Route
                                 index
                                 element={
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 }
                             />
 
-                            <Route path="/posts">
+                            <Route path="/blog-posts">
                                 <Route index element={<PostList />} />
                                 <Route path="create" element={<PostCreate />} />
                                 <Route path="edit/:id" element={<PostEdit />} />
@@ -334,7 +339,7 @@ const App: React.FC = () => {
                                     key="auth-pages"
                                     fallback={<Outlet />}
                                 >
-                                    <NavigateToResource resource="posts" />
+                                    <NavigateToResource resource="blog_posts" />
                                 </Authenticated>
                             }
                         >

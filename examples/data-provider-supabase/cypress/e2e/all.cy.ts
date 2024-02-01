@@ -36,7 +36,7 @@ describe("data-provider-supabase", () => {
     describe("login", () => {
         it("should login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should throw error if login email is wrong", () => {
@@ -49,7 +49,7 @@ describe("data-provider-supabase", () => {
 
         it("should has 'to' param on URL after redirected to /login", () => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
             cy.wait("@supabaseGetPosts");
 
             cy.visit(`${BASE_URL}/test`);
@@ -75,7 +75,7 @@ describe("data-provider-supabase", () => {
     describe("useList", () => {
         beforeEach(() => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should list with select", () => {
@@ -176,7 +176,7 @@ describe("data-provider-supabase", () => {
     describe("useShow", () => {
         beforeEach(() => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should show", () => {
@@ -184,7 +184,7 @@ describe("data-provider-supabase", () => {
             cy.wait("@supabaseGetPosts");
 
             cy.getShowButton().first().click();
-            cy.location("pathname").should("contains", "/posts/show/");
+            cy.location("pathname").should("contains", "/blog-posts/show/");
             cy.wait("@supabaseGetPosts").then(({ request, response }) => {
                 const query = request.query;
                 const body = response?.body?.[0];
@@ -221,13 +221,13 @@ describe("data-provider-supabase", () => {
 
         beforeEach(() => {
             login();
-            cy.location("pathname").should("eq", "/posts");
+            cy.location("pathname").should("eq", "/blog-posts");
         });
 
         it("should create", () => {
             cy.wait("@supabaseGetPosts");
             cy.getCreateButton().click();
-            cy.location("pathname").should("eq", "/posts/create");
+            cy.location("pathname").should("eq", "/blog-posts/create");
 
             fillForm();
             cy.getSaveButton().click();
@@ -242,7 +242,7 @@ describe("data-provider-supabase", () => {
                 expect(response?.body?.content).to.eq(mockPost.content);
                 expect(response?.body?.categoryId).to.eq(1);
 
-                cy.location("pathname").should("eq", "/posts");
+                cy.location("pathname").should("eq", "/blog-posts");
                 cy.getAntdNotification().contains(/success/i);
             });
         });
@@ -251,7 +251,7 @@ describe("data-provider-supabase", () => {
             cy.wait("@supabaseGetPosts");
             cy.getEditButton().first().click();
             cy.wait("@supabaseGetPosts");
-            cy.location("pathname").should("include", "/posts/edit/");
+            cy.location("pathname").should("include", "/blog-posts/edit/");
             cy.getAntdLoadingOverlay().should("not.exist");
             cy.getSaveButton().should("not.be.disabled");
 
@@ -268,7 +268,7 @@ describe("data-provider-supabase", () => {
                 expect(response?.body?.content).to.eq(mockPost.content);
                 expect(response?.body?.categoryId).to.eq(1);
 
-                cy.location("pathname").should("eq", "/posts");
+                cy.location("pathname").should("eq", "/blog-posts");
                 cy.getAntdNotification().contains(/success/i);
             });
         });
@@ -277,7 +277,7 @@ describe("data-provider-supabase", () => {
             cy.wait("@supabaseGetPosts");
             cy.getEditButton().first().click();
             cy.wait("@supabaseGetPosts");
-            cy.location("pathname").should("include", "/posts/edit/");
+            cy.location("pathname").should("include", "/blog-posts/edit/");
             cy.getAntdLoadingOverlay().should("not.exist");
             cy.getSaveButton().should("not.be.disabled");
 
@@ -287,7 +287,7 @@ describe("data-provider-supabase", () => {
                 expect(request.query).to.deep.equal({
                     id: "eq.1",
                 });
-                cy.location("pathname").should("eq", "/posts");
+                cy.location("pathname").should("eq", "/blog-posts");
                 cy.getAntdNotification().contains(/success/i);
             });
         });

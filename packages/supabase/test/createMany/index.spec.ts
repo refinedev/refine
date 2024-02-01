@@ -39,4 +39,37 @@ describe("createMany", () => {
         expect(data[1]["content"]).toEqual("bar-2");
         expect(data[1]["categoryId"]).toEqual(1);
     });
+
+    it("should change schema", async () => {
+        const { data } = await dataProvider(supabaseClient).createMany({
+            resource: "products",
+            variables: [
+                {
+                    name: "foo",
+                },
+                {
+                    name: "foo-2",
+                },
+            ],
+            meta: {
+                schema: "public",
+                select: "*",
+            },
+        });
+
+        expect(data[0]["name"]).toEqual("foo");
+        expect(data[1]["name"]).toEqual("foo-2");
+
+        try {
+            await dataProvider(supabaseClient).createMany({
+                resource: "products",
+                variables: [],
+                meta: {
+                    schema: "private",
+                },
+            });
+        } catch (error: any) {
+            expect(error.code).toEqual("PGRST106");
+        }
+    });
 });

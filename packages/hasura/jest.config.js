@@ -2,6 +2,6 @@ module.exports = {
     preset: "ts-jest",
     rootDir: "./",
     displayName: "refine-hasura",
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.js"],
+    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testEnvironment: "jsdom",
 };

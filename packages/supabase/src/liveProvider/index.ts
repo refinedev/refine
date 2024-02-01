@@ -7,9 +7,17 @@ import {
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 
-export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
+export const liveProvider = (
+    supabaseClient: SupabaseClient<any, any, any>,
+): LiveProvider => {
     return {
-        subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
+        subscribe: ({
+            channel,
+            types,
+            params,
+            callback,
+            meta,
+        }): RealtimeChannel => {
             const resource = channel.replace("resources/", "");
 
             const listener = (payload: RealtimePostgresChangesPayload<any>) => {
@@ -63,9 +71,13 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                     .join(",");
             };
 
-            const events = types.map(x => supabaseTypes[x]).sort((a, b) => a.localeCompare(b));
+            const events = types
+                .map((x) => supabaseTypes[x])
+                .sort((a, b) => a.localeCompare(b));
             const filter = mapFilter(params?.filters);
-            const ch = `${channel}:${events.join("|")}${filter ? ":" + filter : ""}`;
+            const ch = `${channel}:${events.join("|")}${
+                filter ? ":" + filter : ""
+            }`;
 
             let client = supabaseClient.channel(ch);
             for (let i = 0; i < events.length; i++) {
@@ -73,11 +85,15 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
                     "postgres_changes",
                     {
                         event: events[i] as any,
-                        schema: "public",
+                        schema:
+                            meta?.schema ||
+                            // @ts-expect-error TS2445 Property rest is protected and only accessible within class SupabaseClient and its subclasses.
+                            supabaseClient?.rest?.schemaName ||
+                            "public",
                         table: resource,
                         filter: filter,
                     },
-                    listener
+                    listener,
                 );
             }
 

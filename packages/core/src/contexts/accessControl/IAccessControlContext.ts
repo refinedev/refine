@@ -1,4 +1,5 @@
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
+import { UseQueryOptions } from "@tanstack/react-query";
 
 export type CanParams = {
     /**
@@ -32,6 +33,7 @@ export interface IAccessControlContext {
             enableAccessControl?: boolean;
             hideIfUnauthorized?: boolean;
         };
+        queryOptions?: UseQueryOptions<CanReturnType>;
     };
 }
 
@@ -42,6 +44,7 @@ export interface IAccessControlContextReturnType {
             enableAccessControl?: boolean;
             hideIfUnauthorized?: boolean;
         };
+        queryOptions?: UseQueryOptions<CanReturnType>;
     };
 }
 
