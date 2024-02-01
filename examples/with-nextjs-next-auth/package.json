@@ -21,7 +21,7 @@
     "cross-env": "^7.0.3",
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
-    "js-cookie": "^3.0.5",
+    "js-cookie": "^3.0.1",
     "@ant-design/nextjs-registry": "^1.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.16.2",
     "@typescript-eslint/parser": "5.48.0",
     "typescript": "^4.7.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
-    "@types/js-cookie": "^3.0.6"
+    "@types/js-cookie": "^3.0.2"
   }
 }
