@@ -31,7 +31,7 @@ export const authProvider: AuthProvider = {
       },
     });
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       return null;
     }
 

@@ -202,7 +202,7 @@ export const dataProvider: DataProvider = {
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -212,7 +212,7 @@ export const dataProvider: DataProvider = {
   getOne: async ({ resource, id, meta }) => {
     const response = await fetch(`${API_URL}/${resource}/${id}`);
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -274,7 +274,7 @@ export const dataProvider: DataProvider = {
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
