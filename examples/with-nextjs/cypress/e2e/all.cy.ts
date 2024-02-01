@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe("with-nextjs-auth", () => {
+describe("with-nextjs", () => {
     const BASE_URL = "http://localhost:3000";
 
     const submitAuthForm = () => {

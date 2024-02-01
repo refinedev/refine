@@ -1209,12 +1209,8 @@ Default paths are:
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
 
-## Example (`/pages`)
-
-<CodeSandboxExample path="with-nextjs" />
-
 ## Example (`/app`)
 
-<CodeSandboxExample path="with-nextjs-appdir" />
+<CodeSandboxExample path="with-nextjs" />
 
 [routerprovider]: /docs/routing/router-provider

@@ -246,7 +246,6 @@ module.exports = {
                     items: [
                         { type: "html", value: "Next.js" },
                         "examples/next-js/nextjs",
-                        "examples/next-js/nextjs-appdir",
                         "examples/next-js/auth",
                         "examples/next-js/NextAuth-js",
                         { type: "html", value: "Remix" },

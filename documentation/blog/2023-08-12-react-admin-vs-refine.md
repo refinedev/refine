@@ -166,7 +166,6 @@ Check out these basic examples from refine's documentation:
 
 - [refine + next.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs)
 - [refine + remix](https://github.com/refinedev/refine/tree/master/examples/with-remix-antd)
-- [refine + next.js and the `/app` dir](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-appdir)
 - [refine + React Native](https://github.com/abdellah711/refinenative) (Community Package ❤️)
 
 ## Multitenancy
