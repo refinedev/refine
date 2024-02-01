@@ -10,9 +10,7 @@
 "@refinedev/react-table": patch
 "@refinedev/kbar": patch
 "@refinedev/devtools-internal": patch
-"@refinedev/devtools-server": patch
 "@refinedev/devtools-shared": patch
-"@refinedev/devtools-ui": patch
 "@refinedev/devtools": patch
 ---
 
