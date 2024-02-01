@@ -377,7 +377,7 @@ export const EditProduct = () => {
         type="text"
         id="price"
         name="price"
-        pattern="\d*\.?\d*"
+        pattern="\\d*\.?\\d*"
         defaultValue={record?.price}
       />
 
