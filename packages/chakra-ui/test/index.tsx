@@ -8,7 +8,7 @@ import {
     DataProvider,
     NotificationProvider,
     IResourceItem,
-    AuthBindings,
+    AuthProvider,
     LegacyAuthProvider,
 } from "@refinedev/core";
 
@@ -19,7 +19,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;

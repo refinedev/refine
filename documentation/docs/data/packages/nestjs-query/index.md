@@ -192,7 +192,6 @@ npm run codegen
 You can use these types to extract the type of selected fields of your queries/mutations.
 
 See the [Utility Types](#utility-types) section for more information.
-
 :::
 
 And then you can use it with hooks:

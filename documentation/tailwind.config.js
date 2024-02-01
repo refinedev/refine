@@ -25,6 +25,7 @@ module.exports = {
                     cyan: "#0F8A8A",
                     "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
+                    selection: "#6EF7F7",
                     "enterprise-purple": "#4D0099",
                     "enterprise-purple-2": "#8000ff",
                     "enterprise-purple-3": "#E6CCFF",

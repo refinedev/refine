@@ -3,9 +3,9 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import { LoginPage } from ".";
 import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
-import { AuthBindings } from "src/interfaces";
+import { AuthProvider } from "src/interfaces";
 
-const mockAuthProvider: AuthBindings = {
+const mockAuthProvider: AuthProvider = {
     login: async () => ({ success: true }),
     check: async () => ({ authenticated: true }),
     onError: async () => ({}),

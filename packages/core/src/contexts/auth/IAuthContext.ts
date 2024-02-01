@@ -5,7 +5,7 @@ export type TForgotPasswordData = void | false | string;
 export type TUpdatePasswordData = void | false | string;
 
 /**
- * @deprecated `LegacyAuthProvider` is deprecated with refine@4, use `AuthBindings` instead, however, we still support `LegacyAuthProvider` for backward compatibility.
+ * @deprecated `LegacyAuthProvider` is deprecated with refine@4, use `AuthProvider` instead, however, we still support `LegacyAuthProvider` for backward compatibility.
  */
 export interface LegacyAuthProvider {
     login: (params: any) => Promise<TLoginData>;

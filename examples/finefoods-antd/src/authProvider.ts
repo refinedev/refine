@@ -1,10 +1,10 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 import { notification } from "antd";
 import { disableAutoLogin, enableAutoLogin } from "./hooks";
 
 export const TOKEN_KEY = "refine-auth";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         enableAutoLogin();
         localStorage.setItem(TOKEN_KEY, `${email}-${password}`);

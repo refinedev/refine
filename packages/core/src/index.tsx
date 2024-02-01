@@ -8,6 +8,7 @@ export {
     AuditLogProvider,
     LegacyAuthProvider,
     AuthBindings,
+    AuthProvider,
     BaseKey,
     BaseRecord,
     CanParams,

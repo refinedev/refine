@@ -213,11 +213,11 @@ Since we preferred refine-supabase as the data provider during the CLI project i
 <p>
 
 ```ts title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password, providerName }) => {
     // sign in with oauth
     try {
@@ -1361,7 +1361,6 @@ Refine offers out-of-the-box live provider support:
 - **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 - **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 - **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
-- **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 
 :::
 

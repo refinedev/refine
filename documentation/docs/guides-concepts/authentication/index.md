@@ -32,9 +32,9 @@ Auth provider is an object that contains methods to handles authentication in yo
 To activate authentication in your app, you need to pass an `authProvider` to the `<Refine />` as a prop. Once you provide auth provider, you can utilize our auth hooks (useLogin, useRegister, useIsAuthenticated etc.) to easily manage your authentication.
 
 ```tsx title="App.tsx"
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
 
@@ -89,9 +89,9 @@ Additionally, in this example, we will implement `authProvider.logout` and `auth
 
 <IsAuthenticated />
 
-Refine also provides `<Auhtenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
+Refine also provides `<Authenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
-[To learn more about the `<Auhtenticated />` component, check out the reference page.](/docs/authentication/components/authenticated)
+[To learn more about the `<Authenticated />` component, check out the reference page.](/docs/authentication/components/authenticated)
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
@@ -196,10 +196,10 @@ Once you provide `notificationProvider`, Refine will automatically notify users 
 For example, when you return `error` object from the `authProvider.login` method, Refine will automatically notify users about the error.
 
 ```tsx
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 import { handleLogin } from "./utils";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
     if (status === 418) {
@@ -229,10 +229,10 @@ Once you provide `routerProvider`, Refine will automatically redirect users to t
 For example, when you return `redirectTo` object from the `authProvider.register` method, Refine will automatically redirect users to the desired page.
 
 ```tsx
-import { Refine, AuthBindings } from "@refinedev/core";
+import { Refine, AuthProvider } from "@refinedev/core";
 import { handleLogin } from "./utils";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   register: async ({ email, password }) => {
     const { status } = handleLogin(email, password);
     if (status === 418) {
@@ -263,7 +263,6 @@ You can use the following oAuth provider implementations as a starting point for
 - [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
 - [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
 - [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
 - [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
 
 [To learn more about the `authProvider` interface, check out the reference page.](/docs/authentication/auth-provider)

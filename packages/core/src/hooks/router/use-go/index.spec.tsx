@@ -141,6 +141,90 @@ describe("useGo Hook", () => {
         expect(mockGo).toBeCalledWith({ to: "/posts/1/clone" });
     });
 
+    it("should return the correct URL for a resource identifier", () => {
+        const mockGo = jest.fn();
+
+        const { result } = renderHook(() => useGo(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        list: "/posts",
+                        create: "/posts/create",
+                        edit: "/posts/:id/edit",
+                        show: "/posts/:id",
+                        clone: "/posts/:id/clone",
+                    },
+                    {
+                        name: "posts",
+                        identifier: "id-posts",
+                        list: "/id-posts",
+                        create: "/id-posts/create",
+                        edit: "/id-posts/:id/edit",
+                        show: "/id-posts/:id",
+                        clone: "/id-posts/:id/clone",
+                    },
+                ],
+                dataProvider: MockJSONServer,
+                routerProvider: mockRouterBindings({
+                    fns: {
+                        go: () => mockGo,
+                    },
+                }),
+            }),
+        });
+
+        const go = result.current;
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "list",
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "create",
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/create" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "edit",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1/edit" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "show",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1" });
+
+        go({
+            to: {
+                resource: "id-posts",
+                action: "clone",
+                id: 1,
+            },
+        });
+
+        expect(mockGo).toBeCalledWith({ to: "/id-posts/1/clone" });
+    });
+
     it("should throw an error if the resource is not defined", () => {
         const { result } = renderHook(() => useGo(), {
             wrapper: TestWrapper({

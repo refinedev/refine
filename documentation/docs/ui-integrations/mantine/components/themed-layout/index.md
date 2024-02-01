@@ -36,7 +36,7 @@ By using `<ThemedLayoutV2>`, developers can create a consistent look and feel ac
 
 - [`<ThemedHeaderV2>`][themed-header]: displayed at the top of the page and can display the user's name and avatar.
 - [`<ThemedSiderV2>`][themed-sider]: displayed on the left side of the page and can display menu items.
-- [`<ThemedTitleV2V2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
+- [`<ThemedTitleV2>`][themed-title]: displayed at the top of [`<ThemedSiderV2>`][themed-sider] and includes an icon and text.
 - `<Footer>`: displayed at the bottom of the page.
 - `<OffLayoutArea>`: rendered outside of the main layout component and can be placed anywhere on the page while still being part of the overall layout.
 
@@ -275,9 +275,9 @@ const App: React.FC = () => {
 
 ### Title
 
-In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2V2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2V2>`][themed-title] component by passing a custom component to the `Title` prop.
+In `<ThemedLayoutV2>`, the title section is rendered using the [`<ThemedTitleV2>`][themed-title] component by default. However, if desired, it's possible to replace the default [`<ThemedTitleV2>`][themed-title] component by passing a custom component to the `Title` prop.
 
-Here is an example of how to replace the default [`<ThemedTitleV2V2>`][themed-title] component:
+Here is an example of how to replace the default [`<ThemedTitleV2>`][themed-title] component:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -295,7 +295,7 @@ const App: React.FC = () => {
       <ThemedLayoutV2
         // highlight-start
         Title={({ collapsed }) => (
-          <ThemedTitleV2V2
+          <ThemedTitleV2
             // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
             collapsed={collapsed}
             icon={collapsed ? <MySmallIcon /> : <MyLargeIcon />}

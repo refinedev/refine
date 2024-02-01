@@ -7,7 +7,6 @@ import {
     getDefaultSortOrder,
     List,
     ShowButton,
-    useSelect,
     useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter, HttpError } from "@refinedev/core";
@@ -27,11 +26,12 @@ import {
     Text,
 } from "@/components";
 import { Quote, QuoteStatus } from "@/graphql/schema.types";
-import { COMPANIES_SELECT_QUERY, USERS_SELECT_QUERY } from "@/graphql/queries";
+import { QuotesTableQuery } from "@/graphql/types";
+import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
+import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 import { QUOTES_TABLE_QUERY } from "./queries";
-import { QuotesTableQuery } from "@/graphql/types";
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
     {
@@ -94,27 +94,9 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
             },
         });
 
-    const { selectProps: selectPropsCompanies } = useSelect({
-        resource: "companies",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            gqlQuery: COMPANIES_SELECT_QUERY,
-        },
-    });
+    const { selectProps: selectPropsCompanies } = useCompaniesSelect();
 
-    const { selectProps: selectPropsUsers } = useSelect({
-        resource: "users",
-        optionLabel: "name",
-        pagination: {
-            mode: "off",
-        },
-        meta: {
-            gqlQuery: USERS_SELECT_QUERY,
-        },
-    });
+    const { selectProps: selectPropsUsers } = useUsersSelect();
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         searchFormProps?.onFinish?.({
             title: e.target.value ?? "",

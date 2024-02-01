@@ -8,6 +8,7 @@ import { Button, Form } from "antd";
 
 import { Task, TaskUpdateInput } from "@/graphql/schema.types";
 
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 import { AccordionHeaderSkeleton, ChecklistHeader, CheckListInput } from "../";
 
 type Props = {
@@ -36,6 +37,9 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
         successNotification: false,
         onMutationSuccess: () => {
             invalidate({ invalidates: ["list"], resource: "tasks" });
+        },
+        meta: {
+            gqlMutation: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 

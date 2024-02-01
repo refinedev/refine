@@ -86,9 +86,9 @@ login({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `login` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   login: async ({ redirectPath }) => {
     // ...
