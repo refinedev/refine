@@ -59,3 +59,100 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "kong/2.2.1",
         ],
     );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .patch("/rest/v1/products", { name: "IPhone 16" })
+    .query({ id: "eq.1", select: "%2A" })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000038bae56ca4c51b232d451ca4bcc4d55b252f20cc8c8cf4b55303453aa8d0500428272751d000000",
+        ],
+        [
+            "Date",
+            "Tue, 23 Jan 2024 14:34:21 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "Content-Range",
+            "0-0/*",
+            "CF-Ray",
+            "84a0c1cd9e09c1cb-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Content-Encoding",
+            "gzip",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Vary",
+            "Accept-Encoding",
+            "Via",
+            "kong/2.8.1",
+            "Content-Profile",
+            "public",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "0",
+            "X-Kong-Upstream-Latency",
+            "6",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .patch("/rest/v1/products", { name: "IPhone 16" })
+    .query({ id: "eq.1" })
+    .reply(
+        406,
+        {
+            code: "PGRST106",
+            details: null,
+            hint: null,
+            message: "The schema must be one of the following: public, storage",
+        },
+        [
+            "Date",
+            "Tue, 23 Jan 2024 14:10:00 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "CF-Ray",
+            "84a09e22498e6846-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "1",
+            "X-Kong-Upstream-Latency",
+            "0",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );

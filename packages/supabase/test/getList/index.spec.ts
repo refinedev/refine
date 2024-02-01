@@ -62,6 +62,7 @@ describe("getList", () => {
             select: () => mockSupabaseClient,
             from: () => mockSupabaseClient,
             range: () => mockSupabaseClient,
+            schema: () => mockSupabaseClient,
             order: mockSupabaseOrder,
         } as unknown as SupabaseClient;
 
@@ -279,5 +280,39 @@ describe("filtering", () => {
         expect(data[0]["title"]).toBe("Hello");
         expect(data[1]["title"]).toBe("World");
         expect(total).toBe(2);
+    });
+
+    it("should change schema", async () => {
+        const { data } = await dataProvider(supabaseClient).getList({
+            resource: "products",
+            meta: {
+                schema: "public",
+                select: "*",
+            },
+        });
+
+        expect(data).toEqual([
+            { id: 16, name: "Test" },
+            { id: 1, name: "Macbook Proeeeeeasdas" },
+            { id: 15, name: "eeeвцфвфцвфцвфц" },
+            { id: 2, name: "iPhone 15" },
+            { id: 17, name: "Iphone 15" },
+            { id: 18, name: "iPhone 15" },
+            { id: 21, name: "foo" },
+            { id: 22, name: "foo" },
+            { id: 23, name: "foo" },
+            { id: 24, name: "foo" },
+        ]);
+
+        try {
+            await dataProvider(supabaseClient).getList({
+                resource: "products",
+                meta: {
+                    schema: "private",
+                },
+            });
+        } catch (error: any) {
+            expect(error.code).toEqual("PGRST106");
+        }
     });
 });

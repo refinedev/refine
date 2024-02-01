@@ -147,7 +147,7 @@ const SUPABASE_KEY =
 
 export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
   db: {
-    schema: "public",
+    schema: "public", // this can be overridden by passing `meta.schema` to data hooks.
   },
   auth: {
     persistSession: true,
@@ -1444,7 +1444,7 @@ const { tableProps, sorter } = useTable<IUser>({
 });
 ```
 
-### id
+### `idColumnName` - using custom primary key
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
@@ -1474,6 +1474,23 @@ useMany({
 ```
 
 Now it searches for posts in the `post_id` column of the data table instead of `id` column.
+
+### `schema` - using custom schema
+
+By default, it uses the given schema from supabase client. You can pass the `schema` property in the `meta` object to override this behavior.
+
+This property is also passed to the live provider and can be used in all data hooks
+
+```tsx title="src/pages/users/list.tsx"
+const tableProps = useTable<IUser>({
+  resource: "posts",
+  //highlight-start
+  meta: {
+    schema: "foo",
+  },
+  // highlight-end
+});
+```
 
 ### Deep Filtering
 
