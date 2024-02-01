@@ -93,7 +93,8 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "dayjs": "^1.10.7",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "peerDependenciesMeta": {
     "@refinedev/react-hook-form": {
@@ -155,6 +156,9 @@
     },
     "@tanstack/react-table": {
       "optional": true
+    },
+    "graphql-tag": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -201,7 +205,8 @@
     "remark-gfm": "^1.0.0",
     "tslib": "^2.3.1",
     "prettier": "^2.7.1",
-    "@aliemir/react-live": "^4.0.0"
+    "@aliemir/react-live": "^4.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "author": "Refine",
   "license": "MIT",
