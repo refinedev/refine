@@ -74,7 +74,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     // hidden: true,
                 },
                 "list-products.tsx": {
-                    code: ListProductsWithSyncWithLocation,
+                    code: ListProductsWithNavigation,
                     active: true,
                     // hidden: true,
                 },
@@ -85,7 +85,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
                     code: LoginTsx,
                 },
                 "header.tsx": {
-                    code: HeaderTsx,
+                    code: HeaderWithLinks,
                 },
             }}
         >
@@ -376,7 +376,7 @@ export const authProvider: AuthProvider = {
     },
     logout: async () => {
         localStorage.removeItem("my_access_token");
-        return { success: true, redirectTo: "/login" };
+        return { success: true };
     },
     // login method receives an object with all the values you've provided to the useLogin hook.
     login: async ({ email, password }) => {
@@ -392,7 +392,7 @@ export const authProvider: AuthProvider = {
 
         if (data.token) {
             localStorage.setItem("my_access_token", data.token);
-            return { success: true, redirectTo: "/" };
+            return { success: true };
         }
 
         return { success: false };
@@ -411,7 +411,7 @@ export const authProvider: AuthProvider = {
 `.trim();
 
 const ListProductsTsx = /* tsx */ `
-import { useTable, useMany, useNavigation } from "@refinedev/core";
+import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
@@ -425,8 +425,6 @@ export const ListProducts = () => {
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
-
-  const { show, edit } = useNavigation();
 
   const { data: categories } = useMany({
     resource: "categories",
@@ -496,9 +494,6 @@ export const ListProducts = () => {
             <th onClick={() => onSort("price")}>
               Price {indicator[getSorter("price")]}
             </th>
-            <th>
-              Actions
-            </th>
           </tr>
         </thead>
         <tbody>
@@ -515,14 +510,6 @@ export const ListProducts = () => {
               </td>
               <td>{product.material}</td>
               <td>{product.price}</td>
-              <td>
-                <button type="button" onClick={() => show("protected-products", product.id)}>
-                  Show
-                </button>
-                <button type="button" onClick={() => edit("protected-products", product.id)}>
-                  Edit
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>
@@ -563,9 +550,7 @@ const CreateProductTsx = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({
-    redirect: "edit",
-  });
+  const { onFinish, mutationResult } = useForm();
 
   const { options } = useSelect({
     resource: "categories",
@@ -619,10 +604,7 @@ const EditProductTsx = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm({
-    // This will redirect to the show page after the mutation is successful.
-    redirect: "show",
-  });
+  const { onFinish, mutationResult, queryResult } = useForm();
 
   const record = queryResult.data?.data;
 
@@ -739,6 +721,34 @@ const HeaderTsx = /* tsx */ `
 import React from "react";
 import { useLogout, useGetIdentity } from "@refinedev/core";
 
+export const Header = () => {
+  const { mutate, isLoading } = useLogout();
+  const { data: identity } = useGetIdentity();
+
+  return (
+    <>
+      <h2>
+        <span>Welcome, </span>
+        <span>{identity?.name ?? ""}</span>
+      </h2>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={mutate}
+      >
+        Logout
+      </button>
+    </>
+  );
+};
+`.trim();
+
+// updates
+
+const HeaderWithLinks = /* tsx */ `
+import React from "react";
+import { useLogout, useGetIdentity } from "@refinedev/core";
+
 import { Link } from "react-router-dom";
 
 export const Header = () => {
@@ -763,9 +773,7 @@ export const Header = () => {
 };
 `.trim();
 
-// updates
-
-const ListProductsWithSyncWithLocation = /* tsx */ `
+const ListProductsWithNavigation = /* tsx */ `
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 
 export const ListProducts = () => {
@@ -779,7 +787,6 @@ export const ListProducts = () => {
   } = useTable({
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
-    syncWithLocation: true,
   });
 
   const { show, edit } = useNavigation();
@@ -903,7 +910,20 @@ export const ListProducts = () => {
 
 // actions
 
-export const AddLocationSyncToListProducts = () => {
+export const AddLinksToHeader = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile("/header.tsx", HeaderWithLinks);
+                sandpack.setActiveFile("/header.tsx");
+            }}
+        />
+    );
+};
+
+export const AddShowAndEditButtonsToListProducts = () => {
     const { sandpack } = useSandpack();
 
     return (
@@ -911,7 +931,7 @@ export const AddLocationSyncToListProducts = () => {
             onClick={() => {
                 sandpack.updateFile(
                     "/list-products.tsx",
-                    ListProductsWithSyncWithLocation,
+                    ListProductsWithNavigation,
                 );
                 sandpack.setActiveFile("/list-products.tsx");
             }}
