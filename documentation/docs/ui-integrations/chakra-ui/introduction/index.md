@@ -287,13 +287,13 @@ Chakra UI has its own [notification system](https://chakra-ui.com/docs/component
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/chakra-ui";
+import { useNotificationProvider } from "@refinedev/chakra-ui";
 
 const App = () => {
   return (
     <Refine
       // ...
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
     >
       {/* ... */}
     </Refine>

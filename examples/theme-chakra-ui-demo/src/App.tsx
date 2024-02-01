@@ -3,7 +3,7 @@ import {
     AuthPage,
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -38,7 +38,7 @@ const App: React.FC = () => {
                     )}
                     authProvider={authProvider}
                     routerProvider={routerProvider}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "posts",

@@ -8,10 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toas
 hide_table_of_contents: false
 ---
 
-
-
-
-
 ## Introduction
 
 React and its derivative frameworks, such as [refine](https://github.com/refinedev/refine), make building data-intensive front-end applications a breeze. When dealing with data-intensive applications such as admin panels, dashboards, and internal tools, it is necessary to set up a robust and effective notification system.
@@ -22,13 +18,9 @@ Any refine project that uses a supported design system or component libraries, s
 
 In the react ecosystem, there are several notification packages to choose from. React-toastify is one of the popular toast packages you can use to integrate a custom notification system in a React or refine project. In this article, you will create a custom notification provider in a refine application using react-toastify.
 
-
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/react-toastify-min.gif" alt="react toastify" />
 
 <br/>
-
 
 What we'll cover in this article:
 
@@ -39,7 +31,7 @@ What we'll cover in this article:
 
 ## What is refine
 
- [refine](https://github.com/refinedev/refine) is a free, open-source, MIT-licensed React-based framework. refine is a feature-packed library. It ships with features for user authentication, routing, internalization, and networking out of the box.
+[refine](https://github.com/refinedev/refine) is a free, open-source, MIT-licensed React-based framework. refine is a feature-packed library. It ships with features for user authentication, routing, internalization, and networking out of the box.
 
 The built-in features make refine a suitable package for building data-intensive front-end applications such as dashboards, admin panels, storefronts, and internal tools.
 
@@ -53,24 +45,17 @@ When looking to start using refine, you can bootstrap a refine application using
 
 Follow the steps below to bootstrap a new refine application using the [refine.new](https://refine.new/) platform.
 
-
 - Navigate to the [refine.new](https://refine.new/) platform and log in using your GitHub or Google account.
 
-
-- After logging into the refine.new platform, create a new refine project by following the steps or clicking the "Create New Project" button if you're on the `/projects` page. Be sure to use Vite. Select Headless as your UI framework, REST API as a back-end service, and no authentication provider.  
-
+- After logging into the refine.new platform, create a new refine project by following the steps or clicking the "Create New Project" button if you're on the `/projects` page. Be sure to use Vite. Select Headless as your UI framework, REST API as a back-end service, and no authentication provider.
 
 - After creating a project in the previous step, build and download it to your local machine as a compressed Gzipped project. You need to give your project an appropriate name.
-
-
 
 - After downloading and extracting the compressed Gzipped project, open it in a text editor of your choice. Run one of the commands below to install the project dependencies.
 
 ```sh
 npm install
 ```
-
-
 
 - After successfully installing the project dependencies described in the previous step, run the command below on the terminal to preview the project. It will launch the development server on localhost on port 5173.
 
@@ -80,9 +65,7 @@ npm run dev
 
 Your project should look like the image below.
 
-
 <br/>
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/blog-post-list-page.png"  alt="react toastify" />
@@ -96,22 +79,22 @@ The refine.new platform is one way of creating a refine application. You can als
 
 [React-toastify](https://www.npmjs.com/package/react-toastify) is a free, open-source, MIT-licensed toast package you can use to provide temporary, unobtrusive, and auto-expiring notifications in your React or refine application. You can use it with react or react-based frameworks like refine. React-toastify is a simple but powerful package.
 
-The main building blocks of react-toastify you will interact with most are the `ToastContainer` component and the `toast` object. The `ToastContainer` component accepts several props for positioning the toast, specifying the theme,  type of notification, and several other configuration options.
+The main building blocks of react-toastify you will interact with most are the `ToastContainer` component and the `toast` object. The `ToastContainer` component accepts several props for positioning the toast, specifying the theme, type of notification, and several other configuration options.
 
 The code below shows some props you can pass to the `ToastContainer` component. For complete documentation of its props, read the react-toastify documentation.
 
 ```tsx
 <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
+  position="top-right"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
 />
 ```
 
@@ -119,14 +102,14 @@ You can trigger a notification by invoking the `toast` function. It takes the me
 
 ```tsx
 toast("Successfully updated blog post", {
-    position: "top-left",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  position: "top-left",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
 });
 ```
 
@@ -139,12 +122,12 @@ As hinted above, refine offers out-of-the-box support for several design systems
 For a built-in notification provider, you need to import the notification provider and pass it as a prop to the `Refine` component like so:
 
 ```tsx title="src/App.tsx"
-import { notificationProvider } from "@refinedev/chakra";
+import { useNotificationProvider } from "@refinedev/chakra";
 
 return (
   <Refine
-      //...
-      notificationProvider={notificationProvider}
+    //...
+    notificationProvider={useNotificationProvider}
   />
 );
 ```
@@ -155,22 +138,22 @@ In refine, a notification provider is an object with two properties. These prope
 
 ```tsx
 interface NotificationProvider {
-    open: (params: OpenNotificationParams) => void;
-    close: (key: string) => void;
+  open: (params: OpenNotificationParams) => void;
+  close: (key: string) => void;
 }
 
 interface OpenNotificationParams {
-    key?: string;
-    message: string;
-    type: "success" | "error" | "progress";
-    description?: string;
-    cancelMutation?: () => void;
-    undoableTimeout?: number;
-  }
+  key?: string;
+  message: string;
+  type: "success" | "error" | "progress";
+  description?: string;
+  cancelMutation?: () => void;
+  undoableTimeout?: number;
+}
 
-const notificationProvider:NotificationProvider = {
-    open: () => {},
-    close: () => {},
+const notificationProvider: NotificationProvider = {
+  open: () => {},
+  close: () => {},
 };
 ```
 
@@ -190,23 +173,22 @@ The `open` method takes an object with the shape below as an argument. As the co
 
 ```tsx
 interface OpenNotificationParams {
-    key?: string;
-    message: string;
-    type: "success" | "error" | "progress";
-    description?: string;
-    cancelMutation?: () => void;
-    undoableTimeout?: number;
+  key?: string;
+  message: string;
+  type: "success" | "error" | "progress";
+  description?: string;
+  cancelMutation?: () => void;
+  undoableTimeout?: number;
 }
 ```
 
 Though the object passed to the `open` method has several properties, it has two required properties, `message` and `type`. The other properties are optional.
 
-The `message` property is the message to display on the notification. On the other hand, the `type` property describes the type of the notification. A refine notification can be of type `"success"`, `"error"`  or `"progress"`.
+The `message` property is the message to display on the notification. On the other hand, the `type` property describes the type of the notification. A refine notification can be of type `"success"`, `"error"` or `"progress"`.
 
 The screenshot below shows a success notification with the message "Successfully edited Blog Posts" that refine displays after successfully editing a blog post.
 
 <br/>
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/success-toast.png"  alt="react toastify" />
@@ -214,18 +196,15 @@ The screenshot below shows a success notification with the message "Successfully
 
 <br/>
 
-
 Similarly, the screenshot below shows an error message with the text "Oops failed to update blog post" that refine displays after failing to update a record.
 
 <br/>
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/error-toast.png"  alt="react toastify" />
 </div>
 
 <br/>
-
 
 ### The `close` method
 
@@ -244,20 +223,15 @@ const { open, close } = useNotification();
 
 // open notification
 open?.({
-    key: "notification-key",
-    type: "success",
-    message: "Successfully updated Blog Post",
-    description: "This is a success message",
+  key: "notification-key",
+  type: "success",
+  message: "Successfully updated Blog Post",
+  description: "This is a success message",
 });
 
 // close notification
 close?.("notification-key");
 ```
-
-
-
-
-
 
 ## Create a notification provider with react-toastify
 
@@ -265,7 +239,7 @@ In one of the sections above, we created a refine application using the refine.n
 
 ### Step 1 — Install react-toastify
 
-Our goal in this article is to create a custom notification system using react-toastify. Open the refine project you created above in your favorite text editor, and depending on your package manager, use one of the commands below to install react-toastify from the NPM package registry.  
+Our goal in this article is to create a custom notification system using react-toastify. Open the refine project you created above in your favorite text editor, and depending on your package manager, use one of the commands below to install react-toastify from the NPM package registry.
 
 ```sh
 npm install react-toastify
@@ -327,7 +301,7 @@ function App() {
         <Refine
           ...
           //highlight-next-line
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           i18nProvider={i18nProvider}
           ...
         >
@@ -385,11 +359,7 @@ type UndoableNotification = {
   closeToast?: () => void;
 };
 
-export const UndoableNotification: React.FC<UndoableNotification> = ({
-  closeToast,
-  cancelMutation,
-  message,
-}) => {
+export const UndoableNotification: React.FC<UndoableNotification> = ({ closeToast, cancelMutation, message }) => {
   return (
     <div>
       <p>{message}</p>
@@ -412,7 +382,7 @@ When the mutation mode is undoable, refine will invoke the `open` function and s
 
 Every second, refine will decrease the value of `undoableTimeout` by 1 until its value reaches 0.
 
-Import the `UndoableNotification` component you created above into the `src/providers/notificationProvider.tsx` file. Add the following changes to the notification provider. Pay attention to the `open` method because its body has changed.  It will display a custom component when the refine mutation mode is `undoable`.
+Import the `UndoableNotification` component you created above into the `src/providers/notificationProvider.tsx` file. Add the following changes to the notification provider. Pay attention to the `open` method because its body has changed. It will display a custom component when the refine mutation mode is `undoable`.
 
 ```tsx title="src/providers/notificationProvider.tsx"
 import React from "react";
@@ -428,32 +398,21 @@ export const notificationProvider: NotificationProvider = {
       if (toast.isActive(key as React.ReactText)) {
         toast.update(key as React.ReactText, {
           progress: undoableTimeout && (undoableTimeout / 10) * 2,
-          render: (
-            <UndoableNotification
-              message={message}
-              cancelMutation={cancelMutation}
-            />
-          ),
+          render: <UndoableNotification message={message} cancelMutation={cancelMutation} />,
           type: "default",
         });
 
         return;
       }
 
-      toast(
-        <UndoableNotification
-          message={message}
-          cancelMutation={cancelMutation}
-        />,
-        {
-          toastId: key,
-          updateId: key,
-          closeOnClick: false,
-          closeButton: false,
-          autoClose: false,
-          progress: undoableTimeout && (undoableTimeout / 10) * 2,
-        }
-      );
+      toast(<UndoableNotification message={message} cancelMutation={cancelMutation} />, {
+        toastId: key,
+        updateId: key,
+        closeOnClick: false,
+        closeButton: false,
+        autoClose: false,
+        progress: undoableTimeout && (undoableTimeout / 10) * 2,
+      });
 
       return;
     }
@@ -498,9 +457,8 @@ refine gives you the flexibility to build a custom notification provider using a
 </a>
 </div>
 
-
 ## Live CodeSandbox Example
 
- <CodeSandboxExample path="blog-react-toastify" /> 
+ <CodeSandboxExample path="blog-react-toastify" />
 
 ---

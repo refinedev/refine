@@ -2,7 +2,7 @@ import React from "react";
 
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     ThemedLayoutV2,
     RefineThemes,
@@ -36,7 +36,7 @@ function App() {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",

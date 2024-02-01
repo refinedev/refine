@@ -42,7 +42,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -58,7 +58,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -140,7 +140,7 @@ setInitialRoutes(["/blog-posts"]);
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -156,7 +156,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -216,7 +216,7 @@ setInitialRoutes(["/blog-posts/create"]);
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -232,7 +232,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -292,7 +292,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -308,7 +308,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -368,7 +368,7 @@ setInitialRoutes(["/blog-posts/show/123"]);
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -384,7 +384,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

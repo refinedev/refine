@@ -79,13 +79,11 @@ It's fast, flexible, and reliable — with zero-runtime.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/mui.jpg" alt="mui" />
 
-
 ### 8. auth0 <a name="auth0"></a>
 
 **[The Auth0](https://auth0.com/)** identity platform provides a secure, streamlined way to manage your users with ease.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/auth0.jpg" alt="auth0" />
-
 
 ### 9. Cerbos <a name="cerbos"></a>
 
@@ -106,7 +104,6 @@ But apart from all these, there is one last item that I want to talk to you abou
 **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/refine.jpg" alt="refine" />
-
 
 If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/) powerful interface!
 

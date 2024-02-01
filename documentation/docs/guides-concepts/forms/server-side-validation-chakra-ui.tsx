@@ -70,7 +70,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     AuthPage
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -88,7 +88,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <ChakraProvider theme={RefineThemes.Blue}>
                 <Refine
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider}
                     resources={[

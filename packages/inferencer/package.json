@@ -9,26 +9,32 @@
   "typings": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/index.js"
     },
     "./headless": {
+      "types": "./dist/inferencers/headless/index.d.ts",
       "import": "./dist/esm/headless.js",
       "require": "./dist/headless.js"
     },
     "./mantine": {
+      "types": "./dist/inferencers/mantine/index.d.ts",
       "import": "./dist/esm/mantine.js",
       "require": "./dist/mantine.js"
     },
     "./antd": {
+      "types": "./dist/inferencers/antd/index.d.ts",
       "import": "./dist/esm/antd.js",
       "require": "./dist/antd.js"
     },
     "./mui": {
+      "types": "./dist/inferencers/mui/index.d.ts",
       "import": "./dist/esm/mui.js",
       "require": "./dist/mui.js"
     },
     "./chakra-ui": {
+      "types": "./dist/inferencers/chakra-ui/index.d.ts",
       "import": "./dist/esm/chakra-ui.js",
       "require": "./dist/chakra-ui.js"
     }
@@ -87,7 +93,8 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "dayjs": "^1.10.7",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "peerDependenciesMeta": {
     "@refinedev/react-hook-form": {
@@ -149,6 +156,9 @@
     },
     "@tanstack/react-table": {
       "optional": true
+    },
+    "graphql-tag": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -195,7 +205,8 @@
     "remark-gfm": "^1.0.0",
     "tslib": "^2.3.1",
     "prettier": "^2.7.1",
-    "@aliemir/react-live": "^4.0.0"
+    "@aliemir/react-live": "^4.0.0",
+    "graphql-tag": "^2.12.6"
   },
   "author": "Refine",
   "license": "MIT",

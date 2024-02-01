@@ -231,7 +231,7 @@ We'll add the highlighted code to our `App.tsx` to connect to the endpoint and L
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
   CssBaseline,
   GlobalStyles,
@@ -256,7 +256,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
@@ -470,7 +470,7 @@ const App: React.FC = () => {
                     authProvider={authProvider}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
                     catchAll={<ErrorComponent />}
@@ -716,7 +716,7 @@ const App: React.FC = () => {
                     authProvider={authProvider}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
                     catchAll={<ErrorComponent />}
@@ -832,7 +832,7 @@ function App() {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
@@ -889,7 +889,7 @@ function App() {
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}

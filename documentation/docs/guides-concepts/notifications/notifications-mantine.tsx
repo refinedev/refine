@@ -32,7 +32,7 @@ export default function NotificationMui() {
 const AppTsxCode = /* jsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
-import { notificationProvider, RefineThemes } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
@@ -51,7 +51,7 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                 >
                     <HomePage />
                 </Refine>

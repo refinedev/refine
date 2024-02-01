@@ -45,7 +45,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -64,7 +64,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -147,7 +147,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -166,7 +166,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -229,7 +229,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -248,7 +248,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -311,7 +311,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -330,7 +330,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {
@@ -393,7 +393,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -412,7 +412,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             //highlight-start
             resources={[
               {

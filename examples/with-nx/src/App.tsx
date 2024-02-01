@@ -3,7 +3,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import {
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -45,7 +45,7 @@ function App() {
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerBindings}
                         authProvider={authProvider}
                         resources={[

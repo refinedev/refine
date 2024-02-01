@@ -46,7 +46,7 @@ import {
   Layout,
   refineTheme,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   AuthPage,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
@@ -126,7 +126,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
      Layout,
      refineTheme,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-chakra-ui";
@@ -231,7 +231,7 @@ Register page is used to register new users. It provides a basic form to enter e
      Layout,
      refineTheme,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-chakra-ui";
@@ -321,7 +321,7 @@ Forgot password page is used to send a reset password link to the user's email. 
      Layout,
      refineTheme,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-chakra-ui";
@@ -416,7 +416,7 @@ Update password page is used to update the user's password. It provides a basic 
      Layout,
      refineTheme,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-chakra-ui";

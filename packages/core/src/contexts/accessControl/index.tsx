@@ -40,6 +40,7 @@ export const AccessControlContextProvider: React.FC<
                               enableAccessControl: true,
                               hideIfUnauthorized: false,
                           },
+                          queryOptions: undefined,
                       },
             }}
         >

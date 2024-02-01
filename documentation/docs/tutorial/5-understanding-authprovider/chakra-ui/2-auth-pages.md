@@ -56,7 +56,7 @@ const authProvider = {
 import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ErrorComponent, ThemedLayoutV2, refineTheme, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, refineTheme, useNotificationProvider, AuthPage } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
@@ -70,7 +70,7 @@ const App = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -156,7 +156,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   refineTheme,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/chakra-ui";
@@ -177,7 +177,7 @@ const App = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -269,7 +269,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   refineTheme,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/chakra-ui";
@@ -290,7 +290,7 @@ const App = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -383,7 +383,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   refineTheme,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/chakra-ui";
@@ -402,7 +402,7 @@ const App = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -497,7 +497,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   refineTheme,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/chakra-ui";
@@ -518,7 +518,7 @@ const App = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",

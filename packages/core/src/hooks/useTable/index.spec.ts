@@ -182,6 +182,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -194,6 +195,7 @@ describe("useTable Hook", () => {
         const { result } = renderHook(() => useTable({}), {
             wrapper: TestWrapper({
                 routerProvider,
+                dataProvider: MockJSONServer,
             }),
         });
 
@@ -211,6 +213,7 @@ describe("useTable Hook", () => {
         const { result } = renderHook(() => useTable({}), {
             wrapper: TestWrapper({
                 routerProvider,
+                dataProvider: MockJSONServer,
             }),
         });
 
@@ -238,6 +241,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -263,6 +267,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -301,6 +306,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -338,6 +344,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -359,6 +366,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -382,6 +390,7 @@ describe("useTable Hook", () => {
             {
                 wrapper: TestWrapper({
                     routerProvider,
+                    dataProvider: MockJSONServer,
                 }),
             },
         );
@@ -394,6 +403,7 @@ describe("useTable Hook", () => {
         const { result } = renderHook(() => useTable({}), {
             wrapper: TestWrapper({
                 routerProvider,
+                dataProvider: MockJSONServer,
             }),
         });
 
@@ -411,6 +421,7 @@ describe("useTable Hook", () => {
         const { result } = renderHook(() => useTable({}), {
             wrapper: TestWrapper({
                 routerProvider,
+                dataProvider: MockJSONServer,
             }),
         });
 

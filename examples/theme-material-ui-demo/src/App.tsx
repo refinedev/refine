@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
 import {
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     AuthPage,
     RefineThemes,
@@ -47,7 +47,7 @@ const App: React.FC = () => {
                             "https://api.fake-rest.refine.dev",
                         )}
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

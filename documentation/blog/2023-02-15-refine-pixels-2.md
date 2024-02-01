@@ -93,7 +93,7 @@ If we look inside the `App.tsx` file, we can see a `<Refine />` component crowde
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -114,7 +114,7 @@ function App() {
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
             routerProvider={routerBindings}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
