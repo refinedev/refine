@@ -4,7 +4,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "refine build",
-    "start": "refine dev",
+    "start": "refine dev --devtools false",
     "start:prod": "refine start",
     "refine": "refine",
     "cypress": "cypress open -C ./cypress.config.ts",
