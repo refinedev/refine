@@ -105,7 +105,7 @@ In Refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
-import { ThemedLayoutV2, ReadyPage, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, ReadyPage, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -201,7 +201,7 @@ const App = () => {
           routerProvider={routerProvider}
           authProvider={authProvider}
           dataProvider={dataProvider(API_URL, axios)}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "posts",

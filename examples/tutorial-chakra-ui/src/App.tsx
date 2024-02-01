@@ -6,7 +6,7 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
     ErrorComponent,
     ThemedLayoutV2,
@@ -29,7 +29,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "blog_posts",

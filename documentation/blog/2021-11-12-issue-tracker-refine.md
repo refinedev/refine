@@ -420,7 +420,7 @@ export const Signup: React.FC = () => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -446,7 +446,7 @@ function App() {
           },
         ] as typeof routerProvider.routes,
       }}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       catchAll={<ErrorComponent />}
     />
@@ -469,7 +469,7 @@ We can now create supabase users and log in from our refine interface.
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -504,7 +504,7 @@ function App() {
           name: "tasks",
         },
       ]}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       catchAll={<ErrorComponent />}
     />
@@ -1180,7 +1180,7 @@ Final version of our `<App.tsx/>`.
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import { dataProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
@@ -1223,7 +1223,7 @@ function App() {
           show: TaskShow,
         },
       ]}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       catchAll={<ErrorComponent />}
     />

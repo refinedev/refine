@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -33,7 +33,7 @@ const App: React.FC = () => {
                             "https://api.fake-rest.refine.dev",
                         )}
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

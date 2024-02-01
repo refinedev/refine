@@ -33,7 +33,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -51,7 +51,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -187,7 +187,7 @@ import {
   ErrorComponent,
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
@@ -207,7 +207,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

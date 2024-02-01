@@ -8,7 +8,7 @@ import {
     AuthPage,
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -168,7 +168,7 @@ const App: React.FC = () => {
                         )}
                         authProvider={authProvider}
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

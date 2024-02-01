@@ -141,7 +141,11 @@ Let's consume a public `fake REST API` and add two resources (_posts_, _categori
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+  Layout,
+  useNotificationProvider,
+  ErrorComponent,
+} from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -157,7 +161,7 @@ const App: React.FC = () => {
       <Refine
         routerProvider={routerProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         resources={[
           {
             name: "posts",

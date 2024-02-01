@@ -39,7 +39,7 @@ import {
   Layout,
   refineTheme,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
@@ -137,7 +137,7 @@ import {
   Layout,
   refineTheme,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-chakra-ui";
 import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 

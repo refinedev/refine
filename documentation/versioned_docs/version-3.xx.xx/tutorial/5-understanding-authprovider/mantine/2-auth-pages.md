@@ -44,7 +44,7 @@ import {
   MantineProvider,
   Global,
   NotificationsProvider,
-  notificationProvider,
+  useNotificationProvider,
   LightTheme,
   Layout,
   ReadyPage,
@@ -79,7 +79,7 @@ const App = () => {
               },
             ],
           }}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           Layout={Layout}
@@ -129,7 +129,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
      MantineProvider,
      Global,
      NotificationsProvider,
-     notificationProvider,
+     useNotificationProvider,
      LightTheme,
      Layout,
      ReadyPage,
@@ -159,7 +159,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
              }}
              //highlight-end
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
              Layout={Layout}
@@ -239,7 +239,7 @@ Register page is used to register new users. It provides a basic form to enter e
      MantineProvider,
      Global,
      NotificationsProvider,
-     notificationProvider,
+     useNotificationProvider,
      LightTheme,
      Layout,
      ReadyPage,
@@ -275,7 +275,7 @@ Register page is used to register new users. It provides a basic form to enter e
                ],
              }}
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
              Layout={Layout}
@@ -334,7 +334,7 @@ Forgot password page is used to send a reset password link to the user's email. 
      MantineProvider,
      Global,
      NotificationsProvider,
-     notificationProvider,
+     useNotificationProvider,
      LightTheme,
      Layout,
      ReadyPage,
@@ -374,7 +374,7 @@ Forgot password page is used to send a reset password link to the user's email. 
                ],
              }}
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
              Layout={Layout}
@@ -434,7 +434,7 @@ Update password page is used to update the user's password. It provides a basic 
      MantineProvider,
      Global,
      NotificationsProvider,
-     notificationProvider,
+     useNotificationProvider,
      LightTheme,
      Layout,
      ReadyPage,
@@ -478,7 +478,7 @@ Update password page is used to update the user's password. It provides a basic 
                ],
              }}
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
              Layout={Layout}

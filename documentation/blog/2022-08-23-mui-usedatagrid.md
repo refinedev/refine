@@ -263,7 +263,7 @@ Next, replace the `src/App.tsx` file with the following code:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
@@ -288,7 +288,7 @@ function App() {
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider("https://my-json-server.typicode.com/Mich45/employee-data")}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               resources={[
                 {

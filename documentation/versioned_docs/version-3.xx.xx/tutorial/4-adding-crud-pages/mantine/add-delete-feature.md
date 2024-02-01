@@ -71,7 +71,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
-    notificationProvider,
+    useNotificationProvider,
     LightTheme,
     Layout,
     ReadyPage,
@@ -93,7 +93,7 @@ const App = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     Layout={Layout}

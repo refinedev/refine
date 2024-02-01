@@ -86,7 +86,7 @@ So, we will navigate to the `App.tsx` file under the `src` folder and see the co
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -101,7 +101,7 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <Refine
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             options={{
@@ -338,7 +338,7 @@ Next, we will import the `AuthPage` into the into the `App.tsx` file and add the
 ```tsx title="src/App.tsx"
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { WelcomePage, notificationProvider } from "@refinedev/antd";
+import { WelcomePage, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import jsonServerDataProvider from "@refinedev/simple-rest";
@@ -357,7 +357,7 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <Refine
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             authProvider={authProvider}
             dataProvider={dataProvider}
@@ -1866,7 +1866,7 @@ We will add the Dashboard page as a route and [resource](https://refine.dev/docs
 ```tsx title="src/App.tsx"
 import { Authenticated, ErrorComponent, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { useNotificationProvider, Layout } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   CatchAllNavigate,
@@ -1892,7 +1892,7 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <Refine
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             authProvider={authProvider}
             dataProvider={dataProvider}

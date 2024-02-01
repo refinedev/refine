@@ -123,7 +123,7 @@ Now, open the `App.jsx` file, import each file and add them to the `resources` p
 import React from "react";
 import { Refine } from "@refinedev/core";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineSnackbarProvider,
   CssBaseline,
   GlobalStyles,
@@ -148,7 +148,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}

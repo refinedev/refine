@@ -8,7 +8,7 @@ swizzle: true
 const { default: routerProvider } = RefineReactRouterV6;
 setRefineProps({
   routerProvider,
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
   Layout: RefineMantine.Layout,
   Sider: () => null,
   catchAll: <RefineMantine.ErrorComponent />,

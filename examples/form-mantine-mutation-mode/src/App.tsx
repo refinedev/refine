@@ -2,7 +2,7 @@ import { GitHubBanner, MutationMode, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
@@ -37,7 +37,7 @@ const App: React.FC = () => {
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(API_URL)}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

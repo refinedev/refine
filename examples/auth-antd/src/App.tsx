@@ -5,7 +5,7 @@ import {
     Authenticated,
 } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
@@ -186,7 +186,7 @@ const App: React.FC = () => {
                                 edit: "/posts/edit/:id",
                             },
                         ]}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         options={{
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,

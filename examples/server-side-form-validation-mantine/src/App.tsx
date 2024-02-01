@@ -2,7 +2,7 @@ import { GitHubBanner, HttpError, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -77,7 +77,7 @@ const App: React.FC = () => {
                                 return Promise.reject(error);
                             },
                         }}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",
