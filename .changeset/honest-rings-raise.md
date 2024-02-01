@@ -10,6 +10,11 @@ We recommend that projects using **Ant Design** refrain from upgrading at the mo
 
 ```bash
 npm i next@14 @refinedev/nextjs-router@latest
+```
+
+See [Next.js 14 Upgrade Guide](https://nextjs.org/docs/pages/building-your-application/upgrading/version-14) and [Next.js 14 Codemods](https://nextjs.org/docs/pages/building-your-application/upgrading/codemods#nextjs-codemods) for more information.
+
+### Changes to default export
 
 Default export for `@refinedev/nextjs-router` is now `App Router` instead of `Pages`.
 
