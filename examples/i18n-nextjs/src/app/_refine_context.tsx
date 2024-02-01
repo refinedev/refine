@@ -17,7 +17,10 @@ type Props = {
     themeMode?: string;
 };
 
-export const App = ({ themeMode, children }: PropsWithChildren<Props>) => {
+export const RefineContext = ({
+    themeMode,
+    children,
+}: PropsWithChildren<Props>) => {
     const { t, i18n } = useTranslation();
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -62,7 +65,6 @@ export const App = ({ themeMode, children }: PropsWithChildren<Props>) => {
                                 syncWithLocation: true,
                                 warnWhenUnsavedChanges: true,
                                 useNewQueryKeys: true,
-                                projectId: "9IPrMB-v8S4cf-skSqxk",
                             }}
                         >
                             {children}

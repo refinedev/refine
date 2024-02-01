@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { App } from "./_app";
+import { RefineContext } from "./_refine_context";
 import "@refinedev/antd/dist/reset.css";
 
 export const metadata: Metadata = {
@@ -27,7 +27,9 @@ export default function RootLayout({
             <body>
                 <AntdRegistry>
                     <Suspense>
-                        <App themeMode={theme?.value}>{children}</App>
+                        <RefineContext themeMode={theme?.value}>
+                            {children}
+                        </RefineContext>
                     </Suspense>
                 </AntdRegistry>
             </body>

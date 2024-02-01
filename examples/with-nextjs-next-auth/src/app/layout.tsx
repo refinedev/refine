@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import React, { Suspense } from "react";
-import { App } from "./_app";
+import { RefineContext } from "./_refine_context";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
             <body>
                 <AntdRegistry>
                     <Suspense>
-                        <App>{children}</App>
+                        <RefineContext>{children}</RefineContext>
                     </Suspense>
                 </AntdRegistry>
             </body>

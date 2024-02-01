@@ -67,7 +67,7 @@ describe("with-nextjs", () => {
     });
 
     describe("login", () => {
-        it.only("should login", () => {
+        it("should login", () => {
             login();
             cy.location("pathname").should("eq", "/");
             cy.getAllCookies().then((cookies) => {

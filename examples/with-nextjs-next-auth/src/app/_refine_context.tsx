@@ -12,15 +12,15 @@ import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
 import "@refinedev/antd/dist/reset.css";
 
-export const App = (props: React.PropsWithChildren) => {
+export const RefineContext = (props: React.PropsWithChildren) => {
     return (
         <SessionProvider>
-            <MyApp {...props} />
+            <App {...props} />
         </SessionProvider>
     );
 };
 
-const MyApp = (props: React.PropsWithChildren) => {
+const App = (props: React.PropsWithChildren) => {
     const { data, status } = useSession();
     const to = usePathname();
 
