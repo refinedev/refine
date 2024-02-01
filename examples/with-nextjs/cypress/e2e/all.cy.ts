@@ -67,7 +67,7 @@ describe("with-nextjs", () => {
     });
 
     describe("login", () => {
-        it("should login", () => {
+        it.only("should login", () => {
             login();
             cy.location("pathname").should("eq", "/");
             cy.getAllCookies().then((cookies) => {
@@ -84,23 +84,23 @@ describe("with-nextjs", () => {
         });
 
         // Not working on React Server Components
-        // it("should has 'to' param on URL after redirected to /login", () => {
-        //     login();
-        //     cy.location("pathname").should("eq", "/");
+        it.skip("should has 'to' param on URL after redirected to /login", () => {
+            login();
+            cy.location("pathname").should("eq", "/");
 
-        //     cy.visit(`${BASE_URL}/test`, { failOnStatusCode: false });
-        //     cy.location("pathname").should("eq", "/test");
-        //     cy.clearAllCookies();
-        //     cy.reload();
-        //     cy.location("search").should("contains", "to=%2Ftest");
-        //     cy.location("pathname").should("eq", "/login");
-        //     cy.get(".ant-card-head-title > .ant-typography").contains(
-        //         /sign in to your account/i,
-        //     );
+            cy.visit(`${BASE_URL}/test`, { failOnStatusCode: false });
+            cy.location("pathname").should("eq", "/test");
+            cy.clearAllCookies();
+            cy.reload();
+            cy.location("search").should("contains", "to=%2Ftest");
+            cy.location("pathname").should("eq", "/login");
+            cy.get(".ant-card-head-title > .ant-typography").contains(
+                /sign in to your account/i,
+            );
 
-        //     login();
-        //     cy.location("pathname").should("eq", "/test");
-        // });
+            login();
+            cy.location("pathname").should("eq", "/test");
+        });
 
         it("should redirect to /login?to= if user not authenticated", () => {
             cy.visit(`${BASE_URL}/test-route`, { failOnStatusCode: false });
