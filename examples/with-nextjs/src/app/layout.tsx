@@ -2,7 +2,7 @@ import { DevtoolsProvider } from "@providers/devtools";
 import { useNotificationProvider } from "@refinedev/antd";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";

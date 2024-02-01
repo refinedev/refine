@@ -3,7 +3,7 @@
 import { useNotificationProvider } from "@refinedev/antd";
 import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import React from "react";
