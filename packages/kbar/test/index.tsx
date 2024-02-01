@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthBindings, Refine } from "@refinedev/core";
+import { AuthProvider, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
@@ -32,7 +32,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;

@@ -20,13 +20,13 @@ import {
 
 import { FullScreenLoading, Text } from "@/components";
 import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import {
+    QuotesUpdateQuoteMutation,
+    QuotesUpdateQuoteMutationVariables,
+} from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
-import { QUOTE_USE_FORM_MUTATION } from "./queries";
-import {
-    ProductsServicesQuoteFormMutation,
-    ProductsServicesQuoteFormMutationVariables,
-} from "@/graphql/types";
+import { QUOTES_UPDATE_QUOTE_MUTATION } from "../queries";
 
 const columns = [
     {
@@ -117,9 +117,9 @@ export const ProductsServices = () => {
     const params = useParams<{ id: string }>();
 
     const { formProps, autoSaveProps, queryResult } = useForm<
-        GetFields<ProductsServicesQuoteFormMutation>,
+        GetFields<QuotesUpdateQuoteMutation>,
         HttpError,
-        GetVariables<ProductsServicesQuoteFormMutationVariables>
+        GetVariables<QuotesUpdateQuoteMutationVariables>
     >({
         resource: "quotes",
         action: "edit",
@@ -147,7 +147,7 @@ export const ProductsServices = () => {
             refetch?.();
         },
         meta: {
-            gqlMutation: QUOTE_USE_FORM_MUTATION,
+            gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
         },
     });
 
@@ -464,7 +464,7 @@ const TaxForm = (props: {
             enabled: true,
         },
         meta: {
-            fields: ["id", "tax"],
+            gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
         },
         onMutationSuccess: () => {
             props.onMutationSuccess?.();

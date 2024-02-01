@@ -85,9 +85,9 @@ forgotPassword({ redirectPath: "/custom-url" });
 Then, you can handle this URL in your `forgotPassword` method of the `authProvider`.
 
 ```tsx
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   // ...
   forgotPassword: async ({ redirectPath }) => {
     // ...

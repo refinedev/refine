@@ -2,7 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import { SessionProvider, useSession, signOut, signIn } from "next-auth/react";
 
-import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
+import { AuthProvider, GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
     useNotificationProvider,
@@ -39,7 +39,7 @@ const App = (props: React.PropsWithChildren) => {
         return <span>loading...</span>;
     }
 
-    const authProvider: AuthBindings = {
+    const authProvider: AuthProvider = {
         login: async ({ providerName, email, password }) => {
             if (providerName) {
                 signIn(providerName, {

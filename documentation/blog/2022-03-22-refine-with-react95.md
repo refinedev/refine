@@ -91,11 +91,11 @@ By default, **refine** also creates an `authProvider` for you in the `src/authPr
 <summary>src/authProvider.ts</summary>
 
 ```tsx title="src/authProvider.ts"
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 import { supabaseClient } from "utility";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
   login: async ({ email, password, providerName }) => {
     // sign in with oauth
     try {

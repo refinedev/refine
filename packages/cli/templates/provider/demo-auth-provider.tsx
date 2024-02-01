@@ -1,10 +1,10 @@
-import { AuthBindings } from "@refinedev/core";
+import { AuthProvider } from "@refinedev/core";
 
 /**
  * Check out the Auth Provider documentation for detailed information
  * https://refine.dev/docs/api-reference/core/providers/auth-provider/
  **/
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
     login: async (params) => {
         console.log("login", params);
 

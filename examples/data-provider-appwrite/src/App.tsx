@@ -11,7 +11,7 @@ import {
     liveProvider,
 } from "@refinedev/appwrite";
 import {
-    AuthBindings,
+    AuthProvider,
     Authenticated,
     GitHubBanner,
     Refine,
@@ -31,7 +31,7 @@ import { account, appwriteClient } from "./utility";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
 
-const authProvider: AuthBindings = {
+const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
             await account.createEmailSession(email, password);

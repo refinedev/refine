@@ -16,6 +16,8 @@ import dayjs from "dayjs";
 import { Text, UserTag } from "@/components";
 import { Event } from "@/graphql/schema.types";
 
+import { CALENDAR_GET_EVENT_QUERY } from "./queries";
+
 export const CalendarShowPage: React.FC = () => {
     const { id } = useResource();
     const { list } = useNavigation();
@@ -23,24 +25,7 @@ export const CalendarShowPage: React.FC = () => {
     const { queryResult } = useShow<Event>({
         id,
         meta: {
-            fields: [
-                "id",
-                "title",
-                "description",
-                "startDate",
-                "endDate",
-                "color",
-                "createdAt",
-                {
-                    createdBy: ["id", "name", "avatarUrl"],
-                },
-                {
-                    category: ["id", "title"],
-                },
-                {
-                    participants: ["id", "name", "avatarUrl"],
-                },
-            ],
+            gqlQuery: CALENDAR_GET_EVENT_QUERY,
         },
     });
 

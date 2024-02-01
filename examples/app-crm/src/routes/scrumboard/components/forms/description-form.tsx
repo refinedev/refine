@@ -7,6 +7,8 @@ import { Button, Form, Space } from "antd";
 
 import { Task } from "@/graphql/schema.types";
 
+import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 
 type Props = {
@@ -24,6 +26,9 @@ export const DescriptionForm = ({ initialValues, cancelForm }: Props) => {
         redirect: false,
         onMutationSuccess: () => {
             cancelForm();
+        },
+        meta: {
+            gqlMutation: KANBAN_UPDATE_TASK_MUTATION,
         },
     });
 

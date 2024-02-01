@@ -9,7 +9,7 @@ import {
     DataProvider,
     NotificationProvider,
     IResourceItem,
-    AuthBindings,
+    AuthProvider,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
@@ -19,7 +19,7 @@ const List = () => {
 };
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;

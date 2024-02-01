@@ -39,7 +39,7 @@ Refine also provides `<ImportButton />`. It's compatible with `useImport` hook t
 
 `useExport` hook allows you to export data as a `CSV` file. It calls the `getList` method of your data provider and downloads the data as a `CSV` file.
 
-Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
+Internally, it uses [Papa Parse][papaparse] to create the `CSV` file.
 
 > 🚨 The download feature for `CSV` files does not function within an iframe (live-previews). You can copy the code and run it in your own project to see it in action.
 
@@ -52,5 +52,4 @@ Refine also provides `<ExportButton />`. It's compatible with `useExport` hook t
 - [Mantine](/docs/ui-integrations/mantine/components/buttons/export-button/)
 - [Chakra UI](/docs/ui-integrations/chakra-ui/components/buttons/export-button/)
 
-[export-to-csv]: https://github.com/alexcaza/export-to-csv
 [papaparse]: https://www.papaparse.com/

@@ -119,10 +119,13 @@ describe("with gqlFields", () => {
             meta: {
                 gqlMutation: gql`
                     mutation UpdateManyPosts(
-                        $where: posts_bool_exp!
+                        $ids: [uuid!]!
                         $_set: posts_set_input!
                     ) {
-                        update_posts(where: $where, _set: $_set) {
+                        update_posts(
+                            where: { id: { _in: $ids } }
+                            _set: $_set
+                        ) {
                             returning {
                                 id
                                 title
@@ -167,10 +170,10 @@ describe("with gqlFields", () => {
             meta: {
                 gqlMutation: gql`
                     mutation UpdateManyPosts(
-                        $where: PostsBoolExp!
+                        $ids: [uuid!]!
                         $_set: PostsSetInput!
                     ) {
-                        updatePosts(where: $where, _set: $_set) {
+                        updatePosts(where: { id: { _in: $ids } }, _set: $_set) {
                             returning {
                                 id
                                 title

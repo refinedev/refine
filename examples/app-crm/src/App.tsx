@@ -15,7 +15,7 @@ import { App as AntdApp, ConfigProvider } from "antd";
 import { resources, themeConfig } from "@/config";
 import { authProvider, dataProvider, liveProvider } from "@/providers";
 
-import { FullScreenLoading, Layout, AlgoliaSearchWrapper } from "./components";
+import { AlgoliaSearchWrapper, FullScreenLoading, Layout } from "./components";
 import { useAutoLoginForDemo } from "./hooks";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
@@ -52,11 +52,11 @@ import {
     KanbanPage,
 } from "./routes/scrumboard/kanban";
 import {
-    SalesCreateDetails,
     SalesCreatePage,
     SalesCreateStage,
     SalesEditPage,
     SalesEditStage,
+    SalesFinalizeDeal,
     SalesPage,
 } from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
@@ -211,9 +211,9 @@ const App: React.FC = () => {
                                                     element={<SalesEditStage />}
                                                 />
                                                 <Route
-                                                    path="details/edit/:id"
+                                                    path=":id/finalize"
                                                     element={
-                                                        <SalesCreateDetails />
+                                                        <SalesFinalizeDeal />
                                                     }
                                                 />
                                             </Route>

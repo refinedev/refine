@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import {
     AccessControlProvider,
-    AuthBindings,
+    AuthProvider,
     LegacyAuthProvider,
     NotificationProvider,
     Refine,
@@ -22,7 +22,7 @@ const List = () => {
 export interface ITestWrapperProps {
     dataProvider?: DataProvider;
     routerProvider?: RouterBindings;
-    authProvider?: AuthBindings;
+    authProvider?: AuthProvider;
     legacyAuthProvider?: LegacyAuthProvider;
     resources?: IResourceItem[];
     notificationProvider?: NotificationProvider;
