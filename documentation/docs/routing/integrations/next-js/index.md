@@ -14,209 +14,6 @@ We recommend using `create refine-app` to initialize your Refine projects. It co
 
 ## Basic Usage
 
-### `/pages` Directory
-
-We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
-
-We'll create four pages for our resources:
-
-- `pages/posts/index.tsx` - List page for posts
-- `pages/posts/show/[id].tsx` - Detail page for posts
-- `pages/categories/index.tsx` - List page for categories
-- `pages/categories/show/[id].tsx` - Detail page for categories
-
-And we'll create one page for the index route and use it to redirect to the `posts` resource:
-
-- `pages/index.tsx` - Index page
-
-Let's start with the initialization of the Refine app in the `_app.tsx` file:
-
-```tsx title=_app.tsx
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/pages";
-
-import { Layout } from "components/Layout";
-
-function App({ Component, pageProps }: AppProps): JSX.Element {
-  return (
-    <Refine
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      // highlight-next-line
-      routerProvider={routerProvider}
-      resources={[
-        {
-          name: "posts",
-          list: "/posts",
-          show: "/posts/show/:id",
-        },
-        {
-          name: "categories",
-          list: "/categories",
-          show: "/categories/show/:id",
-        },
-      ]}
-    >
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Refine>
-  );
-}
-```
-
-:::simple Good to know
-
-Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
-
-:::
-
-Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
-
-Refine supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
-
-Now we can create our pages in the `pages` directory:
-
-```tsx title=pages/posts/index.tsx
-import { useTable } from "@refinedev/core";
-import Link from "next/link";
-
-type IPost = {
-  id: string;
-  title: string;
-  description: string;
-};
-
-export default function PostList() {
-  // `posts` resource will be inferred from the route.
-  // Because we've defined `/posts` as the `list` action of the `posts` resource.
-  const {
-    tableQueryResult: { data, isLoading },
-  } = useTable<IPost>();
-
-  const tableData = data?.data;
-
-  return (
-    <div>
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && (
-        <ul>
-          {tableData?.map((post) => (
-            <li key={post.id}>
-              <Link href={`/posts/show/${post.id}`}>{post.title}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-```
-
-```tsx title=pages/posts/show/[id].tsx
-import { useShow } from "@refinedev/core";
-
-type IPost = {
-    id: string;
-    title: string;
-    description: string;
-}
-
-export default function PostShow() {
-    // `posts` resource and the `id` will be inferred from the route.
-    // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
-    const { queryResult: { data, isLoading } } = useShow<IPost>();
-
-    const postData = data?.data;
-
-    return (
-        <div>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && (
-                <h1>{postData?.title}</h1>
-                <p>{postData?.description}</p>
-            )}
-        </div>
-    );
-}
-```
-
-```tsx title=pages/categories/index.tsx
-import { useTable } from "@refinedev/core";
-import Link from "next/link";
-
-type ICategory = {
-  id: string;
-  label: string;
-};
-
-export default function CategoryList() {
-  // `categories` resource will be inferred from the route.
-  // Because we've defined `/categories` as the `list` action of the `categories` resource.
-  const {
-    tableQueryResult: { data, isLoading },
-  } = useTable<ICategory>();
-
-  const tableData = data?.data;
-
-  return (
-    <div>
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && (
-        <ul>
-          {tableData?.map((category) => (
-            <li key={category.id}>
-              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-```
-
-```tsx title=pages/categories/show/[id].tsx
-import { useShow } from "@refinedev/core";
-
-type ICategory = {
-  id: string;
-  label: string;
-};
-
-export default function CategoryShow() {
-  // `categories` resource and the `id` will be inferred from the route.
-  // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
-  const {
-    queryResult: { data, isLoading },
-  } = useShow<ICategory>();
-
-  const categoryData = data?.data;
-
-  return (
-    <div>
-      <h1>{categoryData?.label}</h1>
-    </div>
-  );
-}
-```
-
-Now, we'll use [`NavigateToResource`](#navigatetoresource) component to redirect to the `posts` resource when the user visits the home page.
-
-:::simple Implementation Tips
-
-Even though we're using the `NavigateToResource` component, when using Next.js it's better to handle such redirect operations in the server side rather than the client side. You can use the `getServerSideProps` function to redirect the user to the `/posts`.
-
-:::
-
-```tsx title=pages/index.tsx
-import { NavigateToResource } from "@refinedev/nextjs-router/pages";
-
-export default function Home() {
-  return <NavigateToResource />;
-}
-```
-
 ### `/app` Directory
 
 We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
@@ -436,6 +233,209 @@ export default function IndexPage() {
 }
 ```
 
+### `/pages` Directory
+
+We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `pages` directory.
+
+We'll create four pages for our resources:
+
+- `pages/posts/index.tsx` - List page for posts
+- `pages/posts/show/[id].tsx` - Detail page for posts
+- `pages/categories/index.tsx` - List page for categories
+- `pages/categories/show/[id].tsx` - Detail page for categories
+
+And we'll create one page for the index route and use it to redirect to the `posts` resource:
+
+- `pages/index.tsx` - Index page
+
+Let's start with the initialization of the Refine app in the `_app.tsx` file:
+
+```tsx title=_app.tsx
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/nextjs-router/pages";
+
+import { Layout } from "components/Layout";
+
+function App({ Component, pageProps }: AppProps): JSX.Element {
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      // highlight-next-line
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          show: "/categories/show/:id",
+        },
+      ]}
+    >
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Refine>
+  );
+}
+```
+
+:::simple Good to know
+
+Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
+
+:::
+
+Your action definitions in the resources can contain additional parameters and nested routes. Passing these parameters when navigating to the pages are handled by the current available parameters and the `meta` props of the related hooks and components.
+
+Refine supports route parameters defined with `:param` syntax. You can use these parameters in your action definitions and create your routes accordingly. For example, if you have a `posts` resource and you want to create a route for the `show` action of a specific post, you can define the `show` action as `/posts/show/:id` and use the `id` parameter in your component.
+
+Now we can create our pages in the `pages` directory:
+
+```tsx title=pages/posts/index.tsx
+import { useTable } from "@refinedev/core";
+import Link from "next/link";
+
+type IPost = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export default function PostList() {
+  // `posts` resource will be inferred from the route.
+  // Because we've defined `/posts` as the `list` action of the `posts` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<IPost>();
+
+  const tableData = data?.data;
+
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((post) => (
+            <li key={post.id}>
+              <Link href={`/posts/show/${post.id}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```
+
+```tsx title=pages/posts/show/[id].tsx
+import { useShow } from "@refinedev/core";
+
+type IPost = {
+    id: string;
+    title: string;
+    description: string;
+}
+
+export default function PostShow() {
+    // `posts` resource and the `id` will be inferred from the route.
+    // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
+    const { queryResult: { data, isLoading } } = useShow<IPost>();
+
+    const postData = data?.data;
+
+    return (
+        <div>
+            {isLoading && <p>Loading...</p>}
+            {!isLoading && (
+                <h1>{postData?.title}</h1>
+                <p>{postData?.description}</p>
+            )}
+        </div>
+    );
+}
+```
+
+```tsx title=pages/categories/index.tsx
+import { useTable } from "@refinedev/core";
+import Link from "next/link";
+
+type ICategory = {
+  id: string;
+  label: string;
+};
+
+export default function CategoryList() {
+  // `categories` resource will be inferred from the route.
+  // Because we've defined `/categories` as the `list` action of the `categories` resource.
+  const {
+    tableQueryResult: { data, isLoading },
+  } = useTable<ICategory>();
+
+  const tableData = data?.data;
+
+  return (
+    <div>
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && (
+        <ul>
+          {tableData?.map((category) => (
+            <li key={category.id}>
+              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```
+
+```tsx title=pages/categories/show/[id].tsx
+import { useShow } from "@refinedev/core";
+
+type ICategory = {
+  id: string;
+  label: string;
+};
+
+export default function CategoryShow() {
+  // `categories` resource and the `id` will be inferred from the route.
+  // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
+  const {
+    queryResult: { data, isLoading },
+  } = useShow<ICategory>();
+
+  const categoryData = data?.data;
+
+  return (
+    <div>
+      <h1>{categoryData?.label}</h1>
+    </div>
+  );
+}
+```
+
+Now, we'll use [`NavigateToResource`](#navigatetoresource) component to redirect to the `posts` resource when the user visits the home page.
+
+:::simple Implementation Tips
+
+Even though we're using the `NavigateToResource` component, when using Next.js it's better to handle such redirect operations in the server side rather than the client side. You can use the `getServerSideProps` function to redirect the user to the `/posts`.
+
+:::
+
+```tsx title=pages/index.tsx
+import { NavigateToResource } from "@refinedev/nextjs-router/pages";
+
+export default function Home() {
+  return <NavigateToResource />;
+}
+```
+
 ## Additional Components
 
 `@refinedev/nextjs-router` package also includes some additional components that can be useful in some cases.
@@ -443,16 +443,6 @@ export default function IndexPage() {
 ### NavigateToResource
 
 A basic component to navigate to a resource page. It is useful when you want to navigate to a resource page at the index route of your app.
-
-#### In `pages/index.tsx`
-
-```tsx title=pages/index.tsx
-import { NavigateToResource } from "@refinedev/nextjs-router/pages";
-
-export default function IndexPage() {
-  return <NavigateToResource />;
-}
-```
 
 #### In `app/page.tsx`
 
@@ -466,6 +456,16 @@ export default function IndexPage() {
 }
 ```
 
+#### In `pages/index.tsx`
+
+```tsx title=pages/index.tsx
+import { NavigateToResource } from "@refinedev/nextjs-router/pages";
+
+export default function IndexPage() {
+  return <NavigateToResource />;
+}
+```
+
 #### Properties
 
 `resource` (optional) - The name of the resource to navigate to. It will redirect to the first `list` route in the `resources` array if not provided.
@@ -473,6 +473,8 @@ export default function IndexPage() {
 `meta` (optional) - The meta object to use if the route has parameters in it. The parameters in the current location will also be used to compose the route but `meta` will take precedence.
 
 ### UnsavedChangesNotifier
+
+> 🚨 Note that this component currently only works in the `pages` directory due to limitations of the `next/navigation` and missing events.
 
 This component enables the `warnWhenUnsavedChanges` feature of Refine. It will show a warning message when user tries to navigate away from the current page without saving the changes. Also checks for `beforeunload` event to warn the user when they try to close the browser tab or window.
 
@@ -497,7 +499,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 
 :::info
 
-This feature is not working in experimental `appDir` mode in Next.js due to limitations of the `next/navigation` and missing events.
+This feature is not working in `appDir` mode in Next.js due to limitations of the `next/navigation` and missing events.
 
 :::
 
@@ -513,7 +515,7 @@ This function can be used to parse the query parameters of a table page. It can 
 
 ### DocumentTitleHandler
 
-Note that this component currently only works in the `pages` directory.
+> 🚨 Note that this component currently only works in the `pages` directory.
 
 This component will generate the document title for the current page.By default, it follows a set of predefined rules to generate titles based on the provided props. However, it also offers the flexibility to customize the title generation process by providing a custom `handler` function.
 The default title generation rules are as follows:
@@ -620,17 +622,57 @@ const PostList = () => {
 
 In Next.js you can achieve authentication control in multiple ways;
 
-On the client-side, you can wrap your pages with [`Authenticated`](/docs/authentication/components/authenticated) component from `@refinedev/core` to protect your pages from unauthenticated access.
-
-On the server-side, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
-
 :::simple Implementation Tips
 
 For page level authentication, server-side approach is recommended.
 
 :::
 
+### Client side
+
+On the client-side, you can wrap your pages with [`Authenticated`](/docs/authentication/components/authenticated) component from `@refinedev/core` to protect your pages from unauthenticated access.
+
 ### Server Side
+
+#### `app` directory
+
+Due to limitations of the Next.js app router, It's not possible to invoke a client function from the server. Refine's `authProvider` need to be client function to work with react context. Because of that, you can't use `authProvider` in the server components.
+
+To check authentication in the server component, we can check cookies to see if the user is authenticated or not.
+
+```tsx title="app/blog-posts/layout.ts"
+import { MyLayout } from "@components/my-layout";
+import { redirect } from "next/navigation";
+
+export default async function Layout({ children }: React.PropsWithChildren) {
+  const data = await getData();
+
+  if (!data.authenticated) {
+    return redirect("/login");
+  }
+
+  return <MyLayout>{children}</MyLayout>;
+}
+
+async function getData() {
+  const cookieStore = cookies();
+  const auth = cookieStore.get("auth");
+
+  return {
+    authenticated = !!auth,
+  };
+}
+```
+
+#### `pages` directory
+
+On the server-side of pages router, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
+
+:::simple Implementation Tips
+
+For page level authentication, server-side approach is recommended.
+
+:::
 
 First, let's install the `nookies` packages in our project.
 
@@ -787,7 +829,23 @@ For page level access control, server-side approach is recommended.
 
 :::
 
+### Client Side
+
+For client-side, you can wrap your pages with [`CanAccess`](/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+
+```tsx
+import { CanAccess } from "@refinedev/core";
+
+export const MyPage = () => (
+  <CanAccess>
+    <div>{/* ... */}</div>
+  </CanAccess>
+);
+```
+
 ### Server Side
+
+#### `pages` directory
 
 On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
 
@@ -854,20 +912,6 @@ export default function PostList() {
 }
 ```
 
-### Client Side
-
-For client-side, you can wrap your pages with [`CanAccess`](/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
-
-```tsx
-import { CanAccess } from "@refinedev/core";
-
-export const MyPage = () => (
-  <CanAccess>
-    <div>{/* ... */}</div>
-  </CanAccess>
-);
-```
-
 ## FAQ
 
 ### Can I use nested routes?
@@ -877,6 +921,52 @@ Yes, you can use nested routes in your app. Refine will match the routes dependi
 You can use `:param` syntax to define parameters in your routes.
 
 ### How to make SSR work?
+
+<Tabs>
+<TabItem value="app" label="App router" default>
+
+You can use the methods provided from the `dataProvider` to fetch data in your server components. To do this, you can use normal async function and use it in your server component.
+
+To learn more about how to fetch data in server components, you can check the [data fetching documentation](https://nextjs.org/docs/app/building-your-application/data-fetching) of Next.js.
+
+```tsx title="app/posts/page.tsx"
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export default async function ProductList() {
+  const { posts, total } = await getData();
+
+  return (
+    <div>
+      <h1>Posts ({total})</h1>
+      <hr />
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h1>{post.title}</h1>
+          <p>{post.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+async function getData() {
+  const response = await dataProvider(API_URL).getList({
+    resource: "posts",
+    pagination: { current: 1, pageSize: 10 },
+  });
+
+  return {
+    posts: response.data,
+    total: response.total,
+  };
+}
+```
+
+</TabItem>
+
+<TabItem value="pages" label="Pages Router">
 
 You can always use the methods provided from the `dataProvider` to fetch data in your pages. To do this, you can both use `getServerSideProps` or `getStaticProps` methods and pass the data to your page as a prop.
 
@@ -921,7 +1011,20 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
 }
 ```
 
+</TabItem>
+
+</Tabs>
+
 ### How to persist `syncWithLocation` in SSR?
+
+<Tabs>
+<TabItem value="app" label="App router" default>
+
+// TODO: Not work
+
+</TabItem>
+
+<TabItem value="pages" label="Pages Router">
 
 If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
 
@@ -961,12 +1064,48 @@ export default function MyListPage({ initialData }) {
 ```
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accept them.
+</TabItem>
+</Tabs>
 
 ### How to use multiple layouts?
 
-When using `/pages` directory for your routes, you'll probably have a point where you need to use multiple layouts. For example, you may want to use a different layout for the login page. To achieve this, you can either use your `Layout` wrappers in your pages or you can add extra properties to your page components to render the page with the specified layout.
+You'll probably have a point where you need to use multiple layouts. For example, you may want to use a different layout for the login page. To achieve this, you can either use your `Layout` wrappers in your pages or you can add extra properties to your page components to render the page with the specified layout.
 
 Here's an example of how you can use additional properties to render different layouts.
+
+<Tabs>
+<TabItem value="app" label="App router" default>
+
+The App Router inside Next.js 13 introduced new file conventions to easily create pages, shared layouts, and templates. You can define a layout by default exporting a React component from a `layout.js` file.
+
+File structure should similar to this:
+
+```bash
+
+├── app
+│   ├── posts
+│   │   ├── page.tsx
+│   │   └── layout.tsx
+│   ├── posts
+│   │   ├── page.tsx
+│   │   └── layout.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│
+
+```
+
+In the example above we have three layouts.
+
+- app/layout.tsx - The default layout and wraps all the pages.
+- app/posts/layout.tsx - The layout for the posts resource.
+- app/categories/layout.tsx - The layout for the categories resource.
+
+To learn more about this, you can check the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts).
+
+</TabItem>
+
+<TabItem value="pages" label="Pages Router">
 
 ```tsx title="pages/login.tsx"
 export default function Login() {
@@ -1055,15 +1194,89 @@ const Login: PageWithLayout = () => {
 Login.layout = "auth";
 ```
 
+</TabItem>
+</Tabs>
+
 ### Handling 404s
 
 In the earlier versions of Refine, if `authProvider` was defined, we've redirected the users to the `/login` route even with the 404s and 404 pages were only available to the authenticated users. Now, the routes are handled by the users, so you can handle the 404s however you like.
 
-#### Using the Next.js's 404 page
+<Tabs>
+<TabItem value="app" label="App router" default>
+
+<h4>Using the Next.js's not-found.js</h4>
+
+If you want handle unmatched routes, you can create a `not-found.tsx` file in your `/app` directory and it will be used as the 404 page. For more information, you can check the [Next.js documentation for not-found.js](https://nextjs.org/docs/app/api-reference/file-conventions/not-found).
+
+```ts title="app/not-found.tsx"
+import { ErrorComponent } from "@refinedev/antd";
+import { Suspense } from "react";
+
+export default function NotFound() {
+  return (
+    <Suspense>
+      <ErrorComponent />
+    </Suspense>
+  );
+}
+```
+
+<h4>Using a catch-all route</h4>
+
+If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the catch-all route. For more information, you can check the [Next.js documentation for catch-all route](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments).
+
+**Client Side**
+
+```tsx title="app/[[...slug]]/page.tsx"
+"use client";
+
+import { Authenticated } from "@refinedev/core";
+
+export default function CatchAll() {
+  return (
+    // This will redirect the user if they're not authenticated depending on the response of `authProvider.check`.
+    <Authenticated>
+      <div>This page is not found.</div>
+    </Authenticated>
+  );
+}
+```
+
+**Server Side**
+
+```tsx title="app/[[...slug]]/page.tsx"
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+
+export default async function Layout({ children }: React.PropsWithChildren) {
+  const data = await getData();
+
+  if (!data.authenticated) {
+    return redirect("/login");
+  }
+
+  return <>{children}</>;
+}
+
+async function getData() {
+  const cookieStore = cookies();
+  const auth = cookieStore.get("auth");
+
+  return {
+    authenticated = !!auth,
+  };
+}
+```
+
+</TabItem>
+
+<TabItem value="pages" label="Pages Router">
+
+<h4>Using the Next.js's 404 page</h4>
 
 If you want to use the Next.js's 404 page, you can create a `404.tsx` file in your `/pages` directory and it will be used as the 404 page. For more information, you can check the [Next.js documentation for custom 404 page](https://nextjs.org/docs/advanced-features/custom-error-page#404-page).
 
-#### Using a catch-all route
+<h4>Using a catch-all route</h4>
 
 If you want to achieve the legacy behavior or want to have more control over the unhandled routes, you can use the catch-all route. For more information, you can check the [Next.js documentation for catch-all route](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes).
 
@@ -1112,6 +1325,9 @@ export default function CatchAll() {
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ### `RefineRoutes` Component
 
 :::simple Good to know
@@ -1148,12 +1364,14 @@ return (
 
 Then, we'll create a catch-all route to render the matching route in our resources:
 
-#### In `pages/[[...refine]].tsx`
+<h4>In `app/[[...refine]]/page.tsx`</h4>
 
-```tsx title=pages/[[...refine]].tsx
-import { RefineRoutes } from "@refinedev/nextjs-router/pages";
+If you're using `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
 
-import { ErrorPage } from "components/error";
+```tsx title=app/[[...refine]]/page.tsx
+"use client";
+
+import { RefineRoutes } from "@refinedev/nextjs-router";
 
 export default function CatchAll() {
   return (
@@ -1170,14 +1388,14 @@ export default function CatchAll() {
 }
 ```
 
-#### In `app/[[...refine]]/page.tsx`
+<h4>In `pages/[[...refine]].tsx`</h4>
 
-If you're using experimental `appDir` in your Next.js project, you can create a catch-all route in the `app` directory.
+If you're using the `/pages` directory in your Next.js project, you can create a catch-all route in the `pages` directory.
 
-```tsx title=app/[[...refine]]/page.tsx
-"use client";
+```tsx title=pages/[[...refine]].tsx
+import { RefineRoutes } from "@refinedev/nextjs-router/pages";
 
-import { RefineRoutes } from "@refinedev/nextjs-router";
+import { ErrorPage } from "components/error";
 
 export default function CatchAll() {
   return (
