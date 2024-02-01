@@ -2,7 +2,9 @@
 "@refinedev/nextjs-router": major
 ---
 
-Now Refine v4 uses App Dir by default!
+With this version, the @refinedev/nextjs-router package now starts supporting Next.js@14 and App Router by default. You can upgrade your application by following the upgrade guide.
+
+We recommend that projects using **Ant Design** refrain from upgrading at the moment due to the **incompatibility** between Ant Design and Next.js App Router. For more detailed information, you can refer to the Known Issues document in Ant Design [here](https://refine.dev/docs/ui-integrations/ant-design/introduction/#known-issues).
 
 # Upgrade Guide
 
