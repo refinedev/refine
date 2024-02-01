@@ -389,7 +389,7 @@ const SandpackBase = ({
 };
 
 const SandpackNextJS = (props: Props) => {
-    const isDevelop = process.env.NODE_ENV === "deveelopment";
+    const isDevelop = process.env.NODE_ENV === "development";
 
     const extraProps = isDevelop
         ? {
@@ -419,13 +419,3 @@ const SandpackNextJS = (props: Props) => {
         />
     );
 };
-
-const NextJSPagesIndexTsxCode = /* tsx */ `
-import { NavigateToResource } from "@refinedev/nextjs-router";
-
-const Home = () => {
-    return <NavigateToResource resource="products" />;
-};
-
-export default Home;
-`.trim();

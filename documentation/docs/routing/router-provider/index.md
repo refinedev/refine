@@ -117,7 +117,7 @@ const App: React.FC = () => {
 
 ```tsx title="pages/_app.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {

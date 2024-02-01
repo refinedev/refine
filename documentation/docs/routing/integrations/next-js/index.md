@@ -12,14 +12,6 @@ We recommend using `create refine-app` to initialize your Refine projects. It co
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
-:::simple Legacy Router
-
-`@refinedev/nextjs-router` also exports the legacy router provider and it will be available until the next major version of Refine. It is recommended to use the new router provider instead of the legacy one.
-
-If you are using the legacy router provider, it can be imported from `@refinedev/nextjs-router/legacy` for the `/pages` directory and `@refinedev/nextjs-router/legacy-app` for the `/app` directory and passed to the `legacyRouterProvider` prop of the `Refine` component.
-
-:::
-
 ## Basic Usage
 
 ### `/pages` Directory
@@ -42,7 +34,7 @@ Let's start with the initialization of the Refine app in the `_app.tsx` file:
 ```tsx title=_app.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 
 import { Layout } from "components/Layout";
 
@@ -218,7 +210,7 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 :::
 
 ```tsx title=pages/index.tsx
-import { NavigateToResource } from "@refinedev/nextjs-router";
+import { NavigateToResource } from "@refinedev/nextjs-router/pages";
 
 export default function Home() {
   return <NavigateToResource />;
@@ -247,7 +239,7 @@ Let's start with the initialization of the Refine app in the `app/layout.tsx` fi
 
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 
 import { Layout } from "components/Layout";
 
@@ -435,7 +427,9 @@ Even though we're using the `NavigateToResource` component, when using Next.js i
 :::
 
 ```tsx title=app/page.tsx
-import { NavigateToResource } from "@refinedev/nextjs-router/app";
+"use client";
+
+import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function IndexPage() {
   return <NavigateToResource />;
@@ -453,7 +447,7 @@ A basic component to navigate to a resource page. It is useful when you want to 
 #### In `pages/index.tsx`
 
 ```tsx title=pages/index.tsx
-import { NavigateToResource } from "@refinedev/nextjs-router";
+import { NavigateToResource } from "@refinedev/nextjs-router/pages";
 
 export default function IndexPage() {
   return <NavigateToResource />;
@@ -465,7 +459,7 @@ export default function IndexPage() {
 ```tsx title=app/page.tsx
 "use client";
 
-import { NavigateToResource } from "@refinedev/nextjs-router/app";
+import { NavigateToResource } from "@refinedev/nextjs-router";
 
 export default function IndexPage() {
   return <NavigateToResource />;
@@ -486,7 +480,7 @@ Place this component inside the `<Refine>` components children to enable this fe
 
 ```tsx title=_app.tsx
 import { Refine } from "@refinedev/core";
-import { UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+import { UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -583,7 +577,7 @@ Note that this hook doesn't support SSR. It will only set the document title in 
 This hook allows you to set the document title for the current page. It can be used in any component that is a child of the `<Refine>` component.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/nextjs-router";
+import { useDocumentTitle } from "@refinedev/nextjs-router/pages";
 
 const PostList = () => {
   // highlight-next-line
@@ -596,7 +590,7 @@ const PostList = () => {
 This hook can take an object as an argument with `i18nKey`. This key will be used to translate the title using the i18n provider.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/nextjs-router";
+import { useDocumentTitle } from "@refinedev/nextjs-router/pages";
 
 const PostList = () => {
   // highlight-next-line
@@ -609,7 +603,7 @@ const PostList = () => {
 This hook also returns a function that can be used to set the document title dynamically.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/nextjs-router";
+import { useDocumentTitle } from "@refinedev/nextjs-router/pages";
 
 const PostList = () => {
   const setTitle = useDocumentTitle();
@@ -933,7 +927,7 @@ If `syncWithLocation` is enabled, query parameters must be handled while doing S
 
 ```tsx
 // highlight-next-line
-import { parseTableParams } from "@refinedev/nextjs-router";
+import { parseTableParams } from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -1157,7 +1151,7 @@ Then, we'll create a catch-all route to render the matching route in our resourc
 #### In `pages/[[...refine]].tsx`
 
 ```tsx title=pages/[[...refine]].tsx
-import { RefineRoutes } from "@refinedev/nextjs-router";
+import { RefineRoutes } from "@refinedev/nextjs-router/pages";
 
 import { ErrorPage } from "components/error";
 
@@ -1183,7 +1177,7 @@ If you're using experimental `appDir` in your Next.js project, you can create a 
 ```tsx title=app/[[...refine]]/page.tsx
 "use client";
 
-import { RefineRoutes } from "@refinedev/nextjs-router/app";
+import { RefineRoutes } from "@refinedev/nextjs-router";
 
 export default function CatchAll() {
   return (

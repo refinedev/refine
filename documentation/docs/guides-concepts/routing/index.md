@@ -49,7 +49,7 @@ const App = () => (
 "use client";
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -243,7 +243,7 @@ Check out the [`UnsavedChangesNotifier` section of the React Router integration 
 ```tsx title="_app.tsx"
 import type { AppProps } from "next/app";
 import { Refine } from "@refinedev/core";
-import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
 
 export default function App({ Component, pageProps }) {
   return (

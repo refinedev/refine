@@ -160,7 +160,7 @@ As a first step, navigate to the `_app.tsx` file inside the pages folder. When y
 ```tsx title="pages/_app.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+import routerProvider, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
 import type { NextPage } from "next";
 import { AppProps } from "next/app";
 
