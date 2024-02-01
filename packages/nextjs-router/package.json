@@ -23,21 +23,6 @@
       "types": "./dist/pages/index.d.ts",
       "import": "./dist/esm/pages.js",
       "require": "./dist/pages.js"
-    },
-    "./legacy": {
-      "types": "./dist/legacy/index.d.ts",
-      "import": "./dist/esm/legacy.js",
-      "require": "./dist/legacy.js"
-    },
-    "./legacy-app": {
-      "types": "./dist/legacy-app/index.d.ts",
-      "import": "./dist/esm/legacy-app.js",
-      "require": "./dist/legacy-app.js"
-    },
-    "./legacy-pages": {
-      "types": "./dist/legacy-pages/index.d.ts",
-      "import": "./dist/esm/legacy-pages.js",
-      "require": "./dist/legacy-pages.js"
     }
   },
   "typesVersions": {
@@ -50,15 +35,6 @@
       ],
       "pages": [
         "dist/pages/index.d.ts"
-      ],
-      "legacy": [
-        "dist/legacy/index.d.ts"
-      ],
-      "legacy-app": [
-        "dist/legacy-app/index.d.ts"
-      ],
-      "legacy-pages": [
-        "dist/legacy-pages/index.d.ts"
       ]
     }
   },
