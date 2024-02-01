@@ -164,7 +164,7 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ThemedLayoutV2,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   // highlight-next-line
   RefineThemes,
@@ -190,7 +190,7 @@ const App = () => {
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "posts",
@@ -241,7 +241,7 @@ import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ThemedLayoutV2,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   // highlight-next-line
   RefineThemes,
@@ -289,7 +289,7 @@ const App = () => {
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "posts",
@@ -338,7 +338,7 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ThemedLayoutV2, ErrorComponent, notificationProvider, RefineThemes } from "@refinedev/mantine";
+import { ThemedLayoutV2, ErrorComponent, useNotificationProvider, RefineThemes } from "@refinedev/mantine";
 // highlight-start
 import { NotificationsProvider } from "@mantine/notifications";
 import {
@@ -418,7 +418,7 @@ const App = () => {
             <Refine
               routerProvider={routerProvider}
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               resources={[
                 {
                   name: "posts",

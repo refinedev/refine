@@ -637,7 +637,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, useNotificationProvider } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -676,7 +676,7 @@ const App: React.FC = () => {
       <RefineSnackbarProvider>
         <BrowserRouter>
           <Refine
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
@@ -727,7 +727,7 @@ export default App;
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
+import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, useNotificationProvider } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -767,7 +767,7 @@ const App: React.FC = () => {
       <RefineSnackbarProvider>
         <BrowserRouter>
           <Refine
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
@@ -823,7 +823,7 @@ import {
   RefineThemes,
   // highlight-start
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   // highlight-end
 } from "@refinedev/mui";
 import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
@@ -845,7 +845,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "samples",

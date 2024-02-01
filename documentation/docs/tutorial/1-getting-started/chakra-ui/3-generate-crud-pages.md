@@ -40,7 +40,7 @@ The `resources` prop will be explained in detail in [Unit 4](/docs/tutorial/unde
 
 ```tsx title="src/App.tsx"
 import { ChakraProvider } from "@chakra-ui/react";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider, RefineThemes } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider, RefineThemes } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -53,7 +53,7 @@ const App = () => {
     <ChakraProvider theme={RefineThemes.Blue}>
       <BrowserRouter>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           resources={[
@@ -132,7 +132,7 @@ When you navigate to the `localhost:3000`, Refine will redirect you to the initi
 setInitialRoutes(["/blog-posts"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider, RefineThemes } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider, RefineThemes } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -145,7 +145,7 @@ const App = () => {
     <ChakraProvider theme={RefineThemes.Blue}>
       <BrowserRouter>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           //highlight-start
@@ -204,7 +204,7 @@ You should see the create page for the `blog_posts` resource that was generated 
 setInitialRoutes(["/blog-posts/create"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider, RefineThemes } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider, RefineThemes } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -217,7 +217,7 @@ const App = () => {
     <ChakraProvider theme={RefineThemes.Blue}>
       <BrowserRouter>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           //highlight-start
@@ -276,7 +276,7 @@ You should see the edit page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/edit/123"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider, RefineThemes } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider, RefineThemes } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -289,7 +289,7 @@ const App = () => {
     <ChakraProvider theme={RefineThemes.Blue}>
       <BrowserRouter>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           resources={[
@@ -346,7 +346,7 @@ You should see the show page for the `blog_posts` resource with the id `123` tha
 setInitialRoutes(["/blog-posts/show/123"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider, RefineThemes } from "@refinedev/chakra-ui";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider, RefineThemes } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -359,7 +359,7 @@ const App = () => {
     <ChakraProvider theme={RefineThemes.Blue}>
       <BrowserRouter>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           //highlight-start

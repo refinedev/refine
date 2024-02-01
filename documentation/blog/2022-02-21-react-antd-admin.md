@@ -141,7 +141,7 @@ Let's define our i18n provider and give it a **refine**.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { useNotificationProvider, Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -165,7 +165,7 @@ function App() {
   return (
     <Refine
       routerProvider={routerProvider}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
       resources={[
@@ -309,7 +309,7 @@ Let's define the header we created within the refine.
 return (
   <Refine
     routerProvider={routerProvider}
-    notificationProvider={notificationProvider}
+    notificationProvider={useNotificationProvider}
     Layout={Layout}
     i18nProvider={i18nProvider}
     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -433,7 +433,7 @@ Then pass liveProvider from @refinedev/ably to `<Refine>`.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, Layout } from "@refinedev/antd";
+import { useNotificationProvider, Layout } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-start
@@ -459,7 +459,7 @@ function App() {
   return (
     <Refine
       routerProvider={routerProvider}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       Layout={Layout}
       i18nProvider={i18nProvider}
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -596,7 +596,7 @@ const cerbos = new Cerbos({
 ```tsx
 <Refine
   routerProvider={routerProvider}
-  notificationProvider={notificationProvider}
+  notificationProvider={useNotificationProvider}
   Layout={Layout}
   i18nProvider={i18nProvider}
   dataProvider={dataProvider("https://api.fake-rest.refine.dev")}

@@ -61,7 +61,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 import { Refine } from "@refinedev/core";
 import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ErrorComponent, Layout, refineTheme, notificationProvider } from "@refinedev/chakra-ui";
+import { ErrorComponent, Layout, refineTheme, useNotificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -78,7 +78,7 @@ const App = () => {
         <Refine
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",

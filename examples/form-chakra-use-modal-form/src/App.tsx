@@ -3,7 +3,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -25,7 +25,7 @@ const App: React.FC = () => (
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
-                notificationProvider={notificationProvider()}
+                notificationProvider={useNotificationProvider()}
                 resources={[
                     {
                         name: "posts",

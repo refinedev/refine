@@ -4,7 +4,7 @@ import {
     ErrorComponent,
     RefineThemes,
     RefineSnackbarProvider,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -32,7 +32,7 @@ const App: React.FC = () => {
                 <RefineSnackbarProvider>
                     <Refine
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         dataProvider={dataProvider(API_URL)}
                         resources={[
                             {

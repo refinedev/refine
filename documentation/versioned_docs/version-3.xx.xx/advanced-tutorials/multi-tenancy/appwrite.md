@@ -32,7 +32,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
@@ -53,7 +53,7 @@ const App: React.FC = () => {
       routerProvider={routerProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
     />
   );
@@ -113,7 +113,7 @@ export const StoreProvider = (props: any) => {
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import { Layout, ReadyPage, useNotificationProvider, ErrorComponent } from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -134,7 +134,7 @@ const App: React.FC = () => {
                 routerProvider={routerProvider}
                 Layout={Layout}
                 ReadyPage={ReadyPage}
-                notificationProvider={notificationProvider}
+                notificationProvider={useNotificationProvider}
                 catchAll={<ErrorComponent />}
             />
         <StoreProvider>
@@ -549,7 +549,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
@@ -592,7 +592,7 @@ function App() {
         ]}
         Layout={Layout}
         ReadyPage={ReadyPage}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         catchAll={<ErrorComponent />}
       />
     </StoreProvider>

@@ -54,7 +54,7 @@ const authProvider = {
 };
 
 import { Refine, Authenticated } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes, notificationProvider, ErrorComponent, AuthPage } from "@refinedev/antd";
+import { ThemedLayoutV2, RefineThemes, useNotificationProvider, ErrorComponent, AuthPage } from "@refinedev/antd";
 import routerBindings, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -72,7 +72,7 @@ const App: React.FC = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -155,7 +155,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   //highlight-next-line
   AuthPage,
@@ -180,7 +180,7 @@ const App: React.FC = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -269,7 +269,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   //highlight-next-line
   AuthPage,
@@ -294,7 +294,7 @@ const App: React.FC = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -384,7 +384,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   //highlight-next-line
   AuthPage,
@@ -409,7 +409,7 @@ const App: React.FC = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",
@@ -500,7 +500,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   //highlight-next-line
   AuthPage,
@@ -525,7 +525,7 @@ const App: React.FC = () => {
           authProvider={authProvider}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "blog_posts",

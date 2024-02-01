@@ -88,7 +88,7 @@ setInitialRoutes(["/"]);
 
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { Refine } from "@refinedev/core";
-import { LightTheme, notificationProvider, RefineSnackbarProvider, WelcomePage } from "@refinedev/mui";
+import { LightTheme, useNotificationProvider, RefineSnackbarProvider, WelcomePage } from "@refinedev/mui";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -103,7 +103,7 @@ const App: React.FC = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
           >
             <Routes>
               <Route index element={<WelcomePage />} />

@@ -4,7 +4,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
     AuthPage,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
     ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
@@ -36,7 +36,7 @@ function App() {
                             API_URL + `/api`,
                             axiosInstance,
                         )}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerBindings}
                         options={{
                             syncWithLocation: true,

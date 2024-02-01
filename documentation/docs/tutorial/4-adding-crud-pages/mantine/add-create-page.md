@@ -29,7 +29,7 @@ setInitialRoutes(["/blog-posts/create"]);
 import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, useNotificationProvider } from "@refinedev/mantine";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -46,7 +46,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -142,7 +142,7 @@ Now that we have created the create page, we can add it to the `App.tsx` file:
 import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, useNotificationProvider } from "@refinedev/mantine";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -162,7 +162,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

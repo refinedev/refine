@@ -59,7 +59,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   AuthPage,
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
@@ -80,7 +80,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -166,7 +166,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/mui";
@@ -191,7 +191,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -283,7 +283,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/mui";
@@ -308,7 +308,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -401,7 +401,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/mui";
@@ -426,7 +426,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -521,7 +521,7 @@ import {
   ErrorComponent,
   RefineThemes,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   //highlight-next-line
   AuthPage,
 } from "@refinedev/mui";
@@ -546,7 +546,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
