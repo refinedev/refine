@@ -1,3 +1,3 @@
-export * from "./pages";
+export * from "./pages/index";
 
-export { default as default } from "./pages";
+export { default as default } from "./pages/index";
