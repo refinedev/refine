@@ -4,7 +4,7 @@ title: useExport
 
 `useExport` hook allows you to export data as a `CSV` file. It calls the `getList` method of your data provider and downloads the data as a `CSV` file.
 
-Internally, it uses [`export-to-csv`][export-to-csv] to create the `CSV` file.
+Internally, it uses [Papa Parse][papaparse] to create the `CSV` file.
 
 ## Usage
 
@@ -126,16 +126,28 @@ useExport({
 });
 ```
 
-### exportOptions
+### download
 
-You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
-
-> For more information, refer to the [`ExportToCsv` options &#8594](https://github.com/alexcaza/export-to-csv#api)
+Whether to generate download of the CSV in browser environments, defaults to `true`.
 
 ```ts
 useExport({
-  exportOptions: {
-    filename: "posts",
+  download: false,
+});
+```
+
+### unparseConfig
+
+You can pass additional options to the [Papa Parse][papaparse] package by using the `unparseConfig` property.
+
+> For more information, refer to the [`Papa Parse` options &#8594](https://www.papaparse.com/docs#config)
+
+```ts
+useExport({
+  unparseConfig: {
+    complete: (results, file) => {
+      console.log("Parsing complete:", results, file);
+    },
   },
 });
 ```
@@ -170,6 +182,22 @@ Callback function that is called when an error occurs while fetching data.
 useExport({
   onError: (error) => {
     console.log(error);
+  },
+});
+```
+
+### ~~exportOptions~~ <PropTag deprecated />
+
+Use [`unparseConfig`](#unparseconfig) prop instead.
+
+You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
+
+> For more information, refer to the [`ExportToCsv` options &#8594](https://github.com/alexcaza/export-to-csv#api)
+
+```ts
+useExport({
+  exportOptions: {
+    filename: "posts",
   },
 });
 ```
@@ -319,5 +347,5 @@ This will save the data as follows:
 | TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TVariables | Values for params                                                          | `any`                      |
 
-[export-to-csv]: https://github.com/alexcaza/export-to-csv
+[papaparse]: https://www.papaparse.com/
 [baserecord]: /docs/core/interface-references#baserecord
