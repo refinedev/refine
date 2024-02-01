@@ -23,6 +23,7 @@ import {
     TLoginData,
 } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 
@@ -148,9 +149,18 @@ export function useLogin<TVariables = {}>({
     >({
         mutationKey: keys().auth().action("login").get(preferLegacyKeys),
         mutationFn: loginFromContext,
-        onSuccess: async ({ success, redirectTo, error }) => {
+        onSuccess: async ({
+            success,
+            redirectTo,
+            error,
+            successNotification,
+        }) => {
             if (success) {
                 close?.("login-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -248,5 +258,16 @@ const buildNotification = (
         description: error?.message || "Invalid credentials",
         key: "login-error",
         type: "error",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+): OpenNotificationParams => {
+    return {
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "login-success",
+        type: "success",
     };
 };

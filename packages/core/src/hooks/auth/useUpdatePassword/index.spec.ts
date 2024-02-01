@@ -648,6 +648,42 @@ describe("useUpdatePassword Hook", () => {
             }),
         ).toHaveLength(1);
     });
+
+    it('should open success notification when successNotification is passed', async () => {
+
+        const openNotificationMock = jest.fn();
+      
+        const successNotification = {
+          message: 'Success!'
+        };
+      
+        const { result } = renderHook(() => useUpdatePassword(), {
+          wrapper: TestWrapper({
+            notificationProvider: {
+              open: openNotificationMock  
+            },
+            authProvider: {
+                ...mockAuthProvider,
+                updatePassword: () => Promise.resolve({
+                    success: true,
+                    successNotification 
+                })
+            }
+          })
+        });
+      
+        await act(async() => {
+          result.current.mutate({}); 
+        });
+      
+        expect(openNotificationMock).toHaveBeenCalledWith({
+          key: 'update-password-success',
+          type: 'success', 
+          message: 'Success!',
+          description: 'Operation completed successfully'
+        });
+      
+    });
 });
 
 // NOTE : Will be removed in v5
