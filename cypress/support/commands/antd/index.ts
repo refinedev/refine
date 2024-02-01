@@ -2,7 +2,7 @@
 /// <reference types="../../index.d.ts" />
 
 export const getAntdNotification = () => {
-    return cy.get(".ant-notification-notice-message");
+    return cy.get(".ant-notification-notice");
 };
 
 export const setAntdDropdown = ({
