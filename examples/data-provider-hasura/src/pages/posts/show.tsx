@@ -4,24 +4,17 @@ import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { IPost } from "../../interfaces";
+import { GetFields } from "@refinedev/hasura";
+import { GetPostQuery } from "graphql/types";
+import { POST_QUERY } from "./queries";
 
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const metaData = {
-        fields: [
-            "id",
-            "title",
-            {
-                category: ["title"],
-            },
-            "content",
-        ],
-    };
-
-    const { queryResult } = useShow<IPost>({
-        metaData,
+    const { queryResult } = useShow<GetFields<GetPostQuery>>({
+        metaData: {
+            gqlQuery: POST_QUERY,
+        },
     });
 
     const { data, isLoading } = queryResult;
@@ -47,7 +40,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Text>{record?.title}</Text>
 
             <Title level={5}>Category</Title>
-            <Text>{record?.category.title}</Text>
+            <Text>{record?.category?.title}</Text>
 
             <Title level={5}>Content</Title>
             <MarkdownField value={record?.content} />

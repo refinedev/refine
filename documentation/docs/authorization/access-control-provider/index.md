@@ -23,6 +23,7 @@ export interface IAccessControlContext {
       enableAccessControl?: boolean;
       hideIfUnauthorized?: boolean;
     };
+    queryOptions?: UseQueryOptions<CanReturnType>;
   };
 }
 
@@ -35,13 +36,16 @@ const accessControlProvider: IAccessControlContext = {
       enableAccessControl: true,
       hideIfUnauthorized: false,
     },
+    queryOptions: {
+      // ... default global query options
+    },
   },
 };
 ```
 
 It's possible to globally configure buttons' behavior by passing `options` to the `accessControlProvider`.
-You can still change the behavior of the buttons independently, however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
-By default, `enableAccessControl` is **true** and `hideIfUnauthorized` is **false**.
+You can still change the behavior of the buttons independently; however, if no configuration is found, buttons will fallback to configuration defined in `options.buttons`.
+By default, `enableAccessControl` is **true**, `hideIfUnauthorized` is **false**, and `queryOptions` is **undefined**.
 
 ## Usage
 
@@ -65,6 +69,9 @@ const App: React.FC = () => {
           buttons: {
             enableAccessControl: true,
             hideIfUnauthorized: false,
+          },
+          queryOptions: {
+            // ... default global query options
           },
         },
       }}
@@ -126,6 +133,10 @@ const { data } = useCan({
   resource: "resource-you-ask-for-access",
   action: "action-type-on-resource",
   params: { foo: "optional-params" },
+  queryOptions: {
+    cacheTime: 5000,
+    // ... other query options
+  },
 });
 ```
 
@@ -135,9 +146,7 @@ const useCan: ({
     resource,
     params,
     queryOptions,
-}: CanParams* & {
-    queryOptions?: UseQueryOptions<CanReturnType>;
-}) => UseQueryResult<CanReturnType*>
+}: CanParams) => UseQueryResult<CanReturnType*>
 ```
 
 ### `<CanAccess />`
@@ -145,7 +154,13 @@ const useCan: ({
 `<CanAccess />` is a wrapper component that uses `useCan` to check for access control. It takes the parameters that `can` method takes and also a `fallback`. If access control returns true, it renders its children; otherwise, it renders `fallback`, if it was provided.
 
 ```tsx
-<CanAccess resource="posts" action="edit" params={{ id: 1 }} fallback={<CustomFallback />}>
+<CanAccess
+  resource="posts"
+  action="edit"
+  params={{ id: 1 }}
+  fallback={<CustomFallback />}
+  queryOptions={{ cacheTime: 25000 }}
+>
   <YourComponent />
 </CanAccess>
 ```
@@ -158,13 +173,14 @@ As the number of points that check for access control in your app increases, the
 // inside your component
 
 const { data } = useCan({
-    resource: "resource-you-ask-for-access",
-    action: "action-type-on-resource",
-    params: { foo: "optional-params" } },
-    queryOptions: {
-        staleTime: 5 * 60 * 1000, // 5 minutes
-    }
-);
+  resource: "resource-you-ask-for-access",
+  action: "action-type-on-resource",
+  params: { foo: "optional-params" },
+  queryOptions: {
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    // ... other query options
+  },
+});
 ```
 
 :::note

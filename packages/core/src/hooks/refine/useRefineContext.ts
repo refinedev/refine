@@ -19,9 +19,11 @@ export const useRefineContext = () => {
         LoginPage,
         catchAll,
         options,
+        __initialized,
     } = useContext(RefineContext);
 
     return {
+        __initialized,
         Footer,
         Header,
         Layout,

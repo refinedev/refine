@@ -12,36 +12,49 @@ import {
     DateField,
 } from "@refinedev/antd";
 
-import { Table, Space, Select } from "antd";
+import { Table, Space, Select, Input } from "antd";
 
-import { ICategory, IPost } from "../../interfaces";
+import type {
+    GetPostCategoriesSelectQuery,
+    GetPostsQuery,
+} from "graphql/types";
+import { GetFieldsFromList } from "@refinedev/hasura";
+import {
+    POST_CATEGORIES_SELECT_QUERY,
+    POSTS_QUERY,
+    POST_DELETE_MUTATION,
+} from "./queries";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorter } = useTable<IPost>({
+    const { tableProps, filters, sorters } = useTable<
+        GetFieldsFromList<GetPostsQuery>
+    >({
         initialSorter: [
             {
                 field: "id",
                 order: "asc",
             },
         ],
-        metaData: {
-            fields: [
-                "id",
-                "title",
+        filters: {
+            initial: [
                 {
-                    category: ["title"],
+                    field: "title",
+                    operator: "contains",
+                    value: "",
                 },
-                "content",
-                "category_id",
-                "created_at",
             ],
+        },
+        metaData: {
+            gqlQuery: POSTS_QUERY,
         },
     });
 
-    const { selectProps } = useSelect<ICategory>({
+    const { selectProps } = useSelect<
+        GetFieldsFromList<GetPostCategoriesSelectQuery>
+    >({
         resource: "categories",
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: POST_CATEGORIES_SELECT_QUERY,
         },
     });
 
@@ -52,14 +65,24 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="id"
                     title="ID"
                     sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
                 />
                 <Table.Column
                     dataIndex="title"
                     title="Title"
                     sorter={{ multiple: 1 }}
+                    defaultFilteredValue={getDefaultFilter(
+                        "title",
+                        filters,
+                        "contains",
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input />
+                        </FilterDropdown>
+                    )}
                 />
-                <Table.Column<IPost>
+                <Table.Column<GetFieldsFromList<GetPostsQuery>>
                     dataIndex="category_id"
                     title="Category"
                     filterDropdown={(props) => (
@@ -72,7 +95,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             />
                         </FilterDropdown>
                     )}
-                    render={(_, record) => record.category.title}
+                    render={(_, record) => record?.category?.title}
                     defaultFilteredValue={getDefaultFilter(
                         "category_id",
                         filters,
@@ -83,10 +106,13 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="created_at"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
+                    defaultSortOrder={getDefaultSortOrder(
+                        "created_at",
+                        sorters,
+                    )}
                     sorter
                 />
-                <Table.Column<IPost>
+                <Table.Column<GetFieldsFromList<GetPostsQuery>>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
@@ -94,23 +120,19 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             <EditButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
+                                recordItemId={record?.id}
                             />
                             <ShowButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
+                                recordItemId={record?.id}
                             />
                             <DeleteButton
                                 hideText
                                 size="small"
-                                recordItemId={record.id}
-                                metaData={{
-                                    fields: [
-                                        "id",
-                                        "content",
-                                        { category: ["id"] },
-                                    ],
+                                recordItemId={record?.id}
+                                meta={{
+                                    gqlMutation: POST_DELETE_MUTATION,
                                 }}
                             />
                         </Space>

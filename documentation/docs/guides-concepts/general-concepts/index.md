@@ -4,6 +4,18 @@ title: General Concepts
 
 Refine is an extensible framework designed for rapidly building web applications. It offers a modern, **hook-based architecture**, a **pluggable system of providers**, and a robust **state management** solution. This section provides an overview of the key concepts in Refine.
 
+## Headless Concept
+
+While Refine offers various integrations for different routers, UI libraries, authentication, authorization, notification providers, and more, at it's core, all these integrations are built on top of `@refinedev/core` package.
+
+The `@refinedev/core` package is designed with **library agnostic** principles, acts as a central contract for all other Refine integrations by providing **unified interfaces**, **hooks**, and **components**.
+
+Integrations such as `@refinedev/nextjs`, or `@refinedev/mui`, are simple wrappers between the underlying libraries and `@refinedev/core`.
+
+This makes it straightforward to mix & match different frameworks, libraries, and integrations according to your needs.
+
+If you want to redirect users to a certain page after a form submission, show a notification after a successful mutation, or redirect unauthenticated users to login page, you don't need to use different APIs for different libraries.
+
 ## Resource Concept
 
 In Refine, a **resource** is a central concept representing an **entity**, which ties together various aspects of your application.
@@ -495,7 +507,45 @@ Another example is `useTable` hook. While it can infer **resource**, **paginatio
 
 ### Audit Log Provider
 
-**Audit Log Provider**
+Audit Log Provider centralizes retrieving audit logs in Refine applications.
+
+It can be useful to show previous changes to your resources.
+
+```tsx title="App.tsx"
+import { AuditLogProvider, Refine } from "@refinedev/core";
+
+const auditLogProvider: AuditLogProvider = {
+  get: async (params) => {
+    const { resource, meta, action, author, metaData } = params;
+
+    const response = await fetch(`https://example.com/api/audit-logs/${resource}/${meta.id}`, {
+      method: "GET",
+    });
+
+    const data = await response.json();
+
+    return data;
+  },
+};
+
+export const App = () => {
+  return <Refine auditLogProvider={auditLogProvider}>{/* ... */}</Refine>;
+};
+```
+
+> See the [Audit Logs](/docs/guides-concepts/audit-logs/) guide for more information.
+
+#### Hooks
+
+You can use `useLogList` hook to retrieve audit logs for your resources in your components. It uses `AuditLogProvider`'s `get` method under the hood.
+
+```tsx
+import { useLogList } from "@refinedev/core";
+
+const productsAuditLogResults = useLogList({
+  resource: "products",
+});
+```
 
 ## UI Integrations
 

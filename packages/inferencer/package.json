@@ -9,26 +9,32 @@
   "typings": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/index.js"
     },
     "./headless": {
+      "types": "./dist/inferencers/headless/index.d.ts",
       "import": "./dist/esm/headless.js",
       "require": "./dist/headless.js"
     },
     "./mantine": {
+      "types": "./dist/inferencers/mantine/index.d.ts",
       "import": "./dist/esm/mantine.js",
       "require": "./dist/mantine.js"
     },
     "./antd": {
+      "types": "./dist/inferencers/antd/index.d.ts",
       "import": "./dist/esm/antd.js",
       "require": "./dist/antd.js"
     },
     "./mui": {
+      "types": "./dist/inferencers/mui/index.d.ts",
       "import": "./dist/esm/mui.js",
       "require": "./dist/mui.js"
     },
     "./chakra-ui": {
+      "types": "./dist/inferencers/chakra-ui/index.d.ts",
       "import": "./dist/esm/chakra-ui.js",
       "require": "./dist/chakra-ui.js"
     }

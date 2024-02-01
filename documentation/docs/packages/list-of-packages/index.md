@@ -24,7 +24,6 @@ To learn more about Data Providers, check out [Data Provider](/docs/data/data-pr
 - [`@refinedev/nestjsx-crud`](/docs/data/packages/nestjsx-crud) - Consume **REST API**'s built with **NestJs**.
 - [`@refinedev/nestjs-query`](/docs/data/packages/nestjs-query) - Consume **GraphQL API**'s built with **Nestjs-Query**.
 - [`@refinedev/strapi-v4`](/docs/data/packages/strapi-v4) - [Strapi](https://strapi.io/) connector for **v4 REST API.**
-- [`@refinedev/strapi-graphql`](/docs/data/packages/strapi-graphql) - [Strapi](https://strapi.io/) connector for **GraphQL API.**
 - [`@refinedev/strapi`](/docs/data/packages/strapi-v4) - [Strapi](https://strapi.io/) connector for **legacy REST API.**
 - [`@refinedev/supabase`](/docs/data/packages/supabase) -[Supabase](https://supabase.com/) data provider. Supports **Supabase Realtime** for **live/realtime** projects.
 - [`@refinedev/hasura`](/docs/data/packages/hasura) - [Hasura GraphQL](https://hasura.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.

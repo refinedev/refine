@@ -81,4 +81,27 @@ describe("getList", () => {
         expect(response.data[0]["id"]).toBe(44);
         expect(response.total).toBe(17);
     });
+
+    it("shouldn't have '?' on request url when filters, sorters and pagination is empty", async () => {
+        const mockAxios = jest.spyOn(axios, "get");
+
+        await JsonServer("https://api.fake-rest.refine.dev", axios).getList({
+            resource: "categories",
+            filters: [],
+            sorters: [],
+            pagination: {
+                mode: "off",
+            },
+        });
+
+        expect(mockAxios).toHaveBeenCalledWith(
+            "https://api.fake-rest.refine.dev/categories",
+            {
+                headers: undefined,
+            },
+        );
+
+        mockAxios.mockRestore();
+        mockAxios.mockClear();
+    });
 });
