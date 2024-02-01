@@ -21,15 +21,15 @@ Default export for `@refinedev/nextjs-router` is now `App Router` instead of `Pa
 If you are using `Pages`, update your imports as follows:
 
 ```diff
-- import routerProvider from "@refinedev/nextjs-router"
-+ import routerProvider from "@refinedev/nextjs-router/pages"
+- import routerProvider from "@refinedev/nextjs-router";
++ import routerProvider from "@refinedev/nextjs-router/pages";
 ```
 
 If you are using `App Router`, update your imports as follows:
 
 ```diff
-- import routerProvider from "@refinedev/nextjs-router/app"
-+ import routerProvider from "@refinedev/nextjs-router"
+- import routerProvider from "@refinedev/nextjs-router/app";
++ import routerProvider from "@refinedev/nextjs-router";
 ```
 
 ### Dropped Refine v3 router provider legacy support
