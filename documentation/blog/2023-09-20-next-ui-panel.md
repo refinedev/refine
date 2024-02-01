@@ -53,9 +53,9 @@ You can choose the libraries and frameworks you want to work with, and the tool 
 
 For this tutorial, we'll be select the following options:
 
-**React Platform**: Vite  
-**UI Framework**: Headless  
-**Backend**: REST API  
+**React Platform**: Vite
+**UI Framework**: Headless
+**Backend**: REST API
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">
@@ -144,7 +144,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
           }}
         >
           <Routes>
@@ -634,7 +633,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
           }}
         >
           <Routes>
@@ -1577,7 +1575,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "rhafgh-aLP9JS-0GTfcM",
           }}
         >
           <Routes>

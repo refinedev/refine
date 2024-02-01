@@ -200,7 +200,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "Rc2I9l-qwhhIb-JvL8aZ",
           }}
         >
           {renderComponent()}
