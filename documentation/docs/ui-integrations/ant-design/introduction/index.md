@@ -371,7 +371,7 @@ To learn more about Inferencer, please refer to the [Ant Design Inferencer](/doc
 
 ## Known Issues
 
-Next.js Pages Router with version 14.0.0 and above gives the following error when using `@ant-design` package:
+Next.js Pages Router with version 14 and above gives the following error when using `@ant-design` package:
 
 ```bash title="Compile errors"
 Server Error
