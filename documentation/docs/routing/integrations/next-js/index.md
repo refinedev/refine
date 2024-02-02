@@ -32,8 +32,6 @@ And we'll create one route for the index and use it to redirect to the `posts` r
 Let's start with the initialization of the Refine app in the `app/layout.tsx` file:
 
 ```tsx title=app/layout.tsx
-"use client";
-
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/nextjs-router";
@@ -73,7 +71,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 :::simple Good to know
 
-Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
+- Next.js uses the bracket syntax (`[param]`) for dynamic routes but Refine uses the colon syntax (`:param`) for route parameters. This won't cause any problems since Refine only uses the colon syntax as an indicator for route parameters and the communication between Refine and the router is handled by the `routerProvider` prop.
+
+- Since `<Refine />` is heavily using React context and React state, it's needed to be a client component, and we can't pass functions into the Refine component unless we mark them as `client` functions(dataProvider, authProvider etc.) with `"use client";` directive. See the solution for this in the [FAQ](#how-can-i-use-my-providers-in-the-both-server-and-client-side) section.
 
 :::
 
@@ -829,6 +829,27 @@ For page level access control, server-side approach is recommended.
 
 :::
 
+First, let's build our [AccessControlProvider](/docs/authorization/access-control-provider)
+
+```tsx title="src/acccessControlProvider.ts"
+export const accessControlProvider = {
+  can: async ({ resource, action, params }) => {
+    // You can also access resource object directly with `params.resource` and use any useful meta data in `params.resource.meta`.
+    // const resourceName = params?.resource?.name;
+    // const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
+
+    if (resource === "posts" && action === "edit") {
+      return {
+        can: false,
+        reason: "Unauthorized",
+      };
+    }
+
+    return { can: true };
+  },
+};
+```
+
 ### Client Side
 
 For client-side, you can wrap your pages with [`CanAccess`](/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
@@ -845,74 +866,157 @@ export const MyPage = () => (
 
 ### Server Side
 
+#### `app` directory
+
+You can use your `accessControlProvider`'s `can` function inside your server components. To do this, you can use normal async function and use it in your server component.
+
+To learn more about how to fetch data in server components, you can check the data fetching documentation of Next.js.
+
 #### `pages` directory
 
-On the server side, you can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
+You can use your `accessControlProvider`'s `can` function inside `getServerSideProps` to redirect unauthorized users to other pages.
 
-First, let's build our [AccessControlProvider](/docs/authorization/access-control-provider)
-
-```tsx title="app/acccessControlProvider.ts"
-export const accessControlProvider = {
-  can: async ({ resource, action, params }) => {
-    if (resource === "posts" && action === "edit") {
-      return {
-        can: false,
-        reason: "Unauthorized",
-      };
-    }
-
-    return { can: true };
-  },
-};
-```
-
-You can also access resource object directly.
-
-```tsx
-export const accessControlProvider = {
-  can: async ({ resource, action, params }) => {
-    const resourceName = params?.resource?.name;
-    const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
-
-    if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
-      return {
-        can: false,
-        reason: "Unauthorized",
-      };
-    }
-  },
-};
-```
-
-Then, let's create our posts page.
+Then, let's create our posts page and use the `accessControlProvider` to check if the user can list the posts.
 
 ```tsx title="pages/posts/index.tsx"
 import { accessControlProvider } from "src/accessControlProvider";
 
-export const getServerSideProps = async (context) => {
+export default async function PostList() {
+  const { can } = await getData();
+
+  if (!can) {
+    return <h1>Unauthorized</h1>;
+  }
+
+  return (
+    <div>
+      <h1>Posts</h1>
+    </div>
+  );
+}
+
+async function getData() {
   const { can } = await accessControlProvider.can({
     resource: "posts",
     action: "list",
   });
 
-  if (!can) {
-    context.res.statusCode = 403;
-    context.res.end();
-  }
-
   return {
-    props: {
-      can,
-    },
+    can,
   };
-};
-
-export default function PostList() {
-  /* ... */
 }
 ```
 
 ## FAQ
+
+### How can I use my providers in the both server and client side?
+
+:::simple Possible Errors
+
+- Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server".
+
+- Error: It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+
+:::
+
+In some cases, you may want to use your providers on both the server and client side. For example, you may want to use your data provider in your server components to fetch data even before the page is rendered but also you need to give the same data provider to your Refine components to fetch data in the client side.
+
+Since Refine heavily uses React context and React state, It's needed to be a client component, and we can't pass functions into the Refine component unless we mark them as `client` functions with `"use client";` directive. After marking them as `client` functions, you can't use them on the server side.
+
+To solve this problem, you can create a separate file for your providers and use them in your server components and also pass them to your Refine components.
+
+```tsx title="src/providers/data-provider.client.ts"
+"use client";
+
+import dataProviderSimpleRest from "@refinedev/simple-rest";
+import { API_URL } from "./config";
+
+export const dataProviderClient = dataProviderSimpleRest(API_URL);
+```
+
+```tsx title="src/providers/data-provider.server.ts"
+import dataProviderSimpleRest from "@refinedev/simple-rest";
+import { API_URL } from "./config";
+
+export const dataProviderServer = dataProviderSimpleRest(API_URL);
+```
+
+After creating your providers, you can use `dataProviderServer` in your server components and, `dataProviderClient` in your client components.
+
+<h5>Server component</h5>
+
+```tsx title="app/posts/page.tsx"
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export default async function ProductList() {
+  const { posts, total } = await getData();
+
+  return (
+    <div>
+      <h1>Posts ({total})</h1>
+      <hr />
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h1>{post.title}</h1>
+          <p>{post.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+async function getData() {
+  const response = await dataProvider(API_URL).getList({
+    resource: "posts",
+    pagination: { current: 1, pageSize: 10 },
+  });
+
+  return {
+    posts: response.data,
+    total: response.total,
+  };
+}
+```
+
+<h5>Client component</h5>
+
+```tsx title="app/layout.tsx"
+import React, { Suspense } from "react";
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/nextjs-router";
+import { dataProviderClient } from "@providers/data-provider/data-provider.client";
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <Suspense>
+          <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProviderClient}
+            resources={[
+              {
+                name: "products",
+                list: "/",
+              },
+            ]}
+          >
+            {children}
+          </Refine>
+        </Suspense>
+      </body>
+    </html>
+  );
+}
+```
+
+You can learn more about this on the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/data-fetching).
 
 ### Can I use nested routes?
 
@@ -1017,10 +1121,65 @@ export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
 
 ### How to persist `syncWithLocation` in SSR?
 
+If `syncWithLocation` is enabled, query parameters must be handled while doing SSR.
+
+For example, search params can be like this:
+
 <Tabs>
 <TabItem value="app" label="App router" default>
 
-// TODO: Not work
+```tsx title="app/posts/page.tsx"
+import dataProvider from "@refinedev/simple-rest";
+import { parseTableParams, type CrudFilters, type Pagination } from "@refinedev/core";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+type PostListProps = {
+  params?: Record<string, string>;
+  searchParams?: Record<string, string>;
+};
+
+export default async function PostList({ searchParams }: PostListProps) {
+  const tableParams = parseTableParams(searchParams);
+  const { posts, total } = await getData(tableParams);
+
+  return (
+    <div>
+      <h1>Posts ({total})</h1>
+      <hr />
+      {posts?.map((post) => (
+        <div key={post.id}>
+          <h1>{post.title}</h1>
+          <p>{post.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+type GetDataParams = {
+  pagination?: Pagination;
+  filters?: CrudFilters;
+};
+
+async function getData(
+  params: GetDataParams = {
+    pagination: { current: 1, pageSize: 10 },
+    filters: [],
+  },
+) {
+  const response = await dataProvider(API_URL).getList({
+    resource: "posts",
+    pagination: params.pagination,
+    filters: params.filters,
+  });
+
+  return {
+    posts: response.data,
+    total: response.total,
+  };
+}
+```
 
 </TabItem>
 
