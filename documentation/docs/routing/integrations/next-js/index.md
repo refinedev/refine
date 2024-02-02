@@ -16,7 +16,7 @@ We recommend using `create refine-app` to initialize your Refine projects. It co
 
 ### `/app` Directory
 
-We'll use the `routerProvider` from `@refinedev/nextjs-router/app` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
+We'll use the `routerProvider` from `@refinedev/nextjs-router` to set up the router bindings for Refine. We'll define the action routes for our resources in the `resources` array and define our pages in the `app` directory.
 
 We'll create four routes for our resources:
 
