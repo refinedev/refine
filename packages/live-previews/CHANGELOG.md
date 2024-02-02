@@ -1,5 +1,24 @@
 # @refinedev/live-previews
 
+## 0.3.7
+
+### Patch Changes
+
+-   [#5564](https://github.com/refinedev/refine/pull/5564) [`1bb7d30888`](https://github.com/refinedev/refine/commit/1bb7d3088837584b19c4faba41a91817d910d493) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: refine.svg updated.
+
+-   Updated dependencies [[`f1244819ad`](https://github.com/refinedev/refine/commit/f1244819adae9761234af697f292b4136da47503), [`2a2269ac70`](https://github.com/refinedev/refine/commit/2a2269ac705254e179f0bd8b7a9ffcc370571de8), [`e0eabf799f`](https://github.com/refinedev/refine/commit/e0eabf799f0dbb24a0c0b08abfc27f516f7bfae0), [`fff41caae9`](https://github.com/refinedev/refine/commit/fff41caae923004eb6c7fb2cd531c36ae7a8f299), [`b91de14ac8`](https://github.com/refinedev/refine/commit/b91de14ac86cfd325977d9bf82f41bd171981129), [`e2355e4179`](https://github.com/refinedev/refine/commit/e2355e4179bd09e31cb0aeafbd474ffb2189182e), [`5e65f71ecd`](https://github.com/refinedev/refine/commit/5e65f71ecdc8cb93a8739a5a23fc905c6fb38c8b), [`b094b50c51`](https://github.com/refinedev/refine/commit/b094b50c519191112564a1080f5c2c8a9ae57130), [`096336a33a`](https://github.com/refinedev/refine/commit/096336a33afc07fafa40fb45a731f8f9fe8bdd9f), [`63e39ed312`](https://github.com/refinedev/refine/commit/63e39ed3127c29fa044f29c69299f46d563636ff), [`4b4d34208c`](https://github.com/refinedev/refine/commit/4b4d34208c44297c60c651e293765b4ab3b6d30a), [`24d81ca854`](https://github.com/refinedev/refine/commit/24d81ca8546997627145f5b1c35951a58db1dbc5), [`1bb7d30888`](https://github.com/refinedev/refine/commit/1bb7d3088837584b19c4faba41a91817d910d493), [`10570ec06c`](https://github.com/refinedev/refine/commit/10570ec06c4c7daf0654a6ef76a99f6445628c60), [`8c50a6bd83`](https://github.com/refinedev/refine/commit/8c50a6bd83f677f4b172a04fc5ad53b50fd476cb), [`71148278cb`](https://github.com/refinedev/refine/commit/71148278cbec29650d30208522b7045d4220ded9)]:
+    -   @refinedev/chakra-ui@2.27.3
+    -   @refinedev/mantine@2.29.3
+    -   @refinedev/mui@5.14.3
+    -   @refinedev/inferencer@4.5.18
+    -   @refinedev/core@4.47.0
+    -   @refinedev/strapi-v4@6.0.2
+    -   @refinedev/simple-rest@5.0.2
+    -   @refinedev/hasura@6.5.0
+    -   @refinedev/antd@5.37.3
+    -   @refinedev/nestjsx-crud@5.0.2
+    -   @refinedev/supabase@5.7.6
+
 ## 0.3.6
 
 ### Patch Changes
