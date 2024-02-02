@@ -1086,7 +1086,7 @@ File structure should similar to this:
 │   ├── posts
 │   │   ├── page.tsx
 │   │   └── layout.tsx
-│   ├── posts
+│   ├── login
 │   │   ├── page.tsx
 │   │   └── layout.tsx
 │   ├── layout.tsx
@@ -1098,8 +1098,8 @@ File structure should similar to this:
 In the example above we have three layouts.
 
 - app/layout.tsx - The default layout and wraps all the pages.
-- app/posts/layout.tsx - The layout for the posts resource.
-- app/categories/layout.tsx - The layout for the categories resource.
+- app/posts/layout.tsx - The layout for the posts page.
+- app/login/layout.tsx - The layout for the login page.
 
 To learn more about this, you can check the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts).
 
