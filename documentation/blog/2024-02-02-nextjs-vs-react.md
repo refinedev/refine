@@ -256,15 +256,17 @@ The most popular choice for implementing routing from scratch in React applicati
 For example, routes are declared using the **`<Route />`** component. And navigation is typically handled by the **`<Link />`** or **`<NavLink />`** components.
 
 ```tsx
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <div>
+      <>
         <Link to="/our-team">Our Team</Link>
-        <Route path="/our-team" component={OurTeam} />
-      </div>
+        <Routes>
+          <Route path="/our-team" element={<OurTeam />} />
+        </Routes>
+      </>
     </Router>
   );
 }
@@ -279,15 +281,17 @@ function OurTeam() {
 With React Router, dynamic routes are achieved using the **`:parameter`** syntax. For instance, to create a dynamic route for team members, you'd use a path like **`/team/:memberId`**.
 
 ```tsx
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <div>
+      <>
         <Link to="/team/jane-doe">Jane Doe's Profile</Link>
-        <Route path="/team/:memberId" component={TeamMember} />
-      </div>
+        <Routes>
+          <Route path="/team/:memberId" element={<TeamMember />} />
+        </Routes>
+      </>
     </Router>
   );
 }
