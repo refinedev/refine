@@ -6,7 +6,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev --port 3001",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "build": "refine build",
     "start:prod": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
