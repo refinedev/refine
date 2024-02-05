@@ -6,7 +6,7 @@ import { Sandpack, AddLinksToHeader, AddShowAndEditButtonsToListProducts } from 
 
 <Sandpack>
 
-Now we've updated our components to benefit from the parameter inference of Refine. In this step, we'll be learning about Refine's navigation helpers and how to use them in our app.
+Now we've set up our routes and resources. In this step, we'll be learning about Refine's navigation helpers and how to use them in our app.
 
 :::tip
 
@@ -81,6 +81,7 @@ export const ListProducts = () => {
     sorters,
     setSorters,
   } = useTable({
+    resource: "protected-products",
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
@@ -154,6 +155,6 @@ Anchors and any additional method of navigation your routing library provides ca
 
 :::
 
-Now we've learned about the navigating between pages with Refine's `useNavigation` hook. In the next step, we'll be learning about how to handle redirects in our app.
+Now we've learned about the navigating between pages with Refine's `useNavigation` hook. In the next step, we'll be updating our components to benefit from the parameter inference of Refine.
 
 </Sandpack>

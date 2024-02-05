@@ -410,6 +410,152 @@ export const authProvider: AuthProvider = {
 };
 `.trim();
 
+const ShowProductTsx = /* tsx */ `
+import { useOne } from "@refinedev/core";
+
+export const ShowProduct = () => {
+    const { data, isLoading } = useOne({ resource: "products", id: 123 });
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    return <div>Product name: {data?.data.name}</div>;
+};
+`.trim();
+
+const CreateProductTsx = /* tsx */ `
+import { useForm, useSelect } from "@refinedev/core";
+
+export const CreateProduct = () => {
+  const { onFinish, mutationResult } = useForm({
+    action: "create",
+    resource: "products",
+  });
+
+  const { options } = useSelect({
+    resource: "categories",
+    // optionLabel: "title", // Default value is "title" so we don't need to provide it.
+    // optionValue: "id", // Default value is "id" so we don't need to provide it.
+  });
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Using FormData to get the form values and convert it to an object.
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    // Calling onFinish to submit with the data we've collected from the form.
+    onFinish({
+      ...data,
+      price: Number(data.price).toFixed(2),
+      category: { id: Number(data.category) },
+    });
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label htmlFor="name">Name</label>
+      <input type="text" id="name" name="name" />
+
+      <label htmlFor="description">Description</label>
+      <textarea id="description" name="description" />
+
+      <label htmlFor="price">Price</label>
+      <input type="number" id="price" name="price" step=".01" />
+
+      <label htmlFor="material">Material</label>
+      <input type="text" id="material" name="material" />
+
+      <label htmlFor="category">Category</label>
+      <select id="category" name="category">
+        {options?.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+`.trim();
+
+const EditProductTsx = /* tsx */ `
+import { useForm, useSelect } from "@refinedev/core";
+
+export const EditProduct = () => {
+  const { onFinish, mutationResult, queryResult } = useForm({
+    action: "edit",
+    resource: "products",
+    id: "123"
+  });
+
+  const record = queryResult.data?.data;
+
+  const { options } = useSelect({
+    resource: "categories",
+  });
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Using FormData to get the form values and convert it to an object.
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    // Calling onFinish to submit with the data we've collected from the form.
+    onFinish({
+      ...data,
+      price: Number(data.price).toFixed(2),
+      category: { id: Number(data.category) },
+    });
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label htmlFor="name">Name</label>
+      <input type="text" id="name" name="name" defaultValue={record?.name} />
+
+      <label htmlFor="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        defaultValue={record?.description}
+      />
+
+      <label htmlFor="price">Price</label>
+      <input
+        type="text"
+        id="price"
+        name="price"
+        pattern="\\d*\.?\\d*"
+        defaultValue={record?.price}
+      />
+
+      <label htmlFor="material">Material</label>
+      <input
+        type="text"
+        id="material"
+        name="material"
+        defaultValue={record?.material}
+      />
+
+      <label htmlFor="category">Category</label>
+      <select id="category" name="category">
+        {options?.map((option) => (
+          <option key={option.value} value={option.value}
+            selected={record?.category.id == option.value}
+            >
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+`.trim();
+
 const ListProductsTsx = /* tsx */ `
 import { useTable, useMany } from "@refinedev/core";
 
@@ -422,6 +568,7 @@ export const ListProducts = () => {
     sorters,
     setSorters,
   } = useTable({
+    resource: "protected-products",
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
@@ -528,145 +675,6 @@ export const ListProducts = () => {
         </button>
       </div>
     </div>
-  );
-};
-`.trim();
-
-const ShowProductTsx = /* tsx */ `
-import { useShow } from "@refinedev/core";
-
-export const ShowProduct = () => {
-    const { queryResult: { data, isLoading } } = useShow();
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return <div>Product name: {data?.data.name}</div>;
-};
-`.trim();
-
-const CreateProductTsx = /* tsx */ `
-import { useForm, useSelect } from "@refinedev/core";
-
-export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm();
-
-  const { options } = useSelect({
-    resource: "categories",
-    // optionLabel: "title", // Default value is "title" so we don't need to provide it.
-    // optionValue: "id", // Default value is "id" so we don't need to provide it.
-  });
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Using FormData to get the form values and convert it to an object.
-    const data = Object.fromEntries(new FormData(event.target).entries());
-    // Calling onFinish to submit with the data we've collected from the form.
-    onFinish({
-      ...data,
-      price: Number(data.price).toFixed(2),
-      category: { id: Number(data.category) },
-    });
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" />
-
-      <label htmlFor="description">Description</label>
-      <textarea id="description" name="description" />
-
-      <label htmlFor="price">Price</label>
-      <input type="number" id="price" name="price" step=".01" />
-
-      <label htmlFor="material">Material</label>
-      <input type="text" id="material" name="material" />
-
-      <label htmlFor="category">Category</label>
-      <select id="category" name="category">
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-`.trim();
-
-const EditProductTsx = /* tsx */ `
-import { useForm, useSelect } from "@refinedev/core";
-
-export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm();
-
-  const record = queryResult.data?.data;
-
-  const { options } = useSelect({
-    resource: "categories",
-  });
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Using FormData to get the form values and convert it to an object.
-    const data = Object.fromEntries(new FormData(event.target).entries());
-    // Calling onFinish to submit with the data we've collected from the form.
-    onFinish({
-      ...data,
-      price: Number(data.price).toFixed(2),
-      category: { id: Number(data.category) },
-    });
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" defaultValue={record?.name} />
-
-      <label htmlFor="description">Description</label>
-      <textarea
-        id="description"
-        name="description"
-        defaultValue={record?.description}
-      />
-
-      <label htmlFor="price">Price</label>
-      <input
-        type="text"
-        id="price"
-        name="price"
-        pattern="\\d*\.?\\d*"
-        defaultValue={record?.price}
-      />
-
-      <label htmlFor="material">Material</label>
-      <input
-        type="text"
-        id="material"
-        name="material"
-        defaultValue={record?.material}
-      />
-
-      <label htmlFor="category">Category</label>
-      <select id="category" name="category">
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}
-            selected={record?.category.id == option.value}
-            >
-            {option.label}
-          </option>
-        ))}
-      </select>
-
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
-      <button type="submit">Submit</button>
-    </form>
   );
 };
 `.trim();
@@ -791,6 +799,7 @@ export const ListProducts = () => {
     sorters,
     setSorters,
   } = useTable({
+    resource: "protected-products",
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });

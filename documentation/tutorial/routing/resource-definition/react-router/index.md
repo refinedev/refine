@@ -204,6 +204,6 @@ export default function App(): JSX.Element {
 
 Now we've defined our routes and resources, we're ready to start refactoring our components to benefit from the features provided by Refine.
 
-In the next step, we'll be updating our components to benefit from the parameter inference of Refine.
+In the next step, we'll be learning about the navigation helpers of Refine and how to use them.
 
 </Sandpack>

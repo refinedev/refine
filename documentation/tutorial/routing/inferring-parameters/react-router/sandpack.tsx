@@ -557,7 +557,9 @@ export const EditProduct = () => {
 `.trim();
 
 const ListProductsTsx = /* tsx */ `
-import { useTable, useMany } from "@refinedev/core";
+import { useTable, useMany, useNavigation } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const ListProducts = () => {
   const {
@@ -572,6 +574,8 @@ export const ListProducts = () => {
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
+
+  const { showUrl, editUrl } = useNavigation();
 
   const { data: categories } = useMany({
     resource: "categories",
@@ -641,6 +645,9 @@ export const ListProducts = () => {
             <th onClick={() => onSort("price")}>
               Price {indicator[getSorter("price")]}
             </th>
+            <th>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -657,6 +664,14 @@ export const ListProducts = () => {
               </td>
               <td>{product.material}</td>
               <td>{product.price}</td>
+              <td>
+                <Link to={showUrl("protected-products", product.id)}>
+                  Show
+                </Link>
+                <Link to={editUrl("protected-products", product.id)}>
+                  Edit
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -727,11 +742,17 @@ export const Login = () => {
 
 const HeaderTsx = /* tsx */ `
 import React from "react";
-import { useLogout, useGetIdentity } from "@refinedev/core";
+import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const { mutate, isLoading } = useLogout();
   const { data: identity } = useGetIdentity();
+
+  // You can also use methods like list or create to trigger navigation.
+  // We're using url methods to provide more semantically correct html.
+  const { listUrl, createUrl } = useNavigation();
 
   return (
     <>
@@ -739,11 +760,11 @@ export const Header = () => {
         <span>Welcome, </span>
         <span>{identity?.name ?? ""}</span>
       </h2>
-      <button
-        type="button"
-        disabled={isLoading}
-        onClick={mutate}
-      >
+      <Link to={listUrl("protected-products")}>List Products</Link>
+      {" "}
+      <Link to={createUrl("protected-products")}>Create Product</Link>
+      {" "}
+      <button type="button" disabled={isLoading} onClick={mutate}>
         Logout
       </button>
     </>
@@ -754,7 +775,9 @@ export const Header = () => {
 // updates
 
 const ListProductsWithInference = /* tsx */ `
-import { useTable, useMany } from "@refinedev/core";
+import { useTable, useMany, useNavigation } from "@refinedev/core";
+
+import { Link } from "react-router-dom";
 
 export const ListProducts = () => {
   const {
@@ -768,6 +791,8 @@ export const ListProducts = () => {
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
+
+  const { showUrl, editUrl } = useNavigation();
 
   const { data: categories } = useMany({
     resource: "categories",
@@ -837,6 +862,9 @@ export const ListProducts = () => {
             <th onClick={() => onSort("price")}>
               Price {indicator[getSorter("price")]}
             </th>
+            <th>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -853,6 +881,14 @@ export const ListProducts = () => {
               </td>
               <td>{product.material}</td>
               <td>{product.price}</td>
+              <td>
+                <Link to={showUrl("protected-products", product.id)}>
+                  Show
+                </Link>
+                <Link to={editUrl("protected-products", product.id)}>
+                  Edit
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

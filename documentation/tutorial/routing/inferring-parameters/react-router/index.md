@@ -6,7 +6,7 @@ import { Sandpack, AddInferenceToEditProduct, AddInferenceToCreateProduct, AddIn
 
 <Sandpack>
 
-Now we've set up our routes and resources, we'll be updating components to benefit from the parameter inference of Refine.
+Now we've learned about the `useNavigation` hook and how to handle navigation with Refine. In this step, we'll be updating components to benefit from the parameter inference of Refine.
 
 Refine when integrated with a router provider, infers the parameters from the route definitions and uses them in its hooks and components. This way, you don't need to pass the `resource`, `id` and `action` parameters to the hooks and components manually.
 
@@ -128,6 +128,6 @@ export const CreateProduct = () => {
 
 Now you should be able to see that our components are working as expected. We've successfully updated our components to benefit from the parameter inference of Refine.
 
-In the next step, we'll be learning about the navigation helpers of Refine and how to use them.
+In the next step, we'll be learning about how to handle redirects in our app.
 
 </Sandpack>

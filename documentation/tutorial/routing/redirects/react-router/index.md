@@ -6,7 +6,7 @@ import { Sandpack, AddRedirectsToAuthProvider, AddCustomRedirectToCreate, AddCus
 
 <Sandpack>
 
-Now we've learned about the `useNavigation` hook and how to handle navigation with Refine. In this step, we'll be learning about the redirects and how to benefit from them in our forms and auth provider.
+Now we've updated our components to benefit from the parameter inference of Refine. In this step, we'll be learning about the redirects and how to benefit from them in our forms and auth provider.
 
 Refine can manage redirects automatically for you. After a successful form submission, Refine will try to redirect the user to the appropriate page. This is the list page of the target resource by default. However, you can customize this behavior by providing a `redirect` parameter to the `useForm` hook.
 
