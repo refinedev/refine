@@ -413,8 +413,8 @@ const SandpackNextJS = (props: Props) => {
 
     return (
         <SandpackBase
-            {...props}
             {...extraProps}
+            {...props}
             template={isDevelop ? "nextjs" : "react-ts"}
         />
     );

@@ -2,6 +2,8 @@
 title: Next.js
 ---
 
+import { NextJSAppProviderServerClient } from "./provider-client-server";
+
 Refine provides router bindings and utilities for [Next.js](https://nextjs.org/). This package will provide easy integration between Refine and **Next.js** for both existing projects and new projects without giving up the benefits of **Next.js**.
 
 <InstallPackagesCommand args="@refinedev/nextjs-router"/>
@@ -68,6 +70,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 ```
+
+> 🚨 Refer to the [FAQ section](#how-can-i-use-my-providers-in-the-both-server-and-client-side) for instructions on using providers in both client and server components.
 
 :::simple Good to know
 
@@ -634,53 +638,21 @@ On the client-side, you can wrap your pages with [`Authenticated`](/docs/authent
 
 ### Server Side
 
-#### `app` directory
-
-Due to limitations of the Next.js app router, It's not possible to invoke a client function from the server. Refine's `authProvider` need to be client function to work with react context. Because of that, you can't use `authProvider` in the server components.
-
-To check authentication in the server component, we can check cookies to see if the user is authenticated or not.
-
-```tsx title="app/blog-posts/layout.ts"
-import { MyLayout } from "@components/my-layout";
-import { redirect } from "next/navigation";
-
-export default async function Layout({ children }: React.PropsWithChildren) {
-  const data = await getData();
-
-  if (!data.authenticated) {
-    return redirect("/login");
-  }
-
-  return <MyLayout>{children}</MyLayout>;
-}
-
-async function getData() {
-  const cookieStore = cookies();
-  const auth = cookieStore.get("auth");
-
-  return {
-    authenticated = !!auth,
-  };
-}
-```
-
-#### `pages` directory
-
-On the server-side of pages router, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
-
 :::simple Implementation Tips
 
 For page level authentication, server-side approach is recommended.
 
 :::
 
-First, let's install the `nookies` packages in our project.
+First let's create our [AuthProvider](/docs/authentication/auth-provider)
+
+let's install the `nookies` packages in our project.
 
 <InstallPackagesCommand args="@refinedev/nookies"/>
 
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
-```tsx title="app/authProvider.ts"
+```tsx title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
 // highlight-start
 import nookies from "nookies";
@@ -780,12 +752,60 @@ export const authProvider: AuthProvider = {
 };
 ```
 
-Tadaa! that's all! 🎉
+After creating our `AuthProvider`, we can call it from server-side to check if the user is authenticated or not.
 
-Now, we can check the authentication in loaders of our routes.
+#### `app` directory
+
+You can use your authProvider's check function inside your server components. To do this, you can use normal async function and use it in your server component.
+
+> 🚨 Refer to the [FAQ section](#how-can-i-use-my-providers-in-the-both-server-and-client-side) for instructions on using providers in both client and server components.
+
+```tsx title="app/blog-posts/layout.ts"
+import { authProvider } from "@providers/auth-provider";
+import { redirect } from "next/navigation";
+
+export default async function IndexPage() {
+  const { hasAuth, hasPermission, data } = await getData();
+
+  if (!hasAuth) {
+    return redirect("/login");
+  }
+
+  return (
+    <div>
+      <h1>Posts</h1>
+      <ul>
+        {data?.map((post: any) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+async function getData() {
+  const hasAuth = await authProvider.check();
+
+  let data = null;
+  if (hasAuth && hasPermission) {
+    data = await dataProvider.getList({
+      resource: "posts",
+    });
+  }
+
+  return {
+    hasAuth,
+    data,
+  };
+}
+```
+
+#### `pages` directory
+
+On the server-side of pages router, you can use your `authProvider`'s `check` function inside server side functions (`getServerSideProps`) to redirect unauthenticated users to other pages like login...
 
 ```tsx title="pages/posts/index.tsx"
-import { authProvider } from "src/authProvider";
+import { authProvider } from "@providers/auth-provider";
 
 export const getServerSideProps = async (context) => {
   // We've handled the SSR case in our `check` function by sending the `context` as parameter.
@@ -870,7 +890,38 @@ export const MyPage = () => (
 
 You can use your `accessControlProvider`'s `can` function inside your server components. To do this, you can use normal async function and use it in your server component.
 
-To learn more about how to fetch data in server components, you can check the data fetching documentation of Next.js.
+```tsx title="app/posts/page.tsx"
+import { accessControlProvider } from "src/accessControlProvider";
+
+export default async function PostList() {
+  const { can } = await getData();
+
+  if (!can) {
+    return <h1>Unauthorized</h1>;
+  }
+
+  return (
+    <div>
+      <h1>Posts</h1>
+    </div>
+  );
+}
+
+async function getData() {
+  const { can } = await accessControlProvider.can({
+    resource: "posts",
+    action: "list",
+  });
+
+  return {
+    can,
+  };
+}
+```
+
+> 🚨 Refer to the [FAQ section](#how-can-i-use-my-providers-in-the-both-server-and-client-side) for instructions on using providers in both client and server components.
+
+To learn more about how to fetch data in server components, you can check the [data fetching documentation of Next.js](https://nextjs.org/docs/pages/building-your-application/data-fetching).
 
 #### `pages` directory
 
@@ -923,98 +974,9 @@ In some cases, you may want to use your providers on both the server and client 
 
 Since Refine heavily uses React context and React state, It's needed to be a client component, and we can't pass functions into the Refine component unless we mark them as `client` functions with `"use client";` directive. After marking them as `client` functions, you can't use them on the server side.
 
-To solve this problem, you can create a separate file for your providers and use them in your server components and also pass them to your Refine components.
+To solve this problem, you can create a separate file for your providers and mark them as `client` or `server` functions. Then, you can use the appropriate provider in your server and client components.
 
-```tsx title="src/providers/data-provider.client.ts"
-"use client";
-
-import dataProviderSimpleRest from "@refinedev/simple-rest";
-import { API_URL } from "./config";
-
-export const dataProviderClient = dataProviderSimpleRest(API_URL);
-```
-
-```tsx title="src/providers/data-provider.server.ts"
-import dataProviderSimpleRest from "@refinedev/simple-rest";
-import { API_URL } from "./config";
-
-export const dataProviderServer = dataProviderSimpleRest(API_URL);
-```
-
-After creating your providers, you can use `dataProviderServer` in your server components and, `dataProviderClient` in your client components.
-
-<h5>Server component</h5>
-
-```tsx title="app/posts/page.tsx"
-import dataProvider from "@refinedev/simple-rest";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export default async function ProductList() {
-  const { posts, total } = await getData();
-
-  return (
-    <div>
-      <h1>Posts ({total})</h1>
-      <hr />
-      {posts.map((post) => (
-        <div key={post.id}>
-          <h1>{post.title}</h1>
-          <p>{post.body}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-async function getData() {
-  const response = await dataProvider(API_URL).getList({
-    resource: "posts",
-    pagination: { current: 1, pageSize: 10 },
-  });
-
-  return {
-    posts: response.data,
-    total: response.total,
-  };
-}
-```
-
-<h5>Client component</h5>
-
-```tsx title="app/layout.tsx"
-import React, { Suspense } from "react";
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
-import { dataProviderClient } from "@providers/data-provider/data-provider.client";
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body>
-        <Suspense>
-          <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProviderClient}
-            resources={[
-              {
-                name: "products",
-                list: "/",
-              },
-            ]}
-          >
-            {children}
-          </Refine>
-        </Suspense>
-      </body>
-    </html>
-  );
-}
-```
+<NextJSAppProviderServerClient/>
 
 You can learn more about this on the [Next.js documentation](https://nextjs.org/docs/app/building-your-application/data-fetching).
 
