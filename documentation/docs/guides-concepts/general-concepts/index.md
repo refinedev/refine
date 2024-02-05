@@ -83,7 +83,7 @@ Or you may prefer either `next-i18next` or `react-i18next` for i18n, we have a s
 
 ## Providers
 
-### Data Provider
+### Data Provider <GuideBadge id="guides-concepts/data-fetching" />
 
 The Data Provider is the bridge between your frontend and your backend data source. It is responsible for handling all data-related operations such as fetching, caching, creating, updating, and deleting records.
 
@@ -105,8 +105,6 @@ const myDataProvider: DataProvider = {
 
 > Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/data/data-provider) page for more information.
 
-> See the [Data Fetching](/docs/guides-concepts/data-fetching/) guide for more information.
-
 #### Hooks
 
 You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetch data in your components.
@@ -125,9 +123,7 @@ export const MyPage = () => {
 };
 ```
 
-> See the [Data Fetching](/docs/guides-concepts/data-fetching) guide for more information.
-
-### Authentication Provider
+### Authentication Provider <GuideBadge id="guides-concepts/authentication" />
 
 The Authentication Provider centralizes the authentication and authorization processes in Refine applications.
 
@@ -159,8 +155,6 @@ export const authProvider: AuthProvider = {
   getIdentity: async (params) => ({}),
 };
 ```
-
-> See the [Authentication](/docs/guides-concepts/authentication/) guide for more information.
 
 #### Components
 
@@ -207,7 +201,7 @@ You can also use `AuthPage` component of these integrations for `Login`, `Regist
 
 See the [Auth Pages](#auth-pages) section below for live examples.
 
-### Access Control Provider
+### Access Control Provider <GuideBadge id="guides-concepts/authorization" />
 
 The Access Control Provider manages what users can access or perform within the application based on their permissions.
 
@@ -230,8 +224,6 @@ export const App = () => {
   return <Refine accessControlProvider={myAccessControlProvider}>{/* ... */}</Refine>;
 };
 ```
-
-> See the [Authorization](/docs/guides-concepts/authorization/) guide for more information.
 
 #### Components
 
@@ -304,15 +296,13 @@ export const MyPage = () => {
 
 This applies to all buttons like `CreateButton`, `EditButton`, `ShowButton`, `ListButton`.
 
-### Notification Provider
+### Notification Provider <GuideBadge id="guides-concepts/notifications" />
 
 Refine can automatically show notifications for CRUD operations and errors.
 
 For example, after creating, updating, or deleting a record for `products` resource, or when an error occurs on form submission.
 
 Refine has out-of-the-box notification providers for popular UI libraries like **Ant Design**, **Material UI**, **Chakra UI**, and **Mantine**.
-
-> See the [Notifications](/docs/notification/notification-provider) guide for more information.
 
 #### Hooks
 
@@ -385,7 +375,7 @@ export const MyPage = () => {
 };
 ```
 
-### I18n Provider
+### I18n Provider <GuideBadge id="guides-concepts/i18n" />
 
 I18n provider centralizes localization process in Refine applications.
 
@@ -438,9 +428,7 @@ When provided, our UI Integrations work out-of-the-box with I18n Provider.
 
 For example, it will automatically translate menu items, button texts, table columns, page titles, and more.
 
-> See the [Internationalization](/docs/i18n/i18n-provider) guide for more information.
-
-### Router Provider
+### Router Provider <GuideBadge id="guides-concepts/routing" />
 
 Router provider helps Refine understand the relationship between resources and routes. Enables navigation features like breadcrumbs, automatic redirections after CRUD operations, rendering menu items, inferring hook parameters, and more.
 
@@ -450,8 +438,6 @@ We have built-in router integrations for the following packages:
 - Next.js
 - Remix
 - Expo Router (React Native)
-
-> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
 #### Components
 
@@ -474,8 +460,6 @@ export const ProductsListPage = () => {
   );
 };
 ```
-
-> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
 
 #### Hooks
 
@@ -503,9 +487,7 @@ export const ShowPage = () => {
 
 Another example is `useTable` hook. While it can infer **resource**, **pagination**, **filters**, and **sorters** parameters from the current route, it can also update the current route if any of these parameters changes.
 
-> See the [Routing](/docs/guides-concepts/routing/) guide for more information.
-
-### Audit Log Provider
+### Audit Log Provider <GuideBadge id="guides-concepts/audit-logs" />
 
 Audit Log Provider centralizes retrieving audit logs in Refine applications.
 
@@ -533,8 +515,6 @@ export const App = () => {
 };
 ```
 
-> See the [Audit Logs](/docs/guides-concepts/audit-logs/) guide for more information.
-
 #### Hooks
 
 You can use `useLogList` hook to retrieve audit logs for your resources in your components. It uses `AuditLogProvider`'s `get` method under the hood.
@@ -547,7 +527,7 @@ const productsAuditLogResults = useLogList({
 });
 ```
 
-## UI Integrations
+## UI Integrations <GuideBadge id="guides-concepts/ui-libraries" />
 
 While Refine itself is headless, it offers UI Integrations for popular UI libraries:
 
