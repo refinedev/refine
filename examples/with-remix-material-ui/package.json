@@ -15,7 +15,7 @@
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
-    "@refinedev/inferencer": "^4.5.18",
+    "@refinedev/inferencer": "^4.5.19",
     "@refinedev/kbar": "^1.3.5",
     "@refinedev/core": "^4.47.0",
     "@refinedev/cli": "^2.16.23",

@@ -14,7 +14,7 @@
     "@refinedev/react-hook-form": "^4.8.13",
     "@mui/icons-material": "^5.8.3",
     "@refinedev/react-router-v6": "^4.5.5",
-    "@refinedev/inferencer": "^4.5.18",
+    "@refinedev/inferencer": "^4.5.19",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.85",
