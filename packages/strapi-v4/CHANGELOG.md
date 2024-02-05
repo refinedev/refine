@@ -1,5 +1,11 @@
 # @refinedev/strapi-v4
 
+## 6.0.2
+
+### Patch Changes
+
+-   [#5576](https://github.com/refinedev/refine/pull/5576) [`096336a33a`](https://github.com/refinedev/refine/commit/096336a33afc07fafa40fb45a731f8f9fe8bdd9f) Thanks [@billy-wong-tech](https://github.com/billy-wong-tech)! - fix(strapi-v4): pass meta.publicationState query params to getOne method.
+
 ## 6.0.1
 
 ### Patch Changes
