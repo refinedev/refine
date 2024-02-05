@@ -101,18 +101,6 @@ const App: React.FC = () => {
 ```
 
 </TabItem>
-<TabItem value="react-location">
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-import routerProvider from "@pankod/refine-react-location";
-
-const App: React.FC = () => {
-  return <Refine legacyRouterProvider={routerProvider} />;
-};
-```
-
-</TabItem>
 <TabItem value="nextjs">
 
 ```tsx title="pages/_app.tsx"
