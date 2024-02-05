@@ -15,7 +15,7 @@
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.119.0",
     "@refinedev/react-router-v6": "^4.5.5",
-    "@refinedev/inferencer": "^4.5.18",
+    "@refinedev/inferencer": "^4.5.19",
     "@emotion/react": "^11.8.2",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",

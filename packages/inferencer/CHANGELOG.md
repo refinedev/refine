@@ -1,5 +1,13 @@
 # @refinedev/mantine
 
+## 4.5.19
+
+### Patch Changes
+
+-   [#5592](https://github.com/refinedev/refine/pull/5592) [`b10a66b58d`](https://github.com/refinedev/refine/commit/b10a66b58de3560dabc6ec6856808dd3b354c47b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: add `graphql` package as dependency.
+
+    New projects created with `create refine-app` is failing to start due to missing `graphql` package.
+
 ## 4.5.18
 
 ### Patch Changes
