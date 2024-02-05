@@ -12,7 +12,13 @@ import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
 import "@refinedev/antd/dist/reset.css";
 
-export const RefineContext = (props: React.PropsWithChildren) => {
+type RefineContextProps = {
+    defaultMode?: string;
+};
+
+export const RefineContext = (
+    props: React.PropsWithChildren<RefineContextProps>,
+) => {
     return (
         <SessionProvider>
             <App {...props} />
@@ -20,7 +26,11 @@ export const RefineContext = (props: React.PropsWithChildren) => {
     );
 };
 
-const App = (props: React.PropsWithChildren) => {
+type AppProps = {
+    defaultMode?: string;
+};
+
+const App = ({ children, defaultMode }: React.PropsWithChildren<AppProps>) => {
     const { data, status } = useSession();
     const to = usePathname();
 
@@ -29,7 +39,7 @@ const App = (props: React.PropsWithChildren) => {
     }
 
     const authProvider: AuthBindings = {
-        login: async ({ providerName, email, password }) => {
+        login: async ({ providerName, email, password }: any) => {
             if (providerName) {
                 signIn(providerName, {
                     callbackUrl: to ? to.toString() : "/",
@@ -78,8 +88,7 @@ const App = (props: React.PropsWithChildren) => {
                 success: true,
             };
         },
-        onError: async (error) => {
-            console.log("onError", error);
+        onError: async (error: any) => {
             if (error.response?.status === 401) {
                 return {
                     logout: true,
@@ -122,7 +131,7 @@ const App = (props: React.PropsWithChildren) => {
         <>
             <GitHubBanner />
             <RefineKbarProvider>
-                <ColorModeContextProvider>
+                <ColorModeContextProvider defaultMode={defaultMode}>
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider}
@@ -156,7 +165,7 @@ const App = (props: React.PropsWithChildren) => {
                             useNewQueryKeys: true,
                         }}
                     >
-                        {props.children}
+                        {children}
                         <RefineKbar />
                     </Refine>
                 </ColorModeContextProvider>

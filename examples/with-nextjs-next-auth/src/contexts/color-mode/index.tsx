@@ -4,66 +4,71 @@ import { RefineThemes } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider, theme } from "antd";
 import Cookies from "js-cookie";
 import React, {
-  PropsWithChildren,
-  createContext,
-  useEffect,
-  useState,
+    PropsWithChildren,
+    createContext,
+    useEffect,
+    useState,
 } from "react";
 
 type ColorModeContextType = {
-  mode: string;
-  setMode: (mode: string) => void;
+    mode: string;
+    setMode: (mode: string) => void;
 };
 
 export const ColorModeContext = createContext<ColorModeContextType>(
-  {} as ColorModeContextType
+    {} as ColorModeContextType,
 );
 
-export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
-  children,
-}) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [mode, setMode] = useState("light");
+type ColorModeContextProviderProps = {
+    defaultMode?: string;
+};
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+export const ColorModeContextProvider: React.FC<
+    PropsWithChildren<ColorModeContextProviderProps>
+> = ({ children, defaultMode }) => {
+    const [isMounted, setIsMounted] = useState(false);
+    const [mode, setMode] = useState(defaultMode || "light");
 
-  useEffect(() => {
-    if (isMounted) {
-      const theme = Cookies.get("theme") || "light";
-      setMode(theme);
-    }
-  }, [isMounted]);
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
-  const setColorMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-      Cookies.set("theme", "dark");
-    } else {
-      setMode("light");
-      Cookies.set("theme", "light");
-    }
-  };
+    useEffect(() => {
+        if (isMounted) {
+            const theme = Cookies.get("theme") || "light";
+            setMode(theme);
+        }
+    }, [isMounted]);
 
-  const { darkAlgorithm, defaultAlgorithm } = theme;
+    const setColorMode = () => {
+        if (mode === "light") {
+            setMode("dark");
+            Cookies.set("theme", "dark");
+        } else {
+            setMode("light");
+            Cookies.set("theme", "light");
+        }
+    };
 
-  return (
-    <ColorModeContext.Provider
-      value={{
-        setMode: setColorMode,
-        mode,
-      }}
-    >
-      <ConfigProvider
-        // you can change the theme colors here. example: ...RefineThemes.Magenta,
-        theme={{
-          ...RefineThemes.Blue,
-          algorithm: mode === "light" ? defaultAlgorithm : darkAlgorithm,
-        }}
-      >
-        <AntdApp>{children}</AntdApp>
-      </ConfigProvider>
-    </ColorModeContext.Provider>
-  );
+    const { darkAlgorithm, defaultAlgorithm } = theme;
+
+    return (
+        <ColorModeContext.Provider
+            value={{
+                setMode: setColorMode,
+                mode,
+            }}
+        >
+            <ConfigProvider
+                // you can change the theme colors here. example: ...RefineThemes.Magenta,
+                theme={{
+                    ...RefineThemes.Blue,
+                    algorithm:
+                        mode === "light" ? defaultAlgorithm : darkAlgorithm,
+                }}
+            >
+                <AntdApp>{children}</AntdApp>
+            </ConfigProvider>
+        </ColorModeContext.Provider>
+    );
 };

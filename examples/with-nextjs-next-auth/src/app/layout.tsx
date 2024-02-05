@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { RefineContext } from "./_refine_context";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
     title: "Refine",
@@ -16,12 +17,17 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const cookieStore = cookies();
+    const theme = cookieStore.get("theme");
+
     return (
         <html lang="en">
             <body>
                 <AntdRegistry>
                     <Suspense>
-                        <RefineContext>{children}</RefineContext>
+                        <RefineContext defaultMode={theme?.value}>
+                            {children}
+                        </RefineContext>
                     </Suspense>
                 </AntdRegistry>
             </body>
