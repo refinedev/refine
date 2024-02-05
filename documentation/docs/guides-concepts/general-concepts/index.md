@@ -6,15 +6,11 @@ Refine is an extensible framework designed for rapidly building web applications
 
 ## Headless Concept
 
-While Refine offers various integrations for different routers, UI libraries, authentication, authorization, notification providers, and more, at it's core, all these integrations are built on top of `@refinedev/core` package.
+Instead of being limited to a set of pre-styled components, **Refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
 
-The `@refinedev/core` package is designed with **library agnostic** principles, acts as a central contract for all other Refine integrations by providing **unified interfaces**, **hooks**, and **components**.
+It means, **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
-Integrations such as `@refinedev/nextjs`, or `@refinedev/mui`, are simple wrappers between the underlying libraries and `@refinedev/core`.
-
-This makes it straightforward to mix & match different frameworks, libraries, and integrations according to your needs.
-
-If you want to redirect users to a certain page after a form submission, show a notification after a successful mutation, or redirect unauthenticated users to login page, you don't need to use different APIs for different libraries.
+Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
 
 ## Resource Concept
 
