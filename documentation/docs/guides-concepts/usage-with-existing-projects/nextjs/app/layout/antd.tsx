@@ -5,7 +5,6 @@ export function NextJSAppAntdLayout() {
   return (
     <Sandpack
       template="nextjs"
-      showNavigator
       showFiles
       dependencies={{
         "@refinedev/antd": "latest",
