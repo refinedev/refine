@@ -23,13 +23,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <AntdRegistry>
-                    <Suspense>
+                <Suspense>
+                    <AntdRegistry>
                         <RefineContext defaultMode={theme?.value}>
                             {children}
                         </RefineContext>
-                    </Suspense>
-                </AntdRegistry>
+                    </AntdRegistry>
+                </Suspense>
             </body>
         </html>
     );
