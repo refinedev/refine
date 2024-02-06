@@ -25,5 +25,4 @@ jobs:
         id: check_for_typos
         uses: crate-ci/typos@master
         with:
-          files: ./documentation/docs
           config: ./typos.toml
