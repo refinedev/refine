@@ -1,33 +1,14 @@
 import React from "react";
 
-/* @ts-expect-error `/internal` is not directly exported but required in this case */
-import { useDoc } from "@docusaurus/theme-common/internal";
-
 import { useLocation } from "@docusaurus/router";
-import { DocElement, tutorialData } from "../refine-theme/tutorial-utils";
-
-type Tutorial = {
-    label: string;
-    defaultParameters: Record<string, string>;
-    parameterOptions: Record<
-        string,
-        Array<{
-            label: string;
-            value: string;
-        }>
-    >;
-    units: Array<{
-        title: string;
-        id: string;
-        items: Array<string>;
-    }>;
-};
+import { tutorialData } from "../refine-theme/tutorial-utils";
 
 type TutorialParameterContextType = {
     parameters?: Record<string, string>;
     options: Record<
         string,
-        Array<{ label: string; value: string }> | undefined
+        | Array<{ label: string; value: string; status?: "coming-soon" }>
+        | undefined
     >;
     settled: boolean;
     setParameters: (parameters: Record<string, string>) => void;
