@@ -74,7 +74,7 @@ When deploying Kubernetes, and due to the impact that deprecated or outdated ver
 These are as follows:
 
 - An upgrade to the newest, most stable versions of Docker Engine and Kubernetes would be a wise step in favor of your deployment. It is important to scrutinize the release notes and deprecation page to verify any changes that may apply to your set-up.
-- It is preferred to use explicit and sematic tagging because it is more reliable than using the default 'latest' tag. When the default 'latest' tag changes in the future, it will impede the overall consistency of the system.
+- It is preferred to use explicit and semantic tagging because it is more reliable than using the default 'latest' tag. When the default 'latest' tag changes in the future, it will impede the overall consistency of the system.
 - It is a good practice to induce a multistaged build process. This generally includes fewer layers and smaller images. Ultimately, this leads to optimized performance of your server, hence enhancing the efficiency of all deployments involved.
 - Lastly, and equally as importantly, try to pick an image base that remains persistently secure, manageable, and compatible across various platforms.
 
@@ -201,6 +201,6 @@ Moreover, CrashLoopBackOff guarantees that each component of code and all of its
 
 ## Conclusion
 
-This article has discussed the CrashLoopBackOff error in great detail. It is one of the common errors of Kubenetes and one of the complex ones as well. Complex to diagnose because the root cause can be one of the many. Taking advantage of advanced diagnostic tools provides better insights about container and pod behavior than basic diagnostic commands commonly seen in Kubernetes environments.
+This article has discussed the CrashLoopBackOff error in great detail. It is one of the common errors of Kubernetes and one of the complex ones as well. Complex to diagnose because the root cause can be one of the many. Taking advantage of advanced diagnostic tools provides better insights about container and pod behavior than basic diagnostic commands commonly seen in Kubernetes environments.
 
 Tools such as `kubectl logs` for detailed container log analysis, `kubectl exec` to execute commands inside containers, and `kubectl port-forward`, which connects local ports to pods are used. Adopting methods like container debugging with kubectl debug would offer a broader approach to resolving challenges experienced while deploying on Kubernetes.

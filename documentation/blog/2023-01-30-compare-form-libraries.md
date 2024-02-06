@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-30-compare-fo
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 Forms are a handy feature for collecting data from users. Unfortunately, creating, styling, and validating forms is not always straightforward, especially when using front-end frameworks such as React. Fortunately, packages such as [React Hook Form](https://react-hook-form.com/) and [Formik](https://formik.org/) exist to simplify working with forms in React and React frameworks.
@@ -55,20 +54,11 @@ export function Form() {
     <form onSubmit={handleSubmit(submitHandler)}>
       <p>
         <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          {...register("username", { required: true, minLength: 4 })}
-        />
+        <input type="text" id="username" {...register("username", { required: true, minLength: 4 })} />
       </p>
       <p>
         <label htmlFor="Password">Password</label>
-        <input
-          type="password"
-          id="password"
-          {...register("password", { required: true, minLength: 10})}
-          required
-        />
+        <input type="password" id="password" {...register("password", { required: true, minLength: 10 })} required />
       </p>
       <button> Submit </button>
     </form>
@@ -90,15 +80,12 @@ The example above is a basic illustration of React Hook Form. Do check out the R
 - It validates form fields out of the box.
 - It is in active maintenance.
 - It has an active community.
-- You can integrate React Hook Form with UI libraries like Material UI and [refine](https://refine.dev/). With refine, you can use the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter. You can handle forms using [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook in your refine CRUD apps with React Hook Form.
-- [Refer to article on using React Hook Form dynamic form fields with refine](https://refine.dev/blog/dynamic-forms-in-react-hook-form/).
+- You can integrate React Hook Form with UI libraries like Material UI and [Refine](https://refine.dev/). With Refine, you can use the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter. You can handle forms using [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook in your Refine CRUD apps with React Hook Form.
+- [Refer to article on using React Hook Form dynamic form fields with Refine](https://refine.dev/blog/dynamic-forms-in-react-hook-form/).
 
 #### Cons of React Hook Form library
 
 - React Hook Form uses React hooks. Therefore, you can't use it directly in class components.
-
-
-
 
 ### Formik
 
@@ -139,10 +126,7 @@ export function LoginForm() {
   return (
     <>
       <h1>Login form</h1>
-      <Formik
-        initialValues={{ userName: "", password: "" }}
-        onSubmit={(values) => console.log("values ", values)}
-      >
+      <Formik initialValues={{ userName: "", password: "" }} onSubmit={(values) => console.log("values ", values)}>
         <Form>
           <p>
             <label htmlFor="username">Username</label>
@@ -179,8 +163,6 @@ The above code illustrates a simple use case of the Formik library. It has sever
 
 - Formik is not actively maintained at the moment. The last Git commit to the project repository was a year ago. Similarly, there hasn't been any new version released for at least one year.
 
-
-
 ## Comparing Formik and React Hook Form
 
 |                      | Formik                     | React Hook Form |
@@ -207,7 +189,7 @@ The above code illustrates a simple use case of the Formik library. It has sever
 
 ## Conclusion
 
-Form management is an area of web development that may be difficult to get right, especially when using front-end frameworks like React. The HTML5 built-in form functionality comes in handy when validating form fields, managing errors, and submitting forms.  
+Form management is an area of web development that may be difficult to get right, especially when using front-end frameworks like React. The HTML5 built-in form functionality comes in handy when validating form fields, managing errors, and submitting forms.
 
 However, solutions like Formik and React Hook Form also exist to simplify form management in React and React frameworks. Formik and React Hook Form are popular, free, open-source, mature, and battle-tested. They are both excellent packages for form management. You can use them alongside the native HTML5 form functionality.
 

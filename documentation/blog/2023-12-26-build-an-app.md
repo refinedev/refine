@@ -89,7 +89,7 @@ Furthermore, when choosing the programming language, runtime, library, or framew
 
 All the above questions and other technical considerations will ensure you pick the most appropriate programming language, runtime, or framework.
 
-As hinted above, refine is a meta-react library that comes with integration for RESTful and GraphQL API and popular back-end services like Hasura, Firebase, and Supabase. Such out-of-the-box integrations significantly increase your development speed and reduce time to production.
+As hinted above, Refine is a meta-react library that comes with integration for RESTful and GraphQL API and popular back-end services like Hasura, Firebase, and Supabase. Such out-of-the-box integrations significantly increase your development speed and reduce time to production.
 
 ## 6. Frontend Development
 
@@ -97,7 +97,7 @@ Similar to the back-end and API integrations step highlighted above, the choice 
 
 There are several front-end frameworks like React, Vue, Angular, and Svelte, as well as meta-frameworks like Refine. Therefore, you may be spoiled for choice when starting a new project.
 
-If you want to build data-intensive front-end applications like dashboards and admin panels, meta frameworks like refine may be the perfect option.
+If you want to build data-intensive front-end applications like dashboards and admin panels, meta frameworks like Refine may be the perfect option.
 
 Any new Refine project supports routing, authentication, i18n, networking, and state management. You can easily integrate most of the UI frameworks and design systems. All the built-in components and integrations save time and simplify the development process.
 
@@ -109,7 +109,7 @@ Usually, every code you write should be accompanied by unit and end-to-end tests
 
 After completing the minimum viable product(MVP), it's important to extensively test your app with actual users and integrate the feedback into your project.
 
-Though the built-in refine components and hooks have been designed to be testable, it's not necessary to test them again. The refine team has thoroughly tested them. Therefore, When using refine, it's recommended you write end-to-end tests instead.
+Though the built-in Refine components and hooks have been designed to be testable, it's not necessary to test them again. The Refine team has thoroughly tested them. Therefore, When using Refine, it's recommended you write end-to-end tests instead.
 
 ## 8. Security and Performance Optimization
 

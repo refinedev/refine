@@ -69,7 +69,7 @@ You can create a context by invoking the `createContext` function with an option
 
 ```tsx
 import { createContext } from "react";
-const ContextObject = createContext(defaultVaue);
+const ContextObject = createContext(defaultValue);
 ```
 
 The `createContext` function returns a context object. The returned object has the `Provider` and `Consumer` properties. These properties are React components and are usually referred to as context providers and consumers respectively.
@@ -935,7 +935,7 @@ Our web application works as before, only this time the data is shared via the R
 
 The context API comes in handy when passing data from a parent component to its deeply nested descendants.
 
-In a typical React app, you create context by invoking the built-in `createContext` function. It takes an inital value as an argument and returns a context object. The returned context object has a context provider and a context consumer.
+In a typical React app, you create context by invoking the built-in `createContext` function. It takes an initial value as an argument and returns a context object. The returned context object has a context provider and a context consumer.
 
 You wrap your components in a context provider and use the `value` attribute to share the context with the nested components that need it.
 

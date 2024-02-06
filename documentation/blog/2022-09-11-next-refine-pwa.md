@@ -1,9 +1,9 @@
 ---
 title: Build a Progressive Web App (PWA) with Next.js
-description: We will walk you through the entire process of building a PWA using Next.JS and refine framework, from start to finish!
+description: We will walk you through the entire process of building a PWA using Next.JS and Refine framework, from start to finish!
 slug: next-js-pwa
 authors: david_omotayo
-tags: [nextjs, tutorial, refine]
+tags: [nextjs, tutorial, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/featured.png
 hide_table_of_contents: false
@@ -17,7 +17,7 @@ Over the years, frameworks and libraries such as React have been the go-to packa
 
 Fast forward to today, there are several frameworks and libraries in the picture, and they all promise to do a better job than their predecessors. However, many still don't meet the flexibility mark, except for a handful of them.
 
-In this article, we'll look at what refine is and demonstrate how to use it to build a **Next.js PWA** storefront application.
+In this article, we'll look at what Refine is and demonstrate how to use it to build a **Next.js PWA** storefront application.
 
 <!--truncate-->
 
@@ -39,7 +39,7 @@ Steps we'll cover:
 
 ## Prerequisites
 
-**refine** templates are shipped with TypeScript by default. This is because TypeScript is the recommended language for writing **refine** applications.
+**Refine** templates are shipped with TypeScript by default. This is because TypeScript is the recommended language for writing **Refine** applications.
 
 So to follow along with this tutorial, you should have a fundamental knowledge of TypeScript and its concepts and the following:
 
@@ -47,13 +47,13 @@ So to follow along with this tutorial, you should have a fundamental knowledge o
 - Fundamental knowledge of [Next.js](https://nextjs.org/) and [React](https://react.dev/)
 - Basic understanding of [tailwindcss](https://tailwindcss.com/)
 
-## What is refine?
+## What is Refine?
 
-[refine](https://github.com/refinedev/refine) is an open-source React-based headless framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. **refine**'s use-case includes **admin panels**.
+[Refine](https://github.com/refinedev/refine) is an open-source React-based headless framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. **Refine**'s use-case includes **admin panels**.
 
-At its core, **refine** is a collection of helper hooks, components, and providers that give you complete control over your application's user interface. These hooks are similar to what you'd find in [TanStack Query](https://tanstack.com/query/latest), meaning **refine** will automatically handle your data-fetching logic, authorizations, state management, and internalization out of the box.
+At its core, **Refine** is a collection of helper hooks, components, and providers that give you complete control over your application's user interface. These hooks are similar to what you'd find in [TanStack Query](https://tanstack.com/query/latest), meaning **Refine** will automatically handle your data-fetching logic, authorizations, state management, and internalization out of the box.
 
-The decoupled nature of these hooks makes it easy to incorporate your desired UI customizations and code flow. Although integrated with design systems such as Ant design and Material UI out of the box, **refine** is designed to work seamlessly with any other **UI frameworks**.
+The decoupled nature of these hooks makes it easy to incorporate your desired UI customizations and code flow. Although integrated with design systems such as Ant design and Material UI out of the box, **Refine** is designed to work seamlessly with any other **UI frameworks**.
 
 ## What is a PWA?
 
@@ -67,9 +67,9 @@ Unlike actual native applications, PWAs are not difficult to develop. With just 
 
 ## Project Setup
 
-Although it is possible to integrate **refine** into an existing Next.js project, it is recommended to set up a project using the `create refine-app` command-line interface (CLI), as it sets things up according to your preferences.
+Although it is possible to integrate **Refine** into an existing Next.js project, it is recommended to set up a project using the `create refine-app` command-line interface (CLI), as it sets things up according to your preferences.
 
-Open up your command line tool, cd to your folder of choice, and run the following command to bootstrap a Next.js refine template:
+Open up your command line tool, cd to your folder of choice, and run the following command to bootstrap a Next.js Refine template:
 
 ```
 npm create refine-app@latest refine-storefront
@@ -78,7 +78,7 @@ npm create refine-app@latest refine-storefront
 After running the command, you’ll be prompted to choose your preferences for the project. Select the following options to proceed:
 
 ```bash
-✔ Choose a project template · refine(Next.js)
+✔ Choose a project template · Refine(Next.js)
 ✔ What would you like to name your project?: · refine-storefront
 ✔ Choose your backend service to connect: · REST API
 ✔ Do you want to use a UI Framework?: · Headless
@@ -149,7 +149,7 @@ That’s it! Now we can use Tailwind utility classes in our project.
 
 ## Refine core setup
 
-`create refine-app` Next.js template is pre-configured with refine out of the box, so all we have to do now is to complete the setup by adding a layout, resources, and data provider to the refine component.
+`create refine-app` Next.js template is pre-configured with Refine out of the box, so all we have to do now is to complete the setup by adding a layout, resources, and data provider to the Refine component.
 
 As a first step, navigate to the `_app.tsx` file inside the pages folder. When you open the file, you should see something similar to the following:
 
@@ -218,11 +218,11 @@ export default MyApp;
 </p>
 </details>
 
-This is where most of our app’s functionalities will be configured. Right now, nothing much is going on - the **refine** component is being used to wrap our entire app, with a `routerProvider` and a `dataProvider` hook passed to it as props.
+This is where most of our app’s functionalities will be configured. Right now, nothing much is going on - the **Refine** component is being used to wrap our entire app, with a `routerProvider` and a `dataProvider` hook passed to it as props.
 
-We’ll see how to leverage these hooks and other props of the refine component in the subsequent sections. But first, let’s configure the `dataProvider` hook for our needs.
+We’ll see how to leverage these hooks and other props of the Refine component in the subsequent sections. But first, let’s configure the `dataProvider` hook for our needs.
 
-Run `npm run dev` to start the refine development server.
+Run `npm run dev` to start the Refine development server.
 
 Within seconds it should automatically bring up your default browser with the preview of the app. If it does not, open the browser manually and navigate to `http://localhost:3000`.
 
@@ -230,15 +230,15 @@ Within seconds it should automatically bring up your default browser with the pr
 
 ## Adding a Data provider
 
-Data providers are hooks that refine use to communicate with APIs. They act as adapters that make HTTP requests to different APIs and return response data using predefined methods.
+Data providers are hooks that Refine use to communicate with APIs. They act as adapters that make HTTP requests to different APIs and return response data using predefined methods.
 
-refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/refinedev/refine/tree/master/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about refine’s data providers.
+Refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/refinedev/refine/tree/master/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about Refine’s data providers.
 
 We’ll be using the fake store API to populate our storefront prototype app, and since it’s a REST API, the refine-simple-rest data provider won’t have trouble communicating with it.
 
-To add a data provider to our app, we’d have to install a data provider package (in our case, the refine-simple-rest data provider), import it into the `_app.tsx` file, and add it to the refine component with the API endpoint passed to it.
+To add a data provider to our app, we’d have to install a data provider package (in our case, the refine-simple-rest data provider), import it into the `_app.tsx` file, and add it to the Refine component with the API endpoint passed to it.
 
-Fortunately for us, superplate has done all the heavy lifting for us, now all we have to do is replace refine’s fake API endpoint:
+Fortunately for us, superplate has done all the heavy lifting for us, now all we have to do is replace Refine’s fake API endpoint:
 
 ```diff title="pages/_app.tsx"
  ...
@@ -253,7 +253,7 @@ With our Fake store endpoint:
  ...
 ```
 
-Next, we’ll create a layout component for our app and pass it as a prop to the refine component.
+Next, we’ll create a layout component for our app and pass it as a prop to the Refine component.
 
 [Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/core/providers/data-provider/)
 
@@ -266,7 +266,7 @@ Next, we’ll create a layout component for our app and pass it as a prop to the
 
 ## Adding a Layout component
 
-A Layout component is a component that refine uses to create a template for our app. The template is independent of the app’s default UI, thus giving us the option to design as many templates as possible.
+A Layout component is a component that Refine uses to create a template for our app. The template is independent of the app’s default UI, thus giving us the option to design as many templates as possible.
 
 The default layout takes a child argument that accepts components that can be used to further customize and structure the template. These child components are regarded as layout parameters.
 
@@ -293,15 +293,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-Also you need to add the refine logo to the public folder. You can find the logo [here](https://github.com/refinedev/refine/blob/master/examples/blog-next-refine-pwa/public/refine_logo.png).
+Also you need to add the Refine logo to the public folder. You can find the logo [here](https://github.com/refinedev/refine/blob/master/examples/blog-next-refine-pwa/public/refine_logo.png).
 
-The code above is relatively straightforward, we created a functional component structure with a destructured children argument. In the returned JSX code, we created a navbar with the refine logo and a cart button, and below it is the children argument rendered dynamically to the template.
+The code above is relatively straightforward, we created a functional component structure with a destructured children argument. In the returned JSX code, we created a navbar with the Refine logo and a cart button, and below it is the children argument rendered dynamically to the template.
 
 To understand how the children argument works, we need to take a look at the `<Layout />` component and how it works.
 
-The `<Layout />` component is used to wrap the contents of a component or custom page that will be rendered to **refine**’s default layout.
+The `<Layout />` component is used to wrap the contents of a component or custom page that will be rendered to **Refine**’s default layout.
 
-Suppose we want to render the content of a list component to **refine**’s layout, we would go about it like so:
+Suppose we want to render the content of a list component to **Refine**’s layout, we would go about it like so:
 
 ```tsx
 const List: React.FC<Props> = () => {
@@ -321,7 +321,7 @@ export default List;
 
 The wrapped unordered list in the code above will be rendered below the navbar we created inside the Layout component earlier, in the same spot we're dynamically rendering the children argument. What this means is that the content of the list component is being passed as a child to the `<Layout />` component.
 
-Now that we have a basic understanding of how **refine**'s Layout works, let's go ahead and add our `<Layout />` component as a wrapper to next's page component.
+Now that we have a basic understanding of how **Refine**'s Layout works, let's go ahead and add our `<Layout />` component as a wrapper to next's page component.
 
 Navigate back to the `_app.tsx` file, import the `<Layout />` component we just created and add it like below:
 
@@ -349,17 +349,17 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
 
 ```
 
-If you save your progress at this point and go to the browser, you won’t notice any significant change. This is because we’re yet to add resources to the **refine** component.
+If you save your progress at this point and go to the browser, you won’t notice any significant change. This is because we’re yet to add resources to the **Refine** component.
 
 ## Adding Resources
 
-The resources prop is used to map a specific endpoint of the provided API to **refine**. The prop takes an array of properties, such as the name and list property.
+The resources prop is used to map a specific endpoint of the provided API to **Refine**. The prop takes an array of properties, such as the name and list property.
 
 ```js
 resources={[{ name: "endpoint name", list: "/list", ... }]}
 ```
 
-The name property is the most important resource property. It is used to specify an endpoint from the provided API, which **refine**, then automatically creates a route for our app.
+The name property is the most important resource property. It is used to specify an endpoint from the provided API, which **Refine**, then automatically creates a route for our app.
 
 For example, if we add a “products” value to the name property like so:
 
@@ -367,7 +367,7 @@ For example, if we add a “products” value to the name property like so:
 resources={[{ name: "products" }]}
 ```
 
-**refine** will utilize the `/products` endpoint from the API and append it to our URL: `http://localhost:3000/products`.
+**Refine** will utilize the `/products` endpoint from the API and append it to our URL: `http://localhost:3000/products`.
 
 ```tsx title="pages/_app.tsx"
 // ...
@@ -405,11 +405,11 @@ Now if you save your progress and go back to the browser, you should see the Lay
 
 ## Using Next.js SSR
 
-**refine** handles data management automatically out of the box. It uses [TanStack Query](https://tanstack.com/query/latest) under the hood to fetch and manage predefined data from APIs.
+**Refine** handles data management automatically out of the box. It uses [TanStack Query](https://tanstack.com/query/latest) under the hood to fetch and manage predefined data from APIs.
 
-This way, we don’t have to write data-fetching logic because the content of the API endpoint that we added to the **refine** component earlier will be readily available to every component in the application via hooks such as useTable and Typography.
+This way, we don’t have to write data-fetching logic because the content of the API endpoint that we added to the **Refine** component earlier will be readily available to every component in the application via hooks such as useTable and Typography.
 
-However, to leverage Next.js’ pre-rendering features (SSR or SSG), we’d have to manually fetch the data using a refine `dataProvider` from a `getServerSideProps` or `getStaticProps` function.
+However, to leverage Next.js’ pre-rendering features (SSR or SSG), we’d have to manually fetch the data using a Refine `dataProvider` from a `getServerSideProps` or `getStaticProps` function.
 
 To go about this, navigate to the `index.tsx` file inside the pages folder and add the following code:
 
@@ -450,7 +450,7 @@ Then we chain the `getList` method to the `dataProvider` to specify the endpoint
 
 Lastly, we exposed the data variable by passing it to the props object.
 
-[Refer to official refine docs for more information about Next.js usage. &#8594](https://refine.dev/docs/guides-and-concepts/ssr/nextjs/)
+[Refer to official Refine docs for more information about Next.js usage. &#8594](https://refine.dev/docs/guides-and-concepts/ssr/nextjs/)
 
 ## Creating product cards
 
@@ -573,7 +573,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ### Using the useTable hook
 
-`useTable` is a refine hook that uses helper hooks to simplify the process of fetching, interacting, and rendering data. To put things into perspective, we’ll use the `useTable` hook to process our response data from the `getServerSideProps` function.
+`useTable` is a Refine hook that uses helper hooks to simplify the process of fetching, interacting, and rendering data. To put things into perspective, we’ll use the `useTable` hook to process our response data from the `getServerSideProps` function.
 
 In the code above, we’re using `tableQueryResult` to map through the query results and passing them as props to the `ProductCards` component. Then we wrapped the component with the LayoutWrapper component.
 
@@ -590,7 +590,7 @@ If you save your progress and go back to the browser, you should see a nicely re
 <br/>
 <br/>
 
-That’s it! We’ve successfully built a storefront using refine and Next.js SSR. Next, we’ll demonstrate how to generate a PWA manifest for our app, and how to turn it into a PWA.
+That’s it! We’ve successfully built a storefront using Refine and Next.js SSR. Next, we’ll demonstrate how to generate a PWA manifest for our app, and how to turn it into a PWA.
 
 ## Generating PWA manifest
 
@@ -604,7 +604,7 @@ Head over to [SimiCart manifest generator](https://www.simicart.com/manifest-gen
 
 <br/>
 
-As you can see, you're required to upload a logo image. The generator will use this image to output the various image sizes that are required for the manifest. In this case, we're using the refine logo.
+As you can see, you're required to upload a logo image. The generator will use this image to output the various image sizes that are required for the manifest. In this case, we're using the Refine logo.
 
 After filling the form in the appropriate order, click on the "Generate manifest" button, and you'll be prompted to download a manifest zip file.
 
@@ -706,9 +706,9 @@ This is the installation icon for our PWA app. Click on the icon to install the 
 
 ## Conclusion
 
-In this article, we demonstrated how to set up a Next.js refine project from scratch and how to fetch and render data from an external API using the refine's REST data provider. Then we looked at how to turn our application into a **PWA** using a JSON manifest.
+In this article, we demonstrated how to set up a Next.js Refine project from scratch and how to fetch and render data from an external API using the Refine's REST data provider. Then we looked at how to turn our application into a **PWA** using a JSON manifest.
 
-The purpose of this tutorial is to give you a headstart with refine and its ecosystem. Visit documentations to learn more about refine and how to use it to build complex applications.
+The purpose of this tutorial is to give you a headstart with Refine and its ecosystem. Visit documentations to learn more about Refine and how to use it to build complex applications.
 
 ## Project source code
 

@@ -3,7 +3,7 @@ title: Building a CRUD app with Material UI and Strapi in React
 description: How to build CRUD admin panel with Material UI?
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
-tags: [refine, react, material-ui, strapi]
+tags: [Refine, react, material-ui, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
 hide_table_of_contents: false
@@ -11,9 +11,9 @@ hide_table_of_contents: false
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -23,24 +23,24 @@ Just be aware that the source code example in this post have been updated to ver
 
 We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/) feature using industry-standard best tools.
 
-Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
+Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [Refine](https://refine.dev/) to build a high-quality admin panel.
 
 <!--truncate-->
 
-UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and refine's built-in hooks to handle data fetching and mutations. We'll also integrate the Strapi data provider that refine has built-in support.
+UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and Refine's built-in hooks to handle data fetching and mutations. We'll also integrate the Strapi data provider that Refine has built-in support.
 
-We'll walk through the process of listing, creating and deleting posts in a refine application and make use of refine's components and hooks to build out our functionality.
+We'll walk through the process of listing, creating and deleting posts in a Refine application and make use of Refine's components and hooks to build out our functionality.
 
 Steps we'll cover includes:
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
-- [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
-- [Bootstrapping the refine app](#bootstrapping-the-refine-app)
+- [What are the benefits of using Refine?](#what-are-the-benefits-of-using-refine)
+- [Bootstrapping the Refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
 - [CRUD operations](#crud-operations)
   - [Listing records](#listing-records)
-  - [Adding resources and connect pages to refine app](#adding-resources-and-connect-pages-to-refine-app)
+  - [Adding resources and connect pages to Refine app](#adding-resources-and-connect-pages-to-refine-app)
   - [Handling relational data](#handling-relational-data)
   - [Creating a record](#creating-a-record)
   - [Editing a record](#editing-a-record)
@@ -53,16 +53,16 @@ Steps we'll cover includes:
 
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using.
 
-- [refine](https://refine.dev/docs/)
-- [refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
+- [Refine](https://refine.dev/docs/)
+- [Refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
+- [Refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
 
 Your node version need to be minimum `v16.14.0`
 
-## What are the benefits of using refine?
+## What are the benefits of using Refine?
 
-refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
+Refine is a headless React internal tool framework that helps you develop quickly while developing both B2B and B2C applications. It speeds you up while allowing full customization, making it an ideal choice for rapid development with pro features.
 
 - It is Open Source under the MIT license.
 - It is easy to use and learn. There are many examples to help you get started, as well as documentation.
@@ -72,9 +72,9 @@ refine is a headless React internal tool framework that helps you develop quickl
 - Customizable, which means you can change it to fit your needs.
 - Some of the main features are data fetching and state management, routings, authentication, authorization, internationalization, real-time, mutation modes with optimistic and pessimistic and undoable modes
 
-## Bootstrapping the refine app
+## Bootstrapping the Refine app
 
-We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to create and customize refine application.
+We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to create and customize Refine application.
 
 Run the following command
 
@@ -111,18 +111,18 @@ CLI should be create a project and install the selected dependencies.
 
 ### Implementing Strapi v4 data provider
 
-Data providers are refine hooks making it possible to consume different API's and data services conveniently.
+Data providers are Refine hooks making it possible to consume different API's and data services conveniently.
 The required Strapi data provider setups are added automatically by the CLI wizard.
 
-To consume refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
+To consume Refine's Fake Strapi API, we'll need to change the `API URL` in the project folder.
 
 ```tsx title="src/constants.ts"
 export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
 
-[Refer to refine docs for more detailed information about refine Strapi V4 support&#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
+[Refer to Refine docs for more detailed information about Refine Strapi V4 support&#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
 
-[Refer to refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to Refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
 
 [Refer to official Strapi v4 documentation&#8594](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 
@@ -190,13 +190,13 @@ export const PostList: React.FC = () => {
 };
 ```
 
-We import and use Material UI components from refine's `@refinedev/mui` to show data.
+We import and use Material UI components from Refine's `@refinedev/mui` to show data.
 
 [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
 
-refine hook [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+Refine hook [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
-[Refer to refine's useDataGrid hook doc to more information&#8594](/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Refer to Refine's useDataGrid hook doc to more information&#8594](/docs/ui-integrations/material-ui/hooks/use-data-grid)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
@@ -212,7 +212,7 @@ Note you will need `src/App.tsx` file to find your pages and posts. In the `/pag
 export * from "./list";
 ```
 
-[Refer to official refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
+[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
 
 <br/>
 <div>
@@ -221,7 +221,7 @@ export * from "./list";
 </a>
 </div>
 
-### Adding resources and connect pages to refine app
+### Adding resources and connect pages to Refine app
 
 Now we are ready to start connecting to our API by adding a resource to our application.
 We'll add `/posts/` endpoint from our example API as a resource.
@@ -352,7 +352,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 
 :::
 
-[Refer to refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
+[Refer to Refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Resource only List component" />
 <br/>
@@ -361,7 +361,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 
-The React Hook Form library has been integrated with **refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
+The React Hook Form library has been integrated with **Refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 
@@ -742,7 +742,7 @@ You can try using edit buttons which will trigger the edit forms for each record
 
 Deleting a record can be done in two ways.
 
-The first way is adding a delete button on each row since refine doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record.
+The first way is adding a delete button on each row since Refine doesn't automatically add one, so we have to update our `<PostList>` component to add a `<DeleteButton>` for each record.
 
 We are going to add new cell to the `Actions` column to show delete button on each row.
 
@@ -862,7 +862,7 @@ The `<DeleteButton>` should be appear in an edit form.
 
 ## Implementing mutation mode
 
-We'll like to show how mutation modes making your app feel more responsive to the user. refine offers three modes for mutations called `pessimistic`, `optimistic`, and `undoable`. This modes determines when the side effects are executed.
+We'll like to show how mutation modes making your app feel more responsive to the user. Refine offers three modes for mutations called `pessimistic`, `optimistic`, and `undoable`. This modes determines when the side effects are executed.
 
 If we briefly describe:
 
@@ -876,7 +876,7 @@ We'll implement `undoable` mutation mode. The mutation is applied locally, redir
 
 During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
-[Refer to refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
+[Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
 
 To activate mutation mode, we'll set `mutationMode` property in `options` to the `<Refine/>` component.
 
@@ -938,7 +938,7 @@ Imagine we need to share the current page with filtering and sorting parameters 
 /posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
-refine offers `syncWithLocation` property that allow us to editing query parameters manually and share current page, items count per page, sort and filter parameters easily to others.
+Refine offers `syncWithLocation` property that allow us to editing query parameters manually and share current page, items count per page, sort and filter parameters easily to others.
 
 ```tsx title="src/App.tsx"
 ...
@@ -968,15 +968,15 @@ Now, we can get current information from URL as a query parameters. We can eithe
 
 ## Conclusion
 
-In this article, we'll show you how to build a **CRUD admin panel** using refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from refine like mutation mode.
+In this article, we'll show you how to build a **CRUD admin panel** using Refine and **Material UI**. This approach will allow you to quickly create an admin interface for your application with minimal coding. We'll start by setting up our project with the required dependencies. Then, we'll create our CRUD components using Material UI. Finally, we'll wire everything up and add some extra features from Refine like mutation mode.
 
 We covered:
 
-- How to bootstrap refine app
-- Connecting Strapiv4 data provider to refine app.
+- How to bootstrap Refine app
+- Connecting Strapiv4 data provider to Refine app.
 - Creating pages for CRUD operations
-- Implementing some of refine features like mutation mode and location sync.
+- Implementing some of Refine features like mutation mode and location sync.
 
-refine is an open source tool that rapidly and flexibly develops for CRUD admin panels or web apps. It is easy to get started with and doesn't require a lot of code. It has nice documentation that covered examples, guidelines, and tutorials using best practices. refine is constantly being updated with new features and improvements.
+Refine is an open source tool that rapidly and flexibly develops for CRUD admin panels or web apps. It is easy to get started with and doesn't require a lot of code. It has nice documentation that covered examples, guidelines, and tutorials using best practices. Refine is constantly being updated with new features and improvements.
 
-[Refer to official refine page for more information &#8594](https://refine.dev/)
+[Refer to official Refine page for more information &#8594](https://refine.dev/)
