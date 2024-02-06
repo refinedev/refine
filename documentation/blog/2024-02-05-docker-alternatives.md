@@ -1,5 +1,5 @@
 ---
-title: Dpcker Alternatives
+title: Docker Alternatives
 description: We'll discuss top alternatives of Docker walking your through their pros and cons and how they compare to Docker.
 slug: docker-alternatives
 authors: muhammad_khabbab
