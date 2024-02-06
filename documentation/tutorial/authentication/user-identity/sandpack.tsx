@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../intro/sandpack";
 import { finalFiles as initialFiles } from "../logging-in-out/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -140,11 +141,12 @@ export const AddUseGetIdentityToHeaderComponent = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "auth-provider.ts": {
         code: AuthProviderTsxWithGetIdentityMethod,
     },
     "header.tsx": {
         code: HeaderComponentWithUseGetIdentity,
+        active: true,
     },
 };

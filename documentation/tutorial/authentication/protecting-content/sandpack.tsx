@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 import { dependencies, finalFiles as initialFiles } from "../intro/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -191,9 +192,10 @@ export const AddAuthenticatedComponentToAppTsx = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
         code: AppTsxWithAuthenticatedComponent,
+        active: true,
     },
     "auth-provider.ts": {
         code: AuthProviderTsxWithCheckMethod,

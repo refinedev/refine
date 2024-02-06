@@ -6,6 +6,7 @@ import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create
 
 import { dependencies } from "../intro/sandpack";
 import { finalFiles as initialFiles } from "../data-fetching/listing-data/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -530,7 +531,7 @@ export const files = {
 };
 
 export const finalFiles = {
-    ...files,
+    ...removeActiveFromFiles(files),
     "App.tsx": {
         code: AppTsxWithEditProductCode,
     },
@@ -539,10 +540,9 @@ export const finalFiles = {
     },
     "edit-product.tsx": {
         code: RefactorEditProductTsxWithFormCode,
-        // hidden: true,
+        active: true,
     },
     "create-product.tsx": {
         code: CreateProductFormWithCategoryRelationTsxCode,
-        hidden: false,
     },
 };

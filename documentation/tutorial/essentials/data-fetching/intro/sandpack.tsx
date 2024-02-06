@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
 import { dependencies, files as initialFiles } from "../../intro/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -94,9 +95,10 @@ export const files = {
 };
 
 export const finalFiles = {
-    ...files,
+    ...removeActiveFromFiles(files),
     "App.tsx": {
         code: UpdatedAppTsxCode,
+        active: true,
     },
     "data-provider.ts": {
         code: DataProviderTsCode,

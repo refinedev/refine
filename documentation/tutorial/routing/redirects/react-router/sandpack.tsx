@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../../intro/react-router/sandpack";
 import { finalFiles as initialFiles } from "../../inferring-parameters/react-router/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -270,16 +271,15 @@ export const AddRedirectsToAuthProvider = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "edit-product.tsx": {
         code: EditProductWithCustomRedirect,
-        // hidden: true,
     },
     "create-product.tsx": {
         code: CreateProductWithCustomRedirect,
-        // hidden: true,
     },
     "auth-provider.ts": {
         code: AuthProviderWithRedirects,
+        active: true,
     },
 };

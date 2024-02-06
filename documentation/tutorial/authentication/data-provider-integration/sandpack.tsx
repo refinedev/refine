@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../intro/sandpack";
 import { finalFiles as initialFiles } from "../user-identity/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -372,14 +373,13 @@ export const AddOnErrorMethodToAuthProvider = () => {
 // updates
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "data-provider.ts": {
         code: DataProviderWithAuthentication,
     },
     "list-products.tsx": {
         code: ListProductsWithProtectedProductsResource,
         active: true,
-        // hidden: true,
     },
     "auth-provider.ts": {
         code: AuthProviderWithOnErrorMethod,

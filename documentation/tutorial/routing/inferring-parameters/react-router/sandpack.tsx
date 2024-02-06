@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../../intro/react-router/sandpack";
 import { finalFiles as initialFiles } from "../../navigation/react-router/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -366,22 +367,18 @@ export const AddInferenceToEditProduct = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "show-product.tsx": {
         code: ShowProductWithInference,
-        // hidden: true,
     },
     "edit-product.tsx": {
         code: EditProductWithInference,
-        // hidden: true,
     },
     "create-product.tsx": {
         code: CreateProductWithInference,
-        // hidden: true,
     },
     "list-products.tsx": {
         code: ListProductsWithInference,
         active: true,
-        // hidden: true,
     },
 };

@@ -7,6 +7,7 @@ import {
     dependencies,
     finalFiles as initialFiles,
 } from "../../intro/react-router/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -103,8 +104,9 @@ export const AddAuthenticationToApp = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
         code: AppTsxWithAuthentication,
+        active: true,
     },
 };

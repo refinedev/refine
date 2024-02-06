@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../../intro/react-router/sandpack";
 import { finalFiles as initialFiles } from "../../redirects/react-router/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -178,10 +179,9 @@ export const AddLocationSyncToListProducts = () => {
 // files
 
 export const finalFiles = {
-    ...initialFiles,
+    ...removeActiveFromFiles(initialFiles),
     "list-products.tsx": {
         code: ListProductsWithSyncWithLocation,
         active: true,
-        // hidden: true,
     },
 };

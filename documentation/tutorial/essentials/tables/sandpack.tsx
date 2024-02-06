@@ -5,6 +5,7 @@ import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update
 
 import { dependencies } from "../intro/sandpack";
 import { finalFiles as initialFiles } from "../forms/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -746,13 +747,9 @@ export const files = {
 };
 
 export const finalFiles = {
-    ...files,
+    ...removeActiveFromFiles(files),
     "App.tsx": {
         code: AppTsxWithListProductsTsxCode,
-    },
-    "styles.css": {
-        code: StylesCssCode,
-        hidden: true,
     },
     "data-provider.ts": {
         code: DataProviderWithTotalInGetListMethodTsCode,
@@ -760,6 +757,5 @@ export const finalFiles = {
     "list-products.tsx": {
         code: ListProductsWithHeaderSortersTsxCode,
         active: true,
-        // hidden: true,
     },
 };
