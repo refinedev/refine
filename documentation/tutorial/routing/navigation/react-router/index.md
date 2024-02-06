@@ -18,9 +18,9 @@ We'll use the `useNavigation` hook and create buttons to navigate to the create,
 
 ## Adding a Link to the List Page and to the Create Page
 
-We'll be using the `useNavigation` hook from `@refinedev/core` and the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products. Let's update our `<Header />` component and add a link to the list page of the products.
+We'll be using the `useNavigation` hook from `@refinedev/core` and the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products. 
 
-Try to update your `src/header.tsx` file with the following lines:
+Let's update our `<Header />` component and add a link to the list page of the products:
 
 ```tsx title="src/header.tsx"
 import React from "react";
@@ -61,9 +61,8 @@ export const Header = () => {
 
 ## Adding Show and Edit Buttons to the List Page
 
-We'll be using the same duo of `useNavigation` hook and the `<Link />` component of the `react-router-dom` library to create links to the show page and the edit page of the products. Let's update our `<ListProducts />` component and add links to show and edit the products.
+Similarly, we'll update the `<ListProducts />` component and add links for showing and editing the products.
 
-Try to update your `src/list-products.tsx` file with the following lines:
 
 ```tsx title="src/list-products.tsx"
 // highlight-next-line
@@ -151,7 +150,7 @@ export const ListProducts = () => {
 
 :::info
 
-Anchors and any additional method of navigation your routing library provides can also be used to navigate between pages without being limited to the `useNavigation` hook.
+You can also use anchors and any other navigation methods provided by your routing library to move between pages, without being limited to the `useNavigation` hook.
 
 :::
 

@@ -22,17 +22,17 @@ Refine provides integrations for the most popular routing options such as [React
 
 This unit will cover the following topics:
 
-- Refine's resource system and how to use it,
+- Refine's resource concept and how to use it,
 - Using router integration to infer parameters such as `resource`, `action` and `id` from the URL,
 - Handling navigation and redirections in Refine,
 - Using router integration to store form and table states in the URL,
-- And finally, handling authentication with router options.
+- Finally, handling authentication with router options.
 
 This unit will be UI framework agnostic. Related parts of routing for the UI frameworks will be covered in the next units.
 
 ## Adding Router Provider
 
-Let's get started with adding our dependencies. We'll be using `react-router-dom` as our routing solution and to integrate it with Refine, we'll be using `@refinedev/react-router-v6` package.
+Let's get started with adding our dependencies. For routing, we will use `react-router-dom`, and to integrate it with Refine, we'll be using `@refinedev/react-router-v6` package.
 
 <InstallPackagesCommand args="react-router-dom @refinedev/react-router-v6"/>
 

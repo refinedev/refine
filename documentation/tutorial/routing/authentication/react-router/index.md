@@ -6,7 +6,7 @@ import { Sandpack, AddAuthenticationToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-Before starting to add our resources and their respective routes, we'll be moving our authentication logic to work with routing. To achieve this, we'll be using the `<Authenticated />` component and the `<NavigateToResource />` component to redirect users to our products list page.
+Before starting to add our resources and their respective routes, we'll be moving our authentication logic to work with routing. To achieve this, we'll use the `<Authenticated />` and `<NavigateToResource />` components to redirect users to our products list page.
 
 ## `<Authenticated />` and Routing
 
@@ -16,7 +16,7 @@ We've used the `children` and `fallback` props of the `<Authenticated />` compon
 
 Now we'll be leveraging these props to handle which routes to render based on the authentication status and handle redirects for the opposite cases.
 
-`<Authenticated />` component works seamlessly with the router provider if we omit the `fallback` prop and use `redirectOnFail` prop. In this case, it will redirect the user to the login page if they are not authenticated.
+The `<Authenticated />` component works seamlessly with the router provider when we omit the `fallback` prop and use `redirectOnFail` prop. In this case, it will redirect the user to the login page if they are not authenticated.
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
@@ -106,11 +106,6 @@ export default function App(): JSX.Element {
 
 <AddAuthenticationToApp />
 
-:::info
-
-Notice that we're currently only mounted the `<ListProducts />` component. We'll be adding the rest of the routes in the next step.
-
-:::
 
 Now we've updated our routes to handle authentication, redirect to the appropriate routes depending on the authentication status and redirect to the `/` route from the index route.
 

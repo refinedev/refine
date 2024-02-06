@@ -8,7 +8,7 @@ import { Sandpack, AddInferenceToEditProduct, AddInferenceToCreateProduct, AddIn
 
 Now we've learned about the `useNavigation` hook and how to handle navigation with Refine. In this step, we'll be updating components to benefit from the parameter inference of Refine.
 
-Refine when integrated with a router provider, infers the parameters from the route definitions and uses them in its hooks and components. This way, you don't need to pass the `resource`, `id` and `action` parameters to the hooks and components manually.
+When integrated with a router provider, Refine infers the parameters from route definitions and incorporates them into its hooks and components, eliminating the need for manual passing of `resource`, `id` and `action` parameters.
 
 :::tip
 
@@ -50,7 +50,7 @@ export const ListProducts = () => {
 
 Let's update our `<ShowProduct />` component and omit the `resource` and `id` parameters. Remember that previously we've hard-coded the `id` parameter. Now we'll be letting Refine to infer the `id` parameter from the route definition and dynamically fetch the product.
 
-We'll also switch from `useOne` hook to `useShow` hook. The `useShow` hook is a wrapper around the `useOne` hook and provides inference abilities unlike the `useOne` hook which requires the `resource` and `id` parameters to be passed explicitly.
+We'll also start using `useShow` hook which is wrapper around `useOne`. Unlike the useOne hook, it offers inference capabilities, eliminating the need to explicitly pass `resource` and `id` parameters
 
 Try to update your `src/show-product.tsx` file with the following lines:
 

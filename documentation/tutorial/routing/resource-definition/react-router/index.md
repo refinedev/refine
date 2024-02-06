@@ -6,13 +6,13 @@ import { Sandpack, AddRoutesToApp, AddResourcesToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-So far, we've integrated our authentication logic into our routes. In this step, we'll be creating routes for these components and define our resources to inform Refine about their corresponding routes.
+So far, we've integrated the authentication logic into our routes. In this step, we'll be creating routes for these components and define our resources to inform Refine about their corresponding routes.
 
-To learn more about the Resource concept, refer to the [Resource Concept](/docs/guides-concepts/general-concepts/#resource-concept) section in the General Concepts guide.
+To learn more about it, please refer to the [Resource Concept](/docs/guides-concepts/general-concepts/#resource-concept) section in the General Concepts guide.
 
 ## Creating Routes
 
-We've wrapped our routes with the `<Authenticated />` component in the previous step. Now we'll be creating routes under the `/products` path to place our components.
+We've wrapped our routes with the [`<Authenticated />`](/docs/authentication/components/authenticated) component in the previous step. Now we'll be creating routes under the `/products` path to place our components.
 We'll use the following routes to place our components:
 
 - `/products` - `<ListProducts />`
@@ -98,7 +98,7 @@ export default function App(): JSX.Element {
 
 Now we've created our routes, it's time to define our resources. This will allow Refine to know about our resources and treat them accordingly.
 
-While defining the resources and assigning appropriate routes to actions is optional, it's highly recommended to do so to benefit from the features provided by Refine.
+While defining the resources and assigning appropriate routes to actions is optional, it's highly recommended to do so in order to take advantage of Refine's provided features below.
 
 By defining our resources, we'll be unlocking the following features:
 
@@ -114,7 +114,7 @@ A resource definition consists of the following properties:
 
 - `name`: The name of the resource. This will be passed to the data provider's methods to identify the resource.
 - `identifier`: An optional identifier for the resource. If not provided, `name` will be used as the identifier. This is useful when you want to use the same resource for the data provider but have a different configuration on Refine's side.
-- `list`, `'create`, `edit` and `show`: These properties are used to define the routes for the corresponding actions. They will be the string values of the routes we've created in the previous step.
+- `list`, `create`, `edit` and `show`: These properties are used to define the routes for the corresponding actions. They will be the string values of the routes we've created in the previous step.
 - `meta`: An optional object to pass meta values per resource. This is widely used in Refine's hooks and components for various purposes from data fetching, access control, i18n to UI customization.
 
 Try to add the following code to your `src/App.tsx` file:

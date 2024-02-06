@@ -8,7 +8,7 @@ import { Sandpack, AddRedirectsToAuthProvider, AddCustomRedirectToCreate, AddCus
 
 Now we've updated our components to benefit from the parameter inference of Refine. In this step, we'll be learning about the redirects and how to benefit from them in our forms and auth provider.
 
-Refine can manage redirects automatically for you. After a successful form submission, Refine will try to redirect the user to the appropriate page. This is the list page of the target resource by default. However, you can customize this behavior by providing a `redirect` parameter to the `useForm` hook.
+Refine can manage redirects automatically for you. After a successful form submission, Refine will try to redirect the user to the appropriate page.
 
 Just like the forms, redirects are also supported in the auth provider. By providing a `redirectTo` parameter to the return values of the `login`, `logout` and `onError` method, you can redirect the user to the appropriate page. Such as the index page after a successful login or the login page after a successful logout.
 
