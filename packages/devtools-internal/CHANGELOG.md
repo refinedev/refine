@@ -1,5 +1,14 @@
 # @refinedev/devtools-internal
 
+## 1.1.5
+
+### Patch Changes
+
+-   [#5573](https://github.com/refinedev/refine/pull/5573) [`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: add "use client" directive to exported files to work with nextjs app router
+
+-   Updated dependencies [[`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563)]:
+    -   @refinedev/devtools-shared@1.1.3
+
 ## 1.1.4
 
 ### Patch Changes
