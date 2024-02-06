@@ -9,7 +9,7 @@ jobs:
       cancel-in-progress: true
     name: Commitlint
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Lint
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: lint
         run: |
           npm ci
@@ -32,7 +32,7 @@ jobs:
         node-version: [18.x]
     name: Bootstrap and Test
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Cache node_modules
         uses: actions/cache@v3
         env:
@@ -64,7 +64,7 @@ jobs:
       group: ${{ github.ref }}-tsdoc-check
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
       - name: Check TSDoc Links
