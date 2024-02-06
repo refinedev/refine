@@ -16,10 +16,6 @@ module.exports = {
                     label: "Next.js",
                     value: "next-js",
                 },
-                {
-                    label: "Remix",
-                    value: "remix",
-                },
             ],
             uiSelection: [
                 {
@@ -62,12 +58,13 @@ module.exports = {
                 title: "Routing",
                 id: "routing",
                 items: [
-                    "routing/intro/index", // intro
-                    "routing/resource-definition/index", // router selection should be added
-                    "routing/inferring-parameters/index", // router selection should be added
+                    "routing/intro/:routerSelection/index",
+                    "routing/authentication/:routerSelection/index",
+                    "routing/resource-definition/:routerSelection/index",
+                    "routing/navigation/:routerSelection/index",
+                    "routing/inferring-parameters/:routerSelection/index",
                     "routing/redirects/:routerSelection/index",
                     "routing/syncing-state/:routerSelection/index",
-                    "routing/authentication/:routerSelection/index",
                 ],
             },
             {

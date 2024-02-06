@@ -54,7 +54,7 @@ export const dataProvider: DataProvider = {
       `${API_URL}/${resource}?${params.toString()}`,
     );
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -77,7 +77,7 @@ export const dataProvider: DataProvider = {
       `${API_URL}/${resource}?${params.toString()}`,
     );
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -89,7 +89,7 @@ export const dataProvider: DataProvider = {
     // added-line
     const response = await fetcher(`${API_URL}/${resource}/${id}`);
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -107,7 +107,7 @@ export const dataProvider: DataProvider = {
       },
     });
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 
@@ -125,7 +125,7 @@ export const dataProvider: DataProvider = {
       },
     });
 
-    if (response.status !== 200) throw response;
+    if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
 

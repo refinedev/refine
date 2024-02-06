@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Navigation
 ---
 
 import { Sandpack } from "./sandpack.tsx";

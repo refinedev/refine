@@ -624,7 +624,7 @@ const SandpackRightSide = ({
                             <SandpackPreview
                                 showOpenInCodeSandbox={false}
                                 startRoute={startRoute}
-                                // showNavigator={true}
+                                showNavigator={sandpackProps.showNavigator}
                                 showRefreshButton={true}
                                 style={{
                                     display: "flex",
