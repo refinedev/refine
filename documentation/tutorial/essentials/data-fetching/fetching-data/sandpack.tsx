@@ -4,67 +4,22 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
+import { dependencies } from "../../intro/sandpack";
+import { finalFiles as initialFiles } from "../intro/sandpack";
+
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            files={{
-                "App.tsx": {
-                    code: AppTsxCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-            }}
-            finalFiles={{
-                "App.tsx": {
-                    code: AppTsxWithShowProductCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderWithGetOneMethodTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductWithUseOneTsxCode,
-                },
-            }}
+            dependencies={dependencies}
+            files={initialFiles}
+            finalFiles={finalFiles}
         >
             {children}
         </TutorialSandpack>
     );
 };
 
-const AppTsxCode = /* tsx */ `
-import { Refine } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-
-export default function App(): JSX.Element {
-  return <Refine dataProvider={dataProvider}></Refine>;
-}
-`.trim();
-
-const DataProviderTsCode = /* ts */ `
-import type { DataProvider } from "@refinedev/core";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const dataProvider: DataProvider = {
-    getOne: () => { throw new Error("Not implemented"); },
-    update: () => { throw new Error("Not implemented"); },
-    getList: () => { throw new Error("Not implemented"); },
-    create: () => { throw new Error("Not implemented"); },
-    deleteOne: () => { throw new Error("Not implemented"); },
-    getApiUrl: () => API_URL,
-    // Optional methods:
-    // getMany: () => { /* ... */ },
-    // createMany: () => { /* ... */ },
-    // deleteMany: () => { /* ... */ },
-    // updateMany: () => { /* ... */ },
-    // custom: () => { /* ... */ },
-}
-`.trim();
+// updates
 
 const DataProviderWithGetOneMethodTsCode = /* ts */ `
 import type { DataProvider } from "@refinedev/core";
@@ -123,6 +78,8 @@ export default function App(): JSX.Element {
   );
 }
 `.trim();
+
+// actions
 
 export const AddGetOneMethod = () => {
     const { sandpack } = useSandpack();
@@ -186,4 +143,19 @@ export const AddShowProductToAppTsx = () => {
             }}
         />
     );
+};
+
+// files
+
+export const finalFiles = {
+    ...initialFiles,
+    "App.tsx": {
+        code: AppTsxWithShowProductCode,
+    },
+    "data-provider.ts": {
+        code: DataProviderWithGetOneMethodTsCode,
+    },
+    "show-product.tsx": {
+        code: ShowProductWithUseOneTsxCode,
+    },
 };

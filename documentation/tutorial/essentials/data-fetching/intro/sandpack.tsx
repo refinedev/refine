@@ -4,45 +4,19 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import clsx from "clsx";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
+import { dependencies, files as initialFiles } from "../../intro/sandpack";
+
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            files={{
-                "App.tsx": {
-                    code: AppTsxCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-            }}
-            finalFiles={{
-                "App.tsx": {
-                    code: UpdatedAppTsxCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-            }}
+            dependencies={dependencies}
+            files={files}
+            finalFiles={finalFiles}
         >
             {children}
         </TutorialSandpack>
     );
 };
-
-const AppTsxCode = /* tsx */ `
-import { Refine, WelcomePage } from "@refinedev/core";
-
-export default function App(): JSX.Element {
-    return (
-        <Refine>
-            <WelcomePage />
-        </Refine>
-    );
-};
-`.trim();
 
 const UpdatedAppTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
@@ -110,4 +84,21 @@ export const AddDataProviderToRefine = () => {
             }}
         />
     );
+};
+
+export const files = {
+    ...initialFiles,
+    "data-provider.ts": {
+        code: DataProviderTsCode,
+    },
+};
+
+export const finalFiles = {
+    ...files,
+    "App.tsx": {
+        code: UpdatedAppTsxCode,
+    },
+    "data-provider.ts": {
+        code: DataProviderTsCode,
+    },
 };
