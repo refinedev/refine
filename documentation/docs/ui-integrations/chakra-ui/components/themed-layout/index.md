@@ -110,7 +110,7 @@ render(<App />);
 Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
 - [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-chakra-ui/src/App.tsx#L171)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
 - [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/chakra-ui` as same.

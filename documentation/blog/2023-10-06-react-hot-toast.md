@@ -158,12 +158,12 @@ The [refine notification provider](https://refine.dev/docs/api-reference/core/pr
 To understand how the notification provider works, we first need to comprehend how it interacts with the application. For every design system you choose to use in your refine application, whether it's Ant Design, Material Design, Mantine, or Chakra UI, refine provides a built-in notification provider that is passed as a prop to the refine component.
 
 ```tsx
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 
 return (
   <Refine
     //...
-    notificationProvider={notificationProvider}
+    notificationProvider={useNotificationProvider}
   />
 );
 ```
@@ -379,7 +379,7 @@ To do this, open the `App.tsx` file and make the following modifications:
         <BrowserRouter>
             <Refine
               ...
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               i18nProvider={i18nProvider}
               ...
             >

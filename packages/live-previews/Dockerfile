@@ -1,18 +1,43 @@
-FROM node:16-alpine
+FROM refinedev/node:18 AS base
 
-WORKDIR /opt/app
+FROM base AS deps
 
-RUN apk add git openssh-client
+RUN apk add --no-cache libc6-compat openssh-client
 
-COPY . /opt/app
-ENV NODE_ENV development
+COPY package.json package-lock.json .npmrc ./
 
+RUN npm pkg delete scripts.prepare
 RUN npm ci
+
+FROM base AS builder
+
+COPY --from=deps /app/refine/node_modules ./node_modules
+
+COPY . .
+
+ENV CI true
 
 RUN npm run bootstrap -- --scope @refinedev/live-previews
 RUN npm run build -- --scope @refinedev/live-previews
 
-#Example client
-WORKDIR /opt/app/packages/live-previews
+FROM base AS runner
 
-CMD npm run start:prod
+ENV NODE_ENV production
+
+COPY --from=builder /app/refine/packages/live-previews/public ./public
+
+RUN mkdir .next
+RUN chown refine:nodejs .next
+
+COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/standalone/packages/live-previews ./
+COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/standalone/node_modules ./node_modules
+COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/static ./.next/static
+
+USER refine
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["node", "server.js"]

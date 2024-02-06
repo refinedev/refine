@@ -81,7 +81,7 @@ The `App.tsx` file should be familiar from [Day 2](https://refine.dev/blog/refin
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -102,7 +102,7 @@ function App() {
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
             routerProvider={routerBindings}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
@@ -173,7 +173,7 @@ After creating files above you need to add some imports and [routes](/docs/packa
 
 ```tsx title="App.tsx"
 import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -215,7 +215,7 @@ function App() {
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
           routerProvider={routerBindings}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "users",
@@ -559,7 +559,7 @@ Remember, we've already replaced `App.tx` code with the following:
 
 ```tsx title="App.tsx"
 import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, notificationProvider } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -601,7 +601,7 @@ function App() {
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
           routerProvider={routerBindings}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           resources={[
             {
               name: "users",

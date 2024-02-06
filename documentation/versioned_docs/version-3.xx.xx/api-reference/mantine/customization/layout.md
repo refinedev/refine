@@ -193,7 +193,7 @@ import {
   MantineProvider,
   Global,
   NotificationsProvider,
-  notificationProvider,
+  useNotificationProvider,
   LightTheme,
   // highlight-start
   Box,
@@ -242,7 +242,7 @@ const App = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           // highlight-next-line
           Layout={CustomLayout}
           resources={[

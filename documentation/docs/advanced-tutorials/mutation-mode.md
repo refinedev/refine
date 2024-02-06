@@ -5,7 +5,7 @@ title: Mutation Mode
 
 ```tsx live shared
 import { Refine } from "@refinedev/core";
-import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, notificationProvider } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, useNotificationProvider } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { ConfigProvider } from "antd";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -249,7 +249,7 @@ const App = () => {
               edit: "/posts/edit/:id",
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
         >
           <Routes>
             <Route
@@ -306,7 +306,7 @@ const App = () => {
               edit: "/posts/edit/:id",
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{ mutationMode: "optimistic" }}
         >
           <Routes>
@@ -364,7 +364,7 @@ const App = () => {
               edit: "/posts/edit/:id",
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{ mutationMode: "undoable" }}
         >
           <Routes>

@@ -61,7 +61,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, LightTheme, Layout, ErrorComponent } from "@refinedev/mantine";
+import { useNotificationProvider, LightTheme, Layout, ErrorComponent } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
@@ -81,7 +81,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

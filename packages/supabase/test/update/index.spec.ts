@@ -26,4 +26,36 @@ describe("update", () => {
             }),
         );
     });
+
+    it("should change schema", async () => {
+        const id = 1;
+
+        const { data } = await dataProvider(supabaseClient).update({
+            id,
+            resource: "products",
+            variables: {
+                name: "IPhone 16",
+            },
+            meta: {
+                select: "*",
+            },
+        });
+
+        expect(data).toEqual({ id: 1, name: "IPhone 16" });
+
+        try {
+            await dataProvider(supabaseClient).update({
+                id,
+                resource: "products",
+                variables: {
+                    name: "IPhone 16",
+                },
+                meta: {
+                    schema: "private",
+                },
+            });
+        } catch (error: any) {
+            expect(error.code).toEqual("PGRST106");
+        }
+    });
 });

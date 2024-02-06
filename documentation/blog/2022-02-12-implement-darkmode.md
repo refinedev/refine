@@ -195,7 +195,7 @@ In App.tsx, adapt the file so it looks like this :
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import "styles/antd.less";
 import dataProvider from "@refinedev/simple-rest";
@@ -219,7 +219,7 @@ function App() {
       // highlight-end
       <Refine
         routerProvider={routerProvider}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         resources={[
           {

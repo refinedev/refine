@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import { useLocalStorage } from "@mantine/hooks";
@@ -54,7 +54,7 @@ const App: React.FC = () => {
                             dataProvider={dataProvider(
                                 "https://api.fake-rest.refine.dev",
                             )}
-                            notificationProvider={notificationProvider}
+                            notificationProvider={useNotificationProvider}
                             resources={[
                                 {
                                     name: "posts",

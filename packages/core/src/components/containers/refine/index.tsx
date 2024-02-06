@@ -69,7 +69,7 @@ export interface RefineProps {
      * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
      * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/)
      */
-    dataProvider: IDataContextProvider | IDataMultipleContextProvider;
+    dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
     /**
      * `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
      * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)

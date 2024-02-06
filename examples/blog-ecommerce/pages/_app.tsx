@@ -5,7 +5,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     UnsavedChangesNotifier,
     DocumentTitleHandler,
-} from "@refinedev/nextjs-router";
+} from "@refinedev/nextjs-router/pages";
 import { ChakraProvider } from "@chakra-ui/react";
 import { DataProvider } from "@refinedev/strapi-v4";
 

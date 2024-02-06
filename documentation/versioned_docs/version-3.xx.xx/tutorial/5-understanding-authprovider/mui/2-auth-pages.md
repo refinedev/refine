@@ -47,7 +47,7 @@ import {
   GlobalStyles,
   ThemeProvider,
   RefineSnackbarProvider,
-  notificationProvider,
+  useNotificationProvider,
   AuthPage,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -81,7 +81,7 @@ const App: React.FC = () => {
             ],
           }}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
@@ -134,7 +134,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
      GlobalStyles,
      ThemeProvider,
      RefineSnackbarProvider,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-mui";
@@ -163,7 +163,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
              }}
              //highlight-end
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              Layout={Layout}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
@@ -246,7 +246,7 @@ Register page is used to register new users. It provides a basic form to enter e
       GlobalStyles,
       ThemeProvider,
       RefineSnackbarProvider,
-      notificationProvider,
+      useNotificationProvider,
       //highlight-next-line
       AuthPage,
     } from "@pankod/refine-mui";
@@ -281,7 +281,7 @@ Register page is used to register new users. It provides a basic form to enter e
                 ],
               }}
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               Layout={Layout}
               ReadyPage={ReadyPage}
               catchAll={<ErrorComponent />}
@@ -343,7 +343,7 @@ Forgot password page is used to send a reset password link to the user's email. 
      GlobalStyles,
      ThemeProvider,
      RefineSnackbarProvider,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-mui";
@@ -382,7 +382,7 @@ Forgot password page is used to send a reset password link to the user's email. 
                ],
              }}
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              Layout={Layout}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}
@@ -445,7 +445,7 @@ Update password page is used to update the user's password. It provides a basic 
      GlobalStyles,
      ThemeProvider,
      RefineSnackbarProvider,
-     notificationProvider,
+     useNotificationProvider,
      //highlight-next-line
      AuthPage,
    } from "@pankod/refine-mui";
@@ -488,7 +488,7 @@ Update password page is used to update the user's password. It provides a basic 
                ],
              }}
              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-             notificationProvider={notificationProvider}
+             notificationProvider={useNotificationProvider}
              Layout={Layout}
              ReadyPage={ReadyPage}
              catchAll={<ErrorComponent />}

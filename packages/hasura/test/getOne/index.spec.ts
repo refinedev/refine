@@ -1,92 +1,200 @@
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import { createClient } from "../gqlClient";
 import "./index.mock";
 
-describe.each(["hasura-default", "graphql-default"] as const)(
-    "updateOne with %s naming convention",
-    (namingConvention) => {
-        const client = createClient(namingConvention);
-        it("correct response with meta", async () => {
+const mockData = {
+    post: {
+        "hasura-default": {
+            id: "572708c7-840d-430a-befd-1416bdee799a",
+            title: "Aenean ultricies non libero sit amet pellentesque",
+            content: "Vestibulum vulputate sapien arcu.",
+            category: { id: "e27156c3-9998-434f-bd5b-2b078283ff26" },
+        },
+        "graphql-default": {
+            id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+            title: "Aenean ultricies non libero sit amet pellentesque",
+            content: "Vestibulum vulputate sapien arcu.",
+            category: {
+                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+            },
+        },
+    },
+    user: {
+        id: 1,
+        name: "Refine",
+        email: "mail@refine.dev",
+    },
+} as const;
+
+describe.only("with meta.fields", () => {
+    describe.each(["hasura-default", "graphql-default"] as const)(
+        "updateOne with %s naming convention",
+        (namingConvention) => {
+            const client = createClient(namingConvention);
+            it("correct response with meta", async () => {
+                const { data } = await dataProvider(client, {
+                    namingConvention,
+                }).getOne({
+                    resource: "posts",
+                    id: mockData.post[namingConvention].id,
+                    meta: {
+                        fields: [
+                            "id",
+                            "title",
+                            "content",
+                            { category: ["id"] },
+                        ],
+                    },
+                });
+
+                expect(data["id"]).toEqual(mockData.post[namingConvention].id);
+                expect(data["title"]).toEqual(
+                    mockData.post[namingConvention].title,
+                );
+                expect(data["content"]).toEqual(
+                    mockData.post[namingConvention].content,
+                );
+                expect(data["category"].id).toEqual(
+                    mockData.post[namingConvention].category.id,
+                );
+            });
+
+            it("correct response with meta and custom idType", async () => {
+                const { data } = await dataProvider(client, {
+                    namingConvention,
+                    idType: "Int",
+                }).getOne({
+                    resource: "users",
+                    id: mockData["user"].id,
+                    meta: {
+                        fields: ["id", "name", "email"],
+                    },
+                });
+
+                expect(data["id"]).toEqual(mockData["user"].id);
+                expect(data["name"]).toEqual(mockData["user"].name);
+                expect(data["email"]).toEqual(mockData["user"].email);
+            });
+
+            it("correct response with meta and dynamic idType", async () => {
+                const idTypeMap: Record<string, "Int" | "uuid"> = {
+                    users: "Int",
+                    posts: "uuid",
+                };
+                const cDataProvider = dataProvider(client, {
+                    namingConvention,
+                    idType: (resource) => idTypeMap[resource] ?? "uuid",
+                });
+                const { data: userData } = await cDataProvider.getOne({
+                    resource: "users",
+                    id: mockData["user"].id,
+                    meta: {
+                        fields: ["id", "name", "email"],
+                    },
+                });
+
+                expect(userData["id"]).toEqual(mockData["user"].id);
+                expect(userData["name"]).toEqual(mockData["user"].name);
+                expect(userData["email"]).toEqual(mockData["user"].email);
+
+                const { data: postData } = await cDataProvider.getOne({
+                    resource: "posts",
+                    id: mockData.post[namingConvention].id,
+                    meta: {
+                        fields: [
+                            "id",
+                            "title",
+                            "content",
+                            { category: ["id"] },
+                        ],
+                    },
+                });
+
+                expect(postData["id"]).toEqual(
+                    mockData.post[namingConvention].id,
+                );
+                expect(postData["title"]).toEqual(
+                    mockData.post[namingConvention].title,
+                );
+                expect(postData["content"]).toEqual(
+                    mockData.post[namingConvention].content,
+                );
+                expect(postData["category"].id).toEqual(
+                    mockData.post[namingConvention].category.id,
+                );
+            });
+        },
+    );
+});
+
+describe("with gql", () => {
+    it.each(["gqlQuery", "gqlMutation"] as const)(
+        "correct response with hasura-default & %s",
+        async (gqlOperation) => {
+            const client = createClient("hasura-default");
+
             const { data } = await dataProvider(client, {
-                namingConvention,
+                namingConvention: "hasura-default",
             }).getOne({
                 resource: "posts",
-                id: "6379bbda-0857-40f2-a277-b401ea6134d7",
+                id: mockData.post["hasura-default"].id,
                 meta: {
-                    fields: ["id", "title", "content", { category: ["id"] }],
+                    [gqlOperation]: gql`
+                        query GetPost($id: uuid!) {
+                            posts_by_pk(id: $id) {
+                                id
+                                title
+                                content
+                                category {
+                                    id
+                                }
+                            }
+                        }
+                    `,
                 },
             });
 
-            expect(data["id"]).toEqual("6379bbda-0857-40f2-a277-b401ea6134d7");
+            expect(data["id"]).toEqual(mockData.post["hasura-default"].id);
             expect(data["title"]).toEqual(
-                "Aenean ultricies non libero sit amet pellentesque",
+                mockData.post["hasura-default"].title,
             );
             expect(data["content"]).toEqual(
-                "Vestibulum vulputate sapien arcu.",
+                mockData.post["hasura-default"].content,
             );
             expect(data["category"].id).toEqual(
-                "e27156c3-9998-434f-bd5b-2b078283ff26",
+                mockData.post["hasura-default"].category.id,
             );
-        });
+        },
+    );
 
-        it("correct response with meta and custom idType", async () => {
+    it.each(["gqlQuery", "gqlMutation"] as const)(
+        "correct response with graphql-default & %s",
+        async (gqlOperation) => {
+            const client = createClient("graphql-default");
+
             const { data } = await dataProvider(client, {
-                namingConvention,
+                namingConvention: "graphql-default",
                 idType: "Int",
             }).getOne({
                 resource: "users",
-                id: 1,
+                id: mockData.user.id,
                 meta: {
-                    fields: ["id", "name", "email"],
+                    [gqlOperation]: gql`
+                        query GetUser($id: Int!) {
+                            usersByPk(id: $id) {
+                                id
+                                name
+                                email
+                            }
+                        }
+                    `,
                 },
             });
 
-            expect(data["id"]).toEqual(1);
-            expect(data["name"]).toEqual("Refine");
-            expect(data["email"]).toEqual("mail@refine.dev");
-        });
-
-        it("correct response with meta and dynamic idType", async () => {
-            const idTypeMap: Record<string, "Int" | "uuid"> = {
-                users: "Int",
-                posts: "uuid",
-            };
-            const cDataProvider = dataProvider(client, {
-                namingConvention,
-                idType: (resource) => idTypeMap[resource] ?? "uuid",
-            });
-            const { data: userData } = await cDataProvider.getOne({
-                resource: "users",
-                id: 1,
-                meta: {
-                    fields: ["id", "name", "email"],
-                },
-            });
-
-            expect(userData["id"]).toEqual(1);
-            expect(userData["name"]).toEqual("Refine");
-            expect(userData["email"]).toEqual("mail@refine.dev");
-
-            const { data: postData } = await cDataProvider.getOne({
-                resource: "posts",
-                id: "6379bbda-0857-40f2-a277-b401ea6134d7",
-                meta: {
-                    fields: ["id", "title", "content", { category: ["id"] }],
-                },
-            });
-
-            expect(postData["id"]).toEqual(
-                "6379bbda-0857-40f2-a277-b401ea6134d7",
-            );
-            expect(postData["title"]).toEqual(
-                "Aenean ultricies non libero sit amet pellentesque",
-            );
-            expect(postData["content"]).toEqual(
-                "Vestibulum vulputate sapien arcu.",
-            );
-            expect(postData["category"].id).toEqual(
-                "e27156c3-9998-434f-bd5b-2b078283ff26",
-            );
-        });
-    },
-);
+            expect(data["id"]).toEqual(mockData["user"].id);
+            expect(data["name"]).toEqual(mockData["user"].name);
+            expect(data["email"]).toEqual(mockData["user"].email);
+        },
+    );
+});

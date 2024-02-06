@@ -33,8 +33,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
 };
 
-const { Title } = Typography;
-
 /**
  * **refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>` component as a property.
  *
@@ -49,7 +47,9 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                     src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                     alt="Refine Logo"
                 />
-                <Title style={styles.title}>Welcome on board</Title>
+                <Typography.Title style={styles.title}>
+                    Welcome on board
+                </Typography.Title>
                 <p style={styles.p1}>Your configuration is completed.</p>
                 <p style={styles.p2}>
                     Now you can get started by adding your resources to the{" "}

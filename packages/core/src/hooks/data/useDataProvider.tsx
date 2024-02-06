@@ -12,12 +12,13 @@ export const useDataProvider = (): ((
      */
     dataProviderName?: string,
 ) => IDataContextProvider) => {
-    const context = useContext<IDataMultipleContextProvider>(DataContext);
+    const context =
+        useContext<Partial<IDataMultipleContextProvider>>(DataContext);
 
     const handleDataProvider = useCallback(
         (dataProviderName?: string) => {
             if (dataProviderName) {
-                const dataProvider = context[dataProviderName];
+                const dataProvider = context?.[dataProviderName];
                 if (!dataProvider) {
                     throw new Error(
                         `"${dataProviderName}" Data provider not found`,

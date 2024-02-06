@@ -3,7 +3,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -75,7 +75,7 @@ const App: React.FC = () => {
                                 return Promise.reject(error);
                             },
                         }}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

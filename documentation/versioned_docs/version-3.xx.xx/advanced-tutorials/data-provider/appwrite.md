@@ -100,7 +100,7 @@ import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -130,7 +130,7 @@ const App: React.FC = () => {
       routerProvider={routerProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
     />
   );
@@ -339,7 +339,7 @@ const App: React.FC = () => {
       routerProvider={routerProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       LoginPage={Login}
       resources={[

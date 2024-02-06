@@ -16,6 +16,7 @@ import {
     useRouterContext,
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 import {
     AuthActionResponse,
     RefineError,
@@ -170,9 +171,13 @@ export function useUpdatePassword<
                 ...variables,
             }) as Promise<AuthActionResponse>;
         },
-        onSuccess: ({ success, redirectTo, error }) => {
+        onSuccess: ({ success, redirectTo, error, successNotification }) => {
             if (success) {
                 close?.("update-password-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -250,5 +255,16 @@ const buildNotification = (
         description: error?.message || "Error while updating password",
         key: "update-password-error",
         type: "error",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+): OpenNotificationParams => {
+    return {
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "update-password-success",
+        type: "success",
     };
 };

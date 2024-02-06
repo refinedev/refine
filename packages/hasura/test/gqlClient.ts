@@ -10,6 +10,7 @@ const createClient = (namingConvention: string) => {
     );
 
     client.setHeader("x-hasura-role", "public");
+    client.setHeader("Accept-Encoding", "identity");
 
     return client;
 };

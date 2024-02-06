@@ -1,7 +1,7 @@
 import { parse } from "qs";
 import type { ParsedParams } from "@refinedev/core";
 
-export const parseTableParams = (search: string) => {
+const parseTableParams = (search: string) => {
     const parsed: ParsedParams = parse(search, { ignoreQueryPrefix: true });
 
     const tableReady = {
@@ -17,3 +17,5 @@ export const parseTableParams = (search: string) => {
 
     return tableReady;
 };
+
+export default parseTableParams;

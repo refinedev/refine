@@ -7,13 +7,6 @@ swizzle: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-```tsx live shared
-import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
-const API_URL = "https://api.strapi.refine.dev/graphql";
-const client = new GraphQLClient(API_URL);
-const gqlDataProvider = dataProvider(client);
-```
-
 Refine provides a data provider for GraphQL APIs that has all the features of Refine without giving up the GraphQL features.
 
 :::simple Good to know
@@ -140,6 +133,6 @@ You can also use `@refinedev/inferencer` package to generate sample codes for yo
 
 ## Example
 
-<CodeSandboxExample path="data-provider-strapi-graphql" />
+<CodeSandboxExample path="data-provider-nestjs-query" />
 
 [data-provider]: /docs/data/data-provider

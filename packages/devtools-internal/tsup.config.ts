@@ -12,6 +12,9 @@ export default defineConfig({
             ...options.define,
             __DEV_CONDITION__: "process.env.NODE_ENV",
         };
+        options.banner = {
+            js: '"use client"',
+        };
     },
     esbuildPlugins: [
         NodeResolvePlugin({

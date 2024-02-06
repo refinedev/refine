@@ -63,7 +63,6 @@ export const authProvider: AuthProvider = {
     if (error.statusCode === "UNAUTHENTICATED") {
       return {
         logout: true,
-        ...error,
       };
     }
 

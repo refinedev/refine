@@ -1,8 +1,6 @@
 import React from "react";
 import { Typography } from "antd";
 
-const { Link } = Typography;
-
 import { EmailFieldProps } from "../types";
 
 /**
@@ -13,8 +11,8 @@ import { EmailFieldProps } from "../types";
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
     return (
-        <Link href={`mailto:${value}`} {...rest}>
+        <Typography.Link href={`mailto:${value}`} {...rest}>
             {value}
-        </Link>
+        </Typography.Link>
     );
 };

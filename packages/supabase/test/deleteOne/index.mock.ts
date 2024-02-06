@@ -45,3 +45,90 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             "kong/2.2.1",
         ],
     );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .delete("/rest/v1/products")
+    .query({ id: "eq.27" })
+    .reply(
+        204,
+        [{ id: 27, name: "foo" }],
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:32:04 GMT",
+            "Connection",
+            "close",
+            "Content-Range",
+            "*/*",
+            "CF-Ray",
+            "84a00ea85e2fc1a8-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "0",
+            "X-Kong-Upstream-Latency",
+            "5",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .delete("/rest/v1/products")
+    .query({ id: "eq.41" })
+    .reply(
+        406,
+        {
+            code: "PGRST106",
+            details: null,
+            hint: null,
+            message: "The schema must be one of the following: public, storage",
+        },
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:33:44 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "CF-Ray",
+            "84a0111d6c9303bf-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "1",
+            "X-Kong-Upstream-Latency",
+            "1",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );

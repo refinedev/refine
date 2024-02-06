@@ -2018,10 +2018,6 @@
       "to": "/docs/data/packages/strapi-v4"
     },
     {
-      "from": "/docs/packages/data-providers/strapi-graphql",
-      "to": "/docs/data/packages/strapi-graphql"
-    },
-    {
       "from": "/docs/packages/data-providers/supabase",
       "to": "/docs/data/packages/supabase"
     },
@@ -2076,6 +2072,26 @@
     {
       "from": "/blog/refine-react-admin-invoice-genarator",
       "to": "/blog/refine-react-admin-invoice-generator"
+    },
+    {
+      "from": "/docs/packages/data-providers/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/data/packages/strapi-graphql",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/data-provider/strapi-graphql/",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/data-provider/nhost/",
+      "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/next-js/nextjs-appdir/",
+      "to": "/docs/examples/next-js"
     }
   ]
 }

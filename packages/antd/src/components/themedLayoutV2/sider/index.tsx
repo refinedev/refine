@@ -30,9 +30,6 @@ import { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
-const { SubMenu } = Menu;
-const { useToken } = theme;
-
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     Title: TitleFromProps,
     render,
@@ -40,7 +37,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     fixed,
     activeItemDisabled = false,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const {
         siderCollapsed,
         setSiderCollapsed,
@@ -93,13 +90,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             resource: item,
                         }}
                     >
-                        <SubMenu
+                        <Menu.SubMenu
                             key={item.key}
                             icon={icon ?? <UnorderedListOutlined />}
                             title={label}
                         >
                             {renderTreeView(children, selectedKey)}
-                        </SubMenu>
+                        </Menu.SubMenu>
                     </CanAccess>
                 );
             }

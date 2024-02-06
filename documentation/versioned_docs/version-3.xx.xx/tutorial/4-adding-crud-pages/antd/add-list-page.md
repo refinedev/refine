@@ -32,7 +32,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -48,7 +48,7 @@ const App: React.FC = () => {
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       resources={[
         {
@@ -175,7 +175,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -194,7 +194,7 @@ const App: React.FC = () => {
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       resources={[
         {

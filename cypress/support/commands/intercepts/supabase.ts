@@ -39,7 +39,7 @@ Cypress.Commands.add("interceptSupabaseGETPosts", () => {
             {
                 method: "GET",
                 hostname: HOSTNAME,
-                pathname: `${BASE_PATH}/posts`,
+                pathname: `${BASE_PATH}/blog_posts`,
             },
 
             (req) => {
@@ -69,7 +69,7 @@ Cypress.Commands.add("interceptSupabasePOSTPost", () => {
                 {
                     method: "POST",
                     hostname: HOSTNAME,
-                    pathname: `${BASE_PATH}/posts`,
+                    pathname: `${BASE_PATH}/blog_posts`,
                 },
                 (req) => {
                     const merged = Object.assign({}, req.body, {
@@ -91,7 +91,7 @@ Cypress.Commands.add("interceptSupabasePATCHPost", () => {
                 {
                     method: "PATCH",
                     hostname: HOSTNAME,
-                    pathname: `${BASE_PATH}/posts`,
+                    pathname: `${BASE_PATH}/blog_posts`,
                 },
 
                 (req) => {
@@ -117,7 +117,7 @@ Cypress.Commands.add("interceptSupabaseDELETEPost", () => {
             {
                 method: "DELETE",
                 hostname: HOSTNAME,
-                pathname: `${BASE_PATH}/posts`,
+                pathname: `${BASE_PATH}/blog_posts`,
             },
             {},
         )

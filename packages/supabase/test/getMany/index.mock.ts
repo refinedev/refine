@@ -106,3 +106,102 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
             'h3=":443"; ma=86400, h3-29=":443"; ma=86400',
         ],
     );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .get("/rest/v1/products")
+    .query({ select: "%2A", id: "in.%281%2C2%29" })
+    .reply(
+        200,
+        [
+            "1f8b08000000000000038bae56ca4c51b232d451ca4bcc4d55b252f24d4c4ecacfcf560828ca4f0581c4e294c462a55a1d052e05885223b8d2cc808cfcbc54054353a5da5800a22a202948000000",
+        ],
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:53:54 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "Content-Range",
+            "0-1/*",
+            "CF-Ray",
+            "84a02ea80ebcc1cd-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Content-Encoding",
+            "gzip",
+            "Content-Location",
+            "/products?id=in.%281%2C2%29&select=%2A",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Vary",
+            "Accept-Encoding",
+            "Via",
+            "kong/2.8.1",
+            "Content-Profile",
+            "public",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "0",
+            "X-Kong-Upstream-Latency",
+            "27",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+    encodedQueryParams: true,
+})
+    .get("/rest/v1/products")
+    .query({ select: "%2A", id: "in.%281%2C2%29" })
+    .reply(
+        406,
+        {
+            code: "PGRST106",
+            details: null,
+            hint: null,
+            message: "The schema must be one of the following: public, storage",
+        },
+        [
+            "Date",
+            "Tue, 23 Jan 2024 12:53:55 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "CF-Ray",
+            "84a02eaa6e057340-BUD",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Access-Control-Allow-Origin",
+            "*",
+            "Strict-Transport-Security",
+            "max-age=2592000; includeSubDomains",
+            "Via",
+            "kong/2.8.1",
+            "sb-gateway-version",
+            "1",
+            "X-Kong-Proxy-Latency",
+            "0",
+            "X-Kong-Upstream-Latency",
+            "1",
+            "Vary",
+            "Accept-Encoding",
+            "Server",
+            "cloudflare",
+            "alt-svc",
+            'h3=":443"; ma=86400',
+        ],
+    );

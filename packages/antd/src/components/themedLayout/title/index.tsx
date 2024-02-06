@@ -3,27 +3,25 @@ import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
 import { Typography, theme, Space } from "antd";
 import { RefineLayoutThemedTitleProps } from "../types";
 
-const { useToken } = theme;
-
-const defaultText = "refine Project";
+const defaultText = "Refine Project";
 
 const defaultIcon = (
     <svg
-        width="24"
-        height="24"
+        width={24}
+        height={24}
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         data-testid="refine-logo"
     >
         <path
-            d="M12 9C13.6569 9 15 7.65685 15 6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6C9 7.65685 10.3431 9 12 9Z"
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M13.7889 0.422291C12.6627 -0.140764 11.3373 -0.140764 10.2111 0.422291L2.21115 4.42229C0.85601 5.09986 0 6.48491 0 8V16C0 17.5151 0.85601 18.9001 2.21115 19.5777L10.2111 23.5777C11.3373 24.1408 12.6627 24.1408 13.7889 23.5777L21.7889 19.5777C23.144 18.9001 24 17.5151 24 16V8C24 6.48491 23.144 5.09986 21.7889 4.42229L13.7889 0.422291ZM8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8V16C16 18.2091 14.2091 20 12 20C9.79086 20 8 18.2091 8 16V8Z"
             fill="currentColor"
         />
         <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM8 6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V18C16 20.2091 14.2091 22 12 22C9.79086 22 8 20.2091 8 18V6Z"
+            d="M14 8C14 9.10457 13.1046 10 12 10C10.8954 10 10 9.10457 10 8C10 6.89543 10.8954 6 12 6C13.1046 6 14 6.89543 14 8Z"
             fill="currentColor"
         />
     </svg>
@@ -38,7 +36,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     text = defaultText,
     wrapperStyles,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();

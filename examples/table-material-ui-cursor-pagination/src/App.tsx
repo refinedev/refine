@@ -3,7 +3,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -32,7 +32,7 @@ const App: React.FC = () => {
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider("https://api.github.com")}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "repos/refinedev/refine/commits",

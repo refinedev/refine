@@ -29,7 +29,7 @@ setInitialRoutes(["/blog-posts/edit/123"]);
 import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, useNotificationProvider } from "@refinedev/mantine";
 import routerBindings, { NavigateToResource, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -46,7 +46,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -144,7 +144,7 @@ import { Global, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { Refine } from "@refinedev/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
-import { ErrorComponent, ThemedLayoutV2, RefineThemes, notificationProvider } from "@refinedev/mantine";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes, useNotificationProvider } from "@refinedev/mantine";
 import routerBindings, {
   NavigateToResource,
   // highlight-next-line
@@ -166,7 +166,7 @@ const App = () => {
           <Refine
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

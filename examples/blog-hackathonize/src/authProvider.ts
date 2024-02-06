@@ -59,7 +59,12 @@ const authProvider: AuthProvider = {
         };
     },
     onError: async (error) => {
-        console.error(error);
+        if (error?.code === "PGRST301" || error?.code === 401) {
+            return {
+                logout: true,
+            };
+        }
+
         return { error };
     },
     check: async () => {

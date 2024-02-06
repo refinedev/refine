@@ -26,4 +26,36 @@ describe("updateMany", () => {
             }),
         );
     });
+
+    it("should change schema", async () => {
+        const { data } = await dataProvider(supabaseClient).updateMany({
+            resource: "products",
+            ids: [1, 2],
+            variables: {
+                name: "Samsung Galaxy S21",
+            },
+            meta: {
+                schema: "public",
+                select: "*",
+            },
+        });
+
+        expect(data[0]).toEqual({ id: 1, name: "Samsung Galaxy S21" });
+        expect(data[1]).toEqual({ id: 2, name: "Samsung Galaxy S21" });
+
+        try {
+            await dataProvider(supabaseClient).updateMany({
+                resource: "products",
+                ids: [1, 2],
+                variables: {
+                    name: "foo",
+                },
+                meta: {
+                    schema: "private",
+                },
+            });
+        } catch (error: any) {
+            expect(error.code).toEqual("PGRST106");
+        }
+    });
 });

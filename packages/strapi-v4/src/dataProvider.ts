@@ -197,11 +197,13 @@ export const DataProvider = (
         const locale = meta?.locale;
         const fields = meta?.fields;
         const populate = meta?.populate;
+        const publicationState = meta?.publicationState;
 
         const query = {
             locale,
             fields,
             populate,
+            publicationState,
         };
 
         const url = `${apiUrl}/${resource}/${id}?${stringify(query, {

@@ -10,10 +10,14 @@ import {
 
 import { Table } from "antd";
 
-import { ICategory } from "../../interfaces";
+import { GetCategoriesQuery } from "graphql/types";
+import { GetFieldsFromList } from "@refinedev/hasura";
+import { CATEGORIES_QUERY } from "./queries";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<ICategory>({
+    const { tableProps, sorters } = useTable<
+        GetFieldsFromList<GetCategoriesQuery>
+    >({
         initialSorter: [
             {
                 field: "id",
@@ -21,7 +25,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             },
         ],
         metaData: {
-            fields: ["id", "title", "created_at"],
+            gqlQuery: CATEGORIES_QUERY,
         },
     });
 
@@ -34,10 +38,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="created_at"
                     title="Created At"
                     render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
+                    defaultSortOrder={getDefaultSortOrder(
+                        "created_at",
+                        sorters,
+                    )}
                     sorter
                 />
-                <Table.Column<ICategory>
+                <Table.Column<GetFieldsFromList<GetCategoriesQuery>>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
