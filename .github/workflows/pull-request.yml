@@ -10,8 +10,6 @@ jobs:
     name: Commitlint
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
   lint:
     runs-on: ubuntu-latest
