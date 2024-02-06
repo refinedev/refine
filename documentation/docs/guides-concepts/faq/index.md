@@ -331,7 +331,7 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` 
 Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
 - Vite: `src/App.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
-- Next.js: `pages/_app.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/pages/_app.tsx#L47)
+- Next.js: `src/app/layout.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L37)
 - Remix: `app/root.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
 
 ## How to solve "Module 'X' has no exported member 'Y'" error?

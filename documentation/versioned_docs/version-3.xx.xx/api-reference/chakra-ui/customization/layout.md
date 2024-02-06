@@ -197,7 +197,7 @@ import {
   ChakraProvider,
   ErrorComponent,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   refineTheme,
   // highlight-start
   Box,

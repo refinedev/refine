@@ -13,7 +13,7 @@ setRefineProps({
   Layout: RefineMantine.Layout,
   Sider: () => null,
   DashboardPage: () => <p>Dashboard Page</p>,
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
 });
 
 const Wrapper = ({ children }) => {

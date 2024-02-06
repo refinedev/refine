@@ -278,7 +278,7 @@ The app will have three resources: **posts**, **users**, and **categories** with
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 

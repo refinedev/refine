@@ -44,7 +44,7 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
@@ -68,7 +68,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           //highlight-start
           liveProvider={liveProvider(ablyClient)}
           options={{ liveMode: "auto" }}

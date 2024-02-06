@@ -18,7 +18,7 @@ describe("server-side-form-validation-antd", () => {
         cy.visit(BASE_URL);
     });
 
-    it.only("should render edit form errors ", () => {
+    it("should render edit form errors ", () => {
         cy.interceptGETPost();
 
         cy.wait("@getPosts");

@@ -53,7 +53,12 @@ export default function App(): JSX.Element {
             };
         },
         onError: async (error) => {
-            console.error(error);
+            if (error.response?.status === 401) {
+                return {
+                    logout: true,
+                };
+            }
+
             return {
                 error,
             };

@@ -51,7 +51,7 @@ const App = () => {
   return (
     <Refine
       //highlight-next-line
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       /* ... */
     >
       {/* ... */}
@@ -81,12 +81,12 @@ values={[
   <TabItem value="antd">
 
 ```tsx
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 
 return (
   <Refine
     //...
-    notificationProvider={notificationProvider}
+    notificationProvider={useNotificationProvider}
   />
 );
 ```
@@ -96,13 +96,13 @@ return (
   <TabItem value="mui">
 
 ```tsx
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 
 return (
   <RefineSnackbarProvider>
     <Refine
       //...
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
     />
   </RefineSnackbarProvider>
 );
@@ -113,14 +113,14 @@ return (
   <TabItem value="mantine">
 
 ```tsx
-import { notificationProvider } from "@refinedev/mantine";
+import { useNotificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 
 return (
   <NotificationsProvider position="top-right">
     <Refine
       //...
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
     />
   </NotificationsProvider>
 );
@@ -131,7 +131,7 @@ return (
   <TabItem value="chakra">
 
 ```tsx
-import { notificationProvider } from "@refinedev/chakra";
+import { useNotificationProvider } from "@refinedev/chakra";
 
 return (
   <Refine

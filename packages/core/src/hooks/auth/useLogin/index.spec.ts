@@ -710,6 +710,47 @@ describe("useLogin Hook", () => {
             }),
         ).toHaveLength(1);
     });
+
+    it("should open success notification when successNotification is passed", async () => {
+        const openNotificationMock = jest.fn();
+    
+        const { result } = renderHook(() => useLogin(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    login: () =>
+                        Promise.resolve({
+                            success: true,
+                            successNotification: {
+                                message: "Login successful",
+                                description: "You are now logged in",
+                            },
+                        }),
+                    check: () => Promise.resolve({ authenticated: false }),
+                    onError: () => Promise.resolve({}),
+                    logout: () => Promise.resolve({ success: true }),
+                },
+            }),
+        });
+    
+        const { mutate: login } = result.current;
+    
+        await act(async () => {
+            login({ email: "test" });
+        });
+    
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "login-success",
+                type: "success",
+                message: "Login successful",
+                description: "You are now logged in",
+            });
+        });
+    });
+    
 });
 
 // NOTE : Will be removed in v5

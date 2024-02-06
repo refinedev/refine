@@ -254,7 +254,7 @@ const Github = (props: { id?: string }) => {
                 <div
                     className={clsx("ml-4", "dark:text-gray-400 text-gray-600")}
                 >
-                    If you like refine, don’t forget to star us on GitHub!
+                    If you like Refine, don’t forget to star us on GitHub!
                 </div>
             </div>
         </Link>

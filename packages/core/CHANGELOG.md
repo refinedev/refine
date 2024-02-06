@@ -1,5 +1,27 @@
 # @refinedev/core
 
+## 4.47.0
+
+### Minor Changes
+
+-   [#5538](https://github.com/refinedev/refine/pull/5538) [`b91de14ac8`](https://github.com/refinedev/refine/commit/b91de14ac86cfd325977d9bf82f41bd171981129) Thanks [@Conqxeror](https://github.com/Conqxeror)! - feat: ability to configure useCan's queryOptions globally and through CanAccess component. #5472
+
+-   [#5522](https://github.com/refinedev/refine/pull/5522) [`71148278cb`](https://github.com/refinedev/refine/commit/71148278cbec29650d30208522b7045d4220ded9) Thanks [@Conqxeror](https://github.com/Conqxeror)! - feat(core): add success notification support for auth provider methods #5473
+
+    Updated the core and added successNotification field to AuthActionResponse and Updated relevant hooks to show success notification when successNotification object is provided and added specs.
+
+### Patch Changes
+
+-   [#5525](https://github.com/refinedev/refine/pull/5525) [`e2355e4179`](https://github.com/refinedev/refine/commit/e2355e4179bd09e31cb0aeafbd474ffb2189182e) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<WelcomePage />` component to use `RefineContext` to determine if the context is defined or not. It will show an error dialog if the context is not defined. If the error is showing, it means that `<Refine />` component is not mounted or `<WelcomePage />` component is used outside of `<Refine />` component.
+
+-   [#5332](https://github.com/refinedev/refine/pull/5332) [`5e65f71ecd`](https://github.com/refinedev/refine/commit/5e65f71ecdc8cb93a8739a5a23fc905c6fb38c8b) Thanks [@vikavorkin](https://github.com/vikavorkin)! - fix: replace export-to-csv-fix-source-map with papaparse #5317
+
+    Replace usage of `export-to-csv-fix-source-map` to `papaparse`, fixing issues with `useExport` hook.
+
+-   [#5526](https://github.com/refinedev/refine/pull/5526) [`b094b50c51`](https://github.com/refinedev/refine/commit/b094b50c519191112564a1080f5c2c8a9ae57130) Thanks [@aliemir](https://github.com/aliemir)! - Marked `dataProvider` prop of `<Refine />` component as optional. This will allow users to setup Refine gradually without having to provide a data provider.
+
+-   [#5503](https://github.com/refinedev/refine/pull/5503) [`4b4d34208c`](https://github.com/refinedev/refine/commit/4b4d34208c44297c60c651e293765b4ab3b6d30a) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor(core): re-export AuthBindings type as AuthProvider for consistency.
+
 ## 4.46.2
 
 ### Patch Changes

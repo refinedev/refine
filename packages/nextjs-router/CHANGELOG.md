@@ -1,5 +1,55 @@
 # @refinedev/nextjs-router
 
+## 5.5.7
+
+### Patch Changes
+
+-   [#5597](https://github.com/refinedev/refine/pull/5597) [`1738981da0`](https://github.com/refinedev/refine/commit/1738981da0bd230efe4a0f02517ab15f5f14f0f7) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `meta` has corrupted route parameters.
+
+    `parse` function from `@refinedev/nextjs-router` provides returns search params as following structure:
+
+    ```json
+    {
+        "pageSize": "25",
+        "current": "1",
+        "sorters[0][field]": "status",
+        "sorters[0][order]": "asc",
+        "filters[0][field]": "status",
+        "filters[0][value]": "draft",
+        "filters[0][operator]": "contains"
+    }
+    ```
+
+    This structure is not predictable and not sanitazble. So, `parse` function has been updated to provide following structure:
+
+    ```json
+    {
+        "pageSize": "25",
+        "current": "1",
+        "sorters": [
+            {
+                "field": "status",
+                "order": "asc"
+            }
+        ],
+        "filters": [
+            {
+                "field": "status",
+                "value": "draft",
+                "operator": "contains"
+            }
+        ]
+    }
+    ```
+
+    With this schema we can easily sanitize, deduplicate and predict the structure of the query parameters.
+
+## 5.5.6
+
+### Patch Changes
+
+-   [#5549](https://github.com/refinedev/refine/pull/5549) [`61215d3b41`](https://github.com/refinedev/refine/commit/61215d3b416b121fada8e51ef0e10e79fd9070af) Thanks [@aliemir](https://github.com/aliemir)! - Updated index exports to provide appropriate types for the exported elements. Resolves #5548
+
 ## 5.5.5
 
 ### Patch Changes

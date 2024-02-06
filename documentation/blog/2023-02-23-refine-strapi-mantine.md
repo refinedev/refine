@@ -265,7 +265,7 @@ Finally, replace the `src/App.tsx` file with the code below:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, AuthPage } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, AuthPage } from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
 import routerBindings, {
   NavigateToResource,
@@ -310,7 +310,7 @@ function App() {
               <Refine
                 authProvider={authProvider}
                 dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-                notificationProvider={notificationProvider}
+                notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 resources={[
                   {

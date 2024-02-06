@@ -60,6 +60,10 @@ module.exports = {
                         src: "./src/utils/upperCaseValues.ts",
                         dest: "./providers/hasura/utils/upperCaseValues.ts",
                     },
+                    {
+                        src: "./src/interfaces.ts",
+                        dest: "./providers/hasura/interfaces.ts",
+                    },
                 ],
                 message: `
             **\`Usage\`**

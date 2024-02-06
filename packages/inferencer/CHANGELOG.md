@@ -1,5 +1,24 @@
 # @refinedev/mantine
 
+## 4.5.19
+
+### Patch Changes
+
+-   [#5592](https://github.com/refinedev/refine/pull/5592) [`b10a66b58d`](https://github.com/refinedev/refine/commit/b10a66b58de3560dabc6ec6856808dd3b354c47b) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: add `graphql` package as dependency.
+
+    New projects created with `create refine-app` is failing to start due to missing `graphql` package.
+
+## 4.5.18
+
+### Patch Changes
+
+-   [#5550](https://github.com/refinedev/refine/pull/5550) [`e0eabf799f`](https://github.com/refinedev/refine/commit/e0eabf799f0dbb24a0c0b08abfc27f516f7bfae0) Thanks [@aliemir](https://github.com/aliemir)! - Updated type exports in `package.json` and included them in the `exports` field. Resolves #5528.
+
+-   [#5498](https://github.com/refinedev/refine/pull/5498) [`fff41caae9`](https://github.com/refinedev/refine/commit/fff41caae923004eb6c7fb2cd531c36ae7a8f299) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `meta.gqlQuery` and `meta.gqlMutation` support added to inferencer #5497.
+
+-   Updated dependencies [[`b91de14ac8`](https://github.com/refinedev/refine/commit/b91de14ac86cfd325977d9bf82f41bd171981129), [`e2355e4179`](https://github.com/refinedev/refine/commit/e2355e4179bd09e31cb0aeafbd474ffb2189182e), [`5e65f71ecd`](https://github.com/refinedev/refine/commit/5e65f71ecdc8cb93a8739a5a23fc905c6fb38c8b), [`b094b50c51`](https://github.com/refinedev/refine/commit/b094b50c519191112564a1080f5c2c8a9ae57130), [`4b4d34208c`](https://github.com/refinedev/refine/commit/4b4d34208c44297c60c651e293765b4ab3b6d30a), [`71148278cb`](https://github.com/refinedev/refine/commit/71148278cbec29650d30208522b7045d4220ded9)]:
+    -   @refinedev/core@4.47.0
+
 ## 4.5.17
 
 ### Patch Changes

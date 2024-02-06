@@ -1,5 +1,17 @@
 # @refinedev/chakra-ui
 
+## 2.27.3
+
+### Patch Changes
+
+-   [#5568](https://github.com/refinedev/refine/pull/5568) [`f1244819ad`](https://github.com/refinedev/refine/commit/f1244819adae9761234af697f292b4136da47503) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `notificationProvider` is deprecated due to consistent naming convention between UI libraries. Please use `useNotificationProvider` export as your notification provider. #5567
+
+-   [#5480](https://github.com/refinedev/refine/pull/5480) [`2a2269ac70`](https://github.com/refinedev/refine/commit/2a2269ac705254e179f0bd8b7a9ffcc370571de8) Thanks [@ShivamDureja](https://github.com/ShivamDureja)! - fix: issue with Chakra-UI sider that overflows when collapsed #5475
+
+    When we try to collapse the sider it overflows so changed overflow-x property to hidden whereas overflow-y remains auto.
+
+-   [#5564](https://github.com/refinedev/refine/pull/5564) [`1bb7d30888`](https://github.com/refinedev/refine/commit/1bb7d3088837584b19c4faba41a91817d910d493) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`<ThemedTitleV2 />'s`](https://refine.dev/docs/ui-integrations/material-ui/components/themed-layout/) default icon updated.
+
 ## 2.27.2
 
 ### Patch Changes

@@ -1,47 +1,43 @@
-# refine-next
+<div align="center" style="margin: 30px;">
+<a href="https://refine.dev/">
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
+</a>
 
-This project was generated with [superplate](https://github.com/pankod/superplate).
+</br>
+</br>
 
-## Getting Started
+<div align="center">
+    <a href="https://refine.dev">Home Page</a> |
+    <a href="https://discord.gg/refine">Discord</a> |
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
+    <a href="https://refine.dev/docs/">Documentation</a>
+</div>
+</div>
 
-superplate is a Next.js all-in-one project generator. Create your project with the tools you need without spending hours on setting them up.
+</br>
+</br>
 
-## Available Scripts
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
 
-### Running the development server.
+<br />
+<br />
+
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
+
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+</div>
+
+## Try this example on your local
 
 ```bash
-    npm run dev
+npm create refine-app@latest -- --example i18n-nextjs
 ```
 
-### Building for production.
+## Try this example on CodeSandbox
 
-```bash
-    npm run build
-```
+<br/>
 
-### Running the production server.
-
-```bash
-    npm run start
-```
-
-## Learn More
-
-To learn more about **superplate**, please check out the [Documentation](https://github.com/pankod/superplate).
-
-### **CSS / styled-jsx**
-
-Next.js comes with built-in support for CSS and styled-jsx. Styled-jsx is full, scoped and component-friendly CSS support for JSX (rendered on the server or the client).
-
-[Go To Documentation](https://github.com/vercel/styled-jsx)
-
-### **ESLint**
-
-A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.
-
-[Go To Documentation](https://eslint.org/docs/user-guide/getting-started)
-
-## License
-
-MIT
+[![Open i18n-nextjs example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/i18n-nextjs?view=preview&theme=dark&codemirror=1)

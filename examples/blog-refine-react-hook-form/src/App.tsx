@@ -1,6 +1,6 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     RefineThemes,
     ErrorComponent,
@@ -29,7 +29,7 @@ function App() {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

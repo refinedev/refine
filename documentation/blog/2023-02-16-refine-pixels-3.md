@@ -223,7 +223,7 @@ If we look at our initial `App.tsx` component, it looks like this:
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
@@ -242,7 +242,7 @@ function App() {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           routerProvider={routerBindings}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -333,7 +333,7 @@ After creating files above you need to add some imports and [routes](/docs/packa
 
 ```tsx title="App.tsx"
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -379,7 +379,7 @@ function App() {
               show: "/canvases/show/:id",
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
         >
           <Routes>
             <Route
@@ -1249,7 +1249,7 @@ Remember, we've already replaced `App.tx` code with the following:
 
 ```tsx title="src/App.tsx"
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
-import { notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -1295,7 +1295,7 @@ function App() {
               show: "/canvases/show/:id",
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
         >
           <Routes>
             <Route

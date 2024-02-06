@@ -12,7 +12,7 @@ import {
 } from "@refinedev/core";
 import {
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     ReadyPage,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -130,7 +130,7 @@ function App() {
             <RefineSnackbarProvider>
                 <Refine
                     dataProvider={dataProvider("http://localhost:8080/api/v1")}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     resources={[

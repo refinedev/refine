@@ -42,7 +42,7 @@ import {
 } from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
 export default function App() {

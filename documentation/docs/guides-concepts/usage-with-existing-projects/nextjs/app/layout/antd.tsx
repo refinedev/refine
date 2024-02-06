@@ -5,8 +5,8 @@ export function NextJSAppAntdLayout() {
   return (
     <Sandpack
       template="nextjs"
-      showNavigator
       showFiles
+      showNavigator
       dependencies={{
         "@refinedev/antd": "latest",
         antd: "^5.0.5",
@@ -77,7 +77,7 @@ const RefineLayoutTsxCode = /* tsx */ `
 "use client";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 
 import { App as AntdApp, ConfigProvider } from "antd";

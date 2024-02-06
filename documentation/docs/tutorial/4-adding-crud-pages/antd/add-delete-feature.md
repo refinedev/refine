@@ -47,7 +47,7 @@ We can enable the delete feature on both show and edit pages while we are defini
 
 ```tsx src="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { Layout, notificationProvider, ErrorComponent } from "@refinedev/antd";
+import { Layout, useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -66,7 +66,7 @@ const App: React.FC = () => {
       <Refine
         routerProvider={routerBindings}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         resources={[
           {
             name: "blog_posts",

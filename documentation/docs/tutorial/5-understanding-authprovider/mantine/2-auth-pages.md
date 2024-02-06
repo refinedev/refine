@@ -56,7 +56,7 @@ const authProvider = {
 import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { notificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent, AuthPage } from "@refinedev/mantine";
+import { useNotificationProvider, RefineThemes, ThemedLayoutV2, ErrorComponent, AuthPage } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
@@ -73,7 +73,7 @@ const App = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -157,7 +157,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
   ErrorComponent,
@@ -183,7 +183,7 @@ const App = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -273,7 +273,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
   ErrorComponent,
@@ -299,7 +299,7 @@ const App = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -390,7 +390,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
   ErrorComponent,
@@ -416,7 +416,7 @@ const App = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",
@@ -509,7 +509,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerBindings, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import {
-  notificationProvider,
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
   ErrorComponent,
@@ -535,7 +535,7 @@ const App = () => {
             authProvider={authProvider}
             routerProvider={routerBindings}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "blog_posts",

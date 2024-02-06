@@ -119,7 +119,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
@@ -142,7 +142,7 @@ const App: React.FC = () => {
       routerProvider={routerProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
     />
   );
@@ -214,7 +214,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import { DataProvider } from "@pankod/refine-strapi-v4";
@@ -238,7 +238,7 @@ const App: React.FC = () => {
         routerProvider={routerProvider}
         Layout={Layout}
         ReadyPage={ReadyPage}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         catchAll={<ErrorComponent />}
       />
       //highlight-next-line

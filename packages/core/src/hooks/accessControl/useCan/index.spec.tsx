@@ -245,6 +245,29 @@ describe("useCan Hook", () => {
         expect(canMock).not.toBeCalled();
         expect(queryFnMock).toBeCalled();
     });
+
+    it("should use global queryOptions from AccessControlContext", async () => {
+        const mockFn = jest.fn().mockResolvedValue({ can: true, reason: "Access granted" });
+        const globalQueryOptions = { enabled: false };
+      
+        const { result } = renderHook(
+          () => useCan({ action: "list", resource: "posts" }),
+          {
+            wrapper: TestWrapper({
+              accessControlProvider: {
+                can: mockFn,
+                options: { queryOptions: globalQueryOptions },
+              },
+            }),
+          }
+        );
+      
+        await waitFor(() => {
+          expect(result.current.isFetched).toBeFalsy(); 
+        });
+      
+        expect(mockFn).not.toBeCalled();
+      });
 });
 
 describe("useCanWithoutCache", () => {

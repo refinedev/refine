@@ -7,7 +7,7 @@ swizzle: true
 window.__refineAuthStatus = false;
 
 setRefineProps({
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
   Layout: RefineMantine.Layout,
   Sider: () => null,
 });

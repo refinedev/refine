@@ -70,7 +70,7 @@ export default function AboutPage() {
 const RefineLayoutTsxCode = /* tsx */ `
 "use client";
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router/app";
+import routerProvider from "@refinedev/nextjs-router";
 import dataProvider from "@refinedev/simple-rest";
 export default function RefineLayout({ children }: { children: React.ReactNode }) {
   return (

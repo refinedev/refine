@@ -2,8 +2,8 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import { act, mockRouterBindings, queryClient, TestWrapper } from "@test";
 
-import { useLogout } from "./";
 import { useCheckError, useOnError } from "../useOnError";
+import { useLogout } from "./";
 
 const mockGo = jest.fn();
 
@@ -689,6 +689,42 @@ describe("useLogout Hook", () => {
                 mutationKey: ["foo", "bar"],
             }),
         ).toHaveLength(1);
+    });
+
+    it("should open success notification when successNotification is passed", async () => {
+        const openNotificationMock = jest.fn();
+
+        const successNotification = {
+            message: "Logged out successfully!",
+            description: "Operation completed successfully",
+        };
+
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    logout: () =>
+                        Promise.resolve({
+                            success: true,
+                            successNotification,
+                        }),
+                },
+            }),
+        });
+
+        await act(async () => {
+            await result.current.mutateAsync();
+        });
+
+        expect(openNotificationMock).toHaveBeenCalledWith({
+            key: "logout-success",
+            type: "success",
+            message: "Logged out successfully!",
+            description: "Operation completed successfully",
+        });
     });
 });
 

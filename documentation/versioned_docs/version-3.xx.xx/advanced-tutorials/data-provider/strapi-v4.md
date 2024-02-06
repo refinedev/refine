@@ -88,7 +88,7 @@ const App: React.FC = () => {
       routerProvider={routerProvider}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
     />
   );

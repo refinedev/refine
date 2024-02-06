@@ -1,5 +1,9 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { notificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+    useNotificationProvider,
+    Layout,
+    ErrorComponent,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
@@ -30,7 +34,7 @@ const App = () => {
                         show: "/posts/show/:id",
                     },
                 ]}
-                notificationProvider={notificationProvider}
+                notificationProvider={useNotificationProvider}
                 options={{
                     warnWhenUnsavedChanges: true,
                     syncWithLocation: true,

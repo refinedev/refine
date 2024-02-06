@@ -1,7 +1,7 @@
 import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
     ThemedLayoutV2,
     AuthPage,
@@ -79,7 +79,7 @@ function App() {
                                     API_URL + `/api`,
                                     axiosInstance,
                                 )}
-                                notificationProvider={notificationProvider}
+                                notificationProvider={useNotificationProvider}
                                 routerProvider={routerBindings}
                                 resources={[
                                     {

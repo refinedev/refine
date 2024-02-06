@@ -3,10 +3,10 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@refinedev/antd": "^5.37.2",
+    "@refinedev/antd": "^5.37.3",
     "@refinedev/appwrite": "^6.4.6",
-    "@refinedev/cli": "^2.16.22",
-    "@refinedev/core": "^4.46.2",
+    "@refinedev/cli": "^2.16.23",
+    "@refinedev/core": "^4.47.0",
     "@refinedev/react-router-v6": "^4.5.5",
     "@types/uuid": "^9.0.6",
     "@uiw/react-md-editor": "^3.19.5",

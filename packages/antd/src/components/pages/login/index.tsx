@@ -20,7 +20,6 @@ import {
     imageContainer,
 } from "./styles";
 
-const { Text, Title } = Typography;
 export interface ILoginForm {
     username: string;
     password: string;
@@ -43,9 +42,9 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
     });
 
     const CardTitle = (
-        <Title level={3} style={titleStyles}>
+        <Typography.Title level={3} style={titleStyles}>
             {translate("pages.login.title", "Sign in your account")}
-        </Title>
+        </Typography.Title>
     );
 
     return (
@@ -150,7 +149,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                                 </Button>
                             </Form>
                             <div style={{ marginTop: 8 }}>
-                                <Text style={{ fontSize: 12 }}>
+                                <Typography.Text style={{ fontSize: 12 }}>
                                     {translate(
                                         "pages.login.noAccount",
                                         "Don’t have an account?",
@@ -161,7 +160,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                                             "Sign up",
                                         )}
                                     </a>
-                                </Text>
+                                </Typography.Text>
                             </div>
                         </Card>
                     </div>

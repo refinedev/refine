@@ -50,7 +50,7 @@ After cleaning up, the `<App />` component should look as below:
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, notificationProvider, ThemedTitle } from "@refinedev/antd";
+import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider, ThemedTitle } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import * as Icons from "@ant-design/icons";
 
@@ -82,7 +82,7 @@ function App() {
             }
             authProvider={authProvider}
             dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             options={{
               syncWithLocation: true,
@@ -335,7 +335,7 @@ Having this in mind, after importing all relevant page components for each resou
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, notificationProvider, ThemedTitle } from "@refinedev/antd";
+import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider, ThemedTitle } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import * as Icons from "@ant-design/icons";
 
@@ -383,7 +383,7 @@ function App() {
             ]}
             authProvider={authProvider}
             dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             options={{
               syncWithLocation: true,

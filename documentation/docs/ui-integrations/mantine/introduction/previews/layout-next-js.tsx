@@ -36,7 +36,7 @@ export default function LayoutNextjs() {
 
 const AppTsxCode = /* jsx */ `
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 

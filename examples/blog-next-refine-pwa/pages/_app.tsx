@@ -4,7 +4,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
     UnsavedChangesNotifier,
     DocumentTitleHandler,
-} from "@refinedev/nextjs-router";
+} from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import { Layout } from "@components/Layout";
 

@@ -40,9 +40,6 @@ type ResetPassworProps = ForgotPasswordPageProps<
     FormProps
 >;
 
-const { Text, Title } = Typography;
-const { useToken } = theme;
-
 /**
  * **refine** has forgot password page form which is served on `/forgot-password` route when the `authProvider` configuration is provided.
  *
@@ -56,7 +53,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     formProps,
     title,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const [form] = Form.useForm<ForgotPasswordFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -83,7 +80,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
         );
 
     const CardTitle = (
-        <Title
+        <Typography.Title
             level={3}
             style={{
                 color: token.colorPrimaryTextHover,
@@ -91,7 +88,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             }}
         >
             {translate("pages.forgotPassword.title", "Forgot your password?")}
-        </Title>
+        </Typography.Title>
     );
     const CardContent = (
         <Card
@@ -144,7 +141,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                     }}
                 >
                     {loginLink ?? (
-                        <Text
+                        <Typography.Text
                             style={{
                                 fontSize: 12,
                                 marginLeft: "auto",
@@ -163,7 +160,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                             >
                                 {translate("pages.login.signin", "Sign in")}
                             </ActiveLink>
-                        </Text>
+                        </Typography.Text>
                     )}
                 </div>
                 <Form.Item

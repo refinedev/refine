@@ -110,7 +110,7 @@ render(<App />);
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
 - [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-material-ui/src/App.tsx#L210)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs-auth/pages/_app.tsx#L31)
+- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
 - [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
 
 ## Props

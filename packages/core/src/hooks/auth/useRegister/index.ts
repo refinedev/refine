@@ -7,6 +7,7 @@ import { getXRay } from "@refinedev/devtools-internal";
 
 import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
 import {
     AuthActionResponse,
@@ -123,9 +124,18 @@ export function useRegister<TVariables = {}>({
     >({
         mutationKey: keys().auth().action("register").get(preferLegacyKeys),
         mutationFn: registerFromContext,
-        onSuccess: async ({ success, redirectTo, error }) => {
+        onSuccess: async ({
+            success,
+            redirectTo,
+            error,
+            successNotification,
+        }) => {
             if (success) {
                 close?.("register-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -213,5 +223,16 @@ const buildNotification = (
         description: error?.message || "Error while registering",
         key: "register-error",
         type: "error",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+): OpenNotificationParams => {
+    return {
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "register-success",
+        type: "success",
     };
 };

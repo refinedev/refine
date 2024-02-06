@@ -2,7 +2,6 @@ import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
 import { Avatar, Layout as AntdLayout, Space, Typography } from "antd";
 import React from "react";
 import { RefineLayoutHeaderProps } from "../types";
-const { Text } = Typography;
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const authProvider = useActiveAuthProvider();
@@ -24,9 +23,9 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
         >
             <Space style={{ marginLeft: "8px" }}>
                 {user?.name && (
-                    <Text style={{ color: "white" }} strong>
+                    <Typography.Text style={{ color: "white" }} strong>
                         {user.name}
-                    </Text>
+                    </Typography.Text>
                 )}
                 {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
             </Space>
