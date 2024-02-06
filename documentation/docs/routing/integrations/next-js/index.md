@@ -515,7 +515,19 @@ This feature is not working in `appDir` mode in Next.js due to limitations of th
 
 ### parseTableParams
 
-This function can be used to parse the query parameters of a table page. It can be useful when you want to use the query parameters in your server side functions (`loader`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
+This function can be used to parse the query parameters of current route. It can be useful when you want to use the query parameters in your server side functions (`getData`) to fetch the data such as [persisting the table state](#how-to-persist-syncwithlocation-in-ssr)
+
+For server components, import it from `@refinedev/nextjs-router/parse-table-params`.
+
+```tsx
+import parseTableParams from "@refinedev/nextjs-router/parse-table-params";
+```
+
+If you want to use it in your client components, you can import it directly from `@refinedev/nextjs-router`.
+
+```tsx
+import { parseTableParams } from "@refinedev/nextjs-router";
+```
 
 ### DocumentTitleHandler
 
@@ -1092,7 +1104,8 @@ For example, search params can be like this:
 
 ```tsx title="app/posts/page.tsx"
 import dataProvider from "@refinedev/simple-rest";
-import { parseTableParams, type CrudFilters, type Pagination } from "@refinedev/core";
+import { type CrudFilters, type Pagination } from "@refinedev/core";
+import { parseTableParams } from "@refinedev/nextjs-router";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
