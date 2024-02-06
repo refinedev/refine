@@ -37,7 +37,7 @@ describe("generateSorting", () => {
         expect(generateSorting(sorters)).toEqual(expectedSorting);
     });
 
-    it('should generate array of nested sorting objects correctly', () => {
+    it("should handle multiple nested fields correctly", () => {
         const sorters: CrudSorting = [
           { field: 'patient_status.title', order: 'asc' },
           { field: 'insurance_status.title', order: 'asc' },
