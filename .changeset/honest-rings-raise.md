@@ -32,6 +32,24 @@ If you are using `App Router`, update your imports as follows:
 + import routerProvider from "@refinedev/nextjs-router";
 ```
 
+### Changes to `parseTableParams` import
+
+If you will use `parseTableParams` on **client side** for **App Router**, you can use the following import:
+
+```tsx
+import { parseTableParams } from "@refinedev/nextjs-router";
+```
+
+`parseTableParams` from `@refinedev/nextjs-router` has `"use client"` directive.
+
+If you want to use `parseTableParams` on **server side** for **App Router**, you can use the following import:
+
+```tsx
+import parseTableParams from "@refinedev/nextjs-router/parse-table-params";
+```
+
+`parseTableParams` from `@refinedev/nextjs-router/parse-table-params` doesn't have `"use client"` directive.
+
 ### Dropped Refine v3 router provider legacy support
 
 Now, `@refinedev/nextjs-router` only supports Refine v4 router provider.
