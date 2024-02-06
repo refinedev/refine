@@ -30,6 +30,15 @@ import {
 } from "../useLoadingOvertime";
 import { useKeys } from "@hooks/useKeys";
 
+type MethodType =
+    | "get"
+    | "delete"
+    | "head"
+    | "options"
+    | "post"
+    | "put"
+    | "patch";
+
 interface UseCustomConfig<TQuery, TPayload> {
     /**
      * @deprecated `sort` is deprecated, use `sorters` instead.
@@ -42,46 +51,153 @@ interface UseCustomConfig<TQuery, TPayload> {
     headers?: {};
 }
 
-export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
-    /**
-     * request's URL
-     */
-    url: string;
+export type UseCustomPropsBase<TQueryFnData, TError, TQuery, TPayload, TData> =
+    {
+        /**
+         * request's URL
+         */
+        url?: string;
+        /**
+         * The config of your request. You can send headers, payload, query, filters and sorters using this field
+         */
+        config?: UseCustomConfig<TQuery, TPayload>;
+        /**
+         * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
+         */
+        queryOptions?: UseQueryOptions<
+            CustomResponse<TQueryFnData>,
+            TError,
+            CustomResponse<TData>
+        >;
+        /**
+         * meta data for `dataProvider`
+         * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+         */
+        metaData?: MetaQuery;
+        /**
+         * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+         */
+        dataProviderName?: string;
+    } & UseLoadingOvertimeOptionsProps &
+        SuccessErrorNotification<
+            CustomResponse<TData>,
+            TError,
+            Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
+        >;
+
+export type UseCustomPropsWithMethod<
+    TQueryFnData,
+    TError,
+    TQuery,
+    TPayload,
+    TData,
+> = {
     /**
      * request's method (`GET`, `POST`, etc.)
      */
-    method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
-    /**
-     * The config of your request. You can send headers, payload, query, filters and sorters using this field
-     */
-    config?: UseCustomConfig<TQuery, TPayload>;
-    /**
-     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
-     */
-    queryOptions?: UseQueryOptions<
-        CustomResponse<TQueryFnData>,
-        TError,
-        CustomResponse<TData>
-    >;
+    method: MethodType;
     /**
      * meta data for `dataProvider`
      */
-    meta?: MetaQuery;
-    /**
-     * meta data for `dataProvider`
-     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    /**
-     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
-     */
-    dataProviderName?: string;
-} & SuccessErrorNotification<
-    CustomResponse<TData>,
+    meta?: MetaQuery & {
+        gqlQuery?: never;
+        gqlMutation?: never;
+    };
+} & UseCustomPropsBase<TQueryFnData, TError, TQuery, TPayload, TData>;
+
+export type UseCustomPropsWithGqlQuery<
+    TQueryFnData,
     TError,
-    Prettify<UseCustomConfig<TQuery, TPayload> & MetaQuery>
+    TQuery,
+    TPayload,
+    TData,
+> = {
+    /**
+     * request's method (`GET`, `POST`, etc.)
+     */
+    method?: never;
+    /**
+     * meta data for `dataProvider`
+     */
+    meta: MetaQuery & {
+        gqlQuery: MetaQuery["gqlQuery"];
+        gqlMutation?: MetaQuery["gqlMutation"];
+    };
+} & UseCustomPropsBase<TQueryFnData, TError, TQuery, TPayload, TData>;
+
+export type UseCustomPropsWithGqlMutation<
+    TQueryFnData,
+    TError,
+    TQuery,
+    TPayload,
+    TData,
+> = {
+    /**
+     * request's method (`GET`, `POST`, etc.)
+     */
+    method?: never;
+    /**
+     * meta data for `dataProvider`
+     */
+    meta: MetaQuery & {
+        gqlQuery?: MetaQuery["gqlQuery"];
+        gqlMutation: MetaQuery["gqlMutation"];
+    };
+} & UseCustomPropsBase<TQueryFnData, TError, TQuery, TPayload, TData>;
+
+export type UseCustomReturnType<TError, TData> = QueryObserverResult<
+    CustomResponse<TData>,
+    TError
 > &
-    UseLoadingOvertimeOptionsProps;
+    UseLoadingOvertimeReturnType;
+
+export function useCustom<
+    TQueryFnData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TQuery = unknown,
+    TPayload = unknown,
+    TData extends BaseRecord = TQueryFnData,
+>(
+    props: UseCustomPropsWithMethod<
+        TQueryFnData,
+        TError,
+        TQuery,
+        TPayload,
+        TData
+    >,
+): UseCustomReturnType<TError, TData>;
+
+export function useCustom<
+    TQueryFnData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TQuery = unknown,
+    TPayload = unknown,
+    TData extends BaseRecord = TQueryFnData,
+>(
+    props: UseCustomPropsWithGqlQuery<
+        TQueryFnData,
+        TError,
+        TQuery,
+        TPayload,
+        TData
+    >,
+): UseCustomReturnType<TError, TData>;
+
+export function useCustom<
+    TQueryFnData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+    TQuery = unknown,
+    TPayload = unknown,
+    TData extends BaseRecord = TQueryFnData,
+>(
+    props: UseCustomPropsWithGqlMutation<
+        TQueryFnData,
+        TError,
+        TQuery,
+        TPayload,
+        TData
+    >,
+): UseCustomReturnType<TError, TData>;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -97,16 +213,15 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
  * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
-
-export const useCustom = <
+export function useCustom<
     TQueryFnData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
     TData extends BaseRecord = TQueryFnData,
 >({
-    url,
-    method,
+    url: urlFromProps,
+    method: methodFromProps,
     config,
     queryOptions,
     successNotification,
@@ -115,14 +230,16 @@ export const useCustom = <
     metaData,
     dataProviderName,
     overtimeOptions,
-}: UseCustomProps<
-    TQueryFnData,
-    TError,
-    TQuery,
-    TPayload,
-    TData
->): QueryObserverResult<CustomResponse<TData>, TError> &
-    UseLoadingOvertimeReturnType => {
+}:
+    | UseCustomPropsWithMethod<TQueryFnData, TError, TQuery, TPayload, TData>
+    | UseCustomPropsWithGqlQuery<TQueryFnData, TError, TQuery, TPayload, TData>
+    | UseCustomPropsWithGqlMutation<
+          TQueryFnData,
+          TError,
+          TQuery,
+          TPayload,
+          TData
+      >): UseCustomReturnType<TError, TData> {
     const dataProvider = useDataProvider();
     const authProvider = useActiveAuthProvider();
     const { mutate: checkError } = useOnError({
@@ -135,9 +252,16 @@ export const useCustom = <
 
     const preferredMeta = pickNotDeprecated(meta, metaData);
 
-    const { custom } = dataProvider(dataProviderName);
+    const { custom, getApiUrl } = dataProvider(dataProviderName);
 
     const combinedMeta = getMeta({ meta: preferredMeta });
+
+    const url = urlFromProps || getApiUrl();
+
+    const method =
+        methodFromProps ?? (meta?.gqlQuery || meta.gqlMutation)
+            ? "post"
+            : "get";
 
     if (custom) {
         const queryResponse = useQuery<
