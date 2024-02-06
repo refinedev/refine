@@ -54,7 +54,7 @@ export function NextJSAppProviderServerClient() {
 const IndexPageTsxCode = /* tsx */ `
 import { authProviderServer } from "@providers/auth-provider/auth-provider.server";
 import { accessControlProviderServer } from "@providers/access-control/access-control.server";
-import { dataProviderServer } from "@providers/data-provider/data.provider.server";
+import { dataProviderServer } from "@providers/data-provider/data-provider.server";
 import { redirect } from "next/navigation";
 
 export default async function IndexPage() {
@@ -108,7 +108,7 @@ import routerProvider from "@refinedev/nextjs-router";
 import React, { Suspense } from "react";
 
 import { authProviderClient } from "@providers/auth-provider/auth-provider";
-import { dataProviderClient } from "@providers/data-provider/data.provider.client";
+import { dataProviderClient } from "@providers/data-provider/data-provider.client";
 import { accessControlProviderClient } from "@providers/access-control/access-control.client";
 
 export default function RootLayout({
