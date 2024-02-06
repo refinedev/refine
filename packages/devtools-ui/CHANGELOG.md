@@ -1,5 +1,12 @@
 # @refinedev/devtools-ui
 
+## 1.1.17
+
+### Patch Changes
+
+-   Updated dependencies [[`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563)]:
+    -   @refinedev/devtools-shared@1.1.3
+
 ## 1.1.16
 
 ### Patch Changes
