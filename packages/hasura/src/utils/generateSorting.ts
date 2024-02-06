@@ -1,27 +1,31 @@
 import { CrudSorting } from "@refinedev/core";
-import set from "lodash/set";
+import setWith from "lodash/setWith";
 
-export type HasuraSortingType = Record<string, "asc" | "desc">;
+export type HasuraSortOrder = "asc" | "desc";
+export type HasuraSorting = HasuraSortOrder | { [key: string]: HasuraSorting };
 
-export type GenerateSortingType = {
-    (sorting?: CrudSorting): HasuraSortingType | undefined;
+export type HasuraSortingType = Record<string, HasuraSorting>;
+
+const generateNestedSorting = (sorter: { field: string; order: HasuraSortOrder }): HasuraSortingType => {
+    const { field, order } = sorter;
+    const fieldsArray = field.split(".");
+
+    return {
+        ...(setWith({}, fieldsArray, order, Object))
+    };
 };
 
-const generateNestedSorting: GenerateSortingType = (sorter) => {
-  if (!sorter) {
-    return undefined;
-  }
+export const generateSorting: (sorters: CrudSorting | undefined) => HasuraSortingType | undefined = (sorters) => {
+    if (!sorters) {
+        return undefined;
+    }
 
-  const { field, order } = sorter;
-  const fieldsArray = field.split(".");
+    let mergedSorting: HasuraSortingType = {};
 
-  return fieldsArray.reduceRight((acc, curr) => ({ [curr]: acc }), order);
-};
+    sorters.forEach(sorter => {
+        const nestedSorting = generateNestedSorting(sorter);
+        mergedSorting = { ...mergedSorting, ...nestedSorting };
+    });
 
-export const generateSorting: GenerateSortingType = (sorters) => {
-  if (!sorters) {
-    return undefined;
-  }
-
-  return sorters.map(generateNestedSorting);
+    return mergedSorting;
 };
