@@ -346,7 +346,7 @@ Check out the [`UnsavedChangesNotifier` section of the React Router integration 
 ```tsx title="_app.tsx"
 import type { AppProps } from "next/app";
 import { Refine } from "@refinedev/core";
-import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router";
+import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
 
 export default function App({ Component, pageProps }) {
   return (

@@ -140,7 +140,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "4kWrnz-AJZzOW-qq7MXL",
           }}
         >
           <Routes>
@@ -491,7 +490,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "4kWrnz-AJZzOW-qq7MXL",
           }}
         >
           <Routes>
@@ -1624,7 +1622,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "4kWrnz-AJZzOW-qq7MXL",
           }}
         >
           <Routes>
@@ -2727,7 +2724,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "4kWrnz-AJZzOW-qq7MXL",
           }}
         >
           <Routes>
@@ -3342,7 +3338,6 @@ function App() {
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
-            projectId: "wl4d1W-RmKWNN-721Z9X",
           }}
         >
           <Routes>

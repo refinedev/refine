@@ -4,7 +4,7 @@ import Script from "next/script";
 import { NextPage } from "next";
 
 import { GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider, { authProvider } from "@refinedev/medusa";
 import NextNProgress from "nextjs-progressbar";
 import { ProductCollection } from "@medusajs/medusa";

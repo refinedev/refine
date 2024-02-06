@@ -21,13 +21,11 @@ export const DateField: React.FC<DateFieldProps> = ({
 
     const defaultLocale = dayjs.locale();
 
-    const { Text } = Typography;
-
     return (
-        <Text {...rest}>
+        <Typography.Text {...rest}>
             {dayjs(value)
                 .locale(locales || defaultLocale)
                 .format(dateFormat)}
-        </Text>
+        </Typography.Text>
     );
 };

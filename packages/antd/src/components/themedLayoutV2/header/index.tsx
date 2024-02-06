@@ -7,14 +7,11 @@ import {
 } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "../types";
 
-const { Text } = Typography;
-const { useToken } = theme;
-
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     isSticky,
     sticky,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
 
     const authProvider = useActiveAuthProvider();
     const { data: user } = useGetIdentity({
@@ -46,7 +43,9 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
         <AntdLayout.Header style={headerStyles}>
             <Space>
                 <Space size="middle">
-                    {user?.name && <Text strong>{user.name}</Text>}
+                    {user?.name && (
+                        <Typography.Text strong>{user.name}</Typography.Text>
+                    )}
                     {user?.avatar && (
                         <Avatar src={user?.avatar} alt={user?.name} />
                     )}

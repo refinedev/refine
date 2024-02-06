@@ -3,8 +3,6 @@ import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
 import { Typography, theme, Space } from "antd";
 import { RefineLayoutThemedTitleProps } from "../types";
 
-const { useToken } = theme;
-
 const defaultText = "Refine Project";
 
 const defaultIcon = (
@@ -35,7 +33,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
     text = defaultText,
     wrapperStyles,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();

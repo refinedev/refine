@@ -32,9 +32,6 @@ import {
 } from "../styles";
 import { ThemedTitleV2 } from "@components";
 
-const { Text, Title } = Typography;
-const { useToken } = theme;
-
 type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps>;
 /**
  * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
@@ -51,7 +48,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     title,
     hideForm,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const [form] = Form.useForm<RegisterFormTypes>();
     const translate = useTranslate();
     const routerType = useRouterType();
@@ -80,7 +77,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         );
 
     const CardTitle = (
-        <Title
+        <Typography.Title
             level={3}
             style={{
                 color: token.colorPrimaryTextHover,
@@ -88,7 +85,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             }}
         >
             {translate("pages.register.title", "Sign up for your account")}
-        </Title>
+        </Typography.Title>
     );
 
     const renderProviders = () => {
@@ -121,13 +118,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     })}
                     {!hideForm && (
                         <Divider>
-                            <Text
+                            <Typography.Text
                                 style={{
                                     color: token.colorTextLabel,
                                 }}
                             >
                                 {translate("pages.login.divider", "or")}
-                            </Text>
+                            </Typography.Text>
                         </Divider>
                     )}
                 </>
@@ -200,7 +197,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         }}
                     >
                         {loginLink ?? (
-                            <Text
+                            <Typography.Text
                                 style={{
                                     fontSize: 12,
                                     marginLeft: "auto",
@@ -219,7 +216,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                                 >
                                     {translate("pages.login.signin", "Sign in")}
                                 </ActiveLink>
-                            </Text>
+                            </Typography.Text>
                         )}
                     </div>
                     <Form.Item
@@ -248,7 +245,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         marginTop: hideForm ? 16 : 8,
                     }}
                 >
-                    <Text
+                    <Typography.Text
                         style={{
                             fontSize: 12,
                         }}
@@ -266,7 +263,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         >
                             {translate("pages.login.signin", "Sign in")}
                         </ActiveLink>
-                    </Text>
+                    </Typography.Text>
                 </div>
             )}
         </Card>

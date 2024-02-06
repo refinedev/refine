@@ -95,7 +95,6 @@ function App() {
                                 options={{
                                     syncWithLocation: true,
                                     warnWhenUnsavedChanges: true,
-                                    projectId: "RjAC3m-NeoqYc-bB545U",
                                 }}
                             >
                                 <Routes>

@@ -1,3 +1,3 @@
-export * from "./pages/index";
+export * from "./app/index";
 
-export { default as default } from "./pages/index";
+export { default as default } from "./app/index";
