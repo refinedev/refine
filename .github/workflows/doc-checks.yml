@@ -4,12 +4,12 @@ on:
     branches:
       - master
     paths:
-      - "documentation/docs"
+      - "documentation"
   pull_request:
     branches:
       - master
     paths:
-      - "documentation/docs"
+      - "documentation"
 
 jobs:
   misspell:
