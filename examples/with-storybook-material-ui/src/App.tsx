@@ -7,7 +7,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     WelcomePage,
 } from "@refinedev/mui";
@@ -30,7 +30,7 @@ const App: React.FC = () => {
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(API_URL)}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         options={{
                             warnWhenUnsavedChanges: true,
                             syncWithLocation: true,

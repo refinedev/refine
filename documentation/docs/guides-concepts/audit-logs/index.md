@@ -90,7 +90,7 @@ You can use [useLogList](/docs/audit-logs/hooks/use-log) hook to retrieve audit 
 ```tsx
 import { useLogList } from "@refinedev/core";
 
-const postAuditLogResults = useLogList({
+const productsAuditLogResults = useLogList({
   resource: "products",
 });
 ```

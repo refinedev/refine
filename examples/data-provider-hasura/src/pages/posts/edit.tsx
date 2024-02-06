@@ -13,38 +13,39 @@ import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import {
+    GetPostCategoriesSelectQuery,
+    UpdatePostMutation,
+    UpdatePostMutationVariables,
+} from "graphql/types";
+import { GetFields, GetFieldsFromList, GetVariables } from "@refinedev/hasura";
+import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<
-        IPost,
+    const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
+        GetFields<UpdatePostMutation>,
         HttpError,
-        IPost
+        GetVariables<UpdatePostMutationVariables>
     >({
         metaData: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["id", "title"],
-                },
-                "category_id",
-                "content",
-            ],
+            gqlMutation: POST_UPDATE_MUTATION,
         },
     });
 
     const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<GetPostCategoriesSelectQuery>
+    >({
         resource: "categories",
         defaultValue: postData?.category_id,
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: POST_CATEGORIES_SELECT_QUERY,
         },
     });
 
     return (
         <Edit
+            isLoading={formLoading}
             headerProps={{
                 extra: (
                     <>

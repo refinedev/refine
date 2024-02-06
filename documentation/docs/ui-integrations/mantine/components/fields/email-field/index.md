@@ -9,7 +9,7 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
   legacyRouterProvider: routerProvider,
   dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
   Layout: RefineMantine.Layout,
   Sider: () => null,
 });

@@ -367,7 +367,7 @@ import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   List,
   EditButton,
   ShowButton,
@@ -402,7 +402,7 @@ const App: React.FC = () => {
               },
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{
             liveMode: "auto",
             syncWithLocation: true,
@@ -584,7 +584,7 @@ import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   List,
   EditButton,
   ShowButton,
@@ -624,7 +624,7 @@ const App: React.FC = () => {
               },
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{
             liveMode: "auto",
             syncWithLocation: true,
@@ -802,7 +802,7 @@ import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   List,
   EditButton,
   ShowButton,
@@ -842,7 +842,7 @@ const App: React.FC = () => {
               },
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{
             liveMode: "auto",
             syncWithLocation: true,
@@ -1038,7 +1038,7 @@ import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
   RefineThemes,
-  notificationProvider,
+  useNotificationProvider,
   List,
   EditButton,
   ShowButton,
@@ -1078,7 +1078,7 @@ const App: React.FC = () => {
               },
             },
           ]}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           options={{
             liveMode: "auto",
             syncWithLocation: true,

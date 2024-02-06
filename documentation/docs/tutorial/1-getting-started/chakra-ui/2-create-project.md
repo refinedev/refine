@@ -87,7 +87,7 @@ Here's what you should see:
 setInitialRoutes(["/"]);
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { notificationProvider, refineTheme, WelcomePage } from "@refinedev/chakra-ui";
+import { useNotificationProvider, refineTheme, WelcomePage } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerBindings from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
@@ -98,7 +98,7 @@ const App = () => {
     <BrowserRouter>
       <ChakraProvider theme={refineTheme}>
         <Refine
-          notificationProvider={notificationProvider()}
+          notificationProvider={useNotificationProvider()}
           routerProvider={routerBindings}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         >

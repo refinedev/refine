@@ -67,6 +67,7 @@ export interface IRefineContextOptions {
 }
 
 export interface IRefineContext {
+    __initialized?: boolean;
     hasDashboard: boolean;
     mutationMode: MutationMode;
     /**
@@ -90,6 +91,7 @@ export interface IRefineContext {
 }
 
 export interface IRefineContextProvider {
+    __initialized?: boolean;
     hasDashboard: boolean;
     mutationMode: MutationMode;
     warnWhenUnsavedChanges: boolean;

@@ -10,76 +10,76 @@ To do this, let's list posts using the posts resource.
 ```tsx title="pages/posts/list.tsx"
 import { useMany } from "@pankod/refine-core";
 import {
-    List,
-    // highlight-next-line
-    useSimpleList,
-    AntdList,
-    Typography,
-    Space,
-    NumberField,
+  List,
+  // highlight-next-line
+  useSimpleList,
+  AntdList,
+  Typography,
+  Space,
+  NumberField,
 } from "@pankod/refine-antd";
 
 const { Text } = Typography;
 
 export const PostList: React.FC = () => {
-    // highlight-next-line
-    const { listProps } = useSimpleList<IPost>();
+  // highlight-next-line
+  const { listProps } = useSimpleList<IPost>();
 
-    const categoryIds =
-        listProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds =
+    listProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    const renderItem = (item: IPost) => {
-        const { title, hit, content } = item;
+  const renderItem = (item: IPost) => {
+    const { title, hit, content } = item;
 
-        const categoryTitle = data?.data.find(
-            (category: ICategory) => category.id === item.category.id,
-        )?.title;
-
-        return (
-            <AntdList.Item
-                actions={[
-                    <Space key={item.id} direction="vertical" align="end">
-                        <NumberField
-                            value={hit}
-                            options={{
-                                notation: "compact",
-                            }}
-                        />
-                        <Text>{categoryTitle}</Text>
-                    </Space>,
-                ]}
-            >
-                <AntdList.Item.Meta title={title} description={content} />
-            </AntdList.Item>
-        );
-    };
+    const categoryTitle = data?.data.find(
+      (category: ICategory) => category.id === item.category.id,
+    )?.title;
 
     return (
-        <List>
-            // highlight-next-line
-            <AntdList {...listProps} renderItem={renderItem} />
-        </List>
+      <AntdList.Item
+        actions={[
+          <Space key={item.id} direction="vertical" align="end">
+            <NumberField
+              value={hit}
+              options={{
+                notation: "compact",
+              }}
+            />
+            <Text>{categoryTitle}</Text>
+          </Space>,
+        ]}
+      >
+        <AntdList.Item.Meta title={title} description={content} />
+      </AntdList.Item>
     );
+  };
+
+  return (
+    <List>
+      // highlight-next-line
+      <AntdList {...listProps} renderItem={renderItem} />
+    </List>
+  );
 };
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 interface IPost {
-    id: number;
-    title: string;
-    content: string;
-    hit: number;
-    category: { id: number };
+  id: number;
+  title: string;
+  content: string;
+  hit: number;
+  category: { id: number };
 }
 ```
 
@@ -88,10 +88,10 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import {
-    Layout,
-    ReadyPage,
-    notificationProvider,
-    ErrorComponent,
+  Layout,
+  ReadyPage,
+  useNotificationProvider,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -104,24 +104,24 @@ import { PostList } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            Layout={Layout}
-            ReadyPage={ReadyPage}
-            notificationProvider={notificationProvider}
-            catchAll={<ErrorComponent />}
-            // highlight-start
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                },
-            ]}
-            //highlight-end
-        />
-    );
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+      Layout={Layout}
+      ReadyPage={ReadyPage}
+      notificationProvider={useNotificationProvider}
+      catchAll={<ErrorComponent />}
+      // highlight-start
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+        },
+      ]}
+      //highlight-end
+    />
+  );
 };
 
 export default App;

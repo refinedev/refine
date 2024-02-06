@@ -183,7 +183,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  notificationProvider,
+  useNotificationProvider,
   // highlight-next-line
   RefineThemes,
 } from "@refinedev/chakra-ui";
@@ -272,7 +272,7 @@ import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
   ThemedLayoutV2,
-  notificationProvider,
+  useNotificationProvider,
   // highlight-next-line
   RefineThemes,
 } from "@refinedev/chakra-ui";

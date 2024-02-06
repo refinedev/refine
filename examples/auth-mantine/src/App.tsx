@@ -8,7 +8,7 @@ import {
     AuthPage,
     ThemedLayoutV2,
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineThemes,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -122,7 +122,12 @@ const App: React.FC = () => {
             };
         },
         onError: async (error) => {
-            console.error(error);
+            if (error.response?.status === 401) {
+                return {
+                    logout: true,
+                };
+            }
+
             return { error };
         },
         check: async () =>
@@ -163,7 +168,7 @@ const App: React.FC = () => {
                         )}
                         authProvider={authProvider}
                         routerProvider={routerProvider}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         resources={[
                             {
                                 name: "posts",

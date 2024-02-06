@@ -1,6 +1,6 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     ThemedLayoutV2,
     RefineThemes,
@@ -34,7 +34,7 @@ function App() {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
                         authProvider={authProvider}
                         dataProvider={DataProvider(

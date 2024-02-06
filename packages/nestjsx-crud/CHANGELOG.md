@@ -1,5 +1,28 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.2
+
+### Patch Changes
+
+-   [#5546](https://github.com/refinedev/refine/pull/5546) [`10570ec06c`](https://github.com/refinedev/refine/commit/10570ec06c4c7daf0654a6ef76a99f6445628c60) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `"nnull"` operator added for filters. #4805
+    From now on, data hooks can use `"nnull"` operator to filter null values.
+
+    ```ts
+    import { useTable } from "@refinedev/core";
+
+    useTable({
+        filters: {
+            permanent: [
+                {
+                    field: "title",
+                    operator: "nnull",
+                    value: true,
+                },
+            ],
+        },
+    });
+    ```
+
 ## 5.0.1
 
 ### Patch Changes

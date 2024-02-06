@@ -1,5 +1,11 @@
 # @refinedev/antd
 
+## 5.37.3
+
+### Patch Changes
+
+-   [#5564](https://github.com/refinedev/refine/pull/5564) [`1bb7d30888`](https://github.com/refinedev/refine/commit/1bb7d3088837584b19c4faba41a91817d910d493) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`<ThemedTitleV2 />'s`](https://refine.dev/docs/ui-integrations/material-ui/components/themed-layout/) default icon updated.
+
 ## 5.37.2
 
 ### Patch Changes
@@ -161,12 +167,12 @@
     This release provides an alternative to exported `notificationProvider` value from type `NotificationProvider` to `() => NotificationProvider`. If you previously had customizations applied to the `notificationProvider` object, you may need to update your code like the following:
 
     ```diff
-    - import { notificationProvider } from "@refinedev/antd";
+    - import { useNotificationProvider } from "@refinedev/antd";
     + import { useNotificationProvider } from "@refinedev/antd";
     + import { App as AntdApp } from "antd";
 
     - const myNotificationProvider = {
-    -    ...notificationProvider,
+    -    ...useNotificationProvider,
     -    open: (...args) => {
     -        // do some operation here
     -        notificationProvider.open(...args);
@@ -175,7 +181,7 @@
     + const myNotificationProvider = () => {
     +     const notificationProvider = useNotificationProvider();
     +     return {
-    +          ...notificationProvider,
+    +          ...useNotificationProvider,
     +          open: (...args) => {
     +             // do some operation here
     +             notificationProvider.open(...args);
@@ -209,12 +215,12 @@
     This release provides an alternative to exported `notificationProvider` value from type `NotificationProvider` to `() => NotificationProvider`. If you previously had customizations applied to the `notificationProvider` object, you may need to update your code like the following:
 
     ```diff
-    - import { notificationProvider } from "@refinedev/antd";
+    - import { useNotificationProvider } from "@refinedev/antd";
     + import { useNotificationProvider } from "@refinedev/antd";
     + import { App as AntdApp } from "antd";
 
     - const myNotificationProvider = {
-    -    ...notificationProvider,
+    -    ...useNotificationProvider,
     -    open: (...args) => {
     -        // do some operation here
     -        notificationProvider.open(...args);
@@ -223,7 +229,7 @@
     + const myNotificationProvider = () => {
     +     const notificationProvider = useNotificationProvider();
     +     return {
-    +          ...notificationProvider,
+    +          ...useNotificationProvider,
     +          open: (...args) => {
     +             // do some operation here
     +             notificationProvider.open(...args);

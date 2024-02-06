@@ -1,5 +1,6 @@
 import { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
+import { getOperationFields } from "./graphql";
 
 type GenerateUseOneSubscriptionParams = {
     resource: string;
@@ -25,6 +26,22 @@ export const generateUseOneSubscription = ({
     }
 
     const operation = `${meta.operation ?? resource}_by_pk`;
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+    if (gqlOperation) {
+        const query = `
+            subscription ${operation}($id: uuid!) {
+                ${operation}(id: $id) {
+                    ${getOperationFields(gqlOperation)}
+                }
+            }
+        `;
+
+        const variables = {
+            id,
+        };
+
+        return { query, variables, operation };
+    }
 
     const { query, variables } = gql.subscription({
         operation,

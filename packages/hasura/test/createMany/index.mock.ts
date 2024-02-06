@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id, title, content, category { id } }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -17,23 +17,45 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
-        [
-            "1f8b0800000000000003a48fbb4ec43010007f65b5f5195dde71ba2bf8051a84d0dad91c2b39ce9dbd46a053fe1d1da2809a72a429666e3893124e37949839e9eb65cb9aef9c584b8a12cf08133cdf50669cb0ebadb7553518769e4ccbb637b6e3c18c7674d671d337e3820754d1c038e18923538412348917ce10b708411ca70db228d0ca0a170e81a372be16c603fa2d2a47c5099f38abb812ca0aef255c8a923264ba0847a0e4cbc3dd26e5f3963ebf0fee855c0f55d7fbc6586b47d336ed62dcdc3953bbe330d663b32c758ffb7e801fdf7755d5f6cdd15877f4a66d9d3396e6ce3403d3dcd9aea2defd3a7a54a11554a297b94405fe80a240c5eb9660a1e2c595fce7e214e45a688528ee0d3891fe27fb65dff72f000000ffff03006eefabf5b3010000",
-        ],
+        {
+            data: {
+                insert_posts: {
+                    returning: [
+                        {
+                            id: "572708c7-840d-430a-befd-1416bdee799a",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                            content: "Vestibulum vulputate sapien arcu.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                        {
+                            id: "478212ed-9a78-428c-b418-306bd88e0790",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                            content: "Aliquam nibh erat.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
         [
             "Date",
-            "Fri, 04 Aug 2023 12:15:26 GMT",
+            "Wed, 10 Jan 2024 19:45:28 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "435",
             "Connection",
             "close",
             "x-request-id",
-            "eb47a844c2d283f88a588d8f1c7129ef",
+            "cf0905220dab318f2d375a2fee718c1c",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -51,15 +73,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f16b9c7dca7548d-IST",
-            "Content-Encoding",
-            "gzip",
+            "84376ba04a961cbc-BUD",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [posts_insert_input!]!) {\n      insert_posts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -74,23 +94,37 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
-        [
-            "1f8b08000000000000034ccd4b6a03310c00d0ab08ad637062cf309e5d173d4529c51fa5081c4d6acb50187cf752e8a2cbb77a2796a811f713593a35fd781e5dfbaf1be968c2f289b0c3db895c70c714b35b722826932bc65b0a26dc72318bbbba6db1217b4b784165ad843bbe90501418551b67a60e7208544ed40ee8ac101fa4f0a45a4994fad7209c17f8ab56bb96e4d3d594e083f1c991d9b6cd99c5c598576f6ff65efe55afcaf101ca92b90c51a06f180a71643d1adce3c89c46c7f93ee7fc010000ffff030035378e38f4000000",
-        ],
+        {
+            data: {
+                insert_posts: {
+                    returning: [
+                        {
+                            id: "2a0d531e-ad15-440f-bf0b-7d23e7e21131",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                        },
+                        {
+                            id: "d5448401-4860-48d4-96ab-0cea03fb9864",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                        },
+                    ],
+                },
+            },
+        },
         [
             "Date",
-            "Fri, 04 Aug 2023 12:15:27 GMT",
+            "Wed, 10 Jan 2024 19:45:29 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "244",
             "Connection",
             "close",
             "x-request-id",
-            "ee0512a4bc7d5909589e2d36e813ee07",
+            "d058e1cd290a9de40574d7dc0cf8a366",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -108,15 +142,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f16b9d018df5488-IST",
-            "Content-Encoding",
-            "gzip",
+            "84376ba9bf0ac1be-BUD",
         ],
     );
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id, title, content, category { id } }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [PostsInsertInput!]!) {\n  insertPosts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -131,23 +163,45 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
-        [
-            "1f8b0800000000000003a48f3d4fc3301040ffcae9e61a35df71b60eec4c2c88e16c5fca4989d3da6704aaf2df511103cc8c4f7ac37b370ca484d30d25664efab465cd774cac2545896784095e6e280127ecfc7c742ed4a6b2159bd6d7c1d0406442cf55e8471a4368f0802aba304e78e2c814a12c9ac40b67885b84451ca70db228d0ca0a175e168ecaf95a180fe8b7a81c15277ce6ace2ca5256782fcba5282943a68b70044abe3cdc6d523e6fe9f37be05ec8f55075bd6f8cb576346dd3cec685ce99da1d87b11e9b79ae7bdcf703fcf89eb8b1f5d1193b56d6b4be77c6ce4363daa3efc6dece8179f875f4a8422ba8442fa14405fe80a240c5eb9660a6e2c595fce7e2b4c8b5d00a51dc1b7022fd4ff6ebbeef5f000000ffff030068593c32b2010000",
-        ],
+        {
+            data: {
+                insertPosts: {
+                    returning: [
+                        {
+                            id: "4ec22cb3-b679-4891-a489-3d19cf275ab3",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                            content: "Vestibulum vulputate sapien arcu.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                        {
+                            id: "ae316d48-025a-47db-b4c0-ff4694f52c85",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                            content: "Aliquam nibh erat.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
         [
             "Date",
-            "Fri, 04 Aug 2023 12:15:28 GMT",
+            "Wed, 10 Jan 2024 19:45:31 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "434",
             "Connection",
             "close",
             "x-request-id",
-            "2eae16760eeea7cf4422782316e250e6",
+            "be077ae83240bb68d6e9516d2a7b1cbc",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -165,15 +219,13 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f16b9d47d0f548d-IST",
-            "Content-Encoding",
-            "gzip",
+            "84376bb2ed2768bc-BUD",
         ],
     );
 
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($objects: [PostsInsertInput!]!) {\n      insertPosts (objects: $objects) {\n    returning { id, title }\n  }\n    }",
+        query: "mutation CreateManyPosts($objects: [PostsInsertInput!]!) {\n  insertPosts(objects: $objects) {\n    returning {\n      id\n      id\n      title\n    }\n  }\n}\n",
         variables: {
             objects: [
                 {
@@ -188,23 +240,37 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
                 },
             ],
         },
+        operationName: "CreateManyPosts",
     })
     .reply(
         200,
-        [
-            "1f8b08000000000000034ccdb16ac4300c00d05f119acfe0e49238c9d6a17bf7d241b6e522f039575b8642c8bf9742878e6f7a274652c2fd44298dabbe1d4ddb2f2b6baf45ca27c20eef274ac41da794c266793296039b292ec9908bab218a6e1eee6eb333e10d553433eef8c285a940cf5a2508372847812c9eeb014d14e8c10a4fce998b72fbea8cd70dfe2a3fc461f263303c4636931f935987b09899ad5d5c0ceebeadffaa57157a804a09127b51e06fe80ad4831e1512f520be37bc3eaeebfa010000ffff0300b802a3e8f3000000",
-        ],
+        {
+            data: {
+                insertPosts: {
+                    returning: [
+                        {
+                            id: "863c2abb-e368-4ae0-8c0c-a1d7d1ec4630",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                        },
+                        {
+                            id: "d0fc6e73-8372-449f-bb3b-e633ea7e2817",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                        },
+                    ],
+                },
+            },
+        },
         [
             "Date",
-            "Fri, 04 Aug 2023 12:15:28 GMT",
+            "Wed, 10 Jan 2024 19:45:33 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
+            "Content-Length",
+            "243",
             "Connection",
             "close",
             "x-request-id",
-            "2e940da4e2477a5bdb8d3e811965ebc5",
+            "449b6444766cf6755815512938c1f84b",
             "CF-Cache-Status",
             "DYNAMIC",
             "Content-Security-Policy",
@@ -222,8 +288,152 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
             "Server",
             "cloudflare",
             "CF-RAY",
-            "7f16b9d99e0b92dd-IST",
-            "Content-Encoding",
-            "gzip",
+            "84376bbd7c8d7339-BUD",
+        ],
+    );
+
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "mutation CreateManyPosts($objects: [posts_insert_input!]!) {\n  insert_posts(objects: $objects) {\n    returning {\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
+        variables: {
+            objects: [
+                {
+                    content: "Vestibulum vulputate sapien arcu.",
+                    title: "Aenean ultricies non libero sit amet pellentesque",
+                    category_id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                },
+                {
+                    content: "Aliquam nibh erat.",
+                    title: "Etiam tincidunt ex ut auctor faucibus",
+                    category_id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                },
+            ],
+        },
+        operationName: "CreateManyPosts",
+    })
+    .reply(
+        200,
+        {
+            data: {
+                insert_posts: {
+                    returning: [
+                        {
+                            id: "286b07cd-e32f-4848-a0a9-05b997d69988",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                            content: "Vestibulum vulputate sapien arcu.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                        {
+                            id: "34275a5a-890a-47e0-a42f-dfcb2507b402",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                            content: "Aliquam nibh erat.",
+                            category: {
+                                id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+        [
+            "Date",
+            "Wed, 10 Jan 2024 19:45:35 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "435",
+            "Connection",
+            "close",
+            "x-request-id",
+            "e2534521346da9672af204f2497fff57",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "84376bc6ceeb68bb-BUD",
+        ],
+    );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "mutation CreateManyPosts($objects: [PostsInsertInput!]!) {\n  insertPosts(objects: $objects) {\n    returning {\n      id\n      title\n      content\n    }\n  }\n}\n",
+        variables: {
+            objects: [
+                {
+                    content: "Vestibulum vulputate sapien arcu.",
+                    title: "Aenean ultricies non libero sit amet pellentesque",
+                },
+                {
+                    content: "Aliquam nibh erat.",
+                    title: "Etiam tincidunt ex ut auctor faucibus",
+                },
+            ],
+        },
+        operationName: "CreateManyPosts",
+    })
+    .reply(
+        200,
+        {
+            data: {
+                insertPosts: {
+                    returning: [
+                        {
+                            id: "1fa3a0db-1af2-4520-81a2-87ec55a78747",
+                            title: "Aenean ultricies non libero sit amet pellentesque",
+                            content: "Vestibulum vulputate sapien arcu.",
+                        },
+                        {
+                            id: "1772c614-f060-4fbb-b464-a204add29ea7",
+                            title: "Etiam tincidunt ex ut auctor faucibus",
+                            content: "Aliquam nibh erat.",
+                        },
+                    ],
+                },
+            },
+        },
+        [
+            "Date",
+            "Wed, 10 Jan 2024 19:45:36 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "320",
+            "Connection",
+            "close",
+            "x-request-id",
+            "0f8d47c96a18746037bb1c6e326a99ef",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "84376bd60fb703bf-BUD",
         ],
     );

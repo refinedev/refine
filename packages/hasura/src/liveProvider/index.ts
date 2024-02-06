@@ -2,15 +2,15 @@ import { LiveProvider } from "@refinedev/core";
 import { Client } from "graphql-ws";
 
 import {
-    genereteUseListSubscription,
-    genereteUseManySubscription,
-    genereteUseOneSubscription,
+    generateUseManySubscription,
+    generateUseOneSubscription,
+    generateUseListSubscription,
 } from "../utils";
 
 const subscriptions = {
-    useList: genereteUseListSubscription,
-    useOne: genereteUseOneSubscription,
-    useMany: genereteUseManySubscription,
+    useList: generateUseListSubscription,
+    useOne: generateUseOneSubscription,
+    useMany: generateUseManySubscription,
 };
 
 export const liveProvider = (client: Client): LiveProvider => {

@@ -44,7 +44,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -66,7 +66,7 @@ const App: React.FC = () => {
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       //highlight-start
       liveProvider={liveProvider(ablyClient)}

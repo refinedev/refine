@@ -2,7 +2,7 @@ import { Authenticated, Refine } from "@refinedev/core";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
 import {
-    notificationProvider,
+    useNotificationProvider,
     ThemedLayoutV2,
     ErrorComponent,
     AuthPage,
@@ -103,7 +103,7 @@ const App: React.FC = () => {
                          */
                         routerProvider={routerBindings}
                         dataProvider={dataProvider(API_URL)}
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         options={{
                             warnWhenUnsavedChanges: true,
                             syncWithLocation: true,

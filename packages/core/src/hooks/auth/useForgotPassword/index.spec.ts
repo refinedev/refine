@@ -487,6 +487,45 @@ describe("useForgotPassword Hook", () => {
             }),
         ).toHaveLength(1);
     });
+
+    it("should open success notification when successNotification is passed", async () => {
+        const openNotificationMock = jest.fn();
+    
+        const { result } = renderHook(() => useForgotPassword(), {
+            wrapper: TestWrapper({
+                notificationProvider: {
+                    open: openNotificationMock,
+                },
+                authProvider: {
+                    ...mockAuthProvider,
+                    forgotPassword: () =>
+                        Promise.resolve({
+                            success: true,
+                            successNotification: {
+                                message: "Password reset successful",
+                                description: "Your password has been successfully reset",
+                            },
+                        }),
+                },
+            }),
+        });
+    
+        const { mutate: forgotPassword } = result.current;
+    
+        await act(async () => {
+            forgotPassword({ email: "test@test.com" });
+        });
+    
+        await waitFor(() => {
+            expect(openNotificationMock).toBeCalledWith({
+                key: "forgot-password-success",
+                type: "success",
+                message: "Password reset successful",
+                description: "Your password has been successfully reset",
+            });
+        });
+    });
+    
 });
 
 // NOTE : Will be removed in v5

@@ -149,7 +149,7 @@ import {
   ErrorComponent,
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   refineTheme,
   // highlight-start
   Sider,
@@ -612,7 +612,7 @@ import {
   ChakraProvider,
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   refineTheme,
 } from "@pankod/refine-chakra-ui";
 import { IconCategory, IconUsers } from "@tabler/icons";

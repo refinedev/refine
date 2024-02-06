@@ -140,7 +140,7 @@ If we look inside the `App.tsx` file, we can see among others a `<Refine />` com
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, notificationProvider } from "@refinedev/antd";
+import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, {
@@ -166,7 +166,7 @@ function App() {
           <Refine
             authProvider={authProvider}
             dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
-            notificationProvider={notificationProvider}
+            notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             resources={[
               {

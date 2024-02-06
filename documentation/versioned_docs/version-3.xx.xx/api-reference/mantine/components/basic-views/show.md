@@ -8,7 +8,7 @@ swizzle: true
 setRefineProps({
   Layout: RefineMantine.Layout,
   Sider: () => null,
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
 });
 
 const Wrapper = ({ children }) => {

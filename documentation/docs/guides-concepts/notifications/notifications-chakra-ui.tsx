@@ -29,7 +29,7 @@ export default function NotificationChakraUI() {
 const AppTsxCode = /* jsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
-import { RefineThemes, notificationProvider } from "@refinedev/chakra-ui";
+import { RefineThemes, useNotificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
 import { HomePage } from "./home-page";
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     return (
         <ChakraProvider theme={RefineThemes.Blue}>
             <Refine
-                notificationProvider={notificationProvider()}
+                notificationProvider={useNotificationProvider()}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             >
                 <HomePage />

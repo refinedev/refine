@@ -3,7 +3,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineSnackbarProvider,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -30,7 +30,7 @@ const App: React.FC = () => {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",

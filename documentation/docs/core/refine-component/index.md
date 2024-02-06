@@ -4,8 +4,6 @@ title: <Refine>
 
 `<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.
 
-[`dataProvider`](/docs/data/data-provider) and [`routerProvider`](#routerprovider) are required to bootstrap the app. After adding them, [`resources`](#resources) can be added as property.
-
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";

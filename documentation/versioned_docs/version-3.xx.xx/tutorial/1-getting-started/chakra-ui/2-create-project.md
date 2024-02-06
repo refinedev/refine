@@ -99,7 +99,7 @@ import {
   Layout,
   refineTheme,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-chakra-ui";
 
 const App = () => {

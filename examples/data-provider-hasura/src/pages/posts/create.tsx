@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
+import { HttpError, IResourceComponentsProps } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
@@ -7,15 +7,35 @@ import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type {
+    CreatePostMutation,
+    CreatePostMutationVariables,
+    GetPostCategoriesSelectQuery,
+} from "graphql/types";
+import type {
+    GetFields,
+    GetFieldsFromList,
+    GetVariables,
+} from "@refinedev/hasura";
+import { POST_CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<IPost>();
+    const { formProps, saveButtonProps } = useForm<
+        GetFields<CreatePostMutation>,
+        HttpError,
+        GetVariables<CreatePostMutationVariables>
+    >({
+        metaData: {
+            gqlMutation: POST_CREATE_MUTATION,
+        },
+    });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { selectProps: categorySelectProps } = useSelect<
+        GetFieldsFromList<GetPostCategoriesSelectQuery>
+    >({
         resource: "categories",
         metaData: {
-            fields: ["id", "title"],
+            gqlQuery: POST_CATEGORIES_SELECT_QUERY,
         },
     });
 

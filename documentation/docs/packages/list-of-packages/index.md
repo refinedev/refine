@@ -39,8 +39,6 @@ To learn more about Router Providers, check out [Routing](/docs/guides-concepts/
 - [`@refinedev/nextjs-router`](/docs/routing/integrations/next-js) - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 - [`@refinedev/remix-router`](/docs/routing/integrations/remix) - Router Provider for [Remix](https://remix.run/)
 - [`@refinenative/expo-router`](https://www.npmjs.com/package/@refinenative/expo-router) - Router Provider for [Expo](https://docs.expo.dev/)
-- `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
-- `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
 
 ### Live Provider Packages
 

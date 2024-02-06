@@ -169,12 +169,12 @@ Using of the prebuilt notification providers are optional and can be customized,
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/mantine";
+import { useNotificationProvider } from "@refinedev/mantine";
 
 const App = () => (
   <Refine
     // highlight-next-line
-    notificationProvider={notificationProvider}
+    notificationProvider={useNotificationProvider}
     /* ... */
   >
     {/* ... */}

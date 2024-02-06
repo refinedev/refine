@@ -7,6 +7,8 @@ export const mapOperator = (operator: CrudOperators): ComparisonOperator => {
             return "$and";
         case "or":
             return "$or";
+        case "eq":
+            return CondOperator.EQUALS;
         case "ne":
             return CondOperator.NOT_EQUALS;
         case "lt":
@@ -31,6 +33,8 @@ export const mapOperator = (operator: CrudOperators): ComparisonOperator => {
             return CondOperator.EXCLUDES;
         case "null":
             return CondOperator.IS_NULL;
+        case "nnull":
+            return CondOperator.NOT_NULL;
         case "startswith":
             return CondOperator.STARTS_LOW;
         case "startswiths":

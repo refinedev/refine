@@ -31,4 +31,32 @@ describe("getMany", () => {
         expect(data[1]["title"]).toBe("Lorem Ipsum 2-6");
         expect(data.length).toBe(2);
     });
+
+    it("should change schema", async () => {
+        const { data } = await dataProvider(supabaseClient).getMany({
+            resource: "products",
+            ids: [1, 2],
+            meta: {
+                schema: "public",
+                select: "*",
+            },
+        });
+
+        expect(data).toEqual([
+            { id: 1, name: "Macbook Proeeeeeasdas" },
+            { id: 2, name: "iPhone 15" },
+        ]);
+
+        try {
+            await dataProvider(supabaseClient).getMany({
+                resource: "products",
+                ids: [1, 2],
+                meta: {
+                    schema: "private",
+                },
+            });
+        } catch (error: any) {
+            expect(error.code).toEqual("PGRST106");
+        }
+    });
 });

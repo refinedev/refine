@@ -1,5 +1,11 @@
 # @refinedev/nextjs-router
 
+## 5.5.6
+
+### Patch Changes
+
+-   [#5549](https://github.com/refinedev/refine/pull/5549) [`61215d3b41`](https://github.com/refinedev/refine/commit/61215d3b416b121fada8e51ef0e10e79fd9070af) Thanks [@aliemir](https://github.com/aliemir)! - Updated index exports to provide appropriate types for the exported elements. Resolves #5548
+
 ## 5.5.5
 
 ### Patch Changes

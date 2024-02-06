@@ -1,5 +1,5 @@
 {
-  "version": "1.1.30",
+  "version": "1.1.31",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,8 +34,8 @@
     "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "@refinedev/devtools-server": "1.1.22",
-    "@refinedev/cli": "2.16.22",
+    "@refinedev/devtools-server": "1.1.23",
+    "@refinedev/cli": "2.16.23",
     "@refinedev/core": "^4.46.1"
   },
   "devDependencies": {

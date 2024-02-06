@@ -82,7 +82,7 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, notificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -103,7 +103,7 @@ const App: React.FC = () => {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider(API_URL)}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           // highlight-start
           resources={[
             {

@@ -73,6 +73,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     return (
         <RefineContext.Provider
             value={{
+                __initialized: true,
                 hasDashboard,
                 mutationMode,
                 warnWhenUnsavedChanges,
