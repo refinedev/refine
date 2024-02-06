@@ -23,6 +23,11 @@
       "types": "./dist/pages/index.d.ts",
       "import": "./dist/esm/pages.js",
       "require": "./dist/pages.js"
+    },
+    "./parse-table-params": {
+      "types": "./dist/common/parse-table-params.d.ts",
+      "import": "./dist/esm/parse-table-params.js",
+      "require": "./dist/parse-table-params.js"
     }
   },
   "typesVersions": {
@@ -35,6 +40,9 @@
       ],
       "pages": [
         "dist/pages/index.d.ts"
+      ],
+      "parse-table-params": [
+        "dist/common/parse-table-params.d.ts"
       ]
     }
   },
