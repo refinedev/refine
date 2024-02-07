@@ -1,32 +1,42 @@
 ---
-title: Using Layouts
+title: Introduction
 ---
 
-import { Sandpack, AddLayoutToApp } from "./sandpack.tsx";
+import { Sandpack, AddAntDesignToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-Now we've wrapped our app with the necessary components for styling, we're ready to add our layout to our app. Refine provides default layouts for its supported UI libraries with `<ThemedLayoutV2 />` components. These components provide a two-column layout with a sidebar and a main content area.
+Now we've learned about the router integrations of Refine, let's learn about the UI integrations of Refine. In this unit, we'll learn how to use layouts, CRUD view components and hooks to build a CRUD application with Refine and Ant Design.
 
-`<ThemedLayoutV2 />` components includes an header with user information (if an `authProvider` is provided), a sidebar with navigation links based on your resource definitions, a logout button (if an `authProvider` is provided), and a main content area where your content will be rendered.
+Refine provides integrations for the most popular UI libraries such as [Ant Design](/docs/ui-integrations/ant-design/introduction), [Material UI](/docs/ui-integrations/material-ui/introduction), [Chakra UI](/docs/ui-integrations/chakra-ui/introduction) and [Mantine](/docs/ui-integrations/mantine/introduction). These integrations provide a set of components and hooks to make it easier to use Refine with these UI libraries in cases like form and table management, layouts, views, buttons and more.
 
-## Adding Layout to App
+This unit will cover the following topics:
 
-Since our app includes authentication logic, we only want to show the layout to authenticated users. We'll achieve this by using it inside of the `<Authenticated />` component of our resource routes.
+- Using layout components to add menus, headers, breadcrumbs and authentication management to your app,
+- Using CRUD view components to create action pages with consistent design and common features,
+- Using hooks to integrate form elements and tables with Refine's `useTable` and `useForm` hooks.
+- Integrating Refine's notifications with Ant Design's notification system.
 
-We'll also remove the `<Header />` component, navigation link for the `/products` route and the logout button is already included in the sidebar of the layout. Create product link will be added in the next step.
+## Adding Ant Design Dependencies
 
-Try to update your `src/App.tsx` file with the following lines:
+Let's get started with adding our dependencies. We'll be needing `antd` to use Ant Design components and to get Refine integrated hooks and components, we'll be installing `@refinedev/antd` package.
+
+<InstallPackagesCommand args="antd @refinedev/antd"/>
+
+We'll wrap our app with Ant Design's `ConfigProvider` to set the theme and `App` component to use the theme properly. We'll also import a `reset.css` file to reset the default styles of the browser.
+
+Try to add the following code to your `src/App.tsx` file:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-// highlight-next-line
-import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+// highlight-start
+// We'll wrap our app with Ant Design's ConfigProvider to set the theme and App component to use the theme properly.
 import { ConfigProvider, App as AntdApp } from "antd";
+// highlight-end
 
 import { dataProvider } from "./data-provider";
 import { authProvider } from "./auth-provider";
@@ -37,14 +47,20 @@ import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
+import { Header } from "./header";
 
+// highlight-start
+// We're importing a reset.css file to reset the default styles of the browser.
 import "antd/dist/reset.css";
+// highlight-end
 
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
+      {/* highlight-start */}
       <ConfigProvider>
         <AntdApp>
+          {/* highlight-end */}
           <Refine
             dataProvider={dataProvider}
             authProvider={authProvider}
@@ -67,11 +83,8 @@ export default function App(): JSX.Element {
                     key="authenticated-routes"
                     redirectOnFail="/login"
                   >
-                    {/* highlight-start */}
-                    <ThemedLayoutV2>
-                      <Outlet />
-                    </ThemedLayoutV2>
-                    {/* highlight-end */}
+                    <Header />
+                    <Outlet />
                   </Authenticated>
                 }
               >
@@ -97,17 +110,19 @@ export default function App(): JSX.Element {
               </Route>
             </Routes>
           </Refine>
+          {/* highlight-start */}
         </AntdApp>
       </ConfigProvider>
+      {/* highlight-end */}
     </BrowserRouter>
   );
 }
 ```
 
-<AddLayoutToApp />
+<AddAntDesignToApp />
 
-Our app is now wrapped with a layout that includes a sidebar and a main content area. Notice that our `protected-products` resource is listed in the sidebar with `"Products"` label. This is because we've provided a custom label for our resource in the `meta.label` field of our resource definition.
+Now that we have our dependencies installed, let's start by adding a layout to our app.
 
-In the next step, we'll be refactoring our action components to use forms and tables from Ant Design.
+In the next step, we'll learn about the features of the layout components and how to use them.
 
 </Sandpack>

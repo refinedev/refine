@@ -1,13 +1,10 @@
 import React from "react";
-import { useSandpack } from "@codesandbox/sandpack-react";
-
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
+import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
-import {
-    finalFiles as initialFiles,
-    dependencies,
-} from "@site/tutorial/ui-libraries/intro/ant-design/react-router/sandpack";
+import { dependencies as initialDependencies } from "@site/tutorial/routing/intro/react-router/sandpack";
+import { finalFiles as initialFiles } from "@site/tutorial/routing/syncing-state/react-router/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
@@ -25,13 +22,13 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 
 // updates
 
-const AppTsxWithLayout = /* tsx */ `
+const AppTsxWithAntDesignWrappers = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
+// We'll wrap our app with Ant Design's ConfigProvider to set the theme and App component to use the theme properly.
 import { ConfigProvider, App as AntdApp } from "antd";
 
 import { dataProvider } from "./data-provider";
@@ -43,7 +40,9 @@ import { ListProducts } from "./list-products";
 import { CreateProduct } from "./create-product";
 
 import { Login } from "./login";
+import { Header } from "./header";
 
+// We're importing a reset.css file to reset the default styles of the browser.
 import "antd/dist/reset.css";
 
 export default function App(): JSX.Element {
@@ -73,9 +72,8 @@ export default function App(): JSX.Element {
                     key="authenticated-routes"
                     redirectOnFail="/login"
                   >
-                    <ThemedLayoutV2>
-                      <Outlet />
-                    </ThemedLayoutV2>
+                    <Header />
+                    <Outlet />
                   </Authenticated>
                 }
               >
@@ -110,13 +108,13 @@ export default function App(): JSX.Element {
 
 // actions
 
-export const AddLayoutToApp = () => {
+export const AddAntDesignToApp = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithLayout);
+                sandpack.updateFile("/App.tsx", AppTsxWithAntDesignWrappers);
                 sandpack.setActiveFile("/App.tsx");
             }}
         />
@@ -128,7 +126,13 @@ export const AddLayoutToApp = () => {
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
-        code: AppTsxWithLayout,
+        code: AppTsxWithAntDesignWrappers,
         active: true,
     },
+};
+
+export const dependencies = {
+    ...initialDependencies,
+    "@refinedev/antd": "latest",
+    antd: "latest",
 };
