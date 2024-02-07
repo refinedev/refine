@@ -475,6 +475,47 @@ describe("useSelect Hook", () => {
         expect(mockFunc).toBeCalled();
     });
 
+    it("should invoke queryOptions methods successfully with custom optionLabel", async () => {
+        const mockFunc = jest.fn();
+    
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    queryOptions: {
+                        onSuccess: () => {
+                            mockFunc();
+                        },
+                    },
+                    customOptionLabel: (item) => `Custom Label`,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+    
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+    
+        const { options } = result.current;
+    
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            {
+                label: "Custom Label",
+                value: "1",
+            },
+            { label: "Custom Label", value: "2" },
+        ]);
+    
+        expect(mockFunc).toBeCalled();
+    });
+    
+
     // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
     // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
     it.each([true, false, undefined])(

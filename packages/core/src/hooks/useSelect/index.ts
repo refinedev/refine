@@ -127,6 +127,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * @default `undefined`
      */
     fetchSize?: number;
+    customOptionLabel?: (item: TData) => string; // Custom optionLabel function
 } & SuccessErrorNotification<
     GetListResponse<TData>,
     TError,
@@ -196,6 +197,7 @@ export const useSelect = <
         metaData,
         dataProviderName,
         overtimeOptions,
+        customOptionLabel
     } = props;
 
     const { resource, identifier } = useResource(resourceFromProps);
@@ -255,14 +257,14 @@ export const useSelect = <
                     data.data.map(
                         (item) =>
                             ({
-                                label: get(item, optionLabel),
+                                label: customOptionLabel ? customOptionLabel(item) : get(item, optionLabel),
                                 value: get(item, optionValue),
                             } as TOption),
                     ),
                 );
             }
         },
-        [optionLabel, optionValue],
+        [customOptionLabel, optionLabel, optionValue],
     );
 
     const queryResult = useList<TQueryFnData, TError, TData>({
@@ -322,7 +324,7 @@ export const useSelect = <
         () => uniqBy([...options, ...selectedOptions], "value"),
         [options, selectedOptions],
     );
-
+    
     return {
         queryResult,
         defaultValueQueryResult,
