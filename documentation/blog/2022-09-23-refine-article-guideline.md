@@ -77,17 +77,11 @@ Explain the topic contents step by step. Imagine you are reading the article for
 
 - We use `title` attribute to show the file name of the codeblock.
 
-````
 ```tsx title="src/App.tsx"
 function App() {
-  return (
-    <Refine
-      routerProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-    />
-  );
+  return <Refine routerProvider={routerProvider} dataProvider={dataProvider("https://api.fake-rest.refine.dev")} />;
 }
-````
+```
 
 The result will be like this in the blog post when published.
 
@@ -105,7 +99,6 @@ We recommended to use title attribute for all codeblocks to make it easier to un
 
 For example, you should use `//highlight-next-line` to highlight the new added code, if you want to add a resources property `<Refine />` component
 
-````
 ```tsx title="src/App.tsx"
 function App() {
   return (
@@ -117,7 +110,7 @@ function App() {
     />
   );
 }
-````
+```
 
 The result will be like this in the blog post when published.
 
@@ -138,7 +131,6 @@ function App() {
 
 - For more than one line highlighting, you can use `//highlight-start` and `//highlight-end` to highlight the code block.
 
-````
 ```tsx title="src/App.tsx"
 function App() {
   return (
@@ -153,7 +145,7 @@ function App() {
     />
   );
 }
-````
+```
 
 The result will be like this in the blog post when published.
 
