@@ -66,6 +66,29 @@ describe("usePermissions Hook", () => {
         result.current.refetch();
         expect(result.current.data).toBeUndefined();
     });
+
+    it("should accept params", async () => {
+        const { result } = renderHook(({ params }: { params: string }) => usePermissions({ params }), {
+            initialProps: { params: 'admin' },
+            wrapper: TestWrapper({
+                authProvider: {
+                    login: () => Promise.resolve({ success: true }),
+                    check: () => Promise.resolve({ authenticated: true }),
+                    onError: () => Promise.resolve({}),
+                    logout: () => Promise.resolve({ success: true }),
+                    getPermissions: (params) => Promise.resolve([params]),
+                },
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
+
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
+
+        expect(result.current.data).toEqual(["admin"]);
+    });
 });
 
 // NOTE : Will be removed in v5
