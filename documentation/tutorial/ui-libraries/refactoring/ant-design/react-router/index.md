@@ -217,7 +217,7 @@ List of available field components:
 - [`<ImageField />`](/docs/ui-integrations/ant-design/components/fields/image-field)
 - [`<MarkdownField />`](/docs/ui-integrations/ant-design/components/fields/markdown-field)
 - [`<NumberField />`](/docs/ui-integrations/ant-design/components/fields/number-field)
-- [`<TagsField />`](/docs/ui-integrations/ant-design/components/fields/tags-field)
+- [`<TagField />`](/docs/ui-integrations/ant-design/components/fields/tag-field)
 - [`<TextField />`](/docs/ui-integrations/ant-design/components/fields/text-field)
 - [`<UrlField />`](/docs/ui-integrations/ant-design/components/fields/url-field)
 
