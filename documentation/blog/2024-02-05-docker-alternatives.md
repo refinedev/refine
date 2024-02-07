@@ -296,4 +296,4 @@ Below is a comparison table summarizing the key differences between all the Dock
 
 ## Conclusion
 
-This article covered the top competitors of Docker in the container world. Now that you have gone therough the powers and weaknesses of all the alternatives, you should be in a position to select the best container runtime for your needs. Consider all the factors like features, security, ease of use, learning curve, to decide which option is best suited for you. Apply the knoweledge gained from this article in your projects and you will see that containerization is one of the keys to a project's success.
+This article covered the top competitors of Docker in the container world. Now that you have gone through the powers and weaknesses of all the alternatives, you should be in a position to select the best container runtime for your needs. Consider all the factors like features, security, ease of use, learning curve, to decide which option is best suited for you. Apply the knoweledge gained from this article in your projects and you will see that containerization is one of the keys to a project's success.

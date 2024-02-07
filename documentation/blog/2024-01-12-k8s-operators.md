@@ -97,7 +97,7 @@ For Windows, the binary is not supported, you will need to use `WSL` on Windows.
 2- Download the operator SDK binary for your OS. I used the below URL as I am on linux.
 `wget https://github.com/operator-framework/operator-sdk/releases/download/v1.17.0/operator-sdk_linux_amd64`
 
-3- Make this binary executable so modify the permisions as below:
+3- Make this binary executable so modify the permissions as below:
 `chmod +x operator-sdk_linux_amd64`
 
 4- To use the Operator SDK anywhere in your terminal, move it to a directory in your system PATH. A common place is `/usr/local/bin/`.

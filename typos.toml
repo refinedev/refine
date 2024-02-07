@@ -23,7 +23,8 @@ extend-ignore-re = [
     "\\`refine",
     "\"refine\"",
     "\"refine",
-    "refineTheme"
+    "refineTheme",
+    "exitt"
 ]
 
 [files]
