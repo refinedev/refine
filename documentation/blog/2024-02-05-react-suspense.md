@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-react-susp
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on February 5, 2024 to re-organize content for better understanding of React Suspense._**
+**_This article was last updated on February 5, 2024 to reorganize content for better understanding of React Suspense._**
 
 ## Introduction
 
