@@ -257,6 +257,7 @@ export const files = {
     ...initialFiles,
     "styles.css": {
         code: "",
+        hidden: true,
     },
 };
 
