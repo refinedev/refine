@@ -74,7 +74,7 @@ export function usePermissions<TData = any>({
         queryKey: keys().auth().action("permissions").get(preferLegacyKeys),
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         queryFn:
-            (getPermissions ? () => getPermissions(params)  : 
+            (getPermissions ? () => getPermissions(params) : 
             (() => Promise.resolve(undefined))) as (params?: unknown) => Promise<TData>,
         enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
         ...(v3LegacyAuthProviderCompatible ? {} : options),
@@ -90,7 +90,7 @@ export function usePermissions<TData = any>({
             "v3LegacyAuthProviderCompatible",
         ],
         // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        queryFn: legacyGetPermission ?? (() => Promise.resolve(undefined)),
+        queryFn: (legacyGetPermission ? () => legacyGetPermission(params) : () => Promise.resolve(undefined)) as (params?: unknown) => Promise<TData>,
         enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
         ...(v3LegacyAuthProviderCompatible ? options : {}),
         meta: {

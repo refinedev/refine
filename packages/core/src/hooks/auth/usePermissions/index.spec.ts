@@ -4,6 +4,11 @@ import { MockJSONServer, TestWrapper } from "@test";
 
 import { usePermissions } from "./";
 
+type PermissionsProps = { 
+    params: string, 
+    v3LegacyAuthProviderCompatible: boolean 
+}
+
 describe("usePermissions Hook", () => {
     it("returns authenticated userPermissions", async () => {
         const { result } = renderHook(() => usePermissions(), {
@@ -68,25 +73,30 @@ describe("usePermissions Hook", () => {
     });
 
     it("should accept params", async () => {
-        const { result } = renderHook(({ params }: { params: string }) => usePermissions({ params }), {
-            initialProps: { params: 'admin' },
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.resolve({ success: true }),
-                    check: () => Promise.resolve({ authenticated: true }),
-                    onError: () => Promise.resolve({}),
-                    logout: () => Promise.resolve({ success: true }),
-                    getPermissions: (params) => Promise.resolve([params]),
-                },
-                dataProvider: MockJSONServer,
-                resources: [{ name: "posts" }],
-            }),
-        });
+        const mockGetPermissions = jest.fn(() => Promise.resolve(["admin"]));
+        const { result } = renderHook(
+            (props: PermissionsProps) => usePermissions({ ...props }),
+            {
+                initialProps: { params: "admin", v3LegacyAuthProviderCompatible: false },
+                wrapper: TestWrapper({
+                    authProvider: {
+                        login: () => Promise.resolve({ success: true }),
+                        check: () => Promise.resolve({ authenticated: true }),
+                        onError: () => Promise.resolve({}),
+                        logout: () => Promise.resolve({ success: true }),
+                        getPermissions: mockGetPermissions,
+                    },
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
 
         await waitFor(() => {
             expect(result.current.isSuccess).toBeTruthy();
         });
-
+        
+        expect(mockGetPermissions).toHaveBeenCalledWith("admin");
         expect(result.current.data).toEqual(["admin"]);
     });
 });
@@ -169,6 +179,31 @@ describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
 
         result.current.refetch();
         expect(result.current.data).toBeUndefined();
+    });
+
+    it("should accept params with v3LegacyAuthProviderCompatible", async () => {
+        const legacyGetPermissionMock = jest.fn(() => Promise.resolve(["admin"]));
+        const { result } = renderHook(
+            (props: PermissionsProps) => usePermissions({ ...props }),
+            {
+                initialProps: { params: 'admin', v3LegacyAuthProviderCompatible: true },
+                wrapper: TestWrapper({
+                    legacyAuthProvider: {
+                        login: () => Promise.resolve(),
+                        checkAuth: () => Promise.resolve(),
+                        checkError: () => Promise.resolve(),
+                        getPermissions: legacyGetPermissionMock,
+                    },
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.isLoading).toBeFalsy();
+        });
+
+        expect(legacyGetPermissionMock).toHaveBeenCalledWith("admin");
+        expect(result.current.data).toEqual(["admin"]);
     });
 });
 
