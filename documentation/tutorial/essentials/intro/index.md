@@ -15,7 +15,7 @@ Pick the Routing library you want to continue with:
 
 <TutorialParameterDropdown parameter="routerSelection" label="Routing" className="w-min pb-4" />
 
-In the further units of this tutorial, you'll be selecting a UI framework integration of Refine and learn more about how UI integrations are made and where they can be useful. While Refine provides official support for Ant Design, Material UI, Mantine and Chakra UI, the tutorial is prepared for the top two most used UI frameworks; [Ant Design(/docs/ui-integrations/ant-design/introduction) and [Material UI](docs/ui-integrations/material-ui/introduction).
+In the further units of this tutorial, you'll be selecting a UI framework integration of Refine and learn more about how UI integrations are made and where they can be useful. While Refine provides official support for Ant Design, Material UI, Mantine and Chakra UI, the tutorial is prepared for the top two most used UI frameworks; [Ant Design](/docs/ui-integrations/ant-design/introduction) and [Material UI](docs/ui-integrations/material-ui/introduction).
 
 Pick the UI framework you want to continue with:
 
