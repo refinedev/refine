@@ -27,7 +27,7 @@
     "cypress": "^13.6.3"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",

@@ -2,7 +2,7 @@
   "name": "upload-chakra-ui-basic64",
   "private": true,
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine"

@@ -2,7 +2,7 @@
   "name": "data-provider-nestjs-query",
   "version": "3.25.0",
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",

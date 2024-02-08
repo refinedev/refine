@@ -2,7 +2,7 @@
   "name": "form-mantine-use-form",
   "private": true,
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
