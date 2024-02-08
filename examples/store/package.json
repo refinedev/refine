@@ -1,6 +1,6 @@
 {
   "name": "store",
-  "version": "3.25.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build && rm -rf .next/cache",

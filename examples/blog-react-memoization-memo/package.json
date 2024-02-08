@@ -1,6 +1,6 @@
 {
   "name": "blog-react-memoization-memo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",

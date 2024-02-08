@@ -1,6 +1,6 @@
 {
   "name": "with-nextjs-next-auth",
-  "version": "3.25.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "refine build && rm -rf .next/cache",

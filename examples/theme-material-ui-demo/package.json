@@ -1,6 +1,6 @@
 {
   "name": "theme-material-ui-demo",
-  "version": "3.25.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "tsc && refine build",

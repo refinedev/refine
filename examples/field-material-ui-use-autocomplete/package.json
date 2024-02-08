@@ -1,6 +1,6 @@
 {
   "name": "field-material-ui-use-autocomplete",
-  "version": "3.24.0-next.12",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "tsc && refine build",
