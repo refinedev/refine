@@ -660,14 +660,7 @@ const LoaderProgress = () => {
     );
 
     return (
-        <div
-            className={clsx(
-                "flex",
-                "items-center",
-                "justify-center",
-                "bg-gray-0 dark:bg-gray-800",
-            )}
-        >
+        <div className={clsx("flex", "items-center", "justify-center")}>
             <div
                 className={clsx(
                     "w-32",
