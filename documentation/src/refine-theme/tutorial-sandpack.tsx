@@ -643,11 +643,52 @@ const SandpackRightSide = ({
                                             "rounded-full",
                                         )}
                                     />
+                                    <LoaderProgress />
                                 </div>
                             </SandpackPreview>
                         </div>
                     )}
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const LoaderProgress = () => {
+    const [duration] = React.useState(
+        Math.floor(Math.random() * 10 * 1000 + 10000),
+    );
+
+    return (
+        <div
+            className={clsx(
+                "flex",
+                "items-center",
+                "justify-center",
+                "bg-gray-0 dark:bg-gray-800",
+            )}
+        >
+            <div
+                className={clsx(
+                    "w-32",
+                    "h-2.5",
+                    "rounded-xl",
+                    "bg-gray-300 dark:bg-gray-700",
+                    "p-px",
+                )}
+            >
+                <div
+                    className={clsx(
+                        "sp-loading-progress",
+                        "h-full",
+                        "rounded",
+                        "bg-refine-react-light-link dark:bg-refine-react-dark-link",
+                        "min-w-[0.5rem]",
+                    )}
+                    style={{
+                        animationDuration: `${duration}ms`,
+                    }}
+                />
             </div>
         </div>
     );
