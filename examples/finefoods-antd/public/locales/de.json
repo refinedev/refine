@@ -248,7 +248,9 @@
       "products": "Produkte",
       "createdAt": "Erstellt am",
       "amount": "Betrag",
-      "itemsAmount": "{{amount}} Produkt"
+      "itemsAmount": "{{amount}} Produkt",
+      "order": "Bestellung",
+      "customer": "Kunde"
     },
     "filter": {
       "title": "Filter",
@@ -268,8 +270,16 @@
         "label": "Benutzer",
         "placeholder": "Benutzer Suchen"
       },
+      "customer": {
+        "label": "Kunde",
+        "placeholder": "Kunde Suchen"
+      },
       "createdAt": {
         "label": "Erstellt am"
+      },
+      "orderNumber": {
+        "label": "Bestellungsnummer",
+        "placeholder": "Bestellungsnummer"
       },
       "submit": "Filter"
     },

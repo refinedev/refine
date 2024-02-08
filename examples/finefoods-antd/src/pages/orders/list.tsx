@@ -11,93 +11,53 @@ import {
 
 import {
     List,
-    TextField,
     useTable,
     getDefaultSortOrder,
     DateField,
     NumberField,
     useSelect,
     ExportButton,
+    FilterDropdown,
 } from "@refinedev/antd";
 import { SearchOutlined } from "@ant-design/icons";
 import {
     Table,
     Popover,
-    Card,
     Input,
-    Form,
-    DatePicker,
     Select,
-    Button,
-    FormProps,
-    Row,
-    Col,
+    Typography,
+    Flex,
+    Avatar,
+    theme,
+    Badge,
+    InputNumber,
 } from "antd";
-import dayjs from "dayjs";
 
 import { OrderStatus, OrderActions } from "../../components";
-import {
-    IOrder,
-    IStore,
-    IOrderFilterVariables,
-    IOrderStatus,
-    IUser,
-} from "../../interfaces";
-
-const { RangePicker } = DatePicker;
+import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
+import { getUniqueListWithCount } from "../../utils";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter, searchFormProps, filters } = useTable<
+    const { token } = theme.useToken();
+
+    const { tableProps, sorters, filters } = useTable<
         IOrder,
         HttpError,
         IOrderFilterVariables
     >({
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { q, store, user, createdAt, status } = params;
-
-            filters.push({
-                field: "q",
-                operator: "eq",
-                value: q,
-            });
-
-            filters.push({
-                field: "store.id",
-                operator: "eq",
-                value: store,
-            });
-
-            filters.push({
-                field: "user.id",
-                operator: "eq",
-                value: user,
-            });
-
-            filters.push({
-                field: "status.text",
-                operator: "in",
-                value: status,
-            });
-
-            filters.push(
+        filters: {
+            initial: [
                 {
-                    field: "createdAt",
-                    operator: "gte",
-                    value: createdAt
-                        ? createdAt[0].startOf("day").toISOString()
-                        : undefined,
+                    field: "user.fullName",
+                    operator: "contains",
+                    value: "",
                 },
                 {
-                    field: "createdAt",
-                    operator: "lte",
-                    value: createdAt
-                        ? createdAt[1].endOf("day").toISOString()
-                        : undefined,
+                    field: "store.title",
+                    operator: "contains",
+                    value: "",
                 },
-            );
-
-            return filters;
+            ],
         },
     });
 
@@ -105,7 +65,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { show } = useNavigation();
 
     const { isLoading, triggerExport } = useExport<IOrder>({
-        sorter,
+        sorters,
         filters,
         pageSize: 50,
         maxItemCount: 50,
@@ -121,265 +81,295 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const Actions: React.FC = () => (
-        <ExportButton onClick={triggerExport} loading={isLoading} />
-    );
-
-    return (
-        <Row gutter={[16, 16]}>
-            <Col
-                xl={6}
-                lg={24}
-                xs={24}
-                style={{
-                    marginTop: "52px",
-                }}
-            >
-                <Card title={t("orders.filter.title")}>
-                    <Filter
-                        formProps={searchFormProps}
-                        filters={filters || []}
-                    />
-                </Card>
-            </Col>
-            <Col xl={18} xs={24}>
-                <List
-                    headerProps={{
-                        extra: <Actions />,
-                    }}
-                >
-                    <Table
-                        {...tableProps}
-                        rowKey="id"
-                        onRow={(record) => {
-                            return {
-                                onClick: () => {
-                                    show("orders", record.id);
-                                },
-                            };
-                        }}
-                    >
-                        <Table.Column
-                            key="orderNumber"
-                            dataIndex="orderNumber"
-                            title={t("orders.fields.orderNumber")}
-                            render={(value) => <TextField value={value} />}
-                        />
-                        <Table.Column<IOrder>
-                            key="status.text"
-                            dataIndex={["status", "text"]}
-                            title={t("orders.fields.status")}
-                            render={(value) => {
-                                return <OrderStatus status={value} />;
-                            }}
-                            defaultSortOrder={getDefaultSortOrder(
-                                "status.text",
-                                sorter,
-                            )}
-                            sorter
-                        />
-                        <Table.Column
-                            align="right"
-                            key="amount"
-                            dataIndex="amount"
-                            title={t("orders.fields.amount")}
-                            defaultSortOrder={getDefaultSortOrder(
-                                "amount",
-                                sorter,
-                            )}
-                            sorter
-                            render={(value) => {
-                                return (
-                                    <NumberField
-                                        options={{
-                                            currency: "USD",
-                                            style: "currency",
-                                        }}
-                                        value={value / 100}
-                                    />
-                                );
-                            }}
-                        />
-                        <Table.Column
-                            key="store.id"
-                            dataIndex={["store", "title"]}
-                            title={t("orders.fields.store")}
-                        />
-                        <Table.Column
-                            key="user.fullName"
-                            dataIndex={["user", "fullName"]}
-                            title={t("orders.fields.user")}
-                        />
-                        <Table.Column<IOrder>
-                            key="products"
-                            dataIndex="products"
-                            title={t("orders.fields.products")}
-                            render={(_, record) => (
-                                <Popover
-                                    content={
-                                        <ul>
-                                            {record.products.map((product) => (
-                                                <li key={product.id}>
-                                                    {product.name}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    }
-                                    title="Products"
-                                    trigger="hover"
-                                >
-                                    {t("orders.fields.itemsAmount", {
-                                        amount: record.products.length,
-                                    })}
-                                </Popover>
-                            )}
-                        />
-                        <Table.Column
-                            key="createdAt"
-                            dataIndex="createdAt"
-                            title={t("orders.fields.createdAt")}
-                            render={(value) => (
-                                <DateField value={value} format="LLL" />
-                            )}
-                            sorter
-                        />
-                        <Table.Column<IOrder>
-                            fixed="right"
-                            title={t("table.actions")}
-                            dataIndex="actions"
-                            key="actions"
-                            align="center"
-                            render={(_value, record) => (
-                                <OrderActions record={record} />
-                            )}
-                        />
-                    </Table>
-                </List>
-            </Col>
-        </Row>
-    );
-};
-
-const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
-    props,
-) => {
-    const t = useTranslate();
-
-    const { formProps, filters } = props;
-    const { selectProps: storeSelectProps } = useSelect<IStore>({
-        resource: "stores",
-        defaultValue: getDefaultFilter("store.id", filters),
-    });
-
     const { selectProps: orderSelectProps } = useSelect<IOrderStatus>({
         resource: "orderStatuses",
         optionLabel: "text",
         optionValue: "text",
-        defaultValue: getDefaultFilter("status.text", filters),
+        defaultValue: getDefaultFilter("status.text", filters, "in"),
     });
-
-    const { selectProps: userSelectProps } = useSelect<IUser>({
-        resource: "users",
-        optionLabel: "fullName",
-        defaultValue: getDefaultFilter("user.id", filters),
-    });
-
-    const createdAt = useMemo(() => {
-        const start = getDefaultFilter("createdAt", filters, "gte");
-        const end = getDefaultFilter("createdAt", filters, "lte");
-
-        const startFrom = dayjs(start);
-        const endAt = dayjs(end);
-
-        if (start && end) {
-            return [startFrom, endAt];
-        }
-        return undefined;
-    }, [filters]);
 
     return (
-        <Form
-            layout="vertical"
-            {...formProps}
-            initialValues={{
-                q: getDefaultFilter("q", filters),
-                store: getDefaultFilter("store.id", filters)
-                    ? Number(getDefaultFilter("store.id", filters))
-                    : undefined,
-                user: getDefaultFilter("user.id", filters)
-                    ? Number(getDefaultFilter("user.id", filters))
-                    : undefined,
-                status: getDefaultFilter("status.text", filters, "in"),
-                createdAt,
+        <List
+            headerProps={{
+                extra: (
+                    <ExportButton onClick={triggerExport} loading={isLoading} />
+                ),
             }}
         >
-            <Row gutter={[10, 0]} align="bottom">
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item label={t("orders.filter.search.label")} name="q">
-                        <Input
-                            placeholder={t("orders.filter.search.placeholder")}
-                            prefix={<SearchOutlined />}
+            <Table
+                {...tableProps}
+                rowKey="id"
+                onRow={(record) => {
+                    return {
+                        onClick: () => {
+                            show("orders", record.id);
+                        },
+                    };
+                }}
+            >
+                <Table.Column
+                    key="orderNumber"
+                    dataIndex="orderNumber"
+                    title={t("orders.fields.order")}
+                    render={(value) => (
+                        <Typography.Text>#{value}</Typography.Text>
+                    )}
+                    filterIcon={(filtered) => (
+                        <SearchOutlined
+                            style={{
+                                color: filtered
+                                    ? token.colorPrimary
+                                    : undefined,
+                            }}
                         />
-                    </Form.Item>
-                </Col>
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item
-                        label={t("orders.filter.status.label")}
-                        name="status"
-                    >
-                        <Select
-                            {...orderSelectProps}
-                            allowClear
-                            mode="multiple"
-                            placeholder={t("orders.filter.status.placeholder")}
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "orderNumber",
+                        filters,
+                        "eq",
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <InputNumber
+                                addonBefore="#"
+                                style={{ width: "100%" }}
+                                placeholder={t(
+                                    "orders.filter.orderNumber.placeholder",
+                                )}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IOrder>
+                    key="status.text"
+                    dataIndex="status"
+                    title={t("orders.fields.status")}
+                    render={(status) => {
+                        return <OrderStatus status={status.text} />;
+                    }}
+                    sorter
+                    defaultSortOrder={getDefaultSortOrder(
+                        "status.text",
+                        sorters,
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "status.text",
+                        filters,
+                        "in",
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                {...orderSelectProps}
+                                style={{ width: "200px" }}
+                                allowClear
+                                mode="multiple"
+                                placeholder={t(
+                                    "orders.filter.status.placeholder",
+                                )}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column<IOrder>
+                    key="products"
+                    dataIndex="products"
+                    title={t("orders.fields.products")}
+                    render={(_, record) => {
+                        const uniqueProducts = getUniqueListWithCount({
+                            list: record.products,
+                            field: "id",
+                        });
+                        const firstThree = uniqueProducts.slice(0, 3);
+                        const rest = uniqueProducts.slice(3);
+
+                        return (
+                            <Flex gap={12}>
+                                {firstThree.map((product) => {
+                                    return (
+                                        <Popover
+                                            key={product.id}
+                                            content={
+                                                <Typography.Text>
+                                                    {product.name}
+                                                </Typography.Text>
+                                            }
+                                        >
+                                            <Badge
+                                                style={{
+                                                    color: "#fff",
+                                                }}
+                                                count={
+                                                    product.count === 1
+                                                        ? 0
+                                                        : product.count
+                                                }
+                                            >
+                                                <Avatar
+                                                    shape="square"
+                                                    src={product.images[0].url}
+                                                />
+                                            </Badge>
+                                        </Popover>
+                                    );
+                                })}
+                                {!!rest.length && (
+                                    <Popover
+                                        title={t("orders.fields.products")}
+                                        content={
+                                            <Flex gap={8}>
+                                                {rest.map((product) => {
+                                                    return (
+                                                        <Popover
+                                                            key={product.id}
+                                                            content={
+                                                                <Typography.Text>
+                                                                    {
+                                                                        product.name
+                                                                    }
+                                                                </Typography.Text>
+                                                            }
+                                                        >
+                                                            <Badge
+                                                                style={{
+                                                                    color: "#fff",
+                                                                }}
+                                                                count={
+                                                                    product.count ===
+                                                                    1
+                                                                        ? 0
+                                                                        : product.count
+                                                                }
+                                                            >
+                                                                <Avatar
+                                                                    shape="square"
+                                                                    src={
+                                                                        product
+                                                                            .images[0]
+                                                                            .url
+                                                                    }
+                                                                />
+                                                            </Badge>
+                                                        </Popover>
+                                                    );
+                                                })}
+                                            </Flex>
+                                        }
+                                    >
+                                        <Avatar
+                                            shape="square"
+                                            style={{
+                                                backgroundColor:
+                                                    token.colorPrimaryBg,
+                                            }}
+                                        >
+                                            <Typography.Text
+                                                style={{
+                                                    color: token.colorPrimary,
+                                                }}
+                                            >
+                                                +{rest.length}
+                                            </Typography.Text>
+                                        </Avatar>
+                                    </Popover>
+                                )}
+                            </Flex>
+                        );
+                    }}
+                />
+                <Table.Column
+                    align="right"
+                    key="amount"
+                    dataIndex="amount"
+                    title={t("orders.fields.amount")}
+                    defaultSortOrder={getDefaultSortOrder("amount", sorters)}
+                    sorter
+                    render={(value) => {
+                        return (
+                            <NumberField
+                                options={{
+                                    currency: "USD",
+                                    style: "currency",
+                                }}
+                                value={value / 100}
+                            />
+                        );
+                    }}
+                />
+                <Table.Column
+                    key="store.title"
+                    dataIndex={["store", "title"]}
+                    title={t("orders.fields.store")}
+                    filterIcon={(filtered) => (
+                        <SearchOutlined
+                            style={{
+                                color: filtered
+                                    ? token.colorPrimary
+                                    : undefined,
+                            }}
                         />
-                    </Form.Item>
-                </Col>
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item
-                        label={t("orders.filter.store.label")}
-                        name="store"
-                    >
-                        <Select
-                            {...storeSelectProps}
-                            allowClear
-                            placeholder={t("orders.filter.store.placeholder")}
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "store.title",
+                        filters,
+                        "contains",
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input
+                                placeholder={t(
+                                    "orders.filter.store.placeholder",
+                                )}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column
+                    key="user.fullName"
+                    dataIndex={["user", "fullName"]}
+                    title={t("orders.fields.customer")}
+                    filterIcon={(filtered) => (
+                        <SearchOutlined
+                            style={{
+                                color: filtered
+                                    ? token.colorPrimary
+                                    : undefined,
+                            }}
                         />
-                    </Form.Item>
-                </Col>
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item
-                        label={t("orders.filter.user.label")}
-                        name="user"
-                    >
-                        <Select
-                            {...userSelectProps}
-                            allowClear
-                            placeholder={t("orders.filter.user.placeholder")}
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item
-                        label={t("orders.filter.createdAt.label")}
-                        name="createdAt"
-                    >
-                        <RangePicker style={{ width: "100%" }} />
-                    </Form.Item>
-                </Col>
-                <Col xl={24} md={8} sm={12} xs={24}>
-                    <Form.Item>
-                        <Button
-                            htmlType="submit"
-                            type="primary"
-                            size="large"
-                            block
-                        >
-                            {t("orders.filter.submit")}
-                        </Button>
-                    </Form.Item>
-                </Col>
-            </Row>
-        </Form>
+                    )}
+                    defaultFilteredValue={getDefaultFilter(
+                        "user.fullName",
+                        filters,
+                        "contains",
+                    )}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input
+                                placeholder={t(
+                                    "orders.filter.customer.placeholder",
+                                )}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
+                <Table.Column
+                    key="createdAt"
+                    dataIndex="createdAt"
+                    title={t("orders.fields.createdAt")}
+                    render={(value) => <DateField value={value} format="LLL" />}
+                    sorter
+                />
+                <Table.Column<IOrder>
+                    fixed="right"
+                    title={t("table.actions")}
+                    dataIndex="actions"
+                    key="actions"
+                    align="center"
+                    render={(_value, record) => (
+                        <OrderActions record={record} />
+                    )}
+                />
+            </Table>
+        </List>
     );
 };

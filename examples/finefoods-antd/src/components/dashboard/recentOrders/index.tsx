@@ -5,12 +5,11 @@ import { Typography, Table, theme, Space } from "antd";
 import { OrderActions } from "../../../components";
 
 import { IOrder } from "../../../interfaces";
-import { useConfigProvider } from "../../../context";
 import { useStyles } from "./styled";
+import { getUniqueListWithCount } from "../../../utils";
 
 export const RecentOrders: React.FC = () => {
     const { token } = theme.useToken();
-    const { mode } = useConfigProvider();
     const { styles } = useStyles();
 
     const { tableProps } = useTable<IOrder>({
@@ -96,22 +95,13 @@ export const RecentOrders: React.FC = () => {
                         return <Typography.Text>-</Typography.Text>;
                     }
 
-                    // unique products with count
-                    const uniqueProducts = products.reduce((acc, product) => {
-                        if (!acc[product.id]) {
-                            acc[product.id] = {
-                                ...product,
-                                count: 1,
-                            };
-                        } else {
-                            acc[product.id].count += 1;
-                        }
-                        return acc;
-                    }, {} as Record<string, IOrder["products"][number] & { count: number }>);
+                    const uniqueProducts = getUniqueListWithCount<
+                        IOrder["products"][number]
+                    >({ list: products, field: "id" });
 
                     return (
                         <Space size={0} direction="vertical">
-                            {Object.values(uniqueProducts).map((product) => (
+                            {uniqueProducts.map((product) => (
                                 <div key={product.id}>
                                     <Typography.Text>
                                         {product.name}{" "}
@@ -149,11 +139,7 @@ export const RecentOrders: React.FC = () => {
                 key="actions"
                 className={styles.column}
                 align="end"
-                render={(_, record) => (
-                    <div className={styles.actions}>
-                        <OrderActions record={record} />
-                    </div>
-                )}
+                render={(_, record) => <OrderActions record={record} />}
             />
         </Table>
     );

@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(({ token, isDarkMode }) => {
+export const useStyles = createStyles(({ isDarkMode }) => {
     return {
         pagination: {
             margin: "0 !important",
@@ -10,20 +10,7 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
         },
         column: {
             verticalAlign: "top",
-            "@media (max-width: 768px)": {
-                whiteSpace: "nowrap",
-            },
-        },
-        actions: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginLeft: "auto",
-            marginTop: -6,
-            width: 32,
-            height: 32,
-            border: `1px solid ${token.colorBorder}`,
-            borderRadius: 6,
+            whiteSpace: "nowrap",
         },
     };
 });

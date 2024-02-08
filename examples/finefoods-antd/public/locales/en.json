@@ -251,7 +251,9 @@
       "products": "Products",
       "createdAt": "CreatedAt",
       "amount": "Amount",
-      "itemsAmount": "{{amount}} items"
+      "itemsAmount": "{{amount}} items",
+      "order": "Order",
+      "customer": "Customer"
     },
     "filter": {
       "title": "Filters",
@@ -271,8 +273,16 @@
         "label": "User",
         "placeholder": "Search Users"
       },
+      "customer": {
+        "label": "Customer",
+        "placeholder": "Search Customers"
+      },
       "createdAt": {
         "label": "Created At"
+      },
+      "orderNumber": {
+        "label": "Order Number",
+        "placeholder": "Search Order Number"
       },
       "submit": "Filter"
     },
