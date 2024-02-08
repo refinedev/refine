@@ -77,6 +77,7 @@ module.exports = {
                     "ui-libraries/refactoring/:uiSelection/:routerSelection/index", // form and table refactoring, show with field components
                     "ui-libraries/crud-components/:uiSelection/:routerSelection/index", // crud component refactoring, show, list, edit, create
                     "ui-libraries/notifications/:uiSelection/:routerSelection/index", // notifications, useNotificationProvider to pass
+                    "ui-libraries/authentication/:uiSelection/:routerSelection/index", // login, logout, useAuthenticated, useIdentity
                 ],
             },
             {
