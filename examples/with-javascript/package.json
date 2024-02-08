@@ -19,7 +19,7 @@
     "@vitejs/plugin-react": "^4.0.0"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "refine build",
     "preview": "refine start",
     "refine": "refine"

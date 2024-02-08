@@ -21,7 +21,7 @@
     "react-hook-form": "^7.30.0"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",

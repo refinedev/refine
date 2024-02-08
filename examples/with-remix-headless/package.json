@@ -4,7 +4,7 @@
   "name": "with-remix-headless",
   "scripts": {
     "build": "refine build",
-    "start": "refine dev",
+    "dev": "refine dev",
     "start:prod": "refine start",
     "refine": "refine",
     "cypress": "cypress open -C ./cypress.config.ts",

@@ -3,10 +3,10 @@
   "version": "3.25.0",
   "private": true,
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "refine build",
     "preview": "refine start",
-    "dev": "refine start",
+    "dev": "refine dev",
     "test": "jest --passWithNoTests --runInBand",
     "refine": "refine"
   },
