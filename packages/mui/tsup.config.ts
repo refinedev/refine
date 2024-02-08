@@ -20,6 +20,9 @@ export default defineConfig({
     },
     esbuildOptions(options) {
         options.keepNames = true;
+        options.banner = {
+            js: '"use client"',
+        };
     },
     onSuccess: "tsc --project tsconfig.declarations.json",
 });

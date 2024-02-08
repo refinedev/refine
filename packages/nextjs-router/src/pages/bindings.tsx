@@ -113,9 +113,12 @@ export const routerBindings: RouterBindings = {
         }, [pathname]);
 
         const fn = React.useCallback(() => {
+            const parsedQuery = parse(query as Record<string, string>, {
+                ignoreQueryPrefix: true,
+            });
             const combinedParams = {
                 ...inferredParams,
-                ...query,
+                ...parsedQuery,
                 ...parsedParams,
             };
 

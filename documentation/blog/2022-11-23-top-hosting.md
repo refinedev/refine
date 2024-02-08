@@ -8,10 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hostin
 hide_table_of_contents: false
 ---
 
-
-
-
-
 ## Introduction
 
 Most developers spend a significant proportion of their private time building side projects. These projects come in different forms and sizes. More often than not, you need to temporarily host these projects on a platform to test, showcase, or obtain feedback.
@@ -35,13 +31,13 @@ Some hosting platforms allow deployment from the command line. Therefore, you ne
 - The Node runtime environment. You can install Node for your system from the [Node downloads page](https://nodejs.org/en/download/).
 - The version control system Git. Install Git for your operating system from the [Git downloads page](https://git-scm.com/downloads).
 
-## How to create refine application
+## How to create Refine application
 
-We will create a simple [refine](https://github.com/refinedev/refine) application in this section and deploy it to some of the hosting platforms in the next. Refine is a React framework for developing web applications. It is handy for developing data-intensive applications such as admin panels and dashboards. 
+We will create a simple [Refine](https://github.com/refinedev/refine) application in this section and deploy it to some of the hosting platforms in the next. Refine is a React framework for developing web applications. It is handy for developing data-intensive applications such as admin panels and dashboards.
 
 If you have the Node runtime environment installed on your machine, follow the steps below to bootstrap a simple Refine application.
 
-### Step 1 - Create a simple refine application
+### Step 1 - Create a simple Refine application
 
 You can create a simple Refine application using [superplate](https://github.com/pankod/superplate). It is a handy tool for creating production-ready React projects quickly.
 
@@ -51,7 +47,7 @@ npx superplate-cli refine-react-example --project refine-react
 
 The command above will create a `refine-react` project in the `refine-react-example` directory. You respond to the command line prompts as you bootstrap the application. You can choose the default options throughout if you wish.
 
-### Step 2 -  Navigate to the project directory
+### Step 2 - Navigate to the project directory
 
 Navigate to the directory you created in the previous step using the command below and open it in a text editor of your choice.
 
@@ -87,8 +83,6 @@ Apart from the platforms listed above, several equally good platforms you can us
 - Cloudflare
 - Firebase hosting
 
-
-
 ### Vercel
 
 [Vercel](https://vercel.com/) is one of the popular hosting platforms that enables front-end developers to develop, preview, and ship applications fast. It supports the most popular front-end frameworks like React, Next, and Gatsby. If you want to test or showcase a hobby project, Vercel also has a generous free plan.
@@ -104,7 +98,7 @@ The choice of deployment method depends on your needs. We will look at deploying
 
 #### How to deploy to Vercel using the command line tool
 
-In this section,  you will deploy the refine application we created to Vercel using the command line tool. To start using the free plan, sign up using your email, GitHub, GitLab, or BitBucket account. Follow the steps below to use the command line tool after creating an account.
+In this section, you will deploy the Refine application we created to Vercel using the command line tool. To start using the free plan, sign up using your email, GitHub, GitLab, or BitBucket account. Follow the steps below to use the command line tool after creating an account.
 
 ##### Step 1 - Install the Vercel command line tool
 
@@ -152,8 +146,6 @@ As mentioned above, Vercel is popular and feature-rich. Below are some of the be
 - You can deploy and execute server-less functions
 - Several project templates to bootstrap a new application
 - Performance monitoring with Vercel analytics
-
-
 
 ### Netlify
 
@@ -227,7 +219,7 @@ If you want to deploy a static website comprising HTML, CSS, JavaScript, and oth
 
 However, you need to switch to the paid plan if you want back-end features. You can deploy from the command line using the `surge` command line tool. If you have installed Node, follow the steps below to start using Surge.sh.
 
-#### Step 1 -  Install the `surge` command line tool
+#### Step 1 - Install the `surge` command line tool
 
 Install the `surge` command line tool by running the command below on the terminal.
 
@@ -256,7 +248,7 @@ The above command will also initiate the project deployment. It will prompt you 
 You can also pass the project directory and the domain as arguments to the `surge` command. Make sure the domain name is available. In the example below, `build` is the directory to deploy, and `my-hobby-project.surge.sh` is the domain name.
 
 ```sh
-surge build my-hobby-project.surge.sh 
+surge build my-hobby-project.surge.sh
 ```
 
 If your project has a build step, like with most front-end frameworks, run the build command before initiating the deployment process. However, you can install the command line tool as a development dependency and combine the build and deployment steps using an NPM script. We will look at how to do so in step 3.
@@ -265,7 +257,7 @@ After successfully deploying the project, you will get the URL for the deployed 
 
 #### Step 3 - Install the `surge` command line tool as development dependency
 
-If you use a front-end framework like React or refine, you build the project before initiating the deployment process. However, you can install the surge command line tool as a development dependency and combine the build and deploy steps into a single command.
+If you use a front-end framework like React or Refine, you build the project before initiating the deployment process. However, you can install the surge command line tool as a development dependency and combine the build and deploy steps into a single command.
 
 If you have the example project we created in one of the sections above, run the command below to install the surge command line tool as a development dependency.
 
@@ -277,11 +269,9 @@ Add the following script to your `package.json` file. The command below assumes 
 
 ```json
 {
-
   "scripts": {
     "deploy:surge": "npm run build && surge build my-hobby-project.surge.sh"
   }
-
 }
 ```
 
@@ -327,7 +317,7 @@ To deploy to Render, log in and navigate to your dashboard. The dashboard has se
 
 #### The cons of using Render
 
-- It  doesn't support BitBucket as a Git provider
+- It doesn't support BitBucket as a Git provider
 
 <br/>
 <div>
@@ -335,7 +325,6 @@ To deploy to Render, log in and navigate to your dashboard. The dashboard has se
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
-
 
 ### GitHub pages
 
@@ -366,7 +355,6 @@ After the deployment process completes, refresh the **Setting** page to obtain
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/github-pages-setting.png"  alt="github setting" />
 
 <br />
-
 
 However, if you use a front-end framework like React, you need a build step. For our case, we will deploy the Refine project we created at the beginning of this article. As pointed out in the introduction, Refine is a React-based framework. Therefore you will need to install the `gh-pages` package to help with the deployment.
 

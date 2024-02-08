@@ -18,7 +18,7 @@ Newbies often think there's some tech rivalry when they hear about React and Nex
 
 The more useful, real questions would be: which one is simpler to learn for a new developer? Which feels safer? Do I have alternatives, or do I need to be a specialty focused/niche developer to use them? Understanding the relationships addressed by these questions helps make informed decisions about which technology to choose for your next project.
 
-In this post, we provide an in-depth account of how Next.js compares to React - especially as a fullstack framework founded on React's compnent based fundamentals, and extended with demand driven patterns and conventions such as server side rendering (SSR), static / dynamic page generation, page based routing and backend API features. The primary goal of this comparison is to understand the core differences relevant of Next.js and React. This involves relating each other in terms of their architecture, conventions, configurations, and use cases they are best suited for. By understanding such fundamental relations, developers can gain enough insight into how each can be leveraged for different projects.
+In this post, we provide an in-depth account of how Next.js compares to React - especially as a fullstack framework founded on React's component based fundamentals, and extended with demand driven patterns and conventions such as server side rendering (SSR), static / dynamic page generation, page based routing and backend API features. The primary goal of this comparison is to understand the core differences relevant of Next.js and React. This involves relating each other in terms of their architecture, conventions, configurations, and use cases they are best suited for. By understanding such fundamental relations, developers can gain enough insight into how each can be leveraged for different projects.
 
 Steps we'll cover:
 
@@ -34,8 +34,8 @@ Steps we'll cover:
     - [React: The Foundation](#react-the-foundation)
     - [Next.js: Enhanced SSG Capabilities](#nextjs-enhanced-ssg-capabilities)
   - [Data Fetching and Caching](#data-fetching-and-caching)
-    - [React: Data Fecthing and Caching with External Libraries](#react-data-fecthing-and-caching-with-external-libraries)
-    - [Data Fecthing in Next.js](#data-fecthing-in-nextjs)
+    - [React: Data Fetching and Caching with External Libraries](#react-data-fetching-and-caching-with-external-libraries)
+    - [Data Fetching in Next.js](#data-fetching-in-nextjs)
   - [Routing](#routing)
     - [React Routing with Library of Your Choice](#react-routing-with-library-of-your-choice)
     - [Next.js: File Based Opinionated Routing](#nextjs-file-based-opinionated-routing)
@@ -55,7 +55,7 @@ Steps we'll cover:
 
 [React](https://react.dev/learn), also called React.js, is an open-source JavaScript library focused on building user interfaces, particularly for single-page applications. It equips developers to author super fast front-end applications by including HTML markup alongside rendering logic inside JavaScript based functions called components. Its core strength lies in a component-based architecture, that allows developers to encapsulate application concerns inside reusable components that determine how HTML elements and data in a page should be displayed on the screen.
 
-React's major underlying technolgy is the [Virtual DOM](https://legacy.reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom), which intelligently updates only the parts of a page that change, ensuring efficient and speedy rendering. React's Virtual DOM led to the idea of the client side rendering (CSR) pattern that facilitates building blazing fast single page applications (SPAs). React employs [JSX](https://react.dev/learn/writing-markup-with-jsx) (JavaScript XML) for templating, something that blends the familiarity of HTML with the power of JavaScript to first track and update pages in the Virtual DOM and then re-inject only the updated elements to the browser's document. This unidirectional data flow makes application markup, styling and complex business logic easily implementable only with JavaScript and helps developers build versatile frontend applications conveniently. This also makes React SPAs flexible and manageable on their own and gives frontend apps better integration capability with various backend technologies.
+React's major underlying technology is the [Virtual DOM](https://legacy.reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom), which intelligently updates only the parts of a page that change, ensuring efficient and speedy rendering. React's Virtual DOM led to the idea of the client side rendering (CSR) pattern that facilitates building blazing fast single page applications (SPAs). React employs [JSX](https://react.dev/learn/writing-markup-with-jsx) (JavaScript XML) for templating, something that blends the familiarity of HTML with the power of JavaScript to first track and update pages in the Virtual DOM and then re-inject only the updated elements to the browser's document. This unidirectional data flow makes application markup, styling and complex business logic easily implementable only with JavaScript and helps developers build versatile frontend applications conveniently. This also makes React SPAs flexible and manageable on their own and gives frontend apps better integration capability with various backend technologies.
 
 ## What is Next.js?
 
@@ -229,11 +229,11 @@ The terminal provides clear logs showing which pages are being statically genera
 
 Data fetching and caching in Next.js is also related to how they are implemented along side server side rendering in Next.js. Let's look at how they would compare to approaches in plain React.
 
-#### React: Data Fecthing and Caching with External Libraries
+#### React: Data Fetching and Caching with External Libraries
 
 React needs external libraries for fetching backend API data, caching them and managing their states. Plain React developers have to come up with their own opinions, components, architecture and configurations for using libraries like [XState](https://stately.ai/docs/xstate), [MobX](https://mobx.js.org/README.html) or [Redux](https://redux.js.org/introduction/getting-started) for client data management, and [React Query](https://tanstack.com/query/latest/docs/framework/react/overview), [Redux Toolkit Query](https://redux-toolkit.js.org/rtk-query/overview) or [SWR](https://swr.vercel.app/docs/getting-started) for managing server data.
 
-#### Data Fecthing in Next.js
+#### Data Fetching in Next.js
 
 Next.js, in contrast, offers battle tested and well-adopted conventions to fetch server side data using a set of functions suited for generating static and dynamic pages in the server side as well as for rendering dynamic components in the client.
 
@@ -322,7 +322,7 @@ function OurTeam() {
 export default OurTeam;
 ```
 
-Page based routing offers the convenience plain React developers often seek while buiding RESTful pages. And again, Next.js provides this out-of-the-box.
+Page based routing offers the convenience plain React developers often seek while building RESTful pages. And again, Next.js provides this out-of-the-box.
 
 **Dynamic Routes in Next.js**
 

@@ -3,24 +3,24 @@ title: Implementing Role Based Access Control
 description: We'll implement Role Based Access Control (RBAC)
 slug: refine-pixels-6
 authors: abdullah_numan
-tags: [refine-week, refine, supabase, access-control]
+tags: [refine-week, Refine, supabase, access-control]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-19-refine-pixels-6%2Fsocial.png
 hide_table_of_contents: false
 ---
 
 In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series.
 
-This is Day 6, and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **refine** within a week.
+This is Day 6, and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**Refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **Refine** within a week.
 
 ### RefineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 - Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
 - Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 5 - [Creating an Admin Dashboard with Refine](https://refine.dev/blog/refine-pixels-5/)
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 7 - [Audit Log With Refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -34,15 +34,15 @@ Taking it farther today, we add authorization for actions related to `canvases` 
 4. `admin` can delete a canvas.
 5. `admin` cannot perform any other action.
 
-We manage RBAC and authorization using [**Casbin**](https://casbin.org/docs/overview) models and policies. We then make use of **refine**'s `accessControlProvider` and associated hooks to enforce policies for these roles.
+We manage RBAC and authorization using [**Casbin**](https://casbin.org/docs/overview) models and policies. We then make use of **Refine**'s `accessControlProvider` and associated hooks to enforce policies for these roles.
 
 For the backend, we set and store `user` roles with the help of **Supabase Custom Claims**. **Supabase Custom Claims** are a handy mechanism to store user roles information on the `auth.users` table.
 
-We also dig into some low level code in the `<DeleteButton />` component that **refine**'s **Ant Design** package gives us to see how authorization comes baked into some of the related components.
+We also dig into some low level code in the `<DeleteButton />` component that **Refine**'s **Ant Design** package gives us to see how authorization comes baked into some of the related components.
 
 Let's start with **Casbin**.
 
-## Casbin with **refine**
+## Casbin with **Refine**
 
 In this app, we are implementing Role Based Access Control model with **Casbin** so we assume you are at least familiar with the RBAC related models and policies.
 
@@ -179,7 +179,7 @@ The `adapter` holds our instances of policies produced from `p`. The policies ab
 ...
 ```
 
-### **refine** `can` Method
+### **Refine** `can` Method
 
 The `accessControlProvider` implements only one method named `can`. It has the following type signature:
 
@@ -218,7 +218,7 @@ export const accessControlProvider = {
 };
 ```
 
-We will modify this gradually to witness the functionality facilitated out-of-the-box by **refine** for each role defined in the policies. We will finalize it after we update the `getPermissions()` method in **Supabase** `authProvider`.
+We will modify this gradually to witness the functionality facilitated out-of-the-box by **Refine** for each role defined in the policies. We will finalize it after we update the `getPermissions()` method in **Supabase** `authProvider`.
 
 But for now, notice in the above definition that we are passing the compulsory `resource` and `action` parameters to `can`. We expect the `useCan()` access control hook to take these two arguments.
 
@@ -246,7 +246,7 @@ This is because now our policy for `editor` has taken effect.
 
 The `Delete` button gets disabled because `@refinedev/antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
 
-Visit [this section](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **refine**.
+Visit [this section](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **Refine**.
 
 At this point, we have manipulated the role with changes in our code. This should, however, come from the `authProvider`'s `getPermissions()` method.
 
@@ -254,9 +254,9 @@ So, let's look how to get the roles from our **Supabase** database next.
 
 ## User Permissions with Supabase in Refine
 
-In **refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`.
+In **Refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`.
 
-When you bootstraped **refine** app with CLI, the default `getPermissions` method in `authProvider` looks like below:
+When you bootstraped **Refine** app with CLI, the default `getPermissions` method in `authProvider` looks like below:
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {
@@ -325,7 +325,7 @@ We need to take special care about using the correct quotations. More on this [i
 
 With these done, we are ready to update our `getPermissions()` and `can` methods.
 
-### **refine** `getPermissions()` with Supabase Custom Claims
+### **Refine** `getPermissions()` with Supabase Custom Claims
 
 Here's the adjusted `getPermissions()` method:
 
@@ -353,7 +353,7 @@ getPermissions: async () => {
 
 Here, we are basically using the `supabaseClient.rpc()` method to call the `get_my_claims` SQL function remotely.
 
-## refine `can` Method for Supabase Custom Roles
+## Refine `can` Method for Supabase Custom Roles
 
 And now, we can finalize our `can` method with `role` received from `authProvider.getPermissions()`:
 
@@ -388,7 +388,7 @@ In contrast, it is enabled for an `admin` role:
 
 <br />
 
-But, wait! We haven't used the `useCan()` hook or the `<CanAccess />` component anywhere yet. How does **refine** get the value of `role` to decide whether to enable or disable the button? Let's find out next!
+But, wait! We haven't used the `useCan()` hook or the `<CanAccess />` component anywhere yet. How does **Refine** get the value of `role` to decide whether to enable or disable the button? Let's find out next!
 
 ## Low Level Inspection
 
@@ -421,10 +421,10 @@ Since authorization comes baked in with `<DeleteButton />`, we didn't have to wo
 
 ## Summary
 
-In this post, we implemented Role Based Access Control on `users` and `canvases` resources using **refine**'s `accessControlProvider` in our **Pixels Admin** app.
+In this post, we implemented Role Based Access Control on `users` and `canvases` resources using **Refine**'s `accessControlProvider` in our **Pixels Admin** app.
 
 We used **Casbin** model and policies to enforce authorization for `editor` and `admin` roles. We saw how the `accessControlProvider.can` method is used to enforce **Casbin** policies based on roles fetched from the backend using the `authProvider.getPermissions` method. We also learned how **refine-antd** buttons like the `<DeleteButton />` implements access control via the `useCan()` access hook.
 
 In the next episode, we will explore the `auditLogProvider` prop and add audit logging for `pixels` activities to both our **Pixels** and **Pixels Admin** apps.
 
-[Click here to read "Audit Log With refine" article. &#8594](https://refine.dev/blog/refine-pixels-7/)
+[Click here to read "Audit Log With Refine" article. &#8594](https://refine.dev/blog/refine-pixels-7/)

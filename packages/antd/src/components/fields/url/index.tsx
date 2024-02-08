@@ -1,8 +1,6 @@
 import React from "react";
 import { Typography } from "antd";
 
-const { Link } = Typography;
-
 import { UrlFieldProps } from "../types";
 
 /**
@@ -17,8 +15,8 @@ export const UrlField: React.FC<UrlFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Link href={value} {...rest}>
+        <Typography.Link href={value} {...rest}>
             {children ?? value}
-        </Link>
+        </Typography.Link>
     );
 };

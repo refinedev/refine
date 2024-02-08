@@ -1,38 +1,38 @@
 ---
 title: How to Create Full Stack React/Next.JS Web App in Few Hour
-description: In this article, we will learn how we can create a full-featured customizable Web / B2B application with **refine** in just a few hours.
+description: In this article, we will learn how we can create a full-featured customizable Web / B2B application with **Refine** in just a few hours.
 slug: create-full-stack-app-with-refine
 authors: melih
-tags: [refine, react, nextjs, tutorial]
+tags: [Refine, react, nextjs, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/social.jpg
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
 
 We frequently require quick development and sometimes flexibility while developing a Full Stack application. Aside from speed and flexibility, we must establish the application architecture correctly at the start so that we are not subjected to any more needless work throughout the development process.
 
-In this article, we will use the **refine** framework to develop a full stack application. **Refine** will provide us with the speed and flexibility we are looking for, while assisting with the overall project architecture during web application development.
+In this article, we will use the **Refine** framework to develop a full stack application. **Refine** will provide us with the speed and flexibility we are looking for, while assisting with the overall project architecture during web application development.
 
 ## What is Refine?
 
-**refine** is a React-based framework for rapid building of internal tools. It's is a a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**Refine** is a React-based framework for rapid building of internal tools. It's is a a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to `admin panels`, `B2B` applications and `dashboards`.
 
 ## Why Should Use Refine?
 
-**refine** offers you almost everything you need while developing an `Admin Panel`, `Dashboard`, `B2B` or `B2C` application, with many features it provides. It does not limit you in situations that may arise during project development and offers you the opportunity to customize it.
+**Refine** offers you almost everything you need while developing an `Admin Panel`, `Dashboard`, `B2B` or `B2C` application, with many features it provides. It does not limit you in situations that may arise during project development and offers you the opportunity to customize it.
 
-With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (coming soon)](https://mui.com/material-ui/getting-started/overview/) ready components used as out-of-the-box by **refine**.
+With the Data Provider feature it provides, you don't need to think about your API or GraphQL queries and write extra queries! Thanks to Refine hooks, you can easily fetching the data in your database and manage your state structure. In addition to quickly fetch and manage your data, you can easily design your UI with [Ant Design](https://ant.design/) and [Material UI (coming soon)](https://mui.com/material-ui/getting-started/overview/) ready components used as out-of-the-box by **Refine**.
 
-**refine** is a `headless` React framework. It can be used independently of the UI. You can easily use all the features of refinement with any UI library.
+**Refine** is a `headless` React framework. It can be used independently of the UI. You can easily use all the features of refinement with any UI library.
 
 ### Key features​
 
@@ -50,20 +50,20 @@ With the Data Provider feature it provides, you don't need to think about your A
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-To learn more about **refine** features, we recommend that you read the [Overview](/docs/) document.
+To learn more about **Refine** features, we recommend that you read the [Overview](/docs/) document.
 
 ### Benchmark
 
-**refine**, by removing unnecessary repetition in your code, reduces number of lines of code and makes it easier to maintain. Below is a size comparison for an example project:
+**Refine**, by removing unnecessary repetition in your code, reduces number of lines of code and makes it easier to maintain. Below is a size comparison for an example project:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/getting-started/benchmark.png" alt="Refine Benchmark" />
 <br />
 
 ## Create Full Stack App
 
-As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **refine** [Data Provider](/docs/data/data-provider) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **refine**.
+As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **Refine** [Data Provider](/docs/data/data-provider) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **Refine**.
 
-**refine** includes many out-of-the-box data providers to use in your projects like:
+**Refine** includes many out-of-the-box data providers to use in your projects like:
 
 - [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
 - [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
@@ -78,9 +78,9 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/data/data-provider)
 
-You can develop a full-featured web application by using any your custom backend or the above backend providers with **refine**.
+You can develop a full-featured web application by using any your custom backend or the above backend providers with **Refine**.
 
-Check out the Full Stack application examples created with **refine** and out-of-the-box data providers:
+Check out the Full Stack application examples created with **Refine** and out-of-the-box data providers:
 
 - [E-commerce Example](/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/)
 - [Invoice Generator Example | Part I](/blog/refine-react-admin-invoice-generator/) - [Invoice Generator Example | Part II](/blog/refine-invoice-generator/)
@@ -91,13 +91,13 @@ Check out the Full Stack application examples created with **refine** and out-of
 
 ## How to use Refine
 
-**refine** is very simple to use. Its examples and structure are handled in their simplest form. It is very successful in terms of documentation. You can find the answers you are looking for or a very detailed explanation of how to use a feature in the documentation.
+**Refine** is very simple to use. Its examples and structure are handled in their simplest form. It is very successful in terms of documentation. You can find the answers you are looking for or a very detailed explanation of how to use a feature in the documentation.
 
 Let's see how to use it!
 
 ### Create a Refine Project
 
-Let's start by creating our **refine** project. You can use the superplate to create a refine project. superplate will quickly create our refine project according to the features we choose.
+Let's start by creating our **Refine** project. You can use the superplate to create a Refine project. superplate will quickly create our Refine project according to the features we choose.
 
 ```bash
 npm create refine-app@latest my-first-refine-project -- -p refine-react -b v3
@@ -111,12 +111,12 @@ Creating your project is that easy. All the packages you need and choose come re
 Our project is ready. Now let's consider the process of fetching items from an API with 1000 items and listing only their titles.
 First, we will use libraries such as axios, fetch to fetch the data. Then after the data comes, we will show it in the UI. If there is a change in the state, we will have to change them from the beginning and think about them. Even in its simplest form, it can be challenging to handle.
 
-With **refine**, with just a few lines of code,
+With **Refine**, with just a few lines of code,
 Besides basic operations (such as data fetching), you can manage and manipulate state changes in your user interface. You can also manage filtering, sorting and pagination of your data by adding just a few simple lines of code.
 
-Let's see how we can use these processes and features that we talked about with **refine**.
+Let's see how we can use these processes and features that we talked about with **Refine**.
 
-We will use refine's `https://api.fake-rest.refine.dev/` API to fetch the titles we mentioned. Thanks to the project we set up with superplate, our `App.tsx` comes ready. Now let's create a list component with Refine and see how to fetch the titles.
+We will use Refine's `https://api.fake-rest.refine.dev/` API to fetch the titles we mentioned. Thanks to the project we set up with superplate, our `App.tsx` comes ready. Now let's create a list component with Refine and see how to fetch the titles.
 
 ```json
 {
@@ -196,7 +196,7 @@ export default App;
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-create-full-stack-app/first.png" alt="Refine Posts Page" />
 <br />
 
-As you have seen, we have listed and paginated the titles coming from an API by writing just a few lines of code, thanks to the **refine** and `refine-antd` package. This is the simplest example of refinement. It is possible to do much more, and the Dashboard you need, B2B, B2C, Admin Panel and any web application you want with refine in a very short time and in a very flexible way.
+As you have seen, we have listed and paginated the titles coming from an API by writing just a few lines of code, thanks to the **Refine** and `refine-antd` package. This is the simplest example of refinement. It is possible to do much more, and the Dashboard you need, B2B, B2C, Admin Panel and any web application you want with Refine in a very short time and in a very flexible way.
 
 ## Refine Demo Apps
 
@@ -232,18 +232,18 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 - Multi Level Menu
 - GraphQL Support
 - Dynamic Multi-level Menus
-- All features of **refine** are available as **open source**.
+- All features of **Refine** are available as **open source**.
 
-[For more information about all **refine** features and **refine** →](/docs/)
+[For more information about all **Refine** features and **Refine** →](/docs/)
 
 [Comparison | Refine vs React-Admin vs AdminBro vs Retool →](/docs/further-readings/comparison/)
 
 ## Conclusion
 
-In this article, we went through **refine** and showed you how to create a full stack application with backend providers that are integrated with it. You may rapidly and flexibly create a web application with **refine**. **refine** is a very successful and developing open source `internal tool` framework. It solves the deficiencies in `B2B`, `B2`C and `Admin panel` development processes well and offers features suitable for needs.
+In this article, we went through **Refine** and showed you how to create a full stack application with backend providers that are integrated with it. You may rapidly and flexibly create a web application with **Refine**. **Refine** is a very successful and developing open source `internal tool` framework. It solves the deficiencies in `B2B`, `B2`C and `Admin panel` development processes well and offers features suitable for needs.
 
-One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with _refine_ `headless`, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
+One of the biggest features that distinguishes **Refine** from other frameworks is that it is customizable. Combined with _refine_ `headless`, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
 
-You can develop any web application or admin panel you want in a very short time with **refine**.
+You can develop any web application or admin panel you want in a very short time with **Refine**.
 
-Give **refine** a star on [GitHub](https://github.com/refinedev/refine) if you like it - your support will help us continue making this tool amazing!
+Give **Refine** a star on [GitHub](https://github.com/refinedev/refine) if you like it - your support will help us continue making this tool amazing!

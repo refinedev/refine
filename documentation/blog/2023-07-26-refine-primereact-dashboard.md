@@ -3,7 +3,7 @@ title: Building a React Admin Panel with PrimeReact and Refine
 description: We'll build a simple React admin Panel using Refine and PrimeReact.
 slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
-tags: [refine, tutorial, react]
+tags: [Refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
 is_featured: true
@@ -14,36 +14,36 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-In this blog, we'll show you how to create a React admin panel using [**refine**](https://github.com/refinedev/refine) and [PrimeReact](https://github.com/primefaces/primereact).
+In this blog, we'll show you how to create a React admin panel using [**Refine**](https://github.com/refinedev/refine) and [PrimeReact](https://github.com/primefaces/primereact).
 
-First, we'll explain what **refine** is and how it helps build admin panels easily.
+First, we'll explain what **Refine** is and how it helps build admin panels easily.
 
-Next, we'll guide you step-by-step on creating a new **refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional React admin panel.
+Next, we'll guide you step-by-step on creating a new **Refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional React admin panel.
 
 Throughout this post, we'll also cover the basics of PrimeReact, including its components and how to use them in your app.
 
 By the end of this blog, you'll have a fully functional React admin panel that you can use as a starting point for your future projects.
 
-Let's get started and explore the power of **refine** and PrimeReact together!
+Let's get started and explore the power of **Refine** and PrimeReact together!
 
-## What is refine?
+## What is Refine?
 
-**refine** is a powerful framework for building web applications, specifically focused on creating admin panels, internal tools, and dashboards. It provides hooks and components that simplify the development process, making it faster and more efficient.
+**Refine** is a powerful framework for building web applications, specifically focused on creating admin panels, internal tools, and dashboards. It provides hooks and components that simplify the development process, making it faster and more efficient.
 
-Instead of building everything from scratch, **refine** comes with ready-made features like data handling, authentication, access control, and more. You can also customize these features to suit your needs. This way, you can focus on building your app's core functionality instead of worrying about the infrastructure.
+Instead of building everything from scratch, **Refine** comes with ready-made features like data handling, authentication, access control, and more. You can also customize these features to suit your needs. This way, you can focus on building your app's core functionality instead of worrying about the infrastructure.
 
-Moreover, **refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. So, you can use any UI library like PrimeReact to build your app's user interface. Additionally, it supports out-of-the-box [UI libraries](https://refine.dev/integrations/).
+Moreover, **Refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. So, you can use any UI library like PrimeReact to build your app's user interface. Additionally, it supports out-of-the-box [UI libraries](https://refine.dev/integrations/).
 
-You can learn more about **refine** from the [documentation](https://refine.dev/docs/).
+You can learn more about **Refine** from the [documentation](https://refine.dev/docs/).
 
-## Create a new refine app
+## Create a new Refine app
 
-We have two scaffolder options for bootstrapping a new **refine** application: [Browser-based Scaffolder](https://refine.dev/?playground=true) and **CLI-based Scaffolder**. You can choose whichever you prefer.
+We have two scaffolder options for bootstrapping a new **Refine** application: [Browser-based Scaffolder](https://refine.dev/?playground=true) and **CLI-based Scaffolder**. You can choose whichever you prefer.
 
 <Tabs>
   <TabItem value="Browser-based-scaffolder" label="With Browser-based" default>
 
-The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create refine app seamlessly in your browser.
+The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create Refine app seamlessly in your browser.
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
 
@@ -117,7 +117,7 @@ Check out the [PrimeReact website](https://primereact.org/) to learn more.
 
 ## Overview
 
-Now that we've covered the basics of **refine** and PrimeReact, let's build a React admin panel using these technologies.
+Now that we've covered the basics of **Refine** and PrimeReact, let's build a React admin panel using these technologies.
 
 At the end of this tutorial, we'll have a project structure like below:
 
@@ -187,7 +187,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
 
 After these changes, we ready to start building our admin panel step-by-step. In the next sections, we'll update the `src/App.tsx` file to add the necessary components and pages.
 
-If you don't have any experience with **refine**, we recommend you to check out the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about the framework.
+If you don't have any experience with **Refine**, we recommend you to check out the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about the framework.
 
 ## Install PrimeReact
 
@@ -370,7 +370,7 @@ This component is built using PrimeReact and PrimeFlex libraries. If you want to
 
 In the code above, we created a `<KpiCard />` component that renders a card with the given props. It displays the title, total, trend, and icon. The `formatTotal` prop allows you to format the total value as you wish.
 
-Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **refine** and `dayjs` to arrange query parameters.
+Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **Refine** and `dayjs` to arrange query parameters.
 
 `useCustom` allows us to make specific requests to the API. It should be used on non-resource endpoints which means that it doesn't have a CRUD operation. In our case, we'll use it to fetch the data for the KPI cards and charts.
 
@@ -921,7 +921,7 @@ export const RecentSales = () => {
 
 </details>
 
-In the code above, we used the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** for data fetching, pagination, sorting, and filtering.
+In the code above, we used the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **Refine** for data fetching, pagination, sorting, and filtering.
 
 Let's import the `<RecentSales />` component in `src/pages/dashboard/index.tsx` and render it below the charts.
 
@@ -1026,15 +1026,15 @@ export default App;
 
 </details>
 
-The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **Refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
 
-You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **refine** documentation.
+You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **Refine** documentation.
 
 Let's create the product CRUD pages step by step and add routes for rendering them.
 
 ### List Page
 
-The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** and the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact.
+The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **Refine** and the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact.
 
 Let's create a `<ProductList />` component in `src/pages/products/list.tsx` directory with the following code:
 
@@ -1777,7 +1777,7 @@ After these changes, when we navigate to the `/products/edit/:id` path, you shou
 
 ### Show Page
 
-The product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **refine**.
+The product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **Refine**.
 
 Let's create a `<ProductShow />` component in `src/pages/products/show.tsx` directory with the following code:
 
@@ -2469,7 +2469,7 @@ After these changes, you should be able to navigate to the category CRUD pages a
 
 ## Update the Layout
 
-In this section, we'll update the `<Layout />` component that is created by default when we created the project with **refine** scaffold.
+In this section, we'll update the `<Layout />` component that is created by default when we created the project with **Refine** scaffold.
 
 It renders the `<Menu />` and `<Breadcrumb />` components with simple HTML elements. We'll update them to use the components from the PrimeReact library.
 
@@ -2711,15 +2711,15 @@ After these changes, you can see the final result as below. Also, you can intera
 
 ## Conclusion
 
-In this blog post, we explored the powerful combination of **refine** and PrimeReact to build a fully functional React admin panel. We started by understanding what **refine** is and how it simplifies the process of creating admin panels.
+In this blog post, we explored the powerful combination of **Refine** and PrimeReact to build a fully functional React admin panel. We started by understanding what **Refine** is and how it simplifies the process of creating admin panels.
 
-Then, we created a new **refine** app and installed PrimeReact to enhance our UI with a rich set of components. We built various features for our admin panel, including a dashboard with KPI cards, charts, and recent sales information.
+Then, we created a new **Refine** app and installed PrimeReact to enhance our UI with a rich set of components. We built various features for our admin panel, including a dashboard with KPI cards, charts, and recent sales information.
 
-Next, we created CRUD pages for managing products and categories, showcasing how easy it is to handle data with **refine**. We also updated the layout, menu, and breadcrumb to improve the overall user experience.
+Next, we created CRUD pages for managing products and categories, showcasing how easy it is to handle data with **Refine**. We also updated the layout, menu, and breadcrumb to improve the overall user experience.
 
-Throughout the development process, we learned how **refine** and PrimeReact work seamlessly together and we've seen how easy it is to adapt and customize the components to suit our specific needs.
+Throughout the development process, we learned how **Refine** and PrimeReact work seamlessly together and we've seen how easy it is to adapt and customize the components to suit our specific needs.
 
-By now, you should have a good understanding of how to create a React admin panel using **refine** and PrimeReact. Feel free to experiment and customize further to suit your specific project requirements.
+By now, you should have a good understanding of how to create a React admin panel using **Refine** and PrimeReact. Feel free to experiment and customize further to suit your specific project requirements.
 
 With this new knowledge in hand, you are well-equipped to build powerful and feature-rich admin panels for your web applications. Happy coding!
 

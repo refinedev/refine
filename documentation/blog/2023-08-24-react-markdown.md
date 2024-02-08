@@ -1,9 +1,9 @@
 ---
 title: Creating Polished Content with React Markdown
-description: We will explore the process of integrating the markdown editor into a refine application
+description: We will explore the process of integrating the markdown editor into a Refine application
 slug: react-markdown
 authors: david_omotayo
-tags: [react, refine]
+tags: [react, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/social.png
 hide_table_of_contents: false
 ---
@@ -15,9 +15,6 @@ Prior to John Gruber's invention of Markdown in 2004, WYSIWYG editors were commo
 Markdown has gained popularity due to its straightforward syntax, making it accessible to anyone familiar with basic text formatting tools. It offers a wide range of features compared to traditional methods, leading to the widespread adoption of Markdown in enterprise web applications that require text formatting capabilities.
 
 In this article, we will explore the process of integrating the [**uiw/react-md-editor**](https://www.npmjs.com/package/@uiw/react-md-editor) library into a React application to create a standard Markdown editor.
-
-
-
 
 Steps we'll cover:
 
@@ -43,7 +40,7 @@ Note. Throughout this article, we will refer to the `uiw/react-md-editor` librar
 
 ## Project setup
 
-In this tutorial, we will create a React application using refine, a React framework designed for developing headless enterprise web applications. We will leverage refine's pre-generated pages and content to illustrate how to incorporate React Markdown into an application that closely resembles a real-world application.
+In this tutorial, we will create a React application using Refine, a React framework designed for developing headless enterprise web applications. We will leverage Refine's pre-generated pages and content to illustrate how to incorporate React Markdown into an application that closely resembles a real-world application.
 
 We'll use the npm create refine-app command to interactively initialize the project.
 
@@ -120,7 +117,7 @@ In most cases, utilizing the following props will allow you to render a fully fu
 - `value`: This prop is used to specify the initial value or the current value of the markdown content.
 - `onChange`: This prop is responsible for handling changes made to the markdown content.
 
-In our example app, you may notice that we aren't utilizing these props, yet the application is functioning effectively. This is because the Ant Design form component in refine is specifically designed to seamlessly integrate with the React markdown editor package. As a result, it automatically retrieves the markdown value without requiring additional effort.
+In our example app, you may notice that we aren't utilizing these props, yet the application is functioning effectively. This is because the Ant Design form component in Refine is specifically designed to seamlessly integrate with the React markdown editor package. As a result, it automatically retrieves the markdown value without requiring additional effort.
 
 In a typical React application, it is necessary to create a state to capture and store the markdown value, which is then assigned to the `value` and `onChange` props on the markdown editor component. This ensures proper functionality and synchronization between the editor and the markdown content.
 
@@ -223,7 +220,7 @@ return (
 );
 ```
 
-Here, we create a `help` object and assign the previously mentioned properties to define the command. This includes specifying a `name`, `keyCommand`, `buttonProps`, and `icon`. Additionally, an event is assigned to execute when the command is clicked, which opens refine's documentation in a new window.
+Here, we create a `help` object and assign the previously mentioned properties to define the command. This includes specifying a `name`, `keyCommand`, `buttonProps`, and `icon`. Additionally, an event is assigned to execute when the command is clicked, which opens Refine's documentation in a new window.
 
 ```tsx
 execute: () => {

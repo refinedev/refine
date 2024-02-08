@@ -23,11 +23,12 @@ extend-ignore-re = [
     "\\`refine",
     "\"refine\"",
     "\"refine",
-    "refineTheme"
+    "refineTheme",
+    "exitt"
 ]
 
 [files]
-extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*"]
+extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*", "packages", "examples", "*.js", "*.json", "*.svg"]
 ignore-vcs = true
 
 [default.extend-words]

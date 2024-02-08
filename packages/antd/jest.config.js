@@ -12,7 +12,6 @@ module.exports = {
     moduleNameMapper: {
         ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
         "\\.css$": "identity-obj-proxy",
-        "^antd/es/": "antd/lib/",
         "^.+\\.tsx?$": [
             "ts-jest",
             {

@@ -29,9 +29,6 @@ import { drawerButtonStyles } from "./styles";
 import { RefineThemedLayoutSiderProps } from "../types";
 import { ThemedTitle } from "@components";
 
-const { SubMenu } = Menu;
-const { useToken } = theme;
-
 /**
  * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2
  */
@@ -40,7 +37,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     render,
     meta,
 }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
@@ -89,13 +86,13 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                             resource: item,
                         }}
                     >
-                        <SubMenu
+                        <Menu.SubMenu
                             key={item.key}
                             icon={icon ?? <UnorderedListOutlined />}
                             title={label}
                         >
                             {renderTreeView(children, selectedKey)}
-                        </SubMenu>
+                        </Menu.SubMenu>
                     </CanAccess>
                 );
             }

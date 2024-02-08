@@ -1,10 +1,10 @@
 ---
 id: nextjs
-title: Next.js
+title: With Next.js
 example-tags: [next.js]
 ---
 
-Refine allows you to build your [**SSR**](https://nextjs.org/docs/basic-features/pages#server-side-rendering) supported web applications using Next.js. With this example, you can see how to make a simple SSR supported CMS Admin panel.
+Refine allows you to use the `app/` structure in your Next.js apps. To learn more about the `app/` directory, check out [Next.js app docs](https://nextjs.org/docs/app). In this example you will find how to use the `app/` directory with refine.
 
 [Refer to the Refine Next.js documentation for more information. →](/docs/packages/list-of-packages)
 

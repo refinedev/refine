@@ -131,3 +131,15 @@ beforeEach(() => {
         statusCode: 200,
     }).as("telemetry");
 });
+
+Cypress.on("uncaught:exception", (err) => {
+    if (err.message.includes("NEXT_REDIRECT")) {
+        return false;
+    }
+
+    if (err.message.includes("NEXT_NOT_FOUND")) {
+        return false;
+    }
+
+    return true;
+});

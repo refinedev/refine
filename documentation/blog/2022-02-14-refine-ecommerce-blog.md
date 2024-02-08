@@ -3,16 +3,16 @@ title: Next.js E-commerce App with Strapi and Chakra UI
 description: Learn the power of Refine for e-commerce with this quick & easy example. This step-by-step Refine SPA tutorial will get you started in no time.
 slug: handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui
 authors: melih
-tags: [refine, strapi, chakra-ui, nextjs]
+tags: [Refine, strapi, chakra-ui, nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -23,7 +23,7 @@ Just be aware that the source code example in this post have been updated to ver
 
 In this article, we will create the e-commerce client of our [Strapi-Multitenancy](/docs/guides-concepts/multi-tenancy/#strapi) admin panel that we have done before.
 
-It is now used **headless** with the **refine** 3 version. You can use any UI library you want with the **headless** feature.
+It is now used **headless** with the **Refine** 3 version. You can use any UI library you want with the **headless** feature.
 
 We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/) together with [**Next.js**](/docs/packages/list-of-packages) in our E-commerce client example application.
 
@@ -31,7 +31,7 @@ We will use [Strapi](https://strapi.io/) and [Chakra-UI](https://chakra-ui.com/)
 
 ## Refine Project Setup
 
-Let's start by creating our **refine** project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
+Let's start by creating our **Refine** project. You can use the [superplate](https://github.com/pankod/superplate) to create a Refine project.
 
 ```bash
 npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
@@ -45,7 +45,7 @@ npm create refine-app@latest refine-ecommerce-example -- -p refine-nextjs -b v3
 ✔ i18n - Internationalization: · no
 ```
 
-superplate will quickly create our **refine** project according to the features we choose. Let's continue by install the [**refine** Strapi-v4 Data Provider](/docs/packages/list-of-packages) and Chakra-UI packages that we will use later.
+superplate will quickly create our **Refine** project according to the features we choose. Let's continue by install the [**Refine** Strapi-v4 Data Provider](/docs/packages/list-of-packages) and Chakra-UI packages that we will use later.
 
 ## Installation
 
@@ -55,7 +55,7 @@ cd refine-ecommerce-example
 npm i @refinedev/strapi-v4 @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
-Our **refine** project and installations are now ready! Let's start using it.
+Our **Refine** project and installations are now ready! Let's start using it.
 
 ## Usage
 
@@ -128,9 +128,9 @@ We created our collections in the previous Strapi Multitenancy guide. Now we wil
 
 ## Create Refine Layout
 
-**refine** **headless** is not affiliated with any UI. It is entirely up to you to customize your UI. Let's create a simple layout for this example.
+**Refine** **headless** is not affiliated with any UI. It is entirely up to you to customize your UI. Let's create a simple layout for this example.
 
-The Layout we've created now will only show the **refine** logo. In the following steps, we will edit our Layout.
+The Layout we've created now will only show the **Refine** logo. In the following steps, we will edit our Layout.
 
 ```tsx title="components/Layout.tsx"
 import { LayoutProps } from "@refinedev/core";
@@ -262,7 +262,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ### Create Product List with Refine
 
-Let's process the data we fetch above using **refine**'s `useTable` hook. Then let's put our data in our ProductCard component.
+Let's process the data we fetch above using **Refine**'s `useTable` hook. Then let's put our data in our ProductCard component.
 
 ```tsx title="pages/index.tsx"
 import { GetServerSideProps } from "next";
@@ -332,7 +332,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 We have fetch all the products above. Now, let's fetch the stores and list the store-specific products separately.
 
-First, let's fetch our stores by using the **refine** `useMany` hook within the `getServerSideProps` function. Next we will create buttons for the stores. When these buttons are clicked, a store is selected, we will do a filtering with `useTable` `setFilters` and list the products specific to that store.
+First, let's fetch our stores by using the **Refine** `useMany` hook within the `getServerSideProps` function. Next we will create buttons for the stores. When these buttons are clicked, a store is selected, we will do a filtering with `useTable` `setFilters` and list the products specific to that store.
 
 ```tsx title="pages/index.tsx"
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -692,9 +692,9 @@ export const ProductCard: React.FC<ProductProps> = ({ id, title, description, ca
 
 ## Conclusion
 
-One of the biggest features that distinguishes **refine** from other frameworks is that it is customizable. Combined with **refine** **headless**, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
+One of the biggest features that distinguishes **Refine** from other frameworks is that it is customizable. Combined with **Refine** **headless**, it now provides more customization options. This provides a great deal of convenience in the project you will develop.
 
-As you can see in this article, we have developed the Client part of our [Admin Panel](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/), which we have done before, with **refine**. **refine** offers the opportunity to develop B2B and B2C applications without any restrictions and in a fully customizable manner.
+As you can see in this article, we have developed the Client part of our [Admin Panel](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/), which we have done before, with **Refine**. **Refine** offers the opportunity to develop B2B and B2C applications without any restrictions and in a fully customizable manner.
 
 [Refer to the Admin side of the project →](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
 
