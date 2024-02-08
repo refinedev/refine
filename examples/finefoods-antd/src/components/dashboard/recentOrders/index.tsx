@@ -1,22 +1,18 @@
-import { useNavigation, useTranslate } from "@refinedev/core";
-import { useTable } from "@refinedev/antd";
-import { Typography, Table, Avatar, Space, Tag } from "antd";
-import {
-    RecentOrdersColumn,
-    Price,
-    OrderId,
-    Title,
-    TitleWrapper,
-} from "./styled";
+import { useNavigation } from "@refinedev/core";
+import { NumberField, useTable } from "@refinedev/antd";
+import { Typography, Table, theme, Space } from "antd";
 
 import { OrderActions } from "../../../components";
 
 import { IOrder } from "../../../interfaces";
-
-const { Text, Paragraph } = Typography;
+import { useConfigProvider } from "../../../context";
+import { useStyles } from "./styled";
 
 export const RecentOrders: React.FC = () => {
-    const t = useTranslate();
+    const { token } = theme.useToken();
+    const { mode } = useConfigProvider();
+    const { styles } = useStyles();
+
     const { tableProps } = useTable<IOrder>({
         resource: "orders",
         initialSorter: [
@@ -25,7 +21,7 @@ export const RecentOrders: React.FC = () => {
                 order: "desc",
             },
         ],
-        initialPageSize: 4,
+        initialPageSize: 10,
         permanentFilter: [
             {
                 field: "status.text",
@@ -41,91 +37,123 @@ export const RecentOrders: React.FC = () => {
     return (
         <Table
             {...tableProps}
-            pagination={{ ...tableProps.pagination, simple: true }}
+            pagination={{
+                ...tableProps.pagination,
+                hideOnSinglePage: true,
+                showSizeChanger: false,
+                className: styles.pagination,
+            }}
             showHeader={false}
             rowKey="id"
         >
             <Table.Column<IOrder>
-                key="avatar"
-                render={(_, record) => (
-                    <Avatar
-                        size={{
-                            xs: 60,
-                            lg: 108,
-                            xl: 132,
-                            xxl: 144,
+                dataIndex="orderNumber"
+                className={styles.column}
+                render={(orderId) => (
+                    <Typography.Link
+                        strong
+                        onClick={() => show("orders", orderId)}
+                        style={{
+                            whiteSpace: "nowrap",
+                            color: token.colorTextHeading,
                         }}
-                        src={record?.products[0]?.images[0].url}
-                    />
-                )}
-            />
-            <RecentOrdersColumn
-                key="summary"
-                render={(_, record) => (
-                    <TitleWrapper>
-                        <Title strong>{record.products[0]?.name}</Title>
-                        <Paragraph
-                            ellipsis={{
-                                rows: 2,
-                                tooltip: record.products[0]?.description,
-                                symbol: <span>...</span>,
-                            }}
-                        >
-                            {record.products[0]?.description}
-                        </Paragraph>
-
-                        <OrderId
-                            strong
-                            onClick={() => {
-                                show("orders", record.id);
-                            }}
-                        >
-                            #{record.orderNumber}
-                        </OrderId>
-                    </TitleWrapper>
-                )}
-            />
-            <RecentOrdersColumn
-                key="summary"
-                render={(_, record) => (
-                    <Space direction="vertical">
-                        <Title
-                            strong
-                        >{`${record.courier.name} ${record.courier.surname}`}</Title>
-                        <Text>{record.adress.text}</Text>
-                    </Space>
+                    >
+                        #{orderId}
+                    </Typography.Link>
                 )}
             />
             <Table.Column<IOrder>
+                dataIndex="id"
+                className={styles.column}
+                render={(_, record) => {
+                    return (
+                        <Space size={0} direction="vertical">
+                            <Typography.Text
+                                style={{
+                                    fontSize: 14,
+                                }}
+                            >
+                                {record?.user?.firstName}{" "}
+                                {record?.user?.lastName}
+                            </Typography.Text>
+                            <Typography.Text
+                                style={{
+                                    fontSize: 12,
+                                }}
+                                type="secondary"
+                            >
+                                {record?.user?.addresses?.[0]?.text}
+                            </Typography.Text>
+                        </Space>
+                    );
+                }}
+            />
+            <Table.Column<IOrder>
+                dataIndex="products"
+                className={styles.column}
+                render={(products: IOrder["products"]) => {
+                    if (!products.length) {
+                        return <Typography.Text>-</Typography.Text>;
+                    }
+
+                    // unique products with count
+                    const uniqueProducts = products.reduce((acc, product) => {
+                        if (!acc[product.id]) {
+                            acc[product.id] = {
+                                ...product,
+                                count: 1,
+                            };
+                        } else {
+                            acc[product.id].count += 1;
+                        }
+                        return acc;
+                    }, {} as Record<string, IOrder["products"][number] & { count: number }>);
+
+                    return (
+                        <Space size={0} direction="vertical">
+                            {Object.values(uniqueProducts).map((product) => (
+                                <div key={product.id}>
+                                    <Typography.Text>
+                                        {product.name}{" "}
+                                    </Typography.Text>
+                                    <Typography.Text type="secondary">
+                                        x{product.count}
+                                    </Typography.Text>
+                                </div>
+                            ))}
+                        </Space>
+                    );
+                }}
+            />
+            <Table.Column<IOrder>
                 dataIndex="amount"
-                render={(value, record) => (
-                    <Space
-                        size="large"
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <Price
-                            strong
-                            options={{
-                                currency: "USD",
-                                style: "currency",
-                                notation: "standard",
+                className={styles.column}
+                align="end"
+                render={(amount) => {
+                    return (
+                        <NumberField
+                            value={amount / 100}
+                            style={{
+                                whiteSpace: "nowrap",
                             }}
-                            value={value / 100}
+                            options={{
+                                style: "currency",
+                                currency: "USD",
+                            }}
                         />
-                        <Tag color="orange">
-                            {t(`enum.orderStatuses.${record.status.text}`)}
-                        </Tag>
-                    </Space>
-                )}
+                    );
+                }}
             />
             <Table.Column<IOrder>
                 fixed="right"
                 key="actions"
-                align="center"
-                render={(_, record) => <OrderActions record={record} />}
+                className={styles.column}
+                align="end"
+                render={(_, record) => (
+                    <div className={styles.actions}>
+                        <OrderActions record={record} />
+                    </div>
+                )}
             />
         </Table>
     );

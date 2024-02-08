@@ -31,7 +31,7 @@ import debounce from "lodash/debounce";
 import { useConfigProvider } from "../../context";
 import { IconMoon, IconSun } from "../../components/icons";
 import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
-import { HeaderTitle } from "./styled";
+import { useStyles } from "./styled";
 
 const { Header: AntdHeader } = AntdLayout;
 const { useToken } = theme;
@@ -50,6 +50,7 @@ interface IOptions {
 
 export const Header: React.FC = () => {
     const { token } = useToken();
+    const { styles } = useStyles();
     const { mode, setMode } = useConfigProvider();
     const { i18n } = useTranslation();
     const locale = useGetLocale();
@@ -61,10 +62,10 @@ export const Header: React.FC = () => {
     const currentLocale = locale();
 
     const renderTitle = (title: string) => (
-        <HeaderTitle>
+        <div className={styles.headerTitle}>
             <Text style={{ fontSize: "16px" }}>{title}</Text>
             <Link to={`/${title.toLowerCase()}`}>{t("search.more")}</Link>
-        </HeaderTitle>
+        </div>
     );
 
     const renderItem = (title: string, imageUrl: string, link: string) => ({
@@ -200,7 +201,7 @@ export const Header: React.FC = () => {
                     justifyContent: screens.sm ? "space-between" : "end",
                 }}
             >
-                <Col xs={0} sm={12}>
+                <Col xs={0} sm={8} md={12}>
                     <AutoComplete
                         style={{
                             width: "100%",
@@ -216,24 +217,17 @@ export const Header: React.FC = () => {
                         <Input
                             size="large"
                             placeholder={t("search.placeholder")}
-                            suffix={<SearchOutlined />}
+                            suffix={<div className={styles.inputSuffix}>/</div>}
+                            prefix={
+                                <SearchOutlined
+                                    className={styles.inputPrefix}
+                                />
+                            }
                         />
                     </AutoComplete>
                 </Col>
                 <Col>
-                    <Space size="middle" align="center">
-                        <Button
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}
-                            type="default"
-                            icon={mode === "light" ? <IconMoon /> : <IconSun />}
-                            onClick={() => {
-                                setMode(mode === "light" ? "dark" : "light");
-                            }}
-                        />
+                    <Space size={screens.md ? 32 : 16} align="center">
                         <Dropdown
                             menu={{
                                 items: menuItems,
@@ -242,50 +236,39 @@ export const Header: React.FC = () => {
                                     : [],
                             }}
                         >
-                            <a
-                                style={{ color: "inherit" }}
-                                onClick={(e) => e.preventDefault()}
-                            >
+                            <Button onClick={(e) => e.preventDefault()}>
                                 <Space>
-                                    <Avatar
-                                        size={16}
-                                        src={`/images/flags/${currentLocale}.svg`}
-                                    />
-                                    <div
-                                        style={{
-                                            display: screens.lg
-                                                ? "block"
-                                                : "none",
-                                        }}
-                                    >
+                                    <Text className={styles.languageSwitchText}>
                                         {currentLocale === "en"
                                             ? "English"
                                             : "German"}
-                                        <DownOutlined
-                                            style={{
-                                                fontSize: "12px",
-                                                marginLeft: "6px",
-                                            }}
-                                        />
-                                    </div>
+                                    </Text>
+                                    <DownOutlined
+                                        className={styles.languageSwitchIcon}
+                                    />
                                 </Space>
-                            </a>
+                            </Button>
                         </Dropdown>
 
-                        <Text
-                            ellipsis
-                            strong
-                            style={{
-                                display: "flex",
+                        <Button
+                            className={styles.themeSwitch}
+                            type="text"
+                            icon={mode === "light" ? <IconMoon /> : <IconSun />}
+                            onClick={() => {
+                                setMode(mode === "light" ? "dark" : "light");
                             }}
-                        >
-                            {user?.name}
-                        </Text>
-                        <Avatar
-                            size="large"
-                            src={user?.avatar}
-                            alt={user?.name}
                         />
+
+                        <Space size={screens.md ? 16 : 8} align="center">
+                            <Text ellipsis className={styles.userName}>
+                                {user?.name}
+                            </Text>
+                            <Avatar
+                                size="large"
+                                src={user?.avatar}
+                                alt={user?.name}
+                            />
+                        </Space>
                     </Space>
                 </Col>
             </Row>

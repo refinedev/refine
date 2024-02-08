@@ -96,7 +96,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
             <MoreOutlined
                 onClick={(e) => e.stopPropagation()}
                 style={{
-                    fontSize: 24,
+                    fontSize: 16,
                 }}
             />
         </Dropdown>

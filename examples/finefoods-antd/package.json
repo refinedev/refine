@@ -5,6 +5,8 @@
   "dependencies": {
     "@ant-design/charts": "^1.2.0",
     "@ant-design/graphs": "^1.2.7",
+    "@ant-design/plots": "^1.2.5",
+    "@ant-design/use-emotion-css": "^1.0.4",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@googlemaps/react-wrapper": "^1.1.35",
@@ -28,7 +30,9 @@
     "react-input-mask": "^2.0.4",
     "tslib": "^2.3.1",
     "@ant-design/icons": "5.0.1",
-    "antd": "^5.0.5"
+    "antd": "^5.0.5",
+    "antd-style": "^3.6.1",
+    "react-infinite-scroll-component": "^6.1.0"
   },
   "devDependencies": {
     "@types/google.maps": "^3.50.4",

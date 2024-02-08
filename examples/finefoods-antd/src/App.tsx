@@ -69,7 +69,6 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
-            <GitHubBanner />
             <ConfigProvider>
                 <RefineKbarProvider>
                     <Refine
@@ -160,7 +159,15 @@ const App: React.FC = () => {
                                             Title={Title}
                                             OffLayoutArea={OffLayoutArea}
                                         >
-                                            <Outlet />
+                                            <div
+                                                style={{
+                                                    maxWidth: "1200px",
+                                                    marginLeft: "auto",
+                                                    marginRight: "auto",
+                                                }}
+                                            >
+                                                <Outlet />
+                                            </div>
                                         </ThemedLayoutV2>
                                     </Authenticated>
                                 }
