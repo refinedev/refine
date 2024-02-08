@@ -53,7 +53,7 @@ In this unit, we've covered the following topics:
 - How Refine deals with the UI libraries,
 - Using layouts and views to create complex UIs,
 - Using tailored hooks and components to manage tables, forms, buttons and fields,
-- Handling notifications in Refine with Ant Design's notification system.
+- Handling notifications in Refine with Ant Design's notification system,
 - Handling authentication pages with Refine's prebuilt `<AuthPage />` components.
 
 In the next unit, we'll learn about the additional tools and packages that Refine provides to make the developer experience even better.
