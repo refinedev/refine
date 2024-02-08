@@ -24,14 +24,27 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 // updatxes
 
 const ListProductsTsx = /* tsx */ `
-import { useMany } from "@refinedev/core";
-import { useTable, EditButton, ShowButton, List } from "@refinedev/antd";
+import { useMany, getDefaultFilter } from "@refinedev/core";
+import {
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
+  List,
+} from "@refinedev/antd";
 
-import { Table, Space } from "antd";
+import { Table, Space, Input, Select } from "antd";
 
 export const ListProducts = () => {
-  const { tableProps } = useTable({
+  const { tableProps, filters, sorters } = useTable({
     sorters: { initial: [{ field: "id", order: "asc" }] },
+    filters: {
+      initial: [
+        { field: "category.id", operator: "eq", value: 2 },
+      ],
+    },
     syncWithLocation: true,
   });
 
@@ -40,11 +53,31 @@ export const ListProducts = () => {
     ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
   });
 
+  const { selectProps } = useSelect({
+    resource: "categories",
+    defaultValue: getDefaultFilter("category.id", filters, "eq"),
+  });
+
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="ID" />
-        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+        />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+                <Input />
+            </FilterDropdown>
+          )}
+        />
         <Table.Column
           dataIndex={["category", "id"]}
           title="Category"
@@ -55,6 +88,22 @@ export const ListProducts = () => {
 
             return categories?.data?.find((category) => category.id == value)?.title;
           }}
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKey) => Number(selectedKey)}
+            >
+              <Select
+                  style={{ minWidth: 200 }}
+                  {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter(
+            "category.id",
+            filters,
+            "eq",
+          )}
         />
         <Table.Column dataIndex="material" title="Material" />
         <Table.Column dataIndex="price" title="Price" />

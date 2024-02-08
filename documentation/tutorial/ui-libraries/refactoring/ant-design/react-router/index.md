@@ -2,7 +2,7 @@
 title: Refactoring
 ---
 
-import { Sandpack, RefactorTableInListProducts, RefactorFieldsInShowProduct, RefactorFormInEditProduct, RefactorFormInCreateProduct } from "./sandpack.tsx";
+import { Sandpack, RefactorTableInListProducts, AddSortersInListProducts, AddFiltersInListProducts, RefactorFieldsInShowProduct, RefactorFormInEditProduct, RefactorFormInCreateProduct } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -87,16 +87,226 @@ Button components provided by Refine uses the styling from Ant Design and provid
 
 List of available button components:
 
-- [`<CreateButton />`](/docs/ui-integrations/ant-design/components/buttons/create-button)
-- [`<EditButton />`](/docs/ui-integrations/ant-design/components/buttons/edit-button)
-- [`<ListButton />`](/docs/ui-integrations/ant-design/components/buttons/list-button)
-- [`<ShowButton />`](/docs/ui-integrations/ant-design/components/buttons/show-button)
-- [`<CloneButton />`](/docs/ui-integrations/ant-design/components/buttons/clone-button)
-- [`<DeleteButton />`](/docs/ui-integrations/ant-design/components/buttons/delete-button)
-- [`<SaveButton />`](/docs/ui-integrations/ant-design/components/buttons/save-button)
-- [`<RefreshButton />`](/docs/ui-integrations/ant-design/components/buttons/refresh-button)
-- [`<ImportButton />`](/docs/ui-integrations/ant-design/components/buttons/import-button)
-- [`<ExportButton />`](/docs/ui-integrations/ant-design/components/buttons/export-button)
+- [`<CreateButton />`](/docs/ui-integrations/ant-design/components/buttons/create-button), renders a button to navigate to the create route.
+- [`<EditButton />`](/docs/ui-integrations/ant-design/components/buttons/edit-button), renders a button to navigate to the edit route.
+- [`<ListButton />`](/docs/ui-integrations/ant-design/components/buttons/list-button), renders a button to navigate to the list route.
+- [`<ShowButton />`](/docs/ui-integrations/ant-design/components/buttons/show-button), renders a button to navigate to the show route.
+- [`<CloneButton />`](/docs/ui-integrations/ant-design/components/buttons/clone-button), renders a button to navigate to the clone route.
+- [`<DeleteButton />`](/docs/ui-integrations/ant-design/components/buttons/delete-button), renders a button to delete a record.
+- [`<SaveButton />`](/docs/ui-integrations/ant-design/components/buttons/save-button), renders a button to trigger the form submission.
+- [`<RefreshButton />`](/docs/ui-integrations/ant-design/components/buttons/refresh-button), renders a button to refresh/refetch the data.
+- [`<ImportButton />`](/docs/ui-integrations/ant-design/components/buttons/import-button), renders a button to trigger import bulk data with CSV/Excel files.
+- [`<ExportButton />`](/docs/ui-integrations/ant-design/components/buttons/export-button), renders a button to trigger export bulk data with CSV format.
+
+### Adding Sorters
+
+Let's integrate the Refine's sorters with the Ant Design's `<Table />` component. While `tableProps` will be transforming the sorters to the Ant Design's format, all we need to do is to enable the sorters for the columns we want and pass the default sorting orders.
+
+We'll add sorting to the `ID` and the `Name` columns.
+
+Try to update your `src/list-products.tsx` file with the following lines:
+
+```tsx title="src/list-products.tsx"
+import { useMany } from "@refinedev/core";
+// highlight-next-line
+import {
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+} from "@refinedev/antd";
+
+import { Table, Space } from "antd";
+
+export const ListProducts = () => {
+  // highlight-next-line
+  const { tableProps, sorters } = useTable({
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+    syncWithLocation: true,
+  });
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
+  });
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          // highlight-start
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+          // highlight-end
+        />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          // highlight-start
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorters)}
+          // highlight-end
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return "Loading...";
+            }
+
+            return categories?.data?.find((category) => category.id == value)
+              ?.title;
+          }}
+        />
+        <Table.Column dataIndex="material" title="Material" />
+        <Table.Column dataIndex="price" title="Price" />
+        <Table.Column
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </div>
+  );
+};
+```
+
+<AddSortersInListProducts />
+
+Now we've enabled sorters with no additional logic. The `getDefaultSortOrder` function will handle the default sorting orders for us.
+
+### Adding Filters
+
+Let's integrate the Refine's filters with the Ant Design's `<Table />` component. While `tableProps` will be transforming the filters to the Ant Design's format, all we need to do is to provide the elements for the filter dropdowns. We'll use the [`<FilterDropdown />`](/docs/ui-integrations/ant-design/components/filter-dropdown) to bind the inputs to the filters.
+
+We'll be using the `<Input />` component to create a text filter for the `Name` column and the `<Select />` component with `useSelect` to create a select filter for the `Category` column.
+
+Try to update your `src/list-products.tsx` file with the following lines:
+
+```tsx title="src/list-products.tsx"
+// highlight-next-line
+import { useMany, getDefaultFilter } from "@refinedev/core";
+import {
+  useTable,
+  EditButton,
+  ShowButton,
+  // highlight-start
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
+  // highlight-end
+} from "@refinedev/antd";
+
+// highlight-next-line
+import { Table, Space, Input, Select } from "antd";
+
+export const ListProducts = () => {
+  // highlight-next-line
+  const { tableProps, sorters, filters } = useTable({
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+    // highlight-start
+    // We're adding default values for our filters
+    filters: {
+      initial: [{ field: "category.id", operator: "eq", value: 2 }],
+    },
+    // highlight-end
+    syncWithLocation: true,
+  });
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
+  });
+
+  // highlight-start
+  const { selectProps } = useSelect({
+    resource: "categories",
+    defaultValue: getDefaultFilter("category.id", filters, "eq"),
+  });
+  // highlight-end
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+        />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorters)}
+          // highlight-start
+          // FilterDropdown will map the value to the filter
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Input />
+            </FilterDropdown>
+          )}
+          // highlight-end
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return "Loading...";
+            }
+
+            return categories?.data?.find((category) => category.id == value)
+              ?.title;
+          }}
+          // highlight-start
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              // We'll store the selected id as number
+              mapValue={(selectedKey) => Number(selectedKey)}
+            >
+              <Select style={{ minWidth: 200 }} {...selectProps} />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter("category.id", filters, "eq")}
+          // highlight-end
+        />
+        <Table.Column dataIndex="material" title="Material" />
+        <Table.Column dataIndex="price" title="Price" />
+        <Table.Column
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </div>
+  );
+};
+```
+
+<AddFiltersInListProducts />
+
+Now we've added both the filters and sorters to our table without writing any additional logic.
+
+:::note Implementation Details
+
+Remember that we've only implemented the `eq` filter in our data provider. Even though `category.id` field is best to be filtered with `in` operator and `name` field is best to be filtered with `contains` operators. We're keeping it simple for the sake of this tutorial.
+
+:::
 
 ## Using `useForm` and `<Form />`
 
@@ -210,16 +420,16 @@ Now that we've refactored our list, edit and create components, let's refactor o
 
 List of available field components:
 
-- [`<BooleanField />`](/docs/ui-integrations/ant-design/components/fields/boolean-field)
-- [`<DateField />`](/docs/ui-integrations/ant-design/components/fields/date-field)
-- [`<EmailField />`](/docs/ui-integrations/ant-design/components/fields/email-field)
-- [`<FileField />`](/docs/ui-integrations/ant-design/components/fields/file-field)
-- [`<ImageField />`](/docs/ui-integrations/ant-design/components/fields/image-field)
-- [`<MarkdownField />`](/docs/ui-integrations/ant-design/components/fields/markdown-field)
-- [`<NumberField />`](/docs/ui-integrations/ant-design/components/fields/number-field)
-- [`<TagField />`](/docs/ui-integrations/ant-design/components/fields/tag-field)
-- [`<TextField />`](/docs/ui-integrations/ant-design/components/fields/text-field)
-- [`<UrlField />`](/docs/ui-integrations/ant-design/components/fields/url-field)
+- [`<BooleanField />`](/docs/ui-integrations/ant-design/components/fields/boolean-field), displays a checkbox element for boolean values.
+- [`<DateField />`](/docs/ui-integrations/ant-design/components/fields/date-field), displays a date with customizable formatting.
+- [`<EmailField />`](/docs/ui-integrations/ant-design/components/fields/email-field), displays an email with a mailto anchor.
+- [`<FileField />`](/docs/ui-integrations/ant-design/components/fields/file-field), displays a download anchor for file.
+- [`<ImageField />`](/docs/ui-integrations/ant-design/components/fields/image-field), displays an image with Ant Design's `<Image />` component.
+- [`<MarkdownField />`](/docs/ui-integrations/ant-design/components/fields/markdown-field), displays a GitHub flavored markdown with `react-makrdown` library.
+- [`<NumberField />`](/docs/ui-integrations/ant-design/components/fields/number-field), displays a number with localized and customizable formatting.
+- [`<TagField />`](/docs/ui-integrations/ant-design/components/fields/tag-field), displays the value with Ant Design's `<Tag />` component.
+- [`<TextField />`](/docs/ui-integrations/ant-design/components/fields/text-field), displays the value with Ant Design's `<Typography.Text />` component.
+- [`<UrlField />`](/docs/ui-integrations/ant-design/components/fields/url-field), displays the value with a link anchor.
 
 We'll be using the `<TextField />`, `<NumberField />` and `<MarkdownField />` components to represent the fields of the products properly.
 

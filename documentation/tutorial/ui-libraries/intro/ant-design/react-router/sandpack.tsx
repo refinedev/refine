@@ -106,6 +106,91 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
+const AppTsxWithLayout = /* tsx */ `
+import { Refine, Authenticated } from "@refinedev/core";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import { ThemedLayoutV2 } from "@refinedev/antd";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+// We'll wrap our app with Ant Design's ConfigProvider to set the theme and App component to use the theme properly.
+import { ConfigProvider, App as AntdApp } from "antd";
+
+import { dataProvider } from "./data-provider";
+import { authProvider } from "./auth-provider";
+
+import { ShowProduct } from "./show-product";
+import { EditProduct } from "./edit-product";
+import { ListProducts } from "./list-products";
+import { CreateProduct } from "./create-product";
+
+import { Login } from "./login";
+
+// We're importing a reset.css file to reset the default styles of the browser.
+import "antd/dist/reset.css";
+
+export default function App(): JSX.Element {
+  return (
+    <BrowserRouter>
+      <ConfigProvider>
+        <AntdApp>
+          <Refine
+            dataProvider={dataProvider}
+            authProvider={authProvider}
+            routerProvider={routerProvider}
+            resources={[
+              {
+                name: "protected-products",
+                list: "/products",
+                show: "/products/:id",
+                edit: "/products/:id/edit",
+                create: "/products/create",
+                meta: { label: "Products" },
+              },
+            ]}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    redirectOnFail="/login"
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="protected-products" />}
+                />
+                <Route path="/products">
+                  <Route index element={<ListProducts />} />
+                  <Route path=":id" element={<ShowProduct />} />
+                  <Route path=":id/edit" element={<EditProduct />} />
+                  <Route path="create" element={<CreateProduct />} />
+                </Route>
+              </Route>
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="protected-products" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
+            </Routes>
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
+}
+`.trim();
+
 // actions
 
 export const AddAntDesignToApp = () => {
@@ -121,12 +206,25 @@ export const AddAntDesignToApp = () => {
     );
 };
 
+export const AddLayoutToApp = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile("/App.tsx", AppTsxWithLayout);
+                sandpack.setActiveFile("/App.tsx");
+            }}
+        />
+    );
+};
+
 // files
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
-        code: AppTsxWithAntDesignWrappers,
+        code: AppTsxWithLayout,
         active: true,
     },
 };

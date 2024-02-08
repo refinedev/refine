@@ -23,15 +23,29 @@ Remember that when we've removed the `<Header />` component, we've also removed 
 Try to update your `src/list-products.tsx` file with the following lines:
 
 ```tsx title="src/list-products.tsx"
-import { useMany } from "@refinedev/core";
-// highlight-next-line
-import { useTable, EditButton, ShowButton, List } from "@refinedev/antd";
+import { useMany, getDefaultFilter } from "@refinedev/core";
+import {
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
+  // highlight-next-line
+  List,
+} from "@refinedev/antd";
 
-import { Table, Space } from "antd";
+import { Table, Space, Input, Select } from "antd";
 
 export const ListProducts = () => {
-  const { tableProps } = useTable({
+  const { tableProps, sorters, filters } = useTable({
     sorters: { initial: [{ field: "id", order: "asc" }] },
+    filters: {
+      initial: [
+        { field: "name", operator: "contains", value: "" },
+        { field: "category.id", operator: "in", value: [1, 2] },
+      ],
+    },
     syncWithLocation: true,
   });
 
@@ -40,35 +54,15 @@ export const ListProducts = () => {
     ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
   });
 
+  const { selectProps } = useSelect({
+    resource: "categories",
+  });
+
   return (
     {/* highlight-next-line */}
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="ID" />
-        <Table.Column dataIndex="name" title="Name" />
-        <Table.Column
-          dataIndex={["category", "id"]}
-          title="Category"
-          render={(value) => {
-            if (isLoading) {
-              return "Loading...";
-            }
-
-            return categories?.data?.find((category) => category.id == value)
-              ?.title;
-          }}
-        />
-        <Table.Column dataIndex="material" title="Material" />
-        <Table.Column dataIndex="price" title="Price" />
-        <Table.Column
-          title="Actions"
-          render={(_, record) => (
-            <Space>
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <EditButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
+        {/* ... */}
       </Table>
     {/* highlight-next-line */}
     </List>
@@ -77,6 +71,111 @@ export const ListProducts = () => {
 ```
 
 <ListInListProducts />
+
+## Create View
+
+The `<Create />` component is a wrapper component for create pages. It provides an header with i18n support and navigation to list view, a back button and breadcrumbs. It includes a `<SaveButton />` at the footer that you can pass `saveButtonProps` from the `useForm` hook to submit your forms. You can always provide more features and elements by passing customizing the component.
+
+Try to update your `src/create-product.tsx` file with the following lines:
+
+```tsx title="src/create-product.tsx"
+// highlight-next-line
+import { useForm, useSelect, Create } from "@refinedev/antd";
+
+import { Form, Input, Select, InputNumber } from "antd";
+
+export const CreateProduct = () => {
+  const { formProps, saveButtonProps } = useForm({
+    redirect: "edit",
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+  });
+
+  return (
+    {/* highlight-next-line */}
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input.TextArea />
+        </Form.Item>
+        <Form.Item label="Material" name="material">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Category" name={["category", "id"]}>
+          <Select {...selectProps} />
+        </Form.Item>
+        <Form.Item label="Price" name="price">
+          <InputNumber step="0.01" stringMode />
+        </Form.Item>
+      </Form>
+    {/* highlight-next-line */}
+    </Create>
+  );
+};
+```
+
+<CreateInCreateProduct />
+
+## Edit View
+
+The `<Edit />` component is a wrapper component for edit pages. The design and the usage is similar to the `<Create />` component. Additionally it includes the `<RefreshButton />` and `<DeleteButton />` at its header. You can always provide more features and elements by passing customizing the component.
+
+Try to update your `src/edit-product.tsx` file with the following lines:
+
+```tsx title="src/edit-product.tsx"
+// highlight-next-line
+import { useForm, useSelect, Edit } from "@refinedev/antd";
+
+import { Form, Input, Select, InputNumber } from "antd";
+
+export const EditProduct = () => {
+  const { formProps, saveButtonProps, queryResult } = useForm({
+    redirect: "show",
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+    defaultValue: queryResult?.data?.data?.category?.id,
+  });
+
+  return (
+    {/* highlight-next-line */}
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input.TextArea />
+        </Form.Item>
+        <Form.Item label="Material" name="material">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Category" name={["category", "id"]}>
+          <Select {...selectProps} />
+        </Form.Item>
+        <Form.Item label="Price" name="price">
+          <InputNumber step="0.01" stringMode />
+        </Form.Item>
+      </Form>
+    {/* highlight-next-line */}
+    </Edit>
+  );
+};
+```
+
+<EditInEditProduct />
+
+:::tip
+
+Notice that we've removed the `<SaveButton />` component from the `<EditProduct />` and used the `saveButtonProps` prop to provide the same functionality with the `<Edit />` component.
+
+:::
 
 ## Show View
 
@@ -132,111 +231,6 @@ export const ShowProduct = () => {
 ```
 
 <ShowInShowProduct />
-
-## Edit View
-
-The `<Edit />` component is a wrapper component for edit pages. The design is similar to the `<Show />` component and additionally provides a `<SaveButton />` in its footer. You can always provide more features and elements by passing customizing the component.
-
-Try to update your `src/edit-product.tsx` file with the following lines:
-
-```tsx title="src/edit-product.tsx"
-// highlight-next-line
-import { useForm, useSelect, Edit } from "@refinedev/antd";
-
-import { Form, Input, Select, InputNumber } from "antd";
-
-export const EditProduct = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm({
-    redirect: "show",
-  });
-
-  const { selectProps } = useSelect({
-    resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
-  });
-
-  return (
-    {/* highlight-next-line */}
-    <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item label="Name" name="name">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Description" name="description">
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item label="Material" name="material">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Category" name={["category", "id"]}>
-          <Select {...selectProps} />
-        </Form.Item>
-        <Form.Item label="Price" name="price">
-          <InputNumber step="0.01" stringMode />
-        </Form.Item>
-      </Form>
-    {/* highlight-next-line */}
-    </Edit>
-  );
-};
-```
-
-<EditInEditProduct />
-
-:::tip
-
-Notice that we've removed the `<SaveButton />` component from the `<EditProduct />` and used the `saveButtonProps` prop to provide the same functionality with the `<Edit />` component.
-
-:::
-
-## Create View
-
-The `<Create />` component is a wrapper component for create pages. The design and the usage is similar to the `<Edit />` component. You can always provide more features and elements by passing customizing the component.
-
-Try to update your `src/create-product.tsx` file with the following lines:
-
-```tsx title="src/create-product.tsx"
-// highlight-next-line
-import { useForm, useSelect, Create } from "@refinedev/antd";
-
-import { Form, Input, Select, InputNumber } from "antd";
-
-export const CreateProduct = () => {
-  const { formProps, saveButtonProps } = useForm({
-    redirect: "edit",
-  });
-
-  const { selectProps } = useSelect({
-    resource: "categories",
-  });
-
-  return (
-    {/* highlight-next-line */}
-    <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item label="Name" name="name">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Description" name="description">
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item label="Material" name="material">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Category" name={["category", "id"]}>
-          <Select {...selectProps} />
-        </Form.Item>
-        <Form.Item label="Price" name="price">
-          <InputNumber step="0.01" stringMode />
-        </Form.Item>
-      </Form>
-    {/* highlight-next-line */}
-    </Create>
-  );
-};
-```
-
-<CreateInCreateProduct />
 
 Now our application has a consistent design with many features ready to use without writing a single line of code.
 

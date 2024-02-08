@@ -74,6 +74,166 @@ export const ListProducts = () => {
 };
 `.trim();
 
+const ListProductsWithSorters = /* tsx */ `
+import { useMany } from "@refinedev/core";
+import { useTable, EditButton, ShowButton, getDefaultSortOrder } from "@refinedev/antd";
+
+import { Table, Space } from "antd";
+
+export const ListProducts = () => {
+  const { tableProps, sorters } = useTable({
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+    syncWithLocation: true,
+  });
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
+  });
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+        />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorters)}
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return "Loading...";
+            }
+
+            return categories?.data?.find((category) => category.id == value)?.title;
+          }}
+        />
+        <Table.Column dataIndex="material" title="Material" />
+        <Table.Column dataIndex="price" title="Price" />
+        <Table.Column
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </div>
+  );
+};
+`.trim();
+
+const ListProductsWithFilters = /* tsx */ `
+import { useMany, getDefaultFilter } from "@refinedev/core";
+import {
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect
+} from "@refinedev/antd";
+
+import { Table, Space, Input, Select } from "antd";
+
+export const ListProducts = () => {
+  const { tableProps, sorters, filters } = useTable({
+    sorters: { initial: [{ field: "id", order: "asc" }] },
+    filters: {
+      initial: [
+        { field: "category.id", operator: "eq", value: 2 },
+      ],
+    },
+    syncWithLocation: true,
+  });
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
+  });
+
+  const { selectProps } = useSelect({
+    resource: "categories",
+    defaultValue: getDefaultFilter("category.id", filters, "eq"),
+  });
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+        />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+                <Input />
+            </FilterDropdown>
+          )}
+        />
+        <Table.Column
+          dataIndex={["category", "id"]}
+          title="Category"
+          render={(value) => {
+            if (isLoading) {
+              return "Loading...";
+            }
+
+            return categories?.data?.find((category) => category.id == value)?.title;
+          }}
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKey) => Number(selectedKey)}
+            >
+              <Select
+                  style={{ minWidth: 200 }}
+                  {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter(
+            "category.id",
+            filters,
+            "eq",
+          )}
+        />
+        <Table.Column dataIndex="material" title="Material" />
+        <Table.Column dataIndex="price" title="Price" />
+        <Table.Column
+          title="Actions"
+          render={(_, record) => (
+            <Space>
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </div>
+  );
+};
+`.trim();
+
 const ShowProductTsx = /* tsx */ `
 import { useShow, useOne } from "@refinedev/core";
 import { TextField, NumberField, MarkdownField } from "@refinedev/antd";
@@ -212,6 +372,38 @@ export const RefactorTableInListProducts = () => {
     );
 };
 
+export const AddSortersInListProducts = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile(
+                    "/list-products.tsx",
+                    ListProductsWithSorters,
+                );
+                sandpack.setActiveFile("/list-products.tsx");
+            }}
+        />
+    );
+};
+
+export const AddFiltersInListProducts = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile(
+                    "/list-products.tsx",
+                    ListProductsWithFilters,
+                );
+                sandpack.setActiveFile("/list-products.tsx");
+            }}
+        />
+    );
+};
+
 export const RefactorFormInEditProduct = () => {
     const { sandpack } = useSandpack();
 
@@ -264,7 +456,7 @@ export const files = {
 export const finalFiles = {
     ...removeActiveFromFiles(files),
     "list-products.tsx": {
-        code: ListProductsTsx,
+        code: ListProductsWithFilters,
         active: true,
     },
     "show-product.tsx": {

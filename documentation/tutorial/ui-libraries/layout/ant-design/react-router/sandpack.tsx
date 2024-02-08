@@ -25,10 +25,10 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 
 // updates
 
-const AppTsxWithLayout = /* tsx */ `
+const LayoutWithCustomTitle = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -73,7 +73,14 @@ export default function App(): JSX.Element {
                     key="authenticated-routes"
                     redirectOnFail="/login"
                   >
-                    <ThemedLayoutV2>
+                    <ThemedLayoutV2
+                      Title={(props) => (
+                        <ThemedTitleV2
+                          {...props}
+                          text="Awesome Project"
+                        />
+                      )}
+                    >
                       <Outlet />
                     </ThemedLayoutV2>
                   </Authenticated>
@@ -110,13 +117,13 @@ export default function App(): JSX.Element {
 
 // actions
 
-export const AddLayoutToApp = () => {
+export const AddCustomTitleToLayout = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithLayout);
+                sandpack.updateFile("/App.tsx", LayoutWithCustomTitle);
                 sandpack.setActiveFile("/App.tsx");
             }}
         />
@@ -128,7 +135,7 @@ export const AddLayoutToApp = () => {
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
-        code: AppTsxWithLayout,
+        code: LayoutWithCustomTitle,
         active: true,
     },
 };

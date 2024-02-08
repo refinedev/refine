@@ -2,7 +2,7 @@
 title: Using Layouts
 ---
 
-import { Sandpack, AddLayoutToApp } from "./sandpack.tsx";
+import { Sandpack, AddCustomTitleToLayout } from "./sandpack.tsx";
 
 <Sandpack>
 
@@ -10,11 +10,22 @@ Now we've wrapped our app with the necessary components for styling, we're ready
 
 `<ThemedLayoutV2 />` components includes an header with user information (if an `authProvider` is provided), a sidebar with navigation links based on your resource definitions, a logout button (if an `authProvider` is provided), and a main content area where your content will be rendered.
 
-## Adding Layout to App
+:::tip
 
-Since our app includes authentication logic, we only want to show the layout to authenticated users. We'll achieve this by using it inside of the `<Authenticated />` component of our resource routes.
+Notice that we've removed the `<Header />` component from our app since the layout already includes the same features.
 
-We'll also remove the `<Header />` component, navigation link for the `/products` route and the logout button is already included in the sidebar of the layout. Create product link will be added in the next step.
+:::
+
+## Adding a Custom Title
+
+Layout components are a composition of smaller components and they can be customized by providing respective props. The `<ThemedLayoutV2 />` component consists of the following components:
+
+- `<ThemedHeaderV2 />` for the header and can be customized via `Header` prop.
+- `<ThemedSiderV2 />` for the sidebar and can be customized via `Sider` prop.
+- `<ThemedTitleV2 />` for the logo and the title of the app and can be customized via `Title` prop.
+- There are also `Footer` and `OffLayoutArea` props for the footer and off-layout area respectively but they don't have default components for the layout.
+
+Let's change the title of our app with using the `Title` prop of the `<ThemedLayoutV2 />` component and the `<ThemedTitleV2 />` component.
 
 Try to update your `src/App.tsx` file with the following lines:
 
@@ -22,7 +33,7 @@ Try to update your `src/App.tsx` file with the following lines:
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 // highlight-next-line
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -67,34 +78,21 @@ export default function App(): JSX.Element {
                     key="authenticated-routes"
                     redirectOnFail="/login"
                   >
-                    {/* highlight-start */}
-                    <ThemedLayoutV2>
+                    <ThemedLayoutV2
+                      // highlight-start
+                      Title={(props) => (
+                        <ThemedTitleV2 {...props} text="Awesome Project" />
+                      )}
+                      // highlight-end
+                    >
                       <Outlet />
                     </ThemedLayoutV2>
-                    {/* highlight-end */}
                   </Authenticated>
                 }
               >
-                <Route
-                  index
-                  element={<NavigateToResource resource="protected-products" />}
-                />
-                <Route path="/products">
-                  <Route index element={<ListProducts />} />
-                  <Route path=":id" element={<ShowProduct />} />
-                  <Route path=":id/edit" element={<EditProduct />} />
-                  <Route path="create" element={<CreateProduct />} />
-                </Route>
+                {/* ... */}
               </Route>
-              <Route
-                element={
-                  <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <NavigateToResource resource="protected-products" />
-                  </Authenticated>
-                }
-              >
-                <Route path="/login" element={<Login />} />
-              </Route>
+              {/* ... */}
             </Routes>
           </Refine>
         </AntdApp>
@@ -104,9 +102,18 @@ export default function App(): JSX.Element {
 }
 ```
 
-<AddLayoutToApp />
+<AddCustomTitleToLayout />
 
-Our app is now wrapped with a layout that includes a sidebar and a main content area. Notice that our `protected-products` resource is listed in the sidebar with `"Products"` label. This is because we've provided a custom label for our resource in the `meta.label` field of our resource definition.
+// TODO change below
+// TODO change notification code
+
+Our app is now wrapped with a customized layout that includes a sidebar and a main content area. We've updated our app's name with a single line of code, rest of the props works in the same manner.
+
+:::tip
+
+Notice that our `protected-products` resource is listed in the sidebar with `"Products"` label. This is because we've provided a custom label for our resource in the `meta.label` field of our resource definition.
+
+:::
 
 In the next step, we'll be refactoring our action components to use forms and tables from Ant Design.
 
