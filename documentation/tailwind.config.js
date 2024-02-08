@@ -551,8 +551,17 @@ module.exports = {
                     "enterprise-table-right-to-left 0.3s ease-in-out forwards",
                 "new-badge-border": "new-badge-border 4s linear infinite",
                 reveal: "reveal 0.3s ease-in-out forwards",
+                "progress-fill": "progressFill 1s linear 1 forwards",
             },
             keyframes: {
+                progressFill: {
+                    "0%": {
+                        width: "0%",
+                    },
+                    "100%": {
+                        width: "100%",
+                    },
+                },
                 reveal: {
                     "0%": {
                         opacity: 0,
