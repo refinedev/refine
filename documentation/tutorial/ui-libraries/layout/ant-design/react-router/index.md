@@ -104,9 +104,6 @@ export default function App(): JSX.Element {
 
 <AddCustomTitleToLayout />
 
-// TODO change below
-// TODO change notification code
-
 Our app is now wrapped with a customized layout that includes a sidebar and a main content area. We've updated our app's name with a single line of code, rest of the props works in the same manner.
 
 :::tip
