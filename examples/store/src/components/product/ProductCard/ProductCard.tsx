@@ -42,7 +42,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 pathname: "/product/[handle]",
                 query: { handle: product.handle },
             }}
-            prefetch
             className={rootClassName}
             aria-label={product.title}
         >

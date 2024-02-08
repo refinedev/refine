@@ -3,61 +3,46 @@ description: Create a report to help us improve
 title: "[BUG]"
 labels: ["bug"]
 body:
-    - type: textarea
-      attributes:
-        label: Describe the bug
-        description: A clear and concise description of what the bug is.
-        placeholder: >
-            Please provide the context in which the problem occur.
-      validations:
-        required: true
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: >
+        Please provide the context in which the problem occur.
+    validations:
+      required: true
 
-    - type: textarea
-      attributes:
-        label: Steps To Reproduce
-        description: Steps to reproduce the behavior
-        placeholder: |
-            1. Go to '...'
-            2. Click on '....'
-            3. Scroll down to '....'
-            4. See error
-      validations:
-        required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
 
-    - type: textarea
-      attributes:
-        label: Expected behavior
-        description: A clear and concise description of what you expected to happen.
-      validations:
-        required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
 
-    - type: textarea
-      attributes:
-        label: Screenshot
-        description: If applicable, add screenshots to help explain your problem.
+  - type: textarea
+    attributes:
+      label: Packages
+      description: Mention the Refine packages you are using and their versions.
+      placeholder: |
+        - @refinedev/antd
+        - @refinedev/nextjs-router
+        - @refinedev/simple-rest
+    validations:
+      required: true
 
-    - type: textarea
-      attributes:
-        label: Desktop
-        description: Please complete the following information
-        placeholder: |
-          - OS: [e.g. iOS]
-          - Browser [e.g. chrome, safari]
-          - Version [e.g. 22]
-          - Used dataProvider [e.g. custom, Strapi, Airtable]
-
-    - type: textarea
-      attributes:
-        label: Mobile
-        description: Please complete the following information
-        placeholder: |
-          - Device: [e.g. iPhone6]
-          - OS: [e.g. iOS8.1]
-          - Browser [e.g. stock browser, safari]
-          - Version [e.g. 22]
-          - Used dataProvider [e.g. custom, Strapi, Airtable]
-
-    - type: textarea
-      attributes:
-        label: Additional Context
-        description: Add any other context about the problem here.
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.

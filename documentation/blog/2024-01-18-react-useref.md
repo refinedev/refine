@@ -33,7 +33,7 @@ Steps we'll cover:
 
 ## What is useRef hook?
 
-The `useRef` hook is one of the built-in hooks in React. You can use it to persist or preserve values between re-renders. The `useRef` hook takes an inital value of any type as argument and returns an object with a single `current` property.
+The `useRef` hook is one of the built-in hooks in React. You can use it to persist or preserve values between re-renders. The `useRef` hook takes an initial value of any type as argument and returns an object with a single `current` property.
 
 ```js
 const ref = useRef(initialValue);
@@ -41,7 +41,7 @@ const ref = useRef(initialValue);
 
 React will set the `initialValue` you pass to the `useRef` hook as the value of the `current` property of the returned `ref` object. As an example, if the `initialValue` is the boolean value `true`, then the `ref` object returned by the `useRef` hook will be `{ current: true }`. If you don't pass an initial value, the `current` property will be `undefined`.
 
-The returned `ref` objec is mutable. You can update and reference its value directly as in the example below. However, unlike react state, mutating the `ref` object doesn't re-render the Component.
+The returned `ref` object is mutable. You can update and reference its value directly as in the example below. However, unlike react state, mutating the `ref` object doesn't re-render the Component.
 
 ```tsx
 import { useRef } from "react";
@@ -295,4 +295,4 @@ In this article, we discussed how to create refs using the `useRef` hook and the
 
 After creating a ref object using the `useRef` hook, you can set it as the value of a ref attribute of an element you want to reference. The ref object's current property will reference the DOM element after rendering it on the screen. Removing the DOM element will set the current property to `null`.
 
-There are several uses of the `useRef` hook and the `createRef` function. However, you will primarily use them to persist arbitrary values between re-renders and for accessing DOM elements. You can explore more about refs and their use cases at the offical [React documentation](https://react.dev/learn/referencing-values-with-refs).
+There are several uses of the `useRef` hook and the `createRef` function. However, you will primarily use them to persist arbitrary values between re-renders and for accessing DOM elements. You can explore more about refs and their use cases at the official [React documentation](https://react.dev/learn/referencing-values-with-refs).

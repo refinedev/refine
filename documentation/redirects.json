@@ -2088,6 +2088,10 @@
     {
       "from": "/docs/examples/data-provider/nhost/",
       "to": "/docs/guides-concepts/data-fetching"
+    },
+    {
+      "from": "/docs/examples/next-js/nextjs-appdir/",
+      "to": "/docs/examples/next-js"
     }
   ]
 }

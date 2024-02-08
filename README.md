@@ -86,7 +86,7 @@ You have the freedom to select your preferred libraries and frameworks, and the 
 
 **Refine** shines on _data-intensive⚡_ enterprise B2B applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, it can also power _customer-facing_ applications like **storefronts**.
 
-You can take a look at some live examples that can be built using **refine** from scratch:
+You can take a look at some live examples that can be built using **Refine** from scratch:
 
 - [Fully-functional CRM Application](https://example.crm.refine.dev/)
 - [Fully-functional Admin Panel](https://s.refine.dev/readme-admin-panel)

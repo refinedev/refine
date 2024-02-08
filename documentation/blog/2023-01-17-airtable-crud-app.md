@@ -1,25 +1,25 @@
 ---
 title: Building a Complete React CRUD App with Airtable
-description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, tutorial]
+tags: [Refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
 
 ## Introduction
 
-Before the existence of **refine**, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application.
+Before the existence of **Refine**, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [Refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application.
 
-**refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **refine** and Airtable, a famous backend service to illustrate how you can power your applications with **refine**.
+**Refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **Refine** and Airtable, a famous backend service to illustrate how you can power your applications with **Refine**.
 
 Steps we'll cover:
 
-- [Why Use refine?](#why-use-refine)
+- [Why Use Refine?](#why-use-refine)
 - [What is Airtable?](#what-is-airtable)
   - [Setup Airtable](#setup-airtable)
-- [Bootstrapping the refine Application](#bootstrapping-the-refine-application)
+- [Bootstrapping the Refine Application](#bootstrapping-the-refine-application)
 - [Implementing CRUD operations](#implementing-crud-operations)
   - [Creating pages for CRUD operations](#creating-pages-for-crud-operations)
   - [Listing posts records](#listing-posts-records)
@@ -30,11 +30,11 @@ Steps we'll cover:
   - [Deleting post record](#deleting-post-record)
   - [Adding Pagination](#adding-pagination)
 
-## Why Use refine?
+## Why Use Refine?
 
-[refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, refine decouples UI from frontend application logic to give developers complete styling and customization control.
+[Refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, Refine decouples UI from frontend application logic to give developers complete styling and customization control.
 
-**refine**'s can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
+**Refine**'s can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
 It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, Material UI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
@@ -80,9 +80,9 @@ We will create a table called **categories** which will hold the categories' dat
 
 We will also populate the tables with contents.
 
-## Bootstrapping the refine Application
+## Bootstrapping the Refine Application
 
-For this article, we will be using the `create refine-app`. to create our refine application. In other to use this, Run the following command below:
+For this article, we will be using the `create refine-app`. to create our Refine application. In other to use this, Run the following command below:
 
 ```
 npm create refine-app@latest <name of your application>
@@ -92,7 +92,7 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 
 ```bash
 ✔ Downloaded remote source successfully.
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · refine-airtable
 ✔ Choose your backend service to connect: · Airtable
 ✔ Do you want to use a UI Framework?: · Headless
@@ -104,9 +104,9 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 
 <br />
 
-**refine** is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
+**Refine** is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
 
-On selecting these options, the CLI will bootstrap a refine application with the Airtable provider.
+On selecting these options, the CLI will bootstrap a Refine application with the Airtable provider.
 
 After installation, we will run the following command:
 
@@ -114,15 +114,15 @@ After installation, we will run the following command:
 npm run dev
 ```
 
-After running the command, the **refine** application should be up and running. Visit http://localhost:5173 to access it.
+After running the command, the **Refine** application should be up and running. Visit http://localhost:5173 to access it.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.jpg"  alt="react crud app airtable" />
 
 <br />
 
--   **The `<Refine  />` component**: This component is the entry point of a refine app. This is where we add the configurations the application needs.
+- **The `<Refine  />` component**: This component is the entry point of a Refine app. This is where we add the configurations the application needs.
 
--   **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the refine core package which enables a refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
+- **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in Refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the Refine core package which enables a Refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -132,13 +132,13 @@ const API_TOKEN = "your-airtable-api-token";
 const BASE_ID = "your-airtable-base-id";
 
 const App: React.FC = () => {
-    return <Refine dataProvider={dataProvider(API_TOKEN, BASE_ID)} />;
+  return <Refine dataProvider={dataProvider(API_TOKEN, BASE_ID)} />;
 };
 ```
 
 [Refer to the Data Provider documentation for more information. → ](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
--   **resources**: A Resource can be referred to as the building block of a refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
+- **resources**: A Resource can be referred to as the building block of a Refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
 
 In order to activate a resource, we have to pass the `resources` property to the `<Refine  />` component.
 
@@ -150,20 +150,20 @@ const API_TOKEN = "your-airtable-api-token";
 const BASE_ID = "your-airtable-base-id";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/list",
-                    create: "/create",
-                    edit: "/edit",
-                    show: "/show",
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_TOKEN, BASE_ID)}
+      resources={[
+        {
+          name: "posts",
+          list: "/list",
+          create: "/create",
+          edit: "/edit",
+          show: "/show",
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -173,7 +173,7 @@ the `resources` property accepts an array of objects with each object specifying
 
 [Refer to the `resources` documentation for more information. → ](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
 
--   **Routing**: We will use React Router v6 for routing in our application. **refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between refine and react-router-dom.
+- **Routing**: We will use React Router v6 for routing in our application. **Refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between Refine and react-router-dom.
 
 [Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/docs/packages/documentation/routers/react-router-v6/)
 
@@ -189,48 +189,48 @@ import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider}
-                // highlight-next-line
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        // highlight-start
-                        list: "/posts",
-                        create: "/posts/create",
-                        // highlight-end
-                    },
-                    {
-                        name: "categories",
-                        // highlight-start
-                        list: "/categories",
-                        show: "/categories/show/:id",
-                        // highlight-end
-                    },
-                ]}
-            >
-                <Routes>
-                    {/* highlight-start */}
-                    <Route path="posts">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                    </Route>
-                    <Route path="categories">
-                        <Route index element={<CategoryList />} />
-                        <Route path="show/:id" element={<CategoryShow />} />
-                    </Route>
-                    {/* highlight-end */}
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider}
+        // highlight-next-line
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            // highlight-start
+            list: "/posts",
+            create: "/posts/create",
+            // highlight-end
+          },
+          {
+            name: "categories",
+            // highlight-start
+            list: "/categories",
+            show: "/categories/show/:id",
+            // highlight-end
+          },
+        ]}
+      >
+        <Routes>
+          {/* highlight-start */}
+          <Route path="posts">
+            <Route index element={<PostList />} />
+            <Route path="create" element={<PostCreate />} />
+          </Route>
+          <Route path="categories">
+            <Route index element={<CategoryList />} />
+            <Route path="show/:id" element={<CategoryShow />} />
+          </Route>
+          {/* highlight-end */}
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
 };
 ```
 
-After obtaining more insight on the constitutes of a **refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
+After obtaining more insight on the constitutes of a **Refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
 
 <details>
 <summary>Show App.tsx Code</summary>
@@ -241,40 +241,36 @@ import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
-    DocumentTitleHandler,
-    UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 function App() {
-    const API_TOKEN = "keyI18pnBeEMfPAIb";
-    const BASE_ID = "appKYl1H4k9g73sBT";
+  const API_TOKEN = "keyI18pnBeEMfPAIb";
+  const BASE_ID = "appKYl1H4k9g73sBT";
 
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <RefineKbarProvider>
-                <Refine
-                    dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-                    routerProvider={routerBindings}
-                    options={{
-                        syncWithLocation: true,
-                        warnWhenUnsavedChanges: true,
-                        projectId: "Q6c8F9-Z6dP1b-CPjeKR",
-                    }}
-                >
-                    <Routes>
-                        <Route index element={<WelcomePage />} />
-                    </Routes>
-                    <RefineKbar />
-                    <UnsavedChangesNotifier />
-                    <DocumentTitleHandler />
-                </Refine>
-            </RefineKbarProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <RefineKbarProvider>
+        <Refine
+          dataProvider={dataProvider(API_TOKEN, BASE_ID)}
+          routerProvider={routerBindings}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route index element={<WelcomePage />} />
+          </Routes>
+          <RefineKbar />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </RefineKbarProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -285,7 +281,7 @@ export default App;
 
 In the file above, we can see that `refine CLI` installed the airtable data provider. To connect to our Airtable base, we will provide the `API_TOKEN` and `BASE_ID` credentials. These credentials can be found on our airtable [account](https://airtable.com/account) page and the base documentation page.
 
-After installation, we will set up TailwindCSS as our CSS library for this application. Since we are not using any UI framework (as we are going with the headless approach), we will use tailwind for styling. To simply add tailwind CSS to your refine application, you can visit the guide [here](https://tailwindcss.com/docs/guides/vite).
+After installation, we will set up TailwindCSS as our CSS library for this application. Since we are not using any UI framework (as we are going with the headless approach), we will use tailwind for styling. To simply add tailwind CSS to your Refine application, you can visit the guide [here](https://tailwindcss.com/docs/guides/vite).
 
 ## Implementing CRUD operations
 
@@ -301,7 +297,7 @@ To prevent Typescript from throwing an error, you can add a placeholder code in 
 import React from "react";
 
 export const PostList: React.FC = () => {
-    return <div>PostList</div>;
+  return <div>PostList</div>;
 };
 ```
 
@@ -326,42 +322,38 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 const { Link } = routerProvider;
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const { menuItems } = useMenu();
-    const { push } = useNavigation();
+  const { menuItems } = useMenu();
+  const { push } = useNavigation();
 
-    return (
-        <div className="py-4 pr-4 flex min-h-screen flex-col border md:flex-row">
-            <div className="mb-2 border-b py-2 md:w-2/12">
-                <div className="container mx-auto">
-                    <div className="flex flex-col items-center gap-2">
-                        <Link to="/">
-                            <img
-                                className="w-32"
-                                src="https://refine.dev/img/refine_logo.png"
-                                alt="Logo"
-                            />
-                        </Link>
+  return (
+    <div className="py-4 pr-4 flex min-h-screen flex-col border md:flex-row">
+      <div className="mb-2 border-b py-2 md:w-2/12">
+        <div className="container mx-auto">
+          <div className="flex flex-col items-center gap-2">
+            <Link to="/">
+              <img className="w-32" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            </Link>
 
-                        <ul>
-                            {menuItems.map(({ name, label, icon, route }) => (
-                                <li key={name} className="float-left">
-                                    <a
-                                        className="flex cursor-pointer flex-col items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
-                                        onClick={() => push(route || "")}
-                                    >
-                                        {icon}
-                                        <span>{label ?? name}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div className="overflow-auto bg-white md:w-10/12">{children}</div>
+            <ul>
+              {menuItems.map(({ name, label, icon, route }) => (
+                <li key={name} className="float-left">
+                  <a
+                    className="flex cursor-pointer flex-col items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
+                    onClick={() => push(route || "")}
+                  >
+                    {icon}
+                    <span>{label ?? name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-    );
+      </div>
+
+      <div className="overflow-auto bg-white md:w-10/12">{children}</div>
+    </div>
+  );
 };
 ```
 
@@ -381,9 +373,9 @@ You can simply copy and paste the code below into the `App.tsx` file:
 import { Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
 import routerBindings, {
-    DocumentTitleHandler,
-    NavigateToResource,
-    UnsavedChangesNotifier,
+  DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -395,50 +387,47 @@ import { PostEdit } from "./pages/post/edit";
 import "./App.css";
 
 function App() {
-    const API_TOKEN = "key0uWArSH56JHNJV";
-    const BASE_ID = "appez0LgaOVA6SdCO";
+  const API_TOKEN = "key0uWArSH56JHNJV";
+  const BASE_ID = "appez0LgaOVA6SdCO";
 
-    return (
-        <BrowserRouter>
-            <Refine
-                dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-                routerProvider={routerBindings}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        show: "/posts/show/:id",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                        </Route>
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider(API_TOKEN, BASE_ID)}
+        routerProvider={routerBindings}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            show: "/posts/show/:id",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="posts" />} />
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="show/:id" element={<PostShow />} />
+              <Route path="create" element={<PostCreate />} />
+              <Route path="edit/:id" element={<PostEdit />} />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+        <UnsavedChangesNotifier />
+        <DocumentTitleHandler />
+      </Refine>
+    </BrowserRouter>
+  );
 }
 
 export default App;
@@ -461,13 +450,13 @@ Next, we will define an interface for the fetched data from our Airtable Base. t
 
 ```tsx title="src/interfaces/post.d.ts"
 export interface IPost {
-    id: string;
-    name: string;
-    title: string;
-    content: string;
-    category: string;
-    Status: "published" | "draft" | "rejected";
-    createdAt: string;
+  id: string;
+  name: string;
+  title: string;
+  content: string;
+  category: string;
+  Status: "published" | "draft" | "rejected";
+  createdAt: string;
 }
 ```
 
@@ -487,126 +476,110 @@ import { IPost } from "../../interfaces/post";
 import { useNavigation, useDelete } from "@refinedev/core";
 
 export const PostList: React.FC = () => {
-    const { show, edit, create } = useNavigation();
-    const { mutate } = useDelete();
+  const { show, edit, create } = useNavigation();
+  const { mutate } = useDelete();
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "Name",
-                header: "Name",
-                accessorKey: "Name",
-            },
-            {
-                id: "category",
-                header: "Category",
-                accessorKey: "category",
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "Status",
-            },
-            {
-                id: "action",
-                header: "Action",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <>
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() =>
-                                    show("posts", getValue() as number)
-                                }
-                            >
-                                View
-                            </button>
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() =>
-                                    edit("posts", getValue() as number)
-                                }
-                            >
-                                Edit
-                            </button>
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "Name",
+        header: "Name",
+        accessorKey: "Name",
+      },
+      {
+        id: "category",
+        header: "Category",
+        accessorKey: "category",
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "Status",
+      },
+      {
+        id: "action",
+        header: "Action",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            <>
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => show("posts", getValue() as number)}
+              >
+                View
+              </button>
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => edit("posts", getValue() as number)}
+              >
+                Edit
+              </button>
 
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-                                onClick={() =>
-                                    mutate({
-                                        id: getValue() as number,
-                                        resource: "posts",
-                                    })
-                                }
-                            >
-                                Delete
-                            </button>
-                        </>
-                    );
-                },
-            },
-        ],
-        [],
-    );
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                onClick={() =>
+                  mutate({
+                    id: getValue() as number,
+                    resource: "posts",
+                  })
+                }
+              >
+                Delete
+              </button>
+            </>
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    const { getHeaderGroups, getRowModel } = useTable<IPost>({
-        columns,
-    });
+  const { getHeaderGroups, getRowModel } = useTable<IPost>({
+    columns,
+  });
 
-    return (
-        <div className="container mx-auto pb-4">
-            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
-                <thead className="bg-gray-100">
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th
-                                    key={header.id}
-                                    colSpan={header.colSpan}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext(),
-                                    )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                    {getRowModel().rows.map((row) => {
-                        return (
-                            <tr
-                                key={row.id}
-                                className="transition hover:bg-gray-100"
-                            >
-                                {row.getVisibleCells().map((cell) => {
-                                    return (
-                                        <td
-                                            key={cell.id}
-                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
-                                        >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div className="container mx-auto pb-4">
+      <table className="min-w-full table-fixed divide-y divide-gray-200 border">
+        <thead className="bg-gray-100">
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody className="divide-y divide-gray-200 bg-white">
+          {getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id} className="transition hover:bg-gray-100">
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td key={cell.id} className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 ```
 
@@ -617,8 +590,6 @@ In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/ta
 
 We also use the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
-
-
 #### Handling relationships
 
 Remember the records from our **posts** base on Airtable has a category field, we will map the category fields to their corresponding titles on the **category** base we created on airtable. But first, we will add a category type to the `post.d.ts` file under `interfaces` under the `src` folder in the root directory of our application.
@@ -628,14 +599,14 @@ Remember the records from our **posts** base on Airtable has a category field, w
 
 // highlight-start
 export interface ICategory {
-    id: string;
-    name: string;
-    posts: string;
+  id: string;
+  name: string;
+  posts: string;
 }
 // highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **refine** hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **Refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
 To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
@@ -653,131 +624,111 @@ import { ColumnDef, flexRender } from "@tanstack/react-table";
 //highlight-next-line
 import { ICategory, IPost } from "../../interfaces/post";
 //highlight-start
-import {
-    useNavigation,
-    useDelete,
-    useMany,
-    GetManyResponse,
-} from "@refinedev/core";
+import { useNavigation, useDelete, useMany, GetManyResponse } from "@refinedev/core";
 //highlight-end
 
 import "./App.css";
 
 export const PostList: React.FC = () => {
-    /* code from previous block */
+  /* code from previous block */
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            /* code from previous block */
-            //highlight-start
-            {
-                id: "category",
-                header: "Category",
-                accessorKey: "category",
-                cell: function render({ getValue, table }) {
-                    const meta = table.options.meta as {
-                        categoriesData: GetManyResponse<ICategory>;
-                    };
-                    const singleValue: string[] | any = getValue();
-                    const category = meta.categoriesData?.data?.find(
-                        (item) => item.id === singleValue[0],
-                    );
-                    return category?.name ?? "Loading...";
-                },
-            },
-            //highlight-end
-            /* code from previous block */
-        ],
-        [],
-    );
-
-    //highlight-start
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            tableQueryResult: { data: tableData },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      /* code from previous block */
+      //highlight-start
+      {
+        id: "category",
+        header: "Category",
+        accessorKey: "category",
+        cell: function render({ getValue, table }) {
+          const meta = table.options.meta as {
+            categoriesData: GetManyResponse<ICategory>;
+          };
+          const singleValue: string[] | any = getValue();
+          const category = meta.categoriesData?.data?.find((item) => item.id === singleValue[0]);
+          return category?.name ?? "Loading...";
         },
-    } = useTable<IPost>({ columns });
+      },
+      //highlight-end
+      /* code from previous block */
+    ],
+    [],
+  );
 
-    const categoryIds =
-        tableData?.data?.map((item) => item.category?.[0]) ?? [];
+  //highlight-start
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      tableQueryResult: { data: tableData },
+    },
+  } = useTable<IPost>({ columns });
 
-    const { data: categoriesData } = useMany<ICategory>({
-        resource: "category",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
+  const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
 
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-            categoriesData,
-        },
-    }));
-    //highlight-end
+  const { data: categoriesData } = useMany<ICategory>({
+    resource: "category",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-    //highlight-start
-    return (
-        <div className="mx-auto pb-4">
-            <div className="mb-3 mt-1 flex items-center justify-end">
-                <button
-                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
-                    onClick={() => create("posts")}
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+      categoriesData,
+    },
+  }));
+  //highlight-end
+
+  //highlight-start
+  return (
+    <div className="mx-auto pb-4">
+      <div className="mb-3 mt-1 flex items-center justify-end">
+        <button
+          className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
+          onClick={() => create("posts")}
+        >
+          <span>Create Post</span>
+        </button>
+      </div>
+      <table className="min-w-full table-fixed divide-y divide-gray-200 border">
+        <thead className="bg-gray-100">
+          {getHeaderGroups().map((headerGroup, idx) => (
+            <tr key={idx}>
+              {headerGroup.headers.map((header, idx) => (
+                <th
+                  key={idx}
+                  colSpan={header.colSpan}
+                  className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                 >
-                    <span>Create Post</span>
-                </button>
-            </div>
-            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
-                <thead className="bg-gray-100">
-                    {getHeaderGroups().map((headerGroup, idx) => (
-                        <tr key={idx}>
-                            {headerGroup.headers.map((header, idx) => (
-                                <th
-                                    key={idx}
-                                    colSpan={header.colSpan}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext(),
-                                    )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                    {getRowModel().rows.map((row, idx) => {
-                        return (
-                            <tr
-                                key={idx}
-                                className="transition hover:bg-gray-100"
-                            >
-                                {row.getVisibleCells().map((cell, idx) => {
-                                    return (
-                                        <td
-                                            key={idx}
-                                            className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
-                                        >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
-    );
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody className="divide-y divide-gray-200 bg-white">
+          {getRowModel().rows.map((row, idx) => {
+            return (
+              <tr key={idx} className="transition hover:bg-gray-100">
+                {row.getVisibleCells().map((cell, idx) => {
+                  return (
+                    <td key={idx} className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 //highlight-end
 ```
@@ -818,95 +769,85 @@ import { useSelect, useShow } from "@refinedev/core";
 import { IPost } from "../../interfaces/post";
 
 export const PostShow: React.FC = () => {
-    const { queryResult } = useShow<IPost>();
-    const { data } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow<IPost>();
+  const { data } = queryResult;
+  const record = data?.data;
 
-    const { options } = useSelect({
-        resource: "category",
-        defaultValue: queryResult?.data?.data?.category?.[0],
-        optionLabel: "name",
-        optionValue: "id",
-    });
+  const { options } = useSelect({
+    resource: "category",
+    defaultValue: queryResult?.data?.data?.category?.[0],
+    optionLabel: "name",
+    optionValue: "id",
+  });
 
-    return (
-        <div className="container mx-auto">
-            <div className="my-6">
-                <label className="mb-2 block text-sm font-medium">Id</label>
-                <input
-                    value={record?.id}
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">Name</label>
-                <input
-                    value={record?.title}
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">Title</label>
-                <input
-                    value={record?.title}
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
+  return (
+    <div className="container mx-auto">
+      <div className="my-6">
+        <label className="mb-2 block text-sm font-medium">Id</label>
+        <input
+          value={record?.id}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Name</label>
+        <input
+          value={record?.title}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Title</label>
+        <input
+          value={record?.title}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
 
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">
-                    Content
-                </label>
-                <textarea
-                    disabled
-                    value={record?.content}
-                    id="content"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
-                    placeholder="Content"
-                    rows={10}
-                />
-            </div>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Content</label>
+        <textarea
+          disabled
+          value={record?.content}
+          id="content"
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+          placeholder="Content"
+          rows={10}
+        />
+      </div>
 
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">
-                    Category
-                </label>
-                <input
-                    value={
-                        options?.find(
-                            (curr) => curr?.value === record?.category[0],
-                        )?.label || record?.category
-                    }
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Category</label>
+        <input
+          value={options?.find((curr) => curr?.value === record?.category[0])?.label || record?.category}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
 
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">Status</label>
-                <input
-                    value={record?.Status}
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Status</label>
+        <input
+          value={record?.Status}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
 
-            <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium">
-                    Created At
-                </label>
-                <input
-                    type={"date"}
-                    value={record?.createdAt}
-                    disabled
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                />
-            </div>
-        </div>
-    );
+      <div className="mb-6">
+        <label className="mb-2 block text-sm font-medium">Created At</label>
+        <input
+          type={"date"}
+          value={record?.createdAt}
+          disabled
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+        />
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -919,10 +860,10 @@ We also used the `useSelect()` hook to map the category fields on the record to 
 
 ```ts
 const { options } = useSelect({
-    resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.[0],
-    optionLabel: "name",
-    optionValue: "id",
+  resource: "category",
+  defaultValue: queryResult?.data?.data?.category?.[0],
+  optionLabel: "name",
+  optionValue: "id",
 });
 ```
 
@@ -997,159 +938,140 @@ import { useForm } from "@refinedev/react-hook-form";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const { options } = useSelect({
-        resource: "category",
-        defaultValue: queryResult?.data?.data?.category?.[0],
-        optionLabel: "name",
-        optionValue: "id",
-    });
+  const { options } = useSelect({
+    resource: "category",
+    defaultValue: queryResult?.data?.data?.category?.[0],
+    optionLabel: "name",
+    optionValue: "id",
+  });
 
-    const handleSubmitHandler = (data: any) => {
-        onFinish({ ...data, category: [data.category] });
-    };
+  const handleSubmitHandler = (data: any) => {
+    onFinish({ ...data, category: [data.category] });
+  };
 
-    return (
-        <div className="container mx-auto">
-            <br />
-            <form onSubmit={handleSubmit(handleSubmitHandler)}>
-                <div className="mb-6">
-                    <label
-                        htmlFor="Name"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Name
-                    </label>
-                    <input
-                        {...register("Name", { required: true })}
-                        type="text"
-                        id="Name"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                        placeholder="Name"
-                    />
-                    {errors.title && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="title"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Title
-                    </label>
-                    <input
-                        {...register("title", { required: true })}
-                        type="text"
-                        id="title"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
-                        placeholder="Title"
-                    />
-                    {errors.title && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="content"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Content
-                    </label>
-                    <textarea
-                        {...register("content", { required: true })}
-                        id="content"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
-                        placeholder="Content"
-                        rows={10}
-                    />
-                    {errors.content && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="category"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Category
-                    </label>
-
-                    <select
-                        defaultValue={""}
-                        {...register("category", { required: true })}
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                    >
-                        <option value={""} disabled>
-                            Please select
-                        </option>
-
-                        {options?.map((category) => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
-
-                    {errors.category && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="status"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Status
-                    </label>
-                    <select
-                        {...register("Status")}
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                    >
-                        <option value="published">published</option>
-                        <option value="draft">draft</option>
-                        <option value="rejected">rejected</option>
-                    </select>
-                </div>
-
-                <button
-                    type="submit"
-                    className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
-                >
-                    {formLoading ? "loading..." : <span>Save</span>}
-                </button>
-            </form>
+  return (
+    <div className="container mx-auto">
+      <br />
+      <form onSubmit={handleSubmit(handleSubmitHandler)}>
+        <div className="mb-6">
+          <label htmlFor="Name" className="mb-2 block text-sm font-medium">
+            Name
+          </label>
+          <input
+            {...register("Name", { required: true })}
+            type="text"
+            id="Name"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+            placeholder="Name"
+          />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
         </div>
-    );
+
+        <div className="mb-6">
+          <label htmlFor="title" className="mb-2 block text-sm font-medium">
+            Title
+          </label>
+          <input
+            {...register("title", { required: true })}
+            type="text"
+            id="title"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+            placeholder="Title"
+          />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="content" className="mb-2 block text-sm font-medium">
+            Content
+          </label>
+          <textarea
+            {...register("content", { required: true })}
+            id="content"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+            placeholder="Content"
+            rows={10}
+          />
+          {errors.content && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="category" className="mb-2 block text-sm font-medium">
+            Category
+          </label>
+
+          <select
+            defaultValue={""}
+            {...register("category", { required: true })}
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+          >
+            <option value={""} disabled>
+              Please select
+            </option>
+
+            {options?.map((category) => (
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </select>
+
+          {errors.category && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="status" className="mb-2 block text-sm font-medium">
+            Status
+          </label>
+          <select
+            {...register("Status")}
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+          >
+            <option value="published">published</option>
+            <option value="draft">draft</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
+        >
+          {formLoading ? "loading..." : <span>Save</span>}
+        </button>
+      </form>
+    </div>
+  );
 };
 ```
 
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
 We use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into airtable. The hooks also provide methods like `handleSubmit()` and `onFinish()` methods which handle the submission of the contents from the form to Airtable.
 
@@ -1201,163 +1123,142 @@ import { useForm } from "@refinedev/react-hook-form";
 import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        register,
-        handleSubmit,
-        resetField,
-        formState: { errors },
-    } = useForm();
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
-    const { options } = useSelect({
-        resource: "category",
-        defaultValue: queryResult?.data?.data?.category?.id,
-        optionLabel: "name",
-        optionValue: "id",
-    });
+  const { options } = useSelect({
+    resource: "category",
+    defaultValue: queryResult?.data?.data?.category?.id,
+    optionLabel: "name",
+    optionValue: "id",
+  });
 
-    useEffect(() => {
-        resetField("category.id");
-    }, [options, resetField]);
+  useEffect(() => {
+    resetField("category.id");
+  }, [options, resetField]);
 
-    const handleSubmitHandler = (data: any) => {
-        onFinish({ ...data, category: [data.category] });
-    };
+  const handleSubmitHandler = (data: any) => {
+    onFinish({ ...data, category: [data.category] });
+  };
 
-    return (
-        <div className="container mx-auto">
-            <br />
-            <form onSubmit={handleSubmit(handleSubmitHandler)}>
-                <div className="mb-6">
-                    <label
-                        htmlFor="Name"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Name
-                    </label>
-                    <input
-                        {...register("Name", { required: true })}
-                        type="text"
-                        id="Name"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                        placeholder="Name"
-                    />
-                    {errors.title && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="title"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Title
-                    </label>
-                    <input
-                        {...register("title", { required: true })}
-                        type="text"
-                        id="title"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
-                        placeholder="Title"
-                    />
-                    {errors.title && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="content"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Content
-                    </label>
-                    <textarea
-                        {...register("content", { required: true })}
-                        id="content"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
-                        placeholder="Content"
-                        rows={10}
-                    />
-                    {errors.content && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="category"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Category
-                    </label>
-
-                    <select
-                        defaultValue={""}
-                        {...register("category", { required: true })}
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                    >
-                        <option value={""} disabled>
-                            Please select
-                        </option>
-                        <option value="Information Technology">
-                            Information Technology
-                        </option>
-                        <option value="Fun">Fun</option>
-                        <option value="Drama">Drama</option>
-                    </select>
-
-                    {errors.category && (
-                        <p className="mt-1 text-sm text-red-600">
-                            <span className="font-medium">Oops!</span> This
-                            field is required
-                        </p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="status"
-                        className="mb-2 block text-sm font-medium"
-                    >
-                        Status
-                    </label>
-                    <select
-                        defaultValue={""}
-                        {...register("category", { required: true })}
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
-                    >
-                        <option value={""} disabled>
-                            Please select
-                        </option>
-
-                        {options?.map((category) => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <button
-                    type="submit"
-                    className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
-                >
-                    {formLoading ? "loading..." : <span>Save</span>}
-                </button>
-            </form>
+  return (
+    <div className="container mx-auto">
+      <br />
+      <form onSubmit={handleSubmit(handleSubmitHandler)}>
+        <div className="mb-6">
+          <label htmlFor="Name" className="mb-2 block text-sm font-medium">
+            Name
+          </label>
+          <input
+            {...register("Name", { required: true })}
+            type="text"
+            id="Name"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+            placeholder="Name"
+          />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
         </div>
-    );
+
+        <div className="mb-6">
+          <label htmlFor="title" className="mb-2 block text-sm font-medium">
+            Title
+          </label>
+          <input
+            {...register("title", { required: true })}
+            type="text"
+            id="title"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+            placeholder="Title"
+          />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="content" className="mb-2 block text-sm font-medium">
+            Content
+          </label>
+          <textarea
+            {...register("content", { required: true })}
+            id="content"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm "
+            placeholder="Content"
+            rows={10}
+          />
+          {errors.content && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="category" className="mb-2 block text-sm font-medium">
+            Category
+          </label>
+
+          <select
+            defaultValue={""}
+            {...register("category", { required: true })}
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+          >
+            <option value={""} disabled>
+              Please select
+            </option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Fun">Fun</option>
+            <option value="Drama">Drama</option>
+          </select>
+
+          {errors.category && (
+            <p className="mt-1 text-sm text-red-600">
+              <span className="font-medium">Oops!</span> This field is required
+            </p>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="status" className="mb-2 block text-sm font-medium">
+            Status
+          </label>
+          <select
+            defaultValue={""}
+            {...register("category", { required: true })}
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm"
+          >
+            <option value={""} disabled>
+              Please select
+            </option>
+
+            {options?.map((category) => (
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          className="flex w-full items-center rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
+        >
+          {formLoading ? "loading..." : <span>Save</span>}
+        </button>
+      </form>
+    </div>
+  );
 };
 ```
 
@@ -1421,9 +1322,9 @@ After this, we can now add the component `<PostEdit />` in the `edit.tsx` file t
 
 ### Deleting post record
 
-For deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our refine application.
+For deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our Refine application.
 
-We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList />` component to include one for each record. Add the highlighted lines below to the existing list component.
+We'll add a **Delete** button to each row because Refine doesn't add one automatically, so we'll need to update our `<PostList />` component to include one for each record. Add the highlighted lines below to the existing list component.
 
 ```tsx title="src/pages/post/list.tsx"
 
@@ -1479,14 +1380,14 @@ export const PostList: React.FC = () => {
 
 Next, we will add Pagination to our application. in order to achieve this, the useTable() hook provides certain functions that handle pagination. They are:
 
--   `getState`: This is the useTable() state variable.
--   `setPageIndex()`: This is a function that handles setting the page index.
--   `getCanPreviousPage()`: This is a boolean value that indicates if a previous page exists or not.
--   `getPageCount`: This variable holds the number of pages.
--   `getCanNextPage`: This is a boolean value that indicates if a next page exists or not.
--   `nextPage()`: This function handles navigation to the next page.
--   `previousPage`: This function handles navigation to the previous page.
--   `setPageSize()`: This is a function that handles setting the content to be shown on a page (page size).
+- `getState`: This is the useTable() state variable.
+- `setPageIndex()`: This is a function that handles setting the page index.
+- `getCanPreviousPage()`: This is a boolean value that indicates if a previous page exists or not.
+- `getPageCount`: This variable holds the number of pages.
+- `getCanNextPage`: This is a boolean value that indicates if a next page exists or not.
+- `nextPage()`: This function handles navigation to the next page.
+- `previousPage`: This function handles navigation to the previous page.
+- `setPageSize()`: This is a function that handles setting the content to be shown on a page (page size).
 
 We will go to update the `<PostList />` component with the highlighted code below:
 
@@ -1499,256 +1400,229 @@ import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { ICategory, IPost } from "../../interfaces/post";
-import {
-    useNavigation,
-    useDelete,
-    GetManyResponse,
-    useMany,
-} from "@refinedev/core";
+import { useNavigation, useDelete, GetManyResponse, useMany } from "@refinedev/core";
 
 export const PostList: React.FC = () => {
-    const { show, edit, create } = useNavigation();
-    const { mutate } = useDelete();
+  const { show, edit, create } = useNavigation();
+  const { mutate } = useDelete();
 
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "Name",
-                header: "Name",
-                accessorKey: "Name",
-            },
-            {
-                id: "category",
-                header: "Category",
-                accessorKey: "category",
-                cell: function render({ getValue, table }) {
-                    const meta = table.options.meta as {
-                        categoriesData: GetManyResponse<ICategory>;
-                    };
-                    const singleValue: string[] | any = getValue();
-                    const category = meta.categoriesData?.data?.find(
-                        (item) => item.id === singleValue[0],
-                    );
-                    return category?.name ?? "Loading...";
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "Status",
-            },
-            {
-                id: "action",
-                header: "Action",
-                accessorKey: "id",
-                cell: function render({ getValue }) {
-                    return (
-                        <>
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() =>
-                                    show("posts", getValue() as number)
-                                }
-                            >
-                                View
-                            </button>
-
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                                onClick={() =>
-                                    edit("posts", getValue() as number)
-                                }
-                            >
-                                Edit
-                            </button>
-
-                            <button
-                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-                                onClick={() =>
-                                    mutate({
-                                        id: getValue() as number,
-                                        resource: "posts",
-                                    })
-                                }
-                            >
-                                Delete
-                            </button>
-                        </>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    // highlight-start
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            tableQueryResult: { data: tableData },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "Name",
+        header: "Name",
+        accessorKey: "Name",
+      },
+      {
+        id: "category",
+        header: "Category",
+        accessorKey: "category",
+        cell: function render({ getValue, table }) {
+          const meta = table.options.meta as {
+            categoriesData: GetManyResponse<ICategory>;
+          };
+          const singleValue: string[] | any = getValue();
+          const category = meta.categoriesData?.data?.find((item) => item.id === singleValue[0]);
+          return category?.name ?? "Loading...";
         },
-        getState,
-        setPageIndex,
-        getCanPreviousPage,
-        getPageCount,
-        getCanNextPage,
-        nextPage,
-        previousPage,
-        setPageSize,
-    } = useTable<IPost>({ columns });
-    // highlight-end
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "Status",
+      },
+      {
+        id: "action",
+        header: "Action",
+        accessorKey: "id",
+        cell: function render({ getValue }) {
+          return (
+            <>
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => show("posts", getValue() as number)}
+              >
+                View
+              </button>
 
-    const categoryIds =
-        tableData?.data?.map((item) => item.category?.[0]) ?? [];
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                onClick={() => edit("posts", getValue() as number)}
+              >
+                Edit
+              </button>
 
-    const { data: categoriesData } = useMany<ICategory>({
-        resource: "category",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
+              <button
+                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                onClick={() =>
+                  mutate({
+                    id: getValue() as number,
+                    resource: "posts",
+                  })
+                }
+              >
+                Delete
+              </button>
+            </>
+          );
         },
-    });
+      },
+    ],
+    [],
+  );
 
-    setOptions((prev) => ({
-        ...prev,
-        meta: {
-            ...prev.meta,
-            categoriesData,
-        },
-    }));
+  // highlight-start
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      tableQueryResult: { data: tableData },
+    },
+    getState,
+    setPageIndex,
+    getCanPreviousPage,
+    getPageCount,
+    getCanNextPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+  } = useTable<IPost>({ columns });
+  // highlight-end
 
-    return (
-        <div className="mx-auto pb-4">
-            <div className="mb-3 mt-1 flex items-center justify-end">
-                <button
-                    className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
-                    onClick={() => create("posts")}
+  const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
+
+  const { data: categoriesData } = useMany<ICategory>({
+    resource: "category",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
+
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+      categoriesData,
+    },
+  }));
+
+  return (
+    <div className="mx-auto pb-4">
+      <div className="mb-3 mt-1 flex items-center justify-end">
+        <button
+          className="flex items-center justify-between gap-1 rounded border border-gray-200 bg-indigo-500 p-2 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out hover:bg-indigo-600"
+          onClick={() => create("posts")}
+        >
+          <span>Create Post</span>
+        </button>
+      </div>
+
+      <table className="min-w-full table-fixed divide-y divide-gray-200 border">
+        <thead className="bg-gray-100">
+          {getHeaderGroups().map((headerGroup, idx) => (
+            <tr key={idx}>
+              {headerGroup.headers.map((header, idx) => (
+                <th
+                  key={idx}
+                  colSpan={header.colSpan}
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                 >
-                    <span>Create Post</span>
-                </button>
-            </div>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody className="divide-y divide-gray-200 bg-white">
+          {getRowModel().rows.map((row, idx) => {
+            return (
+              <tr key={idx} className="transition hover:bg-gray-100">
+                {row.getVisibleCells().map((cell, idx) => {
+                  return (
+                    <td key={idx} className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
 
-            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
-                <thead className="bg-gray-100">
-                    {getHeaderGroups().map((headerGroup, idx) => (
-                        <tr key={idx}>
-                            {headerGroup.headers.map((header, idx) => (
-                                <th
-                                    key={idx}
-                                    colSpan={header.colSpan}
-                                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext(),
-                                    )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                    {getRowModel().rows.map((row, idx) => {
-                        return (
-                            <tr
-                                key={idx}
-                                className="transition hover:bg-gray-100"
-                            >
-                                {row.getVisibleCells().map((cell, idx) => {
-                                    return (
-                                        <td
-                                            key={idx}
-                                            className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
-                                        >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-
-            {/* highlight-start */}
-            <div className="mx-auto mt-12 flex items-center justify-between">
-                <div className="mx-auto flex items-center justify-between md:w-7/12">
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => setPageIndex(0)}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<<"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => previousPage()}
-                        disabled={!getCanPreviousPage()}
-                    >
-                        {"<"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => nextPage()}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">"}
-                    </button>
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => setPageIndex(getPageCount() - 1)}
-                        disabled={!getCanNextPage()}
-                    >
-                        {">>"}
-                    </button>
-                    <div className="w-[40%] px-5">
-                        Page
-                        <strong>
-                            &nbsp; {getState().pagination.pageIndex + 1} of{" "}
-                            {getPageCount()}
-                        </strong>
-                    </div>
-                    <div className="px-5">
-                        Go to page:
-                        <input
-                            className="block rounded-[8px] border p-2"
-                            type="number"
-                            defaultValue={getState().pagination.pageIndex + 1}
-                            onChange={(e) => {
-                                const page = e.target.value
-                                    ? Number(e.target.value) - 1
-                                    : 0;
-                                setPageIndex(page);
-                            }}
-                        />
-                    </div> <select
-                        className="w-[50%] border px-5"
-                        value={getState().pagination.pageSize}
-                        onChange={(e) => {
-                            setPageSize(Number(e.target.value));
-                        }}
-                    >
-                        {[10, 20, 30, 40, 50].map((pageSize) => (
-                            <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-            {/* highlight-end */}
+      {/* highlight-start */}
+      <div className="mx-auto mt-12 flex items-center justify-between">
+        <div className="mx-auto flex items-center justify-between md:w-7/12">
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => setPageIndex(0)}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<<"}
+          </button>
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => previousPage()}
+            disabled={!getCanPreviousPage()}
+          >
+            {"<"}
+          </button>
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => nextPage()}
+            disabled={!getCanNextPage()}
+          >
+            {">"}
+          </button>
+          <button
+            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+            onClick={() => setPageIndex(getPageCount() - 1)}
+            disabled={!getCanNextPage()}
+          >
+            {">>"}
+          </button>
+          <div className="w-[40%] px-5">
+            Page
+            <strong>
+              &nbsp; {getState().pagination.pageIndex + 1} of {getPageCount()}
+            </strong>
+          </div>
+          <div className="px-5">
+            Go to page:
+            <input
+              className="block rounded-[8px] border p-2"
+              type="number"
+              defaultValue={getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                setPageIndex(page);
+              }}
+            />
+          </div> <select
+            className="w-[50%] border px-5"
+            value={getState().pagination.pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
         </div>
-    );
+      </div>
+      {/* highlight-end */}
+    </div>
+  );
 };
 ```
 
@@ -1757,7 +1631,7 @@ export const PostList: React.FC = () => {
 
 ## Conclusion
 
-In this article, we covered how to create a headless **refine** application using the `create refine-app` as well as creating a **React CRUD** application using **refine**. There is no limit to what can be achieved using **refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+In this article, we covered how to create a headless **Refine** application using the `create refine-app` as well as creating a **React CRUD** application using **Refine**. There is no limit to what can be achieved using **Refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
 
 ## Live CodeSandbox Example
 

@@ -1,22 +1,22 @@
 ---
 title: Build Fast and Customizable Admin Panel with NestJS
-description: We will prepare a simple `job-posting` application. We will also use the refine framework for the admin panel. The project will consist of two parts, api and admin.
+description: We will prepare a simple `job-posting` application. We will also use the Refine framework for the admin panel. The project will consist of two parts, api and admin.
 slug: customizable-admin-panel-with-nestjs
 authors: yildiray
-tags: [refine, nestjs, react, tutorial]
+tags: [Refine, nestjs, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
 
-In this article, we will prepare a simple `job-posting` application. We will also use the [refine](https://github.com/refinedev/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
+In this article, we will prepare a simple `job-posting` application. We will also use the [Refine](https://github.com/refinedev/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
 
 <!--truncate-->
 
@@ -83,7 +83,7 @@ It created these end-points automatically with nestjsx/crud.
 
 ## Refine Admin Panel
 
-**Now let's refine the admin panel.** With [Superplate](https://pankod.github.io/superplate/docs), we can quickly create a `refine` project.
+**Now let's Refine the admin panel.** With [Superplate](https://pankod.github.io/superplate/docs), we can quickly create a `refine` project.
 
 ```bash
 npm create refine-app@latest admin -- -b v3
@@ -121,7 +121,7 @@ Change api url in [admin/src/App.tsx](https://github.com/refinedev/refine-hackat
 const API_URL = "http://localhost:3000";
 ```
 
-Let's add the listing page in refine for the `companies` crud end-point.
+Let's add the listing page in Refine for the `companies` crud end-point.
 
 ```tsx title="/admin/src/pages/companies/list.tsx"
 import {

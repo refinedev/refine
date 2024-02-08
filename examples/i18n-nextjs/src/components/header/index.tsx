@@ -1,55 +1,75 @@
-import { useGetLocale } from "@refinedev/core";
+"use client";
+
 import { DownOutlined } from "@ant-design/icons";
+import { ColorModeContext } from "@contexts/color-mode";
+import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
     Layout as AntdLayout,
-    Space,
+    Avatar,
     Button,
     Dropdown,
-    Avatar,
     MenuProps,
+    Space,
+    Switch,
+    Typography,
+    theme,
 } from "antd";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import React, { useContext } from "react";
+import Cookies from "js-cookie";
 
-export const Header: React.FC = () => {
+type IUser = {
+    id: number;
+    name: string;
+    avatar: string;
+};
+
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+    sticky,
+}) => {
     const locale = useGetLocale();
-    const { locales } = useRouter();
-
     const currentLocale = locale();
+    const changeLanguage = useSetLocale();
+    const { token } = theme.useToken();
+    const { data: user } = useGetIdentity<IUser>();
+    const { mode, setMode } = useContext(ColorModeContext);
 
-    const menuItems: MenuProps["items"] = [...(locales || [])]
+    const languageMenuItems: MenuProps["items"] = [...(["en", "de"] || [])]
         .sort()
         .map((lang: string) => ({
             key: lang,
+            onClick: () => {
+                changeLanguage(lang);
+                Cookies.set("NEXT_LOCALE", lang);
+            },
+            label: lang === "en" ? "English" : "German",
             icon: (
                 <span style={{ marginRight: 8 }}>
                     <Avatar size={16} src={`/images/flags/${lang}.svg`} />
                 </span>
             ),
-            label: (
-                <Link href="/" locale={lang}>
-                    {lang === "en" ? "English" : "German"}
-                </Link>
-            ),
         }));
 
+    const headerStyles: React.CSSProperties = {
+        backgroundColor: token.colorBgElevated,
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        padding: "0px 24px",
+        height: "64px",
+    };
+
+    if (sticky) {
+        headerStyles.position = "sticky";
+        headerStyles.top = 0;
+        headerStyles.zIndex = 1;
+    }
+
     return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "48px",
-                backgroundColor: "#FFF",
-                position: "sticky",
-                top: 0,
-                zIndex: 1,
-            }}
-        >
+        <AntdLayout.Header style={headerStyles}>
             <Dropdown
                 menu={{
-                    items: menuItems,
+                    items: languageMenuItems,
                     selectedKeys: currentLocale ? [currentLocale] : [],
                 }}
             >
@@ -59,11 +79,35 @@ export const Header: React.FC = () => {
                             size={16}
                             src={`/images/flags/${currentLocale}.svg`}
                         />
-                        {currentLocale === "en" ? "English" : "German"}
+                        <Typography.Text>
+                            {currentLocale === "en" ? "English" : "German"}
+                        </Typography.Text>
                         <DownOutlined />
                     </Space>
                 </Button>
             </Dropdown>
+            <Space>
+                <Switch
+                    checkedChildren="🌛"
+                    unCheckedChildren="🔆"
+                    onChange={() =>
+                        setMode(mode === "light" ? "dark" : "light")
+                    }
+                    defaultChecked={mode === "dark"}
+                />
+                {(user?.name || user?.avatar) && (
+                    <Space style={{ marginLeft: "8px" }} size="middle">
+                        {user?.name && (
+                            <Typography.Text strong>
+                                {user.name}
+                            </Typography.Text>
+                        )}
+                        {user?.avatar && (
+                            <Avatar src={user?.avatar} alt={user?.name} />
+                        )}
+                    </Space>
+                )}
+            </Space>
         </AntdLayout.Header>
     );
 };

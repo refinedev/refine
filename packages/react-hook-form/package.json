@@ -1,5 +1,5 @@
 {
-  "version": "4.8.13",
+  "version": "4.8.14",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.47.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",

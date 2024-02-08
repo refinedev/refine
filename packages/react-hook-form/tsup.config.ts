@@ -12,6 +12,9 @@ export default defineConfig({
     esbuildPlugins: [lodashReplacePlugin, markAsExternalPlugin],
     esbuildOptions(options) {
         options.keepNames = true;
+        options.banner = {
+            js: '"use client"',
+        };
     },
     onSuccess: "tsc --project tsconfig.declarations.json",
 });

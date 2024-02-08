@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@refine-auth/kinde-react": "^1.0.2",
-    "@refinedev/antd": "^5.37.3",
-    "@refinedev/cli": "^2.16.23",
-    "@refinedev/core": "^4.47.0",
+    "@refinedev/antd": "^5.37.4",
+    "@refinedev/cli": "^2.16.24",
+    "@refinedev/core": "^4.47.1",
     "@refinedev/react-router-v6": "^4.5.5",
     "@refinedev/simple-rest": "^5.0.2",
     "antd": "^5.0.5",
@@ -24,7 +24,7 @@
     "vite": "^4.3.1"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine"

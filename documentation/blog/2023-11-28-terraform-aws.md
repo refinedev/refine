@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 Managing infrastructure across multiple environments and regions can be an operational headache for teams as applications scale. Provisioning resources manually is boring and time-consuming while scripting the process requires significant engineering effort.
 
-Infrastructure as code (IaC) tools like HashiCorp's Terraform provides a compelling solution - allowing you to define reusable configurations for spinning up everything from storage buckets to Kubernetes clusters.
+Infrastructure as code (IaC) tools like HashCorp's Terraform provides a compelling solution - allowing you to define reusable configurations for spinning up everything from storage buckets to Kubernetes clusters.
 
 In this beginner's guide, I will walk through getting started with Terraform specifically for infrastructure provisioning on Amazon Web Services (AWS). I will cover the prerequisites, configuring access to AWS, writing a simple Terraform configuration, modifying your infrastructure, and then cleaning up.
 
@@ -91,7 +91,7 @@ With credentials configured through either approach, Terraform is now ready to b
 
 ## Creating a Simple Configuration
 
-Now that Terraform can access your AWS account, let's write your first Terraform configuration file to deploy infrastructure. Terraform code is written in HCL (HashiCorp Configuration Language) syntax.
+Now that Terraform can access your AWS account, let's write your first Terraform configuration file to deploy infrastructure. Terraform code is written in HCL (HashCorp Configuration Language) syntax.
 
 Configuration files end in `.tf` and define providers and resources. You will specify that you want to use AWS as your provider.
 

@@ -3,7 +3,7 @@
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "author": "refine",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "license": "MIT",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -20,10 +20,10 @@
     "node": ">=10"
   },
   "scripts": {
-    "start:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "start:server": "node dist/cli.js",
-    "start": "npm run start:client & tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "npm run dev:client & tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
@@ -31,8 +31,8 @@
   "dependencies": {
     "error-stack-parser": "^2.1.4",
     "express": "^4.18.2",
-    "@refinedev/devtools-ui": "1.1.16",
-    "@refinedev/devtools-shared": "1.1.2",
+    "@refinedev/devtools-ui": "1.1.17",
+    "@refinedev/devtools-shared": "1.1.3",
     "@ory/client": "^1.5.2",
     "http-proxy-middleware": "^2.0.6",
     "boxen": "^5.1.2",
