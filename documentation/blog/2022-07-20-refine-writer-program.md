@@ -8,8 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-20-refine-wri
 hide_table_of_contents: false
 ---
 
-
-
 ## Refine technical writer program
 
 Refine technical writer program's aim is to support the open source community by providing high-quality technical articles about React and JS technologies.
@@ -18,13 +16,11 @@ As a technical article writer, your work will be instrumental in helping develop
 
 <!--truncate-->
 
-
-### What will refine do for you?
+### What will Refine do for you?
 
 - We'll promote your article on our official dev.to account, LinkedIn, Discord, and Twitter channels.
 - You'll get a byline with your name and link so readers can find more about you.
 - We'll give Refine's full swag kit as a gift.
-
 
 ### What kind of articles do we want?
 
@@ -52,10 +48,9 @@ Please check if there are enough articles on other blog sites about the same top
 
 ### Post Structure
 
-Developers, as you all probably know, telling a story is one of the most important aspects of writing a great post. It engages the reader and makes them interested in what you have to say. 
+Developers, as you all probably know, telling a story is one of the most important aspects of writing a great post. It engages the reader and makes them interested in what you have to say.
 
 In this blog post, we are going to talk about some tips on how to structure your story so that it's interesting and easy to follow.
-
 
 #### Introduction
 
@@ -65,25 +60,24 @@ This is where we will persuade the reader to read the article.
 
 A nice introduction provides information about the rest of the article.
 Our focus should be on the problem it solved, rather than on the technology to be used.
-- What is it about? 
+
+- What is it about?
 - What will it give me?
 - Are they building an app and deploying it or adding E2E tests to existing code? Be specific, as this provides the motivation readers need and gets them excited about the topic.
 
-In order to motivate the reader and get them excited about your topic don't use  phrases like “you will learn how to”, use phrases like “you will build” or “you will deploy”. This motivates the reader and get them excited more about your topic.
+In order to motivate the reader and get them excited about your topic don't use phrases like “you will learn how to”, use phrases like “you will build” or “you will deploy”. This motivates the reader and get them excited more about your topic.
 
 The steps in the article should be given as a linked bullet list in the introduction.
-
 
 #### Prerequisites
 
 If needed, the required development environment needs to be listed if you write a tutorial article:
+
 - The node version
 - Platform that needed to be registered(For example you need a Heroku account for deployment stuff)
 - The concepts needed to be known will be listed before starting reading the article.
 
-If the concepts mentioned in the article need to be understood well,  you can give links to external sources as references.
-
-
+If the concepts mentioned in the article need to be understood well, you can give links to external sources as references.
 
 #### Logical content flow
 
@@ -107,14 +101,13 @@ If any questions or comments from readers about your article, you need to help t
 
 ### We use motivational language
 
-
 We write articles in formal but friendly tone. Articles do not include jargon, memes, slang and emojis.
 Don't use first person word, instead use second person phares
 
-For example Instead of using " I will ..."  use "You will.."
-Avoid words like "simple,” , “easy,” “simply,” “obviously,”  to describe something.
+For example Instead of using " I will ..." use "You will.."
+Avoid words like "simple,” , “easy,” “simply,” “obviously,” to describe something.
 
-We prefer to use patterns like  "In this tutorial you will install ..."  instead of "You will learn how to install .."
+We prefer to use patterns like "In this tutorial you will install ..." instead of "You will learn how to install .."
 
 ### Copyright
 
@@ -124,10 +117,10 @@ At Refine, we take plagiarism seriously. All of our writers are expected to prod
 
 If you're using a stock image, add an author name or link below to the image
 
-
 ### Submission process
 
 We ask for an outline before start writing your post. In the outline you need to explain:
+
 - Who is your target audience?
 - What will the reader learn from the article?
 - The outline needs to include the main headings or sections of the article, along with an explanation of what will be taught in that section.
@@ -141,9 +134,9 @@ We ask you to keep the article exclusive to us for the first 2 months due to SEO
 
 If you have any article ideas that you think would be a good fit for us, please send us an email with your LinkedIn, GitHub profile, and your other published articles links. We would love to hear from you and react to any new ideas you may have.
 
- Thank you for your interest in writing for us!
+Thank you for your interest in writing for us!
 
-Reach us by 
-[Discord Community](https://discord.gg/refine) 
+Reach us by
+[Discord Community](https://discord.gg/refine)
 or
 **info@refine.dev**

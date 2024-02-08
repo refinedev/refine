@@ -3,28 +3,28 @@ title: Develop your Own Customizable Invoice Generator with Refine and Strapi | 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-react-admin-invoice-generator
 authors: melih
-tags: [refine, tutorial, react, strapi]
+tags: [Refine, tutorial, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
 :::
 
-Invoice management can be a daunting task for any business. With so many different software programs and options, it's hard to know where you need start or what will work best with your company culture! You can solve this problem with **refine**. With Refine, you can develop your own customizable invoice generator with ease.
+Invoice management can be a daunting task for any business. With so many different software programs and options, it's hard to know where you need start or what will work best with your company culture! You can solve this problem with **Refine**. With Refine, you can develop your own customizable invoice generator with ease.
 
 <!--truncate-->
 
 ## Introduction
 
-We are going to develop an invoice generator application for our business using **refine** and [Strapi](https://strapi.io/). Let's see together how simple yet functional it can be!
+We are going to develop an invoice generator application for our business using **Refine** and [Strapi](https://strapi.io/). Let's see together how simple yet functional it can be!
 
 This article will consist of two parts and we will try to explain each step in detail. In this section, we will create the basic parts of our application.
 
@@ -32,7 +32,7 @@ In this part, we will create a panel where our own company information is includ
 
 ## Setup Refine Project
 
-Let's start by creating our refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
+Let's start by creating our Refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a Refine project.
 
 ```bash
 
@@ -50,13 +50,13 @@ npm create refine-app@latest refine-invoice-generator -- -p refine-react -b v3
 ✔ i18n - Internationalization: · No
 ```
 
-superplate will quickly create our refine project according to the features we choose. Let's continue by install the [refine Strapi-v4 Data Provider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4) that we will use later.
+superplate will quickly create our Refine project according to the features we choose. Let's continue by install the [Refine Strapi-v4 Data Provider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4) that we will use later.
 
 ```bash
 npm i @refinedev/strapi-v4
 ```
 
-Our refine project and installations are now ready! Let's start using it.
+Our Refine project and installations are now ready! Let's start using it.
 
 ## Usage
 
@@ -225,7 +225,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
 <br />
 
-We have created our collections by Strapi, now we can create Clients and their contacts with **refine**.
+We have created our collections by Strapi, now we can create Clients and their contacts with **Refine**.
 
 ## Your Company Detail Page
 
@@ -370,11 +370,11 @@ function App() {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
 <br />
 
-We fetch the data of the `Company` collection that we created by Strapi, thanks to the **refine** `dataProvider`, and put it into the card component we created.
+We fetch the data of the `Company` collection that we created by Strapi, thanks to the **Refine** `dataProvider`, and put it into the card component we created.
 
 ## Contact Page
 
-Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
+Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **Refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
 
 ```tsx title="src/pages/contact/ContactList.tsx"
 import { List, Table, TagField, useTable, Space, EditButton, DeleteButton, useModalForm } from "@refinedev/antd";
@@ -781,7 +781,7 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-We created our `Client` and `Contact` pages. Now, let's create a Client with **refine** and define contacts for our clients.
+We created our `Client` and `Contact` pages. Now, let's create a Client with **Refine** and define contacts for our clients.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif" alt="Refine Clients Overview" />
 <br />

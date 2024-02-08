@@ -25,7 +25,7 @@ Table of Contents
 7. [Material UI](#material-ui)
 8. [auth0](#auth0)
 9. [cerbos](#cerbos)
-10. [Refine](#refine)
+10. [Refine](#Refine)
 
 ### 1. Lorem Ipsum and Lorem Picsum <a name="lorem"></a>
 
@@ -97,15 +97,15 @@ In fact, I've included most of the resources we'll need when building a website.
 
 But apart from all these, there is one last item that I want to talk to you about. You wrote a title saying it will make our life easier, but you may say how adding all these to a project will make our life easier. At this point, we come across "refine" 💪
 
-### 10. refine <a name="refine"></a>
+### 10. Refine <a name="refine"></a>
 
-**[refine](https://refine.dev/)** is a React-based framework for rapid building of internal tools. It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**[Refine](https://refine.dev/)** is a React-based framework for rapid building of internal tools. It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-**refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+**Refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/refine.jpg" alt="refine" />
 
-If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [refine's](https://refine.dev/docs/) powerful interface!
+If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [Refine's](https://refine.dev/docs/) powerful interface!
 
 **Key features**
 ​

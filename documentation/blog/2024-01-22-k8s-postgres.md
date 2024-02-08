@@ -83,7 +83,7 @@ Let's push the image to registry:
 docker push registry.example.com/my-postgres-image
 ```
 
-You need to replace the `registry.example.com` with your registery. For the GCP example, we will use below:
+You need to replace the `registry.example.com` with your registry. For the GCP example, we will use below:
 
 ```
 docker push gcr.io/myproject/my-postgres-image

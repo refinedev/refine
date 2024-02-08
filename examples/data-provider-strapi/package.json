@@ -30,7 +30,7 @@
     "http-proxy-middleware": "^2.0.6"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine"

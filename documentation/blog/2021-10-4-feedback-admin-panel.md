@@ -3,16 +3,16 @@ title: Create a Feedback Admin panel in 15 Minutes with Refine and Strapi
 description: We will quickly create an api with Strapi and then develop its frontend with refine. Thus, let's see how an admin panel can be created in a very short time with the perfect harmony of Strapi and refine.
 slug: create-a-feedback-admin-panel-with-refine-and-strapi
 authors: salih
-tags: [refine, strapi, react, tutorial]
+tags: [Refine, strapi, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
 
@@ -20,7 +20,7 @@ In this article, we will create a panel where we can manage the feedback we rece
 
 <!--truncate-->
 
-We will quickly create an api with [Strapi.io](https://strapi.io) and then develop its frontend with [refine](https://refine.dev). Thus, let's see how an admin panel can be created in a very short time with the perfect harmony of Strapi and refine.
+We will quickly create an api with [Strapi.io](https://strapi.io) and then develop its frontend with [Refine](https://refine.dev). Thus, let's see how an admin panel can be created in a very short time with the perfect harmony of Strapi and refine.
 
 Features that our panel will have:
 
@@ -45,9 +45,9 @@ Quite simply, a feedback should have a `description` text field, A `page` text f
 
 ### Creating panel with `refine`
 
-Let's create our frontend project with refine's [setting up guide](https://refine.dev/docs/#setting-up).
+Let's create our frontend project with Refine's [setting up guide](https://refine.dev/docs/#setting-up).
 
-There are two alternative methods to set up a refine application. We will quickly create our application with [superplate](https://pankod.github.io/superplate).
+There are two alternative methods to set up a Refine application. We will quickly create our application with [superplate](https://pankod.github.io/superplate).
 
 ```bash
 npm create refine-app@latest refine-feedback-client -- -b v3
@@ -387,7 +387,7 @@ See detailed usage of useSimpleList for adding new filters, adding search entrie
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-feedback-admin-panel/feedback_overview.gif" alt="feedback_overview" />
 <br />
 
-Let's develop feedback widget where we can get feedback to expand the application a little more. For this application, I will develop this component with refine, but you can create this component with Strapi APIs in any way you want.
+Let's develop feedback widget where we can get feedback to expand the application a little more. For this application, I will develop this component with Refine, but you can create this component with Strapi APIs in any way you want.
 
 You can look at the code of the component I developed [here](https://github.com/refinedev/refine-hackathon/tree/main/refeedback/src/components/feedback).
 

@@ -3,12 +3,12 @@ title: Build low-code, customizable and authorization ready (accesscontrol) admi
 description: Build authorization ready admin panel with NestJS.
 slug: how-to-access-control-with-nestjs
 authors: yildiray
-tags: [nestjs, access-control, refine]
+tags: [nestjs, access-control, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
-In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-with-nestjs), we used [nestjs](https://nestjs.com) with an api and [refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
+In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-with-nestjs), we used [nestjs](https://nestjs.com) with an api and [Refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
 
 <!--truncate-->
 
@@ -16,16 +16,17 @@ In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-wit
 
 ## Intro
 
-In the [previous blog post](https://dev.to/refine/build-fast-and-customizable-admin-panel-with-nestjs-291), we used [nestjs](https://nestjs.com) with an api and [refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
+In the [previous blog post](https://dev.to/refine/build-fast-and-customizable-admin-panel-with-nestjs-291), we used [nestjs](https://nestjs.com) with an api and [Refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
 
 ## Scenario
+
 Let's have two roles in this system, they are `admin` and `editor`. In the API we prepared, we had two crud processes that we categorized as `companies` and `jobs`.
 
 In this scenario; `editor` can only list companies, not any deletion or additions. Have the authority to list and create job postings. Let `admin` have authorization for all transactions.
 
 ## Authorization
 
-I used [nestjsx-crud](https://github.com/nestjsx/crud) in the api we prepared. This library makes `CRUD` operations very easy. However, there is no support on the authorization side. That's why I made use of the [accesscontrol](https://github.com/onury/accesscontrol) library, which can be easily integrated with both `nestjs` and `refine`. 
+I used [nestjsx-crud](https://github.com/nestjsx/crud) in the api we prepared. This library makes `CRUD` operations very easy. However, there is no support on the authorization side. That's why I made use of the [accesscontrol](https://github.com/onury/accesscontrol) library, which can be easily integrated with both `nestjs` and `refine`.
 
 ## Using AccessControl in API
 
@@ -40,11 +41,11 @@ I'm specifying a role as the `AccessControl` supports. According to our scenario
 ```ts
 // app.roles.ts
 
-import { RolesBuilder } from 'nest-access-control';
+import { RolesBuilder } from "nest-access-control";
 
 export enum AppRoles {
-  ADMIN = 'ADMIN',
-  EDITOR = 'EDITOR',
+  ADMIN = "ADMIN",
+  EDITOR = "EDITOR",
 }
 
 export const roles: RolesBuilder = new RolesBuilder();
@@ -52,14 +53,14 @@ export const roles: RolesBuilder = new RolesBuilder();
 roles
   // editor
   .grant(AppRoles.EDITOR)
-  .create('jobs')
-  .update('jobs')
+  .create("jobs")
+  .update("jobs")
   // admin
   .grant(AppRoles.ADMIN)
   .extend(AppRoles.EDITOR)
-  .create(['companies'])
-  .update(['companies'])
-  .delete(['companies', 'jobs']);
+  .create(["companies"])
+  .update(["companies"])
+  .delete(["companies", "jobs"]);
 ```
 
 Now I import `AccessControlModule`.
@@ -125,9 +126,9 @@ Similarly, we add this decorator for other methods.
 
 After these operations, we complete the authorization process on the API side. Now we will do the authorization to the admin panel that we created with `refine`.
 
-## Using AccessControl in refine (dashboard)
+## Using AccessControl in Refine (dashboard)
 
-refine; It supports many authorization tools, very flexible. What we need to do; Defining an `accessControlProvider` inside the `<Refine />` component.
+Refine; It supports many authorization tools, very flexible. What we need to do; Defining an `accessControlProvider` inside the `<Refine />` component.
 
 `accessControlProvider` is implemented only one asynchronous method named "can" to be used to control whether the requested access is granted. This method takes `resource` and `action` with parameters.
 
@@ -168,7 +169,8 @@ refine; It supports many authorization tools, very flexible. What we need to do;
 ```
 
 Now let me explain a little bit of this code I wrote. First we need the role of the logged in user. We saved it to local storage during login.
-Then we match the refine `actions` with the accessControl's actions and check its authorization with the `granted` method. I also resolve the returned result.
+Then we match the Refine `actions` with the accessControl's actions and check its authorization with the `granted` method. I also resolve the returned result.
 
 ## Conclusion
+
 As a result, we have done the authorization on both the ui (dashboard) side and the api side.

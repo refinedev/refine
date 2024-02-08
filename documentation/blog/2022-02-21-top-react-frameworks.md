@@ -1,6 +1,6 @@
 ---
 title: Top React JS Frameworks Every Developer Should Know
-description: We will compare the features of refine and react-admin
+description: We will compare the features of Refine and react-admin
 slug: best-react-frameworks
 authors: aydin
 tags: [comparison]
@@ -27,7 +27,7 @@ Table of Contents
   - [2. Material UI ](#2-material-ui-)
   - [3. Ant Design ](#3-ant-design-)
   - [4. React Bootstrap ](#4-react-bootstrap-)
-  - [5. refine ](#5-refine-)
+  - [5. Refine ](#5-refine-)
 
 ### 1. Create React App <a name="cra"></a>
 
@@ -103,9 +103,9 @@ npm install react-bootstrap bootstrap@5.1.3
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/react-bootstrap.png" alt="react-bootstrap" />
 
-### 5. refine <a name="refine"></a>
+### 5. Refine <a name="refine"></a>
 
-[refine](https://github.com/refinedev/refine) stands as an open-source React-oriented framework meticulously crafted to streamline and expedite web application development, bolstered by server-side rendering compatibility through Next.js or Remix. While its primary focus lies on data-rich B2B applications such as admin panels, dashboards, and internal tool, it seamlessly extends its capabilities to customer-facing interfaces like storefronts and a diverse array of CRUD applications.
+[Refine](https://github.com/refinedev/refine) stands as an open-source React-oriented framework meticulously crafted to streamline and expedite web application development, bolstered by server-side rendering compatibility through Next.js or Remix. While its primary focus lies on data-rich B2B applications such as admin panels, dashboards, and internal tool, it seamlessly extends its capabilities to customer-facing interfaces like storefronts and a diverse array of CRUD applications.
 
 **Key features**
 
@@ -136,7 +136,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 ✅ Benefit from comprehensive **test coverage** for enhanced reliability.
 
-There are two ways to add UI elements to refine;
+There are two ways to add UI elements to Refine;
 
 1. Using a UI Library such as Tailwind, Chakra UI, etc.
 2. Using a complete UI Framework such as Ant Design, Material UI, etc.
