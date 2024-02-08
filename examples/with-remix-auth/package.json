@@ -4,7 +4,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "refine build",
-    "start": "refine dev",
+    "dev": "refine dev",
     "start:prod": "refine start",
     "refine": "refine"
   },

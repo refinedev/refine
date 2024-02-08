@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "test": "jest --passWithNoTests --runInBand",
     "preview": "refine start",
