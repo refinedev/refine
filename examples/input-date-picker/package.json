@@ -2,29 +2,9 @@
   "name": "input-date-picker",
   "version": "3.25.0",
   "private": true,
-  "dependencies": {
-    "@refinedev/antd": "^5.37.4",
-    "@refinedev/core": "^4.47.1",
-    "@refinedev/cli": "^2.16.24",
-    "@refinedev/react-router-v6": "^4.5.5",
-    "@refinedev/simple-rest": "^5.0.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
-    "@uiw/react-md-editor": "^3.19.5",
-    "antd": "^5.0.5"
-  },
-  "devDependencies": {
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^4.7.4",
-    "vite": "^4.3.1"
-  },
   "scripts": {
-    "dev": "refine dev",
     "build": "tsc && refine build",
+    "dev": "refine dev",
     "preview": "refine start",
     "refine": "refine"
   },
@@ -39,5 +19,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@refinedev/antd": "^5.37.4",
+    "@refinedev/cli": "^2.16.24",
+    "@refinedev/core": "^4.47.1",
+    "@refinedev/react-router-v6": "^4.5.5",
+    "@refinedev/simple-rest": "^5.0.2",
+    "@uiw/react-md-editor": "^3.19.5",
+    "antd": "^5.0.5",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1"
   }
 }

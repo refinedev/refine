@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "refine dev",
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
-    "preview": "refine start",
-    "start:prod": "refine start",
-    "lint": "eslint src --fix",
+    "codegen": "graphql-codegen",
+    "dev": "refine dev",
     "format": "prettier --write src",
+    "lint": "eslint src --fix",
+    "preview": "refine start",
     "refine": "refine",
-    "codegen": "graphql-codegen"
+    "start:prod": "refine start"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
@@ -30,17 +30,17 @@
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
-    "graphql-ws": "^5.9.1",
     "graphql-tag": "^2.12.6",
+    "graphql-ws": "^5.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/import-types-preset": "^3.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
-    "@graphql-codegen/import-types-preset": "^3.0.0",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
