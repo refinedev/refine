@@ -339,7 +339,8 @@ const TutorialSandpackBase = ({
             "sp-tabs":
                 "!border-b-gray-300 dark:!border-b-gray-700 !bg-gray-0 dark:!bg-gray-800",
             "sp-tabs-scrollable-container": "!min-h-[32px] scrollbar-hidden",
-            "sp-input": "!text-gray-800 dark:!text-gray-100",
+            "sp-input":
+                "!text-gray-800 dark:!text-gray-100 !bg-gray-200 dark:!bg-gray-700 !pb-[5px]",
             "sp-cm": clsx(
                 "p-0 bg-transparent",
                 "[&>.cm-editor]:!bg-refine-react-light-code",
