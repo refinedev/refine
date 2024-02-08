@@ -5,7 +5,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { usePermissions } from "./";
 
 type PermissionsProps = { 
-    params: string, 
+    params: Record<string, any>, 
     v3LegacyAuthProviderCompatible: boolean 
 }
 
@@ -77,7 +77,7 @@ describe("usePermissions Hook", () => {
         const { result } = renderHook(
             (props: PermissionsProps) => usePermissions({ ...props }),
             {
-                initialProps: { params: "admin", v3LegacyAuthProviderCompatible: false },
+                initialProps: { params: {currentRole: "admin"}, v3LegacyAuthProviderCompatible: false },
                 wrapper: TestWrapper({
                     authProvider: {
                         login: () => Promise.resolve({ success: true }),
@@ -96,7 +96,7 @@ describe("usePermissions Hook", () => {
             expect(result.current.isSuccess).toBeTruthy();
         });
         
-        expect(mockGetPermissions).toHaveBeenCalledWith("admin");
+        expect(mockGetPermissions).toHaveBeenCalledWith({currentRole: "admin"});
         expect(result.current.data).toEqual(["admin"]);
     });
 });
@@ -186,7 +186,7 @@ describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
         const { result } = renderHook(
             (props: PermissionsProps) => usePermissions({ ...props }),
             {
-                initialProps: { params: 'admin', v3LegacyAuthProviderCompatible: true },
+                initialProps: { params: {currentRole: 'admin'}, v3LegacyAuthProviderCompatible: true },
                 wrapper: TestWrapper({
                     legacyAuthProvider: {
                         login: () => Promise.resolve(),
@@ -202,7 +202,7 @@ describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
             expect(result.current.isLoading).toBeFalsy();
         });
 
-        expect(legacyGetPermissionMock).toHaveBeenCalledWith("admin");
+        expect(legacyGetPermissionMock).toHaveBeenCalledWith({currentRole: "admin"});
         expect(result.current.data).toEqual(["admin"]);
     });
 });

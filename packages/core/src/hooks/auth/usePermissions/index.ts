@@ -10,13 +10,13 @@ import { useKeys } from "@hooks/useKeys";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { PermissionResponse } from "../../../interfaces";
 
-export type UsePermissionsLegacyProps<TData = any, TParams = unknown> = {
+export type UsePermissionsLegacyProps<TData = any, TParams extends Record<string, any> = Record<string, any>> = {
     v3LegacyAuthProviderCompatible: true;
     options?: UseQueryOptions<TData>;
     params?: TParams;
 };
 
-export type UsePermissionsProps<TData = PermissionResponse, TParams = unknown> = {
+export type UsePermissionsProps<TData = PermissionResponse, TParams extends Record<string, any> = Record<string, any>> = {
     v3LegacyAuthProviderCompatible?: false;
     options?: UseQueryOptions<TData>;
     params?: TParams;
@@ -59,11 +59,11 @@ export function usePermissions<TData = any>(
  * @typeParam TData - Result data of the query
  *
  */
-export function usePermissions<TData = any>({
+export function usePermissions<TData = any, TParams extends Record<string, any> = Record<string, any>>({
     v3LegacyAuthProviderCompatible = false,
     options,
     params,
-}: UsePermissionsProps<TData> | UsePermissionsLegacyProps<TData> = {}):
+}: UsePermissionsProps<TData, TParams> | UsePermissionsLegacyProps<TData, TParams> = {}):
     | UsePermissionsReturnType
     | UsePermissionsLegacyReturnType<TData> {
     const { getPermissions: legacyGetPermission } = useLegacyAuthContext();
