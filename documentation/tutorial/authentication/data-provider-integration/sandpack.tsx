@@ -255,7 +255,6 @@ export const ListProducts = () => {
 `.trim();
 
 const AuthProviderWithOnErrorMethod = /* tsx */ `
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

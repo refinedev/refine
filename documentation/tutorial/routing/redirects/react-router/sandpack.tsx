@@ -153,7 +153,6 @@ export const CreateProduct = () => {
 `.trim();
 
 const AuthProviderWithRedirects = /* tsx */ `
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

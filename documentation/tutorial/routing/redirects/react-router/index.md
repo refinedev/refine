@@ -80,7 +80,6 @@ Let's update our `auth-provider.ts` file and provide a `redirectTo` properties t
 Try to update your `src/auth-provider.ts` file with the following lines:
 
 ```tsx title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

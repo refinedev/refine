@@ -22,7 +22,6 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 // updates
 
 const AuthProviderTsxCode = /* tsx */ `
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -66,7 +65,6 @@ export default function App(): JSX.Element {
 `.trim();
 
 const AuthProviderTsxWithCheckMethod = /* tsx */ `
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

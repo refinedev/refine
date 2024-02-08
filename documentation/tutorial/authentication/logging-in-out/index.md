@@ -19,7 +19,6 @@ We'll also be storing the `token` in the `localStorage` for later use.
 Try to add the following lines to your `src/auth-provider.ts` file:
 
 ```ts title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -173,7 +172,6 @@ Our fake REST API doesn't require us to send any request to logout the user. We'
 Try to add the following lines to your `src/auth-provider.ts` file:
 
 ```ts title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

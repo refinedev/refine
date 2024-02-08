@@ -22,7 +22,6 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 // updates
 
 const AuthProviderTsxWithGetIdentityMethod = /* tsx */ `
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
