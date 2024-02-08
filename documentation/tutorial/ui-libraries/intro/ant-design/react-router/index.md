@@ -14,8 +14,8 @@ This unit will cover the following topics:
 
 - Using layout components to add menus, headers, breadcrumbs and authentication management to your app,
 - Using CRUD view components to create action pages with consistent design and common features,
-- Using hooks to integrate form elements and tables with Refine's `useTable` and `useForm` hooks.
-- Integrating Refine's notifications with Ant Design's notification system.
+- Using hooks to integrate form elements and tables with Refine's `useTable` and `useForm` hooks,
+- Integrating Refine's notifications with Ant Design's notification system,
 - Using `<AuthPage />` components to easily manage authentication pages.
 
 ## Adding Ant Design Dependencies
