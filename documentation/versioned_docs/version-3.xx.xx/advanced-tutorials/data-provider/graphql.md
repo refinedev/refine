@@ -54,7 +54,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -71,7 +71,7 @@ const App: React.FC = () => {
       dataProvider={dataProvider(client)}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
     />
   );
@@ -404,6 +404,6 @@ mutation ($input: updatePostInput) {
 
 ## Example
 
-<CodeSandboxExample path="data-provider-strapi-graphql" />
+<CodeSandboxExample path="--branch v3 data-provider-strapi-graphql" />
 
 [data-provider]: /docs/3.xx.xx/api-reference/core/providers/data-provider/

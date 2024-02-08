@@ -1,5 +1,19 @@
 # @refinedev/mantine
 
+## 2.29.4
+
+### Patch Changes
+
+-   [#5573](https://github.com/refinedev/refine/pull/5573) [`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: add "use client" directive to exported files to work with nextjs app router
+
+## 2.29.3
+
+### Patch Changes
+
+-   [#5568](https://github.com/refinedev/refine/pull/5568) [`f1244819ad`](https://github.com/refinedev/refine/commit/f1244819adae9761234af697f292b4136da47503) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: `notificationProvider` is deprecated due to consistent naming convention between UI libraries. Please use `useNotificationProvider` export as your notification provider. #5567
+
+-   [#5564](https://github.com/refinedev/refine/pull/5564) [`1bb7d30888`](https://github.com/refinedev/refine/commit/1bb7d3088837584b19c4faba41a91817d910d493) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`<ThemedTitleV2 />'s`](https://refine.dev/docs/ui-integrations/material-ui/components/themed-layout/) default icon updated.
+
 ## 2.29.2
 
 ### Patch Changes

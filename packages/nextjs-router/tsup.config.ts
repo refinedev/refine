@@ -1,15 +1,7 @@
-import { defineConfig } from "tsup";
+import { defineConfig, Options } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
-export default defineConfig({
-    entry: {
-        index: "src/index.ts",
-        pages: "src/pages/index.ts",
-        app: "src/app/index.ts",
-        legacy: "src/legacy/index.ts",
-        "legacy-pages": "src/legacy-pages/index.ts",
-        "legacy-app": "src/legacy-app/index.ts",
-    },
+const sharedConfig: Partial<Options> = {
     outDir: "dist",
     splitting: false,
     sourcemap: true,
@@ -29,4 +21,31 @@ export default defineConfig({
         }),
     ],
     onSuccess: "tsc --project tsconfig.declarations.json",
-});
+};
+
+export default defineConfig([
+    {
+        entry: {
+            index: "src/index.ts",
+            app: "src/app/index.ts",
+        },
+        esbuildOptions(options) {
+            options.banner = {
+                js: '"use client"',
+            };
+        },
+        ...sharedConfig,
+    },
+    {
+        entry: {
+            pages: "src/pages/index.ts",
+        },
+        ...sharedConfig,
+    },
+    {
+        entry: {
+            "parse-table-params": "src/common/parse-table-params.ts",
+        },
+        ...sharedConfig,
+    },
+]);

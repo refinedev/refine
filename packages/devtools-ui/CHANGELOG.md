@@ -1,5 +1,18 @@
 # @refinedev/devtools-ui
 
+## 1.1.17
+
+### Patch Changes
+
+-   Updated dependencies [[`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563)]:
+    -   @refinedev/devtools-shared@1.1.3
+
+## 1.1.16
+
+### Patch Changes
+
+-   [#5574](https://github.com/refinedev/refine/pull/5574) [`ee0f7867c3`](https://github.com/refinedev/refine/commit/ee0f7867c3648dcbf1e2504f430a0b5814d91019) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: upgrade @ory/client package version to 1.5.2 #5530
+
 ## 1.1.15
 
 ### Patch Changes

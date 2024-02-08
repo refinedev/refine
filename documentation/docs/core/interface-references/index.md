@@ -51,7 +51,7 @@ type CrudOperators =
   | "containss" // Contains, case sensitive
   | "ncontainss" // Doesn't contain, case sensitive
   | "between" // Between
-  | "nbetween" // Doesn't between
+  | "nbetween" // Not between
   | "null" // Is null
   | "nnull" // Is not null
   | "startswith" // Starts with

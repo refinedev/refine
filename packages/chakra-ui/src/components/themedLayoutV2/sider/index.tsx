@@ -332,7 +332,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                             "refine.sider.bg.light",
                             "refine.sider.bg.dark",
                         )}
-                        overflow="auto"
+                        overflowY="auto"
+                        overflowX="hidden"
                     >
                         <Box width="full">{renderSider()}</Box>
                     </VStack>
@@ -388,7 +389,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                         "refine.sider.bg.dark",
                     )}
                 >
-                    <Box width="full" overflow="auto">
+                    <Box width="full" overflowY="auto" overflowX="hidden">
                         {renderSider()}
                     </Box>
                 </VStack>

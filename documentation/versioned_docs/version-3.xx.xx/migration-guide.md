@@ -90,222 +90,222 @@ UI independent import packages have been migrated to the `refine-core` package w
 
 ```tsx
 [
-    "Authenticated",
-    "AuthenticatedProps",
-    "CanAccess",
-    "CanAccessProps",
-    "Refine",
-    "RefineProps",
-    "LayoutWrapperProps",
-    "LayoutWrapper",
-    "LayoutProps",
-    "DefaultLayout",
-    "RouteChangeHandler",
-    "UndoableQueue",
-    "defaultAccessControlContext",
-    "AccessControlContext",
-    "AccessControlContextProvider",
-    "CanParams",
-    "CanReturnType",
-    "IAccessControlContext",
-    "TLogoutVariables",
-    "TLogoutData",
-    "IAuthContext",
-    "Pagination",
-    "Search",
-    "CrudOperators",
-    "CrudFilter",
-    "CrudSort",
-    "CrudFilters",
-    "CrudSorting",
-    "CustomResponse",
-    "GetListResponse",
-    "CreateResponse",
-    "CreateManyResponse",
-    "UpdateResponse",
-    "UpdateManyResponse",
-    "GetOneResponse",
-    "GetManyResponse",
-    "DeleteOneResponse",
-    "DeleteManyResponse",
-    "IDataContext",
-    "IDataContextProvider",
-    "defaultDataProvider",
-    "DataContext",
-    "DataContextProvider",
-    "ILiveContext",
-    "ILiveContextProvider",
-    "LiveContext",
-    "LiveContextProvider",
-    "defaultNotificationProvider",
-    "NotificationContext",
-    "NotificationContextProvider",
-    "RefineContext",
-    "RefineContextProvider",
-    "ResourceContext",
-    "ResourceContextProvider",
-    "IResourceContext",
-    "OptionsProps",
-    "ResourceProps",
-    "IResourceComponentsProps",
-    "IResourceComponents",
-    "IResourceItem",
-    "RouterContext",
-    "RouterContextProvider",
-    "IRouterProvider",
-    "IRouterContext",
-    "PromptProps",
-    "TranslationContext",
-    "TranslationContextProvider",
-    "Translate",
-    "I18nProvider",
-    "ITranslationContext",
-    "UnsavedWarnContext",
-    "UnsavedWarnContextProvider",
-    "IUnsavedWarnContext",
-    "importCSVMapper",
-    "userFriendlyResourceName",
-    "userFriendlySecond",
-    "parseTableParams",
-    "parseTableParamsFromQuery",
-    "stringifyTableParams",
-    "compareFilters",
-    "unionFilters",
-    "setInitialFilters",
-    "file2Base64",
-    "UseCanProps",
-    "useCan",
-    "useCanWithoutCache",
-    "useAuthenticated",
-    "useCheckError",
-    "useGetIdentity",
-    "useIsAuthenticated",
-    "UseLoginReturnType",
-    "useLogin",
-    "useLogout",
-    "usePermissions",
-    "useIsExistAuthentication",
-    "unionFilters",
-    "useApiUrl",
-    "UseCreateReturnType",
-    "useCreate",
-    "UseCreateManyReturnType",
-    "useCreateMany",
-    "UseCustomProps",
-    "useCustom",
-    "useDelete",
-    "useDeleteMany",
-    "UseListProps",
-    "useList",
-    "UseManyProps",
-    "useMany",
-    "UseOneProps",
-    "useOne",
-    "UseUpdateReturnType",
-    "useUpdate",
-    "useUpdateMany",
-    "CSVDownloadProps",
-    "LabelKeyObject",
-    "useExport",
-    "Authenticated",
-    "CanAccess",
-    "LayoutWrapper",
-    "Refine",
-    "RouteChangeHandler",
-    "UndoableQueue",
-    "file2Base64",
-    "importCSVMapper",
-    "parseTableParams",
-    "parseTableParamsFromQuery",
-    "setInitialFilters",
-    "stringifyTableParams",
-    "unionFilters",
-    "useApiUrl",
-    "useAuthenticated",
-    "useCacheQueries",
-    "useCan",
-    "useCanWithoutCache",
-    "useCancelNotification",
-    "useCheckError",
-    "useCreate",
-    "useCreateMany",
-    "useCustom",
-    "useDelete",
-    "useDeleteMany",
-    "useExport",
-    "useGetIdentity",
-    "useGetLocale",
-    "useGetManyQueries",
-    "useGetOneQueries",
-    "useHandleNotification",
-    "useIsAuthenticated",
-    "useIsExistAuthentication",
-    "useList",
-    "useListResourceQueries",
-    "useLiveMode",
-    "useLogin",
-    "useLogout",
-    "useMany",
-    "useMutationMode",
-    "useNavigation",
-    "useNotification",
-    "useOne",
-    "usePermissions",
-    "usePublish",
-    "useRedirectionAfterSubmission",
-    "useRefineContext",
-    "useResource",
-    "useResourceSubscription",
-    "useResourceWithRoute",
-    "useRouterContext",
-    "useSetLocale",
-    "useShow",
-    "useSubscription",
-    "useSyncWithLocation",
-    "useTitle",
-    "useTranslate",
-    "useUpdate",
-    "useUpdateMany",
-    "useWarnAboutChange",
-    "userFriendlyResourceName",
-    "AuthenticatedProps",
-    "CanAccessProps",
-    "RefineProps",
-    "LayoutWrapperProps",
-    "LiveModeProps",
-    "UseResourceSubscriptionProps",
-    "PublishType",
-    "UseSubscriptionProps",
-    "LiveEvent",
-    "HistoryType",
-    "UseRedirectionAfterSubmissionType",
-    "UseWarnAboutChangeType",
-    "UseMutationModeType",
-    "useRefineContext",
-    "UseSyncWithLocationType",
-    "TitleProps",
-    "UseResourceType",
-    "useResourceWithRoute",
-    "useShowReturnType",
-    "useShowProps",
-    "UseGetLocaleType",
-    "Fields",
-    "NestedField",
-    "QueryBuilderOptions",
-    "MetaDataQuery",
-    "VariableOptions",
-    "HttpError",
-    "BaseRecord",
-    "Option",
-    "MapDataFn",
-    "MutationMode",
-    "IUndoableQueue",
-    "RedirectionTypes",
-    "ResourceErrorRouterParams",
-    "ResourceRouterParams",
-    "SuccessErrorNotification",
-    "OpenNotificationParams",
-    "AuthProvider",
+  "Authenticated",
+  "AuthenticatedProps",
+  "CanAccess",
+  "CanAccessProps",
+  "Refine",
+  "RefineProps",
+  "LayoutWrapperProps",
+  "LayoutWrapper",
+  "LayoutProps",
+  "DefaultLayout",
+  "RouteChangeHandler",
+  "UndoableQueue",
+  "defaultAccessControlContext",
+  "AccessControlContext",
+  "AccessControlContextProvider",
+  "CanParams",
+  "CanReturnType",
+  "IAccessControlContext",
+  "TLogoutVariables",
+  "TLogoutData",
+  "IAuthContext",
+  "Pagination",
+  "Search",
+  "CrudOperators",
+  "CrudFilter",
+  "CrudSort",
+  "CrudFilters",
+  "CrudSorting",
+  "CustomResponse",
+  "GetListResponse",
+  "CreateResponse",
+  "CreateManyResponse",
+  "UpdateResponse",
+  "UpdateManyResponse",
+  "GetOneResponse",
+  "GetManyResponse",
+  "DeleteOneResponse",
+  "DeleteManyResponse",
+  "IDataContext",
+  "IDataContextProvider",
+  "defaultDataProvider",
+  "DataContext",
+  "DataContextProvider",
+  "ILiveContext",
+  "ILiveContextProvider",
+  "LiveContext",
+  "LiveContextProvider",
+  "defaultNotificationProvider",
+  "NotificationContext",
+  "NotificationContextProvider",
+  "RefineContext",
+  "RefineContextProvider",
+  "ResourceContext",
+  "ResourceContextProvider",
+  "IResourceContext",
+  "OptionsProps",
+  "ResourceProps",
+  "IResourceComponentsProps",
+  "IResourceComponents",
+  "IResourceItem",
+  "RouterContext",
+  "RouterContextProvider",
+  "IRouterProvider",
+  "IRouterContext",
+  "PromptProps",
+  "TranslationContext",
+  "TranslationContextProvider",
+  "Translate",
+  "I18nProvider",
+  "ITranslationContext",
+  "UnsavedWarnContext",
+  "UnsavedWarnContextProvider",
+  "IUnsavedWarnContext",
+  "importCSVMapper",
+  "userFriendlyResourceName",
+  "userFriendlySecond",
+  "parseTableParams",
+  "parseTableParamsFromQuery",
+  "stringifyTableParams",
+  "compareFilters",
+  "unionFilters",
+  "setInitialFilters",
+  "file2Base64",
+  "UseCanProps",
+  "useCan",
+  "useCanWithoutCache",
+  "useAuthenticated",
+  "useCheckError",
+  "useGetIdentity",
+  "useIsAuthenticated",
+  "UseLoginReturnType",
+  "useLogin",
+  "useLogout",
+  "usePermissions",
+  "useIsExistAuthentication",
+  "unionFilters",
+  "useApiUrl",
+  "UseCreateReturnType",
+  "useCreate",
+  "UseCreateManyReturnType",
+  "useCreateMany",
+  "UseCustomProps",
+  "useCustom",
+  "useDelete",
+  "useDeleteMany",
+  "UseListProps",
+  "useList",
+  "UseManyProps",
+  "useMany",
+  "UseOneProps",
+  "useOne",
+  "UseUpdateReturnType",
+  "useUpdate",
+  "useUpdateMany",
+  "CSVDownloadProps",
+  "LabelKeyObject",
+  "useExport",
+  "Authenticated",
+  "CanAccess",
+  "LayoutWrapper",
+  "Refine",
+  "RouteChangeHandler",
+  "UndoableQueue",
+  "file2Base64",
+  "importCSVMapper",
+  "parseTableParams",
+  "parseTableParamsFromQuery",
+  "setInitialFilters",
+  "stringifyTableParams",
+  "unionFilters",
+  "useApiUrl",
+  "useAuthenticated",
+  "useCacheQueries",
+  "useCan",
+  "useCanWithoutCache",
+  "useCancelNotification",
+  "useCheckError",
+  "useCreate",
+  "useCreateMany",
+  "useCustom",
+  "useDelete",
+  "useDeleteMany",
+  "useExport",
+  "useGetIdentity",
+  "useGetLocale",
+  "useGetManyQueries",
+  "useGetOneQueries",
+  "useHandleNotification",
+  "useIsAuthenticated",
+  "useIsExistAuthentication",
+  "useList",
+  "useListResourceQueries",
+  "useLiveMode",
+  "useLogin",
+  "useLogout",
+  "useMany",
+  "useMutationMode",
+  "useNavigation",
+  "useNotification",
+  "useOne",
+  "usePermissions",
+  "usePublish",
+  "useRedirectionAfterSubmission",
+  "useRefineContext",
+  "useResource",
+  "useResourceSubscription",
+  "useResourceWithRoute",
+  "useRouterContext",
+  "useSetLocale",
+  "useShow",
+  "useSubscription",
+  "useSyncWithLocation",
+  "useTitle",
+  "useTranslate",
+  "useUpdate",
+  "useUpdateMany",
+  "useWarnAboutChange",
+  "userFriendlyResourceName",
+  "AuthenticatedProps",
+  "CanAccessProps",
+  "RefineProps",
+  "LayoutWrapperProps",
+  "LiveModeProps",
+  "UseResourceSubscriptionProps",
+  "PublishType",
+  "UseSubscriptionProps",
+  "LiveEvent",
+  "HistoryType",
+  "UseRedirectionAfterSubmissionType",
+  "UseWarnAboutChangeType",
+  "UseMutationModeType",
+  "useRefineContext",
+  "UseSyncWithLocationType",
+  "TitleProps",
+  "UseResourceType",
+  "useResourceWithRoute",
+  "useShowReturnType",
+  "useShowProps",
+  "UseGetLocaleType",
+  "Fields",
+  "NestedField",
+  "QueryBuilderOptions",
+  "MetaDataQuery",
+  "VariableOptions",
+  "HttpError",
+  "BaseRecord",
+  "Option",
+  "MapDataFn",
+  "MutationMode",
+  "IUndoableQueue",
+  "RedirectionTypes",
+  "ResourceErrorRouterParams",
+  "ResourceRouterParams",
+  "SuccessErrorNotification",
+  "OpenNotificationParams",
+  "AuthProvider",
 ];
 ```
 
@@ -501,25 +501,25 @@ import { PostList, PostEdit, PostCreate, PostShow } from "./pages";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                    canDelete: true,
-                },
-            ]}
-            //highlight-start
-            notificationProvider={notificationProvider}
-            //highlight-end
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider(API_URL)}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+          canDelete: true,
+        },
+      ]}
+      //highlight-start
+      notificationProvider={useNotificationProvider}
+      //highlight-end
+    />
+  );
 };
 ```
 
@@ -530,10 +530,10 @@ If you are using the default `layout` of **refine**, you need to import and defi
 ```tsx
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    //highlight-start
-    Layout,
-    ErrorComponent,
+  useNotificationProvider,
+  //highlight-start
+  Layout,
+  ErrorComponent,
 } from "@pankod/refine-antd";
 //highlight-end
 import dataProvider from "@pankod/refine-simple-rest";
@@ -546,27 +546,27 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            //highlight-start
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-            //highlight-end
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      dataProvider={dataProvider(API_URL)}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+      notificationProvider={useNotificationProvider}
+      //highlight-start
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+      //highlight-end
+    />
+  );
 };
 ```
 
@@ -577,12 +577,12 @@ If you are using **refine**'s default login page while using AuthProvider, you m
 ```tsx
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
-    notificationProvider,
-    //highlight-next-line
-    LoginPage,
-    Layout,
-    ErrorComponent,
-    //highlight-next-line
+  useNotificationProvider,
+  //highlight-next-line
+  LoginPage,
+  Layout,
+  ErrorComponent,
+  //highlight-next-line
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
@@ -595,27 +595,27 @@ import { DashboardPage } from "pages/dashboard";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
-            DashboardPage={DashboardPage}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-            notificationProvider={notificationProvider}
-            //highlight-next-line
-            LoginPage={LoginPage}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
-        />
-    );
+  return (
+    <Refine
+      authProvider={authProvider}
+      dataProvider={dataProvider(API_URL)}
+      routerProvider={routerProvider}
+      DashboardPage={DashboardPage}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+      notificationProvider={useNotificationProvider}
+      //highlight-next-line
+      LoginPage={LoginPage}
+      Layout={Layout}
+      catchAll={<ErrorComponent />}
+    />
+  );
 };
 
 export default App;
@@ -628,7 +628,7 @@ configProviderProps has been deprecated. Instead we use `ConfigProvider` which i
 ```diff
 import { Refine } from "@pankod/refine-core";
 import {
-    notificationProvider,
+    useNotificationProvider,
 +   ConfigProvider,
     Layout,
     ErrorComponent,
@@ -660,7 +660,7 @@ const App: React.FC = () => {
                         show: PostShow,
                     },
                 ]}
-                notificationProvider={notificationProvider}
+                notificationProvider={useNotificationProvider}
                 Layout={Layout}
                 catchAll={<ErrorComponent />}
             />
@@ -673,9 +673,9 @@ const App: React.FC = () => {
 
 Change the use `setEditId` and `editId` used in `useEditableTable`, `useModalForm`, and `useDrawerForm`.
 
--   `setEditId` -> `setId`
+- `setEditId` -> `setId`
 
--   `editId` -> `id`
+- `editId` -> `id`
 
 ```diff title="PostList"
 import { IResourceComponentsProps } from "@pankod/refine-core";

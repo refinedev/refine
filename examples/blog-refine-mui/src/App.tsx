@@ -4,7 +4,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import {
     ErrorComponent,
-    notificationProvider,
+    useNotificationProvider,
     RefineSnackbarProvider,
     ThemedLayoutV2,
     ThemedTitleV2,
@@ -63,7 +63,7 @@ function App() {
                                 dataProvider={dataProvider(
                                     "https://api.finefoods.refine.dev",
                                 )}
-                                notificationProvider={notificationProvider}
+                                notificationProvider={useNotificationProvider}
                                 i18nProvider={i18nProvider}
                                 routerProvider={routerBindings}
                                 resources={[
@@ -95,7 +95,6 @@ function App() {
                                 options={{
                                     syncWithLocation: true,
                                     warnWhenUnsavedChanges: true,
-                                    projectId: "RjAC3m-NeoqYc-bB545U",
                                 }}
                             >
                                 <Routes>

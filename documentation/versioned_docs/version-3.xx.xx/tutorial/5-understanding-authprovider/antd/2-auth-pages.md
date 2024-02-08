@@ -41,7 +41,7 @@ import { Refine } from "@pankod/refine-core";
 import {
   Layout,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
   ErrorComponent,
   AuthPage,
 } from "@pankod/refine-antd";
@@ -76,7 +76,7 @@ const App: React.FC = () => {
       }}
       Layout={Layout}
       ReadyPage={ReadyPage}
-      notificationProvider={notificationProvider}
+      notificationProvider={useNotificationProvider}
       catchAll={<ErrorComponent />}
       resources={[
         {
@@ -119,7 +119,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
    import {
      Layout,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      ErrorComponent,
      //highlight-next-line
      AuthPage,
@@ -149,7 +149,7 @@ Login page is used to authenticate users. It provides a basic form to enter emai
          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
          Layout={Layout}
          ReadyPage={ReadyPage}
-         notificationProvider={notificationProvider}
+         notificationProvider={useNotificationProvider}
          catchAll={<ErrorComponent />}
          resources={[
            {
@@ -222,7 +222,7 @@ Register page is used to register new users. It provides a basic form to enter e
    import {
      Layout,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      ErrorComponent,
      //highlight-next-line
      AuthPage,
@@ -258,7 +258,7 @@ Register page is used to register new users. It provides a basic form to enter e
          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
          Layout={Layout}
          ReadyPage={ReadyPage}
-         notificationProvider={notificationProvider}
+         notificationProvider={useNotificationProvider}
          catchAll={<ErrorComponent />}
          resources={[
            {
@@ -310,7 +310,7 @@ Forgot password page is used to send a reset password link to the user's email. 
    import {
      Layout,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      ErrorComponent,
      //highlight-next-line
      AuthPage,
@@ -350,7 +350,7 @@ Forgot password page is used to send a reset password link to the user's email. 
          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
          Layout={Layout}
          ReadyPage={ReadyPage}
-         notificationProvider={notificationProvider}
+         notificationProvider={useNotificationProvider}
          catchAll={<ErrorComponent />}
          resources={[
            {
@@ -403,7 +403,7 @@ Update password page is used to update the user's password. It provides a basic 
    import {
      Layout,
      ReadyPage,
-     notificationProvider,
+     useNotificationProvider,
      ErrorComponent,
      //highlight-next-line
      AuthPage,
@@ -447,7 +447,7 @@ Update password page is used to update the user's password. It provides a basic 
          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
          Layout={Layout}
          ReadyPage={ReadyPage}
-         notificationProvider={notificationProvider}
+         notificationProvider={useNotificationProvider}
          catchAll={<ErrorComponent />}
          resources={[
            {

@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/inferencer",
-  "version": "4.5.17",
+  "version": "4.5.20",
   "description": "refine is a React-based framework for building internal tools, rapidly.",
   "private": false,
   "sideEffects": false,
@@ -9,26 +9,32 @@
   "typings": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/index.js"
     },
     "./headless": {
+      "types": "./dist/inferencers/headless/index.d.ts",
       "import": "./dist/esm/headless.js",
       "require": "./dist/headless.js"
     },
     "./mantine": {
+      "types": "./dist/inferencers/mantine/index.d.ts",
       "import": "./dist/esm/mantine.js",
       "require": "./dist/mantine.js"
     },
     "./antd": {
+      "types": "./dist/inferencers/antd/index.d.ts",
       "import": "./dist/esm/antd.js",
       "require": "./dist/antd.js"
     },
     "./mui": {
+      "types": "./dist/inferencers/mui/index.d.ts",
       "import": "./dist/esm/mui.js",
       "require": "./dist/mui.js"
     },
     "./chakra-ui": {
+      "types": "./dist/inferencers/chakra-ui/index.d.ts",
       "import": "./dist/esm/chakra-ui.js",
       "require": "./dist/chakra-ui.js"
     }
@@ -56,12 +62,23 @@
     }
   },
   "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
   "peerDependencies": {
+    "@ant-design/icons": "5.0.1",
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mantine/core": "^5.10.4",
+    "@mantine/form": "^5.10.4",
+    "@mantine/hooks": "^5.10.4",
+    "@mantine/notifications": "^5.10.4",
+    "@mui/lab": "^5.0.0-alpha.85",
+    "@mui/material": "^5.14.2",
+    "@mui/x-data-grid": "^6.6.0",
     "@refinedev/antd": "^5.0.0",
     "@refinedev/chakra-ui": "^2.0.0",
     "@refinedev/core": "^4.46.1",
@@ -69,25 +86,15 @@
     "@refinedev/mui": "^5.0.0",
     "@refinedev/react-hook-form": "^4.0.0",
     "@refinedev/react-table": "^5.0.0",
-    "antd": "^5.0.3",
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@mui/lab": "^5.0.0-alpha.85",
-    "@mui/material": "^5.14.2",
-    "@mui/x-data-grid": "^6.6.0",
-    "@ant-design/icons": "5.0.1",
-    "@chakra-ui/react": "^2.5.1",
-    "@mantine/core": "^5.10.4",
-    "@mantine/hooks": "^5.10.4",
-    "@mantine/form": "^5.10.4",
-    "@mantine/notifications": "^5.10.4",
-    "react-hook-form": "^7.30.0",
     "@tanstack/react-table": "^8.2.6",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
+    "antd": "^5.0.3",
     "dayjs": "^1.10.7",
+    "graphql-tag": "^2.12.6",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-hook-form": "^7.30.0"
   },
   "peerDependenciesMeta": {
     "@refinedev/react-hook-form": {
@@ -149,28 +156,31 @@
     },
     "@tanstack/react-table": {
       "optional": true
+    },
+    "graphql-tag": {
+      "optional": true
     }
   },
   "devDependencies": {
-    "@refinedev/antd": "^5.37.2",
-    "@refinedev/chakra-ui": "^2.27.2",
-    "@refinedev/core": "^4.46.2",
-    "@refinedev/mantine": "^2.29.2",
-    "@refinedev/mui": "^5.14.2",
-    "@types/lodash": "^4.14.171",
-    "@refinedev/react-hook-form": "^4.8.13",
-    "@refinedev/react-table": "^5.6.5",
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@types/react-test-renderer": "^18.0.0",
+    "@refinedev/antd": "^5.37.4",
+    "@refinedev/chakra-ui": "^2.27.4",
+    "@refinedev/core": "^4.47.1",
+    "@refinedev/mantine": "^2.29.4",
+    "@refinedev/mui": "^5.14.4",
+    "@refinedev/react-hook-form": "^4.8.14",
+    "@refinedev/react-table": "^5.6.6",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
+    "@types/lodash": "^4.14.171",
     "@types/pluralize": "^0.0.29",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-test-renderer": "^18.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-image": "^0.0.8",
@@ -184,18 +194,20 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@aliemir/react-live": "^4.0.0",
+    "@refinedev/core": "^4.47.1",
     "@tabler/icons": "^1.119.0",
-    "@refinedev/core": "^4.46.2",
     "dayjs": "^1.10.7",
+    "graphql": "^15.6.1",
+    "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "pluralize": "^8.0.0",
+    "prettier": "^2.7.1",
     "prism-react-renderer": "^1.3.5",
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
-    "tslib": "^2.3.1",
-    "prettier": "^2.7.1",
-    "@aliemir/react-live": "^4.0.0"
+    "tslib": "^2.3.1"
   },
   "author": "Refine",
   "license": "MIT",

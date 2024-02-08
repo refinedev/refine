@@ -1,5 +1,11 @@
 # @refinedev/react-hook-form
 
+## 4.8.14
+
+### Patch Changes
+
+-   [#5573](https://github.com/refinedev/refine/pull/5573) [`546df06482`](https://github.com/refinedev/refine/commit/546df06482807e59a7f2a735361a8e9169bb2563) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: add "use client" directive to exported files to work with nextjs app router
+
 ## 4.8.13
 
 ### Patch Changes

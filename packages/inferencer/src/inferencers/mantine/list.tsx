@@ -25,6 +25,7 @@ import {
     getVariableName,
     translatePrettyString,
     getMetaProps,
+    deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -32,6 +33,7 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
+    ImportElement,
     InferencerResultComponent,
     InferField,
     RendererContext,
@@ -61,7 +63,7 @@ export const renderer = ({
         "list",
     );
     const recordName = "tableData?.data";
-    const imports: Array<[element: string, module: string]> = [
+    const imports: Array<ImportElement> = [
         ["IResourceComponentsProps", "@refinedev/core"],
         ["useTable", "@refinedev/react-table"],
         ["ColumnDef", "@tanstack/react-table"],
@@ -78,6 +80,12 @@ export const renderer = ({
 
     if (i18n) {
         imports.push(["useTranslate", "@refinedev/core"]);
+    }
+
+    // has gqlQuery or gqlMutation in "meta"
+    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+    if (hasGql) {
+        imports.push(["gql", "graphql-tag", true]);
     }
 
     const relationFields: (InferField | null)[] = fields.filter(
@@ -120,7 +128,7 @@ export const renderer = ({
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
                         meta,
-                        "getMany",
+                        ["getMany"],
                     )}
                 });
                 `;
@@ -806,22 +814,20 @@ export const renderer = ({
                     ? `
             refineCoreProps: {
                 resource: "${resource.name}",
-                ${getMetaProps(
-                    resource?.identifier ?? resource?.name,
-                    meta,
+                ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
                     "getList",
-                )}
+                ])}
             }
             `
                     : getMetaProps(
                           resource?.identifier ?? resource?.name,
                           meta,
-                          "getList",
+                          ["getList"],
                       )
                     ? `refineCoreProps: { ${getMetaProps(
                           resource?.identifier ?? resource?.name,
                           meta,
-                          "getList",
+                          ["getList"],
                       )} },`
                     : ""
             }

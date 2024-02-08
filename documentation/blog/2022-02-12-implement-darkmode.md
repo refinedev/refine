@@ -3,20 +3,20 @@ title: Implementing Dark Mode In Ant Design Using gulp
 description: In this article, we’ll learn how to efficiently implement dark mode in a refine/Ant Design app, using gulp library and leveraging some React features like hooks
 slug: how-to-add-darkmode-in-ant-design
 authors: vmalep
-tags: [refine, react, css, ant-design]
+tags: [Refine, react, css, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
 
-In this article, we will provide an example on how to implement darkmode with **refine**. In order to switch between light and dark mode, we need 2 different styles and the possibility to switch between one and the other without restarting the application. Since the Less stylesheets with React doesn't allow variables to be modified without compilation and therefore a restart of the application. To solve this, we are going to use **gulp** that will compile the Less files into swappable CSS, directly accessible to the running application.
+In this article, we will provide an example on how to implement darkmode with **Refine**. In order to switch between light and dark mode, we need 2 different styles and the possibility to switch between one and the other without restarting the application. Since the Less stylesheets with React doesn't allow variables to be modified without compilation and therefore a restart of the application. To solve this, we are going to use **gulp** that will compile the Less files into swappable CSS, directly accessible to the running application.
 
 <!--truncate-->
 
@@ -195,7 +195,7 @@ In App.tsx, adapt the file so it looks like this :
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { notificationProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/antd";
 import routerProvider from "@refinedev/react-router-v6";
 import "styles/antd.less";
 import dataProvider from "@refinedev/simple-rest";
@@ -219,7 +219,7 @@ function App() {
       // highlight-end
       <Refine
         routerProvider={routerProvider}
-        notificationProvider={notificationProvider}
+        notificationProvider={useNotificationProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         resources={[
           {

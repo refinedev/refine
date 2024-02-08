@@ -27,7 +27,7 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
@@ -56,7 +56,7 @@ const ListPageTsxCode = /* tsx */ `
 import React from "react";
 
 import { useTable } from "@refinedev/core";
-import { parseTableParams } from "@refinedev/nextjs-router";
+import { parseTableParams } from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ProductList } from "../../components/products/list";

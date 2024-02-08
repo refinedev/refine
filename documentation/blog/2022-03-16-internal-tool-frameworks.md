@@ -53,9 +53,9 @@ npm install -g blitz
 
 ## Refine
 
-[**refine**](https://refine.dev/) is a React-based framework for rapid building of internal tools. It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+[**Refine**](https://refine.dev/) is a React-based framework for rapid building of internal tools. It's is a a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-**refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards
+**Refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards
 
 ### Key Features​
 
@@ -65,7 +65,7 @@ npm install -g blitz
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Nhost, Appwrite, Medusa, Firebase, and Directus.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, GraphQL, NestJs CRUD, Airtable, Strapi, Strapi v4, Strapi GraphQL, Supabase, Hasura, Appwrite, Medusa, Firebase, and Directus.
 
 📝 Native Typescript Core : You can always opt out for plain JavaScript.
 
@@ -75,12 +75,12 @@ npm install -g blitz
 
 ### Installation
 
-You can quickly create the project containing **refine** and all the features you will use with it, thanks to **refine**'s Project Creator CLI (Superplate). No extra setup required!
+You can quickly create the project containing **Refine** and all the features you will use with it, thanks to **Refine**'s Project Creator CLI (Superplate). No extra setup required!
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
 <br />
 
-If you want, you can manually install the refine packages.
+If you want, you can manually install the Refine packages.
 
 ```bash
 npm i @refinedev/core @refinedev/antd
@@ -158,4 +158,4 @@ yarn add react-admin
 
 In this article, we have listed the popular open-source ReactJS internal-tool frameworks. If you want a more detailed review article, you can like and share this article. Thank you for your interest and reading.
 
-[For more information about **refine** ->](https://refine.dev/docs/)
+[For more information about **Refine** ->](https://refine.dev/docs/)

@@ -9,7 +9,7 @@ import {
     ThemedLayoutV2,
     ErrorComponent,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import dataProvider from "@refinedev/simple-rest";
@@ -121,7 +121,12 @@ const App: React.FC = () => {
             };
         },
         onError: async (error) => {
-            console.error(error);
+            if (error.response?.status === 401) {
+                return {
+                    logout: true,
+                };
+            }
+
             return { error };
         },
         check: async () =>
@@ -156,7 +161,7 @@ const App: React.FC = () => {
                     )}
                     authProvider={authProvider}
                     routerProvider={routerProvider}
-                    notificationProvider={notificationProvider()}
+                    notificationProvider={useNotificationProvider()}
                     resources={[
                         {
                             name: "posts",

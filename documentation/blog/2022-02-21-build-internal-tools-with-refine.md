@@ -1,9 +1,9 @@
 ---
-title: Build internal tools using Low-Code with refine, React-based framework
+title: Build internal tools using Low-Code with Refine, React-based framework
 description: Why you should be using low-code app Refine to build internal tools? Learn how to build low-code apps using Refine, React and Ant Design.
 slug: build-internal-tools-using-low-code-with-refine
 authors: salih
-tags: [refine, react, tutorial]
+tags: [Refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -20,25 +20,25 @@ Refer to the [Refine](https://refine.dev) for more information.
 
 ## Why you should use Refine?
 
--   It is Open Source under the MIT license.
--   Easy to use and it is easy to learn. There are many examples to help you get started, as well as documentation.
--   Is a framework that does not require you to use any UI libraries or frameworks.
--   Supports Ant Design for quick and easy solutions.
--   Backend agnostic, so you can connect to any backend you want.
--   Customizable, which means you can change it to fit your needs.
--   Refine is fully compatible with server side rendering with [Next.js](https://nextjs.org).
+- It is Open Source under the MIT license.
+- Easy to use and it is easy to learn. There are many examples to help you get started, as well as documentation.
+- Is a framework that does not require you to use any UI libraries or frameworks.
+- Supports Ant Design for quick and easy solutions.
+- Backend agnostic, so you can connect to any backend you want.
+- Customizable, which means you can change it to fit your needs.
+- Refine is fully compatible with server side rendering with [Next.js](https://nextjs.org).
 
 ## Features of Refine
 
 Some of the main features of Refine are:
 
--   Data fetching and state management
--   Routings
--   Authentication
--   Authorization
--   Internationalization
--   Real-time
--   Mutation modes with optimistic and pessimistic and undoadable modes
+- Data fetching and state management
+- Routings
+- Authentication
+- Authorization
+- Internationalization
+- Real-time
+- Mutation modes with optimistic and pessimistic and undoadable modes
 
 ## How does Refine work?
 
@@ -54,15 +54,15 @@ A data provider must have the following properties:
 
 ```tsx
 const dataProvider = {
-    create: ({ resource, variables, meta }) => Promise,
-    createMany: ({ resource, variables, meta }) => Promise,
-    deleteOne: ({ resource, id, meta }) => Promise,
-    deleteMany: ({ resource, ids, meta }) => Promise,
-    getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
-    getMany: ({ resource, ids, meta }) => Promise,
-    getOne: ({ resource, id, meta }) => Promise,
-    update: ({ resource, id, variables, meta }) => Promise,
-    updateMany: ({ resource, ids, variables, meta }) => Promise,
+  create: ({ resource, variables, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, meta }) => Promise,
+  deleteMany: ({ resource, ids, meta }) => Promise,
+  getList: ({ resource, pagination, sorters, filters, meta }) => Promise,
+  getMany: ({ resource, ids, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
 };
 ```
 
@@ -76,43 +76,43 @@ For example, let's look at what happens when `useTable` is called.
 import { List, Table, TextField, useTable } from "@refinedev/antd";
 
 interface IPost {
-    id: string;
-    title: string;
-    content: string;
-    status: "published" | "draft" | "rejected";
+  id: string;
+  title: string;
+  content: string;
+  status: "published" | "draft" | "rejected";
 }
 
 export const PostList: React.FC = () => {
-    const { tableProps } = useTable({
-        resource: "posts",
-        sorters: {
-            initial: [
-                {
-                    field: "title",
-                    order: "asc",
-                },
-            ],
+  const { tableProps } = useTable({
+    resource: "posts",
+    sorters: {
+      initial: [
+        {
+          field: "title",
+          order: "asc",
         },
-        filters: {
-            initial: [
-                {
-                    field: "status",
-                    operator: "eq",
-                    value: "draft",
-                },
-            ],
+      ],
+    },
+    filters: {
+      initial: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
         },
-    });
+      ],
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column dataIndex="content" title="Content" />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column dataIndex="content" title="Content" />
+      </Table>
+    </List>
+  );
 };
 ```
 
@@ -120,24 +120,24 @@ The `useTable` in the example calls the `getList` method of the data provider wi
 
 ```ts
 getList({
-    resource: "posts",
-    pagination: {
-        page: 1,
-        perPage: 10,
+  resource: "posts",
+  pagination: {
+    page: 1,
+    perPage: 10,
+  },
+  sorters: [
+    {
+      field: "title",
+      order: "asc",
     },
-    sorters: [
-        {
-            field: "title",
-            order: "asc",
-        },
-    ],
-    filters: [
-        {
-            field: "status",
-            operator: "eq",
-            value: "draft",
-        },
-    ],
+  ],
+  filters: [
+    {
+      field: "status",
+      operator: "eq",
+      value: "draft",
+    },
+  ],
 });
 ```
 
@@ -151,17 +151,15 @@ Refer to the [`dataProvider`](https://refine.dev/docs/core/providers/data-provid
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
--   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
--   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
--   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+- [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+- [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+- [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+- [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+- [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+- [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+- [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
 
 ## Add routing to the application
 
@@ -175,9 +173,9 @@ Refer to the [`routerProvider`](https://refine.dev/docs/core/providers/router-pr
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
--   [React Router](https://github.com/refinedev/refine/tree/master/packages/react-router)
--   [React Location](https://github.com/refinedev/refine/tree/master/packages/react-location)
--   [Next.js Router](https://github.com/refinedev/refine/tree/master/packages/nextjs-router)
+- [React Router](https://github.com/refinedev/refine/tree/master/packages/react-router)
+- [React Location](https://github.com/refinedev/refine/tree/master/packages/react-location)
+- [Next.js Router](https://github.com/refinedev/refine/tree/master/packages/nextjs-router)
 
 ## Create pages via `resources`
 
@@ -191,20 +189,20 @@ import "@refinedev/antd/dist/reset.css";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
 const App: React.FC = () => {
-    return (
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[
-                {
-                    name: "posts",
-                    list: PostList,
-                    create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
-                },
-            ]}
-        />
-    );
+  return (
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      resources={[
+        {
+          name: "posts",
+          list: PostList,
+          create: PostCreate,
+          edit: PostEdit,
+          show: PostShow,
+        },
+      ]}
+    />
+  );
 };
 
 export default App;
@@ -222,12 +220,12 @@ A auth provider must have the following properties:
 
 ```tsx
 const authProvider = {
-    login: () => Promise,
-    logout: () => Promise,
-    checkAuth: () => Promise,
-    checkError: () => Promise,
-    getPermissions: () => Promise,
-    getUserIdentity: () => Promise,
+  login: () => Promise,
+  logout: () => Promise,
+  checkAuth: () => Promise,
+  checkError: () => Promise,
+  getPermissions: () => Promise,
+  getUserIdentity: () => Promise,
 };
 ```
 
@@ -237,10 +235,10 @@ Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provid
 
 ### Out-of-the-box Auth providers
 
--   Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
--   Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
--   Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
--   OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
+- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
+- Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
+- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 
 ## Authorization
 
@@ -271,26 +269,26 @@ For example, we can stop non-admin users from editing the post resource.
 
 ```tsx
 const App: React.FC = () => {
-    <Refine
-        accessControlProvider={{
-            can: async ({ resource, action, params }) => {
-                if (resource === "posts" && action === "edit") {
-                    const userRole = getUserRole();
+  <Refine
+    accessControlProvider={{
+      can: async ({ resource, action, params }) => {
+        if (resource === "posts" && action === "edit") {
+          const userRole = getUserRole();
 
-                    if (userRole === "admin") {
-                        return { can: true };
-                    }
+          if (userRole === "admin") {
+            return { can: true };
+          }
 
-                    return Promise.resolve({
-                        can: false,
-                        reason: "Unauthorized",
-                    });
-                }
+          return Promise.resolve({
+            can: false,
+            reason: "Unauthorized",
+          });
+        }
 
-                return Promise.resolve({ can: true });
-            },
-        }}
-    />;
+        return Promise.resolve({ can: true });
+      },
+    }}
+  />;
 };
 ```
 
@@ -298,8 +296,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
--   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin)
--   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos)
+- Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin)
+- Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos)
 
 ## Internationalization
 
@@ -309,9 +307,9 @@ An i18n provider must have the following properties:
 
 ```ts
 const i18nProvider = {
-    translate: (key: string, params: object) => string,
-    changeLocale: (lang: string) => Promise,
-    getLocale: () => string,
+  translate: (key: string, params: object) => string,
+  changeLocale: (lang: string) => Promise,
+  getLocale: () => string,
 };
 ```
 
@@ -339,9 +337,9 @@ If you send an event after the relevant operations on the server, Refine will in
 
 ### Out-of-the-box access control providers
 
--   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably)
--   Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
--   Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
+- Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably)
+- Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+- Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 
 ## Other features of Refine
 

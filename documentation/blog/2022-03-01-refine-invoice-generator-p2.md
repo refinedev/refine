@@ -3,28 +3,28 @@ title: Building an Customizable Invoice Generator App with Refine, Strapi & Ant 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-invoice-generator
 authors: melih
-tags: [refine, react, strapi]
+tags: [Refine, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
 :::
 
-Looking for an invoice generator that is easy to use and lets you customize your invoices? With **refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
+Looking for an invoice generator that is easy to use and lets you customize your invoices? With **Refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
 
 <!--truncate-->
 
 ## Introduction
 
-We are almost ready to launch our **refine** Invoice Generator. In this Part II article, we'll customize it just a little more and then take an in-depth look at what you can do with the finished **refine** product!
+We are almost ready to launch our **Refine** Invoice Generator. In this Part II article, we'll customize it just a little more and then take an in-depth look at what you can do with the finished **Refine** product!
 
 In this part, we will create a missions part for the services your company provides. Then we will create our invoice page using these missions and the clients and contacts we created in Part I. In addition, you will not only be able to create your invoices, but you will also be able to view and download these invoices as PDF.
 
@@ -34,7 +34,7 @@ This article is written as a continuation of our [Develop your Own Customizable 
 
 :::
 
-Let's see together how easily and in a short time we can develop our project with its refine features.
+Let's see together how easily and in a short time we can develop our project with its Refine features.
 
 ## Create New Strapi Collections
 
@@ -64,7 +64,7 @@ In our Part I article, we created our company, contact and client collections. I
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
 <br />
 
-We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **refine** Missions page using this collection. And let's understand better by creating an example missions with **refine**.
+We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **Refine** Missions page using this collection. And let's understand better by creating an example missions with **Refine**.
 
 ## Refine Missions Page
 
@@ -113,12 +113,12 @@ export const MissionList: React.FC = () => {
 };
 ```
 
-We defined the fields we created on the strapi side with the **refine** Table and created our table. Let's take a look at how our table looks like.
+We defined the fields we created on the strapi side with the **Refine** Table and created our table. Let's take a look at how our table looks like.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
 <br />
 
-As you can see, we were able to create and display our table very simply thanks to the **refine**. Let's learn how to create a Mission from our refine interface now.
+As you can see, we were able to create and display our table very simply thanks to the **Refine**. Let's learn how to create a Mission from our Refine interface now.
 
 ### Refine Missions Create Page
 
@@ -180,7 +180,7 @@ export const CreateMission: React.FC<CreateMissionProps> = ({ modalProps, formPr
 </p>
 </details>
 
-Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
+Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **Refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
 
 ```tsx title="src/pages/MissionList.tsx"
 import { List, Table, useTable, TagField, useModalForm } from "@refinedev/antd";
@@ -238,9 +238,9 @@ export const MissionList: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
 <br />
 
-Missions Page is now ready, you can create and manage your business's products or services here with **refine**.
+Missions Page is now ready, you can create and manage your business's products or services here with **Refine**.
 
-Our next step is to create invoices according to these tasks and clients. Let's create, organize and display invoices with **refine**.
+Our next step is to create invoices according to these tasks and clients. Let's create, organize and display invoices with **Refine**.
 
 ## Refine Invoices Page
 
@@ -356,17 +356,17 @@ export const InvoiceList: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
 <br />
 
-As you can see, we were able to list invoices with **refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
+As you can see, we were able to list invoices with **Refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
 
 Our invoice contains all the information. With `Refine Invoice Generator` you can define the company issuing the invoice, discount percentage, tax percentage, customId and similar information in a single invoice.
 
-Let's understand better by creating an invoice example from our **refine** UI.
+Let's understand better by creating an invoice example from our **Refine** UI.
 
 ### Refine Create Invoice Page
 
-Here, we first fetch the company, contacts and missions using the **refine**'s [useSelect](https://refine.dev/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
+Here, we first fetch the company, contacts and missions using the **Refine**'s [useSelect](https://refine.dev/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
 
-Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
+Then, we fill our Refine [Create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
 
 <details>
 <summary>Show Code</summary>
@@ -462,7 +462,7 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
 <br />
 
-Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
+Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **Refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
 
 ## View and Download Invoice as PDF
 
@@ -832,8 +832,8 @@ PDF download may not work in codeSandbox mode. With [**this**](https://n59710.cs
 
 ## Conclusion
 
-In this post, we've created a fully customizable and completely functional Invoice Generator app. If you want to construct an application similar to this, you may add any feature with **refine** and personalize your invoice generator to your liking. We developed in very short amount of time, thanks to **refine**'s features and the possibilities it provides for customization.
+In this post, we've created a fully customizable and completely functional Invoice Generator app. If you want to construct an application similar to this, you may add any feature with **Refine** and personalize your invoice generator to your liking. We developed in very short amount of time, thanks to **Refine**'s features and the possibilities it provides for customization.
 
-You can develop any web application or admin panel you want in a very short time with **refine**.
+You can develop any web application or admin panel you want in a very short time with **Refine**.
 
-With **refine**'s headless and SSR-Next.js features, it is possible and very easy to develop both **B2B** and **B2C** applications using a single framework.
+With **Refine**'s headless and SSR-Next.js features, it is possible and very easy to develop both **B2B** and **B2C** applications using a single framework.

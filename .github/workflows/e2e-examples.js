@@ -52,7 +52,7 @@ const getProjectInfo = async (path) => {
     const devDependencies = Object.keys(packageJson.devDependencies || {});
 
     let port = 3000;
-    let command = `npm run start`;
+    let command = `npm run dev`;
     let additionalParams = "";
 
     // check for vite

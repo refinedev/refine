@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@refinedev/cli": "^2.16.22",
-    "@refinedev/core": "^4.46.2",
+    "@refinedev/cli": "^2.16.24",
+    "@refinedev/core": "^4.47.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "web-vitals": "^1.1.1",
-    "@refinedev/simple-rest": "^5.0.1",
-    "@refinedev/mantine": "^2.29.2",
-    "@refinedev/react-table": "^5.6.5",
+    "@refinedev/simple-rest": "^5.0.2",
+    "@refinedev/mantine": "^2.29.4",
+    "@refinedev/react-table": "^5.6.6",
     "@tanstack/react-table": "^8.2.6",
     "@tabler/icons": "^1.119.0",
     "@refinedev/react-router-v6": "^4.5.5",
@@ -34,7 +34,7 @@
     "@vitejs/plugin-react": "^4.0.0"
   },
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine"

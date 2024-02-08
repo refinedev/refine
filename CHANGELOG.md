@@ -8,7 +8,7 @@ Features
 
 - #### Added swizzle support for `@pankod/refine-core` package
 
-  - The swizzle is a command in refine-cli that allows you to customize the refine's supported components and data providers. It allows you to eject selected files from the refine packages and modify depending on your needs.
+  - The swizzle is a command in refine-cli that allows you to customize the Refine's supported components and data providers. It allows you to eject selected files from the Refine packages and modify depending on your needs.
   - [Refer to Swizzle Docs for more information](https://refine.dev/docs/packages/documentation/cli/#swizzle)
 
   Swizzleable components:
@@ -87,7 +87,7 @@ Features
   };
   ```
 
-  ## Using `appDir` with **refine**
+  ## Using `appDir` with **Refine**
 
   We've needed to make some changes to the `@pankod/refine-nextjs-router` to make it work with the current structure of the `app` directory feature. To make sure these do not break the current support for `pages` directory, we've added a new exports at the sub path `@pankod/refine-nextjs-router/app` that can be used with the `appDir` option.
 

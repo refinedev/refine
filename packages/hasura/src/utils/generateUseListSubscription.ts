@@ -8,6 +8,7 @@ import * as gql from "gql-query-builder";
 
 import { generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
+import { getOperationFields } from "./graphql";
 
 type GenerateUseListSubscriptionParams = {
     resource: string;
@@ -43,6 +44,34 @@ export const generateUseListSubscription = ({
 
     const hasuraSortingType = `[${operation}_order_by!]`;
     const hasuraFiltersType = `${operation}_bool_exp`;
+
+    const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+    if (gqlOperation) {
+        const query = `
+            subscription ${operation}($limit: Int, $offset: Int, $order_by: ${hasuraSortingType}, $where: ${hasuraFiltersType} ) {
+                ${operation}( limit: $limit, offset: $offset, order_by: $order_by, where: $where ) {
+                    ${getOperationFields(gqlOperation)}
+                }
+            }
+        `;
+
+        const variables = {
+            ...(mode === "server"
+                ? {
+                      limit,
+                      offset: (current - 1) * limit,
+                  }
+                : {}),
+            ...(hasuraSorting && {
+                order_by: hasuraSorting,
+            }),
+            ...(hasuraFilters && {
+                where: hasuraFilters,
+            }),
+        };
+
+        return { query, variables, operation };
+    }
 
     const { query, variables } = gql.subscription([
         {

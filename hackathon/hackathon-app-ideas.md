@@ -1,9 +1,8 @@
 ## App ideas for Hackathons
 
+Here are some app ideas that can inspire you for the hackathon.
 
-Here are some app ideas that can inspire you for the hackathon. 
-
-Remember, these are just examples. Feel free to build any kind of CRUD application you want, as long as you're using refine to build your app.
+Remember, these are just examples. Feel free to build any kind of CRUD application you want, as long as you're using Refine to build your app.
 
 1. **Recipe Sharing Platform**: Users can post their own recipes, browse recipes posted by others, and rate and review them. Features could include an ingredient checklist, step-by-step instructions with video/picture capabilities, and a commenting system for user interaction.
 

@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.12.3
+
+### Patch Changes
+
+-   [#5614](https://github.com/refinedev/refine/pull/5614) [`37fd5cff51`](https://github.com/refinedev/refine/commit/37fd5cff5161f5eb07af60c8efc85f4c759f2696) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update post create message to suggest "dev" command, instead of "start".
+
+## 1.12.2
+
+### Patch Changes
+
+-   [#5571](https://github.com/refinedev/refine/pull/5571) [`5701439e36`](https://github.com/refinedev/refine/commit/5701439e36a510db7b937ca4610121b6f7b3c917) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update superplate-cli dependency to 1.19.0
+
 ## 1.12.1
 
 ### Patch Changes

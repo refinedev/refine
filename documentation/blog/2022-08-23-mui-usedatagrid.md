@@ -1,18 +1,18 @@
 ---
-title: Using Material UI DataGrid component with refine app
-description: How to use Material UI DataGrid component with refine apps?
+title: Using Material UI DataGrid component with Refine app
+description: How to use Material UI DataGrid component with Refine apps?
 slug: mui-datagrid-refine
 authors: michael
-tags: [material-ui, react, refine]
+tags: [material-ui, react, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/social.png
 hide_table_of_contents: false
 ---
 
 ## Introduction
 
-In this article, we'll show how to use Material UI [`<DataGrid />`](https://mui.com/x/react-data-grid/) component and refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a refine application.
+In this article, we'll show how to use Material UI [`<DataGrid />`](https://mui.com/x/react-data-grid/) component and Refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a Refine application.
 
-[refine](https://github.com/refinedev/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and with out-of-box support packages. Additionally, it provides a clean interface for integrating with popular UI frameworks such as Material UI, Ant Design, Mantine, and Chakra UI.
+[Refine](https://github.com/refinedev/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and with out-of-box support packages. Additionally, it provides a clean interface for integrating with popular UI frameworks such as Material UI, Ant Design, Mantine, and Chakra UI.
 
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid />` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
@@ -20,11 +20,11 @@ Steps we’ll cover:
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
-- [Create a new refine app](#create-a-new-refine-app)
+- [Create a new Refine app](#create-a-new-refine-app)
 - [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 - [Material UI DataGrid component](#material-ui-datagrid-component)
 - [Adding styled-components](#adding-styled-components)
-- [refine's `useDataGrid` hook](#refines-usedatagrid-hook)
+- [Refine's `useDataGrid` hook](#refines-usedatagrid-hook)
 - [Rendering data with the `<DataGrid />` component](#rendering-data-with-the-datagrid--component)
 - [Pagination, Filtering, and Sorting using the `useDataGrid` hook](#pagination-filtering-and-sorting-using-the-usedatagrid-hook)
   - [Pagination](#pagination)
@@ -44,9 +44,9 @@ To follow along with this tutorial, we assume you have the following:
 - Node.js installed on your machine
 - A code editor of your choice (VSCode, Sublime Text, etc.)
 
-If you don't familiar with refine, we recommend you to check out the [refine tutorial](https://refine.dev/docs/tutorial/introduction/index/) to get started.
+If you don't familiar with Refine, we recommend you to check out the [Refine tutorial](https://refine.dev/docs/tutorial/introduction/index/) to get started.
 
-## Create a new refine app
+## Create a new Refine app
 
 We'll use the `npm create refine-app` command to interactively initialize the project.
 
@@ -105,9 +105,9 @@ The following example shows a basic usage of the `<DataGrid />` component:
 />
 ```
 
-Although **refine** is a headless framework that can be used with any UI framework of choice. This means that we can use the `<DataGrid />` component in our refine application without having to worry about integrating it with the framework.
+Although **Refine** is a headless framework that can be used with any UI framework of choice. This means that we can use the `<DataGrid />` component in our Refine application without having to worry about integrating it with the framework.
 
-We'll see how to leverage these components with refine's [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook in our refine app in the coming sections.
+We'll see how to leverage these components with Refine's [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook in our Refine app in the coming sections.
 
 <a href="https://github.com/refinedev/refine">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
@@ -115,7 +115,7 @@ We'll see how to leverage these components with refine's [`useDataGrid`](https:/
 
 ## Adding styled-components
 
-We'll use `styled-components` to style our app, as refine doesn't control how we choose to style our applications. So let's go ahead and install it with its types definition as follows:
+We'll use `styled-components` to style our app, as Refine doesn't control how we choose to style our applications. So let's go ahead and install it with its types definition as follows:
 
 ```bash
 npm install styled-components && npm install --save-dev @types/styled-components
@@ -152,9 +152,9 @@ export default Layout;
 
 In the above code, we're creating a styled div to wrap our app content through the `children` prop and then aligning it in the center of the page.
 
-## refine's `useDataGrid` hook
+## Refine's `useDataGrid` hook
 
-In addition to integrating Material UI components, **refine** provides a clean interface through the [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook for implementing some properties that can be used with MUI X `<DataGrid />` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
+In addition to integrating Material UI components, **Refine** provides a clean interface through the [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook for implementing some properties that can be used with MUI X `<DataGrid />` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
 
 For instance, if you have a page component where you want to render tabular data, you might do something like the below:
 
@@ -186,11 +186,11 @@ const Table: React.FC = () => {
 export default Table;
 ```
 
-It's important to note that in the above example, we're not passing the `rows` prop to the `<DataGrid />` component. This is because the `dataGridProps` variable automatically injects the `rows` values into the `<DataGrid />` component through the native `<Refine />` component's `dataProvider` prop available in the `src/App.tsx` file of your refine application.
+It's important to note that in the above example, we're not passing the `rows` prop to the `<DataGrid />` component. This is because the `dataGridProps` variable automatically injects the `rows` values into the `<DataGrid />` component through the native `<Refine />` component's `dataProvider` prop available in the `src/App.tsx` file of your Refine application.
 
 The `dataProvider` prop is used to read data from an API endpoint and then make the data available in the entire application.
 
-[Refer to refine data provider documentation for detailed usage](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to Refine data provider documentation for detailed usage](https://refine.dev/docs/core/providers/data-provider/)
 
 ## Rendering data with the `<DataGrid />` component
 
@@ -263,7 +263,7 @@ Next, replace the `src/App.tsx` file with the following code:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
@@ -288,7 +288,7 @@ function App() {
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider("https://my-json-server.typicode.com/Mich45/employee-data")}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               resources={[
                 {
@@ -687,7 +687,7 @@ You can refer to MU X DataGrid [filtering documentation](https://mui.com/x/react
 
 In this article we introduced you to the MUI X `<DataGrid />` component and how to use it to render tabular data. We also learned how to simplify operations such as pagination, sorting and filtering on the component using the `useDataGrid` hook.
 
-We hope this article helps you in getting started with the `<DataGrid />` component in your refine applications.
+We hope this article helps you in getting started with the `<DataGrid />` component in your Refine applications.
 
 Where to go next? Check the useDataGrid hook [documentation](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) and the MUI X `<DataGrid />` [documentation](https://mui.com/x/react-data-grid/) for additional usage information and reference.
 

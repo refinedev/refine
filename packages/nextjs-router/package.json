@@ -1,7 +1,7 @@
 {
   "name": "@refinedev/nextjs-router",
   "description": "refine Next.js router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "5.5.5",
+  "version": "6.0.0",
   "license": "MIT",
   "private": false,
   "sideEffects": false,
@@ -24,20 +24,10 @@
       "import": "./dist/esm/pages.js",
       "require": "./dist/pages.js"
     },
-    "./legacy": {
-      "types": "./dist/legacy/index.d.ts",
-      "import": "./dist/esm/legacy.js",
-      "require": "./dist/legacy.js"
-    },
-    "./legacy-app": {
-      "types": "./dist/legacy-app/index.d.ts",
-      "import": "./dist/esm/legacy-app.js",
-      "require": "./dist/legacy-app.js"
-    },
-    "./legacy-pages": {
-      "types": "./dist/legacy-pages/index.d.ts",
-      "import": "./dist/esm/legacy-pages.js",
-      "require": "./dist/legacy-pages.js"
+    "./parse-table-params": {
+      "types": "./dist/common/parse-table-params.d.ts",
+      "import": "./dist/esm/parse-table-params.js",
+      "require": "./dist/parse-table-params.js"
     }
   },
   "typesVersions": {
@@ -51,14 +41,8 @@
       "pages": [
         "dist/pages/index.d.ts"
       ],
-      "legacy": [
-        "dist/legacy/index.d.ts"
-      ],
-      "legacy-app": [
-        "dist/legacy-app/index.d.ts"
-      ],
-      "legacy-pages": [
-        "dist/legacy-pages/index.d.ts"
+      "parse-table-params": [
+        "dist/common/parse-table-params.d.ts"
       ]
     }
   },
@@ -70,19 +54,19 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife  --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
   "author": "refine",
   "devDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.47.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/qs": "^6.9.7",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
-    "next": "^13.5.4",
+    "next": "^14.1.0",
     "ts-jest": "^29.0.3",
     "tslib": "^2.3.1",
     "tsup": "^6.7.0"

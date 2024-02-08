@@ -1,5 +1,5 @@
 ---
-title: Top 6 Free Online Code Editors and IDEs with Pros and Cons 
+title: Top 6 Free Online Code Editors and IDEs with Pros and Cons
 description: We'll compare the best online IDEs and code editors for web development. We'll also look at the pros and cons of each.
 slug: 6-best-online-code-editors-comparison
 authors: joseph_mawa
@@ -8,22 +8,11 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
-
-
-
 ## Introduction
 
 Programmers and software engineers spend a significant proportion of their time using IDEs and text editors for writing code. Most IDEs and text editors, such as VS Code, Sublime Text, and Notepad++, are desktop applications. However, there are also several online editors that you can use for building, testing, prototyping, and showcasing simple hobby projects, especially in web development.
 
-This article will introduce you to some of the most popular free online Editors and IDEs, such as CodeSandbox, Codepen, JSFiddle,  StackBlitz, Glitch, and Repl.it. You can use some of these online IDEs and text editors to build simple front-end applications, while others, like Glitch, are for both front-end and full-stack applications.
+This article will introduce you to some of the most popular free online Editors and IDEs, such as CodeSandbox, Codepen, JSFiddle, StackBlitz, Glitch, and Repl.it. You can use some of these online IDEs and text editors to build simple front-end applications, while others, like Glitch, are for both front-end and full-stack applications.
 
 Your choice of an online IDE largely depends on whether you want to build a front-end, back-end, or full-stack application. We will explore the pros and cons of these IDEs and text editors.
 
@@ -37,11 +26,11 @@ Steps we will cover:
 
 ## Bootstrapping a project for demonstration
 
-It is possible to import a project from your local machine or Git hosting service like GitHub to some online text editors or IDEs. Therefore, we will create a basic **[refine](https://github.com/refinedev/refine)** application in this section. We will use this application for illustration.
+It is possible to import a project from your local machine or Git hosting service like GitHub to some online text editors or IDEs. Therefore, we will create a basic **[Refine](https://github.com/refinedev/refine)** application in this section. We will use this application for illustration.
 
-[refine](https://github.com/refinedev/refine) is a React-based framework for developing web applications. It is useful when developing data-intensive CRUD applications such as admin panels and dashboards. Follow the steps below to bootstrap a simple refine application using [superplate](https://github.com/pankod/superplate).
+[Refine](https://github.com/refinedev/refine) is a React-based framework for developing web applications. It is useful when developing data-intensive CRUD applications such as admin panels and dashboards. Follow the steps below to bootstrap a simple Refine application using [superplate](https://github.com/pankod/superplate).
 
-### How to create refine application
+### How to create Refine application
 
 The easiest way to start using Refine is to bootstrap an application using [superplate](https://github.com/pankod/superplate).  
 Run the command below on the terminal.
@@ -57,7 +46,6 @@ After successfully creating the Refine project, navigate to the `example-project
 ```sh
 cd example-project
 ```
-
 
 To be sure the project you created is working, use the command below to launch the development server.
 
@@ -77,8 +65,7 @@ We will go above and beyond to highlight the pros and cons of online text editor
 
 [CodePen](https://codepen.io/) is one of the most popular online text editors for building, testing, showcasing and discovering simple front-end projects built using HTML, CSS, and JavaScript. Several developers use it for sharing fun front-end projects. Therefore, you can use some of the Codepen projects for inspiration and learn from the different front-end web developers and designers.
 
-To start using Codepen,  sign up using your e-mail id, Facebook, Twitter, or GitHub account. After login, type your HTML, CSS, and JavaScript code in their respective panels. Codepen will automatically update the preview. You can also change the default behavior in the settings.
-
+To start using Codepen, sign up using your e-mail id, Facebook, Twitter, or GitHub account. After login, type your HTML, CSS, and JavaScript code in their respective panels. Codepen will automatically update the preview. You can also change the default behavior in the settings.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codepen-ide.png"  alt="codepen ide" />
 
@@ -93,7 +80,7 @@ To start using Codepen,  sign up using your e-mail id, Facebook, Twitter, or Git
 - It supports several HTML templates and CSS Preprocessors
 - It supports programming languages such as JavaScript, TypeScript, CoffeeScript, and LiveScript
 - It has built-in support for the Babel transpiler
-- Built-in features for syntax highlighting and  code formatting
+- Built-in features for syntax highlighting and code formatting
 - Built-in support for code auto-completion
 - You can use JavaScript packages via Skypack CDN
 
@@ -107,13 +94,11 @@ To start using Codepen,  sign up using your e-mail id, Facebook, Twitter, or Git
 
 [StackBlitz](https://stackblitz.com/) is another online IDE tailored for web development. It uses WebContainers. In addition to supporting static projects built with HTML, CSS, and JavaScript, StackBlitz also supports most of the popular JavaScript and Node frameworks.
 
-
 Additionally, you can start a new project by connecting a GitHub repository or uploading a project from your computer. StackBlitz also has several project templates to get you up and running instantly. You can use StackBlitz to create front-end, back-end, and full-stack applications.
 
 To start using StackBlitz, sign in using your GitHub account. You can create a project quickly using one of the available templates. We will import the example project from a GitHub repository in the section below.
 
-
-As a [refine](https://github.com/refinedev/refine) team, we use +100 example code projects on StackBlitz to showcase the features of the framework. 
+As a [Refine](https://github.com/refinedev/refine) team, we use +100 example code projects on StackBlitz to showcase the features of the framework.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/stackblitz.png"  alt="stackblitz ide" />
 
@@ -125,7 +110,7 @@ Instead of using the starter projects to create a new project on StackBlitz, you
 
 ### Deploy the example project to GitHub
 
-Host the **refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/master/examples/tutorial) if you don't want to deploy the example project.
+Host the **Refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/master/examples/tutorial) if you don't want to deploy the example project.
 
 ### How to open a public GitHub repository in StackBlitz?
 
@@ -157,8 +142,6 @@ You can open one of the tutorial examples in StackBlitz by following [this link]
 ### Cons of using StackBlitz
 
 - Not all web browsers fully support WebContainers. You might run into some errors if you intend to embed StackBlitz projects in documentation or blog posts
-  
-
 
 ## CodeSandbox
 
@@ -170,9 +153,9 @@ To start using CodeSandbox, you can sign in using your GitHub, Google, or Apple 
 
 #### How to upload a project from local computer to CodeSandbox?
 
-CodeSandbox has a command line tool for uploading a project from your local machine to CodeSandbox.  Follow the steps below to use it for deploying the example project you created above.
+CodeSandbox has a command line tool for uploading a project from your local machine to CodeSandbox. Follow the steps below to use it for deploying the example project you created above.
 
-####  Install the `codesandbox` command line tool
+#### Install the `codesandbox` command line tool
 
 To upload a sandbox using a project in your local machine, install the `codesandbox` command line tool by running the command below on the terminal.
 
@@ -186,7 +169,7 @@ The command above will install the `codesandbox` command line tool globally. To 
 codesandbox -V
 ```
 
-####  Log into your CodeSandbox account from the command line
+#### Log into your CodeSandbox account from the command line
 
 After successfully installing the command line tool described in the previous step, log into your CodeSandbox account using the `codesandbox` command line tool. Run the command below on the terminal.
 
@@ -196,7 +179,7 @@ codesandbox login
 
 You need to respond to the command prompts after running the command above. The command line tool will open your default browser. After login, CodeSandbox will generate an authentication token. You will use the generated token to log into CodeSandbox from the command line.
 
-####  Upload the project from local machine to CodeSandbox
+#### Upload the project from local machine to CodeSandbox
 
 After successfully installing the command line tool and logging into CodeSandbox as described in the previous sections, use the command below to upload the current directory to a sandbox. If you want to deploy a different directory, replace `./` with the path to the directory.
 
@@ -208,20 +191,17 @@ codesandbox deploy ./
 
 Instead of importing a project to CodeSandbox from your local machine, it is also possible to import a GitHub repository. In the steps below, we will import the Refine example project we created to CodeSandbox from GitHub. Create a GitHub account if you haven't. You should also host the example project in a GitHub repository before following the steps below.
 
-####  Log into your CodeSandbox account in the browser
+#### Log into your CodeSandbox account in the browser
 
 You must first log into your CodeSandbox account. As pointed out above, you can log into CodeSandbox using your GitHub, Google, or Apple account.
 
-####  Grant CodeSandbox access to your GitHub account
+#### Grant CodeSandbox access to your GitHub account
 
 After logging into your CodeSandbox account, grant CodeSandbox access to your GitHub account. Click the button with three dots on the top right. In the drop-down menu, click Preferences and then Integrations. After that, sign into your GitHub account.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-form.png"  alt="codesandboxForm ide" />
 
 <br />
-
-
 
 #### Import your GitHub repository
 
@@ -230,8 +210,6 @@ After successfully connecting your GitHub account as described above, you can im
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/codesandbox-settings.png"  alt="codesandboxSettings ide" />
 
 <br />
-
-
 
 After completing the steps above, CodeSandbox will clone the Git repository and create a sandbox for you.
 
@@ -261,7 +239,6 @@ The process of importing a GitHub repository to CodeSandbox described above requ
 [JsFiddle](https://jsfiddle.net/) is a simple online editor and code playground for front-end developers and designers. You can use it to host simple project demos for your products and services and share code snippets. Additionally, you can embed your code snippets hosted on JsFiddle in a blog post, documentation, and GitHub README.
 
 JsFiddle is very similar to Codepen. You can use it to work with HTML, CSS, and JavaScript. It also supports some of the most popular front-end frameworks like React, Vue, and Preact. You don't need to log in to start using JsFiddle. Navigate to the [JsFiddle landing page](https://jsfiddle.net/) to launch the editor straight away.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/jsfiddle-editor.png"  alt="jsFiddle ide" />
 
@@ -300,16 +277,13 @@ You will import a GitHub project to the Repl.it IDE in this section. The steps b
 
 Though anybody can view a public Repl, you need a Repl.it account to create one. As pointed out above, you can create a Repl.it account using your e-mail or log in using your Google, GitHub, Apple, or Facebook account.
 
-####  Create a new Repl
+#### Create a new Repl
 
 In your Repl account, create a new Repl by clicking the "Create" button on the left panel or the top right. You can create a Repl from an existing template or import a project from GitHub. Click the "Import from GitHub" button.
-
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/repl-form.png"  alt="replForm ide" />
 
 <br />
-
 
 As you import a project from GitHub, be aware of the [Repl.it resources limitations](https://blog.replit.com/repl-resources) if you are on the free plan. You might need to upgrade to a paid plan for large projects.
 
@@ -338,17 +312,15 @@ As you import a project from GitHub, be aware of the [Repl.it resources limitat
 
 ## Glitch
 
-[Glitch](https://glitch.com/) is another online editor you can use for front-end, back-end, and full-stack web development. Unlike Repl.it, which supports several programming languages and runtime environments, Glitch supports the Node runtime environment and front-end languages like HTML, CSS, and JavaScript. To start using Glitch, create an account using your Email, GitHub, or Google account.  
+[Glitch](https://glitch.com/) is another online editor you can use for front-end, back-end, and full-stack web development. Unlike Repl.it, which supports several programming languages and runtime environments, Glitch supports the Node runtime environment and front-end languages like HTML, CSS, and JavaScript. To start using Glitch, create an account using your Email, GitHub, or Google account.
 
 You can use Glitch to prototype, share, and showcase web projects. Like most of the online editors I have highlighted above, Glitch has several starter templates you can use to start a new project or import a GitHub repository.
 
 Select the "Import from GitHub" option when creating a new project. Enter the full URL of the GitHub repository. Glitch will clone the repository and create a new project for you.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/glitch.png"  alt="glitch ide" />
 
 <br />
-
 
 ### Pros of using Glitch
 
@@ -367,12 +339,12 @@ Select the "Import from GitHub" option when creating a new project. Enter the fu
 - For the free plan, your project goes to sleep for a duration of inactivity. Repl.it doesn't have that behavior
 - The free plan has a limit of 1000 project hours per month
 
-## Comparing top online Editors and IDEs 
+## Comparing top online Editors and IDEs
 
 The free online editors and IDEs highlighted above have similarities and differences. I will compare online editors and IDEs, highlighting a few similarities and differences in this section.
 
 |                       | CodeSandbox        | StackBlitz         | Codepen            | JSFiddle           | Glitch             | Repl.it IDE        |
-| --------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| --------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | Offline usage         | No                 | **Yes**            | No                 | No                 | No                 | No                 |
 | Documentation         | Good               | Good               | Good               | Good               | Good               | Good               | Good               |
 | Community             | Good               | Good               | Good               | Good               | Good               | Good               | Good               |
@@ -386,7 +358,7 @@ The free online editors and IDEs highlighted above have similarities and differe
 
 If you are a programmer, software engineer, or developer, online editors and IDEs come in handy for prototyping, experimenting, sharing, and collaborating on small projects. As explained above, there are several online editors.
 
-These editors include StackBlitz, Codepen, CodeSandbox, JSFiddle, Glitch, and Repl.it IDE. Each online editor has its strengths and weaknesses. Codepen and JSFiddle are suitable for small front-end projects built using HTML, CSS, and JavaScript.  
+These editors include StackBlitz, Codepen, CodeSandbox, JSFiddle, Glitch, and Repl.it IDE. Each online editor has its strengths and weaknesses. Codepen and JSFiddle are suitable for small front-end projects built using HTML, CSS, and JavaScript.
 
 On the other hand, you can use either CodeSandbox or StackBlitz for large front-end projects and Glitch or Repl.it for back-end or full-stack applications. Among the online editors described above, CodeSandbox is the most flexible when creating projects.
 

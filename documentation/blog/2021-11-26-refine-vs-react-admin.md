@@ -1,9 +1,9 @@
 ---
 title: refine vs React-Admin Which is Better for Your Project?
-description: We will compare the features of refine and react-admin
+description: We will compare the features of Refine and react-admin
 slug: refine-vs-react-admin
 authors: melih
-tags: [refine, react, comparison]
+tags: [Refine, react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -233,15 +233,15 @@ A few of these modules are as follows:
 
 ## Refine
 
-**refine** is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
+**Refine** is a React-based framework that helps you to develop admin panel, B2B and dashboard that can be fully customized with Ant Design.
 
-**refine** directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
+**Refine** directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
 
-**refine** is a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
+**Refine** is a collection of helper hooks, components and providers. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
 
-**refine** uses [React Query](https://react-query.tanstack.com/) for data processing, caching, and state management. In this respect, you do not need to define anything extra for every cases and model.
+**Refine** uses [React Query](https://react-query.tanstack.com/) for data processing, caching, and state management. In this respect, you do not need to define anything extra for every cases and model.
 
-Although **refine** is a newer framework, it is successful in identifying deficiencies in development and producing solutions accordingly. Using new technologies, it offers users more effective and simpler development options.
+Although **Refine** is a newer framework, it is successful in identifying deficiencies in development and producing solutions accordingly. Using new technologies, it offers users more effective and simpler development options.
 
 ### Installation
 
@@ -267,9 +267,9 @@ npm create refine-app@latest demo-refine-project -- -b v3
 
 ### SSR - Next.js Support
 
-**refine** has support for SSR - Next.js. This is an important feature that separates refine from other frameworks. Thanks to this feature, refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
+**Refine** has support for SSR - Next.js. This is an important feature that separates Refine from other frameworks. Thanks to this feature, Refine provides the opportunity to develop B2C applications in addition to B2B and admin panel.
 
-**refine** can be used with Next.js to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
+**Refine** can be used with Next.js to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
 
 #### SSR-Next.js Setup
 
@@ -305,7 +305,7 @@ export default MyApp;
 
 ### Routing
 
-**refine** uses a customized Router Provider to save routes and navigate between pages. **refine** offers a much more flexible structure thanks to its routerProvider support.
+**Refine** uses a customized Router Provider to save routes and navigate between pages. **Refine** offers a much more flexible structure thanks to its routerProvider support.
 
 A router provider must include the following methods:
 
@@ -329,7 +329,7 @@ const routerProvider = {
 
 :::info
 
-**refine** includes many router providers to use in your projects like:
+**Refine** includes many router providers to use in your projects like:
 
 - React Router
 - React Location
@@ -339,7 +339,7 @@ const routerProvider = {
 
 [To take a look at how other router providers are defined and working](https://refine.dev/docs/api-reference/core/providers/router-provider/)
 
-To activate router provider in **refine**, we have to pass the routerProvider to the `<Refine />` component.
+To activate router provider in **Refine**, we have to pass the routerProvider to the `<Refine />` component.
 
 <Tabs
 defaultValue="react-router"
@@ -390,7 +390,7 @@ You just need to tell the route of your component to the routerProvider.
 
 ### Data Provider Logic
 
-A data provider is the place where a **refine** app communicates with an API.
+A data provider is the place where a **Refine** app communicates with an API.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/refine_flow.png" alt="refine" />
 
@@ -420,9 +420,9 @@ Data hooks uses React Query to manage data fetching. React Query handles importa
 
 #### GraphQL Data Provider
 
-It is well covered by GraphQL data provider **refine** and explained step by step in the documentation.
+It is well covered by GraphQL data provider **Refine** and explained step by step in the documentation.
 
-**refine** GraphQL data provider is built with [qql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request). The purpose here is to send dynamic queries that we can do with qql-query-builder as requests with graphql-request.
+**Refine** GraphQL data provider is built with [qql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request). The purpose here is to send dynamic queries that we can do with qql-query-builder as requests with graphql-request.
 
 Query builder helps us build queries and mutations. We can use these queries with the getList, getMany and getOne methods in our data provider. On the other hand, the create, createMany, update, updateMany, deleteOne and deleteMany methods generate a mutation to send a request.
 
@@ -433,7 +433,7 @@ In order to create a query, we need to specify the fields that we will use from 
 ```tsx src/App.tsx
 import { Refine } from "@pankod/refine";
 import routerProvider from "@refinedev/react-router-v6";
-import dataProvider, { GraphQLClient } from "@refinedev/strapi-graphql";
+import dataProvider, { GraphQLClient } from "@refinedev/graphql";
 
 const client = new GraphQLClient("API_URL");
 
@@ -554,42 +554,40 @@ Connects to any REST or GraphQL custom backend.
 - Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
 - Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
 - Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-graphql)
 - Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
 - Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
-- Nhost: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost](https://github.com/refinedev/refine/tree/master/examples/data-provider-nhost)
 - Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
 
 ### Customization
 
-- **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
+- **Refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility."
 - While the admin panel allows you to make dashboard, B2B and B2C applications quickly, we offer you flexibility in your UI or business model.
 
 #### UI/UX Customization:
 
-**refine**, comes ready-made decoupled from the UI, and is used. **refine** mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
+**Refine**, comes ready-made decoupled from the UI, and is used. **Refine** mostly touches UI components via hooks. The main advantage of this for you is that you can successfully perform any Business request or different case.
 
 #### Logic Customization:
 
-**refine**, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
+**Refine**, works flawless with react-query. You don't have to worry about state management in your business model or when you encounter a different situation.
 
 ### Pricing
 
-All features of **refine** are available as **open source**.
+All features of **Refine** are available as **open source**.
 
 - Access Control Provider (RBAC, ABAC, ACL, IP, LDAP, etc...)
 - Realtime
 - Search
 - Navigation and more features are available
 
-If you want to get information about the Enterprise, refine ready to help you for Support and Training.
+If you want to get information about the Enterprise, Refine ready to help you for Support and Training.
 [For more info about Enterprise->](https://refine.dev/enterprise/)
 
-refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
+Refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
 
 ## Conclusion
 
-With the pricing, customization and flexibility that **refine** offers you, you will be able to meet all your business demands. In addition, you can easily develop both B2B and B2C applications using a single framework with the support of SSR - Next.js.
+With the pricing, customization and flexibility that **Refine** offers you, you will be able to meet all your business demands. In addition, you can easily develop both B2B and B2C applications using a single framework with the support of SSR - Next.js.
 
 In general, these frameworks that we are comparing have appeared for the same purpose. All of them are successful in meeting business demands and offering you a solution. Here are the this solutions way that they offer, they may differ and there may be distinguishing features between them.
 

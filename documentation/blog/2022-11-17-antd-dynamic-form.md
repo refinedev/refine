@@ -3,7 +3,7 @@ title: How to Create Dynamic Forms in React CRUD app with Ant Design
 description: Easy way to creating dynamic forms in React CRUD apps with Ant Design
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
-tags: [react, refine, tutorial, ant-design]
+tags: [react, Refine, tutorial, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social.png
 hide_table_of_contents: false
 ---
@@ -16,12 +16,12 @@ However, due to the sporadic complexity of the information they collect, they te
 
 To solve this user experience issue, developers devised a dynamic form, a simple yet complex form that can grow in size on command.
 
-This guide will teach us how to create a dynamic form using Ant design and refine's React template.
+This guide will teach us how to create a dynamic form using Ant design and Refine's React template.
 
 Steps we'll cover:
 
 - [What is a dynamic form?](#what-is-a-dynamic-form)
-- [What is refine?](#what-is-refine)
+- [What is Refine?](#what-is-refine)
 - [Project setup](#project-setup)
 - [Building the List page](#building-the-list-page)
 - [Creating a form](#creating-a-form)
@@ -38,7 +38,7 @@ Steps we'll cover:
 To follow along with this tutorial, you need to have a good understanding of Typescript and the following:
 
 - The latest version of Node.js installed on your machine
-- Fundamental knowledge of React and [refine](https://github.com/refinedev/refine)
+- Fundamental knowledge of React and [Refine](https://github.com/refinedev/refine)
 - Basic understanding of Ant design
 
 ## What is a dynamic form?
@@ -55,25 +55,25 @@ For context, here's an example of the final CRUD app product of the dynamic form
 
 Ant design provides several components that let us build **dynamic forms** easily and rapidly. We'll learn more about these components later in this article.
 
-## What is refine?
+## What is Refine?
 
-refine is a headless React-based framework for rapidly building CRUD applications like admin panels, dashboards, and internal tools. The framework uses a collection of helper hooks, components, and data-providers that give you complete control over your application's user interface.
+Refine is a headless React-based framework for rapidly building CRUD applications like admin panels, dashboards, and internal tools. The framework uses a collection of helper hooks, components, and data-providers that give you complete control over your application's user interface.
 
-There are a lot of benefits to using refine in your applications, to name a few:
+There are a lot of benefits to using Refine in your applications, to name a few:
 
-- refine is UI agnostic by default; its headless design lets it integrate seamlessly with different UI frameworks and custom designs.
+- Refine is UI agnostic by default; its headless design lets it integrate seamlessly with different UI frameworks and custom designs.
 - it has an easy learning curve
-- refine is also backend agnostic by default; it has support for every backend technology.
+- Refine is also backend agnostic by default; it has support for every backend technology.
 - Authentication, state management, data fetching, and routing come out of the box.
-- refine is open source, so you don't have to worry about constraints.
+- Refine is open source, so you don't have to worry about constraints.
 
-One of refine's core features is its out-of-the-box integration with UI frameworks such as Material UI and Ant design. We'll look at how to use the latter in this guide.
+One of Refine's core features is its out-of-the-box integration with UI frameworks such as Material UI and Ant design. We'll look at how to use the latter in this guide.
 
 ## Project setup
 
-Before we go any further, let's set up a refine sample CRUD app project and install the required packages using superplate.
+Before we go any further, let's set up a Refine sample CRUD app project and install the required packages using superplate.
 
-Superplate is a CLI tool for quickly bootstrapping a refine project. The tool provides the option of setting up a headless refine project or a project paired with third-party UI libraries such as [Ant design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/). We'll be using the latter for this tutorial.
+Superplate is a CLI tool for quickly bootstrapping a Refine project. The tool provides the option of setting up a headless Refine project or a project paired with third-party UI libraries such as [Ant design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/). We'll be using the latter for this tutorial.
 
 As a first step, run the following command on your command line tool:
 
@@ -86,7 +86,7 @@ The command will prompt you to choose your preferences for the project.
 Select the following options to proceed:
 
 ```bash
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · dynamic-form
 ✔ Choose your backend service to connect: · Rest API
 ✔ Do you want to use a UI Framework?: · Ant Design
@@ -175,7 +175,7 @@ function App() {
 export default App;
 ```
 
-The resource definitions don't create any CRUD pages. It just defines the `resources` and the paths for the CRUD pages. The defined resources are used by **refine** hooks and components to infer the paths and parameters.
+The resource definitions don't create any CRUD pages. It just defines the `resources` and the paths for the CRUD pages. The defined resources are used by **Refine** hooks and components to infer the paths and parameters.
 
 You can think `resources` are bridge between the `dataProvider` and `routes`.
 
@@ -247,7 +247,7 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { notificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { useNotificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, {
   NavigateToResource,
@@ -266,7 +266,7 @@ function App() {
     <BrowserRouter>
       <ConfigProvider theme={RefineThemes.Blue}>
         <Refine
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           // highlight-start
@@ -313,11 +313,11 @@ export default App;
 </p>
 </details>
 
-Notice that we're passing a URL to the `dataProvider` prop. This is our fake API URL; refine will fetch and post data records from and to the API using this URL.
+Notice that we're passing a URL to the `dataProvider` prop. This is our fake API URL; Refine will fetch and post data records from and to the API using this URL.
 
 The `name` prop in the `<Refine>` component is what we're using to specify which endpoint we want to work with in the API. In our case, we're working with the `users` endpoint.
 
-This is all refine needs to handle our app's fetch and post functionalities. Next, we'll set up the list page and create a table that we'll use to display a list of the data we get from the API.
+This is all Refine needs to handle our app's fetch and post functionalities. Next, we'll set up the list page and create a table that we'll use to display a list of the data we get from the API.
 
 ## Building the List page
 
@@ -354,13 +354,13 @@ export default function UserList() {
 }
 ```
 
-[`useTable`](/docs/ui-integrations/ant-design/hooks/use-table) in the code above is a refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
+[`useTable`](/docs/ui-integrations/ant-design/hooks/use-table) in the code above is a Refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
 
 In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableProps` property. Then we set unique keys for each record from the API using the `rowkey` prop.
 
 :::note
 
-refine handles every fetch request under the hood. The `useTable` hook is one of many hooks it uses to distribute API responses and manage functionalities across its components.
+Refine handles every fetch request under the hood. The `useTable` hook is one of many hooks it uses to distribute API responses and manage functionalities across its components.
 
 :::
 
@@ -426,7 +426,7 @@ export default function UserCreate() {
 }
 ```
 
-[`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) is a refine hook for handling form data. It offers adapters that let refine integrate with Ant design's `<Form>` component.
+[`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) is a Refine hook for handling form data. It offers adapters that let Refine integrate with Ant design's `<Form>` component.
 
 In the code above, we destructured the **formProps** and `saveButtonProps` properties from the `useForm` hook, then we passed them to the `<Create>` and `<Form>` components, respectively.
 
@@ -683,7 +683,7 @@ Ant design is a full-fledged UI library, providing a collection of free icons th
 
 Unlike most design libraries, Ant design provides its icons separately from the base package. so to use it, we'll have to install it separately.
 
-Fortunately for us, refine comes bundled with both the base package and the icon package of Ant design, so we don't have to waste any more time installing the package.
+Fortunately for us, Refine comes bundled with both the base package and the icon package of Ant design, so we don't have to waste any more time installing the package.
 
 All we have to do is append an icon name to the `<Icons>` component we imported earlier and pass it to the `icon` prop on the delete `<Button>` component like so:
 
@@ -921,7 +921,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 
 ## Building the edit page
 
-As you might have noticed earlier, refine didn't automatically add an edit button to the table on the List page. So before we set up the edit page, we must first add an edit button that will route users to the edit page when clicked.
+As you might have noticed earlier, Refine didn't automatically add an edit button to the table on the List page. So before we set up the edit page, we must first add an edit button that will route users to the edit page when clicked.
 
 To do this, go back to the `<UserList>` file, import the `<EditButton>` component, and add a new `<Table.Column>` component with the following props:
 
@@ -964,7 +964,7 @@ export default function UserList() {
 }
 ```
 
-The `<EditButton>` component uses Ant's `Button` component and refine's [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
+The `<EditButton>` component uses Ant's `Button` component and Refine's [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
 
 Refer to the `<EditButton>` [documentation](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) to learn more about the component.
 
@@ -1112,7 +1112,7 @@ export default function UserEdit() {
 
 This is a duplicate of the form component we created inside the `UserCreate` page earlier, with the exception of the `<Edit>` component we're using to wrap the form instead of the former - `<Create>` component.
 
-`<Edit>` is a refine component for wrapping form components that are meant for editing and updating data responses. The `<Edit>` component provides actions such as `save`, `delete`, and `refresh` buttons that can be used in a form.
+`<Edit>` is a Refine component for wrapping form components that are meant for editing and updating data responses. The `<Edit>` component provides actions such as `save`, `delete`, and `refresh` buttons that can be used in a form.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page-2.gif"  alt="dynamic form antd" />
 
@@ -1120,11 +1120,11 @@ This is a duplicate of the form component we created inside the `UserCreate` pag
 
 That's it. We've successfully built an application that uses an API to post and edit response records using a **dynamic form**.
 
-As a challenge, visit refine's [documentation](https://refine.dev/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application. Cheers!
+As a challenge, visit Refine's [documentation](https://refine.dev/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application. Cheers!
 
 ## Conclusion
 
-In this article, we introduced refine and looked at how to set up a refine complete CRUD app project with a third-party UI library - in this case, the Ant design library. Then, we looked at how to create a `List` , `Edit` , and `Create` page for handling CRUD functionalities in our app.
+In this article, we introduced Refine and looked at how to set up a Refine complete CRUD app project with a third-party UI library - in this case, the Ant design library. Then, we looked at how to create a `List` , `Edit` , and `Create` page for handling CRUD functionalities in our app.
 
 We also looked at creating a dynamic form that renders and deletes fields on demand, validates input values, and handles submission using Ant's `Form` component and its sub-components.
 

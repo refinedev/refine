@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mui",
-  "version": "5.14.2",
+  "version": "5.14.4",
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "private": false,
   "sideEffects": false,
@@ -8,7 +8,7 @@
   "module": "dist/esm/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
@@ -27,9 +27,9 @@
     "react-hook-form": "^7.30.0"
   },
   "devDependencies": {
-    "@refinedev/cli": "^2.16.22",
+    "@refinedev/cli": "^2.16.24",
     "@refinedev/ui-tests": "^1.14.1",
-    "@refinedev/core": "^4.46.2",
+    "@refinedev/core": "^4.47.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -59,7 +59,7 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
-    "@refinedev/react-hook-form": "^4.8.13",
+    "@refinedev/react-hook-form": "^4.8.14",
     "react-hook-form": "^7.30.0",
     "dayjs": "^1.10.7",
     "lodash-es": "^4.17.21",

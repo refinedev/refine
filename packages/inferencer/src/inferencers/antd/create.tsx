@@ -16,6 +16,7 @@ import {
     translatePrettyString,
     getMetaProps,
     shouldDotAccess,
+    deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -57,6 +58,12 @@ export const renderer = ({
         imports.push(["useTranslate", "@refinedev/core"]);
     }
 
+    // has gqlQuery or gqlMutation in "meta"
+    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+    if (hasGql) {
+        imports.push(["gql", "graphql-tag", true]);
+    }
+
     const relationFields: (InferField | null)[] = fields.filter(
         (field) => field?.relation && !field?.fieldable && field?.resource,
     );
@@ -78,7 +85,7 @@ export const renderer = ({
                     ${getMetaProps(
                         field?.resource?.identifier ?? field?.resource?.name,
                         meta,
-                        "getList",
+                        ["getList"],
                     )}
                 });
             `;
@@ -365,20 +372,18 @@ export const renderer = ({
                       ${getMetaProps(
                           resource.identifier ?? resource.name,
                           meta,
-                          "getOne",
+                          ["create", "getOne"],
                       )}
                   }`
-                : getMetaProps(
-                      resource?.identifier ?? resource?.name,
-                      meta,
+                : getMetaProps(resource?.identifier ?? resource?.name, meta, [
+                      "create",
                       "getOne",
-                  )
+                  ])
                 ? `{
-                  ${getMetaProps(
-                      resource?.identifier ?? resource?.name,
-                      meta,
+                  ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
+                      "create",
                       "getOne",
-                  )}
+                  ])}
               }`
                 : ""
         });

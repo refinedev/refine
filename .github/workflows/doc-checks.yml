@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "documentation"
   pull_request:
     branches:
       - master
+    paths:
+      - "documentation"
 
 jobs:
   misspell:
@@ -21,5 +25,4 @@ jobs:
         id: check_for_typos
         uses: crate-ci/typos@master
         with:
-          files: ./documentation/docs
           config: ./typos.toml

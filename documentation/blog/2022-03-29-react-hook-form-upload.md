@@ -3,7 +3,7 @@ title: How to Multipart File Upload Using FormData with React Hook Form
 description: In this guide, I'm going to show you how to multipart files upload with using React Hook Form
 slug: how-to-multipart-file-upload-with-react-hook-form
 authors: melih
-tags: [refine, react, react-hook-form, javascript]
+tags: [Refine, react, react-hook-form, javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/social.jpg
 hide_table_of_contents: false
 ---
@@ -111,9 +111,9 @@ npm run start
 <div className="banner-container">
 <div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
 
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+Meet the headless, React-based solution to build sleek **CRUD** applications. With Refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+Try [Refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
 
 <div>
 <a href="https://github.com/pankod/refine">
@@ -123,11 +123,11 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 <br/>
 
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design, Material UI and Mantine UI**.
+**Refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design, Material UI and Mantine UI**.
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [Refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
 
 </div>
 
@@ -214,7 +214,7 @@ Our project is ready! With React Hook Form, we can now send the selected file to
 
 ## Are You Looking React Web Framework?
 
-A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+A React-based framework for building internal tools, rapidly. **Refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
 🔥 **Headless** : Works with any UI framework
 
@@ -222,7 +222,7 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Medusa, Supabase, and Appwrite.
+🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Airtable, Medusa, Supabase, and Appwrite.
 
 📝 Native Typescript Core : You can always opt-out for plain JavaScript.
 
@@ -230,19 +230,19 @@ A React-based framework for building internal tools, rapidly. **refine** offers 
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/)
+[Refer to the **Refine** documentation for more information. →](https://refine.dev/docs/)
 
 ## How to Multipart File Upload with Refine and React Hook Form?
 
-It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/docs/packages/list-of-packages) it publishes with its **refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
+It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/docs/packages/list-of-packages) it publishes with its **Refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **Refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
 
 [Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/list-of-packages)
 
 [View Source](https://github.com/refinedev/refine/tree/master/examples/reactHookForm/useForm)
 
-You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **refine** `onFinish` method.
+You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **Refine** `onFinish` method.
 
-This is a basic `CMS` app that was created with **refine**'s **headless** feature. You may quickly build records and save them to your database using **refine**. We'll look at the CreatePost page of this step. We'll create a record in the form and manage it with the `refine-react-hook-form` adapter.
+This is a basic `CMS` app that was created with **Refine**'s **headless** feature. You may quickly build records and save them to your database using **Refine**. We'll look at the CreatePost page of this step. We'll create a record in the form and manage it with the `refine-react-hook-form` adapter.
 
 ```tsx title="src/pages/CreatePost"
 import { useState } from "react";
@@ -343,7 +343,7 @@ export const PostCreate: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
 <br />
 
-As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **refine** CMS example, checkout the live codeSandbox below.
+As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **Refine** CMS example, checkout the live codeSandbox below.
 
 ## Example
 

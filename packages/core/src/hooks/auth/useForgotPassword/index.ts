@@ -7,6 +7,7 @@ import { getXRay } from "@refinedev/devtools-internal";
 
 import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
 import {
     AuthActionResponse,
@@ -127,9 +128,13 @@ export function useForgotPassword<TVariables = {}>({
             .action("forgotPassword")
             .get(preferLegacyKeys),
         mutationFn: forgotPasswordFromContext,
-        onSuccess: ({ success, redirectTo, error }) => {
+        onSuccess: ({ success, redirectTo, error, successNotification }) => {
             if (success) {
                 close?.("forgot-password-error");
+
+                if (successNotification) {
+                    open?.(buildSuccessNotification(successNotification));
+                }
             }
 
             if (error || !success) {
@@ -202,5 +207,16 @@ const buildNotification = (
         description: error?.message || "Error while resetting password",
         key: "forgot-password-error",
         type: "error",
+    };
+};
+
+const buildSuccessNotification = (
+    successNotification: SuccessNotificationResponse,
+): OpenNotificationParams => {
+    return {
+        message: successNotification.message,
+        description: successNotification.description,
+        key: "forgot-password-success",
+        type: "success",
     };
 };

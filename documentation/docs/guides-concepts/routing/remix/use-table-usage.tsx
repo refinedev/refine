@@ -10,8 +10,6 @@ export function RemixUseTableUsage() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/remix-router": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
       }}
       files={{
         "/app/root.tsx": {
@@ -42,7 +40,7 @@ import {
 } from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
 export default function App() {

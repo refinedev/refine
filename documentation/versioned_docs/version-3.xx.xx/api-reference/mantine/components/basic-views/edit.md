@@ -6,7 +6,7 @@ swizzle: true
 
 ```tsx live shared
 setRefineProps({
-  notificationProvider: RefineMantine.notificationProvider,
+  notificationProvider: RefineMantine.useNotificationProvider,
   Layout: RefineMantine.Layout,
   Sider: () => null,
 });

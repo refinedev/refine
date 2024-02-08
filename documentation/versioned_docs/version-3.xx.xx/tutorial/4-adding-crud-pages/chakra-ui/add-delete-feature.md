@@ -75,7 +75,7 @@ import {
   Layout,
   refineTheme,
   ReadyPage,
-  notificationProvider,
+  useNotificationProvider,
 } from "@pankod/refine-chakra-ui";
 
 import { BlogPostList } from "pages/blog-posts/list";

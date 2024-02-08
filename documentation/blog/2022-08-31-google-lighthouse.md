@@ -20,8 +20,6 @@ You will explore the different ways of using Google Lighthouse in this article. 
 
 Step we'll cover:
 
-
-
 - [What is Google Lighthouse](#what-is-google-lighthouse)
 - [How to use Google lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
 - [How to use Google lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
@@ -50,20 +48,19 @@ Though the easiest way of using Google lighthouse is via the Chrome DevTools, yo
 
 Most Chromium-based browsers package Google lighthouse as part of their DevTools however, we will focus more on the Chrome DevTools in this article. Using it with other browsers should be similar, with slight variations.
 
- Follow the steps below to start using Google lighthouse in Chrome DevTools.
+Follow the steps below to start using Google lighthouse in Chrome DevTools.
 
 ### Step 1 - Navigate to the site you want to audit
 
-To use Google lighthouse in Chrome DevTools, navigate to the site you want to audit. We will use the [refine](https://refine.dev/) landing page for illustration throughout this article.
+To use Google lighthouse in Chrome DevTools, navigate to the site you want to audit. We will use the [Refine](https://refine.dev/) landing page for illustration throughout this article.
 
 ### Step 2 - Open Chrome DevTools
 
-You  can open Chrome DevTools by pressing the <kbd> F12 </kbd>  key. Click the lighthouse tab after that.
+You can open Chrome DevTools by pressing the <kbd> F12 </kbd> key. Click the lighthouse tab after that.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
 
 <br/>
-
 
 ### Step 3 - Select categories to audit
 
@@ -77,9 +74,7 @@ You can click the `Analyze page load` button to start auditing the website.
 
 ### Step 5 - Interpret the audit results
 
-After successfully analyzing the page, Google lighthouse will present the lighthouse scores and provide suggestions on where to make improvements. The lighthouse scores for the [refine](https://refine.dev/) landing page look like the image below.
-
-
+After successfully analyzing the page, Google lighthouse will present the lighthouse scores and provide suggestions on where to make improvements. The lighthouse scores for the [Refine](https://refine.dev/) landing page look like the image below.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
 
@@ -93,7 +88,6 @@ As highlighted above, Google Lighthouse audits a web page for performance, best 
 
 There are certain best practices you need to follow in Front-end development. Some of these best practices include adding `doctype` to the `HTML` element, using HTTPS, displaying images with the correct aspect ratio, and serving images with the appropriate resolution. Google Lighthouse will audit your site for some of these best practices and highlight the passing and failing tests.
 
-
 #### Performance
 
 Performance measurement is one of the main reasons developers use Google Lighthouse. Google Lighthouse uses the metrics below to estimate the ultimate performance score.
@@ -106,7 +100,6 @@ Performance measurement is one of the main reasons developers use Google Lightho
 - **Cumulative Layout Shift** - Measures the movement of visible elements within the viewport.
 
 The final score is a weighted average of the individual scores of the above metrics. This score can help you optimize your site so users can see and interact with it. It will also highlight potential opportunities for speeding up the page load. Read the [documentation](https://web.dev/performance-scoring/) for more insights on the individual metric scores and how Lighthouse calculates the final weighted score.
-
 
 #### Accessibility
 
@@ -132,7 +125,6 @@ Each mode has unique use cases, benefits, and limitations which the [Lighthouse
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
-
 
 ## How to use Google lighthouse Node CLI
 
@@ -160,7 +152,7 @@ The Google lighthouse command line tool has comprehensive documentation accessib
 lighthouse --help
 ```
 
-The command line tool will generate the audit report and write it in an HTML file by default. You can pass optional arguments to the lighthouse command to change the default behavior. The code below will audit the [refine landing page](https://refine.dev/) for accessibility and writes the report to a JSON file. You can view the JSON report using the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/).
+The command line tool will generate the audit report and write it in an HTML file by default. You can pass optional arguments to the lighthouse command to change the default behavior. The code below will audit the [Refine landing page](https://refine.dev/) for accessibility and writes the report to a JSON file. You can view the JSON report using the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/).
 
 ```sh
 lighthouse https://refine.dev/  --output=json --output-path=./report.json --only-categories=accessibility
@@ -207,10 +199,9 @@ const launchChromeAndAudit = async (url) => {
 launchChromeAndAudit("https://refine.dev/");
 ```
 
-The code above will audit the [refine landing page](https://refine.dev/) for accessibility and save the report to a file in JSON format. After that, you can upload the data to the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/) to view it in the browser. Omitting the `onlyCategories` field will audit the site for all categories.
+The code above will audit the [Refine landing page](https://refine.dev/) for accessibility and save the report to a file in JSON format. After that, you can upload the data to the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/) to view it in the browser. Omitting the `onlyCategories` field will audit the site for all categories.
 
 You can also save the audit report as an HTML file by setting the value of the output field to `html` instead of `json`, as we did in the example above. What I have provided above is a simple example. Check the [documentation](https://github.com/GoogleChrome/lighthouse/blob/master/docs/readme.md#using-programmatically) for more on how to run Google lighthouse programmatically.
-
 
 ## How to use Google Lighthouse Chrome browser extension
 
@@ -220,18 +211,15 @@ You can install the browser extension from the [Chrome web store](https://chrom
 
 ### Step 1 - Navigate to the website you want to audit
 
-Like using Google lighthouse in chrome DevTools, start by navigating to the site you want to audit. For this illustration, navigate to the [refine landing page](https://refine.dev/).
+Like using Google lighthouse in chrome DevTools, start by navigating to the site you want to audit. For this illustration, navigate to the [Refine landing page](https://refine.dev/).
 
 ### Step 2 - Open the extension popup
 
 Open the Google lighthouse chrome extension popup by clicking the extension icon in the Chrome toolbar.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
 
 <br/>
-
-
 
 ### Step 3 - Select the categories to audit
 
@@ -245,15 +233,13 @@ Finally, click the "Generate Report" button to generate the audit report. The re
 
 As pointed out above, Google lighthouse can audit a website for performance, best practices, accessibility, SEO, and PWA. In addition to being installable, Progressive web apps come with several progressively enhanced features. You can use Google lighthouse to validate whether a site is installable or optimized for PWA.
 
-If you navigate to the [refine landing page](https://refine.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [refine](https://refine.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
+If you navigate to the [Refine landing page](https://refine.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [Refine](https://refine.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
 
 <br/>
 
-It is worth mentioning that PWAs have several features and best practices to follow. Google lighthouse can audit only a  handful of these features. You need to check some of them manually. Google lighthouse will also hint at the items you need to check manually.
-
-
+It is worth mentioning that PWAs have several features and best practices to follow. Google lighthouse can audit only a handful of these features. You need to check some of them manually. Google lighthouse will also hint at the items you need to check manually.
 
 ## How to view Google lighthouse report
 
@@ -267,7 +253,7 @@ If your team uses a continuous integration workflow, you can use the Google ligh
 
 Lighthouse CI works with CI providers like Circle CI, GitHub actions, and Travis CI. Follow the steps below to learn how to use it with GitHub actions.
 
-### Step  1 - Create GitHub Actions workflow directory
+### Step 1 - Create GitHub Actions workflow directory
 
 Create a `.github/workflow` directory to store your GitHub workflow files at the root of your project directory to start using GitHub actions.
 
@@ -302,9 +288,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Run lighthouse CI
-        run: | 
+        run: |
           npm install -g @lhci/cli@0.3.x && lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=./
-          
 ```
 
 The above example also assumes you don't have a configuration file at the root of your project directory.
@@ -323,7 +308,6 @@ On the other hand, it is worth mentioning that Google Lighthouse is just a tool.
 
 Therefore, you must go above and beyond to test your site with actual users even though you have perfect Google lighthouse accessibility scores. We have covered the introduction to Google Lighthouse in this article. Check the documentation for in-depth guides.
 
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
@@ -332,4 +316,3 @@ Therefore, you must go above and beyond to test your site with actual users even
 </div>
 
 ---
-

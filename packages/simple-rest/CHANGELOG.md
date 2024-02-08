@@ -1,5 +1,21 @@
 # @refinedev/simple-rest
 
+## 5.0.2
+
+### Patch Changes
+
+-   [#5378](https://github.com/refinedev/refine/pull/5378) [`63e39ed312`](https://github.com/refinedev/refine/commit/63e39ed3127c29fa044f29c69299f46d563636ff) Thanks [@amanzrx4](https://github.com/amanzrx4)! - fix: `dataProvider.getList` method adds `?` to the request url when there is no `filters`, `sorters` and `pagination` in the request. #5359
+
+    ```diff
+    - Expected
+    + Received
+
+    - "https://api.fake-rest.refine.dev/categories",
+    + "https://api.fake-rest.refine.dev/categories?",
+    ```
+
+    From now on, `dataProvider.getList` method will not add `?` to the request url when there is no `filters`, `sorters` and `pagination` in the request.
+
 ## 5.0.1
 
 ### Patch Changes

@@ -5,8 +5,6 @@ import { Button, Result, Typography, Space, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { useNavigation, useTranslate } from "@refinedev/core";
 
-const { Text } = Typography;
-
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
  * A custom error component can be used for this error page.
@@ -46,12 +44,12 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
             extra={
                 <Space direction="vertical" size="large">
                     <Space>
-                        <Text>
+                        <Typography.Text>
                             {translate(
                                 "pages.error.404",
                                 "Sorry, the page you visited does not exist.",
                             )}
-                        </Text>
+                        </Typography.Text>
                         {errorMessage && (
                             <Tooltip title={errorMessage}>
                                 <InfoCircleOutlined data-testid="error-component-tooltip" />

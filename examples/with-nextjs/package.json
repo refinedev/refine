@@ -1,34 +1,44 @@
 {
   "name": "with-nextjs",
-  "version": "3.25.0",
+  "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
-    "build": "refine build && rm -rf .next/cache",
+    "build": "refine build",
     "start:prod": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "cypress": "cypress open -C ./cypress.config.ts",
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.37.2",
-    "@refinedev/core": "^4.46.2",
-    "@refinedev/cli": "^2.16.22",
-    "@refinedev/nextjs-router": "^5.5.5",
-    "@refinedev/simple-rest": "^5.0.1",
+    "@refinedev/antd": "^5.37.4",
+    "@refinedev/core": "^4.47.1",
+    "@refinedev/cli": "^2.16.24",
+    "@refinedev/nextjs-router": "^6.0.0",
+    "@refinedev/simple-rest": "^5.0.2",
     "cross-env": "^7.0.3",
-    "next": "^13.5.4",
+    "@ant-design/nextjs-registry": "^1.0.0",
+    "next": "^14.1.0",
     "nookies": "^2.5.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "antd": "^5.0.5"
+    "@ant-design/icons": "5.0.1",
+    "antd": "^5.0.5",
+    "js-cookie": "^3.0.1",
+    "@refinedev/kbar": "^1.3.6",
+    "@refinedev/devtools": "^1.1.32"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/node": "^18.16.2",
     "@typescript-eslint/parser": "5.48.0",
     "typescript": "^4.7.4",
-    "cypress": "^13.6.3"
+    "cross-env": "^7.0.3",
+    "eslint": "^8.24.0",
+    "@types/js-cookie": "^3.0.2"
   }
 }

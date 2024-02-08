@@ -1,4 +1,4 @@
-**refine** supports many data providers. To include them in your project, you can use `npm install [packageName]` or you can select the preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI. This will allow you to easily use these data providers in your project.
+**Refine** supports many data providers. To include them in your project, you can use `npm install [packageName]` or you can select the preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI. This will allow you to easily use these data providers in your project.
 
 - [Simple REST API](/docs/data/packages/simple-rest)
 - [GraphQL](/docs/data/packages/graphql)
@@ -6,7 +6,6 @@
 - [Nestjs-Query](/docs/data/packages/nestjs-query)
 - [Airtable](/docs/data/packages/airtable)
 - [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](/docs/data/packages/strapi-v4)
-- [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
 - [Supabase](/docs/data/packages/supabase)
 - [Hasura](/docs/data/packages/hasura)
 - [Appwrite](/docs/data/packages/appwrite)

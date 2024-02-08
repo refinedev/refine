@@ -2,7 +2,6 @@
 
 This post is about how to use TailwindCSS Flex classes effectively to implement reponsive components. We follow an example of building a React navbar with TailwindCSS Flex.
 
-
 ## Introduction
 
 TailwindCSS is a robust CSS framework that provides numerous utility classes for layout, sizing, colors, typography, etc. One of the most powerful capabilities Tailwind provides is repsonsive variants of all utility classes for all screensizes. Tailwind also supports utility variants for element's states like `hover`, `focus`, `active`, and so on.
@@ -14,7 +13,6 @@ In this post, we will play with Tailwind Flex classes to build a simple React na
 We'll start with a collapsible React navbar that already comes with the collapse and show feature as well as necessary spacing and sizing implemented, so that we can focus the on the use of Tailwind Flex classes in this article.
 
 Before starting though, let's talk about the pre-requisites that need to be managed to get going with getting hands on with Tailwind Flex.
-
 
 ## Prerequisites
 
@@ -69,21 +67,18 @@ If you run into any hurdle, please check out how to initialize a React app with 
 
 With the development environment set up, lets now get our starter files prepared.
 
-
 ## Starter Files
 
 Our `App.tsx` file should look like this:
 
 ```jsx
-import Navbar from './components/Navbar';
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <main>
-        {/*Lorem stuff here*/}
-      </main>
+      <main>{/*Lorem stuff here*/}</main>
     </div>
   );
 }
@@ -102,48 +97,58 @@ import SearchIcon from "./searchIcon";
 import HamburgerIcon from "./hamburgerIcon";
 
 const Navbar = () => {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
-    <nav
-			className="navbar"
-		>
-			<div
-                id="brand-wrapper"
-				className="nav-wrapper"
-			>
-				<a className="brand" href="/">tailzup!</a>
-			</div>
-			<div className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}>
-				<div
-					id="items"
-					className="my-2"
-					>
-					<div
-						className="left mx-2 p-2"
-					>
-						<input
-							className="text-input"
-							type="email"
-							placeholder="Find danielle trump or storm..."
-						/>
-						<SearchIcon />
-					</div>
-					<div>
-						<ul
-							id="right"
-							className=""
-							>
-							<li className="nav-item"><a href="/"><Avatar /></a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-		</nav>
+    <nav className="navbar">
+      <div id="brand-wrapper" className="nav-wrapper">
+        <a className="brand" href="/">
+          tailzup!
+        </a>
+      </div>
+      <div
+        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+      >
+        <div id="items" className="my-2">
+          <div className="left mx-2 p-2">
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find danielle trump or storm..."
+            />
+            <SearchIcon />
+          </div>
+          <div>
+            <ul id="right" className="">
+              <li className="nav-item">
+                <a href="/">
+                  <Avatar />
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Friends
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Messages
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <HamburgerIcon
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+    </nav>
   );
 };
 
@@ -164,25 +169,25 @@ import React from "react";
 export const HamburgerIcon = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <div
-        className={`absolute top-3 right-4 p-1 border border-slate-500 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-slate-500`}
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      className={`absolute top-3 right-4 p-1 border border-slate-500 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-slate-500`}
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
     >
-        <a>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-            >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-            />
-            </svg>
-        </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
+        </svg>
+      </a>
     </div>
   );
 };
@@ -190,42 +195,44 @@ export const HamburgerIcon = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
 export const Avatar = () => {
   return (
     <a href="/">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="avatar"
-        >
-            <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-            />
-        </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="avatar"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+        />
+      </svg>
     </a>
   );
 };
 
-
 export const SearchIcon = () => {
   return (
-    <button className="px-2 py-0.5 border rounded-r hover:rounded-r hover:border-slate-400 hover:bg-slate-500 transition ease-in-out duration-50" href="/">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="icon"
-            >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-        </svg>
+    <button
+      className="px-2 py-0.5 border rounded-r hover:rounded-r hover:border-slate-400 hover:bg-slate-500 transition ease-in-out duration-50"
+      href="/"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="icon"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+        />
+      </svg>
     </button>
   );
 };
@@ -238,7 +245,7 @@ The icons aslo come with necessary TailwindCSS styles. You can copy paste them d
 Alright, with everything now set on the stage. Let's try run the app:
 
 ```bash
-npm run start
+npm run dev
 ```
 
 You can see the vertical menu and the toggle button at viewport width less than `md`. And the toggle button is functioning properly:
@@ -254,59 +261,67 @@ import SearchIcon from "./searchIcon";
 import HamburgerIcon from "./hamburgerIcon";
 
 const Navbar = () => {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
-    <nav
-			className="navbar"
-		>
-			<div
-                id="brand-wrapper"
-				className="nav-wrapper"
-			>
-				<a className="brand" href="/">tailzup!</a>
-			</div>
-			<div className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}>
-				<div
-					id="items"
-					className="my-2"
-					>
-					<div
-						className="left mx-2 p-2"
-					>
-						<input
-							className="text-input"
-							type="email"
-							placeholder="Find danielle trump or storm..."
-						/>
-						<SearchIcon />
-					</div>
-					<div>
-						<ul
-							id="right"
-							className=""
-							>
-							<li className="nav-item"><a href="/"><Avatar /></a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-		</nav>
+    <nav className="navbar">
+      <div id="brand-wrapper" className="nav-wrapper">
+        <a className="brand" href="/">
+          tailzup!
+        </a>
+      </div>
+      <div
+        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+      >
+        <div id="items" className="my-2">
+          <div className="left mx-2 p-2">
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find danielle trump or storm..."
+            />
+            <SearchIcon />
+          </div>
+          <div>
+            <ul id="right" className="">
+              <li className="nav-item">
+                <a href="/">
+                  <Avatar />
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Friends
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Messages
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <HamburgerIcon
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+    </nav>
   );
 };
 ```
 
 So let's start flexing the navbar with TailwindCSS classes.
 
-
 ## Styling a Navbar with TailwindCSS classes
 
 We'll go inside out, as it is easier to manage inner flex containers and then combine container siblings up the HTML tree.
-
 
 **List Items with Tailwind Flex**
 
@@ -316,28 +331,42 @@ We'll apply a mobile first approach to the `<ul></ul>` and its `<li></li>` items
 // Skipped markup
 
 <div>
-    <ul
-        id="right"
-        className="
+  <ul
+    id="right"
+    className="
                         flex flex-col
                         md:flex-row md:justify-start md:items-center
                     "
-        >
-        <li className="nav-item md:order-last"><a href="/"><Avatar /></a></li>
-        <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-        <li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-        <li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-    </ul>
+  >
+    <li className="nav-item md:order-last">
+      <a href="/">
+        <Avatar />
+      </a>
+    </li>
+    <li className="nav-item">
+      <a className="nav-link" href="/">
+        Home
+      </a>
+    </li>
+    <li className="nav-item">
+      <a className="nav-link" href="/">
+        Friends
+      </a>
+    </li>
+    <li className="nav-item">
+      <a className="nav-link" href="/">
+        Messages
+      </a>
+    </li>
+  </ul>
 </div>
 ```
 
 At `md`, with `md:flex-row md:justify-start md:items-center` we turning the items horizontal, to justified to the start and vertically positioned to center.
 
-
 **Ordering List Items with Tailwind Flex**
 
 Notice, the `<Avatar />` item's `<li></li>` element is the first item on smaller screens, and we moved its order to last with `md:order-last`. It's showing at the end of the horizontal navbar.
-
 
 ### Search Bar
 
@@ -345,17 +374,17 @@ Next, we look at the sibling of the container of the list we just "flexed", the 
 
 ```jsx
 <div
-    className="
+  className="
                 left mx-2 p-2
                 flex justify-center items-center
             "
 >
-    <input
-        className="text-input"
-        type="email"
-        placeholder="Find danielle trump or storm..."
-    />
-    <SearchIcon />
+  <input
+    className="text-input"
+    type="email"
+    placeholder="Find danielle trump or storm..."
+  />
+  <SearchIcon />
 </div>
 ```
 
@@ -363,42 +392,58 @@ And then we want to correctly position the search bar and the nav list items. We
 
 ```jsx
 <div
-            id="items"
-            className="
+  id="items"
+  className="
                             my-2
                             flex flex-col justify-start items-start
                             md:flex-row md:justify-start md:items-center
                         "
-    >
-        <div
-            className="
+>
+  <div
+    className="
                             left mx-2 p-2
                             order-last md:order-none
                             flex justify-center items-center
                         "
-        >
-            <input
-                className="text-input"
-                type="email"
-                placeholder="Find danielle trump or storm..."
-            />
-            <SearchIcon />
-        </div>
-        <div>
-            <ul
-                id="right"
-                className="
+  >
+    <input
+      className="text-input"
+      type="email"
+      placeholder="Find danielle trump or storm..."
+    />
+    <SearchIcon />
+  </div>
+  <div>
+    <ul
+      id="right"
+      className="
                                 flex flex-col
                                 md:flex-row md:justify-start md:items-center
                             "
-        >
-                <li className="nav-item md:order-last"><a href="/"><Avatar /></a></li>
-                <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                <li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-                <li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-            </ul>
-        </div>
-    </div>
+    >
+      <li className="nav-item md:order-last">
+        <a href="/">
+          <Avatar />
+        </a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="/">
+          Home
+        </a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="/">
+          Friends
+        </a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="/">
+          Messages
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 ```
 
 Notice, we are applying flex orders with Tailwind Flex `order` classes. With `order-last md:order-none` on the search bar container, we are placing it at the bottom of the vertical stack on smaller screens, and by removing it on `md` and up, we are moving it back to first position.
@@ -409,20 +454,21 @@ So, with these changes, we have been able to achieve a good shape for the vertic
 
 We need to now fix things with the brand item, which should be in the left on larger screens.
 
-
 ### Positioning Navbar Logo with Tailwind Flex
 
 Before we work on the parent `<nav></nav>`, let's make sure all elements inside the `id="brand-wrapper"` is always centered horizontally and vertically.
 
 ```jsx
 <div
-    id="brand-wrapper"
-    className="
+  id="brand-wrapper"
+  className="
                     nav-wrapper
                     flex justify-start items-center flex-1 self-start
                 "
 >
-    <a className="brand" href="/">tailzup!</a>
+  <a className="brand" href="/">
+    tailzup!
+  </a>
 </div>
 ```
 
@@ -432,59 +478,82 @@ And now in the parent `nav` element, for screens larger than `md`, let's make th
 
 ```jsx
 <nav
-    className="
+  className="
                     navbar
                     flex flex-col justify-start md:flex-row md:justify-between md:items-center
                 "
 >
-    <div
-        className="
+  <div
+    className="
                         nav-wrapper
                         flex justify-start items-center flex-1 self-start
                     "
-    >
-        <a className="brand" href="/">tailzup!</a>
-    </div>
-    <div className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}>
-        <div
-            id="items"
-            className="
+  >
+    <a className="brand" href="/">
+      tailzup!
+    </a>
+  </div>
+  <div
+    className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+  >
+    <div
+      id="items"
+      className="
                             my-2
                             flex flex-col justify-start items-start
                             md:flex-row md:justify-start md:items-center
                         "
-            >
-            <div
-                className="
+    >
+      <div
+        className="
                                 left mx-2 p-2
                                 order-last md:order-none
                                 flex justify-center items-center
                             "
-            >
-                <input
-                    className="text-input"
-                    type="email"
-                    placeholder="Find danielle trump or storm..."
-                />
-                <SearchIcon />
-            </div>
-            <div>
-                <ul
-                    id="right"
-                    className="
+      >
+        <input
+          className="text-input"
+          type="email"
+          placeholder="Find danielle trump or storm..."
+        />
+        <SearchIcon />
+      </div>
+      <div>
+        <ul
+          id="right"
+          className="
                                     flex flex-col
                                     md:flex-row md:justify-start md:items-center
                                 "
-                    >
-                    <li className="nav-item md:order-last"><a href="/"><Avatar /></a></li>
-                    <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-                </ul>
-            </div>
-        </div>
+        >
+          <li className="nav-item md:order-last">
+            <a href="/">
+              <Avatar />
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              Friends
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              Messages
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+  </div>
+  <HamburgerIcon
+    isMobileMenuOpen={isMobileMenuOpen}
+    setIsMobileMenuOpen={setIsMobileMenuOpen}
+  />
 </nav>
 ```
 
@@ -493,7 +562,6 @@ With `flex flex-col justify-start md:flex-row md:justify-between md:items-start`
 So, with these Tailwind Flex power, we have a pretty neat React responsive navbar we can use on any webpage:
 
 ![navbar-final]()
-
 
 And the final `<Navbar />` component looks like this:
 
@@ -504,64 +572,87 @@ import SearchIcon from "./searchIcon";
 import HamburgerIcon from "./hamburgerIcon";
 
 const Navbar = () => {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const menuHidden = !isMobileMenuOpen ? "hidden md:block": "" ;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
   return (
     <nav
-			className="
+      className="
 									navbar
 									flex flex-col justify-start md:flex-row md:justify-between md:items-center
 								"
-		>
-			<div
-				className="
+    >
+      <div
+        className="
 										nav-wrapper
 										flex justify-start items-center flex-1 self-start
 									"
-			>
-				<a className="brand" href="/">tailzup!</a>
-			</div>
-			<div className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}>
-				<div
-					id="items"
-					className="
+      >
+        <a className="brand" href="/">
+          tailzup!
+        </a>
+      </div>
+      <div
+        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+      >
+        <div
+          id="items"
+          className="
 											my-2
 											flex flex-col justify-start items-start
 											md:flex-row md:justify-start md:items-center
 										"
-					>
-					<div
-						className="
+        >
+          <div
+            className="
 												left mx-2 p-2
 												order-last md:order-none
 												flex justify-center items-center
 											"
-					>
-						<input
-							className="text-input"
-							type="email"
-							placeholder="Find danielle trump or storm..."
-						/>
-						<SearchIcon />
-					</div>
-					<div>
-						<ul
-							id="right"
-							className="
+          >
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find danielle trump or storm..."
+            />
+            <SearchIcon />
+          </div>
+          <div>
+            <ul
+              id="right"
+              className="
 													flex flex-col
 													md:flex-row md:justify-start md:items-center
 												"
-							>
-							<li className="nav-item md:order-last"><a href="/"><Avatar /></a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Friends</a></li>
-							<li className="nav-item"><a className="nav-link" href="/">Messages</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-		</nav>
+            >
+              <li className="nav-item md:order-last">
+                <a href="/">
+                  <Avatar />
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Friends
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/">
+                  Messages
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <HamburgerIcon
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+    </nav>
   );
 };
 
@@ -569,4 +660,3 @@ export default Navbar;
 ```
 
 ## Summary
-

@@ -8,19 +8,16 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use
 hide_table_of_contents: false
 ---
 
-
-
-
 ## Introduction
 
 The `useParams` hook is one of the several hooks in React router. It has been available in React router since version 5. You can use it to retrieve route parameters from the component rendered by the matching route. You will explore the React Router `useParams` hook and how to use it in this article.
 
 Steps we'll cover:
-- [Introduction](#introduction)  
+
+- [Introduction](#introduction)
 - [Setting up React Router](#setting-up-react-router)
 - [What are URL parameters in React Router?](#what-are-url-parameters-in-react-router)
-- [How to use the  `useParams` hook](#how-to-use-the-useparams-hook)
-
+- [How to use the `useParams` hook](#how-to-use-the-useparams-hook)
 
 ## Prerequisites
 
@@ -28,7 +25,7 @@ To try out the examples in this article, you need to have a React project.
 
 Quickly create a React project using [superplate](https://github.com/pankod/superplate) CLI.
 
-``` 
+```
 npx superplate-cli useparams-example-app
 ```
 
@@ -49,7 +46,7 @@ yarn add react-router-dom@6
 
 # Using pnpm
 pnpm add react-router-dom@6
-````
+```
 
 ### Step 2 - How to set up React router
 
@@ -68,7 +65,7 @@ root.render(
     <Router>
       <App />
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -78,7 +75,7 @@ Unlike in earlier versions of React router, you import the `Routes` and `Route` 
 
 ```tsx
 import { Route, Routes } from "react-router-dom";
-import { Home, Blog } from "./components"
+import { Home, Blog } from "./components";
 
 function App() {
   return (
@@ -92,46 +89,44 @@ function App() {
 }
 ```
 
-
-
 ## What are URL parameters in React router
 
 When declaring functions in JavaScript, we use placeholders referred to as parameters. You use the parameters to perform some operations in the function declaration and return a value. The code below is a JavaScript function declaration that takes two numbers and returns their sum.
 
 ```tsx
-function add(a, b){
+function add(a, b) {
   return a + b;
-};
+}
 ```
 
 In the function declaration above, `a` and `b` are placeholders. They are function parameters. The actual values you pass during function invocation are arguments. In the function invocation below, `2` and `3` are arguments. The function can take any pair of numbers as arguments and return their sum.
 
 ```tsx
 const sum = add(2, 3);
-console.log(sum) // 5
+console.log(sum); // 5
 ```
 
 The concept of parameters is not limited to function declarations. When working with React router, there are URL parameters similar to the function parameters described above. In React router, URL parameters are placeholders you declare in a route, as in the example below.
 
 ```tsx
 <Routes>
-  <Route path="/blog/:id" element={<Blog />} /> 
+  <Route path="/blog/:id" element={<Blog />} />
 </Routes>
 ```
 
 In the example above, `id` is a placeholder because of the `:` in front. The placeholder is known as the URL parameter. Because of the URL parameter, React router will not literally match the route above with the URL. It will dynamically match if you point the browser to a URL that matches the `/blog/:id` pattern in its path.
 
-Assuming you are hosting the site on `https://refine.dev/`, pointing the browser to `https://refine.dev/blog/use-params` will match the route above. As a result, the `id` parameter will take the value `"use-params"` in the `Blog` component. 
+Assuming you are hosting the site on `https://refine.dev/`, pointing the browser to `https://refine.dev/blog/use-params` will match the route above. As a result, the `id` parameter will take the value `"use-params"` in the `Blog` component.
 
 The section below will explain how you can access the URL parameter in the rendered Component using the `useParams` hook.
 
-## How to use the  `useParams` hook
+## How to use the `useParams` hook
 
 As explained in the section above, you can declare a route with URL parameters so that React router dynamically captures the corresponding values in the URL when there is a match. It is useful when dynamically rendering the same component for multiple paths.
 
 ```tsx
 <Routes>
-  <Route path="/blog/:id" element={<Blog />} /> 
+  <Route path="/blog/:id" element={<Blog />} />
 </Routes>
 ```
 
@@ -151,7 +146,7 @@ If the matching route is`/blog/use-params` for the example above, the `useParams
 
 ```tsx
 {
-  id: "use-params"
+  id: "use-params";
 }
 ```
 

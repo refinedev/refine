@@ -1,6 +1,9 @@
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+    useNotificationProvider,
+    RefineSnackbarProvider,
+} from "@refinedev/mui";
 import routerBindings, {
     DocumentTitleHandler,
     NavigateToResource,
@@ -29,7 +32,7 @@ function App() {
                             dataProvider={dataProvider(
                                 "https://my-json-server.typicode.com/Mich45/employee-data",
                             )}
-                            notificationProvider={notificationProvider}
+                            notificationProvider={useNotificationProvider}
                             routerProvider={routerBindings}
                             resources={[
                                 {

@@ -2,7 +2,7 @@
   "name": "form-mantine-use-drawer-form",
   "private": true,
   "scripts": {
-    "start": "refine dev",
+    "dev": "refine dev",
     "build": "tsc && refine build",
     "preview": "refine start",
     "refine": "refine",
@@ -10,12 +10,12 @@
     "cypress:run": "cypress run -C ./cypress.config.ts"
   },
   "dependencies": {
-    "@refinedev/mantine": "^2.29.2",
-    "@refinedev/core": "^4.46.2",
-    "@refinedev/cli": "^2.16.22",
+    "@refinedev/mantine": "^2.29.4",
+    "@refinedev/core": "^4.47.1",
+    "@refinedev/cli": "^2.16.24",
     "@refinedev/react-router-v6": "^4.5.5",
-    "@refinedev/simple-rest": "^5.0.1",
-    "@refinedev/react-table": "^5.6.5",
+    "@refinedev/simple-rest": "^5.0.2",
+    "@refinedev/react-table": "^5.6.6",
     "@tanstack/react-table": "^8.2.6",
     "@uiw/react-md-editor": "^3.19.5",
     "@tabler/icons": "^1.119.0",
