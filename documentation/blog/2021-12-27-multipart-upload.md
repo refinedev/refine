@@ -119,9 +119,9 @@ The requests we created to send files by JavaScript will now be sent to our loca
 
 ## How to Multipart Upload with Refine?
 
-The Multipart file upload process with **refine** is very simple. How to use it is explained step by step in the guide and example.
+The Multipart file upload process with **Refine** is very simple. How to use it is explained step by step in the guide and example.
 
-[Refer to the **refine** Multipart Upload guide for more information. →](https://refine.dev/docs/guides-and-concepts/upload/multipart-upload/)
+[Refer to the **Refine** Multipart Upload guide for more information. →](https://refine.dev/docs/guides-and-concepts/upload/multipart-upload/)
 
 [View Source](https://github.com/refinedev/refine/tree/master/examples/upload/multipartUpload)
 

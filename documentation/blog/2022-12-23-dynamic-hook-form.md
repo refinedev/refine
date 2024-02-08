@@ -3,16 +3,16 @@ title: Dynamic Forms with React Hook Form
 description: How to build dynamic forms with React hook form in React CRUD apps.
 slug: dynamic-forms-in-react-hook-form
 authors: david_omotayo
-tags: [react, refine, material-ui, react-hook-form, tutorial]
+tags: [react, Refine, material-ui, react-hook-form, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/social.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -24,7 +24,7 @@ Forms are an essential part of web development; they serve as an avenue for prop
 
 Dynamic forms are forms with metadata templates that describe their field’s object model, which can be used to generate new fields automatically. With dynamic forms, proprietors can solve the user experience issue referenced earlier by allowing users to append and remove fields according to their needs.
 
-In this article, we’ll look at how to use React hook form and refine to build a dynamic form in React.
+In this article, we’ll look at how to use React hook form and Refine to build a dynamic form in React.
 
 ## Prerequisite
 
@@ -32,15 +32,15 @@ To follow along with this tutorial, you need to have a fundamental knowledge of 
 
 - Node.js installed on your machine
 - Basic understanding of React hook form
-- Basic knowledge of Material UI and refine project structure.
+- Basic knowledge of Material UI and Refine project structure.
 
-## What is refine
+## What is Refine
 
-refine is an open-source UI framework for building enterprise applications such as dashboards, admin panels, and internal tools.
+Refine is an open-source UI framework for building enterprise applications such as dashboards, admin panels, and internal tools.
 
-refine is a headless framework, meaning it doesn't ship with any pre-styled components or UI by default. It integrates well with any custom designs or UI libraries, such as Ant design, Mantine, and Material design, giving you complete control over the composition of your application UI.
+Refine is a headless framework, meaning it doesn't ship with any pre-styled components or UI by default. It integrates well with any custom designs or UI libraries, such as Ant design, Mantine, and Material design, giving you complete control over the composition of your application UI.
 
-Here are some of the benefits of using refine:
+Here are some of the benefits of using Refine:
 
 - No constraints on styling
 - Backend agnostic: refine supports any custom Rest or Graphql API out of the box
@@ -55,11 +55,11 @@ React hook form is a lightweight package for handling form validations in React.
 
 React hook form adopts the approach of isolating re-renders in components by using uncontrolled inputs with React's `ref` hook, instead of the conventional way of depending on states to control inputs.
 
-## refine project setup
+## Refine project setup
 
-There are two possible ways to set up a refine project: manually or using superplate. Superplate is a CLI tool for bootstrapping a Typescript React project with refine integrated out of the box. The tool offers the option to set up a headless refine project or a project with third-party UI libraries such as Ant design and Material UI.
+There are two possible ways to set up a Refine project: manually or using superplate. Superplate is a CLI tool for bootstrapping a Typescript React project with Refine integrated out of the box. The tool offers the option to set up a headless Refine project or a project with third-party UI libraries such as Ant design and Material UI.
 
-We'll use `create refine-app` to set up a refine project with Material UI. It’ll save us the trouble of setting it up from scratch.
+We'll use `create refine-app` to set up a Refine project with Material UI. It’ll save us the trouble of setting it up from scratch.
 
 As a first step, navigate to a preferred folder on your computer and run the command below to initialize CLI installer:
 
@@ -73,7 +73,7 @@ The installer will prompt you to select your preference for the project. Select 
 
 <br />
 
-Next, `cd` into the newly created folder and run the following command to install React hook form extension package for refine:
+Next, `cd` into the newly created folder and run the following command to install React hook form extension package for Refine:
 
 ```shell
 cd dynamic-form-example
@@ -96,11 +96,11 @@ If your default browser doesn't automatically open the app after starting the se
 
 ## Creating the List, Create, and Edit pages
 
-For this project, we'll build a refine app with CRUD pages that handle functionalities for listing, creating, and editing records from a fake API endpoint. And as a first step, we'll create these pages and pass them to the `list`, `create`, and `edit` properties on the `<Refine>` component's `resources` prop. We'll also handle dynamic forms using React hook form.
+For this project, we'll build a Refine app with CRUD pages that handle functionalities for listing, creating, and editing records from a fake API endpoint. And as a first step, we'll create these pages and pass them to the `list`, `create`, and `edit` properties on the `<Refine>` component's `resources` prop. We'll also handle dynamic forms using React hook form.
 
 To begin with, create a `pages` folder inside the `src` folder and add a `userList`, `userCreate`, and `userEdit` files:
 
-Next, import the `Create`, `List `, and `Edit` components from refine into their respective files and declare them in the body of the components.
+Next, import the `Create`, `List `, and `Edit` components from Refine into their respective files and declare them in the body of the components.
 
 ```tsx title="src/pages/UserCreate"
 import { Create } from "@refinedev/mui";
@@ -193,7 +193,7 @@ import React from "react";
 import { useDataGrid, DataGrid, List } from "@refinedev/mui";
 ```
 
-`useDataGrid` is a refine hook that fetches data from the API and wraps them with various helper hooks required for Material UI components, such as the MUI X `<DataGrid>` component to render data.
+`useDataGrid` is a Refine hook that fetches data from the API and wraps them with various helper hooks required for Material UI components, such as the MUI X `<DataGrid>` component to render data.
 
 Next, add the following code before the return statement inside the `UserList` function:
 
@@ -248,7 +248,7 @@ Next, we’ll compose the dynamic form for creating and posting records to the m
 
 ## Creating a form
 
-As a first step, navigate to the `UserCreate` file and import the following components from refine and React hook form:
+As a first step, navigate to the `UserCreate` file and import the following components from Refine and React hook form:
 
 ```tsx title="src/pages/UserCreate.tsx"
 import { Create, Box, TextField, Button } from "@refinedev/mui";
@@ -268,7 +268,7 @@ export default UserCreate;
 
 This will make the `save` button on the Create page functional. When clicked, it'll handle the post request for the record inputted on the form.
 
-This is the beauty of using refine; we don't have to concoct complex logic for tasks such as this. refine does all the heavy lifting.
+This is the beauty of using Refine; we don't have to concoct complex logic for tasks such as this. Refine does all the heavy lifting.
 
 Moving on, create a barebone form composition using Material UI's `Box` and `TextField` components inside the `Create` component tags like so:
 
@@ -519,15 +519,15 @@ This is because the `useFieldArray` returns an array of objects with each field 
 
 <br />
 
-When handling the form's submission, refine automatically grabs the expected value from each input field and sends it to the server. The `fullName` and `email` records expect a `string` value, while the `skills` record expects an array of strings.
+When handling the form's submission, Refine automatically grabs the expected value from each input field and sends it to the server. The `fullName` and `email` records expect a `string` value, while the `skills` record expects an array of strings.
 
-Since the `useFieldArray` hook also returns an array, but with objects, refine assumes the data is what's expected and sends it to the server.
+Since the `useFieldArray` hook also returns an array, but with objects, Refine assumes the data is what's expected and sends it to the server.
 
 As mentioned earlier, the `<Create>`, `<Edit>`, and `<List>` components are layouts for displaying the Create, Edit, and List pages, and they each contain action buttons, such as the `save` button on the Create and Edit pages and the `Create` button on the List page.
 
 These buttons use underlying functions to perform specific actions on their located pages. The Create button routes users to the Create page when clicked, while the `Save` button handles the submission functionality of the form under the hood.
 
-Fortunately for us, refine provides an `onFinish` hook that lets us override the `save` button's default configuration and define what’s sent to the server. The hook accepts an object with properties of each record on the API, to which we can pass custom values:
+Fortunately for us, Refine provides an `onFinish` hook that lets us override the `save` button's default configuration and define what’s sent to the server. The hook accepts an object with properties of each record on the API, to which we can pass custom values:
 
 ```tsx
     onFinish({
@@ -872,7 +872,7 @@ function UserEdit(Props: any) {
 export default UserEdit;
 ```
 
-Unlike the `UserCreate` page, we don’t have to create a manual functionality for submitting the form. This is because the API returns an array for the `skills` record by default, so refine won’t have trouble accessing the array and updating records as expected.
+Unlike the `UserCreate` page, we don’t have to create a manual functionality for submitting the form. This is because the API returns an array for the `skills` record by default, so Refine won’t have trouble accessing the array and updating records as expected.
 
 As a result, we removed the `submitHandler` function and passed the `saveButtonProps` variable from `useForm` to the `<Edit>` component’s opening tag:
 
@@ -884,13 +884,13 @@ This is all we have to do to set up the edit page. However, for the page to be a
 
 We'll do this by adding an `action` column to the table on the List page and an edit button for each row. When clicked on, the edit button will redirect users to the edit page of the corresponding record on its row.
 
-First, return to the `UserList` file and import the `EditButton` components from refine:
+First, return to the `UserList` file and import the `EditButton` components from Refine:
 
 ```tsx title="src/pages/UserList.tsx"
 import { useDataGrid, DataGrid, GridColumns, List, Stack, EditButton } from "@refinedev/mui";
 ```
 
-The `EditButton` component uses refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.
+The `EditButton` component uses Refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.
 
 Refer to the documentation to learn more about the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook.
 
@@ -919,7 +919,7 @@ Next, add a fourth object to the `columns` array with the following properties:
 
 Here, we added a `renderCell` property to the fourth object and passed it a function that renders the `EditButton` to each row on the table. Then we used the `row` parameter on the function to get the `id` of the records and passed them to the `recordItemId` prop on the `EditButton`.
 
-This way, when the edit icon is clicked, refine will know to redirect users to the Edit page of the corresponding record on the same row as the icon.
+This way, when the edit icon is clicked, Refine will know to redirect users to the Edit page of the corresponding record on the same row as the icon.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.gif"  alt="react hook form dynamic forms" />
 
@@ -929,11 +929,11 @@ That’s it. We’ve successfully composed a fully functional dynamic form that 
 
 ## Conclusion
 
-In this article, we introduced refine and React hook forms and looked at their benefits. Then walked through the process of setting up a refine project with Material design and how to handle CRUD functionalities using the `List`, `Create`, and `Edit` pages.
+In this article, we introduced Refine and React hook forms and looked at their benefits. Then walked through the process of setting up a Refine project with Material design and how to handle CRUD functionalities using the `List`, `Create`, and `Edit` pages.
 
 We also looked at how to set up a dynamic form using React hook form’s `useFieldArray` hook and how to fix the quirks that come with using the tool.
 
-<a rel="dofollow" href="https://www.freecodecamp.org/news/how-to-build-an-react-admin-panel-with-refine/">Refer to building React admin panel with refine article </a>
+<a rel="dofollow" href="https://www.freecodecamp.org/news/how-to-build-an-react-admin-panel-with-refine/">Refer to building React admin panel with Refine article </a>
 
 ## Live CodeSandbox Example
 

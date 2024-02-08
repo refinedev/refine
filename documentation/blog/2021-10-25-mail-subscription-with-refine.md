@@ -1,28 +1,28 @@
 ---
 title: Create E-mail Subscription Panel with Refine and Strapi
-description: We will make a web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way. We’ll use refine to develop the frontend easily and strapi for backend solutions.
+description: We will make a web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way. We’ll use Refine to develop the frontend easily and strapi for backend solutions.
 slug: e-mail-subscription-panel-with-refine
 authors: melih
-tags: [refine, strapi, react, tutorial]
+tags: [Refine, strapi, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
 :::
 
-We will make a web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way. We’ll use refine to develop the frontend easily and strapi for backend solutions.
+We will make a web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way. We’ll use Refine to develop the frontend easily and strapi for backend solutions.
 
 <!--truncate-->
 
-Let's start by creating our strapi and refine projects.
+Let's start by creating our strapi and Refine projects.
 
 ## Creating API with `Strapi`
 
@@ -60,7 +60,7 @@ With these collections and features we have created, we can now create subscribe
 
 ## Creating panel with `refine`
 
-Now let's refine the subscription panel. With [superplate](https://github.com/pankod/superplate), we can quickly create a refine project
+Now let's Refine the subscription panel. With [superplate](https://github.com/pankod/superplate), we can quickly create a Refine project
 
 ```bash
 npm create refine-app@latest email-subscription-panel -- -b v3
@@ -111,7 +111,7 @@ This is a example Refine project:
 
 Let's list our messages and subscribers with refine. Here are the changes we need to make:
 
-- Change Strapi API URL from refine
+- Change Strapi API URL from Refine
 - Adding resources according to the collection name we created in Strapi
 
 ```tsx title="App.tsx"
@@ -248,7 +248,7 @@ export interface IMail {
 
 In this component:
 
-We used refine's [list](https://refine.dev/docs/examples/list/useSimpleList) and [table](https://refine.dev/docs/api-reference/core/hooks/useTable/) to show our subscribers and messages.
+We used Refine's [list](https://refine.dev/docs/examples/list/useSimpleList) and [table](https://refine.dev/docs/api-reference/core/hooks/useTable/) to show our subscribers and messages.
 
 Now let's see how our subscriber panel looks like:
 
@@ -352,7 +352,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Using refine's [form](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/) and [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) components, we can now create subscribers and messages with refine.
+Using Refine's [form](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/) and [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) components, we can now create subscribers and messages with refine.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-25-mail-subscription-with-refine/create.gif" alt="create" />
 <br />

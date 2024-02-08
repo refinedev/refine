@@ -3,28 +3,28 @@ title: refine vs Blitz.js
 description: We will take a closer look at how to set both up, what are their internal builds, how they handle the data sources, how to implement the CRUD functionality, add authentication, and how to deploy them to production.
 slug: react-admin-frameworks-refine-vs-blitz-js
 authors: madars_biss
-tags: [refine, comparison]
+tags: [Refine, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2FGroup%20821%20(1).png
 hide_table_of_contents: false
 ---
 
-# React refine vs Blitz comparison
+# React Refine vs Blitz comparison
 
 React is a popular library for creating dynamic and interactive user interfaces. Many frameworks have emerged from React to avoid the repetitive process of creating CRUD operations and other features for full-stack applications.
 
-In this article, we will review two common solutions - [refine](https://github.com/refinedev/refine) and [Blitz](https://blitzjs.com/). By providing an advanced set of tools and features, both aim to speed up and simplify the process of developing React apps.
+In this article, we will review two common solutions - [Refine](https://github.com/refinedev/refine) and [Blitz](https://blitzjs.com/). By providing an advanced set of tools and features, both aim to speed up and simplify the process of developing React apps.
 
 We will take a closer look at how to set both up, what are their internal builds, how they handle the data sources, how to implement the CRUD functionality, add authentication, and how to deploy them to production.
 
 ## About frameworks
 
-### refine
+### Refine
 
-refine is a React-based framework, that is specifically designed to speed up the creation of data-intensive applications. It is an [open-source](https://github.com/refinedev/refine) project, meaning everyone can access and contribute the code.
+Refine is a React-based framework, that is specifically designed to speed up the creation of data-intensive applications. It is an [open-source](https://github.com/refinedev/refine) project, meaning everyone can access and contribute the code.
 
 By its core nature, it is a headless framework that is based on a collection of hooks, components, and providers. The core is fully decoupled from the UI and business logic, meaning users have a fully flexible environment.
 
-The refine framework was created in 2021 and has witnessed rapid growth and attracted an active community around it since then. As of the time of the writing, the framework has already reached around 8K GitHub stars.
+The Refine framework was created in 2021 and has witnessed rapid growth and attracted an active community around it since then. As of the time of the writing, the framework has already reached around 8K GitHub stars.
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092225_920x262.png"  alt="react-admin" />
@@ -48,9 +48,9 @@ Blitz is also an [open-source](https://github.com/blitz-js/blitz) project that a
 
 ## Installation guide
 
-### refine
+### Refine
 
-refine comes with the project starter tool, which allows users to set up a fully working environment in minutes.
+Refine comes with the project starter tool, which allows users to set up a fully working environment in minutes.
 
 Run the command `npm create refine-app@latest crud-refine`. That will start the CLI wizard that will ask you to configure the project. For the purpose of this tutorial, pick the values as shown below:
 
@@ -64,7 +64,7 @@ The installation process should not take more than a minute.
 
 Once it's done change the working directory to the newly created project by `cd crud-refine` and run `npm run dev` to start up the developer server.
 
-That should automatically open up a new browser window. If it's not, navigate to [localhost:3000](http://localhost:3000) manually and you will be presented with the refine welcome screen:
+That should automatically open up a new browser window. If it's not, navigate to [localhost:3000](http://localhost:3000) manually and you will be presented with the Refine welcome screen:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677092501_1482x833.png"  alt="react-admin" />
 
@@ -94,9 +94,9 @@ Finally, open your browser and navigate to [localhost:3000](http://localhost:300
 
 ## Internal structure
 
-### refine
+### Refine
 
-refine file structure is as simple as it gets and they provide users with all the flexibility they would want to build upon. The main building block for the whole app is the `src` folder.
+Refine file structure is as simple as it gets and they provide users with all the flexibility they would want to build upon. The main building block for the whole app is the `src` folder.
 
 It comes with the `App.tsx` file with the following code:
 
@@ -300,9 +300,9 @@ There is also a dedicated `test` folder for tests that comes with setup and util
 
 ## Data providers
 
-### refine
+### Refine
 
-refine comes with a fake data provider that is perfect for testing or creating some pages where you would need some placeholder data.
+Refine comes with a fake data provider that is perfect for testing or creating some pages where you would need some placeholder data.
 
 It is a simple REST API endpoint that contains sample data about users, posts, products, categories, etc., and can be accessed via [api.fake-rest.refine.dev](http://api.fake-rest.refine.dev).
 
@@ -318,7 +318,7 @@ If we click on any of the routes in the user interface, we can see that each of 
 <br />
 <br />
 
-In order to use the data provider in the refine project, the user needs to pass it to the `Refine` component in `App.tsx` like this:
+In order to use the data provider in the Refine project, the user needs to pass it to the `Refine` component in `App.tsx` like this:
 
 ```typescript
 <Refine
@@ -327,7 +327,7 @@ In order to use the data provider in the refine project, the user needs to pass 
 />
 ```
 
-If you followed the instructions for the installation wizard, it should already be set up by refine automatically.
+If you followed the instructions for the installation wizard, it should already be set up by Refine automatically.
 
 ### Blitz
 
@@ -366,7 +366,7 @@ If the UI does not open automatically, navigate to [localhost:5555](http://local
 
 ## Authentication
 
-### refine
+### Refine
 
 Create a new free [Auth0 account](https://auth0.com/signup) and log in.
 
@@ -449,15 +449,15 @@ Create a new account and sign up, so we have a user record in the SQLite databas
 
 ## Creating pages
 
-### refine
+### Refine
 
-Creating new pages in refine is really simple thanks to its built-in command `create-resource`. Since it's targeted at CRUD apps, the user is allowed to choose what type of pages to generate via flags `list`, `create`, `edit` and `show`.
+Creating new pages in Refine is really simple thanks to its built-in command `create-resource`. Since it's targeted at CRUD apps, the user is allowed to choose what type of pages to generate via flags `list`, `create`, `edit` and `show`.
 
-To get an overall insight into how the new pages are created in refine, we will first create a page that lists the content. Run the command `npm run refine create-resource products -- --actions list` in your terminal.
+To get an overall insight into how the new pages are created in Refine, we will first create a page that lists the content. Run the command `npm run refine create-resource products -- --actions list` in your terminal.
 
 Navigate back to your project file tree and you will notice that a new folder `pages` was created. Inside it, there is a route-specific folder `products` that includes files `index.ts` and `list.tsx`.
 
-Open up the `list.tsx` file and you will notice refine has even designed the `Inferencer` component that will automatically help you to design the views for resources based on the data structure:
+Open up the `list.tsx` file and you will notice Refine has even designed the `Inferencer` component that will automatically help you to design the views for resources based on the data structure:
 
 ```typescript
 import { IResourceComponentsProps, GetListResponse } from "@pankod/refine-core";
@@ -489,7 +489,7 @@ Also notice the newly created list page was automatically imported and passed in
 />
 ```
 
-Now open your browser and navigate to [localhost:3000/products](http://localhost:3000/products). You should be presented with the page that lists data from the `/products` route from the refine's built-in data provider:
+Now open your browser and navigate to [localhost:3000/products](http://localhost:3000/products). You should be presented with the page that lists data from the `/products` route from the Refine's built-in data provider:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2F1677175220_1920x929.png"  alt="react-admin" />
 
@@ -526,13 +526,13 @@ Now open your browser and navigate to [localhost:3000/greet](http://localhost:30
 
 ## CRUD functionality
 
-### refine
+### Refine
 
-refine has thought out how to make the CRUD operations as easy as possible. Run the command `npm run refine create-resource posts`.
+Refine has thought out how to make the CRUD operations as easy as possible. Run the command `npm run refine create-resource posts`.
 
 This will create a new page for the `/posts` route from the data provider, but since we did not provide any flags of what specific operations to support, all of the CRUD operations will be available.
 
-This means that after running the command refine created a new folder inside `pages` called `posts` and populated it with files `index.ts`, `list.tsx`, `create.tsx`, `edit.tsx` and `show.tsx`.
+This means that after running the command Refine created a new folder inside `pages` called `posts` and populated it with files `index.ts`, `list.tsx`, `create.tsx`, `edit.tsx` and `show.tsx`.
 
 Now, open up your browser and navigate to [localhost:3000/posts](http://localhost:3000/posts).
 
@@ -549,7 +549,7 @@ To demonstrate the CRUD functionality and how simple it is to implement one in t
 
 Run the command `blitz generate all todo name:string`. That will create the necessary model, query, mutations, and page routes. We also passed in the `string` type for the to-do task values.
 
-Similarly to the refine scaffold, Blitz took care of creating separate files for the create, read, update, and delete operations for the to-do tasks.
+Similarly to the Refine scaffold, Blitz took care of creating separate files for the create, read, update, and delete operations for the to-do tasks.
 
 To test it out, restart your developer server by pressing `Ctrl` + `C` on your keyboard and then run `blitz dev`. Then open your browser and navigate to [localhost:3000/todos](http://localhost:3000/todos).
 
@@ -562,7 +562,7 @@ This will display the landing of the crud page asking you to create the first ta
 
 ## Testing CRUD
 
-### refine
+### Refine
 
 To create a record click on the "Create" button in the top right corner.
 
@@ -630,7 +630,7 @@ To delete the task open it and click on the "Delete" button.
 
 ## Deployment
 
-### refine
+### Refine
 
 First, make sure you have a [GitHub account](https://github.com/). If you do not have one, make sure to [create one](https://github.com/signup) for free.
 
@@ -776,14 +776,14 @@ It will give you the live access link to your project once it's done.
 
 ## Conclusion
 
-In this article, we compared two React frameworks - refine and Blitz. Both have TypeScript support by default, are easy to set up, come with CLI commands, and do not require to use specific UI frameworks.
+In this article, we compared two React frameworks - Refine and Blitz. Both have TypeScript support by default, are easy to set up, come with CLI commands, and do not require to use specific UI frameworks.
 
-refine has a built-in data provider. This is great for testing and experimenting. Blitz in comparison comes with SQLite and Prisma studio that offers UI to work with data.
+Refine has a built-in data provider. This is great for testing and experimenting. Blitz in comparison comes with SQLite and Prisma studio that offers UI to work with data.
 
-For data tables, refine comes with Inferencer which has already structured the data in the easy-to-perceive UI. For Blitz, you will have to build tables, action buttons, and other components yourself.
+For data tables, Refine comes with Inferencer which has already structured the data in the easy-to-perceive UI. For Blitz, you will have to build tables, action buttons, and other components yourself.
 
-Blitz apps are already set with signup, login, and forgot password views, with the models already create to store users and sessions in the database. For refine, you will have to create those from the ground up.
+Blitz apps are already set with signup, login, and forgot password views, with the models already create to store users and sessions in the database. For Refine, you will have to create those from the ground up.
 
 From the project tree standpoint, Blitz looks more like a framework. For those looking for a high flexibility on how to structure the project, you will have to deal with the fact that most of the flow already follows a certain pattern.
 
-refine is virtually a collection of hooks, components, and providers, therefore users can fully design the app based on their individual needs and follow specific logic patterns based on their business schema.
+Refine is virtually a collection of hooks, components, and providers, therefore users can fully design the app based on their individual needs and follow specific logic patterns based on their business schema.

@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 Kubernetes is a container orchestration powerhouse, and kubectl is its main command-line tool for developers. Understanding your kubectl version affects Kubernetes cluster compatibility and application deployment and management. This article will discuss the `kubectl version` command in detail. We will cover installation, basic and advanced use, output, and common issues.
 
-This guide will also show you how to utilise the `kubectl version` command in various situations. Let's get started with its installation, followed by the advanced use cases.
+This guide will also show you how to utilize the `kubectl version` command in various situations. Let's get started with its installation, followed by the advanced use cases.
 
 ## Getting Started with kubectl
 
@@ -90,7 +90,7 @@ When working with Kubernetes, make sure that your `kubectl` client version is co
 
 • Some new client features may not work on older servers. Warnings or errors may occur when using features with an incompatible server.
 
-• Older clients may not work with newer servers. Older clients may not understand newer server features or APIs, causing errors or unexpected behaviour.
+• Older clients may not work with newer servers. Older clients may not understand newer server features or APIs, causing errors or unexpected behavior.
 
 • For the latest features, bug fixes, and security improvements, keep your client and server versions updated. Knowing your older client's compatibility limitations is helpful if updating the server isn't possible.
 

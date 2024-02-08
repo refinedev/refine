@@ -1,25 +1,25 @@
 ---
 title: Building a Complete React CRUD App with Airtable
-description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, tutorial]
+tags: [Refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
 
 ## Introduction
 
-Before the existence of **refine**, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application.
+Before the existence of **Refine**, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [Refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application.
 
-**refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **refine** and Airtable, a famous backend service to illustrate how you can power your applications with **refine**.
+**Refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **Refine** and Airtable, a famous backend service to illustrate how you can power your applications with **Refine**.
 
 Steps we'll cover:
 
-- [Why Use refine?](#why-use-refine)
+- [Why Use Refine?](#why-use-refine)
 - [What is Airtable?](#what-is-airtable)
   - [Setup Airtable](#setup-airtable)
-- [Bootstrapping the refine Application](#bootstrapping-the-refine-application)
+- [Bootstrapping the Refine Application](#bootstrapping-the-refine-application)
 - [Implementing CRUD operations](#implementing-crud-operations)
   - [Creating pages for CRUD operations](#creating-pages-for-crud-operations)
   - [Listing posts records](#listing-posts-records)
@@ -30,11 +30,11 @@ Steps we'll cover:
   - [Deleting post record](#deleting-post-record)
   - [Adding Pagination](#adding-pagination)
 
-## Why Use refine?
+## Why Use Refine?
 
-[refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, refine decouples UI from frontend application logic to give developers complete styling and customization control.
+[Refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, Refine decouples UI from frontend application logic to give developers complete styling and customization control.
 
-**refine**'s can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
+**Refine**'s can be used in the development of data-intensive applications such as admin panels and dashboards; as well as an option for building public-facing applications.
 
 It can also connect to any REST or GraphQL backend service and includes support for NestJs CRUD, Airtable, Strapi, Supabase, and others out of the box and comes with powerful, enterprise-grade UI frameworks: Ant Design, Material UI, Chakra UI and Mantine which support any UI-Kit as well as custom(headless) design.
 
@@ -80,9 +80,9 @@ We will create a table called **categories** which will hold the categories' dat
 
 We will also populate the tables with contents.
 
-## Bootstrapping the refine Application
+## Bootstrapping the Refine Application
 
-For this article, we will be using the `create refine-app`. to create our refine application. In other to use this, Run the following command below:
+For this article, we will be using the `create refine-app`. to create our Refine application. In other to use this, Run the following command below:
 
 ```
 npm create refine-app@latest <name of your application>
@@ -92,7 +92,7 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 
 ```bash
 ✔ Downloaded remote source successfully.
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · refine-airtable
 ✔ Choose your backend service to connect: · Airtable
 ✔ Do you want to use a UI Framework?: · Headless
@@ -104,9 +104,9 @@ After running the command, you will be directed to the CLI wizard. Select the fo
 
 <br />
 
-**refine** is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
+**Refine** is headless by design. This means that it does not come with a UI framework by default. However, it supports various UI frameworks such as Ant Design, Material UI, Chakra UI and Mantine For this article, we will be using headless structure to build our React CRUD app.
 
-On selecting these options, the CLI will bootstrap a refine application with the Airtable provider.
+On selecting these options, the CLI will bootstrap a Refine application with the Airtable provider.
 
 After installation, we will run the following command:
 
@@ -114,15 +114,15 @@ After installation, we will run the following command:
 npm run dev
 ```
 
-After running the command, the **refine** application should be up and running. Visit http://localhost:5173 to access it.
+After running the command, the **Refine** application should be up and running. Visit http://localhost:5173 to access it.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.jpg"  alt="react crud app airtable" />
 
 <br />
 
-- **The `<Refine  />` component**: This component is the entry point of a refine app. This is where we add the configurations the application needs.
+- **The `<Refine  />` component**: This component is the entry point of a Refine app. This is where we add the configurations the application needs.
 
-- **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the refine core package which enables a refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
+- **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in Refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the Refine core package which enables a Refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -138,7 +138,7 @@ const App: React.FC = () => {
 
 [Refer to the Data Provider documentation for more information. → ](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
-- **resources**: A Resource can be referred to as the building block of a refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
+- **resources**: A Resource can be referred to as the building block of a Refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
 
 In order to activate a resource, we have to pass the `resources` property to the `<Refine  />` component.
 
@@ -173,7 +173,7 @@ the `resources` property accepts an array of objects with each object specifying
 
 [Refer to the `resources` documentation for more information. → ](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
 
-- **Routing**: We will use React Router v6 for routing in our application. **refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between refine and react-router-dom.
+- **Routing**: We will use React Router v6 for routing in our application. **Refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between Refine and react-router-dom.
 
 [Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/docs/packages/documentation/routers/react-router-v6/)
 
@@ -230,7 +230,7 @@ const App = () => {
 };
 ```
 
-After obtaining more insight on the constitutes of a **refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
+After obtaining more insight on the constitutes of a **Refine** application, we will take a look at the `App.tsx` file created by the `create refine-app`
 
 <details>
 <summary>Show App.tsx Code</summary>
@@ -281,7 +281,7 @@ export default App;
 
 In the file above, we can see that `refine CLI` installed the airtable data provider. To connect to our Airtable base, we will provide the `API_TOKEN` and `BASE_ID` credentials. These credentials can be found on our airtable [account](https://airtable.com/account) page and the base documentation page.
 
-After installation, we will set up TailwindCSS as our CSS library for this application. Since we are not using any UI framework (as we are going with the headless approach), we will use tailwind for styling. To simply add tailwind CSS to your refine application, you can visit the guide [here](https://tailwindcss.com/docs/guides/vite).
+After installation, we will set up TailwindCSS as our CSS library for this application. Since we are not using any UI framework (as we are going with the headless approach), we will use tailwind for styling. To simply add tailwind CSS to your Refine application, you can visit the guide [here](https://tailwindcss.com/docs/guides/vite).
 
 ## Implementing CRUD operations
 
@@ -606,7 +606,7 @@ export interface ICategory {
 // highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **refine** hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **Refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
 To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
@@ -1071,7 +1071,7 @@ export const PostCreate: React.FC = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is inherently a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
 We use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into airtable. The hooks also provide methods like `handleSubmit()` and `onFinish()` methods which handle the submission of the contents from the form to Airtable.
 
@@ -1322,9 +1322,9 @@ After this, we can now add the component `<PostEdit />` in the `edit.tsx` file t
 
 ### Deleting post record
 
-For deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our refine application.
+For deleting a record, we will use the `useDelete()` hook which is present in the `@refinedev/core` package which was installed using the `refine CLI` to build our Refine application.
 
-We'll add a **Delete** button to each row because refine doesn't add one automatically, so we'll need to update our `<PostList />` component to include one for each record. Add the highlighted lines below to the existing list component.
+We'll add a **Delete** button to each row because Refine doesn't add one automatically, so we'll need to update our `<PostList />` component to include one for each record. Add the highlighted lines below to the existing list component.
 
 ```tsx title="src/pages/post/list.tsx"
 
@@ -1631,7 +1631,7 @@ export const PostList: React.FC = () => {
 
 ## Conclusion
 
-In this article, we covered how to create a headless **refine** application using the `create refine-app` as well as creating a **React CRUD** application using **refine**. There is no limit to what can be achieved using **refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+In this article, we covered how to create a headless **Refine** application using the `create refine-app` as well as creating a **React CRUD** application using **Refine**. There is no limit to what can be achieved using **Refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
 
 ## Live CodeSandbox Example
 

@@ -1,20 +1,20 @@
 ---
-title: Building React admin panel with NextUI and refine
-description: We will see how  to build a React admin panel using refine and NextUI components library
+title: Building React admin panel with NextUI and Refine
+description: We will see how  to build a React admin panel using Refine and NextUI components library
 slug: next-ui-react-admin-panel
 authors: joseph_mawa
-tags: [refine, tutorial, react, tailwind]
+tags: [Refine, tutorial, react, tailwind]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg
 hide_table_of_contents: false
 ---
 
-It's hard to build data-intensive front-end applications such as dashboards and admin panels from the ground up without feature-rich and niche frameworks such as [refine](https://github.com/refinedev/refine) and [NextUI](https://nextui.org/).
+It's hard to build data-intensive front-end applications such as dashboards and admin panels from the ground up without feature-rich and niche frameworks such as [Refine](https://github.com/refinedev/refine) and [NextUI](https://nextui.org/).
 
-With [refine](https://github.com/refinedev/refine), you can bootstrap a project instantly using the refine.dev web platform or the command line tool and customize the template to meet the requirements of your project.
+With [Refine](https://github.com/refinedev/refine), you can bootstrap a project instantly using the refine.dev web platform or the command line tool and customize the template to meet the requirements of your project.
 
-Any refine project has built-in features for state management, routing, networking, authentication, and internationalization.
+Any Refine project has built-in features for state management, routing, networking, authentication, and internationalization.
 
-[NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like refine and Next.js. In this article, you will learn to build a React admin panel using refine and NextUI components library.
+[NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like Refine and Next.js. In this article, you will learn to build a React admin panel using Refine and NextUI components library.
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif
@@ -25,29 +25,29 @@ Any refine project has built-in features for state management, routing, networki
 
 Steps we'll cover:
 
-- [What is refine](#what-is-refine)
-- [How to create a refine application](#how-to-create-a-refine-application)
+- [What is Refine](#what-is-refine)
+- [How to create a Refine application](#how-to-create-a-refine-application)
 - [What is NextUI](#what-is-nextui)
-- [How to set up NextUI in a refine application](#how-to-set-up-nextui-in-a-refine-application)
-- [How to build React admin dashboard with NextUI and refine]
-- [How to build product CRUD pages with NextUI and refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
-- [How to build categories CRUD pages with NextUI and refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
+- [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
+- [How to build React admin dashboard with NextUI and Refine]
+- [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
+- [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
 - [Update the layout](#update-the-layout)
 - [Update the breadcrumb](#update-the-breadcrumb)
 
-## What is refine
+## What is Refine
 
-As highlighted above, refine is a React-based framework for building data-intensive front-end applications such as dashboards and admin panels. It is a feature-rich library with built-in support for routing, networking, authentication, state management, and internationalization.
+As highlighted above, Refine is a React-based framework for building data-intensive front-end applications such as dashboards and admin panels. It is a feature-rich library with built-in support for routing, networking, authentication, state management, and internationalization.
 
-Similarly, refine has built-in support for integrating some of the commonest UI and design systems like Material UI, Ant design, Chakra UI, and Mantine.
+Similarly, Refine has built-in support for integrating some of the commonest UI and design systems like Material UI, Ant design, Chakra UI, and Mantine.
 
-All these built-in refine features accelerate development speed, improve developer experience, and significantly reduce time to production. Check out the refine documentation for more on what else it can do.
+All these built-in Refine features accelerate development speed, improve developer experience, and significantly reduce time to production. Check out the Refine documentation for more on what else it can do.
 
-## How to create a refine application
+## How to create a Refine application
 
-You can create a refine application either using the CLI or the [Browser-based Scaffolder](https://refine.dev/?playground=true).
+You can create a Refine application either using the CLI or the [Browser-based Scaffolder](https://refine.dev/?playground=true).
 
-The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create refine app seamlessly in your browser.
+The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create Refine app seamlessly in your browser.
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
 
@@ -86,7 +86,7 @@ Once your project is successfully run, you will see the following page:
 
 ### Tidy things up
 
-The refine project we created above has a set of default styles in the `src/App.css` file, which will interfere with the NextUI styles. Therefore, you can delete the `src/App.css` file.
+The Refine project we created above has a set of default styles in the `src/App.css` file, which will interfere with the NextUI styles. Therefore, you can delete the `src/App.css` file.
 
 Similarly, we won't use the generated `blog-posts` pages. Therefore, you can delete the `src/pages/blog-posts` directory.
 
@@ -189,11 +189,11 @@ export default App;
 
 You can use NextUI in a vanilla React project or React frameworks like Next.js and refine.
 
-## How to set up NextUI in a refine application
+## How to set up NextUI in a Refine application
 
 ### Install NextUI and its dependencies
 
-Install NextUI and its dependencies from the NPM package registry to start using it in a refine application. Internally, NextUI uses Tailwind CSS and framer-motion for animation.
+Install NextUI and its dependencies from the NPM package registry to start using it in a Refine application. Internally, NextUI uses Tailwind CSS and framer-motion for animation.
 
 ```sh
 npm i @nextui-org/react framer-motion && npm install -D tailwindcss postcss autoprefixer
@@ -266,7 +266,7 @@ root.render(
 
 ### Set up NextUI provider
 
-After installing and configuring NextUI and its dependencies, set up `NextUIProvider` at the root of your refine project. Apply the following changes to the `src/index.tsx` file.
+After installing and configuring NextUI and its dependencies, set up `NextUIProvider` at the root of your Refine project. Apply the following changes to the `src/index.tsx` file.
 
 ```tsx title="src/index.tsx"
 import React from "react";
@@ -294,13 +294,13 @@ root.render(
 );
 ```
 
-That is everything you need to start using NextUI in your refine application. You may need to restart the development server after making the above changes.
+That is everything you need to start using NextUI in your Refine application. You may need to restart the development server after making the above changes.
 
-## How to build React admin dashboard with NextUI and refine
+## How to build React admin dashboard with NextUI and Refine
 
-In this section, we will use the refine app we created above as a template to build a simple React admin dashboard with NextUI and refine. This section assumes you have installed NextUI and its dependencies. We will install additional packages as we build this project.
+In this section, we will use the Refine app we created above as a template to build a simple React admin dashboard with NextUI and refine. This section assumes you have installed NextUI and its dependencies. We will install additional packages as we build this project.
 
-The refine team has put together several APIs that you can experiment with when you're learning refine. In this article, we will create an admin panel using the [Fine foods API](https://api.finefoods.refine.dev/). You can click the link to explore the API resources and endpoints available.
+The Refine team has put together several APIs that you can experiment with when you're learning refine. In this article, we will create an admin panel using the [Fine foods API](https://api.finefoods.refine.dev/). You can click the link to explore the API resources and endpoints available.
 
 The dashboard we want to create will track the key performance indicators for a restaurant business against set targets. The key performance indicators comprise the restaurant's weekly revenue, weekly customers, and weekly orders.
 
@@ -1154,7 +1154,7 @@ The `<RecentSalesTable />` component we created above will look like the image b
 
 <br/>
 
-## How to build product CRUD pages with NextUI and refine
+## How to build product CRUD pages with NextUI and Refine
 
 In the project template we created using refine.dev, there are CRUD pages for categories in the database. In this section, we will create similar CRUD pages for products using NextUI. Let's start by creating the list page.
 
@@ -1492,7 +1492,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 </details>
 
-The above component uses refine's built-in `useTable` hook to query the data. It returns the data in a form that can be displayed in a table.
+The above component uses Refine's built-in `useTable` hook to query the data. It returns the data in a form that can be displayed in a table.
 
 We used NextUI's built-in `Table` component that supports sorting, selection, and pagination out of the box. Check the [NextUI documentation](https://nextui.org/docs/guide/introduction) to learn more about the `Table` component.
 
@@ -1632,7 +1632,7 @@ The list page we created in the previous sub-section has a button for creating a
 
 Let's create a component that will render when a user wants to create a new product. The component will render a form that a user can fill and submit to create a new product. To easily manage the forms, we will use react-hook-forms.
 
-The headless refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
+The headless Refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
 
 Use the command below to install `react-hook-form`.
 
@@ -2218,7 +2218,7 @@ The above component will look like the image below after rendering.
 
 <br/>
 
-## How to build categories CRUD pages with NextUI and refine
+## How to build categories CRUD pages with NextUI and Refine
 
 Like the product CRUD pages we created above, let's create CRUD pages for the categories in the database. The categories are sourced from the [categories](https://api.finefoods.refine.dev/categories) endpoint of the fake REST API. You can follow the link to explore the available resources.
 
@@ -2864,13 +2864,13 @@ export const Breadcrumb = () => {
 
 ## Conclusion
 
-As explained above, refine and NextUI come in handy when building data-intensive front-end applications such as dashboards and admin panels.
+As explained above, Refine and NextUI come in handy when building data-intensive front-end applications such as dashboards and admin panels.
 
-refine has the tools and packages to set up a modern front-end application within its ecosystem.
+Refine has the tools and packages to set up a modern front-end application within its ecosystem.
 
-You can easily add design systems and UI libraries such as Chakra UI, Material UI, Ant design, NextUI, and Mantine into a refine project. It also has a variety of packages for integrating modern cloud databases and live providers.
+You can easily add design systems and UI libraries such as Chakra UI, Material UI, Ant design, NextUI, and Mantine into a Refine project. It also has a variety of packages for integrating modern cloud databases and live providers.
 
-NextUI is a React library for building accessible UIs fast. Internally, it uses Tailwind CSS and framer-motion. To use NextUI in a refine or any other React application, install and configure it as highlighted above.
+NextUI is a React library for building accessible UIs fast. Internally, it uses Tailwind CSS and framer-motion. To use NextUI in a Refine or any other React application, install and configure it as highlighted above.
 
 ## Live CodeSandbox Example
 

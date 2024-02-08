@@ -27,7 +27,7 @@ In this article, we'll explore how to create a custom tooltip component in a Rea
 There are two ways you can use tooltips in your React applications, you either create a custom tooltip component from scratch or use a library such as react-tooltip. We'll go over how to set up both approaches, but before delving into the specifics, we'll quickly set up a simple React application to showcase the examples in this article.
 To this end, [refine.new](https://refine.new/) serves as an excellent tool that we can use to rapidly create a new React CRUD application.
 
-[refine.new](https://refine.new/) enables you to quickly bootstrap a new [refine](https://github.com/refinedev/refine) application, an open-source React-based, headless UI library for creating enterprise applications, within your browser with features such as preview, tweaking, and instant download.
+[refine.new](https://refine.new/) enables you to quickly bootstrap a new [Refine](https://github.com/refinedev/refine) application, an open-source React-based, headless UI library for creating enterprise applications, within your browser with features such as preview, tweaking, and instant download.
 
 To get started, head on to [https://refine.new/](https://refine.new/), scroll down the page, and click on the `Let's start` button.
 
@@ -41,7 +41,7 @@ Since we’re not creating something complex, we’ll use these options to set u
 
     Vite > Headless > Rest Api > No auth
 
-After completing the required steps and clicking the 'complete' button, you will be redirected to a preview page for your refine application. Here, you can make any necessary adjustments before building and downloading the application file.
+After completing the required steps and clicking the 'complete' button, you will be redirected to a preview page for your Refine application. Here, you can make any necessary adjustments before building and downloading the application file.
 
 Once you're done tweaking the application to your taste, click on the `Build & Download` button on the sidebar to download the application. If you haven't already, you will be prompted to sign in with your Google or GitHub profile.
 
@@ -62,7 +62,7 @@ These commands will install the necessary dependencies for your project and star
 
 <br/>
 
-refine was originally designed to provide a rapid way of bootstrapping enterprise-level React applications, complete with predefined pages. When you create a new headless project with refine, you’ll notice that these pages are already set up by default, but with placeholder data generated using the refine Inferencer package.
+Refine was originally designed to provide a rapid way of bootstrapping enterprise-level React applications, complete with predefined pages. When you create a new headless project with Refine, you’ll notice that these pages are already set up by default, but with placeholder data generated using the Refine Inferencer package.
 
 <br/>
 
@@ -72,7 +72,7 @@ refine was originally designed to provide a rapid way of bootstrapping enterpris
 
 <br/>
 
-The refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/docs/packages/documentation/inferencer).
+The Refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your Refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/docs/packages/documentation/inferencer).
 
 Since our application's pages are being populated by the inferencer, we don't have direct access to the rendered content, so we cannot add a tooltip to a specific element like the `create` button on the table. However, we can access the sidebar navigations via the `Menu` component in the `src/component` directory.
 
@@ -82,7 +82,7 @@ Since our application's pages are being populated by the inferencer, we don't ha
 
 <br/>
 
-When you create a Headless refine application, a `Layout` component is automatically generated in the `src/components` directory. This component wraps the pages created by the inferencer and the `Menu` component, which contains the sidebar navigation.
+When you create a Headless Refine application, a `Layout` component is automatically generated in the `src/components` directory. This component wraps the pages created by the inferencer and the `Menu` component, which contains the sidebar navigation.
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/layout.png"  alt="react tooltip" />
@@ -92,7 +92,7 @@ When you create a Headless refine application, a `Layout` component is automatic
 
 While the pages in the applications are automatically generate and are not editable, the `Layout` component provides some level of control over how the application is rendered to the browser.
 
-We could simply clear out the `Layout` component and create a simple component that we can use to render an element for our examples. However, since the predefined pages generated by refine simulate a real-world application, we have something close to what our examples may look like in an actual application.
+We could simply clear out the `Layout` component and create a simple component that we can use to render an element for our examples. However, since the predefined pages generated by Refine simulate a real-world application, we have something close to what our examples may look like in an actual application.
 
 ## Creating a custom tooltip component
 
