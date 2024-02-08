@@ -11,13 +11,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admi
 
 ## Introduction
 
-In this article, we compare the architectural structures of two web development frameworks: refine and React-admin. Both frameworks simplifies the development process and offer features for building any type of CRUD apps like internals tools and admin panels.
+In this article, we compare the architectural structures of two web development frameworks: Refine and React-admin. Both frameworks simplifies the development process and offer features for building any type of CRUD apps like internals tools and admin panels.
 
-While code examples could help illustrate our points, directly comparing code might not give an accurate picture. During the app development process, developers write code with a particular purpose and design in mind, which renders our intervention unnecessary in this aspect. Also, the code you write in refine is closely resembles regular vanilla React code and doesn't deviate significantly from it's configuration.
+While code examples could help illustrate our points, directly comparing code might not give an accurate picture. During the app development process, developers write code with a particular purpose and design in mind, which renders our intervention unnecessary in this aspect. Also, the code you write in Refine is closely resembles regular vanilla React code and doesn't deviate significantly from it's configuration.
 
-This is why you won't find explicit code examples. refine's philosophy fully embraces this approach, ensuring that the maximum point of customization is achieved.
+This is why you won't find explicit code examples. Refine's philosophy fully embraces this approach, ensuring that the maximum point of customization is achieved.
 
-refine doesn't focus on problems that have already been solved; instead, it centers around tackling the unresolved ones. On the contrary, refine’s philosophy is to provide the best developer experience for any use case without interfering the developer’s way of doing things but providing critical solutions for the common problems.
+Refine doesn't focus on problems that have already been solved; instead, it centers around tackling the unresolved ones. On the contrary, refine’s philosophy is to provide the best developer experience for any use case without interfering the developer’s way of doing things but providing critical solutions for the common problems.
 
 If we were to summarize the comparison with an analogy, if you think refine as Lego Technique, then React-admin would be like Lego Duplo.
 
@@ -25,19 +25,19 @@ Whether you are an experienced developer seeking a powerful and adaptable framew
 
 Steps we'll cover:
 
-- [About refine](#about-refine)
+- [About Refine](#about-refine)
 - [About react-admin](#about-react-admin)
 - [Architecture](#architecture)
-  - [refine's advantages on architecture](#refines-advantages-on-architecture)
+  - [Refine's advantages on architecture](#refines-advantages-on-architecture)
 - [Bundle Size and Performance](#bundle-size-and-performance)
 - [Headless Architecture](#headless-architecture)
 - [Routing and SSR (Server Side Rendering)](#routing-and-ssr-server-side-rendering)
 - [Multitenancy](#multitenancy)
 - [Differences in supported UI frameworks between refine and react-admin,](#differences-in-supported-ui-frameworks-between-refine-and-react-admin)
-  - [refine has built-in support for four UI Frameworks:](#refine-has-built-in-support-for-four-ui-frameworks)
+  - [Refine has built-in support for four UI Frameworks:](#refine-has-built-in-support-for-four-ui-frameworks)
   - [React-admin's Limitations:](#react-admins-limitations)
-- [Unique refine Features: Differentiating From React-admin](#unique-refine-features-differentiating-from-react-admin)
-- [Common Features: Free in refine, Requires enterprise package in react-admin](#common-features-free-in-refine-requires-enterprise-package-in-react-admin)
+- [Unique Refine Features: Differentiating From React-admin](#unique-refine-features-differentiating-from-react-admin)
+- [Common Features: Free in Refine, Requires enterprise package in react-admin](#common-features-free-in-refine-requires-enterprise-package-in-react-admin)
 - [refine App Scaffolder: Simplify Your Project Setup](#refine-app-scaffolder-simplify-your-project-setup)
 - [CLI](#cli)
 - [refine Devtools](#refine-devtools)
@@ -45,23 +45,23 @@ Steps we'll cover:
 - [Backward Compatibility](#backward-compatibility)
 - [Documentation and and Learning Resources](#documentation-and-and-learning-resources)
 - [Community Engagement](#community-engagement)
-- [Enterprise features](#enterprise-features)
+- [Enterprise Features](#enterprise-features)
 
-## About refine
+## About Refine
 
-refine is an open-source framework built on React, aimed at streamlining and accelerating web application development specifically .
+Refine is an open-source framework built on React, aimed at streamlining and accelerating web application development specifically .
 
-With the start of the refine project in 2021, it received significant interest from the open-source community. As a result, it continued to evolve and grow in a consistently community-driven manner.
+With the start of the Refine project in 2021, it received significant interest from the open-source community. As a result, it continued to evolve and grow in a consistently community-driven manner.
 
-This traction from the open-source community led to the establishment of refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
+This traction from the open-source community led to the establishment of Refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
-In 2023, refine also backed by YCombinator, solidifying its position as a promising venture.
+In 2023, Refine also backed by YCombinator, solidifying its position as a promising venture.
 
-With over 15K monthly active developers using it and an impressive 17K+ GitHub stars earned in just a year and a half, refine has gained significant popularity within the developer community.
+With over 30K monthly active developers using it and an impressive 21K+ GitHub stars earned in just a year and a half, Refine has gained significant popularity within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
-Continuing to reinforce its commitment to open source, refine remains committed to progress, continually developing new features, organizing hackathons, and presenting widely-used examples during refine Weeks. Additionally, with its enterprise edition, refine effectively meets the professional requirements of developers and offers comprehensive support.
+Continuing to reinforce its commitment to open source, Refine remains committed to progress, continually developing new features, organizing hackathons, and presenting widely-used examples during Refine Weeks. Additionally, with its enterprise edition, Refine effectively meets the professional requirements of developers and offers comprehensive support.
 
 refine community interaction has significaly higher pace than react-admin.
 
@@ -69,7 +69,7 @@ refine community interaction has significaly higher pace than react-admin.
 
 React-admin is an open-source frontend framework developed by Marmelabs, an agency based in France, founded in 2010. The project started in 2016. React-admin offers an enterprise package for professional features and support.
 
-The framework aims to speed up the process of building administration interfaces and dashboards for web applications. It provides developers with pre-built components with one UI library to create admin panels with various features, potentially reducing development time and effort. As of now, it has gained 22,600 GitHub stars and is utilized by more than 10,000 companies throughout its 7-year journey.
+The framework aims to speed up the process of building administration interfaces and dashboards for web applications. It provides developers with pre-built components with one UI library to create admin panels with various features, potentially reducing development time and effort. As of now, it has gained 23,500 GitHub stars and is utilized by more than 10,000 companies throughout its 7-year journey.
 
 It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools and any CRUD apps.
 
@@ -83,19 +83,19 @@ React-admin is component based and only supports Material UI. While you're good 
 
 refine provides simple interfaces for users to integrate to their use cases, this is not just limited to UI integrations but also data providers, routing, authentication, authorization and more.
 
-### refine's advantages on architecture
+### Refine's advantages on architecture
 
-The headless approach of refine makes it possible to use it with any UI library and implementation. It enables endless possibilities for customization and extensibility. This possibilities is not limiting encapsulation and refine is still able to provide complex logic and features out of the box with no extra effort but also provides the ability to customize and extend these features with no hassle and annoying workarounds.
+The headless approach of Refine makes it possible to use it with any UI library and implementation. It enables endless possibilities for customization and extensibility. This possibilities is not limiting encapsulation and Refine is still able to provide complex logic and features out of the box with no extra effort but also provides the ability to customize and extend these features with no hassle and annoying workarounds.
 
-JavaScript community is evolving rapidly and new libraries and approaches are being introduced every day. refine is aware of the fact that there will be better solutions for the problems of today and tomorrow and it is designed to be flexible and extensible to adapt to these changes with ease.
+JavaScript community is evolving rapidly and new libraries and approaches are being introduced every day. Refine is aware of the fact that there will be better solutions for the problems of today and tomorrow and it is designed to be flexible and extensible to adapt to these changes with ease.
 
-While not enforcing users to a single way of doing things, refine's approach is to empower the other libraries and approaches and provide interfaces for them to work together.
+While not enforcing users to a single way of doing things, Refine's approach is to empower the other libraries and approaches and provide interfaces for them to work together.
 
 For example, if you're using Next.js or Remix, you won't be missing any of the features they offer, on the contrary, you'll be able to use them with refine and get the best of both worlds.
 
 ## Bundle Size and Performance
 
-While both frameworks have taken the necessary steps for the performance measures, refine stands out with its headless architecture and separated packages which makes a huge difference in bundle size. refine's flexible architecture also makes it possible to adapt to any performance measures and follow industry standards with ease.
+While both frameworks have taken the necessary steps for the performance measures, Refine stands out with its headless architecture and separated packages which makes a huge difference in bundle size. Refine's flexible architecture also makes it possible to adapt to any performance measures and follow industry standards with ease.
 
 ### Bundle Size
 
