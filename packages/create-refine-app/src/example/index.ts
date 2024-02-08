@@ -192,7 +192,7 @@ const run = async (
                 chalk`Start using your new {bold refine} app by running:`,
                 "",
                 chalk`  {bold cd} {cyan ${cdPath}}`,
-                chalk`  {bold ${pm} ${pmRun}}{cyan start}`,
+                chalk`  {bold ${pm} ${pmRun}}{cyan dev}`,
             ].join("\n"),
             {
                 // title: `create-refine-app${version ? ` v${version}` : ""}`,
