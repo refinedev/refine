@@ -17,7 +17,7 @@ While code examples could help illustrate our points, directly comparing code mi
 
 This is why you won't find explicit code examples. Refine's philosophy fully embraces this approach, ensuring that the maximum point of customization is achieved.
 
-Refine doesn't focus on problems that have already been solved; instead, it centers around tackling the unresolved ones. On the contrary, refine’s philosophy is to provide the best developer experience for any use case without interfering the developer’s way of doing things but providing critical solutions for the common problems.
+Refine doesn't focus on problems that have already been solved; instead, it centers around tackling the unresolved ones. On the contrary, Refine’s philosophy is to provide the best developer experience for any use case without interfering the developer’s way of doing things but providing critical solutions for the common problems.
 
 If we were to summarize the comparison with an analogy, if you think Refine as Lego Technique, then React-admin would be like Lego Duplo.
 
@@ -33,12 +33,12 @@ Steps we'll cover:
 - [Headless Architecture](#headless-architecture)
 - [Routing and SSR (Server Side Rendering)](#routing-and-ssr-server-side-rendering)
 - [Multitenancy](#multitenancy)
-- [Differences in supported UI frameworks between refine and react-admin,](#differences-in-supported-ui-frameworks-between-refine-and-react-admin)
+- [Differences in supported UI frameworks between Refine and react-admin,](#differences-in-supported-ui-frameworks-between-refine-and-react-admin)
   - [Refine has built-in support for four UI Frameworks:](#refine-has-built-in-support-for-four-ui-frameworks)
   - [React-admin's Limitations:](#react-admins-limitations)
 - [Unique Refine Features: Differentiating From React-admin](#unique-refine-features-differentiating-from-react-admin)
 - [Common Features: Free in Refine, Requires enterprise package in react-admin](#common-features-free-in-refine-requires-enterprise-package-in-react-admin)
-- [refine App Scaffolder: Simplify Your Project Setup](#refine-app-scaffolder-simplify-your-project-setup)
+- [Refine App Scaffolder: Simplify Your Project Setup](#refine-app-scaffolder-simplify-your-project-setup)
 - [CLI](#cli)
 - [Refine Devtools](#refine-devtools)
 - [Customization](#customization)
