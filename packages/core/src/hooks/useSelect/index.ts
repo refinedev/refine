@@ -38,12 +38,12 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * Set the option's value
      * @default `"title"`
      */
-    optionLabel?: keyof TData extends string ? keyof TData : never;
+    optionLabel?: keyof TData extends string ? keyof TData : ((item: TData) => string);
     /**
      * Set the option's label value
      * @default `"id"`
      */
-    optionValue?: keyof TData extends string ? keyof TData : never;
+    optionValue?: keyof TData extends string ? keyof TData : ((item: TData) => string);
     /**
      * Allow us to sort the options
      * @deprecated Use `sorters` instead
@@ -127,7 +127,6 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
      * @default `undefined`
      */
     fetchSize?: number;
-    customOptionLabel?: (item: TData) => string; // Custom optionLabel function
 } & SuccessErrorNotification<
     GetListResponse<TData>,
     TError,
@@ -197,8 +196,29 @@ export const useSelect = <
         metaData,
         dataProviderName,
         overtimeOptions,
-        customOptionLabel
     } = props;
+
+    const getOptionLabel = useCallback(
+        (item: TData) => {
+            if (typeof optionLabel === "string") {
+                return get(item, optionLabel);
+            } else {
+                return optionLabel(item);
+            }
+        },
+        [optionLabel],
+    );
+
+    const getOptionValue = useCallback(
+        (item: TData) => {
+            if (typeof optionValue === "string") {
+                return get(item, optionValue);
+            } else {
+                return optionValue(item);
+            }
+        },
+        [optionValue],
+    );
 
     const { resource, identifier } = useResource(resourceFromProps);
 
@@ -219,8 +239,8 @@ export const useSelect = <
                 data.data.map(
                     (item) =>
                         ({
-                            label: get(item, optionLabel),
-                            value: get(item, optionValue),
+                            label: getOptionLabel(item),
+                            value: getOptionValue(item),
                         } as TOption),
                 ),
             );
@@ -257,14 +277,14 @@ export const useSelect = <
                     data.data.map(
                         (item) =>
                             ({
-                                label: customOptionLabel ? customOptionLabel(item) : get(item, optionLabel),
-                                value: get(item, optionValue),
+                                label: getOptionLabel(item),
+                                value: getOptionValue(item),
                             } as TOption),
                     ),
                 );
             }
         },
-        [customOptionLabel, optionLabel, optionValue],
+        [optionLabel, optionValue],
     );
 
     const queryResult = useList<TQueryFnData, TError, TData>({
@@ -306,7 +326,7 @@ export const useSelect = <
         } else {
             setSearch([
                 {
-                    field: optionLabel,
+                    field: optionLabel as string,
                     operator: "contains",
                     value,
                 },
@@ -324,7 +344,7 @@ export const useSelect = <
         () => uniqBy([...options, ...selectedOptions], "value"),
         [options, selectedOptions],
     );
-    
+
     return {
         queryResult,
         defaultValueQueryResult,

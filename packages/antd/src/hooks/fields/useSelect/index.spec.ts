@@ -122,6 +122,38 @@ describe("useSelect Hook", () => {
         );
     });
 
+    it("should generate options with custom optionLabel and optionValue functions", async () => {
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    optionLabel: (item) => `${item.title} - ${item.userId}`,
+                    optionValue: (item) => `${item.id}`,
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            }
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        const { selectProps } = result.current;
+
+        expect(selectProps.options).toHaveLength(2);
+        expect(selectProps.options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet. - 5",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est. - 36", value: "2" },
+        ]);
+    });
+
     it("should success data with resource with filters", async () => {
         const { result } = renderHook(
             () =>
