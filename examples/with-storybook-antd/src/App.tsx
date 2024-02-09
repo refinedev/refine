@@ -1,9 +1,5 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
-import {
-    useNotificationProvider,
-    WelcomePage,
-    RefineThemes,
-} from "@refinedev/antd";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,

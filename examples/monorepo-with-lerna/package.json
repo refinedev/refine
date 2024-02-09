@@ -4,14 +4,14 @@
   "workspaces": [
     "apps/*"
   ],
+  "scripts": {
+    "build": "lerna run build",
+    "dev": "lerna run dev",
+    "lerna": "lerna"
+  },
   "devDependencies": {
     "lerna": "^6.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
-  },
-  "scripts": {
-    "lerna": "lerna",
-    "dev": "lerna run dev",
-    "build": "lerna run build"
   }
 }

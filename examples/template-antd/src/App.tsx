@@ -1,7 +1,6 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import {
     useNotificationProvider,
-    WelcomePage,
     ErrorComponent,
     RefineThemes,
 } from "@refinedev/antd";

@@ -5,28 +5,28 @@
   "license": "MIT",
   "author": "refine",
   "scripts": {
-    "lerna": "lerna",
-    "changeset": "changeset",
-    "prepare": "husky install",
-    "dev": "lerna run dev --stream --parallel --scope @refinedev/core",
-    "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
-    "build": "lerna run build --include-dependencies --scope @refinedev/core",
-    "build:all": "lerna run build --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
     "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --include-dependencies",
     "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
-    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
+    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
+    "build": "lerna run build --include-dependencies --scope @refinedev/core",
+    "build:all": "lerna run build --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
+    "changeset": "changeset",
     "coffee": "npm run nuke && npm i && npm run bootstrap:all && npm run build:all",
+    "dev": "lerna run dev --stream --parallel --scope @refinedev/core",
+    "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
+    "lerna": "lerna",
+    "lint": "eslint -c ./.eslintrc packages examples",
+    "lint:fix": "eslint -c ./.eslintrc --quiet --fix --cache packages examples",
+    "lint:staged": "lint-staged",
+    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @refinedev/codemod -- rm -rf package-lock.json && lerna exec --ignore @refinedev/codemod -- rm -rf yarn.lock && lerna exec --ignore @refinedev/codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
-    "lint": "eslint -c ./.eslintrc packages examples",
-    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
-    "lint:fix": "eslint -c ./.eslintrc --quiet --fix --cache packages examples",
-    "lint:staged": "lint-staged",
+    "prepare": "husky install",
     "test": "lerna run test --stream --scope @refinedev/core",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
-    "test:coverage": "npm run test --stream -- -- --coverage",
-    "test:all:coverage": "npm run test:all --stream -- -- --coverage"
+    "test:all:coverage": "npm run test:all --stream -- -- --coverage",
+    "test:coverage": "npm run test --stream -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -34,6 +34,9 @@
     ],
     "*.{md,mdx}": [
       "prettier --config ./.prettierrc --write"
+    ],
+    "package.json": [
+      "sort-package-json"
     ]
   },
   "devDependencies": {
@@ -63,19 +66,18 @@
     "jest-environment-jsdom": "^29.3.1",
     "lerna": "^6.1.0",
     "lint-staged": "^10.5.4",
+    "pidtree": "^0.6.0",
     "port-pid": "^0.0.7",
     "prettier": "^2.7.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
+    "sort-package-json": "^2.7.0",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "wait-on": "^7.0.1"
   },
   "engines": {
     "node": ">=16"
-  },
-  "dependencies": {
-    "pidtree": "^0.6.0",
-    "wait-on": "^7.0.1"
   }
 }

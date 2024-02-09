@@ -1,35 +1,10 @@
 {
   "name": "pixels-admin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@refinedev/antd": "^5.37.4",
-    "@refinedev/core": "^4.47.1",
-    "@refinedev/react-router-v6": "^4.5.5",
-    "@refinedev/supabase": "^5.7.6",
-    "@refinedev/cli": "^2.16.24",
-    "casbin": "^5.15.2",
-    "dotenv": "^16.0.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
-    "antd": "^5.0.5",
-    "@ant-design/icons": "5.0.1"
-  },
-  "devDependencies": {
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^4.7.4",
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.3.1",
-    "rollup-plugin-polyfill-node": "^0.12.0",
-    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
-    "@esbuild-plugins/node-globals-polyfill": "^0.2.3"
-  },
   "scripts": {
-    "dev": "refine dev",
     "build": "tsc && refine build",
+    "dev": "refine dev",
     "preview": "refine start",
     "refine": "refine"
   },
@@ -44,5 +19,30 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "5.0.1",
+    "@refinedev/antd": "^5.37.4",
+    "@refinedev/cli": "^2.16.24",
+    "@refinedev/core": "^4.47.1",
+    "@refinedev/react-router-v6": "^4.5.5",
+    "@refinedev/supabase": "^5.7.6",
+    "antd": "^5.0.5",
+    "casbin": "^5.15.2",
+    "dotenv": "^16.0.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "rollup-plugin-polyfill-node": "^0.12.0",
+    "typescript": "^4.7.4",
+    "vite": "^4.3.1"
   }
 }
