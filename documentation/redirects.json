@@ -2092,6 +2092,10 @@
     {
       "from": "/docs/examples/next-js/nextjs-appdir/",
       "to": "/docs/examples/next-js"
+    },
+    {
+      "from": "/docs/tutorial/introduction/index/",
+      "to": "/tutorial"
     }
   ]
 }
