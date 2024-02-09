@@ -1,9 +1,8 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import {
     useNotificationProvider,
     RefineSnackbarProvider,
     RefineThemes,
-    WelcomePage,
     ErrorComponent,
 } from "@refinedev/mui";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
