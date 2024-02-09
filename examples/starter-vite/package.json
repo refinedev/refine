@@ -1,13 +1,13 @@
 {
   "name": "starter-vite",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "refine dev",
     "build": "tsc && refine build",
-    "preview": "refine start",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "dev": "refine dev",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "refine start"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.24",
