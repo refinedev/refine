@@ -236,8 +236,11 @@
   "orders": {
     "orders": "Bestellungen",
     "titles": {
+      "deliveryMap": "Lieferkarte",
+      "deliveryDetails": "Lieferdetails",
+      "products": "Produkte",
       "list": "Bestellungen",
-      "show": "Bestellung Info"
+      "show": "Bestellung"
     },
     "fields": {
       "orderNumber": "Bestellungsnummer",
@@ -250,7 +253,10 @@
       "amount": "Betrag",
       "itemsAmount": "{{amount}} Produkt",
       "order": "Bestellung",
-      "customer": "Kunde"
+      "customer": "Kunde",
+      "courier": "Kurier",
+      "phone": "Telefon",
+      "deliveryTime": "Lieferzeit"
     },
     "filter": {
       "title": "Filter",

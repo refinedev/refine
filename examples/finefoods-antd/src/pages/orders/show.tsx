@@ -1,337 +1,123 @@
-import { ReactNode } from "react";
 import {
     useShow,
     IResourceComponentsProps,
     useTranslate,
     useUpdate,
 } from "@refinedev/core";
+import { IOrder } from "../../interfaces";
 import { List } from "@refinedev/antd";
+import { Button, Col, Flex, Row, Skeleton } from "antd";
+import { CloseCircleOutlined } from "@ant-design/icons";
+import { ButtonSuccess } from "../../button";
 import {
-    CheckCircleOutlined,
-    CloseCircleOutlined,
-    LoadingOutlined,
-    MobileOutlined,
-} from "@ant-design/icons";
-import {
-    Row,
-    Col,
-    Button,
-    Steps,
-    Grid,
-    Space,
-    Avatar,
-    Typography,
-    Card,
-    Table,
-    Skeleton,
-} from "antd";
-import dayjs from "dayjs";
-
-import { Map, MapMarker } from "../../components";
-import { BikeWhiteIcon } from "../../components/icons";
-import { useOrderCustomKbarActions } from "../../hooks";
-import { IEvent, IOrder, IProduct } from "../../interfaces";
-
-import {
-    Courier,
-    CourierBoxContainer,
-    CourierInfoBox,
-    CourierInfoBoxText,
-    CourierInfoText,
-    PageHeader,
-    Product,
-    ProductFooter,
-    ProductText,
-} from "./styled";
-
-const { useBreakpoint } = Grid;
-const { Text } = Typography;
+    CardWithContent,
+    OrderDeliveryMap,
+    OrderProducts,
+    OrderDeliveryDetails,
+} from "../../components";
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
-    const screens = useBreakpoint();
     const { queryResult } = useShow<IOrder>();
-    const { data } = queryResult;
-    const { mutate } = useUpdate();
+    const { data, isLoading } = queryResult;
     const record = data?.data;
+    const { mutate } = useUpdate();
 
-    const canAcceptOrder = record?.status.text === "Pending";
-    const canRejectOrder =
-        record?.status.text === "Pending" ||
-        record?.status.text === "Ready" ||
-        record?.status.text === "On The Way";
-
-    const currentBreakPoints = Object.entries(screens)
-        .filter((screen) => !!screen[1])
-        .map((screen) => screen[0]);
-
-    const renderOrderSteps = () => {
-        const notFinishedCurrentStep = (event: IEvent, index: number) =>
-            event.status !== "Cancelled" &&
-            event.status !== "Delivered" &&
-            record?.events.findIndex(
-                (el) => el.status === record?.status?.text,
-            ) === index;
-
-        const stepStatus = (event: IEvent, index: number) => {
-            if (!event.date) return "wait";
-            if (event.status === "Cancelled") return "error";
-            if (notFinishedCurrentStep(event, index)) return "process";
-            return "finish";
-        };
-
-        const handleMutate = (status: { id: number; text: string }) => {
-            if (record) {
-                mutate({
-                    resource: "orders",
-                    id: record.id.toString(),
-                    values: {
-                        status,
-                    },
-                });
-            }
-        };
-
-        useOrderCustomKbarActions(record);
-
-        return (
-            <PageHeader
-                ghost={false}
-                onBack={() => window.history.back()}
-                title={t("orders.fields.orderID")}
-                subTitle={`#${record?.orderNumber ?? ""}`}
-                extra={[
-                    <Button
-                        disabled={!canAcceptOrder}
-                        key="accept"
-                        icon={<CheckCircleOutlined />}
-                        type="primary"
-                        onClick={() =>
-                            handleMutate({
-                                id: 2,
-                                text: "Ready",
-                            })
-                        }
-                    >
-                        {t("buttons.accept")}
-                    </Button>,
-                    <Button
-                        disabled={!canRejectOrder}
-                        key="reject"
-                        danger
-                        icon={<CloseCircleOutlined />}
-                        onClick={() =>
-                            handleMutate({
-                                id: 5,
-                                text: "Cancelled",
-                            })
-                        }
-                    >
-                        {t("buttons.reject")}
-                    </Button>,
-                ]}
-            >
-                <Steps
-                    direction={
-                        currentBreakPoints.includes("lg")
-                            ? "horizontal"
-                            : "vertical"
-                    }
-                    current={record?.events.findIndex(
-                        (el) => el.status === record?.status?.text,
-                    )}
-                >
-                    {record?.events.map((event: IEvent, index: number) => (
-                        <Steps.Step
-                            status={stepStatus(event, index)}
-                            key={index}
-                            title={t(`enum.orderStatuses.${event.status}`)}
-                            icon={
-                                notFinishedCurrentStep(event, index) && (
-                                    <LoadingOutlined />
-                                )
-                            }
-                            description={
-                                event.date && dayjs(event.date).format("L LT")
-                            }
-                        />
-                    ))}
-                </Steps>
-                {!record && <Skeleton paragraph={{ rows: 1 }} />}
-            </PageHeader>
-        );
+    const handleMutate = (status: { id: number; text: string }) => {
+        if (record) {
+            mutate({
+                resource: "orders",
+                id: record.id.toString(),
+                values: {
+                    status,
+                },
+            });
+        }
     };
 
-    const courierInfoBox = (text: string, icon: ReactNode, value?: string) => (
-        <CourierInfoBox>
-            {icon}
-            <CourierInfoBoxText>
-                <Text style={{ color: "#ffffff" }}>{text.toUpperCase()}</Text>
-                <Text style={{ color: "#ffffff" }}>{value}</Text>
-            </CourierInfoBoxText>
-        </CourierInfoBox>
-    );
-
-    const renderCourierInfo = () => (
-        <Card>
-            <Row justify="center">
-                <Col xl={12} lg={10}>
-                    <Courier>
-                        <Avatar
-                            size={108}
-                            src={record?.courier.avatar[0].url}
-                        />
-                        <CourierInfoText>
-                            <Text style={{ fontSize: 16 }}>COURIER</Text>
-                            <Text
-                                style={{
-                                    fontSize: 22,
-                                    fontWeight: 800,
-                                }}
-                            >
-                                {record?.courier.name} {record?.courier.surname}
-                            </Text>
-                            <Text>ID #{record?.courier.id}</Text>
-                        </CourierInfoText>
-                    </Courier>
-                </Col>
-
-                <CourierBoxContainer xl={12} lg={14} md={24}>
-                    {courierInfoBox(
-                        t("orders.courier.phone"),
-                        <MobileOutlined
-                            style={{ color: "#ffff", fontSize: 32 }}
-                        />,
-                        record?.courier.gsm,
-                    )}
-                    {courierInfoBox(
-                        t("orders.courier.deliveryTime"),
-                        <BikeWhiteIcon
-                            style={{ color: "#ffff", fontSize: 32 }}
-                        />,
-                        "15:05",
-                    )}
-                </CourierBoxContainer>
-            </Row>
-        </Card>
-    );
-
-    const renderDeliverables = () => (
-        <List
-            headerProps={{ style: { marginTop: 20 } }}
-            title={
-                <Text style={{ fontSize: 22, fontWeight: 800 }}>
-                    {t("orders.deliverables.deliverables")}
-                </Text>
-            }
-        >
-            <Table
-                pagination={false}
-                dataSource={record?.products}
-                footer={(_data) => (
-                    <ProductFooter>
-                        <Text>{t("orders.deliverables.mainTotal")}</Text>
-                        <Text>{record?.amount}$</Text>
-                    </ProductFooter>
-                )}
-            >
-                <Table.Column<IProduct>
-                    defaultSortOrder="descend"
-                    sorter={(a: IProduct, b: IProduct) =>
-                        a.name > b.name ? 1 : -1
-                    }
-                    dataIndex="name"
-                    title={t("orders.deliverables.fields.items")}
-                    render={(value, record) => (
-                        <Product>
-                            <Avatar
-                                size={{
-                                    md: 60,
-                                    lg: 108,
-                                    xl: 108,
-                                    xxl: 108,
-                                }}
-                                src={record.images[0].url}
-                            />
-                            <ProductText>
-                                <Text style={{ fontSize: 22, fontWeight: 800 }}>
-                                    {value}
-                                </Text>
-                                <Text>#{record.id}</Text>
-                            </ProductText>
-                        </Product>
-                    )}
-                />
-                <Table.Column
-                    title={t("orders.deliverables.fields.quantity")}
-                    dataIndex="quantity"
-                    render={() => (
-                        <Text style={{ fontWeight: 800 }}>{"1x"}</Text>
-                    )}
-                />
-                <Table.Column
-                    defaultSortOrder="descend"
-                    sorter={(a: IProduct, b: IProduct) => a.price - b.price}
-                    dataIndex="price"
-                    title={t("orders.deliverables.fields.price")}
-                    render={(value) => (
-                        <Text style={{ fontWeight: 800 }}>{value}</Text>
-                    )}
-                />
-                <Table.Column
-                    defaultSortOrder="descend"
-                    sorter={(a: IProduct, b: IProduct) => a.price - b.price}
-                    dataIndex="price"
-                    title={t("orders.deliverables.fields.total")}
-                    render={(value) => (
-                        <Text style={{ fontWeight: 800 }}>{value}</Text>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+    const canAcceptOrder = isLoading
+        ? false
+        : record?.status.text === "Pending";
+    const canRejectOrder = isLoading
+        ? false
+        : record?.status.text === "Pending" ||
+          record?.status.text === "Ready" ||
+          record?.status.text === "On The Way";
 
     return (
-        <>
-            <Space size={20} direction="vertical" style={{ width: "100%" }}>
-                {renderOrderSteps()}
-                <div style={{ height: "500px", width: "100%" }}>
-                    <Map
-                        center={{
-                            lat: 40.73061,
-                            lng: -73.935242,
+        <List
+            breadcrumb={false}
+            title={
+                isLoading ? (
+                    <Skeleton.Input
+                        active
+                        style={{
+                            width: "144px",
+                            minWidth: "144pxpx",
+                            height: "28px",
                         }}
-                        zoom={9}
+                    />
+                ) : (
+                    `${t("orders.titles.list")} #${record?.orderNumber}`
+                )
+            }
+            headerButtons={[
+                <ButtonSuccess
+                    disabled={!canAcceptOrder}
+                    key="accept"
+                    onClick={() =>
+                        handleMutate({
+                            id: 2,
+                            text: "Ready",
+                        })
+                    }
+                >
+                    {t("buttons.accept")}
+                </ButtonSuccess>,
+                <Button
+                    disabled={!canRejectOrder}
+                    key="reject"
+                    danger
+                    icon={<CloseCircleOutlined />}
+                    onClick={() =>
+                        handleMutate({
+                            id: 5,
+                            text: "Cancelled",
+                        })
+                    }
+                >
+                    {t("buttons.reject")}
+                </Button>,
+            ]}
+        >
+            <Row gutter={[16, 16]}>
+                <Col xl={15} lg={24} md={24} sm={24} xs={24}>
+                    <Flex gap={16} vertical>
+                        <CardWithContent
+                            bodyStyles={{
+                                height: "378px",
+                                overflow: "hidden",
+                                padding: 0,
+                            }}
+                            title={t("orders.titles.deliveryMap")}
+                        >
+                            <OrderDeliveryMap order={record} />
+                        </CardWithContent>
+                        <OrderProducts order={record} />
+                    </Flex>
+                </Col>
+
+                <Col xl={9} lg={24} md={24} sm={24} xs={24}>
+                    <CardWithContent
+                        bodyStyles={{
+                            padding: 0,
+                        }}
+                        title={t("orders.titles.deliveryDetails")}
                     >
-                        <MapMarker
-                            key={`user-marker-${record?.user.id}`}
-                            icon={{
-                                url: "/images/marker-location.svg",
-                            }}
-                            position={{
-                                lat: Number(record?.adress.coordinate[0]),
-                                lng: Number(record?.adress.coordinate[1]),
-                            }}
-                        />
-                        <MapMarker
-                            key={`user-marker-${record?.user.id}`}
-                            icon={{
-                                url: "/images/marker-courier.svg",
-                            }}
-                            position={{
-                                lat: Number(
-                                    record?.store.address.coordinate[0],
-                                ),
-                                lng: Number(
-                                    record?.store.address.coordinate[1],
-                                ),
-                            }}
-                        />
-                    </Map>
-                </div>
-                {renderCourierInfo()}
-            </Space>
-            {renderDeliverables()}
-        </>
+                        {record && <OrderDeliveryDetails order={record} />}
+                    </CardWithContent>
+                </Col>
+            </Row>
+        </List>
     );
 };

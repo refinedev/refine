@@ -1,9 +1,9 @@
 import { useList, useNavigation } from "@refinedev/core";
 
-import { Map, MapMarker } from "../../../components";
+import { Map, MapMarker } from "../..";
 import { IOrder } from "../../../interfaces";
 
-export const DeliveryMap: React.FC = () => {
+export const AllOrdersMap: React.FC = () => {
     const { data: orderData } = useList<IOrder>({
         resource: "orders",
         config: {

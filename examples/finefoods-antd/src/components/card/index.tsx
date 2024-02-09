@@ -4,7 +4,7 @@ import { useConfigProvider } from "../../context";
 
 export const CardWithContent = (
     props: PropsWithChildren<{
-        icon: React.ReactNode;
+        icon?: React.ReactNode;
         title: string;
         bodyStyles?: React.CSSProperties;
     }>,

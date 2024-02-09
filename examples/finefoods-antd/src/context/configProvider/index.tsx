@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { ConfigProvider as AntdConfigProvider, theme, ThemeConfig } from "antd";
 import { ThemeProvider } from "antd-style";
 import { RefineThemes } from "@refinedev/antd";
+import "./config.css";
 
 type Mode = "light" | "dark";
 

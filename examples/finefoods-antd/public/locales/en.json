@@ -239,8 +239,11 @@
   "orders": {
     "orders": "Orders",
     "titles": {
+      "deliveryMap": "Delivery Map",
+      "deliveryDetails": "Delivery Details",
+      "products": "Products",
       "list": "Orders",
-      "show": "Show Order"
+      "show": "Order"
     },
     "fields": {
       "orderNumber": "Order Number",
@@ -253,7 +256,10 @@
       "amount": "Amount",
       "itemsAmount": "{{amount}} items",
       "order": "Order",
-      "customer": "Customer"
+      "customer": "Customer",
+      "courier": "Courier",
+      "phone": "Phone",
+      "deliveryTime": "Delivery Time"
     },
     "filter": {
       "title": "Filters",

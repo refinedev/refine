@@ -112,7 +112,13 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="orderNumber"
                     title={t("orders.fields.order")}
                     render={(value) => (
-                        <Typography.Text>#{value}</Typography.Text>
+                        <Typography.Text
+                            style={{
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            #{value}
+                        </Typography.Text>
                     )}
                     filterIcon={(filtered) => (
                         <SearchOutlined

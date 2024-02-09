@@ -1,4 +1,4 @@
-export * from "./deliveryMap";
+export * from "./allOrdersMap";
 export * from "./dailyRevenue";
 export * from "./dailyOrders";
 export * from "./newCustomers";
