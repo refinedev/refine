@@ -1,8 +1,6 @@
-import { useMemo } from "react";
 import {
     useTranslate,
     IResourceComponentsProps,
-    CrudFilters,
     useExport,
     useNavigation,
     HttpError,
@@ -20,22 +18,15 @@ import {
     FilterDropdown,
 } from "@refinedev/antd";
 import { SearchOutlined } from "@ant-design/icons";
-import {
-    Table,
-    Popover,
-    Input,
-    Select,
-    Typography,
-    Flex,
-    Avatar,
-    theme,
-    Badge,
-    InputNumber,
-} from "antd";
+import { Table, Input, Select, Typography, theme, InputNumber } from "antd";
 
-import { OrderStatus, OrderActions } from "../../components";
+import {
+    OrderStatus,
+    OrderActions,
+    PaginationTotal,
+    OrdersTableColumnProducts,
+} from "../../components";
 import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
-import { getUniqueListWithCount } from "../../utils";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { token } = theme.useToken();
@@ -105,6 +96,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             show("orders", record.id);
                         },
                     };
+                }}
+                pagination={{
+                    ...tableProps.pagination,
+                    showTotal: (total) => (
+                        <PaginationTotal total={total} entityName="orders" />
+                    ),
                 }}
             >
                 <Table.Column
@@ -182,105 +179,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="products"
                     title={t("orders.fields.products")}
                     render={(_, record) => {
-                        const uniqueProducts = getUniqueListWithCount({
-                            list: record.products,
-                            field: "id",
-                        });
-                        const firstThree = uniqueProducts.slice(0, 3);
-                        const rest = uniqueProducts.slice(3);
-
-                        return (
-                            <Flex gap={12}>
-                                {firstThree.map((product) => {
-                                    return (
-                                        <Popover
-                                            key={product.id}
-                                            content={
-                                                <Typography.Text>
-                                                    {product.name}
-                                                </Typography.Text>
-                                            }
-                                        >
-                                            <Badge
-                                                style={{
-                                                    color: "#fff",
-                                                }}
-                                                count={
-                                                    product.count === 1
-                                                        ? 0
-                                                        : product.count
-                                                }
-                                            >
-                                                <Avatar
-                                                    shape="square"
-                                                    src={product.images[0].url}
-                                                />
-                                            </Badge>
-                                        </Popover>
-                                    );
-                                })}
-                                {!!rest.length && (
-                                    <Popover
-                                        title={t("orders.fields.products")}
-                                        content={
-                                            <Flex gap={8}>
-                                                {rest.map((product) => {
-                                                    return (
-                                                        <Popover
-                                                            key={product.id}
-                                                            content={
-                                                                <Typography.Text>
-                                                                    {
-                                                                        product.name
-                                                                    }
-                                                                </Typography.Text>
-                                                            }
-                                                        >
-                                                            <Badge
-                                                                style={{
-                                                                    color: "#fff",
-                                                                }}
-                                                                count={
-                                                                    product.count ===
-                                                                    1
-                                                                        ? 0
-                                                                        : product.count
-                                                                }
-                                                            >
-                                                                <Avatar
-                                                                    shape="square"
-                                                                    src={
-                                                                        product
-                                                                            .images[0]
-                                                                            .url
-                                                                    }
-                                                                />
-                                                            </Badge>
-                                                        </Popover>
-                                                    );
-                                                })}
-                                            </Flex>
-                                        }
-                                    >
-                                        <Avatar
-                                            shape="square"
-                                            style={{
-                                                backgroundColor:
-                                                    token.colorPrimaryBg,
-                                            }}
-                                        >
-                                            <Typography.Text
-                                                style={{
-                                                    color: token.colorPrimary,
-                                                }}
-                                            >
-                                                +{rest.length}
-                                            </Typography.Text>
-                                        </Avatar>
-                                    </Popover>
-                                )}
-                            </Flex>
-                        );
+                        return <OrdersTableColumnProducts order={record} />;
                     }}
                 />
                 <Table.Column

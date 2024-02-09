@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 import { Tag } from "antd";
-import { BikeIcon, BikeWhiteIcon } from "../icons";
+import { BikeIcon, BikeWhiteIcon } from "../../icons";
 
 type OrderStatusProps = {
     status: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";

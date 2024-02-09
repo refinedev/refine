@@ -28,7 +28,7 @@ import "dayjs/locale/de";
 import { DashboardPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { AuthPage } from "./pages/auth";
-import { UserList, UserShow } from "./pages/users";
+import { CustomerShow, CustomerList } from "./pages/customers";
 import {
     CourierList,
     CourierShow,
@@ -100,8 +100,8 @@ const App: React.FC = () => {
                             },
                             {
                                 name: "users",
-                                list: "/users",
-                                show: "/users/show/:id",
+                                list: "/customers",
+                                show: "/customers/show/:id",
                                 meta: {
                                     icon: <UsergroupAddOutlined />,
                                 },
@@ -182,11 +182,18 @@ const App: React.FC = () => {
                                     />
                                 </Route>
 
-                                <Route path="/users">
-                                    <Route index element={<UserList />} />
+                                <Route
+                                    path="/customers"
+                                    element={
+                                        <CustomerList>
+                                            <Outlet />
+                                        </CustomerList>
+                                    }
+                                >
+                                    <Route index element={null} />
                                     <Route
                                         path="show/:id"
-                                        element={<UserShow />}
+                                        element={<CustomerShow />}
                                     />
                                 </Route>
 

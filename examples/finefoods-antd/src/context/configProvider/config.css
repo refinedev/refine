@@ -1,3 +1,17 @@
 .ant-table-wrapper .ant-table {
     border-radius: 8px;
 }
+
+.ant-table-wrapper .ant-table-tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.ant-table-wrapper .ant-table-tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+.ant-pagination-total-text {
+    margin-right: auto;
+    font-size: 14px !important;
+    margin-inline-end: auto !important;
+}

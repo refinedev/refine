@@ -99,7 +99,8 @@
     "clone": "Klonen"
   },
   "table": {
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "inTotal": "Insgesamt"
   },
   "search": {
     "placeholder": "Suchen mit Geschäfts-ID, E-mail oder Stichwort",
@@ -235,6 +236,7 @@
   },
   "orders": {
     "orders": "Bestellungen",
+    "order": "Bestellung",
     "titles": {
       "deliveryMap": "Lieferkarte",
       "deliveryDetails": "Lieferdetails",
@@ -368,11 +370,12 @@
     "productSearch": "Produkt suchen"
   },
   "users": {
-    "users": "Benutzern",
+    "users": "Kunden",
+    "resourceLabel": "Kunden",
     "titles": {
-      "edit": "Benutzer bearbeiten",
-      "list": "Benutzern",
-      "show": "Benutzer Information"
+      "edit": "Kunden bearbeiten",
+      "list": "Kunden",
+      "show": "Kunden Information"
     },
     "fields": {
       "id": "ID",
@@ -382,21 +385,35 @@
       },
       "firstName": "Vorname",
       "lastName": "Nachname",
+      "name": "Name",
       "gender": {
         "label": "Geschlecht",
         "Male": "Mann",
         "Female": "Frau"
       },
-      "gsm": "GSM",
+      "gsm": "GSM Num",
       "createdAt": "Erstellt am",
+      "addresses": "Adressen",
       "isActive": {
-        "label": "Aktiv",
-        "true": "Ja",
-        "false": "Nein"
+        "label": "Status",
+        "true": "Aktiv",
+        "false": "Passiv"
       }
     },
     "filter": {
       "title": "Filter",
+      "id": {
+        "label": "ID",
+        "placeholder": "ID"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Name"
+      },
+      "gsm": {
+        "label": "GSM",
+        "placeholder": "GSM"
+      },
       "search": {
         "label": "Suche",
         "placeholder": "Vorname, Nachname, GSM..."
