@@ -6,7 +6,9 @@ import { Sandpack, AddNotificationProviderToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-Now we've refactored our application with Ant Design, in this step, we'll learn how to integrate Ant Design's notification system with Refine to provide notifications to users. Refine triggers notification in various scenarios, such as when a record is created, updated, or deleted, when there is an error from your data provider or your auth provider. It's important to provide feedback to the user when interacting with the application.
+In this step, we will explore integrating Ant Design's notification system with Refine to deliver notifications to users.
+
+Refine triggers notification in various scenarios, such as when a record is created, updated, or deleted, when there is an error from your data provider or your auth provider. It's important to provide feedback to the user when interacting with the application.
 
 All these notifications are enabled just by providing a `notificationProvider` prop to the `<Refine />` component. A notification provider is responsible from displaying and dismissing notifications as well as handling undoable mutation notifications.
 
