@@ -36,7 +36,7 @@ We've already handed over our runners to the CLI's runners, our `package.json` f
 }
 ```
 
-These commands will use the same runners as your bundler under the hood and using the CLI runners is optional. It's recommended to do so because it will keep you updated with the updates from the Refine team and will notify you when there's a new version of a Refine package.
+These commands will use the same runners as your bundler, and using them is optional but recommended for staying updated with Refine team's updates and receiving notifications about new package versions.
 
 :::note
 
@@ -46,7 +46,7 @@ Notice that we have the `refine` command defined in `"scripts"`. This command is
 
 ## Using the `add` Command
 
-The `add` command can be used to create new resources and providers. It's a powerful command that can create a new resource or a provider with a single command.
+The `add` command creates new resources and providers with a single command.
 
 Try to run the following command to create a new resource called `categories`:
 
@@ -54,9 +54,9 @@ Try to run the following command to create a new resource called `categories`:
 npm run refine add resource categories
 ```
 
-By running this command you'll be prompted to select the actions you want to create for the `categories` resource. After you've selected the actions, the CLI will create the necessary files for the resource, populate the files with Inferencer components and add the resource definition to your `<Refine />` component.
+Running this command prompts you to select actions for the `categories` resource. Once actions are chosen, the CLI creates necessary files, populates them with Inferencer components, and adds the resource definition to your `<Refine />` component
 
-We can also use the `add` command to create a new provider. The list of available providers that can be created with the `add` command is:
+We can use the `add` command to create a new provider, with  available provider options including:
 
 - Auth Provider to handle authentication,
 - Data Provider to handle data fetching and mutations,
@@ -76,7 +76,7 @@ By running this command, you'll be provided with the necessary files for the i18
 
 ## Using the `update` Command
 
-The `update` command can be used to check and update versions of the Refine packages. As it's mentioned in the [Using Runners](#using-runners) section, if you use the runner commands, you'll be notified when there's a new version of a Refine package. When notified, you can run the `update` command to update the versions of the Refine packages.
+The `update` command can be used to check and update versions of the Refine packages. As mentioned in the [Using Runners](#using-runners) section, using the runner commands notifies you of new Refine package versions, allowing you to run the update command for updates.
 
 Try to run the following command to check and update the versions of the Refine packages:
 
@@ -86,11 +86,11 @@ npm run refine update
 
 ## Using the `swizzle` Command
 
-The `swizzle` command can be used to export Refine components and providers on your project to customize them. It's a powerful command that can export a Refine component or a provider with a single command. By running the `swizzle` command, you will have the ability to customize the exported component or provider. You can also use the exported elements as a starting point to create your own components and providers.
+The `swizzle` command is a powerful tool that exports Refine components and providers for customization. Running it allows you to customize the exported component or provider, serving as a starting point for creating your own elements.
 
 :::note
 
-Please note that the `swizzle` command is a one-time operation and exporting the elements will detach them from the Refine's updates and you will be responsible for updating the exported elements if there are any breaking changes in the future. Refine won't be using the exported elements in the application automatically, you will need to import and use them manually.
+Please note that the `swizzle` command is a one-time operation; exporting the elements detaches them from Refine's updates, making you responsible for updating them if there are any breaking changes in the future. Refine won't automatically use the exported elements in the application; you'll need to import and use them manually.
 
 :::
 
@@ -100,7 +100,7 @@ Try to run the following command to see swizzle in action:
 npm run refine swizzle
 ```
 
-By running this command, you'll be prompted to pick the package you want to export the elements from. After you've selected the package, you'll be prompted to select the elements you want to export. The CLI will export the selected elements to the appropriate directory depending on your application's setup.
+Running this command prompts you to select the package and elements you want to export. Once selected, the CLI exports them to the appropriate directory based on your application's setup.
 
 In this unit, we've briefly covered the Refine's CLI and its features. In the next unit, we'll be learning about the Refine's Devtools.
 

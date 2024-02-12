@@ -6,7 +6,7 @@ import { Sandpack } from "./sandpack.tsx";
 
 <Sandpack>
 
-Contgratulations! You've completed the tutorial. You've learned how to create a CRUD application from scratch by Refine and learned about the basic concepts of Refine. You can now use Refine to create your own applications without any limitations.
+Congratulations! You've completed the tutorial, learning how to create a CRUD application from scratch using Refine and understanding its basic concepts. With this knowledge, you can now use Refine to develop your own applications without limitations.
 
 We've covered the following topics in this tutorial:
 

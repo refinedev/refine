@@ -6,7 +6,7 @@ import { Sandpack, SelectorButtonIcon } from "./sandpack.tsx";
 
 <Sandpack>
 
-Refine provides a powerful Devtools package that can be used to inspect and debug your Refine application. In this step, we'll be learning about the Refine's Devtools and its monitoring and update features.
+In this step, we'll explore Refine's powerful Devtools package, which offers monitoring and update features for inspecting and debugging Refine applications.
 
 :::note
 

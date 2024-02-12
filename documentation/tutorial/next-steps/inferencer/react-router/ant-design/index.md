@@ -167,7 +167,7 @@ export default function App(): JSX.Element {
 
 <AddListCategoriesToApp />
 
-We've mounted the `ListCategories` component to the `/categories` route and added the `categories` resource to the `resources` array. By adding the `categories` resource to the `resources` array, sidebar will automatically have a link to the categories list.
+We've mounted the `ListCategories` component to the `/categories` route and added the `categories` resource to the `resources` array, which enables the sidebar will automatically have a link to the categories list.
 
 Now let's add Inferencer to the `ListCategories` component.
 
@@ -188,7 +188,7 @@ export const ListCategories = () => {
 
 <AddInferencerToListCategories />
 
-Notice that we've not provided the `resource` and `action` props to the `AntdInferencer` component. This is because the `resource` and `action` props are inferred from the route.
+Notice that we've not provided the `resource` and `action` props to the `AntdInferencer` component because they are inferred from the route.
 
 Now, if you navigate to the `/categories` route, you will see the generated list view for the `categories` resource. Then you can copy & paste the generated code and customize it to fit your application's needs.
 
