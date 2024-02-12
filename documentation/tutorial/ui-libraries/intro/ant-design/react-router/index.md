@@ -6,9 +6,9 @@ import { Sandpack, AddAntDesignToApp, AddLayoutToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-Now we've learned about the router integrations of Refine, let's learn about the UI integrations of Refine. In this unit, we'll learn how to use layouts, CRUD view components and hooks to build a CRUD application with Refine and Ant Design.
+In the previous unit, we learned about the router integrations of Refine. Now, we'll dive into its UI integrations, layouts, CRUD view components, and hooks to build a CRUD application with Refine and Ant Design.
 
-Refine provides integrations for the most popular UI libraries such as [Ant Design](/docs/ui-integrations/ant-design/introduction), [Material UI](/docs/ui-integrations/material-ui/introduction), [Chakra UI](/docs/ui-integrations/chakra-ui/introduction) and [Mantine](/docs/ui-integrations/mantine/introduction). These integrations provide a set of components and hooks to make it easier to use Refine with these UI libraries in cases like form and table management, layouts, views, buttons and more.
+Refine provides integrations for the popular UI libraries including [Ant Design](/docs/ui-integrations/ant-design/introduction), [Material UI](/docs/ui-integrations/material-ui/introduction), [Chakra UI](/docs/ui-integrations/chakra-ui/introduction) and [Mantine](/docs/ui-integrations/mantine/introduction), offering set of components and hooks that simplify using Refine for form and table management, layouts, views, buttons, and more.
 
 This unit will cover the following topics:
 
@@ -20,7 +20,7 @@ This unit will cover the following topics:
 
 ## Adding Ant Design Dependencies
 
-Let's get started with adding our dependencies. We'll be needing `antd` to use Ant Design components and to get Refine integrated hooks and components, we'll be installing `@refinedev/antd` package.
+Let's get started with adding our dependencies. To use Ant Design components and access Refine's integrated hooks and components, we need to install the `@refinedev/antd package`.
 
 <InstallPackagesCommand args="antd @refinedev/antd"/>
 
@@ -122,11 +122,11 @@ export default function App(): JSX.Element {
 
 <AddAntDesignToApp />
 
-Now that we have our dependencies installed, let's start by adding a layout to our app.
+With our dependencies now in place, let's proceed by adding a layout into our app.
 
 ## Adding a Layout
 
-Refine provides a `<ThemedLayoutV2 />` component to add many features out of the box to your app. In the next step, we'll learn more about these features and how to use them. Now to see it in action, let's wrap our authenticated routes with the `<ThemedLayoutV2 />` component.
+Refine provides a [`<ThemedLayoutV2 />`](/docs/ui-integrations/ant-design/components/themed-layout) component has out of the box features, which we'll delve into in the next step. Now to see it in action, let's wrap our authenticated routes with it.
 
 Try to add the following code to your `src/App.tsx` file:
 

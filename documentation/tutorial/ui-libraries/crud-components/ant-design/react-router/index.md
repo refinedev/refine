@@ -6,13 +6,13 @@ import { Sandpack, ListInListProducts, EditInEditProduct, CreateInCreateProduct,
 
 <Sandpack>
 
-Now we've refactored our components, it's time to learn about the CRUD view components provided by Refine's Ant Design integration. These components are implemented to provide consistent design with Ant Design with additional features such as headers with i18n support, breadcrumbs, navigation buttons, submission buttons, and more.
+After refactoring the components, it's time to learn about the CRUD view components provided by Refine's Ant Design integration. These components are implemented to provide consistent design with Ant Design with additional features such as headers with i18n support, breadcrumbs, navigation buttons, submission buttons, and more.
 
 These components are not required to use Refine, but they are useful for building a consistent user interface without worrying about the common features you need across your application.
 
 ## List View
 
-The `<List />` component is a wrapper component for list pages. It provides an header with i18n support and navigation to create a new record. You can always provide more features and elements by passing customizing the component.
+The `<List />` component is a wrapper component for list pages which provides an header with i18n support and navigation to create a new record. You can always provide more features and elements by passing customizing the component.
 
 :::note
 
@@ -123,7 +123,7 @@ export const CreateProduct = () => {
 
 ## Edit View
 
-The `<Edit />` component is a wrapper component for edit pages. The design and the usage is similar to the `<Create />` component. Additionally it includes the `<RefreshButton />` and `<DeleteButton />` at its header. You can always provide more features and elements by passing customizing the component.
+The `<Edit />` component is a wrapper component for edit pages. The design and the usage is similar to the `<Create />` component. Additionally, it includes the `<RefreshButton />` and `<DeleteButton />` at its header. You can always provide more features and elements by passing customizing the component.
 
 Try to update your `src/edit-product.tsx` file with the following lines:
 
@@ -179,7 +179,7 @@ Notice that we've removed the `<SaveButton />` component from the `<EditProduct 
 
 ## Show View
 
-The `<Show />` component is a wrapper component for show pages. It provides an header with i18n support and navigation to list view, to edit the record, a refresh button. a delete button, a back button and breadcrumbs. You can always provide more features and elements by passing customizing the component.
+The `<Show />` component is a wrapper component for show pages.It provides a header with i18n support and navigation to the list view, edit the record, a refresh button, a delete button, a back button, and breadcrumbs. You can always provide more features and elements by passing customizing the component.
 
 Try to update your `src/show-product.tsx` file with the following lines:
 
