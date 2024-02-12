@@ -19,7 +19,6 @@ Our fake REST API requires us to send a `GET` request to `/auth/me` endpoint wit
 Try to add the following lines to your `src/auth-provider.ts` file:
 
 ```ts title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

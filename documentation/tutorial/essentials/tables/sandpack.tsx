@@ -3,97 +3,23 @@ import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
+import { dependencies } from "../intro/sandpack";
+import { finalFiles as initialFiles } from "../forms/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
+
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            files={{
-                "App.tsx": {
-                    code: AppTsxCode,
-                },
-                "styles.css": {
-                    code: StylesCssCode,
-                    hidden: true,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductTsxCode,
-                    // hidden: true,
-                },
-                "edit-product.tsx": {
-                    code: EditProductTsxCode,
-                    // hidden: true,
-                },
-                "create-product.tsx": {
-                    code: CreateProductTsxCode,
-                    // hidden: true,
-                },
-                "list-products.tsx": {
-                    code: ListProductTsxCode,
-                    active: true,
-                    // hidden: true,
-                },
-            }}
-            finalFiles={{
-                "App.tsx": {
-                    code: AppTsxWithListProductsTsxCode,
-                },
-                "styles.css": {
-                    code: StylesCssCode,
-                    hidden: true,
-                },
-                "data-provider.ts": {
-                    code: DataProviderWithTotalInGetListMethodTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductTsxCode,
-                    // hidden: true,
-                },
-                "edit-product.tsx": {
-                    code: EditProductTsxCode,
-                    // hidden: true,
-                },
-                "create-product.tsx": {
-                    code: CreateProductTsxCode,
-                    // hidden: true,
-                },
-                "list-products.tsx": {
-                    code: ListProductsWithHeaderSortersTsxCode,
-                    active: true,
-                    // hidden: true,
-                },
-            }}
+            dependencies={dependencies}
+            files={files}
+            finalFiles={finalFiles}
         >
             {children}
         </TutorialSandpack>
     );
 };
 
-const AppTsxCode = /* tsx */ `
-import { Refine } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
-
-export default function App(): JSX.Element {
-  return (
-    <Refine dataProvider={dataProvider}>
-      {/* <ShowProduct /> */}
-      <EditProduct />
-      {/* <ListProducts /> */}
-      {/* <CreateProduct /> */}
-    </Refine>
-  );
-}
-`.trim();
+// updates
 
 const StylesCssCode = /* css */ `
 body {
@@ -162,270 +88,6 @@ table tr:nth-child(even) {
   cursor: default;
 }
 
-`.trim();
-
-const DataProviderTsCode = /* ts */ `
-import type { DataProvider } from "@refinedev/core";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const dataProvider: DataProvider = {
-  getOne: async ({ resource, id, meta }) => {
-    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
-
-    if (response.status < 200 || response.status > 299) throw response;
-
-    const data = await response.json();
-
-    return { data };
-  },
-  create: async ({ resource, variables }) => {
-    const response = await fetch(\`\${API_URL}/\${resource}\`, {
-      method: "POST",
-      body: JSON.stringify(variables),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status < 200 || response.status > 299) throw response;
-
-    const data = await response.json();
-
-    return { data };
-  },
-  update: async ({ resource, id, variables }) => {
-    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`, {
-      method: "PATCH",
-      body: JSON.stringify(variables),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status < 200 || response.status > 299) throw response;
-
-    const data = await response.json();
-
-    return { data };
-  },
-  getList: async ({ resource, pagination, filters, sorters, meta }) => {
-    const params = new URLSearchParams();
-
-    if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
-    }
-
-    if (sorters && sorters.length > 0) {
-      params.append("_sort", sorters.map((sorter) => sorter.field).join(","));
-      params.append("_order", sorters.map((sorter) => sorter.order).join(","));
-    }
-
-    if (filters && filters.length > 0) {
-      filters.forEach((filter) => {
-        if ("field" in filter && filter.operator === "eq") {
-          // Our fake API supports "eq" operator by simply appending the field name and value to the query string.
-          params.append(filter.field, filter.value);
-        }
-      });
-    }
-
-    const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
-
-    if (response.status < 200 || response.status > 299) throw response;
-
-    const data = await response.json();
-
-    return {
-        data,
-        total: 0, // We'll cover this in the next steps.
-    };
-  },
-  /* ... */
-};
-`.trim();
-
-const ShowProductTsxCode = /* tsx */ `
-import { useOne } from "@refinedev/core";
-
-export const ShowProduct = () => {
-    const { data, isLoading } = useOne({ resource: "products", id: 123 });
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return <div>Product name: {data?.data.name}</div>;
-};
-`.trim();
-
-const ListProductTsxCode = /* tsx */ `
-import { useList } from "@refinedev/core";
-
-export const ListProducts = () => {
-  const { data, isLoading } = useList({
-    resource: "products",
-    pagination: { current: 1, pageSize: 10 },
-    sorters: [{ field: "name", order: "asc" }],
-    filters: [{ field: "material", operator: "eq", value: "Aluminum" }],
-  });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div>
-      <h1>Products</h1>
-      <ul>
-        {data?.data?.map((product) => (
-          <li key={product.id}>
-            <p>
-              {product.name}
-              <br />
-              Price: {product.price}
-              <br />
-              Material: {product.material}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-`.trim();
-
-const CreateProductTsxCode = /* tsx */ `
-import { useForm, useSelect } from "@refinedev/core";
-
-export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({
-    action: "create",
-    resource: "products",
-  });
-
-  const { options } = useSelect({
-    resource: "categories",
-    // optionLabel: "title", // Default value is "title" so we don't need to provide it.
-    // optionValue: "id", // Default value is "id" so we don't need to provide it.
-  });
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Using FormData to get the form values and convert it to an object.
-    const data = Object.fromEntries(new FormData(event.target).entries());
-    // Calling onFinish to submit with the data we've collected from the form.
-    onFinish({
-      ...data,
-      price: Number(data.price).toFixed(2),
-      category: { id: Number(data.category) },
-    });
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" />
-
-      <label htmlFor="description">Description</label>
-      <textarea id="description" name="description" />
-
-      <label htmlFor="price">Price</label>
-      <input type="number" id="price" name="price" step=".01" />
-
-      <label htmlFor="material">Material</label>
-      <input type="text" id="material" name="material" />
-
-      <label htmlFor="category">Category</label>
-      <select id="category" name="category">
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-`.trim();
-
-const EditProductTsxCode = /* tsx */ `
-import { useForm, useSelect } from "@refinedev/core";
-
-export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm({
-    action: "edit",
-    resource: "products",
-    id: "123"
-  });
-
-  const record = queryResult.data?.data;
-
-  const { options } = useSelect({
-    resource: "categories",
-  });
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Using FormData to get the form values and convert it to an object.
-    const data = Object.fromEntries(new FormData(event.target).entries());
-    // Calling onFinish to submit with the data we've collected from the form.
-    onFinish({
-      ...data,
-      price: Number(data.price).toFixed(2),
-      category: { id: Number(data.category) },
-    });
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" name="name" defaultValue={record?.name} />
-
-      <label htmlFor="description">Description</label>
-      <textarea
-        id="description"
-        name="description"
-        defaultValue={record?.description}
-      />
-
-      <label htmlFor="price">Price</label>
-      <input
-        type="text"
-        id="price"
-        name="price"
-        pattern="\\d*\.?\\d*"
-        defaultValue={record?.price}
-      />
-
-      <label htmlFor="material">Material</label>
-      <input
-        type="text"
-        id="material"
-        name="material"
-        defaultValue={record?.material}
-      />
-
-      <label htmlFor="category">Category</label>
-      <select id="category" name="category">
-        {options?.map((option) => (
-          <option key={option.value} value={option.value}
-            selected={record?.category.id == option.value}
-            >
-            {option.label}
-          </option>
-        ))}
-      </select>
-
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
 `.trim();
 
 const AppTsxWithListProductsTsxCode = /* tsx */ `
@@ -963,6 +625,8 @@ export const ListProducts = () => {
 };
 `.trim();
 
+// actions
+
 export const MountListProductsInAppTsx = () => {
     const { sandpack } = useSandpack();
 
@@ -1070,4 +734,28 @@ export const AddHeaderSortersToUseTableInListProducts = () => {
             }}
         />
     );
+};
+
+// files
+
+export const files = {
+    ...initialFiles,
+    "styles.css": {
+        code: StylesCssCode,
+        hidden: true,
+    },
+};
+
+export const finalFiles = {
+    ...removeActiveFromFiles(files),
+    "App.tsx": {
+        code: AppTsxWithListProductsTsxCode,
+    },
+    "data-provider.ts": {
+        code: DataProviderWithTotalInGetListMethodTsCode,
+    },
+    "list-products.tsx": {
+        code: ListProductsWithHeaderSortersTsxCode,
+        active: true,
+    },
 };

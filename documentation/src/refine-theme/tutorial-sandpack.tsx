@@ -339,7 +339,8 @@ const TutorialSandpackBase = ({
             "sp-tabs":
                 "!border-b-gray-300 dark:!border-b-gray-700 !bg-gray-0 dark:!bg-gray-800",
             "sp-tabs-scrollable-container": "!min-h-[32px] scrollbar-hidden",
-            "sp-input": "!text-gray-800 dark:!text-gray-100",
+            "sp-input":
+                "!text-gray-800 dark:!text-gray-100 !bg-gray-200 dark:!bg-gray-700 !pb-[5px]",
             "sp-cm": clsx(
                 "p-0 bg-transparent",
                 "[&>.cm-editor]:!bg-refine-react-light-code",
@@ -642,11 +643,45 @@ const SandpackRightSide = ({
                                             "rounded-full",
                                         )}
                                     />
+                                    <LoaderProgress />
                                 </div>
                             </SandpackPreview>
                         </div>
                     )}
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const LoaderProgress = () => {
+    const [duration] = React.useState(
+        Math.floor(Math.random() * 10 * 1000 + 10000),
+    );
+
+    return (
+        <div className={clsx("flex", "items-center", "justify-center")}>
+            <div
+                className={clsx(
+                    "w-32",
+                    "h-2.5",
+                    "rounded-xl",
+                    "bg-gray-300 dark:bg-gray-700",
+                    "p-px",
+                )}
+            >
+                <div
+                    className={clsx(
+                        "sp-loading-progress",
+                        "h-full",
+                        "rounded",
+                        "bg-refine-react-light-link dark:bg-refine-react-dark-link",
+                        "min-w-[0.5rem]",
+                    )}
+                    style={{
+                        animationDuration: `${duration}ms`,
+                    }}
+                />
             </div>
         </div>
     );

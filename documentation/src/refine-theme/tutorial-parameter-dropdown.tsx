@@ -11,6 +11,8 @@ import data from "@tutorial-navigation/tutorial-navigation-data.json";
 import { useDoc } from "@docusaurus/theme-common/internal";
 
 import { useTutorialParameters } from "../context/tutorial-parameter-context";
+import { NewBadgePurple } from "./icons/new-badge-purple";
+import { NewBadgeShinyBlue } from "./icons/new-badge-shiny-blue";
 
 type DocElement = {
     frontMatter: Record<string, unknown>;
@@ -31,6 +33,7 @@ type Tutorial = {
         Array<{
             label: string;
             value: string;
+            status?: "coming-soon";
         }>
     >;
     units: Array<{
@@ -39,8 +42,6 @@ type Tutorial = {
         items: Array<string>;
     }>;
 };
-
-const { units, parameterOptions, defaultParameters } = data as Tutorial;
 
 const Triangle = (props: SVGProps<SVGSVGElement>) => (
     <svg
@@ -161,6 +162,16 @@ export const TutorialParameterDropdown = ({
                                                 return (
                                                     <button
                                                         type="button"
+                                                        disabled={
+                                                            option.status ===
+                                                            "coming-soon"
+                                                        }
+                                                        title={
+                                                            option.status ===
+                                                            "coming-soon"
+                                                                ? "This option is coming soon!"
+                                                                : ""
+                                                        }
                                                         onClick={() => {
                                                             replace(
                                                                 permalink.replace(
@@ -191,9 +202,48 @@ export const TutorialParameterDropdown = ({
                                                                 "hover:bg-gray-600 hover:dark:bg-gray-100 hover:text-gray-300 dark:hover:text-gray-700":
                                                                     !isActive,
                                                             },
+                                                            option.status ===
+                                                                "coming-soon" && [
+                                                                "flex",
+                                                                "items-center",
+                                                                "justify-between",
+                                                            ],
                                                         )}
                                                     >
-                                                        {option.label}
+                                                        <span
+                                                            className={clsx(
+                                                                option.status ===
+                                                                    "coming-soon" &&
+                                                                    "opacity-50",
+                                                            )}
+                                                        >
+                                                            {option.label}
+                                                        </span>
+                                                        {option.status ===
+                                                            "coming-soon" && (
+                                                            <span
+                                                                className={clsx(
+                                                                    "w-min",
+                                                                    "break-keep",
+                                                                    "whitespace-nowrap",
+                                                                    "inline-flex",
+                                                                    "justify-center",
+                                                                    "items-center",
+                                                                    "translate-x-1.5",
+                                                                    "py-0.5",
+                                                                    "px-1",
+                                                                    "border border-refine-orange",
+                                                                    "rounded-[8px]",
+                                                                    "text-refine-orange",
+                                                                    "text-[8px]",
+                                                                    "leading-[9px]",
+                                                                    "font-semibold",
+                                                                    "uppercase",
+                                                                )}
+                                                            >
+                                                                soon
+                                                            </span>
+                                                        )}
                                                     </button>
                                                 );
                                             }}

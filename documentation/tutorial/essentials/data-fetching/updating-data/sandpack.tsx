@@ -4,96 +4,23 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
+import { dependencies } from "../../intro/sandpack";
+import { finalFiles as initialFiles } from "../fetching-data/sandpack";
+import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
+
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            dependencies={{
-                "@refinedev/core": "latest",
-            }}
-            files={{
-                "App.tsx": {
-                    code: AppTsxCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductTsxCode,
-                    hidden: true,
-                },
-            }}
-            finalFiles={{
-                "App.tsx": {
-                    code: AppTsxWithEditProductCode,
-                },
-                "data-provider.ts": {
-                    code: DataProviderWithUpdateMethodTsCode,
-                },
-                "show-product.tsx": {
-                    code: ShowProductTsxCode,
-                    hidden: true,
-                },
-                "edit-product.tsx": {
-                    code: EditProductWithUseUpdateTsxCode,
-                },
-            }}
+            dependencies={dependencies}
+            files={initialFiles}
+            finalFiles={finalFiles}
         >
             {children}
         </TutorialSandpack>
     );
 };
 
-const AppTsxCode = /* tsx */ `
-import { Refine } from "@refinedev/core";
-
-import { dataProvider } from "./data-provider";
-import { ShowProduct } from "./show-product";
-
-export default function App(): JSX.Element {
-  return (
-    <Refine dataProvider={dataProvider}>
-        <ShowProduct />
-    </Refine>
-  );
-}
-`.trim();
-
-const DataProviderTsCode = /* ts */ `
-import type { DataProvider } from "@refinedev/core";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const dataProvider: DataProvider = {
-  getOne: async ({ resource, id, meta }) => {
-    const response = await fetch(\`\${API_URL}/\${resource}/\${id}\`);
-
-    if (response.status < 200 || response.status > 299) throw response;
-
-    const data = await response.json();
-
-    return { data };
-  },
-  update: () => { throw new Error("Not implemented"); },
-  getList: () => { throw new Error("Not implemented"); },
-  create: () => { throw new Error("Not implemented"); },
-  deleteOne: () => { throw new Error("Not implemented"); },
-  /* ... */
-};
-`.trim();
-
-const ShowProductTsxCode = /* tsx */ `
-import { useOne } from "@refinedev/core";
-
-export const ShowProduct = () => {
-    const { data, isLoading } = useOne({ resource: "products", id: 123 });
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    return <div>Product name: {data?.data.name}</div>;
-};
-`.trim();
+// updates
 
 const DataProviderWithUpdateMethodTsCode = /* ts */ `
 import type { DataProvider } from "@refinedev/core";
@@ -202,6 +129,8 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
+// actions
+
 export const AddUpdateMethod = () => {
     const { sandpack } = useSandpack();
 
@@ -264,4 +193,20 @@ export const AddEditProductToAppTsx = () => {
             }}
         />
     );
+};
+
+// files
+
+export const finalFiles = {
+    ...removeActiveFromFiles(initialFiles),
+    "App.tsx": {
+        code: AppTsxWithEditProductCode,
+    },
+    "data-provider.ts": {
+        code: DataProviderWithUpdateMethodTsCode,
+    },
+    "edit-product.tsx": {
+        code: EditProductWithUseUpdateTsxCode,
+        active: true,
+    },
 };

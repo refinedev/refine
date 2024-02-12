@@ -15,6 +15,7 @@ module.exports = {
                 {
                     label: "Next.js",
                     value: "next-js",
+                    status: "coming-soon",
                 },
             ],
             uiSelection: [
@@ -71,10 +72,12 @@ module.exports = {
                 title: "UI Libraries",
                 id: "ui-libraries",
                 items: [
-                    "ui-libraries/intro/index",
-                    "ui-libraries/layout/:uiSelection/:routerSelection/index",
-                    "ui-libraries/crud-components/:uiSelection/:routerSelection/index",
-                    "ui-libraries/refactoring/:uiSelection/:routerSelection/index",
+                    "ui-libraries/intro/:uiSelection/:routerSelection/index", // introduction, installation, wrapping if necessary
+                    "ui-libraries/layout/:uiSelection/:routerSelection/index", // layout, sider, header
+                    "ui-libraries/refactoring/:uiSelection/:routerSelection/index", // form and table refactoring, show with field components
+                    "ui-libraries/crud-components/:uiSelection/:routerSelection/index", // crud component refactoring, show, list, edit, create
+                    "ui-libraries/notifications/:uiSelection/:routerSelection/index", // notifications, useNotificationProvider to pass
+                    "ui-libraries/authentication/:uiSelection/:routerSelection/index", // login, logout, useAuthenticated, useIdentity
                 ],
             },
             {

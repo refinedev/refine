@@ -60,13 +60,11 @@ The `check` method is used by `useIsAuthenticated` hook and the `<Authenticated 
 
 If the user is authenticated, the object should contain `authenticated: true` property. Otherwise, it should contain `authenticated: false` property.
 
-
 We'll obtain an access token through the `login` method from our API and store it inside the local storage. Now let's check if the token exists in the local storage or not.
 
 Try to add the following lines to your `src/auth-provider.ts` file:
 
 ```ts title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

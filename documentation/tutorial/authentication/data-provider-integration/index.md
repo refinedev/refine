@@ -209,7 +209,6 @@ Let's add the `onError` method to our auth provider and handle the `401 Unauthor
 Try to add the following lines to your `src/auth-provider.ts` file:
 
 ```ts title="src/auth-provider.ts"
-// TODO: change this
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {

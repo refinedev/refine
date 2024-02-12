@@ -4,10 +4,8 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
-import {
-    finalFiles as initialFiles,
-    dependencies,
-} from "@site/tutorial/ui-libraries/intro/ant-design/react-router/sandpack";
+import { finalFiles as initialFiles } from "@site/tutorial/ui-libraries/crud-components/ant-design/react-router/sandpack";
+import { dependencies } from "@site/tutorial/ui-libraries/intro/ant-design/react-router/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
@@ -25,10 +23,10 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 
 // updates
 
-const LayoutWithCustomTitle = /* tsx */ `
+const AppTsxWithNotificationProvider = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { ThemedLayoutV2, ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedLayoutV2, ThemedTitleV2, useNotificationProvider } from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -55,6 +53,7 @@ export default function App(): JSX.Element {
             dataProvider={dataProvider}
             authProvider={authProvider}
             routerProvider={routerProvider}
+            notificationProvider={useNotificationProvider}
             resources={[
               {
                 name: "protected-products",
@@ -117,13 +116,13 @@ export default function App(): JSX.Element {
 
 // actions
 
-export const AddCustomTitleToLayout = () => {
+export const AddNotificationProviderToApp = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", LayoutWithCustomTitle);
+                sandpack.updateFile("/App.tsx", AppTsxWithNotificationProvider);
                 sandpack.setActiveFile("/App.tsx");
             }}
         />
@@ -135,7 +134,7 @@ export const AddCustomTitleToLayout = () => {
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
     "App.tsx": {
-        code: LayoutWithCustomTitle,
+        code: AppTsxWithNotificationProvider,
         active: true,
     },
 };

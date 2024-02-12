@@ -26,6 +26,7 @@ export type Tutorial = {
         Array<{
             label: string;
             value: string;
+            status?: "coming-soon";
         }>
     >;
     units: Array<{
