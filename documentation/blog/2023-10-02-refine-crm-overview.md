@@ -3,7 +3,7 @@ title: Building a Complete React CRM App with Refine, Ant Design and GraphQL
 description: We'll explore the key features of our CRM app, the technologies we used.
 slug: react-crm-with-refine
 authors: necati
-tags: [refine, react]
+tags: [Refine, react]
 is_featured: true
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/social.jpg
 hide_table_of_contents: false
@@ -11,7 +11,7 @@ hide_table_of_contents: false
 
 ![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.gif)
 
-I want to introduce our newest example app – a full-fledged React CRM (Customer Relationship Management) application built using refine, Ant Design, and GraphQL.
+I want to introduce our newest example app – a full-fledged React CRM (Customer Relationship Management) application built using Refine, Ant Design, and GraphQL.
 
 👉 [Live Demo](https://example.crm.refine.dev/)
 
@@ -21,14 +21,14 @@ This example is open-source, which means anyone can freely utilize and customize
 
 Moreover, this application serves as a guiding light for all developers. Whether you're a seasoned pro or just starting, our project is a valuable resource that can be used as a reference to better understand best practices and modern development techniques.
 
-We'll publish an article series and Video tutorials on YouTube on building this CRM app from scratch. You can follow the refine to get notified when it's ready!
+We'll publish an article series and Video tutorials on YouTube on building this CRM app from scratch. You can follow the Refine to get notified when it's ready!
 
 Twitter: https://twitter.com/refine_dev
 GitHub: https://github.com/refinedev/refine
 
 ## Introduction
 
-This article briefly overviews the CRM application built using refine, an open-source React framework designed for rapidly developing web applications.
+This article briefly overviews the CRM application built using Refine, an open-source React framework designed for rapidly developing web applications.
 
 We'll explore the key features of our CRM app, the technologies we used, and how you can adapt this template for various business needs.
 
@@ -126,17 +126,17 @@ Our CRM app's modular structure and use of open-source tools make it adaptable t
 
 To bring our CRM app to life, we leveraged several cutting-edge technologies:
 
-### 1. refine
+### 1. Refine
 
-[refine](https://github.com/refinedev/refine) served as the backbone of our CRM application. It offers a wide range of tools and components for easily building data-intensive applications.
+[Refine](https://github.com/refinedev/refine) served as the backbone of our CRM application. It offers a wide range of tools and components for easily building data-intensive applications.
 
-refine's internal hooks and components simplify the development process and eliminate repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
+Refine's internal hooks and components simplify the development process and eliminate repetitive tasks by providing industry-standard solutions for crucial aspects of a project, including authentication, access control, routing, networking, state management, and i18n.
 
 ### 2. Ant Design
 
 [Ant Design](https://ant.design/), a popular UI library, provided the sleek and responsive user interface that our CRM app needed. Its pre-built components saved us time and effort.
 
-It's consistent and polished UI components ensured a professional and user-friendly interface. refine has a built-in integration for Ant Design.
+It's consistent and polished UI components ensured a professional and user-friendly interface. Refine has a built-in integration for Ant Design.
 
 ### 3. GraphQL
 
@@ -148,13 +148,13 @@ For instance, on the Project Kanban page, tasks get updated automatically when c
 
 GraphQL's efficient data-fetching capabilities made working with large datasets a breeze. It's flexibility allowed us to tailor our queries to our exact requirements.
 
-refine has built-in data provider support for GraphQL.You can set it up during the project creation phase.
+Refine has built-in data provider support for GraphQL.You can set it up during the project creation phase.
 
 ## Best Practices and Ecosystem Integration
 
 Throughout the development process, we adhered to best practices and incorporated elements from the broader ecosystem. This ensures our CRM app is not only functional but also scalable and maintainable.
 
-The group responsible for the CRM example app is the core refine framework team. Feel free to explore the best practices within the ecosystem!
+The group responsible for the CRM example app is the core Refine framework team. Feel free to explore the best practices within the ecosystem!
 
 ## Where Can You Use This CRM As A Reference Template?
 

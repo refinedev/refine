@@ -14,7 +14,7 @@ hide_table_of_contents: false
 
 Stylex is especially more powerful because Stylex styles are geared to be reusable and extendable across libraries. It is also equipped with compile-time props typing for Flow and has excellent support for TypeScript -- making it easily adoptable by statically typed codebases.
 
-With Stylex, we can go about defining colocated styles in a React component, manipulate their rendering logic and use them accordingly inline in markups. We can declare global variables outside components, export them, and then import and use them inside a given component. Globally declared variables are useful for dynamic layouts, grid systems, color palettes, typography, spacing, sizing, repsonsive design as well as theming.
+With Stylex, we can go about defining colocated styles in a React component, manipulate their rendering logic and use them accordingly inline in markups. We can declare global variables outside components, export them, and then import and use them inside a given component. Globally declared variables are useful for dynamic layouts, grid systems, color palettes, typography, spacing, sizing, responsive design as well as theming.
 
 In this introductory post, we cover how to define and use Stylex styles using the [`stylex.create`](https://stylexjs.com/docs/api/javascript/create/) and [`stylex.props`](https://stylexjs.com/docs/api/javascript/props/) APIs in an already set up Next.js application. We expend efforts to understand some of the quirks of writing collision-free inline CSS with Stylex. While doing so, we come across snippets implementing simple style declarations, style declarations with imported Stylex variables, conditional styling as well as a responsive component using media queries. We also explore how to create variables with the [`stylex.defineVars`](https://stylexjs.com/docs/api/javascript/defineVars/) API and use them inside components.
 
@@ -96,7 +96,7 @@ const style = stylex.create({
       [MEDIA_MOBILE]: "column",
     },
     justifyContent: {
-      default: "space-betweem",
+      default: "space-between",
       [MEDIA_MOBILE]: "center",
     },
     alignItems: {
@@ -254,7 +254,7 @@ const style = stylex.create({
       [MEDIA_MOBILE]: "column",
     },
     justifyContent: {
-      default: "space-betweem",
+      default: "space-between",
       [MEDIA_MOBILE]: "center",
     },
     alignItems: {
@@ -334,7 +334,7 @@ flexDirection: {
   [MEDIA_MOBILE]: "column",
 },
 justifyContent: {
-  default: "space-betweem",
+  default: "space-between",
   [MEDIA_MOBILE]: "center",
 },
 alignItems: {
@@ -412,7 +412,7 @@ return (
 );
 ```
 
-Notice, for each style applied, we are invoking the `stylex.props` method and passing the style object property as it's argument. Under the hood, Stylex grabs the CSS class indentifier it generated with the `x` prefix and adds it to the `className` property of the JSX element.
+Notice, for each style applied, we are invoking the `stylex.props` method and passing the style object property as it's argument. Under the hood, Stylex grabs the CSS class identifier it generated with the `x` prefix and adds it to the `className` property of the JSX element.
 
 We are able to pass multiple styles to `stylex.props()` and all get merged into a single class. When specificity becomes an issue in the merge, the last style gets ranked the most. Please feel free to learn more in [this section of the docs](https://stylexjs.com/docs/learn/styling-ui/using-styles/#merging-styles).
 

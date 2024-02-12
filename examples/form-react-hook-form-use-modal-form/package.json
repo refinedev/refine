@@ -1,10 +1,30 @@
 {
   "name": "form-react-hook-form-use-modal-form",
-  "version": "3.25.0",
+  "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "build": "tsc && refine build",
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts",
+    "dev": "refine dev",
+    "preview": "refine start",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
-    "@refinedev/core": "^4.47.1",
     "@refinedev/cli": "^2.16.24",
+    "@refinedev/core": "^4.47.1",
     "@refinedev/react-hook-form": "^4.8.14",
     "@refinedev/react-router-v6": "^4.5.5",
     "@refinedev/simple-rest": "^5.0.2",
@@ -21,25 +41,5 @@
     "cypress": "^13.6.3",
     "typescript": "^4.7.4",
     "vite": "^4.3.1"
-  },
-  "scripts": {
-    "start": "refine dev",
-    "build": "tsc && refine build",
-    "preview": "refine start",
-    "refine": "refine",
-    "cypress": "cypress open -C ./cypress.config.ts",
-    "cypress:run": "cypress run -C ./cypress.config.ts"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

@@ -154,15 +154,10 @@ Material UI has its own notification elements but lacks the notification managem
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/mui";
 
 const App = () => {
-  return (
-    // `notistack` also requires a context provider to be used
-    <RefineSnackbarProvider>
-      <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>
-    </RefineSnackbarProvider>
-  );
+  return <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>;
 };
 ```
 

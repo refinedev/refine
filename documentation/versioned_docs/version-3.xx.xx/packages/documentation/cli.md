@@ -473,7 +473,7 @@ values={[
     "scripts": {
 -       "dev": "react-scripts start",
 -       "build": "react-scripts build",
-+       "dev": "refine start",
++       "dev": "refine dev",
 +       "build": "refine build",
     }
 }

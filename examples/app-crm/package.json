@@ -1,16 +1,16 @@
 {
   "name": "app-crm",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "refine dev",
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
-    "test": "jest --passWithNoTests --runInBand",
+    "codegen": "graphql-codegen",
+    "dev": "refine dev",
+    "format": "prettier src --write",
+    "lint": "eslint src --fix",
     "preview": "refine start",
     "refine": "refine",
-    "codegen": "graphql-codegen",
-    "lint": "eslint src --fix",
-    "format": "prettier src --write"
+    "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
     "@ant-design/icons": "5.0.1",
@@ -37,8 +37,8 @@
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
-    "graphql-ws": "^5.9.1",
     "graphql-tag": "^2.12.6",
+    "graphql-ws": "^5.9.1",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "react": "^18.0.0",
@@ -50,9 +50,9 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/import-types-preset": "^3.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
-    "@graphql-codegen/import-types-preset": "^3.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",

@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-A content management system, abbreviated as CMS,  is software for creating and managing content. With traditional CMS, you can create textual content and upload images and multimedia content like audio and video files. The CMS then generates and serves the presentation layer with the created content.
+A content management system, abbreviated as CMS, is software for creating and managing content. With traditional CMS, you can create textual content and upload images and multimedia content like audio and video files. The CMS then generates and serves the presentation layer with the created content.
 
 On the other hand, unlike traditional CMS, headless content management systems are content repositories without the presentation layer. A headless CMS decouples your content from the presentation. You can build the presentation layer in any way and using any framework of your choice with a Headless CMS. Therefore, making it easy to extend your customers' digital experience from the web to mobile and IoT devices.
 
@@ -42,13 +42,11 @@ yarn create strapi-starter project-name next-blog
 
 Once the installation is complete, Strapi will launch the admin panel. You will have to create your admin account by filling out the form.
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-login-page.png"  alt="best headless cms" />
 
 <br />
 
 After creating your admin account, the Strapi dashboard looks like the image below. The Strapi documentation has detailed getting-started guides you can use to explore the main features of Strapi.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-dashboard.png"  alt="best headless cms" />
 
@@ -64,17 +62,17 @@ npx create-strapi-app@latest project-name --quickstart
 yarn create strapi-app project-name --quickstart
 ```
 
-#### refine built-in Strapi data provider
+#### Refine built-in Strapi data provider
 
-A [data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/#overview) is an interface a [refine](https://refine.dev/) application uses to communicate with an API. refine has data providers for most of the popular CMS and platforms.  You can use refine's [Strapi data provider](https://github.com/refinedev/refine/tree/master/packages/strapi-v4) to interact with your Strapi instance from a refine application.
+A [data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/#overview) is an interface a [Refine](https://refine.dev/) application uses to communicate with an API. Refine has data providers for most of the popular CMS and platforms. You can use Refine's [Strapi data provider](https://github.com/refinedev/refine/tree/master/packages/strapi-v4) to interact with your Strapi instance from a Refine application.
 
-You can install the Strapi data provider in a refine application like so:
+You can install the Strapi data provider in a Refine application like so:
 
 ```sh
 npm install @refinedev/strapi-v4
 ```
 
-The refine documentation has comprehensive guides on [data providers](https://refine.dev/docs/api-reference/core/providers/data-provider/).
+The Refine documentation has comprehensive guides on [data providers](https://refine.dev/docs/api-reference/core/providers/data-provider/).
 
 #### Pros of using Strapi
 
@@ -92,13 +90,13 @@ The refine documentation has comprehensive guides on [data providers](https://re
 #### Cons of using Strapi
 
 - At the time of writing this article, Strapi's cloud service is still in beta. You have to self-host your Strapi projects.
-- Any Strapi project must strictly use one of the supported databases. The latest version, Strapi version 4, only supports MySQL, MariaDB, PostgreSQL, and SQLite.  
+- Any Strapi project must strictly use one of the supported databases. The latest version, Strapi version 4, only supports MySQL, MariaDB, PostgreSQL, and SQLite.
 
 ### Hasura
 
 [Hasura](https://hasura.io/) is an open-source GraphQL engine. You can use Hasura to connect to a database and third-party REST and GraphQL API endpoints. It then uses a GraphQL API to expose your data. Though Hasura primarily exposes your data via a GraphQL API, you can create REST API endpoints from GraphQL queries and mutations.
 
-You can use the most popular cloud SQL databases like AWS RDS Postgres and  Azure Postgres with Hasura cloud. However, be aware that Hasura mainly supports PostgreSQL databases at the time of writing this article.
+You can use the most popular cloud SQL databases like AWS RDS Postgres and Azure Postgres with Hasura cloud. However, be aware that Hasura mainly supports PostgreSQL databases at the time of writing this article.
 
 Compared to Strapi, Hygraph, and other headless CMS, Hasura is more of a GraphQL engine than a CMS. It provides an instant, fast, and secure GraphQL API for your database with built-in data caching and authorizations.
 
@@ -106,8 +104,7 @@ The Hasura console doesn't provide functionality for managing content like the o
 
 #### How to start using Hasura
 
-Hasura cloud is the fastest way to start using Hasura.  You can create an account using your email id or log in using GitHub or Google.  
-
+Hasura cloud is the fastest way to start using Hasura. You can create an account using your email id or log in using GitHub or Google.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhasura-cloud-login-page.png"  alt="best headless cms" />
 
@@ -117,17 +114,17 @@ After logging into your Hasura cloud account, you can create a Neon PostgreSQL d
 
 After creating a database and populating it with entries, you can query, mutate, and subscribe from the API explorer in the Hasura console. You can also create REST API endpoints to access the database.
 
-#### refine built-in Hasura data provider
+#### Refine built-in Hasura data provider
 
-As highlighted above, refine has data providers for most CMS and platforms. You can use the [Hasura data provider](https://github.com/refinedev/refine/tree/master/packages/hasura) to communicate with your Hasura GraphQL API or REST API endpoints from a refine application.
+As highlighted above, Refine has data providers for most CMS and platforms. You can use the [Hasura data provider](https://github.com/refinedev/refine/tree/master/packages/hasura) to communicate with your Hasura GraphQL API or REST API endpoints from a Refine application.
 
-You can install the Hasura data provider in your refine application like so:
+You can install the Hasura data provider in your Refine application like so:
 
 ```sh
 npm install @refinedev/hasura
 ```
 
-Check the [refine documentation](https://refine.dev/docs/api-reference/core/providers/data-provider/) on using data providers in a refine application.
+Check the [Refine documentation](https://refine.dev/docs/api-reference/core/providers/data-provider/) on using data providers in a Refine application.
 
 #### Pros of Hasura
 
@@ -147,19 +144,15 @@ Check the [refine documentation](https://refine.dev/docs/api-reference/core/prov
 - Hasura doesn't support NoSQL databases while writing this article. Though, there are plans to include them in the future.
 - Hasura is tailored towards exposing databases via GraphQL API. It doesn't have content management capabilities like the other headless CMS.
 
-
- 
-
 ### Hygraph
 
 Hygraph is another headless CMS with an intuitive UI for creating, editing and modifying content. Unlike Strapi, Hygraph is not open-source. You can interact with the Hygraph content via GraphQL API. It also has a feature for composing content from third-party REST and GraphQL APIs.
 
-Hygraph provides a generous community plan for free without even asking for a credit card or payment information. The free plan also comes with most of the features of the paid plans.  
+Hygraph provides a generous community plan for free without even asking for a credit card or payment information. The free plan also comes with most of the features of the paid plans.
 
 #### How to start using Hygraph
 
 To start using [Hygraph](https://hygraph.com/), you need to have an account. If you haven't, create an account using your email id or log in with your Google, Facebook, or GitHub account. You can create a new project or use one of the available starter projects after setting up an account to explore Hygraph.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhygraph-login-page.png"  alt="best headless cms" />
 
@@ -210,15 +203,14 @@ In this section, we will compare Hasura, Strapi, and Hygraph. The table below su
 </a>
 </div>
 
-
 ## Conclusion
 
-Though our focus in this article was on Strapi, Hasura, and Hygraph, there are many excellent headless content management systems out there. As mentioned above, each headless CMS has strengths and weaknesses.  Some are tailor-made for a specific purpose.
+Though our focus in this article was on Strapi, Hasura, and Hygraph, there are many excellent headless content management systems out there. As mentioned above, each headless CMS has strengths and weaknesses. Some are tailor-made for a specific purpose.
 
-If you are looking for an open-source, customizable headless CMS with an intuitive UI, Strapi may be the best option. It can serve your content using REST or GraphQL API. However, on the flip side, you may have to self-host your Strapi project because Strapi's cloud solution is still in beta.  Strapi also supports a few databases at the moment.
+If you are looking for an open-source, customizable headless CMS with an intuitive UI, Strapi may be the best option. It can serve your content using REST or GraphQL API. However, on the flip side, you may have to self-host your Strapi project because Strapi's cloud solution is still in beta. Strapi also supports a few databases at the moment.
 
 Hygraph is similar to Strapi, but it is not open-source. It has an intuitive UI for creating content and a cloud solution to which you can automatically deploy your project. You can get up and running with Hygraph faster than Strapi, but it is not as flexible and customizable.
 
-Hasura is more of a GraphQL engine than a headless CMS. It is an excellent choice if you want a fast and secure GraphQL API  to source data from a database or third-party REST or GraphQL API. However, Hasura doesn't have the content creation capabilities of the other headless CMS.
+Hasura is more of a GraphQL engine than a headless CMS. It is an excellent choice if you want a fast and secure GraphQL API to source data from a database or third-party REST or GraphQL API. However, Hasura doesn't have the content creation capabilities of the other headless CMS.
 
 I hope this article has highlighted the main features of Strapi, Hasura, and Hypgraph so that you can pick the most suitable for your project.

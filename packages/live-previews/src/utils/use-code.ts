@@ -39,7 +39,7 @@ export const useCode = (): UseCodeReturn => {
             content = fixed.replace(/render\(<App \/>\);?/, "");
             content = content.replace(
                 /createRoot\(container\);?/,
-                "{ render };",
+                "{ render: (children) => render(<RefineCore.ExternalNavigationProvider>{children}</RefineCore.ExternalNavigationProvider>) };",
             );
         }
 

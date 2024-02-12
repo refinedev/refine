@@ -102,7 +102,7 @@ export const Main = () => {
 };
 ```
 
-Above we can see that we do fetch call to [refine](https://github.com/refinedev/refine)'s fake REST API URL and thereafter returned data shows on the screen.
+Above we can see that we do fetch call to [Refine](https://github.com/refinedev/refine)'s fake REST API URL and thereafter returned data shows on the screen.
 
 <br/>
 <div>

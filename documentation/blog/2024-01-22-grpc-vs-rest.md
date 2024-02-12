@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-re
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 22, 2024 to add more comparison and usecase informations for gRPC vs REST to provide a more clear insight_**
+**_This article was last updated on January 22, 2024 to add more comparison and usecase information for gRPC vs REST to provide a more clear insight_**
 
 ## Introduction
 

@@ -3,7 +3,7 @@ title: Using React Hot Toast as a Notification Provider for CRUD apps
 description: We'll introduce create a custom notification provider using the react-hot-toast library.
 slug: react-hot-toast
 authors: david_omotayo
-tags: [react, refine]
+tags: [react, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/social.png
 hide_table_of_contents: false
 ---
@@ -14,18 +14,18 @@ Building data-intensive enterprise web applications entails coalescing numerous 
 
 An effective notification system ensures proper feedback for changes throughout your application, effortlessly improving the user experience, which has become a hallmark for modern applications.
 
-Javascript libraries like React simplify the difficulty of building data-intensive web applications with their innovative architecture and developer-friendly syntax in an ever-evolving ecosystem. There's only so much React can do to provide a foolproof solution for building these kinds of applications. This is where frameworks like refine come into play.
+Javascript libraries like React simplify the difficulty of building data-intensive web applications with their innovative architecture and developer-friendly syntax in an ever-evolving ecosystem. There's only so much React can do to provide a foolproof solution for building these kinds of applications. This is where frameworks like Refine come into play.
 
-Using a modular design, [refine](https://github.com/refinedev/refine) leverages the best of what the React ecosystem has to offer, ranging from design systems to state management and notification libraries, to create a multipurpose React toolkit. This toolkit not only makes building enterprise-grade applications like admin panels, dashboards, and B2B applications a breeze but also provides built-in notification providers for centralized notification management.
+Using a modular design, [Refine](https://github.com/refinedev/refine) leverages the best of what the React ecosystem has to offer, ranging from design systems to state management and notification libraries, to create a multipurpose React toolkit. This toolkit not only makes building enterprise-grade applications like admin panels, dashboards, and B2B applications a breeze but also provides built-in notification providers for centralized notification management.
 
-In this article, we'll introduce refine and explore how to set up a refine application and create a custom notification provider using the [react-hot-toast](https://react-hot-toast.com/) library.
+In this article, we'll introduce Refine and explore how to set up a Refine application and create a custom notification provider using the [react-hot-toast](https://react-hot-toast.com/) library.
 
 Steps we'll cover:
 
 - [What is react-hot-toast](#what-is-react-hot-toast)
-- [What is refine](#what-is-refine)
-- [Set up a refine app](#set-up-a-refine-app)
-- [What is refine notification provider](#what-is-refine-notification-provider)
+- [What is Refine](#what-is-refine)
+- [Set up a Refine app](#set-up-a-refine-app)
+- [What is Refine notification provider](#what-is-refine-notification-provider)
 - [Create custom notification provider with react-hot-toast](#create-custom-notification-provider-with-react-hot-toast)
   - [Install react-hot-toast](#install-react-hot-toast)
   - [Set up a notification provider](#set-up-a-notification-provider)
@@ -101,13 +101,13 @@ toast.custom(<div>Hello World</div>);
 
 Refer to the [react-hot-toast documentation](https://react-hot-toast.com/docs/toast) to learn more about the `toast` function.
 
-## What is refine
+## What is Refine
 
-[refine](https://github.com/refinedev/refine) is an open-source, React-based framework that facilitates the development of enterprise web applications, such as admin panels, dashboards, and B2B applications. It is a feature-rich library that prioritizes simplicity by eliminating repetitive tasks for CRUD, routing, internalization, and networking.
+[Refine](https://github.com/refinedev/refine) is an open-source, React-based framework that facilitates the development of enterprise web applications, such as admin panels, dashboards, and B2B applications. It is a feature-rich library that prioritizes simplicity by eliminating repetitive tasks for CRUD, routing, internalization, and networking.
 
-refine is innately agnostic, which allows for the seamless integration of the highlighted features with widely used design systems, data fetching, state management, and complex form management libraries such as Material Design, Ant Design, React Query, React Hook Form, and more.
+Refine is innately agnostic, which allows for the seamless integration of the highlighted features with widely used design systems, data fetching, state management, and complex form management libraries such as Material Design, Ant Design, React Query, React Hook Form, and more.
 
-Additionally, refine's loosely coupled design allows for the seamless integration of various backend architectures, ranging from a simple REST API to complex headless CMSs and databases, including:
+Additionally, Refine's loosely coupled design allows for the seamless integration of various backend architectures, ranging from a simple REST API to complex headless CMSs and databases, including:
 
 - Supabase
 - AppWrite
@@ -115,14 +115,14 @@ Additionally, refine's loosely coupled design allows for the seamless integratio
 - Airtable
 - Hasura
 
-The [documentation](https://refine.dev/docs/) provides detailed information about refine and its architecture. You can start there to learn more about the refine framework. However, in the section below, we will explore how to set up a refine application from scratch.
+The [documentation](https://refine.dev/docs/) provides detailed information about Refine and its architecture. You can start there to learn more about the Refine framework. However, in the section below, we will explore how to set up a Refine application from scratch.
 
-## Set up a refine app
+## Set up a Refine app
 
-The [refine app Scaffolder](https://refine.dev/#playground) is an efficient tool that allows you to create refine app seamlessly in your browser.
+The [Refine app Scaffolder](https://refine.dev/#playground) is an efficient tool that allows you to create Refine app seamlessly in your browser.
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
-Once you have completed these steps, you will be able to follow the on-screen instructions to create a refine application tailored to your preference.
+Once you have completed these steps, you will be able to follow the on-screen instructions to create a Refine application tailored to your preference.
 
 For this tutorial, we will use the following configurations:
 
@@ -151,11 +151,11 @@ Upon successfully starting the development server, navigate to [http://localhost
 
 <br/>
 
-## What is refine notification provider
+## What is Refine notification provider
 
-The [refine notification provider](https://refine.dev/docs/api-reference/core/providers/notification-provider/) is a feature that enables the display of notifications to users within a refine application. The primary purpose of the notification provider is to centralize the management of notifications, making it easy to display different types of notifications, such as “**success**”, “**error**”, and “**progress**”, to users from different parts of the application.
+The [Refine notification provider](https://refine.dev/docs/api-reference/core/providers/notification-provider/) is a feature that enables the display of notifications to users within a Refine application. The primary purpose of the notification provider is to centralize the management of notifications, making it easy to display different types of notifications, such as “**success**”, “**error**”, and “**progress**”, to users from different parts of the application.
 
-To understand how the notification provider works, we first need to comprehend how it interacts with the application. For every design system you choose to use in your refine application, whether it's Ant Design, Material Design, Mantine, or Chakra UI, refine provides a built-in notification provider that is passed as a prop to the refine component.
+To understand how the notification provider works, we first need to comprehend how it interacts with the application. For every design system you choose to use in your Refine application, whether it's Ant Design, Material Design, Mantine, or Chakra UI, Refine provides a built-in notification provider that is passed as a prop to the Refine component.
 
 ```tsx
 import { useNotificationProvider } from "@refinedev/antd";
@@ -168,7 +168,7 @@ return (
 );
 ```
 
-The code above uses refine's built-in notification provider for Ant Design. When a notification is triggered, refine will use the notification provider to invoke the Ant Design notification object and display notifications in the application. The same goes for the highlighted design systems.
+The code above uses Refine's built-in notification provider for Ant Design. When a notification is triggered, Refine will use the notification provider to invoke the Ant Design notification object and display notifications in the application. The same goes for the highlighted design systems.
 
  <div className="centered-image">
    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/w-refine-provider.png"  alt="react-hot-toast" />
@@ -176,7 +176,7 @@ The code above uses refine's built-in notification provider for Ant Design. When
 
 <br/>
 
-The notification provider is an object with `open` and `close` methods, which refine uses to show and hide notifications.
+The notification provider is an object with `open` and `close` methods, which Refine uses to show and hide notifications.
 
 ```tsx
 const notificationProvider = {
@@ -186,7 +186,7 @@ const notificationProvider = {
 ```
 
 **The** `**open**` **and** `**close**` **methods**
-The `open` method is invoked when refine needs to send a notification and provide feedback on users' actions in the application.
+The `open` method is invoked when Refine needs to send a notification and provide feedback on users' actions in the application.
 
 The method takes an object argument with several properties that are used to set the `message`, `description`, `type`, and a unique `key` for the notification. The predefined abstract type below illustrates the properties available to the `open` method.
 
@@ -201,7 +201,7 @@ interface OpenNotificationParams {
 }
 ```
 
-The `key`, `message`, and `type` properties are the only required properties of the group; the rest are optional. The `message` and `type` properties accept the respective notification message and type from refine, while the `key` property accepts a unique ID that helps refine identify active notifications and prevents it from displaying duplicate notifications.
+The `key`, `message`, and `type` properties are the only required properties of the group; the rest are optional. The `message` and `type` properties accept the respective notification message and type from Refine, while the `key` property accepts a unique ID that helps Refine identify active notifications and prevents it from displaying duplicate notifications.
 
 ```tsx
 export const notificationProvider = {
@@ -223,7 +223,7 @@ export const notificationProvider = {
 The `close` method uses this unique ID to terminate or dismiss the toast notification when the set duration has elapsed.
 
 **The** `**useNotification**` **hook**
-The [`useNotification`](https://refine.dev/docs/api-reference/core/hooks/useNotification/) hook is a special function that allows you to manually invoke notifications anywhere in a refine application. It exports the `open` and `close` methods from the notification provider, which allows you to show and hide notifications from any component.
+The [`useNotification`](https://refine.dev/docs/api-reference/core/hooks/useNotification/) hook is a special function that allows you to manually invoke notifications anywhere in a Refine application. It exports the `open` and `close` methods from the notification provider, which allows you to show and hide notifications from any component.
 
 ```tsx
 const { open, close } = useNotification();
@@ -245,13 +245,13 @@ We'll see the `open` and `close` methods in action in the next section, as we ex
 
 ## Create custom notification provider with react-hot-toast
 
-The notification provider is not included in your refine application by default, depending on your project's configuration. It is only set up in projects configured to use a select design system. Therefore, headless projects without a design system, such as the project we created earlier, use refine's default notification provider, which does not add notification functionality to your application.
+The notification provider is not included in your Refine application by default, depending on your project's configuration. It is only set up in projects configured to use a select design system. Therefore, headless projects without a design system, such as the project we created earlier, use Refine's default notification provider, which does not add notification functionality to your application.
 
-However, refine provides the option to create custom notification providers with the React toast library of your choice. Using the notification provider object as a single source of truth, you can create a notification provider with any toast library in the React ecosystem. In this section, we will demonstrate how you can create one with the react-hot-toast library.
+However, Refine provides the option to create custom notification providers with the React toast library of your choice. Using the notification provider object as a single source of truth, you can create a notification provider with any toast library in the React ecosystem. In this section, we will demonstrate how you can create one with the react-hot-toast library.
 
 ### Install react-hot-toast
 
-As a first step, open your IDE's command-line tool or use the built-in one on your machine, and `cd` to your project's directory. Next, run the following command to install the react-hot-toast library as a dependency for your refine application:
+As a first step, open your IDE's command-line tool or use the built-in one on your machine, and `cd` to your project's directory. Next, run the following command to install the react-hot-toast library as a dependency for your Refine application:
 
 ```
 npm install react-hot-toast
@@ -275,7 +275,7 @@ export const notificationProvider: NotificationProvider = {
 };
 ```
 
-In the code above, we export a `notificationProvider` object with the `open` and `close` methods defined. Then we use the built-in `NotificationProvider` method type from refine's core to validate the object's structure and add type safety to the methods.
+In the code above, we export a `notificationProvider` object with the `open` and `close` methods defined. Then we use the built-in `NotificationProvider` method type from Refine's core to validate the object's structure and add type safety to the methods.
 
 This is what the `NotificationProvider` object type looks like under the hood:
 
@@ -292,7 +292,7 @@ We have created a base for our notification provider. Next, we will examine how 
 
 As previously explained, the `toast` function invokes a toast notification when called. Therefore, we can declare it inside the `open` and `close` methods and pass it the necessary arguments from each methods.
 
-This way, when refine calls the `open` method, the toast method will be triggered, and a toast will be displayed on the screen. Similarly, when the notification time elapses, the `close` method is called, and the notification is removed.
+This way, when Refine calls the `open` method, the toast method will be triggered, and a toast will be displayed on the screen. Similarly, when the notification time elapses, the `close` method is called, and the notification is removed.
 
 Now, return to your code and update it with the following:
 
@@ -328,7 +328,7 @@ export const notificationProvider: NotificationProvider = {
 
 Here, we import the `toast` function from react-hot-toast and declare it inside the `open` and `close` methods, with the `message` and `key` arguments passed to it.
 
-Since the `toast` function's toast options don't include a `type` property that we can pass the `type` argument from the `open` method to, we use a `switch` statement to check the type of notification being invoked by refine and chain the appropriate method to the `toast` function.
+Since the `toast` function's toast options don't include a `type` property that we can pass the `type` argument from the `open` method to, we use a `switch` statement to check the type of notification being invoked by Refine and chain the appropriate method to the `toast` function.
 
 In the `close` method, however, we chain a dismiss method to the toast function and pass it the key argument. This method uses the key to identify active toast notifications and terminates them when the `close` method is called.
 
@@ -363,7 +363,7 @@ export const notificationProvider: NotificationProvider = {
 };
 ```
 
-To complete the setup, we'll add the newly created `notificationProvider` object and the `<Toaster/>` component from react-hot-toast to the refine context via the `notificationProvider` prop and the route `element` on the `<Refine>` component.
+To complete the setup, we'll add the newly created `notificationProvider` object and the `<Toaster/>` component from react-hot-toast to the Refine context via the `notificationProvider` prop and the route `element` on the `<Refine>` component.
 
 To do this, open the `App.tsx` file and make the following modifications:
 
@@ -402,7 +402,7 @@ To do this, open the `App.tsx` file and make the following modifications:
     }
 ```
 
-Congratulations! You have successfully created a custom notification provider for your refine application. You can now preview your notification by editing or creating a record on the dashboard.
+Congratulations! You have successfully created a custom notification provider for your Refine application. You can now preview your notification by editing or creating a record on the dashboard.
 
 **Success notification**
 
@@ -478,7 +478,7 @@ We can make toast notifications go away by setting a time or using the 'dismiss'
 
 ## Conclusion
 
-As demonstrated in the article, refine abstracts the overhead complexity involved in building system-wide customizable notification systems in React applications. Given its robust functionalities and the highly customizable nature of the react-hot-toast library, you can improve on what’s covered in this tutorial, or better yet, use any of the design systems with their built-in notification systems.
+As demonstrated in the article, Refine abstracts the overhead complexity involved in building system-wide customizable notification systems in React applications. Given its robust functionalities and the highly customizable nature of the react-hot-toast library, you can improve on what’s covered in this tutorial, or better yet, use any of the design systems with their built-in notification systems.
 
 ## Live CodeSandbox Example
 

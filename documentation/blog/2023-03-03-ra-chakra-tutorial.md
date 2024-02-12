@@ -1,29 +1,29 @@
 ---
 title: React Admin Panel Tutorial with Chakra UI and Strapi
-description: We'll build a React admin tutorial app with refine
+description: We'll build a React admin tutorial app with Refine
 slug: react-admin-tutorial
 authors: peter_osah
-tags: [refine, react, strapi, tutorial, chakra-ui]
+tags: [Refine, react, strapi, tutorial, chakra-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/Group%20818%20(1).png
 hide_table_of_contents: false
 ---
 
 ## Introduction
 
-In building data-intensive applications like React admin dashboards and in-house applications, among others, speed, customizability, and performance are of the essence as these applications are pivotal in the management of most businesses and software. This has led developers to opt for solutions like refine that provide these qualities out of the box.
-[refine](https://github.com/refinedev/refine) is a React-based framework that helps to build data-intensive applications in due time. It does this by providing hooks, providers, and components that provide room for UI customizability, and data management, as well as easy integration with any custom backend APIs and popular backend services like Strapi, Hasura, etc.
+In building data-intensive applications like React admin dashboards and in-house applications, among others, speed, customizability, and performance are of the essence as these applications are pivotal in the management of most businesses and software. This has led developers to opt for solutions like Refine that provide these qualities out of the box.
+[Refine](https://github.com/refinedev/refine) is a React-based framework that helps to build data-intensive applications in due time. It does this by providing hooks, providers, and components that provide room for UI customizability, and data management, as well as easy integration with any custom backend APIs and popular backend services like Strapi, Hasura, etc.
 
-In this React admin panel tutorial, we will be creating an admin application with refine that will be built with [ChakraUI](https://chakra-ui.com/), an enterprise-level React component library, and [Strapi](https://strapi.io/), a popular backend service, as its backend provider.
+In this React admin panel tutorial, we will be creating an admin application with Refine that will be built with [ChakraUI](https://chakra-ui.com/), an enterprise-level React component library, and [Strapi](https://strapi.io/), a popular backend service, as its backend provider.
 
-## Benefits of using refine
+## Benefits of using Refine
 
-refine accelerates development by creating a higher abstraction of most functionalities such as routing, data providers, authentication, internationalization, layouts, asynchronous state management, and many others that developers would have to set up from scratch if building the application from the ground up.
+Refine accelerates development by creating a higher abstraction of most functionalities such as routing, data providers, authentication, internationalization, layouts, asynchronous state management, and many others that developers would have to set up from scratch if building the application from the ground up.
 
-With refine, you have the choice to build your application with a custom design (a headless approach) or a UI component library. refine includes integrations for some component libraries and design systems, like Material UI, Chakra UI, Ant Design, and Mantime.
+With Refine, you have the choice to build your application with a custom design (a headless approach) or a UI component library. Refine includes integrations for some component libraries and design systems, like Material UI, Chakra UI, Ant Design, and Mantime.
 
 It can also be integrated into any REST or GraphQL backend service and includes out-of-the-box support for popular BAAS (backend as a service) such as NestJs CRUD, Airtable, Strapi, Supabase, and others.
 
-A peculiarity of refine is that it provides a lot of out-of-the-box functionality for rapid development while still allowing for extreme customization. You can build a variety of applications with refine, and it isn't limited to major use cases like React admin panels, B2B applications, and dashboards. In this React admin tutorial, we will be illustrating how to build a CRUD app with refine.
+A peculiarity of Refine is that it provides a lot of out-of-the-box functionality for rapid development while still allowing for extreme customization. You can build a variety of applications with Refine, and it isn't limited to major use cases like React admin panels, B2B applications, and dashboards. In this React admin tutorial, we will be illustrating how to build a CRUD app with refine.
 
 Whether you're a beginner or an experienced developer, this React admin tutorial will walk you through the entire process, step by step, and show you how to integrate Strapi as your backend CMS to create an amazing React admin panel.
 
@@ -32,9 +32,9 @@ Whether you're a beginner or an experienced developer, this React admin tutorial
 Strapi is a free and open-source headless Content Management System built on Node.js. It allows developers to easily create, manage, and consume content through a customizable API.
 Strapi provides a user-friendly admin panel for content editors to manage content without having to write code, while also providing a flexible content modeling system that can be tailored to fit specific project needs.
 
-## Constituents of A refine Application
+## Constituents of A Refine Application
 
-Before delving in to build the CRUD React admin tutorial app, we need to know the constitutes of an refine application.
+Before delving in to build the CRUD React admin tutorial app, we need to know the constitutes of an Refine application.
 
 ### The `<Refine/>` Component
 
@@ -84,13 +84,13 @@ const App: React.FC = () => {
 export default App;
 ```
 
-There are a variety of configurations that can be passed into a refine application. They are:
+There are a variety of configurations that can be passed into a Refine application. They are:
 
 #### Data Provider
 
-Data provider enables a refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
+Data provider enables a Refine application to connect to an external API or service. A `dataProvider` sends HTTP requests and receives responses via predefined methods.
 
-Here is a sample on how to adding a dataProvider to the refine component.
+Here is a sample on how to adding a dataProvider to the Refine component.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -114,9 +114,9 @@ export default App;
 
 #### Resource
 
-A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
-To create a resource; define our resources and their action paths. This will inform **refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
+To create a resource; define our resources and their action paths. This will inform **Refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.
 
 The `<Route>` corresponding to the created actions is defined. It is important to remember that the path specified in the resource definition should match the `path` specified in the route definition.
@@ -165,11 +165,11 @@ const App: React.FC = () => {
 export default App;
 ```
 
-## Bootstrapping the refine Application
+## Bootstrapping the Refine Application
 
-To create our refine application for this article, we will use the `create refine-app` wizard.
+To create our Refine application for this article, we will use the `create refine-app` wizard.
 
-`create refine-app` comes with built-in templates for the CRA, Next.js, and Remix environments, allowing you to setup a refine project quickly. It also provides an array of options for automatically configuring your UI framework, i18n, router, authentication, and data provider settings.
+`create refine-app` comes with built-in templates for the CRA, Next.js, and Remix environments, allowing you to setup a Refine project quickly. It also provides an array of options for automatically configuring your UI framework, i18n, router, authentication, and data provider settings.
 
 In order to use this, execute the following command:
 
@@ -180,7 +180,7 @@ npm create refine-app@latest <name of your application>
 You will be directed to the CLI wizard after running the command. To complete the CLI wizard, select the following options:
 
 ```
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project? · blog-ra-chakra-tutorial
 ✔ Choose your backend service to connect · Strapi V4
 ✔ Do you want to use a UI Framework? · Chakra UI
@@ -189,7 +189,7 @@ You will be directed to the CLI wizard after running the command. To complete th
 ✔ Choose a package manager · npm
 ```
 
-When these options are selected, the CLI will bootstrap a refine application with the Strapi-v4 provider.
+When these options are selected, the CLI will bootstrap a Refine application with the Strapi-v4 provider.
 
 Following installation, we will execute the following command:
 
@@ -197,13 +197,13 @@ Following installation, we will execute the following command:
 npm run dev
 ```
 
-The refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
+The Refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg" className="rounded" alt="react admin tutorial" />
 
 ### Setting AuthProvider
 
-The `create-refine-app` command generates a new refine application with a default AuthProvider. If you followed the steps above to create your application using `create-react-app`, you should already have the `src/authProvider.ts` file.
+The `create-refine-app` command generates a new Refine application with a default AuthProvider. If you followed the steps above to create your application using `create-react-app`, you should already have the `src/authProvider.ts` file.
 
 It's worth noting that the authProvider's login method is especially important. We'll be using email and password to sign in to our application, so make sure that the login method contains the code provided below.
 
@@ -244,7 +244,7 @@ The [`<Authenticated>`](https://refine.dev/docs/packages/documentation/routers/r
 
 To achieve protected routes, the `<Outlet>` component from `react-router-dom` is utilized, ensuring routes are only accessible when the user is authenticated.
 
-To handle scenarios where a user is not authenticated, we've established a `/login` route. This utilizes the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component found in refine UI packages, with the 'type' prop set to "login". This configuration effectively renders the login page.
+To handle scenarios where a user is not authenticated, we've established a `/login` route. This utilizes the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component found in Refine UI packages, with the 'type' prop set to "login". This configuration effectively renders the login page.
 
 ```tsx title="src/App.tsx"
 import { Authenticated, Refine } from "@refinedev/core";
@@ -476,7 +476,7 @@ export default App;
 
 To avoid encountering an empty screen when going to the homepage, we use the [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `posts` resource.
 
-It will prompt you to log in to the app. Since we are using refine's `fake strapi-v4 API`, Try these credentials:
+It will prompt you to log in to the app. Since we are using Refine's `fake strapi-v4 API`, Try these credentials:
 
 **Username**: demo@refine.dev
 **Password**: demodemo
@@ -848,7 +848,7 @@ export const PostCreate = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@refinedev/react-hook-form)](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is a refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@refinedev/react-hook-form)](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) which is a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
 
 we use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into Strapi.
 The hooks also provide an object like `saveButtonProps` which accepts the properties shown below:
@@ -1470,7 +1470,7 @@ We can also disable filtering for the `actions` column by setting the column's e
 
 ### Implementing mutation mode.
 
-Mutation modes controls how side-effects or actions like deletion, creation, updating, etc are applied. refine provides three mutation modes namely:
+Mutation modes controls how side-effects or actions like deletion, creation, updating, etc are applied. Refine provides three mutation modes namely:
 
 - pessimistic: In this mode, UI updates are delayed until the server confirms the mutation.
 - undoable: In this mode, UI updates are immediately applied, but the mutation can be reversed.
@@ -1506,13 +1506,13 @@ export default App;
 
 In this article, we covered how to create a React admin panel with refine. We also learned:
 
-- How to bootstrap a refine application.
-- Connecting a Strapiv4 data provider to a refine application.
-- implemented CRUD operations on a refine application.
+- How to bootstrap a Refine application.
+- Connecting a Strapiv4 data provider to a Refine application.
+- implemented CRUD operations on a Refine application.
 
 If you're looking to build a robust and dynamic admin panel for your web application, then this React admin tutorial is just what you need.
 
-This article demonstrates the flexibility that comes with using refine to create web applications. refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic.
+This article demonstrates the flexibility that comes with using Refine to create web applications. Refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic.
 
 It also comes with detailed documentation that will get you started. Visit [here](https://refine.dev/docs/getting-started/overview/) to access the documentation.
 

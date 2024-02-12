@@ -8,16 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-sourc
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
 ## Best Open-Source Headless CMS to Try for Your Next Application
-
 
 A headless CMS system, which can be developed quickly, contains many features you need, and helps you to produce products very quickly compared to traditional systems.
 
@@ -41,7 +32,7 @@ Strapi is an open source platform and has many contributors. It is easy to custo
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/strapi.jpg" alt="strapi" />
  
-Free service with limited features. Get more benefits with the paid plan starting at $9/month. 
+Free service with limited features. Get more benefits with the paid plan starting at $9/month.
 
 ### Directus
 
@@ -64,7 +55,6 @@ Appwrite provides you with a set of APIs, tools, and a management console UI to 
 Build flexible and faster web projects using [Netlify](https://www.netlifycms.org) CMS in combination with the static site builder. Netlify CMS stores your content in a Git repository for easier and simpler versioning. It also helps with multi-threading and handling content updates within Git.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/netlify.jpg" alt="netlify" />
- 
 
 It is designed as a one-page React app; so you can add UI widgets, editor plugins and backends to support various Git platform APIs.
 
@@ -82,14 +72,14 @@ Submit the code with APIs without sacrificing the flexibility of the backend. It
 
 ### Refine
 
-If you are looking for a framework that will provide extreme customizability to your application, [refine](https://github.com/refinedev/refine) will be a very good alternative. Refine doesn't have any back-end support yet, but if you have a rest-full API or GraphQL api it allows you to build very flexible applications.
+If you are looking for a framework that will provide extreme customizability to your application, [Refine](https://github.com/refinedev/refine) will be a very good alternative. Refine doesn't have any back-end support yet, but if you have a rest-full API or GraphQL api it allows you to build very flexible applications.
 
 Refine comes with Ant Design and can also be used headless if you prefer.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/refine.jpg" alt="refine" />
- 
 
 ### Conclusion
+
 Headless CMS systems offer a modern and efficient approach to creating and distributing content across multiple channels with high performance, flexibility, scalability and a host of useful features.
 
 So, if you are looking for an open source headless CMS system, check out the above options based on your needs.

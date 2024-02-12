@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
@@ -9,7 +9,6 @@ import {
     RefineThemes,
     useNotificationProvider,
     RefineSnackbarProvider,
-    WelcomePage,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";

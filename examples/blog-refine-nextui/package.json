@@ -1,8 +1,26 @@
 {
   "name": "blog-refine-nextui",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build": "tsc && refine build",
+    "dev": "refine dev",
+    "preview": "refine start",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@nextui-org/react": "^2.1.5",
@@ -41,24 +59,5 @@
     "tailwindcss": "^3.0.11",
     "typescript": "^4.7.4",
     "vite": "^4.3.1"
-  },
-  "scripts": {
-    "start": "refine dev",
-    "dev": "refine dev",
-    "build": "tsc && refine build",
-    "preview": "refine start",
-    "refine": "refine"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

@@ -51,7 +51,7 @@ Though `dataProvider` is the only necessary prop for initializing the app, there
 
 ## What is resource?
 
-In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, a blog post in an online store, or any other piece of data that can be managed by the CRUD app.
+In the context of a CRUD application, a resource typically refers to a data entity that can be created, read, updated, or deleted. For example, a resource could be a user account, a blog post, an item in an online store, or any other piece of data that can be managed by the CRUD app.
 
 To add a `resource` to our app, we need to use the `resources` prop of the `<Refine>` component. This prop accepts an array of objects, each representing a resource. These objects may contain properties to define the resource’s name, actions' routes, and additional metadata such as label, icon, audit log settings, and sider menu nesting etc.
 

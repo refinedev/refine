@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cloudinary": "^1.33.0",
     "cors": "^2.8.5",
