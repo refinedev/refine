@@ -12,7 +12,6 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
             dependencies={dependencies}
             files={initialFiles}
             finalFiles={finalFiles}
-            contentOnly
         >
             {children}
         </TutorialSandpack>
