@@ -17,15 +17,13 @@ Refine offers a `@refinedev/cli` package that provides a set of commands and bui
 
 ## Installation
 
-The installation of the CLI package is straightforward. We'll use the below command to install the CLI package:
+At the beginning of the tutorial, we've already installed the `@refinedev/cli` but if you've missed this step, you can use the below command to install it easily:
 
 <InstallPackagesCommand args="@refinedev/cli" />
 
 ## Using Runners
 
-After we've installed the CLI package, we can hand over the essential scripts of our application to the CLI. The CLI package provides a set of commands to start the development server, build the application for production and run the preview server.
-
-Try to update your `package.json` file with the following scripts:
+We've already handed over our runners to the CLI's runners, our `package.json` file's scripts should look like the below:
 
 ```json title="package.json"
 {
@@ -42,7 +40,7 @@ These commands will use the same runners as your bundler under the hood and usin
 
 :::note
 
-Notice that we've added a `refine` command to the `package.json` file. This command is used to run the CLI commands. You can use the `refine` command to run the CLI commands with the `npx` command as well.
+Notice that we have the `refine` command defined in `"scripts"`. This command is used to run the CLI commands. You can use the `refine` command to run the CLI commands with the `npx` command as well.
 
 :::
 
