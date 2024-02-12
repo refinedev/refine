@@ -132,7 +132,12 @@
     "fields": {
       "id": "ID",
       "title": "Title",
-      "isActive": "Active"
+      "products": "Products",
+      "isActive": {
+        "label": "Status",
+        "true": "Visible",
+        "false": "Invisible"
+      }
     }
   },
   "couriers": {

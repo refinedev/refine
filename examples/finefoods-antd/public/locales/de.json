@@ -130,7 +130,12 @@
     "fields": {
       "id": "ID",
       "title": "Titel",
-      "isActive": "Aktiv"
+      "products": "Produkte",
+      "isActive": {
+        "label": "Aktiv",
+        "true": "Aktiv",
+        "false": "Passiv"
+      }
     }
   },
   "couriers": {

@@ -15,7 +15,7 @@ export const AllOrdersMap: React.FC = () => {
                 },
             ],
             pagination: {
-                pageSize: 1000,
+                mode: "off",
             },
         },
     });

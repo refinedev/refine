@@ -34,7 +34,7 @@ export const ProductListCard = () => {
     const t = useTranslate();
     const go = useGo();
     const { pathname } = useLocation();
-    const { editUrl } = useNavigation();
+    const { showUrl } = useNavigation();
 
     const {
         listProps: productListProps,
@@ -46,6 +46,13 @@ export const ProductListCard = () => {
             pageSize: 12,
         },
         filters: {
+            permanent: [
+                {
+                    field: "isActive",
+                    operator: "eq",
+                    value: true,
+                },
+            ],
             initial: [
                 {
                     field: "category.id",
@@ -62,8 +69,7 @@ export const ProductListCard = () => {
     >({
         resource: "categories",
         pagination: {
-            current: 1,
-            pageSize: 999,
+            mode: "off",
         },
     });
 
@@ -203,7 +209,7 @@ export const ProductListCard = () => {
                                     <Tag
                                         onClick={() => {
                                             return go({
-                                                to: `${editUrl(
+                                                to: `${showUrl(
                                                     "products",
                                                     item.id,
                                                 )}`,

@@ -10,12 +10,22 @@ type View = "list" | "card";
 
 export const ProductList = ({ children }: PropsWithChildren) => {
     const go = useGo();
+    const { replace } = useNavigation();
     const { pathname } = useLocation();
     const { createUrl } = useNavigation();
 
     const [view, setView] = useState<View>(
         (localStorage.getItem("product-view") as View) || "list",
     );
+
+    const handleViewChange = (value: View) => {
+        // remove query params (pagination, filters, etc.) when changing view
+        replace("");
+
+        setView(value);
+        localStorage.setItem("product-view", value);
+    };
+
     const t = useTranslate();
 
     return (
@@ -39,10 +49,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
                             icon: <AppstoreOutlined />,
                         },
                     ]}
-                    onChange={(value) => {
-                        setView(value);
-                        localStorage.setItem("product-view", value);
-                    }}
+                    onChange={handleViewChange}
                 />,
                 <CreateButton
                     {...props.createButtonProps}

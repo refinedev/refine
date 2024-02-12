@@ -24,7 +24,7 @@ import {
     OrderStatus,
     OrderActions,
     PaginationTotal,
-    OrdersTableColumnProducts,
+    OrderTableColumnProducts,
 } from "../../components";
 import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
 
@@ -179,7 +179,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="products"
                     title={t("orders.fields.products")}
                     render={(_, record) => {
-                        return <OrdersTableColumnProducts order={record} />;
+                        return <OrderTableColumnProducts order={record} />;
                     }}
                 />
                 <Table.Column

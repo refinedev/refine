@@ -35,7 +35,12 @@ import {
     CourierCreate,
     CourierEdit,
 } from "./pages/couriers";
-import { ProductList, ProductCreate, ProductEdit } from "./pages/products";
+import {
+    ProductList,
+    ProductCreate,
+    ProductEdit,
+    ProductShow,
+} from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
@@ -111,9 +116,14 @@ const App: React.FC = () => {
                                 list: "/products",
                                 create: "/products/create",
                                 edit: "/products/edit/:id",
+                                show: "/products/show/:id",
                                 meta: {
                                     icon: <PizzaIcon />,
                                 },
+                            },
+                            {
+                                name: "categories",
+                                list: "/categories",
                             },
                             {
                                 name: "stores",
@@ -123,10 +133,6 @@ const App: React.FC = () => {
                                 meta: {
                                     icon: <ShopOutlined />,
                                 },
-                            },
-                            {
-                                name: "categories",
-                                list: "/categories",
                             },
                             {
                                 name: "couriers",
@@ -211,6 +217,10 @@ const App: React.FC = () => {
                                     <Route
                                         path="create"
                                         element={<ProductCreate />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<ProductShow />}
                                     />
                                     <Route
                                         path="edit/:id"

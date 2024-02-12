@@ -1,5 +1,5 @@
-import { ProductForm } from "../../components/product/form";
+import { ProductDrawerForm } from "../../components/product/drawer-form";
 
 export const ProductEdit = () => {
-    return <ProductForm action="edit" />;
+    return <ProductDrawerForm action="edit" />;
 };

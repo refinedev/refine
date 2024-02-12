@@ -18,6 +18,7 @@ import {
     Button,
     Flex,
     Avatar,
+    Segmented,
 } from "antd";
 import { IProduct, ICategory } from "../../../interfaces";
 import { useSearchParams } from "react-router-dom";
@@ -25,12 +26,14 @@ import { Drawer } from "../../drawer";
 import { UploadOutlined } from "@ant-design/icons";
 import { useStyles } from "./styled";
 
-type ProductFormProps = {
-    action: "create" | "edit";
+type Props = {
     id?: BaseKey;
+    action: "create" | "edit";
+    onClose?: () => void;
+    onMutationSuccess?: () => void;
 };
 
-export const ProductForm = (props: ProductFormProps) => {
+export const ProductDrawerForm = (props: Props) => {
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
     const go = useGo();
@@ -41,10 +44,13 @@ export const ProductForm = (props: ProductFormProps) => {
 
     const { drawerProps, formProps, close, saveButtonProps } =
         useDrawerForm<IProduct>({
-            action: props.action,
-            id: props?.id, // when undefined, id will be read from the URL.
             resource: "products",
+            id: props?.id, // when undefined, id will be read from the URL.
+            action: props.action,
             redirect: false,
+            onMutationSuccess: () => {
+                props.onMutationSuccess?.();
+            },
         });
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -53,6 +59,12 @@ export const ProductForm = (props: ProductFormProps) => {
 
     const onDrawerCLose = () => {
         close();
+
+        if (props?.onClose) {
+            props.onClose();
+            return;
+        }
+
         go({
             to:
                 searchParams.get("to") ??
@@ -89,6 +101,9 @@ export const ProductForm = (props: ProductFormProps) => {
                     name="images"
                     valuePropName="fileList"
                     getValueFromEvent={getValueFromEvent}
+                    style={{
+                        margin: 0,
+                    }}
                     rules={[
                         {
                             required: true,
@@ -108,6 +123,7 @@ export const ProductForm = (props: ProductFormProps) => {
                             align="center"
                             justify="center"
                             style={{
+                                position: "relative",
                                 height: "100%",
                             }}
                         >
@@ -131,30 +147,28 @@ export const ProductForm = (props: ProductFormProps) => {
                                 }
                                 alt="Product Image"
                             />
-                            {!previewImageURL && (
-                                <Button
-                                    icon={<UploadOutlined />}
-                                    style={{
-                                        marginTop: "auto",
-                                        marginBottom: "16px",
-                                        backgroundColor: theme.colorBgElevated,
-                                    }}
-                                >
-                                    {t("products.fields.images.description")}
-                                </Button>
-                            )}
+                            <Button
+                                icon={<UploadOutlined />}
+                                style={{
+                                    marginTop: "auto",
+                                    marginBottom: "16px",
+                                    backgroundColor: theme.colorBgElevated,
+                                    ...(props.action === "edit" && {
+                                        position: "absolute",
+                                        bottom: 0,
+                                    }),
+                                }}
+                            >
+                                {t("products.fields.images.description")}
+                            </Button>
                         </Flex>
                     </Upload.Dragger>
                 </Form.Item>
-                <Flex
-                    vertical
-                    style={{
-                        padding: "16px",
-                    }}
-                >
+                <Flex vertical>
                     <Form.Item
                         label={t("products.fields.name")}
                         name="name"
+                        className={styles.formItem}
                         rules={[
                             {
                                 required: true,
@@ -166,6 +180,7 @@ export const ProductForm = (props: ProductFormProps) => {
                     <Form.Item
                         label={t("products.fields.description")}
                         name="description"
+                        className={styles.formItem}
                         rules={[
                             {
                                 required: true,
@@ -177,6 +192,7 @@ export const ProductForm = (props: ProductFormProps) => {
                     <Form.Item
                         label={t("products.fields.price")}
                         name="price"
+                        className={styles.formItem}
                         rules={[
                             {
                                 required: true,
@@ -188,6 +204,7 @@ export const ProductForm = (props: ProductFormProps) => {
                     <Form.Item
                         label={t("products.fields.category")}
                         name={["category", "id"]}
+                        className={styles.formItem}
                         rules={[
                             {
                                 required: true,
@@ -199,25 +216,36 @@ export const ProductForm = (props: ProductFormProps) => {
                     <Form.Item
                         label={t("products.fields.isActive.label")}
                         name="isActive"
+                        className={styles.formItem}
                         initialValue={true}
                     >
-                        <Radio.Group>
+                        {/* <Radio.Group>
                             <Radio value={true}>{t("status.enable")}</Radio>
                             <Radio value={false}>{t("status.disable")}</Radio>
-                        </Radio.Group>
+                        </Radio.Group> */}
+                        <Segmented
+                            block
+                            size="large"
+                            options={[
+                                {
+                                    label: t("products.fields.isActive.true"),
+                                    value: true,
+                                },
+                                {
+                                    label: t("products.fields.isActive.false"),
+                                    value: false,
+                                },
+                            ]}
+                        />
                     </Form.Item>
-                    <Flex align="center" justify="space-between">
-                        {props.action === "create" && (
-                            <Button onClick={onDrawerCLose}>Cancel</Button>
-                        )}
-                        {props.action === "edit" && (
-                            <DeleteButton
-                                type="text"
-                                onSuccess={() => {
-                                    onDrawerCLose();
-                                }}
-                            />
-                        )}
+                    <Flex
+                        align="center"
+                        justify="space-between"
+                        style={{
+                            padding: "16px 16px 0px 16px",
+                        }}
+                    >
+                        <Button onClick={onDrawerCLose}>Cancel</Button>
                         <SaveButton
                             {...saveButtonProps}
                             htmlType="submit"

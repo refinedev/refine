@@ -1,9 +1,13 @@
-import { HttpError, getDefaultFilter, useTranslate } from "@refinedev/core";
 import {
-    EditButton,
+    HttpError,
+    getDefaultFilter,
+    useGo,
+    useNavigation,
+    useTranslate,
+} from "@refinedev/core";
+import {
     FilterDropdown,
     NumberField,
-    ShowButton,
     getDefaultSortOrder,
     useSelect,
     useTable,
@@ -15,6 +19,7 @@ import {
 } from "../../../interfaces";
 import {
     Avatar,
+    Button,
     Input,
     InputNumber,
     Select,
@@ -25,10 +30,14 @@ import {
 import { ProductStatus } from "../status";
 import { PaginationTotal } from "../../paginationTotal";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 
 export const ProductListTable = () => {
     const { token } = theme.useToken();
     const t = useTranslate();
+    const go = useGo();
+    const { pathname } = useLocation();
+    const { showUrl } = useNavigation();
 
     const { tableProps, sorters, filters } = useTable<
         IProduct,
@@ -52,16 +61,24 @@ export const ProductListTable = () => {
                     operator: "in",
                     value: [],
                 },
+                {
+                    field: "isActive",
+                    operator: "in",
+                    value: [],
+                },
             ],
         },
     });
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-        defaultValue: getDefaultFilter("category.id", filters, "in"),
-    });
+    const { selectProps: categorySelectProps, queryResult } =
+        useSelect<ICategory>({
+            resource: "categories",
+            optionLabel: "title",
+            optionValue: "id",
+            defaultValue: getDefaultFilter("category.id", filters, "in"),
+        });
+
+    const categories = queryResult?.data?.data || [];
 
     return (
         <Table
@@ -213,7 +230,7 @@ export const ProductListTable = () => {
                     );
                 }}
             />
-            <Table.Column
+            <Table.Column<IProduct>
                 title={t("products.fields.category")}
                 dataIndex={["category", "title"]}
                 key="category.id"
@@ -242,6 +259,13 @@ export const ProductListTable = () => {
                         </FilterDropdown>
                     );
                 }}
+                render={(_, record) => {
+                    const category = categories.find(
+                        (category) => category?.id === record.category?.id,
+                    );
+
+                    return category?.title || "-";
+                }}
             />
             <Table.Column
                 title={t("products.fields.isActive.label")}
@@ -252,7 +276,7 @@ export const ProductListTable = () => {
                 defaultFilteredValue={getDefaultFilter(
                     "isActive",
                     filters,
-                    "eq",
+                    "in",
                 )}
                 filterDropdown={(props) => (
                     <FilterDropdown {...props}>
@@ -284,11 +308,20 @@ export const ProductListTable = () => {
                 align="center"
                 render={(_, record: IProduct) => {
                     return (
-                        <EditButton
+                        <Button
                             icon={<EyeOutlined />}
-                            resource="products"
-                            recordItemId={record.id}
-                            hideText
+                            onClick={() => {
+                                return go({
+                                    to: `${showUrl("products", record.id)}`,
+                                    query: {
+                                        to: pathname,
+                                    },
+                                    options: {
+                                        keepQuery: true,
+                                    },
+                                    type: "replace",
+                                });
+                            }}
                         />
                     );
                 }}

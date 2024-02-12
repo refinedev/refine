@@ -52,7 +52,9 @@ export const Drawer = (props: PropsWithChildren<Props>) => {
                     style={{
                         display: "flex",
                         marginLeft: "auto",
+                        marginRight: "16px",
                         alignItems: "center",
+                        justifyContent: "center",
                         padding: 0,
                         color: token.colorTextTertiary,
                     }}

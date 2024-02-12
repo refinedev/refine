@@ -2,7 +2,7 @@ import { NumberField, useTable } from "@refinedev/antd";
 import { IUser, IOrder, IOrderFilterVariables } from "../../../interfaces";
 import { HttpError, useNavigation, useTranslate } from "@refinedev/core";
 import { Table, Typography } from "antd";
-import { OrderStatus, OrdersTableColumnProducts } from "../../order";
+import { OrderStatus, OrderTableColumnProducts } from "../../order";
 
 type Props = {
     customer?: IUser;
@@ -77,7 +77,7 @@ export const CustomerOrderHistory = ({ customer }: Props) => {
                 dataIndex="products"
                 title={t("orders.fields.products")}
                 render={(_, record) => {
-                    return <OrdersTableColumnProducts order={record} />;
+                    return <OrderTableColumnProducts order={record} />;
                 }}
             />
             <Table.Column<IOrder>

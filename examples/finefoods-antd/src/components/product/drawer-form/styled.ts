@@ -1,6 +1,7 @@
 import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => {
+    console.log("token", token);
     return {
         uploadDragger: {
             width: "100% !important",
@@ -20,6 +21,12 @@ export const useStyles = createStyles(({ token }) => {
             ".ant-upload-btn": {
                 padding: "0px !important",
             },
+        },
+        formItem: {
+            backgroundColor: token.colorBgElevated,
+            padding: "16px",
+            margin: 0,
+            borderBottom: `1px solid ${token.colorBorderSecondary}`,
         },
     };
 });

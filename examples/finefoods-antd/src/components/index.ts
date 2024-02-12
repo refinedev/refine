@@ -12,3 +12,4 @@ export * from "./userStatus";
 export * from "./customer";
 export * from "./product";
 export * from "./drawer";
+export * from "./categories";

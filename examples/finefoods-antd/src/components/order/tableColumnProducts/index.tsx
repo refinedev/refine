@@ -7,7 +7,7 @@ type Props = {
     order: IOrder;
 };
 
-export const OrdersTableColumnProducts = ({ order }: Props) => {
+export const OrderTableColumnProducts = ({ order }: Props) => {
     const t = useTranslate();
     const { token } = theme.useToken();
 
