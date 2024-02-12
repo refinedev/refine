@@ -154,7 +154,7 @@ Material UI has its own notification elements but lacks the notification managem
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, notificationProvider } from "@refinedev/mui";
+import { useNotificationProvider } from "@refinedev/mui";
 
 const App = () => {
   return (
