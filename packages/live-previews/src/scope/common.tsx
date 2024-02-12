@@ -21,6 +21,46 @@ declare global {
     }
 }
 
+export const ExternalNavigationContext = React.createContext<{
+    go: RefineCore.GoFunction;
+    setGo: (ref: { current: RefineCore.GoFunction }) => void;
+}>({
+    go: () => undefined,
+    setGo: () => undefined,
+});
+
+const ExternalNavigationProvider = ({ children }: React.PropsWithChildren) => {
+    const [navigation, setNavigation] = React.useState<{
+        current: RefineCore.GoFunction;
+    }>({ current: () => undefined });
+
+    return (
+        <ExternalNavigationContext.Provider
+            value={{
+                go: (...args) => navigation.current(...args),
+                setGo: (go) => setNavigation(go),
+            }}
+        >
+            {children}
+        </ExternalNavigationContext.Provider>
+    );
+};
+
+const NavigationHandler = () => {
+    const context = React.useContext(ExternalNavigationContext);
+    const go = RefineCore.useGo();
+    const goRef = React.useRef(go);
+
+    React.useEffect(() => {
+        if (context) {
+            goRef.current = go;
+            context.setGo(goRef);
+        }
+    }, []);
+
+    return null;
+};
+
 const Refine = (
     props: React.ComponentProps<typeof RefineCore.Refine>,
 ): JSX.Element => {
@@ -40,7 +80,10 @@ const Refine = (
                 },
             }}
             {...hiddenRefineProps}
-        />
+        >
+            {props.children}
+            <NavigationHandler />
+        </RefineCore.Refine>
     );
 };
 
@@ -135,6 +178,7 @@ export const RefineCommonScope = {
     // Core
     RefineCore: {
         ...RefineCore,
+        ExternalNavigationProvider,
         Refine,
     },
     ReactRouterDom: {

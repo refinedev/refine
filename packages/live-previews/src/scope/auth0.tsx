@@ -1,6 +1,6 @@
 import * as Auth0ReactScope from "@auth0/auth0-react";
-import { useGo } from "@refinedev/core";
 import React from "react";
+import { ExternalNavigationContext } from "./common";
 
 const Auth0Context = React.createContext<{
     isLoading: boolean;
@@ -21,7 +21,8 @@ const Auth0Context = React.createContext<{
 });
 
 const Auth0Provider = ({ children }: { children: React.ReactNode }) => {
-    const go = useGo();
+    const externalNavigator = React.useContext(ExternalNavigationContext);
+
     const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
     return (
@@ -39,7 +40,7 @@ const Auth0Provider = ({ children }: { children: React.ReactNode }) => {
                     if (isAuthenticated) {
                         setIsAuthenticated(false);
 
-                        go({ to: "/", type: "replace" });
+                        externalNavigator.go({ to: "/login", type: "replace" });
                     }
                 },
                 getIdTokenClaims: () => {
@@ -54,7 +55,7 @@ const Auth0Provider = ({ children }: { children: React.ReactNode }) => {
 
                     setIsAuthenticated(true);
 
-                    go({ to: "/", type: "replace" });
+                    externalNavigator.go({ to: "/", type: "replace" });
                 },
             }}
         >
