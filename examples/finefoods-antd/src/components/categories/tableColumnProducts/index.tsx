@@ -13,7 +13,7 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
     const [productId, setProductId] = useState<number | null>(null);
     const [drawerAction, setDrawerAction] = useState<"show" | "edit">("show");
 
-    const { data } = useList<IProduct, HttpError>({
+    const { data, isLoading } = useList<IProduct, HttpError>({
         resource: "products",
         queryOptions: {
             enabled: !!category.id,
@@ -32,9 +32,27 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
 
     const products = data?.data || [];
 
+    if (isLoading) {
+        return (
+            <Flex gap={8} wrap="wrap">
+                {Array.from({ length: 26 }).map((_, index) => (
+                    <Avatar
+                        key={index}
+                        shape="square"
+                        style={{
+                            aspectRatio: 32 / 32,
+                            width: 32,
+                            height: 32,
+                        }}
+                    />
+                ))}
+            </Flex>
+        );
+    }
+
     return (
         <>
-            <Flex gap={8} wrap="wrap">
+            <Flex gap={8} wrap="wrap" style={{ minHeight: "72px" }}>
                 {products.map((product) => {
                     const image = product?.images?.[0];
                     return (
@@ -43,6 +61,11 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
                                 shape="square"
                                 src={image?.url}
                                 alt={image?.name}
+                                style={{
+                                    aspectRatio: 32 / 32,
+                                    width: 32,
+                                    height: 32,
+                                }}
                                 onClick={() => {
                                     setProductId(product.id);
                                 }}

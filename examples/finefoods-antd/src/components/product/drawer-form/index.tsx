@@ -19,6 +19,7 @@ import {
     Flex,
     Avatar,
     Segmented,
+    Spin,
 } from "antd";
 import { IProduct, ICategory } from "../../../interfaces";
 import { useSearchParams } from "react-router-dom";
@@ -42,7 +43,7 @@ export const ProductDrawerForm = (props: Props) => {
     const breakpoint = Grid.useBreakpoint();
     const { styles, theme } = useStyles();
 
-    const { drawerProps, formProps, close, saveButtonProps } =
+    const { drawerProps, formProps, close, saveButtonProps, formLoading } =
         useDrawerForm<IProduct>({
             resource: "products",
             id: props?.id, // when undefined, id will be read from the URL.
@@ -96,167 +97,176 @@ export const ProductDrawerForm = (props: Props) => {
             zIndex={1001}
             onClose={onDrawerCLose}
         >
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    name="images"
-                    valuePropName="fileList"
-                    getValueFromEvent={getValueFromEvent}
-                    style={{
-                        margin: 0,
-                    }}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Upload.Dragger
-                        name="file"
-                        action={`${apiUrl}/media/upload`}
-                        maxCount={1}
-                        accept=".png"
-                        className={styles.uploadDragger}
-                        showUploadList={false}
+            <Spin spinning={formLoading}>
+                <Form {...formProps} layout="vertical">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        getValueFromEvent={getValueFromEvent}
+                        style={{
+                            margin: 0,
+                        }}
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
                     >
-                        <Flex
-                            vertical
-                            align="center"
-                            justify="center"
-                            style={{
-                                position: "relative",
-                                height: "100%",
-                            }}
+                        <Upload.Dragger
+                            name="file"
+                            action={`${apiUrl}/media/upload`}
+                            maxCount={1}
+                            accept=".png"
+                            className={styles.uploadDragger}
+                            showUploadList={false}
                         >
-                            <Avatar
-                                shape="square"
+                            <Flex
+                                vertical
+                                align="center"
+                                justify="center"
                                 style={{
-                                    aspectRatio: 1,
-                                    objectFit: "contain",
-                                    width: previewImageURL ? "100%" : "48px",
-                                    height: previewImageURL ? "100%" : "48px",
-                                    marginTop: previewImageURL
-                                        ? undefined
-                                        : "auto",
-                                    transform: previewImageURL
-                                        ? undefined
-                                        : "translateY(50%)",
-                                }}
-                                src={
-                                    previewImageURL ||
-                                    "/images/product-default-img.png"
-                                }
-                                alt="Product Image"
-                            />
-                            <Button
-                                icon={<UploadOutlined />}
-                                style={{
-                                    marginTop: "auto",
-                                    marginBottom: "16px",
-                                    backgroundColor: theme.colorBgElevated,
-                                    ...(props.action === "edit" && {
-                                        position: "absolute",
-                                        bottom: 0,
-                                    }),
+                                    position: "relative",
+                                    height: "100%",
                                 }}
                             >
-                                {t("products.fields.images.description")}
-                            </Button>
-                        </Flex>
-                    </Upload.Dragger>
-                </Form.Item>
-                <Flex vertical>
-                    <Form.Item
-                        label={t("products.fields.name")}
-                        name="name"
-                        className={styles.formItem}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
+                                <Avatar
+                                    shape="square"
+                                    style={{
+                                        aspectRatio: 1,
+                                        objectFit: "contain",
+                                        width: previewImageURL
+                                            ? "100%"
+                                            : "48px",
+                                        height: previewImageURL
+                                            ? "100%"
+                                            : "48px",
+                                        marginTop: previewImageURL
+                                            ? undefined
+                                            : "auto",
+                                        transform: previewImageURL
+                                            ? undefined
+                                            : "translateY(50%)",
+                                    }}
+                                    src={
+                                        previewImageURL ||
+                                        "/images/product-default-img.png"
+                                    }
+                                    alt="Product Image"
+                                />
+                                <Button
+                                    icon={<UploadOutlined />}
+                                    style={{
+                                        marginTop: "auto",
+                                        marginBottom: "16px",
+                                        backgroundColor: theme.colorBgElevated,
+                                        ...(props.action === "edit" && {
+                                            position: "absolute",
+                                            bottom: 0,
+                                        }),
+                                    }}
+                                >
+                                    {t("products.fields.images.description")}
+                                </Button>
+                            </Flex>
+                        </Upload.Dragger>
                     </Form.Item>
-                    <Form.Item
-                        label={t("products.fields.description")}
-                        name="description"
-                        className={styles.formItem}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input.TextArea rows={6} />
-                    </Form.Item>
-                    <Form.Item
-                        label={t("products.fields.price")}
-                        name="price"
-                        className={styles.formItem}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <InputNumber prefix={"$"} style={{ width: "150px" }} />
-                    </Form.Item>
-                    <Form.Item
-                        label={t("products.fields.category")}
-                        name={["category", "id"]}
-                        className={styles.formItem}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Select {...categorySelectProps} />
-                    </Form.Item>
-                    <Form.Item
-                        label={t("products.fields.isActive.label")}
-                        name="isActive"
-                        className={styles.formItem}
-                        initialValue={true}
-                    >
-                        {/* <Radio.Group>
-                            <Radio value={true}>{t("status.enable")}</Radio>
-                            <Radio value={false}>{t("status.disable")}</Radio>
-                        </Radio.Group> */}
-                        <Segmented
-                            block
-                            size="large"
-                            options={[
+                    <Flex vertical>
+                        <Form.Item
+                            label={t("products.fields.name")}
+                            name="name"
+                            className={styles.formItem}
+                            rules={[
                                 {
-                                    label: t("products.fields.isActive.true"),
-                                    value: true,
-                                },
-                                {
-                                    label: t("products.fields.isActive.false"),
-                                    value: false,
+                                    required: true,
                                 },
                             ]}
-                        />
-                    </Form.Item>
-                    <Flex
-                        align="center"
-                        justify="space-between"
-                        style={{
-                            padding: "16px 16px 0px 16px",
-                        }}
-                    >
-                        <Button onClick={onDrawerCLose}>Cancel</Button>
-                        <SaveButton
-                            {...saveButtonProps}
-                            htmlType="submit"
-                            type="primary"
-                            icon={null}
                         >
-                            Save
-                        </SaveButton>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            label={t("products.fields.description")}
+                            name="description"
+                            className={styles.formItem}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input.TextArea rows={6} />
+                        </Form.Item>
+                        <Form.Item
+                            label={t("products.fields.price")}
+                            name="price"
+                            className={styles.formItem}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <InputNumber
+                                prefix={"$"}
+                                style={{ width: "150px" }}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label={t("products.fields.category")}
+                            name={["category", "id"]}
+                            className={styles.formItem}
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Select {...categorySelectProps} />
+                        </Form.Item>
+                        <Form.Item
+                            label={t("products.fields.isActive.label")}
+                            name="isActive"
+                            className={styles.formItem}
+                            initialValue={true}
+                        >
+                            <Segmented
+                                block
+                                size="large"
+                                options={[
+                                    {
+                                        label: t(
+                                            "products.fields.isActive.true",
+                                        ),
+                                        value: true,
+                                    },
+                                    {
+                                        label: t(
+                                            "products.fields.isActive.false",
+                                        ),
+                                        value: false,
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
+                        <Flex
+                            align="center"
+                            justify="space-between"
+                            style={{
+                                padding: "16px 16px 0px 16px",
+                            }}
+                        >
+                            <Button onClick={onDrawerCLose}>Cancel</Button>
+                            <SaveButton
+                                {...saveButtonProps}
+                                htmlType="submit"
+                                type="primary"
+                                icon={null}
+                            >
+                                Save
+                            </SaveButton>
+                        </Flex>
                     </Flex>
-                </Flex>
-            </Form>
+                </Form>
+            </Spin>
         </Drawer>
     );
 };

@@ -1,7 +1,6 @@
 import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => {
-    console.log("token", token);
     return {
         uploadDragger: {
             width: "100% !important",
