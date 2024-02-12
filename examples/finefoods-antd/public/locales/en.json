@@ -320,15 +320,55 @@
       "id": "ID",
       "name": "Name",
       "description": "Description",
-      "isActive": "Active",
+      "isActive": {
+        "label": "Status",
+        "true": "Available",
+        "false": "Unavailable"
+      },
       "price": "Price",
       "category": "Category",
       "images": {
         "label": "Images",
-        "description": "Add product picture",
+        "description": "Upload Image",
         "validation": "must be 1080x1080 px"
       },
       "createdAt": "CreatedAt"
+    },
+    "filter": {
+      "title": "Filters",
+      "allCategories": {
+        "label": "All Categories",
+        "placeholder": "All Categories"
+      },
+      "id": {
+        "label": "ID",
+        "placeholder": "Search ID"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Search Name"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Search Description"
+      },
+      "category": {
+        "label": "Category",
+        "placeholder": "Search Category"
+      },
+      "createdAt": {
+        "label": "Created At"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Select Status",
+        "true": "Available",
+        "false": "Unavailable"
+      }
+    },
+    "actions": {
+      "add": "Add new product",
+      "edit": "Edit product"
     }
   },
   "reviews": {

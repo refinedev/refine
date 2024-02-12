@@ -317,7 +317,11 @@
       "id": "ID",
       "name": "Titel",
       "description": "Bezeichnung",
-      "isActive": "Aktiv",
+      "isActive": {
+        "label": "Aktiv",
+        "true": "Aktiv",
+        "false": "Passiv"
+      },
       "price": "Price",
       "category": "Kategorie",
       "images": {
@@ -326,6 +330,42 @@
         "validation": "Fotoauflösung: 1080x1080px."
       },
       "createdAt": "Erstellt am"
+    },
+    "filter": {
+      "title": "Filter",
+      "allCategories": {
+        "label": "Alle Kategorien",
+        "placeholder": "Alle Kategorien"
+      },
+      "id": {
+        "label": "ID",
+        "placeholder": "ID suchen"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Name suchen"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "placeholder": "Beschreibung suchen"
+      },
+      "category": {
+        "label": "Kategorie",
+        "placeholder": "Kategorie suchen"
+      },
+      "createdAt": {
+        "label": "Erstellt am"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Verfügbar",
+        "false": "Nicht verfügbar"
+      }
+    },
+    "actions": {
+      "add": "Add new product",
+      "edit": "Edit product"
     }
   },
   "reviews": {

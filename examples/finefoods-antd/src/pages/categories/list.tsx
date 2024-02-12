@@ -26,7 +26,6 @@ import {
 } from "antd";
 
 import { ICategory, IProduct } from "../../interfaces";
-import { EditProduct } from "../../components/product";
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     const {
@@ -299,11 +298,6 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
                     )}
                 />
             </Table>
-            <EditProduct
-                drawerProps={editDrawerProps}
-                formProps={editFormProps}
-                saveButtonProps={editSaveButtonProps}
-            />
         </List>
     );
 };

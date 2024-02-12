@@ -1,14 +1,14 @@
 import { Tag, Typography, theme } from "antd";
-import { IUser } from "../../interfaces";
-import { CheckCircleOutlined, PauseCircleOutlined } from "@ant-design/icons";
+import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { useConfigProvider } from "../../context";
+import { IProduct } from "../../../interfaces";
+import { useConfigProvider } from "../../../context";
 
 type Props = {
-    value: IUser["isActive"];
+    value: IProduct["isActive"];
 };
 
-export const UserStatus = ({ value }: Props) => {
+export const ProductStatus = ({ value }: Props) => {
     const t = useTranslate();
     const { token } = theme.useToken();
     const { mode } = useConfigProvider();
@@ -20,7 +20,7 @@ export const UserStatus = ({ value }: Props) => {
             style={{
                 color: value ? token.colorSuccess : token.colorTextTertiary,
             }}
-            icon={value ? <CheckCircleOutlined /> : <PauseCircleOutlined />}
+            icon={value ? <CheckCircleOutlined /> : <StopOutlined />}
         >
             <Typography.Text
                 style={{
@@ -33,7 +33,7 @@ export const UserStatus = ({ value }: Props) => {
                         : token.colorTextTertiary,
                 }}
             >
-                {t(`users.fields.isActive.${value}`)}
+                {t(`products.fields.isActive.${value}`)}
             </Typography.Text>
         </Tag>
     );

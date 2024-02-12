@@ -10,8 +10,17 @@
     border-bottom-right-radius: 8px;
 }
 
+.ant-pagination {
+    display: flex;
+    align-items: center;
+}
+
 .ant-pagination-total-text {
-    margin-right: auto;
+    margin-right: auto !important;
     font-size: 14px !important;
     margin-inline-end: auto !important;
+}
+
+.ant-col {
+    height: 100%;
 }

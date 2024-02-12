@@ -114,6 +114,10 @@ export interface IProduct {
     stock: number;
 }
 
+export interface IProductFilterVariables {
+    id?: number;
+}
+
 export interface ICategory {
     id: number;
     title: string;

@@ -1,21 +1,20 @@
 import {
     useShow,
-    HttpError,
     IResourceComponentsProps,
     useNavigation,
 } from "@refinedev/core";
-import { CloseOutlined } from "@ant-design/icons";
-import { Drawer, Button, theme, Flex } from "antd";
+import { Flex, Grid } from "antd";
 import { IUser } from "../../interfaces";
 import {
     CustomerInfoList,
     CustomerInfoSummary,
     CustomerOrderHistory,
+    Drawer,
 } from "../../components";
 
 export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
     const { list } = useNavigation();
-    const { token } = theme.useToken();
+    const breakpoint = Grid.useBreakpoint();
     const { queryResult } = useShow<IUser>();
 
     const { data } = queryResult;
@@ -25,39 +24,8 @@ export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
         <Drawer
             open
             onClose={() => list("users")}
-            width={736}
-            styles={{
-                body: {
-                    backgroundColor: token.colorBgLayout,
-                    borderLeft: `1px solid ${token.colorBorderSecondary}`,
-                    padding: "0",
-                },
-                header: {
-                    display: "none",
-                },
-            }}
+            width={breakpoint.sm ? "736px" : "100%"}
         >
-            <div
-                style={{
-                    height: "64px",
-                    display: "flex",
-                    alignItems: "center",
-                    backgroundColor: token.colorBgElevated,
-                }}
-            >
-                <Button
-                    type="text"
-                    style={{
-                        display: "flex",
-                        marginLeft: "auto",
-                        alignItems: "center",
-                        padding: "16px",
-                        color: token.colorTextTertiary,
-                    }}
-                    icon={<CloseOutlined />}
-                    onClick={() => list("users")}
-                />
-            </div>
             <Flex
                 vertical
                 gap={32}

@@ -35,7 +35,7 @@ import {
     CourierCreate,
     CourierEdit,
 } from "./pages/couriers";
-import { ProductList } from "./pages/products";
+import { ProductList, ProductCreate, ProductEdit } from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { ReviewsList } from "./pages/reviews";
@@ -109,6 +109,8 @@ const App: React.FC = () => {
                             {
                                 name: "products",
                                 list: "/products",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
                                 meta: {
                                     icon: <PizzaIcon />,
                                 },
@@ -199,8 +201,22 @@ const App: React.FC = () => {
 
                                 <Route
                                     path="/products"
-                                    element={<ProductList />}
-                                />
+                                    element={
+                                        <ProductList>
+                                            <Outlet />
+                                        </ProductList>
+                                    }
+                                >
+                                    <Route index element={null} />
+                                    <Route
+                                        path="create"
+                                        element={<ProductCreate />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<ProductEdit />}
+                                    />
+                                </Route>
 
                                 <Route path="/stores">
                                     <Route index element={<StoreList />} />

@@ -4,6 +4,7 @@ import {
     ErrorComponent,
     RefineThemes,
     useNotificationProvider,
+    notificationProvider,
     RefineSnackbarProvider,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -34,7 +35,7 @@ const App: React.FC = () => {
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}
-                        notificationProvider={useNotificationProvider}
+                        notificationProvider={notificationProvider}
                         resources={[
                             {
                                 name: "posts",

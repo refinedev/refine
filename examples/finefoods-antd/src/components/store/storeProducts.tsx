@@ -17,12 +17,6 @@ import {
     ModalProps,
 } from "antd";
 
-import {
-    CreateProduct,
-    EditProduct,
-    ProductItem,
-    ProductCategoryFilter,
-} from "../../components/product";
 import { IStore, IProduct } from "../../interfaces";
 import { StyledStoreProducts } from "./styled";
 
@@ -170,45 +164,11 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                 }}
                                 {...listProps}
                                 dataSource={mergedData as IProduct[]}
-                                renderItem={(item) => (
-                                    <ProductItem
-                                        item={item}
-                                        updateStock={updateStock}
-                                        editShow={editShow}
-                                    />
-                                )}
                             />
-                        </Col>
-                        <Col xs={0} sm={6}>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    height: "40px",
-                                    marginBottom: "16px",
-                                }}
-                            >
-                                <Text style={{ fontWeight: 500 }}>
-                                    {t("stores.tagFilterDescription")}
-                                </Text>
-                            </div>
-                            <Form.Item name="categories">
-                                <ProductCategoryFilter />
-                            </Form.Item>
                         </Col>
                     </Row>
                 </Form>
             </Modal>
-            <CreateProduct
-                drawerProps={createDrawerProps}
-                formProps={createFormProps}
-                saveButtonProps={createSaveButtonProps}
-            />
-            <EditProduct
-                drawerProps={editDrawerProps}
-                formProps={editFormProps}
-                saveButtonProps={editSaveButtonProps}
-            />
         </>
     );
 };

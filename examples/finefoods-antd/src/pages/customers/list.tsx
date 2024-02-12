@@ -3,6 +3,8 @@ import {
     HttpError,
     getDefaultFilter,
     useExport,
+    useGo,
+    useNavigation,
 } from "@refinedev/core";
 import {
     List,
@@ -21,14 +23,22 @@ import {
     InputNumber,
     Input,
     Select,
+    Button,
 } from "antd";
 
 import { IUser, IUserFilterVariables } from "../../interfaces";
-import { SearchOutlined } from "@ant-design/icons";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { PaginationTotal, UserStatus } from "../../components";
 import { PropsWithChildren } from "react";
+import { useLocation } from "react-router-dom";
 
 export const CustomerList = ({ children }: PropsWithChildren) => {
+    const go = useGo();
+    const { pathname } = useLocation();
+    const { showUrl } = useNavigation();
+    const t = useTranslate();
+    const { token } = theme.useToken();
+
     const { tableProps, filters, sorters } = useTable<
         IUser,
         HttpError,
@@ -69,9 +79,6 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
             };
         },
     });
-
-    const t = useTranslate();
-    const { token } = theme.useToken();
 
     return (
         <List
@@ -211,7 +218,21 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
                     fixed="right"
                     title={t("table.actions")}
                     render={(_, record) => (
-                        <ShowButton hideText recordItemId={record.id} />
+                        <Button
+                            icon={<EyeOutlined />}
+                            onClick={() => {
+                                return go({
+                                    to: `${showUrl("users", record.id)}`,
+                                    query: {
+                                        to: pathname,
+                                    },
+                                    options: {
+                                        keepQuery: true,
+                                    },
+                                    type: "replace",
+                                });
+                            }}
+                        />
                     )}
                 />
             </Table>

@@ -39,6 +39,14 @@ export const ConfigProvider = ({
             <AntdConfigProvider
                 theme={{
                     ...RefineThemes.Orange,
+                    components: {
+                        ...(RefineThemes.Orange?.components || {}),
+                        Segmented: {
+                            ...(RefineThemes.Orange.components?.Segmented ||
+                                {}),
+                            trackBg: mode === "dark" ? "#141414" : "#F5F5F5",
+                        },
+                    },
                     algorithm:
                         mode === "light"
                             ? theme.defaultAlgorithm
