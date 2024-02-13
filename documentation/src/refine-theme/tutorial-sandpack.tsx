@@ -634,15 +634,8 @@ const SandpackRightSide = ({
                                     gap: 0,
                                 }}
                             >
-                                <div className="sp-custom-loading">
-                                    <img
-                                        src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/spinner.gif"
-                                        className={clsx(
-                                            "w-12",
-                                            "h-12",
-                                            "rounded-full",
-                                        )}
-                                    />
+                                <div className="sp-custom-loading bg-gray-0 dark:bg-gray-800">
+                                    <Spinner />
                                     <LoaderProgress />
                                 </div>
                             </SandpackPreview>
@@ -654,34 +647,127 @@ const SandpackRightSide = ({
     );
 };
 
+const Spinner = () => {
+    return (
+        <div
+            className={clsx(
+                "flex items-center justify-center",
+                "bg-center bg-no-repeat bg-contain",
+                "w-16 h-16",
+                "bg-[url('/assets/tutorial-spinner-bg.png')]",
+            )}
+        >
+            <img
+                src="/assets/tutorial-spinner.gif"
+                style={{
+                    imageRendering: "pixelated",
+                    scale: 2,
+                }}
+            />
+        </div>
+    );
+};
+
+const texts = [
+    "installing dependencies",
+    "downloading assets",
+    "preparing the environment",
+    "booting up the server",
+];
+
 const LoaderProgress = () => {
     const [duration] = React.useState(
         Math.floor(Math.random() * 10 * 1000 + 10000),
     );
+    const [index, setIndex] = React.useState(0);
+
+    React.useEffect(() => {
+        const tick = duration / texts.length;
+        const interval = setInterval(() => {
+            setIndex((p) => {
+                if (p + 1 < texts.length) {
+                    return p + 1;
+                } else {
+                    clearInterval(interval);
+                    return p;
+                }
+            });
+        }, tick);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className={clsx("flex", "items-center", "justify-center")}>
             <div
                 className={clsx(
-                    "w-32",
-                    "h-2.5",
+                    "w-40",
+                    "h-4",
                     "rounded-xl",
                     "bg-gray-300 dark:bg-gray-700",
                     "p-px",
+                    "relative",
                 )}
             >
                 <div
                     className={clsx(
+                        "-top-px",
+                        "-left-px",
+                        "pt-px",
+                        "absolute",
+                        "w-40",
+                        "h-4",
+                        "overflow-hidden",
+                        "whitespace-nowrap",
+                        "break-keep",
+                        "text-gray-700",
+                        "dark:text-gray-300",
+                        "font-semibold",
+                        "text-[10px]",
+                        "text-center",
+                        "flex",
+                        "justify-center items-center",
+                    )}
+                >
+                    {texts[index]}
+                </div>
+                <div
+                    className={clsx(
                         "sp-loading-progress",
                         "h-full",
-                        "rounded",
+                        "rounded-xl",
                         "bg-refine-react-light-link dark:bg-refine-react-dark-link",
-                        "min-w-[0.5rem]",
+                        "min-w-[0.75rem]",
+                        "overflow-hidden",
+                        "relative",
                     )}
                     style={{
                         animationDuration: `${duration}ms`,
                     }}
-                />
+                >
+                    <div
+                        className={clsx(
+                            "-left-0.5",
+                            "-top-0.5",
+                            "pt-px",
+                            "absolute",
+                            "w-40",
+                            "h-4",
+                            "overflow-hidden",
+                            "whitespace-nowrap",
+                            "break-keep",
+                            "text-gray-300",
+                            "dark:text-gray-700",
+                            "font-semibold",
+                            "text-[10px]",
+                            "text-center",
+                            "flex",
+                            "justify-center items-center",
+                        )}
+                    >
+                        {texts[index]}
+                    </div>
+                </div>
             </div>
         </div>
     );
