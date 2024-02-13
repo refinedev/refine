@@ -54,9 +54,9 @@ Try to run the following command to create a new resource called `categories`:
 npm run refine add resource categories
 ```
 
-Running this command prompts you to select actions for the `categories` resource. Once actions are chosen, the CLI creates necessary files, populates them with Inferencer components, and adds the resource definition to your `<Refine />` component
+This command will create files to an appropriate location in your project, populates them with Inferencer components, and add the resource definition to your `<Refine />` component.
 
-We can use the `add` command to create a new provider, with  available provider options including:
+We can use the `add` command to create a new provider, with available provider options including:
 
 - Auth Provider to handle authentication,
 - Data Provider to handle data fetching and mutations,
