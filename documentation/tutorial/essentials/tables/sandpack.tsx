@@ -308,6 +308,8 @@ export const dataProvider: DataProvider = {
         total: 0, // We'll cover this in the next steps.
     };
   },
+  getApiUrl: () => API_URL,
+  deleteOne: () => { throw new Error("Not implemented"); },
   /* ... */
 };
 `.trim();
@@ -409,6 +411,8 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
+  deleteOne: () => { throw new Error("Not implemented"); },
   /* ... */
 };
 `.trim();

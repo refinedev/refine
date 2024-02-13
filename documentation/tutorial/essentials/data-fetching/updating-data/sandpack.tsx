@@ -52,6 +52,7 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
   getList: () => { throw new Error("Not implemented"); },
   create: () => { throw new Error("Not implemented"); },
   deleteOne: () => { throw new Error("Not implemented"); },

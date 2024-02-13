@@ -37,6 +37,7 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
   update: () => { throw new Error("Not implemented"); },
   getList: () => { throw new Error("Not implemented"); },
   create: () => { throw new Error("Not implemented"); },
