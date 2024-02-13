@@ -12,6 +12,7 @@ import update from "@commands/update";
 import whoami from "@commands/whoami";
 import devtools from "@commands/devtools";
 import add from "@commands/add";
+import setup from "@commands/setup";
 import { telemetryHook } from "@telemetryindex";
 import { printAnnouncements } from "@utils/announcement";
 import "@utils/env";
@@ -52,6 +53,7 @@ const bootstrap = () => {
     proxy(program);
     devtools(program);
     add(program);
+    setup(program);
 
     program.hook("preAction", async (thisCommand) => {
         if (thisCommand.args.includes("dev")) {

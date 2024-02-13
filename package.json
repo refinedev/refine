@@ -8,6 +8,7 @@
     "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --include-dependencies",
     "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
     "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
+    "bootstrap:dev": "lerna bootstrap --ignore-scripts --include-dependencies",
     "build": "lerna run build --include-dependencies --scope @refinedev/core",
     "build:all": "lerna run build --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
     "changeset": "changeset",
