@@ -102,6 +102,6 @@ npm run refine swizzle
 
 Running this command prompts you to select the package and elements you want to export. Once selected, the CLI exports them to the appropriate directory based on your application's setup.
 
-In this unit, we've briefly covered the Refine's CLI and its features. In the next unit, we'll be learning about the Refine's Devtools.
+In this step, we've briefly covered the Refine's CLI and its features. In the next step, we'll be learning about the Refine's Devtools.
 
 </Sandpack>
