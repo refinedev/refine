@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "tsc && refine build",
+    "dev": "refine dev",
     "preview": "refine start",
-    "refine": "refine",
-    "start": "refine dev"
+    "refine": "refine"
   },
   "browserslist": [
     ">0.2%",
