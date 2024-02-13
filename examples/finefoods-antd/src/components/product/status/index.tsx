@@ -19,6 +19,7 @@ export const ProductStatus = ({ value }: Props) => {
             color={value ? "green" : "default"}
             style={{
                 color: value ? token.colorSuccess : token.colorTextTertiary,
+                marginInlineEnd: 0,
             }}
             icon={value ? <CheckCircleOutlined /> : <StopOutlined />}
         >

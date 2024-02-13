@@ -175,6 +175,26 @@
       "accountNumber": "Kontonummer",
       "address": "Adresse"
     },
+    "filter": {
+      "title": "Filter",
+      "name": {
+        "label": "Name",
+        "placeholder": "Name suchen"
+      },
+      "licensePlate": {
+        "label": "Kennzeichen",
+        "placeholder": "Kennzeichen suchen"
+      },
+      "gsm": {
+        "label": "Gsm",
+        "placeholder": "Gsm suchen"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail suchen"
+      },
+      "submit": "Filtern"
+    },
     "steps": {
       "content": "Inhalt",
       "relations": "Beziehungen"

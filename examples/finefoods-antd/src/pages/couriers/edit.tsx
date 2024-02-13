@@ -1,161 +1,88 @@
+import { useTranslate } from "@refinedev/core";
+import { ListButton, SaveButton, useForm, useSelect } from "@refinedev/antd";
 import {
-    IResourceComponentsProps,
-    useTranslate,
-    useApiUrl,
-} from "@refinedev/core";
-import {
-    Edit,
-    SaveButton,
-    getValueFromEvent,
-    useStepsForm,
-    useSelect,
-} from "@refinedev/antd";
-import {
-    Form,
-    Select,
-    Upload,
-    Input,
-    Button,
-    Steps,
-    Typography,
-    Space,
-    Avatar,
-    Row,
+    Card,
     Col,
-    InputProps,
+    Divider,
+    Flex,
+    Form,
+    Input,
+    InputNumber,
+    Row,
+    Select,
 } from "antd";
 import InputMask from "react-input-mask";
 
-import { ICourier, IStore } from "../../interfaces";
+import { ICourier } from "../../interfaces";
+import {
+    CourierFormItemAvatar,
+    CourierReviewTable,
+    FormItemHorizontal,
+} from "../../components";
+import {
+    BankOutlined,
+    LeftOutlined,
+    MailOutlined,
+    PhoneOutlined,
+    ScanOutlined,
+    ShopOutlined,
+} from "@ant-design/icons";
 
-const { Text } = Typography;
-
-export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
+export const CourierEdit = () => {
     const t = useTranslate();
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<ICourier>();
-    const courierData = queryResult?.data?.data;
-    const apiUrl = useApiUrl();
+    const { formProps, queryResult, saveButtonProps } = useForm<ICourier>();
+    const courier = queryResult?.data?.data;
 
-    const { selectProps: storeSelectProps } = useSelect<IStore>({
+    const { selectProps: storeSelectProps } = useSelect({
         resource: "stores",
-        defaultValue: courierData?.store.id,
+        defaultValue: courier?.store.id,
+        queryOptions: {
+            enabled: !!courier,
+        },
     });
 
-    const formList = [
+    return (
         <>
-            <Row gutter={20}>
-                <Col xs={24} lg={8}>
-                    <Form.Item>
-                        <Form.Item
-                            name="avatar"
-                            valuePropName="fileList"
-                            getValueFromEvent={getValueFromEvent}
-                            noStyle
-                        >
-                            <Upload.Dragger
-                                name="file"
-                                action={`${apiUrl}/media/upload`}
-                                listType="picture"
-                                maxCount={1}
-                                multiple
-                                style={{
-                                    border: "none",
-                                    width: "100%",
-                                    background: "none",
-                                }}
-                            >
-                                <Space direction="vertical" size={2}>
-                                    <Avatar
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                            maxWidth: "200px",
-                                        }}
-                                        src="/images/user-default-img.png"
-                                        alt="Store Location"
-                                    />
-                                    <Text
-                                        style={{
-                                            fontWeight: 800,
-                                            fontSize: "16px",
-                                            marginTop: "8px",
-                                        }}
-                                    >
-                                        {t(
-                                            "couriers.fields.images.description",
-                                        )}
-                                    </Text>
-                                    <Text style={{ fontSize: "12px" }}>
-                                        {t("couriers.fields.images.validation")}
-                                    </Text>
-                                </Space>
-                            </Upload.Dragger>
-                        </Form.Item>
-                    </Form.Item>
-                </Col>
-                <Col xs={24} lg={16}>
-                    <Row gutter={10}>
-                        <Col xs={24} lg={12}>
+            <Flex>
+                <ListButton icon={<LeftOutlined />}>
+                    {t("couriers.couriers")}
+                </ListButton>
+            </Flex>
+            <Divider />
+
+            <Row gutter={16}>
+                <Col span={9}>
+                    <Form {...formProps} layout="horizontal">
+                        <Flex align="center" gap={24}>
+                            <CourierFormItemAvatar formProps={formProps} />
                             <Form.Item
-                                label={t("couriers.fields.name")}
                                 name="name"
+                                style={{ width: "100%", marginBottom: "0" }}
                                 rules={[
                                     {
                                         required: true,
                                     },
                                 ]}
                             >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                label={t("couriers.fields.surname")}
-                                name="surname"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                label={t("couriers.fields.gender.label")}
-                                name="gender"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Select
-                                    options={[
-                                        {
-                                            label: t(
-                                                "couriers.fields.gender.male",
-                                            ),
-                                            value: "Male",
-                                        },
-                                        {
-                                            label: t(
-                                                "couriers.fields.gender.female",
-                                            ),
-                                            value: "Female",
-                                        },
-                                    ]}
+                                <Input
+                                    placeholder={t("couriers.fields.name")}
                                 />
                             </Form.Item>
-                        </Col>
-                        <Col xs={24} lg={12}>
-                            <Form.Item
-                                label={t("couriers.fields.gsm")}
+                        </Flex>
+                        <Card
+                            style={{
+                                marginTop: "16px",
+                            }}
+                            styles={{
+                                body: {
+                                    padding: 0,
+                                },
+                            }}
+                        >
+                            <FormItemHorizontal
                                 name="gsm"
+                                icon={<PhoneOutlined />}
+                                label={t("couriers.fields.gsm")}
                                 rules={[
                                     {
                                         required: true,
@@ -170,8 +97,9 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                         <Input {...props} />
                                     )}
                                 </InputMask>
-                            </Form.Item>
-                            <Form.Item
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<MailOutlined />}
                                 label={t("couriers.fields.email")}
                                 name="email"
                                 rules={[
@@ -182,114 +110,93 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                 ]}
                             >
                                 <Input />
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                    <Form.Item
-                        label={t("couriers.fields.address")}
-                        name="address"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input.TextArea />
-                    </Form.Item>
-                </Col>
-            </Row>
-        </>,
-        <Row key="relations" gutter={20}>
-            <Col xs={24} lg={12}>
-                <Form.Item
-                    label={t("couriers.fields.store")}
-                    name={["store", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...storeSelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label={t("couriers.fields.accountNumber")}
-                    name="accountNumber"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Col>
-            <Col xs={24} lg={12}>
-                <Form.Item
-                    label={t("couriers.fields.vehicle")}
-                    name="licensePlate"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Col>
-        </Row>,
-    ];
-
-    return (
-        <>
-            <Edit
-                isLoading={queryResult?.isFetching}
-                saveButtonProps={saveButtonProps}
-                headerButtons={
-                    <>
-                        {current > 0 && (
-                            <Button
-                                onClick={() => {
-                                    gotoStep(current - 1);
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<MailOutlined />}
+                                label={t("couriers.fields.address")}
+                                name="address"
+                                flexProps={{
+                                    align: "flex-start",
                                 }}
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
                             >
-                                {t("buttons.previousStep")}
-                            </Button>
-                        )}
-                        {current < formList.length - 1 && (
-                            <Button
-                                onClick={() => {
-                                    gotoStep(current + 1);
-                                }}
+                                <Input.TextArea rows={2} />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<ShopOutlined />}
+                                label={t("couriers.fields.store")}
+                                name={["store", "id"]}
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
                             >
-                                {t("buttons.nextStep")}
-                            </Button>
-                        )}
-                        {current === formList.length - 1 && (
+                                <Select {...storeSelectProps} />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<BankOutlined />}
+                                label={t("couriers.fields.accountNumber")}
+                                name="accountNumber"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <InputNumber
+                                    style={{
+                                        width: "100%",
+                                    }}
+                                />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<ScanOutlined />}
+                                label={t("couriers.fields.licensePlate")}
+                                name="licensePlate"
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </FormItemHorizontal>
+                        </Card>
+                        <Flex
+                            align="center"
+                            justify="space-between"
+                            style={{
+                                padding: "16px 16px 0px 16px",
+                            }}
+                        >
                             <SaveButton
-                                style={{ marginRight: 10 }}
                                 {...saveButtonProps}
-                            />
-                        )}
-                    </>
-                }
-            >
-                <Steps {...stepsProps} responsive>
-                    <Steps.Step title={t("couriers.steps.content")} />
-                    <Steps.Step title={t("couriers.steps.relations")} />
-                </Steps>
-                <Form
-                    {...formProps}
-                    style={{ marginTop: 30 }}
-                    layout="vertical"
-                    initialValues={{
-                        isActive: true,
-                        ...formProps.initialValues,
+                                style={{
+                                    marginLeft: "auto",
+                                }}
+                                htmlType="submit"
+                                type="primary"
+                                icon={null}
+                            >
+                                Save
+                            </SaveButton>
+                        </Flex>
+                    </Form>
+                </Col>
+                <Col
+                    span={15}
+                    style={{
+                        marginTop: "88px",
                     }}
                 >
-                    {formList[current]}
-                </Form>
-            </Edit>
+                    <CourierReviewTable courier={courier} />
+                </Col>
+            </Row>
         </>
     );
 };

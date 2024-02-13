@@ -161,6 +161,17 @@ export const ProductListTable = () => {
                         />
                     </FilterDropdown>
                 )}
+                render={(value: string) => {
+                    return (
+                        <Typography.Text
+                            style={{
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            {value}
+                        </Typography.Text>
+                    );
+                }}
             />
             <Table.Column
                 title={t("products.fields.description")}

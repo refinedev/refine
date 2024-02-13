@@ -132,7 +132,19 @@ export const StoreListTable = () => {
                     </FilterDropdown>
                 )}
             />
-            <Table.Column dataIndex="gsm" title={t("stores.fields.gsm")} />
+            <Table.Column
+                dataIndex="gsm"
+                title={t("stores.fields.gsm")}
+                render={(value) => (
+                    <Typography.Text
+                        style={{
+                            whiteSpace: "nowrap",
+                        }}
+                    >
+                        {value}
+                    </Typography.Text>
+                )}
+            />
             <Table.Column
                 dataIndex={["address", "text"]}
                 title={t("stores.fields.address")}

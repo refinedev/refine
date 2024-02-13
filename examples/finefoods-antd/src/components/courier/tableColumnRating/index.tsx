@@ -34,5 +34,15 @@ export const CourierTableColumnRating = (props: Props) => {
     );
     const avgStar = totalStarCount / (review?.length || 1);
 
-    return <Rate key="with-value" disabled allowHalf defaultValue={avgStar} />;
+    return (
+        <Rate
+            style={{
+                minWidth: "132px",
+            }}
+            key="with-value"
+            disabled
+            allowHalf
+            defaultValue={avgStar}
+        />
+    );
 };

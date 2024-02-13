@@ -26,7 +26,7 @@ import {
     PhoneOutlined,
     RightCircleOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { FormItemHorizontal } from "../../form";
 
 type Props = {
     formProps: UseFormReturnType<IStore>["formProps"];
@@ -44,8 +44,6 @@ export const StoreFormFields = ({
     const { token } = theme.useToken();
     const t = useTranslate();
     const { list } = useNavigation();
-
-    const [formEditLocked, setFormEditLocked] = useState(true);
 
     return (
         <Form {...formProps} layout="horizontal">
@@ -69,179 +67,87 @@ export const StoreFormFields = ({
                     },
                 }}
             >
-                <Flex
-                    align="baseline"
-                    style={{
-                        padding: "24px 16px 0px 16px",
-                    }}
+                <FormItemHorizontal
+                    name="isActive"
+                    initialValue={true}
+                    icon={<RightCircleOutlined />}
+                    label={t("stores.fields.isActive.label")}
                 >
-                    <Flex
-                        gap={8}
-                        style={{
-                            minWidth: "120px",
-                        }}
-                    >
-                        <RightCircleOutlined
-                            style={{
-                                color: token.colorPrimary,
-                            }}
-                        />
-                        <Typography.Text>
-                            {t("stores.fields.isActive.label")}
-                        </Typography.Text>
-                    </Flex>
-                    <Form.Item
-                        name="isActive"
-                        initialValue={true}
-                        style={{
-                            width: "100%",
-                        }}
-                    >
-                        <Segmented
-                            options={[
-                                {
-                                    label: t("stores.fields.isActive.true"),
-                                    value: true,
-                                },
-                                {
-                                    label: t("stores.fields.isActive.false"),
-                                    value: false,
-                                },
-                            ]}
-                        />
-                    </Form.Item>
-                </Flex>
+                    <Segmented
+                        options={[
+                            {
+                                label: t("stores.fields.isActive.true"),
+                                value: true,
+                            },
+                            {
+                                label: t("stores.fields.isActive.false"),
+                                value: false,
+                            },
+                        ]}
+                    />
+                </FormItemHorizontal>
                 <Divider
                     style={{
                         margin: 0,
                     }}
                 />
-                <Flex
-                    align="baseline"
-                    style={{
-                        padding: "24px 16px 0px 16px",
-                    }}
+                <FormItemHorizontal
+                    icon={<MailOutlined />}
+                    label={t("stores.fields.email")}
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            type: "email",
+                        },
+                    ]}
                 >
-                    <Flex
-                        gap={8}
-                        style={{
-                            minWidth: "120px",
-                        }}
-                    >
-                        <MailOutlined
-                            style={{
-                                color: token.colorPrimary,
-                            }}
-                        />
-                        <Typography.Text>
-                            {t("stores.fields.email")}
-                        </Typography.Text>
-                    </Flex>
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                type: "email",
-                            },
-                        ]}
-                        style={{
-                            width: "100%",
-                        }}
-                    >
-                        <Input />
-                    </Form.Item>
-                </Flex>
+                    <Input />
+                </FormItemHorizontal>
                 <Divider
                     style={{
                         margin: 0,
                     }}
                 />
-                <Flex
-                    align="flex-start"
-                    style={{
-                        padding: "24px 16px 0px 16px",
-                    }}
+                <FormItemHorizontal
+                    name={["address", "text"]}
+                    icon={<EnvironmentOutlined />}
+                    label={t("stores.fields.address")}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
-                    <Flex
-                        gap={8}
-                        style={{
-                            minWidth: "120px",
+                    <Input.TextArea
+                        rows={2}
+                        onChange={(e) => {
+                            handleAddressChange(e.target.value);
                         }}
-                    >
-                        <EnvironmentOutlined
-                            style={{
-                                color: token.colorPrimary,
-                            }}
-                        />
-                        <Typography.Text>
-                            {t("stores.fields.address")}
-                        </Typography.Text>
-                    </Flex>
-                    <Form.Item
-                        name={["address", "text"]}
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        style={{
-                            width: "100%",
-                        }}
-                    >
-                        <Input.TextArea
-                            rows={2}
-                            onChange={(e) => {
-                                handleAddressChange(e.target.value);
-                            }}
-                        />
-                    </Form.Item>
-                </Flex>
+                    />
+                </FormItemHorizontal>
                 <Divider
                     style={{
                         margin: 0,
                     }}
                 />
-                <Flex
-                    align="baseline"
-                    style={{
-                        padding: "24px 16px 0px 16px",
-                    }}
+                <FormItemHorizontal
+                    name="gsm"
+                    icon={<PhoneOutlined />}
+                    label={t("stores.fields.gsm")}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
-                    <Flex
-                        gap={8}
-                        style={{
-                            minWidth: "120px",
-                        }}
-                    >
-                        <PhoneOutlined
-                            style={{
-                                color: token.colorPrimary,
-                            }}
-                        />
-                        <Typography.Text>
-                            {t("stores.fields.gsm")}
-                        </Typography.Text>
-                    </Flex>
-                    <Form.Item
-                        name="gsm"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        style={{
-                            width: "100%",
-                        }}
-                    >
-                        <InputMask mask="(999) 999 99 99">
-                            {/* 
+                    <InputMask mask="(999) 999 99 99">
+                        {/* 
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     // @ts-ignore */}
-                            {(props: InputProps) => <Input {...props} />}
-                        </InputMask>
-                    </Form.Item>
-                </Flex>
+                        {(props: InputProps) => <Input {...props} />}
+                    </InputMask>
+                </FormItemHorizontal>
             </Card>
             <Flex
                 align="center"
@@ -253,7 +159,7 @@ export const StoreFormFields = ({
                 {action === "create" && (
                     <ListButton icon={false}>{t("actions.cancel")}</ListButton>
                 )}
-                {action === "edit" && formEditLocked && (
+                {action === "edit" && (
                     <DeleteButton
                         type="text"
                         onSuccess={() => {

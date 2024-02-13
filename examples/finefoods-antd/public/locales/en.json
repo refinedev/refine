@@ -176,7 +176,27 @@
       },
       "store": "Store",
       "vehicle": "Vehicle",
-      "accountNumber": "Account Number"
+      "accountNumber": "Account No"
+    },
+    "filter": {
+      "title": "Filters",
+      "name": {
+        "label": "Name",
+        "placeholder": "Search Name"
+      },
+      "licensePlate": {
+        "label": "Name",
+        "placeholder": "Search Name"
+      },
+      "gsm": {
+        "label": "Gsm",
+        "placeholder": "Search Gsm"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Search Email"
+      },
+      "submit": "Filter"
     },
     "steps": {
       "content": "Content",
@@ -387,7 +407,7 @@
     },
     "fields": {
       "user": "User",
-      "orderId": "Order ID",
+      "orderId": "Order",
       "review": "Review",
       "rating": "Rating"
     }

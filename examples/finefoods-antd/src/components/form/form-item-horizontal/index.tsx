@@ -1,0 +1,54 @@
+import { PropsWithChildren, ReactNode } from "react";
+import { Flex, Typography, Form, theme, FormItemProps, FlexProps } from "antd";
+
+type Props = {
+    icon: ReactNode;
+    label: string;
+    labelStyle?: React.CSSProperties;
+    flexProps?: Omit<FlexProps, "children">;
+} & FormItemProps;
+
+export const FormItemHorizontal = ({
+    icon,
+    label,
+    labelStyle,
+    flexProps,
+    children,
+    ...props
+}: PropsWithChildren<Props>) => {
+    const { token } = theme.useToken();
+
+    return (
+        <Flex
+            align="baseline"
+            style={{
+                padding: "24px 16px 0px 16px",
+            }}
+            {...flexProps}
+        >
+            <Flex
+                gap={8}
+                style={{
+                    minWidth: "120px",
+                }}
+            >
+                <span
+                    style={{
+                        color: token.colorPrimary,
+                    }}
+                >
+                    {icon}
+                </span>
+                <Typography.Text style={labelStyle}>{label}</Typography.Text>
+            </Flex>
+            <Form.Item
+                {...props}
+                style={{
+                    width: "100%",
+                }}
+            >
+                {children}
+            </Form.Item>
+        </Flex>
+    );
+};
