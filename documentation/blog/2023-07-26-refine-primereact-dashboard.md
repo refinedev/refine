@@ -70,7 +70,7 @@ npm run dev
 We'll use the `npm create refine-app` command to interactively initialize the project.
 
 ```bash
-npm create refine-app@latest refine-with-primereact
+npm create refine-app@latest -- --branch inferencer refine-with-primereact
 ```
 
 Select the following options when prompted:
