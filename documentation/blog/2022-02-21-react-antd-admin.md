@@ -42,7 +42,7 @@ You can use it with any UI library you want without any problems. Also, [Ant Des
 
 ## Refine Advanced Tutorial
 
-This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/docs/tutorial/introduction/index/). That's why I suggest you read the basic tutorial of refine.
+This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/tutorial). That's why I suggest you read the basic tutorial of refine.
 
 In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the Refine in our project and how we can use it.
 
