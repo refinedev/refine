@@ -14,14 +14,14 @@ import { useConfigProvider } from "../../context";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
     center?: google.maps.LatLngLiteral;
-    onPositionChange?: Function;
+    onDragStart?: Function;
 }
 
 const MapComponent: FC<PropsWithChildren<MapProps>> = ({
     children,
     center,
     zoom = 12,
-    onPositionChange,
+    onDragStart,
     ...options
 }) => {
     const ref = useRef<HTMLDivElement>(null);
@@ -39,8 +39,8 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
     useEffect(() => {
         if (map) {
             map.setOptions({ ...options, zoom, center });
-            if (onPositionChange) {
-                map.addListener("center_changed", onPositionChange);
+            if (onDragStart) {
+                map.addListener("dragstart", onDragStart);
             }
         }
     }, [map]);

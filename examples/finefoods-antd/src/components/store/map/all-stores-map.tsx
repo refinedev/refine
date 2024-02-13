@@ -66,7 +66,7 @@ export const AllStoresMap = () => {
                     lat: 40.73061,
                     lng: -73.935242,
                 }}
-                onPositionChange={() => {
+                onDragStart={() => {
                     setSelectedStore(null);
                 }}
                 zoom={10}
@@ -88,6 +88,7 @@ export const AllStoresMap = () => {
                                 lng,
                             }}
                             onClick={(e: any) => {
+                                e.domEvent.stopPropagation();
                                 handleClick(e, store.id);
                             }}
                         />
