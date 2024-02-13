@@ -118,7 +118,6 @@ const siteConfig = {
         },
         "./plugins/docgen.js",
         "./plugins/examples.js",
-        "./plugins/checklist.js",
         ...(process.env.DISABLE_BLOG
             ? []
             : [
@@ -258,7 +257,7 @@ const siteConfig = {
                         },
                         {
                             label: "Tutorials",
-                            to: "docs/tutorial/introduction/index/",
+                            to: "tutorial",
                         },
                         {
                             label: "Blog",
