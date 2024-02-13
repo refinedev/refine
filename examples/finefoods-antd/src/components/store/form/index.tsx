@@ -2,8 +2,14 @@ import { Col, Row, Spin } from "antd";
 import { StoreMap } from "../map";
 import { useStoreForm } from "./useStoreForm";
 import { StoreFormFields } from "./fields";
+import { UseFormProps } from "@refinedev/antd";
+import { StoreCourierTable } from "../courier-table";
 
-export const StoreForm = () => {
+type Props = {
+    action: UseFormProps["action"];
+};
+
+export const StoreForm = (props: Props) => {
     const {
         store,
         handleMapOnDragEnd,
@@ -12,34 +18,60 @@ export const StoreForm = () => {
         handleAddressChange,
         formLoading,
         latLng,
-    } = useStoreForm();
+    } = useStoreForm({
+        action: props.action,
+    });
 
     return (
         <Spin spinning={formLoading}>
             <Row gutter={16} wrap>
-                <Col xs={24} sm={12} lg={9}>
+                <Col xs={24} md={12} lg={9}>
                     <StoreFormFields
                         formProps={formProps}
                         saveButtonProps={saveButtonProps}
+                        action={props.action}
                         handleAddressChange={handleAddressChange}
                     />
                 </Col>
                 <Col
                     xs={24}
-                    sm={12}
+                    md={12}
                     lg={15}
                     style={{
-                        height: "calc(100vh - 300px)",
+                        height:
+                            props.action === "create"
+                                ? "calc(100vh - 300px)"
+                                : "432px",
                         marginTop: "64px",
                     }}
                 >
-                    {store && (
-                        <StoreMap
-                            lat={latLng?.lat}
-                            lng={latLng?.lng}
-                            store={store}
-                            onDragEnd={handleMapOnDragEnd}
-                        />
+                    <StoreMap
+                        lat={latLng?.lat}
+                        lng={latLng?.lng}
+                        zoom={props.action === "create" ? 4 : 10}
+                        store={store}
+                        onDragEnd={handleMapOnDragEnd}
+                    />
+                </Col>
+                <Col
+                    xs={24}
+                    sm={{
+                        span: 24,
+                        offset: 0,
+                    }}
+                    lg={{
+                        span: 15,
+                        offset: 9,
+                    }}
+                >
+                    {props.action === "edit" && (
+                        <div
+                            style={{
+                                marginTop: "16px",
+                            }}
+                        >
+                            <StoreCourierTable store={store} />
+                        </div>
                     )}
                 </Col>
             </Row>

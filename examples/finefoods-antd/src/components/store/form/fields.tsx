@@ -1,5 +1,10 @@
-import { useTranslate } from "@refinedev/core";
-import { SaveButton, UseFormReturnType } from "@refinedev/antd";
+import { UseFormProps, useNavigation, useTranslate } from "@refinedev/core";
+import {
+    DeleteButton,
+    ListButton,
+    SaveButton,
+    UseFormReturnType,
+} from "@refinedev/antd";
 import {
     Form,
     Input,
@@ -21,20 +26,26 @@ import {
     PhoneOutlined,
     RightCircleOutlined,
 } from "@ant-design/icons";
+import { useState } from "react";
 
 type Props = {
     formProps: UseFormReturnType<IStore>["formProps"];
     saveButtonProps: UseFormReturnType<IStore>["saveButtonProps"];
+    action: UseFormProps["action"];
     handleAddressChange: (address: string) => void;
 };
 
 export const StoreFormFields = ({
     formProps,
     saveButtonProps,
+    action,
     handleAddressChange,
 }: Props) => {
     const { token } = theme.useToken();
     const t = useTranslate();
+    const { list } = useNavigation();
+
+    const [formEditLocked, setFormEditLocked] = useState(true);
 
     return (
         <Form {...formProps} layout="horizontal">
@@ -81,6 +92,7 @@ export const StoreFormFields = ({
                     </Flex>
                     <Form.Item
                         name="isActive"
+                        initialValue={true}
                         style={{
                             width: "100%",
                         }}
@@ -238,6 +250,20 @@ export const StoreFormFields = ({
                     padding: "16px 16px 0px 16px",
                 }}
             >
+                {action === "create" && (
+                    <ListButton icon={false}>{t("actions.cancel")}</ListButton>
+                )}
+                {action === "edit" && formEditLocked && (
+                    <DeleteButton
+                        type="text"
+                        onSuccess={() => {
+                            list("stores");
+                        }}
+                        style={{
+                            marginLeft: "-16px",
+                        }}
+                    />
+                )}
                 <SaveButton
                     {...saveButtonProps}
                     style={{

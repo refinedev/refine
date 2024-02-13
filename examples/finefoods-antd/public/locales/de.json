@@ -69,7 +69,9 @@
     "list": "Aufführen",
     "create": "Erstellen",
     "edit": "Bearbeiten",
-    "show": "Zeigen"
+    "show": "Zeigen",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
   },
   "buttons": {
     "create": "Erstellen",
@@ -161,6 +163,8 @@
       "gsm": "Gsm",
       "createdAt": "Erstellt am",
       "isActive": "Aktiv",
+      "licensePlate": "Kennzeichen",
+      "rating": "Bewertung",
       "images": {
         "label": "Foto",
         "description": "Ein Foto hochladen.",

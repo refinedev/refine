@@ -10,7 +10,6 @@ import {
     List,
     useTable,
     DateField,
-    ShowButton,
     FilterDropdown,
     getDefaultSortOrder,
     ExportButton,
@@ -96,7 +95,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
                 pagination={{
                     ...tableProps.pagination,
                     showTotal: (total) => (
-                        <PaginationTotal total={total} entityName="customers" />
+                        <PaginationTotal total={total} entityName="users" />
                     ),
                 }}
             >

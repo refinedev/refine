@@ -8,7 +8,7 @@ export * from "./offLayoutArea";
 export * from "./map";
 export * from "./order";
 export * from "./paginationTotal";
-export * from "./userStatus";
+export * from "./customer/userStatus";
 export * from "./customer";
 export * from "./product";
 export * from "./drawer";

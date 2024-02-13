@@ -16,7 +16,7 @@ export const StoreEdit = () => {
                 </ListButton>
             </Flex>
             <Divider />
-            <StoreForm />
+            <StoreForm action="edit" />
         </>
     );
 };

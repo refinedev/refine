@@ -69,7 +69,9 @@
     "list": "List",
     "create": "Create",
     "edit": "Edit",
-    "show": "Show"
+    "show": "Show",
+    "delete": "Delete",
+    "cancel": "Cancel"
   },
   "buttons": {
     "add": "Add",
@@ -165,6 +167,8 @@
       "address": "Address",
       "createdAt": "CreatedAt",
       "isActive": "Is Active",
+      "licensePlate": "Vehicle ID",
+      "rating": "Rating",
       "images": {
         "label": "Images",
         "description": "Add user picture",

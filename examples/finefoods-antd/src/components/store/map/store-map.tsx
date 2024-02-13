@@ -6,9 +6,10 @@ import { useCallback } from "react";
 import { convertLatLng } from "../../../utils";
 
 type Props = {
-    store: IStore;
+    store?: IStore;
     lat?: number;
     lng?: number;
+    zoom?: number;
     onDragEnd?: ({ lat, lng }: { lat: number; lng: number }) => void;
 };
 
@@ -48,14 +49,14 @@ export const StoreMap = (props: Props) => {
         >
             <Map
                 center={{
-                    lat,
-                    lng,
+                    lat: lat || 39.6685458,
+                    lng: lng || -75.6760264,
                 }}
-                zoom={10}
+                zoom={props?.zoom || 10}
             >
                 {lat && lng && (
                     <MapMarker
-                        key={props.store.id}
+                        key={props?.store?.id}
                         icon={{
                             url: "/images/marker-store-pick.svg",
                         }}

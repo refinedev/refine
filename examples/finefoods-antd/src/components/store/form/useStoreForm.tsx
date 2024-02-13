@@ -1,21 +1,28 @@
-import { useForm } from "@refinedev/antd";
+import { UseFormProps, useForm } from "@refinedev/antd";
 import { useDebounceValue } from "usehooks-ts";
 import {
     convertLatLng,
+    LatLng,
     getAddressWithLatLng,
     getLatLngWithAddress,
 } from "../../../utils";
 import { IStore } from "../../../interfaces";
 import { useEffect, useState } from "react";
 
-export const useStoreForm = () => {
-    const form = useForm<IStore>();
+type Props = {
+    action: UseFormProps["action"];
+};
+
+export const useStoreForm = (props: Props) => {
+    const form = useForm<IStore>({
+        action: props.action,
+    });
     const store = form.queryResult?.data?.data;
 
-    const [latLng, setLatLng] = useState<{
-        lat?: number;
-        lng?: number;
-    }>();
+    const [latLng, setLatLng] = useState<Partial<LatLng>>({
+        lat: props.action === "create" ? 39.66853 : undefined,
+        lng: props.action === "create" ? -75.67602 : undefined,
+    });
 
     useEffect(() => {
         if (store?.address?.coordinate) {
@@ -75,8 +82,7 @@ export const useStoreForm = () => {
         }
     };
 
-    const isLoading =
-        form.queryResult?.isFetching || form.formLoading || !store;
+    const isLoading = form.queryResult?.isFetching || form.formLoading;
 
     return {
         ...form,

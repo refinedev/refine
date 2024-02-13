@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 import { List, Typography, Space, theme, Card } from "antd";
 import dayjs from "dayjs";
-import { UserStatus } from "../../userStatus";
+import { UserStatus } from "../userStatus";
 import { useTranslate } from "@refinedev/core";
 
 type Props = {
