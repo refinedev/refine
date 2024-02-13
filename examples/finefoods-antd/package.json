@@ -36,13 +36,15 @@
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.8.11",
     "react-infinite-scroll-component": "^6.1.0",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.1",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "usehooks-ts": "^2.14.0"
   },
   "devDependencies": {
     "@types/google.maps": "^3.50.4",

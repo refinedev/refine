@@ -1,4 +1,4 @@
-import { DeleteButton, SaveButton, useDrawerForm } from "@refinedev/antd";
+import { SaveButton, useDrawerForm } from "@refinedev/antd";
 import {
     BaseKey,
     useApiUrl,
@@ -11,7 +11,6 @@ import {
     Form,
     Input,
     InputNumber,
-    Radio,
     Select,
     Upload,
     Grid,
@@ -158,7 +157,7 @@ export const ProductDrawerForm = (props: Props) => {
                                     style={{
                                         marginTop: "auto",
                                         marginBottom: "16px",
-                                        backgroundColor: theme.colorBgElevated,
+                                        backgroundColor: theme.colorBgContainer,
                                         ...(props.action === "edit" && {
                                             position: "absolute",
                                             bottom: 0,

@@ -34,7 +34,6 @@ export const ProductDrawerShow = (props: Props) => {
     const getToPath = useGetToPath();
     const [searchParams] = useSearchParams();
     const go = useGo();
-    const { pathname } = useLocation();
     const { editUrl } = useNavigation();
     const t = useTranslate();
     const { token } = theme.useToken();
@@ -96,7 +95,7 @@ export const ProductDrawerShow = (props: Props) => {
             <Flex
                 vertical
                 style={{
-                    backgroundColor: token.colorBgElevated,
+                    backgroundColor: token.colorBgContainer,
                 }}
             >
                 <Flex

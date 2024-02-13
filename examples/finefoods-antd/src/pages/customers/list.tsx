@@ -96,7 +96,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
                 pagination={{
                     ...tableProps.pagination,
                     showTotal: (total) => (
-                        <PaginationTotal total={total} entityName="users" />
+                        <PaginationTotal total={total} entityName="customers" />
                     ),
                 }}
             >

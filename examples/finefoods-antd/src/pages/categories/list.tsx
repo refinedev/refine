@@ -28,7 +28,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 pagination={{
                     ...tableProps.pagination,
                     showTotal: (total) => (
-                        <PaginationTotal total={total} entityName="orders" />
+                        <PaginationTotal
+                            total={total}
+                            entityName="categories"
+                        />
                     ),
                 }}
             >

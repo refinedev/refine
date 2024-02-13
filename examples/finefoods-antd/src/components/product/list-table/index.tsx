@@ -12,11 +12,7 @@ import {
     useSelect,
     useTable,
 } from "@refinedev/antd";
-import {
-    ICategory,
-    IProduct,
-    IProductFilterVariables,
-} from "../../../interfaces";
+import { ICategory, IProduct } from "../../../interfaces";
 import {
     Avatar,
     Button,
@@ -39,11 +35,7 @@ export const ProductListTable = () => {
     const { pathname } = useLocation();
     const { showUrl } = useNavigation();
 
-    const { tableProps, sorters, filters } = useTable<
-        IProduct,
-        HttpError,
-        IProductFilterVariables
-    >({
+    const { tableProps, sorters, filters } = useTable<IProduct, HttpError>({
         filters: {
             initial: [
                 {
@@ -88,7 +80,7 @@ export const ProductListTable = () => {
             pagination={{
                 ...tableProps.pagination,
                 showTotal: (total) => (
-                    <PaginationTotal total={total} entityName="orders" />
+                    <PaginationTotal total={total} entityName="products" />
                 ),
             }}
         >

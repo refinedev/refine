@@ -32,7 +32,7 @@ export const Drawer = (props: PropsWithChildren<Props>) => {
                     height: "64px",
                     display: "flex",
                     alignItems: "center",
-                    backgroundColor: token.colorBgElevated,
+                    backgroundColor: token.colorBgContainer,
                 }}
             >
                 {props.title && (

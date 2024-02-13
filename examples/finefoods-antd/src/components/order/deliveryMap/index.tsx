@@ -17,7 +17,7 @@ export const OrderDeliveryMap = ({ order }: Props) => {
             <MapMarker
                 key={`user-marker-${order?.user.id}`}
                 icon={{
-                    url: "/images/marker-location.svg",
+                    url: "/images/marker-customer.svg",
                 }}
                 position={{
                     lat: Number(order?.adress.coordinate[0]),

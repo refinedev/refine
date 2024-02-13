@@ -47,7 +47,7 @@ export interface IIdentity {
 
 export interface IAddress {
     text: string;
-    coordinate: [string, string];
+    coordinate: [number, number];
 }
 
 export interface IFile {
@@ -70,6 +70,8 @@ export interface IStore {
     title: string;
     isActive: boolean;
     createdAt: string;
+    gsm: string;
+    email: string;
     address: IAddress;
     products: IProduct[];
 }
@@ -112,10 +114,6 @@ export interface IProduct {
     price: number;
     category: ICategory;
     stock: number;
-}
-
-export interface IProductFilterVariables {
-    id?: number;
 }
 
 export interface ICategory {

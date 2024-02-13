@@ -399,11 +399,48 @@
     "fields": {
       "id": "Store ID",
       "title": "Title",
-      "isActive": "Active",
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Select Status",
+        "true": "Open",
+        "false": "Closed"
+      },
       "createdAt": "CreatedAt",
       "address": "Address",
       "email": "Email",
       "gsm": "Phone"
+    },
+    "filter": {
+      "id": {
+        "label": "ID",
+        "placeholder": "Search ID"
+      },
+      "title": {
+        "label": "Title",
+        "placeholder": "Search Title"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Search Email"
+      },
+      "gsm": {
+        "label": "Gsm",
+        "placeholder": "Search Gsm"
+      },
+      "search": {
+        "label": "Search",
+        "placeholder": "FirstName, lastName, gsm, etc."
+      },
+      "createdAt": {
+        "label": "Created At"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Select Status",
+        "true": "Open",
+        "false": "Closed"
+      },
+      "submit": "Filter"
     },
     "buttons": {
       "editProducts": "Edit Products",
@@ -415,7 +452,8 @@
     "storeProducts": "Store Products",
     "tagFilterDescription": "Use tags to filter your search",
     "all": "All",
-    "productSearch": "Product Search"
+    "productSearch": "Product Search",
+    "addNewStore": "Add New Store"
   },
   "users": {
     "users": "Customers",

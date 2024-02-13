@@ -6,11 +6,7 @@ import {
     useTranslate,
 } from "@refinedev/core";
 import { NumberField, useSimpleList } from "@refinedev/antd";
-import {
-    ICategory,
-    IProduct,
-    IProductFilterVariables,
-} from "../../../interfaces";
+import { ICategory, IProduct } from "../../../interfaces";
 import {
     Card,
     Divider,
@@ -40,7 +36,7 @@ export const ProductListCard = () => {
         listProps: productListProps,
         filters,
         setFilters,
-    } = useSimpleList<IProduct, HttpError, IProductFilterVariables>({
+    } = useSimpleList<IProduct, HttpError>({
         pagination: {
             current: 1,
             pageSize: 12,

@@ -53,7 +53,7 @@ export const AllOrdersMap: React.FC = () => {
                         key={order.id}
                         onClick={() => show("orders", order.id)}
                         icon={{
-                            url: "/images/marker-location.svg",
+                            url: "/images/marker-customer.svg",
                         }}
                         position={{
                             lat: Number(order.store.address.coordinate[0]),

@@ -66,7 +66,13 @@ export const RecentOrders: React.FC = () => {
                 className={styles.column}
                 render={(_, record) => {
                     return (
-                        <Space size={0} direction="vertical">
+                        <Space
+                            size={0}
+                            direction="vertical"
+                            style={{
+                                maxWidth: 220,
+                            }}
+                        >
                             <Typography.Text
                                 style={{
                                     fontSize: 14,
@@ -76,6 +82,7 @@ export const RecentOrders: React.FC = () => {
                                 {record?.user?.lastName}
                             </Typography.Text>
                             <Typography.Text
+                                ellipsis
                                 style={{
                                     fontSize: 12,
                                 }}

@@ -190,9 +190,6 @@ export const Header: React.FC = () => {
             style={{
                 backgroundColor: token.colorBgElevated,
                 padding: "0 24px",
-                position: "sticky",
-                top: 0,
-                zIndex: 1,
             }}
         >
             <Row

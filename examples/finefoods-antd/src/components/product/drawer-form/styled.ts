@@ -22,7 +22,7 @@ export const useStyles = createStyles(({ token }) => {
             },
         },
         formItem: {
-            backgroundColor: token.colorBgElevated,
+            backgroundColor: token.colorBgContainer,
             padding: "16px",
             margin: 0,
             borderBottom: `1px solid ${token.colorBorderSecondary}`,

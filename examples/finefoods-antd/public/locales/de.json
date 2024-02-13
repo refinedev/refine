@@ -396,11 +396,48 @@
     "fields": {
       "id": "Geschäfts-ID",
       "title": "Titel",
-      "isActive": "Aktiv",
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Aktiv",
+        "false": "Passiv"
+      },
       "createdAt": "Erstellt am",
       "address": "Adresse",
       "email": "Email",
       "gsm": "Telefon"
+    },
+    "filter": {
+      "id": {
+        "label": "ID",
+        "placeholder": "ID suchen"
+      },
+      "title": {
+        "label": "Titel",
+        "placeholder": "Titel suchen"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail suchen"
+      },
+      "gsm": {
+        "label": "Gsm",
+        "placeholder": "Gsm suchen"
+      },
+      "search": {
+        "label": "Suche",
+        "placeholder": "Vorname, Nachname, Gsm, usw."
+      },
+      "createdAt": {
+        "label": "Erstellt am"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Offen",
+        "false": "Geschlossen"
+      },
+      "submit": "Filtern"
     },
     "buttons": {
       "editProducts": "Produkte bearbeiten",
@@ -412,7 +449,8 @@
     "storeProducts": "Produkte des Geschäftes",
     "tagFilterDescription": "Filter mit Etiketten",
     "all": "Alles",
-    "productSearch": "Produkt suchen"
+    "productSearch": "Produkt suchen",
+    "addNewStore": "Neues Geschäft hinzufügen"
   },
   "users": {
     "users": "Kunden",

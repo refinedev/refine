@@ -15,6 +15,12 @@
     align-items: center;
 }
 
+.ant-table-pagination.ant-pagination {
+    border-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
 .ant-pagination-total-text {
     margin-right: auto !important;
     font-size: 14px !important;

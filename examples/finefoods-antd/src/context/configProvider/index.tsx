@@ -44,7 +44,7 @@ export const ConfigProvider = ({
                         Segmented: {
                             ...(RefineThemes.Orange.components?.Segmented ||
                                 {}),
-                            trackBg: mode === "dark" ? "#141414" : "#F5F5F5",
+                            trackBg: mode === "dark" ? "#000000" : "#F5F5F5",
                         },
                     },
                     algorithm:
