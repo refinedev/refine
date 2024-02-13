@@ -43,17 +43,17 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
-import { ListCategories } from "./list-categories";
+import { ListCategories } from "./pages/categories/list";
 
-import { Login } from "./login";
+import { Login } from "./components/login";
 
 import "antd/dist/reset.css";
 
@@ -155,10 +155,13 @@ export const CreateListCategoriesTsx = () => {
 
     return (
         <TutorialCreateFileButton
-            name="list-categories.tsx"
+            name="src/pages/categories/list.tsx"
             onClick={() => {
-                sandpack.addFile("list-categories.tsx", ListCategoriesBase);
-                sandpack.setActiveFile("list-categories.tsx");
+                sandpack.addFile(
+                    "src/pages/categories/list.tsx",
+                    ListCategoriesBase,
+                );
+                sandpack.setActiveFile("src/pages/categories/list.tsx");
             }}
         />
     );
@@ -170,8 +173,8 @@ export const AddListCategoriesToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("App.tsx", AppWithCategories);
-                sandpack.setActiveFile("App.tsx");
+                sandpack.updateFile("src/App.tsx", AppWithCategories);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -184,10 +187,10 @@ export const AddInferencerToListCategories = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "list-categories.tsx",
+                    "src/pages/categories/list.tsx",
                     ListCategoriesWithInferencer,
                 );
-                sandpack.setActiveFile("list-categories.tsx");
+                sandpack.setActiveFile("src/pages/categories/list.tsx");
             }}
         />
     );
@@ -197,11 +200,11 @@ export const AddInferencerToListCategories = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "list-categories.tsx": {
+    "src/pages/categories/list.tsx": {
         code: ListCategoriesWithInferencer,
         active: true,
     },
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppWithCategories,
     },
 };

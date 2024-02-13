@@ -20,9 +20,9 @@ The `getOne` method accepts `resource`, `id` and `meta` properties.
 
 Our fake API has `products` entity and expects us to fetch a single record using the `/products/:id` endpoint. So, we'll be using the `resource` and `id` properties to make our request.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -59,9 +59,9 @@ After implementing the `getOne` method, we'll be able to call `useOne` hook and 
 
 Then, we'll import `useOne` hook and use it inside our `ShowProduct` component to fetch a single record of `products` entity from our API.
 
-Try to add the following lines to your `src/show-product.tsx` file:
+Try to add the following lines to your `src/pages/products/show.tsx` file:
 
-```tsx title="src/show-product.tsx"
+```tsx title="src/pages/products/show.tsx"
 // highlight-next-line
 import { useOne } from "@refinedev/core";
 
@@ -86,9 +86,9 @@ Try to add the following lines to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 // highlight-next-line
-import { ShowProduct } from "./show-product";
+import { ShowProduct } from "./pages/products/show";
 
 export default function App(): JSX.Element {
   return (

@@ -31,16 +31,16 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 // We'll wrap our app with Ant Design's ConfigProvider to set the theme and App component to use the theme properly.
 import { ConfigProvider, App as AntdApp } from "antd";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./login";
-import { Header } from "./header";
+import { Login } from "./components/login";
+import { Header } from "./components/header";
 
 // We're importing a reset.css file to reset the default styles of the browser.
 import "antd/dist/reset.css";
@@ -116,15 +116,15 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 // We'll wrap our app with Ant Design's ConfigProvider to set the theme and App component to use the theme properly.
 import { ConfigProvider, App as AntdApp } from "antd";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./login";
+import { Login } from "./components/login";
 
 // We're importing a reset.css file to reset the default styles of the browser.
 import "antd/dist/reset.css";
@@ -199,8 +199,8 @@ export const AddAntDesignToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithAntDesignWrappers);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithAntDesignWrappers);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -212,8 +212,8 @@ export const AddLayoutToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithLayout);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithLayout);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -223,9 +223,13 @@ export const AddLayoutToApp = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithLayout,
         active: true,
+    },
+    "src/components/header.tsx": {
+        code: "",
+        hidden: true,
     },
 };
 

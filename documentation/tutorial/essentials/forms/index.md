@@ -30,9 +30,9 @@ The `create` method will receive `resource`, `variables` and `meta` properties. 
 
 `products` entity of our fake API expects us to create a record using the `/products` endpoint with a `POST` request. So, we'll be using the `resource` and `variables` properties to make our request.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -81,13 +81,13 @@ Now, we'll mount our `CreateProduct` component inside our `<Refine />` component
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
 // highlight-next-line
-import { CreateProduct } from "./create-product";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -106,9 +106,9 @@ export default function App(): JSX.Element {
 
 We'll be using the `useForm` hook and have form fields for `name`, `description`, `price`, `material` and `category`.
 
-Let's add the following lines to our `src/create-product.tsx` file:
+Let's add the following lines to our `src/pages/products/create.tsx` file:
 
-```tsx title="src/create-product.tsx"
+```tsx title="src/pages/products/create.tsx"
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
@@ -159,9 +159,9 @@ Although we're able to create a record using our `CreateProduct` component, we'r
 
 Our fake API's `products` field requires us to send the `price` as a string with 2 decimal points. So, we need to make sure that the `price` value is in correct format before submitting the form. Also our `category` field requires us to send an object with the `id` property. So, we need to make sure that the `category` value is in correct format before submitting the form.
 
-Let's add the following lines to our `src/create-product.tsx` file:
+Let's add the following lines to our `src/pages/products/create.tsx` file:
 
-```tsx title="src/create-product.tsx"
+```tsx title="src/pages/products/create.tsx"
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
@@ -206,9 +206,9 @@ Our fake API has the `categories` entity which we use in our `products` entity a
 
 To handle this relation in our forms, Refine offers a `useSelect` hook. This hook will be used to fetch the data for the relationship and provide us options for the `<select>` element.
 
-Let's add the following lines to our `src/create-product.tsx` file to use `useSelect` and the `<select>` element:
+Let's add the following lines to our `src/pages/products/create.tsx` file to use `useSelect` and the `<select>` element:
 
-```tsx title="src/create-product.tsx"
+```tsx title="src/pages/products/create.tsx"
 // highlight-next-line
 import { useForm, useSelect } from "@refinedev/core";
 
@@ -261,7 +261,7 @@ Refine allows you to use different types of relationships in your forms, tables 
 
 :::
 
-## Refactoring `edit-product.tsx` with `useForm`
+## Refactoring `src/pages/products/edit.tsx` with `useForm`
 
 Now we've learned how to use the `useForm` hook to create a record. Let's refactor our `EditProduct` component to use the `useForm` hook to update a record.
 
@@ -270,12 +270,12 @@ Let's start with mounting our `EditProduct` component inside our `<Refine />` co
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -306,9 +306,9 @@ In the extensions of the `useForm` hook, this is handled automatically. To learn
 
 :::
 
-Let's update our `src/edit-product.tsx` file with the following lines:
+Let's update our `src/pages/products/edit.tsx` file with the following lines:
 
-```tsx title="src/edit-product.tsx"
+```tsx title="src/pages/products/edit.tsx"
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {

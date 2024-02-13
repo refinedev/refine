@@ -93,12 +93,12 @@ table tr:nth-child(even) {
 const AppTsxWithListProductsTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -633,8 +633,11 @@ export const MountListProductsInAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithListProductsTsxCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile(
+                    "src/App.tsx",
+                    AppTsxWithListProductsTsxCode,
+                );
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -647,10 +650,10 @@ export const RefactorToUseTableInListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithUseTableTsxCode,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -663,10 +666,10 @@ export const AddRelationHandlingToUseTableInListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithUseTableAndUseManyTsxCode,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -679,10 +682,10 @@ export const AddGetManyMethodToDataProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithGetManyMethodTsCode,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -695,10 +698,10 @@ export const AddTotalToGetListMethodInDataProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithTotalInGetListMethodTsCode,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -711,10 +714,10 @@ export const AddPaginationToUseTableInListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithPaginationTsxCode,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -727,10 +730,10 @@ export const AddHeaderSortersToUseTableInListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithHeaderSortersTsxCode,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -748,13 +751,13 @@ export const files = {
 
 export const finalFiles = {
     ...removeActiveFromFiles(files),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithListProductsTsxCode,
     },
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderWithTotalInGetListMethodTsCode,
     },
-    "list-products.tsx": {
+    "src/pages/products/list.tsx": {
         code: ListProductsWithHeaderSortersTsxCode,
         active: true,
     },

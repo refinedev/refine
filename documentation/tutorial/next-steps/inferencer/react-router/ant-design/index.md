@@ -48,7 +48,7 @@ After you have mounted the Inferencer component, you will get a preview of the g
 
 In our application, we've used the `categories` resource in relation to the `products` resource. Now we will use inferencer component to generate a list view for the `categories` resource.
 
-Let's start by creating a new file called `src/list-categories.tsx` file.
+Let's start by creating a new file called `src/pages/categories/list.tsx` file.
 
 <CreateListCategoriesTsx />
 
@@ -69,18 +69,18 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 // highlight-next-line
-import { ListCategories } from "./list-categories";
+import { ListCategories } from "./pages/categories/list";
 
-import { Login } from "./login";
+import { Login } from "./components/login";
 
 import "antd/dist/reset.css";
 
@@ -171,9 +171,9 @@ We've mounted the `ListCategories` component to the `/categories` route and adde
 
 Now let's add Inferencer to the `ListCategories` component.
 
-Try to add the following lines to your `src/list-categories.tsx` file:
+Try to add the following lines to your `src/pages/categories/list.tsx` file:
 
-```tsx title="src/list-categories.tsx"
+```tsx title="src/pages/categories/list.tsx"
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const ListCategories = () => {

@@ -140,12 +140,12 @@ export const CreateProduct = () => {
 const AppTsxWithCreateProductCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -299,12 +299,12 @@ export const CreateProduct = () => {
 const AppTsxWithEditProductCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -402,10 +402,10 @@ export const AddCreateMethod = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithCreateMethodTsCode,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -416,15 +416,15 @@ export const CreateCreateProductFile = () => {
 
     return (
         <TutorialCreateFileButton
-            name="/create-product.tsx"
+            name="src/pages/products/create.tsx"
             onClick={() => {
                 sandpack.addFile({
-                    "/create-product.tsx": {
+                    "src/pages/products/create.tsx": {
                         code: BaseCreateProductFormTsxCode,
                     },
                 });
-                sandpack.openFile("/create-product.tsx");
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.openFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -436,8 +436,8 @@ export const AddCreateProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithCreateProductCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithCreateProductCode);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -450,10 +450,10 @@ export const AddUseFormToCreateProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/create-product.tsx",
+                    "src/pages/products/create.tsx",
                     CreateProductFormWithFieldsTsxCode,
                 );
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -466,10 +466,10 @@ export const AddPriceUpdateToCreateProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/create-product.tsx",
+                    "src/pages/products/create.tsx",
                     CreateProductFormWithPriceUpdateTsxCode,
                 );
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -482,10 +482,10 @@ export const AddCategoryRelationToCreateProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/create-product.tsx",
+                    "src/pages/products/create.tsx",
                     CreateProductFormWithCategoryRelationTsxCode,
                 );
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -497,8 +497,8 @@ export const MountEditProductInAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithEditProductCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithEditProductCode);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -511,10 +511,10 @@ export const RefactorToUseFormInEditProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/edit-product.tsx",
+                    "src/pages/products/edit.tsx",
                     RefactorEditProductTsxWithFormCode,
                 );
-                sandpack.setActiveFile("/edit-product.tsx");
+                sandpack.setActiveFile("src/pages/products/edit.tsx");
             }}
         />
     );
@@ -532,17 +532,17 @@ export const files = {
 
 export const finalFiles = {
     ...removeActiveFromFiles(files),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithEditProductCode,
     },
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderWithCreateMethodTsCode,
     },
-    "edit-product.tsx": {
+    "src/pages/products/edit.tsx": {
         code: RefactorEditProductTsxWithFormCode,
         active: true,
     },
-    "create-product.tsx": {
+    "src/pages/products/create.tsx": {
         code: CreateProductFormWithCategoryRelationTsxCode,
     },
 };

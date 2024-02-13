@@ -307,10 +307,10 @@ export const AddInferenceToListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithInference,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -323,10 +323,10 @@ export const AddInferenceToShowProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/show-product.tsx",
+                    "src/pages/products/show.tsx",
                     ShowProductWithInference,
                 );
-                sandpack.setActiveFile("/show-product.tsx");
+                sandpack.setActiveFile("src/pages/products/show.tsx");
             }}
         />
     );
@@ -339,10 +339,10 @@ export const AddInferenceToCreateProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/create-product.tsx",
+                    "src/pages/products/create.tsx",
                     CreateProductWithInference,
                 );
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -355,10 +355,10 @@ export const AddInferenceToEditProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/edit-product.tsx",
+                    "src/pages/products/edit.tsx",
                     EditProductWithInference,
                 );
-                sandpack.setActiveFile("/edit-product.tsx");
+                sandpack.setActiveFile("src/pages/products/edit.tsx");
             }}
         />
     );
@@ -368,16 +368,16 @@ export const AddInferenceToEditProduct = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "show-product.tsx": {
+    "src/pages/products/show.tsx": {
         code: ShowProductWithInference,
     },
-    "edit-product.tsx": {
+    "src/pages/products/edit.tsx": {
         code: EditProductWithInference,
     },
-    "create-product.tsx": {
+    "src/pages/products/create.tsx": {
         code: CreateProductWithInference,
     },
-    "list-products.tsx": {
+    "src/pages/products/list.tsx": {
         code: ListProductsWithInference,
         active: true,
     },

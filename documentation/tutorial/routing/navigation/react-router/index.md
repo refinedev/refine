@@ -18,11 +18,11 @@ We'll use the [`useNavigation`](/docs/routing/hooks/use-navigation) hook and cre
 
 ## Adding a Link to the List Page and to the Create Page
 
-We'll be using the `useNavigation` hook from `@refinedev/core` and the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products. 
+We'll be using the `useNavigation` hook from `@refinedev/core` and the `<Link />` component of the `react-router-dom` library to create links to the list page and the create page of the products.
 
 Let's update our `<Header />` component and add a link to the list page of the products:
 
-```tsx title="src/header.tsx"
+```tsx title="src/components/header.tsx"
 import React from "react";
 // highlight-next-line
 import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
@@ -63,8 +63,7 @@ export const Header = () => {
 
 Similarly, we'll update the `<ListProducts />` component and add links for showing and editing the products.
 
-
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 

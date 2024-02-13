@@ -50,8 +50,11 @@ export const UseAuthPageInLogin = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("login.tsx", LoginTsxWithAuthPage);
-                sandpack.setActiveFile("login.tsx");
+                sandpack.updateFile(
+                    "src/components/login.tsx",
+                    LoginTsxWithAuthPage,
+                );
+                sandpack.setActiveFile("src/components/login.tsx");
             }}
         />
     );
@@ -61,7 +64,7 @@ export const UseAuthPageInLogin = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "login.tsx": {
+    "src/components/login.tsx": {
         code: LoginTsxWithAuthPage,
         active: true,
     },

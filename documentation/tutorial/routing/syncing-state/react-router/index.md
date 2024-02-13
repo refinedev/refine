@@ -14,9 +14,9 @@ Whenever the state of the table changes (e.g. filters, sorting, pagination), the
 
 Let's update our `<ListProducts>` component and add the `syncWithLocation` option to the `useTable` hook.
 
-Try to update your `src/list-products.tsx` file with the following lines:
+Try to update your `src/pages/products/list.tsx` file with the following lines:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 
 export const ListProducts = () => {
