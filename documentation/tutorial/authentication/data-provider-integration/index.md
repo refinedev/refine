@@ -250,7 +250,7 @@ Now we have our authentication mechanism integrated with Refine, additional meth
 
 All of the built-in data providers of Refine have the ability to customize the client/fetcher instance. They can be used to handle authentication in the same way as we did in this tutorial without requiring a custom data provider.
 
-In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router and Next.js.
+In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router.
 
 Current way of handling authentication can be refactored but the concepts will remain the same.
 

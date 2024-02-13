@@ -14,26 +14,9 @@ Creating a new Refine app is super simple and takes only a few steps to generate
 
 To follow this tutorial along, you can use the starter templates provided by `create-refine-app`. The following command will create a new empty project for you with `@refinedev/core` and `@refinedev/cli` packages, providing everything needed to get started with the tutorial.
 
-<Tabs>
-
-<TabItem value="vite" label="Vite">
-
 ```sh
 npm create refine-app@latest -- --example starter-vite
 ```
-
-</TabItem>
-
-<TabItem value="nextjs" label="Next.js">
-
-```sh
-npm create refine-app@latest -- --example starter-nextjs
-```
-
-</TabItem>
-
-</Tabs>
-
 
 </TabItem>
 
@@ -41,31 +24,11 @@ npm create refine-app@latest -- --example starter-nextjs
 
 We'll need to create our app using the appropriate templates. Then, we'll move on to installing the Refine dependencies and configuring the app.
 
-<Tabs>
-
-<TabItem value="vite" label="Vite">
-
 ```sh
 npm create vite@latest my-refine-app -- --template react-ts
 ```
 
 To learn more about Vite and project creation, you can visit [Vite's documentation](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
-
-</TabItem>
-
-<TabItem value="nextjs" label="Next.js">
-
-```sh
-npx create-next-app@latest
-```
-
-We'll pick Pages Router and TypeScript when prompted for this tutorial.
-
-To learn more about Next.js and project creation, you can visit [Next.js's documentation](https://nextjs.org/docs/getting-started).
-
-</TabItem>
-
-</Tabs>
 
 After we've created our project, we'll need to install the Refine dependencies.
 
@@ -95,10 +58,6 @@ While `refine`'s runner commands will use the same commands as the ones provided
 
 We'll need to mount `<Refine />` component to our app. We'll mount it to the root of our app.
 
-<Tabs wrapContent={false}>
-
-<TabItem value="vite" label="Vite">
-
 ```tsx title="src/App.tsx"
 import { Refine, WelcomePage } from "@refinedev/core";
 
@@ -112,28 +71,6 @@ function App() {
 
 export default App;
 ```
-
-</TabItem>
-
-<TabItem value="nextjs" label="Next.js">
-
-```tsx title="pages/_app.tsx"
-import { Refine, WelcomePage } from "@refinedev/core";
-import type { AppProps } from "next/app";
-
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <Refine>
-      <WelcomePage />
-      <Component {...pageProps} />
-    </Refine>
-  );
-}
-```
-
-</TabItem>
-
-</Tabs>
 
 We're not really doing anything special here. We're just mounting the `<Refine />` component to our app. `<Refine />` component is the core component of Refine and it provides all the necessary context and logic for the app to work.
 
