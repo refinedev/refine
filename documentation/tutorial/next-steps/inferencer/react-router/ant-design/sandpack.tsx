@@ -53,7 +53,7 @@ import { CreateProduct } from "./pages/products/create";
 
 import { ListCategories } from "./pages/categories/list";
 
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 
 import "antd/dist/reset.css";
 

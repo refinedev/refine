@@ -47,7 +47,7 @@ import { EditProduct } from "./pages/products/edit";
 import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 
 import "antd/dist/reset.css";
 

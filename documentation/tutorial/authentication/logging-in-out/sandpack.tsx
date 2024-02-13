@@ -84,7 +84,7 @@ import { EditProduct } from "./pages/products/edit";
 import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 
 export default function App(): JSX.Element {
   return (
@@ -220,7 +220,7 @@ import { EditProduct } from "./pages/products/edit";
 import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 import { Header } from "./components/header";
 
 export default function App(): JSX.Element {
@@ -293,14 +293,14 @@ export const CreateLoginComponentFile = () => {
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "src/components/login.tsx": {
+                    "src/pages/login.tsx": {
                         code: LoginComponentBase,
                     },
                 });
-                sandpack.openFile("src/components/login.tsx");
-                sandpack.setActiveFile("src/components/login.tsx");
+                sandpack.openFile("src/pages/login.tsx");
+                sandpack.setActiveFile("src/pages/login.tsx");
             }}
-            name="src/components/login.tsx"
+            name="src/pages/login.tsx"
         />
     );
 };
@@ -325,10 +325,10 @@ export const AddUseLoginToLoginComponent = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "src/components/login.tsx",
+                    "src/pages/login.tsx",
                     LoginComponentWithUseLogin,
                 );
-                sandpack.setActiveFile("src/components/login.tsx");
+                sandpack.setActiveFile("src/pages/login.tsx");
             }}
         />
     );
@@ -408,7 +408,7 @@ export const finalFiles = {
     "src/providers/auth-provider.ts": {
         code: AuthProviderTsxWithLogoutMethod,
     },
-    "src/components/login.tsx": {
+    "src/pages/login.tsx": {
         code: LoginComponentWithUseLogin,
     },
     "src/components/header.tsx": {

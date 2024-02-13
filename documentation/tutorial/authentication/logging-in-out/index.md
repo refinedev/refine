@@ -85,7 +85,7 @@ import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
 // highlight-next-line
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 
 export default function App(): JSX.Element {
   return (
@@ -109,9 +109,9 @@ export default function App(): JSX.Element {
 
 Finally, we'll import `useLogin` hook and use it inside our `Login` component to login our users.
 
-Try to add the following lines to your `src/components/login.tsx` file:
+Try to add the following lines to your `src/pages/login.tsx` file:
 
-```tsx title="src/components/login.tsx"
+```tsx title="src/pages/login.tsx"
 import React from "react";
 // highlight-next-line
 import { useLogin } from "@refinedev/core";
@@ -239,7 +239,7 @@ import { EditProduct } from "./pages/products/edit";
 import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./components/login";
+import { Login } from "./pages/login";
 // highlight-next-line
 import { Header } from "./components/header";
 
