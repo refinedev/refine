@@ -626,23 +626,23 @@
     },
     {
       "from": "/docs/tutorials/ant-design-tutorial/",
-      "to": "/docs/tutorial/introduction/index/"
+      "to": "/tutorial"
     },
     {
       "from": "/docs/tutorials/headless-tutorial/",
-      "to": "/docs/tutorial/introduction/index/"
+      "to": "/tutorial"
     },
     {
       "from": "/docs/tutorials/material-ui-tutorial/",
-      "to": "/docs/tutorial/introduction/index/"
+      "to": "/tutorial"
     },
     {
       "from": "/docs/tutorials/mantine-tutorial/",
-      "to": "/docs/tutorial/introduction/index/"
+      "to": "/tutorial"
     },
     {
       "from": "/docs/tutorials/chakra-ui-tutorial/",
-      "to": "/docs/tutorial/introduction/index/"
+      "to": "/tutorial"
     },
     {
       "from": "/docs/guides-and-concepts/telemetry/",
@@ -2148,7 +2148,7 @@
         "/docs/tutorial/understanding-authprovider/chakra-ui/auth-pages",
         "/docs/tutorial/understanding-authprovider/create-authprovider",
         "/docs/tutorial/understanding-authprovider/headless/auth-pages",
-        "/docs/tutorial/understanding-authprovider/index",
+        "/docs/authentication/auth-provider",
         "/docs/tutorial/understanding-authprovider/mantine/auth-pages",
         "/docs/tutorial/understanding-authprovider/mui/auth-pages",
         "/docs/tutorial/understanding-dataprovider/create-dataprovider",
