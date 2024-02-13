@@ -78,14 +78,12 @@ You'll be able to filter the queries and mutations by their type, resource, stat
 
 To use the selector, click on the <SelectorButtonIcon /> icon and when you hover over a component on your page that triggered a query or a mutation, there will be a highlight around the component. Clicking on the component will filter the queries and mutations by that component.
 
-// TODO: gif/video here
+<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/devtools-xray-3.webm" playsInline loop autoPlay muted />
 
 ## Using the Update Feature
 
 The update feature of the Devtools package is similar to the `@refinedev/cli`'s update command and it will give you a nice UI to update your Refine dependencies with a single click. Using the same panel, you can also add new Refine packages to your application with a single click and learn about how to use them in your application.
 
 Check out the `"Overview"` tab to see the available updates and click on the `"Add Package"` button to add new Refine packages to your application.
-
-// TODO: gif/video here
 
 </Sandpack>

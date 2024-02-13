@@ -56,6 +56,8 @@ npm run refine add resource categories
 
 This command will create files to an appropriate location in your project, populates them with Inferencer components, and add the resource definition to your `<Refine />` component.
 
+<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/add-resource.webm" playsInline loop autoPlay muted />
+
 We can use the `add` command to create a new provider, with available provider options including:
 
 - Auth Provider to handle authentication,
@@ -73,6 +75,8 @@ npm run refine add i18n
 ```
 
 By running this command, you'll be provided with the necessary files for the i18n provider and the provider definition will be added to your `<Refine />` component.
+
+<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/add-provider-i18n.webm" playsInline loop autoPlay muted />
 
 ## Using the `update` Command
 
@@ -101,6 +105,8 @@ npm run refine swizzle
 ```
 
 Running this command prompts you to select the package and elements you want to export. Once selected, the CLI exports them to the appropriate directory based on your application's setup.
+
+<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/cli-swizzle.webm" playsInline loop autoPlay muted />
 
 In this step, we've briefly covered the Refine's CLI and its features. In the next step, we'll be learning about the Refine's Devtools.
 
