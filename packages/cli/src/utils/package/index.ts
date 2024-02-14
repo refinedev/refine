@@ -251,3 +251,29 @@ export const isDevtoolsInstalled = async () => {
 
     return installedPackages.some((pkg) => pkg.name === "@refinedev/devtools");
 };
+
+export const getNotInstalledPackages = (packages: string[]) => {
+    const dependencies = getDependencies();
+
+    return packages.filter((pkg) => !dependencies.includes(pkg));
+};
+
+export const installMissingPackages = async (packages: string[]) => {
+    console.log("🌱 Checking dependencies...");
+
+    const missingPackages = getNotInstalledPackages(packages);
+
+    if (missingPackages.length > 0) {
+        console.log(`🌱 Installing ${missingPackages.join(", ")}`);
+
+        await installPackagesSync(missingPackages);
+
+        console.log("🎉 Installation complete...");
+    } else {
+        console.log("🎉 All required packages are already installed");
+    }
+
+    // empty line
+    console.log("");
+    console.log("");
+};

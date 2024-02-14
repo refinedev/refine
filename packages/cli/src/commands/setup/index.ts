@@ -1,6 +1,6 @@
 import { setupAntD } from "@transformers/setup/antd";
 import { setupReactRouter } from "@transformers/setup/react-router";
-import { installPackagesSync } from "@utils/package";
+import { installMissingPackages } from "@utils/package";
 import { Argument, Command } from "commander";
 
 const load = (program: Command) => {
@@ -26,40 +26,26 @@ const action = async (library: string) => {
 };
 
 const setupAntDAction = async () => {
-    console.log("🌱 Installing antd, @refinedev/antd packages...");
+    await installMissingPackages(["antd", "@refinedev/antd"]);
 
-    // await installPackagesSync(["antd", "@refinedev/antd"]);
-
-    // empty line
-    console.log("");
-    console.log("");
-
-    console.log("🚀 Setting up antd...");
+    console.log("🚀 Setting up Ant Design...");
 
     await setupAntD();
 
-    console.log("🎉 antd setup completed!");
+    console.log("🎉 Ant Design setup completed!");
 };
 
 const setupReactRouterAction = async () => {
-    console.log(
-        "🌱 Installing react-router-dom, @refinedev/react-router-v6 packages...",
-    );
+    await installMissingPackages([
+        "react-router-dom",
+        "@refinedev/react-router-v6",
+    ]);
 
-    // await installPackagesSync([
-    //     "react-router-dom",
-    //     "@refinedev/react-router-v6",
-    // ]);
-
-    // empty line
-    console.log("");
-    console.log("");
-
-    console.log("🚀 Setting up react-router...");
+    console.log("🚀 Setting up React Router...");
 
     await setupReactRouter();
 
-    console.log("🎉 react-router setup completed!");
+    console.log("🎉 React Router setup completed!");
 };
 
 export default load;
