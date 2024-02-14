@@ -4,9 +4,14 @@ import { VITE_STARTER_SOURCE } from "./fixtures/vite-starter";
 
 import jscodeshift from "jscodeshift";
 import { WITH_COMPONENT_IMPORTS_SOURCE } from "./fixtures/react-router/with-component-imports";
+import { WITH_EXISTING_REACT_ROUTER_SETUP_SOURCE } from "./fixtures/react-router/with-existing-react-router-setup";
 
 describe("antd transformer", () => {
-    const cases = [VITE_STARTER_SOURCE, WITH_COMPONENT_IMPORTS_SOURCE];
+    const cases = [
+        VITE_STARTER_SOURCE,
+        WITH_COMPONENT_IMPORTS_SOURCE,
+        WITH_EXISTING_REACT_ROUTER_SETUP_SOURCE,
+    ];
 
     it.each(cases)(
         "should transform the file\n----------------------------------------------------\n%s\n----------------------------------------------------",
