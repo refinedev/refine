@@ -59,24 +59,8 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
                     "transition-colors duration-200 ease-in-out",
                 )}
             >
-                Click to auto-update the file,
+                Click to auto-update the file
             </span>
-            {/* <span
-                className={clsx(
-                    "z-[1]",
-                    "block",
-                    "text-xs",
-                    "leading-6",
-                    "text-gray-0",
-                    "px-3",
-                    "rounded-[24px]",
-                    "bg-refine-blue",
-                    "group-hover:brightness-125",
-                    "transition-[filter] duration-200 ease-in-out",
-                )}
-            >
-                click to update it
-            </span> */}
         </button>
     );
 };
