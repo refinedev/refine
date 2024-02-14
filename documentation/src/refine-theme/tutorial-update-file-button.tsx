@@ -59,7 +59,7 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
                     "transition-colors duration-200 ease-in-out",
                 )}
             >
-                If you&apos;re having trouble updating the file,
+                Click to auto-update the file,
             </span>
             <span
                 className={clsx(

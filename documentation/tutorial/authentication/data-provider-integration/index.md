@@ -18,7 +18,7 @@ Our fake REST API has some resources that require authentication to access them.
 
 Let's replace our data provider's `fetch` method with a custom wrapper that adds the `Authorization` header to the requests. This way, we'll be able to protect our resources from unauthenticated users and handle this step in a single place.
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -143,7 +143,7 @@ Our fake REST API also has a resource called `protected-products` that is same a
 
 Let's switch to using `protected-resources` in our `<ListProducts />` component.
 
-Try to add the following lines to your `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany } from "@refinedev/core";
@@ -206,7 +206,7 @@ By using `onError` method, we'll be able to handle cases such as expired and inv
 
 Let's add the `onError` method to our auth provider and handle the `401 Unauthorized` error.
 
-Try to add the following lines to your `src/providers/auth-provider.ts` file:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";

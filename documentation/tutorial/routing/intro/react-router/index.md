@@ -38,7 +38,7 @@ Let's get started with adding our dependencies. For routing, we will use `react-
 
 Then we'll pass our router provider to the `<Refine />` component. Additionally, we'll be wrapping our app with `<BrowserRouter />` from `react-router-dom`.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

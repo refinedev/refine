@@ -35,7 +35,7 @@ const MyRoute = () => {
 
 Now we'll be updating our `src/App.tsx` with a wrapper route that handles the authentication and mount our `<ListProducts />` component if the user is authenticated. If the user is not authenticated, they will be redirected to the `/login` route.
 
-Try to update your `src/App.tsx` file with the following lines:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

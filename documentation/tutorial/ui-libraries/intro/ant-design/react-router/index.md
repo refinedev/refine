@@ -26,7 +26,7 @@ Let's get started with adding our dependencies. To use Ant Design components and
 
 We'll wrap our app with Ant Design's `ConfigProvider` to set the theme and `App` component to use the theme properly. We'll also import a `reset.css` file to reset the default styles of the browser.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -128,7 +128,7 @@ With our dependencies now in place, let's proceed by adding a layout into our ap
 
 Refine provides a [`<ThemedLayoutV2 />`](/docs/ui-integrations/ant-design/components/themed-layout) component has out of the box features, which we'll delve into in the next step. Now to see it in action, let's wrap our authenticated routes with it.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

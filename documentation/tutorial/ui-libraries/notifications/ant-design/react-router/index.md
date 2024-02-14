@@ -18,7 +18,7 @@ Ant Design provides a notification system that can be used to handle these notif
 
 To add the notification provider to our application, we need to import the `useNotificationProvider` and pass it to the `notificationProvider` prop of the `<Refine />` component.
 
-Try to update the `src/App.tsx` file with the following lines:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

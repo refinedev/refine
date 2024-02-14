@@ -26,7 +26,7 @@ You can also use the `options.redirect` prop of the `<Refine />` component to se
 
 Let's update our `<EditProduct />` component and provide a `redirect` parameter to let users redirect to the show page of the edited product after a successful form submission.
 
-Try to update your `src/pages/products/edit.tsx` file with the following lines:
+Update your `src/pages/products/edit.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/edit.tsx"
 import { useForm, useSelect } from "@refinedev/core";
@@ -51,7 +51,7 @@ export const EditProduct = () => {
 
 Let's update our `<CreateProduct />` component and provide a `redirect` parameter to let users continue to edit the created product after a successful form submission.
 
-Try to update your `src/pages/products/create.tsx` file with the following lines:
+Update your `src/pages/products/create.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/create.tsx"
 import { useForm, useSelect } from "@refinedev/core";
@@ -77,7 +77,7 @@ Refine provides a simple way to integrate routing into your auth provider. By pr
 
 Let's update our `src/providers/auth-provider.ts` file and provide a `redirectTo` properties to the return values of the `login` and `logout` methods. We want to redirect the user to the index page after a successful login and to the login page after a successful logout.
 
-Try to update your `src/providers/auth-provider.ts` file with the following lines:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```tsx title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";

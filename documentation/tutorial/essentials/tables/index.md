@@ -49,7 +49,7 @@ export default function App(): JSX.Element {
 
 We'll be using the `useTable` hook in our `<ListProducts />` component and add fields `id`, `name`, `category`, `material` and `price`.
 
-Let's add the following lines to our `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines::
 
 ```tsx title="src/pages/products/list.tsx"
 // highlight-next-line

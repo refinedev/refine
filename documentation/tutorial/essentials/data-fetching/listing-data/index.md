@@ -24,7 +24,7 @@ Our fake API has `products` entity and expects us to list records using the `/pr
 
 To make the implementation process easier, we'll start by implementing the `getList` method without pagination, sorting, or filtering, and then gradually add these features to our implementation.
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -60,7 +60,7 @@ After implementing the `getList` method, we'll be able to call `useList` hook an
 
 Then, we'll use the `useList` hook inside our `ListProducts` to fetch a list of records of `products` entity from our API.
 
-Try to add the following lines to your `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
@@ -101,7 +101,7 @@ export const ListProducts = () => {
 
 Finally, we'll mount our `ListProducts` component inside our `<Refine />` component.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -135,7 +135,7 @@ At this point, we've listed all the products in our API, but we're not able to p
 
 Our fake API supports pagination through the `_start` and `_end` query parameters. `_start` is the index of the first record we want to fetch and `_end` is the index of the last record we want to fetch. So, we'll be using the `pagination` property to calculate the `_start` and `_end` query parameters.
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -172,7 +172,7 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to paginate the list of products. Let's add pagination to our `ListProducts` component.
 
-Try to add the following lines to your `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";
@@ -210,7 +210,7 @@ Our fake API requires multiple sorters and orders to be passed with a comma sepa
 
 :::
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -252,7 +252,7 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to sort the list of products. Let's add sorting to our `ListProducts` component.
 
-Try to add the following lines to your `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";
@@ -295,7 +295,7 @@ We've added sorting to our `getList` method. But, we're not able to filter the l
 
 :::
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -346,7 +346,7 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to filter the list of products. Let's add filtering to our `ListProducts` component.
 
-Try to add the following lines to your `src/pages/products/list.tsx` file:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";

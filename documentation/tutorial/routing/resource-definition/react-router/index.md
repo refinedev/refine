@@ -22,7 +22,7 @@ We'll use the following routes to place our components:
 
 We'll also be defining an index route at `/` and redirecting it to `/products` using the `<Navigate />` component.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -117,7 +117,7 @@ A resource definition consists of the following properties:
 - `list`, `create`, `edit` and `show`: These properties are used to define the routes for the corresponding actions. They will be the string values of the routes we've created in the previous step.
 - `meta`: An optional object to pass meta values per resource. This is widely used in Refine's hooks and components for various purposes from data fetching, access control, i18n to UI customization.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

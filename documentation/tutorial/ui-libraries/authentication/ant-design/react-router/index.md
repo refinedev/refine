@@ -21,7 +21,7 @@ Now we've refactored our application with Ant Design, we only have one thing lef
 
 Now let's update our `<Login />` component to use the `<AuthPage />` from `@refinedev/antd` package. This component will provide a consistent look and feel with the rest of the application.
 
-Try to update the `src/pages/login.tsx` file with the following lines:
+Update your `src/pages/login.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/login.tsx"
 import React from "react";

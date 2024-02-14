@@ -22,7 +22,7 @@ First, we'll create a `src/providers/auth-provider.ts` file in our project, whic
 
 Then, we'll pass our auth provider to `<Refine />` component in `src/App.tsx` file with the `authProvider` prop.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -62,7 +62,7 @@ If the user is authenticated, the object should contain `authenticated: true` pr
 
 We'll obtain an access token through the `login` method from our API and store it inside the local storage. Now let's check if the token exists in the local storage or not.
 
-Try to add the following lines to your `src/providers/auth-provider.ts` file:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
@@ -99,7 +99,7 @@ After implementing the `check` method, we'll be able to use the `<Authenticated 
 
 Let's add the `<Authenticated />` component to our `src/App.tsx` file and wrap it around our content inside the `<Refine />` component.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 // highlight-next-line

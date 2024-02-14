@@ -20,7 +20,7 @@ You can always pass the parameters manually if you want to override the inferred
 
 Let's update our `<ListProducts />` component and omit the `resource` parameter from the `useTable` hook.
 
-Try to update your `src/pages/products/list.tsx` file with the following lines:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany } from "@refinedev/core";
@@ -52,7 +52,7 @@ Let's update our `<ShowProduct />` component and omit the `resource` and `id` pa
 
 We'll also start using [`useShow`](/docs/data/hooks/use-show) hook which is wrapper around `useOne`. Unlike the useOne hook, it offers inference capabilities, eliminating the need to explicitly pass `resource` and `id` parameters
 
-Try to update your `src/pages/products/show.tsx` file with the following lines:
+Update your `src/pages/products/show.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/show.tsx"
 // highlight-next-line
@@ -74,7 +74,7 @@ export const ShowProduct = () => {
 
 Let's update our `<EditProduct />` component and omit the `resource`, `action` and `id` parameters from the `useForm` hook. Just like the `<ShowProduct />` component, we'll be letting Refine to infer the `id` parameter from the route definition. Since we've defined the `edit` action in our resource definition, Refine will also infer the `action` parameter as `edit`.
 
-Try to update your `src/pages/products/edit.tsx` file with the following lines:
+Update your `src/pages/products/edit.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/edit.tsx"
 import { useForm, useSelect } from "@refinedev/core";
@@ -103,7 +103,7 @@ export const EditProduct = () => {
 
 Let's update our `<CreateProduct />` component and omit the `resource` and `action` parameters from the `useForm` hook. Since we've defined the `create` action in our resource definition, Refine will also infer the `action` parameter as `create`.
 
-Try to update your `src/pages/products/create.tsx` file with the following lines:
+Update your `src/pages/products/create.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/create.tsx"
 import { useForm, useSelect } from "@refinedev/core";

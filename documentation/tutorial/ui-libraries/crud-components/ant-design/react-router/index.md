@@ -20,7 +20,7 @@ Remember that when we've removed the `<Header />` component, we've also removed 
 
 :::
 
-Try to update your `src/pages/products/list.tsx` file with the following lines:
+Update your `src/pages/products/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/list.tsx"
 import { useMany, getDefaultFilter } from "@refinedev/core";
@@ -76,7 +76,7 @@ export const ListProducts = () => {
 
 The `<Create />` component is a wrapper component for create pages. It provides an header with i18n support and navigation to list view, a back button and breadcrumbs. It includes a `<SaveButton />` at the footer that you can pass `saveButtonProps` from the `useForm` hook to submit your forms. You can always provide more features and elements by passing customizing the component.
 
-Try to update your `src/pages/products/create.tsx` file with the following lines:
+Update your `src/pages/products/create.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/create.tsx"
 // highlight-next-line
@@ -125,7 +125,7 @@ export const CreateProduct = () => {
 
 The `<Edit />` component is a wrapper component for edit pages. The design and the usage is similar to the `<Create />` component. Additionally, it includes the `<RefreshButton />` and `<DeleteButton />` at its header. You can always provide more features and elements by passing customizing the component.
 
-Try to update your `src/pages/products/edit.tsx` file with the following lines:
+Update your `src/pages/products/edit.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/edit.tsx"
 // highlight-next-line
@@ -181,7 +181,7 @@ Notice that we've removed the `<SaveButton />` component from the `<EditProduct 
 
 The `<Show />` component is a wrapper component for show pages.It provides a header with i18n support and navigation to the list view, edit the record, a refresh button, a delete button, a back button, and breadcrumbs. You can always provide more features and elements by passing customizing the component.
 
-Try to update your `src/pages/products/show.tsx` file with the following lines:
+Update your `src/pages/products/show.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/show.tsx"
 import { useShow, useOne } from "@refinedev/core";

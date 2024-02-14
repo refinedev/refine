@@ -16,7 +16,7 @@ The `getIdentity` method is used to get the user's identity from our API. It sho
 
 Our fake REST API requires us to send a `GET` request to `/auth/me` endpoint with the `token` in the `Authorization` header. It will return the user's identity in the response body.
 
-Try to add the following lines to your `src/providers/auth-provider.ts` file:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
@@ -63,7 +63,7 @@ After implementing the `getIdentity` method, we'll be able to call `useGetIdenti
 
 Now, we'll use the `useGetIdentity` hook inside our `<Header />` component to greet the user.
 
-Try to add the following lines to your `src/components/header.tsx` file:
+Update your `src/components/header.tsx` file by adding the following lines:
 
 ```tsx title="src/components/header.tsx"
 import React from "react";

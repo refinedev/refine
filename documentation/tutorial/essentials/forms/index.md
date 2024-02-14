@@ -30,7 +30,7 @@ The `create` method will receive `resource`, `variables` and `meta` properties. 
 
 `products` entity of our fake API expects us to create a record using the `/products` endpoint with a `POST` request. So, we'll be using the `resource` and `variables` properties to make our request.
 
-Try to add the following lines to your `src/providers/data-provider.ts` file:
+Update your `src/providers/data-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
@@ -76,7 +76,7 @@ After implementing the `create` method, we'll be able to call `useForm` hook and
 
 <CreateCreateProductFile />
 
-Now, we'll mount our `CreateProduct` component inside our `<Refine />` component. Let's add the following lines to our `src/App.tsx` file:
+Now, we'll mount our `CreateProduct` component inside our `<Refine />` component. Update your `src/App.tsx` file by adding the following lines::
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -106,7 +106,7 @@ export default function App(): JSX.Element {
 
 We'll be using the `useForm` hook and have form fields for `name`, `description`, `price`, `material` and `category`.
 
-Let's add the following lines to our `src/pages/products/create.tsx` file:
+Update your `src/pages/products/create.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/create.tsx"
 import { useForm } from "@refinedev/core";
@@ -159,7 +159,7 @@ Although we're able to create a record using our `CreateProduct` component, we'r
 
 Our fake API's `products` field requires us to send the `price` as a string with 2 decimal points. So, we need to make sure that the `price` value is in correct format before submitting the form. Also our `category` field requires us to send an object with the `id` property. So, we need to make sure that the `category` value is in correct format before submitting the form.
 
-Let's add the following lines to our `src/pages/products/create.tsx` file:
+Update your `src/pages/products/create.tsx` file by adding the following lines::
 
 ```tsx title="src/pages/products/create.tsx"
 import { useForm } from "@refinedev/core";
@@ -206,7 +206,7 @@ Our fake API has the `categories` entity which we use in our `products` entity a
 
 To handle this relation in our forms, Refine offers a `useSelect` hook. This hook will be used to fetch the data for the relationship and provide us options for the `<select>` element.
 
-Let's add the following lines to our `src/pages/products/create.tsx` file to use `useSelect` and the `<select>` element:
+Update your `src/pages/products/create.tsx` file by adding the following lines to use `useSelect` and the `<select>` element:
 
 ```tsx title="src/pages/products/create.tsx"
 // highlight-next-line
@@ -265,7 +265,7 @@ Refine allows you to use different types of relationships in your forms, tables 
 
 Now we've learned how to use the `useForm` hook to create a record. Let's refactor our `EditProduct` component to use the `useForm` hook to update a record.
 
-Let's start with mounting our `EditProduct` component inside our `<Refine />` component. Let's update our `src/App.tsx` file with the following lines:
+Let's start with mounting our `EditProduct` component inside our `<Refine />` component. Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -306,7 +306,7 @@ In the extensions of the `useForm` hook, this is handled automatically. To learn
 
 :::
 
-Let's update our `src/pages/products/edit.tsx` file with the following lines:
+Update your `src/pages/products/edit.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/products/edit.tsx"
 import { useForm, useSelect } from "@refinedev/core";

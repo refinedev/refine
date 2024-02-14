@@ -54,7 +54,7 @@ Let's start by creating a new file called `src/pages/categories/list.tsx` file.
 
 Then let's create a route at `/categories` to render the `ListCategories` component.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -171,7 +171,7 @@ We've mounted the `ListCategories` component to the `/categories` route and adde
 
 Now let's add Inferencer to the `ListCategories` component.
 
-Try to add the following lines to your `src/pages/categories/list.tsx` file:
+Update your `src/pages/categories/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/categories/list.tsx"
 import { AntdInferencer } from "@refinedev/inferencer/antd";

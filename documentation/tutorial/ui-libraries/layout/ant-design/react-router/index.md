@@ -27,7 +27,7 @@ Layout components are a composition of smaller components and they can be custom
 
 Let's change the title of our app with using the `Title` prop of the `<ThemedLayoutV2 />` component and the `<ThemedTitleV2 />` component.
 
-Try to update your `src/App.tsx` file with the following lines:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";

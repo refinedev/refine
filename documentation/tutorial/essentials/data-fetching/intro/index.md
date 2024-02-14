@@ -20,7 +20,7 @@ To see an empty data provider, <FocusOnDataProviderFile>check out the `src/provi
 
 Then, we'll pass our data provider to `<Refine />` component in `src/App.tsx` file with the `dataProvider` prop.
 
-Try to add the following code to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx
 import { Refine, WelcomePage } from "@refinedev/core";

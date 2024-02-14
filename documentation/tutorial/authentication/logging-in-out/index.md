@@ -16,7 +16,7 @@ Our fake REST API requires us to send a `POST` request to `/auth/login` endpoint
 
 We'll also be storing the `token` in the `localStorage` for later use.
 
-Try to add the following lines to your `src/providers/auth-provider.ts` file:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
@@ -71,7 +71,7 @@ After implementing the `login` method, we'll be able to call `useLogin` hook and
 
 Then, we'll mount our `<Login />` component and pass it to the `<Authenticated />` component as the `fallback` prop in our `src/App.tsx` file.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -109,7 +109,7 @@ export default function App(): JSX.Element {
 
 Finally, we'll import `useLogin` hook and use it inside our `Login` component to login our users.
 
-Try to add the following lines to your `src/pages/login.tsx` file:
+Update your `src/pages/login.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/login.tsx"
 import React from "react";
@@ -169,7 +169,7 @@ The `logout` method will be used to logout the user and other related operations
 
 Our fake REST API doesn't require us to send any request to logout the user. We'll just be removing the `token` from the `localStorage`.
 
-Try to add the following lines to your `src/providers/auth-provider.ts` file:
+Update your `src/providers/auth-provider.ts` file by adding the following lines:
 
 ```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
@@ -226,7 +226,7 @@ After implementing the `logout` method, we'll be able to call `useLogout` hook a
 
 Then, we'll mount our `<Header />` component and pass it to the `<Authenticated />` component as children in our `src/App.tsx` file.
 
-Try to add the following lines to your `src/App.tsx` file:
+Update your `src/App.tsx` file by adding the following lines:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
@@ -263,7 +263,7 @@ export default function App(): JSX.Element {
 
 Finally, we'll import `useLogout` hook and use it inside our `Header` component to logout our users.
 
-Try to add the following lines to your `src/components/header.tsx` file:
+Update your `src/components/header.tsx` file by adding the following lines:
 
 ```tsx title="src/components/header.tsx"
 import React from "react";
