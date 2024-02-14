@@ -134,3 +134,46 @@ function App() {
 
 export default App;"
 `;
+
+exports[`antd transformer should transform the file
+----------------------------------------------------
+import { Refine, WelcomePage } from "@refinedev/core";
+
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
+import "@refinedev/antd/dist/reset.css";
+
+function App() {
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <AntdApp>
+                <Refine notificationProvider={useNotificationProvider}>
+                    <WelcomePage />
+                </Refine>
+            </AntdApp>
+        </ConfigProvider>
+    );
+}
+
+export default App;
+---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage } from "@refinedev/core";
+
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
+import "@refinedev/antd/dist/reset.css";
+
+function App() {
+    return (
+        <ConfigProvider theme={RefineThemes.Blue}>
+            <AntdApp>
+                <Refine notificationProvider={useNotificationProvider}>
+                    <WelcomePage />
+                </Refine>
+            </AntdApp>
+        </ConfigProvider>
+    );
+}
+
+export default App;"
+`;
