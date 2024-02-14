@@ -9,6 +9,7 @@ import {
     JSXIdentifier,
 } from "jscodeshift";
 import decamelize from "decamelize";
+import { wrapElement } from "@utils/codeshift";
 
 export const parser = "tsx";
 
@@ -66,13 +67,7 @@ export default async function transformer(file: FileInfo, api: API) {
         const openerElements = j(funcDec).find(j.JSXElement).at(0);
 
         openerElements.forEach((openerElement) => {
-            const routerElement = j.jsxElement(
-                j.jsxOpeningElement(j.jsxIdentifier("BrowserRouter"), []),
-                j.jsxClosingElement(j.jsxIdentifier("BrowserRouter")),
-                [openerElement.node],
-            );
-
-            j(openerElement).replaceWith(routerElement);
+            wrapElement(j, openerElement, "BrowserRouter");
         });
     });
 

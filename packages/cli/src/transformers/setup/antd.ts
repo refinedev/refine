@@ -1,3 +1,4 @@
+import { wrapElement } from "@utils/codeshift";
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 import execa from "execa";
 import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
@@ -55,24 +56,14 @@ export default async function transformer(file: FileInfo, api: API) {
             ),
         );
 
-        const antdApp = j.jsxElement(
-            j.jsxOpeningElement(j.jsxIdentifier("AntdApp"), []),
-            j.jsxClosingElement(j.jsxIdentifier("AntdApp")),
-            [element.value],
-        );
+        const antdApp = wrapElement(j, element, "AntdApp");
 
-        const configProvider = j.jsxElement(
-            j.jsxOpeningElement(j.jsxIdentifier("ConfigProvider"), [
-                j.jsxAttribute(
-                    j.jsxIdentifier("theme"),
-                    j.jsxExpressionContainer(j.identifier("RefineThemes.Blue")),
-                ),
-            ]),
-            j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
-            [antdApp],
-        );
-
-        j(element).replaceWith(configProvider);
+        wrapElement(j, antdApp, "ConfigProvider", [
+            j.jsxAttribute(
+                j.jsxIdentifier("theme"),
+                j.jsxExpressionContainer(j.identifier("RefineThemes.Blue")),
+            ),
+        ]);
     });
 
     const routesElement = source.find(j.JSXElement, {
