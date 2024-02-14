@@ -2,4 +2,4 @@
 "@refinedev/core": patch
 ---
 
-chore: update WelcomePage links.
+chore: update `<WelcomePage />` links.
