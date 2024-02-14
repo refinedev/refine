@@ -2,8 +2,8 @@
 id: deploy-project
 title: 6. Deploy your app to the web
 tutorial:
-    prev: tutorial/getting-started/store-your-repository
-    next: tutorial/understanding-dataprovider/index
+  prev: 3.xx.xx/tutorial/getting-started/store-your-repository
+  next: 3.xx.xx/tutorial/understanding-dataprovider/index
 ---
 
 To make your app accessible to the public, you can use a hosting service to build and deploy your site live on the web. In this tutorial, we will use Netlify, but you are welcome to choose your preferred hosting service.

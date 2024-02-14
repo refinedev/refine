@@ -14,9 +14,9 @@ To learn more about the supported data providers, refer to the [Supported Data P
 
 We'll be implementing each method one-by-one, ensuring thorough coverage of all details. We'll use `fetch` for API requests, but you're free to choose any library.
 
-First, we'll create a `src/data-provider.ts` file in our project, which will contain all the methods we need to implement for our data provider.
+First, we'll create a `src/providers/data-provider.ts` file in our project, which will contain all the methods we need to implement for our data provider.
 
-To see an empty data provider, <FocusOnDataProviderFile>check out the `data-provider.ts`</FocusOnDataProviderFile> in the right panel.
+To see an empty data provider, <FocusOnDataProviderFile>check out the `src/providers/data-provider.ts`</FocusOnDataProviderFile> in the right panel.
 
 Then, we'll pass our data provider to `<Refine />` component in `src/App.tsx` file with the `dataProvider` prop.
 
@@ -26,7 +26,7 @@ Try to add the following code to your `src/App.tsx` file:
 // We're also removing the `<WelcomePage />` component from the file.
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
 export default function App(): JSX.Element {
   return <Refine dataProvider={dataProvider}></Refine>;

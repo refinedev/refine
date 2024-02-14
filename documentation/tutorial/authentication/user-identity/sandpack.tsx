@@ -112,10 +112,10 @@ export const AddGetIdentityMethodToAuthProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/auth-provider.ts",
+                    "/src/providers/auth-provider.ts",
                     AuthProviderTsxWithGetIdentityMethod,
                 );
-                sandpack.setActiveFile("/auth-provider.ts");
+                sandpack.setActiveFile("/src/providers/auth-provider.ts");
             }}
         />
     );
@@ -128,10 +128,10 @@ export const AddUseGetIdentityToHeaderComponent = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/header.tsx",
+                    "src/components/header.tsx",
                     HeaderComponentWithUseGetIdentity,
                 );
-                sandpack.setActiveFile("/header.tsx");
+                sandpack.setActiveFile("src/components/header.tsx");
             }}
         />
     );
@@ -141,10 +141,10 @@ export const AddUseGetIdentityToHeaderComponent = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "auth-provider.ts": {
+    "src/providers/auth-provider.ts": {
         code: AuthProviderTsxWithGetIdentityMethod,
     },
-    "header.tsx": {
+    "src/components/header.tsx": {
         code: HeaderComponentWithUseGetIdentity,
         active: true,
     },

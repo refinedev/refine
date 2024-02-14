@@ -23,12 +23,12 @@ Let's start with mounting our `<ListProducts />` in our `/src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -49,9 +49,9 @@ export default function App(): JSX.Element {
 
 We'll be using the `useTable` hook in our `<ListProducts />` component and add fields `id`, `name`, `category`, `material` and `price`.
 
-Let's add the following lines to our `src/list-products.tsx` file:
+Let's add the following lines to our `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
 import { useTable } from "@refinedev/core";
 
@@ -110,7 +110,7 @@ Notice that we're now only displaying the `category.id` in our table. Similar to
 
 Let's update our code to use `useMany` hook to fetch the categories in the table and display the `category.title` instead of `category.id`:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
 import { useTable, useMany } from "@refinedev/core";
 
@@ -186,7 +186,7 @@ If `getMany` method is not implemented in the data provider, Refine will automat
 
 Our fake API supports fetching multiple records at once by passing multiple ids to the url like; `/products?id=1&id=2&id=3`. Let's add the `getMany` method to our data provider:
 
-```tsx title="src/data-provider.ts"
+```tsx title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -243,7 +243,7 @@ Our fake API sends the total number of records in the `X-Total-Count` header.
 
 Let's update our `getList` method to return the `total` value:
 
-```tsx title="src/data-provider.ts"
+```tsx title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -313,7 +313,7 @@ We'll use the `current`, `setCurrent` and `pageCount` values from the `useTable`
 
 Let's update our `<ListProducts />` component to display a simple pagination under the table:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
@@ -426,7 +426,7 @@ As the last step, we'll implement sorters in our table which will allow us to so
 
 Let's update our `<ListProducts />` component to allow sorting by clicking on the table headers and display a visual indicator for the sorters:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {

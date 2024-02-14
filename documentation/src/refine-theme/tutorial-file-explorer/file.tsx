@@ -59,7 +59,7 @@ export const File: React.FC<Props> = ({
             )}
             data-active={active}
             onClick={onClickButton}
-            style={{ paddingLeft: 18 * depth + 4 + "px" }}
+            style={{ paddingLeft: 9 * depth + 3 + "px" }}
             title={fileName}
             type="button"
         >

@@ -202,8 +202,11 @@ export const AddLinksToHeader = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/header.tsx", HeaderWithLinks);
-                sandpack.setActiveFile("/header.tsx");
+                sandpack.updateFile(
+                    "src/components/header.tsx",
+                    HeaderWithLinks,
+                );
+                sandpack.setActiveFile("src/components/header.tsx");
             }}
         />
     );
@@ -216,10 +219,10 @@ export const AddShowAndEditButtonsToListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithNavigation,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -229,11 +232,11 @@ export const AddShowAndEditButtonsToListProducts = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "list-products.tsx": {
+    "src/pages/products/list.tsx": {
         code: ListProductsWithNavigation,
         active: true,
     },
-    "header.tsx": {
+    "src/components/header.tsx": {
         code: HeaderWithLinks,
     },
 };

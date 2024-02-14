@@ -22,7 +22,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 const UpdatedAppTsxCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
 export default function App(): JSX.Element {
   return <Refine dataProvider={dataProvider}></Refine>;
@@ -60,7 +60,7 @@ export const FocusOnDataProviderFile = ({
     return (
         <span
             onClick={() => {
-                sandpack.openFile("/data-provider.ts");
+                sandpack.openFile("/src/providers/data-provider.ts");
             }}
             className={clsx(
                 "cursor-pointer",
@@ -80,8 +80,8 @@ export const AddDataProviderToRefine = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("App.tsx", UpdatedAppTsxCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", UpdatedAppTsxCode);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -89,18 +89,18 @@ export const AddDataProviderToRefine = () => {
 
 export const files = {
     ...initialFiles,
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderTsCode,
     },
 };
 
 export const finalFiles = {
     ...removeActiveFromFiles(files),
-    "App.tsx": {
+    "src/App.tsx": {
         code: UpdatedAppTsxCode,
         active: true,
     },
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderTsCode,
     },
 };

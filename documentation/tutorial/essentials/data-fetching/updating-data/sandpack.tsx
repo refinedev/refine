@@ -52,6 +52,7 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
   getList: () => { throw new Error("Not implemented"); },
   create: () => { throw new Error("Not implemented"); },
   deleteOne: () => { throw new Error("Not implemented"); },
@@ -112,11 +113,11 @@ export const EditProduct = () => {
 const AppTsxWithEditProductCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
+import { ShowProduct } from "./pages/products/show";
 // highlight-next-line
-import { EditProduct } from "./edit-product";
+import { EditProduct } from "./pages/products/edit";
 
 export default function App(): JSX.Element {
   return (
@@ -138,10 +139,10 @@ export const AddUpdateMethod = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithUpdateMethodTsCode,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -154,14 +155,14 @@ export const CreateEditProductFile = () => {
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "/edit-product.tsx": {
+                    "src/pages/products/edit.tsx": {
                         code: BaseEditProductTsxCode,
                     },
                 });
-                sandpack.openFile("/edit-product.tsx");
-                sandpack.setActiveFile("/edit-product.tsx");
+                sandpack.openFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("src/pages/products/edit.tsx");
             }}
-            name="edit-product.tsx"
+            name="src/pages/products/edit.tsx"
         />
     );
 };
@@ -173,10 +174,10 @@ export const AddUseUpdateToEditProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/edit-product.tsx",
+                    "src/pages/products/edit.tsx",
                     EditProductWithUseUpdateTsxCode,
                 );
-                sandpack.setActiveFile("/edit-product.tsx");
+                sandpack.setActiveFile("src/pages/products/edit.tsx");
             }}
         />
     );
@@ -188,8 +189,8 @@ export const AddEditProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithEditProductCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithEditProductCode);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -199,13 +200,13 @@ export const AddEditProductToAppTsx = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithEditProductCode,
     },
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderWithUpdateMethodTsCode,
     },
-    "edit-product.tsx": {
+    "src/pages/products/edit.tsx": {
         code: EditProductWithUseUpdateTsxCode,
         active: true,
     },

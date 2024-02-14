@@ -41,13 +41,13 @@ export const authProvider: AuthProvider = {
 const AppTsxWithAuthProvider = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -91,13 +91,13 @@ export const authProvider: AuthProvider = {
 const AppTsxWithAuthenticatedComponent = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -130,14 +130,14 @@ export const CreateAuthProviderFile = () => {
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "/auth-provider.ts": {
+                    "/src/providers/auth-provider.ts": {
                         code: AuthProviderTsxCode,
                     },
                 });
-                sandpack.openFile("/auth-provider.ts");
-                sandpack.setActiveFile("/auth-provider.ts");
+                sandpack.openFile("/src/providers/auth-provider.ts");
+                sandpack.setActiveFile("/src/providers/auth-provider.ts");
             }}
-            name="auth-provider.ts"
+            name="src/providers/auth-provider.ts"
         />
     );
 };
@@ -148,8 +148,8 @@ export const AddAuthProviderToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithAuthProvider);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithAuthProvider);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -162,10 +162,10 @@ export const AddCheckMethodToAuthProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/auth-provider.ts",
+                    "/src/providers/auth-provider.ts",
                     AuthProviderTsxWithCheckMethod,
                 );
-                sandpack.setActiveFile("/auth-provider.ts");
+                sandpack.setActiveFile("/src/providers/auth-provider.ts");
             }}
         />
     );
@@ -178,10 +178,10 @@ export const AddAuthenticatedComponentToAppTsx = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/App.tsx",
+                    "src/App.tsx",
                     AppTsxWithAuthenticatedComponent,
                 );
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -191,11 +191,11 @@ export const AddAuthenticatedComponentToAppTsx = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithAuthenticatedComponent,
         active: true,
     },
-    "auth-provider.ts": {
+    "src/providers/auth-provider.ts": {
         code: AuthProviderTsxWithCheckMethod,
     },
 };

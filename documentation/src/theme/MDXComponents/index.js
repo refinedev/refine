@@ -27,6 +27,7 @@ import { Table, FullTable } from "@site/src/refine-theme/common-table";
 import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
 import { InstallPackagesCommand } from "@site/src/partials/npm-scripts/install-packages-commands";
 import { TutorialConditional } from "@site/src/refine-theme/tutorial-conditional";
+import { VideoInView } from "@site/src/components/video-in-view";
 
 export default {
     ...MDXComponents,
@@ -58,4 +59,5 @@ export default {
     InstallPackagesCommand: InstallPackagesCommand,
     FullTable: FullTable,
     TutorialConditional,
+    VideoInView: VideoInView,
 };

@@ -114,7 +114,7 @@ export default App;
 
 #### Resource
 
-A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+A [resources](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
 To create a resource; define our resources and their action paths. This will inform **Refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.

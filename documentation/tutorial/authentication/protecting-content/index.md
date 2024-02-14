@@ -16,7 +16,7 @@ To learn more about the supported auth providers, refer to the [Supported Authen
 
 We'll be implementing each method one-by-one, ensuring thorough coverage of all details.
 
-First, we'll create a `src/auth-provider.ts` file in our project, which will contain all the methods we need to implement for our auth provider.
+First, we'll create a `src/providers/auth-provider.ts` file in our project, which will contain all the methods we need to implement for our auth provider.
 
 <CreateAuthProviderFile />
 
@@ -27,14 +27,14 @@ Try to add the following code to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 // highlight-next-line
-import { authProvider } from "./auth-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (
@@ -62,9 +62,9 @@ If the user is authenticated, the object should contain `authenticated: true` pr
 
 We'll obtain an access token through the `login` method from our API and store it inside the local storage. Now let's check if the token exists in the local storage or not.
 
-Try to add the following lines to your `src/auth-provider.ts` file:
+Try to add the following lines to your `src/providers/auth-provider.ts` file:
 
-```ts title="src/auth-provider.ts"
+```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -105,13 +105,13 @@ Try to add the following lines to your `src/App.tsx` file:
 // highlight-next-line
 import { Refine, Authenticated } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 export default function App(): JSX.Element {
   return (

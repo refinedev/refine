@@ -24,9 +24,9 @@ Our fake API has `products` entity and expects us to list records using the `/pr
 
 To make the implementation process easier, we'll start by implementing the `getList` method without pagination, sorting, or filtering, and then gradually add these features to our implementation.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -60,9 +60,9 @@ After implementing the `getList` method, we'll be able to call `useList` hook an
 
 Then, we'll use the `useList` hook inside our `ListProducts` to fetch a list of records of `products` entity from our API.
 
-Try to add the following lines to your `src/list-products.tsx` file:
+Try to add the following lines to your `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
 import { useList } from "@refinedev/core";
 
@@ -106,12 +106,12 @@ Try to add the following lines to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
 // highlight-next-line
-import { ListProducts } from "./list-products";
+import { ListProducts } from "./pages/products/list";
 
 export default function App(): JSX.Element {
   return (
@@ -135,9 +135,9 @@ At this point, we've listed all the products in our API, but we're not able to p
 
 Our fake API supports pagination through the `_start` and `_end` query parameters. `_start` is the index of the first record we want to fetch and `_end` is the index of the last record we want to fetch. So, we'll be using the `pagination` property to calculate the `_start` and `_end` query parameters.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -172,9 +172,9 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to paginate the list of products. Let's add pagination to our `ListProducts` component.
 
-Try to add the following lines to your `src/list-products.tsx` file:
+Try to add the following lines to your `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
@@ -210,9 +210,9 @@ Our fake API requires multiple sorters and orders to be passed with a comma sepa
 
 :::
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -252,9 +252,9 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to sort the list of products. Let's add sorting to our `ListProducts` component.
 
-Try to add the following lines to your `src/list-products.tsx` file:
+Try to add the following lines to your `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
@@ -295,9 +295,9 @@ We've added sorting to our `getList` method. But, we're not able to filter the l
 
 :::
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -346,9 +346,9 @@ export const dataProvider: DataProvider = {
 
 Now, we'll be able to filter the list of products. Let's add filtering to our `ListProducts` component.
 
-Try to add the following lines to your `src/list-products.tsx` file:
+Try to add the following lines to your `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {

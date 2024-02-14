@@ -32,15 +32,15 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./login";
+import { Login } from "./pages/login";
 
 import "antd/dist/reset.css";
 
@@ -122,8 +122,11 @@ export const AddNotificationProviderToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithNotificationProvider);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile(
+                    "src/App.tsx",
+                    AppTsxWithNotificationProvider,
+                );
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -133,7 +136,7 @@ export const AddNotificationProviderToApp = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithNotificationProvider,
         active: true,
     },

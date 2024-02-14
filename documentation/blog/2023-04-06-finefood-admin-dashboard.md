@@ -131,7 +131,7 @@ However, in building our food delivery React admin dashboard application, we wil
 
 ## Adding the Data Provider
 
-A [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
+A [`dataProvider`](https://refine.dev/docs/data/data-provider) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
 
 ### The jsonServerDataProvider Provider in Refine
 
@@ -170,7 +170,7 @@ In the course of the tutorial, we will be using Refine's demo finefoodsAPI (http
 
 ## Adding the Auth provider
 
-An [Auth Provider](https://refine.dev/docs/tutorial/understanding-authprovider/index/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
+An [Auth Provider](https://refine.dev/docs/authentication/auth-provider/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
 
 ```tsx
 import { AuthProvider } from "@refinedev/core";
@@ -1861,7 +1861,7 @@ export const DashboardPage: React.FC = () => {
 
 ## Add Dashboard Page and resource to the Refine component
 
-We will add the Dashboard page as a route and [resource](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
+We will add the Dashboard page as a route and [resource](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
 
 ```tsx title="src/App.tsx"
 import { Authenticated, ErrorComponent, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
@@ -2005,7 +2005,7 @@ Lets explain the block of code we just added:
 ```
 
 A resource object may include properties that define the resource's `name`, action routes(`list`), and additional `metadata` such as label, icon, audit log settings, sider menu nesting, and so on.
-To read more on resources, view [here](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource).
+To read more on resources, view [here](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource).
 
 - After Adding a resource, we specify the route that the resource will be linked to which is shown below:
 

@@ -226,10 +226,10 @@ export const AddCustomRedirectToEdit = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/edit-product.tsx",
+                    "src/pages/products/edit.tsx",
                     EditProductWithCustomRedirect,
                 );
-                sandpack.setActiveFile("/edit-product.tsx");
+                sandpack.setActiveFile("src/pages/products/edit.tsx");
             }}
         />
     );
@@ -242,10 +242,10 @@ export const AddCustomRedirectToCreate = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/create-product.tsx",
+                    "src/pages/products/create.tsx",
                     CreateProductWithCustomRedirect,
                 );
-                sandpack.setActiveFile("/create-product.tsx");
+                sandpack.setActiveFile("src/pages/products/create.tsx");
             }}
         />
     );
@@ -258,10 +258,10 @@ export const AddRedirectsToAuthProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/auth-provider.ts",
+                    "/src/providers/auth-provider.ts",
                     AuthProviderWithRedirects,
                 );
-                sandpack.setActiveFile("/auth-provider.ts");
+                sandpack.setActiveFile("/src/providers/auth-provider.ts");
             }}
         />
     );
@@ -271,13 +271,13 @@ export const AddRedirectsToAuthProvider = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "edit-product.tsx": {
+    "src/pages/products/edit.tsx": {
         code: EditProductWithCustomRedirect,
     },
-    "create-product.tsx": {
+    "src/pages/products/create.tsx": {
         code: CreateProductWithCustomRedirect,
     },
-    "auth-provider.ts": {
+    "src/providers/auth-provider.ts": {
         code: AuthProviderWithRedirects,
         active: true,
     },

@@ -16,9 +16,9 @@ We'll start by refactoring our `<ListProducts />` component to use the `useTable
 
 `useTable` will give us the same functionality as the core version but will also return the `tableProps` that we can use to pass to the `<Table />` component with ease.
 
-Try to update your `src/list-products.tsx` file with the following lines:
+Try to update your `src/pages/products/list.tsx` file with the following lines:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useMany } from "@refinedev/core";
 // highlight-next-line
 import { useTable, EditButton, ShowButton } from "@refinedev/antd";
@@ -104,9 +104,9 @@ Let's integrate the Refine's sorters with the Ant Design's `<Table />` component
 
 We'll add sorting to the `ID` and the `Name` columns.
 
-Try to update your `src/list-products.tsx` file with the following lines:
+Try to update your `src/pages/products/list.tsx` file with the following lines:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useMany } from "@refinedev/core";
 // highlight-next-line
 import {
@@ -189,9 +189,9 @@ Let's integrate the Refine's filters with the Ant Design's `<Table />` component
 
 We'll be using the `<Input />` component to create a text filter for the `Name` column and the `<Select />` component with `useSelect` to create a select filter for the `Category` column.
 
-Try to update your `src/list-products.tsx` file with the following lines:
+Try to update your `src/pages/products/list.tsx` file with the following lines:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 // highlight-next-line
 import { useMany, getDefaultFilter } from "@refinedev/core";
 import {
@@ -314,9 +314,9 @@ Next, we'll refactor our `<EditProduct />` and `<CreateProduct />` components to
 
 `useForm` will give us the same functionality as the core version but will also return the `formProps` that we can use to pass to the `<Form />` component with ease.
 
-Try to update your `src/edit-product.tsx` file with the following lines:
+Try to update your `src/pages/products/edit.tsx` file with the following lines:
 
-```tsx title="src/edit-product.tsx"
+```tsx title="src/pages/products/edit.tsx"
 // highlight-next-line
 import { useForm, useSelect, SaveButton } from "@refinedev/antd";
 
@@ -367,9 +367,9 @@ Notice that we've also used the `useSelect` hook with `<Select />` component to 
 
 Now let's do the same for the `CreateProduct` component. These components will use mostly the same logic except the edit action will provide default values for the fields.
 
-Try to update your `src/create-product.tsx` file with the following lines:
+Try to update your `src/pages/products/create.tsx` file with the following lines:
 
-```tsx title="src/create-product.tsx"
+```tsx title="src/pages/products/create.tsx"
 // highlight-next-line
 import { useForm, useSelect, SaveButton } from "@refinedev/antd";
 
@@ -433,9 +433,9 @@ List of available field components:
 
 We'll be using the `<TextField />`, `<NumberField />` and `<MarkdownField />` components to represent the fields of the products properly.
 
-Try to update your `src/show-product.tsx` file with the following lines:
+Try to update your `src/pages/products/show.tsx` file with the following lines:
 
-```tsx title="src/show-product.tsx"
+```tsx title="src/pages/products/show.tsx"
 import { useShow, useOne } from "@refinedev/core";
 // highlight-next-line
 import { TextField, NumberField, MarkdownField } from "@refinedev/antd";

@@ -37,6 +37,7 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
   update: () => { throw new Error("Not implemented"); },
   getList: () => { throw new Error("Not implemented"); },
   create: () => { throw new Error("Not implemented"); },
@@ -68,8 +69,8 @@ export const ShowProduct = () => {
 const AppTsxWithShowProductCode = /* tsx */ `
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { ShowProduct } from "./show-product";
+import { dataProvider } from "./providers/data-provider";
+import { ShowProduct } from "./pages/products/show";
 
 export default function App(): JSX.Element {
   return (
@@ -89,10 +90,10 @@ export const AddGetOneMethod = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithGetOneMethodTsCode,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -105,14 +106,14 @@ export const CreateShowProductFile = () => {
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "/show-product.tsx": {
+                    "src/pages/products/show.tsx": {
                         code: BaseShowProductTsxCode,
                     },
                 });
-                sandpack.openFile("/show-product.tsx");
-                sandpack.setActiveFile("/show-product.tsx");
+                sandpack.openFile("src/pages/products/show.tsx");
+                sandpack.setActiveFile("src/pages/products/show.tsx");
             }}
-            name="show-product.tsx"
+            name="src/pages/products/show.tsx"
         />
     );
 };
@@ -124,10 +125,10 @@ export const AddUseOneToShowProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/show-product.tsx",
+                    "src/pages/products/show.tsx",
                     ShowProductWithUseOneTsxCode,
                 );
-                sandpack.setActiveFile("/show-product.tsx");
+                sandpack.setActiveFile("src/pages/products/show.tsx");
             }}
         />
     );
@@ -139,8 +140,8 @@ export const AddShowProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("/App.tsx", AppTsxWithShowProductCode);
-                sandpack.setActiveFile("/App.tsx");
+                sandpack.updateFile("src/App.tsx", AppTsxWithShowProductCode);
+                sandpack.setActiveFile("src/App.tsx");
             }}
         />
     );
@@ -150,13 +151,13 @@ export const AddShowProductToAppTsx = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "App.tsx": {
+    "src/App.tsx": {
         code: AppTsxWithShowProductCode,
     },
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderWithGetOneMethodTsCode,
     },
-    "show-product.tsx": {
+    "src/pages/products/show.tsx": {
         code: ShowProductWithUseOneTsxCode,
         active: true,
     },

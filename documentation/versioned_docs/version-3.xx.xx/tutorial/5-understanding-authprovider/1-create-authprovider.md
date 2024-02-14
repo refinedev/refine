@@ -2,8 +2,8 @@
 id: create-authprovider
 title: 2. Create Auth Provider From Scratch
 tutorial:
-  prev: tutorial/understanding-authprovider/index
-  next: tutorial/understanding-authprovider/{preferredUI}/auth-pages
+  prev: 3.xx.xx/tutorial/understanding-authprovider/index
+  next: 3.xx.xx/tutorial/understanding-authprovider/{preferredUI}/auth-pages
 ---
 
 This section will show you how to create an auth provider from scratch. We'll use mock data to be able to focus on the auth provider methods. When you understand the logic of auth provider, you can easly integrate third-party authentication services or your own custom auth provider which includes many possible strategies like JWT, OAuth, etc.

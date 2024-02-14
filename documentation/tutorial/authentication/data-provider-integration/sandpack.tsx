@@ -127,6 +127,8 @@ export const dataProvider: DataProvider = {
 
     return { data };
   },
+  getApiUrl: () => API_URL,
+  deleteOne: () => { throw new Error("Not implemented"); },
   /* ... */
 };
 `.trim();
@@ -328,10 +330,10 @@ export const AddAuthenticationToDataProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/data-provider.ts",
+                    "/src/providers/data-provider.ts",
                     DataProviderWithAuthentication,
                 );
-                sandpack.setActiveFile("/data-provider.ts");
+                sandpack.setActiveFile("/src/providers/data-provider.ts");
             }}
         />
     );
@@ -344,10 +346,10 @@ export const AddProtectedProductsResourceToListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithProtectedProductsResource,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -360,10 +362,10 @@ export const AddOnErrorMethodToAuthProvider = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/auth-provider.ts",
+                    "/src/providers/auth-provider.ts",
                     AuthProviderWithOnErrorMethod,
                 );
-                sandpack.setActiveFile("/auth-provider.ts");
+                sandpack.setActiveFile("/src/providers/auth-provider.ts");
             }}
         />
     );
@@ -373,14 +375,14 @@ export const AddOnErrorMethodToAuthProvider = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "data-provider.ts": {
+    "src/providers/data-provider.ts": {
         code: DataProviderWithAuthentication,
     },
-    "list-products.tsx": {
+    "src/pages/products/list.tsx": {
         code: ListProductsWithProtectedProductsResource,
         active: true,
     },
-    "auth-provider.ts": {
+    "src/providers/auth-provider.ts": {
         code: AuthProviderWithOnErrorMethod,
     },
 };

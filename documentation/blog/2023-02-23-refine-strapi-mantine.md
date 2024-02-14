@@ -254,7 +254,7 @@ export * from "./list";
 
 Now we are ready to start connecting to our API by adding a resource to our application
 
-[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/tutorial/understanding-resources/index/)
+[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept)
 
 Finally, replace the `src/App.tsx` file with the code below:
 
@@ -440,7 +440,7 @@ As highlighted in the previous section, our Strapi API has `posts` and `categori
 
 [Refer to documentation for more info about relation populate.](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
-[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/tutorial/adding-crud-pages/mantine/index/#handling-relationships)
+[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/guides-concepts/data-fetching)
 
 Therefore, for our data provider to return the categories for each post, we need to specify using the `populate` field of the `meta` property in the object we pass to the `useTable` hook.
 

@@ -21,9 +21,9 @@ The `update` method accepts `resource`, `id`, `variables` and `meta` properties.
 
 `products` entity of our fake API expects us to update a record using the `/products/:id` endpoint with a `PATCH` request. So, we'll be using the `resource`, `id` and `variables` properties to make our request.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -74,9 +74,9 @@ Initially, we'll include a `useOne` hook call in our `EditProduct` component to 
 
 Then, we'll use the `useUpdate` hook inside our `EditProduct` to update a single record of `products` entity from our API.
 
-Try to add the following lines to your `src/edit-product.tsx` file:
+Try to add the following lines to your `src/pages/products/edit.tsx` file:
 
-```tsx title="src/edit-product.tsx"
+```tsx title="src/pages/products/edit.tsx"
 // highlight-next-line
 import { useOne, useUpdate } from "@refinedev/core";
 
@@ -120,11 +120,11 @@ Try to add the following lines to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
+import { dataProvider } from "./providers/data-provider";
 
-import { ShowProduct } from "./show-product";
+import { ShowProduct } from "./pages/products/show";
 // highlight-next-line
-import { EditProduct } from "./edit-product";
+import { EditProduct } from "./pages/products/edit";
 
 export default function App(): JSX.Element {
   return (

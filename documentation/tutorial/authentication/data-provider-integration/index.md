@@ -18,9 +18,9 @@ Our fake REST API has some resources that require authentication to access them.
 
 Let's replace our data provider's `fetch` method with a custom wrapper that adds the `Authorization` header to the requests. This way, we'll be able to protect our resources from unauthenticated users and handle this step in a single place.
 
-Try to add the following lines to your `src/data-provider.ts` file:
+Try to add the following lines to your `src/providers/data-provider.ts` file:
 
-```ts title="src/data-provider.ts"
+```ts title="src/providers/data-provider.ts"
 import type { DataProvider } from "@refinedev/core";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -143,9 +143,9 @@ Our fake REST API also has a resource called `protected-products` that is same a
 
 Let's switch to using `protected-resources` in our `<ListProducts />` component.
 
-Try to add the following lines to your `src/list-products.tsx` file:
+Try to add the following lines to your `src/pages/products/list.tsx` file:
 
-```tsx title="src/list-products.tsx"
+```tsx title="src/pages/products/list.tsx"
 import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
@@ -206,9 +206,9 @@ By using `onError` method, we'll be able to handle cases such as expired and inv
 
 Let's add the `onError` method to our auth provider and handle the `401 Unauthorized` error.
 
-Try to add the following lines to your `src/auth-provider.ts` file:
+Try to add the following lines to your `src/providers/auth-provider.ts` file:
 
-```ts title="src/auth-provider.ts"
+```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -250,7 +250,7 @@ Now we have our authentication mechanism integrated with Refine, additional meth
 
 All of the built-in data providers of Refine have the ability to customize the client/fetcher instance. They can be used to handle authentication in the same way as we did in this tutorial without requiring a custom data provider.
 
-In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router and Next.js.
+In the next units, we'll start learning about the routing in Refine and how to integrate routing solutions such as React Router.
 
 Current way of handling authentication can be refactored but the concepts will remain the same.
 

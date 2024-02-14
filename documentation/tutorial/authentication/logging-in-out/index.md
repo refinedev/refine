@@ -16,9 +16,9 @@ Our fake REST API requires us to send a `POST` request to `/auth/login` endpoint
 
 We'll also be storing the `token` in the `localStorage` for later use.
 
-Try to add the following lines to your `src/auth-provider.ts` file:
+Try to add the following lines to your `src/providers/auth-provider.ts` file:
 
-```ts title="src/auth-provider.ts"
+```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -76,16 +76,16 @@ Try to add the following lines to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
 // highlight-next-line
-import { Login } from "./login";
+import { Login } from "./pages/login";
 
 export default function App(): JSX.Element {
   return (
@@ -109,9 +109,9 @@ export default function App(): JSX.Element {
 
 Finally, we'll import `useLogin` hook and use it inside our `Login` component to login our users.
 
-Try to add the following lines to your `src/login.tsx` file:
+Try to add the following lines to your `src/pages/login.tsx` file:
 
-```tsx title="src/login.tsx"
+```tsx title="src/pages/login.tsx"
 import React from "react";
 // highlight-next-line
 import { useLogin } from "@refinedev/core";
@@ -169,9 +169,9 @@ The `logout` method will be used to logout the user and other related operations
 
 Our fake REST API doesn't require us to send any request to logout the user. We'll just be removing the `token` from the `localStorage`.
 
-Try to add the following lines to your `src/auth-provider.ts` file:
+Try to add the following lines to your `src/providers/auth-provider.ts` file:
 
-```ts title="src/auth-provider.ts"
+```ts title="src/providers/auth-provider.ts"
 import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
@@ -231,17 +231,17 @@ Try to add the following lines to your `src/App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 
-import { dataProvider } from "./data-provider";
-import { authProvider } from "./auth-provider";
+import { dataProvider } from "./providers/data-provider";
+import { authProvider } from "./providers/auth-provider";
 
-import { ShowProduct } from "./show-product";
-import { EditProduct } from "./edit-product";
-import { ListProducts } from "./list-products";
-import { CreateProduct } from "./create-product";
+import { ShowProduct } from "./pages/products/show";
+import { EditProduct } from "./pages/products/edit";
+import { ListProducts } from "./pages/products/list";
+import { CreateProduct } from "./pages/products/create";
 
-import { Login } from "./login";
+import { Login } from "./pages/login";
 // highlight-next-line
-import { Header } from "./header";
+import { Header } from "./components/header";
 
 export default function App(): JSX.Element {
   return (
@@ -263,9 +263,9 @@ export default function App(): JSX.Element {
 
 Finally, we'll import `useLogout` hook and use it inside our `Header` component to logout our users.
 
-Try to add the following lines to your `src/header.tsx` file:
+Try to add the following lines to your `src/components/header.tsx` file:
 
-```tsx title="src/header.tsx"
+```tsx title="src/components/header.tsx"
 import React from "react";
 // highlight-next-line
 import { useLogout } from "@refinedev/core";

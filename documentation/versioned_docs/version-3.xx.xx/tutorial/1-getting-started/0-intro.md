@@ -2,8 +2,8 @@
 id: index
 title: 1. Intro
 tutorial:
-  prev: tutorial/introduction/select-framework
-  next: tutorial/getting-started/prepare-env
+  prev: 3.xx.xx/tutorial/introduction/select-framework
+  next: 3.xx.xx/tutorial/getting-started/prepare-env
 ---
 
 <UIConditional is="antd">

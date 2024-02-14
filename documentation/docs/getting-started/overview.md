@@ -105,4 +105,4 @@ This means you can use Refine seamlessly in different platforms like React Nativ
 
 👉 Continue with the [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **Refine** project.
 
-👉 Jump directly to the [Tutorial](/docs/tutorial/introduction/index/) to learn Refine by building a full-blown CRUD application.
+👉 Jump directly to the [Tutorial](/tutorial) to learn Refine by building a full-blown CRUD application.

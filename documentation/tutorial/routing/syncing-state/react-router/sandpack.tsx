@@ -167,10 +167,10 @@ export const AddLocationSyncToListProducts = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "/list-products.tsx",
+                    "src/pages/products/list.tsx",
                     ListProductsWithSyncWithLocation,
                 );
-                sandpack.setActiveFile("/list-products.tsx");
+                sandpack.setActiveFile("src/pages/products/list.tsx");
             }}
         />
     );
@@ -180,7 +180,7 @@ export const AddLocationSyncToListProducts = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "list-products.tsx": {
+    "src/pages/products/list.tsx": {
         code: ListProductsWithSyncWithLocation,
         active: true,
     },
