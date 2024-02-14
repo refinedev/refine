@@ -10,10 +10,19 @@ import {
 
 export const wrapElement = (
     j: JSCodeshift,
+    source: Collection,
     element: ASTPath<JSXElement>,
     wrapper: string,
     wrapperAttributes: JSXAttribute[] = [],
 ) => {
+    const existingWrapperElement = source.find(j.JSXElement, {
+        openingElement: { name: { name: wrapper } },
+    });
+
+    if (existingWrapperElement.length) {
+        return element;
+    }
+
     const wrapperElement = j.jsxElement(
         j.jsxOpeningElement(j.jsxIdentifier(wrapper), wrapperAttributes),
         j.jsxClosingElement(j.jsxIdentifier(wrapper)),
@@ -27,10 +36,19 @@ export const wrapElement = (
 
 export const wrapChildren = (
     j: JSCodeshift,
+    source: Collection,
     element: ASTPath<JSXElement>,
     wrapper: string,
     wrapperAttributes: JSXAttribute[] = [],
 ) => {
+    const existingWrapperElement = source.find(j.JSXElement, {
+        openingElement: { name: { name: wrapper } },
+    });
+
+    if (existingWrapperElement.length) {
+        return element;
+    }
+
     const wrapperElement = j.jsxElement(
         j.jsxOpeningElement(j.jsxIdentifier(wrapper), wrapperAttributes),
         j.jsxClosingElement(j.jsxIdentifier(wrapper)),

@@ -61,9 +61,9 @@ export default async function transformer(file: FileInfo, api: API) {
             j.jsxExpressionContainer(j.identifier("useNotificationProvider")),
         );
 
-        const antdApp = wrapElement(j, element, "AntdApp");
+        const antdApp = wrapElement(j, source, element, "AntdApp");
 
-        wrapElement(j, antdApp, "ConfigProvider", [
+        wrapElement(j, source, antdApp, "ConfigProvider", [
             j.jsxAttribute(
                 j.jsxIdentifier("theme"),
                 j.jsxExpressionContainer(j.identifier("RefineThemes.Blue")),

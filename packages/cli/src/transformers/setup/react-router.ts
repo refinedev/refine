@@ -5,7 +5,6 @@ import {
     Collection,
     FileInfo,
     JSCodeshift,
-    JSXElement,
     JSXIdentifier,
 } from "jscodeshift";
 import decamelize from "decamelize";
@@ -72,7 +71,7 @@ export default async function transformer(file: FileInfo, api: API) {
         const openerElements = j(funcDec).find(j.JSXElement).at(0);
 
         openerElements.forEach((openerElement) => {
-            wrapElement(j, openerElement, "BrowserRouter");
+            wrapElement(j, source, openerElement, "BrowserRouter");
         });
     });
 
@@ -93,7 +92,7 @@ export default async function transformer(file: FileInfo, api: API) {
             j.jsxExpressionContainer(j.identifier("routerProvider")),
         );
 
-        wrapChildren(j, refineElement, "Routes");
+        wrapChildren(j, source, refineElement, "Routes");
     });
 
     const routesElements = source.find(j.JSXElement, {
@@ -107,47 +106,53 @@ export default async function transformer(file: FileInfo, api: API) {
     routesElements.forEach((routesElement) => {
         let elementCount = 0;
 
-        const newRouteElements: JSXElement[] = [];
+        const newRouteElements = [];
 
-        routesElement.node?.children?.forEach((child) => {
-            if (child.type === "JSXElement") {
-                elementCount++;
-                const firstAttribute =
-                    elementCount === 1
-                        ? j.jsxAttribute(j.jsxIdentifier("index"))
-                        : j.jsxAttribute(
-                              j.jsxIdentifier("path"),
-                              j.stringLiteral(
-                                  `/${decamelize(
-                                      (
-                                          child.openingElement
-                                              .name as JSXIdentifier
-                                      ).name,
-                                      { separator: "-" },
-                                  )}`,
-                              ),
-                          );
-
-                const routeElement = j.jsxElement(
-                    j.jsxOpeningElement(
-                        j.jsxIdentifier("Route"),
-                        [
-                            firstAttribute,
-                            j.jsxAttribute(
-                                j.jsxIdentifier("element"),
-                                j.jsxExpressionContainer(
-                                    j.jsxElement(child.openingElement),
-                                ),
-                                // j.jsxElement((child as JSXElement).openingElement),
-                            ),
-                        ],
-                        true,
-                    ),
+        routesElement.node?.children
+            ?.filter((value) => {
+                return (
+                    value.type === "JSXElement" &&
+                    (value.openingElement.name as any)?.name !== "Route"
                 );
+            })
+            ?.forEach((child) => {
+                if (child.type === "JSXElement") {
+                    elementCount++;
+                    const firstAttribute =
+                        elementCount === 1
+                            ? j.jsxAttribute(j.jsxIdentifier("index"))
+                            : j.jsxAttribute(
+                                  j.jsxIdentifier("path"),
+                                  j.stringLiteral(
+                                      `/${decamelize(
+                                          (
+                                              child.openingElement
+                                                  .name as JSXIdentifier
+                                          ).name,
+                                          { separator: "-" },
+                                      )}`,
+                                  ),
+                              );
 
-                newRouteElements.push(routeElement);
-            }
-        });
+                    const routeElement = j.jsxElement(
+                        j.jsxOpeningElement(
+                            j.jsxIdentifier("Route"),
+                            [
+                                firstAttribute,
+                                j.jsxAttribute(
+                                    j.jsxIdentifier("element"),
+                                    j.jsxExpressionContainer(
+                                        j.jsxElement(child.openingElement),
+                                    ),
+                                ),
+                            ],
+                            true,
+                        ),
+                    );
+
+                    newRouteElements.push(routeElement);
+                }
+            });
 
         addOrUpdateImports(j, source, "@refinedev/core", ["ErrorComponent"]);
 
@@ -173,7 +178,11 @@ export default async function transformer(file: FileInfo, api: API) {
             ),
         );
 
-        newRouteElements.push(errorRoute);
+        if (newRouteElements.length === 0) {
+            newRouteElements.push(...(routesElement.node.children ?? []));
+        } else {
+            newRouteElements.push(errorRoute);
+        }
 
         routesElement.replace(
             j.jsxElement(
