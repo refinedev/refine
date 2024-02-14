@@ -29,6 +29,10 @@ export const getDevDependencies = (): string[] => {
     return Object.keys(packageJson.devDependencies || {});
 };
 
+export const getAllDependencies = (): string[] => {
+    return [...getDependencies(), ...getDependencies()];
+};
+
 export const getScripts = (): Record<string, string> => {
     const packageJson = getPackageJson();
     return packageJson.scripts;
@@ -276,4 +280,23 @@ export const installMissingPackages = async (packages: string[]) => {
     // empty line
     console.log("");
     console.log("");
+};
+
+export const hasIncomatiblePackages = (packages: string[]): boolean => {
+    const allDependencies = getAllDependencies();
+
+    const incompatiblePackages = packages.filter((pkg) =>
+        allDependencies.includes(pkg),
+    );
+
+    if (incompatiblePackages.length > 0) {
+        console.log(
+            `🚨 This feature doesn't support ${incompatiblePackages.join(
+                ", ",
+            )} package.`,
+        );
+        return true;
+    }
+
+    return false;
 };

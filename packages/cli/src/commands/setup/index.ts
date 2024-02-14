@@ -1,6 +1,6 @@
 import { setupAntD } from "@transformers/setup/antd";
 import { setupReactRouter } from "@transformers/setup/react-router";
-import { installMissingPackages } from "@utils/package";
+import { hasIncomatiblePackages, installMissingPackages } from "@utils/package";
 import { Argument, Command } from "commander";
 
 const load = (program: Command) => {
@@ -26,6 +26,8 @@ const action = async (library: string) => {
 };
 
 const setupAntDAction = async () => {
+    if (hasIncomatiblePackages(["@remix-run/react", "next"])) return;
+
     await installMissingPackages(["antd", "@refinedev/antd"]);
 
     console.log("🚀 Setting up Ant Design...");
@@ -36,6 +38,8 @@ const setupAntDAction = async () => {
 };
 
 const setupReactRouterAction = async () => {
+    if (hasIncomatiblePackages(["@remix-run/react", "next"])) return;
+
     await installMissingPackages([
         "react-router-dom",
         "@refinedev/react-router-v6",
