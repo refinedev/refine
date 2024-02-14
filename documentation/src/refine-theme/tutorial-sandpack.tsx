@@ -22,6 +22,7 @@ import {
 
 import { useColorMode } from "@docusaurus/theme-common";
 import { TutorialFileExplorer } from "./tutorial-file-explorer";
+import { motion, AnimatePresence } from "framer-motion";
 
 type SandpackProps = React.ComponentProps<SandpackInternal> & {
     startRoute?: string;
@@ -707,48 +708,18 @@ const LoaderProgress = () => {
                     "bg-gray-300 dark:bg-gray-700",
                     "p-px",
                     "relative",
+                    "overflow-hidden",
                 )}
             >
-                <div
-                    className={clsx(
-                        "-top-px",
-                        "-left-px",
-                        "pt-px",
-                        "absolute",
-                        "w-40",
-                        "h-4",
-                        "overflow-hidden",
-                        "whitespace-nowrap",
-                        "break-keep",
-                        "text-gray-700",
-                        "dark:text-gray-300",
-                        "font-semibold",
-                        "text-[10px]",
-                        "text-center",
-                        "flex",
-                        "justify-center items-center",
-                    )}
-                >
-                    {texts[index]}
-                </div>
-                <div
-                    className={clsx(
-                        "sp-loading-progress",
-                        "h-full",
-                        "rounded-xl",
-                        "bg-refine-react-light-link dark:bg-refine-react-dark-link",
-                        "min-w-[0.75rem]",
-                        "overflow-hidden",
-                        "relative",
-                    )}
-                    style={{
-                        animationDuration: `${duration}ms`,
-                    }}
-                >
-                    <div
+                <AnimatePresence>
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: -16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 16 }}
                         className={clsx(
-                            "-left-0.5",
-                            "-top-0.5",
+                            "-top-px",
+                            "-left-px",
                             "pt-px",
                             "absolute",
                             "w-40",
@@ -756,8 +727,8 @@ const LoaderProgress = () => {
                             "overflow-hidden",
                             "whitespace-nowrap",
                             "break-keep",
-                            "text-gray-300",
-                            "dark:text-gray-700",
+                            "text-gray-800",
+                            "dark:text-gray-200",
                             "font-semibold",
                             "text-[10px]",
                             "text-center",
@@ -766,7 +737,50 @@ const LoaderProgress = () => {
                         )}
                     >
                         {texts[index]}
-                    </div>
+                    </motion.div>
+                </AnimatePresence>
+                <div
+                    className={clsx(
+                        "sp-loading-progress",
+                        "h-full",
+                        "rounded-xl",
+                        "bg-refine-tutorial-green dark:bg-refine-green-alt",
+                        "min-w-[0.75rem]",
+                        "overflow-hidden",
+                        "relative",
+                    )}
+                    style={{
+                        animationDuration: `${duration}ms`,
+                    }}
+                >
+                    <AnimatePresence>
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: -16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 16 }}
+                            className={clsx(
+                                "-left-0.5",
+                                "-top-0.5",
+                                "pt-px",
+                                "absolute",
+                                "w-40",
+                                "h-4",
+                                "overflow-hidden",
+                                "whitespace-nowrap",
+                                "break-keep",
+                                "text-gray-200",
+                                "dark:text-gray-800",
+                                "font-semibold",
+                                "text-[10px]",
+                                "text-center",
+                                "flex",
+                                "justify-center items-center",
+                            )}
+                        >
+                            {texts[index]}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </div>
