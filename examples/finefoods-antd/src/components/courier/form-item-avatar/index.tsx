@@ -7,9 +7,15 @@ import { CloudUploadOutlined } from "@ant-design/icons";
 
 type Props = {
     formProps: UseFormReturnType<ICourier>["formProps"];
+    showUploadOverlay?: boolean;
+    containerStyle?: React.CSSProperties;
 };
 
-export const CourierFormItemAvatar = ({ formProps }: Props) => {
+export const CourierFormItemAvatar = ({
+    formProps,
+    containerStyle,
+    showUploadOverlay = true,
+}: Props) => {
     const apiUrl = useApiUrl();
     const { styles } = useStyles();
 
@@ -24,6 +30,7 @@ export const CourierFormItemAvatar = ({ formProps }: Props) => {
             getValueFromEvent={getValueFromEvent}
             style={{
                 margin: 0,
+                ...containerStyle,
             }}
             rules={[
                 {
@@ -54,9 +61,13 @@ export const CourierFormItemAvatar = ({ formProps }: Props) => {
                         }
                         alt="Courier Avatar"
                     />
-                    <div className={styles.overlay}>
-                        <CloudUploadOutlined className={styles.overlayIcon} />
-                    </div>
+                    {showUploadOverlay && (
+                        <div className={styles.overlay}>
+                            <CloudUploadOutlined
+                                className={styles.overlayIcon}
+                            />
+                        </div>
+                    )}
                 </Flex>
             </Upload.Dragger>
         </Form.Item>

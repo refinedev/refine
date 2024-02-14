@@ -185,7 +185,7 @@ export const ProductListTable = () => {
                     />
                 )}
                 defaultFilteredValue={getDefaultFilter(
-                    "name",
+                    "description",
                     filters,
                     "contains",
                 )}
@@ -267,7 +267,15 @@ export const ProductListTable = () => {
                         (category) => category?.id === record.category?.id,
                     );
 
-                    return category?.title || "-";
+                    return (
+                        <Typography.Text
+                            style={{
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            {category?.title || "-"}
+                        </Typography.Text>
+                    );
                 }}
             />
             <Table.Column

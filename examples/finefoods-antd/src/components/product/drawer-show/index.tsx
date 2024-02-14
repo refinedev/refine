@@ -17,7 +17,7 @@ import {
     Typography,
     theme,
 } from "antd";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Drawer } from "../../drawer";
 import { IProduct } from "../../../interfaces";
 import { DeleteButton, NumberField } from "@refinedev/antd";
@@ -45,7 +45,7 @@ export const ProductDrawerShow = (props: Props) => {
     });
     const product = queryResult.data?.data;
 
-    const onDrawerCLose = () => {
+    const handleDrawerClose = () => {
         close();
 
         if (props?.onClose) {
@@ -75,7 +75,7 @@ export const ProductDrawerShow = (props: Props) => {
             open={true}
             width={breakpoint.sm ? "378px" : "100%"}
             zIndex={1001}
-            onClose={onDrawerCLose}
+            onClose={handleDrawerClose}
         >
             <Flex vertical align="center" justify="center">
                 <Avatar
@@ -185,7 +185,7 @@ export const ProductDrawerShow = (props: Props) => {
                     recordItemId={product?.id}
                     resource="products"
                     onSuccess={() => {
-                        onDrawerCLose();
+                        handleDrawerClose();
                     }}
                 />
                 <Button

@@ -151,29 +151,70 @@
       "id": "ID",
       "avatar": {
         "label": "Avatar",
-        "description": "Ein Foto hochladen."
+        "description": "Klicken oder ziehen Sie das Avatarbild in diesen Bereich, um es hochzuladen."
       },
-      "name": "Vorname",
-      "surname": "Nachname",
+      "name": {
+        "label": "Name",
+        "placeholder": "Bitte Kuriername eingeben"
+      },
+      "surname": {
+        "label": "Nachname",
+        "placeholder": "Bitte Kurier-Nachname eingeben"
+      },
       "gender": {
         "label": "Geschlecht",
-        "male": "Mann",
-        "female": "Frau"
+        "male": "Männlich",
+        "female": "Weiblich"
       },
-      "gsm": "Gsm",
+      "gsm": {
+        "label": "GSM",
+        "placeholder": "Bitte Kurier-GSM eingeben"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "Bitte Kurier-E-Mail eingeben"
+      },
+      "address": {
+        "label": "Adresse",
+        "placeholder": "Bitte Kurieradresse eingeben"
+      },
       "createdAt": "Erstellt am",
-      "isActive": "Aktiv",
-      "licensePlate": "Kennzeichen",
-      "rating": "Bewertung",
-      "images": {
-        "label": "Foto",
-        "description": "Ein Foto hochladen.",
-        "validation": "Fotoauflösung: 480x480px"
+      "isActive": {
+        "label": "Status",
+        "Available": "Verfügbar",
+        "Offline": "Offline",
+        "On delivery": "Bei Zustellung"
       },
-      "store": "Geschäft",
-      "vehicle": "Fahrzeug",
-      "accountNumber": "Kontonummer",
-      "address": "Adresse"
+      "vehicleType": {
+        "label": "Fahrzeugtyp",
+        "placeholder": "Fahrzeugtyp auswählen"
+      },
+      "licensePlate": {
+        "label": "Kennzeichen",
+        "placeholder": "Bitte Kennzeichen eingeben",
+        "patternMessage": "Bitte geben Sie eine gültige Fahrzeug-ID ein. Beispiel: ABC 123"
+      },
+      "rating": {
+        "label": "Bewertung",
+        "placeholder": "Bitte Bewertung eingeben"
+      },
+      "images": {
+        "label": "Bilder",
+        "description": "Benutzerbild hinzufügen",
+        "validation": "muss 480x480 px sein"
+      },
+      "store": {
+        "label": "Geschäft",
+        "placeholder": "Geschäft auswählen"
+      },
+      "vehicle": {
+        "label": "Fahrzeug",
+        "placeholder": "Fahrzeug auswählen"
+      },
+      "accountNumber": {
+        "label": "Kontonummer",
+        "placeholder": "Bitte Kontonummer eingeben"
+      }
     },
     "filter": {
       "title": "Filter",
@@ -186,8 +227,8 @@
         "placeholder": "Kennzeichen suchen"
       },
       "gsm": {
-        "label": "Gsm",
-        "placeholder": "Gsm suchen"
+        "label": "GSM",
+        "placeholder": "GSM suchen"
       },
       "email": {
         "label": "E-Mail",
@@ -196,10 +237,16 @@
       "submit": "Filtern"
     },
     "steps": {
-      "content": "Inhalt",
-      "relations": "Beziehungen"
+      "personal": "Persönlich",
+      "company": "Unternehmen",
+      "vehicle": "Fahrzeug"
+    },
+    "actions": {
+      "add": "Neuen Kurier hinzufügen",
+      "edit": "Kurier bearbeiten"
     }
   },
+
   "dashboard": {
     "title": "Panel",
     "overview": {

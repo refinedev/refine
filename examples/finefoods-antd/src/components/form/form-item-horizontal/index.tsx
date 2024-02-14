@@ -6,6 +6,7 @@ type Props = {
     label: string;
     labelStyle?: React.CSSProperties;
     flexProps?: Omit<FlexProps, "children">;
+    isInput?: boolean;
 } & FormItemProps;
 
 export const FormItemHorizontal = ({
@@ -13,6 +14,7 @@ export const FormItemHorizontal = ({
     label,
     labelStyle,
     flexProps,
+    isInput = true,
     children,
     ...props
 }: PropsWithChildren<Props>) => {
@@ -41,14 +43,18 @@ export const FormItemHorizontal = ({
                 </span>
                 <Typography.Text style={labelStyle}>{label}</Typography.Text>
             </Flex>
-            <Form.Item
-                {...props}
-                style={{
-                    width: "100%",
-                }}
-            >
-                {children}
-            </Form.Item>
+            {isInput ? (
+                <Form.Item
+                    {...props}
+                    style={{
+                        width: "100%",
+                    }}
+                >
+                    {children}
+                </Form.Item>
+            ) : (
+                children
+            )}
         </Flex>
     );
 };

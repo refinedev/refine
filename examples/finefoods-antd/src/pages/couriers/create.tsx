@@ -1,14 +1,11 @@
-import {
-    IResourceComponentsProps,
-    useTranslate,
-    useApiUrl,
-} from "@refinedev/core";
+import { useTranslate, useApiUrl, useGetToPath, useGo } from "@refinedev/core";
 import {
     Create,
     SaveButton,
     getValueFromEvent,
     useStepsForm,
     useSelect,
+    UseFormReturnType,
 } from "@refinedev/antd";
 import {
     Form,
@@ -23,15 +20,27 @@ import {
     Row,
     Col,
     InputProps,
+    Drawer,
+    Modal,
+    Divider,
+    Flex,
+    theme,
 } from "antd";
 import InputMask from "react-input-mask";
-
-import { ICourier, IStore } from "../../interfaces";
+import { ICourier, IStore, IVehicle } from "../../interfaces";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { CourierFormItemAvatar } from "../../components";
 
 const { Text } = Typography;
 
-export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
+export const CourierCreate = () => {
     const t = useTranslate();
+    const getToPath = useGetToPath();
+    const [searchParams] = useSearchParams();
+    const go = useGo();
+    const { token } = theme.useToken();
+
     const {
         current,
         gotoStep,
@@ -40,167 +49,209 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
         saveButtonProps,
         queryResult,
     } = useStepsForm<ICourier>();
-    const apiUrl = useApiUrl();
+
+    const { formList } = useFormList({ formProps });
+
+    const handleModalClose = () => {
+        go({
+            to:
+                searchParams.get("to") ??
+                getToPath({
+                    action: "list",
+                }) ??
+                "",
+            query: {
+                to: undefined,
+            },
+            options: {
+                keepQuery: true,
+            },
+            type: "replace",
+        });
+    };
+
+    const isLastStep = current === formList.length;
+    const isFirstStep = current === 0;
+
+    return (
+        <Modal
+            open
+            destroyOnClose
+            maskClosable={false}
+            title={t("couriers.actions.add")}
+            styles={{
+                header: {
+                    padding: "20px 24px",
+                    margin: 0,
+                    borderBottom: `1px solid ${token.colorBorderSecondary}`,
+                },
+                footer: {
+                    padding: "20px 24px",
+                    margin: 0,
+                    borderTop: `1px solid ${token.colorBorderSecondary}`,
+                },
+                content: {
+                    padding: 0,
+                },
+            }}
+            footer={() => {
+                return (
+                    <Flex align="center" justify="space-between">
+                        <Button onClick={handleModalClose}>
+                            {t("buttons.cancel")}
+                        </Button>
+                        <Flex align="center" gap={16}>
+                            <Button
+                                disabled={isFirstStep}
+                                onClick={() => {
+                                    gotoStep(current - 1);
+                                }}
+                            >
+                                {t("buttons.previousStep")}
+                            </Button>
+                            {isLastStep ? (
+                                <SaveButton icon={false} {...saveButtonProps} />
+                            ) : (
+                                <Button
+                                    type="primary"
+                                    onClick={() => {
+                                        gotoStep(current + 1);
+                                    }}
+                                >
+                                    {t("buttons.nextStep")}
+                                </Button>
+                            )}
+                        </Flex>
+                    </Flex>
+                );
+            }}
+            onCancel={handleModalClose}
+        >
+            <Flex style={{ padding: "20px 24px" }}>
+                <Steps {...stepsProps} responsive>
+                    <Steps.Step title={t("couriers.steps.personal")} />
+                    <Steps.Step title={t("couriers.steps.company")} />
+                    <Steps.Step title={t("couriers.steps.vehicle")} />
+                </Steps>
+            </Flex>
+            <Form {...formProps} layout="vertical">
+                {formList[current]}
+            </Form>
+        </Modal>
+    );
+};
+
+type UseFormListProps = {
+    formProps: UseFormReturnType<ICourier>["formProps"];
+};
+
+const useFormList = (props: UseFormListProps) => {
+    const t = useTranslate();
 
     const { selectProps: storeSelectProps } = useSelect<IStore>({
         resource: "stores",
     });
 
-    const formList = [
-        <>
-            <Row gutter={20}>
-                <Col xs={24} lg={8}>
-                    <Form.Item>
-                        <Form.Item
-                            name="avatar"
-                            valuePropName="fileList"
-                            getValueFromEvent={getValueFromEvent}
-                            noStyle
-                        >
-                            <Upload.Dragger
-                                name="file"
-                                action={`${apiUrl}/media/upload`}
-                                listType="picture"
-                                maxCount={1}
-                                multiple
-                                style={{
-                                    border: "none",
-                                    width: "100%",
-                                    background: "none",
-                                }}
-                            >
-                                <Space direction="vertical" size={2}>
-                                    <Avatar
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                            maxWidth: "200px",
-                                        }}
-                                        src="/images/user-default-img.png"
-                                        alt="Store Location"
-                                    />
-                                    <Text
-                                        style={{
-                                            fontWeight: 800,
-                                            fontSize: "16px",
-                                            marginTop: "8px",
-                                        }}
-                                    >
-                                        {t(
-                                            "couriers.fields.images.description",
-                                        )}
-                                    </Text>
-                                    <Text style={{ fontSize: "12px" }}>
-                                        {t("couriers.fields.images.validation")}
-                                    </Text>
-                                </Space>
-                            </Upload.Dragger>
-                        </Form.Item>
-                    </Form.Item>
-                </Col>
-                <Col xs={24} lg={16}>
-                    <Row gutter={10}>
-                        <Col xs={24} lg={12}>
-                            <Form.Item
-                                label={t("couriers.fields.name")}
-                                name="name"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                label={t("couriers.fields.surname")}
-                                name="surname"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Form.Item
-                                label={t("couriers.fields.gender.label")}
-                                name="gender"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Select
-                                    options={[
-                                        {
-                                            label: t(
-                                                "couriers.fields.gender.male",
-                                            ),
-                                            value: "Male",
-                                        },
-                                        {
-                                            label: t(
-                                                "couriers.fields.gender.female",
-                                            ),
-                                            value: "Female",
-                                        },
-                                    ]}
-                                />
-                            </Form.Item>
-                        </Col>
-                        <Col xs={24} lg={12}>
-                            <Form.Item
-                                label={t("couriers.fields.gsm")}
-                                name="gsm"
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <InputMask mask="(999) 999 99 99">
-                                    {/* 
+    const { selectProps: vehicleSelectProps } = useSelect<IVehicle>({
+        resource: "vehicles",
+        optionLabel: "model",
+        optionValue: "id",
+    });
+
+    const formList = useMemo(() => {
+        const step1 = (
+            <Flex
+                key="personal"
+                vertical
+                style={{
+                    padding: "20px 24px",
+                }}
+            >
+                <CourierFormItemAvatar
+                    formProps={props.formProps}
+                    showUploadOverlay={false}
+                    containerStyle={{
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                    }}
+                />
+                <Form.Item
+                    label={t("couriers.fields.name.label")}
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input
+                        placeholder={t("couriers.fields.name.placeholder")}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label={t("couriers.fields.email.label")}
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            type: "email",
+                        },
+                    ]}
+                >
+                    <Input
+                        placeholder={t("couriers.fields.email.placeholder")}
+                    />
+                </Form.Item>
+                <Form.Item
+                    label={t("couriers.fields.gsm.label")}
+                    name="gsm"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <InputMask mask="(999) 999 99 99">
+                        {/* 
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     // @ts-ignore */}
-                                    {(props: InputProps) => {
-                                        return <Input {...props} />;
-                                    }}
-                                </InputMask>
-                            </Form.Item>
-                            <Form.Item
-                                label={t("couriers.fields.email")}
-                                name="email"
-                                rules={[
-                                    {
-                                        required: true,
-                                        type: "email",
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                    <Form.Item
-                        label={t("couriers.fields.address")}
-                        name="address"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input.TextArea />
-                    </Form.Item>
-                </Col>
-            </Row>
-        </>,
-        <Row key="relations" gutter={20}>
-            <Col xs={24} lg={12}>
+                        {(props: InputProps) => (
+                            <Input
+                                {...props}
+                                placeholder={t(
+                                    "couriers.fields.gsm.placeholder",
+                                )}
+                            />
+                        )}
+                    </InputMask>
+                </Form.Item>
                 <Form.Item
-                    label={t("couriers.fields.store")}
+                    label={t("couriers.fields.address.label")}
+                    name="address"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input.TextArea
+                        rows={2}
+                        placeholder={t("couriers.fields.address.placeholder")}
+                    />
+                </Form.Item>
+            </Flex>
+        );
+
+        const step2 = (
+            <Flex
+                key="company"
+                vertical
+                style={{
+                    padding: "20px 24px",
+                }}
+            >
+                <Form.Item
+                    label={t("couriers.fields.store.label")}
                     name={["store", "id"]}
                     rules={[
                         {
@@ -208,10 +259,13 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...storeSelectProps} />
+                    <Select
+                        {...storeSelectProps}
+                        placeholder={t("couriers.fields.store.placeholder")}
+                    />
                 </Form.Item>
                 <Form.Item
-                    label={t("couriers.fields.accountNumber")}
+                    label={t("couriers.fields.accountNumber.label")}
                     name="accountNumber"
                     rules={[
                         {
@@ -220,73 +274,61 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input
+                        placeholder={t(
+                            "couriers.fields.accountNumber.placeholder",
+                        )}
+                    />
                 </Form.Item>
-            </Col>
-            <Col xs={24} lg={12}>
+            </Flex>
+        );
+
+        const step3 = (
+            <Flex
+                key="company"
+                vertical
+                style={{
+                    padding: "20px 24px",
+                }}
+            >
                 <Form.Item
-                    label={t("couriers.fields.vehicle")}
-                    name="licensePlate"
+                    label={t("couriers.fields.vehicle.label")}
+                    name={["vehicle", "id"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input />
+                    <Select
+                        {...vehicleSelectProps}
+                        placeholder={t("couriers.fields.vehicle.placeholder")}
+                    />
                 </Form.Item>
-            </Col>
-        </Row>,
-    ];
-
-    return (
-        <>
-            <Create
-                isLoading={queryResult?.isFetching}
-                footerButtons={
-                    <>
-                        {current > 0 && (
-                            <Button
-                                onClick={() => {
-                                    gotoStep(current - 1);
-                                }}
-                            >
-                                {t("buttons.previousStep")}
-                            </Button>
-                        )}
-                        {current < formList.length - 1 && (
-                            <Button
-                                onClick={() => {
-                                    gotoStep(current + 1);
-                                }}
-                            >
-                                {t("buttons.nextStep")}
-                            </Button>
-                        )}
-                        {current === formList.length - 1 && (
-                            <SaveButton
-                                style={{ marginRight: 10 }}
-                                {...saveButtonProps}
-                            />
-                        )}
-                    </>
-                }
-            >
-                <Steps {...stepsProps} responsive>
-                    <Steps.Step title={t("couriers.steps.content")} />
-                    <Steps.Step title={t("couriers.steps.relations")} />
-                </Steps>
-                <Form
-                    {...formProps}
-                    style={{ marginTop: 30 }}
-                    layout="vertical"
-                    initialValues={{
-                        isActive: true,
-                    }}
+                <Form.Item
+                    label={t("couriers.fields.licensePlate.label")}
+                    name="licensePlate"
+                    rules={[
+                        {
+                            required: true,
+                            pattern: /^[A-Z]{3}\s\d{3}$/,
+                            message: t(
+                                "couriers.fields.licensePlate.patternMessage",
+                            ),
+                        },
+                    ]}
                 >
-                    {formList[current]}
-                </Form>
-            </Create>
-        </>
-    );
+                    <Input
+                        placeholder={t(
+                            "couriers.fields.licensePlate.placeholder",
+                        )}
+                    />
+                </Form.Item>
+            </Flex>
+        );
+
+        return [step1, step2, step3];
+    }, [props.formProps]);
+
+    return { formList };
 };

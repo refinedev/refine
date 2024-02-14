@@ -27,6 +27,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 }}
                 pagination={{
                     ...tableProps.pagination,
+                    hideOnSinglePage: true,
                     showTotal: (total) => (
                         <PaginationTotal
                             total={total}

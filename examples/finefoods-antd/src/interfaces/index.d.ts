@@ -76,6 +76,11 @@ export interface IStore {
     products: IProduct[];
 }
 
+export interface ICourierStatus {
+    id: number;
+    text: "Available" | "Offline" | "On delivery";
+}
+
 export interface ICourier {
     id: number;
     name: string;
@@ -89,7 +94,10 @@ export interface ICourier {
     address: string;
     avatar: IFile[];
     store: IStore;
+    status: ICourierStatus;
+    vehicle: IVehicle;
 }
+
 export interface IOrder {
     id: number;
     user: IUser;
@@ -138,17 +146,6 @@ export interface IUserFilterVariables {
     isActive: boolean;
 }
 
-export interface ICourier {
-    id: number;
-    name: string;
-    surname: string;
-    gender: string;
-    gsm: string;
-    createdAt: string;
-    isActive: boolean;
-    avatar: IFile[];
-}
-
 export interface IReview {
     id: number;
     order: IOrder;
@@ -158,3 +155,12 @@ export interface IReview {
     status: "pending" | "approved" | "rejected";
     comment: string[];
 }
+
+export type IVehicle = {
+    model: string;
+    vehicleType: string;
+    engineSize: number;
+    color: string;
+    year: number;
+    id: number;
+};

@@ -15,8 +15,10 @@ import InputMask from "react-input-mask";
 
 import { ICourier } from "../../interfaces";
 import {
+    BikeWhiteIcon,
     CourierFormItemAvatar,
     CourierReviewTable,
+    CourierStatus,
     FormItemHorizontal,
 } from "../../components";
 import {
@@ -24,18 +26,31 @@ import {
     LeftOutlined,
     MailOutlined,
     PhoneOutlined,
+    RightCircleOutlined,
     ScanOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
 
 export const CourierEdit = () => {
     const t = useTranslate();
-    const { formProps, queryResult, saveButtonProps } = useForm<ICourier>();
+    const { formProps, queryResult, saveButtonProps } = useForm<ICourier>({
+        redirect: false,
+    });
     const courier = queryResult?.data?.data;
 
     const { selectProps: storeSelectProps } = useSelect({
         resource: "stores",
         defaultValue: courier?.store.id,
+        queryOptions: {
+            enabled: !!courier,
+        },
+    });
+
+    const { selectProps: vehicleSelectProps } = useSelect({
+        resource: "vehicles",
+        defaultValue: courier?.vehicle.id,
+        optionLabel: "model",
+        optionValue: "id",
         queryOptions: {
             enabled: !!courier,
         },
@@ -65,7 +80,9 @@ export const CourierEdit = () => {
                                 ]}
                             >
                                 <Input
-                                    placeholder={t("couriers.fields.name")}
+                                    placeholder={t(
+                                        "couriers.fields.name.placeholder",
+                                    )}
                                 />
                             </Form.Item>
                         </Flex>
@@ -80,9 +97,24 @@ export const CourierEdit = () => {
                             }}
                         >
                             <FormItemHorizontal
+                                isInput={false}
+                                icon={<RightCircleOutlined />}
+                                label={t("couriers.fields.status.label")}
+                            >
+                                <CourierStatus
+                                    isLoading={queryResult?.isLoading}
+                                    value={
+                                        courier?.status || {
+                                            id: 3,
+                                            text: "Offline",
+                                        }
+                                    }
+                                />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
                                 name="gsm"
                                 icon={<PhoneOutlined />}
-                                label={t("couriers.fields.gsm")}
+                                label={t("couriers.fields.gsm.label")}
                                 rules={[
                                     {
                                         required: true,
@@ -100,7 +132,7 @@ export const CourierEdit = () => {
                             </FormItemHorizontal>
                             <FormItemHorizontal
                                 icon={<MailOutlined />}
-                                label={t("couriers.fields.email")}
+                                label={t("couriers.fields.email.label")}
                                 name="email"
                                 rules={[
                                     {
@@ -113,7 +145,7 @@ export const CourierEdit = () => {
                             </FormItemHorizontal>
                             <FormItemHorizontal
                                 icon={<MailOutlined />}
-                                label={t("couriers.fields.address")}
+                                label={t("couriers.fields.address.label")}
                                 name="address"
                                 flexProps={{
                                     align: "flex-start",
@@ -127,20 +159,8 @@ export const CourierEdit = () => {
                                 <Input.TextArea rows={2} />
                             </FormItemHorizontal>
                             <FormItemHorizontal
-                                icon={<ShopOutlined />}
-                                label={t("couriers.fields.store")}
-                                name={["store", "id"]}
-                                rules={[
-                                    {
-                                        required: true,
-                                    },
-                                ]}
-                            >
-                                <Select {...storeSelectProps} />
-                            </FormItemHorizontal>
-                            <FormItemHorizontal
                                 icon={<BankOutlined />}
-                                label={t("couriers.fields.accountNumber")}
+                                label={t("couriers.fields.accountNumber.label")}
                                 name="accountNumber"
                                 rules={[
                                     {
@@ -155,8 +175,32 @@ export const CourierEdit = () => {
                                 />
                             </FormItemHorizontal>
                             <FormItemHorizontal
+                                icon={<ShopOutlined />}
+                                label={t("couriers.fields.store.label")}
+                                name={["store", "id"]}
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Select {...storeSelectProps} />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
+                                icon={<BikeWhiteIcon />}
+                                label={t("couriers.fields.vehicle.label")}
+                                name={["vehicle", "id"]}
+                                rules={[
+                                    {
+                                        required: true,
+                                    },
+                                ]}
+                            >
+                                <Select {...vehicleSelectProps} />
+                            </FormItemHorizontal>
+                            <FormItemHorizontal
                                 icon={<ScanOutlined />}
-                                label={t("couriers.fields.licensePlate")}
+                                label={t("couriers.fields.licensePlate.label")}
                                 name="licensePlate"
                                 rules={[
                                     {

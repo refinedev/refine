@@ -1,5 +1,5 @@
 import React from "react";
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
     useNotificationProvider,
@@ -15,10 +15,11 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import {
     ShoppingOutlined,
-    UsergroupAddOutlined,
     ShopOutlined,
-    StarOutlined,
     DashboardOutlined,
+    UserOutlined,
+    UnorderedListOutlined,
+    TagsOutlined,
 } from "@ant-design/icons";
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "./authProvider";
@@ -43,10 +44,9 @@ import {
 } from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
-import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "./components";
-import { BikeWhiteIcon, PizzaIcon } from "./components/icons";
+import { BikeWhiteIcon } from "./components/icons";
 import { ConfigProvider } from "./context";
 import { useAutoLoginForDemo } from "./hooks";
 
@@ -108,7 +108,7 @@ const App: React.FC = () => {
                                 list: "/customers",
                                 show: "/customers/show/:id",
                                 meta: {
-                                    icon: <UsergroupAddOutlined />,
+                                    icon: <UserOutlined />,
                                 },
                             },
                             {
@@ -118,12 +118,15 @@ const App: React.FC = () => {
                                 edit: "/products/edit/:id",
                                 show: "/products/show/:id",
                                 meta: {
-                                    icon: <PizzaIcon />,
+                                    icon: <UnorderedListOutlined />,
                                 },
                             },
                             {
                                 name: "categories",
                                 list: "/categories",
+                                meta: {
+                                    icon: <TagsOutlined />,
+                                },
                             },
                             {
                                 name: "stores",
@@ -142,13 +145,6 @@ const App: React.FC = () => {
                                 show: "/couriers/show/:id",
                                 meta: {
                                     icon: <BikeWhiteIcon />,
-                                },
-                            },
-                            {
-                                name: "reviews",
-                                list: "/reviews",
-                                meta: {
-                                    icon: <StarOutlined />,
                                 },
                             },
                         ]}
@@ -246,11 +242,20 @@ const App: React.FC = () => {
                                 />
 
                                 <Route path="/couriers">
-                                    <Route index element={<CourierList />} />
                                     <Route
-                                        path="create"
-                                        element={<CourierCreate />}
-                                    />
+                                        element={
+                                            <CourierList>
+                                                <Outlet />
+                                            </CourierList>
+                                        }
+                                    >
+                                        <Route index element={null} />
+                                        <Route
+                                            path="create"
+                                            element={<CourierCreate />}
+                                        />
+                                    </Route>
+
                                     <Route
                                         path="edit/:id"
                                         element={<CourierEdit />}
@@ -260,11 +265,6 @@ const App: React.FC = () => {
                                         element={<CourierShow />}
                                     />
                                 </Route>
-
-                                <Route
-                                    path="/reviews"
-                                    element={<ReviewsList />}
-                                />
                             </Route>
 
                             <Route

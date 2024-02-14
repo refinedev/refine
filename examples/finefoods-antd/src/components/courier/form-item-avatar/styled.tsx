@@ -1,11 +1,14 @@
 import { createStyles } from "antd-style";
 
-export const useStyles = createStyles(() => {
+export const useStyles = createStyles(({ token }) => {
     return {
         upload: {
             position: "relative",
 
             ".ant-upload .ant-upload-btn": {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 padding: 0,
             },
 
@@ -30,6 +33,8 @@ export const useStyles = createStyles(() => {
             objectFit: "contain",
             width: "72px",
             height: "72px",
+            borderRadius: "100%",
+            background: "#D9D9D9",
         },
         overlay: {
             position: "absolute",
