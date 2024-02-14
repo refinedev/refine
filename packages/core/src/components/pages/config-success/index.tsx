@@ -13,24 +13,24 @@ const cards: CardInfo[] = [
     {
         title: "Documentation",
         description:
-            "Learn about the technical details of using refine in your projects.",
-        link: "https://refine.dev/",
+            "Learn about the technical details of using Refine in your projects.",
+        link: "https://refine.dev/docs",
         iconUrl:
             "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/book.svg",
     },
     {
         title: "Tutorial",
         description:
-            "Learn how to use refine by building a fully-functioning CRUD app, from scratch to full launch.",
-        link: "https://refine.dev/docs/tutorial/introduction/index/",
+            "Learn how to use Refine by building a fully-functioning CRUD app, from scratch to full launch.",
+        link: "https://refine.dev/tutorial",
         iconUrl:
             "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/hat.svg",
     },
     {
-        title: "Examples",
+        title: "Templates",
         description:
-            "A collection of reference applications you can use as a starting point.",
-        link: "https://refine.dev/examples",
+            "Explore a range of pre-built templates, perfect everything from admin panels to dashboards and CRMs.",
+        link: "https://refine.dev/templates",
         iconUrl:
             "https://refine.ams3.cdn.digitaloceanspaces.com/welcome-page/application.svg",
     },
