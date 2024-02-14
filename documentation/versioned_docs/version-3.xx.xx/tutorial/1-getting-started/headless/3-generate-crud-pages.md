@@ -2,8 +2,8 @@
 id: generate-crud-pages
 title: 4. Generate CRUD pages automatically with Inferencer
 tutorial:
-  prev: tutorial/getting-started/{preferredUI}/create-project
-  next: tutorial/getting-started/store-your-repository
+  prev: 3.xx.xx/tutorial/getting-started/{preferredUI}/create-project
+  next: 3.xx.xx/tutorial/getting-started/store-your-repository
 ---
 
 import Tabs from '@theme/Tabs';

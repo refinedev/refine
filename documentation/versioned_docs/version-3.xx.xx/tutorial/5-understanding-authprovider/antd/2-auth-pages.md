@@ -2,7 +2,7 @@
 id: auth-pages
 title: 3. Auth Pages
 tutorial:
-  prev: tutorial/understanding-authprovider/create-authprovider
+  prev: 3.xx.xx/tutorial/understanding-authprovider/create-authprovider
   next: false
 ---
 

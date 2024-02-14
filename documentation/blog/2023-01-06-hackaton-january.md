@@ -111,7 +111,7 @@ The **Refine** team will be taking part in the Hackathon and you'll find us live
 ## Useful resources
 
 - You can step up to complete CRUD app tutorials to learn **Refine** and how it works.
-  - :point_right: https://refine.dev/docs/tutorial/introduction/index/
+  - :point_right: https://refine.dev/tutorial
 - You can take a look at real use case example projects built with **Refine** to get an inspiration.
   - :point_right: https://refine.dev/docs/examples/
   - :point_right: https://refine.dev/examples/

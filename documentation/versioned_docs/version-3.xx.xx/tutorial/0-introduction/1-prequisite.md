@@ -2,9 +2,9 @@
 id: prequisite
 title: 2. Prerequisite
 tutorial:
-    order: 1
-    prev: tutorial/introduction/index
-    next: tutorial/introduction/select-framework
+  order: 1
+  prev: 3.xx.xx/tutorial/introduction/index
+  next: 3.xx.xx/tutorial/introduction/select-framework
 ---
 
 **refine** is a React-based framework. So, if you have some preliminary knowledge of React and TypeScript, then this tutorial is perfect for you! Just by following the directions provided, you'll be able to finish it from start to finish.
@@ -23,8 +23,8 @@ A clickable task checklist awaits you at the end of each page to measure your un
 <details>
 <summary>What if I need help, or want to learn more about <strong>refine</strong>?</summary>
 
--   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
--   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
+- [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+- [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback, we'd love to hear your thoughts!
 
 </details>
 

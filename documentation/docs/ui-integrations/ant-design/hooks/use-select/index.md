@@ -34,7 +34,7 @@ When the `useSelect` hook is mounted, it passes some parameters (`channel`, `res
 
 `resource` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getList` method.
 
-See the [creating a data provider documentation](/docs/tutorial/understanding-dataprovider/create-dataprovider/) for an example of how resource are handled.
+See the [creating a data provider documentation](/docs/data/data-provider) for an example of how resource are handled.
 
 ```tsx
 useSelect({

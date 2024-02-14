@@ -1668,7 +1668,7 @@ With the above changes, we have added possible actions and their routes for the 
 
 **Refine** maps resource paths to page components via route definitions, and using the map infers the resource name of a page at the current URL of the browser. That way, hooks like `useTable()` and `useNavigation()`, and **Inferencer** components like `<HeadlessInferencer />` are always able to infer the default resource name from inside a resource page.
 
-You can find more information about [resources and routing](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) on the **Refine** documentation.
+You can find more information about [resources and routing](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) on the **Refine** documentation.
 
 Now when we navigate along the `/products` paths, we can see some clumsy looking pages in need of proper styling. So, we're interested in getting their code and modifying them according to our needs. We are going to do that one by one in the following sections.
 
@@ -1912,7 +1912,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 The generated code implements a handful of features, including data fetching, button actions, pagination, and JSX markup with minimal styles for presenting the data in a table. This is pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
 
-It uses the [`useTable()`](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
+It uses the [`useTable()`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
 
 We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for tables, buttons, and groups.
 

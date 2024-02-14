@@ -38,7 +38,7 @@ Refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 
 [Refer to documentation for more info about Refine 👉](/docs)
 
-[Step up to Refine tutorials 👉](/docs/tutorial/introduction/index/)
+[Step up to Refine tutorials 👉](/tutorial)
 
 ✨ With the introduction of [refine.new](https://refine.new/), developers can now create Refine apps in just **15 seconds**.
 

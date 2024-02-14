@@ -23,7 +23,7 @@ As an overview, we will:
 
 ## Step 1: Setup the Permify in Refine application
 
-First, let's create a demo react application using refine. You can follow the [tutorial to create a simple](https://refine.dev/docs/tutorial/introduction/index/) admin panel for a CMS-like application.
+First, let's create a demo react application using refine. You can follow the [tutorial to create a simple](https://refine.dev/tutorial) admin panel for a CMS-like application.
 
 If your application is ready, let's set up Permify Instance.
 

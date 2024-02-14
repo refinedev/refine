@@ -299,7 +299,7 @@ The **Refine** team will be taking part in the Hackathon, and you'll find us liv
 ## Useful resources
 
 - You can step up to complete CRUD app tutorials to learn **Refine** and how it works.
-  - https://refine.dev/docs/tutorial/introduction/index/
+  - https://refine.dev/tutorial
 - You can look at a real use case example projects built with **Refine** to get inspiration.
   - https://refine.dev/examples/
 - Check out the Refine Supabase integration docs:
