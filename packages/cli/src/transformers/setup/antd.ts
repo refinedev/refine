@@ -1,4 +1,10 @@
-import { addAttributeIfNotExist, wrapElement } from "@utils/codeshift";
+import {
+    addAttributeIfNotExist,
+    addOrUpdateImports,
+    addOrUpdateNamelessImport,
+    removeImportIfExists,
+    wrapElement,
+} from "@utils/codeshift";
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 import execa from "execa";
 import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
@@ -74,18 +80,18 @@ export default async function transformer(file: FileInfo, api: API) {
     });
 
     if (routesElement.length > 0) {
-        updateImports(j, source, "@refinedev/antd", [
+        addOrUpdateImports(j, source, "@refinedev/antd", [
             "ThemedLayoutV2",
             "ErrorComponent",
         ]);
 
         routesElement.forEach((element) => {
-            source
-                .find(j.ImportDeclaration)
-                .filter((path) => path.node.source.value === "@refinedev/core")
-                .find(j.ImportSpecifier)
-                .filter((path) => path.node.imported.name === "ErrorComponent")
-                .remove();
+            removeImportIfExists(
+                j,
+                source,
+                "@refinedev/core",
+                "ErrorComponent",
+            );
 
             const layoutChildren = [...(element.node.children ?? [])];
 
@@ -169,66 +175,34 @@ export default async function transformer(file: FileInfo, api: API) {
 }
 
 export const addAntDesignImports = (j: JSCodeshift, source: Collection) => {
-    const refineDevAntdImports = j.importDeclaration(
-        [
-            j.importSpecifier(j.identifier("useNotificationProvider")),
-            j.importSpecifier(j.identifier("RefineThemes")),
-        ],
-        j.literal("@refinedev/antd"),
+    addOrUpdateImports(
+        j,
+        source,
+        "@refinedev/antd",
+        ["useNotificationProvider", "RefineThemes"],
+        (sourceImports, targetImport) => {
+            sourceImports.at(0).insertAfter(targetImport);
+        },
     );
-
-    source.find(j.ImportDeclaration).at(0).insertAfter(refineDevAntdImports);
-
-    const antdImports = j.importDeclaration(
-        [
-            j.importSpecifier(j.identifier("ConfigProvider")),
-            j.importSpecifier(j.identifier("App as AntdApp")),
-        ],
-        j.literal("antd"),
+    addOrUpdateImports(
+        j,
+        source,
+        "antd",
+        ["ConfigProvider", "App as AntdApp"],
+        (sourceImports, targetImport) => {
+            sourceImports.at(-1).insertAfter(targetImport);
+        },
     );
-
-    source.find(j.ImportDeclaration).at(-1).insertAfter(antdImports);
-
-    const resetImport = j.importDeclaration(
-        [],
-        j.literal("@refinedev/antd/dist/reset.css"),
+    addOrUpdateNamelessImport(
+        j,
+        source,
+        "@refinedev/antd/dist/reset.css",
+        (sourceImports, targetImport) => {
+            sourceImports.at(-1).insertAfter(targetImport);
+        },
     );
-
-    source.find(j.ImportDeclaration).at(-1).insertAfter(resetImport);
 };
 
 const addOutletImport = (j: JSCodeshift, source: Collection) => {
-    const reactRouterDomImport = source.find(j.ImportDeclaration, {
-        source: {
-            value: "react-router-dom",
-        },
-    });
-
-    reactRouterDomImport.forEach((path) => {
-        path.node.specifiers?.push(
-            j.importSpecifier(j.identifier("Outlet"), j.identifier("Outlet")),
-        );
-    });
-};
-
-const updateImports = (
-    j: JSCodeshift,
-    source: Collection,
-    packageName: string,
-    imports: string[],
-) => {
-    const packageImport = source
-        .find(j.ImportDeclaration)
-        .filter((path) => path.node.source.value === packageName);
-
-    const importSpecifiers = imports.map((importName) => {
-        return j.importSpecifier(j.identifier(importName));
-    });
-
-    packageImport.forEach((importDeclaration) => {
-        importDeclaration.node.specifiers = [
-            ...(importDeclaration.node.specifiers ?? []),
-            ...importSpecifiers,
-        ];
-    });
+    addOrUpdateImports(j, source, "react-router-dom", ["Outlet"]);
 };

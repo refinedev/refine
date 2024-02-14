@@ -11,6 +11,7 @@ import {
 import decamelize from "decamelize";
 import {
     addAttributeIfNotExist,
+    addOrUpdateImports,
     wrapChildren,
     wrapElement,
 } from "@utils/codeshift";
@@ -148,19 +149,7 @@ export default async function transformer(file: FileInfo, api: API) {
             }
         });
 
-        const refineDevCoreImport = source
-            .find(j.ImportDeclaration)
-            .filter((path) => path.node.source.value === "@refinedev/core");
-
-        const errorComponentImportSpecifier = j.importSpecifier(
-            j.identifier("ErrorComponent"),
-        );
-
-        refineDevCoreImport.forEach((importDeclaration) => {
-            importDeclaration.node.specifiers?.push(
-                errorComponentImportSpecifier,
-            );
-        });
+        addOrUpdateImports(j, source, "@refinedev/core", ["ErrorComponent"]);
 
         const errorRoute = j.jsxElement(
             j.jsxOpeningElement(
@@ -199,21 +188,24 @@ export default async function transformer(file: FileInfo, api: API) {
 }
 
 export const addReactRouterImports = (j: JSCodeshift, source: Collection) => {
-    const reactRouterDomImports = j.importDeclaration(
-        [
-            j.importSpecifier(j.identifier("BrowserRouter")),
-            j.importSpecifier(j.identifier("Routes")),
-            j.importSpecifier(j.identifier("Route")),
-        ],
-        j.literal("react-router-dom"),
+    addOrUpdateImports(
+        j,
+        source,
+        "react-router-dom",
+        ["BrowserRouter", "Routes", "Route"],
+        (sourceDeclarations, targetDeclaration) => {
+            sourceDeclarations.at(0).insertAfter(targetDeclaration);
+        },
     );
 
-    source.find(j.ImportDeclaration).at(0).insertAfter(reactRouterDomImports);
-
-    const routerProviderImport = j.importDeclaration(
-        [j.importDefaultSpecifier(j.identifier("routerProvider"))],
-        j.literal("@refinedev/react-router-v6"),
+    addOrUpdateImports(
+        j,
+        source,
+        "@refinedev/react-router-v6",
+        ["routerProvider"],
+        (sourceDeclarations, targetDeclaration) => {
+            sourceDeclarations.at(0).insertAfter(targetDeclaration);
+        },
+        true,
     );
-
-    source.find(j.ImportDeclaration).at(0).insertAfter(routerProviderImport);
 };
