@@ -2144,6 +2144,7 @@
         "/docs/tutorial/introduction/index",
         "/docs/tutorial/introduction/prerequisite",
         "/docs/tutorial/introduction/select-framework",
+        "/docs/tutorial/understanding-authprovider/index",
         "/docs/tutorial/understanding-authprovider/antd/auth-pages",
         "/docs/tutorial/understanding-authprovider/chakra-ui/auth-pages",
         "/docs/tutorial/understanding-authprovider/create-authprovider",
