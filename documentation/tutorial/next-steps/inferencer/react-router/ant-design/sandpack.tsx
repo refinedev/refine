@@ -161,7 +161,7 @@ export const CreateListCategoriesTsx = () => {
                     "src/pages/categories/list.tsx",
                     ListCategoriesBase,
                 );
-                sandpack.setActiveFile("src/pages/categories/list.tsx");
+                sandpack.setActiveFile("/src/pages/categories/list.tsx");
             }}
         />
     );
@@ -173,8 +173,8 @@ export const AddListCategoriesToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppWithCategories);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppWithCategories);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -190,7 +190,7 @@ export const AddInferencerToListCategories = () => {
                     "src/pages/categories/list.tsx",
                     ListCategoriesWithInferencer,
                 );
-                sandpack.setActiveFile("src/pages/categories/list.tsx");
+                sandpack.setActiveFile("/src/pages/categories/list.tsx");
             }}
         />
     );

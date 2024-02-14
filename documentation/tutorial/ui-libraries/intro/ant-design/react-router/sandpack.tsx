@@ -199,8 +199,11 @@ export const AddAntDesignToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithAntDesignWrappers);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile(
+                    "/src/App.tsx",
+                    AppTsxWithAntDesignWrappers,
+                );
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -212,8 +215,8 @@ export const AddLayoutToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithLayout);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithLayout);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

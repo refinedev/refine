@@ -369,7 +369,7 @@ export const RefactorTableInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -385,7 +385,7 @@ export const AddSortersInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithSorters,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -401,7 +401,7 @@ export const AddFiltersInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithFilters,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -417,7 +417,7 @@ export const RefactorFormInEditProduct = () => {
                     "src/pages/products/edit.tsx",
                     EditProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );
@@ -433,7 +433,7 @@ export const RefactorFormInCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -449,7 +449,7 @@ export const RefactorFieldsInShowProduct = () => {
                     "src/pages/products/show.tsx",
                     ShowProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/show.tsx");
+                sandpack.setActiveFile("/src/pages/products/show.tsx");
             }}
         />
     );

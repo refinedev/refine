@@ -54,7 +54,7 @@ export const UseAuthPageInLogin = () => {
                     "src/pages/login.tsx",
                     LoginTsxWithAuthPage,
                 );
-                sandpack.setActiveFile("src/pages/login.tsx");
+                sandpack.setActiveFile("/src/pages/login.tsx");
             }}
         />
     );

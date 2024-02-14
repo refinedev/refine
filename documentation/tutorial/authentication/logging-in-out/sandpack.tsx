@@ -297,8 +297,8 @@ export const CreateLoginComponentFile = () => {
                         code: LoginComponentBase,
                     },
                 });
-                sandpack.openFile("src/pages/login.tsx");
-                sandpack.setActiveFile("src/pages/login.tsx");
+                sandpack.openFile("/src/pages/login.tsx");
+                sandpack.setActiveFile("/src/pages/login.tsx");
             }}
             name="src/pages/login.tsx"
         />
@@ -311,8 +311,8 @@ export const AddLoginToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithLoginComponent);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithLoginComponent);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -328,7 +328,7 @@ export const AddUseLoginToLoginComponent = () => {
                     "src/pages/login.tsx",
                     LoginComponentWithUseLogin,
                 );
-                sandpack.setActiveFile("src/pages/login.tsx");
+                sandpack.setActiveFile("/src/pages/login.tsx");
             }}
         />
     );
@@ -361,8 +361,8 @@ export const CreateHeaderComponentFile = () => {
                         code: HeaderComponentBase,
                     },
                 });
-                sandpack.openFile("src/components/header.tsx");
-                sandpack.setActiveFile("src/components/header.tsx");
+                sandpack.openFile("/src/components/header.tsx");
+                sandpack.setActiveFile("/src/components/header.tsx");
             }}
             name="src/components/header.tsx"
         />
@@ -375,8 +375,8 @@ export const AddHeaderToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithHeaderComponent);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithHeaderComponent);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -392,7 +392,7 @@ export const AddUseLogoutToHeaderComponent = () => {
                     "src/components/header.tsx",
                     HeaderComponentWithUseLogout,
                 );
-                sandpack.setActiveFile("src/components/header.tsx");
+                sandpack.setActiveFile("/src/components/header.tsx");
             }}
         />
     );

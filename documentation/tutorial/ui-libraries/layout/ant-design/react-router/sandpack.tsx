@@ -123,8 +123,8 @@ export const AddCustomTitleToLayout = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", LayoutWithCustomTitle);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", LayoutWithCustomTitle);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

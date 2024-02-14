@@ -71,8 +71,8 @@ export const AddRouterProviderToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithRouterProvider);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithRouterProvider);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

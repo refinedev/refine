@@ -349,7 +349,7 @@ export const AddProtectedProductsResourceToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithProtectedProductsResource,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );

@@ -84,8 +84,8 @@ export const AddDataProviderToRefine = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", UpdatedAppTsxCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", UpdatedAppTsxCode);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

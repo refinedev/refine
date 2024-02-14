@@ -106,12 +106,12 @@ export const CreateShowProductFile = () => {
         <TutorialCreateFileButton
             onClick={() => {
                 sandpack.addFile({
-                    "src/pages/products/show.tsx": {
+                    "/src/pages/products/show.tsx": {
                         code: BaseShowProductTsxCode,
                     },
                 });
-                sandpack.openFile("src/pages/products/show.tsx");
-                sandpack.setActiveFile("src/pages/products/show.tsx");
+                sandpack.openFile("/src/pages/products/show.tsx");
+                sandpack.setActiveFile("/src/pages/products/show.tsx");
             }}
             name="src/pages/products/show.tsx"
         />
@@ -125,10 +125,10 @@ export const AddUseOneToShowProduct = () => {
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "src/pages/products/show.tsx",
+                    "/src/pages/products/show.tsx",
                     ShowProductWithUseOneTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/show.tsx");
+                sandpack.setActiveFile("/src/pages/products/show.tsx");
             }}
         />
     );
@@ -140,8 +140,8 @@ export const AddShowProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithShowProductCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithShowProductCode);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

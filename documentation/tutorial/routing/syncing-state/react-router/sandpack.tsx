@@ -170,7 +170,7 @@ export const AddLocationSyncToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithSyncWithLocation,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );

@@ -162,8 +162,8 @@ export const AddRoutesToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithRoutes);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithRoutes);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -175,8 +175,8 @@ export const AddResourcesToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithResources);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithResources);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

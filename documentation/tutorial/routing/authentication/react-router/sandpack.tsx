@@ -94,8 +94,8 @@ export const AddAuthenticationToApp = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithAuthentication);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithAuthentication);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

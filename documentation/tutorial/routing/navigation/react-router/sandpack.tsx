@@ -206,7 +206,7 @@ export const AddLinksToHeader = () => {
                     "src/components/header.tsx",
                     HeaderWithLinks,
                 );
-                sandpack.setActiveFile("src/components/header.tsx");
+                sandpack.setActiveFile("/src/components/header.tsx");
             }}
         />
     );
@@ -222,7 +222,7 @@ export const AddShowAndEditButtonsToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithNavigation,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );

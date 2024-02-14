@@ -131,7 +131,7 @@ export const AddUseGetIdentityToHeaderComponent = () => {
                     "src/components/header.tsx",
                     HeaderComponentWithUseGetIdentity,
                 );
-                sandpack.setActiveFile("src/components/header.tsx");
+                sandpack.setActiveFile("/src/components/header.tsx");
             }}
         />
     );

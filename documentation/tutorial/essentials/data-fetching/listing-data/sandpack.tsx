@@ -450,8 +450,8 @@ export const CreateListProductsFile = () => {
                         code: BaseListProductsTsxCode,
                     },
                 });
-                sandpack.openFile("src/pages/products/list.tsx");
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.openFile("/src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
             name="src/pages/products/list.tsx"
         />
@@ -468,7 +468,7 @@ export const AddUseListToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithUseListTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -480,8 +480,8 @@ export const AddListProductsToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithListProductsCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithListProductsCode);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -513,7 +513,7 @@ export const AddPaginationToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithPaginationTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -545,7 +545,7 @@ export const AddSortingToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithSortingTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -577,7 +577,7 @@ export const AddFiltersToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithFilteringTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );

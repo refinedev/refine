@@ -148,8 +148,8 @@ export const AddAuthProviderToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithAuthProvider);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithAuthProvider);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -181,7 +181,7 @@ export const AddAuthenticatedComponentToAppTsx = () => {
                     "src/App.tsx",
                     AppTsxWithAuthenticatedComponent,
                 );
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

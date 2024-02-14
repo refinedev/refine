@@ -255,7 +255,7 @@ export const ListInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -271,7 +271,7 @@ export const EditInEditProduct = () => {
                     "src/pages/products/edit.tsx",
                     EditProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );
@@ -287,7 +287,7 @@ export const CreateInCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -303,7 +303,7 @@ export const ShowInShowProduct = () => {
                     "src/pages/products/show.tsx",
                     ShowProductTsx,
                 );
-                sandpack.setActiveFile("src/pages/products/show.tsx");
+                sandpack.setActiveFile("/src/pages/products/show.tsx");
             }}
         />
     );

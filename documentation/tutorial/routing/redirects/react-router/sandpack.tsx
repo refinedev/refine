@@ -229,7 +229,7 @@ export const AddCustomRedirectToEdit = () => {
                     "src/pages/products/edit.tsx",
                     EditProductWithCustomRedirect,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );
@@ -245,7 +245,7 @@ export const AddCustomRedirectToCreate = () => {
                     "src/pages/products/create.tsx",
                     CreateProductWithCustomRedirect,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );

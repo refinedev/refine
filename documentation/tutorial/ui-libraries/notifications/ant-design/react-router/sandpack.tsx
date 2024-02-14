@@ -126,7 +126,7 @@ export const AddNotificationProviderToApp = () => {
                     "src/App.tsx",
                     AppTsxWithNotificationProvider,
                 );
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );

@@ -641,7 +641,7 @@ export const MountListProductsInAppTsx = () => {
                     "src/App.tsx",
                     AppTsxWithListProductsTsxCode,
                 );
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -657,7 +657,7 @@ export const RefactorToUseTableInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithUseTableTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -673,7 +673,7 @@ export const AddRelationHandlingToUseTableInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithUseTableAndUseManyTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -721,7 +721,7 @@ export const AddPaginationToUseTableInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithPaginationTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -737,7 +737,7 @@ export const AddHeaderSortersToUseTableInListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithHeaderSortersTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );

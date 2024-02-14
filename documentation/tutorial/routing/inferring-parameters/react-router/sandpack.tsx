@@ -310,7 +310,7 @@ export const AddInferenceToListProducts = () => {
                     "src/pages/products/list.tsx",
                     ListProductsWithInference,
                 );
-                sandpack.setActiveFile("src/pages/products/list.tsx");
+                sandpack.setActiveFile("/src/pages/products/list.tsx");
             }}
         />
     );
@@ -326,7 +326,7 @@ export const AddInferenceToShowProduct = () => {
                     "src/pages/products/show.tsx",
                     ShowProductWithInference,
                 );
-                sandpack.setActiveFile("src/pages/products/show.tsx");
+                sandpack.setActiveFile("/src/pages/products/show.tsx");
             }}
         />
     );
@@ -342,7 +342,7 @@ export const AddInferenceToCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductWithInference,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -358,7 +358,7 @@ export const AddInferenceToEditProduct = () => {
                     "src/pages/products/edit.tsx",
                     EditProductWithInference,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );

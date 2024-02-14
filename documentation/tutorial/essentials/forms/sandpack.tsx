@@ -425,8 +425,8 @@ export const CreateCreateProductFile = () => {
                         code: BaseCreateProductFormTsxCode,
                     },
                 });
-                sandpack.openFile("src/pages/products/create.tsx");
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.openFile("/src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -438,8 +438,11 @@ export const AddCreateProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithCreateProductCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile(
+                    "/src/App.tsx",
+                    AppTsxWithCreateProductCode,
+                );
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -455,7 +458,7 @@ export const AddUseFormToCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductFormWithFieldsTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -471,7 +474,7 @@ export const AddPriceUpdateToCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductFormWithPriceUpdateTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -487,7 +490,7 @@ export const AddCategoryRelationToCreateProduct = () => {
                     "src/pages/products/create.tsx",
                     CreateProductFormWithCategoryRelationTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/create.tsx");
+                sandpack.setActiveFile("/src/pages/products/create.tsx");
             }}
         />
     );
@@ -499,8 +502,8 @@ export const MountEditProductInAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithEditProductCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithEditProductCode);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
@@ -516,7 +519,7 @@ export const RefactorToUseFormInEditProduct = () => {
                     "src/pages/products/edit.tsx",
                     RefactorEditProductTsxWithFormCode,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );

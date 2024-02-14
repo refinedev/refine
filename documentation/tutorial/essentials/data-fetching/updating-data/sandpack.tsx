@@ -61,7 +61,7 @@ export const dataProvider: DataProvider = {
 `.trim();
 
 const BaseEditProductTsxCode = /* tsx */ `
-import { useOne, useUpdate } from "@refinedev/core";
+import { useOne } from "@refinedev/core";
 
 export const EditProduct = () => {
   const { data, isLoading } = useOne({ resource: "products", id: 123 });
@@ -159,8 +159,8 @@ export const CreateEditProductFile = () => {
                         code: BaseEditProductTsxCode,
                     },
                 });
-                sandpack.openFile("src/pages/products/edit.tsx");
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.openFile("/src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
             name="src/pages/products/edit.tsx"
         />
@@ -177,7 +177,7 @@ export const AddUseUpdateToEditProduct = () => {
                     "src/pages/products/edit.tsx",
                     EditProductWithUseUpdateTsxCode,
                 );
-                sandpack.setActiveFile("src/pages/products/edit.tsx");
+                sandpack.setActiveFile("/src/pages/products/edit.tsx");
             }}
         />
     );
@@ -189,8 +189,8 @@ export const AddEditProductToAppTsx = () => {
     return (
         <TutorialUpdateFileButton
             onClick={() => {
-                sandpack.updateFile("src/App.tsx", AppTsxWithEditProductCode);
-                sandpack.setActiveFile("src/App.tsx");
+                sandpack.updateFile("/src/App.tsx", AppTsxWithEditProductCode);
+                sandpack.setActiveFile("/src/App.tsx");
             }}
         />
     );
