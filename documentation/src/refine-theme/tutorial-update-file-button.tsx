@@ -33,7 +33,7 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
                 "after:opacity-50",
                 "hover:after:scale-100",
                 "hover:after:opacity-100",
-                "after:origin-[85%_center]",
+                "after:origin-[15%_center]",
                 "active:after:brightness-90",
                 "after:transition-all after:duration-200 after:ease-in-out",
                 "after:bg-refine-blue",
@@ -61,7 +61,7 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
             >
                 Click to auto-update the file,
             </span>
-            <span
+            {/* <span
                 className={clsx(
                     "z-[1]",
                     "block",
@@ -76,7 +76,7 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
                 )}
             >
                 click to update it
-            </span>
+            </span> */}
         </button>
     );
 };
