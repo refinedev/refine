@@ -4,7 +4,7 @@ title: 1. Data Provider
 tutorial:
   order: 0
   prev: false
-  next: tutorial/understanding-dataprovider/swizzle
+  next: 3.xx.xx/tutorial/understanding-dataprovider/swizzle
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";
