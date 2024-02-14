@@ -85,6 +85,13 @@ export default async function transformer(file: FileInfo, api: API) {
     });
 
     refineElements.forEach((refineElement) => {
+        refineElement.node.openingElement.attributes?.push(
+            j.jsxAttribute(
+                j.jsxIdentifier("routerProvider"),
+                j.jsxExpressionContainer(j.identifier("routerProvider")),
+            ),
+        );
+
         const routesElement = j.jsxElement(
             j.jsxOpeningElement(j.jsxIdentifier("Routes"), []),
             j.jsxClosingElement(j.jsxIdentifier("Routes")),
@@ -152,6 +159,20 @@ export default async function transformer(file: FileInfo, api: API) {
             }
         });
 
+        const refineDevCoreImport = source
+            .find(j.ImportDeclaration)
+            .filter((path) => path.node.source.value === "@refinedev/core");
+
+        const errorComponentImportSpecifier = j.importSpecifier(
+            j.identifier("ErrorComponent"),
+        );
+
+        refineDevCoreImport.forEach((importDeclaration) => {
+            importDeclaration.node.specifiers?.push(
+                errorComponentImportSpecifier,
+            );
+        });
+
         const errorRoute = j.jsxElement(
             j.jsxOpeningElement(
                 j.jsxIdentifier("Route"),
@@ -185,88 +206,6 @@ export default async function transformer(file: FileInfo, api: API) {
         );
     });
 
-    // addAntDesignImports(j, source);
-
-    // addOutletImport(j, source);
-
-    // refineElement.forEach((element) => {
-    //     element.node.openingElement.attributes?.push(
-    //         j.jsxAttribute(
-    //             j.jsxIdentifier("notificationProvider"),
-    //             j.jsxExpressionContainer(
-    //                 j.identifier("useNotificationProvider"),
-    //             ),
-    //         ),
-    //     );
-
-    //     const antdApp = j.jsxElement(
-    //         j.jsxOpeningElement(j.jsxIdentifier("AntdApp"), []),
-    //         j.jsxClosingElement(j.jsxIdentifier("AntdApp")),
-    //         [element.value],
-    //     );
-
-    //     const configProvider = j.jsxElement(
-    //         j.jsxOpeningElement(j.jsxIdentifier("ConfigProvider"), [
-    //             j.jsxAttribute(
-    //                 j.jsxIdentifier("theme"),
-    //                 j.jsxExpressionContainer(j.identifier("RefineThemes.Blue")),
-    //             ),
-    //         ]),
-    //         j.jsxClosingElement(j.jsxIdentifier("ConfigProvider")),
-    //         [antdApp],
-    //     );
-
-    //     j(element).replaceWith(configProvider);
-    // });
-
-    // const routesElement = source.find(j.JSXElement, {
-    //     openingElement: {
-    //         name: {
-    //             name: "Routes",
-    //         },
-    //     },
-    // });
-
-    // routesElement.forEach((element) => {
-    //     const antdLayout = j.jsxElement(
-    //         j.jsxOpeningElement(j.jsxIdentifier("Route"), [
-    //             j.jsxAttribute(
-    //                 j.jsxIdentifier("element"),
-    //                 j.jsxExpressionContainer(
-    //                     j.jsxElement(
-    //                         j.jsxOpeningElement(
-    //                             j.jsxIdentifier("ThemedLayoutV2"),
-    //                             [],
-    //                         ),
-    //                         j.jsxClosingElement(
-    //                             j.jsxIdentifier("ThemedLayoutV2"),
-    //                         ),
-    //                         [
-    //                             j.jsxElement(
-    //                                 j.jsxOpeningElement(
-    //                                     j.jsxIdentifier("Outlet"),
-    //                                     [],
-    //                                     true,
-    //                                 ),
-    //                             ),
-    //                         ],
-    //                     ),
-    //                 ),
-    //             ),
-    //         ]),
-    //         j.jsxClosingElement(j.jsxIdentifier("Route")),
-    //         element.node.children,
-    //     );
-
-    //     element.replace(
-    //         j.jsxElement(
-    //             element.node.openingElement,
-    //             element.node.closingElement,
-    //             [antdLayout],
-    //         ),
-    //     );
-    // });
-
     return await prettierFormat(source.toSource());
 }
 
@@ -282,35 +221,10 @@ export const addReactRouterImports = (j: JSCodeshift, source: Collection) => {
 
     source.find(j.ImportDeclaration).at(0).insertAfter(reactRouterDomImports);
 
-    // const refineReactRouterImports = j.importDeclaration(
-    //     [
-    //         j.importDeclaration(j.identifier(""))
-    //         j.importSpecifier(j.identifier("ConfigProvider")),
-    //         j.importSpecifier(j.identifier("App as AntdApp")),
-    //     ],
-    //     j.literal("antd"),
-    // );
+    const routerProviderImport = j.importDeclaration(
+        [j.importDefaultSpecifier(j.identifier("routerProvider"))],
+        j.literal("@refinedev/react-router-v6"),
+    );
 
-    // source.find(j.ImportDeclaration).at(-1).insertAfter(antdImports);
-
-    // const resetImport = j.importDeclaration(
-    //     [],
-    //     j.literal("@refinedev/antd/dist/reset.css"),
-    // );
-
-    // source.find(j.ImportDeclaration).at(-1).insertAfter(resetImport);
-};
-
-const addOutletImport = (j: JSCodeshift, source: Collection) => {
-    const reactRouterDomImport = source.find(j.ImportDeclaration, {
-        source: {
-            value: "react-router-dom",
-        },
-    });
-
-    reactRouterDomImport.forEach((path) => {
-        path.node.specifiers?.push(
-            j.importSpecifier(j.identifier("Outlet"), j.identifier("Outlet")),
-        );
-    });
+    source.find(j.ImportDeclaration).at(0).insertAfter(routerProviderImport);
 };

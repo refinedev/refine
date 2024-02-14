@@ -1,7 +1,6 @@
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 import execa from "execa";
 import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
-import camelcase from "camelcase";
 
 export const parser = "tsx";
 
@@ -87,6 +86,13 @@ export default async function transformer(file: FileInfo, api: API) {
     });
 
     routesElement.forEach((element) => {
+        source
+            .find(j.ImportDeclaration)
+            .filter((path) => path.node.source.value === "@refinedev/core")
+            .find(j.ImportSpecifier)
+            .filter((path) => path.node.imported.name === "ErrorComponent")
+            .remove();
+
         const errorRoute = j.jsxElement(
             j.jsxOpeningElement(
                 j.jsxIdentifier("Route"),
