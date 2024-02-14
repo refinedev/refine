@@ -327,3 +327,44 @@ type SyncWithLocationParams = {
   filters: CrudFilters;
 };
 ```
+
+```tsx
+interface DataProvider {
+  getList: <RecordType = any>(
+    resource: string,
+    params?: GetListParams
+  ) => Promise<ListResponse<RecordType>>;
+  getOne: <RecordType = any>(
+    resource: string,
+    params?: GetOneParams
+  ) => Promise<RecordType>;
+  getMany: <RecordType = any>(
+    resource: string,
+    params?: GetManyParams
+  ) => Promise<ListResponse<RecordType>>;
+  getManyReference: <RecordType = any>(
+    resource: string,
+    params?: GetManyReferenceParams
+  ) => Promise<ListResponse<RecordType>>;
+  create: <RecordType = any>(
+    resource: string,
+    params?: CreateParams
+  ) => Promise<RecordType>;
+  update: <RecordType = any>(
+    resource: string,
+    params?: UpdateParams
+  ) => Promise<RecordType>;
+  updateMany: <RecordType = any>(
+    resource: string,
+    params?: UpdateManyParams
+  ) => Promise<UpdateManyResponse>;
+  delete: <RecordType = any>(
+    resource: string,
+    params?: DeleteParams
+  ) => Promise<RecordType>;
+  deleteMany: <RecordType = any>(
+    resource: string,
+    params?: DeleteManyParams
+  ) => Promise<DeleteManyResponse>;
+}
+```
