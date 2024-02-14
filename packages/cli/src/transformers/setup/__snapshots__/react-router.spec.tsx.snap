@@ -88,3 +88,46 @@ function App() {
 
 export default App;"
 `;
+
+exports[`antd transformer should transform the file
+----------------------------------------------------
+import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Refine routerProvider={routerProvider}>
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Refine routerProvider={routerProvider}>
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+}
+
+export default App;"
+`;
