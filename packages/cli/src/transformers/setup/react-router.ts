@@ -9,7 +9,7 @@ import {
     JSXIdentifier,
 } from "jscodeshift";
 import decamelize from "decamelize";
-import { wrapElement } from "@utils/codeshift";
+import { wrapChildren, wrapElement } from "@utils/codeshift";
 
 export const parser = "tsx";
 
@@ -87,19 +87,7 @@ export default async function transformer(file: FileInfo, api: API) {
             ),
         );
 
-        const routesElement = j.jsxElement(
-            j.jsxOpeningElement(j.jsxIdentifier("Routes"), []),
-            j.jsxClosingElement(j.jsxIdentifier("Routes")),
-            refineElement.node.children,
-        );
-
-        refineElement.replace(
-            j.jsxElement(
-                refineElement.node.openingElement,
-                refineElement.node.closingElement,
-                [routesElement],
-            ),
-        );
+        wrapChildren(j, refineElement, "Routes");
     });
 
     const routesElements = source.find(j.JSXElement, {
@@ -114,6 +102,7 @@ export default async function transformer(file: FileInfo, api: API) {
         let elementCount = 0;
 
         const newRouteElements: JSXElement[] = [];
+
         routesElement.node?.children?.forEach((child) => {
             if (child.type === "JSXElement") {
                 elementCount++;
