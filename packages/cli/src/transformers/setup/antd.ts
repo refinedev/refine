@@ -91,29 +91,40 @@ export default async function transformer(file: FileInfo, api: API) {
             .filter((path) => path.node.imported.name === "ErrorComponent")
             .remove();
 
-        const errorRoute = j.jsxElement(
-            j.jsxOpeningElement(
-                j.jsxIdentifier("Route"),
-                [
-                    j.jsxAttribute(j.jsxIdentifier("path"), j.literal("*")),
-                    j.jsxAttribute(
-                        j.jsxIdentifier("element"),
-                        j.jsxExpressionContainer(
-                            j.jsxElement(
-                                j.jsxOpeningElement(
-                                    j.jsxIdentifier("ErrorComponent"),
-                                    [],
-                                    true,
+        const layoutChildren = [...(element.node.children ?? [])];
+
+        const isErrorRouteExists = source.find(j.JSXElement, {
+            openingElement: {
+                name: {
+                    name: "ErrorComponent",
+                },
+            },
+        });
+
+        if (!isErrorRouteExists) {
+            const errorRoute = j.jsxElement(
+                j.jsxOpeningElement(
+                    j.jsxIdentifier("Route"),
+                    [
+                        j.jsxAttribute(j.jsxIdentifier("path"), j.literal("*")),
+                        j.jsxAttribute(
+                            j.jsxIdentifier("element"),
+                            j.jsxExpressionContainer(
+                                j.jsxElement(
+                                    j.jsxOpeningElement(
+                                        j.jsxIdentifier("ErrorComponent"),
+                                        [],
+                                        true,
+                                    ),
                                 ),
                             ),
                         ),
-                    ),
-                ],
-                true,
-            ),
-        );
-
-        const layoutChildren = [...(element.node.children ?? []), errorRoute];
+                    ],
+                    true,
+                ),
+            );
+            layoutChildren.push(errorRoute);
+        }
 
         const antdLayout = j.jsxElement(
             j.jsxOpeningElement(j.jsxIdentifier("Route"), [
