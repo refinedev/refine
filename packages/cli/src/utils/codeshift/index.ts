@@ -1,11 +1,10 @@
 import {
     ASTPath,
+    Collection,
     JSCodeshift,
     JSXAttribute,
     JSXElement,
     JSXExpressionContainer,
-    JSXFragment,
-    JSXSpreadChild,
 } from "jscodeshift";
 
 export const wrapElement = (
@@ -28,7 +27,6 @@ export const wrapElement = (
 export const wrapChildren = (
     j: JSCodeshift,
     element: ASTPath<JSXElement>,
-
     wrapper: string,
     wrapperAttributes: JSXAttribute[] = [],
 ) => {
@@ -45,4 +43,29 @@ export const wrapChildren = (
     );
 
     return element;
+};
+
+export const addAttributeIfNotExist = (
+    j: JSCodeshift,
+    source: Collection,
+    element: ASTPath<JSXElement>,
+    attributeIdentifier: string,
+    attributeValue?: JSXElement | JSXExpressionContainer,
+) => {
+    const existingAttribute = source.find(j.JSXAttribute, {
+        name: {
+            name: attributeIdentifier,
+        },
+    });
+
+    if (existingAttribute.length) {
+        return;
+    }
+
+    const attribute = j.jsxAttribute(
+        j.jsxIdentifier(attributeIdentifier),
+        attributeValue ? attributeValue : undefined,
+    );
+
+    element.node.openingElement.attributes?.push(attribute);
 };

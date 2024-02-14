@@ -9,7 +9,11 @@ import {
     JSXIdentifier,
 } from "jscodeshift";
 import decamelize from "decamelize";
-import { wrapChildren, wrapElement } from "@utils/codeshift";
+import {
+    addAttributeIfNotExist,
+    wrapChildren,
+    wrapElement,
+} from "@utils/codeshift";
 
 export const parser = "tsx";
 
@@ -80,11 +84,12 @@ export default async function transformer(file: FileInfo, api: API) {
     });
 
     refineElements.forEach((refineElement) => {
-        refineElement.node.openingElement.attributes?.push(
-            j.jsxAttribute(
-                j.jsxIdentifier("routerProvider"),
-                j.jsxExpressionContainer(j.identifier("routerProvider")),
-            ),
+        addAttributeIfNotExist(
+            j,
+            source,
+            refineElement,
+            "routerProvider",
+            j.jsxExpressionContainer(j.identifier("routerProvider")),
         );
 
         wrapChildren(j, refineElement, "Routes");

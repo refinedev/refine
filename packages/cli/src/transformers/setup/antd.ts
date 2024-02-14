@@ -1,4 +1,4 @@
-import { wrapElement } from "@utils/codeshift";
+import { addAttributeIfNotExist, wrapElement } from "@utils/codeshift";
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 import execa from "execa";
 import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
@@ -47,13 +47,12 @@ export default async function transformer(file: FileInfo, api: API) {
     addOutletImport(j, source);
 
     refineElement.forEach((element) => {
-        element.node.openingElement.attributes?.push(
-            j.jsxAttribute(
-                j.jsxIdentifier("notificationProvider"),
-                j.jsxExpressionContainer(
-                    j.identifier("useNotificationProvider"),
-                ),
-            ),
+        addAttributeIfNotExist(
+            j,
+            source,
+            element,
+            "notificationProvider",
+            j.jsxExpressionContainer(j.identifier("useNotificationProvider")),
         );
 
         const antdApp = wrapElement(j, element, "AntdApp");
