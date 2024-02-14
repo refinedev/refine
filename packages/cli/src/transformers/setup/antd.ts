@@ -27,8 +27,6 @@ export default async function transformer(file: FileInfo, api: API) {
     const j = api.jscodeshift;
     const source = j(file.source);
 
-    console.log(file.path);
-
     const refineElement = source.find(j.JSXElement, {
         openingElement: {
             name: {
