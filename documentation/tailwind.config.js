@@ -4,7 +4,11 @@ const plugin = require("tailwindcss/plugin");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class", '[data-theme="dark"]'],
-    content: ["./src/**/*.{js,jsx,ts,tsx}", "./docs/**/*.{md,mdx,tsx}"],
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+        "./docs/**/*.{md,mdx,tsx}",
+        "./tutorial/**/*.{md,mdx,tsx}",
+    ],
     jit: true,
     theme: {
         extend: {
@@ -22,6 +26,7 @@ module.exports = {
                     yellow: "#FFBF00",
                     green: "#1FAD66",
                     "green-alt": "#26D97F",
+                    "tutorial-green": "#24A866",
                     cyan: "#0F8A8A",
                     "cyan-alt": "#47EBEB",
                     blue: "#0080FF",
@@ -55,6 +60,7 @@ module.exports = {
                     "react-light-orange-bg": "#FEF5E7",
                     "react-light-purple-bg": "#F3F4FD",
                     "react-light-green-bg": "#F4FBF9",
+                    "tutorial-dark-bg": "#1D2026",
                     "bg-alt": "#262640",
                     "link-dark": "#6EB3F7",
                     "link-light": "#0080FF",
@@ -545,8 +551,17 @@ module.exports = {
                     "enterprise-table-right-to-left 0.3s ease-in-out forwards",
                 "new-badge-border": "new-badge-border 4s linear infinite",
                 reveal: "reveal 0.3s ease-in-out forwards",
+                "progress-fill": "progressFill 1s linear 1 forwards",
             },
             keyframes: {
+                progressFill: {
+                    "0%": {
+                        width: "0%",
+                    },
+                    "100%": {
+                        width: "100%",
+                    },
+                },
                 reveal: {
                     "0%": {
                         opacity: 0,
@@ -851,6 +866,9 @@ module.exports = {
             "landing-md": "960px",
             "landing-lg": "1296px",
             "landing-xl": "1440px",
+            "tutorial-sm": "720px",
+            "tutorial-md": "960px",
+            "tutorial-lg": "1440px",
             "landing-footer": "1264px",
             "blog-sm": "688px",
             "blog-md": "1000px",

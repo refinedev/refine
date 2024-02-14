@@ -1280,7 +1280,7 @@ Default paths are:
 - `show`: `/resources/show/:id`
 
 [routerprovider]: /docs/routing/router-provider
-[resources]: /docs/tutorial/understanding-resources/index
+[resources]: /docs/guides-concepts/general-concepts/#resource-concept
 
 ```
 

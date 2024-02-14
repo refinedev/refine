@@ -2,8 +2,8 @@
 id: swizzle
 title: 2. Create Data Provider with Swizzle
 tutorial:
-    prev: tutorial/understanding-dataprovider/index
-    next: tutorial/understanding-dataprovider/create-dataprovider
+  prev: 3.xx.xx/tutorial/understanding-dataprovider/index
+  next: 3.xx.xx/tutorial/understanding-dataprovider/create-dataprovider
 ---
 
 ## What is Swizzle?
@@ -18,19 +18,19 @@ In some cases, refine's built-in data providers are not fully complying with our
 
 1. Run the `swizzle` command in the project directory:
 
-    ```bash
-    npm run refine swizzle
-    ```
+   ```bash
+   npm run refine swizzle
+   ```
 
 2. Select the data provider package from the list of packages that support `swizzle`. In this tutorial, we will use `@pankod/refine-simple-rest`.
 
-    ```bash
-    ? Which package do you want to swizzle?
-      Data Provider
-    ❯  @pankod/refine-simple-rest
-      UI Framework
-      @pankod/refine-antd
-    ```
+   ```bash
+   ? Which package do you want to swizzle?
+     Data Provider
+   ❯  @pankod/refine-simple-rest
+     UI Framework
+     @pankod/refine-antd
+   ```
 
 The necessary files for this package are copied to the `src/rest-data-provider` folder with `swizzle`.
 

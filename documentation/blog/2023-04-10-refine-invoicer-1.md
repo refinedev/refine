@@ -68,7 +68,7 @@ import routerBindings from "@refinedev/react-router-v6";
 ```
 
 The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.  
-Hence, inside [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
+Hence, inside [`dataProvider`](https://refine.dev/docs/data/data-provider), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/authentication/auth-provider/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
 
 For example, a `dataProvider` object should have the following signature to which any definition of a data provider object should conform:
 
@@ -91,7 +91,7 @@ const dataProvider: DataProvider = {
 };
 ```
 
-The underlying architecture facilitates any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has appropriate hooks via which a consumer component is able to fetch data from the backend. For instance, [`useSimpleList()`](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) is a high level data and UI hook via which the [`dataProvider.getList()`](https://refine.dev/docs/tutorial/understanding-dataprovider/create-dataprovider/#getlist) provider method can be accessed.
+The underlying architecture facilitates any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has appropriate hooks via which a consumer component is able to fetch data from the backend. For instance, [`useSimpleList()`](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) is a high level data and UI hook via which the [`dataProvider.getList()`](https://refine.dev/docs/data/data-provider#getlist) provider method can be accessed.
 
 An example hook usage from a UI component looks like this:
 
@@ -170,8 +170,8 @@ The following diagram illustrates the interactions:
 
 Common providers include:
 
-- [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/#what-is-auth-provider) - for authentication and authorization.
-- [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) - for CRUD operations.
+- [`authProvider`](https://refine.dev/docs/authentication/auth-provider/#what-is-auth-provider) - for authentication and authorization.
+- [`dataProvider`](https://refine.dev/docs/data/data-provider) - for CRUD operations.
 - [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/) - for dealing with routing.
 
 For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
