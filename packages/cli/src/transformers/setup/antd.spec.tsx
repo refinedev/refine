@@ -9,7 +9,7 @@ describe("antd transformer", () => {
     const cases = [VITE_STARTER_SOURCE, BASE_HEADLESS_SOURCE];
 
     it.each(cases)(
-        "should transform the file \n----------------------------------------------------\n%s\n----------------------------------------------------",
+        "should transform the file\n----------------------------------------------------\n%s\n----------------------------------------------------",
         async (source) => {
             console.log(source);
             const fileInfo: FileInfo = {
@@ -28,7 +28,7 @@ describe("antd transformer", () => {
                 },
             });
 
-            expect(result).toMatchSnapshot();
+            expect(result?.trim()).toMatchSnapshot();
         },
     );
 });
