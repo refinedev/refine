@@ -130,6 +130,7 @@ For this tutorial, we will use the following configurations:
 - UI framework: Headless
 - Backend: REST API
 - Authentication Provider: No Auth
+- Do you want examples pages: Yes
 
 After creating your project, give it a title or use the default title, and then build and download the Gzipped compressed file to your local computer.
 

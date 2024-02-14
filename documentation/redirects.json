@@ -2156,6 +2156,46 @@
         "/docs/tutorial/understanding-dataprovider/swizzle",
         "/docs/tutorial/understanding-resources/index"
       ]
+    },
+    {
+      "from": "/blog/simple-web-application-with-refine/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/manage-hackathons-with-refine/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/create-a-feedback-admin-panel-with-refine-and-strapi/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/web3-with-refine/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/how-to-add-darkmode-in-ant-design/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/create-full-stack-app-with-refine/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/how-to-become-a-production-hero-refine-2022/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/how-to-access-control-with-nestjs/",
+      "to": "/blog"
+    },
+    {
+      "from": "/blog/e-mail-subscription-panel-with-refine/",
+      "to": "/blog"
     }
   ]
 }
