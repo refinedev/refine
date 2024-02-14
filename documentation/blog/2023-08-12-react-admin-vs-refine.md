@@ -405,7 +405,7 @@ When it comes to documentation, Refine has more useful resources.
 ## Community Engagement
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star.png"  alt="react-admin-vs-refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star2.png"  alt="react-admin-vs-refine" />
 </div>
 
 <br/>
@@ -414,7 +414,7 @@ Refine quickly gained favor and attention from the community. Despite being just
 
 Refine achieved the same number of GitHub stars that React-admin achieved in 5 years, but in a much shorter span of 2 years.
 
-As of the time of writing this article, Refine has over 2700 members in its Community Discord, whereas React-admin has over 800.
+As of the time of writing this article, Refine has over 4000 members in its Community Discord, whereas React-admin has over 1000.
 
 Additionally, Refine organized two world-wide online hackathons, which were open to broad participation in collaboration with popular open-source companies. These hackathons attracted the interest of more than 1000 participants from all over the world.
 
