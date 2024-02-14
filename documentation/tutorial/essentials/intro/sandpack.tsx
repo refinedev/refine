@@ -10,16 +10,15 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 };
 
 const AppTsxCode = /* jsx */ `
-import React from "react";
 import { Refine, WelcomePage } from "@refinedev/core";
 
 export default function App() {
-    return (
-        <Refine>
-            <WelcomePage />
-        </Refine>
-    )
-}
+  return (
+    <Refine>
+      <WelcomePage />
+    </Refine>
+  );
+};
 `.trim();
 
 const BaseAppTsxCode = /* tsx */ `

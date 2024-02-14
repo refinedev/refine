@@ -23,13 +23,18 @@ Then, we'll pass our data provider to `<Refine />` component in `src/App.tsx` fi
 Try to add the following code to your `src/App.tsx` file:
 
 ```tsx
-// We're also removing the `<WelcomePage />` component from the file.
-import { Refine } from "@refinedev/core";
+import { Refine, WelcomePage } from "@refinedev/core";
 
+// highlight-next-line
 import { dataProvider } from "./providers/data-provider";
 
 export default function App(): JSX.Element {
-  return <Refine dataProvider={dataProvider}></Refine>;
+  return (
+    // highlight-next-line
+    <Refine dataProvider={dataProvider}>
+      <WelcomePage />
+    </Refine>
+  );
 }
 ```
 
