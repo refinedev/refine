@@ -29,7 +29,7 @@ export const TutorialFooter = () => {
                         // "mt-4 sm:mt-0",
                     )}
                 >
-                    Refine © 2023
+                    Refine © {new Date().getFullYear()}
                 </div>
 
                 <div
