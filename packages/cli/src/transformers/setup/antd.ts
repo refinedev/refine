@@ -83,87 +83,97 @@ export default async function transformer(file: FileInfo, api: API) {
         },
     });
 
-    routesElement.forEach((element) => {
-        source
-            .find(j.ImportDeclaration)
-            .filter((path) => path.node.source.value === "@refinedev/core")
-            .find(j.ImportSpecifier)
-            .filter((path) => path.node.imported.name === "ErrorComponent")
-            .remove();
+    if (routesElement.length > 0) {
+        updateImports(j, source, "@refinedev/antd", [
+            "ThemedLayoutV2",
+            "ErrorComponent",
+        ]);
 
-        const layoutChildren = [...(element.node.children ?? [])];
+        routesElement.forEach((element) => {
+            source
+                .find(j.ImportDeclaration)
+                .filter((path) => path.node.source.value === "@refinedev/core")
+                .find(j.ImportSpecifier)
+                .filter((path) => path.node.imported.name === "ErrorComponent")
+                .remove();
 
-        const isErrorRouteExists = source.find(j.JSXElement, {
-            openingElement: {
-                name: {
-                    name: "ErrorComponent",
+            const layoutChildren = [...(element.node.children ?? [])];
+
+            const isErrorRouteExists = source.find(j.JSXElement, {
+                openingElement: {
+                    name: {
+                        name: "ErrorComponent",
+                    },
                 },
-            },
-        });
+            });
 
-        if (!isErrorRouteExists) {
-            const errorRoute = j.jsxElement(
-                j.jsxOpeningElement(
-                    j.jsxIdentifier("Route"),
-                    [
-                        j.jsxAttribute(j.jsxIdentifier("path"), j.literal("*")),
-                        j.jsxAttribute(
-                            j.jsxIdentifier("element"),
-                            j.jsxExpressionContainer(
-                                j.jsxElement(
-                                    j.jsxOpeningElement(
-                                        j.jsxIdentifier("ErrorComponent"),
-                                        [],
-                                        true,
+            if (!isErrorRouteExists) {
+                const errorRoute = j.jsxElement(
+                    j.jsxOpeningElement(
+                        j.jsxIdentifier("Route"),
+                        [
+                            j.jsxAttribute(
+                                j.jsxIdentifier("path"),
+                                j.literal("*"),
+                            ),
+                            j.jsxAttribute(
+                                j.jsxIdentifier("element"),
+                                j.jsxExpressionContainer(
+                                    j.jsxElement(
+                                        j.jsxOpeningElement(
+                                            j.jsxIdentifier("ErrorComponent"),
+                                            [],
+                                            true,
+                                        ),
                                     ),
                                 ),
                             ),
-                        ),
-                    ],
-                    true,
-                ),
-            );
-            layoutChildren.push(errorRoute);
-        }
+                        ],
+                        true,
+                    ),
+                );
+                layoutChildren.push(errorRoute);
+            }
 
-        const antdLayout = j.jsxElement(
-            j.jsxOpeningElement(j.jsxIdentifier("Route"), [
-                j.jsxAttribute(
-                    j.jsxIdentifier("element"),
-                    j.jsxExpressionContainer(
-                        j.jsxElement(
-                            j.jsxOpeningElement(
-                                j.jsxIdentifier("ThemedLayoutV2"),
-                                [],
-                            ),
-                            j.jsxClosingElement(
-                                j.jsxIdentifier("ThemedLayoutV2"),
-                            ),
-                            [
-                                j.jsxElement(
-                                    j.jsxOpeningElement(
-                                        j.jsxIdentifier("Outlet"),
-                                        [],
-                                        true,
-                                    ),
+            const antdLayout = j.jsxElement(
+                j.jsxOpeningElement(j.jsxIdentifier("Route"), [
+                    j.jsxAttribute(
+                        j.jsxIdentifier("element"),
+                        j.jsxExpressionContainer(
+                            j.jsxElement(
+                                j.jsxOpeningElement(
+                                    j.jsxIdentifier("ThemedLayoutV2"),
+                                    [],
                                 ),
-                            ],
+                                j.jsxClosingElement(
+                                    j.jsxIdentifier("ThemedLayoutV2"),
+                                ),
+                                [
+                                    j.jsxElement(
+                                        j.jsxOpeningElement(
+                                            j.jsxIdentifier("Outlet"),
+                                            [],
+                                            true,
+                                        ),
+                                    ),
+                                ],
+                            ),
                         ),
                     ),
-                ),
-            ]),
-            j.jsxClosingElement(j.jsxIdentifier("Route")),
-            layoutChildren,
-        );
+                ]),
+                j.jsxClosingElement(j.jsxIdentifier("Route")),
+                layoutChildren,
+            );
 
-        element.replace(
-            j.jsxElement(
-                element.node.openingElement,
-                element.node.closingElement,
-                [antdLayout],
-            ),
-        );
-    });
+            element.replace(
+                j.jsxElement(
+                    element.node.openingElement,
+                    element.node.closingElement,
+                    [antdLayout],
+                ),
+            );
+        });
+    }
 
     return await prettierFormat(source.toSource());
 }
@@ -172,8 +182,6 @@ export const addAntDesignImports = (j: JSCodeshift, source: Collection) => {
     const refineDevAntdImports = j.importDeclaration(
         [
             j.importSpecifier(j.identifier("useNotificationProvider")),
-            j.importSpecifier(j.identifier("ThemedLayoutV2")),
-            j.importSpecifier(j.identifier("ErrorComponent")),
             j.importSpecifier(j.identifier("RefineThemes")),
         ],
         j.literal("@refinedev/antd"),
@@ -210,5 +218,27 @@ const addOutletImport = (j: JSCodeshift, source: Collection) => {
         path.node.specifiers?.push(
             j.importSpecifier(j.identifier("Outlet"), j.identifier("Outlet")),
         );
+    });
+};
+
+const updateImports = (
+    j: JSCodeshift,
+    source: Collection,
+    packageName: string,
+    imports: string[],
+) => {
+    const packageImport = source
+        .find(j.ImportDeclaration)
+        .filter((path) => path.node.source.value === packageName);
+
+    const importSpecifiers = imports.map((importName) => {
+        return j.importSpecifier(j.identifier(importName));
+    });
+
+    packageImport.forEach((importDeclaration) => {
+        importDeclaration.node.specifiers = [
+            ...(importDeclaration.node.specifiers ?? []),
+            ...importSpecifiers,
+        ];
     });
 };
