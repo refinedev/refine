@@ -69,7 +69,7 @@ Refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with Refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on Refine app.
 
-We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
+We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/tutorial) section first.
 
 [Refer to docs for more information about data provider &#8594](/docs/data/data-provider)
 
@@ -530,7 +530,7 @@ Before diving into Supabase features, we'll add simple CRUD pages to make the ap
 
 :::note
 
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/tutorial) to learn more about creating CRUD pages.
 
 :::
 

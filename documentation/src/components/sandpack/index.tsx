@@ -78,6 +78,7 @@ const SandpackBase = ({
         showTabs: true,
         initMode: "lazy",
         classes: {
+            "sp-bridge-frame": "!hidden",
             "sp-layout": "!rounded-lg !border-gray-300 dark:!border-gray-700",
             "sp-editor":
                 "!gap-0 border-r !border-r-gray-300 dark:!border-r-gray-700",
@@ -93,6 +94,36 @@ const SandpackBase = ({
             ),
             "sp-icon-standalone":
                 "!bg-gray-300 dark:!bg-gray-700 !text-gray-400 dark:!text-gray-500",
+            "sp-file-explorer":
+                "border-r !border-r-gray-300 dark:!border-r-gray-700",
+            "sp-console": clsx(
+                "not-prose",
+                "!border-t-0 !border !border-solid !border-t-none",
+                "!border-gray-300 dark:!border-gray-700",
+                "!rounded-bl-lg !rounded-br-lg",
+                "!bg-refine-react-light-code",
+                "dark:!bg-refine-react-dark-code",
+            ),
+            "sp-console-header": clsx(
+                "!bg-gray-0 dark:!bg-gray-800",
+                "border-b border-solid !border-b-gray-300 dark:!border-b-gray-700",
+                "!h-[32px] !min-h-[32px]",
+            ),
+            "sp-console-header-actions": clsx("h-full", "!gap-0"),
+            "sp-console-header-button": clsx(
+                "!bg-transparent",
+                "!border !border-solid !border-b-0 !border-x-gray-300 dark:!border-x-gray-700",
+                "!border-t-2 !border-t-transparent [&[data-active='true']]:!border-t-refine-react-light-link dark:[&[data-active='true']]:!border-t-refine-react-dark-link",
+                "h-full",
+                "!text-gray-800 dark:!text-gray-100",
+                "!rounded-none",
+                "-ml-px",
+            ),
+            "sp-console-list": clsx(
+                "!bg-refine-react-light-code",
+                "dark:!bg-refine-react-dark-code",
+                "[&>code]:!bg-transparent",
+            ),
             "sp-tab-button": clsx(
                 "!h-8",
                 "!px-2 !pb-2 !pt-1.5",
@@ -196,7 +227,17 @@ const SandpackBase = ({
                         files={
                             files as TemplateFiles<SandpackPredefinedTemplate>
                         }
-                        options={providerOptions}
+                        options={{
+                            ...providerOptions,
+                            classes: {
+                                ...providerOptions.classes,
+                                "sp-layout": clsx(
+                                    providerOptions.classes?.["sp-layout"],
+                                    showConsole &&
+                                        "!rounded-bl-none !rounded-br-none",
+                                ),
+                            },
+                        }}
                         template={template}
                         theme={
                             colorMode === "light"
@@ -261,21 +302,6 @@ const SandpackBase = ({
                                     }}
                                 />
                             )}
-                            {showConsole ? (
-                                <SandpackConsole
-                                    style={{
-                                        height: options.editorHeight ?? height,
-                                        ...(layout?.includes("col")
-                                            ? { flex: "initial" }
-                                            : {
-                                                  flexGrow: horizontalSize,
-                                                  flexShrink: horizontalSize,
-                                                  flexBasis: 0,
-                                              }),
-                                        overflow: "hidden",
-                                    }}
-                                />
-                            ) : null}
                             {showHandle ? (
                                 <DragHandle
                                     onMouseDown={onHandleMouseDown}
@@ -351,6 +377,21 @@ const SandpackBase = ({
                                 </>
                             )}
                         </SandpackLayout>
+                        {showConsole ? (
+                            <SandpackConsole
+                                style={{
+                                    height: 200,
+                                    ...(layout?.includes("col")
+                                        ? { flex: "initial" }
+                                        : {
+                                              flexGrow: horizontalSize,
+                                              flexShrink: horizontalSize,
+                                              flexBasis: 0,
+                                          }),
+                                    overflow: "hidden",
+                                }}
+                            />
+                        ) : null}
                     </SandpackProvider>
                 </div>
                 <div
@@ -366,6 +407,12 @@ const SandpackBase = ({
                     style={{
                         height: Number(options.editorHeight ?? height) + 2,
                     }}
+                />
+                <div
+                    className={clsx(
+                        showConsole ? "block" : "hidden",
+                        "h-[200px]",
+                    )}
                 />
             </div>
             <section className="hidden max-w-0 max-h-0">

@@ -33,7 +33,7 @@ The Refine is **headless by design**, offering unlimited styling and customizati
 Refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/)
 
 [Refer to documentation for more info about Refine&#8594](https://refine.dev/docs/)
-[Step up to Refine tutorials &#8594](https://refine.dev/docs/tutorial/introduction/index/)
+[Step up to Refine tutorials &#8594](https://refine.dev/tutorial)
 
 ✨ With the introduction of [refine.new](https://refine.new/), developers can now create Refine apps in just **15 seconds**.
 

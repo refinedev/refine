@@ -477,7 +477,7 @@ return (
 
 After adding resources we need to create routes for them. For the routes, we'll use the `<UserList/>` and `<CanvasList/>` components we created earlier.
 
-[Refer to the CRUD Pages tutorial for more information. →](/docs/tutorial/adding-crud-pages/antd/index)
+[Refer to the CRUD Pages tutorial for more information. →](/docs/ui-integrations/ant-design/introduction)
 
 ```tsx title="App.tsx"
 // ...

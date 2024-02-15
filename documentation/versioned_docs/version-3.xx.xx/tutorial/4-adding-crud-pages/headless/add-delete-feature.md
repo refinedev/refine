@@ -3,8 +3,8 @@ id: add-delete-feature
 title: 5. Adding Delete Feature
 tutorial:
   order: 0
-  prev: tutorial/adding-crud-pages/{preferredUI}/add-create-page
-  next: tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
+  prev: 3.xx.xx/tutorial/adding-crud-pages/{preferredUI}/add-create-page
+  next: 3.xx.xx/tutorial/adding-crud-pages/{preferredUI}/adding-sort-and-filters
 ---
 
 Let's start by adding the delete feature to the list page by adding a delete button to the table. To do this, we will use the `useDelete` hook.

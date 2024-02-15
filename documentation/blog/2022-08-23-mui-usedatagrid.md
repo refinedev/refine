@@ -44,7 +44,7 @@ To follow along with this tutorial, we assume you have the following:
 - Node.js installed on your machine
 - A code editor of your choice (VSCode, Sublime Text, etc.)
 
-If you don't familiar with Refine, we recommend you to check out the [Refine tutorial](https://refine.dev/docs/tutorial/introduction/index/) to get started.
+If you don't familiar with Refine, we recommend you to check out the [Refine tutorial](https://refine.dev/tutorial) to get started.
 
 ## Create a new Refine app
 

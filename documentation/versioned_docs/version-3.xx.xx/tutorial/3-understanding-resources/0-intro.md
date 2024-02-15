@@ -4,7 +4,7 @@ title: Resources
 tutorial:
   order: 0
   prev: false
-  next: tutorial/adding-crud-pages/{preferredUI}/index
+  next: 3.xx.xx/tutorial/adding-crud-pages/{preferredUI}/index
 ---
 
 :::info Remember

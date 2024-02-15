@@ -66,7 +66,7 @@
 
     @apply prose-pre:font-jetBrains-mono;
 
-    @apply prose-blockquote:last:mb-0 prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:pl-3 prose-blockquote:font-normal prose-blockquote:not-italic;
+    @apply prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:pl-3 prose-blockquote:font-normal prose-blockquote:not-italic;
     @apply prose-blockquote:bg-gray-100 prose-blockquote:text-gray-800 prose-blockquote:border-l-gray-400;
     @apply prose-blockquote:dark:bg-gray-700 prose-blockquote:dark:text-gray-100 prose-blockquote:dark:border-l-gray-500;
 
@@ -420,6 +420,7 @@ html[data-active-page="index"] body {
 }
 
 .sp-preview .sp-loading + .sp-custom-loading {
+    @apply bg-gray-0 dark:bg-gray-800;
     display: flex;
     position: absolute;
     left: 0;
@@ -432,6 +433,12 @@ html[data-active-page="index"] body {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sp-preview .sp-loading + .sp-custom-loading .sp-loading-progress {
+    @apply animate-progress-fill;
 }
 
 .sp-icon-standalone[title="Open in CodeSandbox"] svg + span {
@@ -539,4 +546,19 @@ h4 del code {
 
 .docs-wrapper *::selection {
     @apply bg-refine-selection text-gray-800;
+}
+
+.sp-bridge-frame {
+    display: none !important;
+}
+
+.sp-console-list code {
+    @apply !bg-none !bg-transparent !border-none;
+}
+.sp-console-list .sp-console-item {
+    @apply !px-2 !py-px text-gray-600 dark:text-gray-200;
+}
+
+.cm-gutter.cm-lineNumbers {
+    @apply !text-xs !leading-5;
 }

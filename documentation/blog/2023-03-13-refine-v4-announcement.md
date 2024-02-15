@@ -88,7 +88,7 @@ With its flexible structure, Refine now has enterprise-grade router support for 
 
 ## Enterprise-grade routing
 
-We now offer top-notch support for routes for [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/). With this new feature, you have complete freedom to create routes that can be tailored to meet the specific needs of your advanced and enterprise use cases. There are no limits or restrictions, so you can create routes that truly fit your unique requirements.
+We now offer top-notch support for routes for [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept). With this new feature, you have complete freedom to create routes that can be tailored to meet the specific needs of your advanced and enterprise use cases. There are no limits or restrictions, so you can create routes that truly fit your unique requirements.
 
 Changes to the `resources` prop in Refine v4 have made it possible for the prop to act as a connection point between your app and API, rather than being mandatory for the router to work. As a result, your router can work without resources, and your resources can work without a router.
 
@@ -144,7 +144,7 @@ Thanks to full codemod support, imports and exports will be automatically update
 
 ### New Auth Provider
 
-Refine v4 introduces a common interface for the [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) methods to improve transparency for developers and facilitate better understanding and debugging. Previously, developers had to resolve the `authProvider` methods upon success and reject them upon failure.
+Refine v4 introduces a common interface for the [`authProvider`](https://refine.dev/docs/authentication/auth-provider/) methods to improve transparency for developers and facilitate better understanding and debugging. Previously, developers had to resolve the `authProvider` methods upon success and reject them upon failure.
 
 However, this method had its limitations as rejected promises are typically associated with errors or exceptional situations, which could cause confusion for developers and impede the debugging process, especially for non-failure cases like incorrect login credentials.
 
