@@ -34,7 +34,7 @@ const action = async (
     command: Command,
 ) => {
     const args = command?.args;
-    if (!args.length) {
+    if (!args?.length) {
         await printNoArgs();
         return;
     }
@@ -82,7 +82,7 @@ const printNoArgs = async () => {
 
     console.log("❌ Please provide a feature name");
     console.log(
-        `For more information please use: "${name} run refine add help"`,
+        `For more information please use: "${name} run refine add --help"`,
     );
 };
 
