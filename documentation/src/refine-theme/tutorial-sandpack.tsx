@@ -23,6 +23,7 @@ import {
 import { useColorMode } from "@docusaurus/theme-common";
 import { TutorialFileExplorer } from "./tutorial-file-explorer";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTutorialLayout } from "../context/tutorial-layout-context";
 
 type SandpackProps = React.ComponentProps<SandpackInternal> & {
     startRoute?: string;
@@ -56,12 +57,10 @@ const maxPercentage = 70;
 export const TutorialSandpack = ({
     children,
     contentOnly,
-    contentPercentage = 45,
     finalFiles,
     ...sandpackProps
 }: Props) => {
-    const [viewPercentage, setViewPercentage] =
-        React.useState(contentPercentage);
+    const { contentPercentage, setContentPercentage } = useTutorialLayout();
     const [resizing, setResizing] = React.useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -93,7 +92,7 @@ export const TutorialSandpack = ({
 
                 if (!containerRect) return;
 
-                const newViewPercentage = Math.min(
+                const newContentPercentage = Math.min(
                     maxPercentage,
                     Math.max(
                         100 - maxPercentage,
@@ -103,7 +102,7 @@ export const TutorialSandpack = ({
                     ),
                 );
 
-                setViewPercentage(newViewPercentage);
+                setContentPercentage(newContentPercentage);
             }
         };
 
@@ -177,7 +176,7 @@ export const TutorialSandpack = ({
                     style={{
                         width: contentOnly
                             ? "100%"
-                            : `calc(${viewPercentage}% - (0.625rem / 2))`,
+                            : `calc(${contentPercentage}% - (0.625rem / 2))`,
                     }}
                 >
                     <div
@@ -232,7 +231,7 @@ export const TutorialSandpack = ({
                     )}
                     style={{
                         width: `calc(${
-                            100 - viewPercentage
+                            100 - contentPercentage
                         }% - (0.625rem / 2))`,
                     }}
                 >
@@ -451,7 +450,7 @@ const SandpackRightSide = ({
     sandpackProps: SandpackProps;
     finalFiles?: SandpackFiles;
 }) => {
-    const [viewPercentage, setViewPercentage] = React.useState(50);
+    const { editorPercenage, setEditorPercentage } = useTutorialLayout();
     const [resizing, setResizing] = React.useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -481,7 +480,7 @@ const SandpackRightSide = ({
 
                 if (!containerRect) return;
 
-                const newViewPercentage = Math.min(
+                const newEditorPercenage = Math.min(
                     maxPercentage,
                     Math.max(
                         100 - maxPercentage,
@@ -491,7 +490,7 @@ const SandpackRightSide = ({
                     ),
                 );
 
-                setViewPercentage(newViewPercentage);
+                setEditorPercentage(newEditorPercenage);
             }
         };
 
@@ -555,7 +554,7 @@ const SandpackRightSide = ({
                             style={{
                                 height: hidePreview
                                     ? "100%"
-                                    : `calc(${viewPercentage}% - (0.625rem / 2))`,
+                                    : `calc(${editorPercenage}% - (0.625rem / 2))`,
                             }}
                         >
                             {showFiles ? (
@@ -619,7 +618,7 @@ const SandpackRightSide = ({
                                 height: previewOnly
                                     ? "100%"
                                     : `calc(${
-                                          100 - viewPercentage
+                                          100 - editorPercenage
                                       }% - (0.625rem / 2))`,
                             }}
                         >
