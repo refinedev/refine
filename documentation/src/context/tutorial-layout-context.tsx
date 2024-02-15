@@ -14,6 +14,7 @@ export const TutorialLayoutContext = React.createContext<{
 
 export const TutorialLayoutProvider: React.FC = ({ children }) => {
     const [contentPercentage, _setContentPercentage] = React.useState(() => {
+        if (typeof window === "undefined") return 45;
         const storedValue = localStorage.getItem(
             "refine-tutorial-content-percentage",
         );
@@ -26,6 +27,8 @@ export const TutorialLayoutProvider: React.FC = ({ children }) => {
         return 45;
     });
     const [editorPercenage, _setEditorPercentage] = React.useState(() => {
+        if (typeof window === "undefined") return 50;
+
         const storedValue = localStorage.getItem(
             "refine-tutorial-editor-percenage",
         );
