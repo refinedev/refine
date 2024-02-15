@@ -13,38 +13,46 @@ export const TutorialLayoutContext = React.createContext<{
 });
 
 export const TutorialLayoutProvider: React.FC = ({ children }) => {
-    const [contentPercentage, setContentPercentage] = React.useState(() => {
+    const [contentPercentage, _setContentPercentage] = React.useState(() => {
         const storedValue = localStorage.getItem(
             "refine-tutorial-content-percentage",
         );
         if (storedValue) {
-            return Number(storedValue);
+            const parsedValue = Number(storedValue);
+            if (parsedValue >= 30 && parsedValue <= 70) {
+                return parsedValue;
+            }
         }
         return 45;
     });
-    const [editorPercenage, setEditorPercentage] = React.useState(() => {
+    const [editorPercenage, _setEditorPercentage] = React.useState(() => {
         const storedValue = localStorage.getItem(
             "refine-tutorial-editor-percenage",
         );
         if (storedValue) {
-            return Number(storedValue);
+            const parsedValue = Number(storedValue);
+            if (parsedValue >= 30 && parsedValue <= 70) {
+                return parsedValue;
+            }
         }
         return 50;
     });
 
-    React.useEffect(() => {
+    const setContentPercentage = React.useCallback((percentage: number) => {
+        _setContentPercentage(percentage);
         localStorage.setItem(
             "refine-tutorial-content-percentage",
-            contentPercentage.toString(),
+            percentage.toString(),
         );
-    }, [contentPercentage]);
+    }, []);
 
-    React.useEffect(() => {
+    const setEditorPercentage = React.useCallback((percentage: number) => {
+        _setEditorPercentage(percentage);
         localStorage.setItem(
             "refine-tutorial-editor-percenage",
-            editorPercenage.toString(),
+            percentage.toString(),
         );
-    }, [editorPercenage]);
+    }, []);
 
     return (
         <TutorialLayoutContext.Provider
