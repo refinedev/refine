@@ -20,7 +20,30 @@ const siteConfig = {
     organizationName: "refinedev",
     trailingSlash: true,
     favicon: "img/refine_favicon.svg",
-    scripts: ["https://platform.twitter.com/widgets.js"],
+    scripts: [
+        "https://platform.twitter.com/widgets.js",
+        {
+            src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+            "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
+            "data-project-name": "Refine",
+            "data-project-color": "#303450",
+            "data-modal-header-bg-color": "#303450",
+            "data-modal-title-color": "#ffffff",
+            "data-button-border-radius": "100%",
+            "data-button-text-font-size": "0px",
+            "data-button-text-color": "#303450",
+            "data-button-bg-color": "transparent",
+            "data-button-text": "",
+            "data-button-box-shadow": "none",
+            "data-button-height:": "64px",
+            "data-button-image-height": "64px",
+            "data-button-image-width": "64px",
+            "data-modal-title": "",
+            "data-project-logo":
+                "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
+            async: true,
+        },
+    ],
     presets: [
         [
             "@docusaurus/preset-classic",
