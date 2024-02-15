@@ -33,7 +33,7 @@ export const createResources = async (
             {
                 type: "input",
                 name: "name",
-                message: "Resource Name",
+                message: "Resource Name (users, products, orders etc.)",
                 validate: (value) => {
                     if (!value) {
                         return "Resource Name is required";
