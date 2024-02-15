@@ -100,6 +100,10 @@ const Preview: NextPage = () => {
                         ? (await import("../src/scope/nestjsx")).default
                         : {},
                 async () =>
+                    usedPackages.has("nestjs-query")
+                        ? (await import("../src/scope/nestjs-query")).default
+                        : {},
+                async () =>
                     usedPackages.has("strapi-v4")
                         ? (await import("../src/scope/strapi-v4")).default
                         : {},

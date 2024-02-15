@@ -21,6 +21,7 @@ export const packageMap: Record<string, string> = {
     "@refinedev/appwrite": "RefineAppwrite",
     "@refinedev/hasura": "RefineHasura",
     "@refinedev/nestjsx-crud": "RefineNestjsxCrud",
+    "@refinedev/nestjs-query": "RefineNestjsQuery",
     "@refinedev/strapi-v4": "RefineStrapiV4",
     "@refinedev/strapi-graphql": "RefineStrapiGraphql",
     "@refinedev/supabase": "RefineSupabase",
@@ -52,6 +53,10 @@ export const packageMap: Record<string, string> = {
     "i18next-browser-languagedetector": "I18NextBrowserLanguageDetector",
     "i18next-xhr-backend": "I18NextXhrBackend",
     casbin: "Casbin",
+    "@uiw/react-md-editor": "MDEditor",
+    uuid: "UUID",
+    "graphql-tag": "GraphQLTag",
+    "graphql-ws": "GraphQLWS",
 };
 
 export const packageScopeMap: Record<string, RegExp> = {
