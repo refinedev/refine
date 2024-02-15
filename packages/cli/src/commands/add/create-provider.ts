@@ -24,9 +24,12 @@ export const providerArgs: Provider[] = [
     "audit-log",
 ];
 
-export const createProvider = (providers: string[], pathFromArgs?: string) => {
-    providers.forEach((arg) => {
-        const { fileName, templatePath } = getProviderOptions(arg as Provider);
+export const createProviders = (
+    providers: Provider[],
+    pathFromArgs?: string,
+) => {
+    providers.forEach((provider) => {
+        const { fileName, templatePath } = getProviderOptions(provider);
         const folderPath = pathFromArgs ?? getDefaultPath();
         const filePath = join(folderPath, fileName);
         const fullPath = join(process.cwd(), folderPath, fileName);
