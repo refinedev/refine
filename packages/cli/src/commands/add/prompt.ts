@@ -1,8 +1,11 @@
 import inquirer from "inquirer";
-import { Integration, integrationChoices } from "./add-integration";
-import { providerChoices, getDefaultPath, Provider } from "./create-provider";
+import chalk from "chalk";
+
 import { getResourcePath } from "@utils/resource";
 import { getProjectType } from "@utils/project";
+
+import { Integration, integrationChoices } from "./add-integration";
+import { providerChoices, getDefaultPath, Provider } from "./create-provider";
 
 export type AddCommandPrompt =
     | {
@@ -19,6 +22,42 @@ export type AddCommandPrompt =
           resourcePath: string;
       };
 
+const providerChoicesMap: Record<
+    Provider,
+    { title: string; description: string }
+> = {
+    auth: {
+        title: "Auth provider",
+        description: "Manage user authentication and authorization",
+    },
+    live: {
+        title: "Live provider",
+        description: "Enable real-time updates and synchronization",
+    },
+    data: { title: "Data provider", description: "Communicate with your API" },
+    "access-control": {
+        title: "Access Control",
+        description: "Manage user permissions & roles",
+    },
+    notification: {
+        title: "Notification provider",
+        description: "Display in-app alerts and messages",
+    },
+    i18n: {
+        title: "I18n provider",
+        description: "Support multiple languages and locales",
+    },
+    "audit-log": {
+        title: "Audit Log provider",
+        description: "Display audit logs for your resources",
+    },
+};
+
+const printProviderChoices = (provider: Provider) => {
+    const { title, description } = providerChoicesMap[provider];
+    return `${chalk.blueBright(title)} - ${chalk.greenBright(description)}`;
+};
+
 export const addCommandPrompt = async () => {
     const result = await inquirer.prompt<AddCommandPrompt>([
         {
@@ -31,7 +70,10 @@ export const addCommandPrompt = async () => {
             type: "checkbox",
             name: "providers",
             message: "Which providers do you want to add?",
-            choices: providerChoices,
+            choices: providerChoices.map((provider) => ({
+                value: provider,
+                name: printProviderChoices(provider),
+            })),
             when: (answers) => answers.component === "provider",
         },
         {
