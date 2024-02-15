@@ -58,7 +58,7 @@ const App: React.FC = () => {
     const { loading } = useAutoLoginForDemo();
 
     const API_URL = "https://api.finefoods.refine.dev";
-    const dataProvider = jsonServerDataProvider(API_URL);
+    const dataProvider = jsonServerDataProvider("http://localhost:3000");
 
     const { t, i18n } = useTranslation();
 

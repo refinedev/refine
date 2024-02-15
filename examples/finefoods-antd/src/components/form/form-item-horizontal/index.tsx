@@ -1,5 +1,6 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { Flex, Typography, Form, theme, FormItemProps, FlexProps } from "antd";
+import { useStyles } from "./styled";
 
 type Props = {
     icon: ReactNode;
@@ -19,7 +20,7 @@ export const FormItemHorizontal = ({
     ...props
 }: PropsWithChildren<Props>) => {
     const { token } = theme.useToken();
-
+    const { styles } = useStyles();
     return (
         <Flex
             align="baseline"
@@ -46,6 +47,7 @@ export const FormItemHorizontal = ({
             {isInput ? (
                 <Form.Item
                     {...props}
+                    className={styles.formItem}
                     style={{
                         width: "100%",
                     }}

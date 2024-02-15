@@ -9,12 +9,14 @@ type Props = {
     formProps: UseFormReturnType<ICourier>["formProps"];
     showUploadOverlay?: boolean;
     containerStyle?: React.CSSProperties;
+    disabled?: boolean;
 };
 
 export const CourierFormItemAvatar = ({
     formProps,
     containerStyle,
     showUploadOverlay = true,
+    disabled,
 }: Props) => {
     const apiUrl = useApiUrl();
     const { styles } = useStyles();
@@ -28,6 +30,7 @@ export const CourierFormItemAvatar = ({
             name="avatar"
             valuePropName="fileList"
             getValueFromEvent={getValueFromEvent}
+            className={styles.formItem}
             style={{
                 margin: 0,
                 ...containerStyle,
@@ -61,7 +64,7 @@ export const CourierFormItemAvatar = ({
                         }
                         alt="Courier Avatar"
                     />
-                    {showUploadOverlay && (
+                    {showUploadOverlay && !disabled && (
                         <div className={styles.overlay}>
                             <CloudUploadOutlined
                                 className={styles.overlayIcon}

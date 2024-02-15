@@ -2,6 +2,15 @@ import { createStyles } from "antd-style";
 
 export const useStyles = createStyles(({ token }) => {
     return {
+        formItem: {
+            ".ant-upload .ant-upload-disabled .ant-upload-btn": {
+                borderColor: "transparent",
+                backgroundColor: "transparent",
+                color: token.colorText,
+                userSelect: "text",
+                cursor: "text",
+            },
+        },
         upload: {
             position: "relative",
 

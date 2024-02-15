@@ -1,6 +1,13 @@
-import { useTranslate } from "@refinedev/core";
-import { ListButton, SaveButton, useForm, useSelect } from "@refinedev/antd";
+import { useNavigation, useTranslate } from "@refinedev/core";
 import {
+    DeleteButton,
+    ListButton,
+    SaveButton,
+    useForm,
+    useSelect,
+} from "@refinedev/antd";
+import {
+    Button,
     Card,
     Col,
     Divider,
@@ -23,6 +30,7 @@ import {
 } from "../../components";
 import {
     BankOutlined,
+    EditOutlined,
     LeftOutlined,
     MailOutlined,
     PhoneOutlined,
@@ -30,9 +38,13 @@ import {
     ScanOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
+import { useState } from "react";
 
 export const CourierEdit = () => {
+    const [isFormDisabled, setIsFormDisabled] = useState(true);
+
     const t = useTranslate();
+    const { list } = useNavigation();
     const { formProps, queryResult, saveButtonProps } = useForm<ICourier>({
         redirect: false,
     });
@@ -48,11 +60,11 @@ export const CourierEdit = () => {
 
     const { selectProps: vehicleSelectProps } = useSelect({
         resource: "vehicles",
-        defaultValue: courier?.vehicle.id,
+        defaultValue: courier?.vehicle?.id,
         optionLabel: "model",
         optionValue: "id",
         queryOptions: {
-            enabled: !!courier,
+            enabled: !!courier?.vehicle?.id,
         },
     });
 
@@ -67,9 +79,16 @@ export const CourierEdit = () => {
 
             <Row gutter={16}>
                 <Col span={9}>
-                    <Form {...formProps} layout="horizontal">
+                    <Form
+                        {...formProps}
+                        layout="horizontal"
+                        disabled={isFormDisabled}
+                    >
                         <Flex align="center" gap={24}>
-                            <CourierFormItemAvatar formProps={formProps} />
+                            <CourierFormItemAvatar
+                                formProps={formProps}
+                                disabled={isFormDisabled}
+                            />
                             <Form.Item
                                 name="name"
                                 style={{ width: "100%", marginBottom: "0" }}
@@ -100,6 +119,9 @@ export const CourierEdit = () => {
                                 isInput={false}
                                 icon={<RightCircleOutlined />}
                                 label={t("couriers.fields.status.label")}
+                                flexProps={{
+                                    style: { padding: "24px 16px 24px 16px" },
+                                }}
                             >
                                 <CourierStatus
                                     isLoading={queryResult?.isLoading}
@@ -111,6 +133,11 @@ export const CourierEdit = () => {
                                     }
                                 />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 name="gsm"
                                 icon={<PhoneOutlined />}
@@ -130,6 +157,11 @@ export const CourierEdit = () => {
                                     )}
                                 </InputMask>
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<MailOutlined />}
                                 label={t("couriers.fields.email.label")}
@@ -143,6 +175,11 @@ export const CourierEdit = () => {
                             >
                                 <Input />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<MailOutlined />}
                                 label={t("couriers.fields.address.label")}
@@ -158,6 +195,11 @@ export const CourierEdit = () => {
                             >
                                 <Input.TextArea rows={2} />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<BankOutlined />}
                                 label={t("couriers.fields.accountNumber.label")}
@@ -174,6 +216,11 @@ export const CourierEdit = () => {
                                     }}
                                 />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<ShopOutlined />}
                                 label={t("couriers.fields.store.label")}
@@ -186,6 +233,11 @@ export const CourierEdit = () => {
                             >
                                 <Select {...storeSelectProps} />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<BikeWhiteIcon />}
                                 label={t("couriers.fields.vehicle.label")}
@@ -198,6 +250,11 @@ export const CourierEdit = () => {
                             >
                                 <Select {...vehicleSelectProps} />
                             </FormItemHorizontal>
+                            <Divider
+                                style={{
+                                    margin: "0",
+                                }}
+                            />
                             <FormItemHorizontal
                                 icon={<ScanOutlined />}
                                 label={t("couriers.fields.licensePlate.label")}
@@ -218,17 +275,49 @@ export const CourierEdit = () => {
                                 padding: "16px 16px 0px 16px",
                             }}
                         >
-                            <SaveButton
-                                {...saveButtonProps}
-                                style={{
-                                    marginLeft: "auto",
-                                }}
-                                htmlType="submit"
-                                type="primary"
-                                icon={null}
-                            >
-                                Save
-                            </SaveButton>
+                            {isFormDisabled ? (
+                                <>
+                                    <DeleteButton
+                                        type="text"
+                                        onSuccess={() => {
+                                            list("couriers");
+                                        }}
+                                        style={{
+                                            marginLeft: "-16px",
+                                        }}
+                                    />
+                                    <Button
+                                        style={{
+                                            marginLeft: "auto",
+                                        }}
+                                        disabled={false}
+                                        icon={<EditOutlined />}
+                                        onClick={() => setIsFormDisabled(false)}
+                                    >
+                                        {t("actions.edit")}
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button
+                                        onClick={() => setIsFormDisabled(true)}
+                                    >
+                                        {t("actions.cancel")}
+                                    </Button>
+                                    <SaveButton
+                                        {...saveButtonProps}
+                                        disabled={isFormDisabled}
+                                        style={{
+                                            marginLeft: "auto",
+                                        }}
+                                        htmlType="submit"
+                                        type="primary"
+                                        icon={null}
+                                    >
+                                        Save
+                                    </SaveButton>
+                                </>
+                            )}
                         </Flex>
                     </Form>
                 </Col>
