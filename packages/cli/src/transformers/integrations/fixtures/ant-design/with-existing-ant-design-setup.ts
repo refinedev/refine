@@ -1,4 +1,4 @@
-export const WITH_EXISTING_ANTD_SETUP_SOURCE = `
+export const WITH_EXISTING_ANT_DESIGN_SETUP_SOURCE = `
 import { Refine, WelcomePage } from "@refinedev/core";
 
 import { useNotificationProvider, RefineThemes } from "@refinedev/antd";

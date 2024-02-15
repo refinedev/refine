@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`antd transformer should transform the file
+exports[`react-router transformer should transform the file
 ----------------------------------------------------
 import { Refine, WelcomePage } from "@refinedev/core";
 
@@ -35,7 +35,7 @@ function App() {
 export default App;"
 `;
 
-exports[`antd transformer should transform the file
+exports[`react-router transformer should transform the file
 ----------------------------------------------------
 import { Refine, WelcomePage } from "@refinedev/core";
 
@@ -89,7 +89,7 @@ function App() {
 export default App;"
 `;
 
-exports[`antd transformer should transform the file
+exports[`react-router transformer should transform the file
 ----------------------------------------------------
 import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
 

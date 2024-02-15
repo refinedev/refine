@@ -1,16 +1,16 @@
 import { FileInfo } from "jscodeshift";
-import transform from "./react-router";
+import transform from "./ant-design";
 import { VITE_STARTER_SOURCE } from "./fixtures/vite-starter";
 
 import jscodeshift from "jscodeshift";
-import { WITH_COMPONENT_IMPORTS_SOURCE } from "./fixtures/react-router/with-component-imports";
-import { WITH_EXISTING_REACT_ROUTER_SETUP_SOURCE } from "./fixtures/react-router/with-existing-react-router-setup";
+import { BASE_HEADLESS_SOURCE } from "./fixtures/ant-design/base-headless";
+import { WITH_EXISTING_ANT_DESIGN_SETUP_SOURCE } from "./fixtures/ant-design/with-existing-ant-design-setup";
 
-describe("antd transformer", () => {
+describe("ant-design transformer", () => {
     const cases = [
         VITE_STARTER_SOURCE,
-        WITH_COMPONENT_IMPORTS_SOURCE,
-        WITH_EXISTING_REACT_ROUTER_SETUP_SOURCE,
+        BASE_HEADLESS_SOURCE,
+        WITH_EXISTING_ANT_DESIGN_SETUP_SOURCE,
     ];
 
     it.each(cases)(

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`antd transformer should transform the file
+exports[`ant-design transformer should transform the file
 ----------------------------------------------------
 import {
     GitHubBanner,
@@ -100,7 +100,7 @@ const App = () => {
 export default App;"
 `;
 
-exports[`antd transformer should transform the file
+exports[`ant-design transformer should transform the file
 ----------------------------------------------------
 import { Refine, WelcomePage } from "@refinedev/core";
 
@@ -135,7 +135,7 @@ function App() {
 export default App;"
 `;
 
-exports[`antd transformer should transform the file
+exports[`ant-design transformer should transform the file
 ----------------------------------------------------
 import { Refine, WelcomePage } from "@refinedev/core";
 
