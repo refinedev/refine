@@ -3,7 +3,7 @@ import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import * as RefineAntd from "@refinedev/antd";
-import * as MDEditor from "@uiw/react-md-editor";
+import * as MDEditorNamespace from "@uiw/react-md-editor";
 import * as AntdCore from "antd";
 import axios from "axios";
 
@@ -192,7 +192,7 @@ const AntdScope = {
         DownOutlined,
         EditOutlined,
     },
-    MDEditor,
+    MDEditorNamespace,
 };
 
 export default AntdScope;
