@@ -4,7 +4,7 @@ import {
     addOrUpdateNamelessImport,
     removeImportIfExists,
     wrapElement,
-} from "@utils/codeshift";
+} from "../../utils/codeshift";
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 import execa from "execa";
 import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
@@ -19,10 +19,11 @@ export const setupAntD = async () => {
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
         `--transform=${__dirname}/../src/transformers/setup/antd.ts`,
-        `--ignore-pattern=**/.cache/**`,
-        `--ignore-pattern=**/node_modules/**`,
-        `--ignore-pattern=**/build/**`,
-        `--ignore-pattern=**/.next/**`,
+        `--ignore-pattern=.cache`,
+        `--ignore-pattern=node_modules`,
+        `--ignore-pattern=build`,
+        `--ignore-pattern=.next`,
+        `--ignore-pattern=dist`,
     ]);
 
     if (stderr) {

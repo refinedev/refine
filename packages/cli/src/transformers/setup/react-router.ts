@@ -13,7 +13,7 @@ import {
     addOrUpdateImports,
     wrapChildren,
     wrapElement,
-} from "@utils/codeshift";
+} from "../../utils/codeshift";
 
 export const parser = "tsx";
 
@@ -25,10 +25,11 @@ export const setupReactRouter = async () => {
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
         `--transform=${__dirname}/../src/transformers/setup/react-router.ts`,
-        `--ignore-pattern=**/.cache/**`,
-        `--ignore-pattern=**/node_modules/**`,
-        `--ignore-pattern=**/build/**`,
-        `--ignore-pattern=**/.next/**`,
+        `--ignore-pattern=.cache`,
+        `--ignore-pattern=node_modules`,
+        `--ignore-pattern=build`,
+        `--ignore-pattern=.next`,
+        `--ignore-pattern=dist`,
     ]);
 
     if (stdout) {

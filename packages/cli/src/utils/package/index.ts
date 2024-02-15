@@ -276,10 +276,6 @@ export const installMissingPackages = async (packages: string[]) => {
     } else {
         console.log("🎉 All required packages are already installed");
     }
-
-    // empty line
-    console.log("");
-    console.log("");
 };
 
 export const hasIncomatiblePackages = (packages: string[]): boolean => {
