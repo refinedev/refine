@@ -1,9 +1,11 @@
 import { Argument, Command } from "commander";
-import { Provider, createProviders, providerArgs } from "./create-provider";
+
+import { Provider, createProviders, providerChoices } from "./create-provider";
 import { createResources } from "./create-resource";
 import { Integration, integrationChoices } from "./add-integration";
 import { integrateAntDesign } from "./integrations/ant-design";
 import { integrateReactRouter } from "./integrations/react-router";
+import { AddCommandPrompt, addCommandPrompt } from "./prompt";
 
 const load = (program: Command) => {
     return program
@@ -11,11 +13,11 @@ const load = (program: Command) => {
         .allowExcessArguments(false)
         .addArgument(
             new Argument("[providers...]", "Create provider(s)").choices(
-                providerArgs,
+                providerChoices,
             ),
         )
         .option("-p, --path [path]", "Path to generate providers")
-        .action(createProviderAction)
+        .action(addCommandAction)
         .addCommand(
             new Command("resource")
                 .addArgument(
@@ -40,11 +42,41 @@ const load = (program: Command) => {
         );
 };
 
+const addCommandAction = async (
+    providersArg: Provider[],
+    options: { path?: string },
+) => {
+    if (providersArg.length) {
+        return await createProviderAction(providersArg, options);
+    }
+
+    const promptResult = await addCommandPrompt();
+
+    await handlePromptResult(promptResult);
+};
+
+const handlePromptResult = async (promptResult: AddCommandPrompt) => {
+    if (promptResult.component === "provider") {
+        return createProviders(
+            promptResult.providers,
+            promptResult.providersPath,
+        );
+    }
+
+    if (promptResult.component === "integration") {
+        return await addIntegrationAction(promptResult.integration);
+    }
+
+    if (promptResult.component === "resource") {
+        return await createResources({ path: promptResult.resourcePath }, []);
+    }
+};
+
 const createProviderAction = async (
     providers: Provider[],
     options: { path?: string },
 ) => {
-    createProviders(providers, options?.path);
+    createProviders(providers, options.path);
 };
 
 const createResourceAction = async (
