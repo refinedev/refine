@@ -5,7 +5,8 @@ export const checkPackage = (code = "") => {
         code.includes("@refinedev/antd") ||
         code.includes("RefineAntd") ||
         code.includes(`from "antd"`) ||
-        code.includes("@ant-design/icons");
+        code.includes("@ant-design/icons") ||
+        code.includes("@uiw/react-md-editor");
     const hasMui =
         code.includes("@refinedev/mui") ||
         code.includes("RefineMui") ||
@@ -53,6 +54,7 @@ export const checkPackage = (code = "") => {
     const hasAppwrite = code.includes("@refinedev/appwrite");
     const hasHasura = code.includes("@refinedev/hasura");
     const hasNestjsxCrud = code.includes("@refinedev/nestjsx-crud");
+    const hasNestjsQuery = code.includes("@refinedev/nestjs-query");
     const hasStrapiV4 = code.includes("@refinedev/strapi-v4");
     const hasStrapiGraphql = code.includes("@refinedev/strapi-graphql");
     const hasSupabase = code.includes("@refinedev/supabase");
@@ -99,6 +101,10 @@ export const checkPackage = (code = "") => {
 
     if (hasNestjsxCrud) {
         set.add("nestjsx-crud");
+    }
+
+    if (hasNestjsQuery) {
+        set.add("nestjs-query");
     }
 
     if (hasStrapiV4) {
