@@ -24,7 +24,7 @@
     "nuke:lockfiles": "lerna exec --ignore @refinedev/codemod -- rm -rf package-lock.json && lerna exec --ignore @refinedev/codemod -- rm -rf yarn.lock && lerna exec --ignore @refinedev/codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
     "prepare": "husky install",
-    "test": "lerna run test --stream",
+    "test": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
     "test:coverage": "npm run test -- -- --coverage"
   },
   "lint-staged": {
