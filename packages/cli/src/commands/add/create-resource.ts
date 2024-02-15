@@ -26,7 +26,6 @@ export const createResources = async (
     let actions = params.actions || defaultActions.join(",");
 
     if (!resources.length) {
-        // TODO: Show inquirer
         const { name, selectedActions } = await inquirer.prompt<{
             name: string;
             selectedActions: string[];
@@ -128,15 +127,16 @@ export const createResources = async (
         temp.cleanupSync();
 
         const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-        const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
+        const { stderr } = execa.sync(jscodeshiftExecutable, [
             "./",
             "--extensions=ts,tsx,js,jsx",
             "--parser=tsx",
             `--transform=${__dirname}/../src/transformers/resource.ts`,
-            `--ignore-pattern=**/.cache/**`,
-            `--ignore-pattern=**/node_modules/**`,
-            `--ignore-pattern=**/build/**`,
-            `--ignore-pattern=**/.next/**`,
+            `--ignore-pattern=.cache`,
+            `--ignore-pattern=node_modules`,
+            `--ignore-pattern=build`,
+            `--ignore-pattern=.next`,
+            `--ignore-pattern=dist`,
             // pass custom params to transformer file
             `--__actions=${compileParams.actions}`,
             `--__pathAlias=${getResourcePath(getProjectType()).alias}`,
@@ -144,8 +144,6 @@ export const createResources = async (
             `--__resource=${resource}`,
             `--__resourceName=${resourceName}`,
         ]);
-
-        // console.log(stdout);
 
         if (stderr) {
             console.log(stderr);
