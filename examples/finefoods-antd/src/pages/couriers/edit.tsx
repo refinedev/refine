@@ -26,6 +26,7 @@ import {
     CourierFormItemAvatar,
     CourierReviewTable,
     CourierStatus,
+    FormItemEditable,
     FormItemHorizontal,
 } from "../../components";
 import {
@@ -45,9 +46,7 @@ export const CourierEdit = () => {
 
     const t = useTranslate();
     const { list } = useNavigation();
-    const { formProps, queryResult, saveButtonProps } = useForm<ICourier>({
-        redirect: false,
-    });
+    const { formProps, queryResult, saveButtonProps } = useForm<ICourier>();
     const courier = queryResult?.data?.data;
 
     const { selectProps: storeSelectProps } = useSelect({
@@ -89,21 +88,25 @@ export const CourierEdit = () => {
                                 formProps={formProps}
                                 disabled={isFormDisabled}
                             />
-                            <Form.Item
-                                name="name"
-                                style={{ width: "100%", marginBottom: "0" }}
-                                rules={[
-                                    {
-                                        required: true,
+                            <FormItemEditable
+                                formItemProps={{
+                                    name: "name",
+                                    style: {
+                                        width: "100%",
+                                        marginBottom: "0",
                                     },
-                                ]}
-                            >
-                                <Input
-                                    placeholder={t(
+                                    rules: [
+                                        {
+                                            required: true,
+                                        },
+                                    ],
+                                }}
+                                inputProps={{
+                                    placeholder: t(
                                         "couriers.fields.name.placeholder",
-                                    )}
-                                />
-                            </Form.Item>
+                                    ),
+                                }}
+                            />
                         </Flex>
                         <Card
                             style={{
