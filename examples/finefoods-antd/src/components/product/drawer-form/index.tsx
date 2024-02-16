@@ -115,7 +115,7 @@ export const ProductDrawerForm = (props: Props) => {
                             name="file"
                             action={`${apiUrl}/media/upload`}
                             maxCount={1}
-                            accept=".png"
+                            accept=".png,.jpg,.jpeg"
                             className={styles.uploadDragger}
                             showUploadList={false}
                         >
@@ -158,7 +158,7 @@ export const ProductDrawerForm = (props: Props) => {
                                         marginTop: "auto",
                                         marginBottom: "16px",
                                         backgroundColor: theme.colorBgContainer,
-                                        ...(props.action === "edit" && {
+                                        ...(!!previewImageURL && {
                                             position: "absolute",
                                             bottom: 0,
                                         }),
