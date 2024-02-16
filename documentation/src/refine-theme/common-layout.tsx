@@ -45,8 +45,8 @@ export const CommonLayout = (props: any) => {
         }
     }, [isMobile]);
 
-    // it handles kapa ai widget.
-    // kapa ai widget mounted on doc-page-layout.tsx
+    // it handles kapa ai widget visibility
+    // kapa ai widget script initalized in docusaurus.config.js
     useEffect(() => {
         const kapaAIWidget = document.getElementById("kapa-widget-container");
         if (!kapaAIWidget) {
