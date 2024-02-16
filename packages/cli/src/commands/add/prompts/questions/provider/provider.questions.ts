@@ -41,7 +41,7 @@ const providerChoicesMap: Record<
 
 const printProviderChoice = (provider: Provider) => {
     const { title, description } = providerChoicesMap[provider];
-    return `${chalk.blueBright(title)} - ${chalk.greenBright(description)}`;
+    return `${chalk.blueBright(title)} - ${description}`;
 };
 
 export const buildProviderChoices = () =>

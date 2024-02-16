@@ -8,48 +8,40 @@ const projectType = getProjectType();
 
 const integrationChoicesMap: Record<
     Integration,
-    () => { title: string; description: string; disabled: boolean }
+    () => { title: string; description: string; disabled?: string }
 > = {
     "react-router": () => {
         const title = "React Router";
+        const description = "Setup routing with React Router";
+        let disabled;
 
         if (projectType === ProjectTypes.NEXTJS) {
-            return {
-                title,
-                description: `Can't be used with Next.js. https://nextjs.org/docs/app/building-your-application/routing`,
-                disabled: true,
-            };
+            disabled = `Can't be used with Next.js. https://nextjs.org/docs/app/building-your-application/routing`;
         }
 
         if (projectType === ProjectTypes.REMIX) {
-            return {
-                title,
-                description: `Can't be used with Remix. https://remix.run/docs/en/main/discussion/routes`,
-                disabled: true,
-            };
+            disabled = `Can't be used with Remix. https://remix.run/docs/en/main/discussion/routes`;
         }
 
         return {
             title,
-            description: "Setup routing with React Router",
-            disabled: false,
+            description,
+            disabled,
         };
     },
     "ant-design": () => {
         const title = "Ant Design";
+        const description = "Setup Ant Design with Refine";
+        let disabled;
 
         if ([ProjectTypes.NEXTJS, ProjectTypes.REMIX].includes(projectType)) {
-            return {
-                title,
-                description: `Automatic setup only available Vite for now. See the documentation for manual installation: https://refine.dev/docs/ui-integrations/ant-design/introduction/#installation`,
-                disabled: true,
-            };
+            disabled = `Automatic setup only available Vite for now. See the documentation for manual installation: https://refine.dev/docs/ui-integrations/ant-design/introduction/#installation`;
         }
 
         return {
             title,
-            description: "Setup Ant Design with Refine",
-            disabled: false,
+            description,
+            disabled,
         };
     },
 };
@@ -58,14 +50,17 @@ const buildIntegrationChoice = (integration: Integration) => {
     const { title, description, disabled } =
         integrationChoicesMap[integration]();
 
+    if (disabled) {
+        return {
+            value: integration,
+            name: `${chalk.gray(title)}`,
+            disabled: chalk.redBright(disabled),
+        };
+    }
+
     return {
         value: integration,
-        name: `${chalk.blueBright(title)} - ${
-            disabled
-                ? chalk.redBright(description)
-                : chalk.greenBright(description)
-        }`,
-        disabled,
+        name: `${chalk.blueBright(title)} - ${description}`,
     };
 };
 
