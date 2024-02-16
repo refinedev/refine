@@ -1,25 +1,22 @@
-import { useList, useNavigation } from "@refinedev/core";
-import { Map, MapMarker } from "../../map";
+import { useList, useNavigation, useTranslate } from "@refinedev/core";
+import { Map, AdvancedMarker } from "../../map";
 import { IStore } from "../../../interfaces";
-import { Card, Flex, List, Typography } from "antd";
+import { Card, Flex, List, Tag, Typography } from "antd";
 import { useRef, useState } from "react";
-import { StoreStatus } from "../status";
 import {
+    CheckCircleOutlined,
     EnvironmentOutlined,
     PhoneOutlined,
+    StopOutlined,
     UserOutlined,
 } from "@ant-design/icons";
-
-type SelectedStore = {
-    x: number;
-    y: number;
-} & IStore;
+import { BasicMarker } from "../../icons";
 
 export const AllStoresMap = () => {
+    const t = useTranslate();
     const parentRef = useRef<HTMLDivElement>(null);
-    const [selectedStore, setSelectedStore] = useState<SelectedStore | null>(
-        null,
-    );
+    const [map, setMap] = useState<google.maps.Map>();
+    const [selectedStore, setSelectedStore] = useState<IStore | null>(null);
 
     const { edit } = useNavigation();
 
@@ -33,21 +30,8 @@ export const AllStoresMap = () => {
     });
     const stores = storeData?.data || [];
 
-    const handleClick = (e: any, id: number) => {
-        const domEvent = e?.domEvent;
-        const y = domEvent?.clientY;
-        const x = domEvent?.clientX;
-        const bounds = parentRef.current?.getBoundingClientRect();
-        const store = stores.find((s) => s.id === id);
-
-        if (bounds && store && x && y) {
-            setSelectedStore({
-                ...store,
-                // center the card on the marker
-                x: x - bounds.left,
-                y: y - bounds.top,
-            });
-        }
+    const handleMarkerClick = (e: any, store: IStore) => {
+        setSelectedStore(store);
     };
 
     return (
@@ -62,14 +46,16 @@ export const AllStoresMap = () => {
             }}
         >
             <Map
-                center={{
-                    lat: 40.73061,
-                    lng: -73.935242,
+                mapProps={{
+                    setMap,
+                    mapId: "all-stores-map",
+                    disableDefaultUI: true,
+                    center: {
+                        lat: 40.73061,
+                        lng: -73.935242,
+                    },
+                    zoom: 10,
                 }}
-                onDragStart={() => {
-                    setSelectedStore(null);
-                }}
-                zoom={10}
             >
                 {stores?.map((store) => {
                     const lat = Number(store.address?.coordinate?.[0]);
@@ -78,82 +64,139 @@ export const AllStoresMap = () => {
                     if (!lat || !lng) return null;
 
                     return (
-                        <MapMarker
+                        <AdvancedMarker
                             key={store.id}
-                            icon={{
-                                url: "/images/marker-store.svg",
-                            }}
+                            map={map}
+                            zIndex={selectedStore?.id === store.id ? 1 : 0}
                             position={{
                                 lat,
                                 lng,
                             }}
                             onClick={(e: any) => {
-                                e.domEvent.stopPropagation();
-                                handleClick(e, store.id);
+                                handleMarkerClick(e, store);
                             }}
-                        />
+                        >
+                            {(selectedStore?.id !== store.id ||
+                                !selectedStore) && (
+                                <img
+                                    src="/images/marker-store.svg"
+                                    alt={store.title}
+                                />
+                            )}
+                            {selectedStore?.id === store.id && (
+                                <Card
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedStore(null);
+                                    }}
+                                    style={{
+                                        position: "relative",
+                                        marginBottom: "16px",
+                                    }}
+                                    styles={{
+                                        body: {
+                                            padding: "16px",
+                                        },
+                                    }}
+                                >
+                                    <Flex
+                                        align="center"
+                                        justify="space-between"
+                                        gap={32}
+                                    >
+                                        <Typography.Title
+                                            level={5}
+                                            onClick={() => {
+                                                edit(
+                                                    "stores",
+                                                    selectedStore.id,
+                                                );
+                                            }}
+                                            style={{
+                                                cursor: "pointer",
+                                                fontWeight: "400",
+                                                marginBottom: "0px",
+                                            }}
+                                        >
+                                            {selectedStore.title}
+                                        </Typography.Title>
+                                        <Tag
+                                            color={
+                                                selectedStore.isActive
+                                                    ? "green"
+                                                    : "default"
+                                            }
+                                            style={{
+                                                color: selectedStore.isActive
+                                                    ? "green"
+                                                    : "#00000073",
+                                                marginInlineEnd: 0,
+                                            }}
+                                            icon={
+                                                selectedStore.isActive ? (
+                                                    <CheckCircleOutlined />
+                                                ) : (
+                                                    <StopOutlined />
+                                                )
+                                            }
+                                        >
+                                            <Typography.Text
+                                                style={{
+                                                    color: selectedStore.isActive
+                                                        ? "#3C8618"
+                                                        : "00000073",
+                                                }}
+                                            >
+                                                {t(
+                                                    `stores.fields.isActive.${selectedStore.isActive}`,
+                                                )}
+                                            </Typography.Text>
+                                        </Tag>
+                                    </Flex>
+                                    <List
+                                        dataSource={[
+                                            {
+                                                title: <EnvironmentOutlined />,
+                                                value: selectedStore.address
+                                                    .text,
+                                            },
+                                            {
+                                                title: <UserOutlined />,
+                                                value: selectedStore.email,
+                                            },
+                                            {
+                                                title: <PhoneOutlined />,
+                                                value: selectedStore.gsm,
+                                            },
+                                        ]}
+                                        renderItem={(item) => (
+                                            <List.Item>
+                                                <Flex gap={8}>
+                                                    <Typography.Text type="secondary">
+                                                        {item.title}
+                                                    </Typography.Text>
+                                                    <Typography.Text type="secondary">
+                                                        {item.value}
+                                                    </Typography.Text>
+                                                </Flex>
+                                            </List.Item>
+                                        )}
+                                    />
+                                    <BasicMarker
+                                        style={{
+                                            color: "white",
+                                            position: "absolute",
+                                            bottom: "-16px",
+                                            left: "50%",
+                                            transform: "translateX(-50%)",
+                                        }}
+                                    />
+                                </Card>
+                            )}
+                        </AdvancedMarker>
                     );
                 })}
             </Map>
-            {selectedStore && (
-                <Card
-                    styles={{
-                        body: {
-                            padding: "16px",
-                        },
-                    }}
-                    style={{
-                        position: "absolute",
-                        top: selectedStore?.y,
-                        left: selectedStore?.x,
-                    }}
-                >
-                    <Flex align="center" justify="space-between" gap={32}>
-                        <Typography.Title
-                            level={5}
-                            onClick={() => {
-                                edit("stores", selectedStore.id);
-                            }}
-                            style={{
-                                cursor: "pointer",
-                                fontWeight: "400",
-                                marginBottom: "0px",
-                            }}
-                        >
-                            {selectedStore.title}
-                        </Typography.Title>
-                        <StoreStatus value={selectedStore.isActive} />
-                    </Flex>
-                    <List
-                        dataSource={[
-                            {
-                                title: <EnvironmentOutlined />,
-                                value: selectedStore.address.text,
-                            },
-                            {
-                                title: <UserOutlined />,
-                                value: selectedStore.email,
-                            },
-                            {
-                                title: <PhoneOutlined />,
-                                value: selectedStore.gsm,
-                            },
-                        ]}
-                        renderItem={(item) => (
-                            <List.Item>
-                                <Flex gap={8}>
-                                    <Typography.Text type="secondary">
-                                        {item.title}
-                                    </Typography.Text>
-                                    <Typography.Text type="secondary">
-                                        {item.value}
-                                    </Typography.Text>
-                                </Flex>
-                            </List.Item>
-                        )}
-                    />
-                </Card>
-            )}
         </Flex>
     );
 };

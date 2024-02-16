@@ -8,11 +8,13 @@ type Props = {
 export const OrderDeliveryMap = ({ order }: Props) => {
     return (
         <Map
-            center={{
-                lat: 40.73061,
-                lng: -73.935242,
+            mapProps={{
+                center: {
+                    lat: 40.73061,
+                    lng: -73.935242,
+                },
+                zoom: 9,
             }}
-            zoom={9}
         >
             <MapMarker
                 key={`user-marker-${order?.user.id}`}

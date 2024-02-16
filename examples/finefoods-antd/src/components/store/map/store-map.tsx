@@ -48,11 +48,13 @@ export const StoreMap = (props: Props) => {
             }}
         >
             <Map
-                center={{
-                    lat: lat || 39.6685458,
-                    lng: lng || -75.6760264,
+                mapProps={{
+                    mapId: "store-map",
+                    center: {
+                        lat: lat || 39.6685458,
+                        lng: lng || -75.6760264,
+                    },
                 }}
-                zoom={props?.zoom || 10}
             >
                 {lat && lng && (
                     <MapMarker

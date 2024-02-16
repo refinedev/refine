@@ -1,18 +1,19 @@
 import {
     Children,
     cloneElement,
+    Dispatch,
     FC,
     isValidElement,
     PropsWithChildren,
+    SetStateAction,
     useEffect,
     useRef,
     useState,
 } from "react";
-import { Wrapper } from "@googlemaps/react-wrapper";
-import { mapStyles } from "./styles";
-import { useConfigProvider } from "../../context";
+import { Wrapper, WrapperProps } from "@googlemaps/react-wrapper";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
+    setMap?: Dispatch<SetStateAction<google.maps.Map | undefined>>;
     center?: google.maps.LatLngLiteral;
     onDragStart?: Function;
 }
@@ -22,6 +23,8 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
     center,
     zoom = 12,
     onDragStart,
+    mapId,
+    setMap: setMapFromProps,
     ...options
 }) => {
     const ref = useRef<HTMLDivElement>(null);
@@ -39,6 +42,7 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
     useEffect(() => {
         if (map) {
             map.setOptions({ ...options, zoom, center });
+            setMapFromProps?.(map);
             if (onDragStart) {
                 map.addListener("dragstart", onDragStart);
             }
@@ -47,7 +51,11 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
 
     useEffect(() => {
         if (ref.current && !map) {
-            setMap(new window.google.maps.Map(ref.current, {}));
+            const mapContructor = new window.google.maps.Map(ref.current, {
+                mapId,
+            });
+            setMap(mapContructor);
+            setMapFromProps?.(mapContructor);
         }
     }, [ref, map]);
 
@@ -64,12 +72,21 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
     );
 };
 
-const MapWrapper: FC<PropsWithChildren<MapProps>> = (props) => {
-    const { mode } = useConfigProvider();
+type MapWrapperProps = {
+    mapProps?: MapProps;
+};
 
+const MapWrapper: FC<PropsWithChildren<MapWrapperProps>> = ({
+    children,
+    mapProps,
+}) => {
     return (
-        <Wrapper apiKey={"AIzaSyCfS48X6U0TTsJN4xIHSTkXITimmYGSWjk"}>
-            <MapComponent {...props} styles={mapStyles[mode]} />
+        <Wrapper
+            version="beta"
+            libraries={["marker"]}
+            apiKey={import.meta.env.VITE_APP_MAP_ID}
+        >
+            <MapComponent {...mapProps}>{children}</MapComponent>
         </Wrapper>
     );
 };

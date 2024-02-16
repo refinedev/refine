@@ -31,7 +31,7 @@ export const AllOrdersMap: React.FC = () => {
     const { show } = useNavigation();
 
     return (
-        <Map {...defaultProps}>
+        <Map mapProps={defaultProps}>
             {orderData?.data.map((order) => {
                 return (
                     <MapMarker
