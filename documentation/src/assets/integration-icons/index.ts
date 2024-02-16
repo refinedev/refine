@@ -53,3 +53,4 @@ export { default as Oracle } from "./oracle";
 export { default as RestWithoutText } from "./rest-without-text";
 export { default as CustomAuth } from "./custom-auth";
 export { default as Vite } from "./vite";
+export { default as PocketBase } from "./pocketbase";

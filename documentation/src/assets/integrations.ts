@@ -32,6 +32,7 @@ import {
     Supabase,
     UseGenerated,
     Kinde,
+    PocketBase,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -286,6 +287,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "mahirmahdi",
                     url: "https://github.com/mahirmahdi",
+                },
+            ],
+        },
+        {
+            name: "PocketBase Data Provider",
+            icon: PocketBase,
+            description:
+                "Connector for backends created with <strong>PocketBase</strong>",
+            url: "https://github.com/kruschid/refine-pocketbase",
+            status: "stable",
+            contributors: [
+                {
+                    name: "kruschid",
+                    url: "https://github.com/kruschid",
                 },
             ],
         },
