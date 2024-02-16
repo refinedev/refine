@@ -25,7 +25,7 @@ export const AllOrdersMap: React.FC = () => {
             lat: 40.73061,
             lng: -73.935242,
         },
-        zoom: 13,
+        zoom: 10,
     };
 
     const { show } = useNavigation();
