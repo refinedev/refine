@@ -1,6 +1,6 @@
 ---
 title: Docker Cheat Sheet - Most Commonly Used Commands
-description: Areference guide highlighting essential Docker commands to streamline container management tasks efficiently.
+description: A reference guide highlighting essential Docker commands to streamline container management tasks efficiently.
 slug: docker-cheat-sheet
 authors: muhammad_khabbab
 tags: [kubernetes, docker]
