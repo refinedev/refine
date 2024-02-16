@@ -14,7 +14,7 @@ export type Provider =
     | "i18n"
     | "audit-log";
 
-export const providerChoices: Provider[] = [
+export const availableProviders: Provider[] = [
     "auth",
     "live",
     "data",
