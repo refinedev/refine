@@ -78,7 +78,6 @@ export const CommonLayout = (props: any) => {
                     data-button-bg-color="transparent"
                     data-button-text=""
                     data-button-box-shadow="none"
-                    data-button-height="66px"
                     data-button-image-height="60px"
                     data-button-image-width="60px"
                     data-modal-title=""
