@@ -15,6 +15,7 @@ import {
     Form,
     Input,
     InputNumber,
+    InputRef,
     Row,
     Select,
 } from "antd";
@@ -39,7 +40,7 @@ import {
     ScanOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export const CourierEdit = () => {
     const [isFormDisabled, setIsFormDisabled] = useState(true);
@@ -66,6 +67,15 @@ export const CourierEdit = () => {
             enabled: !!courier?.vehicle?.id,
         },
     });
+
+    const titleInput = useCallback(
+        (inputElement: InputRef) => {
+            if (inputElement && !isFormDisabled) {
+                setTimeout(() => inputElement.focus(), 0);
+            }
+        },
+        [isFormDisabled],
+    );
 
     return (
         <>
@@ -101,12 +111,15 @@ export const CourierEdit = () => {
                                         },
                                     ],
                                 }}
-                                inputProps={{
-                                    placeholder: t(
+                            >
+                                <Input
+                                    ref={titleInput}
+                                    size="large"
+                                    placeholder={t(
                                         "couriers.fields.name.placeholder",
-                                    ),
-                                }}
-                            />
+                                    )}
+                                />
+                            </FormItemEditable>
                         </Flex>
                         <Card
                             style={{

@@ -15,6 +15,7 @@ import {
     Divider,
     InputNumber,
     Button,
+    InputRef,
 } from "antd";
 import InputMask from "react-input-mask";
 import _debounce from "lodash/debounce";
@@ -27,7 +28,7 @@ import {
     RightCircleOutlined,
 } from "@ant-design/icons";
 import { FormItemEditable, FormItemHorizontal } from "../../form";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { StoreStatus } from "../status";
 
 type Props = {
@@ -54,6 +55,15 @@ export const StoreFormFields = ({
         setIsFormDisabled(value);
     };
 
+    const titleInput = useCallback(
+        (inputElement: InputRef) => {
+            if (inputElement && !isFormDisabled) {
+                setTimeout(() => inputElement.focus(), 0);
+            }
+        },
+        [isFormDisabled],
+    );
+
     const statusField = Form.useWatch("isActive", formProps.form);
 
     return (
@@ -70,10 +80,13 @@ export const StoreFormFields = ({
                         },
                     ],
                 }}
-                inputProps={{
-                    placeholder: t("stores.fields.title"),
-                }}
-            />
+            >
+                <Input
+                    ref={titleInput}
+                    size="large"
+                    placeholder={t("stores.fields.title")}
+                />
+            </FormItemEditable>
             <Card
                 styles={{
                     body: {

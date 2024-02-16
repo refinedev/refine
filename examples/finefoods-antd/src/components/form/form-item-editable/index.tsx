@@ -1,17 +1,17 @@
-import { Form, FormItemProps, Input, InputProps } from "antd";
+import { Form, FormItemProps } from "antd";
 import { useStyles } from "./styled";
+import { PropsWithChildren } from "react";
 
 type Props = {
-    inputProps?: InputProps;
     formItemProps?: FormItemProps;
     variant?: "default" | "title";
 };
 
 export const FormItemEditable = ({
     formItemProps,
-    inputProps,
+    children,
     variant = "title",
-}: Props) => {
+}: PropsWithChildren<Props>) => {
     const { styles, cx } = useStyles();
 
     return (
@@ -19,7 +19,7 @@ export const FormItemEditable = ({
             {...formItemProps}
             className={cx(styles.formItem, styles[variant])}
         >
-            <Input size="large" {...inputProps} />
+            {children}
         </Form.Item>
     );
 };
