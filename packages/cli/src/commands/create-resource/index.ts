@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { getResourcePath } from "@utils/resource";
-import { createResources } from "@commands/add/create-resource";
+import { createResources } from "@commands/add/sub-commands/resource/create-resources";
 
 const load = (program: Command) => {
     const projectType = getProjectType();
