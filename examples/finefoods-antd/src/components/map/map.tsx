@@ -10,7 +10,7 @@ import {
     useRef,
     useState,
 } from "react";
-import { Wrapper, WrapperProps } from "@googlemaps/react-wrapper";
+import { Wrapper } from "@googlemaps/react-wrapper";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
     setMap?: Dispatch<SetStateAction<google.maps.Map | undefined>>;
@@ -82,6 +82,8 @@ const MapWrapper: FC<PropsWithChildren<MapWrapperProps>> = ({
 }) => {
     return (
         <Wrapper
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //  @ts-ignore
             version="beta"
             libraries={["marker"]}
             apiKey={import.meta.env.VITE_APP_MAP_ID}
