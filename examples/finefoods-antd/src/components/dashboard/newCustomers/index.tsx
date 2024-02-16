@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import { useTranslate } from "@refinedev/core";
-import { Column } from "@ant-design/charts";
 import { ColumnConfig } from "@ant-design/plots/lib/components/column";
-
+import { Column } from "@ant-design/plots";
 import dayjs from "dayjs";
 import { useConfigProvider } from "../../../context";
 
