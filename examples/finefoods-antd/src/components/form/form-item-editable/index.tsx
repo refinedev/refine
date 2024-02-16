@@ -19,7 +19,7 @@ export const FormItemEditable = ({
             {...formItemProps}
             className={cx(styles.formItem, styles[variant])}
         >
-            <Input {...inputProps} />
+            <Input size="large" {...inputProps} />
         </Form.Item>
     );
 };

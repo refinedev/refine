@@ -35,7 +35,16 @@ export const CourierReviewTable = (props: Props) => {
             <Table.Column
                 title={t("reviews.fields.rating")}
                 dataIndex="star"
-                render={(value) => <Rate disabled allowHalf value={value} />}
+                render={(value) => (
+                    <Rate
+                        style={{
+                            minWidth: "132px",
+                        }}
+                        disabled
+                        allowHalf
+                        value={value}
+                    />
+                )}
             />
             <Table.Column
                 title={t("reviews.fields.orderId")}

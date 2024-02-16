@@ -8,25 +8,27 @@ import {
 import {
     Form,
     Input,
-    Typography,
     InputProps,
     Segmented,
     Card,
     Flex,
     Divider,
     InputNumber,
-    theme,
+    Button,
 } from "antd";
 import InputMask from "react-input-mask";
 import _debounce from "lodash/debounce";
 import { IStore } from "../../../interfaces";
 import {
+    EditOutlined,
     EnvironmentOutlined,
     MailOutlined,
     PhoneOutlined,
     RightCircleOutlined,
 } from "@ant-design/icons";
-import { FormItemHorizontal } from "../../form";
+import { FormItemEditable, FormItemHorizontal } from "../../form";
+import { useState } from "react";
+import { StoreStatus } from "../status";
 
 type Props = {
     formProps: UseFormReturnType<IStore>["formProps"];
@@ -41,25 +43,37 @@ export const StoreFormFields = ({
     action,
     handleAddressChange,
 }: Props) => {
-    const { token } = theme.useToken();
+    const [isFormDisabled, setIsFormDisabled] = useState(() =>
+        action === "edit" ? true : false,
+    );
     const t = useTranslate();
     const { list } = useNavigation();
 
+    const handleSetIsFormDisabled = (value: boolean) => {
+        formProps.form?.resetFields();
+        setIsFormDisabled(value);
+    };
+
+    const statusField = Form.useWatch("isActive", formProps.form);
+
     return (
-        <Form {...formProps} layout="horizontal">
-            <Form.Item
-                name="title"
-                style={{
-                    marginBottom: "32px",
-                }}
-                rules={[
-                    {
-                        required: true,
+        <Form {...formProps} layout="horizontal" disabled={isFormDisabled}>
+            <FormItemEditable
+                formItemProps={{
+                    name: "title",
+                    style: {
+                        marginBottom: "32px",
                     },
-                ]}
-            >
-                <Input placeholder={t("stores.fields.title")} />
-            </Form.Item>
+                    rules: [
+                        {
+                            required: true,
+                        },
+                    ],
+                }}
+                inputProps={{
+                    placeholder: t("stores.fields.title"),
+                }}
+            />
             <Card
                 styles={{
                     body: {
@@ -73,18 +87,22 @@ export const StoreFormFields = ({
                     icon={<RightCircleOutlined />}
                     label={t("stores.fields.isActive.label")}
                 >
-                    <Segmented
-                        options={[
-                            {
-                                label: t("stores.fields.isActive.true"),
-                                value: true,
-                            },
-                            {
-                                label: t("stores.fields.isActive.false"),
-                                value: false,
-                            },
-                        ]}
-                    />
+                    {isFormDisabled ? (
+                        <StoreStatus value={statusField} />
+                    ) : (
+                        <Segmented
+                            options={[
+                                {
+                                    label: t("stores.fields.isActive.true"),
+                                    value: true,
+                                },
+                                {
+                                    label: t("stores.fields.isActive.false"),
+                                    value: false,
+                                },
+                            ]}
+                        />
+                    )}
                 </FormItemHorizontal>
                 <Divider
                     style={{
@@ -113,6 +131,9 @@ export const StoreFormFields = ({
                     name={["address", "text"]}
                     icon={<EnvironmentOutlined />}
                     label={t("stores.fields.address")}
+                    flexProps={{
+                        align: "flex-start",
+                    }}
                     rules={[
                         {
                             required: true,
@@ -157,30 +178,66 @@ export const StoreFormFields = ({
                 }}
             >
                 {action === "create" && (
-                    <ListButton icon={false}>{t("actions.cancel")}</ListButton>
+                    <>
+                        <ListButton icon={false}>
+                            {t("actions.cancel")}
+                        </ListButton>
+                        <SaveButton
+                            {...saveButtonProps}
+                            style={{
+                                marginLeft: "auto",
+                            }}
+                            htmlType="submit"
+                            type="primary"
+                            icon={null}
+                        >
+                            Save
+                        </SaveButton>
+                    </>
                 )}
-                {action === "edit" && (
-                    <DeleteButton
-                        type="text"
-                        onSuccess={() => {
-                            list("stores");
-                        }}
-                        style={{
-                            marginLeft: "-16px",
-                        }}
-                    />
-                )}
-                <SaveButton
-                    {...saveButtonProps}
-                    style={{
-                        marginLeft: "auto",
-                    }}
-                    htmlType="submit"
-                    type="primary"
-                    icon={null}
-                >
-                    Save
-                </SaveButton>
+                {action === "edit" &&
+                    (isFormDisabled ? (
+                        <>
+                            <DeleteButton
+                                type="text"
+                                onSuccess={() => {
+                                    list("stores");
+                                }}
+                                style={{
+                                    marginLeft: "-16px",
+                                }}
+                            />
+                            <Button
+                                style={{
+                                    marginLeft: "auto",
+                                }}
+                                disabled={false}
+                                icon={<EditOutlined />}
+                                onClick={() => handleSetIsFormDisabled(false)}
+                            >
+                                {t("actions.edit")}
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                onClick={() => handleSetIsFormDisabled(true)}
+                            >
+                                {t("actions.cancel")}
+                            </Button>
+                            <SaveButton
+                                {...saveButtonProps}
+                                style={{
+                                    marginLeft: "auto",
+                                }}
+                                htmlType="submit"
+                                type="primary"
+                                icon={null}
+                            >
+                                Save
+                            </SaveButton>
+                        </>
+                    ))}
             </Flex>
 
             {/* this is a workaround for registering fields to ant design form*/}

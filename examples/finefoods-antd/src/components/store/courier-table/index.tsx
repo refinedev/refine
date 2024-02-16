@@ -45,12 +45,12 @@ export const StoreCourierTable = (props: Props) => {
             />
             <Table.Column
                 dataIndex="licensePlate"
-                title={t("couriers.fields.licensePlate")}
+                title={t("couriers.fields.licensePlate.label")}
                 render={(value) => value}
             />
             <Table.Column<ICourier>
                 dataIndex="licensePlate"
-                title={t("couriers.fields.rating")}
+                title={t("couriers.fields.rating.label")}
                 render={(_, record) => {
                     return <CourierTableColumnRating courier={record} />;
                 }}
