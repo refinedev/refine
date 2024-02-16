@@ -84,9 +84,29 @@ export const ProductListCard = () => {
 
         return {
             operator: filter?.operator || "in",
-            value: filterValues,
+            value: (filterValues || []) as number[],
         };
-    }, [filters]);
+    }, [filters]).value;
+
+    const hasCategoryFilter = categoryFilters?.length > 0;
+
+    const handleOnTagClick = (categoryId: number) => {
+        const newFilters = categoryFilters;
+        const hasCurrentFilter = newFilters.includes(categoryId);
+        if (hasCurrentFilter) {
+            newFilters.splice(newFilters.indexOf(categoryId), 1);
+        } else {
+            newFilters.push(categoryId);
+        }
+
+        setFilters([
+            {
+                field: "category.id",
+                operator: "in",
+                value: newFilters,
+            },
+        ]);
+    };
 
     return (
         <>
@@ -101,11 +121,7 @@ export const ProductListCard = () => {
             >
                 <Tag
                     style={{ padding: "4px 10px 4px 10px", cursor: "pointer" }}
-                    color={
-                        !categoryFilters?.value?.length
-                            ? token.colorPrimary
-                            : undefined
-                    }
+                    color={!hasCategoryFilter ? token.colorPrimary : undefined}
                     icon={<TagOutlined />}
                     onClick={() => {
                         setFilters([
@@ -124,7 +140,7 @@ export const ProductListCard = () => {
                         <Tag
                             key={category.id}
                             color={
-                                categoryFilters?.value?.includes(category.id)
+                                categoryFilters?.includes(category.id)
                                     ? "orange"
                                     : undefined
                             }
@@ -133,16 +149,7 @@ export const ProductListCard = () => {
                                 cursor: "pointer",
                             }}
                             onClick={() => {
-                                setFilters([
-                                    {
-                                        field: "category.id",
-                                        operator: "in",
-                                        value: [
-                                            ...(categoryFilters?.value || []),
-                                            category.id,
-                                        ],
-                                    },
-                                ]);
+                                handleOnTagClick(category.id);
                             }}
                         >
                             {category.title}
