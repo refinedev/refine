@@ -11,7 +11,6 @@ import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files"
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
         <TutorialSandpack
-            contentPercentage={50}
             dependencies={dependencies}
             files={initialFiles}
             finalFiles={finalFiles}

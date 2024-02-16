@@ -76,3 +76,4 @@ To learn more about Live Providers, check out [Realtime](/docs/guides-concepts/r
 - [`refine-sqlite`](https://github.com/mateusabelli/refine-sqlite) - Connector for [SQLite](https://www.sqlite.org/index.html) backends
 - [`refine-jsonapi`](https://github.com/MahirMahdi/refine-jsonapi) - Connector for [JSON:API](https://jsonapi.org/) backends
 - [`@refine-auth/kinde-react`](https://github.com/hirenf14/refine-auth-kinde-react) - Support for [Kinde](https://kinde.com) authentication.
+- [`refine-pocketbase`](https://github.com/kruschid/refine-pocketbase) - Connector for backends created with [PocketBase](https://pocketbase.io/). Also has auth provider and live provider supports.
