@@ -97,6 +97,8 @@ In the above pseudocode, `asyncFetch(url)` is an asynchronous operation. The `di
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-16-async-vs-sync/diagram.png" alt="Asynchronous vs synchronous programming" />
 </div>
 
+_"www.medium.com/from-the-scratch/wtf-is-synchronous-and-asynchronous-1a75afd039df"_
+
 ## Comparing Asynchronous and Synchronous Programming
 
 Differences between synchronous and asynchronous programming in terms of performance, application execution, and execution time are as below:
