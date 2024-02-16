@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "@docusaurus/Head";
 
 import { CommonFooter } from "./common-footer";
@@ -9,19 +9,6 @@ import { DocSidebar } from "./doc-sidebar";
 type Props = React.PropsWithChildren<{}>;
 
 export const DocPageLayout = ({ children }: Props) => {
-    useEffect(() => {
-        const kapaAIWidget = document.getElementById("kapa-widget-container");
-        if (!kapaAIWidget) {
-            return;
-        }
-
-        if (location.pathname.startsWith("/docs")) {
-            kapaAIWidget.style.display = "block";
-        } else {
-            kapaAIWidget.style.display = "none";
-        }
-    }, [location.pathname]);
-
     return (
         <>
             <DocHeader />
