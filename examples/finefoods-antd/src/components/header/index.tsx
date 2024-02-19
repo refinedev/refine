@@ -72,8 +72,14 @@ export const Header: React.FC = () => {
         value: title,
         label: (
             <Link to={link} style={{ display: "flex", alignItems: "center" }}>
-                <Avatar size={64} src={imageUrl} style={{ minWidth: "64px" }} />
-                <Text style={{ marginLeft: "16px" }}>{title}</Text>
+                {imageUrl && (
+                    <Avatar
+                        size={32}
+                        src={imageUrl}
+                        style={{ minWidth: "32px", marginRight: "16px" }}
+                    />
+                )}
+                <Text>{title}</Text>
             </Link>
         ),
     });
@@ -92,7 +98,8 @@ export const Header: React.FC = () => {
                 const orderOptionGroup = data.data.map((item) =>
                     renderItem(
                         `${item.store.title} / #${item.orderNumber}`,
-                        "/images/default-order-img.png",
+                        item?.products?.[0].images?.[0]?.url ||
+                            "/images/default-order-img.png",
                         `/orders/show/${item.id}`,
                     ),
                 );
@@ -118,11 +125,7 @@ export const Header: React.FC = () => {
             enabled: false,
             onSuccess: (data) => {
                 const storeOptionGroup = data.data.map((item) =>
-                    renderItem(
-                        item.title,
-                        "/images/default-store-img.png",
-                        `/stores/edit/${item.id}`,
-                    ),
+                    renderItem(item.title, "", `/stores/edit/${item.id}`),
                 );
                 if (storeOptionGroup.length > 0) {
                     setOptions((prevOptions) => [

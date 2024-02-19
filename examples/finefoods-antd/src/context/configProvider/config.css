@@ -30,3 +30,9 @@
 .ant-col {
     height: 100%;
 }
+
+html[data-theme="dark"] {
+    .ant-table-filter-dropdown {
+        background-color: #000;
+    }
+}

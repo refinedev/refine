@@ -201,9 +201,10 @@ export const ProductListTable = () => {
                 render={(description: string) => {
                     return (
                         <Typography.Paragraph
-                            ellipsis={{ rows: 1 }}
+                            ellipsis={{ rows: 1, tooltip: true }}
                             style={{
-                                maxWidth: "416px",
+                                maxWidth: "400px",
+                                marginBottom: 0,
                             }}
                         >
                             {description}
@@ -223,6 +224,8 @@ export const ProductListTable = () => {
                         <NumberField
                             value={price}
                             style={{
+                                width: "80px",
+                                fontVariantNumeric: "tabular-nums",
                                 whiteSpace: "nowrap",
                             }}
                             options={{

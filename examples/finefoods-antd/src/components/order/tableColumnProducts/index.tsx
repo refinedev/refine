@@ -3,6 +3,8 @@ import { getUniqueListWithCount } from "../../../utils";
 import { IOrder } from "../../../interfaces";
 import { useTranslate } from "@refinedev/core";
 
+const visibleProductCount = 4;
+
 type Props = {
     order: IOrder;
 };
@@ -15,12 +17,12 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
         list: order?.products || [],
         field: "id",
     });
-    const firstThree = uniqueProducts.slice(0, 3);
-    const rest = uniqueProducts.slice(3);
+    const visibleProducts = uniqueProducts.slice(0, visibleProductCount);
+    const unvisibleProducts = uniqueProducts.slice(visibleProductCount);
 
     return (
         <Flex gap={12}>
-            {firstThree.map((product) => {
+            {visibleProducts.map((product) => {
                 return (
                     <Popover
                         key={product.id}
@@ -42,12 +44,12 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
                     </Popover>
                 );
             })}
-            {!!rest.length && (
+            {!!unvisibleProducts.length && (
                 <Popover
                     title={t("orders.fields.products")}
                     content={
                         <Flex gap={8}>
-                            {rest.map((product) => {
+                            {unvisibleProducts.map((product) => {
                                 return (
                                     <Popover
                                         key={product.id}
@@ -89,7 +91,7 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
                                 color: token.colorPrimary,
                             }}
                         >
-                            +{rest.length}
+                            +{unvisibleProducts.length}
                         </Typography.Text>
                     </Avatar>
                 </Popover>

@@ -1,6 +1,6 @@
 import { useNavigation } from "@refinedev/core";
 import { NumberField, useTable } from "@refinedev/antd";
-import { Typography, Table, theme, Space } from "antd";
+import { Typography, Table, theme, Space, Flex } from "antd";
 
 import { OrderActions } from "../../../components";
 
@@ -70,7 +70,7 @@ export const RecentOrders: React.FC = () => {
                             size={0}
                             direction="vertical"
                             style={{
-                                maxWidth: 220,
+                                maxWidth: "220px",
                             }}
                         >
                             <Typography.Text
@@ -107,16 +107,26 @@ export const RecentOrders: React.FC = () => {
                     >({ list: products, field: "id" });
 
                     return (
-                        <Space size={0} direction="vertical">
+                        <Space
+                            size={0}
+                            direction="vertical"
+                            style={{
+                                maxWidth: "220px",
+                            }}
+                        >
                             {uniqueProducts.map((product) => (
-                                <div key={product.id}>
-                                    <Typography.Text>
-                                        {product.name}{" "}
+                                <Flex key={product.id} gap={4}>
+                                    <Typography.Text ellipsis>
+                                        {product.name}
                                     </Typography.Text>
-                                    <Typography.Text type="secondary">
+                                    <span
+                                        style={{
+                                            color: token.colorTextSecondary,
+                                        }}
+                                    >
                                         x{product.count}
-                                    </Typography.Text>
-                                </div>
+                                    </span>
+                                </Flex>
                             ))}
                         </Space>
                     );

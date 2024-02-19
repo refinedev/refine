@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import {
+    createContext,
+    PropsWithChildren,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import { ConfigProvider as AntdConfigProvider, theme, ThemeConfig } from "antd";
 import { ThemeProvider } from "antd-style";
 import { RefineThemes } from "@refinedev/antd";
@@ -29,8 +35,16 @@ export const ConfigProvider = ({
 
     const handleSetMode = (mode: Mode) => {
         localStorage.setItem("theme", mode);
+        const html = document.querySelector("html");
+        html?.setAttribute("data-theme", mode);
         setMode(mode);
     };
+
+    // add data-theme to html tag
+    useEffect(() => {
+        const html = document.querySelector("html");
+        html?.setAttribute("data-theme", mode);
+    }, []);
 
     return (
         <ConfigProviderContext.Provider
@@ -39,14 +53,6 @@ export const ConfigProvider = ({
             <AntdConfigProvider
                 theme={{
                     ...RefineThemes.Orange,
-                    components: {
-                        ...(RefineThemes.Orange?.components || {}),
-                        Segmented: {
-                            ...(RefineThemes.Orange.components?.Segmented ||
-                                {}),
-                            trackBg: mode === "dark" ? "#000000" : "#F5F5F5",
-                        },
-                    },
                     algorithm:
                         mode === "light"
                             ? theme.defaultAlgorithm
