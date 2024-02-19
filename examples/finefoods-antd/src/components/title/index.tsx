@@ -4,14 +4,12 @@ import { Space, theme } from "antd";
 import { FinefoodsLogoIcon, FinefoodsLogoText } from "../../components";
 import { Logo } from "./styled";
 
-const { useToken } = theme;
-
 type TitleProps = {
     collapsed: boolean;
 };
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
-    const { token } = useToken();
+    const { token } = theme.useToken();
     const Link = useLink();
 
     return (

@@ -45,7 +45,7 @@ import {
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
 import { useTranslation } from "react-i18next";
-import { Header, Title, OffLayoutArea } from "./components";
+import { Header, Title } from "./components";
 import { BikeWhiteIcon } from "./components/icons";
 import { ConfigProvider } from "./context";
 import { useAutoLoginForDemo } from "./hooks";
@@ -161,7 +161,6 @@ const App: React.FC = () => {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
-                                            OffLayoutArea={OffLayoutArea}
                                         >
                                             <div
                                                 style={{
@@ -321,7 +320,6 @@ const App: React.FC = () => {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
-                                            OffLayoutArea={OffLayoutArea}
                                         >
                                             <Outlet />
                                         </ThemedLayoutV2>
