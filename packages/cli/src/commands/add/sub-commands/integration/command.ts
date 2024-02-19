@@ -1,6 +1,6 @@
-import { Command, Argument } from "commander";
-import { addIntegrationPrompt } from "./prompt";
+import { Argument, Command } from "commander";
 import { availableIntegrations } from "./packages";
+import { addIntegrationPrompt } from "./prompt";
 
 const addIntegrationAction = async (name?: string) => {
     let integrationID = name;

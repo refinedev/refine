@@ -1,4 +1,4 @@
-import { Command, Argument } from "commander";
+import { Argument, Command } from "commander";
 import { createResources } from "./create-resources";
 
 const createResourceAction = async (

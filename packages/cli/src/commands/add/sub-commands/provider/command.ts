@@ -1,8 +1,8 @@
-import { Command, Argument } from "commander";
+import { Argument, Command } from "commander";
 
 import { createProviders } from "./create-providers";
 import { addProviderPrompt } from "./prompt";
-import { ProviderId, availableProviders } from "./providers";
+import { availableProviders, ProviderId } from "./providers";
 
 export const createProviderAction = async (
     providers: ProviderId[],

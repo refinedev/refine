@@ -1,7 +1,7 @@
+import { ProjectTypes } from "@definitions/projectTypes";
 import * as utilsProject from "../../utils/project/index";
 import * as utilsResource from "../../utils/resource/index";
 import { getDefaultPath } from "./sub-commands/provider/create-providers";
-import { ProjectTypes } from "@definitions/projectTypes";
 
 describe("add", () => {
     it("should get default provider path for provider", () => {

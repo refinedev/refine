@@ -1,20 +1,21 @@
 import { Command } from "commander";
 
-import { IntegrationCommand } from "./sub-commands/integration/command";
-import { ResourceCommand } from "./sub-commands/resource/command";
-import {
-    ProviderCommand,
-    createProviderAction,
-} from "./sub-commands/provider/command";
-import { ProviderId } from "./sub-commands/provider/providers";
 import { addCommandPrompt } from "./prompt";
-import { createProviders } from "./sub-commands/provider/create-providers";
+import { IntegrationCommand } from "./sub-commands/integration/command";
 import { availableIntegrations } from "./sub-commands/integration/packages";
+import {
+    createProviderAction,
+    ProviderCommand,
+} from "./sub-commands/provider/command";
+import { createProviders } from "./sub-commands/provider/create-providers";
+import { ProviderId } from "./sub-commands/provider/providers";
+import { ResourceCommand } from "./sub-commands/resource/command";
 import { createResources } from "./sub-commands/resource/create-resources";
 
 const load = (program: Command) => {
     return program
         .command("add")
+        .description("Add new resources, providers, or integrations")
         .allowExcessArguments(false)
         .action(addCommandAction)
         .addCommand(ResourceCommand)

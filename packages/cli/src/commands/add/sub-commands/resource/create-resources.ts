@@ -1,19 +1,19 @@
-import {
-    copySync,
-    unlinkSync,
-    moveSync,
-    pathExistsSync,
-    mkdirSync,
-} from "fs-extra";
-import temp from "temp";
-import { plural } from "pluralize";
-import execa from "execa";
-import inquirer from "inquirer";
-import { join } from "path";
 import { compileDir } from "@utils/compile";
-import { uppercaseFirstChar } from "@utils/text";
 import { getProjectType, getUIFramework } from "@utils/project";
 import { getResourcePath } from "@utils/resource";
+import { uppercaseFirstChar } from "@utils/text";
+import execa from "execa";
+import {
+    copySync,
+    mkdirSync,
+    moveSync,
+    pathExistsSync,
+    unlinkSync,
+} from "fs-extra";
+import inquirer from "inquirer";
+import { join } from "path";
+import { plural } from "pluralize";
+import temp from "temp";
 
 const defaultActions = ["list", "create", "edit", "show"];
 
