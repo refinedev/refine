@@ -48,16 +48,16 @@ export const RecentOrders: React.FC = () => {
             <Table.Column<IOrder>
                 dataIndex="orderNumber"
                 className={styles.column}
-                render={(orderId) => (
+                render={(_, record) => (
                     <Typography.Link
                         strong
-                        onClick={() => show("orders", orderId)}
+                        onClick={() => show("orders", record.id)}
                         style={{
                             whiteSpace: "nowrap",
                             color: token.colorTextHeading,
                         }}
                     >
-                        #{orderId}
+                        #{record.orderNumber}
                     </Typography.Link>
                 )}
             />
