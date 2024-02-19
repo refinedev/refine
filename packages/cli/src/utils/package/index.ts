@@ -29,6 +29,10 @@ export const getDevDependencies = (): string[] => {
     return Object.keys(packageJson.devDependencies || {});
 };
 
+export const getAllDependencies = (): string[] => {
+    return [...getDependencies(), ...getDependencies()];
+};
+
 export const getScripts = (): Record<string, string> => {
     const packageJson = getPackageJson();
     return packageJson.scripts;
@@ -142,6 +146,11 @@ export const pmCommands = {
         installDev: ["add", "-D"],
         outdatedJson: ["outdated", "--format", "json"],
     },
+    bun: {
+        install: ["add"],
+        installDev: ["add", "--dev"],
+        outdatedJson: ["outdated", "--format", "json"],
+    },
 };
 
 export const getPreferedPM = async () => {
@@ -245,4 +254,45 @@ export const isDevtoolsInstalled = async () => {
     const installedPackages = await getInstalledRefinePackagesFromNodeModules();
 
     return installedPackages.some((pkg) => pkg.name === "@refinedev/devtools");
+};
+
+export const getNotInstalledPackages = (packages: string[]) => {
+    const dependencies = getDependencies();
+
+    return packages.filter((pkg) => !dependencies.includes(pkg));
+};
+
+export const installMissingPackages = async (packages: string[]) => {
+    console.log("🌱 Checking dependencies...");
+
+    const missingPackages = getNotInstalledPackages(packages);
+
+    if (missingPackages.length > 0) {
+        console.log(`🌱 Installing ${missingPackages.join(", ")}`);
+
+        await installPackagesSync(missingPackages);
+
+        console.log("🎉 Installation complete...");
+    } else {
+        console.log("🎉 All required packages are already installed");
+    }
+};
+
+export const hasIncomatiblePackages = (packages: string[]): boolean => {
+    const allDependencies = getAllDependencies();
+
+    const incompatiblePackages = packages.filter((pkg) =>
+        allDependencies.includes(pkg),
+    );
+
+    if (incompatiblePackages.length > 0) {
+        console.log(
+            `🚨 This feature doesn't support ${incompatiblePackages.join(
+                ", ",
+            )} package.`,
+        );
+        return true;
+    }
+
+    return false;
 };
