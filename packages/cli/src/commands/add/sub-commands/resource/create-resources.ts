@@ -1,19 +1,19 @@
-import {
-    copySync,
-    unlinkSync,
-    moveSync,
-    pathExistsSync,
-    mkdirSync,
-} from "fs-extra";
-import temp from "temp";
-import { plural } from "pluralize";
-import execa from "execa";
-import inquirer from "inquirer";
-import { join } from "path";
 import { compileDir } from "@utils/compile";
-import { uppercaseFirstChar } from "@utils/text";
 import { getProjectType, getUIFramework } from "@utils/project";
 import { getResourcePath } from "@utils/resource";
+import { uppercaseFirstChar } from "@utils/text";
+import execa from "execa";
+import {
+    copySync,
+    mkdirSync,
+    moveSync,
+    pathExistsSync,
+    unlinkSync,
+} from "fs-extra";
+import inquirer from "inquirer";
+import { join } from "path";
+import { plural } from "pluralize";
+import temp from "temp";
 
 const defaultActions = ["list", "create", "edit", "show"];
 
@@ -26,7 +26,6 @@ export const createResources = async (
     let actions = params.actions || defaultActions.join(",");
 
     if (!resources.length) {
-        // TODO: Show inquirer
         const { name, selectedActions } = await inquirer.prompt<{
             name: string;
             selectedActions: string[];
@@ -34,7 +33,7 @@ export const createResources = async (
             {
                 type: "input",
                 name: "name",
-                message: "Resource Name",
+                message: "Resource Name (users, products, orders etc.)",
                 validate: (value) => {
                     if (!value) {
                         return "Resource Name is required";
@@ -128,15 +127,16 @@ export const createResources = async (
         temp.cleanupSync();
 
         const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-        const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
+        const { stderr } = execa.sync(jscodeshiftExecutable, [
             "./",
             "--extensions=ts,tsx,js,jsx",
             "--parser=tsx",
             `--transform=${__dirname}/../src/transformers/resource.ts`,
-            `--ignore-pattern=**/.cache/**`,
-            `--ignore-pattern=**/node_modules/**`,
-            `--ignore-pattern=**/build/**`,
-            `--ignore-pattern=**/.next/**`,
+            `--ignore-pattern=.cache`,
+            `--ignore-pattern=node_modules`,
+            `--ignore-pattern=build`,
+            `--ignore-pattern=.next`,
+            `--ignore-pattern=dist`,
             // pass custom params to transformer file
             `--__actions=${compileParams.actions}`,
             `--__pathAlias=${getResourcePath(getProjectType()).alias}`,
@@ -144,8 +144,6 @@ export const createResources = async (
             `--__resource=${resource}`,
             `--__resourceName=${resourceName}`,
         ]);
-
-        // console.log(stdout);
 
         if (stderr) {
             console.log(stderr);
