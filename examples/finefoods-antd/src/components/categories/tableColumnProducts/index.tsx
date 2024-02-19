@@ -35,7 +35,7 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
     if (isLoading) {
         return (
             <Flex gap={8} wrap="wrap">
-                {Array.from({ length: 26 }).map((_, index) => (
+                {Array.from({ length: 10 }).map((_, index) => (
                     <Avatar
                         key={index}
                         shape="square"
@@ -52,7 +52,7 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
 
     return (
         <>
-            <Flex gap={8} wrap="wrap" style={{ minHeight: "72px" }}>
+            <Flex gap={8} wrap="wrap">
                 {products.map((product) => {
                     const image = product?.images?.[0];
                     return (

@@ -177,6 +177,7 @@ export const ProductListTable = () => {
                 title={t("products.fields.description")}
                 dataIndex="description"
                 key="description"
+                width={432}
                 filterIcon={(filtered) => (
                     <SearchOutlined
                         style={{
@@ -240,6 +241,7 @@ export const ProductListTable = () => {
                 title={t("products.fields.category")}
                 dataIndex={["category", "title"]}
                 key="category.id"
+                width={128}
                 defaultFilteredValue={getDefaultFilter(
                     "category.id",
                     filters,
