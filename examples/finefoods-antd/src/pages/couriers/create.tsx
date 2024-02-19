@@ -1,8 +1,6 @@
-import { useTranslate, useApiUrl, useGetToPath, useGo } from "@refinedev/core";
+import { useTranslate, useGetToPath, useGo } from "@refinedev/core";
 import {
-    Create,
     SaveButton,
-    getValueFromEvent,
     useStepsForm,
     useSelect,
     UseFormReturnType,
@@ -10,19 +8,11 @@ import {
 import {
     Form,
     Select,
-    Upload,
     Input,
     Button,
     Steps,
-    Typography,
-    Space,
-    Avatar,
-    Row,
-    Col,
     InputProps,
-    Drawer,
     Modal,
-    Divider,
     Flex,
     theme,
 } from "antd";
@@ -32,8 +22,6 @@ import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CourierFormItemAvatar } from "../../components";
 
-const { Text } = Typography;
-
 export const CourierCreate = () => {
     const t = useTranslate();
     const getToPath = useGetToPath();
@@ -41,14 +29,8 @@ export const CourierCreate = () => {
     const go = useGo();
     const { token } = theme.useToken();
 
-    const {
-        current,
-        gotoStep,
-        stepsProps,
-        formProps,
-        saveButtonProps,
-        queryResult,
-    } = useStepsForm<ICourier>();
+    const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
+        useStepsForm<ICourier>();
 
     const { formList } = useFormList({ formProps });
 
@@ -70,7 +52,7 @@ export const CourierCreate = () => {
         });
     };
 
-    const isLastStep = current === formList.length;
+    const isLastStep = current === formList.length - 1;
     const isFirstStep = current === 0;
 
     return (
