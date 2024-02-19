@@ -42,13 +42,6 @@ export const ProductListCard = () => {
             pageSize: 12,
         },
         filters: {
-            permanent: [
-                {
-                    field: "isActive",
-                    operator: "eq",
-                    value: true,
-                },
-            ],
             initial: [
                 {
                     field: "category.id",

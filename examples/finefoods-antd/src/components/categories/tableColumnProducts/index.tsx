@@ -62,6 +62,7 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
                                 src={image?.url}
                                 alt={image?.name}
                                 style={{
+                                    cursor: "pointer",
                                     aspectRatio: 32 / 32,
                                     width: 32,
                                     height: 32,

@@ -1,7 +1,6 @@
 import { NumberField, useSimpleList } from "@refinedev/antd";
 import { Typography, Avatar, List as AntdList, Flex } from "antd";
-
-import { IOrder } from "../../../interfaces";
+import { ITrendingProducts } from "../../../interfaces";
 import {
     Rank1Icon,
     Rank2Icon,
@@ -12,9 +11,9 @@ import {
 import { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        pagination: { pageSize: 5 },
+    const { listProps } = useSimpleList<ITrendingProducts>({
+        resource: "trendingProducts",
+        pagination: { pageSize: 5, current: 1 },
         syncWithLocation: false,
     });
 
@@ -57,7 +56,7 @@ export const TrendingMenu: React.FC = () => {
                                         xl: 120,
                                         xxl: 120,
                                     }}
-                                    src={item.products[0]?.images[0]?.url}
+                                    src={item.product?.images[0]?.url}
                                 />
                                 <div
                                     style={{
@@ -85,8 +84,7 @@ export const TrendingMenu: React.FC = () => {
                                                 rows: 1,
                                                 tooltip: {
                                                     placement: "top",
-                                                    title: item.products[0]
-                                                        ?.name,
+                                                    title: item.product?.name,
                                                 },
                                             }}
                                             style={{
@@ -95,7 +93,7 @@ export const TrendingMenu: React.FC = () => {
                                             }}
                                             strong={index <= 2 ? true : false}
                                         >
-                                            {item.products[0]?.name}
+                                            {item.product?.name}
                                         </Typography.Paragraph>
                                     </div>
                                     <NumberField
@@ -105,7 +103,9 @@ export const TrendingMenu: React.FC = () => {
                                             style: "currency",
                                             notation: "standard",
                                         }}
-                                        value={item.amount / 100}
+                                        value={
+                                            item.orderCount * item.product.price
+                                        }
                                     />
                                 </Flex>
                                 <Typography.Text
@@ -116,7 +116,7 @@ export const TrendingMenu: React.FC = () => {
                                 >
                                     Ordered{" "}
                                     <Typography.Text strong>
-                                        {item.amount}{" "}
+                                        {item.orderCount}{" "}
                                     </Typography.Text>
                                     times
                                 </Typography.Text>
