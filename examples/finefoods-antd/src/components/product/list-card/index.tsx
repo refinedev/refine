@@ -68,6 +68,7 @@ export const ProductListCard = () => {
             mode: "off",
         },
     });
+    const categories = categoryData?.data || [];
 
     const categoryFilters = useMemo(() => {
         const filter = filters.find((filter) => {
@@ -136,7 +137,7 @@ export const ProductListCard = () => {
                     {t("products.filter.allCategories.label")}
                 </Tag>
                 {!categoryIsLoading &&
-                    categoryData?.data?.map((category) => (
+                    categories.map((category) => (
                         <Tag
                             key={category.id}
                             color={
@@ -252,7 +253,13 @@ export const ProductListCard = () => {
                                     }}
                                 >
                                     <Typography.Text key="category.title">
-                                        {item.category.title}
+                                        {
+                                            categories.find(
+                                                (category) =>
+                                                    category.id ===
+                                                    item.category.id,
+                                            )?.title
+                                        }
                                     </Typography.Text>
                                     <ProductStatus
                                         key="status"

@@ -4,6 +4,7 @@ import {
     useGetToPath,
     useGo,
     useNavigation,
+    useOne,
     useShow,
     useTranslate,
 } from "@refinedev/core";
@@ -19,7 +20,7 @@ import {
 } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { Drawer } from "../../drawer";
-import { IProduct } from "../../../interfaces";
+import { ICategory, IProduct } from "../../../interfaces";
 import { DeleteButton, NumberField } from "@refinedev/antd";
 import { ProductStatus } from "../status";
 import { EditOutlined } from "@ant-design/icons";
@@ -44,6 +45,15 @@ export const ProductDrawerShow = (props: Props) => {
         id: props?.id, // when undefined, id will be read from the URL.
     });
     const product = queryResult.data?.data;
+
+    const { data: categoryData } = useOne<ICategory, HttpError>({
+        resource: "categories",
+        id: product?.category?.id,
+        queryOptions: {
+            enabled: !!product?.category?.id,
+        },
+    });
+    const category = categoryData?.data;
 
     const handleDrawerClose = () => {
         close();
@@ -143,7 +153,7 @@ export const ProductDrawerShow = (props: Props) => {
                             ),
                             value: (
                                 <Typography.Text>
-                                    {product?.category?.title}
+                                    {category?.title}
                                 </Typography.Text>
                             ),
                         },

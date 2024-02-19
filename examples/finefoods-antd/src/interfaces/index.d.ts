@@ -120,7 +120,9 @@ export interface IProduct {
     images: IFile[];
     createdAt: string;
     price: number;
-    category: ICategory;
+    category: {
+        id: number;
+    };
     stock: number;
 }
 
