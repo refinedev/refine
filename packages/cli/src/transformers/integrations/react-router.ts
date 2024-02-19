@@ -131,33 +131,35 @@ export default async function transformer(file: FileInfo, api: API) {
                 }
             });
 
-        addOrUpdateImports(j, source, "@refinedev/core", ["ErrorComponent"]);
-
-        const errorRoute = j.jsxElement(
-            j.jsxOpeningElement(
-                j.jsxIdentifier("Route"),
-                [
-                    j.jsxAttribute(j.jsxIdentifier("path"), j.literal("*")),
-                    j.jsxAttribute(
-                        j.jsxIdentifier("element"),
-                        j.jsxExpressionContainer(
-                            j.jsxElement(
-                                j.jsxOpeningElement(
-                                    j.jsxIdentifier("ErrorComponent"),
-                                    [],
-                                    true,
-                                ),
-                            ),
-                        ),
-                    ),
-                ],
-                true,
-            ),
-        );
-
         if (newRouteElements.length === 0) {
             newRouteElements.push(...(routesElement.node.children ?? []));
         } else {
+            addOrUpdateImports(j, source, "@refinedev/core", [
+                "ErrorComponent",
+            ]);
+
+            const errorRoute = j.jsxElement(
+                j.jsxOpeningElement(
+                    j.jsxIdentifier("Route"),
+                    [
+                        j.jsxAttribute(j.jsxIdentifier("path"), j.literal("*")),
+                        j.jsxAttribute(
+                            j.jsxIdentifier("element"),
+                            j.jsxExpressionContainer(
+                                j.jsxElement(
+                                    j.jsxOpeningElement(
+                                        j.jsxIdentifier("ErrorComponent"),
+                                        [],
+                                        true,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ],
+                    true,
+                ),
+            );
+
             newRouteElements.push(errorRoute);
         }
 

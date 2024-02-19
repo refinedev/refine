@@ -111,43 +111,53 @@ export default async function transformer(file: FileInfo, api: API) {
                 layoutChildren.push(errorRoute);
             }
 
-            const antdLayout = j.jsxElement(
-                j.jsxOpeningElement(j.jsxIdentifier("Route"), [
-                    j.jsxAttribute(
-                        j.jsxIdentifier("element"),
-                        j.jsxExpressionContainer(
-                            j.jsxElement(
-                                j.jsxOpeningElement(
-                                    j.jsxIdentifier("ThemedLayoutV2"),
-                                    [],
-                                ),
-                                j.jsxClosingElement(
-                                    j.jsxIdentifier("ThemedLayoutV2"),
-                                ),
-                                [
-                                    j.jsxElement(
-                                        j.jsxOpeningElement(
-                                            j.jsxIdentifier("Outlet"),
-                                            [],
-                                            true,
-                                        ),
+            const existingThemedLayout = source.find(j.JSXElement, {
+                openingElement: {
+                    name: {
+                        name: "ThemedLayoutV2",
+                    },
+                },
+            });
+
+            if (!existingThemedLayout.length) {
+                const antdLayout = j.jsxElement(
+                    j.jsxOpeningElement(j.jsxIdentifier("Route"), [
+                        j.jsxAttribute(
+                            j.jsxIdentifier("element"),
+                            j.jsxExpressionContainer(
+                                j.jsxElement(
+                                    j.jsxOpeningElement(
+                                        j.jsxIdentifier("ThemedLayoutV2"),
+                                        [],
                                     ),
-                                ],
+                                    j.jsxClosingElement(
+                                        j.jsxIdentifier("ThemedLayoutV2"),
+                                    ),
+                                    [
+                                        j.jsxElement(
+                                            j.jsxOpeningElement(
+                                                j.jsxIdentifier("Outlet"),
+                                                [],
+                                                true,
+                                            ),
+                                        ),
+                                    ],
+                                ),
                             ),
                         ),
-                    ),
-                ]),
-                j.jsxClosingElement(j.jsxIdentifier("Route")),
-                layoutChildren,
-            );
+                    ]),
+                    j.jsxClosingElement(j.jsxIdentifier("Route")),
+                    layoutChildren,
+                );
 
-            element.replace(
-                j.jsxElement(
-                    element.node.openingElement,
-                    element.node.closingElement,
-                    [antdLayout],
-                ),
-            );
+                element.replace(
+                    j.jsxElement(
+                        element.node.openingElement,
+                        element.node.closingElement,
+                        [antdLayout],
+                    ),
+                );
+            }
         });
     }
 
