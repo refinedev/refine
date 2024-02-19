@@ -28,17 +28,19 @@ Options:
   -h, --help                 Output usage information.
 
 Commands:
-  add [options] [auth] [live] [data] [resource]  Creates new features for your project (data-provider, auth-provider, live-provider, resource etc.)
+  swizzle                    Export a component or a function from refine packages to customize it in your project
   create-resource [options]  Create a new resource files (deprecated, please use "add resource" command)
-  check-updates              Check all installed `Refine` packages are up to date
-  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
-  dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
-  build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
-  start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
+  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  dev [options] [args...]    It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
+  build [options] [args...]  It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
+  start [options] [args...]  It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
   run [command] [args...]    Runs a defined package script. If no `command` is provided, it will list the available scripts
+  check-updates              Check all installed `refine` packages are up to date
   whoami                     View the details of the development environment
+  proxy [options]            Manage proxy settings
+  devtools [command]         Start or install refine's devtools server; it starts on port 5001.
+  add                        Add new resources, providers, or integrations
   help [command]             display help for command
-
 ```
 
 :::simple Installation
