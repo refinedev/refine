@@ -45,6 +45,21 @@ export const CommonLayout = (props: any) => {
         }
     }, [isMobile]);
 
+    // it handles kapa ai widget visibility
+    // kapa ai widget script initalized in docusaurus.config.js
+    useEffect(() => {
+        const kapaAIWidget = document.getElementById("kapa-widget-container");
+        if (!kapaAIWidget) {
+            return;
+        }
+
+        if (location.pathname.startsWith("/docs")) {
+            kapaAIWidget.style.display = "block";
+        } else {
+            kapaAIWidget.style.display = "none";
+        }
+    }, [location.pathname]);
+
     return (
         <LayoutProvider>
             <PageMetadata title={title} description={description} />

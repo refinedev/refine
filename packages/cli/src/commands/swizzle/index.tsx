@@ -54,7 +54,7 @@ const getAutocompleteSource =
                 component?.group && arr[index - 1]?.group !== component.group;
             const withTitle =
                 hasTitle && component.group
-                    ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
+                    ? [new inquirer.Separator(chalk.bold(component.group))]
                     : [];
 
             return [
