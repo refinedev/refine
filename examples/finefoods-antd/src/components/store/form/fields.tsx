@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { UseFormProps, useNavigation, useTranslate } from "@refinedev/core";
 import {
     DeleteButton,
@@ -35,6 +35,8 @@ type Props = {
     formProps: UseFormReturnType<IStore>["formProps"];
     saveButtonProps: UseFormReturnType<IStore>["saveButtonProps"];
     action: UseFormProps["action"];
+    isFormDisabled: boolean;
+    setIsFormDisabled: (value: boolean) => void;
     handleAddressChange: (address: string) => void;
 };
 
@@ -42,20 +44,14 @@ export const StoreFormFields = ({
     formProps,
     saveButtonProps,
     action,
+    isFormDisabled,
+    setIsFormDisabled,
     handleAddressChange,
 }: Props) => {
     const titleInputRef = useRef<InputRef>(null);
 
-    const [isFormDisabled, setIsFormDisabled] = useState(() =>
-        action === "edit" ? true : false,
-    );
     const t = useTranslate();
     const { list } = useNavigation();
-
-    const handleSetIsFormDisabled = (value: boolean) => {
-        formProps.form?.resetFields();
-        setIsFormDisabled(value);
-    };
 
     useEffect(() => {
         if (!isFormDisabled) {
@@ -225,16 +221,14 @@ export const StoreFormFields = ({
                                 }}
                                 disabled={false}
                                 icon={<EditOutlined />}
-                                onClick={() => handleSetIsFormDisabled(false)}
+                                onClick={() => setIsFormDisabled(false)}
                             >
                                 {t("actions.edit")}
                             </Button>
                         </>
                     ) : (
                         <>
-                            <Button
-                                onClick={() => handleSetIsFormDisabled(true)}
-                            >
+                            <Button onClick={() => setIsFormDisabled(true)}>
                                 {t("actions.cancel")}
                             </Button>
                             <SaveButton

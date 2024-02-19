@@ -17,6 +17,8 @@ export const StoreForm = (props: Props) => {
         saveButtonProps,
         handleAddressChange,
         formLoading,
+        isFormDisabled,
+        setIsFormDisabled,
         latLng,
     } = useStoreForm({
         action: props.action,
@@ -30,6 +32,8 @@ export const StoreForm = (props: Props) => {
                         formProps={formProps}
                         saveButtonProps={saveButtonProps}
                         action={props.action}
+                        isFormDisabled={isFormDisabled}
+                        setIsFormDisabled={setIsFormDisabled}
                         handleAddressChange={handleAddressChange}
                     />
                 </Col>
@@ -50,6 +54,7 @@ export const StoreForm = (props: Props) => {
                         lng={latLng?.lng}
                         zoom={props.action === "create" ? 4 : 10}
                         store={store}
+                        isDisabled={isFormDisabled}
                         onDragEnd={handleMapOnDragEnd}
                     />
                 </Col>

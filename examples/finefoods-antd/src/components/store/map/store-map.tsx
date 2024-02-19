@@ -10,6 +10,7 @@ type Props = {
     lat?: number;
     lng?: number;
     zoom?: number;
+    isDisabled?: boolean;
     onDragEnd?: ({ lat, lng }: { lat: number; lng: number }) => void;
 };
 
@@ -66,7 +67,7 @@ export const StoreMap = (props: Props) => {
                             lat,
                             lng,
                         }}
-                        onDragEnd={handleDragEnd}
+                        onDragEnd={props.isDisabled ? undefined : handleDragEnd}
                     />
                 )}
             </Map>

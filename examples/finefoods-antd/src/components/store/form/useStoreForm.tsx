@@ -14,8 +14,16 @@ type Props = {
 };
 
 export const useStoreForm = (props: Props) => {
+    const [isFormDisabled, setIsFormDisabled] = useState(() =>
+        props.action === "edit" ? true : false,
+    );
+
     const form = useForm<IStore>({
         action: props.action,
+        redirect: false,
+        onMutationSuccess: () => {
+            setIsFormDisabled(true);
+        },
     });
     const store = form.queryResult?.data?.data;
 
@@ -82,6 +90,11 @@ export const useStoreForm = (props: Props) => {
         }
     };
 
+    const handleSetIsFormDisabled = (value: boolean) => {
+        form.formProps.form?.resetFields();
+        setIsFormDisabled(value);
+    };
+
     const isLoading = form.queryResult?.isFetching || form.formLoading;
 
     return {
@@ -89,6 +102,8 @@ export const useStoreForm = (props: Props) => {
         store,
         formLoading: isLoading,
         latLng,
+        isFormDisabled,
+        setIsFormDisabled: handleSetIsFormDisabled,
         handleAddressChange: (address: string) =>
             setDebouncedAdressValue(address),
         handleMapOnDragEnd,
