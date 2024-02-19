@@ -16,7 +16,6 @@ describe("react-router transformer", () => {
     it.each(cases)(
         "should transform the file\n----------------------------------------------------\n%s\n----------------------------------------------------",
         async (source) => {
-            console.log(source);
             const fileInfo: FileInfo = {
                 path: "App.tsx",
                 source,

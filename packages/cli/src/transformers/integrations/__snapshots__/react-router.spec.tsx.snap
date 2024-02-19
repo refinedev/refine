@@ -14,10 +14,10 @@ function App() {
 
 export default App;
 ---------------------------------------------------- 1`] = `
-"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+"import { Refine, WelcomePage } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
     return (
@@ -54,12 +54,10 @@ function App() {
 
 export default App;
 ---------------------------------------------------- 1`] = `
-"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+"import { Refine, WelcomePage } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { UseListExample, UseOneExample, UseUpdateExample } from "examples";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
     return (
@@ -111,10 +109,10 @@ function App() {
 
 export default App;
 ---------------------------------------------------- 1`] = `
-"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+"import { ErrorComponent, Refine, WelcomePage } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
     return (

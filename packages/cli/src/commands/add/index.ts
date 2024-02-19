@@ -32,7 +32,6 @@ const addCommandAction = async (
 
     const { component } = await addCommandPrompt();
 
-    console.log("COMPONENT", component);
     if (component.group === "provider") {
         createProviders([component.value], options.path);
     }
