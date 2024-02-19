@@ -6,7 +6,10 @@ import { buildIntegrationChoices } from "./sub-commands/integration/prompt";
 import { buildProviderChoices } from "./sub-commands/provider/prompt";
 import { ProviderId } from "./sub-commands/provider/providers";
 
-const wrapChoices = (group: string, choices: ListChoiceOptions[]) => {
+const wrapChoices = (
+    group: string,
+    choices: ListChoiceOptions[],
+): ListChoiceOptions<AddCommandComponentAnswer>[] => {
     return choices.map((choice) => {
         return {
             ...choice,
@@ -20,8 +23,8 @@ const wrapChoices = (group: string, choices: ListChoiceOptions[]) => {
 };
 
 type AddCommandComponentAnswer =
-    | { group: "provider"; value: ProviderId }
-    | { group: "integration"; value: IntegrationId }
+    | { group: "provider"; component: ProviderId }
+    | { group: "integration"; component: IntegrationId }
     | { group: "resource"; component: "resource" };
 
 interface AddCommandAnswer {
