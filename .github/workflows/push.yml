@@ -44,7 +44,7 @@ jobs:
           npm run lint
       - name: test
         run: |
-          npm run test:coverage
+          npm run test:all:coverage
       - name: npm run test & publish code coverage
         uses: paambaati/codeclimate-action@v2.7.5
         #if: github.ref == 'refs/heads/master'
