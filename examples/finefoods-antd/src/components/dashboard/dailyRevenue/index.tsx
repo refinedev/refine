@@ -47,7 +47,10 @@ export const DailyRevenue = ({ data, height }: Props) => {
             formatter: (data) => {
                 return {
                     name: t("dashboard.revenue.title"),
-                    value: `$${Number(data.value) / 1000}k`,
+                    value: new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    }).format(data.value),
                 };
             },
         },
