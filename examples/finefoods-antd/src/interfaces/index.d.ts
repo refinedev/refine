@@ -166,3 +166,9 @@ export type IVehicle = {
     year: number;
     id: number;
 };
+
+export interface ITrendingProducts {
+    id: number;
+    product: IProduct;
+    orderCount: number;
+}
