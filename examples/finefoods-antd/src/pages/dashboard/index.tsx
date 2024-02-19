@@ -28,7 +28,7 @@ import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
 import { ISalesChart } from "../../interfaces";
 
-type DateFilter = "lastWeek" | "lastMonth" | "lastYear";
+type DateFilter = "lastWeek" | "lastMonth";
 
 const DATE_FILTERS: Record<
     DateFilter,
@@ -44,10 +44,6 @@ const DATE_FILTERS: Record<
     lastMonth: {
         text: "lastMonth",
         value: "lastMonth",
-    },
-    lastYear: {
-        text: "lastYear",
-        value: "lastYear",
     },
 };
 
@@ -85,11 +81,6 @@ export const DashboardPage: React.FC = () => {
             case "lastMonth":
                 return {
                     start: now.subtract(1, "month").startOf("day").format(),
-                    end: now.endOf("day").format(),
-                };
-            case "lastYear":
-                return {
-                    start: now.subtract(1, "year").startOf("day").format(),
                     end: now.endOf("day").format(),
                 };
             default:
