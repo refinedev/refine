@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { UseFormProps, useNavigation, useTranslate } from "@refinedev/core";
 import {
     DeleteButton,
@@ -28,7 +29,6 @@ import {
     RightCircleOutlined,
 } from "@ant-design/icons";
 import { FormItemEditable, FormItemHorizontal } from "../../form";
-import { useCallback, useState } from "react";
 import { StoreStatus } from "../status";
 
 type Props = {
@@ -44,6 +44,8 @@ export const StoreFormFields = ({
     action,
     handleAddressChange,
 }: Props) => {
+    const titleInputRef = useRef<InputRef>(null);
+
     const [isFormDisabled, setIsFormDisabled] = useState(() =>
         action === "edit" ? true : false,
     );
@@ -55,14 +57,11 @@ export const StoreFormFields = ({
         setIsFormDisabled(value);
     };
 
-    const titleInput = useCallback(
-        (inputElement: InputRef) => {
-            if (inputElement && !isFormDisabled) {
-                setTimeout(() => inputElement.focus(), 0);
-            }
-        },
-        [isFormDisabled],
-    );
+    useEffect(() => {
+        if (!isFormDisabled) {
+            titleInputRef.current?.focus();
+        }
+    }, [isFormDisabled]);
 
     const statusField = Form.useWatch("isActive", formProps.form);
 
@@ -82,7 +81,7 @@ export const StoreFormFields = ({
                 }}
             >
                 <Input
-                    ref={titleInput}
+                    ref={titleInputRef}
                     size="large"
                     placeholder={t("stores.fields.title")}
                 />

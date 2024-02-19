@@ -440,8 +440,8 @@
       }
     },
     "actions": {
-      "add": "Add new product",
-      "edit": "Edit product"
+      "add": "Neues Produkt hinzufügen",
+      "edit": "Produkt bearbeiten"
     }
   },
   "reviews": {

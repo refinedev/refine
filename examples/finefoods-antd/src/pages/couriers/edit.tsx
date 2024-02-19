@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useNavigation, useTranslate } from "@refinedev/core";
 import {
     DeleteButton,
@@ -40,9 +41,10 @@ import {
     ScanOutlined,
     ShopOutlined,
 } from "@ant-design/icons";
-import { useCallback, useState } from "react";
 
 export const CourierEdit = () => {
+    const titleInputRef = useRef<InputRef>(null);
+
     const [isFormDisabled, setIsFormDisabled] = useState(true);
 
     const t = useTranslate();
@@ -68,14 +70,11 @@ export const CourierEdit = () => {
         },
     });
 
-    const titleInput = useCallback(
-        (inputElement: InputRef) => {
-            if (inputElement && !isFormDisabled) {
-                setTimeout(() => inputElement.focus(), 0);
-            }
-        },
-        [isFormDisabled],
-    );
+    useEffect(() => {
+        if (!isFormDisabled) {
+            titleInputRef.current?.focus();
+        }
+    }, [isFormDisabled]);
 
     return (
         <>
@@ -113,7 +112,7 @@ export const CourierEdit = () => {
                                 }}
                             >
                                 <Input
-                                    ref={titleInput}
+                                    ref={titleInputRef}
                                     size="large"
                                     placeholder={t(
                                         "couriers.fields.name.placeholder",
