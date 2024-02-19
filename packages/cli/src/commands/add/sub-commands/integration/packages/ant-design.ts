@@ -1,6 +1,8 @@
 import { ProjectTypes } from "@definitions/projectTypes";
-import { prettifyChoice } from "../utils/prettify-choice";
+
+import { Integration } from ".";
 import { runTransformer } from "../run-transformer";
+import { prettifyChoice } from "../utils/prettify-choice";
 
 const id = "ant-design";
 const name = "Ant Design";
@@ -8,7 +10,7 @@ const incompatiblePackages = ["@remix-run/react", "next"];
 const requiredPackages = ["antd", "@refinedev/antd"];
 const transformerFileName = "ant-design";
 
-export const AntDesignIntegration = {
+export const AntDesignIntegration: Integration = {
     id,
     getChoice: (projectType: ProjectTypes) => {
         const title = "Ant Design";
@@ -20,7 +22,7 @@ export const AntDesignIntegration = {
         }
 
         return prettifyChoice({
-            id: "ant-design",
+            id,
             title,
             description,
             disabled,

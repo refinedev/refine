@@ -1,4 +1,4 @@
-import { prettierFormat } from "../../utils/swizzle/prettierFormat";
+import decamelize from "decamelize";
 import {
     API,
     Collection,
@@ -6,13 +6,13 @@ import {
     JSCodeshift,
     JSXIdentifier,
 } from "jscodeshift";
-import decamelize from "decamelize";
 import {
     addAttributeIfNotExist,
     addOrUpdateImports,
     wrapChildren,
     wrapElement,
 } from "../../utils/codeshift";
+import { prettierFormat } from "../../utils/swizzle/prettierFormat";
 
 export const parser = "tsx";
 
@@ -88,7 +88,8 @@ export default async function transformer(file: FileInfo, api: API) {
             ?.filter((value) => {
                 return (
                     value.type === "JSXElement" &&
-                    (value.openingElement.name as any)?.name !== "Route"
+                    value.openingElement.name.type === "JSXIdentifier" &&
+                    value.openingElement.name.name !== "Route"
                 );
             })
             ?.forEach((child) => {

@@ -1,6 +1,8 @@
 import { ProjectTypes } from "@definitions/projectTypes";
-import { prettifyChoice } from "../utils/prettify-choice";
+
+import { Integration } from ".";
 import { runTransformer } from "../run-transformer";
+import { prettifyChoice } from "../utils/prettify-choice";
 
 const id = "react-router";
 const name = "React Router";
@@ -8,7 +10,7 @@ const incompatiblePackages = ["@remix-run/react", "next"];
 const requiredPackages = ["react-router-dom", "@refinedev/react-router-v6"];
 const transformerFileName = "react-router";
 
-export const ReactRouterIntegration = {
+export const ReactRouterIntegration: Integration = {
     id,
     getChoice: (projectType: ProjectTypes) => {
         const title = "React Router";
@@ -24,7 +26,7 @@ export const ReactRouterIntegration = {
         }
 
         return prettifyChoice({
-            id: "react-router",
+            id,
             title,
             description,
             disabled,

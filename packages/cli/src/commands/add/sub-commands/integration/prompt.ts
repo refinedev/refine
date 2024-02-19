@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 
-import { availableIntegrations } from "./packages";
 import { getProjectType } from "@utils/project";
+import { availableIntegrations, IntegrationId } from "./packages";
 
 export const buildIntegrationChoices = () => {
     const projectType = getProjectType();
@@ -24,7 +24,7 @@ export const buildIntegrationChoices = () => {
 };
 
 export const addIntegrationPrompt = async () => {
-    return await inquirer.prompt<{ id: string }>([
+    return await inquirer.prompt<{ id: IntegrationId }>([
         {
             type: "list",
             name: "id",

@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
 
-import { availableProviders } from "./providers";
 import { getDefaultPath } from "./create-providers";
+import { availableProviders, ProviderId } from "./providers";
 
 export const buildProviderChoices = () => {
     return availableProviders.map((provider) => {
@@ -16,7 +16,10 @@ export const buildProviderChoices = () => {
 };
 
 export const addProviderPrompt = async () => {
-    return await inquirer.prompt([
+    return await inquirer.prompt<{
+        providers: ProviderId[];
+        providersPath: string;
+    }>([
         {
             type: "checkbox",
             name: "providers",

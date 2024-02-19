@@ -1,7 +1,8 @@
 import chalk from "chalk";
+import { IntegrationId } from "../packages";
 
 interface IntegrationChoice {
-    id: string;
+    id: IntegrationId;
     title: string;
     description: string;
     disabled?: string;
