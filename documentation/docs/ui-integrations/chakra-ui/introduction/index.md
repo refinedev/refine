@@ -416,7 +416,7 @@ import BasicViews from "./previews/basic-views.tsx";
 
 ### Fields
 
-Refine's Material UI also provides field components to render values with appropriate design and format of Material UI. These components are built on top of respective Material UI components and also provide logic for formatting of the values. While these components might not always be suitable for your use case, they can be combined or extended to provide the desired functionality.
+Refine's Chakra UI also provides field components to render values with appropriate design and format of Chakra UI. These components are built on top of respective Chakra UI components and also provide logic for formatting of the values. While these components might not always be suitable for your use case, they can be combined or extended to provide the desired functionality.
 
 The list of provided field components are:
 
@@ -523,4 +523,4 @@ To learn more about the theme configuration of Chakra UI, please refer to the [o
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `ChakraListInferencer`, `ChakraShowInferencer`, `ChakraEditInferencer`, `ChakraCreateInferencer` components and finally the `ChakraInferencer` component, which combines all in one place.
 
-To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/ui-integrations/chakra-ui/components/inferencer) docs.
+To learn more about Inferencer, please refer to the [Chakra UI Inferencer](/docs/ui-integrations/chakra-ui/components/inferencer) docs.
