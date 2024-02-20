@@ -61,7 +61,9 @@ export const StoreMap = (props: Props) => {
                     <MapMarker
                         key={props?.store?.id}
                         icon={{
-                            url: "/images/marker-store-pick.svg",
+                            url: props.isDisabled
+                                ? "/images/marker-store.svg"
+                                : "/images/marker-store-pick.svg",
                         }}
                         position={{
                             lat,

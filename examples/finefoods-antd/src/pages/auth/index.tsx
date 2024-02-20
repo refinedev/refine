@@ -1,5 +1,5 @@
 import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
-import { Flex, theme } from "antd";
+import { Flex } from "antd";
 import { Link } from "react-router-dom";
 import { FinefoodsLogoIcon, FinefoodsLogoText } from "../../components";
 
@@ -12,8 +12,6 @@ const authWrapperProps = {
 };
 
 const renderAuthContent = (content: React.ReactNode) => {
-    const { token } = theme.useToken();
-
     return (
         <div
             style={{
@@ -34,12 +32,12 @@ const renderAuthContent = (content: React.ReactNode) => {
                         style={{
                             width: 64,
                             height: 64,
-                            color: token.colorTextHeading,
+                            color: "#fff",
                         }}
                     />
                     <FinefoodsLogoText
                         style={{
-                            color: token.colorTextHeading,
+                            color: "#fff",
                             width: "300px",
                             height: "auto",
                         }}
