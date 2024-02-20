@@ -1,5 +1,5 @@
 ---
-"@refinedev/cli": minor
+"@refinedev/cli": patch
 ---
 
 feat: added "integration" option to "add" command.
