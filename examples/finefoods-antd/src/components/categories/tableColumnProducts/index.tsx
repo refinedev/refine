@@ -59,7 +59,7 @@ export const TableCategoryProductColumn = ({ category }: Props) => {
                         <Popover key={product.id} title={product?.name}>
                             <Avatar
                                 shape="square"
-                                src={image?.url}
+                                src={image?.thumbnailUrl || image?.url}
                                 alt={image?.name}
                                 style={{
                                     cursor: "pointer",

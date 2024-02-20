@@ -117,7 +117,7 @@ export interface IProduct {
     name: string;
     isActive: boolean;
     description: string;
-    images: IFile[];
+    images: (IFile & { thumbnailUrl?: string })[];
     createdAt: string;
     price: number;
     category: {

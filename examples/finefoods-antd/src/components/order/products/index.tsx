@@ -43,6 +43,8 @@ export const OrderProducts = ({ order }: Props) => {
                 dataIndex="name"
                 key="name"
                 render={(_, record) => {
+                    const image = record.images?.[0];
+
                     return (
                         <Flex
                             gap={16}
@@ -53,7 +55,8 @@ export const OrderProducts = ({ order }: Props) => {
                         >
                             <Avatar
                                 shape="square"
-                                src={record.images?.[0]?.url}
+                                src={image?.thumbnailUrl || image?.url}
+                                alt={image?.name}
                             />
                             <Typography.Text>{record.name}</Typography.Text>
                         </Flex>

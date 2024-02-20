@@ -23,6 +23,7 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
     return (
         <Flex gap={12}>
             {visibleProducts.map((product) => {
+                const image = product.images?.[0];
                 return (
                     <Popover
                         key={product.id}
@@ -38,7 +39,8 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
                         >
                             <Avatar
                                 shape="square"
-                                src={product.images[0].url}
+                                src={image?.thumbnailUrl || image?.url}
+                                alt={image?.name}
                             />
                         </Badge>
                     </Popover>
@@ -50,6 +52,7 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
                     content={
                         <Flex gap={8}>
                             {unvisibleProducts.map((product) => {
+                                const image = product.images?.[0];
                                 return (
                                     <Popover
                                         key={product.id}
@@ -71,7 +74,11 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
                                         >
                                             <Avatar
                                                 shape="square"
-                                                src={product.images[0].url}
+                                                src={
+                                                    image?.thumbnailUrl ||
+                                                    image?.url
+                                                }
+                                                alt={image?.name}
                                             />
                                         </Badge>
                                     </Popover>
