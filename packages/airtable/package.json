@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "4.47.1",
+    "@refinedev/core": "4.47.2",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",

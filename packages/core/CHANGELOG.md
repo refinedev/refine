@@ -1,5 +1,11 @@
 # @refinedev/core
 
+## 4.47.2
+
+### Patch Changes
+
+-   [#5619](https://github.com/refinedev/refine/pull/5619) [`e8a3620233a`](https://github.com/refinedev/refine/commit/e8a3620233ac66b63c28e7adc1ebe65503204932) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update `<WelcomePage />` links.
+
 ## 4.47.1
 
 ### Patch Changes
