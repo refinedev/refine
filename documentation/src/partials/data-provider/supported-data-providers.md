@@ -22,5 +22,6 @@
 - [Sanity](https://www.sanity.io) by [hirenf14](https://github.com/hirenf14/refine-sanity)
 - [SQLite](https://www.sqlite.org/index.html) by [mateusabelli](https://github.com/mateusabelli/refine-sqlite)
 - [JSON:API](https://jsonapi.org/) by [mahirmahdi](https://github.com/MahirMahdi/refine-jsonapi)
+- [PocketBase](https://pocketbase.io/) by [kruschid](https://github.com/kruschid)
 
 _If you have created a custom data provider and would like to share it with the community, please don't hesitate to get in touch with us. We would be happy to include it on this page for others to use._

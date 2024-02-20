@@ -70,7 +70,7 @@ npm run dev
 We'll use the `npm create refine-app` command to interactively initialize the project.
 
 ```bash
-npm create refine-app@latest refine-with-primereact
+npm create refine-app@latest -- --branch inferencer refine-with-primereact
 ```
 
 Select the following options when prompted:
@@ -187,7 +187,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
 
 After these changes, we ready to start building our admin panel step-by-step. In the next sections, we'll update the `src/App.tsx` file to add the necessary components and pages.
 
-If you don't have any experience with **Refine**, we recommend you to check out the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about the framework.
+If you don't have any experience with **Refine**, we recommend you to check out the [tutorial](https://refine.dev/tutorial) to learn more about the framework.
 
 ## Install PrimeReact
 

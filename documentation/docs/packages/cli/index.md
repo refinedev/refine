@@ -28,17 +28,19 @@ Options:
   -h, --help                 Output usage information.
 
 Commands:
-  add [options] [auth] [live] [data] [resource]  Creates new features for your project (data-provider, auth-provider, live-provider, resource etc.)
+  swizzle                    Export a component or a function from refine packages to customize it in your project
   create-resource [options]  Create a new resource files (deprecated, please use "add resource" command)
-  check-updates              Check all installed `Refine` packages are up to date
-  update [options]           Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.
-  dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
-  build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
-  start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
+  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  dev [options] [args...]    It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
+  build [options] [args...]  It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
+  start [options] [args...]  It runs: `unknown `. Also accepts all the arguments `unknown` accepts.
   run [command] [args...]    Runs a defined package script. If no `command` is provided, it will list the available scripts
+  check-updates              Check all installed `refine` packages are up to date
   whoami                     View the details of the development environment
+  proxy [options]            Manage proxy settings
+  devtools [command]         Start or install refine's devtools server; it starts on port 5001.
+  add                        Add new resources, providers, or integrations
   help [command]             display help for command
-
 ```
 
 :::simple Installation
@@ -157,7 +159,7 @@ Finally, the swizzle command will create a new folder in the `src/components/lay
 
 ### add
 
-Use this command to add a new `resource` or `provider` to your project.
+Use this command to add a new `resource`, `provider`, or `integration` to your project.
 
 #### resource
 
@@ -176,13 +178,26 @@ CRUD components are created for the selected actions. These components are put o
 Empty Provider methods are created for to easily implement and connect to your data source from your Refine project. These components are put on the specified path.
 
 ```bash
-> npm run refine add auth
-> npm run refine add data
-> npm run refine add live
-> npm run refine add access-control
-> npm run refine add audit-log
-> npm run refine add i18n
-> npm run refine add notification
+> npm run refine add provider
+
+? Which providers do you want to add? (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+❯◯ Auth provider - Manage user authentication and authorization
+ ◯ Live provider - Enable real-time updates and synchronization
+ ◯ Data provider - Communicate with your API
+ ◯ Access Control - Manage user permissions & roles
+ ◯ Notification provider - Display in-app alerts and messages
+ ◯ I18n provider - Support multiple languages and locales
+ ◯ Audit Log provider - Display audit logs for your resources
+```
+
+```bash
+> npm run refine add provider auth
+> npm run refine add provider data
+> npm run refine add provider live
+> npm run refine add provider access-control
+> npm run refine add provider audit-log
+> npm run refine add provider i18n
+> npm run refine add provider notification
 ```
 
 | Argument                                                                                                               | Description                               |
@@ -195,6 +210,18 @@ Empty Provider methods are created for to easily implement and connect to your d
 | -p    | --path    | (when `add resource`): react/vite: `src/pages` next.js: `src/components` remix: `app/components`    | The path to create source files. (It is created automatically according to the framework.) |
 | -p    | --path    | (when `add providers`): react/vite: `src/providers` next.js: `src/providers` remix: `app/providers` | The path to create source files. (It is created automatically according to the framework.) |
 | -h    | --help    |                                                                                                     | Output usage information                                                                   |
+
+#### integration
+
+You can use this command to add integration to your existing projects.
+
+```bash
+> npm run refine add integration
+
+? Which integration do you want to add? (Use arrow keys)
+❯ Ant Design - Setup Ant Design with Refine
+  React Router - Setup routing with React Router
+```
 
 ### create-resource <PropTag deprecated />
 

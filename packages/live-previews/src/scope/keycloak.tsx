@@ -1,7 +1,7 @@
 import * as KeycloakScope from "keycloak-js";
 import * as ReactKeycloakWebScope from "@react-keycloak/web";
-import { useGo } from "@refinedev/core";
 import React from "react";
+import { ExternalNavigationContext } from "./common";
 
 const ReactKeycloakContext = React.createContext<{
     keycloak: {
@@ -22,7 +22,8 @@ const ReactKeycloakContext = React.createContext<{
 });
 
 const ReactKeycloakProvider = ({ children }: { children: React.ReactNode }) => {
-    const go = useGo();
+    const externalNavigator = React.useContext(ExternalNavigationContext);
+
     const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
     return (
@@ -35,13 +36,13 @@ const ReactKeycloakProvider = ({ children }: { children: React.ReactNode }) => {
 
                         setIsAuthenticated(true);
 
-                        go({ to: "/", type: "replace" });
+                        externalNavigator.go({ to: "/", type: "replace" });
                     },
                     logout: () => {
                         if (isAuthenticated) {
                             setIsAuthenticated(false);
 
-                            go({ to: "/", type: "replace" });
+                            externalNavigator.go({ to: "/", type: "replace" });
                         }
                     },
                     token: isAuthenticated ? "dummy-token" : undefined,

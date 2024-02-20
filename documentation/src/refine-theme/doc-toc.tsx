@@ -1,7 +1,6 @@
 import { useDoc } from "@docusaurus/theme-common/internal";
 import clsx from "clsx";
 import React from "react";
-// import { useDocTOCwithTutorial } from "../components/tutorial-toc/index";
 import { useHistory, useLocation } from "@docusaurus/router";
 
 export const TOCItem = ({
@@ -139,7 +138,6 @@ export const useTOC = () => {
         setActiveId(baseActiveId);
     }, [baseActiveId]);
 
-    // const docTOC = useDocTOCwithTutorial();
     const { toc } = useDoc();
 
     const hasTOC = toc?.length > 0;

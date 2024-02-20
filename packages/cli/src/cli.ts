@@ -53,7 +53,11 @@ const bootstrap = () => {
     devtools(program);
     add(program);
 
-    program.hook("preAction", printAnnouncements);
+    program.hook("preAction", async (thisCommand) => {
+        if (thisCommand.args.includes("dev")) {
+            await printAnnouncements();
+        }
+    });
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];

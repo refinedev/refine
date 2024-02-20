@@ -1,7 +1,5 @@
 import React from "react";
 
-/** @ts-expect-error Docusaurus and Typescript doesn't play well together. */
-import data from "@checklists/tutorial-checklist-data.json";
 import { TutorialChecklistContext } from "../context/TutorialChecklistContext";
 
 type TutorialChecklist = {
@@ -54,7 +52,7 @@ export function useTutorialChecklists() {
 
     const merged = React.useMemo(() => {
         return (
-            (data as TutorialChecklistData)?.items.map((item) => {
+            ({ items: [] } as TutorialChecklistData)?.items.map((item) => {
                 const { id } = item;
 
                 return {

@@ -90,7 +90,7 @@ You will see the output as a table populated with `blog_posts` and `category` da
 
 ## Next Steps
 
-👉 Jump to [Tutorials](/docs/tutorial/introduction/index/) and continue your work to turn your example project into a full-blown CRUD application! 🚀
+👉 Jump to [Tutorials](/tutorial) and continue your work to turn your example project into a full-blown CRUD application! 🚀
 
 👉 Read more on [Advanced Tutorials](/docs/advanced-tutorials/) for different usage scenarios.
 

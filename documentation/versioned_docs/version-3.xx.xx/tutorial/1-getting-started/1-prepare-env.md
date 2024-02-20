@@ -2,8 +2,8 @@
 id: prepare-env
 title: 2. Prepare your dev environment
 tutorial:
-    prev: tutorial/getting-started/{preferredUI}/index
-    next: tutorial/getting-started/{preferredUI}/create-project
+  prev: 3.xx.xx/tutorial/getting-started/{preferredUI}/index
+  next: 3.xx.xx/tutorial/getting-started/{preferredUI}/create-project
 ---
 
 ## Get the dev tools you need
@@ -20,9 +20,9 @@ To check if you already have a compatible version of Node.js (v.16.0.0 or higher
 
 1. Launch your terminal and type the following command:
 
-    ```bash
-    node -v
-    ```
+   ```bash
+   node -v
+   ```
 
 2. If you do not have a compatible version of Node.js installed, follow these instructions to [install Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) via the terminal.
 

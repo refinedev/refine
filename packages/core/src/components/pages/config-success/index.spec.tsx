@@ -12,24 +12,16 @@ describe("ConfigSuccessPage", () => {
         getByText("Your configuration is completed.");
     });
 
-    it("should render 4 buttons", async () => {
+    const cases = [
+        ["Documentation", "https://refine.dev/docs"],
+        ["Tutorial", "https://refine.dev/tutorial"],
+        ["Templates", "https://refine.dev/templates"],
+        ["Community", "https://discord.gg/refine"],
+    ];
+
+    it.each(cases)("should render correct %s href", async (text, expected) => {
         const { getByText } = render(<ConfigSuccessPage />);
 
-        expect(getByText("Documentation").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/",
-        );
-        expect(getByText("Tutorial").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/docs/tutorial/introduction/index/",
-        );
-        expect(getByText("Examples").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/examples",
-        );
-        expect(getByText("Community").closest("a")).toHaveAttribute(
-            "href",
-            "https://discord.gg/refine",
-        );
+        expect(getByText(text).closest("a")).toHaveAttribute("href", expected);
     });
 });

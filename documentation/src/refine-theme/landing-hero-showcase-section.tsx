@@ -712,16 +712,16 @@ const apps = [
         label: "See live demo",
     },
     {
-        name: "HR Application",
-        link: "https://refine.dev/templates",
-        showcase: ShowcaseHR,
-        label: "Templates",
-    },
-    {
         name: "E-Commerce Application",
         link: "https://example.admin.refine.dev",
         showcase: ShowcaseECommerce,
         label: "See live demo",
+    },
+    {
+        name: "HR Application",
+        link: "https://refine.dev/templates",
+        showcase: ShowcaseHR,
+        label: "Templates",
     },
     {
         name: "DevOps Dashboard",
