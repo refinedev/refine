@@ -90,6 +90,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             <Table
                 {...tableProps}
                 rowKey="id"
+                style={{
+                    cursor: "pointer",
+                }}
                 onRow={(record) => {
                     return {
                         onClick: () => {
