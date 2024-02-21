@@ -389,4 +389,4 @@ To learn more about the theme configuration of Mantine, please refer to the [off
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.
 
-To learn more about Inferencer, please refer to the [Material UI Inferencer](/docs/ui-integrations/mantine/components/inferencer) docs.
+To learn more about Inferencer, please refer to the [Mantine Inferencer](/docs/ui-integrations/mantine/components/inferencer) docs.
