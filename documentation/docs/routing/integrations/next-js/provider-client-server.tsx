@@ -153,9 +153,9 @@ export const API_URL = "https://api.fake-rest.refine.dev";
 `;
 
 const AccessControlTsxCode = /* tsx */ `
-import { AccessControlBindings } from "@refinedev/core";
+import { AccessControlProvider } from "@refinedev/core";
 
-export const accessControlProvider: AccessControlBindings = {
+export const accessControlProvider: AccessControlProvider = {
     can: async ({ resource, action }) => {
         if (resource === "posts" && action === "edit") {
             return {
