@@ -1,4 +1,4 @@
-import { useTranslate, useNavigation } from "@refinedev/core";
+import { useTranslate, useNavigation, useInfiniteList } from "@refinedev/core";
 import { useSimpleList } from "@refinedev/antd";
 import {
     Typography,
@@ -6,140 +6,130 @@ import {
     Tooltip,
     ConfigProvider,
     theme,
+    Card,
+    Col,
+    Divider,
+    Input,
+    List,
+    Row,
+    Skeleton,
+    Space,
+    Spin,
 } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-
+import InfiniteScroll from "react-infinite-scroll-component";
 import { IOrder } from "../../../interfaces";
-import {
-    TimelineContent,
-    CreatedAt,
-    Number,
-    Timeline,
-    TimelineItem,
-} from "./styled";
+import { OrderStatus } from "../../order/status";
 
 dayjs.extend(relativeTime);
 
-export const OrderTimeline: React.FC = () => {
-    const t = useTranslate();
+type Props = {
+    height?: string;
+};
+
+export const OrderTimeline = ({ height = "432px" }: Props) => {
+    const { token } = theme.useToken();
     const { show } = useNavigation();
 
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
+    const { data, isLoading, hasNextPage, fetchNextPage } =
+        useInfiniteList<IOrder>({
+            resource: "orders",
+            sorters: [
+                {
+                    field: "createdAt",
+                    order: "desc",
+                },
+            ],
+            pagination: {
+                current: 1,
+                pageSize: 8,
             },
-        ],
-        pagination: {
-            pageSize: 6,
-        },
-        syncWithLocation: false,
-    });
+        });
 
-    const { dataSource } = listProps;
-
-    const { Text } = Typography;
-
-    const orderStatusColor = (
-        id: string,
-    ):
-        | { indicatorColor: string; backgroundColor: string; text: string }
-        | undefined => {
-        switch (id) {
-            case "1":
-                return {
-                    indicatorColor: "orange",
-                    backgroundColor: "#fff7e6",
-                    text: "pending",
-                };
-            case "2":
-                return {
-                    indicatorColor: "cyan",
-                    backgroundColor: "#e6fffb",
-                    text: "ready",
-                };
-            case "3":
-                return {
-                    indicatorColor: "green",
-                    backgroundColor: "#e6f7ff",
-                    text: "on the way",
-                };
-            case "4":
-                return {
-                    indicatorColor: "blue",
-                    backgroundColor: "#e6fffb",
-                    text: "delivered",
-                };
-            case "5":
-                return {
-                    indicatorColor: "red",
-                    backgroundColor: "#fff1f0",
-                    text: "cancelled",
-                };
-            default:
-                break;
-        }
-    };
+    const orders = data?.pages.flatMap((page) => page.data) || [];
 
     return (
-        <AntdList
-            {...listProps}
-            pagination={{
-                ...listProps.pagination,
-                simple: true,
+        <div
+            id="scrollableDiv"
+            style={{
+                display: "block",
+                height: height,
+                overflow: "auto",
             }}
         >
-            <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
-                <Timeline>
-                    {dataSource?.map(
-                        ({ createdAt, orderNumber, status, id }) => (
-                            <TimelineItem
-                                key={orderNumber}
-                                color={
-                                    orderStatusColor(status.id.toString())
-                                        ?.indicatorColor
-                                }
+            <InfiniteScroll
+                dataLength={orders.length}
+                next={() => fetchNextPage()}
+                hasMore={hasNextPage || false}
+                loader={
+                    <Spin
+                        spinning
+                        style={{
+                            height: "56px",
+                            display: "flex",
+                            justifyContent: "center",
+                            marginTop: "16px",
+                        }}
+                    />
+                }
+                endMessage={
+                    <Divider plain>That&apos;s all, nothing more.</Divider>
+                }
+                scrollableTarget="scrollableDiv"
+            >
+                <List
+                    itemLayout="horizontal"
+                    dataSource={orders}
+                    renderItem={(item) => {
+                        return (
+                            <List.Item
+                                onClick={() => show("orders", item.id)}
+                                style={{
+                                    cursor: "pointer",
+                                    height: "54px",
+                                    padding: "16px",
+                                }}
+                                actions={[
+                                    <Typography.Text
+                                        style={{
+                                            color: token.colorTextDescription,
+                                        }}
+                                        key={"createdAt"}
+                                    >
+                                        {dayjs(item.createdAt).fromNow()}
+                                    </Typography.Text>,
+                                ]}
                             >
-                                <TimelineContent
-                                    backgroundColor={
-                                        orderStatusColor(status.id.toString())
-                                            ?.backgroundColor || "transparent"
-                                    }
+                                <Skeleton
+                                    style={{ display: "flex", width: "100%" }}
+                                    avatar={false}
+                                    title={false}
+                                    paragraph={{ rows: 1, width: "100%" }}
+                                    loading={isLoading}
+                                    active
                                 >
-                                    <Tooltip
-                                        overlayInnerStyle={{ color: "#626262" }}
-                                        color="rgba(255, 255, 255, 0.3)"
-                                        placement="topLeft"
-                                        title={dayjs(createdAt).format("lll")}
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                        }}
                                     >
-                                        <CreatedAt italic>
-                                            {dayjs(createdAt).fromNow()}
-                                        </CreatedAt>
-                                    </Tooltip>
-                                    <Text>
-                                        {t(
-                                            `dashboard.timeline.orderStatuses.${
-                                                orderStatusColor(
-                                                    status.id.toString(),
-                                                )?.text
-                                            }`,
-                                        )}
-                                    </Text>
-                                    <Number
-                                        onClick={() => show("orders", id)}
-                                        strong
-                                    >
-                                        #{orderNumber}
-                                    </Number>
-                                </TimelineContent>
-                            </TimelineItem>
-                        ),
-                    )}
-                </Timeline>
-            </ConfigProvider>
-        </AntdList>
+                                        <div style={{ width: "128px" }}>
+                                            <OrderStatus
+                                                status={item.status.text}
+                                            />
+                                        </div>
+                                        <Typography.Text strong>
+                                            #{item.orderNumber}
+                                        </Typography.Text>
+                                    </div>
+                                </Skeleton>
+                            </List.Item>
+                        );
+                    }}
+                />
+            </InfiniteScroll>
+        </div>
     );
 };

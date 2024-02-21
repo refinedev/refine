@@ -1,5 +1,7 @@
 import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
+import { Flex } from "antd";
 import { Link } from "react-router-dom";
+import { FinefoodsLogoIcon, FinefoodsLogoText } from "../../components";
 
 const authWrapperProps = {
     style: {
@@ -18,12 +20,29 @@ const renderAuthContent = (content: React.ReactNode) => {
             }}
         >
             <Link to="/">
-                <img
-                    style={{ marginBottom: 26 }}
-                    src="/images/fine-foods-login.svg"
-                    alt="Logo"
-                    width="100%"
-                />
+                <Flex
+                    align="center"
+                    justify="center"
+                    gap={12}
+                    style={{
+                        marginBottom: 16,
+                    }}
+                >
+                    <FinefoodsLogoIcon
+                        style={{
+                            width: 64,
+                            height: 64,
+                            color: "#fff",
+                        }}
+                    />
+                    <FinefoodsLogoText
+                        style={{
+                            color: "#fff",
+                            width: "300px",
+                            height: "auto",
+                        }}
+                    />
+                </Flex>
             </Link>
             {content}
         </div>

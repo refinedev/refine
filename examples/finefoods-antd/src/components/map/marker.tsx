@@ -1,10 +1,11 @@
 import { useState, useEffect, memo } from "react";
 
 interface MarkerProps extends google.maps.MarkerOptions {
-    onClick?: () => void;
+    onClick?: Function;
+    onDragEnd?: Function;
 }
 
-const Marker: React.FC<MarkerProps> = ({ onClick, ...options }) => {
+const Marker: React.FC<MarkerProps> = ({ onClick, onDragEnd, ...options }) => {
     const [marker, setMarker] = useState<google.maps.Marker>();
 
     useEffect(() => {
@@ -25,10 +26,14 @@ const Marker: React.FC<MarkerProps> = ({ onClick, ...options }) => {
             marker.setOptions({
                 ...options,
                 clickable: !!onClick,
+                draggable: !!onDragEnd,
             });
-            marker.addListener("click", () => {
-                onClick?.();
-            });
+            if (onClick) {
+                marker.addListener("click", onClick);
+            }
+            if (onDragEnd) {
+                marker.addListener("dragend", onDragEnd);
+            }
         }
 
         return () => {

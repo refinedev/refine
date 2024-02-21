@@ -1,87 +1,66 @@
-import { useMemo } from "react";
-import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
-import { ConfigProvider, theme, Typography } from "antd";
-import { Column } from "@ant-design/charts";
+import { Suspense } from "react";
+import { useTranslate } from "@refinedev/core";
 import { ColumnConfig } from "@ant-design/plots/lib/components/column";
+import { Column } from "@ant-design/plots";
+import dayjs from "dayjs";
+import { useConfigProvider } from "../../../context";
 
-import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+type Props = {
+    data: ColumnConfig["data"];
+    height: number;
+};
 
-import { ISalesChart } from "../../../interfaces";
-import { Header, HeaderNumbers, NewCustomersWrapper } from "./styled";
-
-export const NewCustomers: React.FC = () => {
+export const NewCustomers = ({ data, height }: Props) => {
+    const { mode } = useConfigProvider();
     const t = useTranslate();
-    const API_URL = useApiUrl();
 
-    const url = `${API_URL}/newCustomers`;
-    const { data, isLoading } = useCustom<{
-        data: ISalesChart[];
-        total: number;
-        trend: number;
-    }>({ url, method: "get" });
-
-    const { Text, Title } = Typography;
-
-    const config = useMemo(() => {
-        const config: ColumnConfig = {
-            data: data?.data.data || [],
-            loading: isLoading,
-            padding: 0,
-            xField: "date",
-            yField: "value",
-            maxColumnWidth: 16,
-            columnStyle: {
-                radius: [4, 4, 0, 0],
+    const config: ColumnConfig = {
+        data,
+        xField: "timeText",
+        yField: "value",
+        seriesField: "state",
+        autoFit: true,
+        animation: true,
+        legend: false,
+        columnStyle: {
+            radius: [4, 4, 0, 0],
+            fill:
+                mode === "dark"
+                    ? "l(270) 0:#122849 1:#3C88E5"
+                    : "l(270) 0:#BAE0FF 1:#1677FF",
+        },
+        theme: mode,
+        tooltip: {
+            formatter: (datum) => {
+                return {
+                    name: t("dashboard.newCustomers.title"),
+                    value: new Intl.NumberFormat().format(Number(datum.value)),
+                };
             },
-            color: "rgba(255, 255, 255, 0.5)",
-            tooltip: {
-                customContent: (title, data) => {
-                    return `<div style="padding: 8px 4px; font-size:16px; font-weight:600">${data[0]?.value}</div>`;
+        },
+        xAxis: {
+            label: {
+                formatter: (v) => {
+                    if (data.length > 7) {
+                        return dayjs(v).format("MM/DD");
+                    }
+
+                    return dayjs(v).format("ddd");
                 },
             },
-
-            xAxis: {
-                label: null,
-                line: null,
-                tickLine: null,
+        },
+        yAxis: {
+            label: {
+                formatter: (v) => {
+                    return new Intl.NumberFormat().format(Number(v));
+                },
             },
-            yAxis: {
-                label: null,
-                grid: null,
-                tickLine: null,
-            },
-        };
-
-        return config;
-    }, [data]);
+        },
+    };
 
     return (
-        <ConfigProvider
-            theme={{
-                algorithm: theme.darkAlgorithm,
-            }}
-        >
-            <NewCustomersWrapper>
-                <Header>
-                    <Title level={3}>{t("dashboard.newCustomers.title")}</Title>
-                    <HeaderNumbers>
-                        <Text strong>{data?.data.total ?? 0}</Text>
-                        <div>
-                            <Text strong>{data?.data.trend ?? 0}%</Text>
-                            {(data?.data?.trend ?? 0) > 0 ? (
-                                <IncreaseIcon />
-                            ) : (
-                                <DecreaseIcon />
-                            )}
-                        </div>
-                    </HeaderNumbers>
-                </Header>
-                <Column
-                    style={{ padding: 0, height: 162 }}
-                    appendPadding={10}
-                    {...config}
-                />
-            </NewCustomersWrapper>
-        </ConfigProvider>
+        <Suspense>
+            <Column {...config} height={height} />
+        </Suspense>
     );
 };
