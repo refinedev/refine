@@ -21,7 +21,7 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.25",
+    "@refinedev/cli": "^2.16.26",
     "@refinedev/core": "^4.47.2",
     "@refinedev/inferencer": "^4.5.20",
     "@refinedev/react-hook-form": "^4.8.14",
