@@ -6,7 +6,7 @@ import { DataProvider } from "@refinedev/core";
  **/
 export const dataProvider = (
     apiUrl: string,
-    httpClient: any, // TODO: replace `any` with your http client type
+    _httpClient: any, // TODO: replace `any` with your http client type
 ): DataProvider => ({
     getList: async ({ resource, pagination, filters, sorters, meta }) => {
         const url = `${apiUrl}/${resource}`;
