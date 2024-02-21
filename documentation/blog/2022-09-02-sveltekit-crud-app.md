@@ -52,6 +52,7 @@ The above command will prompt you to select the configurations for your project.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="terminal" />
 
+
 Now change the directory into the project folder and install the required dependencies with the command below.
 
 ```shell

@@ -157,7 +157,11 @@ import { Refine } from "@refinedev/core";
 import { useNotificationProvider } from "@refinedev/mui";
 
 const App = () => {
-  return <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>;
+  return (
+    <Refine notificationProvider={useNotificationProvider}>
+      {/* ... */}
+    </Refine>
+  );
 };
 ```
 
