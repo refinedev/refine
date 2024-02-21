@@ -87,7 +87,7 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" wrap="nowrap">
                             <EditButton
                                 hideText
                                 recordItemId={getValue() as number}
@@ -146,7 +146,7 @@ export const PostList: React.FC = () => {
                                     return (
                                         <th key={header.id}>
                                             {!header.isPlaceholder && (
-                                                <Group spacing="xs" noWrap>
+                                                <Group gap="xs" wrap="nowrap">
                                                     <Box>
                                                         {flexRender(
                                                             header.column
@@ -155,7 +155,7 @@ export const PostList: React.FC = () => {
                                                             header.getContext(),
                                                         )}
                                                     </Box>
-                                                    <Group spacing="xs" noWrap>
+                                                    <Group gap="xs" wrap="nowrap">
                                                         <ColumnSorter
                                                             column={
                                                                 header.column
@@ -194,13 +194,14 @@ export const PostList: React.FC = () => {
                         })}
                     </tbody>
                 </Table>
-                <br />
-                <Pagination
-                    position="right"
-                    total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
-                />
+
+                <Group mt="md" justify="right">
+                    <Pagination
+                        total={pageCount}
+                        value={current}
+                        onChange={setCurrent}
+                    />
+                </Group>
             </List>
         </ScrollArea>
     );

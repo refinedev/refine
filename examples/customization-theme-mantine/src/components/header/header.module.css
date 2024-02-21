@@ -1,0 +1,18 @@
+.header {
+  background-color: var(--mantine-color-body);
+  height: 50px;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: middle;
+
+  @mixin light {
+    border-bottom: rem(1px) solid var(--mantine-color-gray-2);
+  }
+
+  @mixin dark {
+    border-bottom: rem(1px) solid var(--mantine-color-dark-8);
+  }
+}

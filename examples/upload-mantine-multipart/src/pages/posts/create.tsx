@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { HttpError, useApiUrl } from "@refinedev/core";
-import { Create, useForm, useSelect } from "@refinedev/mantine";
-import { Select, TextInput, Text, SimpleGrid, Image } from "@mantine/core";
+import { Create, useForm, useSelect, Select } from "@refinedev/mantine";
+import { TextInput, Text, SimpleGrid, Image } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 
@@ -127,7 +127,7 @@ export const PostCreate: React.FC = () => {
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
-                <Text mt={8} weight={500} size="sm" color="#212529">
+                <Text mt={8} fw={500} size="sm" color="#212529">
                     Content
                 </Text>
                 <MDEditor
@@ -135,12 +135,12 @@ export const PostCreate: React.FC = () => {
                     {...getInputProps("content")}
                 />
                 {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
+                    <Text mt={2} fw={500} size="xs" color="red">
                         {errors.content}
                     </Text>
                 )}
 
-                <Text mt={8} weight={500} size="sm" color="#212529">
+                <Text mt={8} fw={500} size="sm" color="#212529">
                     Images
                 </Text>
                 <Dropzone
@@ -148,12 +148,11 @@ export const PostCreate: React.FC = () => {
                     onDrop={handleOnDrop}
                     loading={isUploadLoading}
                 >
-                    <Text align="center">Drop images here</Text>
+                    <Text ta="center">Drop images here</Text>
                 </Dropzone>
 
                 <SimpleGrid
-                    cols={4}
-                    breakpoints={[{ maxWidth: "sm", cols: 2 }]}
+                    cols={{base:2, lg: 4}}
                     mt={previews.length > 0 ? "xl" : 0}
                 >
                     {previews}

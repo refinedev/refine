@@ -143,7 +143,7 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" wrap="nowrap">
                             <EditButton
                                 hideText
                                 onClick={() =>
@@ -207,7 +207,7 @@ export const PostList: React.FC = () => {
                                         return (
                                             <th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <Group spacing="xs" noWrap>
+                                                    <Group gap="xs" wrap="nowrap">
                                                         <Box>
                                                             {flexRender(
                                                                 header.column
@@ -217,8 +217,8 @@ export const PostList: React.FC = () => {
                                                             )}
                                                         </Box>
                                                         <Group
-                                                            spacing="xs"
-                                                            noWrap
+                                                            gap="xs"
+                                                            wrap="nowrap"
                                                         >
                                                             <ColumnSorter
                                                                 column={
@@ -259,13 +259,14 @@ export const PostList: React.FC = () => {
                             })}
                         </tbody>
                     </Table>
-                    <br />
+
+                    <Group mt="md" justify="right">
                     <Pagination
-                        position="right"
                         total={pageCount}
-                        page={current}
+                        value={current}
                         onChange={setCurrent}
                     />
+                    </Group>
                 </List>
             </ScrollArea>
         </>

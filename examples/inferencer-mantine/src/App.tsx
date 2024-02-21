@@ -1,3 +1,6 @@
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -9,13 +12,11 @@ import {
 } from "@refinedev/mantine";
 
 import {
-    ColorScheme,
-    ColorSchemeProvider,
-    Global,
+    useMantineColorScheme,
+    MantineColorScheme,
     MantineProvider,
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
-import { NotificationsProvider } from "@mantine/notifications";
 import routerBindings, {
     CatchAllNavigate,
     DocumentTitleHandler,
@@ -42,17 +43,10 @@ import {
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { Notifications } from "@mantine/notifications";
 
 function App() {
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: "mantine-color-scheme",
-        defaultValue: "light",
-        getInitialValueInEffect: true,
-    });
     const { t, i18n } = useTranslation();
-
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
     const i18nProvider = {
         translate: (key: string, params: object) => t(key, params),
@@ -64,23 +58,12 @@ function App() {
         <BrowserRouter>
             <GitHubBanner />
             <RefineKbarProvider>
-                <ColorSchemeProvider
-                    colorScheme={colorScheme}
-                    toggleColorScheme={toggleColorScheme}
-                >
                     {/* You can change the theme colors here. example: theme={{ ...RefineThemes.Magenta, colorScheme:colorScheme }} */}
                     <MantineProvider
                         theme={{
                             ...RefineThemes.Blue,
-                            colorScheme: colorScheme,
                         }}
-                        withNormalizeCSS
-                        withGlobalStyles
                     >
-                        <Global
-                            styles={{ body: { WebkitFontSmoothing: "auto" } }}
-                        />
-                        <NotificationsProvider position="top-right">
                             <Refine
                                 dataProvider={dataProvider(
                                     "https://api.fake-rest.refine.dev",
@@ -141,6 +124,24 @@ function App() {
                                                 <NavigateToResource resource="blog_posts" />
                                             }
                                         />
+                                        <Route path="/posts">
+                                            <Route
+                                                index
+                                                element={<BlogPostList />}
+                                            />
+                                            <Route
+                                                path="create"
+                                                element={<BlogPostCreate />}
+                                            />
+                                            <Route
+                                                path="edit/:id"
+                                                element={<BlogPostEdit />}
+                                            />
+                                            <Route
+                                                path="show/:id"
+                                                element={<BlogPostShow />}
+                                            />
+                                        </Route>
                                         <Route path="/blog-posts">
                                             <Route
                                                 index
@@ -211,9 +212,8 @@ function App() {
                                 <UnsavedChangesNotifier />
                                 <DocumentTitleHandler />
                             </Refine>
-                        </NotificationsProvider>
+                            <Notifications />
                     </MantineProvider>
-                </ColorSchemeProvider>
             </RefineKbarProvider>
         </BrowserRouter>
     );

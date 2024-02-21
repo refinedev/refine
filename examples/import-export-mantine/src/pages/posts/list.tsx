@@ -99,7 +99,7 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" wrap="nowrap">
                             <DeleteButton
                                 hideText
                                 recordItemId={getValue() as number}
@@ -183,14 +183,14 @@ export const PostList: React.FC = () => {
                 }
             >
                 <Table highlightOnHover>
-                    <thead>
+                    <Table.Thead>
                         {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
+                            <Table.Tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <th key={header.id}>
+                                        <Table.Th key={header.id}>
                                             {!header.isPlaceholder && (
-                                                <Group spacing="xs" noWrap>
+                                                <Group gap="xs" wrap="nowrap">
                                                     <Box>
                                                         {flexRender(
                                                             header.column
@@ -199,7 +199,7 @@ export const PostList: React.FC = () => {
                                                             header.getContext(),
                                                         )}
                                                     </Box>
-                                                    <Group spacing="xs" noWrap>
+                                                    <Group gap="xs" wrap="nowrap">
                                                         <ColumnSorter
                                                             column={
                                                                 header.column
@@ -213,16 +213,16 @@ export const PostList: React.FC = () => {
                                                     </Group>
                                                 </Group>
                                             )}
-                                        </th>
+                                        </Table.Th>
                                     );
                                 })}
-                            </tr>
+                            </Table.Tr>
                         ))}
-                    </thead>
-                    <tbody>
+                    </Table.Thead>
+                    <Table.Tbody>
                         {getRowModel().rows.map((row) => {
                             return (
-                                <tr key={row.id}>
+                                <Table.Tr key={row.id}>
                                     {row.getVisibleCells().map((cell) => {
                                         return (
                                             <td key={cell.id}>
@@ -233,18 +233,19 @@ export const PostList: React.FC = () => {
                                             </td>
                                         );
                                     })}
-                                </tr>
+                                </Table.Tr>
                             );
                         })}
-                    </tbody>
+                    </Table.Tbody>
                 </Table>
-                <br />
+
+                <Group mt="md" justify="right">
                 <Pagination
-                    position="right"
                     total={pageCount}
-                    page={current}
+                    value={current}
                     onChange={setCurrent}
                 />
+                </Group>
             </List>
         </ScrollArea>
     );

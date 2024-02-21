@@ -3,8 +3,9 @@ import {
     UseModalFormReturnType as UseDrawerFormReturnType,
     useSelect,
     SaveButton,
+    Select
 } from "@refinedev/mantine";
-import { Drawer, TextInput, Select, Box, Text } from "@mantine/core";
+import { Drawer, TextInput , Box, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
 interface FormValues {
@@ -64,7 +65,7 @@ export const EditPostDrawer: React.FC<
                 {...getInputProps("category.id")}
                 {...selectProps}
             />
-            <Text mt={8} weight={500} size="sm" color="#212529">
+            <Text mt={8} fw={500} size="sm" color="#212529">
                 Content
             </Text>
             <MDEditor
@@ -73,11 +74,11 @@ export const EditPostDrawer: React.FC<
                 {...getInputProps("content")}
             />
             {errors.content && (
-                <Text mt={2} weight={500} size="xs" color="red">
+                <Text mt={2} fw={500} size="xs" color="red">
                     {errors.content}
                 </Text>
             )}
-            <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Box mt={8} style={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>
         </Drawer>

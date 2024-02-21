@@ -5,8 +5,8 @@ import {
     RefineThemes,
     ErrorComponent,
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
@@ -26,66 +26,62 @@ function App() {
             <GitHubBanner />
             <MantineProvider
                 theme={RefineThemes.Blue}
-                withNormalizeCSS
-                withGlobalStyles
             >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={useNotificationProvider}
-                        resources={[
-                            {
-                                name: "blog_posts",
-                                list: "/blog-posts",
-                                show: "/blog-posts/show/:id",
-                                create: "/blog-posts/create",
-                                edit: "/blog-posts/edit/:id",
-                                meta: {
-                                    canDelete: true,
-                                },
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={useNotificationProvider}
+                    resources={[
+                        {
+                            name: "blog_posts",
+                            list: "/blog-posts",
+                            show: "/blog-posts/show/:id",
+                            create: "/blog-posts/create",
+                            edit: "/blog-posts/edit/:id",
+                            meta: {
+                                canDelete: true,
                             },
-                        ]}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <ThemedLayoutV2>
-                            <Routes>
+                        },
+                    ]}
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                    }}
+                >
+                    <ThemedLayoutV2>
+                        <Routes>
+                            <Route
+                                index
+                                element={
+                                    <NavigateToResource resource="blog_posts" />
+                                }
+                            />
+
+                            <Route path="/blog-posts">
+                                <Route index element={<BlogPostList />} />
                                 <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="blog_posts" />
-                                    }
+                                    path="show/:id"
+                                    element={<BlogPostShow />}
                                 />
+                                <Route
+                                    path="create"
+                                    element={<BlogPostCreate />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<BlogPostEdit />}
+                                />
+                            </Route>
 
-                                <Route path="/blog-posts">
-                                    <Route index element={<BlogPostList />} />
-                                    <Route
-                                        path="show/:id"
-                                        element={<BlogPostShow />}
-                                    />
-                                    <Route
-                                        path="create"
-                                        element={<BlogPostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<BlogPostEdit />}
-                                    />
-                                </Route>
-
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Routes>
-                        </ThemedLayoutV2>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </NotificationsProvider>
+                            <Route path="*" element={<ErrorComponent />} />
+                        </Routes>
+                    </ThemedLayoutV2>
+                    <UnsavedChangesNotifier />
+                    <DocumentTitleHandler />
+                </Refine>
+                <Notifications />
             </MantineProvider>
         </BrowserRouter>
     );

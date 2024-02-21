@@ -10,13 +10,13 @@ import {
     List,
     DateField,
     EditButton,
+    Select,
 } from "@refinedev/mantine";
 
 import {
     Button,
     Table,
     Group,
-    Select,
     TextInput,
     ActionIcon,
     Checkbox,
@@ -80,7 +80,7 @@ export const PostList: React.FC = () => {
                 enableColumnFilter: false,
                 header: function render({ table }) {
                     return (
-                        <Group noWrap>
+                        <Group wrap="nowrap">
                             <Checkbox
                                 checked={table.getIsAllRowsSelected()}
                                 indeterminate={table.getIsSomeRowsSelected()}
@@ -112,7 +112,7 @@ export const PostList: React.FC = () => {
                 },
                 cell: function render({ row }) {
                     return (
-                        <Group noWrap>
+                        <Group wrap="nowrap">
                             <Checkbox
                                 checked={row.getIsSelected()}
                                 indeterminate={row.getIsSomeSelected()}
@@ -179,7 +179,7 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" wrap="nowrap">
                             <EditButton
                                 hideText
                                 onClick={() => {
@@ -268,7 +268,7 @@ export const PostList: React.FC = () => {
                             />
                         </td>
                         <td>
-                            <Group spacing={4} noWrap>
+                            <Group gap={4} wrap="nowrap">
                                 <SaveButton size="xs" {...saveButtonProps} />
                                 <Button
                                     size="xs"
@@ -304,7 +304,7 @@ export const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => (
                                     <th key={header.id}>
                                         {!header.isPlaceholder && (
-                                            <Group spacing="xs" noWrap>
+                                            <Group gap="xs" wrap="nowrap">
                                                 <Box>
                                                     {flexRender(
                                                         header.column.columnDef
@@ -312,7 +312,7 @@ export const PostList: React.FC = () => {
                                                         header.getContext(),
                                                     )}
                                                 </Box>
-                                                <Group spacing="xs" noWrap>
+                                                <Group gap="xs" wrap="nowrap">
                                                     <ColumnSorter
                                                         column={header.column}
                                                     />
@@ -376,12 +376,13 @@ export const PostList: React.FC = () => {
                     </tbody>
                 </Table>
                 <Space h={16} />
-                <Pagination
-                    position="right"
-                    total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
-                />
+                <Group mt="md" justify="right">
+                    <Pagination
+                        total={pageCount}
+                        value={current}
+                        onChange={setCurrent}
+                    />
+                </Group>
             </List>
         </ScrollArea>
     );

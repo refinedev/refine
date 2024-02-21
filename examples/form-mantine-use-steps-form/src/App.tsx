@@ -1,3 +1,7 @@
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/dates/styles.css';
+
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
     ThemedLayoutV2,
@@ -12,8 +16,8 @@ import routerProvider, {
     DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -23,11 +27,7 @@ const App: React.FC = () => {
             <GitHubBanner />
             <MantineProvider
                 theme={RefineThemes.Blue}
-                withNormalizeCSS
-                withGlobalStyles
             >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
                     <Refine
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
@@ -80,7 +80,7 @@ const App: React.FC = () => {
                         <UnsavedChangesNotifier />
                         <DocumentTitleHandler />
                     </Refine>
-                </NotificationsProvider>
+                    <Notifications />
             </MantineProvider>
         </BrowserRouter>
     );

@@ -1,9 +1,8 @@
-import { Create, useStepsForm, SaveButton } from "@refinedev/mantine";
+import { Create, useStepsForm, SaveButton, Select } from "@refinedev/mantine";
 import {
     Button,
     Code,
     Group,
-    Select,
     Stepper,
     TextInput,
     Text,
@@ -50,7 +49,7 @@ export const PostCreate: React.FC = () => {
     return (
         <Create
             footerButtons={
-                <Group position="right" mt="xl">
+                <Group align="right" mt="xl">
                     {currentStep !== 0 && (
                         <Button
                             variant="default"
@@ -71,7 +70,6 @@ export const PostCreate: React.FC = () => {
             <Stepper
                 active={currentStep}
                 onStepClick={gotoStep}
-                breakpoint="sm"
             >
                 <Stepper.Step
                     label="First Step"
@@ -114,10 +112,7 @@ export const PostCreate: React.FC = () => {
 
                     <DatePicker
                         id="createdAt"
-                        mt="md"
-                        label="CreatedAt"
                         placeholder="CreatedAt"
-                        withinPortal
                         {...getInputProps("createdAt")}
                     />
                 </Stepper.Step>
@@ -127,7 +122,7 @@ export const PostCreate: React.FC = () => {
                     description="Content"
                     allowStepSelect={currentStep > 2}
                 >
-                    <Text mt={8} weight={500} size="sm" color="#212529">
+                    <Text mt={8} fw={500} size="sm" color="#212529">
                         Content
                     </Text>
                     <MDEditor
