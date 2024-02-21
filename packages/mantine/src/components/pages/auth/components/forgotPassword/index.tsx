@@ -94,7 +94,6 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
         <Card style={cardStyles} {...(contentProps ?? {})}>
             <Title
                 style={titleStyles}
-                color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
             >
                 {translate(
                     "pages.forgotPassword.title",
@@ -124,26 +123,6 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                         {...getInputProps("email")}
                     />
 
-                    {loginLink ?? (
-                        <Group mt="md" position={loginLink ? "left" : "right"}>
-                            <Text size="xs">
-                                {translate(
-                                    "pages.login.forgotPassword.haveAccount",
-                                    "Have an account?",
-                                )}{" "}
-                                <Anchor
-                                    component={ActiveLink as any}
-                                    to="/login"
-                                    weight={700}
-                                >
-                                    {translate(
-                                        "pages.forgotPassword.signin",
-                                        "Sign in",
-                                    )}
-                                </Anchor>
-                            </Text>
-                        </Group>
-                    )}
                     <Button
                         mt="lg"
                         fullWidth
@@ -158,6 +137,26 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                     </Button>
                 </form>
             </FormProvider>
+            {loginLink ?? (
+                <Group mt="md" justify="center">
+                    <Text size="xs">
+                        {translate(
+                            "pages.login.forgotPassword.haveAccount",
+                            "Have an account?",
+                        )}{" "}
+                        <Anchor
+                            component={ActiveLink as any}
+                            to="/login"
+                            weight={700}
+                        >
+                            {translate(
+                                "pages.forgotPassword.signin",
+                                "Sign in",
+                            )}
+                        </Anchor>
+                    </Text>
+                </Group>
+            )}
         </Card>
     );
 

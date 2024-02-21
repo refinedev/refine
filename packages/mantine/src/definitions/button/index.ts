@@ -1,12 +1,16 @@
 import { ActionIconVariant, ButtonVariant } from "@mantine/core";
 
 export const mapButtonVariantToActionIconVariant = (
-    variant?: ButtonVariant,
+    variant?: ButtonVariant | (string & {}),
+    defaultVariant?: ActionIconVariant,
 ): ActionIconVariant | undefined => {
     switch (variant) {
         case "white":
             return "default";
         default:
-            return variant;
+            if (defaultVariant) {
+                return defaultVariant
+            }
+            return "default";
     }
 };

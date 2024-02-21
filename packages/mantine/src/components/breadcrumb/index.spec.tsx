@@ -5,7 +5,6 @@ import {
     render,
     TestWrapper,
     ITestWrapperProps,
-    act,
     MockLegacyRouterProvider,
 } from "@test";
 

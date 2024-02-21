@@ -17,6 +17,17 @@ import {
 import { mockRouterBindings, MockJSONServer } from "@test";
 import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
+import {
+    MantineProvider,
+} from "@mantine/core";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.MantineProvider = MantineProvider
+
+import { defaultTheme } from '@theme';
+
+import { MockRouterProvider } from "@refinedev/ui-tests";
+
 const List = () => {
     return <div>hede</div>;
 };
@@ -38,7 +49,7 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
     props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
-    routerProvider = mockRouterBindings(),
+    routerProvider,
     legacyRouterProvider,
     dataProvider,
     authProvider,
@@ -57,6 +68,7 @@ export const TestWrapper: (
     // is essentially to use the same router as your actual application. Besides
     // that, it's impossible to check for location changes with MemoryRouter if
     // needed.
+
     if (routerInitialEntries) {
         routerInitialEntries.forEach((route) => {
             window.history.replaceState({}, "", route);
@@ -66,14 +78,17 @@ export const TestWrapper: (
     // eslint-disable-next-line react/display-name
     return ({ children }): React.ReactElement => {
         return (
+          <MantineProvider theme={defaultTheme}>
             <BrowserRouter>
                 <Refine
                     dataProvider={dataProvider ?? MockJSONServer}
                     i18nProvider={i18nProvider}
                     routerProvider={
-                        legacyRouterProvider ? undefined : routerProvider
+                        routerProvider
                     }
-                    legacyRouterProvider={legacyRouterProvider}
+                    legacyRouterProvider={
+                        legacyRouterProvider ?? MockRouterProvider
+                    }
                     authProvider={authProvider}
                     legacyAuthProvider={legacyAuthProvider}
                     notificationProvider={notificationProvider}
@@ -99,17 +114,26 @@ export const TestWrapper: (
                     {children}
                 </Refine>
             </BrowserRouter>
+          </MantineProvider>
         );
     };
 };
 export {
-    mockRouterBindings,
     MockJSONServer,
-    MockLegacyRouterProvider,
+    mockRouterBindings,
     MockAccessControlProvider,
+    MockLegacyRouterProvider,
     MockLiveProvider,
     MockAuthProvider,
 } from "./dataMocks";
 
+export {
+    mockLegacyRouterProvider,
+    MockRouterProvider,
+    mockLegacyAuthProvider,
+} from "@refinedev/ui-tests";
+
 // re-export everything
 export * from "@testing-library/react";
+
+export { customRender as render } from './render';

@@ -1,14 +1,11 @@
 import React from "react";
-import { Box } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 
 import { RefineLayoutLayoutProps } from "./types";
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
+import { ThemedLayoutContextProvider } from "../../contexts";
 
-/**
- * @deprecated use `<ThemedLayout>` instead with 100% backward compatibility.
- * @see https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout
- **/
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,
@@ -20,34 +17,30 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
-    return (
-        <Box sx={{ display: "flex" }}>
+  return (
+    <ThemedLayoutContextProvider>
+      <AppShell
+        header={{ height: 50 }}
+        navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: true } }}
+        padding="md"
+      >
+
+        <AppShell.Header>
+            <HeaderToRender />
+        </AppShell.Header>
+
+        <AppShell.Navbar>
             <SiderToRender Title={Title} />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 1,
-                    overflow: "auto",
-                }}
-            >
-                <HeaderToRender />
-                <Box
-                    component="main"
-                    sx={(theme) => ({
-                        padding: theme.spacing.sm,
-                        backgroundColor:
-                            theme.colorScheme === "dark"
-                                ? theme.colors.dark[8]
-                                : theme.colors.gray[0],
-                        minHeight: "100vh",
-                    })}
-                >
-                    {children}
-                </Box>
-                {Footer && <Footer />}
-            </Box>
-            {OffLayoutArea && <OffLayoutArea />}
-        </Box>
-    );
+        </AppShell.Navbar>
+
+        <AppShell.Main>
+          {children}
+
+          {Footer && <Footer />}
+        </AppShell.Main>
+
+        {OffLayoutArea && <OffLayoutArea />}
+      </AppShell>
+    </ThemedLayoutContextProvider>
+  )
 };

@@ -13,7 +13,7 @@ import {
     RefineButtonClassNames,
     RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import { ActionIcon, ActionIconCssVariables, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -86,7 +86,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
-    const { variant, styles, ...commonProps } = rest;
+    const { variant, styles, vars, ...commonProps } = rest;
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
@@ -112,12 +112,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 <ActionIcon
                     disabled={data?.can === false}
                     title={disabledTitle()}
-                    {...(variant
-                        ? {
-                              variant:
-                                  mapButtonVariantToActionIconVariant(variant),
-                          }
-                        : { variant: "default" })}
+                    variant={mapButtonVariantToActionIconVariant(variant, "default")}
                     data-testid={RefineButtonTestIds.CloneButton}
                     className={RefineButtonClassNames.CloneButton}
                     {...commonProps}
@@ -128,8 +123,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 <Button
                     disabled={data?.can === false}
                     variant="default"
-                    leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+                    leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
+                    vars={vars}
                     data-testid={RefineButtonTestIds.CloneButton}
                     className={RefineButtonClassNames.CloneButton}
                     {...rest}

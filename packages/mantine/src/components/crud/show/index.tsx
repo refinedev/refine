@@ -106,7 +106,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
         ? {
               ...(isLoading ? { disabled: true } : {}),
-              color: "primary",
+              color: undefined,
               variant: "filled",
               resource: routerType === "legacy" ? resource?.route : identifier,
               recordItemId: id,
@@ -187,15 +187,14 @@ export const Show: React.FC<ShowProps> = (props) => {
     return (
         <Card p="md" {...wrapperProps}>
             <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group position="apart" align="center" {...headerProps}>
-                <Stack spacing="xs">
+            <Group justify="space-between" align="center" {...headerProps}>
+                <Stack gap="xs">
                     {breadcrumbComponent}
-                    <Group spacing="xs">
+                    <Group gap="xs">
                         {buttonBack}
                         {title ?? (
                             <Title
                                 order={3}
-                                transform="capitalize"
                                 className={RefinePageHeaderClassNames.Title}
                             >
                                 {translate(
@@ -212,14 +211,14 @@ export const Show: React.FC<ShowProps> = (props) => {
                         )}
                     </Group>
                 </Stack>
-                <Group spacing="xs" {...headerButtonProps}>
+                <Group {...headerButtonProps}>
                     {headerButtons}
                 </Group>
             </Group>
             <Box pt="sm" {...contentProps}>
                 {children}
             </Box>
-            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+            <Group mt="md" {...footerButtonProps}>
                 {footerButtons}
             </Group>
         </Card>

@@ -111,15 +111,14 @@ export const Create: React.FC<CreateProps> = (props) => {
     return (
         <Card p="md" {...wrapperProps}>
             <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group position="apart" align="center" {...headerProps}>
-                <Stack spacing="xs">
+            <Group {...headerProps}>
+                <Stack gap="xs">
                     {breadcrumbComponent}
-                    <Group spacing="xs">
+                    <Group gap="xs">
                         {buttonBack}
                         {title ?? (
                             <Title
                                 order={3}
-                                transform="capitalize"
                                 className={RefinePageHeaderClassNames.Title}
                             >
                                 {translate(
@@ -136,14 +135,14 @@ export const Create: React.FC<CreateProps> = (props) => {
                         )}
                     </Group>
                 </Stack>
-                <Group spacing="xs" {...headerButtonProps}>
+                <Group gap="xs" {...headerButtonProps}>
                     {headerButtons}
                 </Group>
             </Group>
             <Box pt="sm" {...contentProps}>
                 {children}
             </Box>
-            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+            <Group align="right" gap="xs" mt="md" {...footerButtonProps}>
                 {footerButtons}
             </Group>
         </Card>

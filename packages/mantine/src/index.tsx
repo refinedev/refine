@@ -1,4 +1,4 @@
-import "./types/theme";
+//import "./types/theme";
 
 export * from "./components";
 export * from "./providers";

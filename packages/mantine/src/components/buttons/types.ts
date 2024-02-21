@@ -1,4 +1,4 @@
-import { ButtonProps } from "@mantine/core";
+import { ButtonProps, ClassNames } from "@mantine/core";
 import { UseImportInputPropsType } from "@refinedev/core";
 import {
     RefineCloneButtonProps,
@@ -14,36 +14,40 @@ import {
 } from "@refinedev/ui-types";
 import { TablerIconProps } from "@tabler/icons";
 
+export type MantiteButtonProps = Omit<ButtonProps, "classNames"> & {
+  size?: string
+}
+
 export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type ImportButtonProps = RefineImportButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         inputProps: UseImportInputPropsType;
         svgIconProps?: TablerIconProps;
@@ -51,35 +55,35 @@ export type ImportButtonProps = RefineImportButtonProps<
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
+    MantiteButtonProps,
     {
         svgIconProps?: TablerIconProps;
     }

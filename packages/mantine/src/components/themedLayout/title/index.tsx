@@ -36,7 +36,6 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     text = defaultText,
     wrapperStyles = {},
 }) => {
-    const theme = useMantineTheme();
     const routerType = useRouterType();
     const Link = useLink();
     const { Link: LegacyLink } = useRouterContext();
@@ -58,14 +57,12 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
                 <Text
                     lh={0}
                     fz="inherit"
-                    color={theme.colorScheme === "dark" ? "brand.5" : "brand.6"}
                 >
                     {icon}
                 </Text>
                 {!collapsed && (
                     <Text
                         fz="inherit"
-                        color={theme.colorScheme === "dark" ? "white" : "black"}
                     >
                         {text}
                     </Text>

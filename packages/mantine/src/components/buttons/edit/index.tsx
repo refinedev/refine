@@ -85,7 +85,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
             ? generateEditUrl(resource, recordItemId! ?? id!, meta)
             : "";
 
-    const { variant, styles, ...commonProps } = rest;
+    const { variant, styles, vars, ...commonProps } = rest;
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
@@ -113,22 +113,18 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     disabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
                     className={RefineButtonClassNames.EditButton}
-                    {...(variant
-                        ? {
-                              variant:
-                                  mapButtonVariantToActionIconVariant(variant),
-                          }
-                        : { variant: "default" })}
+                    variant={mapButtonVariantToActionIconVariant(variant, "default")}
                     {...commonProps}
                 >
                     <IconPencil size={18} {...svgIconProps} />
                 </ActionIcon>
             ) : (
                 <Button
-                    variant="default"
+                    variant={variant || "filled"}
                     disabled={data?.can === false}
-                    leftIcon={<IconPencil size={18} {...svgIconProps} />}
+                    leftSection={<IconPencil size={18} {...svgIconProps} />}
                     title={disabledTitle()}
+                    vars={vars}
                     data-testid={RefineButtonTestIds.EditButton}
                     className={RefineButtonClassNames.EditButton}
                     {...rest}

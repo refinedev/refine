@@ -85,7 +85,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = resource ? generateListUrl(resource, meta) : "";
 
-    const { variant, styles, ...commonProps } = rest;
+    const { variant, styles, vars, ...commonProps } = rest;
 
     if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
         return null;
@@ -109,12 +109,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         >
             {hideText ? (
                 <ActionIcon
-                    {...(variant
-                        ? {
-                              variant:
-                                  mapButtonVariantToActionIconVariant(variant),
-                          }
-                        : { variant: "default" })}
+                    variant={mapButtonVariantToActionIconVariant(variant, "default")}
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
@@ -125,12 +120,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 </ActionIcon>
             ) : (
                 <Button
-                    variant="default"
+                    variant={variant || "default"}
                     disabled={data?.can === false}
-                    leftIcon={<IconList size={18} {...svgIconProps} />}
+                    leftSection={<IconList size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
                     className={RefineButtonClassNames.ListButton}
+                    vars={vars}
                     {...rest}
                 >
                     {children ??

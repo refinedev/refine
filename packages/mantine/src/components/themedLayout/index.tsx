@@ -1,13 +1,12 @@
 import React from "react";
-import { Box } from "@mantine/core";
+import { AppShell } from "@mantine/core";
+import { useDisclosure } from '@mantine/hooks';
 
 import { RefineThemedLayoutProps } from "./types";
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
+import { ThemedLayoutContextProvider } from "../../contexts";
 
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
 export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     Sider,
     Header,
@@ -19,29 +18,30 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
-    return (
-        <Box sx={{ display: "flex" }}>
-            <SiderToRender Title={Title} />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 1,
-                    overflow: "auto",
-                }}
-            >
+  return (
+    <ThemedLayoutContextProvider>
+          <AppShell
+            header={{ height: 50 }}
+            navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: true } }}
+            padding="md"
+          >
+
+            <AppShell.Header>
                 <HeaderToRender />
-                <Box
-                    component="main"
-                    sx={(theme) => ({
-                        padding: theme.spacing.sm,
-                    })}
-                >
-                    {children}
-                </Box>
-                {Footer && <Footer />}
-            </Box>
+            </AppShell.Header>
+
+            <AppShell.Navbar>
+                <SiderToRender Title={Title} />
+            </AppShell.Navbar>
+
+            <AppShell.Main>
+              {children}
+
+              {Footer && <Footer />}
+            </AppShell.Main>
+
             {OffLayoutArea && <OffLayoutArea />}
-        </Box>
-    );
+          </AppShell>
+        </ThemedLayoutContextProvider>
+      )
 };
