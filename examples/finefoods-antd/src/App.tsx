@@ -1,5 +1,5 @@
 import React from "react";
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbarProvider } from "@refinedev/kbar";
 import {
     useNotificationProvider,
@@ -15,10 +15,11 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import {
     ShoppingOutlined,
-    UsergroupAddOutlined,
     ShopOutlined,
-    StarOutlined,
     DashboardOutlined,
+    UserOutlined,
+    UnorderedListOutlined,
+    TagsOutlined,
 } from "@ant-design/icons";
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { authProvider } from "./authProvider";
@@ -28,20 +29,24 @@ import "dayjs/locale/de";
 import { DashboardPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { AuthPage } from "./pages/auth";
-import { UserList, UserShow } from "./pages/users";
+import { CustomerShow, CustomerList } from "./pages/customers";
 import {
     CourierList,
     CourierShow,
     CourierCreate,
     CourierEdit,
 } from "./pages/couriers";
-import { ProductList } from "./pages/products";
+import {
+    ProductList,
+    ProductCreate,
+    ProductEdit,
+    ProductShow,
+} from "./pages/products";
 import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 import { CategoryList } from "./pages/categories";
-import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
-import { Header, Title, OffLayoutArea } from "./components";
-import { BikeWhiteIcon, PizzaIcon } from "./components/icons";
+import { Header, Title } from "./components";
+import { BikeWhiteIcon } from "./components/icons";
 import { ConfigProvider } from "./context";
 import { useAutoLoginForDemo } from "./hooks";
 
@@ -69,7 +74,6 @@ const App: React.FC = () => {
 
     return (
         <BrowserRouter>
-            <GitHubBanner />
             <ConfigProvider>
                 <RefineKbarProvider>
                     <Refine
@@ -101,17 +105,27 @@ const App: React.FC = () => {
                             },
                             {
                                 name: "users",
-                                list: "/users",
-                                show: "/users/show/:id",
+                                list: "/customers",
+                                show: "/customers/show/:id",
                                 meta: {
-                                    icon: <UsergroupAddOutlined />,
+                                    icon: <UserOutlined />,
                                 },
                             },
                             {
                                 name: "products",
                                 list: "/products",
+                                create: "/products/create",
+                                edit: "/products/edit/:id",
+                                show: "/products/show/:id",
                                 meta: {
-                                    icon: <PizzaIcon />,
+                                    icon: <UnorderedListOutlined />,
+                                },
+                            },
+                            {
+                                name: "categories",
+                                list: "/categories",
+                                meta: {
+                                    icon: <TagsOutlined />,
                                 },
                             },
                             {
@@ -124,10 +138,6 @@ const App: React.FC = () => {
                                 },
                             },
                             {
-                                name: "categories",
-                                list: "/categories",
-                            },
-                            {
                                 name: "couriers",
                                 list: "/couriers",
                                 create: "/couriers/create",
@@ -135,13 +145,6 @@ const App: React.FC = () => {
                                 show: "/couriers/show/:id",
                                 meta: {
                                     icon: <BikeWhiteIcon />,
-                                },
-                            },
-                            {
-                                name: "reviews",
-                                list: "/reviews",
-                                meta: {
-                                    icon: <StarOutlined />,
                                 },
                             },
                         ]}
@@ -158,9 +161,16 @@ const App: React.FC = () => {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
-                                            OffLayoutArea={OffLayoutArea}
                                         >
-                                            <Outlet />
+                                            <div
+                                                style={{
+                                                    maxWidth: "1200px",
+                                                    marginLeft: "auto",
+                                                    marginRight: "auto",
+                                                }}
+                                            >
+                                                <Outlet />
+                                            </div>
                                         </ThemedLayoutV2>
                                     </Authenticated>
                                 }
@@ -175,18 +185,43 @@ const App: React.FC = () => {
                                     />
                                 </Route>
 
-                                <Route path="/users">
-                                    <Route index element={<UserList />} />
+                                <Route
+                                    path="/customers"
+                                    element={
+                                        <CustomerList>
+                                            <Outlet />
+                                        </CustomerList>
+                                    }
+                                >
+                                    <Route index element={null} />
                                     <Route
                                         path="show/:id"
-                                        element={<UserShow />}
+                                        element={<CustomerShow />}
                                     />
                                 </Route>
 
                                 <Route
                                     path="/products"
-                                    element={<ProductList />}
-                                />
+                                    element={
+                                        <ProductList>
+                                            <Outlet />
+                                        </ProductList>
+                                    }
+                                >
+                                    <Route index element={null} />
+                                    <Route
+                                        path="create"
+                                        element={<ProductCreate />}
+                                    />
+                                    <Route
+                                        path="show/:id"
+                                        element={<ProductShow />}
+                                    />
+                                    <Route
+                                        path="edit/:id"
+                                        element={<ProductEdit />}
+                                    />
+                                </Route>
 
                                 <Route path="/stores">
                                     <Route index element={<StoreList />} />
@@ -206,11 +241,20 @@ const App: React.FC = () => {
                                 />
 
                                 <Route path="/couriers">
-                                    <Route index element={<CourierList />} />
                                     <Route
-                                        path="create"
-                                        element={<CourierCreate />}
-                                    />
+                                        element={
+                                            <CourierList>
+                                                <Outlet />
+                                            </CourierList>
+                                        }
+                                    >
+                                        <Route index element={null} />
+                                        <Route
+                                            path="create"
+                                            element={<CourierCreate />}
+                                        />
+                                    </Route>
+
                                     <Route
                                         path="edit/:id"
                                         element={<CourierEdit />}
@@ -220,11 +264,6 @@ const App: React.FC = () => {
                                         element={<CourierShow />}
                                     />
                                 </Route>
-
-                                <Route
-                                    path="/reviews"
-                                    element={<ReviewsList />}
-                                />
                             </Route>
 
                             <Route
@@ -281,7 +320,6 @@ const App: React.FC = () => {
                                         <ThemedLayoutV2
                                             Header={Header}
                                             Title={Title}
-                                            OffLayoutArea={OffLayoutArea}
                                         >
                                             <Outlet />
                                         </ThemedLayoutV2>

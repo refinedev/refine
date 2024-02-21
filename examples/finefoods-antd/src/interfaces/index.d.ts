@@ -17,7 +17,7 @@ export interface IOrderTotalCount {
 
 export interface ISalesChart {
     date: string;
-    title: "Order Count" | "Order Amount";
+    title?: "Order Count" | "Order Amount";
     value: number;
 }
 
@@ -47,7 +47,7 @@ export interface IIdentity {
 
 export interface IAddress {
     text: string;
-    coordinate: [string, string];
+    coordinate: [number, number];
 }
 
 export interface IFile {
@@ -70,8 +70,15 @@ export interface IStore {
     title: string;
     isActive: boolean;
     createdAt: string;
+    gsm: string;
+    email: string;
     address: IAddress;
     products: IProduct[];
+}
+
+export interface ICourierStatus {
+    id: number;
+    text: "Available" | "Offline" | "On delivery";
 }
 
 export interface ICourier {
@@ -87,7 +94,10 @@ export interface ICourier {
     address: string;
     avatar: IFile[];
     store: IStore;
+    status: ICourierStatus;
+    vehicle: IVehicle;
 }
+
 export interface IOrder {
     id: number;
     user: IUser;
@@ -107,10 +117,12 @@ export interface IProduct {
     name: string;
     isActive: boolean;
     description: string;
-    images: IFile[];
+    images: (IFile & { thumbnailUrl?: string })[];
     createdAt: string;
     price: number;
-    category: ICategory;
+    category: {
+        id: number;
+    };
     stock: number;
 }
 
@@ -136,17 +148,6 @@ export interface IUserFilterVariables {
     isActive: boolean;
 }
 
-export interface ICourier {
-    id: number;
-    name: string;
-    surname: string;
-    gender: string;
-    gsm: string;
-    createdAt: string;
-    isActive: boolean;
-    avatar: IFile[];
-}
-
 export interface IReview {
     id: number;
     order: IOrder;
@@ -155,4 +156,19 @@ export interface IReview {
     createDate: string;
     status: "pending" | "approved" | "rejected";
     comment: string[];
+}
+
+export type IVehicle = {
+    model: string;
+    vehicleType: string;
+    engineSize: number;
+    color: string;
+    year: number;
+    id: number;
+};
+
+export interface ITrendingProducts {
+    id: number;
+    product: IProduct;
+    orderCount: number;
 }
