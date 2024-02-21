@@ -1,5 +1,11 @@
 # @refinedev/cli
 
+## 2.16.26
+
+### Patch Changes
+
+-   [#5663](https://github.com/refinedev/refine/pull/5663) [`363fd4ed5f6`](https://github.com/refinedev/refine/commit/363fd4ed5f6dffbd70c2acf43ce310ab773589fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: demo access control provider typing.
+
 ## 2.16.25
 
 ### Patch Changes

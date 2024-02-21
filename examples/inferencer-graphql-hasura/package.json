@@ -26,7 +26,7 @@
   "dependencies": {
     "@ant-design/icons": "5.0.1",
     "@refinedev/antd": "^5.37.4",
-    "@refinedev/cli": "^2.16.25",
+    "@refinedev/cli": "^2.16.26",
     "@refinedev/core": "^4.47.2",
     "@refinedev/hasura": "^6.5.0",
     "@refinedev/inferencer": "^4.5.20",

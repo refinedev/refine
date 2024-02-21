@@ -9,7 +9,7 @@
     "start:prod": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.25",
+    "@refinedev/cli": "^2.16.26",
     "@refinedev/core": "^4.47.2",
     "@refinedev/nextjs-router": "^6.0.0",
     "@refinedev/simple-rest": "^5.0.2",
