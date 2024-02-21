@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
 import { MantineInferencer } from "../index";
+import { MantineProvider } from '@mantine/core';
 
 describe("MantineInferencer", () => {
     it("should match the snapshot", async () => {
@@ -11,6 +12,7 @@ describe("MantineInferencer", () => {
         });
 
         const renderingList = render(
+            <MantineProvider>
             <Wrapper>
                 <Routes>
                     <Route
@@ -20,10 +22,12 @@ describe("MantineInferencer", () => {
                         }
                     />
                 </Routes>
-            </Wrapper>,
+            </Wrapper>
+            </MantineProvider>
         );
 
         const renderingCreate = render(
+            <MantineProvider>
             <Wrapper>
                 <Routes>
                     <Route
@@ -36,10 +40,12 @@ describe("MantineInferencer", () => {
                         }
                     />
                 </Routes>
-            </Wrapper>,
+            </Wrapper>
+            </MantineProvider>
         );
 
         const renderingEdit = render(
+            <MantineProvider>
             <Wrapper>
                 <Routes>
                     <Route
@@ -53,10 +59,12 @@ describe("MantineInferencer", () => {
                         }
                     />
                 </Routes>
-            </Wrapper>,
+            </Wrapper>
+            </MantineProvider>
         );
 
         const renderingShow = render(
+            <MantineProvider>
             <Wrapper>
                 <Routes>
                     <Route
@@ -70,7 +78,8 @@ describe("MantineInferencer", () => {
                         }
                     />
                 </Routes>
-            </Wrapper>,
+            </Wrapper>
+            </MantineProvider>
         );
 
         await act(async () => {

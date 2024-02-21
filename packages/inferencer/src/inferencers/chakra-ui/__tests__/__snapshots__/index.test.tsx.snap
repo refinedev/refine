@@ -4,319 +4,319 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1kekcgk"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <nav
             aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
+            class="chakra-breadcrumb"
           >
             <ol
-              class="chakra-breadcrumb__list css-70qvj9"
+              class="chakra-breadcrumb__list"
             />
           </nav>
           <h3
-            class="chakra-heading refine-pageHeader-title css-0"
+            class="chakra-heading refine-pageHeader-title"
           />
         </div>
         <div
-          class="css-i08qke"
+          class=""
         />
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <div
-          class="chakra-table__container css-1rcznqn"
+          class="chakra-table__container"
         >
           <table
-            class="chakra-table css-0"
+            class="chakra-table"
           >
             <thead
-              class="css-0"
+              class=""
             >
               <tr
-                class="css-0"
+                class=""
               >
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Id
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Title
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Slug
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Content
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Hit
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Category
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   User
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Status
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Status Color
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Created At
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Published At
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Image
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Tags
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Language
                 </th>
               </tr>
             </thead>
             <tbody
-              class="css-0"
+              class=""
             >
               <tr
-                class="css-0"
+                class=""
               >
                 <td
-                  class="css-0"
+                  class=""
                 >
                   11
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Nobis exercitationem officia quia est.
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   provident-culpa-facere
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p>
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   920557
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Numquam Saepe Illo
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Eriberto Leannon
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   draft
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   orange
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     04/02/2022
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     08/10/2021
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <img
-                      class="chakra-image css-1cooswl"
+                      class="chakra-image"
                       src="http://loremflickr.com/640/480/abstract"
                     />
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Nobis Et Ut
                     </span>
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   2
                 </td>
               </tr>
               <tr
-                class="css-0"
+                class=""
               >
                 <td
-                  class="css-0"
+                  class=""
                 >
                   21
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Eaque in nesciunt.
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   quod-quos-commodi
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p>
                     Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   175149
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Sit Natus Voluptatibus
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Tressie Reichel
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   published
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   lime
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     09/24/2022
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     09/01/2021
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <img
-                      class="chakra-image css-1cooswl"
+                      class="chakra-image"
                       src="http://loremflickr.com/640/480/abstract"
                     />
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Error Eos Et
                     </span>
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Nobis Et Ut
                     </span>
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   2
                 </td>
@@ -325,13 +325,13 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
           </table>
         </div>
         <div
-          class="css-1bvc4cc"
+          class=""
         >
           <div
-            class="chakra-stack css-cfcsvg"
+            class="chakra-stack"
           >
             <button
-              class="chakra-button css-4xx2wk"
+              class="chakra-button"
               type="button"
             >
               1
@@ -14557,28 +14557,28 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1mdbftt"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <nav
             aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
+            class="chakra-breadcrumb"
           >
             <ol
-              class="chakra-breadcrumb__list css-70qvj9"
+              class="chakra-breadcrumb__list"
             />
           </nav>
           <div
-            class="chakra-stack css-1igwmid"
+            class="chakra-stack"
           >
             <button
               aria-label="back"
-              class="chakra-button css-p7mkev"
+              class="chakra-button"
               type="button"
             >
               <svg
@@ -14621,106 +14621,106 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title css-0"
+              class="chakra-heading refine-pageHeader-title"
             >
               Create 
             </h3>
           </div>
         </div>
         <div
-          class="css-i08qke"
+          class=""
         />
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r0:"
             id="field-:r0:-label"
           >
             Title
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r0:"
             name="title"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r1:"
             id="field-:r1:-label"
           >
             Slug
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r1:"
             name="slug"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r2:"
             id="field-:r2:-label"
           >
             Content
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r2:"
             name="content"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r3:"
             id="field-:r3:-label"
           >
             Hit
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r3:"
             name="hit"
             type="number"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r4:"
             id="field-:r4:-label"
           >
             Category
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:r4:"
               name="category.id"
             >
@@ -14741,7 +14741,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -14760,21 +14760,21 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r5:"
             id="field-:r5:-label"
           >
             User
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:r5:"
               name="user.id"
             >
@@ -14795,7 +14795,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -14814,91 +14814,91 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r6:"
             id="field-:r6:-label"
           >
             Status
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r6:"
             name="status"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r7:"
             id="field-:r7:-label"
           >
             Status Color
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r7:"
             name="status_color"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r8:"
             id="field-:r8:-label"
           >
             Created At
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r8:"
             name="createdAt"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:r9:"
             id="field-:r9:-label"
           >
             Published At
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:r9:"
             name="publishedAt"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:ra:"
             id="field-:ra:-label"
           >
             Tags
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:ra:"
               name="tags"
             >
@@ -14919,7 +14919,7 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -14938,18 +14938,18 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rb:"
             id="field-:rb:-label"
           >
             Language
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rb:"
             name="language"
             type="number"
@@ -14957,14 +14957,14 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
         </div>
       </div>
       <div
-        class="css-e6thd7"
+        class=""
       >
         <button
-          class="chakra-button refine-save-button css-4xx2wk"
+          class="chakra-button refine-save-button"
           type="button"
         >
           <span
-            class="chakra-button__icon css-1wh2kri"
+            class="chakra-button__icon"
           >
             <svg
               aria-hidden="true"
@@ -25563,28 +25563,28 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1mdbftt"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <nav
             aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
+            class="chakra-breadcrumb"
           >
             <ol
-              class="chakra-breadcrumb__list css-70qvj9"
+              class="chakra-breadcrumb__list"
             />
           </nav>
           <div
-            class="chakra-stack css-9hjtr8"
+            class="chakra-stack"
           >
             <button
               aria-label="back"
-              class="chakra-button css-p7mkev"
+              class="chakra-button"
               type="button"
             >
               <svg
@@ -25627,24 +25627,24 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title css-0"
+              class="chakra-heading refine-pageHeader-title"
             >
               Edit 
             </h3>
           </div>
         </div>
         <div
-          class="css-i08qke"
+          class=""
         >
           <div
-            class="css-oquf3a"
+            class=""
           >
             <button
-              class="chakra-button refine-refresh-button css-4xx2wk"
+              class="chakra-button refine-refresh-button"
               type="button"
             >
               <span
-                class="chakra-button__icon css-1wh2kri"
+                class="chakra-button__icon"
               >
                 <svg
                   aria-hidden="true"
@@ -25679,21 +25679,21 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         </div>
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rc:"
             id="field-:rc:-label"
           >
             Id
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             disabled=""
             id="field-:rc:"
             name="id"
@@ -25701,92 +25701,92 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rd:"
             id="field-:rd:-label"
           >
             Title
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rd:"
             name="title"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:re:"
             id="field-:re:-label"
           >
             Slug
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:re:"
             name="slug"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rf:"
             id="field-:rf:-label"
           >
             Content
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rf:"
             name="content"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rg:"
             id="field-:rg:-label"
           >
             Hit
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rg:"
             name="hit"
             type="number"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rh:"
             id="field-:rh:-label"
           >
             Category
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:rh:"
               name="category.id"
             >
@@ -25807,7 +25807,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -25826,21 +25826,21 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:ri:"
             id="field-:ri:-label"
           >
             User
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:ri:"
               name="user.id"
             >
@@ -25861,7 +25861,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -25880,91 +25880,91 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rj:"
             id="field-:rj:-label"
           >
             Status
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rj:"
             name="status"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rk:"
             id="field-:rk:-label"
           >
             Status Color
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rk:"
             name="status_color"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rl:"
             id="field-:rl:-label"
           >
             Created At
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rl:"
             name="createdAt"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rm:"
             id="field-:rm:-label"
           >
             Published At
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:rm:"
             name="publishedAt"
           />
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:rn:"
             id="field-:rn:-label"
           >
             Tags
           </label>
           <div
-            class="chakra-select__wrapper css-42b2qy"
+            class="chakra-select__wrapper"
           >
             <select
-              class="chakra-select css-1ik61og"
+              class="chakra-select"
               id="field-:rn:"
               name="tags"
             >
@@ -25985,7 +25985,7 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper css-162mkon"
+              class="chakra-select__icon-wrapper"
             >
               <svg
                 aria-hidden="true"
@@ -26004,18 +26004,18 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-h82jag"
+          class="chakra-form-control"
           role="group"
         >
           <label
-            class="chakra-form__label css-uvho5g"
+            class="chakra-form__label"
             for="field-:ro:"
             id="field-:ro:-label"
           >
             Language
           </label>
           <input
-            class="chakra-input css-0"
+            class="chakra-input"
             id="field-:ro:"
             name="language"
             type="number"
@@ -26023,14 +26023,14 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         </div>
       </div>
       <div
-        class="css-e6thd7"
+        class=""
       >
         <button
-          class="chakra-button refine-save-button css-4xx2wk"
+          class="chakra-button refine-save-button"
           type="button"
         >
           <span
-            class="chakra-button__icon css-1wh2kri"
+            class="chakra-button__icon"
           >
             <svg
               aria-hidden="true"
@@ -38298,28 +38298,28 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1mdbftt"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <nav
             aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
+            class="chakra-breadcrumb"
           >
             <ol
-              class="chakra-breadcrumb__list css-70qvj9"
+              class="chakra-breadcrumb__list"
             />
           </nav>
           <div
-            class="chakra-stack css-1igwmid"
+            class="chakra-stack"
           >
             <button
               aria-label="back"
-              class="chakra-button css-p7mkev"
+              class="chakra-button"
               type="button"
             >
               <svg
@@ -38362,21 +38362,21 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title css-0"
+              class="chakra-heading refine-pageHeader-title"
             >
               Show 
             </h3>
           </div>
         </div>
         <div
-          class="css-i08qke"
+          class=""
         >
           <button
-            class="chakra-button refine-refresh-button css-4xx2wk"
+            class="chakra-button refine-refresh-button"
             type="button"
           >
             <span
-              class="chakra-button__icon css-1wh2kri"
+              class="chakra-button__icon"
             >
               <svg
                 aria-hidden="true"
@@ -38410,40 +38410,40 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
         </div>
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Id
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           11
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Title
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           Nobis exercitationem officia quia est.
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Slug
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           provident-culpa-facere
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Content
         </h5>
@@ -38451,108 +38451,108 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
           Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Hit
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           920,557
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Category
         </h5>
         Numquam Saepe Illo
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           User
         </h5>
         Eriberto Leannon
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Status
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           draft
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Status Color
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           orange
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Created At
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           04/02/2022
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Published At
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           08/10/2021
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Image
         </h5>
         <img
-          class="chakra-image css-tn9ygg"
+          class="chakra-image"
           src="http://loremflickr.com/640/480/abstract"
         />
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Tags
         </h5>
         <div
-          class="chakra-stack css-qlxuh7"
+          class="chakra-stack"
         >
           <span
-            class="css-1qm7lvz"
+            class=""
           >
             Error Eos Et
           </span>
           <span
-            class="css-1qm7lvz"
+            class=""
           >
             Nobis Et Ut
           </span>
         </div>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Language
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           2
         </p>
       </div>
       <div
-        class="css-e6thd7"
+        class=""
       />
     </div>
   </div>

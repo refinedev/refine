@@ -1,7 +1,12 @@
-import { Create, useForm, useSelect } from "@refinedev/mantine";
 import {
+    Create,
+    useForm,
+    useSelect,
+    useMultiSelect,
     MultiSelect,
     Select,
+} from "@refinedev/mantine";
+import {
     TextInput,
     Checkbox,
     Textarea,
@@ -75,14 +80,18 @@ export const renderer = ({
         .filter(Boolean)
         .map((field) => {
             if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@refinedev/mantine"]);
+                if (field.multiple) {
+                    imports.push(["useMultiSelect", "@refinedev/mantine"]);
+                } else {
+                    imports.push(["useSelect", "@refinedev/mantine"]);
+                }
 
                 return `
                 const { selectProps: ${getVariableName(
                     field.key,
                     "SelectProps",
                 )} } =
-                useSelect({
+                ${field.multiple ? "useMultiSelect" : "useSelect"}({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
                     ${getMetaProps(
@@ -115,7 +124,7 @@ export const renderer = ({
             const variableName = getVariableName(field.key, "SelectProps");
 
             if (field.multiple) {
-                imports.push(["MultiSelect", "@mantine/core"]);
+                imports.push(["MultiSelect", "@refinedev/mantine"]);
 
                 return jsx`
                     <MultiSelect mt="sm" label=${translatePrettyString({
@@ -129,7 +138,7 @@ export const renderer = ({
                 `;
             }
 
-            imports.push(["Select", "@mantine/core"]);
+            imports.push(["Select", "@refinedev/mantine"]);
 
             return jsx`
                 <Select mt="sm" label=${translatePrettyString({
@@ -186,10 +195,10 @@ export const renderer = ({
     const imageFields = (field: InferField) => {
         if (field.type === "image") {
             return jsx`
-            {/* 
+            {/*
                 Dropzone component is not included in "@refinedev/mantine" package.
                 To use a <Dropzone> component, you can follow the official documentation for Mantine.
-                
+
                 Docs: https://mantine.dev/others/dropzone/
             */}
             `;
@@ -230,10 +239,10 @@ export const renderer = ({
             const textInputRender = textFields(field);
 
             return `
-                {/* 
+                {/*
                     DatePicker component is not included in "@refinedev/mantine" package.
                     To use a <DatePicker> component, you can follow the official documentation for Mantine.
-                    
+
                     Docs: https://mantine.dev/dates/date-picker/
                 */}
                 ${textInputRender ?? ""}
@@ -341,7 +350,7 @@ export const renderer = ({
 
     return jsx`
     ${printImports(imports)}
-    
+
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
         ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
@@ -369,7 +378,7 @@ export const renderer = ({
                     : ""
             }
         });
-    
+
         ${relationHooksCode}
 
         return (
@@ -387,11 +396,27 @@ export const renderer = ({
 export const CreateInferencer: InferencerResultComponent = createInferencer({
     type: "create",
     additionalScope: [
-        ["@refinedev/mantine", "RefineMantine", { Create, useForm, useSelect }],
+        [
+            "@refinedev/mantine",
+            "RefineMantine",
+            {
+                Create,
+                useForm,
+                useSelect,
+                useMultiSelect,
+                MultiSelect,
+                Select
+            }
+        ],
         [
             "@mantine/core",
             "MantineCore",
-            { MultiSelect, Select, TextInput, Checkbox, Textarea, NumberInput },
+            {
+                TextInput,
+                Checkbox,
+                Textarea,
+                NumberInput
+            },
         ],
     ],
     codeViewerComponent: SharedCodeViewer,

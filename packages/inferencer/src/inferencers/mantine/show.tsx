@@ -191,7 +191,7 @@ export const renderer = ({
                                         field.relationInfer.accessor,
                                     );
                                     return `
-                                    {record?.${field.key}?.length ? <Group spacing="xs">
+                                    {record?.${field.key}?.length ? <Group gap="xs">
                                         {${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}
                                     </Group> : <></>}
                                     `;
@@ -310,7 +310,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
@@ -350,7 +350,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
                     ))}
@@ -394,7 +394,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
@@ -438,7 +438,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
@@ -482,7 +482,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(
                         recordName,
                         field.key,
@@ -526,7 +526,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
                     ))}
@@ -593,7 +593,7 @@ export const renderer = ({
                     i18n,
                     noQuotes: true,
                 })}</Title>
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}

@@ -24,4 +24,7 @@ module.exports = {
         ],
     },
     coveragePathIgnorePatterns: ["<rootDir>/src/index.ts"],
+    snapshotSerializers: [
+        "<rootDir>/test/jest-fix-ids.ts"
+    ]
 };
