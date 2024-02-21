@@ -8,6 +8,7 @@ import * as MantineHooks from "@mantine/hooks";
 import * as MantineForm from "@mantine/form";
 import * as MantineNotifications from "@mantine/notifications";
 import axios from "axios";
+import { MantineThemeOverride } from "@mantine/core";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
@@ -23,12 +24,7 @@ const RefineMantineDemo: React.FC<
     return (
         <MantineCore.MantineProvider
             theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
         >
-            <MantineCore.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
             <RefineCommonScope.RefineCore.Refine
                 legacyRouterProvider={
                     RefineCommonScope.LegacyRefineReactRouterV6.default
@@ -132,7 +128,7 @@ const MantineProvider = ({
     ...restProps
 }: {
     children?: React.ReactNode;
-    theme?: { colorScheme?: string };
+    theme?: MantineThemeOverride;
 }) => {
     const [themeFromWindow, setThemeFromWindow] = React.useState<
         undefined | string
@@ -168,7 +164,6 @@ const MantineProvider = ({
                           themeFromWindow as keyof typeof RefineMantine.RefineThemes
                       ]
                     : theme),
-                colorScheme: theme?.colorScheme as any,
             }}
         >
             {children}
