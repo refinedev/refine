@@ -17,14 +17,12 @@ export const convertOptions = (data: (ComboboxData | undefined)): ComboboxItem[]
             } else {
                 const o = opt as ComboboxItem;
                 ret.push({
-                    label: o.label as string,
+                    label: (o.label || o.value.toString()) as string,
                     value: o.value.toString() as string
                 } as ComboboxItem)
             }
 
         });
-
-
     }
 
     return ret;
