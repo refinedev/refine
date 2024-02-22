@@ -15,7 +15,7 @@ describe("form-mantine-use-steps-form", () => {
         cy.get("#title").clear().type(mockPost.title);
         cy.get("#slug").clear().type(mockPost.slug);
         getNextStepButton().click();
-        cy.get("#status").click().get("#status-1").click();
+        cy.fillMantineStatus(mockPost.status);
         getNextStepButton().click();
         cy.get("#content textarea")
             .clear()
@@ -121,7 +121,7 @@ describe("form-mantine-use-steps-form", () => {
         // go to second step
         getNextStepButton().click();
         // fill second step
-        cy.get("#status").click().get("#status-1").click();
+        cy.fillMantineStatus(mockPost.status);
 
         // go to third step
         getNextStepButton().click();

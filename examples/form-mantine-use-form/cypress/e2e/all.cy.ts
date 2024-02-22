@@ -63,7 +63,9 @@ describe("form-mantine-use-form", () => {
 
         cy.get("#content textarea").clear();
         cy.get("#title").clear();
-        cy.get("#categoryId").clear();
+
+        //cy.get("#categoryId").clear();
+        cy.clearMantineSelect("#categoryId")
 
         submitForm();
 

@@ -29,6 +29,8 @@ import {
     getMantineLoadingOverlay,
     getMantineNotification,
     getMantinePopoverDeleteButton,
+    fillMantineStatus,
+    clearMantineSelect,
 } from "./commands/mantine";
 import {
     getCreateButton,
@@ -112,6 +114,8 @@ Cypress.Commands.add(
 );
 Cypress.Commands.add("getMaterialUIColumnHeader", getMaterialUIColumnHeader);
 
+Cypress.Commands.add("clearMantineSelect", clearMantineSelect);
+Cypress.Commands.add("fillMantineStatus", fillMantineStatus);
 Cypress.Commands.add("fillMantineForm", fillMantineForm);
 Cypress.Commands.add("getMantineNotification", getMantineNotification);
 Cypress.Commands.add(
@@ -121,6 +125,7 @@ Cypress.Commands.add(
 Cypress.Commands.add("getMantineFormItemError", getMantineFormItemError);
 Cypress.Commands.add("getMantineLoadingOverlay", getMantineLoadingOverlay);
 Cypress.Commands.add("fillMaterialUIForm", fillMaterialUIForm);
+
 
 /**
  * Disable telemetry calls

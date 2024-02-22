@@ -62,13 +62,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
     const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
-    const colorScheme = useColorScheme();
-
-    const borderColor =
-        colorScheme === "dark"
-            ? 'var(--mantine-color-dark-6)'
-            : 'var(--mantine-color-gray-2)';
-
     const isDesktop = useMediaQuery('(min-width: 62em)');
     const collapsedLayout = (isDesktop && siderCollapsed) || false
 
@@ -227,12 +220,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     return (
         <>
             <Flex
-                h="64px"
                 pl={collapsedLayout ? 0 : "16px"}
                 align="center"
                 justify={collapsedLayout ? "center" : "flex-start"}
                 style={{
-                    borderBottom: `1px solid ${borderColor}`,
+                    height: "var(--app-shell-header-height)",
+                    borderBottom: `1px solid var(--_app-shell-border-color)`,
+                    borderRight: `0`,
                 }}
             >
                 <RenderToTitle collapsed={collapsedLayout} />
@@ -252,7 +246,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 mod={'grow'}
                 component={ScrollArea}
                 mx="-xs"
-                px="xs"
+                pl="xs"
+                pr="0"
+                style={{
+                    borderRight: `1px solid var(--_app-shell-border-color)`,
+                    minHeight: `calc(100vh - var(--app-shell-header-height))`,
+                }}
             >
                 {renderSider()}
             </Box>

@@ -11,7 +11,7 @@ describe("form-mantine-use-modal-form", () => {
     };
 
     const isModalVisible = () => {
-        return cy.get(".mantine-Modal-modal").should("be.visible");
+        return cy.get(".mantine-Modal-inner").should("be.visible");
     };
 
     const fillForm = () => {
@@ -19,8 +19,8 @@ describe("form-mantine-use-modal-form", () => {
         cy.get("#content textarea")
             .clear({ force: true })
             .type(mockPost.content);
-        cy.get("#status").click().get("#status-1").click();
-        cy.get("#categoryId").clear().get("#categoryId-1").click();
+        cy.fillMantineStatus("Draft")
+        cy.get("#categoryId").click().type('{downArrow}{enter}', {force: true});
     };
 
     const assertSuccessResponse = (response: any) => {

@@ -42,7 +42,7 @@ const ThemedLayoutV2WithoutContext: React.FC<RefineThemedLayoutV2Props> = ({
                 <HeaderToRender />
             </AppShell.Header>
 
-            <AppShell.Navbar>
+            <AppShell.Navbar withBorder={false}>
                 <SiderToRender Title={Title} />
             </AppShell.Navbar>
 
