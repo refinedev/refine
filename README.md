@@ -267,6 +267,12 @@ If you have any doubts related to the project or want to discuss something, then
   <img src="https://contrib.rocks/image?repo=refinedev/refine&max=400&columns=20" />
 </a>
 
+## Star History
+
+<a href="https://star-history.com/#refinedev/refine">
+  <img src="https://api.star-history.com/svg?repos=refinedev/refine&type=Date" alt="Star History Chart" width="100%" />
+</a>
+
 ## License
 
 Licensed under the MIT License, Copyright © 2021-present Refinedev
