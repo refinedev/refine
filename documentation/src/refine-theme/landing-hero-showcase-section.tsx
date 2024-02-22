@@ -520,9 +520,9 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
             render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/base_render.png"
             highlights={[
                 {
-                    x: 810,
+                    x: 811,
                     y: 10,
-                    width: 109,
+                    width: 108,
                     height: 44,
                     render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/language.png",
                     codePosition: "left",
