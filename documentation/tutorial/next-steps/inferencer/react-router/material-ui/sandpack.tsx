@@ -4,9 +4,10 @@ import { useSandpack } from "@codesandbox/sandpack-react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 import { TutorialUpdateFileButton } from "@site/src/refine-theme/tutorial-update-file-button";
 
-import { finalFiles as initialFiles } from "@site/tutorial/ui-libraries/crud-components/material-ui/react-router/sandpack";
-import { dependencies } from "@site/tutorial/ui-libraries/intro/material-ui/react-router/sandpack";
+import { finalFiles as initialFiles } from "@site/tutorial/next-steps/intro/material-ui/sandpack";
+import { dependencies } from "@site/tutorial/next-steps/intro/material-ui/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
+import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -23,7 +24,17 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 
 // updates
 
-const AppTsxWithNotificationProvider = /* tsx */ `
+const ListCategoriesBase = /* tsx */ `
+export const ListCategories = () => {
+  return (
+    <div>
+      <h1>Categories</h1>
+    </div>
+  );
+};
+`.trim();
+
+const AppWithCategories = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
@@ -49,6 +60,8 @@ import { EditProduct } from "./pages/products/edit";
 import { ListProducts } from "./pages/products/list";
 import { CreateProduct } from "./pages/products/create";
 
+import { ListCategories } from "./pages/categories/list";
+
 import { Login } from "./pages/login";
 
 export default function App(): JSX.Element {
@@ -71,6 +84,11 @@ export default function App(): JSX.Element {
                 edit: "/products/:id/edit",
                 create: "/products/create",
                 meta: { label: "Products" },
+                },
+                {
+                  name: "categories",
+                  list: "/categories",
+                  meta: { label: "Categories" },
                 },
             ]}
             >
@@ -104,6 +122,9 @@ export default function App(): JSX.Element {
                     <Route path=":id/edit" element={<EditProduct />} />
                     <Route path="create" element={<CreateProduct />} />
                 </Route>
+                <Route path="/categories">
+                  <Route index element={<ListCategories />} />
+                </Route>
                 </Route>
                 <Route
                 element={
@@ -123,19 +144,62 @@ export default function App(): JSX.Element {
 }
 `.trim();
 
+const ListCategoriesWithInferencer = /* tsx */ `
+import { MuiInferencer } from "@refinedev/inferencer/mui";
+
+export const ListCategories = () => {
+  return (
+    <MuiInferencer
+      // resource="categories" // We're omitting this prop because it's inferred from the route
+      // action="list" // We're omitting this prop because it's inferred from the route
+    />
+  );
+};
+`.trim();
+
 // actions
 
-export const AddNotificationProviderToApp = () => {
+export const CreateListCategoriesTsx = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialCreateFileButton
+            name="src/pages/categories/list.tsx"
+            onClick={() => {
+                sandpack.addFile(
+                    "src/pages/categories/list.tsx",
+                    ListCategoriesBase,
+                );
+                sandpack.setActiveFile("/src/pages/categories/list.tsx");
+            }}
+        />
+    );
+};
+
+export const AddListCategoriesToApp = () => {
+    const { sandpack } = useSandpack();
+
+    return (
+        <TutorialUpdateFileButton
+            onClick={() => {
+                sandpack.updateFile("/src/App.tsx", AppWithCategories);
+                sandpack.setActiveFile("/src/App.tsx");
+            }}
+        />
+    );
+};
+
+export const AddInferencerToListCategories = () => {
     const { sandpack } = useSandpack();
 
     return (
         <TutorialUpdateFileButton
             onClick={() => {
                 sandpack.updateFile(
-                    "src/App.tsx",
-                    AppTsxWithNotificationProvider,
+                    "src/pages/categories/list.tsx",
+                    ListCategoriesWithInferencer,
                 );
-                sandpack.setActiveFile("/src/App.tsx");
+                sandpack.setActiveFile("/src/pages/categories/list.tsx");
             }}
         />
     );
@@ -145,8 +209,11 @@ export const AddNotificationProviderToApp = () => {
 
 export const finalFiles = {
     ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithNotificationProvider,
+    "src/pages/categories/list.tsx": {
+        code: ListCategoriesWithInferencer,
         active: true,
+    },
+    "src/App.tsx": {
+        code: AppWithCategories,
     },
 };
