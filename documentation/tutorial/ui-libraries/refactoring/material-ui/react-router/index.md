@@ -496,7 +496,7 @@ Now that we've refactored our list, edit and create components, let's refactor o
 
 List of available field components:
 
-- [`<BooleanField />`](/docs/ui-integrations/material-ui/components/fields/), displays a checkbox element for boolean values.
+- [`<BooleanField />`](/docs/ui-integrations/material-ui/components/fields/boolean-field), displays a checkbox element for boolean values.
 - [`<DateField />`](/docs/ui-integrations/material-ui/components/fields/date-field), displays a date with customizable formatting.
 - [`<EmailField />`](/docs/ui-integrations/material-ui/components/fields/email-field), displays an email with a mailto anchor.
 - [`<FileField />`](/docs/ui-integrations/material-ui/components/fields/file-field), displays a download anchor for file.
