@@ -26,7 +26,6 @@ module.exports = {
                 {
                     label: "Material UI",
                     value: "material-ui",
-                    status: "coming-soon",
                 },
             ],
         },
@@ -87,9 +86,9 @@ module.exports = {
                 items: [
                     "next-steps/intro/:uiSelection/index",
                     "next-steps/inferencer/:routerSelection/:uiSelection/index",
-                    "next-steps/cli/:routerSelection/index",
-                    "next-steps/devtools/:routerSelection/index",
-                    "next-steps/summary/index",
+                    "next-steps/cli/:routerSelection/:uiSelection/index",
+                    "next-steps/devtools/:routerSelection/:uiSelection/index",
+                    "next-steps/summary/:routerSelection/:uiSelection/index",
                 ],
             },
         ],
