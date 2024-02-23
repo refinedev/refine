@@ -517,14 +517,14 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
     return (
         <ShowcaseWrapper
             className={className}
-            render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/base_render.png"
+            render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/base_render-2.png"
             highlights={[
                 {
                     x: 811,
                     y: 10,
                     width: 108,
                     height: 44,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/language.png",
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/language-2.png",
                     codePosition: "left",
                     code: `
                             import { useSetLocale, useGetLocale } from "@refinedev/core";
@@ -542,7 +542,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     y: 168,
                     width: 616,
                     height: 360,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/map.png",
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/map-2.png",
                     codePosition: "right",
                     codeClassName: "!pl-2",
                     overlap: true,
@@ -561,7 +561,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     y: 92,
                     width: 204,
                     height: 48,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions.png",
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions-2.png",
                     codePosition: "left",
                     code: `
                     import { useResource, useUpdate } from "@refinedev/core";
@@ -583,7 +583,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                     y: 216,
                     width: 152,
                     height: 120,
-                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/menu.png",
+                    render: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/menu-2.png",
                     codePosition: "right",
                     code: `
                     
