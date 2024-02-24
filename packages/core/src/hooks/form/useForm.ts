@@ -461,7 +461,7 @@ export const useForm = <
                             if (onMutationError) {
                                 return onMutationError(error, values, context);
                             }
-                            reject();
+                            reject(error);
                         },
                     },
                 );
