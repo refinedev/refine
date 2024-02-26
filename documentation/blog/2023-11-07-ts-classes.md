@@ -573,7 +573,11 @@ class User<T> implements Identifiable, Greetable, Updatable {
   username = "randomString";
   protected age!: number;
 
-  constructor(userType: T, private firstName: string, private lastName: string) {
+  constructor(
+    userType: T,
+    private firstName: string,
+    private lastName: string,
+  ) {
     this.userType = userType;
   }
 
@@ -622,7 +626,11 @@ class User<T> implements Identifiable, Greetable, Updatable, Registerable {
   username = "randomString";
   protected age!: number;
 
-  constructor(userType: T, private firstName: string, private lastName: string) {
+  constructor(
+    userType: T,
+    private firstName: string,
+    private lastName: string,
+  ) {
     this.userType = userType;
   }
 

@@ -3,20 +3,10 @@ title: Top React Component Libraries and Frameworks Every Developer Should Know
 description: Learn about the top React component libraries and frameworks.
 slug: top-react-component-libraries-and-frameworks-every-developer-should-know
 authors: salih
-tags:
-    [
-        comparison
-    ]
+tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/social.jpg
 hide_table_of_contents: false
 ---
-
-
-
-
-
-
-
 
 # Top React Component Libraries and Frameworks Every Developer Should Know
 
@@ -36,9 +26,9 @@ The best part of Material UI is how many people use it. There are countless free
 
 ### Features
 
--   A list of components that ready-to-use, free forever, and has accessibility.
--   Advance and powerful components for complex use-cases.
--   Fully built, out-of-the-box, templates for apps, landing pages, and more.
+- A list of components that ready-to-use, free forever, and has accessibility.
+- Advance and powerful components for complex use-cases.
+- Fully built, out-of-the-box, templates for apps, landing pages, and more.
 
 👉 [Showcase](https://mui.com/material-ui/discover-more/showcase/)
 
@@ -54,10 +44,10 @@ One of the drawbacks of Ant Design is that it has a large bundle size, when comp
 
 ### Features
 
--   Enterprise-class UI designed for web applications.
--   Written in TypeScript with predictable static types.
--   Internationalization support.
--   Powerful theme customization in every detail.
+- Enterprise-class UI designed for web applications.
+- Written in TypeScript with predictable static types.
+- Internationalization support.
+- Powerful theme customization in every detail.
 
 👉 [Showcase](https://vvbin.cn/next/)
 
@@ -71,10 +61,10 @@ Simplicity is one of the terms that come to mind when describing Chakra UI. Its 
 
 ### Features
 
--   Makes it easy to style your components by passing props.
--   Flexible and composable wicth built on top of React UI Primitive.
--   All of components are accessible and its follow the WAI-ARIA guidelines specifications.
--   Most components are dark mode compatible.
+- Makes it easy to style your components by passing props.
+- Flexible and composable wicth built on top of React UI Primitive.
+- All of components are accessible and its follow the WAI-ARIA guidelines specifications.
+- Most components are dark mode compatible.
 
 👉 [Showcase](https://chakra-ui.com/showcase)
 
@@ -88,10 +78,10 @@ It stands out from other UI design systems with its simple structure and modular
 
 ### Features
 
--   The core components are extremely extensive and provides niche components like color picker, date-range picker, and timelines.
--   Advanced theme customization and dark mode support.
--   A set of hooks that make it easy to use the components.
--   A full-featured notification system that integrates seamlessly with your theme.
+- The core components are extremely extensive and provides niche components like color picker, date-range picker, and timelines.
+- Advanced theme customization and dark mode support.
+- A set of hooks that make it easy to use the components.
+- A full-featured notification system that integrates seamlessly with your theme.
 
 👉 [Showcase](https://chakra-ui.com/showcase)
 
@@ -105,10 +95,10 @@ It makes development faster and easier by isolating components. This allows you 
 
 ### Features
 
--   A sandbox to build UIs in isolation so you can develop hard-to-reach states and edge cases.
--   Implement components and pages without needing to fuss with data, APIs, or business logic.
--   Save use cases as stories in plain JavaScript to revisit during development, testing, and QA.
--   Use addons to customize your workflow, automate testing, and integrate with your favorite tools.
+- A sandbox to build UIs in isolation so you can develop hard-to-reach states and edge cases.
+- Implement components and pages without needing to fuss with data, APIs, or business logic.
+- Save use cases as stories in plain JavaScript to revisit during development, testing, and QA.
+- Use addons to customize your workflow, automate testing, and integrate with your favorite tools.
 
 👉 [Showcase](https://storybook.js.org/showcase/)
 
@@ -124,10 +114,10 @@ It has many examples to help you get started, as well as documentation. Also it 
 
 ### Features
 
--   **Headless**: Works with any UI framework
--   **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
--   **Out-of-the-box**: Routing, networking, authentication, state management, i18n and UI.
--   **Backend Agnostic**: Connects to any custom backend.
--   **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/) (It can also be used with any UI Framework).
+- **Headless**: Works with any UI framework
+- **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+- **Out-of-the-box**: Routing, networking, authentication, state management, i18n and UI.
+- **Backend Agnostic**: Connects to any custom backend.
+- **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/) (It can also be used with any UI Framework).
 
 👉 [Showcase](https://refine.dev/demo/)

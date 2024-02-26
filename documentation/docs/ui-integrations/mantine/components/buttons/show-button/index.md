@@ -17,7 +17,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -37,7 +41,11 @@ const ShowPage = () => {
       </MantineCore.Text>
       <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
       <MantineCore.Space h="md" />
-      <MantineCore.Button size="xs" variant="outline" onClick={() => list("posts")}>
+      <MantineCore.Button
+        size="xs"
+        variant="outline"
+        onClick={() => list("posts")}
+      >
         Go back
       </MantineCore.Button>
     </div>
@@ -110,7 +118,12 @@ const PostList: React.FC = () => {
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </th>
               ))}
             </tr>
@@ -120,14 +133,21 @@ const PostList: React.FC = () => {
           {getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
               ))}
             </tr>
           ))}
         </tbody>
       </Table>
       <br />
-      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
     </List>
   );
 };
@@ -304,7 +324,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ShowButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-  return <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

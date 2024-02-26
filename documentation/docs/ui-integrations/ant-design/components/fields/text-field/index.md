@@ -29,7 +29,8 @@ import { Table } from "antd";
 const PostList: React.FC = (props) => {
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
 
   const { data: categoriesData, isLoading } = useMany<ICategory>({
     resource: "categories",
@@ -52,7 +53,14 @@ const PostList: React.FC = (props) => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField strong value={categoriesData?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                strong
+                value={
+                  categoriesData?.data.find((item) => item.id === value)?.title
+                }
+              />
+            );
             // highlight-end
           }}
           width="50%"

@@ -61,7 +61,11 @@ const PostList: React.FC = () => {
           // highlight-end
         />
         <Table.Column dataIndex="content" title="Content" />
-        <Table.Column dataIndex="status" title="Status" render={(value: string) => <TagField value={value} />} />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+        />
       </Table>
     </List>
   );

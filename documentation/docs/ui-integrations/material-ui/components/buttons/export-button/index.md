@@ -41,7 +41,9 @@ const PostsList: React.FC = () => {
   return (
     <List
       // highlight-start
-      headerButtons={<ExportButton onClick={triggerExport} loading={exportLoading} />}
+      headerButtons={
+        <ExportButton onClick={triggerExport} loading={exportLoading} />
+      }
       // highlight-end
     >
       <DataGrid {...dataGridProps} columns={columns} autoHeight />

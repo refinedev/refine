@@ -399,7 +399,14 @@ By default, `Refine` expects you to return the `cursor` object, but is not requi
 ```tsx
 import { useInfiniteList } from "@refinedev/core";
 
-const { data, error, hasNextPage, isLoading, fetchNextPage, isFetchingNextPage } = useInfiniteList({
+const {
+  data,
+  error,
+  hasNextPage,
+  isLoading,
+  fetchNextPage,
+  isFetchingNextPage,
+} = useInfiniteList({
   resource: "posts",
   // highlight-start
   queryOptions: {

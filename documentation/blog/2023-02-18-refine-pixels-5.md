@@ -84,7 +84,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -172,8 +175,17 @@ After creating files above you need to add some imports and [routes](/docs/packa
 <p>
 
 ```tsx title="App.tsx"
-import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  Authenticated,
+  CanAccess,
+  GitHubBanner,
+  Refine,
+} from "@refinedev/core";
+import {
+  ErrorComponent,
+  ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -187,7 +199,11 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
+import {
+  auditLogProvider,
+  authProvider,
+  accessControlProvider,
+} from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
@@ -254,9 +270,18 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/login"
+                element={<AuthPage type="login" registerLink={false} />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -316,24 +341,40 @@ export const UserList = () => {
       <Table {...tableProps} rowKey={"id"}>
         <Table.Column
           dataIndex="avatar_url"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>
+          }
           render={(_, record: TUser) => (
-            <Avatar icon={<UserOutlined />} src={record.avatar_url} size={{ xs: 24, sm: 32, md: 40 }} />
+            <Avatar
+              icon={<UserOutlined />}
+              src={record.avatar_url}
+              size={{ xs: 24, sm: 32, md: 40 }}
+            />
           )}
         />
         <Table.Column
           dataIndex="id"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>}
-          render={(_, record: TUser) => <p style={{ textAlign: "center" }}>{record?.id}</p>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>
+          }
+          render={(_, record: TUser) => (
+            <p style={{ textAlign: "center" }}>{record?.id}</p>
+          )}
         />
         <Table.Column
           dataIndex="email"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>
+          }
           render={() => <p style={{ textAlign: "center" }}>Not listed</p>}
         />
         <Table.Column
           dataIndex="full_name"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Full Name</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
+              Full Name
+            </h4>
+          }
           render={(_, record: TUser) =>
             record.full_name ? (
               <p
@@ -357,7 +398,11 @@ export const UserList = () => {
         />
         <Table.Column
           dataIndex="username"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Username</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
+              Username
+            </h4>
+          }
           render={(_, record: TUser) =>
             record.username ? (
               <p
@@ -521,9 +566,18 @@ function App() {
               </Authenticated>
             }
           >
-            <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/login"
+              element={<AuthPage type="login" registerLink={false} />}
+            />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
 
           <Route
@@ -558,8 +612,17 @@ Remember, we've already replaced `App.tx` code with the following:
 <p>
 
 ```tsx title="App.tsx"
-import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  Authenticated,
+  CanAccess,
+  GitHubBanner,
+  Refine,
+} from "@refinedev/core";
+import {
+  ErrorComponent,
+  ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -573,7 +636,11 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
+import {
+  auditLogProvider,
+  authProvider,
+  accessControlProvider,
+} from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
@@ -640,9 +707,18 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/login"
+                element={<AuthPage type="login" registerLink={false} />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -713,7 +789,12 @@ We have a `useEditableTable()` hook in action inside our `<CanvasList />` compon
 ```tsx title="pages/canvases/list.tsx"
 import { useState } from "react";
 import { useUpdate } from "@refinedev/core";
-import { List, useEditableTable, useModal, DeleteButton } from "@refinedev/antd";
+import {
+  List,
+  useEditableTable,
+  useModal,
+  DeleteButton,
+} from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
 import { TCanvas } from "../../types/canvas";

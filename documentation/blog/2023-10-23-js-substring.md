@@ -58,7 +58,8 @@ Let's see this in action with some examples.
 With only `startIndex` passed to `substring()`, we get a substring that begins at `startIndex` and spans to the end of the parent string:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 console.log(mnemonic.substring(14)); // "cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked."
 ```
 
@@ -69,7 +70,8 @@ As we can figure out from the string above, chopping starts at `startIndex` and 
 Since we are using a zero-based index for `startIndex`, the first `startIndex` number of characters are represented by the index just **before** `startIndex`. And since the value at `startIndex` is included in the extracted tail, the following pattern emerges where with `startIndex = n`, we get the tail **after** first `n` characters in the parent string:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // Extract characters after first 14
 console.log(mnemonic.substring(14)); // "cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked."
@@ -89,7 +91,8 @@ console.log(mnemonic.substring(72)); // "padlocked."
 When we pass both the `startIndex` and `endIndex`, we get a substring of characters in `startIndex <= str < endIndex` range:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 console.log(mnemonic.substring(14, 27)); // "cats, monkeys"
 ```
 
@@ -100,14 +103,16 @@ This means, now we end up with a substring that ends **before** the `endIndex`.
 When we need a substring from the start of the parent string, the `startIndex` should be `0`:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 console.log(mnemonic.substring(0, 27)); // "Please send, cats, monkeys"
 ```
 
 With `startIndex = 0` and `endIndex = n`, we get the first `n` characters from the parent string:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // First 12 characters
 console.log(mnemonic.substring(0, 12)); // "Please, send"
@@ -127,7 +132,8 @@ console.log(mnemonic.substring(0, 70)); // "Please, send, cats, monkeys, and, ze
 We can get the last `n` characters by leveraging the caller `length` in `startIndex`:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // Last 9 characters
 console.log(mnemonic.substring(mnemonic.length - 9)); // "padlocked."
@@ -147,7 +153,8 @@ Other quirks of using `substring()` include cases when `startIndex` is greater t
 When `startIndex` is greater than `endIndex` JavaScript `substring()` **swaps** the indexes to produce the substring:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // Swaps to mnemonic.substring(0, 6)
 console.log(mnemonic.substring(6, 0)); // "Please"
@@ -158,7 +165,8 @@ console.log(mnemonic.substring(6, 0)); // "Please"
 A negative value of `startIndex` or `endIndex` sets the respective value to `0`:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // Same as mnemonic.substring(0, 6)
 console.log(mnemonic.substring(-1, 6)); // "Please"
@@ -183,7 +191,8 @@ In this section, we briefly discuss how JavaScript `substring()` method differs 
 For example, swapping of arguments -- which we saw above in `substring()` -- doesn't take place in `slice()` when `startIndex > endIndex`:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 // Swaps to mnemonic.substring(0, 6)
 console.log(mnemonic.substring(6, 0)); // "Please"
@@ -225,7 +234,8 @@ JavaScript `substr()` is also another method for extracting substrings from a pa
 In other words, with `substr()`, we get indicate the `length` of the substring:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 console.log(mnemonic.substring(10, 12)); // "nd"
 
@@ -236,7 +246,8 @@ console.log(mnemonic.substr(10, 12)); // "nd, cats, mo"
 Also, as with `slice()`, with a negative `startIndex`, `substr()` counts backwards from the last character:
 
 ```js
-const mnemonic = "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
+const mnemonic =
+  "Please, send, cats, monkeys, and, zebras, in, large, cages, make, sure, padlocked.";
 
 console.log(mnemonic.substring(-10, 12)); // "Please, send"
 

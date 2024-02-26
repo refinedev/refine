@@ -70,7 +70,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+    <MantineProvider
+      theme={RefineThemes.Blue}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -338,7 +342,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+    <MantineProvider
+      theme={RefineThemes.Blue}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -448,7 +456,11 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+    <MantineProvider
+      theme={RefineThemes.Blue}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -629,7 +641,11 @@ const App = () => {
     <Refine
     /* ... */
     >
-      <ThemedLayoutV2 Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
+      <ThemedLayoutV2
+        Header={ThemedHeader}
+        Sider={ThemedSider}
+        Title={ThemedTitle}
+      >
         /* ... */
       </ThemedLayoutV2>
     </Refine>
@@ -759,7 +775,11 @@ const DashboardPage = () => {
 
 const App: React.FC = () => {
   return (
-    <MantineProvider theme={RefineThemes.Blue} withNormalizeCSS withGlobalStyles>
+    <MantineProvider
+      theme={RefineThemes.Blue}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine

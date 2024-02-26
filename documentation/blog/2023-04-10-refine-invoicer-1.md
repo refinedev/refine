@@ -87,7 +87,8 @@ const dataProvider: DataProvider = {
   createMany: ({ resource, variables, meta }) => Promise,
   deleteMany: ({ resource, ids, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) =>
+    Promise,
 };
 ```
 

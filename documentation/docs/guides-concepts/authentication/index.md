@@ -98,7 +98,10 @@ import { Authenticated } from "@refinedev/core";
 
 const Page = () => {
   return (
-    <Authenticated loading={<div>loading...</div>} fallback={<div>You cannot access this section</div>}>
+    <Authenticated
+      loading={<div>loading...</div>}
+      fallback={<div>You cannot access this section</div>}
+    >
       <h1>Welcome to your dashboard</h1>
     </Authenticated>
   );

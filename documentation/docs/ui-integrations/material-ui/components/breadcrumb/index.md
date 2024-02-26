@@ -87,7 +87,11 @@ render(
 import { List, Breadcrumb } from "@refinedev/mui";
 
 export const PostList: React.FC = () => {
-  return <List breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}>...</List>;
+  return (
+    <List breadcrumb={<Breadcrumb breadcrumbProps={{ separator: "-" }} />}>
+      ...
+    </List>
+  );
 };
 ```
 
