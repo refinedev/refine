@@ -8,8 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-16-react-prop
 hide_table_of_contents: false
 ---
 
-
-
 ##  Introduction
 
 React.js is the backbone of modern web development. Almost all companies use it. This is because React is easy to install and use, has strong community support, and is still actively maintained by Facebook.
@@ -17,6 +15,7 @@ React.js is the backbone of modern web development. Almost all companies use it.
 It has a plethora of simple features that made it incredibly powerful. One of those features is Props, and we are going to learn what it is in this article.
 
 Steps we'll cover:
+
 - [Props in React](#props-in-react)
 - [Passing Array to React Component](#passing-array-to-react-component)
 - [Passing Function to React Component](#passing-function-to-react-component)
@@ -24,12 +23,10 @@ Steps we'll cover:
 - [React children prop](#react-children-prop)
 - [State vs Props](#state-vs-props)
 
-
 Props in simple terms are used for communication among components in React app. Component communication is a very essential feature that any framework based on component-driven design should have. Most popular frameworks like Angular and Vuejs have their own way of components passing data to each other.
 
 In a component-drive framework, every single unit of the UI is made up of components. Now, each of these components might need to communicate data among themselves, so you see that this becomes a necessity to have in frameworks.
 For example, we have the below components
-
 
 ```
 Root
@@ -37,28 +34,29 @@ Root
 |
 v
 CompA CompB
-    
+
 |      |
 v      v
 CompC CompD
-   
+
 ```
 
 The Root component is root of the component tree, it renders the components CompA and CompB. They in turn render CompC and CompD. Let's say that CompD needs data to render and the data comes from CompB, we see that CompB must pass that data to CompD
 
 ```
 Root
-    
+
 |
 v
 CompA CompB
-    
+
 |      | dataToRender: 90
 v      v
-CompC CompD  
+CompC CompD
 ```
 
 On the other hand, we might need to send data upward from a child to a parent.
+
 ```
 Root
 
@@ -70,8 +68,6 @@ CompA CompB
 v      v
 CompC CompD
 ```
-
-
 
 ## Props in React
 
@@ -86,7 +82,6 @@ function sum() {
 ```
 
 This function returns the summation of 1 and 2. We can make this function to be flexible enough not to sum only 1 and 2 but to sum any two numbers. We will make it to accept two arguments.
-
 
 ```tsx
 function sum(firstNumber, secondNumber) {
@@ -113,6 +108,7 @@ function FunctionalComponent() {
   return <div>Hello</div>;
 }
 ```
+
 We can now render it like this:
 
 ```ts
@@ -219,8 +215,9 @@ From this, we know now that we will pass the numbers we want to sum to the `Sum`
 ```ts
 //let's display the summation of 1 and 2:
 
-<Sum firstNumber={1} secondNumber={2} />;
+<Sum firstNumber={1} secondNumber={2} />
 ```
+
 The display will be this:
 
 ```
@@ -229,6 +226,7 @@ The display will be this:
   <span>3</span>
 </div>;
 ```
+
 We can pass any data type as props in React components: object, array, boolean, number, string, function, etc.
 
 Object
@@ -241,7 +239,6 @@ const user = {
   name: "Chidume Nnamdi",
   age: 54,
 };
-
 ```
 
 We pass it to the component like this:
@@ -270,9 +267,6 @@ function DisplayUser(props) {
   );
 }
 ```
-
-
-
 
 ## Passing Array to React Component
 
@@ -344,8 +338,8 @@ Most function props are used to communicate data from a child component to a par
 
 Let's see a simple example:
 
- ```ts
- function func() {
+```ts
+function func() {
   console.log("Yes, I am a function");
 }
 ```
@@ -398,7 +392,7 @@ function concat(str1, str2 = "") {
 
 So now this:
 
-``` 
+```
 concat("Hello");
 ```
 
@@ -437,7 +431,7 @@ function DisplayUser(props) {
 
 That, we did not pass any `user` object to it via its `user` props.
 
-``` 
+```
 <DisplayUser />
 ```
 
@@ -462,8 +456,6 @@ DisplayUser.defaultProps = {
 };
 ```
 
- 
-
 To see that we set the `user` props inside the `defaultProps` object. This is will be the value of the `user` props when it is not passed to the component.
 
 Let's see it in action:
@@ -479,11 +471,10 @@ Let's see it in action:
       Age: <span>0</span>
     </p>
   </div>
-</>;
+</>
 ```
 
 The application didn't crash this time.
-
 
 <br/>
 <div>
@@ -502,22 +493,21 @@ The `children` prop is a special prop passed by React itself to components. This
     <Hello />
     <div>I am a child</div>
   </>
-</DisplayUser>;
+</DisplayUser>
 ```
 
-We see that we have some elements rendered in between the `DisplayUser` component. 
+We see that we have some elements rendered in between the `DisplayUser` component.
 
 These elements are passed to the `DisplayUser` component in the `children` property of the `props` object.
 
- ```ts
- function DisplayUser(props) {
-  const user = props.user;
-  const children = props.children;
+```ts
+function DisplayUser(props) {
+ const user = props.user;
+ const children = props.children;
 
-  return ( // )
+ return ( // )
 }
 ```
-
 
 This `children` is a React Fiber Node that renders the element in between a component's tag. Let's render the child elements:
 
@@ -542,8 +532,8 @@ function DisplayUser(props) {
 
 This will render this:
 
- ```ts
- <div>
+```ts
+<div>
   <p>
     Name: <span>{user.name}</span>
   </p>
@@ -552,9 +542,9 @@ This will render this:
   </p>
   <div>Hello</div>
   <div>I am a child</div>
-</div>;
-
+</div>
 ```
+
 ## State vs Props
 
 We have learned deep down what props are. Now, people often tend to confuse props with the state in React components. They differ completely, let's see their differences.

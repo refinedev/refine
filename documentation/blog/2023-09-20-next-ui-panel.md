@@ -110,7 +110,12 @@ import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout";
 
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "./pages/categories";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -222,7 +227,11 @@ const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
   },
@@ -414,7 +423,13 @@ We need to create a `KpiCard` component and reuse it for all three performance i
 ```tsx title="src/components/kpiCard/index.tsx"
 import { Progress, Card, Chip, Spinner } from "@nextui-org/react";
 import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/20/solid";
-type DeltaType = "warning" | "default" | "primary" | "secondary" | "success" | "danger";
+type DeltaType =
+  | "warning"
+  | "default"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger";
 
 const getColor = (num: number): DeltaType => {
   if (num < 20) return "danger";
@@ -457,7 +472,16 @@ export const KpiCard = ({
           {Number.isNaN(percent) ? (
             <Spinner />
           ) : (
-            <Chip color={color} startContent={percent < 0 ? <ArrowDownIcon width={12} /> : <ArrowUpIcon width={12} />}>
+            <Chip
+              color={color}
+              startContent={
+                percent < 0 ? (
+                  <ArrowDownIcon width={12} />
+                ) : (
+                  <ArrowUpIcon width={12} />
+                )
+              }
+            >
               {`${percent}%`}
             </Chip>
           )}
@@ -559,7 +583,9 @@ export const DashboardPage: React.FC = () => {
           total={dailyRevenue?.data.total ?? 0}
           trend={dailyRevenue?.data.trend ?? 0}
           target={10_500}
-          formattedTotal={`${currencyFormatter.format(dailyRevenue?.data.total ?? 0)}`}
+          formattedTotal={`${currencyFormatter.format(
+            dailyRevenue?.data.total ?? 0,
+          )}`}
           formattedTarget={`${currencyFormatter.format(10_500)}`}
         />
         <KpiCard
@@ -567,7 +593,9 @@ export const DashboardPage: React.FC = () => {
           total={dailyOrders?.data.total ?? 0}
           trend={dailyOrders?.data.trend ?? 0}
           target={500}
-          formattedTotal={`${numberFormatter.format(dailyOrders?.data.total ?? 0)}`}
+          formattedTotal={`${numberFormatter.format(
+            dailyOrders?.data.total ?? 0,
+          )}`}
           formattedTarget={`${numberFormatter.format(500)}`}
         />
         <KpiCard
@@ -575,7 +603,9 @@ export const DashboardPage: React.FC = () => {
           total={newCustomers?.data.total ?? 0}
           trend={newCustomers?.data.trend ?? 0}
           target={200}
-          formattedTotal={`${numberFormatter.format(newCustomers?.data.total ?? 0)}`}
+          formattedTotal={`${numberFormatter.format(
+            newCustomers?.data.total ?? 0,
+          )}`}
           formattedTarget={`${numberFormatter.format(200)}`}
         />
       </div>
@@ -692,7 +722,15 @@ After successfully installing Recharts, create the `src/components/charts/Displa
 
 ```tsx title="src/components/charts/DisplayBarChart.tsx"
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 import { IDisplayBarChartProps } from "../../interfaces";
 
@@ -702,7 +740,10 @@ export const formatDate = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
 });
 
-export const DisplayBarChart: React.FC<IDisplayBarChartProps> = ({ data, fill }) => {
+export const DisplayBarChart: React.FC<IDisplayBarChartProps> = ({
+  data,
+  fill,
+}) => {
   const transformedData = data.map(({ date, value }) => ({
     date: formatDate.format(new Date(date)),
     value,
@@ -726,12 +767,24 @@ Similarly, create the `src/components/charts/DisplayAreaGraph.tsx` file. Copy an
 
 ```tsx title="src/components/charts/DisplayAreaGraph.tsx"
 import React from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 import { IDisplayAreaGraphProps } from "../../interfaces";
 import { formatDate } from "./DisplayBarChart";
 
-export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, stroke, fill }) => {
+export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({
+  data,
+  stroke,
+  fill,
+}) => {
   const transformedData = data.map(({ date, value }) => ({
     date: formatDate.format(new Date(date)),
     value,
@@ -981,7 +1034,10 @@ export const RecentSalesTable = () => {
     if (columnKey === "gsm") return item.user.gsm;
     if (columnKey === "address") return item.address.text;
     if (columnKey === "createdAt") return formatDateTime(item.createdAt);
-    if (columnKey === "status") return <Chip color={getChipColor(item.status.id)}>{item.status.text}</Chip>;
+    if (columnKey === "status")
+      return (
+        <Chip color={getChipColor(item.status.id)}>{item.status.text}</Chip>
+      );
     return "";
   }, []);
 
@@ -1079,7 +1135,11 @@ export const RecentSalesTable = () => {
               }}
             >
               {[5, 10, 25, 50].map((rowsPerPage) => {
-                return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
+                return (
+                  <DropdownItem
+                    key={`${rowsPerPage}`}
+                  >{`${rowsPerPage}`}</DropdownItem>
+                );
               })}
             </DropdownMenu>
           </Dropdown>
@@ -1099,7 +1159,11 @@ export const RecentSalesTable = () => {
             return (
               <TableRow key={item.id}>
                 {(columnKey) => {
-                  return <TableCell>{getCellContents(columnKey as string, item)}</TableCell>;
+                  return (
+                    <TableCell>
+                      {getCellContents(columnKey as string, item)}
+                    </TableCell>
+                  );
                 }}
               </TableRow>
             );
@@ -1168,17 +1232,31 @@ Create the `src/components/modal/index.tsx` file. Copy and paste the code below 
 
 ```tsx title="src/components/modal/index.tsx"
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "@nextui-org/react";
 
 import { IDeleteModalProps } from "../../interfaces";
 
-export const DeleteModal: React.FC<IDeleteModalProps> = ({ isOpen, onOpenChange, onDelete, warningMessage }) => {
+export const DeleteModal: React.FC<IDeleteModalProps> = ({
+  isOpen,
+  onOpenChange,
+  onDelete,
+  warningMessage,
+}) => {
   return (
     <Modal isOpen={isOpen} backdrop="opaque" onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">Product deletion</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">
+              Product deletion
+            </ModalHeader>
             <ModalBody>
               <p>{warningMessage}</p>
             </ModalBody>
@@ -1238,7 +1316,13 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import { TrashIcon, EyeIcon, PencilIcon, MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  EyeIcon,
+  PencilIcon,
+  MagnifyingGlassIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 
 import { ICategory, IProduct } from "../../interfaces";
 
@@ -1256,8 +1340,17 @@ const columns = [
 ];
 
 export const ProductList: React.FC<IResourceComponentsProps> = () => {
-  const { tableQueryResult, pageCount, current, pageSize, filters, setCurrent, setPageSize, setSorters, setFilters } =
-    useTable();
+  const {
+    tableQueryResult,
+    pageCount,
+    current,
+    pageSize,
+    filters,
+    setCurrent,
+    setPageSize,
+    setSorters,
+    setFilters,
+  } = useTable();
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -1438,7 +1531,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 }}
               >
                 {[5, 10, 25, 50].map((rowsPerPage) => {
-                  return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
+                  return (
+                    <DropdownItem
+                      key={`${rowsPerPage}`}
+                    >{`${rowsPerPage}`}</DropdownItem>
+                  );
                 })}
               </DropdownMenu>
             </Dropdown>
@@ -1449,7 +1546,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
           {(column) => {
             if (column.key === "actions") {
               return (
-                <TableColumn allowsSorting={column.sortable} key={column.key} className="text-end pr-16">
+                <TableColumn
+                  allowsSorting={column.sortable}
+                  key={column.key}
+                  className="text-end pr-16"
+                >
                   {column.header}
                 </TableColumn>
               );
@@ -1480,7 +1581,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
       {isOpen ? (
         <DeleteModal
           isOpen={isOpen}
-          onDelete={() => deleteProduct({ resource: "products", id: deleteItemId as number })}
+          onDelete={() =>
+            deleteProduct({ resource: "products", id: deleteItemId as number })
+          }
           onOpenChange={onOpenChange}
           warningMessage={`You are about to delete product with id ${deleteItemId} from the database. This action is irreversible.`}
         />
@@ -1525,7 +1628,12 @@ import { Layout } from "./components/layout";
 import { DashboardPage } from "./pages/dashboard";
 //highlight-next-line
 import { ProductList } from "./pages/products";
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "./pages/categories";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -1585,7 +1693,10 @@ function App() {
                 </Layout>
               }
             >
-              <Route index element={<NavigateToResource resource="dashboard" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="dashboard" />}
+              />
               <Route path="/dashboard">
                 <Route index element={<DashboardPage />} />
               </Route>
@@ -1762,13 +1873,21 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                     <DropdownMenu
                       aria-label="Select category"
                       selectionMode="single"
-                      selectedKeys={[field.value ?? categoryOptions[0]?.label ?? ""]}
+                      selectedKeys={[
+                        field.value ?? categoryOptions[0]?.label ?? "",
+                      ]}
                       onSelectionChange={(selectedItem) => {
-                        field.onChange((selectedItem as Set<string>).values().next().value);
+                        field.onChange(
+                          (selectedItem as Set<string>).values().next().value,
+                        );
                       }}
                     >
                       {categoryOptions.map((categoryOption) => {
-                        return <DropdownItem key={`${categoryOption.label}`}>{categoryOption.label}</DropdownItem>;
+                        return (
+                          <DropdownItem key={`${categoryOption.label}`}>
+                            {categoryOption.label}
+                          </DropdownItem>
+                        );
                       })}
                     </DropdownMenu>
                   </Dropdown>
@@ -1796,7 +1915,12 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
+            <Button
+              type="submit"
+              isLoading={formLoading}
+              color="primary"
+              className="mt-5"
+            >
               Save Product
             </Button>
           </div>
@@ -1982,11 +2106,17 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                       selectionMode="single"
                       selectedKeys={[`${field.value}`]}
                       onSelectionChange={(selectedItem) => {
-                        field.onChange(+(selectedItem as Set<string>).values().next().value);
+                        field.onChange(
+                          +(selectedItem as Set<string>).values().next().value,
+                        );
                       }}
                     >
                       {categoryOptions.map((categoryOption) => {
-                        return <DropdownItem key={categoryOption.value}>{categoryOption.label}</DropdownItem>;
+                        return (
+                          <DropdownItem key={categoryOption.value}>
+                            {categoryOption.label}
+                          </DropdownItem>
+                        );
                       })}
                     </DropdownMenu>
                   </Dropdown>
@@ -2014,7 +2144,12 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
+            <Button
+              type="submit"
+              isLoading={formLoading}
+              color="primary"
+              className="mt-5"
+            >
               Save Product
             </Button>
           </div>
@@ -2090,7 +2225,12 @@ Let's create a component that shows the details of a specific product. Create th
 <summary>Show ProductShow code</summary>
 
 ```tsx title="src/pages/products/show.tsx"
-import { useBack, useOne, useShow, IResourceComponentsProps } from "@refinedev/core";
+import {
+  useBack,
+  useOne,
+  useShow,
+  IResourceComponentsProps,
+} from "@refinedev/core";
 import { ICategory, IProduct } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
@@ -2137,7 +2277,13 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
             <h2>Product details</h2>
           </CardHeader>
           <CardBody>
-            {product?.images?.length ? <Image src={product.images[0].url} width={300} alt={product.name} /> : null}
+            {product?.images?.length ? (
+              <Image
+                src={product.images[0].url}
+                width={300}
+                alt={product.name}
+              />
+            ) : null}
             <h2 className="text-base font-medium mt-3">Name</h2>
             <p>{product?.name}</p>
             <h2 className="text-base font-medium mt-3">Price</h2>
@@ -2259,7 +2405,13 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import { TrashIcon, EyeIcon, PencilIcon, MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  EyeIcon,
+  PencilIcon,
+  MagnifyingGlassIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 
 import { IProduct } from "../../interfaces";
 
@@ -2273,12 +2425,21 @@ const columns = [
 ];
 
 export const CategoryList: React.FC<IResourceComponentsProps> = () => {
-  const { tableQueryResult, pageCount, current, pageSize, filters, setCurrent, setPageSize, setSorters, setFilters } =
-    useTable({
-      pagination: {
-        pageSize: 5,
-      },
-    });
+  const {
+    tableQueryResult,
+    pageCount,
+    current,
+    pageSize,
+    filters,
+    setCurrent,
+    setPageSize,
+    setSorters,
+    setFilters,
+  } = useTable({
+    pagination: {
+      pageSize: 5,
+    },
+  });
   const { edit, show, create } = useNavigation();
   const { mutate: deleteCategory } = useDelete();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -2433,7 +2594,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 }}
               >
                 {[5, 10].map((rowsPerPage) => {
-                  return <DropdownItem key={`${rowsPerPage}`}>{`${rowsPerPage}`}</DropdownItem>;
+                  return (
+                    <DropdownItem
+                      key={`${rowsPerPage}`}
+                    >{`${rowsPerPage}`}</DropdownItem>
+                  );
                 })}
               </DropdownMenu>
             </Dropdown>
@@ -2444,7 +2609,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           {(column) => {
             if (column.key === "actions") {
               return (
-                <TableColumn allowsSorting={column.sortable} key={column.key} className="text-end pr-16">
+                <TableColumn
+                  allowsSorting={column.sortable}
+                  key={column.key}
+                  className="text-end pr-16"
+                >
                   {column.header}
                 </TableColumn>
               );
@@ -2576,7 +2745,12 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
+            <Button
+              type="submit"
+              isLoading={formLoading}
+              color="primary"
+              className="mt-5"
+            >
               Save Category
             </Button>
           </div>
@@ -2675,7 +2849,12 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
             />
           </div>
           <div className="flex justify-content-end">
-            <Button type="submit" isLoading={formLoading} color="primary" className="mt-5">
+            <Button
+              type="submit"
+              isLoading={formLoading}
+              color="primary"
+              className="mt-5"
+            >
               Save Category
             </Button>
           </div>
@@ -2742,7 +2921,9 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
             <h2>Category details</h2>
           </CardHeader>
           <CardBody>
-            {category?.cover ? <Image src={category.cover} width={300} alt={category.title} /> : null}
+            {category?.cover ? (
+              <Image src={category.cover} width={300} alt={category.title} />
+            ) : null}
             <h2 className="text-base font-medium mt-3">Id</h2>
             <p>{category?.id ?? 0}</p>
             <h2 className="text-base font-medium mt-3">Title</h2>

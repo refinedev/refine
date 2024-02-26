@@ -887,7 +887,14 @@ We'll do this by adding an `action` column to the table on the List page and an 
 First, return to the `UserList` file and import the `EditButton` components from Refine:
 
 ```tsx title="src/pages/UserList.tsx"
-import { useDataGrid, DataGrid, GridColumns, List, Stack, EditButton } from "@refinedev/mui";
+import {
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  List,
+  Stack,
+  EditButton,
+} from "@refinedev/mui";
 ```
 
 The `EditButton` component uses Refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.

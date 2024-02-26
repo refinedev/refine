@@ -50,7 +50,11 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -642,7 +646,11 @@ const App = () => {
     <Refine
     /* ... */
     >
-      <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
+      <ThemedLayoutV2
+        Header={ThemedHeaderV2}
+        Sider={ThemedSiderV2}
+        Title={ThemedTitleV2}
+      >
         /* ... */
       </ThemedLayoutV2>
     </Refine>

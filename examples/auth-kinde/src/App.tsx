@@ -1,16 +1,16 @@
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  CatchAllNavigate,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
@@ -26,99 +26,92 @@ import { useEffect } from "react";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, authProvider, token } = useAuthProvider();
-    useEffect(() => {
-        if (token) {
-            axios.defaults.headers.common = {
-                Authorization: `Bearer ${token}`,
-            };
-        }
-    }, [token]);
-
-    if (isLoading) {
-        return <span>loading...</span>;
+  const { isLoading, authProvider, token } = useAuthProvider();
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common = {
+        Authorization: `Bearer ${token}`,
+      };
     }
+  }, [token]);
 
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <AntdApp>
-                    <Refine
-                        authProvider={authProvider}
-                        dataProvider={dataProvider(API_URL, axios)}
-                        routerProvider={routerProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                            },
-                        ]}
-                        notificationProvider={useNotificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="authenticated-routes"
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
+  if (isLoading) {
+    return <span>loading...</span>;
+  }
 
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                </Route>
-                            </Route>
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
+          <Refine
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL, axios)}
+            routerProvider={routerProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+              },
+            ]}
+            notificationProvider={useNotificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="auth-pages"
-                                        fallback={<Outlet />}
-                                    >
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<Login />} />
-                            </Route>
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                </Route>
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated key="catch-all">
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </AntdApp>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
+
+              <Route
+                element={
+                  <Authenticated key="catch-all">
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;

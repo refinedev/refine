@@ -1,9 +1,9 @@
 import { GitHubBanner, Refine, ErrorComponent } from "@refinedev/core";
 import { QueryClient } from "@tanstack/react-query";
 import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import dataProvider from "@refinedev/simple-rest";
@@ -15,65 +15,62 @@ import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persist
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            cacheTime: 1000 * 60 * 60 * 24, // 24 hours
-        },
+  defaultOptions: {
+    queries: {
+      cacheTime: 1000 * 60 * 60 * 24, // 24 hours
     },
+  },
 });
 
 const localStoragePersister = createSyncStoragePersister({
-    storage: window.localStorage,
+  storage: window.localStorage,
 });
 // const sessionStoragePersister = createSyncStoragePersister({ storage: window.sessionStorage })
 
 persistQueryClient({
-    queryClient,
-    persister: localStoragePersister,
+  queryClient,
+  persister: localStoragePersister,
 });
 
 const App: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                options={{
-                    reactQuery: {
-                        clientConfig: queryClient,
-                    },
-                    warnWhenUnsavedChanges: true,
-                    syncWithLocation: true,
-                }}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                    },
-                ]}
-            >
-                <Routes>
-                    <Route
-                        index
-                        element={<NavigateToResource resource="posts" />}
-                    />
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerProvider}
+        options={{
+          reactQuery: {
+            clientConfig: queryClient,
+          },
+          warnWhenUnsavedChanges: true,
+          syncWithLocation: true,
+        }}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+          },
+        ]}
+      >
+        <Routes>
+          <Route index element={<NavigateToResource resource="posts" />} />
 
-                    <Route path="posts">
-                        <Route index element={<PostList />} />
-                        <Route path="create" element={<PostCreate />} />
-                        <Route path="edit/:id" element={<PostEdit />} />
-                    </Route>
+          <Route path="posts">
+            <Route index element={<PostList />} />
+            <Route path="create" element={<PostCreate />} />
+            <Route path="edit/:id" element={<PostEdit />} />
+          </Route>
 
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+        <UnsavedChangesNotifier />
+        <DocumentTitleHandler />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;

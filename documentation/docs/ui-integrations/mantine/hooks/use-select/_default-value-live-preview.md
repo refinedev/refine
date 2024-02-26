@@ -18,7 +18,12 @@ const ProductCreate: React.FC = () => {
 
   return (
     <>
-      <Select label="Category" placeholder="Select a category" withinPortal {...selectProps} />
+      <Select
+        label="Category"
+        placeholder="Select a category"
+        withinPortal
+        {...selectProps}
+      />
     </>
   );
 };

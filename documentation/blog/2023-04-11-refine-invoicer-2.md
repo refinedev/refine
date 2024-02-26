@@ -140,7 +140,12 @@ If we look inside the `App.tsx` file, we can see among others a `<Refine />` com
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider } from "@refinedev/antd";
+import {
+  AuthPage,
+  ErrorComponent,
+  ThemedLayout,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import routerBindings, {
@@ -149,8 +154,18 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { DataProvider } from "@refinedev/strapi-v4";
-import { BlogPostCreate, BlogPostEdit, BlogPostList, BlogPostShow } from "pages/blog-posts";
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "pages/categories";
+import {
+  BlogPostCreate,
+  BlogPostEdit,
+  BlogPostList,
+  BlogPostShow,
+} from "pages/blog-posts";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "pages/categories";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider, axiosInstance } from "./authProvider";
 import { Header } from "./components/header";
@@ -205,7 +220,10 @@ function App() {
                   </Authenticated>
                 }
               >
-                <Route index element={<NavigateToResource resource="blog-posts" />} />
+                <Route
+                  index
+                  element={<NavigateToResource resource="blog-posts" />}
+                />
                 <Route path="/blog-posts">
                   <Route index element={<BlogPostList />} />
                   <Route path="create" element={<BlogPostCreate />} />
@@ -314,7 +332,8 @@ const dataProvider: DataProvider = {
   createMany: ({ resource, variables, meta }) => Promise,
   deleteMany: ({ resource, ids, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) =>
+    Promise,
 };
 ```
 
@@ -334,7 +353,10 @@ Normally, for our own backend API, we have to define each method we need for sen
 ```tsx title="node_modules/@refinedev/strapi-v4/src/dataProvider.ts"
 // version 4.1.0
 
-export const DataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosInstance): Required<IDataProvider> => ({
+export const DataProvider = (
+  apiUrl: string,
+  httpClient: AxiosInstance = axiosInstance,
+): Required<IDataProvider> => ({
   getList: async ({ resource, pagination, filters, sorters, meta }) => {
     const url = `${apiUrl}/${resource}`;
 
@@ -517,7 +539,15 @@ export const DataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
     return apiUrl;
   },
 
-  custom: async ({ url, method, filters, sorters, payload, query, headers }) => {
+  custom: async ({
+    url,
+    method,
+    filters,
+    sorters,
+    payload,
+    query,
+    headers,
+  }) => {
     let requestUrl = `${url}?`;
 
     if (sorters) {
@@ -623,7 +653,9 @@ export const authProvider: AuthProvider = {
       localStorage.setItem(TOKEN_KEY, data.jwt);
 
       // set header axios instance
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.jwt}`;
 
       return {
         success: true,
@@ -649,7 +681,9 @@ export const authProvider: AuthProvider = {
   check: async () => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
       return {
         authenticated: true,
       };

@@ -2,7 +2,7 @@
  * We're using a splat route to catch all routes that don't match any other route and render the `ErrorComponent` as 404 page.
  */
 export default function Index() {
-    return <div>404 not found</div>;
+  return <div>404 not found</div>;
 }
 
 /**

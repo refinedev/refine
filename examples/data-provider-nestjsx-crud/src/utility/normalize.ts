@@ -1,24 +1,24 @@
 import { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
-    fileUrl: string;
+  fileUrl: string;
 }
 interface EventArgs<T = UploadResponse> {
-    file: UploadFile<T>;
-    fileList: Array<UploadFile<T>>;
+  file: UploadFile<T>;
+  fileList: Array<UploadFile<T>>;
 }
 
 export const normalizeFile = (event: EventArgs) => {
-    const { fileList } = event;
+  const { fileList } = event;
 
-    return fileList.map((item) => {
-        let { url } = item;
-        const { uid, name, response, type, size, percent, status } = item;
+  return fileList.map((item) => {
+    let { url } = item;
+    const { uid, name, response, type, size, percent, status } = item;
 
-        if (response) {
-            url = response.fileUrl;
-        }
+    if (response) {
+      url = response.fileUrl;
+    }
 
-        return { uid, name, url, type, size, percent, status };
-    });
+    return { uid, name, url, type, size, percent, status };
+  });
 };

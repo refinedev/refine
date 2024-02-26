@@ -1,5 +1,5 @@
 ---
-title:  React Slick Examples - Creating a carousel
+title: React Slick Examples - Creating a carousel
 description: We'll see how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 slug: react-slick
 authors: deborah_emeni
@@ -7,8 +7,6 @@ tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social.png
 hide_table_of_contents: false
 ---
-
-
 
 ## Introduction
 
@@ -19,6 +17,7 @@ However, developers still need an efficient and easier way to create customizabl
 In this article, you will learn about React Slick—what it is, why it's important, its features, benefits, and more. You'll learn how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 
 Steps we'll cover:
+
 - [Overview of React Slick](#overview-of-react-slick)
 - [About React Slick APIs](#about-react-slick-apis)
 - [Benefits of using React Slick](#benefits-of-using-react-slick)
@@ -33,14 +32,17 @@ Steps we'll cover:
   - [Adding Responsiveness](#adding-responsiveness)
 
 ## Overview of React Slick
+
 Before you learn how to use React Slick in your React projects, it's essential to understand what it is, why you need it as a developer, its core features, and how they can help you create carousels more efficiently.
 
 ### What is React Slick?
+
 As mentioned earlier in the introduction, React Slick is a popular library with over 11k stars on GitHub and 73M downloads, making it an efficient choice for creating carousels in React applications. It is based on the widely used jQuery plugin known as the [Slick carousel](https://kenwheeler.github.io/slick/) library, commonly used for building carousels.
 
 React Slick offers many features, components, and customization capabilities, empowering developers to create image sliders, content sliders, and interactive, dynamic carousels.
 
-### Why do developers need React Slick? 
+### Why do developers need React Slick?
+
 For several concrete reasons, developers need React Slick as it benefits them and their users. One of the primary reasons is the time it saves developers from building carousels from scratch. React Slick provides ready-made features that will be discussed later in this article, offering responsive design and smooth carousel transitions.
 
 Another reason developers need React Slick is that it simplifies the process of creating user-friendly and dynamic carousels, allowing developers to customize their carousels according to their project's needs. Hence, developers have the flexibility to customize their carousels' behavior and appearance, due to the many options made available by React Slick. These features also enhance the user experience.
@@ -48,6 +50,7 @@ Another reason developers need React Slick is that it simplifies the process of 
 As a React developer, you can leverage the power and flexibility of React Slick to create unique, visually appealing, user-friendly, and dynamic carousels tailored to your project's and users' needs.
 
 ### Core features of React Slick
+
 Let’s see some of the core features of React Slick:
 
 - **Autoplay**: This [feature](https://react-slick.neostack.com/docs/example/auto-play-methods/) allows developers to set their sliders to transition automatically for a specific duration. In other words, developers can make their slides move from one to the next without requiring user interaction based on their set time duration. You can see the Autoplay feature in action below from the React Slick documentation:
@@ -101,6 +104,7 @@ The demonstrations show how the carousels automatically become responsive when s
 </div>
 
 ## About React Slick APIs
+
 React Slick provides several APIs that offer options as props that you can use to customize your carousels. Let's explore some of these APIs and their respective functions:
 
 - `infinite`: This [prop](https://react-slick.neostack.com/docs/api#infinite) enables infinite looping of the carousel slides, allowing the user to scroll through them continuously. It automatically restarts from the beginning when the user reaches the end. For example, you can use this prop to display many items. To enable it, simply set the prop to 'true.' Here's how to configure it:
@@ -119,7 +123,9 @@ Type: bool
 Default: Default
 Description:
 ```
+
 - `slidesToScroll`: This [prop](https://react-slick.neostack.com/docs/api#slidesToScroll) is used to set how many slides you want your users to be able to scroll at once. It helps you display multiple slides simultaneously when users scroll, especially when there are many items to display. This will save your users from having to click the 'Next' button multiple times or scroll individually. It can be configured by setting the prop to the desired number:
+
 ```
 Type: int
 Default: 1
@@ -141,52 +147,57 @@ Type: int
 Default: 3000
 Description: Delay between each auto scroll (in milliseconds)
 ```
+
 ## Benefits of using React Slick
+
 There are several benefits of using React Slick. Let’s take a look at some of them:
 
 - **Enhanced Performance**: React Slick enhances the performance of carousels by using several techniques, such as lazy loading, which involves loading images only when they are visible to the user, reducing the initial load time of the carousel. This, in turn, improves the overall performance of the carousels, making them faster than building carousels with other methods.
 
 - **Improved User Experience**: The more visually appealing, easy-to-use, and responsive carousels are, the better the user experience becomes. React Slick is customizable and responsive, making it look good on any device, whether a desktop or a mobile device. Due to these features, It creates a better experience for users.
 
-- **Documentation**: React Slick's documentation is well-written, user-friendly, and structured, with examples of all the features and API demonstrating how to use them. Developers would not have to struggle with understanding all the options and features of React Slick, nor would they have to struggle with implementing it to create carousels or finding information in the documentation. 
+- **Documentation**: React Slick's documentation is well-written, user-friendly, and structured, with examples of all the features and API demonstrating how to use them. Developers would not have to struggle with understanding all the options and features of React Slick, nor would they have to struggle with implementing it to create carousels or finding information in the documentation.
 
 - **Ease of use**: React Slick offers a simple and easy-to-use set of APIs for building carousels. The architecture of React Slick, which automatically renders carousels, simplifies the entire process of creating carousels for developers.
 
 - **Customization**: With React Slick, developers can build carousels and customize the appearance and behavior to suit their project's or users' preferences, including features like navigation arrows and slide transitions.
 
 ## Demo: Getting Started with React Slick
+
 Let’s build a simple React application to demonstrate how React Slick works.
 
-
-
-*Here’s the [link](https://github.com/debemenitammy/CarouselApp) to the complete source code of the App.*
+_Here’s the [link](https://github.com/debemenitammy/CarouselApp) to the complete source code of the App._
 
 ### Setting up a React project
+
 We’ll start by setting up a React project. Run the following command to create a new React project:
 
 ```
 npx create-react-app carousels_app
 ```
 
-
 ### Installing React Slick
-You can use the yarn or the npm command to install React Slick. For this tutorial, we are using npm. Run the following command in your project directory to install React Slick: 
+
+You can use the yarn or the npm command to install React Slick. For this tutorial, we are using npm. Run the following command in your project directory to install React Slick:
 
 ```
 npm install react-slick --save
 ```
+
 Once you run the command, the react slick library will be installed and added to your project:
 
-
 ### Importing React Slick
+
 Now that we have React Slick installed, we can import it into our project. To do this, we have to use the Slider component provided by React Slick, which would enable us to create a carousel or slider component.
 
 In your **App.js** file, add this import statement at the top:
 
 ```tsx title="src/App.js"
-import Slider from 'react-slick'
-``` 
+import Slider from "react-slick";
+```
+
 ### Importing the CSS file for React Slick
+
 Next, we'll need to import the CSS file that we will use for our React application since it does not have its own styling. To achieve this, we'll be using [Slick Carousel](https://kenwheeler.github.io/slick/), which is a jQuery library used for creating carousels. It provides the necessary CSS and JavaScript files for React Slick to work.
 
 To install the library, run the following command:
@@ -202,21 +213,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 ```
 
-## Using React Slick 
+## Using React Slick
+
 Now that everything is set up, we can start using React Slick to create our carousel component.
 
 ### Creating our carousel component
-Let’s say we want a total number of 4 slides for our carousel. We can use the customization options provided by the React Slick APIs to create our carousel component. 
+
+Let’s say we want a total number of 4 slides for our carousel. We can use the customization options provided by the React Slick APIs to create our carousel component.
 
 Add the following code to your **App.js** file:
 
 ```tsx title="src/App.js"
-import Slider from 'react-slick'
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const App = () => {
-
   const settings = {
     dots: true,
     speed: 500,
@@ -250,11 +262,11 @@ const App = () => {
 
 export default App;
 ```
+
 From the code above, you can see that we used the props provided by the React Slick APIs, which we discussed earlier in this article. And we set the props to their respective values, which we used to customize our carousel. You can play around with it by using any values of your choice.
 
-
-
 ### Adding Style to our Carousel Component
+
 Let’s style our carousel component in our **index.css** file with the following:
 
 ```css title="src/index.css"
@@ -280,6 +292,7 @@ h3 {
   margin: 0 50px;
 }
 ```
+
 Let's run the application and see how our carousel looks. To do this, navigate to your project directory and run the following command in your terminal:owing command:
 
 ```
@@ -298,53 +311,56 @@ Go to the URL where it is running:
 </div>
 
 ## Building a Fashion Carousel with React Slick
+
 Now that you've learned to create a simple carousel with React Slick, note that you can easily add and customize additional features like Arrow Navigation, thumbnails, and responsiveness. Building another React project can help you understand how to add these features into your carousel using React Slick. Run the following command in your terminal:
 
 ```
 npx create-react-app afro_styles
 ```
-*Here’s the [link](https://github.com/debemenitammy/AfroStyles) to the complete source code*
+
+_Here’s the [link](https://github.com/debemenitammy/AfroStyles) to the complete source code_
 
 ### Creating Slides for the Carousel
+
 You need to create slides for your carousel to add descriptions or captions to the images you will showcase. To do this, follow the steps outlined below:
 
 Create a file in your **src** directory called **afroStyles.js** to serve as the component for storing the content of your carousel images. You can store your images in an array that contains the unique identifiers for your images, their titles, descriptions, alt text, and image sources as follows:
 
-
 <details>
 
 <summary>Show afroStyles.js</summary>
-
 
 ```tsx title="src/afroStyles.js"
 const AfroStyles = [
   {
     id: 1,
     title: "Model 1",
-    description: "Wearing a crisp white shirt paired with perfectly fitted denim jeans and classic canvas",
+    description:
+      "Wearing a crisp white shirt paired with perfectly fitted denim jeans and classic canvas",
     alt: "First Image",
     src: "https://images.unsplash.com/photo-1528991435120-e73e05a58897?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
     title: "Model 2",
-    description: "Elevate your style with this Ankara long sleeve shirt and trouser",
+    description:
+      "Elevate your style with this Ankara long sleeve shirt and trouser",
     alt: "Second Image",
-    src: "https://images.unsplash.com/photo-1572495532056-8583af1cbae0?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    src: "https://images.unsplash.com/photo-1572495532056-8583af1cbae0?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
     title: "Model 3",
     description: "Elevate your style with Ankara dresses.",
     alt: "Third Image",
-    src: "https://images.unsplash.com/photo-1607823489283-1deb240f9e27?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fEFmcmljYW4lMjBmYXNoaW9ufGVufDB8fDB8fHww"
+    src: "https://images.unsplash.com/photo-1607823489283-1deb240f9e27?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fEFmcmljYW4lMjBmYXNoaW9ufGVufDB8fDB8fHww",
   },
   {
     id: 4,
     title: "Model 4",
     description: "An elegant monochromatic image of a female figure.",
     alt: "Forth Image",
-    src: "https://images.unsplash.com/flagged/photo-1578907015404-bd0176fb3108?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fEFmcmljYW4lMjBmYXNoaW9ufGVufDB8fDB8fHww"
+    src: "https://images.unsplash.com/flagged/photo-1578907015404-bd0176fb3108?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fEFmcmljYW4lMjBmYXNoaW9ufGVufDB8fDB8fHww",
   },
   {
     id: 5,
@@ -358,16 +374,16 @@ const AfroStyles = [
     title: "Model 6",
     description: "African woman in a red dinner gown",
     alt: "Sixth Image",
-    src: "https://images.unsplash.com/photo-1560457099-64cb8a5eb503?auto=format&fit=crop&q=80&w=2786&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    src: "https://images.unsplash.com/photo-1560457099-64cb8a5eb503?auto=format&fit=crop&q=80&w=2786&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 7,
     title: "Model 7",
     description: "Man in Suit",
     alt: "Seventh Image",
-    src: "https://images.unsplash.com/photo-1530884698386-d42ad3199b1f?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }
-]
+    src: "https://images.unsplash.com/photo-1530884698386-d42ad3199b1f?auto=format&fit=crop&q=80&w=2787&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];
 
 export default AfroStyles;
 ```
@@ -384,7 +400,6 @@ import "slick-carousel/slick/slick-theme.css";
 import AfroStyles from "./afroStyles";
 
 const App = () => {
-
   const settings = {
     dots: true,
     speed: 500,
@@ -395,9 +410,7 @@ const App = () => {
     autoplaySpeed: 1000,
   };
 
-  return (
-    <> </>
-  );
+  return <> </>;
 };
 
 export default App;
@@ -406,26 +419,28 @@ export default App;
 Display your images within your `Slider` component using a `map` method that iterates over the `id`, `title`, `description`, `alt`, and `src` of the images in the `AfroStyles` component, structuring them within a `<div>` container as follows:
 
 ```tsx title="src/App.js"
-   <div className="content">
-      <h1 className="header">Afro Styles Fashion Store</h1>
-      <div className="container">
-        <Slider {...settings}>
-          {AfroStyles.map((item) => (
-            <div key={item.id}>
-              <div className="img-body">
-                <img src={item.src} alt={item.alt} />
-              </div>
-              <div> 
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
+<div className="content">
+  <h1 className="header">Afro Styles Fashion Store</h1>
+  <div className="container">
+    <Slider {...settings}>
+      {AfroStyles.map((item) => (
+        <div key={item.id}>
+          <div className="img-body">
+            <img src={item.src} alt={item.alt} />
+          </div>
+          <div>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </Slider>
+  </div>
+</div>
 ```
+
 ### Styling the Fashion Carousel
+
 Now that you have set up your carousel to display images, you can add styles to your carousel to give it a nice look within your **index.css** file as follows:
 
 ```css title="src/index.css"
@@ -435,7 +450,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   width: 90%;
-  color: rgb(52, 48, 48)
+  color: rgb(52, 48, 48);
 }
 
 .content {
@@ -483,6 +498,7 @@ https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/66-mi
 </div>
 
 ### Adding Arrow Navigation
+
 Now that you’ve set up your Fashion Carousel with React Slick, you can improve the user experience by adding Arrow Navigation with React Slick. This feature allows for easy navigation through carousel items, and you can customize it to your needs with React Slick.
 
 React Slick provides [custom arrow](https://react-slick.neostack.com/docs/example/custom-arrows/) props that you can use to create and customize your arrow navigation, namely the `prevArrow` and `nextArrow` props. You'll add these props to your `settings` in your **App.js** file as follows:
@@ -506,6 +522,7 @@ React Slick provides [custom arrow](https://react-slick.neostack.com/docs/exampl
 ```
 
 #### Styling the Arrow Navigation
+
 Add the following style to your **index.css** to make your arrows more visually appealing:
 
 ```css title="src/index.css"
@@ -513,6 +530,7 @@ Add the following style to your **index.css** to make your arrows more visually 
   transform: rotate(180deg);
 }
 ```
+
 Run your application and see your custom arrows displayed on both sides:
 
 <div class="img-container">
@@ -525,6 +543,7 @@ Run your application and see your custom arrows displayed on both sides:
 </div>
 
 ### Adding Thumbnails
+
 React Slick provides another property called [AsNavFor](https://react-slick.neostack.com/docs/example/as-nav-for/) that you can use to add thumbnails to your carousel. This property creates synchronized carousel navigation between two carousels: one for the main content and another for the thumbnails. When a user clicks on a thumbnail, the main carousel will slide to the corresponding item.
 
 You'll require two methods: namely, [centerMode](https://react-slick.neostack.com/docs/api/#centerMode) to center the selected thumbnail and make it easy for users to see which item is currently selected, and [focusOnSelect](https://react-slick.neostack.com/docs/api/#focusOnSelect) to automatically focus on the thumbnail that the user selected in the carousel and make it clear which item is currently selected.
@@ -534,24 +553,27 @@ Import the `useState` and `useEffect` hooks in your **App.js** file to manage th
 ```tsx title="src/App.js"
 import { useState, useEffect } from "react";
 ```
+
 You'll need to do the following:
-- Create three state variables (`nav1`, `currentSlide`, and `slider1`) using `useState`  and `useEffect` hooks to synchronize a `Slider` component with thumbnails.
+
+- Create three state variables (`nav1`, `currentSlide`, and `slider1`) using `useState` and `useEffect` hooks to synchronize a `Slider` component with thumbnails.
 - Use the `nav1` variable to store the reference to the synchronized `Slider`.
 - Use the `currentSlide` variable to track the selected slide index.
-- Use the `slider1` variable to reference the thumbnail display Slider. 
-- Use the `useEffect` hook to update `nav1` whenever `slider1` changes, ensuring they stay in sync. 
+- Use the `slider1` variable to reference the thumbnail display Slider.
+- Use the `useEffect` hook to update `nav1` whenever `slider1` changes, ensuring they stay in sync.
 
 Add the following in your `App` component:
 
 ```tsx title="src/App.js"
 const [nav1, setNav1] = useState(null);
-const [currentSlide, setCurrentSlide] = useState(0)
+const [currentSlide, setCurrentSlide] = useState(0);
 const [slider1, setSlider1] = useState(null);
 
 useEffect(() => {
   setNav1(slider1);
 }, [slider1]);
 ```
+
 Next, update your carousel component with the following:
 
 ```tsx title="src/App.js"
@@ -571,9 +593,9 @@ Next, update your carousel component with the following:
         </Slider>
         <div className="thumb-wrapper">
           {AfroStyles.map((item, idx) => (
-            <div 
-              key={item.id} 
-              className={currentSlide === idx ? "active": null} 
+            <div
+              key={item.id}
+              className={currentSlide === idx ? "active": null}
               onClick={() => {
                 slider1?.slickGoTo(idx)
               }}>
@@ -587,9 +609,11 @@ Next, update your carousel component with the following:
   </>
   );
 ```
+
 Here, you used the thumb-wrapper element and the currentSlide variable to handle the active class for the selected div element. When a user clicks on a div within the thumb-wrapper, it triggers the onClick event, which, in turn, calls the slickGoTo() method on the slider1 variable to navigate to a specified slide.
 
 #### Styling the Thumbnails
+
 Add the following style to your **index.css** file in order to style your thumbnails:
 
 ```css title="src/index.css"
@@ -614,9 +638,10 @@ Add the following style to your **index.css** file in order to style your thumbn
   max-height: 200px;
   aspect-ratio: 1/1;
   overflow: hidden;
-  transition: all .1s;
+  transition: all 0.1s;
 }
-.thumb-wrapper > div:hover, .thumb-wrapper > div.active {
+.thumb-wrapper > div:hover,
+.thumb-wrapper > div.active {
   border: 3px solid rgba(216, 35, 35, 0.732);
   max-height: calc(200px - 6px);
 }
@@ -627,6 +652,7 @@ Add the following style to your **index.css** file in order to style your thumbn
   object-fit: cover;
 }
 ```
+
 Run your application to see how thumbnails look:
 
 <div class="img-container">
@@ -639,26 +665,28 @@ Run your application to see how thumbnails look:
 </div>
 
 ### Adding Responsiveness
+
 Ensure that your carousel adapts to various screen sizes and devices by adding responsiveness with React Slick. You can utilize the [responsive](https://react-slick.neostack.com/docs/example/responsive/) property provided by React Slick, which allows you to specify different settings for different screen sizes. This ensures that your carousel looks great and functions properly on all devices.
 
 The `responsive` property is an array of objects that consists of two values: `breakpoint` and `settings`. You can set the `breakpoint` value to a number in pixels, determining when the associated or subsequent settings should be applied. The `settings` is an object containing carousel settings to apply when the viewport reaches the specified breakpoint:
 
 ```tsx title="src/App.js"
-  responsive: [
-    {
-      breakpoint: 600,
-      settings: {
-       slidesToShow: 1,
-      }
-     },
-    {
-      breakpoint: 1024,
-      settings: {
-       slidesToShow: 2,
-      }
-    }
-  ]
+responsive: [
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+    },
+  },
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 2,
+    },
+  },
+];
 ```
+
 Run your application and see how the carousel shrinks from 2 to 1 when it reaches the breakpoint you've set:
 
 <div class="img-container">
@@ -671,4 +699,5 @@ Run your application and see how the carousel shrinks from 2 to 1 when it reache
 </div>
 
 ## Conclusion
+
 You've reached the end of this article, where we covered the following aspects of React Slick: what React Slick is, why developers need it, its core features, React Slick APIs and the benefits of using it. Additionally, we demonstrated two hands-on examples in which we created a carousel component using React Slick. React Slick is a user-friendly library with a wide range of features and advantages you can leverage to create carousels for simple and complex applications.

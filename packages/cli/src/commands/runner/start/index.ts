@@ -7,36 +7,36 @@ import { runScript } from "../runScript";
 import { getPlatformOptionDescription, getRunnerDescription } from "../utils";
 
 const start = (program: Command) => {
-    return program
-        .command("start")
-        .description(getRunnerDescription("start"))
-        .allowUnknownOption(true)
-        .addOption(
-            new Option(
-                "-p, --platform <platform>",
-                getPlatformOptionDescription(),
-            ).choices(
-                Object.values(ProjectTypes).filter(
-                    (type) => type !== ProjectTypes.UNKNOWN,
-                ),
-            ),
-        )
-        .argument("[args...]")
-        .action(action);
+  return program
+    .command("start")
+    .description(getRunnerDescription("start"))
+    .allowUnknownOption(true)
+    .addOption(
+      new Option(
+        "-p, --platform <platform>",
+        getPlatformOptionDescription(),
+      ).choices(
+        Object.values(ProjectTypes).filter(
+          (type) => type !== ProjectTypes.UNKNOWN,
+        ),
+      ),
+    )
+    .argument("[args...]")
+    .action(action);
 };
 
 const action = async (
-    args: string[],
-    { platform }: { platform: ProjectTypes },
+  args: string[],
+  { platform }: { platform: ProjectTypes },
 ) => {
-    const projectType = getProjectType(platform);
+  const projectType = getProjectType(platform);
 
-    const binPath = projectScripts[projectType].getBin("start");
-    const command = projectScripts[projectType].getStart(args);
+  const binPath = projectScripts[projectType].getBin("start");
+  const command = projectScripts[projectType].getStart(args);
 
-    await updateNotifier();
+  await updateNotifier();
 
-    runScript(binPath, command);
+  runScript(binPath, command);
 };
 
 export default start;

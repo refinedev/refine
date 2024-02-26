@@ -6,8 +6,8 @@ import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 
 export type FilterDropdownProps = AntdFilterDropdownProps & {
-    mapValue?: (selectedKeys: React.Key[]) => any;
-    children: ReactNode;
+  mapValue?: (selectedKeys: React.Key[]) => any;
+  children: ReactNode;
 };
 
 /**
@@ -16,97 +16,95 @@ export type FilterDropdownProps = AntdFilterDropdownProps & {
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/filter-dropdown} for more details.
  */
 export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
-    const {
-        setSelectedKeys,
-        confirm,
-        clearFilters,
-        mapValue,
-        selectedKeys,
-        children,
-    } = props;
+  const {
+    setSelectedKeys,
+    confirm,
+    clearFilters,
+    mapValue,
+    selectedKeys,
+    children,
+  } = props;
 
-    const [value, setValue] = useState<any[] | undefined>(selectedKeys);
-    const translate = useTranslate();
+  const [value, setValue] = useState<any[] | undefined>(selectedKeys);
+  const translate = useTranslate();
 
-    const clearFilter = () => {
-        if (clearFilters) {
-            setValue([]);
-            clearFilters();
-        }
-    };
+  const clearFilter = () => {
+    if (clearFilters) {
+      setValue([]);
+      clearFilters();
+    }
+  };
 
-    const onFilter = () => {
-        const _mappedValue = mappedValue(value);
+  const onFilter = () => {
+    const _mappedValue = mappedValue(value);
 
-        let keys;
-        if (typeof _mappedValue === "number") {
-            keys = `${_mappedValue}`;
-        } else if (dayjs.isDayjs(_mappedValue)) {
-            keys = [_mappedValue.toISOString()];
-        } else {
-            keys = _mappedValue;
-        }
+    let keys;
+    if (typeof _mappedValue === "number") {
+      keys = `${_mappedValue}`;
+    } else if (dayjs.isDayjs(_mappedValue)) {
+      keys = [_mappedValue.toISOString()];
+    } else {
+      keys = _mappedValue;
+    }
 
-        setSelectedKeys(keys);
+    setSelectedKeys(keys);
 
-        confirm?.();
-    };
+    confirm?.();
+  };
 
-    const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
+  const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const onChange = (e: any) => {
-        if (typeof e === "object") {
-            if (Array.isArray(e)) {
-                const _mappedValue = mappedValue(e);
-
-                setValue(_mappedValue);
-                return setSelectedKeys(_mappedValue);
-            }
-
-            const changeEvent =
-                !e || !e.target || dayjs.isDayjs(e)
-                    ? { target: { value: e } }
-                    : e;
-
-            const { target }: React.ChangeEvent<HTMLInputElement> = changeEvent;
-            const _mappedValue = mappedValue(target.value);
-            setValue(_mappedValue);
-            return;
-        }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onChange = (e: any) => {
+    if (typeof e === "object") {
+      if (Array.isArray(e)) {
         const _mappedValue = mappedValue(e);
 
         setValue(_mappedValue);
-    };
+        return setSelectedKeys(_mappedValue);
+      }
 
-    const childrenWithProps = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            return React.cloneElement(child, {
-                onChange,
-                value: mappedValue(value),
-            });
-        }
-        return child;
-    });
-    return (
-        <div
-            style={{
-                padding: 10,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-            }}
-        >
-            <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
-            <Space>
-                <Button type="primary" size="small" onClick={() => onFilter()}>
-                    <FilterOutlined /> {translate("buttons.filter", "Filter")}
-                </Button>
-                <Button danger size="small" onClick={() => clearFilter()}>
-                    {translate("buttons.clear", "Clear")}
-                </Button>
-            </Space>
-        </div>
-    );
+      const changeEvent =
+        !e || !e.target || dayjs.isDayjs(e) ? { target: { value: e } } : e;
+
+      const { target }: React.ChangeEvent<HTMLInputElement> = changeEvent;
+      const _mappedValue = mappedValue(target.value);
+      setValue(_mappedValue);
+      return;
+    }
+
+    const _mappedValue = mappedValue(e);
+
+    setValue(_mappedValue);
+  };
+
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, {
+        onChange,
+        value: mappedValue(value),
+      });
+    }
+    return child;
+  });
+  return (
+    <div
+      style={{
+        padding: 10,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+      }}
+    >
+      <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
+      <Space>
+        <Button type="primary" size="small" onClick={() => onFilter()}>
+          <FilterOutlined /> {translate("buttons.filter", "Filter")}
+        </Button>
+        <Button danger size="small" onClick={() => clearFilter()}>
+          {translate("buttons.clear", "Clear")}
+        </Button>
+      </Space>
+    </div>
+  );
 };

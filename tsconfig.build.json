@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
       "module": "esnext",
       "lib": ["dom", "esnext", "DOM.Iterable"],
       "importHelpers": true,
@@ -16,4 +16,4 @@
       "forceConsistentCasingInFileNames": true,
       "allowSyntheticDefaultImports": true,
     }
-  }
+}

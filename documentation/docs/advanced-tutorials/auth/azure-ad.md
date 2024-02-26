@@ -75,7 +75,13 @@ Wrap your root component with an `MsalProvider` that you can import from the SDK
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { EventType, PublicClientApplication, AccountInfo, EventPayload, SilentRequest } from "@azure/msal-browser";
+import {
+  EventType,
+  PublicClientApplication,
+  AccountInfo,
+  EventPayload,
+  SilentRequest,
+} from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 
 import App, { TOKEN_KEY } from "./App";
@@ -110,7 +116,9 @@ msalInstance.addEventCallback(async (event) => {
   }
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement,
+);
 root.render(
   <React.StrictMode>
     <MsalProvider instance={msalInstance}>
@@ -169,7 +177,10 @@ In Refine, authentication and authorization processes are performed with the aut
 ```tsx title="src/App.tsx"
 import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
 import { Layout, ErrorComponent } from "@refinedev/antd";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+  NavigateToResource,
+  CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";

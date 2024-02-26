@@ -43,7 +43,7 @@ jobs:
           npm run bootstrap:all
           npm run build:all
       - name: Lint
-        run: npm run lint
+        run: npm run lint:ci
       - name: Test
         run: npm run test:all
       - name: Create Release Pull Request or Publish to npm

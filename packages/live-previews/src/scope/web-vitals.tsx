@@ -5,9 +5,9 @@
 const fn = () => undefined;
 
 const ReportWebVitals = {
-    ReportWebVitals: {
-        default: fn,
-    },
+  ReportWebVitals: {
+    default: fn,
+  },
 };
 
 export default ReportWebVitals;

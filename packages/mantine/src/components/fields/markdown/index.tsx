@@ -10,16 +10,16 @@ import { MarkdownFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/markdown} for more details.
  */
 export const MarkdownField: React.FC<MarkdownFieldProps> = ({
-    value = "",
-    ...rest
+  value = "",
+  ...rest
 }) => {
-    return (
-        // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
-        <ReactMarkdown
-            remarkPlugins={[gfm] as unknown as ReactMarkdown.PluggableList}
-            {...rest}
-        >
-            {value}
-        </ReactMarkdown>
-    );
+  return (
+    // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
+    <ReactMarkdown
+      remarkPlugins={[gfm] as unknown as ReactMarkdown.PluggableList}
+      {...rest}
+    >
+      {value}
+    </ReactMarkdown>
+  );
 };

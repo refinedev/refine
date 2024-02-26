@@ -3,17 +3,17 @@ import { HttpError } from "@refinedev/core";
 import { transformErrorMessages } from "./transformErrorMessages";
 
 export const transformHttpError = (error: any): HttpError => {
-    const message = error.response.data.error;
-    const statusCode = error.response.data.statusCode;
-    const errorMessages = error.response.data.message;
+  const message = error.response.data.error;
+  const statusCode = error.response.data.statusCode;
+  const errorMessages = error.response.data.message;
 
-    const errors = transformErrorMessages(errorMessages);
+  const errors = transformErrorMessages(errorMessages);
 
-    const httpError: HttpError = {
-        statusCode,
-        message,
-        errors,
-    };
+  const httpError: HttpError = {
+    statusCode,
+    message,
+    errors,
+  };
 
-    return httpError;
+  return httpError;
 };

@@ -5,97 +5,97 @@ import { AuthProvider } from "@refinedev/core";
  * https://refine.dev/docs/api-reference/core/providers/auth-provider/
  **/
 export const authProvider: AuthProvider = {
-    login: async (params) => {
-        console.log("login", params);
+  login: async (params) => {
+    console.log("login", params);
 
-        // TODO: send request to the API to login
+    // TODO: send request to the API to login
 
-        return {
-            success: true, // or false if the login is not successful
-            redirectTo: "/",
-        };
-    },
+    return {
+      success: true, // or false if the login is not successful
+      redirectTo: "/",
+    };
+  },
 
-    register: async (params) => {
-        console.log("register", params);
+  register: async (params) => {
+    console.log("register", params);
 
-        // TODO: send request to the API to login
+    // TODO: send request to the API to login
 
-        return {
-            success: true, // or false if the register is not successful
-            redirectTo: "/",
-        };
-    },
+    return {
+      success: true, // or false if the register is not successful
+      redirectTo: "/",
+    };
+  },
 
-    check: async (params) => {
-        console.log("check", params);
+  check: async (params) => {
+    console.log("check", params);
 
-        // TODO: control if the user is logged in
+    // TODO: control if the user is logged in
 
-        return {
-            authenticated: true, // or false if the user is not authenticated
-        };
-    },
+    return {
+      authenticated: true, // or false if the user is not authenticated
+    };
+  },
 
-    logout: async (params) => {
-        console.log("logout", params);
+  logout: async (params) => {
+    console.log("logout", params);
 
-        // TODO: send request to the API to logout
+    // TODO: send request to the API to logout
 
-        return {
-            success: true, // or false if the logout is not successful
-            redirectTo: "/login",
-        };
-    },
+    return {
+      success: true, // or false if the logout is not successful
+      redirectTo: "/login",
+    };
+  },
 
-    forgotPassword: async (params) => {
-        console.log("forgotPassword", params);
+  forgotPassword: async (params) => {
+    console.log("forgotPassword", params);
 
-        // TODO: send request to the API to forgot password
+    // TODO: send request to the API to forgot password
 
-        return {
-            success: true, // or false if the forgot password is not successful
-            redirectTo: "/update-password",
-        };
-    },
+    return {
+      success: true, // or false if the forgot password is not successful
+      redirectTo: "/update-password",
+    };
+  },
 
-    updatePassword: async (params) => {
-        console.log("updatePassword", params);
+  updatePassword: async (params) => {
+    console.log("updatePassword", params);
 
-        // TODO: send request to the API to update password
+    // TODO: send request to the API to update password
 
-        return {
-            success: true, // or false if the update password is not successful
-            redirectTo: "/login",
-        };
-    },
+    return {
+      success: true, // or false if the update password is not successful
+      redirectTo: "/login",
+    };
+  },
 
-    getPermissions: async (params) => {
-        console.log("getPermissions", params);
+  getPermissions: async (params) => {
+    console.log("getPermissions", params);
 
-        // TODO: send request to the API to get permissions
+    // TODO: send request to the API to get permissions
 
-        return {
-            permissions: [],
-        };
-    },
+    return {
+      permissions: [],
+    };
+  },
 
-    getIdentity: async (params) => {
-        console.log("getIdentity", params);
+  getIdentity: async (params) => {
+    console.log("getIdentity", params);
 
-        // TODO: send request to the API to get identity
+    // TODO: send request to the API to get identity
 
-        return {};
-    },
+    return {};
+  },
 
-    onError: async (params) => {
-        console.log("onError", params);
+  onError: async (params) => {
+    console.log("onError", params);
 
-        // TODO: do something with the error
+    // TODO: do something with the error
 
-        return {
-            logout: true, // or false if you want to continue
-            redirectTo: "/login", // or undefined if you want to continue
-        };
-    },
+    return {
+      logout: true, // or false if you want to continue
+      redirectTo: "/login", // or undefined if you want to continue
+    };
+  },
 };

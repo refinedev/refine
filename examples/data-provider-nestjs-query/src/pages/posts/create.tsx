@@ -9,73 +9,73 @@ import { CategoriesSelectQuery, PostCreateMutation } from "graphql/types";
 import { CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<
-        GetFields<PostCreateMutation>
-    >({ meta: { gqlMutation: POST_CREATE_MUTATION } });
+  const { formProps, saveButtonProps } = useForm<GetFields<PostCreateMutation>>(
+    { meta: { gqlMutation: POST_CREATE_MUTATION } },
+  );
 
-    const { selectProps: categorySelectProps } = useSelect<
-        GetFieldsFromList<CategoriesSelectQuery>
-    >({
-        resource: "categories",
-        metaData: {
-            gqlQuery: CATEGORIES_SELECT_QUERY,
-        },
-    });
+  const { selectProps: categorySelectProps } = useSelect<
+    GetFieldsFromList<CategoriesSelectQuery>
+  >({
+    resource: "categories",
+    metaData: {
+      gqlQuery: CATEGORIES_SELECT_QUERY,
+    },
+  });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            { label: "Draft", value: "DRAFT" },
-                            { label: "Published", value: "PUBLISHED" },
-                            { label: "Rejected", value: "REJECTED" },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name="categoryId"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <MDEditor data-color-mode="light" />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select
+            options={[
+              { label: "Draft", value: "DRAFT" },
+              { label: "Published", value: "PUBLISHED" },
+              { label: "Rejected", value: "REJECTED" },
+            ]}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="categoryId"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Content"
+          name="content"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };

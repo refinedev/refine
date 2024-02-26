@@ -8,16 +8,16 @@ import { finalFiles as initialFiles } from "@site/tutorial/routing/syncing-state
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -194,50 +194,47 @@ export default function App(): JSX.Element {
 // actions
 
 export const AddAntDesignToApp = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/App.tsx",
-                    AppTsxWithAntDesignWrappers,
-                );
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithAntDesignWrappers);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddLayoutToApp = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithLayout);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithLayout);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithLayout,
-        active: true,
-    },
-    "src/components/header.tsx": {
-        code: "",
-        hidden: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithLayout,
+    active: true,
+  },
+  "src/components/header.tsx": {
+    code: "",
+    hidden: true,
+  },
 };
 
 export const dependencies = {
-    ...initialDependencies,
-    "@refinedev/antd": "latest",
-    antd: "latest",
+  ...initialDependencies,
+  "@refinedev/antd": "latest",
+  antd: "latest",
 };

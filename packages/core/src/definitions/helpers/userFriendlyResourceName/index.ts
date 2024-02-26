@@ -7,12 +7,12 @@ import { humanizeString } from "@definitions";
  * @deprecated use `useUserFriendlyName` instead.
  */
 export const userFriendlyResourceName = (
-    resource = "",
-    type: "singular" | "plural",
+  resource = "",
+  type: "singular" | "plural",
 ): string => {
-    const humanizeResource = humanizeString(resource);
-    if (type === "singular") {
-        return pluralize.singular(humanizeResource);
-    }
-    return pluralize.plural(humanizeResource);
+  const humanizeResource = humanizeString(resource);
+  if (type === "singular") {
+    return pluralize.singular(humanizeResource);
+  }
+  return pluralize.plural(humanizeResource);
 };

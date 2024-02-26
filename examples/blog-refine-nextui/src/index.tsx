@@ -16,5 +16,5 @@ root.render(
         <App />
       </React.Suspense>
     </NextUIProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

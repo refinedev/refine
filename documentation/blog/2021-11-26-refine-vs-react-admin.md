@@ -77,7 +77,10 @@ import { Route } from "react-router-dom";
 import Foo from "./Foo";
 import Bar from "./Bar";
 
-export default [<Route exact path="/foo" component={Foo} />, <Route exact path="/bar" component={Bar} />];
+export default [
+  <Route exact path="/foo" component={Foo} />,
+  <Route exact path="/bar" component={Bar} />,
+];
 ```
 
 Then, pass this array as customRoutes prop in the `<Admin>` component:
@@ -89,7 +92,10 @@ import { Admin } from "react-admin";
 import customRoutes from "./customRoutes";
 
 const App = () => (
-  <Admin customRoutes={customRoutes} dataProvider={simpleRestProvider("http://path.to.my.api")}>
+  <Admin
+    customRoutes={customRoutes}
+    dataProvider={simpleRestProvider("http://path.to.my.api")}
+  >
     ...
   </Admin>
 );
@@ -140,7 +146,9 @@ const App = () => {
   React.useEffect(() => {
     buildGraphQLProvider({
       clientOptions: { uri: "http://localhost:4000" },
-    }).then((graphQlDataProvider) => setDataProvider(() => graphQlDataProvider));
+    }).then((graphQlDataProvider) =>
+      setDataProvider(() => graphQlDataProvider),
+    );
   }, []);
 
   if (!dataProvider) {
@@ -149,7 +157,12 @@ const App = () => {
 
   return (
     <Admin dataProvider={dataProvider}>
-      <Resource name="Post" list={PostList} edit={PostEdit} create={PostCreate} />
+      <Resource
+        name="Post"
+        list={PostList}
+        edit={PostEdit}
+        create={PostCreate}
+      />
     </Admin>
   );
 };
@@ -292,7 +305,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Refine routerProvider={routerProvider} dataProvider={dataProvider(API_URL)}>
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(API_URL)}
+    >
       <Component {...pageProps} />
     </Refine>
   );
@@ -407,7 +423,8 @@ const dataProvider = {
   getOne: ({ resource, id, meta }) => Promise,
   update: ({ resource, id, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, sorters, filters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, sorters, filters, payload, query, headers, meta }) =>
+    Promise,
   getApiUrl: () => "",
 };
 ```
@@ -438,7 +455,12 @@ import dataProvider, { GraphQLClient } from "@refinedev/graphql";
 const client = new GraphQLClient("API_URL");
 
 const App: React.FC = () => {
-  return <Refine routerProvider={routerProvider} dataProvider={dataProvider(client)} />;
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider(client)}
+    />
+  );
 };
 ```
 
@@ -495,13 +517,23 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
           sorter={{ multiple: 2 }}
           defaultSortOrder={getDefaultSortOrder("id", sorter)}
         />
-        <Table.Column key="title" dataIndex="title" title="Title" sorter={{ multiple: 1 }} />
+        <Table.Column
+          key="title"
+          dataIndex="title"
+          title="Title"
+          sorter={{ multiple: 1 }}
+        />
         <Table.Column<IPost>
           dataIndex="category"
           title="Category"
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
-              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
             </FilterDropdown>
           )}
           render={(_, record) => record.category.title}

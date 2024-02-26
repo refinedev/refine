@@ -2,9 +2,9 @@ import type { Express } from "express";
 import { json } from "express";
 import uniq from "lodash/uniq";
 import {
-    AvailablePackageType,
-    Feed,
-    PackageType,
+  AvailablePackageType,
+  Feed,
+  PackageType,
 } from "@refinedev/devtools-shared";
 
 import { Data } from "./create-db";
@@ -17,153 +17,153 @@ import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-pa
 import { updateProjectId } from "./project-id/update-project-id";
 
 export const serveApi = (app: Express, db: Data) => {
-    app.use("/api", json());
+  app.use("/api", json());
 
-    app.get("/api/connected-app", (_, res) => {
-        res.json({ url: db.connectedApp });
+  app.get("/api/connected-app", (_, res) => {
+    res.json({ url: db.connectedApp });
+  });
+
+  app.get("/api/activities", (req, res) => {
+    const { offset = 0, limit = db.activities.length } = req.query;
+
+    res.setHeader("x-total-count", db.activities.length);
+
+    res.json({
+      data: db.activities.slice(Number(offset), Number(limit)),
     });
+  });
 
-    app.get("/api/activities", (req, res) => {
-        const { offset = 0, limit = db.activities.length } = req.query;
+  app.get("/api/activities/reset", (_, res) => {
+    db.activities = [];
+    res.json({ success: true });
+  });
 
-        res.setHeader("x-total-count", db.activities.length);
+  app.get("/api/unique-trace-items", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept",
+    );
 
-        res.json({
-            data: db.activities.slice(Number(offset), Number(limit)),
-        });
-    });
+    const traceItems = db.activities.flatMap(
+      (activity) =>
+        activity.trace?.map((t) => t.function).filter(Boolean) ?? [],
+    ) as string[];
+    const uniqueTraceItems = uniq(traceItems);
 
-    app.get("/api/activities/reset", (_, res) => {
-        db.activities = [];
-        res.json({ success: true });
-    });
+    res.setHeader("x-total-count", uniqueTraceItems.length);
 
-    app.get("/api/unique-trace-items", (req, res) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header(
-            "Access-Control-Allow-Headers",
-            "Origin, X-Requested-With, Content-Type, Accept",
-        );
+    res.json({ data: uniqueTraceItems });
+  });
 
-        const traceItems = db.activities.flatMap(
-            (activity) =>
-                activity.trace?.map((t) => t.function).filter(Boolean) ?? [],
-        ) as string[];
-        const uniqueTraceItems = uniq(traceItems);
+  let cachedInstalledPackages: PackageType[] | null = null;
+  app.get("/api/installed-packages", async (req, res) => {
+    const { force } = req.query ?? {};
 
-        res.setHeader("x-total-count", uniqueTraceItems.length);
+    if (!cachedInstalledPackages || force) {
+      cachedInstalledPackages = await getAllPackages();
+    }
 
-        res.json({ data: uniqueTraceItems });
-    });
+    res.header("x-total-count", `${cachedInstalledPackages.length}`);
 
-    let cachedInstalledPackages: PackageType[] | null = null;
-    app.get("/api/installed-packages", async (req, res) => {
-        const { force } = req.query ?? {};
+    res.json({ data: cachedInstalledPackages });
+  });
 
-        if (!cachedInstalledPackages || force) {
-            cachedInstalledPackages = await getAllPackages();
-        }
+  let cachedAvailablePackages: AvailablePackageType[] | null = null;
+  app.get("/api/available-packages", async (_, res) => {
+    if (!cachedAvailablePackages) {
+      cachedAvailablePackages = await getAvailablePackages();
+    }
 
-        res.header("x-total-count", `${cachedInstalledPackages.length}`);
+    res.header("x-total-count", `${cachedAvailablePackages.length}`);
 
-        res.json({ data: cachedInstalledPackages });
-    });
+    res.json({ data: cachedAvailablePackages });
+  });
 
-    let cachedAvailablePackages: AvailablePackageType[] | null = null;
-    app.get("/api/available-packages", async (_, res) => {
-        if (!cachedAvailablePackages) {
-            cachedAvailablePackages = await getAvailablePackages();
-        }
+  const cachedLatestPackages = new Map<string, any>();
+  app.get("/api/packages/:packageName/latest", async (req, res) => {
+    const { packageName } = req.params ?? {};
 
-        res.header("x-total-count", `${cachedAvailablePackages.length}`);
+    if (!packageName) {
+      res.status(400).json({ error: "Package name is required" });
+      return;
+    }
 
-        res.json({ data: cachedAvailablePackages });
-    });
+    if (!cachedLatestPackages.has(packageName)) {
+      const latest = await getLatestPackageData(packageName);
+      cachedLatestPackages.set(packageName, latest);
+    }
 
-    const cachedLatestPackages = new Map<string, any>();
-    app.get("/api/packages/:packageName/latest", async (req, res) => {
-        const { packageName } = req.params ?? {};
+    return res.json({ data: cachedLatestPackages.get(packageName) });
+  });
 
-        if (!packageName) {
-            res.status(400).json({ error: "Package name is required" });
-            return;
-        }
+  app.post("/api/packages/install", async (req, res) => {
+    const { packages } = req.body ?? {};
 
-        if (!cachedLatestPackages.has(packageName)) {
-            const latest = await getLatestPackageData(packageName);
-            cachedLatestPackages.set(packageName, latest);
-        }
+    if (packages?.length === 0) {
+      res.status(400).json({ error: "Package name is required" });
+      return;
+    }
 
-        return res.json({ data: cachedLatestPackages.get(packageName) });
-    });
+    const success = await updatePackage(packages as string[]);
 
-    app.post("/api/packages/install", async (req, res) => {
-        const { packages } = req.body ?? {};
+    if (success) {
+      cachedInstalledPackages = null;
+      cachedAvailablePackages = null;
+      res.status(200).json({ success: true });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: "Failed to update package",
+      });
+    }
+  });
 
-        if (packages?.length === 0) {
-            res.status(400).json({ error: "Package name is required" });
-            return;
-        }
+  let cachedFeed: Feed | null = null;
+  app.get("/api/feed", async (req, res) => {
+    if (!cachedFeed) {
+      cachedFeed = await getFeed();
+    }
 
-        const success = await updatePackage(packages as string[]);
+    res.header("x-total-count", `${cachedFeed.length}`);
 
-        if (success) {
-            cachedInstalledPackages = null;
-            cachedAvailablePackages = null;
-            res.status(200).json({ success: true });
-        } else {
-            res.status(400).json({
-                success: false,
-                error: "Failed to update package",
-            });
-        }
-    });
+    res.json({ data: cachedFeed });
+  });
 
-    let cachedFeed: Feed | null = null;
-    app.get("/api/feed", async (req, res) => {
-        if (!cachedFeed) {
-            cachedFeed = await getFeed();
-        }
+  app.get("/api/project-id/status", async (_, res) => {
+    const projectId = await getProjectIdFromPackageJson();
 
-        res.header("x-total-count", `${cachedFeed.length}`);
+    if (projectId) {
+      res.status(200).json({ projectId });
+      return;
+    } else if (projectId === false) {
+      res.status(404).json({ projectId: null });
+      return;
+    } else {
+      res.status(500).json({ projectId: null });
+      return;
+    }
+  });
 
-        res.json({ data: cachedFeed });
-    });
+  app.post("/api/project-id/update", async (req, res) => {
+    const { projectId } = req.body ?? {};
 
-    app.get("/api/project-id/status", async (_, res) => {
-        const projectId = await getProjectIdFromPackageJson();
+    if (!projectId) {
+      res.status(400).json({ error: "Project ID is required" });
+      return;
+    }
 
-        if (projectId) {
-            res.status(200).json({ projectId });
-            return;
-        } else if (projectId === false) {
-            res.status(404).json({ projectId: null });
-            return;
-        } else {
-            res.status(500).json({ projectId: null });
-            return;
-        }
-    });
+    const success = await updateProjectId(projectId);
 
-    app.post("/api/project-id/update", async (req, res) => {
-        const { projectId } = req.body ?? {};
-
-        if (!projectId) {
-            res.status(400).json({ error: "Project ID is required" });
-            return;
-        }
-
-        const success = await updateProjectId(projectId);
-
-        if (success) {
-            res.status(200).json({ success: true });
-            return;
-        } else {
-            res.status(500).json({
-                success: false,
-                error: "Failed to update project ID",
-            });
-            return;
-        }
-    });
+    if (success) {
+      res.status(200).json({ success: true });
+      return;
+    } else {
+      res.status(500).json({
+        success: false,
+        error: "Failed to update project ID",
+      });
+      return;
+    }
+  });
 };

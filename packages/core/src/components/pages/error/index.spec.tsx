@@ -3,87 +3,87 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import { ErrorComponent } from ".";
 import {
-    mockRouterBindings,
-    TestWrapper,
-    mockLegacyRouterProvider,
+  mockRouterBindings,
+  TestWrapper,
+  mockLegacyRouterProvider,
 } from "@test";
 
 describe("ErrorComponent", () => {
-    it("renders subtitle successfully", () => {
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({}),
-        });
-
-        getByText("Sorry, the page you visited does not exist.");
+  it("renders subtitle successfully", () => {
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("renders button successfully", () => {
-        const { container, getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({}),
-        });
+    getByText("Sorry, the page you visited does not exist.");
+  });
 
-        expect(container.querySelector("button")).toBeTruthy();
-        getByText("Back Home");
+  it("renders button successfully", () => {
+    const { container, getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("render error message according to the resource and action", () => {
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                routerProvider: mockRouterBindings({
-                    action: "create",
-                    resource: { name: "posts" },
-                    pathname: "/posts/create",
-                }),
-            }),
-        });
+    expect(container.querySelector("button")).toBeTruthy();
+    getByText("Back Home");
+  });
 
-        getByText(
-            `You may have forgotten to add the "create" component to "posts" resource.`,
-        );
+  it("render error message according to the resource and action", () => {
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({
+        routerProvider: mockRouterBindings({
+          action: "create",
+          resource: { name: "posts" },
+          pathname: "/posts/create",
+        }),
+      }),
     });
 
-    it("back home button should work with legacy router provider", async () => {
-        const pushMock = jest.fn();
+    getByText(
+      `You may have forgotten to add the "create" component to "posts" resource.`,
+    );
+  });
 
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                legacyRouterProvider: {
-                    ...mockLegacyRouterProvider(),
-                    useHistory: () => ({
-                        push: pushMock,
-                    }),
-                },
-            }),
-        });
+  it("back home button should work with legacy router provider", async () => {
+    const pushMock = jest.fn();
 
-        fireEvent.click(getByText("Back Home"));
-
-        await waitFor(() => {
-            expect(pushMock).toBeCalledTimes(1);
-        });
-
-        expect(pushMock).toBeCalledWith("/");
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({
+        legacyRouterProvider: {
+          ...mockLegacyRouterProvider(),
+          useHistory: () => ({
+            push: pushMock,
+          }),
+        },
+      }),
     });
 
-    it("back home button should work with router provider", async () => {
-        const goMock = jest.fn();
+    fireEvent.click(getByText("Back Home"));
 
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        go: () => goMock,
-                    },
-                }),
-            }),
-        });
-
-        fireEvent.click(getByText("Back Home"));
-
-        await waitFor(() => {
-            expect(goMock).toBeCalledTimes(1);
-        });
-
-        expect(goMock).toBeCalledWith({ to: "/" });
+    await waitFor(() => {
+      expect(pushMock).toBeCalledTimes(1);
     });
+
+    expect(pushMock).toBeCalledWith("/");
+  });
+
+  it("back home button should work with router provider", async () => {
+    const goMock = jest.fn();
+
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({
+        routerProvider: mockRouterBindings({
+          fns: {
+            go: () => goMock,
+          },
+        }),
+      }),
+    });
+
+    fireEvent.click(getByText("Back Home"));
+
+    await waitFor(() => {
+      expect(goMock).toBeCalledTimes(1);
+    });
+
+    expect(goMock).toBeCalledWith({ to: "/" });
+  });
 });

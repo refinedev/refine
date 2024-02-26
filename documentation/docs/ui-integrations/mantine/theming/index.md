@@ -52,7 +52,12 @@ const PostList: React.FC = () => {
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </th>
               ))}
             </tr>
@@ -62,14 +67,21 @@ const PostList: React.FC = () => {
           {getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
               ))}
             </tr>
           ))}
         </tbody>
       </Table>
       <br />
-      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
     </List>
   );
 };
@@ -87,7 +99,12 @@ const PostEdit: React.FC = () => {
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
       </form>
     </Edit>
   );
@@ -106,7 +123,12 @@ const PostCreate: React.FC = () => {
   return (
     <Create saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
       </form>
     </Create>
   );
@@ -338,7 +360,12 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { ThemedLayoutV2, ErrorComponent, useNotificationProvider, RefineThemes } from "@refinedev/mantine";
+import {
+  ThemedLayoutV2,
+  ErrorComponent,
+  useNotificationProvider,
+  RefineThemes,
+} from "@refinedev/mantine";
 // highlight-start
 import { NotificationsProvider } from "@mantine/notifications";
 import {

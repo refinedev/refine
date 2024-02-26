@@ -247,7 +247,13 @@ import {
   // highlight-next-line
   DeleteButton,
 } from "@refinedev/mui";
-import { Table, TableHead, TableRow, TableCell, TableBody } from "@mui/x-data-grid";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@mui/x-data-grid";
 
 export const PostList: React.FC = () => {
   const { tableQueryResult } = useTable<IPost>();
@@ -349,7 +355,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-  return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

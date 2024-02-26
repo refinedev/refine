@@ -33,7 +33,9 @@ const ProductCreate: React.FC = () => {
             </option>
           ))}
         </select>
-        <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle</button>
+        <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+          Toggle
+        </button>
       </label>
     </>
   );

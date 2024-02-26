@@ -280,12 +280,16 @@ export const PostCreate: React.FC = () => {
     const formData = new FormData();
     formData.append("file", inputFile?.files?.item(0) as File);
 
-    const res = await axios.post<{ url: string }>(`${apiURL}/media/upload`, formData, {
-      withCredentials: false,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
+    const res = await axios.post<{ url: string }>(
+      `${apiURL}/media/upload`,
+      formData,
+      {
+        withCredentials: false,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
       },
-    });
+    );
 
     setValue("thumbnail", res.data.url);
     setIsUploading(false);
@@ -307,7 +311,10 @@ export const PostCreate: React.FC = () => {
       </select>
       <br />
       <label>Category: </label>
-      <select defaultValue={""} {...register("category.id", { required: true })}>
+      <select
+        defaultValue={""}
+        {...register("category.id", { required: true })}
+      >
         <option value={""} disabled>
           Please select
         </option>
@@ -321,7 +328,11 @@ export const PostCreate: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <br />

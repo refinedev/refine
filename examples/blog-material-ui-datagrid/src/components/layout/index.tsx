@@ -11,12 +11,12 @@ const Wrapper = styled.div`
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    return (
-        <>
-            <Header />
-            <Wrapper>{children}</Wrapper>
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Wrapper>{children}</Wrapper>
+    </>
+  );
 };
 
 export default Layout;

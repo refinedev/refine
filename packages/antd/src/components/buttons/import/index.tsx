@@ -3,8 +3,8 @@ import { Button, Upload } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
 import { ImportButtonProps } from "../types";
@@ -17,24 +17,23 @@ import { ImportButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
-    uploadProps,
-    buttonProps,
-    hideText = false,
-    children,
+  uploadProps,
+  buttonProps,
+  hideText = false,
+  children,
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    return (
-        <Upload {...uploadProps}>
-            <Button
-                icon={<ImportOutlined />}
-                data-testid={RefineButtonTestIds.ImportButton}
-                className={RefineButtonClassNames.ImportButton}
-                {...buttonProps}
-            >
-                {!hideText &&
-                    (children ?? translate("buttons.import", "Import"))}
-            </Button>
-        </Upload>
-    );
+  return (
+    <Upload {...uploadProps}>
+      <Button
+        icon={<ImportOutlined />}
+        data-testid={RefineButtonTestIds.ImportButton}
+        className={RefineButtonClassNames.ImportButton}
+        {...buttonProps}
+      >
+        {!hideText && (children ?? translate("buttons.import", "Import"))}
+      </Button>
+    </Upload>
+  );
 };

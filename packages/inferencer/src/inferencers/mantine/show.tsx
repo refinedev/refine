@@ -277,7 +277,7 @@ export const renderer = ({
                     })()}
                     </>
                 )}
-                
+
                 `;
     }
     return undefined;
@@ -646,13 +646,13 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
-    
+
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage
-            ? `{ 
-                    resource: "${resource.name}", 
+            ? `{
+                    resource: "${resource.name}",
                     id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                       resource?.identifier ?? resource?.name,
@@ -671,9 +671,9 @@ export const renderer = ({
               : ""
         });
         const { data, isLoading } = queryResult;
-    
+
         const ${recordName} = data?.data;
-    
+
         ${relationHooksCode}
 
         return (

@@ -139,7 +139,10 @@ const App: React.FC = () => {
     <ConfigProvider
       // highlight-start
       theme={{
-        algorithm: currentTheme === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
+        algorithm:
+          currentTheme === "light"
+            ? theme.defaultAlgorithm
+            : theme.darkAlgorithm,
       }}
       // highlight-end
     >

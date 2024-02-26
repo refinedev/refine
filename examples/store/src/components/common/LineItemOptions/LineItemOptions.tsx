@@ -1,27 +1,26 @@
 import { ProductVariant } from "@medusajs/medusa";
 
 interface LineItemOptionsProps {
-    variant: ProductVariant;
+  variant: ProductVariant;
 }
 
 export const LineItemOptions: React.FC<LineItemOptionsProps> = ({
-    variant,
+  variant,
 }) => {
-    return (
-        <div className="text-small-regular text-primary">
-            {variant.options.map((option) => {
-                const optionName =
-                    variant.product.options.find(
-                        (opt) => opt.id === option.option_id,
-                    )?.title || "Option";
-                return (
-                    <div key={option.id}>
-                        <span>
-                            {optionName}: {option.value}
-                        </span>
-                    </div>
-                );
-            })}
-        </div>
-    );
+  return (
+    <div className="text-small-regular text-primary">
+      {variant.options.map((option) => {
+        const optionName =
+          variant.product.options.find((opt) => opt.id === option.option_id)
+            ?.title || "Option";
+        return (
+          <div key={option.id}>
+            <span>
+              {optionName}: {option.value}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
 };

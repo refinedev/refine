@@ -484,7 +484,11 @@ react-tooltip also provides a feature that allows you to create clickable toolti
     <Tooltip anchorSelect="#my-tooltip" place="right" clickable>
       route to {item.label}
       <br />
-      <button onClick={() => alert(`This link routes to the ${item.label} page`)}>learn more</button>
+      <button
+        onClick={() => alert(`This link routes to the ${item.label} page`)}
+      >
+        learn more
+      </button>
     </Tooltip>
   </>
 </li>

@@ -14,7 +14,11 @@ setRefineProps({
 });
 
 const Wrapper = ({ children }) => {
-  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
+  return (
+    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </ChakraUI.ChakraProvider>
+  );
 };
 ```
 
@@ -41,7 +45,15 @@ import {
   // highlight-next-line
   DateField,
 } from "@refinedev/chakra-ui";
-import { TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import {
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
@@ -87,7 +99,11 @@ const PostList: React.FC = () => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <Th key={header.id}>
-                      {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                      {!header.isPlaceholder &&
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </Th>
                   );
                 })}
@@ -99,7 +115,14 @@ const PostList: React.FC = () => {
               return (
                 <Tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
-                    return <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>;
+                    return (
+                      <Td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
+                    );
                   })}
                 </Tr>
               );

@@ -7,49 +7,49 @@ import { axiosInstance } from "./utils";
  */
 
 export const githubDataProvider = (
-    httpClient: AxiosInstance = axiosInstance,
+  httpClient: AxiosInstance = axiosInstance,
 ): Omit<
-    Required<DataProvider>,
-    "createMany" | "updateMany" | "deleteMany"
+  Required<DataProvider>,
+  "createMany" | "updateMany" | "deleteMany"
 > => ({
-    getList: async ({ resource, pagination }) => {
-        const { data } = await httpClient.get(
-            `https://api.github.com/${resource}?until=${
-                pagination?.current || new Date().toISOString()
-            }`,
-        );
+  getList: async ({ resource, pagination }) => {
+    const { data } = await httpClient.get(
+      `https://api.github.com/${resource}?until=${
+        pagination?.current || new Date().toISOString()
+      }`,
+    );
 
-        return {
-            data,
-            total: 0,
-        };
-    },
+    return {
+      data,
+      total: 0,
+    };
+  },
 
-    getMany: async () => {
-        throw new Error("Method not implemented.");
-    },
+  getMany: async () => {
+    throw new Error("Method not implemented.");
+  },
 
-    create: async () => {
-        throw new Error("Method not implemented.");
-    },
+  create: async () => {
+    throw new Error("Method not implemented.");
+  },
 
-    update: async () => {
-        throw new Error("Method not implemented.");
-    },
+  update: async () => {
+    throw new Error("Method not implemented.");
+  },
 
-    getOne: async () => {
-        throw new Error("Method not implemented.");
-    },
+  getOne: async () => {
+    throw new Error("Method not implemented.");
+  },
 
-    deleteOne: async () => {
-        throw new Error("Method not implemented.");
-    },
+  deleteOne: async () => {
+    throw new Error("Method not implemented.");
+  },
 
-    getApiUrl: () => {
-        return "https://api.github.com";
-    },
+  getApiUrl: () => {
+    return "https://api.github.com";
+  },
 
-    custom: async () => {
-        throw new Error("Method not implemented.");
-    },
+  custom: async () => {
+    throw new Error("Method not implemented.");
+  },
 });

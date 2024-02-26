@@ -9,34 +9,34 @@ import { ResourceCommand } from "./sub-commands/resource/command";
 import { createResources } from "./sub-commands/resource/create-resources";
 
 const load = (program: Command) => {
-    return program
-        .command("add")
-        .description("Add new resources, providers, or integrations")
-        .allowExcessArguments(false)
-        .action(addCommandAction)
-        .addCommand(ResourceCommand)
-        .addCommand(ProviderCommand)
-        .addCommand(IntegrationCommand);
+  return program
+    .command("add")
+    .description("Add new resources, providers, or integrations")
+    .allowExcessArguments(false)
+    .action(addCommandAction)
+    .addCommand(ResourceCommand)
+    .addCommand(ProviderCommand)
+    .addCommand(IntegrationCommand);
 };
 
 const addCommandAction = async () => {
-    const { component } = await addCommandPrompt();
+  const { component } = await addCommandPrompt();
 
-    if (component.group === "provider") {
-        createProviders([component.component]);
-    }
+  if (component.group === "provider") {
+    createProviders([component.component]);
+  }
 
-    if (component.group === "integration") {
-        const integration = availableIntegrations.find(
-            (integration) => integration.id === component.component,
-        );
+  if (component.group === "integration") {
+    const integration = availableIntegrations.find(
+      (integration) => integration.id === component.component,
+    );
 
-        await integration?.runTransformer();
-    }
+    await integration?.runTransformer();
+  }
 
-    if (component.group === "resource") {
-        await createResources({}, []);
-    }
+  if (component.group === "resource") {
+    await createResources({}, []);
+  }
 };
 
 export default load;

@@ -247,7 +247,12 @@ export default App;
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import {
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, {
   NavigateToResource,
@@ -455,7 +460,11 @@ Since it is a sub-component of the `<Form>` component, we don't have to import a
 ```tsx title="src/pages/UserCreate.tsx"
 <Create saveButtonProps={saveButtonProps}>
   <Form {...formProps} layout="vertical">
-    <Form.Item name={"firstName"} label="First Name" style={{ maxWidth: "893px" }}>
+    <Form.Item
+      name={"firstName"}
+      label="First Name"
+      style={{ maxWidth: "893px" }}
+    >
       <Input placeholder="e.g John" />
     </Form.Item>
     <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }}>
@@ -522,7 +531,11 @@ To add a list to the form, first, declare the `<Form.List>` component and add th
         {fields.map((field, index) => {
           return (
             <div key={field.key}>
-              <Form.Item name={field.name} label={`skill - ${index + 1}`} rules={[{ required: true }]}>
+              <Form.Item
+                name={field.name}
+                label={`skill - ${index + 1}`}
+                rules={[{ required: true }]}
+              >
                 <Input placeholder="e.g javascript" />
               </Form.Item>
             </div>
@@ -573,7 +586,12 @@ What we can do first is destructure the `add()` and `remove()` functions from th
           );
         })}
         <Form.Item>
-          <Button type="dashed" block onClick={() => add()} style={{ maxWidth: "893px" }}>
+          <Button
+            type="dashed"
+            block
+            onClick={() => add()}
+            style={{ maxWidth: "893px" }}
+          >
             Add a skill
           </Button>
         </Form.Item>
@@ -611,10 +629,20 @@ export default function UserCreate() {
   return (
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
-        <Form.Item name={"firstName"} label="First Name" style={{ maxWidth: "893px" }} rules={[{ required: true }]}>
+        <Form.Item
+          name={"firstName"}
+          label="First Name"
+          style={{ maxWidth: "893px" }}
+          rules={[{ required: true }]}
+        >
           <Input placeholder="e.g John" />
         </Form.Item>
-        <Form.Item name={"email"} label="Email" style={{ maxWidth: "893px" }} rules={[{ required: true }]}>
+        <Form.Item
+          name={"email"}
+          label="Email"
+          style={{ maxWidth: "893px" }}
+          rules={[{ required: true }]}
+        >
           <Input placeholder="e.g john@email.com" />
         </Form.Item>
         <Form.List name={"skills"}>
@@ -689,10 +717,20 @@ All we have to do is append an icon name to the `<Icons>` component we imported 
 
 ```tsx title="src/pages/UserCreate.tsx"
 <div key={field.key}>
-  <Form.Item name={field.name} label={`skill - ${index + 1}`} style={{ width: "400px" }} rules={[{ required: true }]}>
+  <Form.Item
+    name={field.name}
+    label={`skill - ${index + 1}`}
+    style={{ width: "400px" }}
+    rules={[{ required: true }]}
+  >
     <Input placeholder="e.g javascript" />
   </Form.Item>
-  <Button danger onClick={() => remove(field.name)} style={{ marginTop: "5px" }} icon={<DeleteOutlined />} />
+  <Button
+    danger
+    onClick={() => remove(field.name)}
+    style={{ marginTop: "5px" }}
+    icon={<DeleteOutlined />}
+  />
 </div>
 ```
 
@@ -709,10 +747,20 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
     marginRight: "13px",
   }}
 >
-  <Form.Item name={field.name} label={`skill - ${index + 1}`} style={{ width: "400px" }} rules={[{ required: true }]}>
+  <Form.Item
+    name={field.name}
+    label={`skill - ${index + 1}`}
+    style={{ width: "400px" }}
+    rules={[{ required: true }]}
+  >
     <Input placeholder="e.g javascript" />
   </Form.Item>
-  <Button danger onClick={() => remove(field.name)} style={{ marginTop: "5px" }} icon={<DeleteOutlined />} />
+  <Button
+    danger
+    onClick={() => remove(field.name)}
+    style={{ marginTop: "5px" }}
+    icon={<DeleteOutlined />}
+  />
 </Space>
 ```
 
@@ -723,7 +771,13 @@ To place the icon on the same line with the Input field, replace the `div` wrapp
 Using the same process, we can also add icons to the `Add a skill` button.
 
 ```tsx title="src/pages/UserCreate.tsx"
-<Button type="dashed" block style={{ maxWidth: "893px" }} icon={<PlusOutlined />} onClick={() => add()}>
+<Button
+  type="dashed"
+  block
+  style={{ maxWidth: "893px" }}
+  icon={<PlusOutlined />}
+  onClick={() => add()}
+>
   Add a skill
 </Button>
 ```

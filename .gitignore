@@ -5,7 +5,8 @@ node_modules
 dist
 .rpt2_cache
 coverage
-.vscode
+build
+.docusaurus
 
 # misc
 .DS_Store
@@ -23,11 +24,6 @@ coverage
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# eslint cache
-example/.eslintcache
-example/.cache
-.eslintcache
 
 examples/**/package-lock.json
 .next
