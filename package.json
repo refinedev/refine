@@ -17,9 +17,9 @@
     "dev": "lerna run dev --stream --parallel --scope @refinedev/core",
     "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
-    "lint": "biome lint .",
-    "lint:ci": "biome lint .",
-    "lint:fix": "biome lint . --apply",
+    "lint": "biome check .",
+    "lint:ci": "biome ci .",
+    "lint:fix": "biome check . --apply",
     "lint:staged": "lint-staged",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
@@ -33,7 +33,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "biome lint"
+      "biome check"
     ],
     "*.{md,mdx}": [
       "prettier --config ./.prettierrc --write"
