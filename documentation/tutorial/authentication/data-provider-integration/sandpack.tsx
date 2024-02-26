@@ -8,15 +8,15 @@ import { finalFiles as initialFiles } from "../user-identity/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -324,65 +324,65 @@ export const authProvider: AuthProvider = {
 // actions
 
 export const AddAuthenticationToDataProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithAuthentication,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithAuthentication,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddProtectedProductsResourceToListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithProtectedProductsResource,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithProtectedProductsResource,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddOnErrorMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderWithOnErrorMethod,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderWithOnErrorMethod,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 // updates
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/providers/data-provider.ts": {
-        code: DataProviderWithAuthentication,
-    },
-    "src/pages/products/list.tsx": {
-        code: ListProductsWithProtectedProductsResource,
-        active: true,
-    },
-    "src/providers/auth-provider.ts": {
-        code: AuthProviderWithOnErrorMethod,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/providers/data-provider.ts": {
+    code: DataProviderWithAuthentication,
+  },
+  "src/pages/products/list.tsx": {
+    code: ListProductsWithProtectedProductsResource,
+    active: true,
+  },
+  "src/providers/auth-provider.ts": {
+    code: AuthProviderWithOnErrorMethod,
+  },
 };

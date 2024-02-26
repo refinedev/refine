@@ -214,7 +214,8 @@ const EmployeeList: React.FC = () => {
         headerName: "Full Name",
         minWidth: 150,
         flex: 1,
-        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+        valueGetter: (params) =>
+          `${params.row.first_name || ""} ${params.row.last_name || ""}`,
       },
       {
         field: "email",
@@ -242,7 +243,12 @@ const EmployeeList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} checkboxSelection columns={columns} autoHeight />
+      <DataGrid
+        {...dataGridProps}
+        checkboxSelection
+        columns={columns}
+        autoHeight
+      />
     </List>
   );
 };
@@ -263,7 +269,10 @@ Next, replace the `src/App.tsx` file with the following code:
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  useNotificationProvider,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
@@ -287,7 +296,9 @@ function App() {
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
             <Refine
-              dataProvider={dataProvider("https://my-json-server.typicode.com/Mich45/employee-data")}
+              dataProvider={dataProvider(
+                "https://my-json-server.typicode.com/Mich45/employee-data",
+              )}
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               resources={[
@@ -309,7 +320,10 @@ function App() {
                     </Layout>
                   }
                 >
-                  <Route index element={<NavigateToResource resource="employees" />} />
+                  <Route
+                    index
+                    element={<NavigateToResource resource="employees" />}
+                  />
 
                   <Route path="/employees" element={<EmployeeList />} />
                 </Route>
@@ -468,7 +482,8 @@ const EmployeeList: React.FC = () => {
         headerName: "Full Name",
         minWidth: 150,
         flex: 1,
-        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+        valueGetter: (params) =>
+          `${params.row.first_name || ""} ${params.row.last_name || ""}`,
       },
       {
         field: "email",
@@ -515,7 +530,12 @@ const EmployeeList: React.FC = () => {
         </ButtonGroup>
       </ButtonsWrapper>
       //highlight-end
-      <DataGrid {...dataGridProps} checkboxSelection columns={columns} autoHeight />
+      <DataGrid
+        {...dataGridProps}
+        checkboxSelection
+        columns={columns}
+        autoHeight
+      />
     </List>
   );
 };
@@ -552,7 +572,13 @@ You can import the `<GridToolbar />` component and use it like so:
 ```tsx title="src/pages/employees.tsx"
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-<DataGrid {...dataGridProps} checkboxSelection columns={columns} slots={{ toolbar: GridToolbar }} autoHeight />;
+<DataGrid
+  {...dataGridProps}
+  checkboxSelection
+  columns={columns}
+  slots={{ toolbar: GridToolbar }}
+  autoHeight
+/>;
 ```
 
 The filter feature works by searching the rows for values that match a given filter operator. The list of operators which can be used in the _sortModel_ can be found [here](https://refine.dev/docs/core/interfaceReferences/#crudfilters).
@@ -627,7 +653,8 @@ const EmployeeList: React.FC = () => {
         headerName: "Full Name",
         minWidth: 150,
         flex: 1,
-        valueGetter: (params) => `${params.row.first_name || ""} ${params.row.last_name || ""}`,
+        valueGetter: (params) =>
+          `${params.row.first_name || ""} ${params.row.last_name || ""}`,
       },
       {
         field: "email",
@@ -654,7 +681,10 @@ const EmployeeList: React.FC = () => {
   );
 
   //highlight-start
-  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  const handleFilter = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) => {
     setFilters([
       {
         field: "role",
@@ -668,9 +698,17 @@ const EmployeeList: React.FC = () => {
   return (
     <List>
       //highlight-start
-      <FormControlLabel label="Filter Employees with Recruiter Role" control={<Checkbox onChange={handleFilter} />} />
+      <FormControlLabel
+        label="Filter Employees with Recruiter Role"
+        control={<Checkbox onChange={handleFilter} />}
+      />
       //highlight-end
-      <DataGrid {...dataGridProps} columns={columns} slots={{ toolbar: GridToolbar }} autoHeight />
+      <DataGrid
+        {...dataGridProps}
+        columns={columns}
+        slots={{ toolbar: GridToolbar }}
+        autoHeight
+      />
     </List>
   );
 };

@@ -8,10 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-16-typescript
 hide_table_of_contents: false
 ---
 
-
-
 The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API endpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
-
 
 ## Introduction
 
@@ -19,23 +16,19 @@ The `Record<>` type is a TypeScript object transformation type that is often use
 
 This post explores the TypeScript Record type with a series of examples ranging from simple strings and numbers based types to more common ones involving API data and React components. With the examples, we see how to derive `Record<>` types by assigning types for `Keys` and `Value`, discuss how a `Record<>` type is advantageous over simple object types and index signatures, and try to understand the quirks of its usage.
 
-
-
-
-
 ## Understanding the Record Type
 
 Starting easy, let's begin with a simple **object type** that represents a user:
 
 ```ts
 type TUser = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 const user: TUser = {
-    email: "example@example.com",
-    password: "12345678",
+  email: "example@example.com",
+  password: "12345678",
 };
 
 console.log(user.email); // "example@example.com"
@@ -47,12 +40,12 @@ We could also use an **index signature**:
 
 ```ts
 type TIUser = {
-    [s: string]: string;
+  [s: string]: string;
 };
 
 const iUser: TIUser = {
-    email: "example@example.com",
-    password: "12345678",
+  email: "example@example.com",
+  password: "12345678",
 };
 
 console.log(iUser.email); // "example@example.com"
@@ -71,22 +64,21 @@ For API data like a `user`, a much more accurate representation is by constructi
 
 This is crucial, especially in backend development for building RESTful APIs that use `id`s in query params to fetch data from API endpoints.
 
-
 ### Enter the `Record<>`
 
 The TypeScript `Record<>` type helps reconstruct API data types into structured maps that are easier to handle:
 
 ```ts
 type TUser = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 const user: Record<string, TUser> = {
-    "3xamp1eUSERIdSTOR3DinAdb": {
-        email: "example@example.com",
-        password: "12345678",
-    }
+  "3xamp1eUSERIdSTOR3DinAdb": {
+    email: "example@example.com",
+    password: "12345678",
+  },
 };
 
 console.log(user["3xamp1eUSERIdSTOR3DinAdb"].email); // "example@example.com"
@@ -102,14 +94,14 @@ The derived Record type actually represents a collection of data:
 
 ```ts
 const users: Record<string, TUser> = {
-    "3xamp1eUSERIdSTOR3DinAdb": {
-        email: "example@example.com",
-        password: "12345678",
-    },
-     "another3xamp1eUSERIdSTOR3DinAdb": {
-        email: "another_example@example.com",
-        password: "12345678",
-    },
+  "3xamp1eUSERIdSTOR3DinAdb": {
+    email: "example@example.com",
+    password: "12345678",
+  },
+  another3xamp1eUSERIdSTOR3DinAdb: {
+    email: "another_example@example.com",
+    password: "12345678",
+  },
 };
 
 console.log(users["another3xamp1eUSERIdSTOR3DinAdb"].email); // "another_example@example.com"
@@ -123,28 +115,31 @@ However, if we want to restrict the collection to a number of ids, `Keys` can ha
 
 ```ts
 type TUser = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
-type ActiveUserIds = "3xamp1eUSERIdSTOR3DinAdb" | "another3xamp1eUSERIdSTOR3DinAdb" | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
+type ActiveUserIds =
+  | "3xamp1eUSERIdSTOR3DinAdb"
+  | "another3xamp1eUSERIdSTOR3DinAdb"
+  | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
 
 const activeUsers: Record<ActiveUserIds, TUser> = {
-    "3xamp1eUSERIdSTOR3DinAdb": {
-        email: "example@example.com",
-        password: "12345678",
-    },
-     "another3xamp1eUSERIdSTOR3DinAdb": {
-        email: "another_example@example.com",
-        password: "12345678",
-    },
-     "yetAnother3xamp1eUSERIdSTOR3DinAdb": {
-        email: "yet_another_example@example.com",
-        password: "12345678",
-    },
+  "3xamp1eUSERIdSTOR3DinAdb": {
+    email: "example@example.com",
+    password: "12345678",
+  },
+  another3xamp1eUSERIdSTOR3DinAdb: {
+    email: "another_example@example.com",
+    password: "12345678",
+  },
+  yetAnother3xamp1eUSERIdSTOR3DinAdb: {
+    email: "yet_another_example@example.com",
+    password: "12345678",
+  },
 };
 
-console.log(activeUsers[ "3xamp1eUSERIdSTOR3DinAdb"].email); // example@example.com
+console.log(activeUsers["3xamp1eUSERIdSTOR3DinAdb"].email); // example@example.com
 console.log(activeUsers["amongOther3xamp1eUSERIdsSTOR3DinAdb"].email);
 /*
 Property 'amonganother3xamp1eUSERIdSTOR3DinAdb' does not exist on type 'Record<activeUserIds, TUser>'. Did you mean 'another3xamp1eUSERIdSTOR3DinAdb'?(2551)
@@ -157,21 +152,24 @@ Union of keys types in `Record<>` is much more restrictive - in the sense that T
 
 ```ts
 type TUser = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
-type ActiveUserIds = "3xamp1eUSERIdSTOR3DinAdb" | "another3xamp1eUSERIdSTOR3DinAdb" | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
+type ActiveUserIds =
+  | "3xamp1eUSERIdSTOR3DinAdb"
+  | "another3xamp1eUSERIdSTOR3DinAdb"
+  | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
 
 const activeUsers: Record<ActiveUserIds, TUser> = {
-    "3xamp1eUSERIdSTOR3DinAdb": {
-        email: "example@example.com",
-        password: "12345678",
-    },
-     "yetAnother3xamp1eUSERIdSTOR3DinAdb": {
-        email: "yet_another_example@example.com",
-        password: "12345678",
-    },
+  "3xamp1eUSERIdSTOR3DinAdb": {
+    email: "example@example.com",
+    password: "12345678",
+  },
+  yetAnother3xamp1eUSERIdSTOR3DinAdb: {
+    email: "yet_another_example@example.com",
+    password: "12345678",
+  },
 };
 
 /*
@@ -185,35 +183,36 @@ This is not the case with the values though. For example, in the below code, the
 // No error with missing a type in values.
 
 type TUser = {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 };
 
 type TProjectManager = {
-    phone: string;
-    email: string;
-    password: string;
-}
+  phone: string;
+  email: string;
+  password: string;
+};
 
-type ActiveUserIds = "3xamp1eUSERIdSTOR3DinAdb" | "another3xamp1eUSERIdSTOR3DinAdb" | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
+type ActiveUserIds =
+  | "3xamp1eUSERIdSTOR3DinAdb"
+  | "another3xamp1eUSERIdSTOR3DinAdb"
+  | "yetAnother3xamp1eUSERIdSTOR3DinAdb";
 
 const user: Record<ActiveUserIds, TUser | TProjectManager> = {
-    "3xamp1eUSERIdSTOR3DinAdb": {
-        email: "example@example.com",
-        password: "12345678",
-    },
-     "another3xamp1eUSERIdSTOR3DinAdb": {
-        email: "another_example@example.com",
-        password: "12345678",
-    },
-     "yetAnother3xamp1eUSERIdSTOR3DinAdb": {
-        email: "yetAnother_example@example.com",
-        password: "12345678",
-    },
+  "3xamp1eUSERIdSTOR3DinAdb": {
+    email: "example@example.com",
+    password: "12345678",
+  },
+  another3xamp1eUSERIdSTOR3DinAdb: {
+    email: "another_example@example.com",
+    password: "12345678",
+  },
+  yetAnother3xamp1eUSERIdSTOR3DinAdb: {
+    email: "yetAnother_example@example.com",
+    password: "12345678",
+  },
 };
 ```
-
-
 
 ### Other Quirks
 
@@ -232,11 +231,9 @@ type booleanUser = Record<boolean, TUser>; // Type 'boolean' does not satisfy th
 type booleanUser = Record<object, TUser>; // Type 'object' does not satisfy the constraint 'string | number | symbol'.(2344)
 ```
 
-
 **Allowed Types for Values**
 
 Types for values can be of any type. `object`s and function types are common. This means, they can also be React components. Below, we see a React example.
-
 
 ## Using TypeScript `Record<>` with React Components
 
@@ -252,14 +249,13 @@ type TPermissions = "ProjectManager" | "Recruiter" | "Employer";
 type TDashBoardPreview = Record<TPermissions, JSX.Element>;
 
 const dashboardPreviews: TDashboardPreview = {
-    "ProjectManager": <DashboardPreview type="ProjectManager" size="thumbnail" />,
-    "Recruiter": <DashboardPreview type="Recruiter" size="thumbnail" />,
-    "Employer": <DashboardPreview type="Employer" size="thumbnail" />,
+  ProjectManager: <DashboardPreview type="ProjectManager" size="thumbnail" />,
+  Recruiter: <DashboardPreview type="Recruiter" size="thumbnail" />,
+  Employer: <DashboardPreview type="Employer" size="thumbnail" />,
 };
 ```
 
 We can then use the map inside main dash page.
-
 
 ## Summary
 

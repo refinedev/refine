@@ -1,0 +1,344 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/store/src/components/common/UserNav/CustomerMenuContent/CustomerMenuContent.tsx:59:29 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    57 │                                 [s.active]: pathname === href,
+    58 │                             })}
+  > 59 │                             onClick={(e) => handleClick(e, href)}
+       │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    60 │                         >
+    61 │                             {name}
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/store/src/components/common/UserNav/CustomerMenuContent/CustomerMenuContent.tsx:88:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    86 │                     <a
+    87 │                         className={cn(s.link, "border-accent-2 mt-4 border-t")}
+  > 88 │                         onClick={() =>
+       │                         ^^^^^^^^^^^^^^
+  > 89 │                             logout({
+  > 90 │                                 redirectTo: "/",
+  > 91 │                             })
+  > 92 │                         }
+       │                         ^
+    93 │                     >
+    94 │                         Logout
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/store/src/components/auth/ForgotPassword.tsx:47:25 lint/a11y/useValidAnchor ━━━━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    45 │                     <a
+    46 │                         className="text-accent-9 cursor-pointer font-bold hover:underline"
+  > 47 │                         onClick={() => setModalView("LOGIN_VIEW")}
+       │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    48 │                     >
+    49 │                         Log In
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/store/src/components/auth/SignUpView.tsx:137:25 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    135 │                     <a
+    136 │                         className="text-accent-9 cursor-pointer font-bold hover:underline"
+  > 137 │                         onClick={() => setModalView("LOGIN_VIEW")}
+        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    138 │                     >
+    139 │                         Log In
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/store/src/components/auth/LoginView.tsx:105:25 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    103 │                     <a
+    104 │                         className="text-accent-9 cursor-pointer pl-1 font-bold hover:underline"
+  > 105 │                         onClick={() => setModalView("SIGNUP_VIEW")}
+        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    106 │                     >
+    107 │                         Sign Up
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./packages/antd/src/components/pages/login/index.tsx:133:41 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    131 │                                             fontSize: "12px",
+    132 │                                         }}
+  > 133 │                                         href="#"
+        │                                         ^^^^^^^^
+    134 │                                     >
+    135 │                                         {translate(
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./packages/antd/src/components/pages/login/index.tsx:157:40 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    155 │                                         "Don’t have an account?",
+    156 │                                     )}{" "}
+  > 157 │                                     <a href="#" style={{ fontWeight: "bold" }}>
+        │                                        ^^^^^^^^
+    158 │                                         {translate(
+    159 │                                             "pages.login.signup",
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/customization-login/src/pages/login/index.tsx:103:41 lint/a11y/useValidAnchor ━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    101 │                                             fontSize: "12px",
+    102 │                                         }}
+  > 103 │                                         href="#"
+        │                                         ^^^^^^^^
+    104 │                                     >
+    105 │                                         Forgot password?
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/customization-login/src/pages/login/index.tsx:120:40 lint/a11y/useValidAnchor ━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    118 │                                 <Text style={{ fontSize: 12 }}>
+    119 │                                     Don’t have an account?{" "}
+  > 120 │                                     <a href="#" style={{ fontWeight: "bold" }}>
+        │                                        ^^^^^^^^
+    121 │                                         Sign up
+    122 │                                     </a>
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/blog-react-aria/src/components/Layout.tsx:23:49 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    21 │                                             <a
+    22 │                                                 className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
+  > 23 │                                                 onClick={() =>
+       │                                                 ^^^^^^^^^^^^^^
+  > 24 │                                                     push(route || "")
+  > 25 │                                                 }
+       │                                                 ^
+    26 │                                             >
+    27 │                                                 {icon}
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/multi-tenancy-appwrite/src/pages/login/index.tsx:101:41 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+     99 │                                             fontSize: "12px",
+    100 │                                         }}
+  > 101 │                                         href="#"
+        │                                         ^^^^^^^^
+    102 │                                     >
+    103 │                                         Forgot password?
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/multi-tenancy-appwrite/src/pages/login/index.tsx:118:40 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    116 │                                 <Text style={{ fontSize: 12 }}>
+    117 │                                     Don’t have an account?{" "}
+  > 118 │                                     <a href="#" style={{ fontWeight: "bold" }}>
+        │                                        ^^^^^^^^
+    119 │                                         Sign up
+    120 │                                     </a>
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/blog-refine-airtable-crud/src/components/Layout.tsx:62:41 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    60 │                                     <a
+    61 │                                         className="flex cursor-pointer flex-col items-center gap-1 capitalize hover:decoration-indigo-500 transition duration-300 ease-in-out underline"
+  > 62 │                                         onClick={() => push(route || "")}
+       │                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    63 │                                     >
+    64 │                                         {icon}
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:126:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    124 │                 >
+    125 │                     <a
+  > 126 │                         onClick={() => {
+        │                         ^^^^^^^^^^^^^^^^
+  > 127 │                             updateStatus(ContactStatusEnum.NEW);
+  > 128 │                         }}
+        │                         ^^
+    129 │                     >
+    130 │                         New
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:142:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    140 │                 >
+    141 │                     <a
+  > 142 │                         onClick={() => {
+        │                         ^^^^^^^^^^^^^^^^
+  > 143 │                             updateStatus(ContactStatusEnum.CONTACTED);
+  > 144 │                         }}
+        │                         ^^
+    145 │                     >
+    146 │                         Contacted
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:178:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Provide a href attribute for the a element.
+  
+    176 │                         }}
+    177 │                     >
+  > 178 │                         <a>
+        │                         ^^^
+    179 │                             {status === ContactStatusEnum.UNQUALIFIED
+    180 │                                 ? "Unqualified"
+  
+  i An anchor element should always have a href
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:194:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    192 │                 >
+    193 │                     <a
+  > 194 │                         onClick={() => {
+        │                         ^^^^^^^^^^^^^^^^
+  > 195 │                             updateStatus(ContactStatusEnum.QUALIFIED);
+  > 196 │                         }}
+        │                         ^^
+    197 │                     >
+    198 │                         Qualified
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:230:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Provide a href attribute for the a element.
+  
+    228 │                         }}
+    229 │                     >
+  > 230 │                         <a>
+        │                         ^^^
+    231 │                             {status === ContactStatusEnum.LOST
+    232 │                                 ? "Lost"
+  
+  i An anchor element should always have a href
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/app-crm/src/routes/contacts/components/status/index.tsx:267:25 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Provide a href attribute for the a element.
+  
+    265 │                         }}
+    266 │                     >
+  > 267 │                         <a>
+        │                         ^^^
+    268 │                             {status === ContactStatusEnum.CHURNED
+    269 │                                 ? "Churned"
+  
+  i An anchor element should always have a href
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/blog-refine-daisyui/src/components/dashboard/TabItem.tsx:14:13 lint/a11y/useValidAnchor ━━━━━━━━━━
+
+  ! Use a button element instead of an a element.
+  
+    12 │                 isActive ? " tab-active" : ""
+    13 │             }`}
+  > 14 │             onClick={clickHandler}
+       │             ^^^^^^^^^^^^^^^^^^^^^^
+    15 │         >
+    16 │             {label}
+  
+  i Anchor elements should only be used for default sections or page navigation
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+The number of diagnostics exceeds the number allowed by Biome.
+Diagnostics not shown: 2.
+Checked 6953 file(s) in 536ms

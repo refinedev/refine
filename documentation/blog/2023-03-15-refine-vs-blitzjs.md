@@ -106,7 +106,9 @@ import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
@@ -463,7 +465,9 @@ Open up the `list.tsx` file and you will notice Refine has even designed the `In
 import { IResourceComponentsProps, GetListResponse } from "@pankod/refine-core";
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
-export const ProductsList: React.FC<IResourceComponentsProps<GetListResponse<{}>>> = () => {
+export const ProductsList: React.FC<
+  IResourceComponentsProps<GetListResponse<{}>>
+> = () => {
   return <AntdInferencer />;
 };
 ```

@@ -89,7 +89,9 @@ setInitialRoutes(["/posts/show/123"]);
 render(
   <ReactRouterDom.BrowserRouter>
     <RefineCore.Refine
-      dataProvider={RefineSimpleRest.default("https://api.fake-rest.refine.dev")}
+      dataProvider={RefineSimpleRest.default(
+        "https://api.fake-rest.refine.dev",
+      )}
       routerProvider={RefineReactRouterV6.default}
       resources={[
         {

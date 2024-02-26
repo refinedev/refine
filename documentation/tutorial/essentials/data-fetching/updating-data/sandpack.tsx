@@ -9,15 +9,15 @@ import { finalFiles as initialFiles } from "../fetching-data/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -133,81 +133,81 @@ export default function App(): JSX.Element {
 // actions
 
 export const AddUpdateMethod = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithUpdateMethodTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithUpdateMethodTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const CreateEditProductFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "src/pages/products/edit.tsx": {
-                        code: BaseEditProductTsxCode,
-                    },
-                });
-                sandpack.openFile("/src/pages/products/edit.tsx");
-                sandpack.setActiveFile("/src/pages/products/edit.tsx");
-            }}
-            name="src/pages/products/edit.tsx"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "src/pages/products/edit.tsx": {
+            code: BaseEditProductTsxCode,
+          },
+        });
+        sandpack.openFile("/src/pages/products/edit.tsx");
+        sandpack.setActiveFile("/src/pages/products/edit.tsx");
+      }}
+      name="src/pages/products/edit.tsx"
+    />
+  );
 };
 
 export const AddUseUpdateToEditProduct = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/edit.tsx",
-                    EditProductWithUseUpdateTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/edit.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/edit.tsx",
+          EditProductWithUseUpdateTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/edit.tsx");
+      }}
+    />
+  );
 };
 
 export const AddEditProductToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithEditProductCode);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithEditProductCode);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithEditProductCode,
-    },
-    "src/providers/data-provider.ts": {
-        code: DataProviderWithUpdateMethodTsCode,
-    },
-    "src/pages/products/edit.tsx": {
-        code: EditProductWithUseUpdateTsxCode,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithEditProductCode,
+  },
+  "src/providers/data-provider.ts": {
+    code: DataProviderWithUpdateMethodTsCode,
+  },
+  "src/pages/products/edit.tsx": {
+    code: EditProductWithUseUpdateTsxCode,
+    active: true,
+  },
 };

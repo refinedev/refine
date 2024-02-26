@@ -53,7 +53,8 @@ type forgotPasswordVariables = {
 };
 
 export const ForgotPasswordPage = () => {
-  const { mutate: forgotPassword } = useForgotPassword<forgotPasswordVariables>();
+  const { mutate: forgotPassword } =
+    useForgotPassword<forgotPasswordVariables>();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

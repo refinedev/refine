@@ -1,0 +1,101 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./documentation/src/refine-theme/common-tabs.tsx:73:21 lint/a11y/noNoninteractiveElementToInteractiveRole  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element li is non-interactive and should not have an interactive role.
+  
+    71 │             {tabValues.map(({ value, label, attributes }) => (
+    72 │                 <li
+  > 73 │                     role="tab"
+       │                     ^^^^^^^^^^
+    74 │                     tabIndex={selectedValue === value ? 0 : -1}
+    75 │                     aria-selected={selectedValue === value}
+  
+  i Replace li with a div or a span.
+  
+  i Unsafe fix: Remove the role attribute.
+  
+     71  71 │               {tabValues.map(({ value, label, attributes }) => (
+     72  72 │                   <li
+     73     │ - ····················role="tab"
+     74     │ - ····················tabIndex={selectedValue·===·value·?·0·:·-1}
+         73 │ + ····················tabIndex={selectedValue·===·value·?·0·:·-1}
+     75  74 │                       aria-selected={selectedValue === value}
+     76  75 │                       key={value}
+  
+
+./examples/app-crm/src/routes/quotes/components/status-indicator/index.tsx:78:9 lint/a11y/noNoninteractiveElementToInteractiveRole  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element svg is non-interactive and should not have an interactive role.
+  
+    76 │ }) => (
+    77 │     <svg
+  > 78 │         role="button"
+       │         ^^^^^^^^^^^^^
+    79 │         onClick={() => props.onClick()}
+    80 │         className={cn(styles.button, styles.first)}
+  
+  i Replace svg with a div or a span.
+  
+  i Unsafe fix: Remove the role attribute.
+  
+     76  76 │   }) => (
+     77  77 │       <svg
+     78     │ - ········role="button"
+     79     │ - ········onClick={()·=>·props.onClick()}
+         78 │ + ········onClick={()·=>·props.onClick()}
+     80  79 │           className={cn(styles.button, styles.first)}
+     81  80 │           xmlns="http://www.w3.org/2000/svg"
+  
+
+./examples/app-crm/src/routes/quotes/components/status-indicator/index.tsx:104:9 lint/a11y/noNoninteractiveElementToInteractiveRole  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element svg is non-interactive and should not have an interactive role.
+  
+    102 │ }) => (
+    103 │     <svg
+  > 104 │         role="button"
+        │         ^^^^^^^^^^^^^
+    105 │         onClick={() => props.onClick()}
+    106 │         className={cn(styles.button, styles.second)}
+  
+  i Replace svg with a div or a span.
+  
+  i Unsafe fix: Remove the role attribute.
+  
+    102 102 │   }) => (
+    103 103 │       <svg
+    104     │ - ········role="button"
+    105     │ - ········onClick={()·=>·props.onClick()}
+        104 │ + ········onClick={()·=>·props.onClick()}
+    106 105 │           className={cn(styles.button, styles.second)}
+    107 106 │           xmlns="http://www.w3.org/2000/svg"
+  
+
+./examples/app-crm/src/routes/quotes/components/status-indicator/index.tsx:130:9 lint/a11y/noNoninteractiveElementToInteractiveRole  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element svg is non-interactive and should not have an interactive role.
+  
+    128 │ }) => (
+    129 │     <svg
+  > 130 │         role="button"
+        │         ^^^^^^^^^^^^^
+    131 │         onClick={() => props.onClick()}
+    132 │         className={cn(styles.button, styles.third)}
+  
+  i Replace svg with a div or a span.
+  
+  i Unsafe fix: Remove the role attribute.
+  
+    128 128 │   }) => (
+    129 129 │       <svg
+    130     │ - ········role="button"
+    131     │ - ········onClick={()·=>·props.onClick()}
+        130 │ + ········onClick={()·=>·props.onClick()}
+    132 131 │           className={cn(styles.button, styles.third)}
+    133 132 │           xmlns="http://www.w3.org/2000/svg"
+  
+
+Checked 6953 file(s) in 516ms

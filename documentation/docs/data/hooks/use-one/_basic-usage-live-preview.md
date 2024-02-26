@@ -47,7 +47,9 @@ const ProductList: React.FC = () => {
       <button onClick={() => setId((prev) => prev - 1)} disabled={id === 1}>
         {"<"} Prev Product
       </button>
-      <button onClick={() => setId((prev) => prev + 1)}>Next Product {">"}</button>
+      <button onClick={() => setId((prev) => prev + 1)}>
+        Next Product {">"}
+      </button>
     </div>
   );
 };

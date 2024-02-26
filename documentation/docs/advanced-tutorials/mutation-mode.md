@@ -5,7 +5,13 @@ title: Mutation Mode
 
 ```tsx live shared
 import { Refine } from "@refinedev/core";
-import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, useNotificationProvider } from "@refinedev/antd";
+import {
+  AuthPage,
+  RefineThemes,
+  ThemedLayoutV2,
+  ErrorComponent,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { ConfigProvider } from "antd";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -13,7 +19,11 @@ import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
-import { useMany as CoreUseMany, useShow as RefineCoreUseShow, useOne as RefineCoreUseOne } from "@refinedev/core";
+import {
+  useMany as CoreUseMany,
+  useShow as RefineCoreUseShow,
+  useOne as RefineCoreUseOne,
+} from "@refinedev/core";
 import {
   List as RefineAntdList,
   TextField as RefineAntdTextField,
@@ -47,7 +57,8 @@ const PostList: React.FC = () => {
     },
   });
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = CoreUseMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -69,7 +80,11 @@ const PostList: React.FC = () => {
               return <RefineAntdTextField value="Loading..." />;
             }
 
-            return <RefineAntdTextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <RefineAntdTextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <AntdTable.Column<IPost>
@@ -77,8 +92,16 @@ const PostList: React.FC = () => {
           dataIndex="actions"
           render={(_, record) => (
             <AntdSpace>
-              <RefineAntdEditButton hideText size="small" recordItemId={record.id} />
-              <RefineAntdShowButton hideText size="small" recordItemId={record.id} />
+              <RefineAntdEditButton
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
+              <RefineAntdShowButton
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
             </AntdSpace>
           )}
         />
@@ -136,7 +159,8 @@ const PostCreate: React.FC = () => {
 };
 
 const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } =
+    RefineAntdUseForm<IPost>();
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
@@ -190,24 +214,29 @@ const PostShow: React.FC = () => {
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = RefineCoreUseOne<ICategory>({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    RefineCoreUseOne<ICategory>({
+      resource: "categories",
+      id: record?.category?.id || "",
+      queryOptions: {
+        enabled: !!record,
+      },
+    });
 
   return (
     <RefineAntdShow isLoading={isLoading}>
       <AntdTypography.Title level={5}>Id</AntdTypography.Title>
       <AntdTypography.Text>{record?.id}</AntdTypography.Text>
 
-      <AntdTypography.Title level={5}>AntdTypography.Title</AntdTypography.Title>
+      <AntdTypography.Title level={5}>
+        AntdTypography.Title
+      </AntdTypography.Title>
       <AntdTypography.Text>{record?.title}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Category</AntdTypography.Title>
-      <AntdTypography.Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</AntdTypography.Text>
+      <AntdTypography.Text>
+        {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+      </AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Content</AntdTypography.Title>
       <AntdTypography.Text>{record?.content}</AntdTypography.Text>

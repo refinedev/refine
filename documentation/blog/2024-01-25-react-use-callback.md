@@ -80,7 +80,9 @@ const UserPostsIndex = ({ signedIn }) => {
 
   const deletePost = (e) => {
     const { postId } = e.currentTarget.dataset;
-    const remainingPosts = userPosts.filter((post) => post.id !== parseInt(postId));
+    const remainingPosts = userPosts.filter(
+      (post) => post.id !== parseInt(postId),
+    );
     setUserPosts(remainingPosts);
   };
 
@@ -94,7 +96,11 @@ const UserPostsIndex = ({ signedIn }) => {
       <div className="m-1 py-1">
         <h2 className="heading-md">Your Posts</h2>
         <p className="m-1 p-1">{signedIn ? `Signed in` : `Signed out `}</p>
-        {userPosts && <div className="px-1">{<UserPostsList userPosts={userPosts} deletePost={deletePost} />}</div>}
+        {userPosts && (
+          <div className="px-1">
+            {<UserPostsList userPosts={userPosts} deletePost={deletePost} />}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -121,7 +127,11 @@ const UserPostsList = ({ userPosts, deletePost }) => {
       {userPosts.map((post) => (
         <div key={post.id} className="my-1 box flex-row">
           <UserPost post={post} />
-          <button className="btn btn-danger" data-post-id={post.id} onClick={deletePost}>
+          <button
+            className="btn btn-danger"
+            data-post-id={post.id}
+            onClick={deletePost}
+          >
             Delete
           </button>
         </div>

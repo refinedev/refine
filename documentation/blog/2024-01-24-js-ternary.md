@@ -118,7 +118,8 @@ console.log(welcomeStudent("")); // Welcome, Guest!
 console.log(welcomeStudent(null)); // Welcome, Guest!
 
 // With ternary operator
-const welcomeStudentTernary = (student) => (student ? `Welcome, ${student}!` : "Welcome, Guest!");
+const welcomeStudentTernary = (student) =>
+  student ? `Welcome, ${student}!` : "Welcome, Guest!";
 
 console.log(welcomeStudentTernary("Abd")); // Welcome, Abd!
 console.log(welcomeStudentTernary("")); // Welcome, Guest!
@@ -156,7 +157,8 @@ console.log(welcomeStudent());
 // Welcome, Guest!
 
 // With ternary operator
-const welcomeStudentTernary = (student) => (student ? `Welcome, ${student}!` : "Welcome, Guest!");
+const welcomeStudentTernary = (student) =>
+  student ? `Welcome, ${student}!` : "Welcome, Guest!";
 
 console.log(welcomeStudentTernary("Abd")); // Welcome, Abd!
 console.log(welcomeStudentTernary("")); // Welcome, Guest!
@@ -192,7 +194,17 @@ console.log(grade(10)); // F
 
 // With chained ternary operators
 const grade = (mark) =>
-  mark > 100 ? undefined : mark > 80 ? "A" : mark > 70 ? "B" : mark > 60 ? "C" : mark > 50 ? "D" : "F";
+  mark > 100
+    ? undefined
+    : mark > 80
+    ? "A"
+    : mark > 70
+    ? "B"
+    : mark > 60
+    ? "C"
+    : mark > 50
+    ? "D"
+    : "F";
 
 console.log(grade(100)); // A
 console.log(grade(1000)); // undefined

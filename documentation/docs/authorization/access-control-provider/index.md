@@ -28,7 +28,11 @@ export interface IAccessControlContext {
 }
 
 const accessControlProvider: IAccessControlContext = {
-  can: async ({ resource, action, params }: CanParams): Promise<CanResponse> => {
+  can: async ({
+    resource,
+    action,
+    params,
+  }: CanParams): Promise<CanResponse> => {
     return { can: true };
   },
   options: {
@@ -106,7 +110,11 @@ export const accessControlProvider = {
     const resourceName = params?.resource?.name;
     const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
 
-    if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+    if (
+      resourceName === "posts" &&
+      anyUsefulMeta === true &&
+      action === "edit"
+    ) {
       return {
         can: false,
         reason: "Unauthorized",

@@ -8,15 +8,15 @@ import { finalFiles as initialFiles } from "../logging-in-out/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -106,46 +106,46 @@ export const Header = () => {
 // actions
 
 export const AddGetIdentityMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderTsxWithGetIdentityMethod,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderTsxWithGetIdentityMethod,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddUseGetIdentityToHeaderComponent = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/components/header.tsx",
-                    HeaderComponentWithUseGetIdentity,
-                );
-                sandpack.setActiveFile("/src/components/header.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/components/header.tsx",
+          HeaderComponentWithUseGetIdentity,
+        );
+        sandpack.setActiveFile("/src/components/header.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/providers/auth-provider.ts": {
-        code: AuthProviderTsxWithGetIdentityMethod,
-    },
-    "src/components/header.tsx": {
-        code: HeaderComponentWithUseGetIdentity,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/providers/auth-provider.ts": {
+    code: AuthProviderTsxWithGetIdentityMethod,
+  },
+  "src/components/header.tsx": {
+    code: HeaderComponentWithUseGetIdentity,
+    active: true,
+  },
 };

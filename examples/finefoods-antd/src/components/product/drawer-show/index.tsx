@@ -56,8 +56,6 @@ export const ProductDrawerShow = (props: Props) => {
     const category = categoryData?.data;
 
     const handleDrawerClose = () => {
-        close();
-
         if (props?.onClose) {
             props.onClose();
             return;

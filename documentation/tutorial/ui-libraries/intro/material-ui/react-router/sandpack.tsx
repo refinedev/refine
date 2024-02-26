@@ -8,16 +8,16 @@ import { finalFiles as initialFiles } from "@site/tutorial/routing/syncing-state
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -193,56 +193,53 @@ export default function App(): JSX.Element {
 // actions
 
 export const AddMaterialUIToApp = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/App.tsx",
-                    AppTsxWithMaterialUIWrappers,
-                );
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithMaterialUIWrappers);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddLayoutToApp = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithLayout);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithLayout);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithLayout,
-        active: true,
-    },
-    "src/components/header.tsx": {
-        code: "",
-        hidden: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithLayout,
+    active: true,
+  },
+  "src/components/header.tsx": {
+    code: "",
+    hidden: true,
+  },
 };
 
 export const dependencies = {
-    ...initialDependencies,
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/lab": "latest",
-    "@mui/material": "latest",
-    "@mui/x-data-grid": "latest",
-    "@refinedev/mui": "latest",
-    "@refinedev/react-hook-form": "latest",
-    "react-hook-form": "latest",
+  ...initialDependencies,
+  "@emotion/react": "latest",
+  "@emotion/styled": "latest",
+  "@mui/lab": "latest",
+  "@mui/material": "latest",
+  "@mui/x-data-grid": "latest",
+  "@refinedev/mui": "latest",
+  "@refinedev/react-hook-form": "latest",
+  "react-hook-form": "latest",
 };

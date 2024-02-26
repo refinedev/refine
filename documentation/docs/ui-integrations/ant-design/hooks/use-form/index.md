@@ -12,7 +12,13 @@ import {
   useForm as useAntdForm,
   useTable as useAntdTable,
 } from "@refinedev/antd";
-import { Edit as AntdEdit, Form as AntdForm, Input as AntdInput, Space as AntdSpace, Table as AntdTable } from "antd";
+import {
+  Edit as AntdEdit,
+  Form as AntdForm,
+  Input as AntdInput,
+  Space as AntdSpace,
+  Table as AntdTable,
+} from "antd";
 
 interface IPost {
   id: number;

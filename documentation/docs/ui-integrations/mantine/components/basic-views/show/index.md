@@ -12,7 +12,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={MantineCore.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={MantineCore.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -256,7 +260,9 @@ const PostShow: React.FC = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
   const customDataProvider = {
     ...simpleRestDataProvider,
@@ -871,18 +877,35 @@ import routerProvider from "@refinedev/react-router-v6/legacy";
 import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
-import { Show, ListButton, EditButton, DeleteButton, RefreshButton } from "@refinedev/mantine";
+import {
+  Show,
+  ListButton,
+  EditButton,
+  DeleteButton,
+  RefreshButton,
+} from "@refinedev/mantine";
 import { Button } from "@mantine/core";
 
 const PostShow: React.FC = () => {
   return (
     <Show
       // highlight-start
-      headerButtons={({ deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => (
+      headerButtons={({
+        deleteButtonProps,
+        editButtonProps,
+        listButtonProps,
+        refreshButtonProps,
+      }) => (
         <>
-          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
-          {editButtonProps && <EditButton {...editButtonProps} meta={{ foo: "bar" }} />}
-          {deleteButtonProps && <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />}
+          {listButtonProps && (
+            <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
+          )}
+          {editButtonProps && (
+            <EditButton {...editButtonProps} meta={{ foo: "bar" }} />
+          )}
+          {deleteButtonProps && (
+            <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />
+          )}
           <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
           <Button variant="outline" type="primary">
             Custom Button

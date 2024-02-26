@@ -72,7 +72,12 @@ const PostList: React.FC = () => {
                 return (
                   <th key={header.id}>
                     {header.isPlaceholder ? null : (
-                      <>{flexRender(header.column.columnDef.header, header.getContext())}</>
+                      <>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                      </>
                     )}
                   </th>
                 );
@@ -85,7 +90,14 @@ const PostList: React.FC = () => {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  );
                 })}
               </tr>
             );
@@ -96,7 +108,10 @@ const PostList: React.FC = () => {
       {/* This is just a very basic UI implementation: */}
       {/* highlight-start */}
       <div>
-        <button onClick={() => setPageIndex(0)} disabled={!getCanPreviousPage()}>
+        <button
+          onClick={() => setPageIndex(0)}
+          disabled={!getCanPreviousPage()}
+        >
           {"<<"}
         </button>
         <button onClick={() => previousPage()} disabled={!getCanPreviousPage()}>
@@ -105,7 +120,10 @@ const PostList: React.FC = () => {
         <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
           {">"}
         </button>
-        <button onClick={() => setPageIndex(getPageCount() - 1)} disabled={!getCanNextPage()}>
+        <button
+          onClick={() => setPageIndex(getPageCount() - 1)}
+          disabled={!getCanNextPage()}
+        >
           {">>"}
         </button>
         <span>

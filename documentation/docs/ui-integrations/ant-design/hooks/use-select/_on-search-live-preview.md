@@ -23,7 +23,13 @@ const PostCreate: React.FC = () => {
     // highlight-end
   });
 
-  return <Select placeholder="Select a category" style={{ width: 300 }} {...selectProps} />;
+  return (
+    <Select
+      placeholder="Select a category"
+      style={{ width: 300 }}
+      {...selectProps}
+    />
+  );
 };
 // visible-block-end
 setRefineProps({

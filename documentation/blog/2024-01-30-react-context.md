@@ -184,7 +184,11 @@ interface Props {
 }
 
 export const ExampleProvider: React.FC<Props> = ({ children }) => {
-  return <ExampleContext.Provider value={{ username: "Chibuzor" }}>{children}</ExampleContext.Provider>;
+  return (
+    <ExampleContext.Provider value={{ username: "Chibuzor" }}>
+      {children}
+    </ExampleContext.Provider>
+  );
 };
 ```
 
@@ -206,7 +210,11 @@ interface Props {
 }
 
 export const ExampleProvider: React.FC<Props> = ({ children }) => {
-  return <ExampleContext.Provider value={{ username: "Chibuzor" }}>{children}</ExampleContext.Provider>;
+  return (
+    <ExampleContext.Provider value={{ username: "Chibuzor" }}>
+      {children}
+    </ExampleContext.Provider>
+  );
 };
 
 export const Greet = () => {
@@ -577,11 +585,20 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductList: React.FC<Props> = ({ favorites, products, handleFavorite }) => {
+const ProductList: React.FC<Props> = ({
+  favorites,
+  products,
+  handleFavorite,
+}) => {
   return (
     <section className="product-container">
       {products.map((product) => (
-        <ProductItem key={product.id} product={product} handleFavorite={handleFavorite} favorites={favorites} />
+        <ProductItem
+          key={product.id}
+          product={product}
+          handleFavorite={handleFavorite}
+          favorites={favorites}
+        />
       ))}
     </section>
   );
@@ -606,10 +623,18 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductItem: React.FC<Props> = ({ product, handleFavorite, favorites }) => {
+const ProductItem: React.FC<Props> = ({
+  product,
+  handleFavorite,
+  favorites,
+}) => {
   return (
     <div className="product-card">
-      <ProductDetails product={product} handleFavorite={handleFavorite} favorites={favorites} />
+      <ProductDetails
+        product={product}
+        handleFavorite={handleFavorite}
+        favorites={favorites}
+      />
     </div>
   );
 };
@@ -632,7 +657,11 @@ interface Props {
   handleFavorite: (productId: number) => void;
 }
 
-const ProductDetails: React.FC<Props> = ({ product, handleFavorite, favorites }) => {
+const ProductDetails: React.FC<Props> = ({
+  product,
+  handleFavorite,
+  favorites,
+}) => {
   const isFavorite = favorites.includes(product.id);
   return (
     <div className="product-details-container">
@@ -640,7 +669,11 @@ const ProductDetails: React.FC<Props> = ({ product, handleFavorite, favorites })
         <div className="product-image">{product.title}</div>
       </div>
       <div className="add-to-cart">
-        <button type="button" className="button" onClick={() => handleFavorite(product.id)}>
+        <button
+          type="button"
+          className="button"
+          onClick={() => handleFavorite(product.id)}
+        >
           <span>{isFavorite ? "❤️" : "❤︎"}</span>
         </button>
       </div>
@@ -677,7 +710,11 @@ const Home: NextPage = () => {
     <div className="container">
       <main className="main-content">
         <Favorites products={products} favorites={favorites} />
-        <ProductList products={products} favorites={favorites} handleFavorite={handleFavorite} />
+        <ProductList
+          products={products}
+          favorites={favorites}
+          handleFavorite={handleFavorite}
+        />
       </main>
     </div>
   );
@@ -718,7 +755,10 @@ type ProductAction =
       favorites: number;
     };
 
-const productReducer = (state: ProductData, action: ProductAction): ProductData => {
+const productReducer = (
+  state: ProductData,
+  action: ProductAction,
+): ProductData => {
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, products: action.products };
@@ -759,7 +799,11 @@ interface Props {
 export const ProductProvider: React.FC<Props> = ({ children }) => {
   const [product, setProduct] = useReducer(productReducer, defaultValues);
 
-  return <ProductContext.Provider value={{ product, setProduct }}>{children}</ProductContext.Provider>;
+  return (
+    <ProductContext.Provider value={{ product, setProduct }}>
+      {children}
+    </ProductContext.Provider>
+  );
 };
 
 export const useProduct = () => useContext(ProductContext);
@@ -911,7 +955,11 @@ const ProductDetails: React.FC<Props> = ({ product }) => {
         <div className="product-image">{product.title}</div>
       </div>
       <div className="add-to-cart">
-        <button type="button" className="button" onClick={() => handleFavorite(product.id)}>
+        <button
+          type="button"
+          className="button"
+          onClick={() => handleFavorite(product.id)}
+        >
           <span>{isFavorite ? "❤️" : "❤︎"}</span>
         </button>
       </div>

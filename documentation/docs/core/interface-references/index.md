@@ -150,15 +150,27 @@ type UseImportInputPropsType = {
 ### SuccessErrorNotification
 
 ```tsx
-type SuccessErrorNotification<TData = unknown, TError = unknown, TVariables = unknown> = {
+type SuccessErrorNotification<
+  TData = unknown,
+  TError = unknown,
+  TVariables = unknown,
+> = {
   successNotification?:
     | OpenNotificationParams
     | false
-    | ((data?: TData, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+    | ((
+        data?: TData,
+        values?: TVariables,
+        resource?: string,
+      ) => OpenNotificationParams | false);
   errorNotification?:
     | OpenNotificationParams
     | false
-    | ((error?: TError, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+    | ((
+        error?: TError,
+        values?: TVariables,
+        resource?: string,
+      ) => OpenNotificationParams | false);
 };
 ```
 

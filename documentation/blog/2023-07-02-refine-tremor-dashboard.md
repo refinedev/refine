@@ -303,12 +303,16 @@ module.exports = {
       boxShadow: {
         // light
         "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         // dark
         "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "dark-tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "dark-tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "dark-tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "dark-tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
         "tremor-small": "0.375rem",
@@ -569,7 +573,17 @@ Tremor has several dashboard layout templates. We will use one of them in this p
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 export const DashboardPage: React.FC = () => {
   return (
@@ -633,7 +647,17 @@ Now that we have the layout of our project, let's retrieve the data to display f
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 //highlight-start
 import { useApiUrl, useCustom } from "@refinedev/core";
@@ -686,7 +710,15 @@ In the code above, we used the `useCustom` hook to retrieve the data from our fa
 You can log the data above to the browser console to see what it looks like. We will now create one component for the three KPIs and reuse it for all three. Create the `src/pages/dashboard/kpiCard/index.tsx` file, and copy and paste the code below.
 
 ```tsx title="src/pages/dashboard/kpiCard/index.tsx"
-import { Card, Text, Metric, Flex, ProgressBar, BadgeDelta, DeltaType } from "@tremor/react";
+import {
+  Card,
+  Text,
+  Metric,
+  Flex,
+  ProgressBar,
+  BadgeDelta,
+  DeltaType,
+} from "@tremor/react";
 
 const getDeltaType = (trend: number): DeltaType => {
   if (trend < -35) return "decrease";
@@ -744,7 +776,17 @@ We will reuse the same component for all three KPIs. Import and render the above
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -807,21 +849,30 @@ export const DashboardPage: React.FC = () => {
                 total={`$ ${dailyRevenue?.data.total ?? 0}`}
                 trend={dailyRevenue?.data.trend ?? 0}
                 target="$ 10,500"
-                percentage={calculatePercentage(dailyRevenue?.data.total ?? 0, 10_500)}
+                percentage={calculatePercentage(
+                  dailyRevenue?.data.total ?? 0,
+                  10_500,
+                )}
               />
               <KpiCard
                 title="Weekly Orders"
                 total={`${dailyOrders?.data.total ?? 0}`}
                 trend={dailyOrders?.data.trend ?? 0}
                 target="500"
-                percentage={calculatePercentage(dailyOrders?.data.total ?? 0, 500)}
+                percentage={calculatePercentage(
+                  dailyOrders?.data.total ?? 0,
+                  500,
+                )}
               />
               <KpiCard
                 title="New Customers"
                 total={`${newCustomers?.data.total ?? 0}`}
                 trend={newCustomers?.data.trend ?? 0}
                 target="200"
-                percentage={calculatePercentage(newCustomers?.data.total ?? 0, 200)}
+                percentage={calculatePercentage(
+                  newCustomers?.data.total ?? 0,
+                  200,
+                )}
               />
               //highlight-end
             </Grid>
@@ -860,7 +911,17 @@ Similarly, let us create a component to visualize the daily variation of our KPI
 
 ```tsx title="src/pages/dashboard/chartView/index.tsx"
 import { useState } from "react";
-import { AreaChart, Card, Flex, Text, Title, Icon, TabGroup, TabList, Tab } from "@tremor/react";
+import {
+  AreaChart,
+  Card,
+  Flex,
+  Text,
+  Title,
+  Icon,
+  TabGroup,
+  TabList,
+  Tab,
+} from "@tremor/react";
 
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
@@ -876,9 +937,11 @@ interface IProps {
 }
 
 // Basic formatters for the chart values
-const dollarFormatter = (value: number) => `$ ${Intl.NumberFormat("us").format(value).toString()}`;
+const dollarFormatter = (value: number) =>
+  `$ ${Intl.NumberFormat("us").format(value).toString()}`;
 
-const numberFormatter = (value: number) => `${Intl.NumberFormat("us").format(value).toString()}`;
+const numberFormatter = (value: number) =>
+  `${Intl.NumberFormat("us").format(value).toString()}`;
 
 const formatDate = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -916,14 +979,25 @@ export function ChartView({ revenue, orders, customers }: IProps) {
     <Card>
       <div className="md:flex justify-between">
         <div>
-          <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
+          <Flex
+            justifyContent="start"
+            className="space-x-0.5"
+            alignItems="center"
+          >
             <Title> Performance History </Title>
-            <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows daily performance change" />
+            <Icon
+              icon={InformationCircleIcon}
+              variant="simple"
+              tooltip="Shows daily performance change"
+            />
           </Flex>
           <Text> Daily increase or decrease per domain </Text>
         </div>
         <div className="mt-6 md:mt-0">
-          <TabGroup index={selectedKpi} onIndexChange={(idx) => setSelectedKpi(idx)}>
+          <TabGroup
+            index={selectedKpi}
+            onIndexChange={(idx) => setSelectedKpi(idx)}
+          >
             <TabList>
               <Tab>Revenue</Tab>
               <Tab>Orders</Tab>
@@ -1149,7 +1223,9 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
         accessorKey: "status",
         cell: function render({ row, getValue }) {
           const deltaType = getDeltaType(row?.original?.statusId ?? 0);
-          return <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>;
+          return (
+            <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>
+          );
         },
         header: "Delivery Status",
         enableColumnFilter: false,
@@ -1228,7 +1304,11 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
     <Card>
       <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
         <Title>Customer Orders</Title>
-        <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows customer orders" />
+        <Icon
+          icon={InformationCircleIcon}
+          variant="simple"
+          tooltip="Shows customer orders"
+        />
       </Flex>
 
       <Table>
@@ -1239,10 +1319,15 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
                 <TableHeaderCell key={header.id}>
                   {!header.isPlaceholder && (
                     <>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                       {header.column.getCanFilter() ? (
                         <TextInput
-                          value={(header.column.getFilterValue() as string) ?? ""}
+                          value={
+                            (header.column.getFilterValue() as string) ?? ""
+                          }
                           placeholder={`Enter ${header.column.id}`}
                           onChange={(e) => {
                             const { value } = e.target;
@@ -1261,13 +1346,19 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           {getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                <TableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Flex className="mt-2  flex-wrap gap-2" justifyContent="between" alignItems="center">
+      <Flex
+        className="mt-2  flex-wrap gap-2"
+        justifyContent="between"
+        alignItems="center"
+      >
         <Flex className="w-4/8 flex-wrap gap-2">
           <Button
             size="xs"
@@ -1324,7 +1415,10 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           }}
         />
 
-        <Select className="w-2/8" onValueChange={(value) => setPageSize(Number(value))}>
+        <Select
+          className="w-2/8"
+          onValueChange={(value) => setPageSize(Number(value))}
+        >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <SelectItem key={pageSize} value={`${pageSize}`}>
               {pageSize}

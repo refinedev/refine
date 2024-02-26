@@ -360,7 +360,12 @@ const App: React.FC = () => {
                 // highlight-next-line
                 <ThemedLayoutV2
                   Footer={() => (
-                    <Flex justifyContent="center" alignItems="center" bg="teal.500" h="64px">
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      bg="teal.500"
+                      h="64px"
+                    >
                       My Custom Footer
                     </Flex>
                   )}
@@ -398,7 +403,12 @@ const App: React.FC = () => {
       <ThemedLayoutV2
         // highlight-start
         Footer={() => (
-          <Flex justifyContent="center" alignItems="center" bg="teal.500" h="64px">
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            bg="teal.500"
+            h="64px"
+          >
             My Custom Footer
           </Flex>
         )}
@@ -624,7 +634,11 @@ const App = () => {
     <Refine
     /* ... */
     >
-      <ThemedLayoutV2 Header={ThemedHeader} Sider={ThemedSider} Title={ThemedTitle}>
+      <ThemedLayoutV2
+        Header={ThemedHeader}
+        Sider={ThemedSider}
+        Title={ThemedTitle}
+      >
         /* ... */
       </ThemedLayoutV2>
     </Refine>

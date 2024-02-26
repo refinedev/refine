@@ -2,11 +2,11 @@ import React from "react";
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack previewOnly dependencies={dependencies} files={files}>
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack previewOnly dependencies={dependencies} files={files}>
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 const AppTsxCode = /* jsx */ `
@@ -28,16 +28,16 @@ export default App;
 `.trim();
 
 export const files = {
-    "src/App.tsx": {
-        code: AppTsxCode,
-        active: true,
-    },
-    "App.tsx": {
-        code: BaseAppTsxCode,
-        hidden: true,
-    },
+  "src/App.tsx": {
+    code: AppTsxCode,
+    active: true,
+  },
+  "App.tsx": {
+    code: BaseAppTsxCode,
+    hidden: true,
+  },
 };
 
 export const dependencies = {
-    "@refinedev/core": "latest",
+  "@refinedev/core": "latest",
 };

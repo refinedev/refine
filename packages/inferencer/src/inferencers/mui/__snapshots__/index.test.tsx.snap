@@ -10169,7 +10169,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   value=""
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Open"
@@ -10248,7 +10248,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   value=""
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Open"
@@ -10471,7 +10471,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
                   value=""
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Open"
@@ -25269,7 +25269,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   value="Numquam Saepe Illo"
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Clear"
@@ -25370,7 +25370,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   value="Eriberto"
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Clear"
@@ -25638,7 +25638,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
                   value=""
                 />
                 <div
-                  class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  class="MuiAutocomplete-endAdornment css-p1olib-MuiAutocomplete-endAdornment"
                 >
                   <button
                     aria-label="Clear"

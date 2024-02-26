@@ -26,8 +26,14 @@ const PostCreate: React.FC = () => {
 
   return (
     <>
-      <Select placeholder={`Ordered Categories: ${order}`} style={{ width: 300 }} {...selectProps} />
-      <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
+      <Select
+        placeholder={`Ordered Categories: ${order}`}
+        style={{ width: 300 }}
+        {...selectProps}
+      />
+      <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+        Toggle Order
+      </Button>
     </>
   );
 };
