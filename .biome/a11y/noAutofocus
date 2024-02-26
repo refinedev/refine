@@ -2,26 +2,26 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/core/src/components/pages/login/index.tsx:54:37 lint/a11y/noAutofocus  FIXABLE  ━━━━━━━━━━
+./packages/core/src/components/pages/login/index.tsx:49:19 lint/a11y/noAutofocus  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the autoFocus attribute.
   
-    52 │                                     spellCheck={false}
-    53 │                                     autoCapitalize="off"
-  > 54 │                                     autoFocus
-       │                                     ^^^^^^^^^
-    55 │                                     required
-    56 │                                     value={username}
+    47 │                   spellCheck={false}
+    48 │                   autoCapitalize="off"
+  > 49 │                   autoFocus
+       │                   ^^^^^^^^^
+    50 │                   required
+    51 │                   value={username}
   
   i Unsafe fix: Remove the autoFocus attribute.
   
-    52 52 │                                       spellCheck={false}
-    53 53 │                                       autoCapitalize="off"
-    54    │ - ····································autoFocus
-    55    │ - ····································required
-       54 │ + ····································required
-    56 55 │                                       value={username}
-    57 56 │                                       onChange={(e) =>
+    47 47 │                     spellCheck={false}
+    48 48 │                     autoCapitalize="off"
+    49    │ - ··················autoFocus
+    50    │ - ··················required
+       49 │ + ··················required
+    51 50 │                     value={username}
+    52 51 │                     onChange={(e) => setUsername(e.target.value)}
   
 
-Checked 6953 file(s) in 544ms
+Checked 6952 file(s) in 459ms

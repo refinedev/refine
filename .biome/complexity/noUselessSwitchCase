@@ -2,668 +2,668 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:193:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:181:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    191 │                         case "list":
-    192 │                             return Promise.resolve({ can: true });
-  > 193 │                         case "delete":
-        │                         ^^^^^^^^^^^^^^
-    194 │                         default:
-    195 │                             return Promise.resolve({ can: false });
+    179 │             case "list":
+    180 │               return Promise.resolve({ can: true });
+  > 181 │             case "delete":
+        │             ^^^^^^^^^^^^^^
+    182 │             default:
+    183 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    192 │                             return Promise.resolve({ can: true });
-    193 │                         case "delete":
-  > 194 │                         default:
-        │                         ^^^^^^^^
-  > 195 │                             return Promise.resolve({ can: false });
-        │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    196 │                     }
-    197 │                 },
+    180 │               return Promise.resolve({ can: true });
+    181 │             case "delete":
+  > 182 │             default:
+        │             ^^^^^^^^
+  > 183 │               return Promise.resolve({ can: false });
+        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    184 │           }
+    185 │         },
   
   i Unsafe fix: Remove the useless case.
   
-    191 191 │                           case "list":
-    192 192 │                               return Promise.resolve({ can: true });
-    193     │ - ························case·"delete":
-    194     │ - ························default:
-        193 │ + ························default:
-    195 194 │                               return Promise.resolve({ can: false });
-    196 195 │                       }
+    179 179 │               case "list":
+    180 180 │                 return Promise.resolve({ can: true });
+    181     │ - ············case·"delete":
+    182     │ - ············default:
+        181 │ + ············default:
+    183 182 │                 return Promise.resolve({ can: false });
+    184 183 │             }
   
 
-./packages/chakra-ui/src/components/crud/show/index.spec.tsx:58:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/show/index.spec.tsx:58:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    56 │                         case "list":
-    57 │                             return Promise.resolve({ can: true });
-  > 58 │                         case "delete":
-       │                         ^^^^^^^^^^^^^^
-    59 │                         default:
-    60 │                             return Promise.resolve({ can: false });
+    56 │             case "list":
+    57 │               return Promise.resolve({ can: true });
+  > 58 │             case "delete":
+       │             ^^^^^^^^^^^^^^
+    59 │             default:
+    60 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    57 │                             return Promise.resolve({ can: true });
-    58 │                         case "delete":
-  > 59 │                         default:
-       │                         ^^^^^^^^
-  > 60 │                             return Promise.resolve({ can: false });
-       │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    61 │                     }
-    62 │                 },
+    57 │               return Promise.resolve({ can: true });
+    58 │             case "delete":
+  > 59 │             default:
+       │             ^^^^^^^^
+  > 60 │               return Promise.resolve({ can: false });
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    61 │           }
+    62 │         },
   
   i Unsafe fix: Remove the useless case.
   
-     56  56 │                           case "list":
-     57  57 │                               return Promise.resolve({ can: true });
-     58     │ - ························case·"delete":
-     59     │ - ························default:
-         58 │ + ························default:
-     60  59 │                               return Promise.resolve({ can: false });
-     61  60 │                       }
+     56  56 │               case "list":
+     57  57 │                 return Promise.resolve({ can: true });
+     58     │ - ············case·"delete":
+     59     │ - ············default:
+         58 │ + ············default:
+     60  59 │                 return Promise.resolve({ can: false });
+     61  60 │             }
   
 
-./packages/mantine/src/components/crud/edit/index.spec.tsx:249:29 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/mantine/src/components/crud/edit/index.spec.tsx:228:15 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    247 │                             case "list":
-    248 │                                 return Promise.resolve({ can: true });
-  > 249 │                             case "delete":
-        │                             ^^^^^^^^^^^^^^
-    250 │                             default:
-    251 │                                 return Promise.resolve({ can: false });
+    226 │               case "list":
+    227 │                 return Promise.resolve({ can: true });
+  > 228 │               case "delete":
+        │               ^^^^^^^^^^^^^^
+    229 │               default:
+    230 │                 return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    248 │                                 return Promise.resolve({ can: true });
-    249 │                             case "delete":
-  > 250 │                             default:
-        │                             ^^^^^^^^
-  > 251 │                                 return Promise.resolve({ can: false });
-        │                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    252 │                         }
-    253 │                     },
+    227 │                 return Promise.resolve({ can: true });
+    228 │               case "delete":
+  > 229 │               default:
+        │               ^^^^^^^^
+  > 230 │                 return Promise.resolve({ can: false });
+        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    231 │             }
+    232 │           },
   
   i Unsafe fix: Remove the useless case.
   
-    247 247 │                               case "list":
-    248 248 │                                   return Promise.resolve({ can: true });
-    249     │ - ····························case·"delete":
-    250     │ - ····························default:
-        249 │ + ····························default:
-    251 250 │                                   return Promise.resolve({ can: false });
-    252 251 │                           }
+    226 226 │                 case "list":
+    227 227 │                   return Promise.resolve({ can: true });
+    228     │ - ··············case·"delete":
+    229     │ - ··············default:
+        228 │ + ··············default:
+    230 229 │                   return Promise.resolve({ can: false });
+    231 230 │               }
   
 
-./packages/mantine/src/components/crud/show/index.spec.tsx:59:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/mantine/src/components/crud/show/index.spec.tsx:59:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    57 │                         case "list":
-    58 │                             return Promise.resolve({ can: true });
-  > 59 │                         case "delete":
-       │                         ^^^^^^^^^^^^^^
-    60 │                         default:
-    61 │                             return Promise.resolve({ can: false });
+    57 │             case "list":
+    58 │               return Promise.resolve({ can: true });
+  > 59 │             case "delete":
+       │             ^^^^^^^^^^^^^^
+    60 │             default:
+    61 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    58 │                             return Promise.resolve({ can: true });
-    59 │                         case "delete":
-  > 60 │                         default:
-       │                         ^^^^^^^^
-  > 61 │                             return Promise.resolve({ can: false });
-       │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    62 │                     }
-    63 │                 },
+    58 │               return Promise.resolve({ can: true });
+    59 │             case "delete":
+  > 60 │             default:
+       │             ^^^^^^^^
+  > 61 │               return Promise.resolve({ can: false });
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    62 │           }
+    63 │         },
   
   i Unsafe fix: Remove the useless case.
   
-     57  57 │                           case "list":
-     58  58 │                               return Promise.resolve({ can: true });
-     59     │ - ························case·"delete":
-     60     │ - ························default:
-         59 │ + ························default:
-     61  60 │                               return Promise.resolve({ can: false });
-     62  61 │                       }
+     57  57 │               case "list":
+     58  58 │                 return Promise.resolve({ can: true });
+     59     │ - ············case·"delete":
+     60     │ - ············default:
+         59 │ + ············default:
+     61  60 │                 return Promise.resolve({ can: false });
+     62  61 │             }
   
 
-./packages/simple-rest/src/utils/mapOperator.ts:11:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/simple-rest/src/utils/mapOperator.ts:11:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-     9 │         case "contains":
-    10 │             return "_like";
-  > 11 │         case "eq":
-       │         ^^^^^^^^^^
-    12 │         default:
-    13 │             return "";
+     9 │     case "contains":
+    10 │       return "_like";
+  > 11 │     case "eq":
+       │     ^^^^^^^^^^
+    12 │     default:
+    13 │       return "";
   
   i because the default clause is present:
   
-    10 │             return "_like";
-    11 │         case "eq":
-  > 12 │         default:
-       │         ^^^^^^^^
-  > 13 │             return "";
-       │             ^^^^^^^^^^
-    14 │     }
+    10 │       return "_like";
+    11 │     case "eq":
+  > 12 │     default:
+       │     ^^^^^^^^
+  > 13 │       return "";
+       │       ^^^^^^^^^^
+    14 │   }
     15 │ };
   
   i Unsafe fix: Remove the useless case.
   
-     9  9 │           case "contains":
-    10 10 │               return "_like";
-    11    │ - ········case·"eq":
-    12    │ - ········default:
-       11 │ + ········default:
-    13 12 │               return "";
-    14 13 │       }
+     9  9 │       case "contains":
+    10 10 │         return "_like";
+    11    │ - ····case·"eq":
+    12    │ - ····default:
+       11 │ + ····default:
+    13 12 │         return "";
+    14 13 │     }
   
 
-./examples/with-meta-properties/src/rest-data-provider/utils/mapOperator.ts:11:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
-
-  ! Useless case clause.
-  
-     9 │         case "contains":
-    10 │             return "_like";
-  > 11 │         case "eq":
-       │         ^^^^^^^^^^
-    12 │         default:
-    13 │             return "";
-  
-  i because the default clause is present:
-  
-    10 │             return "_like";
-    11 │         case "eq":
-  > 12 │         default:
-       │         ^^^^^^^^
-  > 13 │             return "";
-       │             ^^^^^^^^^^
-    14 │     }
-    15 │ };
-  
-  i Unsafe fix: Remove the useless case.
-  
-     9  9 │           case "contains":
-    10 10 │               return "_like";
-    11    │ - ········case·"eq":
-    12    │ - ········default:
-       11 │ + ········default:
-    13 12 │               return "";
-    14 13 │       }
-  
-
-./packages/cli/src/utils/resource/index.ts:53:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:53:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    51 │         case ProjectTypes.REMIX:
-    52 │             return "./app";
-  > 53 │         case ProjectTypes.NEXTJS:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^
-    54 │         case ProjectTypes.REACT_SCRIPT:
-    55 │         case ProjectTypes.VITE:
+    51 │     case ProjectTypes.REMIX:
+    52 │       return "./app";
+  > 53 │     case ProjectTypes.NEXTJS:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    54 │     case ProjectTypes.REACT_SCRIPT:
+    55 │     case ProjectTypes.VITE:
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    51 51 │           case ProjectTypes.REMIX:
-    52 52 │               return "./app";
-    53    │ - ········case·ProjectTypes.NEXTJS:
-    54    │ - ········case·ProjectTypes.REACT_SCRIPT:
-       53 │ + ········case·ProjectTypes.REACT_SCRIPT:
-    55 54 │           case ProjectTypes.VITE:
-    56 55 │           case ProjectTypes.CRACO:
+    51 51 │       case ProjectTypes.REMIX:
+    52 52 │         return "./app";
+    53    │ - ····case·ProjectTypes.NEXTJS:
+    54    │ - ····case·ProjectTypes.REACT_SCRIPT:
+       53 │ + ····case·ProjectTypes.REACT_SCRIPT:
+    55 54 │       case ProjectTypes.VITE:
+    56 55 │       case ProjectTypes.CRACO:
   
 
-./packages/cli/src/utils/resource/index.ts:54:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:54:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    52 │             return "./app";
-    53 │         case ProjectTypes.NEXTJS:
-  > 54 │         case ProjectTypes.REACT_SCRIPT:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    55 │         case ProjectTypes.VITE:
-    56 │         case ProjectTypes.CRACO:
+    52 │       return "./app";
+    53 │     case ProjectTypes.NEXTJS:
+  > 54 │     case ProjectTypes.REACT_SCRIPT:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    55 │     case ProjectTypes.VITE:
+    56 │     case ProjectTypes.CRACO:
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    52 52 │               return "./app";
-    53 53 │           case ProjectTypes.NEXTJS:
-    54    │ - ········case·ProjectTypes.REACT_SCRIPT:
-    55    │ - ········case·ProjectTypes.VITE:
-       54 │ + ········case·ProjectTypes.VITE:
-    56 55 │           case ProjectTypes.CRACO:
-    57 56 │           case ProjectTypes.PARCEL:
+    52 52 │         return "./app";
+    53 53 │       case ProjectTypes.NEXTJS:
+    54    │ - ····case·ProjectTypes.REACT_SCRIPT:
+    55    │ - ····case·ProjectTypes.VITE:
+       54 │ + ····case·ProjectTypes.VITE:
+    56 55 │       case ProjectTypes.CRACO:
+    57 56 │       case ProjectTypes.PARCEL:
   
 
-./packages/cli/src/utils/resource/index.ts:55:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:55:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    53 │         case ProjectTypes.NEXTJS:
-    54 │         case ProjectTypes.REACT_SCRIPT:
-  > 55 │         case ProjectTypes.VITE:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^
-    56 │         case ProjectTypes.CRACO:
-    57 │         case ProjectTypes.PARCEL:
+    53 │     case ProjectTypes.NEXTJS:
+    54 │     case ProjectTypes.REACT_SCRIPT:
+  > 55 │     case ProjectTypes.VITE:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^
+    56 │     case ProjectTypes.CRACO:
+    57 │     case ProjectTypes.PARCEL:
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    53 53 │           case ProjectTypes.NEXTJS:
-    54 54 │           case ProjectTypes.REACT_SCRIPT:
-    55    │ - ········case·ProjectTypes.VITE:
-    56    │ - ········case·ProjectTypes.CRACO:
-       55 │ + ········case·ProjectTypes.CRACO:
-    57 56 │           case ProjectTypes.PARCEL:
-    58 57 │           case ProjectTypes.UNKNOWN:
+    53 53 │       case ProjectTypes.NEXTJS:
+    54 54 │       case ProjectTypes.REACT_SCRIPT:
+    55    │ - ····case·ProjectTypes.VITE:
+    56    │ - ····case·ProjectTypes.CRACO:
+       55 │ + ····case·ProjectTypes.CRACO:
+    57 56 │       case ProjectTypes.PARCEL:
+    58 57 │       case ProjectTypes.UNKNOWN:
   
 
-./packages/cli/src/utils/resource/index.ts:56:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:56:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    54 │         case ProjectTypes.REACT_SCRIPT:
-    55 │         case ProjectTypes.VITE:
-  > 56 │         case ProjectTypes.CRACO:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
+    54 │     case ProjectTypes.REACT_SCRIPT:
+    55 │     case ProjectTypes.VITE:
+  > 56 │     case ProjectTypes.CRACO:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    54 54 │           case ProjectTypes.REACT_SCRIPT:
-    55 55 │           case ProjectTypes.VITE:
-    56    │ - ········case·ProjectTypes.CRACO:
-    57    │ - ········case·ProjectTypes.PARCEL:
-       56 │ + ········case·ProjectTypes.PARCEL:
-    58 57 │           case ProjectTypes.UNKNOWN:
-    59 58 │           default:
+    54 54 │       case ProjectTypes.REACT_SCRIPT:
+    55 55 │       case ProjectTypes.VITE:
+    56    │ - ····case·ProjectTypes.CRACO:
+    57    │ - ····case·ProjectTypes.PARCEL:
+       56 │ + ····case·ProjectTypes.PARCEL:
+    58 57 │       case ProjectTypes.UNKNOWN:
+    59 58 │       default:
   
 
-./packages/cli/src/utils/resource/index.ts:57:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:57:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    55 │         case ProjectTypes.VITE:
-    56 │         case ProjectTypes.CRACO:
-  > 57 │         case ProjectTypes.PARCEL:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^
-    58 │         case ProjectTypes.UNKNOWN:
-    59 │         default:
+    55 │     case ProjectTypes.VITE:
+    56 │     case ProjectTypes.CRACO:
+  > 57 │     case ProjectTypes.PARCEL:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    58 │     case ProjectTypes.UNKNOWN:
+    59 │     default:
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    55 55 │           case ProjectTypes.VITE:
-    56 56 │           case ProjectTypes.CRACO:
-    57    │ - ········case·ProjectTypes.PARCEL:
-    58    │ - ········case·ProjectTypes.UNKNOWN:
-       57 │ + ········case·ProjectTypes.UNKNOWN:
-    59 58 │           default:
-    60 59 │               return "./src";
+    55 55 │       case ProjectTypes.VITE:
+    56 56 │       case ProjectTypes.CRACO:
+    57    │ - ····case·ProjectTypes.PARCEL:
+    58    │ - ····case·ProjectTypes.UNKNOWN:
+       57 │ + ····case·ProjectTypes.UNKNOWN:
+    59 58 │       default:
+    60 59 │         return "./src";
   
 
-./packages/cli/src/utils/resource/index.ts:58:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/utils/resource/index.ts:58:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    56 │         case ProjectTypes.CRACO:
-    57 │         case ProjectTypes.PARCEL:
-  > 58 │         case ProjectTypes.UNKNOWN:
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    59 │         default:
-    60 │             return "./src";
+    56 │     case ProjectTypes.CRACO:
+    57 │     case ProjectTypes.PARCEL:
+  > 58 │     case ProjectTypes.UNKNOWN:
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    59 │     default:
+    60 │       return "./src";
   
   i because the default clause is present:
   
-    57 │         case ProjectTypes.PARCEL:
-    58 │         case ProjectTypes.UNKNOWN:
-  > 59 │         default:
-       │         ^^^^^^^^
-  > 60 │             return "./src";
-       │             ^^^^^^^^^^^^^^^
-    61 │     }
+    57 │     case ProjectTypes.PARCEL:
+    58 │     case ProjectTypes.UNKNOWN:
+  > 59 │     default:
+       │     ^^^^^^^^
+  > 60 │       return "./src";
+       │       ^^^^^^^^^^^^^^^
+    61 │   }
     62 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    56 56 │           case ProjectTypes.CRACO:
-    57 57 │           case ProjectTypes.PARCEL:
-    58    │ - ········case·ProjectTypes.UNKNOWN:
-    59    │ - ········default:
-       58 │ + ········default:
-    60 59 │               return "./src";
-    61 60 │       }
+    56 56 │       case ProjectTypes.CRACO:
+    57 57 │       case ProjectTypes.PARCEL:
+    58    │ - ····case·ProjectTypes.UNKNOWN:
+    59    │ - ····default:
+       58 │ + ····default:
+    60 59 │         return "./src";
+    61 60 │     }
   
 
-./packages/devtools/src/utilities/index.ts:43:9 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/devtools/src/utilities/index.ts:43:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    41 │             };
-    42 │         default:
-  > 43 │         case "bottom":
-       │         ^^^^^^^^^^^^^^
-  > 44 │             return {
-  > 45 │                 left: "50%",
-  > 46 │                 bottom: `calc(${SIZE}px + ${BUFFER}px)`,
-  > 47 │                 transform: "translateX(-50%)",
-  > 48 │             };
-       │             ^^
-    49 │     }
+    41 │       };
+    42 │     default:
+  > 43 │     case "bottom":
+       │     ^^^^^^^^^^^^^^
+  > 44 │       return {
+  > 45 │         left: "50%",
+  > 46 │         bottom: `calc(${SIZE}px + ${BUFFER}px)`,
+  > 47 │         transform: "translateX(-50%)",
+  > 48 │       };
+       │       ^^
+    49 │   }
     50 │ };
   
   i because the default clause is present:
   
-    40 │                 transform: "translateX(-50%)",
-    41 │             };
-  > 42 │         default:
-       │         ^^^^^^^^
-    43 │         case "bottom":
-    44 │             return {
+    40 │         transform: "translateX(-50%)",
+    41 │       };
+  > 42 │     default:
+       │     ^^^^^^^^
+    43 │     case "bottom":
+    44 │       return {
   
   i Unsafe fix: Remove the useless case.
   
-     41  41 │               };
-     42  42 │           default:
-     43     │ - ········case·"bottom":
-     44  43 │               return {
-     45  44 │                   left: "50%",
+     41  41 │         };
+     42  42 │       default:
+     43     │ - ····case·"bottom":
+     44  43 │         return {
+     45  44 │           left: "50%",
   
 
-./packages/mui/src/components/crud/edit/index.spec.tsx:175:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./examples/with-meta-properties/src/rest-data-provider/utils/mapOperator.ts:11:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    173 │                         case "list":
-    174 │                             return Promise.resolve({ can: true });
-  > 175 │                         case "delete":
-        │                         ^^^^^^^^^^^^^^
-    176 │                         default:
-    177 │                             return Promise.resolve({ can: false });
+     9 │     case "contains":
+    10 │       return "_like";
+  > 11 │     case "eq":
+       │     ^^^^^^^^^^
+    12 │     default:
+    13 │       return "";
   
   i because the default clause is present:
   
-    174 │                             return Promise.resolve({ can: true });
-    175 │                         case "delete":
-  > 176 │                         default:
-        │                         ^^^^^^^^
-  > 177 │                             return Promise.resolve({ can: false });
-        │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    178 │                     }
-    179 │                 },
+    10 │       return "_like";
+    11 │     case "eq":
+  > 12 │     default:
+       │     ^^^^^^^^
+  > 13 │       return "";
+       │       ^^^^^^^^^^
+    14 │   }
+    15 │ };
   
   i Unsafe fix: Remove the useless case.
   
-    173 173 │                           case "list":
-    174 174 │                               return Promise.resolve({ can: true });
-    175     │ - ························case·"delete":
-    176     │ - ························default:
-        175 │ + ························default:
-    177 176 │                               return Promise.resolve({ can: false });
-    178 177 │                       }
+     9  9 │       case "contains":
+    10 10 │         return "_like";
+    11    │ - ····case·"eq":
+    12    │ - ····default:
+       11 │ + ····default:
+    13 12 │         return "";
+    14 13 │     }
   
 
-./packages/mui/src/components/crud/show/index.spec.tsx:58:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
-
-  ! Useless case clause.
-  
-    56 │                         case "list":
-    57 │                             return Promise.resolve({ can: true });
-  > 58 │                         case "delete":
-       │                         ^^^^^^^^^^^^^^
-    59 │                         default:
-    60 │                             return Promise.resolve({ can: false });
-  
-  i because the default clause is present:
-  
-    57 │                             return Promise.resolve({ can: true });
-    58 │                         case "delete":
-  > 59 │                         default:
-       │                         ^^^^^^^^
-  > 60 │                             return Promise.resolve({ can: false });
-       │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    61 │                     }
-    62 │                 },
-  
-  i Unsafe fix: Remove the useless case.
-  
-     56  56 │                           case "list":
-     57  57 │                               return Promise.resolve({ can: true });
-     58     │ - ························case·"delete":
-     59     │ - ························default:
-         58 │ + ························default:
-     60  59 │                               return Promise.resolve({ can: false });
-     61  60 │                       }
-  
-
-./packages/devtools-ui/src/components/add-package-drawer.tsx:100:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/mui/src/components/crud/edit/index.spec.tsx:163:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-     98 │             case "error":
-     99 │                 return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
-  > 100 │             case "idle":
-        │             ^^^^^^^^^^^^
-    101 │             default:
-    102 │                 return <PlusCircleIcon className="re-text-gray-0" />;
+    161 │             case "list":
+    162 │               return Promise.resolve({ can: true });
+  > 163 │             case "delete":
+        │             ^^^^^^^^^^^^^^
+    164 │             default:
+    165 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-     99 │                 return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
-    100 │             case "idle":
-  > 101 │             default:
+    162 │               return Promise.resolve({ can: true });
+    163 │             case "delete":
+  > 164 │             default:
         │             ^^^^^^^^
-  > 102 │                 return <PlusCircleIcon className="re-text-gray-0" />;
-        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    103 │         }
-    104 │     }, [status]);
+  > 165 │               return Promise.resolve({ can: false });
+        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    166 │           }
+    167 │         },
   
   i Unsafe fix: Remove the useless case.
   
-     98  98 │               case "error":
-     99  99 │                   return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
-    100     │ - ············case·"idle":
-    101     │ - ············default:
-        100 │ + ············default:
-    102 101 │                   return <PlusCircleIcon className="re-text-gray-0" />;
-    103 102 │           }
+    161 161 │               case "list":
+    162 162 │                 return Promise.resolve({ can: true });
+    163     │ - ············case·"delete":
+    164     │ - ············default:
+        163 │ + ············default:
+    165 164 │                 return Promise.resolve({ can: false });
+    166 165 │             }
   
 
-./packages/devtools-ui/src/components/add-package-drawer.tsx:114:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
-
-  ! Useless case clause.
-  
-    112 │             case "error":
-    113 │                 return "Error";
-  > 114 │             case "idle":
-        │             ^^^^^^^^^^^^
-    115 │             default:
-    116 │                 return "Install";
-  
-  i because the default clause is present:
-  
-    113 │                 return "Error";
-    114 │             case "idle":
-  > 115 │             default:
-        │             ^^^^^^^^
-  > 116 │                 return "Install";
-        │                 ^^^^^^^^^^^^^^^^^
-    117 │         }
-    118 │     }, [status]);
-  
-  i Unsafe fix: Remove the useless case.
-  
-    112 112 │               case "error":
-    113 113 │                   return "Error";
-    114     │ - ············case·"idle":
-    115     │ - ············default:
-        114 │ + ············default:
-    116 115 │                   return "Install";
-    117 116 │           }
-  
-
-./packages/devtools-ui/src/components/package-item.tsx:58:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/mui/src/components/crud/show/index.spec.tsx:58:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    56 │             case "error":
-    57 │                 return <InfoIcon className="re-rotate-180" />;
-  > 58 │             case "idle":
-       │             ^^^^^^^^^^^^
+    56 │             case "list":
+    57 │               return Promise.resolve({ can: true });
+  > 58 │             case "delete":
+       │             ^^^^^^^^^^^^^^
     59 │             default:
-    60 │                 return <UpdateIcon />;
+    60 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    57 │                 return <InfoIcon className="re-rotate-180" />;
-    58 │             case "idle":
+    57 │               return Promise.resolve({ can: true });
+    58 │             case "delete":
   > 59 │             default:
        │             ^^^^^^^^
-  > 60 │                 return <UpdateIcon />;
-       │                 ^^^^^^^^^^^^^^^^^^^^^^
-    61 │         }
-    62 │     }, [status]);
+  > 60 │               return Promise.resolve({ can: false });
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    61 │           }
+    62 │         },
   
   i Unsafe fix: Remove the useless case.
   
-     56  56 │               case "error":
-     57  57 │                   return <InfoIcon className="re-rotate-180" />;
-     58     │ - ············case·"idle":
+     56  56 │               case "list":
+     57  57 │                 return Promise.resolve({ can: true });
+     58     │ - ············case·"delete":
      59     │ - ············default:
          58 │ + ············default:
-     60  59 │                   return <UpdateIcon />;
-     61  60 │           }
+     60  59 │                 return Promise.resolve({ can: false });
+     61  60 │             }
   
 
-./packages/devtools-ui/src/components/package-item.tsx:72:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/show/index.spec.tsx:57:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    70 │             case "error":
-    71 │                 return "Error";
-  > 72 │             case "idle":
-       │             ^^^^^^^^^^^^
-    73 │             default:
-    74 │                 return "Update";
+    55 │             case "list":
+    56 │               return Promise.resolve({ can: true });
+  > 57 │             case "delete":
+       │             ^^^^^^^^^^^^^^
+    58 │             default:
+    59 │               return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    71 │                 return "Error";
-    72 │             case "idle":
-  > 73 │             default:
+    56 │               return Promise.resolve({ can: true });
+    57 │             case "delete":
+  > 58 │             default:
        │             ^^^^^^^^
-  > 74 │                 return "Update";
-       │                 ^^^^^^^^^^^^^^^^
-    75 │         }
-    76 │     }, [status]);
+  > 59 │               return Promise.resolve({ can: false });
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    60 │           }
+    61 │         },
   
   i Unsafe fix: Remove the useless case.
   
-     70  70 │               case "error":
-     71  71 │                   return "Error";
-     72     │ - ············case·"idle":
-     73     │ - ············default:
-         72 │ + ············default:
-     74  73 │                   return "Update";
-     75  74 │           }
+     55  55 │               case "list":
+     56  56 │                 return Promise.resolve({ can: true });
+     57     │ - ············case·"delete":
+     58     │ - ············default:
+         57 │ + ············default:
+     59  58 │                 return Promise.resolve({ can: false });
+     60  59 │             }
   
 
-./packages/antd/src/components/crud/show/index.spec.tsx:57:25 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/edit/index.spec.tsx:209:15 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-    55 │                         case "list":
-    56 │                             return Promise.resolve({ can: true });
-  > 57 │                         case "delete":
-       │                         ^^^^^^^^^^^^^^
-    58 │                         default:
-    59 │                             return Promise.resolve({ can: false });
+    207 │               case "list":
+    208 │                 return Promise.resolve({ can: true });
+  > 209 │               case "delete":
+        │               ^^^^^^^^^^^^^^
+    210 │               default:
+    211 │                 return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    56 │                             return Promise.resolve({ can: true });
-    57 │                         case "delete":
-  > 58 │                         default:
-       │                         ^^^^^^^^
-  > 59 │                             return Promise.resolve({ can: false });
-       │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    60 │                     }
-    61 │                 },
+    208 │                 return Promise.resolve({ can: true });
+    209 │               case "delete":
+  > 210 │               default:
+        │               ^^^^^^^^
+  > 211 │                 return Promise.resolve({ can: false });
+        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │             }
+    213 │           },
   
   i Unsafe fix: Remove the useless case.
   
-     55  55 │                           case "list":
-     56  56 │                               return Promise.resolve({ can: true });
-     57     │ - ························case·"delete":
-     58     │ - ························default:
-         57 │ + ························default:
-     59  58 │                               return Promise.resolve({ can: false });
-     60  59 │                       }
+    207 207 │                 case "list":
+    208 208 │                   return Promise.resolve({ can: true });
+    209     │ - ··············case·"delete":
+    210     │ - ··············default:
+        209 │ + ··············default:
+    211 210 │                   return Promise.resolve({ can: false });
+    212 211 │               }
+  
+
+./packages/devtools-ui/src/components/package-item.tsx:58:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+
+  ! Useless case clause.
+  
+    56 │       case "error":
+    57 │         return <InfoIcon className="re-rotate-180" />;
+  > 58 │       case "idle":
+       │       ^^^^^^^^^^^^
+    59 │       default:
+    60 │         return <UpdateIcon />;
+  
+  i because the default clause is present:
+  
+    57 │         return <InfoIcon className="re-rotate-180" />;
+    58 │       case "idle":
+  > 59 │       default:
+       │       ^^^^^^^^
+  > 60 │         return <UpdateIcon />;
+       │         ^^^^^^^^^^^^^^^^^^^^^^
+    61 │     }
+    62 │   }, [status]);
+  
+  i Unsafe fix: Remove the useless case.
+  
+     56  56 │         case "error":
+     57  57 │           return <InfoIcon className="re-rotate-180" />;
+     58     │ - ······case·"idle":
+     59     │ - ······default:
+         58 │ + ······default:
+     60  59 │           return <UpdateIcon />;
+     61  60 │       }
+  
+
+./packages/devtools-ui/src/components/package-item.tsx:72:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+
+  ! Useless case clause.
+  
+    70 │       case "error":
+    71 │         return "Error";
+  > 72 │       case "idle":
+       │       ^^^^^^^^^^^^
+    73 │       default:
+    74 │         return "Update";
+  
+  i because the default clause is present:
+  
+    71 │         return "Error";
+    72 │       case "idle":
+  > 73 │       default:
+       │       ^^^^^^^^
+  > 74 │         return "Update";
+       │         ^^^^^^^^^^^^^^^^
+    75 │     }
+    76 │   }, [status]);
+  
+  i Unsafe fix: Remove the useless case.
+  
+     70  70 │         case "error":
+     71  71 │           return "Error";
+     72     │ - ······case·"idle":
+     73     │ - ······default:
+         72 │ + ······default:
+     74  73 │           return "Update";
+     75  74 │       }
+  
+
+./packages/devtools-ui/src/components/add-package-drawer.tsx:98:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+
+  ! Useless case clause.
+  
+     96 │       case "error":
+     97 │         return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
+   > 98 │       case "idle":
+        │       ^^^^^^^^^^^^
+     99 │       default:
+    100 │         return <PlusCircleIcon className="re-text-gray-0" />;
+  
+  i because the default clause is present:
+  
+     97 │         return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
+     98 │       case "idle":
+   > 99 │       default:
+        │       ^^^^^^^^
+  > 100 │         return <PlusCircleIcon className="re-text-gray-0" />;
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    101 │     }
+    102 │   }, [status]);
+  
+  i Unsafe fix: Remove the useless case.
+  
+     96  96 │         case "error":
+     97  97 │           return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
+     98     │ - ······case·"idle":
+     99     │ - ······default:
+         98 │ + ······default:
+    100  99 │           return <PlusCircleIcon className="re-text-gray-0" />;
+    101 100 │       }
   
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 1.
-Checked 6953 file(s) in 567ms
+Checked 6952 file(s) in 499ms

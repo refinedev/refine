@@ -2,277 +2,277 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./documentation/src/assets/popover-icons/integrations.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/integrations.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <g opacity="0.75">
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <g opacity="0.75">
   
 
-./documentation/src/assets/popover-icons/about-us.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/about-us.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/ui-frameworks.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/ui-frameworks.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/documents.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/documents.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/expert.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/expert.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/refine-store.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/refine-store.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <g opacity="0.75">
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <g opacity="0.75">
   
 
-./documentation/src/assets/popover-icons/tutorial.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/tutorial.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <g opacity="0.75">
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <g opacity="0.75">
   
 
-./documentation/src/assets/popover-icons/examples.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/examples.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/right-arrow.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/right-arrow.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/refine.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/refine.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <g opacity="0.75">
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <g opacity="0.75">
   
 
-./documentation/src/assets/popover-icons/awesome.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/awesome.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <g opacity="0.75">
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <g opacity="0.75">
   
 
-./documentation/src/assets/popover-icons/contribute.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/contribute.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-./documentation/src/assets/popover-icons/use-cases.tsx:11:9 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
+./documentation/src/assets/popover-icons/use-cases.tsx:11:5 lint/suspicious/noDuplicateJsxProps ━━━━━━━━━━
 
   ! This JSX property is assigned multiple times.
   
-     9 │         fill="none"
-    10 │         xmlns="http://www.w3.org/2000/svg"
-  > 11 │         className={className ? className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │         {...props}
-    13 │         className={props.className ? props.className : undefined}
+     9 │     fill="none"
+    10 │     xmlns="http://www.w3.org/2000/svg"
+  > 11 │     className={className ? className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │     {...props}
+    13 │     className={props.className ? props.className : undefined}
   
   i This attribute is assigned again here.
   
-    11 │         className={className ? className : undefined}
-    12 │         {...props}
-  > 13 │         className={props.className ? props.className : undefined}
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     >
-    15 │         <path
+    11 │     className={className ? className : undefined}
+    12 │     {...props}
+  > 13 │     className={props.className ? props.className : undefined}
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    14 │   >
+    15 │     <path
   
 
-Checked 6953 file(s) in 519ms
+Checked 6952 file(s) in 489ms

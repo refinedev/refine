@@ -2,13 +2,13 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./cypress/support/commands/antd/index.ts:49:19 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
+./cypress/support/commands/antd/index.ts:49:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
     48 │ export const getAntdLoadingOverlay = () => {
-  > 49 │     return cy.get(`.ant-spin`);
-       │                   ^^^^^^^^^^^
+  > 49 │   return cy.get(`.ant-spin`);
+       │                 ^^^^^^^^^^^
     50 │ };
     51 │ 
   
@@ -16,409 +16,409 @@
   
     47 47 │   
     48 48 │   export const getAntdLoadingOverlay = () => {
-    49    │ - ····return·cy.get(`.ant-spin`);
-       49 │ + ····return·cy.get(".ant-spin");
+    49    │ - ··return·cy.get(`.ant-spin`);
+       49 │ + ··return·cy.get(".ant-spin");
     50 50 │   };
     51 51 │   
   
 
-./cypress/support/commands/document-title-handler.ts:44:53 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
+./cypress/support/commands/document-title-handler.ts:32:47 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    42 │             break;
-    43 │         default:
-  > 44 │             cy.document().its("title").should("eq", `refine`);
-       │                                                     ^^^^^^^^
-    45 │             break;
-    46 │     }
+    30 │       break;
+    31 │     default:
+  > 32 │       cy.document().its("title").should("eq", `refine`);
+       │                                               ^^^^^^^^
+    33 │       break;
+    34 │   }
   
   i Unsafe fix: Replace with string literal
   
-    42 42 │               break;
-    43 43 │           default:
-    44    │ - ············cy.document().its("title").should("eq",·`refine`);
-       44 │ + ············cy.document().its("title").should("eq",·"refine");
-    45 45 │               break;
-    46 46 │       }
+    30 30 │         break;
+    31 31 │       default:
+    32    │ - ······cy.document().its("title").should("eq",·`refine`);
+       32 │ + ······cy.document().its("title").should("eq",·"refine");
+    33 33 │         break;
+    34 34 │     }
   
 
-./documentation/src/partials/npm-scripts/create-refine-app-command.tsx:28:22 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
+./documentation/src/partials/npm-scripts/create-refine-app-command.tsx:27:25 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    26 │                 <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-    27 │                 <ReactMarkdown>
-  > 28 │                     {`> Only supports yarn@1 version.`}
-       │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    29 │                 </ReactMarkdown>
-    30 │             </TabItem>
+    25 │       <TabItem value="yarn" label="yarn">
+    26 │         <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
+  > 27 │         <ReactMarkdown>{`> Only supports yarn@1 version.`}</ReactMarkdown>
+       │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    28 │       </TabItem>
+    29 │     </Tabs>
   
   i Unsafe fix: Replace with string literal
   
-    26 26 │                   <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-    27 27 │                   <ReactMarkdown>
-    28    │ - ····················{`>·Only·supports·yarn@1·version.`}
-       28 │ + ····················{">·Only·supports·yarn@1·version."}
-    29 29 │                   </ReactMarkdown>
-    30 30 │               </TabItem>
+    25 25 │         <TabItem value="yarn" label="yarn">
+    26 26 │           <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
+    27    │ - ········<ReactMarkdown>{`>·Only·supports·yarn@1·version.`}</ReactMarkdown>
+       27 │ + ········<ReactMarkdown>{">·Only·supports·yarn@1·version."}</ReactMarkdown>
+    28 28 │         </TabItem>
+    29 29 │       </Tabs>
   
 
-./.github/workflows/e2e-examples.js:55:19 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:55:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    54 │     let port = 3000;
-  > 55 │     let command = `npm run dev`;
-       │                   ^^^^^^^^^^^^^
-    56 │     let additionalParams = "";
+    54 │   let port = 3000;
+  > 55 │   let command = `npm run dev`;
+       │                 ^^^^^^^^^^^^^
+    56 │   let additionalParams = "";
     57 │ 
   
   i Unsafe fix: Replace with string literal
   
      53  53 │   
-     54  54 │       let port = 3000;
-     55     │ - ····let·command·=·`npm·run·dev`;
-         55 │ + ····let·command·=·"npm·run·dev";
-     56  56 │       let additionalParams = "";
+     54  54 │     let port = 3000;
+     55     │ - ··let·command·=·`npm·run·dev`;
+         55 │ + ··let·command·=·"npm·run·dev";
+     56  56 │     let additionalParams = "";
      57  57 │   
   
 
-./.github/workflows/e2e-examples.js:205:27 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:203:23 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    203 │         prettyLog("blue", `Running for ${path} at port ${port}`);
+    201 │     prettyLog("blue", `Running for ${path} at port ${port}`);
+    202 │ 
+  > 203 │     prettyLog("blue", `Starting the dev server`);
+        │                       ^^^^^^^^^^^^^^^^^^^^^^^^^
     204 │ 
-  > 205 │         prettyLog("blue", `Starting the dev server`);
-        │                           ^^^^^^^^^^^^^^^^^^^^^^^^^
-    206 │ 
-    207 │         let start;
+    205 │     let start;
   
   i Unsafe fix: Replace with string literal
   
-    203 203 │           prettyLog("blue", `Running for ${path} at port ${port}`);
+    201 201 │       prettyLog("blue", `Running for ${path} at port ${port}`);
+    202 202 │   
+    203     │ - ····prettyLog("blue",·`Starting·the·dev·server`);
+        203 │ + ····prettyLog("blue",·"Starting·the·dev·server");
     204 204 │   
-    205     │ - ········prettyLog("blue",·`Starting·the·dev·server`);
-        205 │ + ········prettyLog("blue",·"Starting·the·dev·server");
-    206 206 │   
-    207 207 │           let start;
+    205 205 │       let start;
   
 
-./.github/workflows/e2e-examples.js:223:30 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:218:24 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    221 │             start.stderr.on("data", console.error);
-    222 │         } catch (error) {
-  > 223 │             prettyLog("red", `Error occured on starting the dev server`);
-        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    224 │             failed = true;
-    225 │         }
+    216 │       start.stderr.on("data", console.error);
+    217 │     } catch (error) {
+  > 218 │       prettyLog("red", `Error occured on starting the dev server`);
+        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    219 │       failed = true;
+    220 │     }
   
   i Unsafe fix: Replace with string literal
   
-    221 221 │               start.stderr.on("data", console.error);
-    222 222 │           } catch (error) {
-    223     │ - ············prettyLog("red",·`Error·occured·on·starting·the·dev·server`);
-        223 │ + ············prettyLog("red",·"Error·occured·on·starting·the·dev·server");
-    224 224 │               failed = true;
-    225 225 │           }
+    216 216 │         start.stderr.on("data", console.error);
+    217 217 │       } catch (error) {
+    218     │ - ······prettyLog("red",·`Error·occured·on·starting·the·dev·server`);
+        218 │ + ······prettyLog("red",·"Error·occured·on·starting·the·dev·server");
+    219 219 │         failed = true;
+    220 220 │       }
   
 
-./.github/workflows/e2e-examples.js:239:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:229:26 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    237 │                 prettyLog(
-    238 │                     "red",
-  > 239 │                     `Error occured on waiting for the server to start`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    240 │                 );
-    241 │                 failed = true;
+    227 │       const status = await waitForServer(port);
+    228 │       if (!status) {
+  > 229 │         prettyLog("red", `Error occured on waiting for the server to start`);
+        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    230 │         failed = true;
+    231 │       } else {
   
   i Unsafe fix: Replace with string literal
   
-    237 237 │                   prettyLog(
-    238 238 │                       "red",
-    239     │ - ····················`Error·occured·on·waiting·for·the·server·to·start`,
-        239 │ + ····················"Error·occured·on·waiting·for·the·server·to·start",
-    240 240 │                   );
-    241 241 │                   failed = true;
+    227 227 │         const status = await waitForServer(port);
+    228 228 │         if (!status) {
+    229     │ - ········prettyLog("red",·`Error·occured·on·waiting·for·the·server·to·start`);
+        229 │ + ········prettyLog("red",·"Error·occured·on·waiting·for·the·server·to·start");
+    230 230 │           failed = true;
+    231 231 │         } else {
   
 
-./.github/workflows/e2e-examples.js:249:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:236:24 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    247 │             prettyLog(
-    248 │                 "red",
-  > 249 │                 `Error occured on waiting for the server to start`,
-        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    250 │             );
-    251 │             if (error) console.log(error);
+    234 │       }
+    235 │     } catch (error) {
+  > 236 │       prettyLog("red", `Error occured on waiting for the server to start`);
+        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    237 │       if (error) console.log(error);
+    238 │ 
   
   i Unsafe fix: Replace with string literal
   
-    247 247 │               prettyLog(
-    248 248 │                   "red",
-    249     │ - ················`Error·occured·on·waiting·for·the·server·to·start`,
-        249 │ + ················"Error·occured·on·waiting·for·the·server·to·start",
-    250 250 │               );
-    251 251 │               if (error) console.log(error);
+    234 234 │         }
+    235 235 │       } catch (error) {
+    236     │ - ······prettyLog("red",·`Error·occured·on·waiting·for·the·server·to·start`);
+        236 │ + ······prettyLog("red",·"Error·occured·on·waiting·for·the·server·to·start");
+    237 237 │         if (error) console.log(error);
+    238 238 │   
   
 
-./.github/workflows/e2e-examples.js:275:31 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:261:25 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    273 │             failed = true;
-    274 │         } finally {
-  > 275 │             prettyLog("blue", `Killing the dev server`);
-        │                               ^^^^^^^^^^^^^^^^^^^^^^^^
-    276 │ 
-    277 │             try {
+    259 │       failed = true;
+    260 │     } finally {
+  > 261 │       prettyLog("blue", `Killing the dev server`);
+        │                         ^^^^^^^^^^^^^^^^^^^^^^^^
+    262 │ 
+    263 │       try {
   
   i Unsafe fix: Replace with string literal
   
-    273 273 │               failed = true;
-    274 274 │           } finally {
-    275     │ - ············prettyLog("blue",·`Killing·the·dev·server`);
-        275 │ + ············prettyLog("blue",·"Killing·the·dev·server");
-    276 276 │   
-    277 277 │               try {
+    259 259 │         failed = true;
+    260 260 │       } finally {
+    261     │ - ······prettyLog("blue",·`Killing·the·dev·server`);
+        261 │ + ······prettyLog("blue",·"Killing·the·dev·server");
+    262 262 │   
+    263 263 │         try {
   
 
-./.github/workflows/e2e-examples.js:289:40 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:275:30 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    287 │                     await waitForClose(respondedUrl);
-    288 │ 
-  > 289 │                     prettyLog("green", `Killed the dev server`);
-        │                                        ^^^^^^^^^^^^^^^^^^^^^^^
-    290 │                 } else {
-    291 │                     failed = true;
+    273 │           await waitForClose(respondedUrl);
+    274 │ 
+  > 275 │           prettyLog("green", `Killed the dev server`);
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^
+    276 │         } else {
+    277 │           failed = true;
   
   i Unsafe fix: Replace with string literal
   
-    287 287 │                       await waitForClose(respondedUrl);
-    288 288 │   
-    289     │ - ····················prettyLog("green",·`Killed·the·dev·server`);
-        289 │ + ····················prettyLog("green",·"Killed·the·dev·server");
-    290 290 │                   } else {
-    291 291 │                       failed = true;
+    273 273 │             await waitForClose(respondedUrl);
+    274 274 │   
+    275     │ - ··········prettyLog("green",·`Killed·the·dev·server`);
+        275 │ + ··········prettyLog("green",·"Killed·the·dev·server");
+    276 276 │           } else {
+    277 277 │             failed = true;
   
 
-./.github/workflows/e2e-examples.js:294:34 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:280:26 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    292 │                 }
-    293 │             } catch (error) {
-  > 294 │                 prettyLog("red", `Error occured on killing the dev server`);
-        │                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    295 │                 if (error) console.log(error);
-    296 │                 failed = true;
+    278 │         }
+    279 │       } catch (error) {
+  > 280 │         prettyLog("red", `Error occured on killing the dev server`);
+        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    281 │         if (error) console.log(error);
+    282 │         failed = true;
   
   i Unsafe fix: Replace with string literal
   
-    292 292 │                   }
-    293 293 │               } catch (error) {
-    294     │ - ················prettyLog("red",·`Error·occured·on·killing·the·dev·server`);
-        294 │ + ················prettyLog("red",·"Error·occured·on·killing·the·dev·server");
-    295 295 │                   if (error) console.log(error);
-    296 296 │                   failed = true;
+    278 278 │           }
+    279 279 │         } catch (error) {
+    280     │ - ········prettyLog("red",·`Error·occured·on·killing·the·dev·server`);
+        280 │ + ········prettyLog("red",·"Error·occured·on·killing·the·dev·server");
+    281 281 │           if (error) console.log(error);
+    282 282 │           failed = true;
   
 
-./.github/workflows/e2e-examples.js:307:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:293:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    305 │         }
-    306 │ 
-  > 307 │         console.log(`::endgroup::`);
-        │                     ^^^^^^^^^^^^^^
-    308 │     }
-    309 │ 
+    291 │     }
+    292 │ 
+  > 293 │     console.log(`::endgroup::`);
+        │                 ^^^^^^^^^^^^^^
+    294 │   }
+    295 │ 
   
   i Unsafe fix: Replace with string literal
   
-    305 305 │           }
-    306 306 │   
-    307     │ - ········console.log(`::endgroup::`);
-        307 │ + ········console.log("::endgroup::");
-    308 308 │       }
-    309 309 │   
+    291 291 │       }
+    292 292 │   
+    293     │ - ····console.log(`::endgroup::`);
+        293 │ + ····console.log("::endgroup::");
+    294 294 │     }
+    295 295 │   
   
 
-./packages/codemod/src/index.ts:222:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━
+./documentation/tailwind.config.js:330:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    221 │             console.log(
-  > 222 │                 `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
-        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    223 │             );
-    224 │             console.log(
+    328 │         "banner-examples-gray": [
+    329 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 330 │           `radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    331 │         ],
+    332 │         "banner-examples-purple": [
   
   i Unsafe fix: Replace with string literal
   
-    220 220 │   
-    221 221 │               console.log(
-    222     │ - ················`Uppss!,·we·encountered·an·issue·that·prevents·us·from·upgrading·your·project·to·refine@4`,
-        222 │ + ················"Uppss!,·we·encountered·an·issue·that·prevents·us·from·upgrading·your·project·to·refine@4",
-    223 223 │               );
-    224 224 │               console.log(
+    328 328 │           "banner-examples-gray": [
+    329 329 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    330     │ - ··········`radial-gradient(70.09%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
+        330 │ + ··········"radial-gradient(70.09%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
+    331 331 │           ],
+    332 332 │           "banner-examples-purple": [
   
 
-./packages/codemod/src/index.ts:225:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━
+./documentation/tailwind.config.js:334:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    223 │             );
-    224 │             console.log(
-  > 225 │                 `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
-        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    226 │             );
-    227 │             console.log(
+    332 │         "banner-examples-purple": [
+    333 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 334 │           `radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    335 │         ],
+    336 │         "banner-examples-modal-gray": [
   
   i Unsafe fix: Replace with string literal
   
-    223 223 │               );
-    224 224 │               console.log(
-    225     │ - ················`You·are·using·version·4·of·Ant·Design.·refine@4·uses·version·5·of·Ant·Design.`,
-        225 │ + ················"You·are·using·version·4·of·Ant·Design.·refine@4·uses·version·5·of·Ant·Design.",
-    226 226 │               );
-    227 227 │               console.log(
+    332 332 │           "banner-examples-purple": [
+    333 333 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    334     │ - ··········`radial-gradient(294.84%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)`,
+        334 │ + ··········"radial-gradient(294.84%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)",
+    335 335 │           ],
+    336 336 │           "banner-examples-modal-gray": [
   
 
-./packages/strapi-v4/test/dataProvider/index.spec.ts:13:13 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
+./documentation/tailwind.config.js:338:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    11 │         axiosInstance.defaults.headers.common[
-    12 │             "Authorization"
-  > 13 │         ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    14 │     });
-    15 │ 
+    336 │         "banner-examples-modal-gray": [
+    337 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 338 │           `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    339 │         ],
+    340 │         "banner-examples-modal-purple": [
   
   i Unsafe fix: Replace with string literal
   
-     11  11 │           axiosInstance.defaults.headers.common[
-     12  12 │               "Authorization"
-     13     │ - ········]·=·`Bearer·eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
-         13 │ + ········]·=·"Bearer·eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA";
-     14  14 │       });
-     15  15 │   
+    336 336 │           "banner-examples-modal-gray": [
+    337 337 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    338     │ - ··········`radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
+        338 │ + ··········"radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
+    339 339 │           ],
+    340 340 │           "banner-examples-modal-purple": [
   
 
-./documentation/tailwind.config.js:335:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./documentation/tailwind.config.js:342:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    333 │                 "banner-examples-gray": [
-    334 │                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-  > 335 │                     `radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    336 │                 ],
-    337 │                 "banner-examples-purple": [
+    340 │         "banner-examples-modal-purple": [
+    341 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 342 │           `radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    343 │         ],
+    344 │         "banner-examples-sider-gray": [
   
   i Unsafe fix: Replace with string literal
   
-    333 333 │                   "banner-examples-gray": [
-    334 334 │                       "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-    335     │ - ····················`radial-gradient(70.09%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
-        335 │ + ····················"radial-gradient(70.09%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
-    336 336 │                   ],
-    337 337 │                   "banner-examples-purple": [
+    340 340 │           "banner-examples-modal-purple": [
+    341 341 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    342     │ - ··········`radial-gradient(152.26%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)`,
+        342 │ + ··········"radial-gradient(152.26%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)",
+    343 343 │           ],
+    344 344 │           "banner-examples-sider-gray": [
   
 
-./documentation/tailwind.config.js:339:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./documentation/tailwind.config.js:346:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    337 │                 "banner-examples-purple": [
-    338 │                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-  > 339 │                     `radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    340 │                 ],
-    341 │                 "banner-examples-modal-gray": [
+    344 │         "banner-examples-sider-gray": [
+    345 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 346 │           `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    347 │         ],
+    348 │         "banner-examples-sider-purple": [
   
   i Unsafe fix: Replace with string literal
   
-    337 337 │                   "banner-examples-purple": [
-    338 338 │                       "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-    339     │ - ····················`radial-gradient(294.84%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)`,
-        339 │ + ····················"radial-gradient(294.84%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)",
-    340 340 │                   ],
-    341 341 │                   "banner-examples-modal-gray": [
+    344 344 │           "banner-examples-sider-gray": [
+    345 345 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    346     │ - ··········`radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
+        346 │ + ··········"radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
+    347 347 │           ],
+    348 348 │           "banner-examples-sider-purple": [
   
 
-./documentation/tailwind.config.js:343:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./documentation/tailwind.config.js:350:11 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    341 │                 "banner-examples-modal-gray": [
-    342 │                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-  > 343 │                     `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    344 │                 ],
-    345 │                 "banner-examples-modal-purple": [
+    348 │         "banner-examples-sider-purple": [
+    349 │           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+  > 350 │           `radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    351 │         ],
+    352 │         "banner-examples-text":
   
   i Unsafe fix: Replace with string literal
   
-    341 341 │                   "banner-examples-modal-gray": [
-    342 342 │                       "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-    343     │ - ····················`radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
-        343 │ + ····················"radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
-    344 344 │                   ],
-    345 345 │                   "banner-examples-modal-purple": [
+    348 348 │           "banner-examples-sider-purple": [
+    349 349 │             "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+    350     │ - ··········`radial-gradient(191.28%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)`,
+        350 │ + ··········"radial-gradient(191.28%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)",
+    351 351 │           ],
+    352 352 │           "banner-examples-text":
   
 
-./documentation/tailwind.config.js:347:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./documentation/tailwind.config.js:430:34 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    345 │                 "banner-examples-modal-purple": [
-    346 │                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-  > 347 │                     `radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    348 │                 ],
-    349 │                 "banner-examples-sider-gray": [
+    428 │         "enterprise-frequent-updates-light-md":
+    429 │           "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+  > 430 │         "new-badge-border-dark": `conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)`,
+        │                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    431 │         "new-badge-border-light": `conic-gradient(
+    432 │                     from 45deg at 50% 50%,
   
   i Unsafe fix: Replace with string literal
   
-    345 345 │                   "banner-examples-modal-purple": [
-    346 346 │                       "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-    347     │ - ····················`radial-gradient(152.26%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)`,
-        347 │ + ····················"radial-gradient(152.26%·141.42%·at·100%·100%,·#33F·0%,·#8000FF·50%,·#303450·100%)",
-    348 348 │                   ],
-    349 349 │                   "banner-examples-sider-gray": [
+    428 428 │           "enterprise-frequent-updates-light-md":
+    429 429 │             "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
+    430     │ - ········"new-badge-border-dark":·`conic-gradient(·from·45deg·at·50%·50%,·#194b3a,·rgb(38·217·127·/·40%),·#194b3a,·#194b3a,·#194b3a,·#26d97f,·#194b3a,·#194b3a,·#194b3a)`,
+        430 │ + ········"new-badge-border-dark":·"conic-gradient(·from·45deg·at·50%·50%,·#194b3a,·rgb(38·217·127·/·40%),·#194b3a,·#194b3a,·#194b3a,·#26d97f,·#194b3a,·#194b3a,·#194b3a)",
+    431 431 │           "new-badge-border-light": `conic-gradient(
+    432 432 │                       from 45deg at 50% 50%,
   
 
-./documentation/tailwind.config.js:351:21 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
+./packages/codemod/src/index.ts:214:9 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
   
-    349 │                 "banner-examples-sider-gray": [
-    350 │                     "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-  > 351 │                     `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    352 │                 ],
-    353 │                 "banner-examples-sider-purple": [
+    213 │       console.log(
+  > 214 │         `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    215 │       );
+    216 │       console.log(
   
   i Unsafe fix: Replace with string literal
   
-    349 349 │                   "banner-examples-sider-gray": [
-    350 350 │                       "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-    351     │ - ····················`radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)`,
-        351 │ + ····················"radial-gradient(75.69%·100%·at·50%·0%,·#474E6B·0%,·#303450·100%)",
-    352 352 │                   ],
-    353 353 │                   "banner-examples-sider-purple": [
+    212 212 │   
+    213 213 │         console.log(
+    214     │ - ········`Uppss!,·we·encountered·an·issue·that·prevents·us·from·upgrading·your·project·to·refine@4`,
+        214 │ + ········"Uppss!,·we·encountered·an·issue·that·prevents·us·from·upgrading·your·project·to·refine@4",
+    215 215 │         );
+    216 216 │         console.log(
   
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 283.
-Checked 6953 file(s) in 540ms
+Checked 6952 file(s) in 477ms

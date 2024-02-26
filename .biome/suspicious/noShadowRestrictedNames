@@ -38,8 +38,8 @@
     2 │ 
   > 3 │ export function Date({ date, formattedDate }) {
       │                 ^^^^
-    4 │     return (
-    5 │         <time dateTime={date} itemProp="datePublished">
+    4 │   return (
+    5 │     <time dateTime={date} itemProp="datePublished">
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -80,8 +80,8 @@
     3 │ 
   > 4 │ const Error = ({ statusCode, title }: ErrorProps): JSX.Element => {
       │       ^^^^^
-    5 │     const getMessage = () => {
-    6 │         if (title) {
+    5 │   const getMessage = () => {
+    6 │     if (title) {
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -140,19 +140,6 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/finefoods-antd/src/components/order/deliveryMap/index.tsx:2:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Map" property.
-  
-    1 │ import { IOrder } from "../../../interfaces";
-  > 2 │ import { Map, MapMarker } from "../../map";
-      │          ^^^
-    3 │ 
-    4 │ type Props = {
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
 ./examples/finefoods-antd/src/components/store/map/all-stores-map.tsx:2:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
@@ -176,6 +163,19 @@
       │          ^^^
     4 │ import { IStore } from "../../../interfaces";
     5 │ import { useCallback } from "react";
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
+./examples/finefoods-antd/src/components/order/deliveryMap/index.tsx:2:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Map" property.
+  
+    1 │ import { IOrder } from "../../../interfaces";
+  > 2 │ import { Map, MapMarker } from "../../map";
+      │          ^^^
+    3 │ 
+    4 │ type Props = {
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -206,6 +206,48 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
+./examples/with-storybook-material-ui/src/stories/fields/EmailField.stories.tsx:45:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Number" property.
+  
+    43 │ };
+    44 │ 
+  > 45 │ export const Number: ComponentStory<typeof NumberField> = (args) => {
+       │              ^^^^^^
+    46 │   const theme = useTheme();
+    47 │   return (
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
+./examples/with-storybook-material-ui/src/stories/fields/BooleanField.stories.tsx:24:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Boolean" property.
+  
+    22 │ } as ComponentMeta<typeof BooleanField>;
+    23 │ 
+  > 24 │ export const Boolean: ComponentStory<typeof BooleanField> = (args) => (
+       │              ^^^^^^^
+    25 │   <BooleanField
+    26 │     value={args.value}
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
+./examples/with-storybook-material-ui/src/stories/fields/DateField.stories.tsx:23:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Date" property.
+  
+    21 │ } as ComponentMeta<typeof DateField>;
+    22 │ 
+  > 23 │ export const Date: ComponentStory<typeof DateField> = (args) => {
+       │              ^^^^
+    24 │   const theme = useTheme();
+    25 │   return (
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
 ./examples/app-crm/src/routes/dashboard/components/companies-map/map.tsx:10:7 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
@@ -214,8 +256,8 @@
      9 │ 
   > 10 │ const Map = () => {
        │       ^^^
-    11 │     const customMarkerIcon = divIcon({
-    12 │         className: "custom-marker-icon",
+    11 │   const customMarkerIcon = divIcon({
+    12 │     className: "custom-marker-icon",
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -234,46 +276,4 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/with-storybook-material-ui/src/stories/fields/EmailField.stories.tsx:45:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Number" property.
-  
-    43 │ };
-    44 │ 
-  > 45 │ export const Number: ComponentStory<typeof NumberField> = (args) => {
-       │              ^^^^^^
-    46 │     const theme = useTheme();
-    47 │     return (
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
-./examples/with-storybook-material-ui/src/stories/fields/BooleanField.stories.tsx:24:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Boolean" property.
-  
-    22 │ } as ComponentMeta<typeof BooleanField>;
-    23 │ 
-  > 24 │ export const Boolean: ComponentStory<typeof BooleanField> = (args) => (
-       │              ^^^^^^^
-    25 │     <BooleanField
-    26 │         value={args.value}
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
-./examples/with-storybook-material-ui/src/stories/fields/DateField.stories.tsx:23:14 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Date" property.
-  
-    21 │ } as ComponentMeta<typeof DateField>;
-    22 │ 
-  > 23 │ export const Date: ComponentStory<typeof DateField> = (args) => {
-       │              ^^^^
-    24 │     const theme = useTheme();
-    25 │     return (
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
-Checked 6953 file(s) in 516ms
+Checked 6952 file(s) in 528ms

@@ -2,350 +2,346 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./examples/blog-next-refine-pwa/src/components/Layout.tsx:11:17 lint/a11y/useButtonType ━━━━━━━━━━━━
+./examples/blog-next-refine-pwa/src/components/Layout.tsx:11:9 lint/a11y/useButtonType ━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-     9 │                     <img src="./refine_logo.png" alt="refine logo" />
-    10 │                 </a>
-  > 11 │                 <button className="mb-2 mt-2 w-fit rounded bg-[#042940] px-8 py-2 text-white outline outline-offset-2 outline-[#D6D58E]">
-       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │                     Cart
-    13 │                 </button>
+     9 │           <img src="./refine_logo.png" alt="refine logo" />
+    10 │         </a>
+  > 11 │         <button className="mb-2 mt-2 w-fit rounded bg-[#042940] px-8 py-2 text-white outline outline-offset-2 outline-[#D6D58E]">
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │           Cart
+    13 │         </button>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/blog-next-refine-pwa/src/components/ProductCards.tsx:33:21 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/blog-next-refine-pwa/src/components/ProductCards.tsx:33:11 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    31 │                         ${price}
-    32 │                     </p>
-  > 33 │                     <button className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
-       │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    34 │                         Add to cart
-    35 │                     </button>
+    31 │             ${price}
+    32 │           </p>
+  > 33 │           <button className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
+       │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    34 │             Add to cart
+    35 │           </button>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/form-react-hook-form-use-form/src/pages/posts/edit.tsx:89:13 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/form-react-hook-form-use-form/src/pages/posts/edit.tsx:85:7 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    87 │                 </>
-    88 │             )}
-  > 89 │             <button onClick={back}>Cancel</button>
-       │             ^^^^^^^^^^^^^^^^^^^^^^^
-    90 │             <input
-    91 │                 type="submit"
+    83 │         </>
+    84 │       )}
+  > 85 │       <button onClick={back}>Cancel</button>
+       │       ^^^^^^^^^^^^^^^^^^^^^^^
+    86 │       <input type="submit" value="Submit" disabled={saveButtonProps.disabled} />
+    87 │       {formLoading && <p>Loading</p>}
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/form-react-hook-form-use-form/src/pages/posts/create.tsx:101:13 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/form-react-hook-form-use-form/src/pages/posts/create.tsx:95:7 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-     99 │             <br />
-    100 │             <br />
-  > 101 │             <button onClick={back}>Cancel</button>
-        │             ^^^^^^^^^^^^^^^^^^^^^^^
-    102 │             <input type="submit" disabled={isUploading} value="Submit" />
-    103 │             {formLoading && <p>Loading</p>}
+    93 │       <br />
+    94 │       <br />
+  > 95 │       <button onClick={back}>Cancel</button>
+       │       ^^^^^^^^^^^^^^^^^^^^^^^
+    96 │       <input type="submit" disabled={isUploading} value="Submit" />
+    97 │       {formLoading && <p>Loading</p>}
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/form-react-hook-form-use-form/src/pages/posts/list.tsx:18:13 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/form-react-hook-form-use-form/src/pages/posts/list.tsx:18:7 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    16 │     return (
-    17 │         <div>
-  > 18 │             <button onClick={() => create("posts")}>Create Post</button>
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    19 │             <table>
-    20 │                 <thead>
+    16 │   return (
+    17 │     <div>
+  > 18 │       <button onClick={() => create("posts")}>Create Post</button>
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    19 │       <table>
+    20 │         <thead>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/form-react-hook-form-use-form/src/pages/posts/list.tsx:31:33 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/form-react-hook-form-use-form/src/pages/posts/list.tsx:31:17 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    29 │                             <td>{post.title}</td>
-    30 │                             <td>
-  > 31 │                                 <button onClick={() => edit("posts", post.id)}>
-       │                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    32 │                                     Edit
-    33 │                                 </button>
+    29 │               <td>{post.title}</td>
+    30 │               <td>
+  > 31 │                 <button onClick={() => edit("posts", post.id)}>Edit</button>
+       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │               </td>
+    33 │             </tr>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/store/src/components/account/OverviewTemplate/OverviewTemplate.tsx:153:57 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/store/src/components/account/OverviewTemplate/OverviewTemplate.tsx:117:29 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    151 │                                                                 </span> */}
-    152 │                                                         </div>
-  > 153 │                                                         <button
-        │                                                         ^^^^^^^
-  > 154 │                                                             className={s.center}
-  > 155 │                                                             onClick={close}
-  > 156 │                                                         >
-        │                                                         ^
-    157 │                                                             <span className="sr-only">
-    158 │                                                                 Go to order #
+    115 │                                                                 </span> */}
+    116 │                             </div>
+  > 117 │                             <button className={s.center} onClick={close}>
+        │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    118 │                               <span className="sr-only">
+    119 │                                 Go to order #{order.display_id}
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/store/src/components/address/EditAddress/EditAddress.tsx:137:21 lint/a11y/useButtonType ━━━━━━━━━━
+./packages/ui-tests/src/tests/crud/edit.tsx:85:15 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    135 │                 </div>
-    136 │                 <div className="flex items-center gap-x-4">
-  > 137 │                     <button
-        │                     ^^^^^^^
-  > 138 │                         className="text-small-regular text-primary flex items-center gap-x-2"
-  > 139 │                         onClick={() => show()}
-  > 140 │                     >
-        │                     ^
-    141 │                         <Edit size={16} />
-    142 │                         Edit
+    83 │           footerButtons={
+    84 │             <>
+  > 85 │               <button>New Save Button</button>
+       │               ^^^^^^^^
+    86 │               <button>New Delete Button</button>
+    87 │             </>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/store/src/components/address/EditAddress/EditAddress.tsx:144:21 lint/a11y/useButtonType ━━━━━━━━━━
+./packages/ui-tests/src/tests/crud/edit.tsx:86:15 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    142 │                         Edit
-    143 │                     </button>
-  > 144 │                     <button
-        │                     ^^^^^^^
-  > 145 │                         className="text-small-regular text-primary flex items-center gap-x-2"
-  > 146 │                         onClick={() => removeAddress()} // TODO: removed function here
-  > 147 │                     >
-        │                     ^
-    148 │                         <Trash />
-    149 │                         Remove
+    84 │             <>
+    85 │               <button>New Save Button</button>
+  > 86 │               <button>New Delete Button</button>
+       │               ^^^^^^^^
+    87 │             </>
+    88 │           }
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./packages/ui-tests/src/tests/crud/edit.tsx:87:29 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
+./packages/ui-tests/src/tests/crud/show.tsx:72:15 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    85 │                     footerButtons={
-    86 │                         <>
-  > 87 │                             <button>New Save Button</button>
-       │                             ^^^^^^^^
-    88 │                             <button>New Delete Button</button>
-    89 │                         </>
+    70 │           headerButtons={
+    71 │             <>
+  > 72 │               <button>New Save Button</button>
+       │               ^^^^^^^^
+    73 │               <button>New Delete Button</button>
+    74 │             </>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./packages/ui-tests/src/tests/crud/edit.tsx:88:29 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
+./packages/ui-tests/src/tests/crud/show.tsx:73:15 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    86 │                         <>
-    87 │                             <button>New Save Button</button>
-  > 88 │                             <button>New Delete Button</button>
-       │                             ^^^^^^^^
-    89 │                         </>
-    90 │                     }
+    71 │             <>
+    72 │               <button>New Save Button</button>
+  > 73 │               <button>New Delete Button</button>
+       │               ^^^^^^^^
+    74 │             </>
+    75 │           }
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/store/src/components/address/AddAddress/AddAddress.tsx:72:13 lint/a11y/useButtonType ━━━━━━━━━━
+./packages/ui-tests/src/tests/crud/create.tsx:54:32 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    70 │     return (
-    71 │         <>
-  > 72 │             <button
-       │             ^^^^^^^
-  > 73 │                 className="text-primary border-accent-2 flex h-full min-h-[220px] w-full flex-col justify-between border p-5"
-  > 74 │                 onClick={() => show()}
-  > 75 │             >
-       │             ^
-    76 │                 <span className="text-base-semi">New address</span>
-    77 │                 <Plus size={24} />
+    52 │     it("should render optional button with actionButtons prop", async () => {
+    53 │       const { container, getByText } = renderCreate(
+  > 54 │         <Create footerButtons={<button>Optional Button</button>} />,
+       │                                ^^^^^^^^
+    55 │       );
+    56 │ 
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./packages/ui-tests/src/tests/crud/show.tsx:76:29 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
+./documentation/src/components/banner/banner-modal.tsx:192:19 lint/a11y/useButtonType ━━━━━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    74 │                     headerButtons={
-    75 │                         <>
-  > 76 │                             <button>New Save Button</button>
-       │                             ^^^^^^^^
-    77 │                             <button>New Delete Button</button>
-    78 │                         </>
-  
-  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
-  
-  i Allowed button types are: submit, button or reset
-  
-
-./packages/ui-tests/src/tests/crud/show.tsx:77:29 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Provide an explicit type prop for the button element.
-  
-    75 │                         <>
-    76 │                             <button>New Save Button</button>
-  > 77 │                             <button>New Delete Button</button>
-       │                             ^^^^^^^^
-    78 │                         </>
-    79 │                     }
-  
-  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
-  
-  i Allowed button types are: submit, button or reset
-  
-
-./packages/ui-tests/src/tests/crud/create.tsx:56:40 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Provide an explicit type prop for the button element.
-  
-    54 │         it("should render optional button with actionButtons prop", async () => {
-    55 │             const { container, getByText } = renderCreate(
-  > 56 │                 <Create footerButtons={<button>Optional Button</button>} />,
-       │                                        ^^^^^^^^
-    57 │             );
-    58 │ 
-  
-  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
-  
-  i Allowed button types are: submit, button or reset
-  
-
-./documentation/src/components/banner/banner-modal.tsx:205:37 lint/a11y/useButtonType ━━━━━━━━━━━━━━
-
-  ! Provide an explicit type prop for the button element.
-  
-    203 │                                         </LandingRainbowButton>
-    204 │                                     </div>
-  > 205 │                                     <button
-        │                                     ^^^^^^^
-  > 206 │                                         className={clsx(
+    190 │                     </LandingRainbowButton>
+    191 │                   </div>
+  > 192 │                   <button
+        │                   ^^^^^^^
+  > 193 │                     className={clsx(
          ...
-  > 215 │                                         onClick={() => setIsOpen(false)}
-  > 216 │                                     >
-        │                                     ^
-    217 │                                         <CloseIcon className="w-4 h-4" />
-    218 │                                     </button>
+  > 202 │                     onClick={() => setIsOpen(false)}
+  > 203 │                   >
+        │                   ^
+    204 │                     <CloseIcon className="w-4 h-4" />
+    205 │                   </button>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./documentation/src/components/gradient-button/index.tsx:24:9 lint/a11y/useButtonType ━━━━━━━━━━━━━━
+./examples/store/src/components/address/EditAddress/EditAddress.tsx:134:11 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    22 │ }) => {
-    23 │     return (
-  > 24 │         <button
-       │         ^^^^^^^
-  > 25 │             className={`shadow-startTiles appearance-none flex items-center justify-center no-underline font-bold font-montserrat text-sm h-8 w-44 rounded-[4px] cursor-pointer ${variantClass[variant]} ${className}`}
-  > 26 │             {...props}
-  > 27 │         >
-       │         ^
-    28 │             {children}
-    29 │         </button>
+    132 │         </div>
+    133 │         <div className="flex items-center gap-x-4">
+  > 134 │           <button
+        │           ^^^^^^^
+  > 135 │             className="text-small-regular text-primary flex items-center gap-x-2"
+  > 136 │             onClick={() => show()}
+  > 137 │           >
+        │           ^
+    138 │             <Edit size={16} />
+    139 │             Edit
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./documentation/src/components/blog/discord-banner/index.js:23:17 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/store/src/components/address/EditAddress/EditAddress.tsx:141:11 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    21 │             </div>
-    22 │             <Link to="https://discord.gg/refine">
-  > 23 │                 <button className="bg-transparent text-white font-bold py-2 px-4 rounded-lg h-12 w-44 border-white cursor-pointer font-montserrat uppercase text-xl border-solid active:scale-[0.99]">
-       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    24 │                     Join Us
-    25 │                 </button>
+    139 │             Edit
+    140 │           </button>
+  > 141 │           <button
+        │           ^^^^^^^
+  > 142 │             className="text-small-regular text-primary flex items-center gap-x-2"
+  > 143 │             onClick={() => removeAddress()} // TODO: removed function here
+  > 144 │           >
+        │           ^
+    145 │             <Trash />
+    146 │             Remove
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./examples/store/src/components/common/UserNav/UserNav.tsx:70:29 lint/a11y/useButtonType ━━━━━━━━━━━
+./documentation/src/refine-theme/templates-filter-button.tsx:12:5 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    68 │                     <Dropdown>
-    69 │                         <DropdownTrigger>
-  > 70 │                             <button
-       │                             ^^^^^^^
-  > 71 │                                 aria-label="Menu"
-  > 72 │                                 className={s.avatarButton}
-  > 73 │                                 onClick={() => (isSuccess ? null : openModal())}
-  > 74 │                             >
-       │                             ^
-    75 │                                 <User size={24} />
-    76 │                             </button>
+    10 │ export const TemplatesFilterButton: FC<Props> = ({ className, onClick }) => {
+    11 │   return (
+  > 12 │     <button
+       │     ^^^^^^^
+  > 13 │       onClick={onClick}
+        ...
+  > 24 │       )}
+  > 25 │     >
+       │     ^
+    26 │       <FilterIcon />
+    27 │       <span className={clsx("dark:text-gray-0 text-gray-900")}>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
   i Allowed button types are: submit, button or reset
   
 
-./documentation/src/components/blog/twitter-banner/index.js:17:21 lint/a11y/useButtonType ━━━━━━━━━━
+./examples/store/src/components/address/AddAddress/AddAddress.tsx:71:7 lint/a11y/useButtonType ━━━━━━━━━━
 
   ! Provide an explicit type prop for the button element.
   
-    15 │                 </div>
-    16 │                 <Link to="https://twitter.com/refine_dev">
-  > 17 │                     <button className="bg-transparent text-white font-bold py-2 px-8 rounded-lg border-white cursor-pointer font-montserrat uppercase text-xl border-solid active:scale-[0.99]">
-       │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    18 │                         Follow Us
-    19 │                     </button>
+    69 │   return (
+    70 │     <>
+  > 71 │       <button
+       │       ^^^^^^^
+  > 72 │         className="text-primary border-accent-2 flex h-full min-h-[220px] w-full flex-col justify-between border p-5"
+  > 73 │         onClick={() => show()}
+  > 74 │       >
+       │       ^
+    75 │         <span className="text-base-semi">New address</span>
+    76 │         <Plus size={24} />
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+./documentation/src/components/gradient-button/index.tsx:25:5 lint/a11y/useButtonType ━━━━━━━━━━━━━━
+
+  ! Provide an explicit type prop for the button element.
+  
+    23 │ }) => {
+    24 │   return (
+  > 25 │     <button
+       │     ^^^^^^^
+  > 26 │       className={`shadow-startTiles appearance-none flex items-center justify-center no-underline font-bold font-montserrat text-sm h-8 w-44 rounded-[4px] cursor-pointer ${variantClass[variant]} ${className}`}
+  > 27 │       {...props}
+  > 28 │     >
+       │     ^
+    29 │       {children}
+    30 │     </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+./documentation/src/components/blog/discord-banner/index.js:23:9 lint/a11y/useButtonType ━━━━━━━━━━━
+
+  ! Provide an explicit type prop for the button element.
+  
+    21 │       </div>
+    22 │       <Link to="https://discord.gg/refine">
+  > 23 │         <button className="bg-transparent text-white font-bold py-2 px-4 rounded-lg h-12 w-44 border-white cursor-pointer font-montserrat uppercase text-xl border-solid active:scale-[0.99]">
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    24 │           Join Us
+    25 │         </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+./documentation/src/components/blog/twitter-banner/index.js:17:11 lint/a11y/useButtonType ━━━━━━━━━━
+
+  ! Provide an explicit type prop for the button element.
+  
+    15 │         </div>
+    16 │         <Link to="https://twitter.com/refine_dev">
+  > 17 │           <button className="bg-transparent text-white font-bold py-2 px-8 rounded-lg border-white cursor-pointer font-montserrat uppercase text-xl border-solid active:scale-[0.99]">
+       │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    18 │             Follow Us
+    19 │           </button>
   
   i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
   
@@ -354,4 +350,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 181.
-Checked 6953 file(s) in 499ms
+Checked 6952 file(s) in 471ms
