@@ -5,341 +5,341 @@
 ./.github/workflows/build-example-chunks.js:91:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     90 │ console.log(
   > 91 │   `Changed packages (${changedPackages.length}):\n- ` +
        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 92 │     changedPackages.join("\n- "),
        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     93 │ );
-    94 │ 
-  
+    94 │
+
   i Unsafe fix: Use a template literal.
-  
-     89  89 │   
+
+     89  89 │
      90  90 │   console.log(
      91     │ - ··`Changed·packages·(${changedPackages.length}):\n-·`·+
      92     │ - ····changedPackages.join("\n-·"),
          91 │ + ··`Changed·packages·(${changedPackages.length}):\n-·${changedPackages.join("\n-·")}`,
      93  92 │   );
-     94  93 │   
-  
+     94  93 │
+
 
 ./.github/workflows/build-example-chunks.js:98:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
      97 │ console.log(
    > 98 │   `Affected examples (${examples.length}):\n- ` + examples.join("\n- "),
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
      99 │ );
-    100 │ 
-  
+    100 │
+
   i Unsafe fix: Use a template literal.
-  
-     96  96 │   
+
+     96  96 │
      97  97 │   console.log(
      98     │ - ··`Affected·examples·(${examples.length}):\n-·`·+·examples.join("\n-·"),
          98 │ + ··`Affected·examples·(${examples.length}):\n-·${examples.join("\n-·")}`,
      99  99 │   );
-    100 100 │   
-  
+    100 100 │
+
 
 ./.github/workflows/build-example-chunks.js:151:15 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     149 │ //
     150 │ chunks.forEach((chunk, i) => {
   > 151 │   console.log("::set-output name=CHUNK_" + (i + 1) + "::" + chunk.join(","));
         │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     152 │ });
-    153 │ 
-  
+    153 │
+
   i Unsafe fix: Use a template literal.
-  
+
     149 149 │   //
     150 150 │   chunks.forEach((chunk, i) => {
     151     │ - ··console.log("::set-output·name=CHUNK_"·+·(i·+·1)·+·"::"·+·chunk.join(","));
         151 │ + ··console.log(`::set-output·name=CHUNK_${i·+·1}::${chunk.join(",")}`);
     152 152 │   });
-    153 153 │   
-  
+    153 153 │
+
 
 ./examples/blog-next-refine-pwa/public/sw.js:23:19 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     22 │   const singleRequire = (uri, parentUri) => {
   > 23 │     uri = new URL(uri + ".js", parentUri).href;
        │                   ^^^^^^^^^^^
     24 │     return (
     25 │       registry[uri] ||
-  
+
   i Unsafe fix: Use a template literal.
-  
-     21  21 │   
+
+     21  21 │
      22  22 │     const singleRequire = (uri, parentUri) => {
      23     │ - ····uri·=·new·URL(uri·+·".js",·parentUri).href;
          23 │ + ····uri·=·new·URL(`${uri}.js`,·parentUri).href;
      24  24 │       return (
      25  25 │         registry[uri] ||
-  
+
 
 ./packages/codemod/src/index.ts:178:47 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     176 │     console.error("Invalid transform choice, pick one of:");
     177 │     console.error(
   > 178 │       TRANSFORMER_INQUIRER_CHOICES.map((x) => "- " + x.value).join("\n"),
         │                                               ^^^^^^^^^^^^^^
     179 │     );
     180 │     process.exit(1);
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     176 176 │       console.error("Invalid transform choice, pick one of:");
     177 177 │       console.error(
     178     │ - ······TRANSFORMER_INQUIRER_CHOICES.map((x)·=>·"-·"·+·x.value).join("\n"),
         178 │ + ······TRANSFORMER_INQUIRER_CHOICES.map((x)·=>·`-·${x.value}`).join("\n"),
     179 179 │       );
     180 180 │       process.exit(1);
-  
+
 
 ./examples/i18n-nextjs/src/app/blog-posts/page.tsx:42:42 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     40 │           render={(value: any) => {
     41 │             if (!value) return "-";
   > 42 │             return <MarkdownField value={value.slice(0, 80) + "..."} />;
        │                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
     43 │           }}
     44 │         />
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     40 40 │             render={(value: any) => {
     41 41 │               if (!value) return "-";
     42    │ - ············return·<MarkdownField·value={value.slice(0,·80)·+·"..."}·/>;
        42 │ + ············return·<MarkdownField·value={`${value.slice(0,·80)}...`}·/>;
     43 43 │             }}
     44 44 │           />
-  
+
 
 ./examples/multi-tenancy-strapi/src/authProvider.ts:9:37 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
      8 │ export const axiosInstance = axios.create();
    > 9 │ const strapiAuthHelper = AuthHelper(API_URL + "/api");
        │                                     ^^^^^^^^^^^^^^^^
-    10 │ 
+    10 │
     11 │ export const authProvider: AuthProvider = {
-  
+
   i Unsafe fix: Use a template literal.
-  
-      7   7 │   
+
+      7   7 │
       8   8 │   export const axiosInstance = axios.create();
       9     │ - const·strapiAuthHelper·=·AuthHelper(API_URL·+·"/api");
           9 │ + const·strapiAuthHelper·=·AuthHelper(`${API_URL}/api`);
-     10  10 │   
+     10  10 │
      11  11 │   export const authProvider: AuthProvider = {
-  
+
 
 ./examples/multi-tenancy-strapi/src/App.tsx:38:40 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     36 │           <Refine
     37 │             authProvider={authProvider}
   > 38 │             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
        │                                        ^^^^^^^^^^^^^^^^
     39 │             routerProvider={routerProvider}
     40 │             resources={[
-  
+
   i Unsafe fix: Use a template literal.
-  
+
      36  36 │             <Refine
      37  37 │               authProvider={authProvider}
      38     │ - ············dataProvider={DataProvider(API_URL·+·"/api",·axiosInstance)}
          38 │ + ············dataProvider={DataProvider(`${API_URL}/api`,·axiosInstance)}
      39  39 │               routerProvider={routerProvider}
      40  40 │               resources={[
-  
+
 
 ./examples/tutorial-mantine/src/pages/blog-posts/list.tsx:47:35 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     45 │         cell: function render({ getValue }) {
     46 │           return (
   > 47 │             <MarkdownField value={getValue<string>()?.slice(0, 80) + "..."} />
        │                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     48 │           );
     49 │         },
-  
+
   i Unsafe fix: Use a template literal.
-  
+
      45  45 │           cell: function render({ getValue }) {
      46  46 │             return (
      47     │ - ············<MarkdownField·value={getValue<string>()?.slice(0,·80)·+·"..."}·/>
          47 │ + ············<MarkdownField·value={`${getValue<string>()?.slice(0,·80)}...`}·/>
      48  48 │             );
      49  49 │           },
-  
+
 
 ./packages/devtools-server/src/serve-client.ts:16:40 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     14 │       return next();
     15 │     }
   > 16 │     res.status(200).sendFile(path.join(__dirname + "/client/index.html"));
        │                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     17 │   });
     18 │ };
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     14 14 │         return next();
     15 15 │       }
     16    │ - ····res.status(200).sendFile(path.join(__dirname·+·"/client/index.html"));
        16 │ + ····res.status(200).sendFile(path.join(`${__dirname}/client/index.html`));
     17 17 │     });
     18 18 │   };
-  
+
 
 ./documentation/src/hooks/use-tutorial-pagination.ts:25:12 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     24 │   const toPermalink = (id: string) => {
   > 25 │     return "/docs/" + id;
        │            ^^^^^^^^^^^^^
     26 │   };
-    27 │ 
-  
+    27 │
+
   i Unsafe fix: Use a template literal.
-  
-    23 23 │   
+
+    23 23 │
     24 24 │     const toPermalink = (id: string) => {
     25    │ - ····return·"/docs/"·+·id;
        25 │ + ····return·`/docs/${id}`;
     26 26 │     };
-    27 27 │   
-  
+    27 27 │
+
 
 ./examples/with-nextjs/src/app/blog-posts/page.tsx:41:42 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     39 │           render={(value: any) => {
     40 │             if (!value) return "-";
   > 41 │             return <MarkdownField value={value.slice(0, 80) + "..."} />;
        │                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
     42 │           }}
     43 │         />
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     39 39 │             render={(value: any) => {
     40 40 │               if (!value) return "-";
     41    │ - ············return·<MarkdownField·value={value.slice(0,·80)·+·"..."}·/>;
        41 │ + ············return·<MarkdownField·value={`${value.slice(0,·80)}...`}·/>;
     42 42 │             }}
     43 43 │           />
-  
+
 
 ./packages/react-router-v6/src/document-title-handler.tsx:39:7 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     37 │       resource!,
     38 │       action,
   > 39 │       id + "",
        │       ^^^^^^^
     40 │       resourceName,
     41 │     );
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     37 37 │         resource!,
     38 38 │         action,
     39    │ - ······id·+·"",
        39 │ + ······`${id}`,
     40 40 │         resourceName,
     41 41 │       );
-  
+
 
 ./documentation/src/components/sandpack/index.tsx:335:33 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     333 │                             width: previewOnly
     334 │                               ? "100%"
   > 335 │                               : 100 - horizontalSize + "%",
         │                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
     336 │                           }),
     337 │                       gap: 0,
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     333 333 │                               width: previewOnly
     334 334 │                                 ? "100%"
     335     │ - ······························:·100·-·horizontalSize·+·"%",
         335 │ + ······························:·`${100·-·horizontalSize}%`,
     336 336 │                             }),
     337 337 │                         gap: 0,
-  
+
 
 ./packages/core/src/definitions/helpers/flatten-object-keys/index.ts:13:45 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     11 │   return Object.keys(obj).reduce(
     12 │     (acc, key) => {
   > 13 │       const currentPrefix = prefix.length ? prefix + "." : "";
        │                                             ^^^^^^^^^^^^
-    14 │ 
+    14 │
     15 │       if (isNested(obj[key]) && Object.keys(obj[key]).length) {
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     11 11 │     return Object.keys(obj).reduce(
     12 12 │       (acc, key) => {
     13    │ - ······const·currentPrefix·=·prefix.length·?·prefix·+·"."·:·"";
        13 │ + ······const·currentPrefix·=·prefix.length·?·`${prefix}.`·:·"";
-    14 14 │   
+    14 14 │
     15 15 │         if (isNested(obj[key]) && Object.keys(obj[key]).length) {
-  
+
 
 ./packages/core/src/definitions/helpers/flatten-object-keys/index.ts:20:39 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     18 │             Object.assign(
     19 │               acc,
   > 20 │               flattenObjectKeys(item, currentPrefix + key + "." + index),
        │                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     21 │             );
     22 │           });
-  
+
   i Unsafe fix: Use a template literal.
-  
+
     18 18 │               Object.assign(
     19 19 │                 acc,
     20    │ - ··············flattenObjectKeys(item,·currentPrefix·+·key·+·"."·+·index),
        20 │ + ··············flattenObjectKeys(item,·`${currentPrefix·+·key}.${index}`),
     21 21 │               );
     22 22 │             });
-  
+
 
 ./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:140:11 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     138 │       if (isReturnValueProblem) {
     139 │         return (
   > 140 │           `The return value from ` +
@@ -349,9 +349,9 @@
         │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     143 │         );
     144 │       }
-  
+
   i Unsafe fix: Use a template literal.
-  
+
      138  138 │         if (isReturnValueProblem) {
      139  139 │           return (
      140      │ - ··········`The·return·value·from·`·+
@@ -360,12 +360,12 @@
           140 │ + ··········`The·return·value·from·'${moduleName}.${classNameStr}${funcName}()'·must·be·an·instance·of·class·${expectedClassName}.`
      143  141 │           );
      144  142 │         }
-  
+
 
 ./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:176:9 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     174 │     "add-to-cache-list-unexpected-type": ({ entry }) => {
     175 │       return (
   > 176 │         `An unexpected entry was passed to ` +
@@ -377,9 +377,9 @@
         │         ^^^^^^^^^^^^^^^^^^
     183 │       );
     184 │     },
-  
+
   i Unsafe fix: Use a template literal.
-  
+
      174  174 │       "add-to-cache-list-unexpected-type": ({ entry }) => {
      175  175 │         return (
      176      │ - ········`An·unexpected·entry·was·passed·to·`·+
@@ -393,12 +393,12 @@
           178 │ + ········)}'·isn't·supported.·You·must·supply·an·array·of·strings·with·one·or·more·characters,·objects·with·a·url·property·or·Request·objects.`
      183  179 │         );
      184  180 │       },
-  
+
 
 ./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:194:9 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     193 │       return (
   > 194 │         `Two of the entries passed to ` +
         │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -409,10 +409,10 @@
         │         ^^^^^^^^^^^^^^^^^
     199 │       );
     200 │     },
-  
+
   i Unsafe fix: Use a template literal.
-  
-     192  192 │   
+
+     192  192 │
      193  193 │         return (
      194      │ - ········`Two·of·the·entries·passed·to·`·+
      195      │ - ········`'workbox-precaching.PrecacheController.addToCacheList()'·had·the·URL·`·+
@@ -422,12 +422,12 @@
           194 │ + ········`Two·of·the·entries·passed·to·'workbox-precaching.PrecacheController.addToCacheList()'·had·the·URL·${firstEntry}·but·different·revision·details.·Workbox·is·unable·to·cache·and·version·the·asset·correctly.·Please·remove·one·of·the·entries.`
      199  195 │         );
      200  196 │       },
-  
+
 
 ./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:209:9 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━
 
   ! Template literals are preferred over string concatenation.
-  
+
     208 │       return (
   > 209 │         `An error was thrown by a plugins 'requestWillFetch()' method. ` +
         │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -435,17 +435,17 @@
         │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     211 │       );
     212 │     },
-  
+
   i Unsafe fix: Use a template literal.
-  
-     207  207 │   
+
+     207  207 │
      208  208 │         return (
      209      │ - ········`An·error·was·thrown·by·a·plugins·'requestWillFetch()'·method.·`·+
      210      │ - ········`The·thrown·error·message·was:·'${thrownErrorMessage}'.`
           209 │ + ········`An·error·was·thrown·by·a·plugins·'requestWillFetch()'·method.·The·thrown·error·message·was:·'${thrownErrorMessage}'.`
      211  210 │         );
      212  211 │       },
-  
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 114.

@@ -5,7 +5,7 @@
 ./documentation/src/refine-theme/landing-playground.tsx:167:19 lint/a11y/useIframeTitle ━━━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
-  
+
     165 │                   }}
     166 │                 >
   > 167 │                   <iframe
@@ -16,14 +16,14 @@
         │                   ^^
     171 │                 </div>
     172 │                 <div className={clsx("flex", "flex-1", "w-full", "h-full")}>
-  
+
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
+
 
 ./documentation/src/components/live-preview/index.tsx:68:7 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
-  
+
     66 │   if (url) {
     67 │     return (
   > 68 │       <iframe
@@ -35,14 +35,14 @@
        │       ^^
     81 │     );
     82 │   }
-  
+
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
+
 
 ./documentation/src/refine-theme/landing-try-it-section.tsx:384:11 lint/a11y/useIframeTitle ━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
-  
+
     382 │       >
     383 │         {inView ? (
   > 384 │           <iframe
@@ -54,14 +54,14 @@
         │           ^^
     400 │         ) : null}
     401 │       </div>
-  
+
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
+
 
 ./documentation/src/refine-theme/landing-playground-modal.tsx:165:17 lint/a11y/useIframeTitle ━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
-  
+
     163 │             >
     164 │               <div className={clsx("w-full", "h-full")}>
   > 165 │                 <iframe
@@ -73,14 +73,14 @@
         │                 ^^
     178 │               </div>
     179 │             </Transition.Child>
-  
+
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
+
 
 ./packages/devtools/src/panel.tsx:85:17 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
-  
+
      83 │             <ResizablePane visible={visible} placement={placement}>
      84 │               {({ resizing }) => (
    > 85 │                 <iframe
@@ -92,8 +92,8 @@
         │                 ^^
     108 │               )}
     109 │             </ResizablePane>
-  
+
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
+
 
 Checked 6952 file(s) in 481ms

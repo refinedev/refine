@@ -5,7 +5,7 @@
 ./documentation/src/assets/integration-icons/kinde.tsx:15:5 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     13 │     className={clsx("text-[#081026] dark:text-white", props.className)}
     14 │   >
   > 15 │     <path
@@ -17,100 +17,100 @@
        │     ^^^^^^^^
     20 │   </svg>
     21 │ );
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     19 │ ····></path>
-       │     -- ---- 
+       │     -- ----
 
 ./documentation/src/theme/Admonition/index.tsx:30:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     28 │       strokeLinejoin="round"
     29 │     >
   > 30 │       <polyline points="4 17 10 11 4 5"></polyline>
        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
     32 │     </svg>
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
      28  28 │         strokeLinejoin="round"
      29  29 │       >
      30     │ - ······<polyline·points="4·17·10·11·4·5"></polyline>
          30 │ + ······<polyline·points="4·17·10·11·4·5"·/>
      31  31 │         <line x1="12" y1="19" x2="20" y2="19"></line>
      32  32 │       </svg>
-  
+
 
 ./documentation/src/theme/Admonition/index.tsx:31:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     29 │     >
     30 │       <polyline points="4 17 10 11 4 5"></polyline>
   > 31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     32 │     </svg>
     33 │   );
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
      29  29 │       >
      30  30 │         <polyline points="4 17 10 11 4 5"></polyline>
      31     │ - ······<line·x1="12"·y1="19"·x2="20"·y2="19"></line>
          31 │ + ······<line·x1="12"·y1="19"·x2="20"·y2="19"·/>
      32  32 │       </svg>
      33  33 │     );
-  
+
 
 ./documentation/src/theme/BlogListPage/index.js:82:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     80 │         )}
     81 │       >
   > 82 │         <div className="border-b border-gray-100 dark:border-gray-700"></div>
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     83 │       </div>
     84 │       <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
      80  80 │           )}
      81  81 │         >
      82     │ - ········<div·className="border-b·border-gray-100·dark:border-gray-700"></div>
          82 │ + ········<div·className="border-b·border-gray-100·dark:border-gray-700"·/>
      83  83 │         </div>
      84  84 │         <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
-  
+
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:56:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     54 │     const { getByText } = render(
     55 │       <Routes>
   > 56 │         <Route path="/:resource" element={<Edit resource="posts" />}></Route>
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     57 │       </Routes>,
     58 │       {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
      54  54 │       const { getByText } = render(
      55  55 │         <Routes>
      56     │ - ········<Route·path="/:resource"·element={<Edit·resource="posts"·/>}></Route>
          56 │ + ········<Route·path="/:resource"·element={<Edit·resource="posts"·/>}·/>
      57  57 │         </Routes>,
      58  58 │         {
-  
+
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:90:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
      88 │       const { getByText, queryByTestId } = render(
      89 │         <Routes>
    > 90 │           <Route
@@ -122,16 +122,16 @@
         │           ^^^^^^^^^
     101 │         </Routes>,
     102 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     100 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:118:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     116 │       const { queryByTestId } = render(
     117 │         <Routes>
   > 118 │           <Route
@@ -141,17 +141,17 @@
   > 121 │           ></Route>
         │           ^^^^^^^^^
     122 │         </Routes>,
-    123 │ 
-  
+    123 │
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     121 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:138:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     136 │       const { queryByTestId } = render(
     137 │         <Routes>
   > 138 │           <Route
@@ -162,16 +162,16 @@
         │           ^^^^^^^^^
     142 │         </Routes>,
     143 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     141 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:157:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     155 │       const { queryByTestId } = render(
     156 │         <Routes>
   > 157 │           <Route
@@ -182,16 +182,16 @@
         │           ^^^^^^^^^
     161 │         </Routes>,
     162 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     160 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:374:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     372 │       const { getByText, getByTestId } = render(
     373 │         <Routes>
   > 374 │           <Route
@@ -202,16 +202,16 @@
         │           ^^^^^^^^^
     378 │         </Routes>,
     379 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     377 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./packages/chakra-ui/src/components/crud/edit/index.spec.tsx:432:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     430 │       const { getByText, getByTestId } = render(
     431 │         <Routes>
   > 432 │           <Route
@@ -222,16 +222,16 @@
         │           ^^^^^^^^^
     436 │         </Routes>,
     437 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     435 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./documentation/src/components/tutorial-toc/index.tsx:145:5 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     144 │   return (
   > 145 │     <a
         │     ^^
@@ -242,16 +242,16 @@
         │     ^^^^^
     154 │   );
     155 │ };
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     153 │ ····></a>
-        │     -- - 
+        │     -- -
 
 ./packages/chakra-ui/src/components/crud/show/index.spec.tsx:97:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
      95 │       const { getByText, queryByTestId } = render(
      96 │         <Routes>
    > 97 │           <Route
@@ -263,16 +263,16 @@
         │           ^^^^^^^^^
     108 │         </Routes>,
     109 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     107 │ ··········></Route>
-        │           -- ----- 
+        │           -- -----
 
 ./examples/store/src/components/icons/Spinner.tsx:18:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     16 │       {...props}
     17 │     >
   > 18 │       <circle
@@ -284,16 +284,16 @@
        │       ^^^^^^^^^^
     26 │       <path
     27 │         className="opacity-75"
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     25 │ ······></circle>
-       │       -- ------ 
+       │       -- ------
 
 ./examples/store/src/components/icons/Spinner.tsx:26:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     24 │         strokeWidth="4"
     25 │       ></circle>
   > 26 │       <path
@@ -305,16 +305,16 @@
        │       ^^^^^^^^
     31 │     </svg>
     32 │   );
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     30 │ ······></path>
-       │       -- ---- 
+       │       -- ----
 
 ./documentation/src/components/codesandbox-example/index.tsx:28:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     26 │       {!hideLocal && <ExampleLocalPrompt path={path} />}
     27 │       {!hideSandbox && (
   > 28 │         <iframe
@@ -326,93 +326,93 @@
        │         ^^^^^^^^^^
     42 │       )}
     43 │     </div>
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     41 │ ········></iframe>
-       │         -- ------ 
+       │         -- ------
 
 ./packages/ui-tests/src/tests/crud/show.tsx:105:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     103 │       const { getByText } = render(
     104 │         <Routes>
   > 105 │           <Route path="/:resource" element={<Show resource="posts" />}></Route>
         │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     106 │         </Routes>,
     107 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     103 103 │         const { getByText } = render(
     104 104 │           <Routes>
     105     │ - ··········<Route·path="/:resource"·element={<Show·resource="posts"·/>}></Route>
         105 │ + ··········<Route·path="/:resource"·element={<Show·resource="posts"·/>}·/>
     106 106 │           </Routes>,
     107 107 │           {
-  
+
 
 ./packages/ui-tests/src/tests/crud/create.tsx:47:46 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     46 │     it("should render default save button successfuly", async () => {
   > 47 │       const { queryByTestId } = renderCreate(<Create></Create>);
        │                                              ^^^^^^^^^^^^^^^^^
-    48 │ 
+    48 │
     49 │       expect(queryByTestId(RefineButtonTestIds.SaveButton)).not.toBeNull();
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
-     45  45 │   
+
+     45  45 │
      46  46 │       it("should render default save button successfuly", async () => {
      47     │ - ······const·{·queryByTestId·}·=·renderCreate(<Create></Create>);
          47 │ + ······const·{·queryByTestId·}·=·renderCreate(<Create·/>);
-     48  48 │   
+     48  48 │
      49  49 │         expect(queryByTestId(RefineButtonTestIds.SaveButton)).not.toBeNull();
-  
+
 
 ./packages/ui-tests/src/tests/crud/create.tsx:105:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     103 │       const { getByText } = render(
     104 │         <Routes>
   > 105 │           <Route path="/:resource/:action/:id" element={<Create />}></Route>
         │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     106 │         </Routes>,
     107 │         {
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
+
     103 103 │         const { getByText } = render(
     104 104 │           <Routes>
     105     │ - ··········<Route·path="/:resource/:action/:id"·element={<Create·/>}></Route>
         105 │ + ··········<Route·path="/:resource/:action/:id"·element={<Create·/>}·/>
     106 106 │           </Routes>,
     107 107 │           {
-  
+
 
 ./packages/ui-tests/src/tests/crud/list.tsx:49:40 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
+
     48 │     it("should render optional title with title prop", async () => {
   > 49 │       const { getByText } = renderList(<List title="New Title"></List>);
        │                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    50 │ 
+    50 │
     51 │       getByText("New Title");
-  
+
   i Unsafe fix: Use a SelfClosingElement instead
-  
-     47  47 │   
+
+     47  47 │
      48  48 │       it("should render optional title with title prop", async () => {
      49     │ - ······const·{·getByText·}·=·renderList(<List·title="New·Title"></List>);
          49 │ + ······const·{·getByText·}·=·renderList(<List·title="New·Title"·/>);
-     50  50 │   
+     50  50 │
      51  51 │         getByText("New Title");
-  
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 138.

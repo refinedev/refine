@@ -5,27 +5,27 @@
 ./packages/live-previews/jest.config.js:10:3 lint/suspicious/noDuplicateObjectKeys  FIXABLE  ━━━━━━━━━━
 
   ! This property value named testEnvironment is later overwritten by an object member with the same name.
-  
+
      8 │   preset: "ts-jest",
      9 │   rootDir: "./",
   > 10 │   testEnvironment: "node",
        │   ^^^^^^^^^^^^^^^^^^^^^^^
     11 │   moduleNameMapper: {
     12 │     ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
-  
+
   i Overwritten with this value.
-  
+
     18 │     ],
     19 │   },
   > 20 │   testEnvironment: "jsdom",
        │   ^^^^^^^^^^^^^^^^^^^^^^^^
     21 │   displayName: "live-previews",
     22 │ };
-  
+
   i If an object property with the same name is defined multiple times (except when combining a getter with a setter), only the last definition makes it into the object and previous definitions are ignored.
-  
+
   i Unsafe fix: Remove this property value named testEnvironment
-  
+
      8  8 │     preset: "ts-jest",
      9  9 │     rootDir: "./",
     10    │ - ··testEnvironment:·"node",
@@ -33,12 +33,12 @@
        10 │ + ··moduleNameMapper:·{
     12 11 │       ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
     13 12 │       "^.+\\.tsx?$": [
-  
+
 
 ./packages/devtools-ui/tailwind.config.js:21:7 lint/suspicious/noDuplicateObjectKeys  FIXABLE  ━━━━━━━━━━
 
   ! This property value named animation is later overwritten by an object member with the same name.
-  
+
     19 │         "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",
     20 │       },
   > 21 │       animation: {
@@ -48,9 +48,9 @@
        │       ^
     24 │       keyframes: {
     25 │         "pulse-spin": {
-  
+
   i Overwritten with this value.
-  
+
     102 │         },
     103 │       },
   > 104 │       animation: {
@@ -61,11 +61,11 @@
         │       ^
     108 │       keyframes: {
     109 │         "feature-slide-mobile-items": {
-  
+
   i If an object property with the same name is defined multiple times (except when combining a getter with a setter), only the last definition makes it into the object and previous definitions are ignored.
-  
+
   i Unsafe fix: Remove this property value named animation
-  
+
      19  19 │           "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",
      20  20 │         },
      21     │ - ······animation:·{
@@ -75,12 +75,12 @@
          21 │ + ······keyframes:·{
      25  22 │           "pulse-spin": {
      26  23 │             "0%": { transform: "rotate(0deg)" },
-  
+
 
 ./packages/devtools-ui/tailwind.config.js:24:7 lint/suspicious/noDuplicateObjectKeys  FIXABLE  ━━━━━━━━━━
 
   ! This property value named keyframes is later overwritten by an object member with the same name.
-  
+
     22 │         "pulse-spin": "pulse-spin 2.5s ease-in-out infinite",
     23 │       },
   > 24 │       keyframes: {
@@ -92,9 +92,9 @@
        │       ^
     34 │       backgroundImage: {
     35 │         "feature-slide-mobile-before": `
-  
+
   i Overwritten with this value.
-  
+
     106 │           "feature-slide-mobile-items 25s linear infinite",
     107 │       },
   > 108 │       keyframes: {
@@ -107,11 +107,11 @@
         │       ^
     114 │     },
     115 │   },
-  
+
   i If an object property with the same name is defined multiple times (except when combining a getter with a setter), only the last definition makes it into the object and previous definitions are ignored.
-  
+
   i Unsafe fix: Remove this property value named keyframes
-  
+
      22  22 │           "pulse-spin": "pulse-spin 2.5s ease-in-out infinite",
      23  23 │         },
      24     │ - ······keyframes:·{
@@ -128,6 +128,6 @@
          24 │ + ······backgroundImage:·{
      35  25 │           "feature-slide-mobile-before": `
      36  26 │                       linear-gradient(
-  
+
 
 Checked 6952 file(s) in 489ms

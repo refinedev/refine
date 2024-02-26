@@ -5,9 +5,9 @@
 ./packages/ably/src/index.ts:13:24 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
     11 │       const channelInstance = client.channels.get(channel);
-    12 │ 
+    12 │
   > 13 │       const listener = function (message: MessageType) {
        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 14 │         if (types.includes("*") || types.includes(message.data.type)) {
@@ -16,26 +16,26 @@
   > 33 │       };
        │       ^
     34 │       channelInstance.subscribe(listener);
-    35 │ 
-  
+    35 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
     11 11 │         const channelInstance = client.channels.get(channel);
-    12 12 │   
+    12 12 │
     13    │ - ······const·listener·=·function·(message:·MessageType)·{
        13 │ + ······const·listener·=·(message:·MessageType)·=>·{
     14 14 │           if (types.includes("*") || types.includes(message.data.type)) {
     15 15 │             if (
-  
+
 
 ./packages/devtools-server/src/serve-proxy.ts:23:41 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
     21 │ };
-    22 │ 
+    22 │
   > 23 │ const restream: Options["onProxyReq"] = function (proxyReq, req) {
        │                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 24 │   if (req.body) {
@@ -43,25 +43,25 @@
   > 31 │   }
   > 32 │ };
        │ ^
-    33 │ 
+    33 │
     34 │ const tokenize = async (token: string) => {
-  
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      21  21 │   };
-     22  22 │   
+     22  22 │
      23     │ - const·restream:·Options["onProxyReq"]·=·function·(proxyReq,·req)·{
          23 │ + const·restream:·Options["onProxyReq"]·=·(proxyReq,·req)·=>·{
      24  24 │     if (req.body) {
      25  25 │       const bodyData = JSON.stringify(req.body);
-  
+
 
 ./packages/devtools-server/src/serve-proxy.ts:87:10 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
     85 │   token?: string,
     86 │ ) => NonNullable<Options["onProxyReq"]> = (token) => {
   > 87 │   return function (proxyReq, req) {
@@ -72,24 +72,24 @@
   > 96 │   };
        │   ^
     97 │ };
-    98 │ 
-  
+    98 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      85  85 │     token?: string,
      86  86 │   ) => NonNullable<Options["onProxyReq"]> = (token) => {
      87     │ - ··return·function·(proxyReq,·req)·{
          87 │ + ··return·(proxyReq,·req)·=>·{
      88  88 │       if (req.url.includes("self-service/logout/api")) {
      89  89 │         const bodyData = JSON.stringify({
-  
+
 
 ./packages/devtools-server/src/serve-proxy.ts:102:10 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
     100 │   onToken: (token?: string, jwt?: string) => void,
     101 │ ) => NonNullable<Options["onProxyRes"]> = (onToken) => {
   > 102 │   return function (proxyRes, req, res) {
@@ -100,26 +100,26 @@
   > 132 │   };
         │   ^
     133 │ };
-    134 │ 
-  
+    134 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
     100 100 │     onToken: (token?: string, jwt?: string) => void,
     101 101 │   ) => NonNullable<Options["onProxyRes"]> = (onToken) => {
     102     │ - ··return·function·(proxyRes,·req,·res)·{
         102 │ + ··return·(proxyRes,·req,·res)·=>·{
     103 103 │       let body = "";
     104 104 │       proxyRes.on("data", (chunk) => {
-  
+
 
 ./packages/ui-tests/src/tests/autoSaveIndicator.tsx:5:39 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      3 │ import { render } from "@test";
-     4 │ 
+     4 │
    > 5 │ export const autoSaveIndicatorTests = function (
        │                                       ^^^^^^^^^^
    > 6 │   AutoSaveIndicator: React.ComponentType<AutoSaveIndicatorProps>,
@@ -128,14 +128,14 @@
   > 43 │   });
   > 44 │ };
        │ ^
-    45 │ 
-  
+    45 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      3  3 │   import { render } from "@test";
-     4  4 │   
+     4  4 │
      5    │ - export·const·autoSaveIndicatorTests·=·function·(
         5 │ + export·const·autoSaveIndicatorTests·=·(
      6  6 │     AutoSaveIndicator: React.ComponentType<AutoSaveIndicatorProps>,
@@ -143,14 +143,14 @@
         7 │ + ):·void·=>·{
      8  8 │     describe("[@refinedev/ui-tests] Common Tests / AutoSaveIndicator", () => {
      9  9 │       it("should render success", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/error.tsx:13:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
     11 │ } from "@test";
-    12 │ 
+    12 │
   > 13 │ export const pageErrorTests = function (
        │                               ^^^^^^^^^^
   > 14 │   ErrorPage: React.ComponentType<RefineErrorPageProps>,
@@ -159,14 +159,14 @@
   > 69 │   });
   > 70 │ };
        │ ^
-    71 │ 
-  
+    71 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
     11 11 │   } from "@test";
-    12 12 │   
+    12 12 │
     13    │ - export·const·pageErrorTests·=·function·(
        13 │ + export·const·pageErrorTests·=·(
     14 14 │     ErrorPage: React.ComponentType<RefineErrorPageProps>,
@@ -174,14 +174,14 @@
        15 │ + ):·void·=>·{
     16 16 │     describe("[@refinedev/ui-tests] Common Tests / Error Page", () => {
     17 17 │       it("should render successfully", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/auth/forgotPassword.tsx:14:40 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      12 │ } from "@test";
-     13 │ 
+     13 │
    > 14 │ export const pageForgotPasswordTests = function (
         │                                        ^^^^^^^^^^
    > 15 │   ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
@@ -190,14 +190,14 @@
   > 249 │   });
   > 250 │ };
         │ ^
-    251 │ 
-  
+    251 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      12  12 │   } from "@test";
-     13  13 │   
+     13  13 │
      14     │ - export·const·pageForgotPasswordTests·=·function·(
          14 │ + export·const·pageForgotPasswordTests·=·(
      15  15 │     ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
@@ -205,14 +205,14 @@
          16 │ + ):·void·=>·{
      17  17 │     describe("[@refinedev/ui-tests] Common Tests / Forgot Password Page", () => {
      18  18 │       it("should render card title", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/auth/updatePassword.tsx:13:40 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      11 │ import { UpdatePasswordPageProps } from "@refinedev/core";
-     12 │ 
+     12 │
    > 13 │ export const pageUpdatePasswordTests = function (
         │                                        ^^^^^^^^^^
    > 14 │   UpdatePasswordPage: FC<UpdatePasswordPageProps<any, any, any>>,
@@ -221,14 +221,14 @@
   > 222 │   });
   > 223 │ };
         │ ^
-    224 │ 
-  
+    224 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      11  11 │   import { UpdatePasswordPageProps } from "@refinedev/core";
-     12  12 │   
+     12  12 │
      13     │ - export·const·pageUpdatePasswordTests·=·function·(
          13 │ + export·const·pageUpdatePasswordTests·=·(
      14  14 │     UpdatePasswordPage: FC<UpdatePasswordPageProps<any, any, any>>,
@@ -236,14 +236,14 @@
          15 │ + ):·void·=>·{
      16  16 │     describe("[@refinedev/ui-tests] Common Tests / Update Password Page", () => {
      17  17 │       it("should render card title", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/auth/authPage.tsx:6:30 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render, TestWrapper } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const authPageTests = function (
        │                              ^^^^^^^^^^
    > 7 │   AuthPage: FC<AuthPageProps<any, any, any>>,
@@ -252,14 +252,14 @@
   > 33 │   });
   > 34 │ };
        │ ^
-    35 │ 
-  
+    35 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render, TestWrapper } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·authPageTests·=·function·(
         6 │ + export·const·authPageTests·=·(
      7  7 │     AuthPage: FC<AuthPageProps<any, any, any>>,
@@ -267,14 +267,14 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / Auth Page", () => {
     10 10 │       it.each(["register", "forgotPassword", "updatePassword", "login"] as const)(
-  
+
 
 ./packages/ui-tests/src/tests/pages/auth/register.tsx:13:34 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      11 │ import { RegisterPageProps } from "@refinedev/core";
-     12 │ 
+     12 │
    > 13 │ export const pageRegisterTests = function (
         │                                  ^^^^^^^^^^
    > 14 │   RegisterPage: FC<RegisterPageProps<any, any, any>>,
@@ -283,14 +283,14 @@
   > 339 │   });
   > 340 │ };
         │ ^
-    341 │ 
-  
+    341 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      11  11 │   import { RegisterPageProps } from "@refinedev/core";
-     12  12 │   
+     12  12 │
      13     │ - export·const·pageRegisterTests·=·function·(
          13 │ + export·const·pageRegisterTests·=·(
      14  14 │     RegisterPage: FC<RegisterPageProps<any, any, any>>,
@@ -298,14 +298,14 @@
          15 │ + ):·void·=>·{
      16  16 │     describe("[@refinedev/ui-tests] Common Tests / Register Page", () => {
      17  17 │       it("should render card title", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/auth/login.tsx:13:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      11 │ import { LoginPageProps } from "@refinedev/core";
-     12 │ 
+     12 │
    > 13 │ export const pageLoginTests = function (
         │                               ^^^^^^^^^^
    > 14 │   LoginPage: FC<LoginPageProps<any, any, any>>,
@@ -314,14 +314,14 @@
   > 406 │   });
   > 407 │ };
         │ ^
-    408 │ 
-  
+    408 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      11  11 │   import { LoginPageProps } from "@refinedev/core";
-     12  12 │   
+     12  12 │
      13     │ - export·const·pageLoginTests·=·function·(
          13 │ + export·const·pageLoginTests·=·(
      14  14 │     LoginPage: FC<LoginPageProps<any, any, any>>,
@@ -329,14 +329,14 @@
          15 │ + ):·void·=>·{
      16  16 │     describe("[@refinedev/ui-tests] Common Tests / Login Page", () => {
      17  17 │       it("should render card title", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/pages/ready.tsx:6:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render, TestWrapper } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const pageReadyTests = function (
        │                               ^^^^^^^^^^
    > 7 │   ReadyPage: React.ComponentType<RefineReadyPageProps>,
@@ -345,14 +345,14 @@
   > 17 │   });
   > 18 │ };
        │ ^
-    19 │ 
-  
+    19 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render, TestWrapper } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·pageReadyTests·=·function·(
         6 │ + export·const·pageReadyTests·=·(
      7  7 │     ReadyPage: React.ComponentType<RefineReadyPageProps>,
@@ -360,14 +360,14 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / Ready Page", () => {
     10 10 │       it("should render successfully", async () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/text.tsx:6:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldTextTests = function (
        │                               ^^^^^^^^^^
    > 7 │   TextField: React.ComponentType<RefineFieldTextProps<ReactNode, any>>,
@@ -376,14 +376,14 @@
   > 15 │   });
   > 16 │ };
        │ ^
-    17 │ 
-  
+    17 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldTextTests·=·function·(
         6 │ + export·const·fieldTextTests·=·(
      7  7 │     TextField: React.ComponentType<RefineFieldTextProps<ReactNode, any>>,
@@ -391,14 +391,14 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / Text Field", () => {
     10 10 │       it("renders text correctly", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/image.tsx:6:32 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldImageTests = function (
        │                                ^^^^^^^^^^
    > 7 │   ImageField: React.ComponentType<
@@ -407,33 +407,33 @@
   > 26 │   });
   > 27 │ };
        │ ^
-    28 │ 
-  
+    28 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldImageTests·=·function·(
         6 │ + export·const·fieldImageTests·=·(
      7  7 │     ImageField: React.ComponentType<
      8  8 │       RefineFieldImageProps<
-    ····· │ 
+    ····· │
     14 14 │       >
     15 15 │     >,
     16    │ - ):·void·{
        16 │ + ):·void·=>·{
     17 17 │     describe("[@refinedev/ui-tests] Common Tests / Image Field", () => {
     18 18 │       it("renders image with correct title", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/date.tsx:10:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      8 │ import "dayjs/locale/tr";
-     9 │ 
+     9 │
   > 10 │ export const fieldDateTests = function (
        │                               ^^^^^^^^^^
   > 11 │   DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
@@ -442,14 +442,14 @@
   > 47 │   });
   > 48 │ };
        │ ^
-    49 │ 
-  
+    49 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      8  8 │   import "dayjs/locale/tr";
-     9  9 │   
+     9  9 │
     10    │ - export·const·fieldDateTests·=·function·(
        10 │ + export·const·fieldDateTests·=·(
     11 11 │     DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
@@ -457,14 +457,14 @@
        12 │ + ):·void·=>·{
     13 13 │     describe("[@refinedev/ui-tests] Common Tests / Date Field", () => {
     14 14 │       it("renders date with default format", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/url.tsx:6:30 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldUrlTests = function (
        │                              ^^^^^^^^^^
    > 7 │   UrlField: React.ComponentType<
@@ -473,14 +473,14 @@
   > 39 │   });
   > 40 │ };
        │ ^
-    41 │ 
-  
+    41 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldUrlTests·=·function·(
         6 │ + export·const·fieldUrlTests·=·(
      7  7 │     UrlField: React.ComponentType<
@@ -490,14 +490,14 @@
        10 │ + ):·void·=>·{
     11 11 │     describe("[@refinedev/ui-tests] Common Tests / Url Field", () => {
     12 12 │       const url = "https://www.google.com/";
-  
+
 
 ./packages/ui-tests/src/tests/fields/tag.tsx:6:30 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldTagTests = function (
        │                              ^^^^^^^^^^
    > 7 │   TagField: React.ComponentType<RefineFieldTagProps<ReactNode, any>>,
@@ -506,14 +506,14 @@
   > 21 │   });
   > 22 │ };
        │ ^
-    23 │ 
-  
+    23 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldTagTests·=·function·(
         6 │ + export·const·fieldTagTests·=·(
      7  7 │     TagField: React.ComponentType<RefineFieldTagProps<ReactNode, any>>,
@@ -521,14 +521,14 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / Tag Field", () => {
     10 10 │       it("renders boolean values correctly", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/file.tsx:6:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldFileTests = function (
        │                               ^^^^^^^^^^
    > 7 │   FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
@@ -537,14 +537,14 @@
   > 32 │   });
   > 33 │ };
        │ ^
-    34 │ 
-  
+    34 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldFileTests·=·function·(
         6 │ + export·const·fieldFileTests·=·(
      7  7 │     FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
@@ -552,14 +552,14 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / File Field", () => {
     10 10 │       it("renders an anchor with file link", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/markdown.tsx:6:35 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldMarkdownTests = function (
        │                                   ^^^^^^^^^^
    > 7 │   MarkdownField: React.ComponentType<
@@ -568,14 +568,14 @@
   > 31 │   });
   > 32 │ };
        │ ^
-    33 │ 
-  
+    33 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldMarkdownTests·=·function·(
         6 │ + export·const·fieldMarkdownTests·=·(
      7  7 │     MarkdownField: React.ComponentType<
@@ -585,14 +585,14 @@
        10 │ + ):·void·=>·{
     11 11 │     describe("[@refinedev/ui-tests] Common Tests / Markdown Field", () => {
     12 12 │       it("renders markDown text with correct value", () => {
-  
+
 
 ./packages/ui-tests/src/tests/fields/email.tsx:6:32 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
-  
+
      4 │ import { render } from "@test";
-     5 │ 
+     5 │
    > 6 │ export const fieldEmailTests = function (
        │                                ^^^^^^^^^^
    > 7 │   EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
@@ -601,14 +601,14 @@
   > 18 │   });
   > 19 │ };
        │ ^
-    20 │ 
-  
+    20 │
+
   i Function expressions that don't use this can be turned into arrow functions.
-  
+
   i Safe fix: Use an arrow function instead.
-  
+
      4  4 │   import { render } from "@test";
-     5  5 │   
+     5  5 │
      6    │ - export·const·fieldEmailTests·=·function·(
         6 │ + export·const·fieldEmailTests·=·(
      7  7 │     EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
@@ -616,7 +616,7 @@
         8 │ + ):·void·=>·{
      9  9 │     describe("[@refinedev/ui-tests] Common Tests / Email Field", () => {
     10 10 │       it("renders email with mailto href", () => {
-  
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 25.

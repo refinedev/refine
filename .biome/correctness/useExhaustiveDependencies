@@ -5,494 +5,498 @@
 ./examples/form-react-hook-form-use-form/src/pages/posts/edit.tsx:24:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: setValue
-  
+
     22 │   });
-    23 │ 
+    23 │
   > 24 │   useEffect(() => {
        │   ^^^^^^^^^
     25 │     setValue("category.id", queryResult?.data?.data?.category?.id);
     26 │   }, [queryResult?.data]);
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     24 │   useEffect(() => {
   > 25 │     setValue("category.id", queryResult?.data?.data?.category?.id);
        │     ^^^^^^^^
     26 │   }, [queryResult?.data]);
-    27 │ 
-  
+    27 │
+
 
 ./packages/chakra-ui/src/components/pages/error/index.tsx:31:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: translate
-  
+
     29 │   const { resource, action } = useResource();
-    30 │ 
+    30 │
   > 31 │   useEffect(() => {
        │   ^^^^^^^^^
     32 │     if (resource && action) {
     33 │       setErrorMessage(
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     32 │     if (resource && action) {
     33 │       setErrorMessage(
   > 34 │         translate(
        │         ^^^^^^^^^
     35 │           "pages.error.info",
     36 │           {
-  
+
 
 ./documentation/src/context/TutorialUIPackageContext/index.tsx:94:11 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: setPreferred
-  
+
     92 │     };
-    93 │ 
+    93 │
   > 94 │     React.useEffect(() => {
        │           ^^^^^^^^^
     95 │       if (dedicated && dedicated !== preferred) {
     96 │         setPreferred(dedicated);
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     94 │     React.useEffect(() => {
     95 │       if (dedicated && dedicated !== preferred) {
   > 96 │         setPreferred(dedicated);
        │         ^^^^^^^^^^^^
     97 │       }
     98 │     }, [dedicated, preferred]);
-  
+
 
 ./documentation/src/context/tutorial-parameter-context.tsx:82:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: currentParameters
-  
+
     80 │   }, []);
-    81 │ 
+    81 │
   > 82 │   React.useEffect(() => {
        │         ^^^^^^^^^
     83 │     try {
     84 │       const storedParameters = localStorage.getItem(
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     101 │       setParameters({
     102 │         ...tutorialData.defaultParameters,
   > 103 │         ...currentParameters,
         │            ^^^^^^^^^^^^^^^^^
     104 │       });
     105 │     }
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     95 │         setParameters({
     96 │           ...tutorialData.defaultParameters,
   > 97 │           ...currentParameters,
        │              ^^^^^^^^^^^^^^^^^
     98 │         });
     99 │       }
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     90 │           ...tutorialData.defaultParameters,
     91 │           ...JSON.parse(storedParameters),
   > 92 │           ...currentParameters,
        │              ^^^^^^^^^^^^^^^^^
     93 │         });
     94 │       } else {
-  
+
   i Either include them or remove the dependency array
-  
+
 
 ./documentation/src/context/tutorial-parameter-context.tsx:82:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: setParameters
-  
+
     80 │   }, []);
-    81 │ 
+    81 │
   > 82 │   React.useEffect(() => {
        │         ^^^^^^^^^
     83 │     try {
     84 │       const storedParameters = localStorage.getItem(
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
      99 │       }
     100 │     } catch (e) {
   > 101 │       setParameters({
         │       ^^^^^^^^^^^^^
     102 │         ...tutorialData.defaultParameters,
     103 │         ...currentParameters,
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     93 │         });
     94 │       } else {
   > 95 │         setParameters({
        │         ^^^^^^^^^^^^^
     96 │           ...tutorialData.defaultParameters,
     97 │           ...currentParameters,
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     88 │       if (storedParameters) {
   > 89 │         setParameters({
        │         ^^^^^^^^^^^^^
     90 │           ...tutorialData.defaultParameters,
     91 │           ...JSON.parse(storedParameters),
-  
+
   i Either include them or remove the dependency array
-  
+
 
 ./examples/store/src/lib/focus-trap.tsx:55:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━━━
 
-  ! This hook does not specify all of its dependencies: returnFocus
-  
+  ! This hook does not specify all of its dependencies: setValue
+
     53 │   };
-    54 │ 
+    54 │
   > 55 │   useEffect(() => {
        │   ^^^^^^^^^
     56 │     setTimeout(trapFocus, 20);
     57 │     return () => {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     56 │     setTimeout(trapFocus, 20);
     57 │     return () => {
   > 58 │       returnFocus();
        │       ^^^^^^^^^^^
     59 │     };
     60 │   }, [root]);
-  
+
 
 ./examples/store/src/lib/focus-trap.tsx:55:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: trapFocus
-  
+
     53 │   };
-    54 │ 
+    54 │
   > 55 │   useEffect(() => {
        │   ^^^^^^^^^
     56 │     setTimeout(trapFocus, 20);
     57 │     return () => {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     55 │   useEffect(() => {
   > 56 │     setTimeout(trapFocus, 20);
        │                ^^^^^^^^^
     57 │     return () => {
     58 │       returnFocus();
-  
+
 
 ./examples/store/src/lib/focus-trap.tsx:55:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━━━
 
   ! This hook specifies more dependencies than necessary: root
-  
+
     53 │   };
-    54 │ 
+    54 │
   > 55 │   useEffect(() => {
        │   ^^^^^^^^^
     56 │     setTimeout(trapFocus, 20);
     57 │     return () => {
-  
+
   i This dependency can be removed from the list.
-  
+
     58 │       returnFocus();
     59 │     };
   > 60 │   }, [root]);
        │       ^^^^
-    61 │ 
+    61 │
     62 │   return React.createElement(
-  
+
 
 ./examples/store/src/lib/hooks/useProductPrice.ts:51:25 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: getPercentageDiff
-  
+
     49 │   };
-    50 │ 
+    50 │
   > 51 │   const cheapestPrice = useMemo(() => {
        │                         ^^^^^^^
     52 │     if (!product || !cart?.region) {
     53 │       return null;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     72 │       }),
     73 │       price_type: cheapestVariant.calculated_price_type,
   > 74 │       percentage_diff: getPercentageDiff(
        │                        ^^^^^^^^^^^^^^^^^
     75 │         cheapestVariant.original_price,
     76 │         cheapestVariant.calculated_price,
-  
+
 
 ./examples/store/src/lib/hooks/useProductPrice.ts:81:24 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: getPercentageDiff
-  
+
     79 │   }, [product, cart]);
-    80 │ 
+    80 │
   > 81 │   const variantPrice = useMemo(() => {
        │                        ^^^^^^^
     82 │     if (!product || !variantId || !cart?.region) {
     83 │       return null;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     104 │       }),
     105 │       price_type: variant.calculated_price_type,
   > 106 │       percentage_diff: getPercentageDiff(
         │                        ^^^^^^^^^^^^^^^^^
     107 │         variant.original_price,
     108 │         variant.calculated_price,
-  
+
 
 ./documentation/src/hooks/use-tutorial-checklists.ts:53:24 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook specifies a dependency more specific that its captures: store
-  
+
     51 │   const { store, toggle } = React.useContext(TutorialChecklistContext);
-    52 │ 
+    52 │
   > 53 │   const merged = React.useMemo(() => {
        │                        ^^^^^^^
     54 │     return (
     55 │       ({ items: [] } as TutorialChecklistData)?.items.map((item) => {
-  
+
   i This capture is more generic than...
-  
+
     62 │               return {
     63 │                 ...checklistItem,
   > 64 │                 checked: store[id]?.[checklistItem.id] ?? false,
        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     65 │               };
     66 │             })
-  
+
   i ...this dependency.
-  
+
     69 │       }) ?? []
     70 │     );
   > 71 │   }, [store]);
        │       ^^^^^
-    72 │ 
+    72 │
     73 │   return {
-  
+
 
 ./documentation/src/hooks/use-tutorial-checklists.ts:53:24 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: store[id]?.[checklistItem.id]
-  
+
     51 │   const { store, toggle } = React.useContext(TutorialChecklistContext);
-    52 │ 
+    52 │
   > 53 │   const merged = React.useMemo(() => {
        │                        ^^^^^^^
     54 │     return (
     55 │       ({ items: [] } as TutorialChecklistData)?.items.map((item) => {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     62 │               return {
     63 │                 ...checklistItem,
   > 64 │                 checked: store[id]?.[checklistItem.id] ?? false,
        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     65 │               };
     66 │             })
-  
+
 
 ./documentation/src/hooks/use-scroll-tracker.ts:28:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: callback
-  
+
     26 │   }, []);
-    27 │ 
+    27 │
   > 28 │   useEffect(() => {
        │   ^^^^^^^^^
     29 │     if (typeof window === "undefined") {
     30 │       return;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     56 │           }
-    57 │ 
+    57 │
   > 58 │           if (callback) {
        │               ^^^^^^^^
     59 │             callback({
     60 │               scrollY: nextMinDepth,
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     58 │           if (callback) {
   > 59 │             callback({
        │             ^^^^^^^^
     60 │               scrollY: nextMinDepth,
     61 │               scrollPercent,
-  
+
 
 ./documentation/src/hooks/use-scroll-tracker.ts:28:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook specifies more dependencies than necessary: scrollY
-  
+
     26 │   }, []);
-    27 │ 
+    27 │
   > 28 │   useEffect(() => {
        │   ^^^^^^^^^
     29 │     if (typeof window === "undefined") {
     30 │       return;
-  
+
   i This dependency can be removed from the list.
-  
+
     77 │     return endScrollTracker;
   > 78 │   }, [scrollDepths, scrollY, state]);
        │                     ^^^^^^^
-    79 │ 
+    79 │
     80 │   return { scrollY };
-  
+
 
 ./documentation/src/hooks/use-pagination.ts:21:27 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: totalPages
-  
+
     19 │   currentPage,
     20 │ }: UsePaginationProps) => {
   > 21 │   const paginationRange = useMemo(() => {
        │                           ^^^^^^^
     22 │     const totalPageNumbers = siblingCount + 5;
-    23 │ 
-  
+    23 │
+  > 24 │   useEffect(() => {
+       │   ^^^^^^^^^
+    25 │     setValue("category.id", queryResult?.data?.data?.category?.id);
+    26 │   }, [queryResult?.data]);
+
   i This dependency is not specified in the hook dependency list.
-  
+
     34 │     const firstPageIndex = 1;
   > 35 │     const lastPageIndex = totalPages;
        │                           ^^^^^^^^^^
-    36 │ 
+    36 │
     37 │     if (!shouldShowLeftDots && shouldShowRightDots) {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     31 │     const shouldShowLeftDots = leftSiblingIndex > 2;
   > 32 │     const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
        │                                                     ^^^^^^^^^^
-    33 │ 
+    33 │
     34 │     const firstPageIndex = 1;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     28 │     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
   > 29 │     const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
        │                                                                    ^^^^^^^^^^
-    30 │ 
+    30 │
     31 │     const shouldShowLeftDots = leftSiblingIndex > 2;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     22 │     const totalPageNumbers = siblingCount + 5;
-    23 │ 
+    23 │
   > 24 │     if (totalPageNumbers >= totalPages) {
        │                             ^^^^^^^^^^
     25 │       return range(1, totalPages);
     26 │     }
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     44 │     if (shouldShowLeftDots && !shouldShowRightDots) {
     45 │       const rightItemCount = 3 + 2 * siblingCount;
   > 46 │       const rightRange = range(totalPages - rightItemCount + 1, totalPages);
        │                                                                 ^^^^^^^^^^
     47 │       return [firstPageIndex, DOTS, ...rightRange];
     48 │     }
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     44 │     if (shouldShowLeftDots && !shouldShowRightDots) {
     45 │       const rightItemCount = 3 + 2 * siblingCount;
   > 46 │       const rightRange = range(totalPages - rightItemCount + 1, totalPages);
        │                                ^^^^^^^^^^
     47 │       return [firstPageIndex, DOTS, ...rightRange];
     48 │     }
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     39 │       const leftRange = range(1, leftItemCount);
-    40 │ 
+    40 │
   > 41 │       return [...leftRange, DOTS, totalPages];
        │                                   ^^^^^^^^^^
     42 │     }
-    43 │ 
-  
+    43 │
+
   i This dependency is not specified in the hook dependency list.
-  
+
     24 │     if (totalPageNumbers >= totalPages) {
   > 25 │       return range(1, totalPages);
        │                       ^^^^^^^^^^
     26 │     }
-    27 │ 
-  
+    27 │
+
 
 ./documentation/src/hooks/use-outside-click.ts:11:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: callback
-  
+
      9 │   callback: Handler,
     10 │ ) => {
   > 11 │   React.useEffect(() => {
        │         ^^^^^^^^^
     12 │     const handleClick = (event) => {
     13 │       if (ref.current && !ref.current.contains(event.target)) {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     13 │       if (ref.current && !ref.current.contains(event.target)) {
     14 │         event.preventDefault();
   > 15 │         callback(event);
        │         ^^^^^^^^
     16 │       }
     17 │     };
-  
+
 
 ./documentation/src/hooks/use-dynamic-import.ts:27:3 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: prefix
-  
+
     25 │   const [props, setProps] = useState<DeclarationType>(null);
-    26 │ 
+    26 │
   > 27 │   useEffect(() => {
        │   ^^^^^^^^^
     28 │     let resolved = false;
-    29 │ 
-  
+    29 │
+
   i This dependency is not specified in the hook dependency list.
-  
+
     30 │     import(
   > 31 │       `@docgen/${name.startsWith(prefix) ? name : `${prefix}${name}`}.json`
        │                                                      ^^^^^^
     32 │     )
     33 │       .then((props) => {
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     30 │     import(
   > 31 │       `@docgen/${name.startsWith(prefix) ? name : `${prefix}${name}`}.json`
        │                                  ^^^^^^
     32 │     )
     33 │       .then((props) => {
-  
+
 
 ./documentation/src/hooks/use-tw-breakpoints.ts:42:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: breakpoints[
             props.variant
           ].map
-  
+
     40 │   const [xxl, setXxl] = React.useState(false);
-    41 │ 
+    41 │
   > 42 │   React.useEffect(() => {
        │         ^^^^^^^^^
     43 │     if (typeof window !== "undefined") {
     44 │       const [smQuery, mdQuery, lgQuery, xlQuery, xxlQuery] = breakpoints[
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     42 │   React.useEffect(() => {
     43 │     if (typeof window !== "undefined") {
   > 44 │       const [smQuery, mdQuery, lgQuery, xlQuery, xxlQuery] = breakpoints[
@@ -500,53 +504,421 @@
   > 45 │         props.variant
   > 46 │       ].map((bp) => window.matchMedia(`(min-width: ${bp}px)`));
        │       ^^^^^
-    47 │ 
+    47 │
     48 │       const smHandler = (e: MediaQueryListEvent) => {
-  
+
   i Either include it or remove the dependency array
-  
+
 
 ./documentation/src/hooks/use-keydown.ts:12:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: callback
-  
+
     10 │   callback: Handler,
     11 │ ) => {
   > 12 │   React.useEffect(() => {
        │         ^^^^^^^^^
     13 │     const handleKeyDown = (event) => {
     14 │       if (!ref.current) return;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     15 │       if (keys.includes(event.key)) {
     16 │         event.preventDefault();
   > 17 │         callback(event);
        │         ^^^^^^^^
     18 │       }
     19 │     };
-  
+
 
 ./documentation/src/hooks/use-keydown.ts:12:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━━
 
   ! This hook does not specify all of its dependencies: keys.includes
-  
+
     10 │   callback: Handler,
     11 │ ) => {
   > 12 │   React.useEffect(() => {
        │         ^^^^^^^^^
     13 │     const handleKeyDown = (event) => {
     14 │       if (!ref.current) return;
-  
+
   i This dependency is not specified in the hook dependency list.
-  
+
     13 │     const handleKeyDown = (event) => {
     14 │       if (!ref.current) return;
   > 15 │       if (keys.includes(event.key)) {
        │           ^^^^^^^^^^^^^
     16 │         event.preventDefault();
     17 │         callback(event);
-  
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:181:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: initiallySynced
+
+    179 │   });
+    180 │
+  > 181 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
+  i This dependency is not specified in the hook dependency list.
+
+    181 │   React.useEffect(() => {
+  > 182 │     if (initiallySynced === false && syncWithLocationKey) {
+        │         ^^^^^^^^^^^^^^^
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+    184 │       if (typeof openStatus === "boolean") {
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:181:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: parsed?.params?.[syncWithLocationKey]?.open
+
+    179 │   });
+    180 │
+  > 181 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
+  i This dependency is not specified in the hook dependency list.
+
+    181 │   React.useEffect(() => {
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+  > 183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    184 │       if (typeof openStatus === "boolean") {
+    185 │         if (openStatus) {
+
+  i This dependency is not specified in the hook dependency list.
+
+    181 │   React.useEffect(() => {
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+  > 183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+        │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    184 │       if (typeof openStatus === "boolean") {
+    185 │         if (openStatus) {
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:181:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook specifies more dependencies than necessary: parsed
+
+    179 │   });
+    180 │
+  > 181 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
+  i This dependency can be removed from the list.
+
+    201 │       setInitiallySynced(true);
+    202 │     }
+  > 203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+        │                            ^^^^^^
+    204 │
+    205 │   React.useEffect(() => {
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:181:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: parsed?.params?.[syncWithLocationKey]?.id
+
+    179 │   });
+    180 │
+  > 181 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
+  i This dependency is not specified in the hook dependency list.
+
+    194 │       if (syncingId) {
+  > 195 │         const idFromParams = parsed?.params?.[syncWithLocationKey]?.id;
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    196 │         if (idFromParams) {
+    197 │           setId?.(idFromParams);
+
+  i This dependency is not specified in the hook dependency list.
+
+    194 │       if (syncingId) {
+  > 195 │         const idFromParams = parsed?.params?.[syncWithLocationKey]?.id;
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    196 │         if (idFromParams) {
+    197 │           setId?.(idFromParams);
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:181:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: show
+
+    179 │   });
+    180 │
+  > 181 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    182 │     if (initiallySynced === false && syncWithLocationKey) {
+    183 │       const openStatus = parsed?.params?.[syncWithLocationKey]?.open;
+
+  i This dependency is not specified in the hook dependency list.
+
+    188 │       } else if (typeof openStatus === "string") {
+    189 │         if (openStatus === "true") {
+  > 190 │           show();
+        │           ^^^^
+    191 │         }
+    192 │       }
+
+  i This dependency is not specified in the hook dependency list.
+
+    184 │       if (typeof openStatus === "boolean") {
+    185 │         if (openStatus) {
+  > 186 │           show();
+        │           ^^^^
+    187 │         }
+    188 │       } else if (typeof openStatus === "string") {
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:205:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook specifies a dependency more specific that its captures: syncingId
+
+    203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+    204 │
+  > 205 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+
+  i This capture is more generic than...
+
+    209 │           query: {
+    210 │             [syncWithLocationKey]: {
+  > 211 │               ...parsed?.params?.[syncWithLocationKey],
+        │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │               open: true,
+    213 │               ...(syncingId && id && { id }),
+
+  i ...this dependency.
+
+    227 │       }
+    228 │     }
+  > 229 │   }, [id, visible, show, syncWithLocationKey, syncingId]);
+        │                                               ^^^^^^^^^
+    230 │
+    231 │   const submit = async (
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:205:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: go
+
+    203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+    204 │
+  > 205 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+
+  i This dependency is not specified in the hook dependency list.
+
+    218 │         });
+    219 │       } else if (syncWithLocationKey && !visible) {
+  > 220 │         go({
+        │         ^^
+    221 │           query: {
+    222 │             [syncWithLocationKey]: undefined,
+
+  i This dependency is not specified in the hook dependency list.
+
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+  > 208 │         go({
+        │         ^^
+    209 │           query: {
+    210 │             [syncWithLocationKey]: {
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:205:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: parsed?.params?.[syncWithLocationKey]
+
+    203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+    204 │
+  > 205 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+
+  i This dependency is not specified in the hook dependency list.
+
+    209 │           query: {
+    210 │             [syncWithLocationKey]: {
+  > 211 │               ...parsed?.params?.[syncWithLocationKey],
+        │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │               open: true,
+    213 │               ...(syncingId && id && { id }),
+
+  i This dependency is not specified in the hook dependency list.
+
+    209 │           query: {
+    210 │             [syncWithLocationKey]: {
+  > 211 │               ...parsed?.params?.[syncWithLocationKey],
+        │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │               open: true,
+    213 │               ...(syncingId && id && { id }),
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:205:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook specifies a dependency more specific that its captures: syncingId
+
+    203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+    204 │
+  > 205 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+
+  i This capture is more generic than...
+
+    209 │           query: {
+    210 │             [syncWithLocationKey]: {
+  > 211 │               ...parsed?.params?.[syncWithLocationKey],
+        │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │               open: true,
+    213 │               ...(syncingId && id && { id }),
+
+  i ...this dependency.
+
+    227 │       }
+    228 │     }
+  > 229 │   }, [id, visible, show, syncWithLocationKey, syncingId]);
+        │                                               ^^^^^^^^^
+    230 │
+    231 │   const submit = async (
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:205:9 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: initiallySynced
+
+    203 │   }, [syncWithLocationKey, parsed, syncingId, setId]);
+    204 │
+  > 205 │   React.useEffect(() => {
+        │         ^^^^^^^^^
+    206 │     if (initiallySynced === true) {
+    207 │       if (visible && syncWithLocationKey) {
+
+  i This dependency is not specified in the hook dependency list.
+
+    205 │   React.useEffect(() => {
+  > 206 │     if (initiallySynced === true) {
+        │         ^^^^^^^^^^^^^^^
+    207 │       if (visible && syncWithLocationKey) {
+    208 │         go({
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:253:23 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: autoSave?.invalidateOnClose
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  > 253 │   const handleClose = useCallback(() => {
+        │                       ^^^^^^^^^^^
+    254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+    255 │       invalidate({
+
+  i This dependency is not specified in the hook dependency list.
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+    253 │   const handleClose = useCallback(() => {
+  > 254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+        │                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    255 │       invalidate({
+    256 │         id,
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:253:23 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: dataProviderName
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  > 253 │   const handleClose = useCallback(() => {
+        │                       ^^^^^^^^^^^
+    254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+    255 │       invalidate({
+
+  i This dependency is not specified in the hook dependency list.
+
+    256 │         id,
+    257 │         invalidates: invalidates || ["list", "many", "detail"],
+  > 258 │         dataProviderName,
+        │         ^^^^^^^^^^^^^^^^
+    259 │         resource: identifier,
+    260 │       });
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:253:23 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: invalidates
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  > 253 │   const handleClose = useCallback(() => {
+        │                       ^^^^^^^^^^^
+    254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+    255 │       invalidate({
+
+  i This dependency is not specified in the hook dependency list.
+
+    255 │       invalidate({
+    256 │         id,
+  > 257 │         invalidates: invalidates || ["list", "many", "detail"],
+        │                      ^^^^^^^^^^^
+    258 │         dataProviderName,
+    259 │         resource: identifier,
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:253:23 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: translate
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  > 253 │   const handleClose = useCallback(() => {
+        │                       ^^^^^^^^^^^
+    254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+    255 │       invalidate({
+
+  i This dependency is not specified in the hook dependency list.
+
+    263 │     if (warnWhen) {
+    264 │       const warnWhenConfirm = window.confirm(
+  > 265 │         translate(
+        │         ^^^^^^^^^
+    266 │           "warnWhenUnsavedChanges",
+    267 │           "Are you sure you want to leave? You have unsaved changes.",
+
+
+./packages/mantine/src/hooks/form/useModalForm/index.ts:253:23 lint/correctness/useExhaustiveDependencies ━━━━━━━━━━
+
+  ! This hook does not specify all of its dependencies: setWarnWhen
+
+    252 │   const { warnWhen, setWarnWhen } = useWarnAboutChange();
+  > 253 │   const handleClose = useCallback(() => {
+        │                       ^^^^^^^^^^^
+    254 │     if (autoSaveProps.status === "success" && autoSave?.invalidateOnClose) {
+    255 │       invalidate({
+
+  i This dependency is not specified in the hook dependency list.
+
+    271 │       if (warnWhenConfirm) {
+  > 272 │         setWarnWhen(false);
+        │         ^^^^^^^^^^^
+    273 │       } else {
+    274 │         return;
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 623.

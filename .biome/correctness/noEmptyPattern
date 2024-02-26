@@ -5,37 +5,37 @@
 ./documentation/src/refine-theme/landing-hero-showcase-section.tsx:6:44 lint/correctness/noEmptyPattern ━━━━━━━━━━
 
   ! Unexpected empty object pattern.
-  
+
     4 │ import { ShowcaseWrapper } from "../components/landing/showcase-wrapper";
-    5 │ 
+    5 │
   > 6 │ export const LandingHeroShowcaseSection = ({}) => {
       │                                            ^^
     7 │   const [activeApp, setActiveApp] = React.useState(apps[0]);
-    8 │ 
-  
+    8 │
+
 
 ./packages/inferencer/test/dataMocks.ts:153:18 lint/correctness/noEmptyPattern ━━━━━━━━━━━━━━━━━━━━━
 
   ! Unexpected empty object pattern.
-  
+
     151 │     deleteOne: ({ resource = "posts" }) =>
     152 │       Promise.resolve({ data: data[resource][0] }),
   > 153 │     deleteMany: ({}) => Promise.resolve({ data: [] }),
         │                  ^^
     154 │     getList: ({ resource = "posts" }) =>
     155 │       Promise.resolve({
-  
+
 
 ./examples/with-remix-headless/app/pages/posts/list.tsx:14:36 lint/correctness/noEmptyPattern ━━━━━━━━━━
 
   ! Unexpected empty object pattern.
-  
+
     12 │ }
-    13 │ 
+    13 │
   > 14 │ export const PostList: React.FC = ({}) => {
        │                                    ^^
     15 │   const { edit, create } = useNavigation();
-    16 │ 
-  
+    16 │
+
 
 Checked 6952 file(s) in 454ms

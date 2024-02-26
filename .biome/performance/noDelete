@@ -5,249 +5,249 @@
 ./packages/codemod/src/transformations/refine3-to-refine4.ts:65:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     64 │   if (hasPankodCLIInDevDependencies) {
   > 65 │     delete devDependencies["@pankod/refine-cli"];
        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     66 │   }
-    67 │ 
-  
+    67 │
+
   i Unsafe fix: Use an undefined assignment instead.
-  
-     63  63 │   
+
+     63  63 │
      64  64 │     if (hasPankodCLIInDevDependencies) {
      65     │ - ····delete·devDependencies["@pankod/refine-cli"];
          65 │ + ····devDependencies["@pankod/refine-cli"]·=·undefined;
      66  66 │     }
-     67  67 │   
-  
+     67  67 │
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:81:7 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     79 │         ...newSegments[2],
     80 │       };
   > 81 │       delete newParams.method;
        │       ^^^^^^^^^^^^^^^^^^^^^^^
     82 │       delete newParams.url;
-    83 │ 
-  
+    83 │
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
      79  79 │           ...newSegments[2],
      80  80 │         };
      81     │ - ······delete·newParams.method;
          81 │ + ······newParams.method·=·undefined;
      82  82 │         delete newParams.url;
-     83  83 │   
-  
+     83  83 │
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:82:7 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     80 │       };
     81 │       delete newParams.method;
   > 82 │       delete newParams.url;
        │       ^^^^^^^^^^^^^^^^^^^^
-    83 │ 
+    83 │
     84 │       return [
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
      80  80 │         };
      81  81 │         delete newParams.method;
      82     │ - ······delete·newParams.url;
          82 │ + ······newParams.url·=·undefined;
-     83  83 │   
+     83  83 │
      84  84 │         return [
-  
+
 
 ./packages/remix/src/parse-table-params.ts:15:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     13 │   };
-    14 │ 
+    14 │
   > 15 │   delete tableReady.current;
        │   ^^^^^^^^^^^^^^^^^^^^^^^^^
     16 │   delete tableReady.pageSize;
-    17 │ 
-  
+    17 │
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
     13 13 │     };
-    14 14 │   
+    14 14 │
     15    │ - ··delete·tableReady.current;
        15 │ + ··tableReady.current·=·undefined;
     16 16 │     delete tableReady.pageSize;
-    17 17 │   
-  
+    17 17 │
+
 
 ./packages/remix/src/parse-table-params.ts:16:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     15 │   delete tableReady.current;
   > 16 │   delete tableReady.pageSize;
        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    17 │ 
+    17 │
     18 │   return tableReady;
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
-    14 14 │   
+
+    14 14 │
     15 15 │     delete tableReady.current;
     16    │ - ··delete·tableReady.pageSize;
        16 │ + ··tableReady.pageSize·=·undefined;
-    17 17 │   
+    17 17 │
     18 18 │     return tableReady;
-  
+
 
 ./documentation/src/utils/remove-active-from-files.ts:6:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     4 │   const newFiles = Object.keys(files).reduce((acc, file) => {
     5 │     const newFile = { ...(files[file] as SandpackFile) };
   > 6 │     delete newFile.active;
       │     ^^^^^^^^^^^^^^^^^^^^^
     7 │     return { ...acc, [file]: newFile };
     8 │   }, {} as SandpackFiles);
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
      4  4 │     const newFiles = Object.keys(files).reduce((acc, file) => {
      5  5 │       const newFile = { ...(files[file] as SandpackFile) };
      6    │ - ····delete·newFile.active;
         6 │ + ····newFile.active·=·undefined;
      7  7 │       return { ...acc, [file]: newFile };
      8  8 │     }, {} as SandpackFiles);
-  
+
 
 ./documentation/src/utils/remove-active-from-files.ts:19:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     17 │   const newFiles = Object.keys(files).reduce((acc, file) => {
     18 │     const newFile = { ...(files[file] as SandpackFile) };
   > 19 │     delete newFile.active;
        │     ^^^^^^^^^^^^^^^^^^^^^
     20 │     if (file === activeFile) {
     21 │       newFile.active = true;
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
     17 17 │     const newFiles = Object.keys(files).reduce((acc, file) => {
     18 18 │       const newFile = { ...(files[file] as SandpackFile) };
     19    │ - ····delete·newFile.active;
        19 │ + ····newFile.active·=·undefined;
     20 20 │       if (file === activeFile) {
     21 21 │         newFile.active = true;
-  
+
 
 ./packages/nextjs-router/src/common/parse-table-params.ts:15:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     13 │   };
-    14 │ 
+    14 │
   > 15 │   delete tableReady.current;
        │   ^^^^^^^^^^^^^^^^^^^^^^^^^
     16 │   delete tableReady.pageSize;
-    17 │ 
-  
+    17 │
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
     13 13 │     };
-    14 14 │   
+    14 14 │
     15    │ - ··delete·tableReady.current;
        15 │ + ··tableReady.current·=·undefined;
     16 16 │     delete tableReady.pageSize;
-    17 17 │   
-  
+    17 17 │
+
 
 ./packages/nextjs-router/src/common/parse-table-params.ts:16:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     15 │   delete tableReady.current;
   > 16 │   delete tableReady.pageSize;
        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    17 │ 
+    17 │
     18 │   return tableReady;
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
-    14 14 │   
+
+    14 14 │
     15 15 │     delete tableReady.current;
     16    │ - ··delete·tableReady.pageSize;
        16 │ + ··tableReady.pageSize·=·undefined;
-    17 17 │   
+    17 17 │
     18 18 │     return tableReady;
-  
+
 
 ./examples/app-crm/src/routes/scrumboard/sales/create.tsx:199:15 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     197 │               });
-    198 │ 
+    198 │
   > 199 │               delete values.contactName;
         │               ^^^^^^^^^^^^^^^^^^^^^^^^^
     200 │               delete values.contactEmail;
-    201 │ 
-  
+    201 │
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
     197 197 │                 });
-    198 198 │   
+    198 198 │
     199     │ - ··············delete·values.contactName;
         199 │ + ··············values.contactName·=·undefined;
     200 200 │                 delete values.contactEmail;
-    201 201 │   
-  
+    201 201 │
+
 
 ./examples/app-crm/src/routes/scrumboard/sales/create.tsx:200:15 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     199 │               delete values.contactName;
   > 200 │               delete values.contactEmail;
         │               ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    201 │ 
+    201 │
     202 │               if (data) {
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
-    198 198 │   
+
+    198 198 │
     199 199 │                 delete values.contactName;
     200     │ - ··············delete·values.contactEmail;
         200 │ + ··············values.contactEmail·=·undefined;
-    201 201 │   
+    201 201 │
     202 202 │                 if (data) {
-  
+
 
 ./examples/app-crm/src/routes/quotes/components/products-services.tsx:135:13 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
-  
+
     133 │         items?.forEach((item) => {
     134 │           if ("totalPrice" in item) {
   > 135 │             delete (item as any).totalPrice;
         │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     136 │           }
     137 │         });
-  
+
   i Unsafe fix: Use an undefined assignment instead.
-  
+
     133 133 │           items?.forEach((item) => {
     134 134 │             if ("totalPrice" in item) {
     135     │ - ············delete·(item·as·any).totalPrice;
         135 │ + ············(item·as·any).totalPrice·=·undefined;
     136 136 │             }
     137 137 │           });
-  
+
 
 Checked 6952 file(s) in 448ms

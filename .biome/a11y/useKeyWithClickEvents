@@ -5,7 +5,7 @@
 ./documentation/tutorial/essentials/data-fetching/intro/sandpack.tsx:65:5 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     64 │   return (
   > 65 │     <span
        │     ^^^^^
@@ -16,14 +16,14 @@
        │     ^
     76 │       {children}
     77 │     </span>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./packages/demo-sidebar/src/components/DemoSidebar/index.tsx:29:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     27 │       placement="right"
     28 │       extra={
   > 29 │         <div
@@ -35,14 +35,14 @@
        │         ^
     34 │           {show ? (
     35 │             <Icons.CloseOutlined
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./documentation/src/theme/TagsList/index.tsx:81:7 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
      79 │         ))}
      80 │       </ul>
    > 81 │       <label
@@ -54,14 +54,14 @@
         │       ^
      99 │         Show More <ChevronDownIcon />
     100 │       </label>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/cart/CartItem/CartItem.tsx:142:13 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     140 │             }}
     141 │           >
   > 142 │             <span
@@ -72,42 +72,42 @@
         │             ^
     146 │               {item.title}
     147 │             </span>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/common/UserNav/MenuSidebarView/MenuSidebarView.tsx:20:13 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     18 │         <nav>
     19 │           <ul>
   > 20 │             <li className={s.item} onClick={() => closeSidebar()}>
        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     21 │               <Link href="/search">All</Link>
     22 │             </li>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/common/UserNav/MenuSidebarView/MenuSidebarView.tsx:24:15 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     22 │             </li>
     23 │             {links.map((l) => (
   > 24 │               <li key={l.id} className={s.item} onClick={() => closeSidebar()}>
        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     25 │                 <Link href={`/search/${l.id}`}>{l.title}</Link>
     26 │               </li>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/common/NativeSelect/NativeSelect.tsx:64:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     62 │         })}
     63 │       >
   > 64 │         <label
@@ -119,14 +119,14 @@
        │         ^
     71 │           {label}
     72 │           {required && <span className="text-rose-500">*</span>}
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./documentation/src/components/video-modal-15k/index.tsx:78:5 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
      77 │   return (
    > 78 │     <div
         │     ^^^^
@@ -137,14 +137,14 @@
         │     ^
     105 │       {show && (
     106 │         <div
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./documentation/src/components/video-modal-15k/index.tsx:106:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     104 │     >
     105 │       {show && (
   > 106 │         <div
@@ -156,14 +156,14 @@
         │         ^
     130 │           <button
     131 │             type="button"
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./packages/inferencer/src/inferencers/headless/code-viewer.tsx:51:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     49 │         }}
     50 │       >
   > 51 │         <div
@@ -175,14 +175,14 @@
        │         ^
     65 │           &times;
     66 │         </div>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/ui/Collapse/Collapse.tsx:28:5 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     27 │   return (
   > 28 │     <div
        │     ^^^^
@@ -193,14 +193,14 @@
        │     ^
     35 │       <div className={s.header}>
     36 │         <ChevronRight className={cn(s.icon, { [s.open]: isActive })} />
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/ui/Input/Input.tsx:29:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     27 │     return (
     28 │       <div className={cn(s.fieldset, containerClassName)}>
   > 29 │         <label
@@ -212,42 +212,42 @@
        │         ^
     36 │           {label}
     37 │           {required && <span className="text-rose-500">*</span>}
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/app-crm-minimal/src/components/accordion/accordion.tsx:70:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     68 │         </div>
     69 │       ) : (
   > 70 │         <div onClick={toggleAccordion} style={{ cursor: "pointer", flex: 1 }}>
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     71 │           {fallback}
     72 │         </div>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/store/src/components/ui/Sidebar/Sidebar.tsx:48:9 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     46 │     >
     47 │       <div className="absolute inset-0 overflow-hidden">
   > 48 │         <div className={s.backdrop} onClick={onClose} />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     49 │         <section className="absolute inset-y-0 right-0 flex w-full max-w-full outline-none md:w-auto md:pl-10">
     50 │           <div className="h-full w-full md:w-screen md:max-w-md">
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./packages/devtools/src/components/devtools-selector.tsx:81:7 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
      79 │   return (
      80 │     <div style={style}>
    > 81 │       <div
@@ -259,14 +259,14 @@
         │       ^
     101 │         {icon}
     102 │       </div>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./packages/devtools/src/components/devtools-pin.tsx:21:5 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     20 │   return (
   > 21 │     <div
        │     ^^^^
@@ -277,14 +277,14 @@
        │     ^
     42 │       <DevtoolsIcon />
     43 │       <DevtoolsSelector
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./documentation/src/refine-theme/templates-filters.tsx:46:13 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     45 │           return (
   > 46 │             <div
        │             ^^^^
@@ -295,14 +295,14 @@
        │             ^
     62 │               <Icon id={svgId} />
     63 │               <span
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./documentation/src/refine-theme/templates-filters.tsx:92:13 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
      91 │           return (
    > 92 │             <div
         │             ^^^^
@@ -313,37 +313,37 @@
         │             ^
     107 │               <Icon id={svgId} />
     108 │               <span
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/table-react-table-advanced/src/pages/posts/list.tsx:90:15 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     88 │                 }}
     89 │               />
   > 90 │               <span id="expand-toggle" onClick={() => row.toggleExpanded()}>
        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     91 │                 {row.getIsExpanded() ? "👇" : "👉"}
     92 │               </span>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 ./examples/table-react-table-advanced/src/pages/posts/list.tsx:250:17 lint/a11y/useKeyWithClickEvents ━━━━━━━━━━
 
   ! Enforce to have the onClick mouse event with the onKeyUp, the onKeyDown, or the onKeyPress keyboard event.
-  
+
     248 │             <td>
     249 │               <div>
   > 250 │                 <span onClick={() => row.toggleExpanded()}>
         │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     251 │                   {row.getIsExpanded() ? "👇" : "👉"}
     252 │                 </span>
-  
+
   i Actions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.
-  
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 34.

@@ -5,265 +5,265 @@
 ./packages/core/src/definitions/helpers/keys/index.ts:172:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     171 │ class ParamsKeyBuilder extends BaseKeyBuilder {
   > 172 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 173 │     super(segments);
   > 174 │   }
         │   ^
-    175 │ 
+    175 │
     176 │   params(paramsValue?: ParamsType) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    170 170 │   
+
+    170 170 │
     171 171 │   class ParamsKeyBuilder extends BaseKeyBuilder {
     172     │ - ··constructor(segments:·KeySegment[])·{
     173     │ - ····super(segments);
     174     │ - ··}
-    175 172 │   
+    175 172 │
     176 173 │     params(paramsValue?: ParamsType) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:182:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     181 │ class DataIdRequiringKeyBuilder extends BaseKeyBuilder {
   > 182 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 183 │     super(segments);
   > 184 │   }
         │   ^
-    185 │ 
+    185 │
     186 │   id(idValue?: IdType) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    180 180 │   
+
+    180 180 │
     181 181 │   class DataIdRequiringKeyBuilder extends BaseKeyBuilder {
     182     │ - ··constructor(segments:·KeySegment[])·{
     183     │ - ····super(segments);
     184     │ - ··}
-    185 182 │   
+    185 182 │
     186 183 │     id(idValue?: IdType) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:195:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     194 │ class DataIdsRequiringKeyBuilder extends BaseKeyBuilder {
   > 195 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 196 │     super(segments);
   > 197 │   }
         │   ^
-    198 │ 
+    198 │
     199 │   ids(...idsValue: IdsType) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    193 193 │   
+
+    193 193 │
     194 194 │   class DataIdsRequiringKeyBuilder extends BaseKeyBuilder {
     195     │ - ··constructor(segments:·KeySegment[])·{
     196     │ - ····super(segments);
     197     │ - ··}
-    198 195 │   
+    198 195 │
     199 196 │     ids(...idsValue: IdsType) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:208:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     207 │ class DataResourceKeyBuilder extends BaseKeyBuilder {
   > 208 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 209 │     super(segments);
   > 210 │   }
         │   ^
-    211 │ 
+    211 │
     212 │   action(actionType: ParametrizedDataActions): ParamsKeyBuilder;
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    206 206 │   
+
+    206 206 │
     207 207 │   class DataResourceKeyBuilder extends BaseKeyBuilder {
     208     │ - ··constructor(segments:·KeySegment[])·{
     209     │ - ····super(segments);
     210     │ - ··}
-    211 208 │   
+    211 208 │
     212 209 │     action(actionType: ParametrizedDataActions): ParamsKeyBuilder;
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:234:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     233 │ class DataKeyBuilder extends BaseKeyBuilder {
   > 234 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 235 │     super(segments);
   > 236 │   }
         │   ^
-    237 │ 
+    237 │
     238 │   resource(resourceName?: string) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    232 232 │   
+
+    232 232 │
     233 233 │   class DataKeyBuilder extends BaseKeyBuilder {
     234     │ - ··constructor(segments:·KeySegment[])·{
     235     │ - ····super(segments);
     236     │ - ··}
-    237 234 │   
+    237 234 │
     238 235 │     resource(resourceName?: string) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:251:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     250 │ class AuthKeyBuilder extends BaseKeyBuilder {
   > 251 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 252 │     super(segments);
   > 253 │   }
         │   ^
-    254 │ 
+    254 │
     255 │   action(actionType: AuthActionType) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    249 249 │   
+
+    249 249 │
     250 250 │   class AuthKeyBuilder extends BaseKeyBuilder {
     251     │ - ··constructor(segments:·KeySegment[])·{
     252     │ - ····super(segments);
     253     │ - ··}
-    254 251 │   
+    254 251 │
     255 252 │     action(actionType: AuthActionType) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:261:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     260 │ class AccessResourceKeyBuilder extends BaseKeyBuilder {
   > 261 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 262 │     super(segments);
   > 263 │   }
         │   ^
-    264 │ 
+    264 │
     265 │   action(resourceName: string) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    259 259 │   
+
+    259 259 │
     260 260 │   class AccessResourceKeyBuilder extends BaseKeyBuilder {
     261     │ - ··constructor(segments:·KeySegment[])·{
     262     │ - ····super(segments);
     263     │ - ··}
-    264 261 │   
+    264 261 │
     265 262 │     action(resourceName: string) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:271:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     270 │ class AccessKeyBuilder extends BaseKeyBuilder {
   > 271 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 272 │     super(segments);
   > 273 │   }
         │   ^
-    274 │ 
+    274 │
     275 │   resource(resourceName?: string) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    269 269 │   
+
+    269 269 │
     270 270 │   class AccessKeyBuilder extends BaseKeyBuilder {
     271     │ - ··constructor(segments:·KeySegment[])·{
     272     │ - ····super(segments);
     273     │ - ··}
-    274 271 │   
+    274 271 │
     275 272 │     resource(resourceName?: string) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:281:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     280 │ class AuditActionKeyBuilder extends BaseKeyBuilder {
   > 281 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 282 │     super(segments);
   > 283 │   }
         │   ^
-    284 │ 
+    284 │
     285 │   action(actionType: Extract<AuditActionType, "list">) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    279 279 │   
+
+    279 279 │
     280 280 │   class AuditActionKeyBuilder extends BaseKeyBuilder {
     281     │ - ··constructor(segments:·KeySegment[])·{
     282     │ - ····super(segments);
     283     │ - ··}
-    284 281 │   
+    284 281 │
     285 282 │     action(actionType: Extract<AuditActionType, "list">) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:291:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     290 │ class AuditKeyBuilder extends BaseKeyBuilder {
   > 291 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 292 │     super(segments);
   > 293 │   }
         │   ^
-    294 │ 
+    294 │
     295 │   resource(resourceName?: string) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    289 289 │   
+
+    289 289 │
     290 290 │   class AuditKeyBuilder extends BaseKeyBuilder {
     291     │ - ··constructor(segments:·KeySegment[])·{
     292     │ - ····super(segments);
     293     │ - ··}
-    294 291 │   
+    294 291 │
     295 292 │     resource(resourceName?: string) {
-  
+
 
 ./packages/core/src/definitions/helpers/keys/index.ts:305:3 lint/complexity/noUselessConstructor  FIXABLE  ━━━━━━━━━━
 
   ! This constructor is unnecessary.
-  
+
     304 │ export class KeyBuilder extends BaseKeyBuilder {
   > 305 │   constructor(segments: KeySegment[]) {
         │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   > 306 │     super(segments);
   > 307 │   }
         │   ^
-    308 │ 
+    308 │
     309 │   data(name?: string) {
-  
+
   i Unsafe fix: Remove the unnecessary constructor.
-  
-    303 303 │   
+
+    303 303 │
     304 304 │   export class KeyBuilder extends BaseKeyBuilder {
     305     │ - ··constructor(segments:·KeySegment[])·{
     306     │ - ····super(segments);
     307     │ - ··}
-    308 305 │   
+    308 305 │
     309 306 │     data(name?: string) {
-  
+
 
 Checked 6952 file(s) in 458ms

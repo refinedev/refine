@@ -5,7 +5,7 @@
 ./documentation/tutorial/next-steps/devtools/react-router/sandpack.tsx:22:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
     21 │ export const SelectorButtonIcon = (props: React.SVGProps<SVGSVGElement>) => (
   > 22 │   <svg
        │   ^^^^
@@ -16,14 +16,14 @@
        │   ^
     31 │     <path
     32 │       fill="#0FBDBD"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/integrations.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgIntegrations = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -34,14 +34,14 @@
        │   ^
     15 │     <g opacity="0.75">
     16 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/about-us.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgAboutUs = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -52,14 +52,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/ui-frameworks.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgUIFrameworks = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -70,14 +70,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/documents.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgDocuments = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -88,14 +88,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/expert.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgExpert = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -106,14 +106,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/refine-week.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgRefineWeek = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -124,14 +124,14 @@
        │   ^
     14 │     <g opacity="0.75">
     15 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/chevron-down.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgChevronDown = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -142,14 +142,14 @@
        │   ^
     14 │     <path
     15 │       d="M0.146447 0.732232C-0.0488156 0.927494 -0.0488155 1.24408 0.146447 1.43934L2.97487 4.26777C3.17014 4.46303 3.48672 4.46303 3.68198 4.26777L6.51041 1.43934C6.70567 1.24408 6.70567 0.927494 6.51041 0.732232C6.31515 0.536969 5.99856 0.53697 5.8033 0.732232L3.32843 3.20711L0.853553 0.732232C0.658291 0.536969 0.341709 0.536969 0.146447 0.732232Z"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/refine-store.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgRefineStore = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -160,14 +160,14 @@
        │   ^
     15 │     <g opacity="0.75">
     16 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx:9:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      8 │ const defaultIcon = (
    > 9 │   <svg
        │   ^^^^
@@ -178,14 +178,14 @@
        │   ^
     17 │     <path
     18 │       fillRule="evenodd"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/tutorial.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgTutorial = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -196,14 +196,14 @@
        │   ^
     15 │     <g opacity="0.75">
     16 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/examples.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgExamples = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -214,14 +214,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/right-arrow.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgRightArrow = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -232,14 +232,14 @@
        │   ^
     15 │     <path
     16 │       d="M1.06102 0.938983C0.826703 1.1733 0.826702 1.5532 1.06102 1.78751L8.2735 9L1.06102 16.2125C0.826701 16.4468 0.826702 16.8267 1.06102 17.061C1.29533 17.2953 1.67523 17.2953 1.90954 17.061L9.5463 9.42426C9.78061 9.18995 9.78061 8.81005 9.5463 8.57573L1.90954 0.938983C1.67523 0.704669 1.29533 0.704669 1.06102 0.938983Z"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/refine.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgRefine = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -250,14 +250,14 @@
        │   ^
     15 │     <g opacity="0.75">
     16 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/awesome.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgAwesome = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -268,14 +268,14 @@
        │   ^
     15 │     <g opacity="0.75">
     16 │       <path
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/contribute.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgContribute = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -286,14 +286,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/popover-icons/use-cases.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ const SvgUseCases = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -304,14 +304,14 @@
        │   ^
     15 │     <path
     16 │       opacity="0.75"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/week-of-refine/icons/refine-week-logo-xl.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ export const RefineWeekLogoXL = (props: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -322,14 +322,14 @@
        │   ^
     13 │     <path
     14 │       fill="currentColor"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/week-of-refine/icons/date.tsx:6:5 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ export const DateIcon = (props: SVGProps<SVGSVGElement>) => {
      5 │   return (
    > 6 │     <svg
@@ -341,14 +341,14 @@
        │     ^
     13 │       <g opacity=".25">
     14 │         <path d="M4.4 8.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4ZM5.6 11.6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0ZM8 8.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4ZM9.2 11.6a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0ZM11.6 8.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" />
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 ./documentation/src/assets/week-of-refine/icons/refine-week-logo.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
-  
+
      4 │ export const RefineWeekLogo = (props: SVGProps<SVGSVGElement>) => (
    > 5 │   <svg
        │   ^^^^
@@ -359,9 +359,9 @@
        │   ^
     12 │     <path
     13 │       fill="currentColor"
-  
+
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
+
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 405.

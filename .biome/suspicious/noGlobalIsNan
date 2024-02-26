@@ -5,93 +5,93 @@
 ./packages/core/src/definitions/helpers/property-path-to-array/index.ts:4:22 lint/suspicious/noGlobalIsNan  FIXABLE  ━━━━━━━━━━
 
   ! isNaN is unsafe. It attempts a type coercion. Use Number.isNaN instead.
-  
+
     2 │   return propertyPath
     3 │     .split(".")
   > 4 │     .map((item) => (!isNaN(Number(item)) ? Number(item) : item));
       │                      ^^^^^
     5 │ };
-    6 │ 
-  
+    6 │
+
   i See the MDN documentation for more details.
-  
+
   i Unsafe fix: Use Number.isNaN instead.
-  
+
     2 2 │     return propertyPath
     3 3 │       .split(".")
     4   │ - ····.map((item)·=>·(!isNaN(Number(item))·?·Number(item)·:·item));
       4 │ + ····.map((item)·=>·(!Number.isNaN(Number(item))·?·Number(item)·:·item));
     5 5 │   };
-    6 6 │   
-  
+    6 6 │
+
 
 ./documentation/src/components/tutorial-toc/index.tsx:211:21 lint/suspicious/noGlobalIsNan  FIXABLE  ━━━━━━━━━━
 
   ! isNaN is unsafe. It attempts a type coercion. Use Number.isNaN instead.
-  
+
     209 │             width="100%"
     210 │             height="100%"
   > 211 │             unitNo={isNaN(Number(unitNo)) ? undefined : unitNo}
         │                     ^^^^^
     212 │             isCurrent={doc.current}
     213 │           />
-  
+
   i See the MDN documentation for more details.
-  
+
   i Unsafe fix: Use Number.isNaN instead.
-  
+
     209 209 │               width="100%"
     210 210 │               height="100%"
     211     │ - ············unitNo={isNaN(Number(unitNo))·?·undefined·:·unitNo}
         211 │ + ············unitNo={Number.isNaN(Number(unitNo))·?·undefined·:·unitNo}
     212 212 │               isCurrent={doc.current}
     213 213 │             />
-  
+
 
 ./packages/inferencer/src/field-inferencers/number.ts:5:21 lint/suspicious/noGlobalIsNan  FIXABLE  ━━━━━━━━━━
 
   ! isNaN is unsafe. It attempts a type coercion. Use Number.isNaN instead.
-  
+
     3 │ export const numberInfer: FieldInferencer = (key, value) => {
     4 │   const isNonEmptyString = typeof value === "string" && value.length > 0;
   > 5 │   const isNotNaN = !isNaN(value as number);
       │                     ^^^^^
-    6 │ 
+    6 │
     7 │   const isNumericString = isNonEmptyString && isNotNaN;
-  
+
   i See the MDN documentation for more details.
-  
+
   i Unsafe fix: Use Number.isNaN instead.
-  
+
      3  3 │   export const numberInfer: FieldInferencer = (key, value) => {
      4  4 │     const isNonEmptyString = typeof value === "string" && value.length > 0;
      5    │ - ··const·isNotNaN·=·!isNaN(value·as·number);
         5 │ + ··const·isNotNaN·=·!Number.isNaN(value·as·number);
-     6  6 │   
+     6  6 │
      7  7 │     const isNumericString = isNonEmptyString && isNotNaN;
-  
+
 
 ./examples/blog-refine-tremor/src/pages/dashboard/details/index.tsx:290:17 lint/suspicious/noGlobalIsNan  FIXABLE  ━━━━━━━━━━
 
   ! isNaN is unsafe. It attempts a type coercion. Use Number.isNaN instead.
-  
+
     288 │           onChange={(e) => {
     289 │             const { value } = e.target;
   > 290 │             if (isNaN(Number(value))) {
         │                 ^^^^^
     291 │               return;
     292 │             }
-  
+
   i See the MDN documentation for more details.
-  
+
   i Unsafe fix: Use Number.isNaN instead.
-  
+
     288 288 │             onChange={(e) => {
     289 289 │               const { value } = e.target;
     290     │ - ············if·(isNaN(Number(value)))·{
         290 │ + ············if·(Number.isNaN(Number(value)))·{
     291 291 │                 return;
     292 292 │               }
-  
+
 
 Checked 6952 file(s) in 456ms
