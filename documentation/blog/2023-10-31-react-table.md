@@ -61,7 +61,12 @@ const table = useReactTable(options);
 The options object has several properties, which we will not explore in detail in this article. However, you should have the data and the table column objects. The example below illustrates the basic use of the `useReactTable` hook.
 
 ```tsx
-import { useReactTable, createColumnHelper, flexRender, getCoreRowModel } from "@tanstack/react-table";
+import {
+  useReactTable,
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+} from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper();
 
@@ -113,7 +118,12 @@ function App() {
                 return (
                   <th id={header.id}>
                     {" "}
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                   </th>
                 );
               })}
@@ -126,7 +136,11 @@ function App() {
           return (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                return (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                );
               })}
             </tr>
           );
@@ -262,7 +276,11 @@ export const CategoryList = () => {
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </th>
                 ))}
               </tr>
@@ -272,7 +290,9 @@ export const CategoryList = () => {
             {getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
                 ))}
               </tr>
             ))}

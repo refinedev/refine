@@ -349,7 +349,10 @@ const App = () => {
             <Route path="/login" element={<AuthPage />} />
             <Route path="/register" element={<AuthPage type="register" />} />
             {/* highlight-next-line */}
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
           </Route>
         </Routes>
       </Refine>
@@ -427,9 +430,15 @@ const App = () => {
           <Route element={<Authenticated fallback={<Outlet />} />}>
             <Route path="/login" element={<AuthPage />} />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
             {/* highlight-next-line */}
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
         </Routes>
       </Refine>

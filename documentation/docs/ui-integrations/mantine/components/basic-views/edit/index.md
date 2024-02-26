@@ -14,7 +14,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -83,7 +87,12 @@ const PostEdit: React.FC = () => {
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -95,7 +104,13 @@ const PostEdit: React.FC = () => {
             { label: "Rejected", value: "rejected" },
           ]}
         />
-        <Select mt={8} label="Category" placeholder="Pick one" {...getInputProps("category.id")} {...selectProps} />
+        <Select
+          mt={8}
+          label="Category"
+          placeholder="Pick one"
+          {...getInputProps("category.id")}
+          {...selectProps}
+        />
       </form>
     </Edit>
   );
@@ -276,7 +291,9 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
   const customDataProvider = {
     ...simpleRestDataProvider,
@@ -519,7 +536,12 @@ const PostEdit: React.FC = () => {
       saveButtonProps={saveButtonProps}
     >
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
       </form>
     </Edit>
   );
@@ -1024,7 +1046,9 @@ const PostEdit: React.FC = () => {
       headerButtons={({ refreshButtonProps, listButtonProps }) => (
         <>
           <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
-          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          {listButtonProps && (
+            <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button variant="outline" type="primary">
             Custom Button
           </Button>
@@ -1216,7 +1240,9 @@ const PostEdit: React.FC = () => {
       footerButtons={({ saveButtonProps, deleteButtonProps }) => (
         <>
           <SaveButton {...saveButtonProps} hideText />
-          {deleteButtonProps && <DeleteButton {...deleteButtonProps} hideText />}
+          {deleteButtonProps && (
+            <DeleteButton {...deleteButtonProps} hideText />
+          )}
           <Button variant="gradient">Custom Button</Button>
         </>
       )}
@@ -1381,7 +1407,12 @@ const PostEdit: React.FC = () => {
       autoSaveProps={autoSaveProps}
     >
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -1393,7 +1424,13 @@ const PostEdit: React.FC = () => {
             { label: "Rejected", value: "rejected" },
           ]}
         />
-        <Select mt={8} label="Category" placeholder="Pick one" {...getInputProps("category.id")} {...selectProps} />
+        <Select
+          mt={8}
+          label="Category"
+          placeholder="Pick one"
+          {...getInputProps("category.id")}
+          {...selectProps}
+        />
       </form>
     </Edit>
   );

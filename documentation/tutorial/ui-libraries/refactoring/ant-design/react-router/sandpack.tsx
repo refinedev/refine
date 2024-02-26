@@ -9,16 +9,16 @@ import { dependencies } from "@site/tutorial/ui-libraries/intro/ant-design/react
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={files}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={files}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -360,124 +360,112 @@ export const EditProduct = () => {
 // actions
 
 export const RefactorTableInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsTsx,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/products/list.tsx", ListProductsTsx);
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddSortersInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithSorters,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithSorters,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddFiltersInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithFilters,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithFilters,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const RefactorFormInEditProduct = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/edit.tsx",
-                    EditProductTsx,
-                );
-                sandpack.setActiveFile("/src/pages/products/edit.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/products/edit.tsx", EditProductTsx);
+        sandpack.setActiveFile("/src/pages/products/edit.tsx");
+      }}
+    />
+  );
 };
 
 export const RefactorFormInCreateProduct = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/create.tsx",
-                    CreateProductTsx,
-                );
-                sandpack.setActiveFile("/src/pages/products/create.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/products/create.tsx", CreateProductTsx);
+        sandpack.setActiveFile("/src/pages/products/create.tsx");
+      }}
+    />
+  );
 };
 
 export const RefactorFieldsInShowProduct = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/show.tsx",
-                    ShowProductTsx,
-                );
-                sandpack.setActiveFile("/src/pages/products/show.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/products/show.tsx", ShowProductTsx);
+        sandpack.setActiveFile("/src/pages/products/show.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const files = {
-    ...initialFiles,
-    "styles.css": {
-        code: "",
-        hidden: true,
-    },
+  ...initialFiles,
+  "styles.css": {
+    code: "",
+    hidden: true,
+  },
 };
 
 export const finalFiles = {
-    ...removeActiveFromFiles(files),
-    "src/pages/products/list.tsx": {
-        code: ListProductsWithFilters,
-        active: true,
-    },
-    "src/pages/products/show.tsx": {
-        code: ShowProductTsx,
-    },
-    "src/pages/products/create.tsx": {
-        code: CreateProductTsx,
-    },
-    "src/pages/products/edit.tsx": {
-        code: EditProductTsx,
-    },
+  ...removeActiveFromFiles(files),
+  "src/pages/products/list.tsx": {
+    code: ListProductsWithFilters,
+    active: true,
+  },
+  "src/pages/products/show.tsx": {
+    code: ShowProductTsx,
+  },
+  "src/pages/products/create.tsx": {
+    code: CreateProductTsx,
+  },
+  "src/pages/products/edit.tsx": {
+    code: EditProductTsx,
+  },
 };

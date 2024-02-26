@@ -113,7 +113,11 @@ Let's have a look.
 
 ```tsx title="@refinedev/supabase liveProvider"
 import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
-import { RealtimeChannel, RealtimePostgresChangesPayload, SupabaseClient } from "@supabase/supabase-js";
+import {
+  RealtimeChannel,
+  RealtimePostgresChangesPayload,
+  SupabaseClient,
+} from "@supabase/supabase-js";
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 
@@ -123,7 +127,10 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
       const resource = channel.replace("resources/", "");
 
       const listener = (payload: RealtimePostgresChangesPayload<any>) => {
-        if (types.includes("*") || types.includes(liveTypes[payload.eventType])) {
+        if (
+          types.includes("*") ||
+          types.includes(liveTypes[payload.eventType])
+        ) {
           if (
             liveTypes[payload.eventType] !== "created" &&
             params?.ids !== undefined &&
@@ -156,7 +163,9 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
         return filters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
+              return `${filter.field}=${mapOperator(filter.operator)}.${
+                filter.value
+              }`;
             }
             return;
           })
@@ -237,7 +246,9 @@ export const CanvasItem: React.FC<CanvasItemProps> = ({
                   width: PIXEL_SIZE * scale,
                   height: PIXEL_SIZE * scale,
                   border: border ? "0.5px solid rgba(0,0,0,0.05)" : undefined,
-                  background: pixels?.find((el) => el.x === j && el.y === i)?.color ?? "transparent",
+                  background:
+                    pixels?.find((el) => el.x === j && el.y === i)?.color ??
+                    "transparent",
                 }}
               />
             </div>
@@ -339,7 +350,10 @@ type DisplayCanvasProps = {
   children: (pixels: Pixel[] | undefined) => ReactElement;
 };
 
-export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({ canvas: { id }, children }) => {
+export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
+  canvas: { id },
+  children,
+}) => {
   const { data } = useList<Pixel>({
     resource: "pixels",
     liveMode: "auto",

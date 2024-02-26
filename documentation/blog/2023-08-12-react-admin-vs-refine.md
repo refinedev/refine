@@ -731,7 +731,11 @@ const App = () => {
   return (
     <Refine
       accessControlProvider={{
-        can: async ({ resource, action, params }: CanParams): Promise<CanReturnType> => {
+        can: async ({
+          resource,
+          action,
+          params,
+        }: CanParams): Promise<CanReturnType> => {
           return { can: true };
         },
       }}
@@ -745,7 +749,12 @@ const App = () => {
 And here's an example of using the `CanAccess` component:
 
 ```tsx
-<CanAccess resource="posts" action="edit" params={{ id: 1 }} fallback={<CustomFallback />}>
+<CanAccess
+  resource="posts"
+  action="edit"
+  params={{ id: 1 }}
+  fallback={<CustomFallback />}
+>
   <YourComponent />
 </CanAccess>
 ```
@@ -765,7 +774,11 @@ type HttpError = {
   statusCode: number;
   message: string;
   errors: {
-    [field: string]: string | string[] | boolean | { key: string; message: string };
+    [field: string]:
+      | string
+      | string[]
+      | boolean
+      | { key: string; message: string };
   };
 };
 ```

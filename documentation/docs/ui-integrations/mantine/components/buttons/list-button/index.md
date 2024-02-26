@@ -17,7 +17,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -217,7 +221,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@refinedev/mantine";
 
 export const MyListComponent = () => {
-  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

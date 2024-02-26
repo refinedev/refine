@@ -21,7 +21,11 @@ interface ISearch {
 }
 
 const ProductList: React.FC = () => {
-  const { listProps, searchFormProps } = useSimpleList<IProduct, HttpError, ISearch>({
+  const { listProps, searchFormProps } = useSimpleList<
+    IProduct,
+    HttpError,
+    ISearch
+  >({
     onSearch: (values) => {
       return [
         {

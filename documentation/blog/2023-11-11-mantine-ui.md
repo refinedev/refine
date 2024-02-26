@@ -154,7 +154,11 @@ const App: React.FC = () => {
         {items.map((description, index) => (
           <li key={index}>
             <button onClick={() => clipboard.copy(description)}>
-              {clipboard.copied ? <span>Copied! </span> : <span>Copy Link </span>}
+              {clipboard.copied ? (
+                <span>Copied! </span>
+              ) : (
+                <span>Copy Link </span>
+              )}
               <FileCopyIcon />
             </button>
           </li>
@@ -192,7 +196,9 @@ export default function App() {
 
   return (
     <Group className="center">
-      <Button onClick={() => scrollTo({ y: document.body.scrollHeight })}>Scroll to Bottom</Button>
+      <Button onClick={() => scrollTo({ y: document.body.scrollHeight })}>
+        Scroll to Bottom
+      </Button>
       <Text>//Long Text</Text>
       <Button onClick={() => scrollTo({ y: 0 })}>Scroll to top</Button>
     </Group>
@@ -220,8 +226,17 @@ export default function App() {
 
   return (
     <div>
-      <Modal opened={opened} onClose={close} title="We use cookies" centered size="sm">
-        <p>This website uses cookies to ensure you get the best experience on our website.</p>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="We use cookies"
+        centered
+        size="sm"
+      >
+        <p>
+          This website uses cookies to ensure you get the best experience on our
+          website.
+        </p>
         <Container mt={4}>
           <Group position="right">
             <Button color="gray" onClick={close}>
@@ -409,7 +424,6 @@ export default App;
 
 <br/>
 
-
 ```tsx
 import { Pagination } from "@mantine/core";
 
@@ -437,12 +451,35 @@ export default function App() {
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Label>Application</Menu.Label>
-        <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>blog</Menu.Item>
-        <Menu.Item leftSection={<IconMessageCircle style={{ width: rem(14), height: rem(14) }} />}>Pricing</Menu.Item>
-        <Menu.Item color="red" leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}>
+        <Menu.Item
+          leftSection={
+            <IconSettings style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          blog
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            <IconMessageCircle style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          Pricing
+        </Menu.Item>
+        <Menu.Item
+          color="red"
+          leftSection={
+            <IconPhoto style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
           Github
         </Menu.Item>
-        <Menu.Item leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}>Search</Menu.Item>
+        <Menu.Item
+          leftSection={
+            <IconSearch style={{ width: rem(14), height: rem(14) }} />
+          }
+        >
+          Search
+        </Menu.Item>
         <Menu.Divider />
       </Menu.Dropdown>
     </Menu>

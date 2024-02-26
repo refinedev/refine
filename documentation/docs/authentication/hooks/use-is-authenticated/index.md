@@ -66,7 +66,11 @@ Let's create a wrapper component that renders children if `check` method returns
 // highlight-next-line
 import { useIsAuthenticated, useGo } from "@refinedev/core";
 
-export const Authenticated: React.FC<AuthenticatedProps> = ({ children, fallback, loading }) => {
+export const Authenticated: React.FC<AuthenticatedProps> = ({
+  children,
+  fallback,
+  loading,
+}) => {
   // highlight-next-line
   const { isLoading, data } = useIsAuthenticated();
 

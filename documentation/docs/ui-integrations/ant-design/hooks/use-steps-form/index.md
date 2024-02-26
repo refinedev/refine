@@ -29,7 +29,8 @@ import {
 const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany({
     resource: "categories",
     ids: categoryIds,
@@ -51,7 +52,11 @@ const PostList = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <Table.Column
@@ -69,7 +74,8 @@ const PostList = () => {
 };
 
 const PostEdit = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsFormAntd();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
+    useStepsFormAntd();
 
   const { selectProps: categorySelectProps } = useSelectAntd({
     resource: "categories",
@@ -163,7 +169,9 @@ const PostEdit = () => {
               Next
             </AntdButton>
           )}
-          {current === formList.length - 1 && <AntdSaveButton {...saveButtonProps} />}
+          {current === formList.length - 1 && (
+            <AntdSaveButton {...saveButtonProps} />
+          )}
         </>
       }
     >
@@ -180,7 +188,8 @@ const PostEdit = () => {
 };
 
 const PostCreate = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsFormAntd();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
+    useStepsFormAntd();
 
   const { selectProps: categorySelectProps } = useSelectAntd({
     resource: "categories",
@@ -274,7 +283,9 @@ const PostCreate = () => {
               Next
             </AntdButton>
           )}
-          {current === formList.length - 1 && <AntdSaveButton {...saveButtonProps} />}
+          {current === formList.length - 1 && (
+            <AntdSaveButton {...saveButtonProps} />
+          )}
         </>
       }
     >
@@ -323,7 +334,8 @@ import { Button, Form, Input, Select, Steps } from "antd";
 const { Step } = Steps;
 
 const PostCreatePage: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
+    useStepsForm<IPost, HttpError, IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
@@ -417,7 +429,9 @@ const PostCreatePage: React.FC = () => {
               Next
             </Button>
           )}
-          {current === formList.length - 1 && <SaveButton {...saveButtonProps} />}
+          {current === formList.length - 1 && (
+            <SaveButton {...saveButtonProps} />
+          )}
         </>
       }
     >
@@ -480,11 +494,14 @@ import { Button, Form, Input, Select, Steps } from "antd";
 const { Step } = Steps;
 
 const PostEditPage: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
-    IPost,
-    HttpError,
-    IPost
-  >();
+  const {
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    saveButtonProps,
+    queryResult,
+  } = useStepsForm<IPost, HttpError, IPost>();
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
@@ -580,7 +597,9 @@ const PostEditPage: React.FC = () => {
               Next
             </Button>
           )}
-          {current === formList.length - 1 && <SaveButton {...saveButtonProps} />}
+          {current === formList.length - 1 && (
+            <SaveButton {...saveButtonProps} />
+          )}
         </>
       }
     >
@@ -638,11 +657,14 @@ import { HttpError } from "@refinedev/core";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
-    IPost,
-    HttpError,
-    IPost
-  >();
+  const {
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    saveButtonProps,
+    queryResult,
+  } = useStepsForm<IPost, HttpError, IPost>();
 
   return null;
 };
@@ -674,7 +696,8 @@ import { Form, Input, Select } from "antd";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps } =
+    useStepsForm<IPost, HttpError, IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
@@ -753,11 +776,14 @@ import {
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult } = useStepsForm<
-    IPost,
-    HttpError,
-    IPost
-  >();
+  const {
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    saveButtonProps,
+    queryResult,
+  } = useStepsForm<IPost, HttpError, IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
@@ -844,11 +870,15 @@ import { Button, Form, Input, Select, Steps } from "antd";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const { current, gotoStep, stepsProps, formProps, saveButtonProps, queryResult, submit } = useStepsForm<
-    IPost,
-    HttpError,
-    IPost
-  >();
+  const {
+    current,
+    gotoStep,
+    stepsProps,
+    formProps,
+    saveButtonProps,
+    queryResult,
+    submit,
+  } = useStepsForm<IPost, HttpError, IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
@@ -907,7 +937,11 @@ export const PostCreate: React.FC = () => {
             </Button>
           )}
           {current === formList.length - 1 && (
-            <SaveButton {...saveButtonProps} style={{ marginRight: 10 }} onClick={() => submit()} />
+            <SaveButton
+              {...saveButtonProps}
+              style={{ marginRight: 10 }}
+              onClick={() => submit()}
+            />
           )}
         </>
       }
@@ -1132,18 +1166,19 @@ We need to send the values we received from the user in two separate inputs, `na
 ```tsx title="pages/user/create.tsx"
 import { useStepsForm } from "@refinedev/antd";
 // ...
-const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } = useStepsForm<IPost>({
-  submit: (values) => {
-    // highlight-start
-    const data = {
-      fullName: `${formValues.name} ${formValues.surname}`,
-      age: formValues.age,
-      city: formValues.city,
-    };
-    onFinish(data as any);
-    // highlight-end
-  },
-});
+const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
+  useStepsForm<IPost>({
+    submit: (values) => {
+      // highlight-start
+      const data = {
+        fullName: `${formValues.name} ${formValues.surname}`,
+        age: formValues.age,
+        city: formValues.city,
+      };
+      onFinish(data as any);
+      // highlight-end
+    },
+  });
 // ...
 ```
 

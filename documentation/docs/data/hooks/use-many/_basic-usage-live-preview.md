@@ -41,7 +41,13 @@ const ProductList: React.FC = () => {
         <ul key={product.id}>
           <li key={product.id}>
             {product.id} - {product.name}{" "}
-            <button onClick={() => setIds((prev) => prev.filter((id) => id !== product.id))}>remove</button>
+            <button
+              onClick={() =>
+                setIds((prev) => prev.filter((id) => id !== product.id))
+              }
+            >
+              remove
+            </button>
           </li>
         </ul>
       ))}

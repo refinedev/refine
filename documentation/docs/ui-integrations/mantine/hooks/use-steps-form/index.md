@@ -99,7 +99,9 @@ const PostList: React.FC = () => {
           const meta = table.options.meta as {
             categoriesData: GetManyResponse<ICategory>;
           };
-          const category = meta.categoriesData?.data.find((item) => item.id === getValue());
+          const category = meta.categoriesData?.data.find(
+            (item) => item.id === getValue(),
+          );
           return category?.title ?? "Loading...";
         },
       },
@@ -113,7 +115,10 @@ const PostList: React.FC = () => {
           return (
             <MantineGroup spacing="xs" noWrap>
               <MantineEditButton hideText recordItemId={getValue() as number} />
-              <MantineDeleteButton hideText recordItemId={getValue() as number} />
+              <MantineDeleteButton
+                hideText
+                recordItemId={getValue() as number}
+              />
             </MantineGroup>
           );
         },
@@ -165,7 +170,12 @@ const PostList: React.FC = () => {
                     <th key={header.id}>
                       {!header.isPlaceholder && (
                         <MantineGroup spacing="xs" noWrap>
-                          <MantineBox>{flexRender(header.column.columnDef.header, header.getContext())}</MantineBox>
+                          <MantineBox>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                          </MantineBox>
                         </MantineGroup>
                       )}
                     </th>
@@ -179,7 +189,14 @@ const PostList: React.FC = () => {
               return (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
-                    return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                    return (
+                      <td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
                   })}
                 </tr>
               );
@@ -187,7 +204,12 @@ const PostList: React.FC = () => {
           </tbody>
         </MantineTable>
         <br />
-        <MantinePagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+        <MantinePagination
+          position="right"
+          total={pageCount}
+          page={current}
+          onChange={setCurrent}
+        />
       </MantineList>
     </MantineScrollArea>
   );
@@ -229,22 +251,51 @@ const PostCreate: React.FC = () => {
       footerButtons={
         <MantineGroup position="right" mt="xl">
           {currentStep !== 0 && (
-            <MantineButton variant="default" onClick={() => gotoStep(currentStep - 1)}>
+            <MantineButton
+              variant="default"
+              onClick={() => gotoStep(currentStep - 1)}
+            >
               Back
             </MantineButton>
           )}
-          {currentStep !== 3 && <MantineButton onClick={() => gotoStep(currentStep + 1)}>Next step</MantineButton>}
+          {currentStep !== 3 && (
+            <MantineButton onClick={() => gotoStep(currentStep + 1)}>
+              Next step
+            </MantineButton>
+          )}
           {currentStep === 2 && <SaveButton {...saveButtonProps} />}
         </MantineGroup>
       }
     >
-      <MantineStepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
-        <MantineStepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
-          <MantineTextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
-          <MantineTextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+      <MantineStepper
+        active={currentStep}
+        onStepClick={gotoStep}
+        breakpoint="xs"
+      >
+        <MantineStepper.Step
+          label="First Step"
+          description="Title and Slug"
+          allowStepSelect={currentStep > 0}
+        >
+          <MantineTextInput
+            mt="md"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+          />
+          <MantineTextInput
+            mt="md"
+            label="Slug"
+            placeholder="Slug"
+            {...getInputProps("slug")}
+          />
         </MantineStepper.Step>
 
-        <MantineStepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+        <MantineStepper.Step
+          label="Second Step"
+          description="Status"
+          allowStepSelect={currentStep > 1}
+        >
           <MantineSelect
             mt="md"
             label="Status"
@@ -258,8 +309,16 @@ const PostCreate: React.FC = () => {
           />
         </MantineStepper.Step>
 
-        <MantineStepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
-          <MantineTextarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        <MantineStepper.Step
+          label="Final Step"
+          description="Content"
+          allowStepSelect={currentStep > 2}
+        >
+          <MantineTextarea
+            label="Content"
+            placeholder="Content"
+            {...getInputProps("content")}
+          />
         </MantineStepper.Step>
 
         <MantineStepper.Completed>
@@ -308,22 +367,51 @@ const PostEdit: React.FC = () => {
       footerButtons={
         <MantineGroup position="right" mt="xl">
           {currentStep !== 0 && (
-            <MantineButton variant="default" onClick={() => gotoStep(currentStep - 1)}>
+            <MantineButton
+              variant="default"
+              onClick={() => gotoStep(currentStep - 1)}
+            >
               Back
             </MantineButton>
           )}
-          {currentStep !== 3 && <MantineButton onClick={() => gotoStep(currentStep + 1)}>Next step</MantineButton>}
+          {currentStep !== 3 && (
+            <MantineButton onClick={() => gotoStep(currentStep + 1)}>
+              Next step
+            </MantineButton>
+          )}
           {currentStep === 2 && <SaveButton {...saveButtonProps} />}
         </MantineGroup>
       }
     >
-      <MantineStepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
-        <MantineStepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
-          <MantineTextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
-          <MantineTextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+      <MantineStepper
+        active={currentStep}
+        onStepClick={gotoStep}
+        breakpoint="xs"
+      >
+        <MantineStepper.Step
+          label="First Step"
+          description="Title and Slug"
+          allowStepSelect={currentStep > 0}
+        >
+          <MantineTextInput
+            mt="md"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+          />
+          <MantineTextInput
+            mt="md"
+            label="Slug"
+            placeholder="Slug"
+            {...getInputProps("slug")}
+          />
         </MantineStepper.Step>
 
-        <MantineStepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+        <MantineStepper.Step
+          label="Second Step"
+          description="Status"
+          allowStepSelect={currentStep > 1}
+        >
           <MantineSelect
             mt="md"
             label="Status"
@@ -337,8 +425,16 @@ const PostEdit: React.FC = () => {
           />
         </MantineStepper.Step>
 
-        <MantineStepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
-          <MantineTextarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        <MantineStepper.Step
+          label="Final Step"
+          description="Content"
+          allowStepSelect={currentStep > 2}
+        >
+          <MantineTextarea
+            label="Content"
+            placeholder="Content"
+            {...getInputProps("content")}
+          />
         </MantineStepper.Step>
         <MantineStepper.Completed>
           Completed! Form values:
@@ -374,7 +470,16 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
-import { Button, Code, Group, Select, Space, Stepper, Textarea, TextInput } from "@mantine/core";
+import {
+  Button,
+  Code,
+  Group,
+  Select,
+  Space,
+  Stepper,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import { HttpError } from "@refinedev/core";
 import { Create, SaveButton, useStepsForm } from "@refinedev/mantine";
 import React from "react";
@@ -421,18 +526,38 @@ const PostCreatePage: React.FC = () => {
               Back
             </Button>
           )}
-          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep !== 3 && (
+            <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>
+          )}
           {currentStep === 2 && <SaveButton {...saveButtonProps} />}
         </Group>
       }
     >
       <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
-        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
-          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
-          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        <Stepper.Step
+          label="First Step"
+          description="Title and Slug"
+          allowStepSelect={currentStep > 0}
+        >
+          <TextInput
+            mt="md"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+          />
+          <TextInput
+            mt="md"
+            label="Slug"
+            placeholder="Slug"
+            {...getInputProps("slug")}
+          />
         </Stepper.Step>
 
-        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+        <Stepper.Step
+          label="Second Step"
+          description="Status"
+          allowStepSelect={currentStep > 1}
+        >
           <Select
             mt="md"
             label="Status"
@@ -446,8 +571,16 @@ const PostCreatePage: React.FC = () => {
           />
         </Stepper.Step>
 
-        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
-          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        <Stepper.Step
+          label="Final Step"
+          description="Content"
+          allowStepSelect={currentStep > 2}
+        >
+          <Textarea
+            label="Content"
+            placeholder="Content"
+            {...getInputProps("content")}
+          />
         </Stepper.Step>
 
         <Stepper.Completed>
@@ -485,7 +618,16 @@ Here is the final result of the form: We will explain the code in following sect
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
-import { Button, Code, Group, Select, Space, Stepper, Textarea, TextInput } from "@mantine/core";
+import {
+  Button,
+  Code,
+  Group,
+  Select,
+  Space,
+  Stepper,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import { HttpError } from "@refinedev/core";
 import { Edit, SaveButton, useStepsForm } from "@refinedev/mantine";
 import React from "react";
@@ -532,18 +674,38 @@ const PostEditPage: React.FC = () => {
               Back
             </Button>
           )}
-          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep !== 3 && (
+            <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>
+          )}
           {currentStep === 2 && <SaveButton {...saveButtonProps} />}
         </Group>
       }
     >
       <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
-        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
-          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
-          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        <Stepper.Step
+          label="First Step"
+          description="Title and Slug"
+          allowStepSelect={currentStep > 0}
+        >
+          <TextInput
+            mt="md"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+          />
+          <TextInput
+            mt="md"
+            label="Slug"
+            placeholder="Slug"
+            {...getInputProps("slug")}
+          />
         </Stepper.Step>
 
-        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+        <Stepper.Step
+          label="Second Step"
+          description="Status"
+          allowStepSelect={currentStep > 1}
+        >
           <Select
             mt="md"
             label="Status"
@@ -557,8 +719,16 @@ const PostEditPage: React.FC = () => {
           />
         </Stepper.Step>
 
-        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
-          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        <Stepper.Step
+          label="Final Step"
+          description="Content"
+          allowStepSelect={currentStep > 2}
+        >
+          <Textarea
+            label="Content"
+            placeholder="Content"
+            {...getInputProps("content")}
+          />
         </Stepper.Step>
 
         <Stepper.Completed>
@@ -690,7 +860,9 @@ const PostCreatePage: React.FC = () => {
               Back
             </Button>
           )}
-          {currentStep !== 3 && <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>}
+          {currentStep !== 3 && (
+            <Button onClick={() => gotoStep(currentStep + 1)}>Next step</Button>
+          )}
           {currentStep === 2 && <SaveButton {...saveButtonProps} />}
         </Group>
       }
@@ -698,12 +870,30 @@ const PostCreatePage: React.FC = () => {
     >
       {/* highlight-start */}
       <Stepper active={currentStep} onStepClick={gotoStep} breakpoint="xs">
-        <Stepper.Step label="First Step" description="Title and Slug" allowStepSelect={currentStep > 0}>
-          <TextInput mt="md" label="Title" placeholder="Title" {...getInputProps("title")} />
-          <TextInput mt="md" label="Slug" placeholder="Slug" {...getInputProps("slug")} />
+        <Stepper.Step
+          label="First Step"
+          description="Title and Slug"
+          allowStepSelect={currentStep > 0}
+        >
+          <TextInput
+            mt="md"
+            label="Title"
+            placeholder="Title"
+            {...getInputProps("title")}
+          />
+          <TextInput
+            mt="md"
+            label="Slug"
+            placeholder="Slug"
+            {...getInputProps("slug")}
+          />
         </Stepper.Step>
 
-        <Stepper.Step label="Second Step" description="Status" allowStepSelect={currentStep > 1}>
+        <Stepper.Step
+          label="Second Step"
+          description="Status"
+          allowStepSelect={currentStep > 1}
+        >
           <Select
             mt="md"
             label="Status"
@@ -717,8 +907,16 @@ const PostCreatePage: React.FC = () => {
           />
         </Stepper.Step>
 
-        <Stepper.Step label="Final Step" description="Content" allowStepSelect={currentStep > 2}>
-          <Textarea label="Content" placeholder="Content" {...getInputProps("content")} />
+        <Stepper.Step
+          label="Final Step"
+          description="Content"
+          allowStepSelect={currentStep > 2}
+        >
+          <Textarea
+            label="Content"
+            placeholder="Content"
+            {...getInputProps("content")}
+          />
         </Stepper.Step>
 
         <Stepper.Completed>

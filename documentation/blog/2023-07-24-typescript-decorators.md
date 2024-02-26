@@ -243,7 +243,10 @@ The `enumerable` wrapper below returns a function that takes the member `descrip
 function enumerable(isEnumerable: boolean) {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     descriptor.enumerable = isEnumerable;
-    console.log("The enumerable property of this member is set to: " + descriptor.enumerable);
+    console.log(
+      "The enumerable property of this member is set to: " +
+        descriptor.enumerable,
+    );
   };
 }
 ```

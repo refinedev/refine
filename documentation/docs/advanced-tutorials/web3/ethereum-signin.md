@@ -68,7 +68,9 @@ export const authProvider: AuthProvider = {
     } else {
       return {
         success: false,
-        error: new Error("Not set ethereum wallet or invalid. You need to install Metamask"),
+        error: new Error(
+          "Not set ethereum wallet or invalid. You need to install Metamask",
+        ),
       };
     }
   },
@@ -174,7 +176,12 @@ export const Login: React.FC = () => {
             fontSize: "22px",
           }}
         />
-        <Button type="primary" size="middle" loading={isLoading} onClick={() => login({})}>
+        <Button
+          type="primary"
+          size="middle"
+          loading={isLoading}
+          onClick={() => login({})}
+        >
           Sign in with Ethereum
         </Button>
         <Typography.Text type="secondary">Powered by Auth0</Typography.Text>
@@ -201,7 +208,17 @@ After connecting with our account, we can now retrieve account information. We w
 import React from "react";
 import { useGetIdentity } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
-import { Row, Col, Card, Typography, Space, Button, Modal, Form, Input } from "antd";
+import {
+  Row,
+  Col,
+  Card,
+  Typography,
+  Space,
+  Button,
+  Modal,
+  Form,
+  Input,
+} from "antd";
 
 const { Text } = Typography;
 
@@ -250,7 +267,11 @@ Now lets customize **Refine** dashboard. Send your test ethereum via **Refine** 
 Here we use the `sendTransaction` function to send ethereum with your browser-enabled web3 wallet.
 
 ```tsx title="src/utility.ts"
-export const sendEthereum = async (sender: string, receiver: string, amount: string) => {
+export const sendEthereum = async (
+  sender: string,
+  receiver: string,
+  amount: string,
+) => {
   try {
     const params = {
       from: sender,
@@ -274,7 +295,18 @@ export const sendEthereum = async (sender: string, receiver: string, amount: str
 import React, { useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
-import { Row, Col, Card, Typography, Space, Button, Modal, Form, Input, notification } from "antd";
+import {
+  Row,
+  Col,
+  Card,
+  Typography,
+  Space,
+  Button,
+  Modal,
+  Form,
+  Input,
+  notification,
+} from "antd";
 
 import { sendEthereum } from "../utility";
 
@@ -291,7 +323,11 @@ export const DashboardPage: React.FC = () => {
 
   const handleModal = async (values: any) => {
     setLoading(true);
-    const tx: any | undefined = await sendEthereum(data?.address!!, values.receiver, values.amount);
+    const tx: any | undefined = await sendEthereum(
+      data?.address!!,
+      values.receiver,
+      values.amount,
+    );
     const status = tx ? tx.status : undefined;
     setLoading(false);
 
@@ -333,7 +369,12 @@ export const DashboardPage: React.FC = () => {
           </Card>
         </Col>
         <Col span={12}>
-          <Button style={{ maxWidth: 300, marginTop: 24 }} type="primary" size="large" onClick={() => show()}>
+          <Button
+            style={{ maxWidth: 300, marginTop: 24 }}
+            type="primary"
+            size="large"
+            onClick={() => show()}
+          >
             Send Ethereum
           </Button>
           <Button

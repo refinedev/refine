@@ -63,7 +63,9 @@ render(
       {
         name: "posts",
         list: PostsList,
-        create: () => <RefineMui.Create>Rest of the page here...</RefineMui.Create>,
+        create: () => (
+          <RefineMui.Create>Rest of the page here...</RefineMui.Create>
+        ),
       },
     ]}
   />,
@@ -212,7 +214,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@refinedev/mui";
 
 export const MyCloneComponent = () => {
-  return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

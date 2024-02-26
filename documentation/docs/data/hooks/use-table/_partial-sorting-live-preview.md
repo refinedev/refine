@@ -41,7 +41,8 @@ const PostList: React.FC = () => {
   // highlight-start
   const currentSorterOrders = useMemo(() => {
     return {
-      createdAt: sorter.find((item) => item.field === "createdAt")?.order || "desc",
+      createdAt:
+        sorter.find((item) => item.field === "createdAt")?.order || "desc",
       id: sorter.find((item) => item.field === "id")?.order || "desc",
       title: sorter.find((item) => item.field === "title")?.order || "asc",
     };
@@ -71,13 +72,15 @@ const PostList: React.FC = () => {
         }}
       >
         <button onClick={() => toggleSort("createdAt")}>
-          Sort date by {currentSorterOrders["createdAt"] === "asc" ? "desc" : "asc"}
+          Sort date by{" "}
+          {currentSorterOrders["createdAt"] === "asc" ? "desc" : "asc"}
         </button>
         <button onClick={() => toggleSort("id")}>
           Sort id by {currentSorterOrders["id"] === "asc" ? "desc" : "asc"}
         </button>
         <button onClick={() => toggleSort("title")}>
-          Sort title by {currentSorterOrders["title"] === "asc" ? "desc" : "asc"}
+          Sort title by{" "}
+          {currentSorterOrders["title"] === "asc" ? "desc" : "asc"}
         </button>
       </div>
       {/* highlight-end */}

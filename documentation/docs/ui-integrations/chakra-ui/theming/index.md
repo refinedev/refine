@@ -64,7 +64,12 @@ const PostList: React.FC = () => {
                 {headerGroup.headers.map((header) => (
                   <Th key={header.id}>
                     {!header.isPlaceholder && (
-                      <Text>{flexRender(header.column.columnDef.header, header.getContext())}</Text>
+                      <Text>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                      </Text>
                     )}
                   </Th>
                 ))}
@@ -75,7 +80,9 @@ const PostList: React.FC = () => {
             {getRowModel().rows.map((row) => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
                 ))}
               </Tr>
             ))}
@@ -296,9 +303,24 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Box py="2" px="4" display="flex" justifyContent="flex-end" w="full" bg="chakra-body-bg">
-      <IconButton variant="ghost" aria-label="Toggle theme" onClick={toggleColorMode}>
-        <Icon as={colorMode === "light" ? IconMoonStars : IconSun} w="18px" h="18px" />
+    <Box
+      py="2"
+      px="4"
+      display="flex"
+      justifyContent="flex-end"
+      w="full"
+      bg="chakra-body-bg"
+    >
+      <IconButton
+        variant="ghost"
+        aria-label="Toggle theme"
+        onClick={toggleColorMode}
+      >
+        <Icon
+          as={colorMode === "light" ? IconMoonStars : IconSun}
+          w="18px"
+          h="18px"
+        />
       </IconButton>
     </Box>
   );

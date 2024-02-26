@@ -9,15 +9,15 @@ import { finalFiles as initialFiles } from "../intro/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -84,81 +84,81 @@ export default function App(): JSX.Element {
 // actions
 
 export const AddGetOneMethod = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithGetOneMethodTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithGetOneMethodTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const CreateShowProductFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "/src/pages/products/show.tsx": {
-                        code: BaseShowProductTsxCode,
-                    },
-                });
-                sandpack.openFile("/src/pages/products/show.tsx");
-                sandpack.setActiveFile("/src/pages/products/show.tsx");
-            }}
-            name="src/pages/products/show.tsx"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "/src/pages/products/show.tsx": {
+            code: BaseShowProductTsxCode,
+          },
+        });
+        sandpack.openFile("/src/pages/products/show.tsx");
+        sandpack.setActiveFile("/src/pages/products/show.tsx");
+      }}
+      name="src/pages/products/show.tsx"
+    />
+  );
 };
 
 export const AddUseOneToShowProduct = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/pages/products/show.tsx",
-                    ShowProductWithUseOneTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/show.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/pages/products/show.tsx",
+          ShowProductWithUseOneTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/show.tsx");
+      }}
+    />
+  );
 };
 
 export const AddShowProductToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithShowProductCode);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithShowProductCode);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithShowProductCode,
-    },
-    "src/providers/data-provider.ts": {
-        code: DataProviderWithGetOneMethodTsCode,
-    },
-    "src/pages/products/show.tsx": {
-        code: ShowProductWithUseOneTsxCode,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithShowProductCode,
+  },
+  "src/providers/data-provider.ts": {
+    code: DataProviderWithGetOneMethodTsCode,
+  },
+  "src/pages/products/show.tsx": {
+    code: ShowProductWithUseOneTsxCode,
+    active: true,
+  },
 };

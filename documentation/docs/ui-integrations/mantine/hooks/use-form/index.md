@@ -58,7 +58,10 @@ const PostList: React.FC = () => {
           return (
             <MantineGroup spacing="xs" noWrap>
               <MantineEditButton hideText recordItemId={getValue() as number} />
-              <MantineCloneButton hideText recordItemId={getValue() as number} />
+              <MantineCloneButton
+                hideText
+                recordItemId={getValue() as number}
+              />
             </MantineGroup>
           );
         },
@@ -87,7 +90,12 @@ const PostList: React.FC = () => {
                     <th key={header.id}>
                       {!header.isPlaceholder && (
                         <MantineGroup spacing="xs" noWrap>
-                          <MantineBox>{flexRender(header.column.columnDef.header, header.getContext())}</MantineBox>
+                          <MantineBox>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                          </MantineBox>
                         </MantineGroup>
                       )}
                     </th>
@@ -101,7 +109,14 @@ const PostList: React.FC = () => {
               return (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
-                    return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                    return (
+                      <td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
                   })}
                 </tr>
               );
@@ -109,7 +124,12 @@ const PostList: React.FC = () => {
           </tbody>
         </MantineTable>
         <br />
-        <MantinePagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+        <MantinePagination
+          position="right"
+          total={pageCount}
+          page={current}
+          onChange={setCurrent}
+        />
       </MantineList>
     </MantineScrollArea>
   );
@@ -122,15 +142,23 @@ const PostEdit: React.FC = () => {
       content: "",
     },
     validate: {
-      title: (value) => value.length < 3 && "Title must be at least 3 characters",
-      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+      title: (value) =>
+        value.length < 3 && "Title must be at least 3 characters",
+      content: (value) =>
+        value.length < 10 && "Content must be at least 10 characters",
     },
   });
 
   return (
     <MantineEdit saveButtonProps={saveButtonProps}>
       <form>
-        <MantineTextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <MantineTextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
 
         <MantineTextarea
           label="Content"
@@ -152,15 +180,23 @@ const PostCreate: React.FC = () => {
       content: "",
     },
     validate: {
-      title: (value) => value.length < 3 && "Title must be at least 3 characters",
-      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+      title: (value) =>
+        value.length < 3 && "Title must be at least 3 characters",
+      content: (value) =>
+        value.length < 10 && "Content must be at least 10 characters",
     },
   });
 
   return (
     <MantineCreate saveButtonProps={saveButtonProps}>
       <form>
-        <MantineTextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <MantineTextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
         <MantineTextarea
           label="Content"
           placeholder="Content"
@@ -202,7 +238,13 @@ const PostEdit: React.FC = () => {
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -272,15 +314,23 @@ const PostCreatePage: React.FC = () => {
       content: "",
     },
     validate: {
-      title: (value) => value.length < 3 && "Title must be at least 3 characters",
-      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+      title: (value) =>
+        value.length < 3 && "Title must be at least 3 characters",
+      content: (value) =>
+        value.length < 10 && "Content must be at least 10 characters",
     },
   });
 
   return (
     <Create saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
         <Textarea
           label="Content"
           placeholder="Content"
@@ -335,15 +385,23 @@ const PostEditPage: React.FC = () => {
       content: "",
     },
     validate: {
-      title: (value) => value.length < 3 && "Title must be at least 3 characters",
-      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+      title: (value) =>
+        value.length < 3 && "Title must be at least 3 characters",
+      content: (value) =>
+        value.length < 10 && "Content must be at least 10 characters",
     },
   });
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
         <Textarea
           label="Content"
           placeholder="Content"
@@ -400,15 +458,23 @@ const PostCreatePage: React.FC = () => {
       content: "",
     },
     validate: {
-      title: (value) => value.length < 3 && "Title must be at least 3 characters",
-      content: (value) => value.length < 10 && "Content must be at least 10 characters",
+      title: (value) =>
+        value.length < 3 && "Title must be at least 3 characters",
+      content: (value) =>
+        value.length < 10 && "Content must be at least 10 characters",
     },
   });
 
   return (
     <Create saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Title" placeholder="Title" withAsterisk {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          withAsterisk
+          {...getInputProps("title")}
+        />
         <Textarea
           label="Content"
           placeholder="Content"
@@ -1057,8 +1123,18 @@ const UserCreate: React.FC = () => {
   return (
     <Create saveButtonProps={saveButtonProps}>
       <form>
-        <TextInput mt={8} label="Name" placeholder="Name" {...getInputProps("name")} />
-        <TextInput mt={8} label="Surname" placeholder="Surname" {...getInputProps("surname")} />
+        <TextInput
+          mt={8}
+          label="Name"
+          placeholder="Name"
+          {...getInputProps("name")}
+        />
+        <TextInput
+          mt={8}
+          label="Surname"
+          placeholder="Surname"
+          {...getInputProps("surname")}
+        />
       </form>
     </Create>
   );

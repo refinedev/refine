@@ -33,7 +33,10 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import OktaAuth from "@okta/okta-auth-js";
 
 import { Authenticated, AuthPage, Refine, WelcomePage } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+  CatchAllNavigate,
+  NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { createAuthProvider, OktaCallback } from "@refinedev-ee/okta";
 
 const oktaAuth = new OktaAuth({
@@ -61,7 +64,10 @@ export const App = () => {
         <Routes>
           <Route
             element={
-              <Authenticated key="authenticated-inner" fallback={<CatchAllNavigate to="/login" />}>
+              <Authenticated
+                key="authenticated-inner"
+                fallback={<CatchAllNavigate to="/login" />}
+              >
                 <Outlet />
               </Authenticated>
             }
@@ -75,9 +81,21 @@ export const App = () => {
               </Authenticated>
             }
           >
-            <Route path="/login" element={<AuthPage type="login" hideForm providers={[{ name: "Okta" }]} />} />
+            <Route
+              path="/login"
+              element={
+                <AuthPage
+                  type="login"
+                  hideForm
+                  providers={[{ name: "Okta" }]}
+                />
+              }
+            />
             {/* We're mounting `<OktaCallback />` at `/login/callback` route to complete our authentication process. */}
-            <Route path="/login/callback" element={<OktaCallback oktaAuth={oktaAuth} />} />
+            <Route
+              path="/login/callback"
+              element={<OktaCallback oktaAuth={oktaAuth} />}
+            />
           </Route>
         </Routes>
       </Refine>

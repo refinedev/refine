@@ -619,7 +619,9 @@ const List = () => {
 
     // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
     // We use flatMap for better type support.
-    const logicalFilters = filters.flatMap((item) => ("field" in item ? item : []));
+    const logicalFilters = filters.flatMap((item) =>
+      "field" in item ? item : [],
+    );
 
     return tableProps.dataSource.filter((item) => {
       return logicalFilters.some((filter) => {

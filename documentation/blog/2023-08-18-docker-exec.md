@@ -14,7 +14,6 @@ Docker has evolved into a critical tool in the modern industry, simplifying soft
 
 Docker provides the `docker exec` command to launch applications in already running containers. It enables you to launch a session within the container's default directory. When the container is restarted, sessions created with the exec command are not resumed. Docker exec is a command that allows any provided command to be executed within a Docker container. This implies that the inputs supplied to it will be interpreted as commands to be executed within the container. It improves application availability, performance and efficiency by enabling real-time updates and continuous monitoring of containers.
 
-
 Steps we'll cover in this guide:
 
 - [Understanding Docker Exec Command](#3-understanding-docker-exec-command)

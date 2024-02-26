@@ -160,7 +160,13 @@ Now, we'll create a new folder named `pages/posts` under `/src`. Under that fold
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useDataGrid, DataGrid, GridColumns, DateField, List } from "@refinedev/mui";
+import {
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  DateField,
+  List,
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
@@ -367,7 +373,13 @@ First, we'll create PostCreate page to create new records.
 
 ```tsx title="src/pages/posts/create"
 import { HttpError } from "@refinedev/core";
-import { Box, TextField, Autocomplete, useAutocomplete, Create } from "@refinedev/mui";
+import {
+  Box,
+  TextField,
+  Autocomplete,
+  useAutocomplete,
+  Create,
+} from "@refinedev/mui";
 import { useForm, Controller } from "@refinedev/react-hook-form";
 
 import { IPost, ICategory } from "interfaces";
@@ -387,7 +399,11 @@ export const PostCreate: React.FC = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("title", { required: "Title is required" })}
           error={!!errors?.title}
@@ -415,7 +431,8 @@ export const PostCreate: React.FC = () => {
                 return item.title ? item.title : "";
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField

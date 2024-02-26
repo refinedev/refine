@@ -8,7 +8,14 @@ import React from "react";
 import { useInfiniteList } from "@refinedev/core";
 
 const PostList = () => {
-  const { data, isError, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteList({
+  const {
+    data,
+    isError,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteList({
     resource: "categories",
     pagination: {
       pageSize: 4,

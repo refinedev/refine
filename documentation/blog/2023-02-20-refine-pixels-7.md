@@ -255,7 +255,14 @@ In the **Pixels** app, `pixels` are created by the `onSubmit()` event handler de
 
 ```tsx title="pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+  useCreate,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+  useParsed,
+  useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -316,7 +323,11 @@ export const CanvasShow: React.FC = () => {
     <div className="container">
       <div className="paper">
         <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+          <Button
+            type="text"
+            onClick={() => list("canvases")}
+            style={{ textTransform: "uppercase" }}
+          >
             <LeftOutlined />
             Back
           </Button>
@@ -421,13 +432,19 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
       dataSource={data}
       renderItem={(item: any) => (
         <List.Item>
-          <List.Item.Meta avatar={<Avatar src={item?.author?.user_metadata?.avatar_url} size={20} />} />
+          <List.Item.Meta
+            avatar={
+              <Avatar src={item?.author?.user_metadata?.avatar_url} size={20} />
+            }
+          />
           <Typography.Text style={{ fontSize: "12px" }}>
             <strong>{item?.author?.user_metadata?.email}</strong>
             {` ${item.action}d a pixel on canvas: `}
             <strong>{`${item?.meta?.canvas?.name} `}</strong>
             <span style={{ fontSize: "10px", color: "#9c9c9c" }}>
-              {`${formattedDate(item.created_at)} - ${timeFromNow(item.created_at)}`}
+              {`${formattedDate(item.created_at)} - ${timeFromNow(
+                item.created_at,
+              )}`}
             </span>
           </Typography.Text>
         </List.Item>

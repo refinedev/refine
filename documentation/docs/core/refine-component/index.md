@@ -814,7 +814,9 @@ The app title can be set by passing the `Title` property.
 
 ```tsx title="App.tsx"
 // highlight-start
-const CustomTitle = ({ collapsed }) => <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>;
+const CustomTitle = ({ collapsed }) => (
+  <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>
+);
 // highlight-end
 
 const App = () => (

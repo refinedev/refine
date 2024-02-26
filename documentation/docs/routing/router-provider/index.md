@@ -122,7 +122,14 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/remix-router";
 
