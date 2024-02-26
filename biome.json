@@ -37,10 +37,20 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "all": false,
         "useButtonType": "off",
         "useHtmlLang": "off",
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "useAltText": "off",
+        "noNoninteractiveElementToInteractiveRole": "off",
+        "useValidAnchor": "off",
+        "noBlankTarget": "off",
+        "useIframeTitle": "off",
+        "noAutofocus": "off",
+        "noAriaHiddenOnFocusable": "off",
+        "noNoninteractiveTabindex": "off",
+        "noPositiveTabindex": "off",
+        "useKeyWithMouseEvents": "off"
       },
       "complexity": {
         "noForEach": "off",
@@ -68,6 +78,9 @@
         "noAccumulatingSpread": "off",
         "noDelete": "off"
       },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
       "style": {
         "useTemplate": "off",
         "noUnusedTemplateLiteral": "off",
@@ -79,9 +92,6 @@
         "useDefaultParameterLast": "off",
         "useConst": "off",
         "noCommaOperator": "off"
-      },
-      "security": {
-        "noDangerouslySetInnerHtml": "off"
       },
       "suspicious": {
         "noExplicitAny": "off",
