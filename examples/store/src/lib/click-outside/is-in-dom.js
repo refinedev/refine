@@ -1,3 +1,3 @@
 export default function isInDom(obj) {
-    return Boolean(obj.closest("body"));
+  return Boolean(obj.closest("body"));
 }

@@ -10,79 +10,77 @@ import { classNames } from "primereact/utils";
 import { ICategory } from "../../interfaces";
 
 export const CategoryEdit = () => {
-    const goBack = useBack();
+  const goBack = useBack();
 
-    const {
-        refineCore: { onFinish, formLoading, queryResult },
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<ICategory, HttpError, ICategory>({
-        defaultValues: {
-            title: "",
-        },
-    });
+  const {
+    refineCore: { onFinish, formLoading, queryResult },
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ICategory, HttpError, ICategory>({
+    defaultValues: {
+      title: "",
+    },
+  });
 
-    const getFormErrorMessage = (name: keyof ICategory) => {
-        return errors[name] ? (
-            <small className="p-error">{errors[name]?.message}</small>
-        ) : (
-            <small className="p-error">&nbsp;</small>
-        );
-    };
-
-    return (
-        <Card
-            className="shadow-1"
-            title={
-                <div className="flex justify-content-between align-items-center">
-                    <div className="flex align-items-center">
-                        <Button
-                            onClick={goBack}
-                            icon="pi pi-arrow-left"
-                            className="mr-1"
-                            text
-                            severity="secondary"
-                        />
-                        <span>Edit Category</span>
-                    </div>
-                    <Button
-                        label="Refresh"
-                        icon="pi pi-refresh"
-                        outlined
-                        onClick={() => queryResult?.refetch()}
-                    />
-                </div>
-            }
-        >
-            <form onSubmit={handleSubmit(onFinish)}>
-                <div className="p-fluid">
-                    <Controller
-                        name="title"
-                        control={control}
-                        rules={{ required: "Name is required." }}
-                        render={({ field, fieldState }) => (
-                            <div className="mb-1">
-                                <label htmlFor={field.name}>Name</label>
-                                <InputText
-                                    id={field.name}
-                                    value={field.value}
-                                    className={classNames("mb-1 mt-1", {
-                                        "p-invalid": fieldState.error,
-                                    })}
-                                    onChange={(e) =>
-                                        field.onChange(e.target.value)
-                                    }
-                                />
-                                {getFormErrorMessage(field.name)}
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className="flex justify-content-end">
-                    <Button label="Save" type="submit" loading={formLoading} />
-                </div>
-            </form>
-        </Card>
+  const getFormErrorMessage = (name: keyof ICategory) => {
+    return errors[name] ? (
+      <small className="p-error">{errors[name]?.message}</small>
+    ) : (
+      <small className="p-error">&nbsp;</small>
     );
+  };
+
+  return (
+    <Card
+      className="shadow-1"
+      title={
+        <div className="flex justify-content-between align-items-center">
+          <div className="flex align-items-center">
+            <Button
+              onClick={goBack}
+              icon="pi pi-arrow-left"
+              className="mr-1"
+              text
+              severity="secondary"
+            />
+            <span>Edit Category</span>
+          </div>
+          <Button
+            label="Refresh"
+            icon="pi pi-refresh"
+            outlined
+            onClick={() => queryResult?.refetch()}
+          />
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit(onFinish)}>
+        <div className="p-fluid">
+          <Controller
+            name="title"
+            control={control}
+            rules={{ required: "Name is required." }}
+            render={({ field, fieldState }) => (
+              <div className="mb-1">
+                <label htmlFor={field.name}>Name</label>
+                <InputText
+                  id={field.name}
+                  value={field.value}
+                  className={classNames("mb-1 mt-1", {
+                    "p-invalid": fieldState.error,
+                  })}
+                  onChange={(e) => field.onChange(e.target.value)}
+                />
+                {getFormErrorMessage(field.name)}
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-content-end">
+          <Button label="Save" type="submit" loading={formLoading} />
+        </div>
+      </form>
+    </Card>
+  );
 };

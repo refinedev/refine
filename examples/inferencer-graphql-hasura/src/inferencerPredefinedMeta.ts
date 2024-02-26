@@ -5,29 +5,29 @@
  * Also they will be included in the generated code, making them easily editable after you generate the boilerplate code for your resource.
  */
 export const inferencerPredefinedMeta = {
-    blog_posts: {
-        getList: {
-            fields: [
-                "id",
-                "title",
-                {
-                    category: ["id", "title"],
-                },
-                "category_id",
-                "content",
-                "created_at",
-            ],
+  blog_posts: {
+    getList: {
+      fields: [
+        "id",
+        "title",
+        {
+          category: ["id", "title"],
         },
-        getOne: {
-            fields: ["id", "title", "content", "category_id"],
-        },
+        "category_id",
+        "content",
+        "created_at",
+      ],
     },
-    categories: {
-        getList: {
-            fields: ["id", "title", "created_at"],
-        },
-        default: {
-            fields: ["id", "title"],
-        },
+    getOne: {
+      fields: ["id", "title", "content", "category_id"],
     },
+  },
+  categories: {
+    getList: {
+      fields: ["id", "title", "created_at"],
+    },
+    default: {
+      fields: ["id", "title"],
+    },
+  },
 };

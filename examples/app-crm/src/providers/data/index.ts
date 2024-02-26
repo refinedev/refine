@@ -1,6 +1,6 @@
 import graphqlDataProvider, {
-    GraphQLClient,
-    liveProvider as graphqlLiveProvider,
+  GraphQLClient,
+  liveProvider as graphqlLiveProvider,
 } from "@refinedev/nestjs-query";
 
 import { createClient } from "graphql-ws";
@@ -12,36 +12,34 @@ export const API_URL = API_BASE_URL + "/graphql";
 export const WS_URL = "wss://api.crm.refine.dev/graphql";
 
 export const client = new GraphQLClient(API_URL, {
-    fetch: async (url: string, options: any) => {
-        try {
-            const response = await axiosInstance.request({
-                data: options.body,
-                url,
-                ...options,
-            });
+  fetch: async (url: string, options: any) => {
+    try {
+      const response = await axiosInstance.request({
+        data: options.body,
+        url,
+        ...options,
+      });
 
-            return { ...response, data: response.data };
-        } catch (error: any) {
-            const messages = error
-                ?.map((error: any) => error?.message)
-                ?.join("");
-            const code = error?.[0]?.extensions?.code;
+      return { ...response, data: response.data };
+    } catch (error: any) {
+      const messages = error?.map((error: any) => error?.message)?.join("");
+      const code = error?.[0]?.extensions?.code;
 
-            return Promise.reject({
-                message: messages || JSON.stringify(error),
-                statusCode: code || 500,
-            });
-        }
-    },
+      return Promise.reject({
+        message: messages || JSON.stringify(error),
+        statusCode: code || 500,
+      });
+    }
+  },
 });
 
 export const wsClient = createClient({
-    url: WS_URL,
-    connectionParams: () => ({
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-    }),
+  url: WS_URL,
+  connectionParams: () => ({
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+  }),
 });
 
 export const dataProvider = graphqlDataProvider(client);

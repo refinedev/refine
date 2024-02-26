@@ -1,5 +1,5 @@
 export { ActionTypes } from "./actionTypes";
 export {
-    UndoableQueueContextProvider,
-    UndoableQueueContext,
+  UndoableQueueContextProvider,
+  UndoableQueueContext,
 } from "./undoableQueueContext";

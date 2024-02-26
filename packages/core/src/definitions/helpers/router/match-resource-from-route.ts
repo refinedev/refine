@@ -10,28 +10,28 @@ import { pickMatchedRoute } from "./pick-matched-route";
  * - It will return the most eligible resource and action
  */
 export const matchResourceFromRoute = (
-    route: string,
-    resources: IResourceItem[],
+  route: string,
+  resources: IResourceItem[],
 ): {
-    found: boolean;
-    resource?: IResourceItem;
-    action?: Action;
-    matchedRoute?: string;
+  found: boolean;
+  resource?: IResourceItem;
+  action?: Action;
+  matchedRoute?: string;
 } => {
-    const allActionRoutes = resources.flatMap((resource) => {
-        return getActionRoutesFromResource(resource, resources);
-    });
+  const allActionRoutes = resources.flatMap((resource) => {
+    return getActionRoutesFromResource(resource, resources);
+  });
 
-    const allFound = allActionRoutes.filter((actionRoute) => {
-        return checkBySegments(route, actionRoute.route);
-    });
+  const allFound = allActionRoutes.filter((actionRoute) => {
+    return checkBySegments(route, actionRoute.route);
+  });
 
-    const mostEligible = pickMatchedRoute(allFound);
+  const mostEligible = pickMatchedRoute(allFound);
 
-    return {
-        found: !!mostEligible,
-        resource: mostEligible?.resource,
-        action: mostEligible?.action,
-        matchedRoute: mostEligible?.route,
-    };
+  return {
+    found: !!mostEligible,
+    resource: mostEligible?.resource,
+    action: mostEligible?.action,
+    matchedRoute: mostEligible?.route,
+  };
 };

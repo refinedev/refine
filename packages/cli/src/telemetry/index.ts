@@ -7,45 +7,45 @@ import { getProjectType } from "@utils/project";
 import fetch from "node-fetch";
 
 interface TelemetryData {
-    nodeEnv?: NODE_ENV;
-    nodeVersion: string;
-    os: string;
-    osVersion: string;
-    command: string;
-    packages: {
-        name: string;
-        version: string;
-    }[];
-    projectFramework: ProjectTypes;
+  nodeEnv?: NODE_ENV;
+  nodeVersion: string;
+  os: string;
+  osVersion: string;
+  command: string;
+  packages: {
+    name: string;
+    version: string;
+  }[];
+  projectFramework: ProjectTypes;
 }
 
 export const getTelemetryData = async (): Promise<TelemetryData> => {
-    const os = await getOS();
+  const os = await getOS();
 
-    const data = {
-        nodeEnv: ENV.NODE_ENV,
-        nodeVersion: process.version,
-        os: os.name,
-        osVersion: os.version,
-        command: process.argv[2],
-        packages: (await getInstalledRefinePackages()) || [],
-        projectFramework: getProjectType(),
-        projectId: getRefineProjectId(),
-    };
+  const data = {
+    nodeEnv: ENV.NODE_ENV,
+    nodeVersion: process.version,
+    os: os.name,
+    osVersion: os.version,
+    command: process.argv[2],
+    packages: (await getInstalledRefinePackages()) || [],
+    projectFramework: getProjectType(),
+    projectId: getRefineProjectId(),
+  };
 
-    return data;
+  return data;
 };
 
 export const telemetryHook = async () => {
-    if (ENV.REFINE_NO_TELEMETRY === "true") return;
+  if (ENV.REFINE_NO_TELEMETRY === "true") return;
 
-    try {
-        const data = await getTelemetryData();
+  try {
+    const data = await getTelemetryData();
 
-        await fetch("https://telemetry.refine.dev/cli", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: { "Content-Type": "application/json" },
-        });
-    } catch (error) {}
+    await fetch("https://telemetry.refine.dev/cli", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {}
 };

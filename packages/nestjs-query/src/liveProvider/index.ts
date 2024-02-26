@@ -7,69 +7,69 @@ import { generateSubscription } from "../utils";
 type SubscriptionAction = "created" | "updated" | "deleted";
 
 export const liveProvider = (client: Client): LiveProvider => {
-    const subscribeToResource = (
-        client: Client,
-        callback: Function,
-        params: any,
-        meta: any,
-        action: SubscriptionAction,
-        resource: string,
-        unsubscribes: Function[],
-    ) => {
-        const unsubscribe = generateSubscription(
-            client,
-            { callback, params, meta },
-            action,
+  const subscribeToResource = (
+    client: Client,
+    callback: Function,
+    params: any,
+    meta: any,
+    action: SubscriptionAction,
+    resource: string,
+    unsubscribes: Function[],
+  ) => {
+    const unsubscribe = generateSubscription(
+      client,
+      { callback, params, meta },
+      action,
+    );
+    unsubscribes.push(unsubscribe);
+  };
+
+  return {
+    subscribe({ callback, params, meta }) {
+      const { resource, subscriptionType } = params ?? {};
+
+      if (!meta || !subscriptionType || !resource) {
+        throw new Error(
+          "[useSubscription]: `meta`, `subscriptionType` and `resource` are required in `params` for graphql subscriptions",
         );
-        unsubscribes.push(unsubscribe);
-    };
+      }
 
-    return {
-        subscribe({ callback, params, meta }) {
-            const { resource, subscriptionType } = params ?? {};
+      const unsubscribes: any[] = [];
 
-            if (!meta || !subscriptionType || !resource) {
-                throw new Error(
-                    "[useSubscription]: `meta`, `subscriptionType` and `resource` are required in `params` for graphql subscriptions",
-                );
-            }
+      if (params?.subscriptionType === "useList") {
+        ["created", "updated", "deleted"].forEach((action) =>
+          subscribeToResource(
+            client,
+            callback,
+            params,
+            meta,
+            action as SubscriptionAction,
+            resource,
+            unsubscribes,
+          ),
+        );
+      }
 
-            const unsubscribes: any[] = [];
+      if (params?.subscriptionType === "useOne") {
+        subscribeToResource(
+          client,
+          callback,
+          params,
+          meta,
+          "updated",
+          resource,
+          unsubscribes,
+        );
+      }
 
-            if (params?.subscriptionType === "useList") {
-                ["created", "updated", "deleted"].forEach((action) =>
-                    subscribeToResource(
-                        client,
-                        callback,
-                        params,
-                        meta,
-                        action as SubscriptionAction,
-                        resource,
-                        unsubscribes,
-                    ),
-                );
-            }
+      const unsubscribe = () => {
+        unsubscribes.forEach((unsubscribe) => unsubscribe());
+      };
 
-            if (params?.subscriptionType === "useOne") {
-                subscribeToResource(
-                    client,
-                    callback,
-                    params,
-                    meta,
-                    "updated",
-                    resource,
-                    unsubscribes,
-                );
-            }
-
-            const unsubscribe = () => {
-                unsubscribes.forEach((unsubscribe) => unsubscribe());
-            };
-
-            return unsubscribe;
-        },
-        unsubscribe(unsubscribe) {
-            unsubscribe();
-        },
-    };
+      return unsubscribe;
+    },
+    unsubscribe(unsubscribe) {
+      unsubscribe();
+    },
+  };
 };

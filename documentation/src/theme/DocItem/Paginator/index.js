@@ -10,15 +10,15 @@ import { useCurrentTutorial } from "../../../hooks/use-current-tutorial";
  */
 
 export default function DocItemPaginator() {
-    const { metadata } = useDoc();
-    const tutorialData = useCurrentTutorial();
+  const { metadata } = useDoc();
+  const tutorialData = useCurrentTutorial();
 
-    const isTutorial = !!tutorialData;
+  const isTutorial = !!tutorialData;
 
-    const previous = isTutorial
-        ? tutorialData.pagination.previous
-        : metadata.previous;
-    const next = isTutorial ? tutorialData.pagination.next : metadata.next;
+  const previous = isTutorial
+    ? tutorialData.pagination.previous
+    : metadata.previous;
+  const next = isTutorial ? tutorialData.pagination.next : metadata.next;
 
-    return <DocPaginator previous={previous} next={next} />;
+  return <DocPaginator previous={previous} next={next} />;
 }

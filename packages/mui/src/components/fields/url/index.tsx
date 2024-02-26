@@ -12,15 +12,15 @@ import { UrlFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
-    children,
-    value,
-    ...rest
+  children,
+  value,
+  ...rest
 }) => {
-    return (
-        <Typography variant="body2">
-            <Link href={value} {...rest}>
-                {children ?? value}
-            </Link>
-        </Typography>
-    );
+  return (
+    <Typography variant="body2">
+      <Link href={value} {...rest}>
+        {children ?? value}
+      </Link>
+    </Typography>
+  );
 };

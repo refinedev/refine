@@ -1,21 +1,21 @@
 import {
-    GitHubBanner,
-    Refine,
-    AuthProvider,
-    Authenticated,
+  GitHubBanner,
+  Refine,
+  AuthProvider,
+  Authenticated,
 } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  CatchAllNavigate,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
@@ -30,170 +30,154 @@ import { Login } from "../src/pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
+  const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
 
-    if (isLoading) {
-        return <span>loading...</span>;
-    }
+  if (isLoading) {
+    return <span>loading...</span>;
+  }
 
-    const authProvider: AuthProvider = {
-        login: async () => {
-            return {
-                success: true,
-            };
-        },
-        logout: async () => {
-            logout({ returnTo: window.location.origin });
-            return {
-                success: true,
-            };
-        },
-        onError: async (error) => {
-            if (error.response?.status === 401) {
-                return {
-                    logout: true,
-                };
-            }
+  const authProvider: AuthProvider = {
+    login: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      logout({ returnTo: window.location.origin });
+      return {
+        success: true,
+      };
+    },
+    onError: async (error) => {
+      if (error.response?.status === 401) {
+        return {
+          logout: true,
+        };
+      }
 
-            return { error };
-        },
-        check: async () => {
-            try {
-                const token = await getIdTokenClaims();
-                if (token) {
-                    axios.defaults.headers.common = {
-                        Authorization: `Bearer ${token.__raw}`,
-                    };
-                    return {
-                        authenticated: true,
-                    };
-                } else {
-                    return {
-                        authenticated: false,
-                        error: {
-                            message: "Check failed",
-                            name: "Token not found",
-                        },
-                        redirectTo: "/login",
-                        logout: true,
-                    };
+      return { error };
+    },
+    check: async () => {
+      try {
+        const token = await getIdTokenClaims();
+        if (token) {
+          axios.defaults.headers.common = {
+            Authorization: `Bearer ${token.__raw}`,
+          };
+          return {
+            authenticated: true,
+          };
+        } else {
+          return {
+            authenticated: false,
+            error: {
+              message: "Check failed",
+              name: "Token not found",
+            },
+            redirectTo: "/login",
+            logout: true,
+          };
+        }
+      } catch (error: any) {
+        return {
+          authenticated: false,
+          error: new Error(error),
+          redirectTo: "/login",
+          logout: true,
+        };
+      }
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
+      if (user) {
+        return {
+          ...user,
+          avatar: user.picture,
+        };
+      }
+      return null;
+    },
+  };
+
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
+          <Refine
+            authProvider={authProvider}
+            dataProvider={dataProvider(API_URL, axios)}
+            routerProvider={routerProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+                create: "/posts/create",
+                edit: "/posts/edit/:id",
+              },
+            ]}
+            notificationProvider={useNotificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
                 }
-            } catch (error: any) {
-                return {
-                    authenticated: false,
-                    error: new Error(error),
-                    redirectTo: "/login",
-                    logout: true,
-                };
-            }
-        },
-        getPermissions: async () => null,
-        getIdentity: async () => {
-            if (user) {
-                return {
-                    ...user,
-                    avatar: user.picture,
-                };
-            }
-            return null;
-        },
-    };
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <AntdApp>
-                    <Refine
-                        authProvider={authProvider}
-                        dataProvider={dataProvider(API_URL, axios)}
-                        routerProvider={routerProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        notificationProvider={useNotificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="authenticated-routes"
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                  <Route path="show/:id" element={<PostShow />} />
+                </Route>
+              </Route>
 
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<PostShow />}
-                                    />
-                                </Route>
-                            </Route>
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="auth-pages"
-                                        fallback={<Outlet />}
-                                    >
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<Login />} />
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated key="catch-all">
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </AntdApp>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route
+                element={
+                  <Authenticated key="catch-all">
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;

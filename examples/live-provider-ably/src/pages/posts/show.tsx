@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
 import {
-    Show,
-    MarkdownField,
-    DeleteButton,
-    ListButton,
-    EditButton,
-    RefreshButton,
+  Show,
+  MarkdownField,
+  DeleteButton,
+  ListButton,
+  EditButton,
+  RefreshButton,
 } from "@refinedev/antd";
 import { Typography, Alert } from "antd";
 
@@ -15,87 +15,83 @@ import { IPost, ICategory } from "../../interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const [deprecated, setDeprecated] = useState<
-        "deleted" | "updated" | undefined
-    >();
+  const [deprecated, setDeprecated] = useState<
+    "deleted" | "updated" | undefined
+  >();
 
-    const { queryResult } = useShow<IPost>({
-        liveMode: "manual",
-        onLiveEvent: (event) => {
-            if (event.type === "deleted" || event.type === "updated") {
-                setDeprecated(event.type);
-            }
-        },
+  const { queryResult } = useShow<IPost>({
+    liveMode: "manual",
+    onLiveEvent: (event) => {
+      if (event.type === "deleted" || event.type === "updated") {
+        setDeprecated(event.type);
+      }
+    },
+  });
+
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
+
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useOne<ICategory>({
+      resource: "categories",
+      id: record?.category.id || "",
+      queryOptions: {
+        enabled: !!record,
+      },
     });
 
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const handleRefresh = () => {
+    queryResult?.refetch();
+    setDeprecated(undefined);
+  };
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record?.category.id || "",
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
+  return (
+    <Show
+      isLoading={isLoading}
+      headerProps={{
+        extra: (
+          <>
+            <ListButton />
+            <EditButton />
+            <DeleteButton />
+            <RefreshButton onClick={handleRefresh} />
+          </>
+        ),
+      }}
+    >
+      {deprecated === "deleted" && (
+        <Alert
+          message="This post is deleted."
+          type="warning"
+          style={{
+            marginBottom: 20,
+          }}
+          action={<ListButton size="small" />}
+        />
+      )}
 
-    const handleRefresh = () => {
-        queryResult?.refetch();
-        setDeprecated(undefined);
-    };
+      {deprecated === "updated" && (
+        <Alert
+          message="This post is updated. Refresh to see changes."
+          type="warning"
+          style={{
+            marginBottom: 20,
+          }}
+          action={<RefreshButton size="small" onClick={handleRefresh} />}
+        />
+      )}
 
-    return (
-        <Show
-            isLoading={isLoading}
-            headerProps={{
-                extra: (
-                    <>
-                        <ListButton />
-                        <EditButton />
-                        <DeleteButton />
-                        <RefreshButton onClick={handleRefresh} />
-                    </>
-                ),
-            }}
-        >
-            {deprecated === "deleted" && (
-                <Alert
-                    message="This post is deleted."
-                    type="warning"
-                    style={{
-                        marginBottom: 20,
-                    }}
-                    action={<ListButton size="small" />}
-                />
-            )}
+      <Title level={5}>Id</Title>
+      <Text>{record?.id}</Text>
 
-            {deprecated === "updated" && (
-                <Alert
-                    message="This post is updated. Refresh to see changes."
-                    type="warning"
-                    style={{
-                        marginBottom: 20,
-                    }}
-                    action={
-                        <RefreshButton size="small" onClick={handleRefresh} />
-                    }
-                />
-            )}
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
 
-            <Title level={5}>Id</Title>
-            <Text>{record?.id}</Text>
+      <Title level={5}>Category</Title>
+      <Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</Text>
 
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
-
-            <Title level={5}>Category</Title>
-            <Text>
-                {categoryIsLoading ? "Loading..." : categoryData?.data.title}
-            </Text>
-
-            <Title level={5}>Content</Title>
-            <MarkdownField value={record?.content} />
-        </Show>
-    );
+      <Title level={5}>Content</Title>
+      <MarkdownField value={record?.content} />
+    </Show>
+  );
 };

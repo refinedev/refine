@@ -2,29 +2,28 @@ import { Pagination } from "../../../interfaces";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 
 type HandlePaginationParamsProps = {
-    hasPagination?: boolean;
-    pagination?: Pagination;
-    configPagination?: Pagination;
+  hasPagination?: boolean;
+  pagination?: Pagination;
+  configPagination?: Pagination;
 };
 
 export const handlePaginationParams = ({
-    hasPagination,
-    pagination,
-    configPagination,
+  hasPagination,
+  pagination,
+  configPagination,
 }: HandlePaginationParamsProps = {}): Required<Pagination> => {
-    const hasPaginationString = hasPagination === false ? "off" : "server";
-    const mode = pagination?.mode ?? hasPaginationString;
+  const hasPaginationString = hasPagination === false ? "off" : "server";
+  const mode = pagination?.mode ?? hasPaginationString;
 
-    const current =
-        pickNotDeprecated(pagination?.current, configPagination?.current) ?? 1;
+  const current =
+    pickNotDeprecated(pagination?.current, configPagination?.current) ?? 1;
 
-    const pageSize =
-        pickNotDeprecated(pagination?.pageSize, configPagination?.pageSize) ??
-        10;
+  const pageSize =
+    pickNotDeprecated(pagination?.pageSize, configPagination?.pageSize) ?? 10;
 
-    return {
-        current,
-        pageSize,
-        mode,
-    };
+  return {
+    current,
+    pageSize,
+    mode,
+  };
 };

@@ -31,33 +31,33 @@ import { IResourceItem } from "./resource";
 import { Action, BaseKey } from "..";
 
 export type GoConfig = {
-    to?: string;
-    query?: Record<string, unknown>;
-    hash?: string;
-    options?: {
-        keepQuery?: boolean;
-        keepHash?: boolean;
-    };
-    type?: "push" | "replace" | "path";
+  to?: string;
+  query?: Record<string, unknown>;
+  hash?: string;
+  options?: {
+    keepQuery?: boolean;
+    keepHash?: boolean;
+  };
+  type?: "push" | "replace" | "path";
 };
 
 export type ParsedParams<
-    TParams extends Record<string, any> = Record<string, any>,
+  TParams extends Record<string, any> = Record<string, any>,
 > = {
-    filters?: CrudFilters;
-    sorters?: CrudSorting;
-    current?: number;
-    pageSize?: number;
+  filters?: CrudFilters;
+  sorters?: CrudSorting;
+  current?: number;
+  pageSize?: number;
 } & TParams;
 
 export type ParseResponse<
-    TParams extends Record<string, any> = Record<string, any>,
+  TParams extends Record<string, any> = Record<string, any>,
 > = {
-    params?: ParsedParams<TParams>;
-    resource?: IResourceItem;
-    id?: BaseKey;
-    action?: Action;
-    pathname?: string;
+  params?: ParsedParams<TParams>;
+  resource?: IResourceItem;
+  id?: BaseKey;
+  action?: Action;
+  pathname?: string;
 };
 
 export type GoFunction = (config: GoConfig) => void | string;
@@ -65,14 +65,14 @@ export type GoFunction = (config: GoConfig) => void | string;
 export type BackFunction = () => void;
 
 export type ParseFunction<
-    TParams extends Record<string, any> = Record<string, any>,
+  TParams extends Record<string, any> = Record<string, any>,
 > = () => ParseResponse<TParams>;
 
 export type RouterBindings = {
-    go?: () => GoFunction;
-    back?: () => BackFunction;
-    parse?: () => ParseFunction;
-    Link?: React.ComponentType<
-        React.PropsWithChildren<{ to: string; [prop: string]: any }>
-    >;
+  go?: () => GoFunction;
+  back?: () => BackFunction;
+  parse?: () => ParseFunction;
+  Link?: React.ComponentType<
+    React.PropsWithChildren<{ to: string; [prop: string]: any }>
+  >;
 };

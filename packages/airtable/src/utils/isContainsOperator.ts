@@ -1,9 +1,9 @@
 export const isContainssOperator = (
-    operator: any,
+  operator: any,
 ): operator is "containss" | "ncontainss" =>
-    ["containss", "ncontainss"].includes(operator);
+  ["containss", "ncontainss"].includes(operator);
 
 export const isContainsOperator = (
-    operator: any,
+  operator: any,
 ): operator is "contains" | "ncontains" =>
-    ["contains", "ncontains"].includes(operator);
+  ["contains", "ncontains"].includes(operator);

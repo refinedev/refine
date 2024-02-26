@@ -9,62 +9,58 @@ import { EnvironmentOutlined, UnorderedListOutlined } from "@ant-design/icons";
 type View = "list" | "map";
 
 export const StoreList = () => {
-    const [view, setView] = useState<View>(
-        (localStorage.getItem("store-view") as View) || "list",
-    );
+  const [view, setView] = useState<View>(
+    (localStorage.getItem("store-view") as View) || "list",
+  );
 
-    const handleViewChange = (value: View) => {
-        setView(value);
-        localStorage.setItem("store-view", value);
-    };
+  const handleViewChange = (value: View) => {
+    setView(value);
+    localStorage.setItem("store-view", value);
+  };
 
-    const t = useTranslate();
+  const t = useTranslate();
 
-    return (
-        <>
-            <List
-                breadcrumb={false}
-                headerButtons={(props) => [
-                    <Segmented<View>
-                        key="view"
-                        size="large"
-                        value={view}
-                        style={{ marginRight: 24 }}
-                        options={[
-                            {
-                                label: "",
-                                value: "list",
-                                icon: <UnorderedListOutlined />,
-                            },
-                            {
-                                label: "",
-                                value: "map",
-                                icon: <EnvironmentOutlined />,
-                            },
-                        ]}
-                        onChange={handleViewChange}
-                    />,
-                    <CreateButton
-                        {...props.createButtonProps}
-                        key="create"
-                        size="large"
-                    >
-                        {t("stores.addNewStore")}
-                    </CreateButton>,
-                ]}
-            >
-                {view === "list" && <StoreListTable />}
-                {view === "map" && (
-                    <Flex
-                        style={{
-                            height: "calc(100dvh - 232px)",
-                            marginTop: "32px",
-                        }}
-                    >
-                        <AllStoresMap />
-                    </Flex>
-                )}
-            </List>
-        </>
-    );
+  return (
+    <>
+      <List
+        breadcrumb={false}
+        headerButtons={(props) => [
+          <Segmented<View>
+            key="view"
+            size="large"
+            value={view}
+            style={{ marginRight: 24 }}
+            options={[
+              {
+                label: "",
+                value: "list",
+                icon: <UnorderedListOutlined />,
+              },
+              {
+                label: "",
+                value: "map",
+                icon: <EnvironmentOutlined />,
+              },
+            ]}
+            onChange={handleViewChange}
+          />,
+          <CreateButton {...props.createButtonProps} key="create" size="large">
+            {t("stores.addNewStore")}
+          </CreateButton>,
+        ]}
+      >
+        {view === "list" && <StoreListTable />}
+        {view === "map" && (
+          <Flex
+            style={{
+              height: "calc(100dvh - 232px)",
+              marginTop: "32px",
+            }}
+          >
+            <AllStoresMap />
+          </Flex>
+        )}
+      </List>
+    </>
+  );
 };

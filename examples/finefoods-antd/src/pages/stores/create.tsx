@@ -5,17 +5,15 @@ import { LeftOutlined } from "@ant-design/icons";
 import { StoreForm } from "../../components";
 
 export const StoreCreate = () => {
-    const t = useTranslate();
+  const t = useTranslate();
 
-    return (
-        <>
-            <Flex>
-                <ListButton icon={<LeftOutlined />}>
-                    {t("stores.stores")}
-                </ListButton>
-            </Flex>
-            <Divider />
-            <StoreForm action="create" />
-        </>
-    );
+  return (
+    <>
+      <Flex>
+        <ListButton icon={<LeftOutlined />}>{t("stores.stores")}</ListButton>
+      </Flex>
+      <Divider />
+      <StoreForm action="create" />
+    </>
+  );
 };

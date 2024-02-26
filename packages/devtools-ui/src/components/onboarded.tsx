@@ -4,51 +4,47 @@ import { logoutUser } from "src/utils/auth";
 import { getMe } from "src/utils/me";
 
 export const Onboarded = ({
-    children,
-    fallback,
+  children,
+  fallback,
 }: {
-    children: React.ReactNode;
-    fallback: React.ReactNode;
+  children: React.ReactNode;
+  fallback: React.ReactNode;
 }) => {
-    const navigate = useNavigate();
-    const [onboarding, setOnboarding] = React.useState<
-        "loading" | "success" | "missing"
-    >("loading");
+  const navigate = useNavigate();
+  const [onboarding, setOnboarding] = React.useState<
+    "loading" | "success" | "missing"
+  >("loading");
 
-    const checkOnboarding = React.useCallback(async () => {
-        try {
-            const meResponse = await getMe();
-            if (
-                meResponse?.company &&
-                meResponse?.name &&
-                meResponse?.jobTitle
-            ) {
-                setOnboarding("success");
-            } else if (meResponse !== null) {
-                setOnboarding("missing");
-            } else {
-                logoutUser().then(() => {
-                    setTimeout(() => {
-                        navigate("/login");
-                    }, 100);
-                });
-            }
-        } catch (_error) {
-            setOnboarding("success");
-        }
-    }, []);
-
-    React.useEffect(() => {
-        checkOnboarding();
-    }, [checkOnboarding]);
-
-    if (onboarding === "missing") {
-        return <>{fallback}</>;
+  const checkOnboarding = React.useCallback(async () => {
+    try {
+      const meResponse = await getMe();
+      if (meResponse?.company && meResponse?.name && meResponse?.jobTitle) {
+        setOnboarding("success");
+      } else if (meResponse !== null) {
+        setOnboarding("missing");
+      } else {
+        logoutUser().then(() => {
+          setTimeout(() => {
+            navigate("/login");
+          }, 100);
+        });
+      }
+    } catch (_error) {
+      setOnboarding("success");
     }
+  }, []);
 
-    if (onboarding === "success") {
-        return <>{children}</>;
-    }
+  React.useEffect(() => {
+    checkOnboarding();
+  }, [checkOnboarding]);
 
-    return null;
+  if (onboarding === "missing") {
+    return <>{fallback}</>;
+  }
+
+  if (onboarding === "success") {
+    return <>{children}</>;
+  }
+
+  return null;
 };

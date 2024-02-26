@@ -1,74 +1,74 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-    useMutation,
-    UseMutationOptions,
-    UseMutationResult,
+  useMutation,
+  UseMutationOptions,
+  UseMutationResult,
 } from "@tanstack/react-query";
 
 import {
-    handleMultiple,
-    pickDataProvider,
-    pickNotDeprecated,
+  handleMultiple,
+  pickDataProvider,
+  pickNotDeprecated,
 } from "@definitions";
 import {
-    useDataProvider,
-    useHandleNotification,
-    useInvalidate,
-    useLog,
-    useMeta,
-    usePublish,
-    useRefineContext,
-    useResource,
-    useTranslate,
+  useDataProvider,
+  useHandleNotification,
+  useInvalidate,
+  useLog,
+  useMeta,
+  usePublish,
+  useRefineContext,
+  useResource,
+  useTranslate,
 } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
 import {
-    BaseRecord,
-    CreateManyResponse,
-    HttpError,
-    IQueryKeys,
-    MetaQuery,
-    SuccessErrorNotification,
+  BaseRecord,
+  CreateManyResponse,
+  HttpError,
+  IQueryKeys,
+  MetaQuery,
+  SuccessErrorNotification,
 } from "../../interfaces";
 import {
-    useLoadingOvertime,
-    UseLoadingOvertimeOptionsProps,
-    UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 type useCreateManyParams<TData, TError, TVariables> = {
-    resource: string;
-    values: TVariables[];
-    meta?: MetaQuery;
-    metaData?: MetaQuery;
-    dataProviderName?: string;
-    invalidates?: Array<keyof IQueryKeys>;
+  resource: string;
+  values: TVariables[];
+  meta?: MetaQuery;
+  metaData?: MetaQuery;
+  dataProviderName?: string;
+  invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification<CreateManyResponse<TData>, TError, TVariables[]>;
 
 export type UseCreateManyReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError = HttpError,
+  TVariables = {},
 > = UseMutationResult<
-    CreateManyResponse<TData>,
-    TError,
-    useCreateManyParams<TData, TError, TVariables>,
-    unknown
+  CreateManyResponse<TData>,
+  TError,
+  useCreateManyParams<TData, TError, TVariables>,
+  unknown
 >;
 
 export type UseCreateManyProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
 > = {
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            CreateManyResponse<TData>,
-            TError,
-            useCreateManyParams<TData, TError, TVariables>
-        >,
-        "mutationFn" | "onError" | "onSuccess"
-    >;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      CreateManyResponse<TData>,
+      TError,
+      useCreateManyParams<TData, TError, TVariables>
+    >,
+    "mutationFn" | "onError" | "onSuccess"
+  >;
 } & UseLoadingOvertimeOptionsProps;
 
 /**
@@ -84,201 +84,195 @@ export type UseCreateManyProps<
  *
  */
 export const useCreateMany = <
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
 >({
-    mutationOptions,
-    overtimeOptions,
+  mutationOptions,
+  overtimeOptions,
 }: UseCreateManyProps<TData, TError, TVariables> = {}): UseCreateManyReturnType<
-    TData,
-    TError,
-    TVariables
+  TData,
+  TError,
+  TVariables
 > &
-    UseLoadingOvertimeReturnType => {
-    const dataProvider = useDataProvider();
-    const { resources, select } = useResource();
-    const translate = useTranslate();
-    const publish = usePublish();
-    const handleNotification = useHandleNotification();
-    const invalidateStore = useInvalidate();
-    const { log } = useLog();
-    const getMeta = useMeta();
-    const {
-        options: { textTransformers },
-    } = useRefineContext();
-    const { keys, preferLegacyKeys } = useKeys();
+  UseLoadingOvertimeReturnType => {
+  const dataProvider = useDataProvider();
+  const { resources, select } = useResource();
+  const translate = useTranslate();
+  const publish = usePublish();
+  const handleNotification = useHandleNotification();
+  const invalidateStore = useInvalidate();
+  const { log } = useLog();
+  const getMeta = useMeta();
+  const {
+    options: { textTransformers },
+  } = useRefineContext();
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const mutation = useMutation<
-        CreateManyResponse<TData>,
-        TError,
-        useCreateManyParams<TData, TError, TVariables>
-    >({
-        mutationFn: ({
-            resource: resourceName,
-            values,
-            meta,
-            metaData,
-            dataProviderName,
-        }: useCreateManyParams<TData, TError, TVariables>) => {
-            const { resource, identifier } = select(resourceName);
+  const mutation = useMutation<
+    CreateManyResponse<TData>,
+    TError,
+    useCreateManyParams<TData, TError, TVariables>
+  >({
+    mutationFn: ({
+      resource: resourceName,
+      values,
+      meta,
+      metaData,
+      dataProviderName,
+    }: useCreateManyParams<TData, TError, TVariables>) => {
+      const { resource, identifier } = select(resourceName);
 
-            const combinedMeta = getMeta({
-                resource,
-                meta: pickNotDeprecated(meta, metaData),
-            });
+      const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+      });
 
-            const selectedDataProvider = dataProvider(
-                pickDataProvider(identifier, dataProviderName, resources),
-            );
+      const selectedDataProvider = dataProvider(
+        pickDataProvider(identifier, dataProviderName, resources),
+      );
 
-            if (selectedDataProvider.createMany) {
-                return selectedDataProvider.createMany<TData, TVariables>({
-                    resource: resource.name,
-                    variables: values,
-                    meta: combinedMeta,
-                    metaData: combinedMeta,
-                });
-            } else {
-                return handleMultiple(
-                    values.map((val) =>
-                        selectedDataProvider.create<TData, TVariables>({
-                            resource: resource.name,
-                            variables: val,
-                            meta: combinedMeta,
-                            metaData: combinedMeta,
-                        }),
-                    ),
-                );
-            }
+      if (selectedDataProvider.createMany) {
+        return selectedDataProvider.createMany<TData, TVariables>({
+          resource: resource.name,
+          variables: values,
+          meta: combinedMeta,
+          metaData: combinedMeta,
+        });
+      } else {
+        return handleMultiple(
+          values.map((val) =>
+            selectedDataProvider.create<TData, TVariables>({
+              resource: resource.name,
+              variables: val,
+              meta: combinedMeta,
+              metaData: combinedMeta,
+            }),
+          ),
+        );
+      }
+    },
+    onSuccess: (
+      response,
+      {
+        resource: resourceName,
+        successNotification,
+        dataProviderName: dataProviderNameFromProp,
+        invalidates = ["list", "many"],
+        values,
+        meta,
+        metaData,
+      },
+    ) => {
+      const { resource, identifier } = select(resourceName);
+      const resourcePlural = textTransformers.plural(identifier);
+
+      const dataProviderName = pickDataProvider(
+        identifier,
+        dataProviderNameFromProp,
+        resources,
+      );
+
+      const combinedMeta = getMeta({
+        resource,
+        meta: pickNotDeprecated(meta, metaData),
+      });
+
+      const notificationConfig =
+        typeof successNotification === "function"
+          ? successNotification(response, values, identifier)
+          : successNotification;
+
+      handleNotification(notificationConfig, {
+        key: `createMany-${identifier}-notification`,
+        message: translate(
+          "notifications.createSuccess",
+          {
+            resource: translate(`${identifier}.${identifier}`, identifier),
+          },
+          `Successfully created ${resourcePlural}`,
+        ),
+        description: translate("notifications.success", "Success"),
+        type: "success",
+      });
+
+      invalidateStore({
+        resource: identifier,
+        dataProviderName,
+        invalidates,
+      });
+
+      const ids = response?.data
+        .filter((item) => item?.id !== undefined)
+        .map((item) => item.id!);
+      publish?.({
+        channel: `resources/${resource.name}`,
+        type: "created",
+        payload: {
+          ids,
         },
-        onSuccess: (
-            response,
-            {
-                resource: resourceName,
-                successNotification,
-                dataProviderName: dataProviderNameFromProp,
-                invalidates = ["list", "many"],
-                values,
-                meta,
-                metaData,
-            },
-        ) => {
-            const { resource, identifier } = select(resourceName);
-            const resourcePlural = textTransformers.plural(identifier);
-
-            const dataProviderName = pickDataProvider(
-                identifier,
-                dataProviderNameFromProp,
-                resources,
-            );
-
-            const combinedMeta = getMeta({
-                resource,
-                meta: pickNotDeprecated(meta, metaData),
-            });
-
-            const notificationConfig =
-                typeof successNotification === "function"
-                    ? successNotification(response, values, identifier)
-                    : successNotification;
-
-            handleNotification(notificationConfig, {
-                key: `createMany-${identifier}-notification`,
-                message: translate(
-                    "notifications.createSuccess",
-                    {
-                        resource: translate(
-                            `${identifier}.${identifier}`,
-                            identifier,
-                        ),
-                    },
-                    `Successfully created ${resourcePlural}`,
-                ),
-                description: translate("notifications.success", "Success"),
-                type: "success",
-            });
-
-            invalidateStore({
-                resource: identifier,
-                dataProviderName,
-                invalidates,
-            });
-
-            const ids = response?.data
-                .filter((item) => item?.id !== undefined)
-                .map((item) => item.id!);
-            publish?.({
-                channel: `resources/${resource.name}`,
-                type: "created",
-                payload: {
-                    ids,
-                },
-                date: new Date(),
-                meta: {
-                    ...combinedMeta,
-                    dataProviderName,
-                },
-            });
-
-            const {
-                fields: _fields,
-                operation: _operation,
-                variables: _variables,
-                ...rest
-            } = combinedMeta || {};
-            log?.mutate({
-                action: "createMany",
-                resource: resource.name,
-                data: values,
-                meta: {
-                    dataProviderName,
-                    ids,
-                    ...rest,
-                },
-            });
-        },
-        onError: (
-            err: TError,
-            { resource: resourceName, errorNotification, values },
-        ) => {
-            const { identifier } = select(resourceName);
-
-            const notificationConfig =
-                typeof errorNotification === "function"
-                    ? errorNotification(err, values, identifier)
-                    : errorNotification;
-
-            handleNotification(notificationConfig, {
-                key: `createMany-${identifier}-notification`,
-                description: err.message,
-                message: translate(
-                    "notifications.createError",
-                    {
-                        resource: translate(
-                            `${identifier}.${identifier}`,
-                            identifier,
-                        ),
-                        statusCode: err.statusCode,
-                    },
-                    `There was an error creating ${identifier} (status code: ${err.statusCode}`,
-                ),
-                type: "error",
-            });
-        },
-        mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
-        ...mutationOptions,
+        date: new Date(),
         meta: {
-            ...mutationOptions?.meta,
-            ...getXRay("useCreateMany", preferLegacyKeys),
+          ...combinedMeta,
+          dataProviderName,
         },
-    });
+      });
 
-    const { elapsedTime } = useLoadingOvertime({
-        isLoading: mutation.isLoading,
-        interval: overtimeOptions?.interval,
-        onInterval: overtimeOptions?.onInterval,
-    });
+      const {
+        fields: _fields,
+        operation: _operation,
+        variables: _variables,
+        ...rest
+      } = combinedMeta || {};
+      log?.mutate({
+        action: "createMany",
+        resource: resource.name,
+        data: values,
+        meta: {
+          dataProviderName,
+          ids,
+          ...rest,
+        },
+      });
+    },
+    onError: (
+      err: TError,
+      { resource: resourceName, errorNotification, values },
+    ) => {
+      const { identifier } = select(resourceName);
 
-    return { ...mutation, overtime: { elapsedTime } };
+      const notificationConfig =
+        typeof errorNotification === "function"
+          ? errorNotification(err, values, identifier)
+          : errorNotification;
+
+      handleNotification(notificationConfig, {
+        key: `createMany-${identifier}-notification`,
+        description: err.message,
+        message: translate(
+          "notifications.createError",
+          {
+            resource: translate(`${identifier}.${identifier}`, identifier),
+            statusCode: err.statusCode,
+          },
+          `There was an error creating ${identifier} (status code: ${err.statusCode}`,
+        ),
+        type: "error",
+      });
+    },
+    mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useCreateMany", preferLegacyKeys),
+    },
+  });
+
+  const { elapsedTime } = useLoadingOvertime({
+    isLoading: mutation.isLoading,
+    interval: overtimeOptions?.interval,
+    onInterval: overtimeOptions?.onInterval,
+  });
+
+  return { ...mutation, overtime: { elapsedTime } };
 };

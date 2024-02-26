@@ -1,8 +1,8 @@
 {
-    "include": ["src", "types"],
-    "extends": "../../tsconfig.build.json",
-    "compilerOptions": {
-        "rootDir": "./src",
-        "baseUrl": "."
-    }
+  "include": ["src", "types"],
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "baseUrl": "."
+  }
 }

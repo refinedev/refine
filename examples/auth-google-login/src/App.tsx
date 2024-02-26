@@ -1,21 +1,21 @@
 import {
-    GitHubBanner,
-    Refine,
-    AuthProvider,
-    Authenticated,
+  GitHubBanner,
+  Refine,
+  AuthProvider,
+  Authenticated,
 } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  CatchAllNavigate,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import axios from "axios";
@@ -32,190 +32,174 @@ const axiosInstance = axios.create();
 const API_URL = "https://api.fake-rest.refine.dev";
 
 axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
-    if (config.headers) {
-        config.headers["Authorization"] = `Bearer ${token}`;
-    }
+  const token = localStorage.getItem("token");
+  if (config.headers) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
 
-    return config;
+  return config;
 });
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: async ({ credential }: CredentialResponse) => {
-            const profileObj = credential ? parseJwt(credential) : null;
+  const authProvider: AuthProvider = {
+    login: async ({ credential }: CredentialResponse) => {
+      const profileObj = credential ? parseJwt(credential) : null;
 
-            if (profileObj) {
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify({
-                        ...profileObj,
-                        avatar: profileObj.picture,
-                    }),
-                );
+      if (profileObj) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            ...profileObj,
+            avatar: profileObj.picture,
+          }),
+        );
 
-                localStorage.setItem("token", `${credential}`);
+        localStorage.setItem("token", `${credential}`);
 
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
 
-            return {
-                success: false,
-            };
+      return {
+        success: false,
+      };
+    },
+    logout: async () => {
+      const token = localStorage.getItem("token");
+
+      if (token && typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        axios.defaults.headers.common = {};
+        window.google?.accounts.id.revoke(token, () => {
+          return {};
+        });
+      }
+
+      return {
+        success: true,
+        redirectTo: "/login",
+      };
+    },
+    onError: async (error) => {
+      if (error.response?.status === 401) {
+        return {
+          logout: true,
+        };
+      }
+
+      return { error };
+    },
+    check: async () => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        return {
+          authenticated: true,
+        };
+      }
+
+      return {
+        authenticated: false,
+        error: {
+          message: "Check failed",
+          name: "Not authenticated",
         },
-        logout: async () => {
-            const token = localStorage.getItem("token");
+        logout: true,
+        redirectTo: "/login",
+      };
+    },
+    getPermissions: async () => null,
+    getIdentity: async () => {
+      const user = localStorage.getItem("user");
+      if (user) {
+        return JSON.parse(user);
+      }
 
-            if (token && typeof window !== "undefined") {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-                axios.defaults.headers.common = {};
-                window.google?.accounts.id.revoke(token, () => {
-                    return {};
-                });
-            }
+      return null;
+    },
+  };
 
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
-        },
-        onError: async (error) => {
-            if (error.response?.status === 401) {
-                return {
-                    logout: true,
-                };
-            }
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
+          <Refine
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+            authProvider={authProvider}
+            routerProvider={routerProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+                edit: "/posts/edit/:id",
+              },
+            ]}
+            notificationProvider={useNotificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
-            return { error };
-        },
-        check: async () => {
-            const token = localStorage.getItem("token");
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                  <Route path="show/:id" element={<PostShow />} />
+                </Route>
+              </Route>
 
-            if (token) {
-                return {
-                    authenticated: true,
-                };
-            }
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
 
-            return {
-                authenticated: false,
-                error: {
-                    message: "Check failed",
-                    name: "Not authenticated",
-                },
-                logout: true,
-                redirectTo: "/login",
-            };
-        },
-        getPermissions: async () => null,
-        getIdentity: async () => {
-            const user = localStorage.getItem("user");
-            if (user) {
-                return JSON.parse(user);
-            }
-
-            return null;
-        },
-    };
-
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <AntdApp>
-                    <Refine
-                        dataProvider={dataProvider(API_URL, axiosInstance)}
-                        authProvider={authProvider}
-                        routerProvider={routerProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        notificationProvider={useNotificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="authenticated-routes"
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
-
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<PostShow />}
-                                    />
-                                </Route>
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="auth-pages"
-                                        fallback={<Outlet />}
-                                    >
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<Login />} />
-                            </Route>
-
-                            <Route
-                                element={
-                                    <Authenticated key="catch-all">
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </AntdApp>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route
+                element={
+                  <Authenticated key="catch-all">
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;

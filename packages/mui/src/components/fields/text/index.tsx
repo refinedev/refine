@@ -9,11 +9,11 @@ import { TextFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/text} for more details.
  */
 const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
-    return (
-        <Typography variant="body2" {...rest}>
-            {value}
-        </Typography>
-    );
+  return (
+    <Typography variant="body2" {...rest}>
+      {value}
+    </Typography>
+  );
 };
 
 export { TextField as TextFieldComponent };

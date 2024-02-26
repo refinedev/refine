@@ -7,27 +7,27 @@ import { removeLeadingTrailingSlashes } from "./remove-leading-trailing-slashes"
  * This is used by the legacy router and the new router if the resource doesn't provide a custom path.
  */
 export const getDefaultActionPath = (
-    resourceName: string,
-    action: Action,
-    parentPrefix?: string,
+  resourceName: string,
+  action: Action,
+  parentPrefix?: string,
 ): string => {
-    const cleanParentPrefix = removeLeadingTrailingSlashes(parentPrefix || "");
+  const cleanParentPrefix = removeLeadingTrailingSlashes(parentPrefix || "");
 
-    let path = `${cleanParentPrefix}${
-        cleanParentPrefix ? "/" : ""
-    }${resourceName}`;
+  let path = `${cleanParentPrefix}${
+    cleanParentPrefix ? "/" : ""
+  }${resourceName}`;
 
-    if (action === "list") {
-        path = `${path}`;
-    } else if (action === "create") {
-        path = `${path}/create`;
-    } else if (action === "edit") {
-        path = `${path}/edit/:id`;
-    } else if (action === "show") {
-        path = `${path}/show/:id`;
-    } else if (action === "clone") {
-        path = `${path}/clone/:id`;
-    }
+  if (action === "list") {
+    path = `${path}`;
+  } else if (action === "create") {
+    path = `${path}/create`;
+  } else if (action === "edit") {
+    path = `${path}/edit/:id`;
+  } else if (action === "show") {
+    path = `${path}/show/:id`;
+  } else if (action === "clone") {
+    path = `${path}/clone/:id`;
+  }
 
-    return `/${path.replace(/^\//, "")}`;
+  return `/${path.replace(/^\//, "")}`;
 };

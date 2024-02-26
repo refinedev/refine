@@ -6,31 +6,31 @@ import { authProvider } from "../../authProvider";
  * We use this hook to skip the login page and demonstrate the application more quickly.
  */
 export const useAutoLoginForDemo = () => {
-    const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const login = useCallback(async () => {
-        try {
-            await authProvider.login({
-                email: "demo@refine.dev",
-                password: "demodemo",
-            });
-        } catch (_error) {
-        } finally {
-            setIsLoading(false);
-        }
-    }, [isLoading]);
+  const login = useCallback(async () => {
+    try {
+      await authProvider.login({
+        email: "demo@refine.dev",
+        password: "demodemo",
+      });
+    } catch (_error) {
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading]);
 
-    useEffect(() => {
-        const shouldLogin = localStorage.getItem("auto_login") !== "false";
-        if (!shouldLogin) {
-            setIsLoading(false);
-            return;
-        }
+  useEffect(() => {
+    const shouldLogin = localStorage.getItem("auto_login") !== "false";
+    if (!shouldLogin) {
+      setIsLoading(false);
+      return;
+    }
 
-        login();
-    }, []);
+    login();
+  }, []);
 
-    return { loading: isLoading };
+  return { loading: isLoading };
 };
 
 /**
@@ -38,7 +38,7 @@ export const useAutoLoginForDemo = () => {
  *  This is used to skip the login page and demonstrate the application more quickly.
  */
 export const enableAutoLogin = () => {
-    localStorage.setItem("auto_login", "true");
+  localStorage.setItem("auto_login", "true");
 };
 
 /**
@@ -46,5 +46,5 @@ export const enableAutoLogin = () => {
  *  This is used to skip the login page and demonstrate the application more quickly.
  */
 export const disableAutoLogin = () => {
-    localStorage.setItem("auto_login", "false");
+  localStorage.setItem("auto_login", "false");
 };

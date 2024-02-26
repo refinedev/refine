@@ -6,33 +6,33 @@ import { createResourceKey } from "../../definitions/helpers/menu/create-resourc
 import { useGetToPath } from "../router/use-get-to-path/index";
 import { getParentResource } from "@definitions/helpers/router";
 import {
-    FlatTreeItem,
-    createTree,
+  FlatTreeItem,
+  createTree,
 } from "../../definitions/helpers/menu/create-tree";
 
 type UseMenuReturnType = {
-    defaultOpenKeys: string[];
-    selectedKey: string;
-    menuItems: TreeMenuItem[];
+  defaultOpenKeys: string[];
+  selectedKey: string;
+  menuItems: TreeMenuItem[];
 };
 
 export type UseMenuProps = {
-    meta?: Record<string, any>;
-    hideOnMissingParameter?: boolean;
+  meta?: Record<string, any>;
+  hideOnMissingParameter?: boolean;
 };
 
 export type TreeMenuItem = FlatTreeItem & {
-    route?: string;
-    icon?: React.ReactNode;
-    label?: string;
-    children: TreeMenuItem[];
+  route?: string;
+  icon?: React.ReactNode;
+  label?: string;
+  children: TreeMenuItem[];
 };
 
 const getCleanPath = (pathname: string) => {
-    return pathname
-        .split("?")[0]
-        .split("#")[0]
-        .replace(/(.+)(\/$)/, "$1");
+  return pathname
+    .split("?")[0]
+    .split("#")[0]
+    .replace(/(.+)(\/$)/, "$1");
 };
 
 /**
@@ -44,111 +44,104 @@ const getCleanPath = (pathname: string) => {
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/ui/useMenu} for more details.
  */
 export const useMenu = (
-    { meta, hideOnMissingParameter }: UseMenuProps = {
-        hideOnMissingParameter: true,
-    },
+  { meta, hideOnMissingParameter }: UseMenuProps = {
+    hideOnMissingParameter: true,
+  },
 ): UseMenuReturnType => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const getToPath = useGetToPath();
-    const routerType = useRouterType();
-    const { resource, resources } = useResource();
-    const { pathname } = useParsed();
-    const { useLocation } = useRouterContext();
-    const { pathname: legacyPath } = useLocation();
-    const getFriendlyName = useUserFriendlyName();
+  const getToPath = useGetToPath();
+  const routerType = useRouterType();
+  const { resource, resources } = useResource();
+  const { pathname } = useParsed();
+  const { useLocation } = useRouterContext();
+  const { pathname: legacyPath } = useLocation();
+  const getFriendlyName = useUserFriendlyName();
 
-    const cleanPathname =
-        routerType === "legacy"
-            ? getCleanPath(legacyPath)
-            : pathname
-            ? getCleanPath(pathname)
-            : undefined;
+  const cleanPathname =
+    routerType === "legacy"
+      ? getCleanPath(legacyPath)
+      : pathname
+        ? getCleanPath(pathname)
+        : undefined;
 
-    const cleanRoute = `/${(cleanPathname ?? "").replace(/^\//, "")}`;
+  const cleanRoute = `/${(cleanPathname ?? "").replace(/^\//, "")}`;
 
-    const selectedKey = resource
-        ? createResourceKey(resource, resources, routerType === "legacy")
-        : cleanRoute ?? "";
+  const selectedKey = resource
+    ? createResourceKey(resource, resources, routerType === "legacy")
+    : cleanRoute ?? "";
 
-    const defaultOpenKeys = React.useMemo(() => {
-        if (!resource) return [];
-        let parent = getParentResource(resource, resources);
-        const keys = [createResourceKey(resource, resources)];
-        while (parent) {
-            keys.push(createResourceKey(parent, resources));
-            parent = getParentResource(parent, resources);
-        }
-        return keys;
-    }, []);
+  const defaultOpenKeys = React.useMemo(() => {
+    if (!resource) return [];
+    let parent = getParentResource(resource, resources);
+    const keys = [createResourceKey(resource, resources)];
+    while (parent) {
+      keys.push(createResourceKey(parent, resources));
+      parent = getParentResource(parent, resources);
+    }
+    return keys;
+  }, []);
 
-    const prepareItem = React.useCallback(
-        (item: FlatTreeItem): TreeMenuItem | undefined => {
-            if (item?.meta?.hide ?? item?.options?.hide) return undefined;
-            if (!item?.list && item.children.length === 0) return undefined;
+  const prepareItem = React.useCallback(
+    (item: FlatTreeItem): TreeMenuItem | undefined => {
+      if (item?.meta?.hide ?? item?.options?.hide) return undefined;
+      if (!item?.list && item.children.length === 0) return undefined;
 
-            const composed = item.list
-                ? getToPath({
-                      resource: item,
-                      action: "list",
-                      legacy: routerType === "legacy",
-                      meta,
-                  })
-                : undefined;
+      const composed = item.list
+        ? getToPath({
+            resource: item,
+            action: "list",
+            legacy: routerType === "legacy",
+            meta,
+          })
+        : undefined;
 
-            if (
-                hideOnMissingParameter &&
-                composed &&
-                composed.match(/(\/|^):(.+?)(\/|$){1}/)
-            )
-                return undefined;
+      if (
+        hideOnMissingParameter &&
+        composed &&
+        composed.match(/(\/|^):(.+?)(\/|$){1}/)
+      )
+        return undefined;
 
-            return {
-                ...item,
-                route: composed,
-                icon: pickNotDeprecated(
-                    item.meta?.icon,
-                    item.options?.icon,
-                    item.icon,
-                ),
-                label:
-                    pickNotDeprecated(
-                        item?.meta?.label,
-                        item?.options?.label,
-                    ) ??
-                    translate(
-                        `${item.name}.${item.name}`,
-                        getFriendlyName(item.name, "plural"),
-                    ),
-            };
-        },
-        [routerType, meta, getToPath, translate, hideOnMissingParameter],
-    );
+      return {
+        ...item,
+        route: composed,
+        icon: pickNotDeprecated(item.meta?.icon, item.options?.icon, item.icon),
+        label:
+          pickNotDeprecated(item?.meta?.label, item?.options?.label) ??
+          translate(
+            `${item.name}.${item.name}`,
+            getFriendlyName(item.name, "plural"),
+          ),
+      };
+    },
+    [routerType, meta, getToPath, translate, hideOnMissingParameter],
+  );
 
-    const treeItems = React.useMemo(() => {
-        const treeMenuItems = createTree(resources, routerType === "legacy");
+  const treeItems = React.useMemo(() => {
+    const treeMenuItems = createTree(resources, routerType === "legacy");
 
-        // add paths to items and their nodes recursively
-        const prepare = (items: TreeMenuItem[]): TreeMenuItem[] => {
-            return items.flatMap((item) => {
-                const preparedNodes = prepare(item.children);
-                const newItem = prepareItem({
-                    ...item,
-                    children: preparedNodes,
-                });
+    // add paths to items and their nodes recursively
+    const prepare = (items: TreeMenuItem[]): TreeMenuItem[] => {
+      return items.flatMap((item) => {
+        const preparedNodes = prepare(item.children);
+        const newItem = prepareItem({
+          ...item,
+          children: preparedNodes,
+        });
 
-                if (!newItem) return [];
+        if (!newItem) return [];
 
-                return [newItem];
-            });
-        };
-
-        return prepare(treeMenuItems);
-    }, [resources, routerType, prepareItem]);
-
-    return {
-        defaultOpenKeys,
-        selectedKey,
-        menuItems: treeItems,
+        return [newItem];
+      });
     };
+
+    return prepare(treeMenuItems);
+  }, [resources, routerType, prepareItem]);
+
+  return {
+    defaultOpenKeys,
+    selectedKey,
+    menuItems: treeItems,
+  };
 };

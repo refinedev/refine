@@ -5,11 +5,11 @@ import { authProvider } from "~/authProvider";
 import { Layout } from "~/components/layout";
 
 export default function AuthenticatedLayout() {
-    return (
-        <Layout>
-            <Outlet />
-        </Layout>
-    );
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
 }
 
 /**
@@ -18,11 +18,11 @@ export default function AuthenticatedLayout() {
  * This is applied for all routes that are nested under this layout (_protected).
  */
 export async function loader({ request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
+  const { authenticated, redirectTo } = await authProvider.check(request);
 
-    if (!authenticated) {
-        throw redirect(redirectTo ?? "/login");
-    }
+  if (!authenticated) {
+    throw redirect(redirectTo ?? "/login");
+  }
 
-    return {};
+  return {};
 }

@@ -1,20 +1,20 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    RefineSnackbarProvider,
-    ThemedLayoutV2,
-    RefineThemes,
-    AuthPage,
-    ErrorComponent,
+  useNotificationProvider,
+  RefineSnackbarProvider,
+  ThemedLayoutV2,
+  RefineThemes,
+  AuthPage,
+  ErrorComponent,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import routerProvider, {
-    CatchAllNavigate,
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  CatchAllNavigate,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -24,120 +24,102 @@ import { API_URL } from "./constants";
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ThemeProvider theme={RefineThemes.Blue}>
-                <CssBaseline />
-                <GlobalStyles
-                    styles={{ html: { WebkitFontSmoothing: "auto" } }}
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ThemeProvider theme={RefineThemes.Blue}>
+        <CssBaseline />
+        <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <RefineSnackbarProvider>
+          <Refine
+            notificationProvider={useNotificationProvider}
+            routerProvider={routerProvider}
+            authProvider={authProvider}
+            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                create: "/posts/create",
+                edit: "/posts/edit/:id",
+                meta: {
+                  canDelete: true,
+                },
+              },
+            ]}
+            options={{
+              mutationMode: "undoable",
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
                 />
-                <RefineSnackbarProvider>
-                    <Refine
-                        notificationProvider={useNotificationProvider}
-                        routerProvider={routerProvider}
-                        authProvider={authProvider}
-                        dataProvider={DataProvider(
-                            API_URL + `/api`,
-                            axiosInstance,
-                        )}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                                meta: {
-                                    canDelete: true,
-                                },
-                            },
-                        ]}
-                        options={{
-                            mutationMode: "undoable",
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="authenticated-routes"
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
 
-                                <Route path="posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                </Route>
-                            </Route>
+                <Route path="posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                </Route>
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="auth-pages"
-                                        fallback={<Outlet />}
-                                    >
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <AuthPage
-                                            type="login"
-                                            formProps={{
-                                                defaultValues: {
-                                                    email: "demo@refine.dev",
-                                                    password: "demodemo",
-                                                },
-                                            }}
-                                        />
-                                    }
-                                />
-                            </Route>
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route
+                  path="/login"
+                  element={
+                    <AuthPage
+                      type="login"
+                      formProps={{
+                        defaultValues: {
+                          email: "demo@refine.dev",
+                          password: "demodemo",
+                        },
+                      }}
+                    />
+                  }
+                />
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated key="catch-all">
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </RefineSnackbarProvider>
-            </ThemeProvider>
-        </BrowserRouter>
-    );
+              <Route
+                element={
+                  <Authenticated key="catch-all">
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </RefineSnackbarProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

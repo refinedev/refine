@@ -7,26 +7,24 @@ import { ColorModeContextProvider } from "~/contexts/ColorModeContext";
 import { ClientStyleCacheProvider } from "~/contexts/ClientStyleContext";
 
 const hydrate = () => {
-    React.startTransition(() => {
-        ReactDOM.hydrateRoot(
-            document,
-            <ClientStyleCacheProvider>
-                <ColorModeContextProvider>
-                    <CssBaseline />
-                    <GlobalStyles
-                        styles={{ html: { WebkitFontSmoothing: "auto" } }}
-                    />
-                    <RemixBrowser />
-                </ColorModeContextProvider>
-            </ClientStyleCacheProvider>,
-        );
-    });
+  React.startTransition(() => {
+    ReactDOM.hydrateRoot(
+      document,
+      <ClientStyleCacheProvider>
+        <ColorModeContextProvider>
+          <CssBaseline />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <RemixBrowser />
+        </ColorModeContextProvider>
+      </ClientStyleCacheProvider>,
+    );
+  });
 };
 
 if (window.requestIdleCallback) {
-    window.requestIdleCallback(hydrate);
+  window.requestIdleCallback(hydrate);
 } else {
-    // Safari doesn't support requestIdleCallback
-    // https://caniuse.com/requestidlecallback
-    window.setTimeout(hydrate, 1);
+  // Safari doesn't support requestIdleCallback
+  // https://caniuse.com/requestidlecallback
+  window.setTimeout(hydrate, 1);
 }

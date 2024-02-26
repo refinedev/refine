@@ -1,7 +1,7 @@
 import {
-    useMutation,
-    UseMutationOptions,
-    UseMutationResult,
+  useMutation,
+  UseMutationOptions,
+  UseMutationResult,
 } from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
 
@@ -10,85 +10,80 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
 import {
-    AuthActionResponse,
-    RefineError,
-    OpenNotificationParams,
-    TLoginData,
-    TRegisterData,
+  AuthActionResponse,
+  RefineError,
+  OpenNotificationParams,
+  TLoginData,
+  TRegisterData,
 } from "../../../interfaces";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseRegisterLegacyProps<TVariables> = {
-    v3LegacyAuthProviderCompatible: true;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            TRegisterData,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn" | "onError" | "onSuccess"
-    >;
+  v3LegacyAuthProviderCompatible: true;
+  mutationOptions?: Omit<
+    UseMutationOptions<TRegisterData, Error | RefineError, TVariables, unknown>,
+    "mutationFn" | "onError" | "onSuccess"
+  >;
 };
 
 export type UseRegisterProps<TVariables> = {
-    v3LegacyAuthProviderCompatible?: false;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            AuthActionResponse,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn"
-    >;
+  v3LegacyAuthProviderCompatible?: false;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      AuthActionResponse,
+      Error | RefineError,
+      TVariables,
+      unknown
+    >,
+    "mutationFn"
+  >;
 };
 
 export type UseRegisterCombinedProps<TVariables> = {
-    v3LegacyAuthProviderCompatible: boolean;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            AuthActionResponse | TRegisterData,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn"
-    >;
+  v3LegacyAuthProviderCompatible: boolean;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      AuthActionResponse | TRegisterData,
+      Error | RefineError,
+      TVariables,
+      unknown
+    >,
+    "mutationFn"
+  >;
 };
 
 export type UseRegisterLegacyReturnType<TVariables> = UseMutationResult<
-    TRegisterData,
-    Error | RefineError,
-    TVariables,
-    unknown
+  TRegisterData,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export type UseRegisterReturnType<TVariables> = UseMutationResult<
-    AuthActionResponse,
-    Error | RefineError,
-    TVariables,
-    unknown
+  AuthActionResponse,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export type UseRegisterCombinedReturnType<TVariables> = UseMutationResult<
-    AuthActionResponse | TLoginData,
-    Error | RefineError,
-    TVariables,
-    unknown
+  AuthActionResponse | TLoginData,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export function useRegister<TVariables = {}>(
-    props: UseRegisterLegacyProps<TVariables>,
+  props: UseRegisterLegacyProps<TVariables>,
 ): UseRegisterLegacyReturnType<TVariables>;
 
 export function useRegister<TVariables = {}>(
-    props?: UseRegisterProps<TVariables>,
+  props?: UseRegisterProps<TVariables>,
 ): UseRegisterReturnType<TVariables>;
 
 export function useRegister<TVariables = {}>(
-    props?: UseRegisterCombinedProps<TVariables>,
+  props?: UseRegisterCombinedProps<TVariables>,
 ): UseRegisterCombinedReturnType<TVariables>;
 
 /**
@@ -101,138 +96,131 @@ export function useRegister<TVariables = {}>(
  *
  */
 export function useRegister<TVariables = {}>({
-    v3LegacyAuthProviderCompatible,
-    mutationOptions,
+  v3LegacyAuthProviderCompatible,
+  mutationOptions,
 }: UseRegisterProps<TVariables> | UseRegisterLegacyProps<TVariables> = {}):
-    | UseRegisterReturnType<TVariables>
-    | UseRegisterLegacyReturnType<TVariables> {
-    const invalidateAuthStore = useInvalidateAuthStore();
-    const routerType = useRouterType();
-    const go = useGo();
-    const { replace } = useNavigation();
-    const { register: legacyRegisterFromContext } = useLegacyAuthContext();
-    const { register: registerFromContext } = useAuthBindingsContext();
-    const { close, open } = useNotification();
+  | UseRegisterReturnType<TVariables>
+  | UseRegisterLegacyReturnType<TVariables> {
+  const invalidateAuthStore = useInvalidateAuthStore();
+  const routerType = useRouterType();
+  const go = useGo();
+  const { replace } = useNavigation();
+  const { register: legacyRegisterFromContext } = useLegacyAuthContext();
+  const { register: registerFromContext } = useAuthBindingsContext();
+  const { close, open } = useNotification();
 
-    const { keys, preferLegacyKeys } = useKeys();
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const mutation = useMutation<
-        AuthActionResponse,
-        Error | RefineError,
-        TVariables,
-        unknown
-    >({
-        mutationKey: keys().auth().action("register").get(preferLegacyKeys),
-        mutationFn: registerFromContext,
-        onSuccess: async ({
-            success,
-            redirectTo,
-            error,
-            successNotification,
-        }) => {
-            if (success) {
-                close?.("register-error");
+  const mutation = useMutation<
+    AuthActionResponse,
+    Error | RefineError,
+    TVariables,
+    unknown
+  >({
+    mutationKey: keys().auth().action("register").get(preferLegacyKeys),
+    mutationFn: registerFromContext,
+    onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+      if (success) {
+        close?.("register-error");
 
-                if (successNotification) {
-                    open?.(buildSuccessNotification(successNotification));
-                }
-            }
+        if (successNotification) {
+          open?.(buildSuccessNotification(successNotification));
+        }
+      }
 
-            if (error || !success) {
-                open?.(buildNotification(error));
-            }
+      if (error || !success) {
+        open?.(buildNotification(error));
+      }
 
-            if (redirectTo) {
-                if (routerType === "legacy") {
-                    replace(redirectTo);
-                } else {
-                    go({ to: redirectTo, type: "replace" });
-                }
-            } else {
-                if (routerType === "legacy") {
-                    replace("/");
-                }
-            }
+      if (redirectTo) {
+        if (routerType === "legacy") {
+          replace(redirectTo);
+        } else {
+          go({ to: redirectTo, type: "replace" });
+        }
+      } else {
+        if (routerType === "legacy") {
+          replace("/");
+        }
+      }
 
-            await invalidateAuthStore();
-        },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-        meta: {
-            ...(v3LegacyAuthProviderCompatible === true
-                ? {}
-                : mutationOptions?.meta),
-            ...getXRay("useRegister", preferLegacyKeys),
-        },
-    });
+      await invalidateAuthStore();
+    },
+    onError: (error: any) => {
+      open?.(buildNotification(error));
+    },
+    ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+    meta: {
+      ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions?.meta),
+      ...getXRay("useRegister", preferLegacyKeys),
+    },
+  });
 
-    const v3LegacyAuthProviderCompatibleMutation = useMutation<
-        TRegisterData,
-        Error | RefineError,
-        TVariables,
-        unknown
-    >({
-        mutationKey: [
-            ...keys().auth().action("register").get(preferLegacyKeys),
-            "v3LegacyAuthProviderCompatible",
-        ],
-        mutationFn: legacyRegisterFromContext,
-        onSuccess: async (redirectPathFromAuth) => {
-            if (redirectPathFromAuth !== false) {
-                if (redirectPathFromAuth) {
-                    if (routerType === "legacy") {
-                        replace(redirectPathFromAuth);
-                    } else {
-                        go({ to: redirectPathFromAuth, type: "replace" });
-                    }
-                } else {
-                    if (routerType === "legacy") {
-                        replace("/");
-                    } else {
-                        go({ to: "/", type: "replace" });
-                    }
-                }
+  const v3LegacyAuthProviderCompatibleMutation = useMutation<
+    TRegisterData,
+    Error | RefineError,
+    TVariables,
+    unknown
+  >({
+    mutationKey: [
+      ...keys().auth().action("register").get(preferLegacyKeys),
+      "v3LegacyAuthProviderCompatible",
+    ],
+    mutationFn: legacyRegisterFromContext,
+    onSuccess: async (redirectPathFromAuth) => {
+      if (redirectPathFromAuth !== false) {
+        if (redirectPathFromAuth) {
+          if (routerType === "legacy") {
+            replace(redirectPathFromAuth);
+          } else {
+            go({ to: redirectPathFromAuth, type: "replace" });
+          }
+        } else {
+          if (routerType === "legacy") {
+            replace("/");
+          } else {
+            go({ to: "/", type: "replace" });
+          }
+        }
 
-                await invalidateAuthStore();
+        await invalidateAuthStore();
 
-                close?.("register-error");
-            }
-        },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-        meta: {
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
-            ...getXRay("useRegister", preferLegacyKeys),
-        },
-    });
+        close?.("register-error");
+      }
+    },
+    onError: (error: any) => {
+      open?.(buildNotification(error));
+    },
+    ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+    meta: {
+      ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+      ...getXRay("useRegister", preferLegacyKeys),
+    },
+  });
 
-    return v3LegacyAuthProviderCompatible
-        ? v3LegacyAuthProviderCompatibleMutation
-        : mutation;
+  return v3LegacyAuthProviderCompatible
+    ? v3LegacyAuthProviderCompatibleMutation
+    : mutation;
 }
 
 const buildNotification = (
-    error?: Error | RefineError,
+  error?: Error | RefineError,
 ): OpenNotificationParams => {
-    return {
-        message: error?.name || "Register Error",
-        description: error?.message || "Error while registering",
-        key: "register-error",
-        type: "error",
-    };
+  return {
+    message: error?.name || "Register Error",
+    description: error?.message || "Error while registering",
+    key: "register-error",
+    type: "error",
+  };
 };
 
 const buildSuccessNotification = (
-    successNotification: SuccessNotificationResponse,
+  successNotification: SuccessNotificationResponse,
 ): OpenNotificationParams => {
-    return {
-        message: successNotification.message,
-        description: successNotification.description,
-        key: "register-success",
-        type: "success",
-    };
+  return {
+    message: successNotification.message,
+    description: successNotification.description,
+    key: "register-success",
+    type: "success",
+  };
 };

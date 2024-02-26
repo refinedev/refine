@@ -5,32 +5,32 @@ import { getDefaultPath } from "./create-providers";
 import { availableProviders, ProviderId } from "./providers";
 
 export const buildProviderChoices = () => {
-    return availableProviders.map((provider) => {
-        const { id, title, description } = provider;
+  return availableProviders.map((provider) => {
+    const { id, title, description } = provider;
 
-        return {
-            value: id,
-            name: `${chalk.blueBright(title)} - ${description}`,
-        };
-    });
+    return {
+      value: id,
+      name: `${chalk.blueBright(title)} - ${description}`,
+    };
+  });
 };
 
 export const addProviderPrompt = async () => {
-    return await inquirer.prompt<{
-        providers: ProviderId[];
-        providersPath: string;
-    }>([
-        {
-            type: "checkbox",
-            name: "providers",
-            message: "Which providers do you want to add?",
-            choices: buildProviderChoices(),
-        },
-        {
-            type: "input",
-            name: "providersPath",
-            message: "Where do you want to generate the providers?",
-            default: getDefaultPath(),
-        },
-    ]);
+  return await inquirer.prompt<{
+    providers: ProviderId[];
+    providersPath: string;
+  }>([
+    {
+      type: "checkbox",
+      name: "providers",
+      message: "Which providers do you want to add?",
+      choices: buildProviderChoices(),
+    },
+    {
+      type: "input",
+      name: "providersPath",
+      message: "Where do you want to generate the providers?",
+      default: getDefaultPath(),
+    },
+  ]);
 };

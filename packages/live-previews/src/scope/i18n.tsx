@@ -4,10 +4,10 @@ import * as I18NextBrowserLanguageDetector from "i18next-browser-languagedetecto
 import * as I18NextXhrBackend from "i18next-xhr-backend";
 
 const I18nScope = {
-    ReactI18Next,
-    I18Next,
-    I18NextBrowserLanguageDetector,
-    I18NextXhrBackend,
+  ReactI18Next,
+  I18Next,
+  I18NextBrowserLanguageDetector,
+  I18NextXhrBackend,
 };
 
 export default I18nScope;

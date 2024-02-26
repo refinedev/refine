@@ -10,20 +10,20 @@
  */
 
 export type TranslateFunction = (
-    key: string,
-    options?: unknown,
-    defaultMessage?: string,
+  key: string,
+  options?: unknown,
+  defaultMessage?: string,
 ) => string;
 
 export type ChangeLocaleFunction = (
-    locale: string,
-    options?: unknown,
+  locale: string,
+  options?: unknown,
 ) => Promise<unknown> | unknown;
 
 export type GetLocaleFunction = () => string;
 
 export type i18nBindings = {
-    translate: TranslateFunction;
-    changeLocale: ChangeLocaleFunction;
-    getLocale: GetLocaleFunction;
+  translate: TranslateFunction;
+  changeLocale: ChangeLocaleFunction;
+  getLocale: GetLocaleFunction;
 };

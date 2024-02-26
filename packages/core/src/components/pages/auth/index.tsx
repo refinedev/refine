@@ -1,31 +1,31 @@
 import React, {
-    DetailedHTMLProps,
-    HTMLAttributes,
-    FormHTMLAttributes,
+  DetailedHTMLProps,
+  HTMLAttributes,
+  FormHTMLAttributes,
 } from "react";
 
 import {
-    LoginPage,
-    RegisterPage,
-    ForgotPasswordPage,
-    UpdatePasswordPage,
+  LoginPage,
+  RegisterPage,
+  ForgotPasswordPage,
+  UpdatePasswordPage,
 } from "./components";
 
 import { AuthPageProps } from "../../../interfaces";
 
 export type DivPropsType = DetailedHTMLProps<
-    HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
 >;
 export type FormPropsType = DetailedHTMLProps<
-    FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
+  FormHTMLAttributes<HTMLFormElement>,
+  HTMLFormElement
 >;
 
 export type AuthProps = AuthPageProps<
-    DivPropsType,
-    DivPropsType,
-    FormPropsType
+  DivPropsType,
+  DivPropsType,
+  FormPropsType
 >;
 
 /**
@@ -34,19 +34,19 @@ export type AuthProps = AuthPageProps<
  * @see {@link https://refine.dev/docs/api-reference/core/components/auth-page/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {
-    const { type } = props;
-    const renderView = () => {
-        switch (type) {
-            case "register":
-                return <RegisterPage {...props} />;
-            case "forgotPassword":
-                return <ForgotPasswordPage {...props} />;
-            case "updatePassword":
-                return <UpdatePasswordPage {...props} />;
-            default:
-                return <LoginPage {...props} />;
-        }
-    };
+  const { type } = props;
+  const renderView = () => {
+    switch (type) {
+      case "register":
+        return <RegisterPage {...props} />;
+      case "forgotPassword":
+        return <ForgotPasswordPage {...props} />;
+      case "updatePassword":
+        return <UpdatePasswordPage {...props} />;
+      default:
+        return <LoginPage {...props} />;
+    }
+  };
 
-    return <>{renderView()}</>;
+  return <>{renderView()}</>;
 };

@@ -2,21 +2,21 @@ import { useForm } from "@refinedev/react-hook-form";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
-    accessor,
-    printImports,
-    toSingular,
-    isIDKey,
-    dotAccessor,
-    getOptionLabel,
-    noOp,
-    getVariableName,
-    translatePrettyString,
-    translateActionTitle,
-    translateButtonTitle,
-    getMetaProps,
-    deepHasKey,
+  jsx,
+  componentName,
+  accessor,
+  printImports,
+  toSingular,
+  isIDKey,
+  dotAccessor,
+  getOptionLabel,
+  noOp,
+  getVariableName,
+  translatePrettyString,
+  translateActionTitle,
+  translateButtonTitle,
+  getMetaProps,
+  deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -24,10 +24,10 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
-    InferencerResultComponent,
-    InferField,
-    ImportElement,
-    RendererContext,
+  InferencerResultComponent,
+  InferField,
+  ImportElement,
+  RendererContext,
 } from "../../types";
 
 /**
@@ -35,87 +35,85 @@ import {
  * @internal used internally from inferencer components
  */
 export const renderer = ({
-    resource,
-    fields,
-    meta,
-    isCustomPage,
-    i18n,
+  resource,
+  fields,
+  meta,
+  isCustomPage,
+  i18n,
 }: RendererContext) => {
-    const COMPONENT_NAME = componentName(
-        resource.label ?? resource.name,
-        "create",
-    );
-    const imports: Array<ImportElement> = [
-        ["React", "react", true],
-        ["useNavigation", "@refinedev/core"],
-        ["IResourceComponentsProps", "@refinedev/core"],
-        ["useForm", "@refinedev/react-hook-form"],
-    ];
+  const COMPONENT_NAME = componentName(
+    resource.label ?? resource.name,
+    "create",
+  );
+  const imports: Array<ImportElement> = [
+    ["React", "react", true],
+    ["useNavigation", "@refinedev/core"],
+    ["IResourceComponentsProps", "@refinedev/core"],
+    ["useForm", "@refinedev/react-hook-form"],
+  ];
 
-    if (i18n) {
-        imports.push(["useTranslate", "@refinedev/core"]);
-    }
+  if (i18n) {
+    imports.push(["useTranslate", "@refinedev/core"]);
+  }
 
-    // has gqlQuery or gqlMutation in "meta"
-    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
-    if (hasGql) {
-        imports.push(["gql", "graphql-tag", true]);
-    }
+  // has gqlQuery or gqlMutation in "meta"
+  const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+  if (hasGql) {
+    imports.push(["gql", "graphql-tag", true]);
+  }
 
-    const relationFields: (InferField | null)[] = fields.filter(
-        (field) => field?.relation && !field?.fieldable && field?.resource,
-    );
+  const relationFields: (InferField | null)[] = fields.filter(
+    (field) => field?.relation && !field?.fieldable && field?.resource,
+  );
 
-    const relationHooksCode = relationFields
-        .filter(Boolean)
-        .map((field) => {
-            if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useSelect", "@refinedev/core"]);
+  const relationHooksCode = relationFields
+    .filter(Boolean)
+    .map((field) => {
+      if (field?.relation && !field.fieldable && field.resource) {
+        imports.push(["useSelect", "@refinedev/core"]);
 
-                return `
+        return `
                 const { options: ${getVariableName(field.key, "Options")} } =
                 useSelect({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
                     ${getMetaProps(
-                        field?.resource?.identifier ?? field?.resource?.name,
-                        meta,
-                        ["getList"],
+                      field?.resource?.identifier ?? field?.resource?.name,
+                      meta,
+                      ["getList"],
                     )}
                 });
             `;
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const renderRelationFields = (field: InferField) => {
-        if (field.relation && field.resource) {
-            imports.push(["useSelect", "@refinedev/core"]);
+  const renderRelationFields = (field: InferField) => {
+    if (field.relation && field.resource) {
+      imports.push(["useSelect", "@refinedev/core"]);
 
-            const variableName = getVariableName(field.key, "Options");
+      const variableName = getVariableName(field.key, "Options");
 
-            return jsx`
+      return jsx`
             <label>
                 <span style={{ marginRight: "8px" }}>
                     ${translatePrettyString({
-                        resource,
-                        field,
-                        i18n,
-                        noQuotes: true,
+                      resource,
+                      field,
+                      i18n,
+                      noQuotes: true,
                     })}
                 </span>
                 <select
                     placeholder="Select ${toSingular(field.resource.name)}"
                     {...register("${dotAccessor(
-                        field.key,
-                        undefined,
-                        field.accessor,
+                      field.key,
+                      undefined,
+                      field.accessor,
                     )}", {
                         required: ${
-                            field.multiple
-                                ? "false"
-                                : '"This field is required"'
+                          field.multiple ? "false" : '"This field is required"'
                         },
                     })}
                 >
@@ -127,164 +125,159 @@ export const renderer = ({
                 </select>
                 <span style={{ color: "red" }}>
                     {${accessor(
-                        "(errors as any)",
-                        field.key,
-                        field.accessor,
-                        false,
+                      "(errors as any)",
+                      field.key,
+                      field.accessor,
+                      false,
                     )}?.message as string}
                 </span>
             </label>
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const basicInputFields = (field: InferField) => {
+    if (
+      field.type === "text" ||
+      field.type === "url" ||
+      field.type === "email" ||
+      field.type === "number" ||
+      field.type === "date" ||
+      field.type === "richtext"
+    ) {
+      if (isIDKey(field.key)) {
         return undefined;
-    };
+      }
 
-    const basicInputFields = (field: InferField) => {
-        if (
-            field.type === "text" ||
-            field.type === "url" ||
-            field.type === "email" ||
-            field.type === "number" ||
-            field.type === "date" ||
-            field.type === "richtext"
-        ) {
-            if (isIDKey(field.key)) {
-                return undefined;
-            }
+      if (field.multiple) {
+        return undefined;
+      }
 
-            if (field.multiple) {
-                return undefined;
-            }
+      const inp = field.type === "richtext" ? "textarea" : "input";
 
-            const inp = field.type === "richtext" ? "textarea" : "input";
-
-            return jsx`
+      return jsx`
                 <label>
                     <span style={{ marginRight: "8px" }}>
                         ${translatePrettyString({
-                            resource,
-                            field,
-                            i18n,
-                            noQuotes: true,
+                          resource,
+                          field,
+                          i18n,
+                          noQuotes: true,
                         })}
                     </span>
                     <${inp}
                         ${
-                            field.type !== "date" && field.type !== "richtext"
-                                ? `type="${field.type}"`
-                                : ""
+                          field.type !== "date" && field.type !== "richtext"
+                            ? `type="${field.type}"`
+                            : ""
                         }
                         ${
-                            inp === "textarea"
-                                ? `
+                          inp === "textarea"
+                            ? `
                             rows={5}
                             cols={33}
                             style={{ verticalAlign: "top" }}
                         `
-                                : ""
+                            : ""
                         }
                         {...register("${dotAccessor(
-                            field.key,
-                            undefined,
-                            field.accessor,
+                          field.key,
+                          undefined,
+                          field.accessor,
                         )}", {
                             required: "This field is required",
                             ${
-                                field.type === "number"
-                                    ? "valueAsNumber: true,"
-                                    : ""
+                              field.type === "number"
+                                ? "valueAsNumber: true,"
+                                : ""
                             }
                         })}
 
                     />
                     <span style={{ color: "red" }}>
                         {${accessor(
-                            "(errors as any)",
-                            field.key,
-                            field.accessor,
-                            false,
+                          "(errors as any)",
+                          field.key,
+                          field.accessor,
+                          false,
                         )}?.message as string}
                     </span>
                 </label>
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const booleanFields = (field: InferField) => {
+    if (field.type === "boolean") {
+      if (field.multiple) {
         return undefined;
-    };
+      }
 
-    const booleanFields = (field: InferField) => {
-        if (field.type === "boolean") {
-            if (field.multiple) {
-                return undefined;
-            }
-
-            return jsx`
+      return jsx`
                 <label>
                     <span style={{ marginRight: "8px" }}>
                         ${translatePrettyString({
-                            resource,
-                            field,
-                            i18n,
-                            noQuotes: true,
+                          resource,
+                          field,
+                          i18n,
+                          noQuotes: true,
                         })}
                     </span>
                     <input
                         type="checkbox"
                         {...register("${dotAccessor(
-                            field.key,
-                            undefined,
-                            field.accessor,
+                          field.key,
+                          undefined,
+                          field.accessor,
                         )}", {
                             required: "This field is required",
                         })}
                     />
                     <span style={{ color: "red" }}>
-                        {${accessor(
-                            "errors",
-                            field.key,
-                            field.accessor,
-                            false,
-                        )}?.message as string}
+                        {${accessor("errors", field.key, field.accessor, false)}?.message as string}
                     </span>
                 </label>
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const renderedFields: Array<string | undefined> = fields.map((field) => {
+    switch (field?.type) {
+      case "text":
+      case "number":
+      case "email":
+      case "url":
+      case "richtext":
+      case "date":
+        return basicInputFields(field);
+      case "boolean":
+        return booleanFields(field);
+      case "relation":
+        return renderRelationFields(field);
+      default:
         return undefined;
-    };
+    }
+  });
 
-    const renderedFields: Array<string | undefined> = fields.map((field) => {
-        switch (field?.type) {
-            case "text":
-            case "number":
-            case "email":
-            case "url":
-            case "richtext":
-            case "date":
-                return basicInputFields(field);
-            case "boolean":
-                return booleanFields(field);
-            case "relation":
-                return renderRelationFields(field);
-            default:
-                return undefined;
-        }
-    });
+  const canList = !!resource.list;
 
-    const canList = !!resource.list;
+  noOp(imports);
+  const useTranslateHook = i18n && `const translate = useTranslate();`;
 
-    noOp(imports);
-    const useTranslateHook = i18n && `const translate = useTranslate();`;
-
-    return jsx`
+  return jsx`
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
         ${useTranslateHook}
         ${
-            canList
-                ? `
+          canList
+            ? `
         const { list } = useNavigation();
         `
-                : ""
+            : ""
         }
         const {
             refineCore: { onFinish, formLoading },
@@ -294,30 +287,30 @@ export const renderer = ({
             formState: { errors },
         } = useForm(
             ${
-                isCustomPage
-                    ? `
+              isCustomPage
+                ? `
             { 
                 refineCoreProps: {
                     resource: "${resource.name}",
                     action: "create",
                     ${getMetaProps(resource.identifier ?? resource.name, meta, [
-                        "create",
-                        "getOne",
+                      "create",
+                      "getOne",
                     ])}
                 }
             }`
-                    : getMetaProps(resource.identifier ?? resource.name, meta, [
-                          "create",
-                          "getOne",
-                      ])
-                    ? `{
+                : getMetaProps(resource.identifier ?? resource.name, meta, [
+                      "create",
+                      "getOne",
+                    ])
+                  ? `{
                         refineCoreProps: { ${getMetaProps(
-                            resource.identifier ?? resource.name,
-                            meta,
-                            ["create", "getOne"],
+                          resource.identifier ?? resource.name,
+                          meta,
+                          ["create", "getOne"],
                         )} }
                         }`
-                    : ""
+                  : ""
             }
         );
     
@@ -326,16 +319,16 @@ export const renderer = ({
         return (
             <div style={{ padding: "16px" }}>
                 <div style={{ display: "flex", justifyContent: ${
-                    canList ? '"space-between"' : '"flex-start"'
+                  canList ? '"space-between"' : '"flex-start"'
                 } }}>
                     <h1>${translateActionTitle({
-                        resource,
-                        action: "create",
-                        i18n,
+                      resource,
+                      action: "create",
+                      i18n,
                     })}</h1>
                     ${
-                        canList
-                            ? jsx`
+                      canList
+                        ? jsx`
                             <div>
                         <button
                                 onClick={() => {
@@ -343,14 +336,14 @@ export const renderer = ({
                                 }}
                         >
                             ${translateActionTitle({
-                                resource,
-                                action: "list",
-                                i18n,
+                              resource,
+                              action: "list",
+                              i18n,
                             })}
                         </button>
                         </div>
                     `
-                            : ""
+                        : ""
                     }
                 </div>
                 <form onSubmit={handleSubmit(onFinish)}>
@@ -358,8 +351,8 @@ export const renderer = ({
                         ${renderedFields.join("")}
                         <div>
                             <input type="submit" value=${translateButtonTitle({
-                                action: "save",
-                                i18n,
+                              action: "save",
+                              i18n,
                             })} />
                         </div>
                     </div>
@@ -374,12 +367,12 @@ export const renderer = ({
  * @experimental This is an experimental component
  */
 export const CreateInferencer: InferencerResultComponent = createInferencer({
-    type: "create",
-    additionalScope: [
-        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
-    ],
-    codeViewerComponent: SharedCodeViewer,
-    loadingComponent: LoadingComponent,
-    errorComponent: ErrorComponent,
-    renderer,
+  type: "create",
+  additionalScope: [
+    ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
+  ],
+  codeViewerComponent: SharedCodeViewer,
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+  renderer,
 });

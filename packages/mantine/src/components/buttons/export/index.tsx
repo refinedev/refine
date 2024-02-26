@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileExport } from "@tabler/icons";
@@ -17,40 +17,40 @@ import { ExportButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
-    hideText = false,
-    children,
-    loading = false,
-    svgIconProps,
-    ...rest
+  hideText = false,
+  children,
+  loading = false,
+  svgIconProps,
+  ...rest
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, ...commonProps } = rest;
 
-    return hideText ? (
-        <ActionIcon
-            {...(variant
-                ? {
-                      variant: mapButtonVariantToActionIconVariant(variant),
-                  }
-                : { variant: "default" })}
-            loading={loading}
-            data-testid={RefineButtonTestIds.ExportButton}
-            className={RefineButtonClassNames.ExportButton}
-            {...commonProps}
-        >
-            <IconFileExport size={18} {...svgIconProps} />
-        </ActionIcon>
-    ) : (
-        <Button
-            variant="default"
-            loading={loading}
-            leftIcon={<IconFileExport size={18} {...svgIconProps} />}
-            data-testid={RefineButtonTestIds.ExportButton}
-            className={RefineButtonClassNames.ExportButton}
-            {...rest}
-        >
-            {children ?? translate("buttons.export", "Export")}
-        </Button>
-    );
+  return hideText ? (
+    <ActionIcon
+      {...(variant
+        ? {
+            variant: mapButtonVariantToActionIconVariant(variant),
+          }
+        : { variant: "default" })}
+      loading={loading}
+      data-testid={RefineButtonTestIds.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
+      {...commonProps}
+    >
+      <IconFileExport size={18} {...svgIconProps} />
+    </ActionIcon>
+  ) : (
+    <Button
+      variant="default"
+      loading={loading}
+      leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+      data-testid={RefineButtonTestIds.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
+      {...rest}
+    >
+      {children ?? translate("buttons.export", "Export")}
+    </Button>
+  );
 };

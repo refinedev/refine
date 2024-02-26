@@ -4,29 +4,29 @@ import { useEffect, useState } from "react";
 const COOKIE_NAME = "accept_cookies";
 
 interface ReturnUseAcceptCookies {
-    acceptedCookies: boolean;
-    onAcceptCookies: () => void;
+  acceptedCookies: boolean;
+  onAcceptCookies: () => void;
 }
 
 export const useAcceptCookies = (): ReturnUseAcceptCookies => {
-    const [acceptedCookies, setAcceptedCookies] = useState(true);
+  const [acceptedCookies, setAcceptedCookies] = useState(true);
 
-    useEffect(() => {
-        const cookies = parseCookies();
-        if (!cookies.hasOwnProperty(COOKIE_NAME)) {
-            setAcceptedCookies(false);
-        }
-    }, []);
+  useEffect(() => {
+    const cookies = parseCookies();
+    if (!cookies.hasOwnProperty(COOKIE_NAME)) {
+      setAcceptedCookies(false);
+    }
+  }, []);
 
-    const acceptCookies = () => {
-        setAcceptedCookies(true);
-        setCookie(null, COOKIE_NAME, "accepted", {
-            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
-        });
-    };
+  const acceptCookies = () => {
+    setAcceptedCookies(true);
+    setCookie(null, COOKIE_NAME, "accepted", {
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+    });
+  };
 
-    return {
-        acceptedCookies,
-        onAcceptCookies: acceptCookies,
-    };
+  return {
+    acceptedCookies,
+    onAcceptCookies: acceptCookies,
+  };
 };

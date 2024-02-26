@@ -12,16 +12,16 @@ import { textInfer } from "./text";
 import { urlInfer } from "./url";
 
 export const defaultElements = [
-    arrayInfer,
-    booleanInfer,
-    dateInfer,
-    emailInfer,
-    imageInfer,
-    nullishInfer,
-    numberInfer,
-    objectInfer,
-    relationInfer,
-    richtextInfer,
-    textInfer,
-    urlInfer,
+  arrayInfer,
+  booleanInfer,
+  dateInfer,
+  emailInfer,
+  imageInfer,
+  nullishInfer,
+  numberInfer,
+  objectInfer,
+  relationInfer,
+  richtextInfer,
+  textInfer,
+  urlInfer,
 ];

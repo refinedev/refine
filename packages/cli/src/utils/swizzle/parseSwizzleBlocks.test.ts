@@ -1,8 +1,8 @@
 import { parseSwizzleBlocks } from "./parseSwizzleBlocks";
 
 describe("parseSwizzleBlocks", () => {
-    it("should remove swizzle blocks", () => {
-        const content = `
+  it("should remove swizzle blocks", () => {
+    const content = `
             1
             // swizzle-remove-start
             remove-this
@@ -13,13 +13,13 @@ describe("parseSwizzleBlocks", () => {
             /* swizzle-remove-end */
         `;
 
-        const result = parseSwizzleBlocks(content);
+    const result = parseSwizzleBlocks(content);
 
-        expect(result).not.toContain("remove-this");
-        expect(result).not.toContain("remove-this-too");
-        expect(result).toContain("1");
-        expect(result).toContain("2");
-        expect(result).not.toContain("swizzle-remove-start");
-        expect(result).not.toContain("swizzle-remove-end");
-    });
+    expect(result).not.toContain("remove-this");
+    expect(result).not.toContain("remove-this-too");
+    expect(result).toContain("1");
+    expect(result).toContain("2");
+    expect(result).not.toContain("swizzle-remove-start");
+    expect(result).not.toContain("swizzle-remove-end");
+  });
 });
