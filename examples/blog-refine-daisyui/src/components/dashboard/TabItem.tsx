@@ -2,7 +2,7 @@ import React from "react";
 
 type TTabItem = {
   label: string;
-  isActive: Boolean;
+  isActive: boolean;
   clickHandler: () => void;
 };
 export const TabItem = ({ label, isActive, clickHandler }: TTabItem) => {
