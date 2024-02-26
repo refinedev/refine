@@ -87,6 +87,8 @@ export const dataProvider = (
 
       if (meta?.select) {
         query.select(meta.select);
+      } else if (!meta?.schema) {
+        query.select();
       }
 
       const { data, error } = await query;
@@ -109,6 +111,8 @@ export const dataProvider = (
 
       if (meta?.select) {
         query.select(meta.select);
+      } else if (!meta?.schema) {
+        query.select();
       }
 
       const { data, error } = await query;
@@ -137,6 +141,8 @@ export const dataProvider = (
 
       if (meta?.select) {
         query.select(meta.select);
+      } else if (!meta?.schema) {
+        query.select();
       }
 
       const { data, error } = await query;
@@ -166,6 +172,8 @@ export const dataProvider = (
 
           if (meta?.select) {
             query.select(meta.select);
+          } else if (!meta?.schema) {
+            query.select();
           }
 
           const { data, error } = await query;
