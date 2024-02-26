@@ -9,16 +9,16 @@ import { dependencies } from "@site/tutorial/ui-libraries/intro/ant-design/react
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -45,27 +45,24 @@ export const Login = () => {
 // actions
 
 export const UseAuthPageInLogin = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/login.tsx",
-                    LoginTsxWithAuthPage,
-                );
-                sandpack.setActiveFile("/src/pages/login.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/login.tsx", LoginTsxWithAuthPage);
+        sandpack.setActiveFile("/src/pages/login.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/pages/login.tsx": {
-        code: LoginTsxWithAuthPage,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/pages/login.tsx": {
+    code: LoginTsxWithAuthPage,
+    active: true,
+  },
 };

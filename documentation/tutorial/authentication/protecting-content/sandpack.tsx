@@ -8,15 +8,15 @@ import { dependencies, finalFiles as initialFiles } from "../intro/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -124,78 +124,75 @@ export default function App(): JSX.Element {
 // protecting-content actions
 
 export const CreateAuthProviderFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "/src/providers/auth-provider.ts": {
-                        code: AuthProviderTsxCode,
-                    },
-                });
-                sandpack.openFile("/src/providers/auth-provider.ts");
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-            name="src/providers/auth-provider.ts"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "/src/providers/auth-provider.ts": {
+            code: AuthProviderTsxCode,
+          },
+        });
+        sandpack.openFile("/src/providers/auth-provider.ts");
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+      name="src/providers/auth-provider.ts"
+    />
+  );
 };
 
 export const AddAuthProviderToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithAuthProvider);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithAuthProvider);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddCheckMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderTsxWithCheckMethod,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderTsxWithCheckMethod,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddAuthenticatedComponentToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/App.tsx",
-                    AppTsxWithAuthenticatedComponent,
-                );
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/App.tsx", AppTsxWithAuthenticatedComponent);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithAuthenticatedComponent,
-        active: true,
-    },
-    "src/providers/auth-provider.ts": {
-        code: AuthProviderTsxWithCheckMethod,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithAuthenticatedComponent,
+    active: true,
+  },
+  "src/providers/auth-provider.ts": {
+    code: AuthProviderTsxWithCheckMethod,
+  },
 };

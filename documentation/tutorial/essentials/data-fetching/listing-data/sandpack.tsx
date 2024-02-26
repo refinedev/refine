@@ -9,15 +9,15 @@ import { finalFiles as initialFiles } from "../updating-data/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -423,177 +423,177 @@ export default function App(): JSX.Element {
 // actions
 
 export const AddGetListMethod = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithGetListMethodTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithGetListMethodTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const CreateListProductsFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "src/pages/products/list.tsx": {
-                        code: BaseListProductsTsxCode,
-                    },
-                });
-                sandpack.openFile("/src/pages/products/list.tsx");
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-            name="src/pages/products/list.tsx"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "src/pages/products/list.tsx": {
+            code: BaseListProductsTsxCode,
+          },
+        });
+        sandpack.openFile("/src/pages/products/list.tsx");
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+      name="src/pages/products/list.tsx"
+    />
+  );
 };
 
 export const AddUseListToListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithUseListTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithUseListTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddListProductsToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithListProductsCode);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithListProductsCode);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddPaginationToGetList = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithPaginationTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithPaginationTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddPaginationToListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithPaginationTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithPaginationTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddSortingToGetList = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithSortingTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithSortingTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddSortingToListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithSortingTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithSortingTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddFiltersToGetList = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithFilteringTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithFilteringTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddFiltersToListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithFilteringTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithFilteringTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithListProductsCode,
-    },
-    "src/providers/data-provider.ts": {
-        code: DataProviderWithFilteringTsCode,
-    },
-    "src/pages/products/list.tsx": {
-        code: ListProductsWithFilteringTsxCode,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithListProductsCode,
+  },
+  "src/providers/data-provider.ts": {
+    code: DataProviderWithFilteringTsCode,
+  },
+  "src/pages/products/list.tsx": {
+    code: ListProductsWithFilteringTsxCode,
+    active: true,
+  },
 };
