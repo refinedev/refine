@@ -41,7 +41,7 @@ jobs:
           npm run build:all
       - name: lint
         run: |
-          npm run lint
+          npm run lint:ci
       - name: test
         run: |
           npm run test:all:coverage
