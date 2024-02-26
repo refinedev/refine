@@ -5,7 +5,8 @@ node_modules
 dist
 .rpt2_cache
 coverage
-.vscode
+build
+.docusaurus
 
 # misc
 .DS_Store
