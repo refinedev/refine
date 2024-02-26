@@ -8,13 +8,13 @@ import { Header } from "~/components/header";
 import type { LoaderArgs } from "@remix-run/node";
 
 export default function BaseLayout() {
-    return (
-        <>
-            <ThemedLayoutV2 Header={Header}>
-                <Outlet />
-            </ThemedLayoutV2>
-        </>
-    );
+  return (
+    <>
+      <ThemedLayoutV2 Header={Header}>
+        <Outlet />
+      </ThemedLayoutV2>
+    </>
+  );
 }
 
 /**
@@ -23,11 +23,11 @@ export default function BaseLayout() {
  * This is applied for all routes that are nested under this layout (_protected).
  */
 export async function loader({ request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
+  const { authenticated, redirectTo } = await authProvider.check(request);
 
-    if (!authenticated) {
-        throw redirect(redirectTo ?? "/login");
-    }
+  if (!authenticated) {
+    throw redirect(redirectTo ?? "/login");
+  }
 
-    return {};
+  return {};
 }

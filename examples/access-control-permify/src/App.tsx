@@ -53,7 +53,7 @@ const App: React.FC = () => {
                 console.log("resourceAPP", resource);
                 console.log("params", params);
 
-              if(action) {
+                if (action) {
                   //post specific access checks - show, edit and delete a post
                   if (
                     action === "show" ||
@@ -64,7 +64,7 @@ const App: React.FC = () => {
                       user.id,
                       resource!,
                       action,
-                      params?.id
+                      params?.id,
                     );
                     return Promise.resolve({
                       can: result,
@@ -76,16 +76,15 @@ const App: React.FC = () => {
                     user.id,
                     "organization",
                     action,
-                    user.organization_id
+                    user.organization_id,
                   );
                   return Promise.resolve({
                     can: result,
                   });
-              }
-              return Promise.resolve({
-                can: true,
-              });
-               
+                }
+                return Promise.resolve({
+                  can: true,
+                });
               },
             }}
             resources={[

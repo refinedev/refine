@@ -1,15 +1,15 @@
 import { ButtonProps, UploadProps } from "antd";
 import {
-    RefineCloneButtonProps,
-    RefineCreateButtonProps,
-    RefineDeleteButtonProps,
-    RefineEditButtonProps,
-    RefineExportButtonProps,
-    RefineImportButtonProps,
-    RefineListButtonProps,
-    RefineRefreshButtonProps,
-    RefineSaveButtonProps,
-    RefineShowButtonProps,
+  RefineCloneButtonProps,
+  RefineCreateButtonProps,
+  RefineDeleteButtonProps,
+  RefineEditButtonProps,
+  RefineExportButtonProps,
+  RefineImportButtonProps,
+  RefineListButtonProps,
+  RefineRefreshButtonProps,
+  RefineSaveButtonProps,
+  RefineShowButtonProps,
 } from "@refinedev/ui-types";
 
 export type ShowButtonProps = RefineShowButtonProps<ButtonProps>;
@@ -25,16 +25,16 @@ export type EditButtonProps = RefineEditButtonProps<ButtonProps>;
 export type ExportButtonProps = RefineExportButtonProps<ButtonProps>;
 
 export type ImportButtonProps = RefineImportButtonProps & {
-    /**
-     * Sets the button type
-     * @type [UploadProps](https://ant.design/components/upload/#API)
-     */
-    uploadProps: UploadProps;
-    /**
-     * Sets props of the button
-     * @type [ButtonProps](https://ant.design/components/button/#API)
-     */
-    buttonProps: ButtonProps;
+  /**
+   * Sets the button type
+   * @type [UploadProps](https://ant.design/components/upload/#API)
+   */
+  uploadProps: UploadProps;
+  /**
+   * Sets props of the button
+   * @type [ButtonProps](https://ant.design/components/button/#API)
+   */
+  buttonProps: ButtonProps;
 };
 
 export type ListButtonProps = RefineListButtonProps<ButtonProps>;

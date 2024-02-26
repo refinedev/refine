@@ -9,39 +9,39 @@ import { EditInferencer } from "./edit";
 import type { InferencerComponentProps } from "../../types";
 
 const AntdInferencer: React.FC<InferencerComponentProps> = ({
-    action: actionFromProps,
-    id: idFromProps,
-    ...props
+  action: actionFromProps,
+  id: idFromProps,
+  ...props
 }) => {
-    const { action, id } = useResource();
+  const { action, id } = useResource();
 
-    switch (actionFromProps ?? action) {
-        case "show":
-            return <ShowInferencer {...props} id={idFromProps ?? id} />;
-        case "create":
-            return <CreateInferencer {...props} id={idFromProps ?? id} />;
-        case "edit":
-            return <EditInferencer {...props} id={idFromProps ?? id} />;
-        default:
-            return <ListInferencer {...props} id={idFromProps ?? id} />;
-    }
+  switch (actionFromProps ?? action) {
+    case "show":
+      return <ShowInferencer {...props} id={idFromProps ?? id} />;
+    case "create":
+      return <CreateInferencer {...props} id={idFromProps ?? id} />;
+    case "edit":
+      return <EditInferencer {...props} id={idFromProps ?? id} />;
+    default:
+      return <ListInferencer {...props} id={idFromProps ?? id} />;
+  }
 };
 
 export { AntdInferencer };
 export {
-    ShowInferencer as AntdShowInferencer,
-    renderer as AntdShowRenderer,
+  ShowInferencer as AntdShowInferencer,
+  renderer as AntdShowRenderer,
 } from "./show";
 export {
-    EditInferencer as AntdEditInferencer,
-    renderer as AntdEditRenderer,
+  EditInferencer as AntdEditInferencer,
+  renderer as AntdEditRenderer,
 } from "./edit";
 export {
-    ListInferencer as AntdListInferencer,
-    renderer as AntdListRenderer,
+  ListInferencer as AntdListInferencer,
+  renderer as AntdListRenderer,
 } from "./list";
 export {
-    CreateInferencer as AntdCreateInferencer,
-    renderer as AntdCreateRenderer,
+  CreateInferencer as AntdCreateInferencer,
+  renderer as AntdCreateRenderer,
 } from "./create";
 export * from "../../types";

@@ -1,7 +1,7 @@
 import * as Casbin from "casbin";
 
 const CasbinScope = {
-    Casbin,
+  Casbin,
 };
 
 export default CasbinScope;

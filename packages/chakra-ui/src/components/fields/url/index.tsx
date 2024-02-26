@@ -10,14 +10,14 @@ import { UrlFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
-    children,
-    value,
-    title,
-    ...rest
+  children,
+  value,
+  title,
+  ...rest
 }) => {
-    return (
-        <Link href={value} title={title} {...rest}>
-            {children ?? value}
-        </Link>
-    );
+  return (
+    <Link href={value} title={title} {...rest}>
+      {children ?? value}
+    </Link>
+  );
 };

@@ -2,14 +2,14 @@ import { RouterBindingsContext } from "@contexts/router";
 import React, { useContext } from "react";
 
 export const useBack = () => {
-    const bindings = useContext(RouterBindingsContext);
+  const bindings = useContext(RouterBindingsContext);
 
-    const useBack = React.useMemo(
-        () => bindings?.back ?? (() => () => undefined),
-        [bindings?.back],
-    );
+  const useBack = React.useMemo(
+    () => bindings?.back ?? (() => () => undefined),
+    [bindings?.back],
+  );
 
-    const back = useBack();
+  const back = useBack();
 
-    return back;
+  return back;
 };

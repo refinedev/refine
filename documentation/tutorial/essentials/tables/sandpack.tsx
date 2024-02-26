@@ -8,15 +8,15 @@ import { finalFiles as initialFiles } from "../forms/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={files}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={files}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -632,137 +632,134 @@ export const ListProducts = () => {
 // actions
 
 export const MountListProductsInAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/App.tsx",
-                    AppTsxWithListProductsTsxCode,
-                );
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/App.tsx", AppTsxWithListProductsTsxCode);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const RefactorToUseTableInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithUseTableTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithUseTableTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddRelationHandlingToUseTableInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithUseTableAndUseManyTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithUseTableAndUseManyTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddGetManyMethodToDataProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithGetManyMethodTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithGetManyMethodTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddTotalToGetListMethodInDataProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/data-provider.ts",
-                    DataProviderWithTotalInGetListMethodTsCode,
-                );
-                sandpack.setActiveFile("/src/providers/data-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/data-provider.ts",
+          DataProviderWithTotalInGetListMethodTsCode,
+        );
+        sandpack.setActiveFile("/src/providers/data-provider.ts");
+      }}
+    />
+  );
 };
 
 export const AddPaginationToUseTableInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithPaginationTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithPaginationTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddHeaderSortersToUseTableInListProducts = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/list.tsx",
-                    ListProductsWithHeaderSortersTsxCode,
-                );
-                sandpack.setActiveFile("/src/pages/products/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/list.tsx",
+          ListProductsWithHeaderSortersTsxCode,
+        );
+        sandpack.setActiveFile("/src/pages/products/list.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const files = {
-    ...initialFiles,
-    "styles.css": {
-        code: StylesCssCode,
-        hidden: true,
-    },
+  ...initialFiles,
+  "styles.css": {
+    code: StylesCssCode,
+    hidden: true,
+  },
 };
 
 export const finalFiles = {
-    ...removeActiveFromFiles(files),
-    "src/App.tsx": {
-        code: AppTsxWithListProductsTsxCode,
-    },
-    "src/providers/data-provider.ts": {
-        code: DataProviderWithTotalInGetListMethodTsCode,
-    },
-    "src/pages/products/list.tsx": {
-        code: ListProductsWithHeaderSortersTsxCode,
-        active: true,
-    },
+  ...removeActiveFromFiles(files),
+  "src/App.tsx": {
+    code: AppTsxWithListProductsTsxCode,
+  },
+  "src/providers/data-provider.ts": {
+    code: DataProviderWithTotalInGetListMethodTsCode,
+  },
+  "src/pages/products/list.tsx": {
+    code: ListProductsWithHeaderSortersTsxCode,
+    active: true,
+  },
 };

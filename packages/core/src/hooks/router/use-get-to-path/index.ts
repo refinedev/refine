@@ -7,10 +7,10 @@ import { composeRoute } from "../../../definitions/helpers/router/compose-route"
 import { useRouterType } from "./../../../contexts/router-picker";
 
 type UseToPathParams = {
-    resource?: IResourceItem;
-    action: Action;
-    meta?: Record<string, unknown>;
-    legacy?: boolean;
+  resource?: IResourceItem;
+  action: Action;
+  meta?: Record<string, unknown>;
+  legacy?: boolean;
 };
 
 type GetToPathFn = (params: UseToPathParams) => string | undefined;
@@ -23,43 +23,43 @@ type GetToPathFn = (params: UseToPathParams) => string | undefined;
  * `meta` can be provided to compose the routes with parameters. (Can be used for nested routes.)
  */
 export const useGetToPath = (): GetToPathFn => {
-    const routerType = useRouterType();
-    const { resource: resourceFromRoute, resources } = useResource();
-    const parsed = useParsed();
+  const routerType = useRouterType();
+  const { resource: resourceFromRoute, resources } = useResource();
+  const parsed = useParsed();
 
-    const fn = React.useCallback(
-        ({ resource, action, meta }: UseToPathParams): string | undefined => {
-            const selectedResource = resource || resourceFromRoute;
+  const fn = React.useCallback(
+    ({ resource, action, meta }: UseToPathParams): string | undefined => {
+      const selectedResource = resource || resourceFromRoute;
 
-            if (!selectedResource) {
-                return undefined;
-            }
+      if (!selectedResource) {
+        return undefined;
+      }
 
-            const actionRoutes = getActionRoutesFromResource(
-                selectedResource,
-                resources,
-                routerType === "legacy",
-            );
+      const actionRoutes = getActionRoutesFromResource(
+        selectedResource,
+        resources,
+        routerType === "legacy",
+      );
 
-            const actionRoute = actionRoutes.find(
-                (item) => item.action === action,
-            )?.route;
+      const actionRoute = actionRoutes.find(
+        (item) => item.action === action,
+      )?.route;
 
-            if (!actionRoute) {
-                return undefined;
-            }
+      if (!actionRoute) {
+        return undefined;
+      }
 
-            const composed = composeRoute(
-                actionRoute,
-                selectedResource?.meta,
-                parsed,
-                meta,
-            );
+      const composed = composeRoute(
+        actionRoute,
+        selectedResource?.meta,
+        parsed,
+        meta,
+      );
 
-            return composed;
-        },
-        [resources, resourceFromRoute, parsed],
-    );
+      return composed;
+    },
+    [resources, resourceFromRoute, parsed],
+  );
 
-    return fn;
+  return fn;
 };

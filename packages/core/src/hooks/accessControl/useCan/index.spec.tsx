@@ -6,328 +6,330 @@ import { useCan } from ".";
 import { useCanWithoutCache } from "..";
 
 describe("useCan Hook", () => {
-    it("can should return the true ", async () => {
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    params: { id: 1 },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: ({ resource, action, params }) => {
-                            if (
-                                action === "list" &&
-                                resource === "posts" &&
-                                params?.id === 1
-                            ) {
-                                return Promise.resolve({
-                                    can: true,
-                                    reason: "Access granted",
-                                });
-                            }
-                            return Promise.resolve({ can: false });
-                        },
-                    },
-                }),
+  it("can should return the true ", async () => {
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          params: { id: 1 },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: ({ resource, action, params }) => {
+              if (
+                action === "list" &&
+                resource === "posts" &&
+                params?.id === 1
+              ) {
+                return Promise.resolve({
+                  can: true,
+                  reason: "Access granted",
+                });
+              }
+              return Promise.resolve({ can: false });
             },
-        );
+          },
+        }),
+      },
+    );
 
-        await waitFor(() => {
-            expect(result.current?.isFetched).toBeTruthy();
-        });
-
-        expect(result.current?.data?.can).toBeTruthy();
-        expect(result.current?.data?.reason).toBe("Access granted");
+    await waitFor(() => {
+      expect(result.current?.isFetched).toBeTruthy();
     });
 
-    it("can should return the false ", async () => {
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    params: { id: 10 },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: ({ resource, action, params }) => {
-                            if (
-                                action === "list" &&
-                                resource === "posts" &&
-                                params?.id === 1
-                            ) {
-                                return Promise.resolve({
-                                    can: true,
-                                    reason: "Access granted",
-                                });
-                            }
-                            return Promise.resolve({
-                                can: false,
-                                reason: "Access Denied",
-                            });
-                        },
-                    },
-                }),
+    expect(result.current?.data?.can).toBeTruthy();
+    expect(result.current?.data?.reason).toBe("Access granted");
+  });
+
+  it("can should return the false ", async () => {
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          params: { id: 10 },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: ({ resource, action, params }) => {
+              if (
+                action === "list" &&
+                resource === "posts" &&
+                params?.id === 1
+              ) {
+                return Promise.resolve({
+                  can: true,
+                  reason: "Access granted",
+                });
+              }
+              return Promise.resolve({
+                can: false,
+                reason: "Access Denied",
+              });
             },
-        );
+          },
+        }),
+      },
+    );
 
-        await waitFor(() => {
-            expect(result.current?.isFetched).toBeTruthy();
-        });
-
-        expect(result.current?.data?.can).toBeFalsy();
-        expect(result.current?.data?.reason).toBe("Access Denied");
+    await waitFor(() => {
+      expect(result.current?.isFetched).toBeTruthy();
     });
 
-    it("can should return the true if can is undefined ", async () => {
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    params: { id: 1 },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: undefined,
-                    },
-                }),
-            },
-        );
+    expect(result.current?.data?.can).toBeFalsy();
+    expect(result.current?.data?.reason).toBe("Access Denied");
+  });
 
-        expect(result.current).toEqual({ data: { can: true } });
+  it("can should return the true if can is undefined ", async () => {
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          params: { id: 1 },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: undefined,
+          },
+        }),
+      },
+    );
+
+    expect(result.current).toEqual({ data: { can: true } });
+  });
+
+  it("can should sanitize resource icon ", async () => {
+    const mockFn = jest.fn();
+    renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          params: {
+            id: 1,
+            resource: { icon: "test", name: "posts" } as any,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: mockFn,
+          },
+        }),
+      },
+    );
+
+    expect(mockFn).toBeCalledWith({
+      action: "list",
+      params: {
+        id: 1,
+        resource: { name: "posts" },
+      },
+      resource: "posts",
+    });
+  });
+
+  it("should be disable by queryOptions", async () => {
+    const mockFn = jest.fn();
+    renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          params: { id: 1 },
+          queryOptions: {
+            enabled: false,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: mockFn,
+          },
+        }),
+      },
+    );
+
+    expect(mockFn).not.toBeCalled();
+  });
+
+  it("should not throw error when accessControlProvider is undefined", async () => {
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.data).toEqual({ can: true });
+    });
+  });
+
+  it("should override `queryKey` with `queryOptions.queryKey`", async () => {
+    const canMock = jest.fn().mockResolvedValue({
+      can: true,
+      reason: "Access granted",
     });
 
-    it("can should sanitize resource icon ", async () => {
-        const mockFn = jest.fn();
-        renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    params: {
-                        id: 1,
-                        resource: { icon: "test", name: "posts" } as any,
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: mockFn,
-                    },
-                }),
-            },
-        );
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          queryOptions: {
+            queryKey: ["foo", "bar"],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: canMock,
+          },
+        }),
+      },
+    );
 
-        expect(mockFn).toBeCalledWith({
-            action: "list",
-            params: {
-                id: 1,
-                resource: { name: "posts" },
-            },
-            resource: "posts",
-        });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
     });
 
-    it("should be disable by queryOptions", async () => {
-        const mockFn = jest.fn();
-        renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    params: { id: 1 },
-                    queryOptions: {
-                        enabled: false,
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: mockFn,
-                    },
-                }),
-            },
-        );
+    expect(
+      queryClient.getQueryCache().findAll({
+        queryKey: ["foo", "bar"],
+      }),
+    ).toHaveLength(1);
+  });
 
-        expect(mockFn).not.toBeCalled();
+  it("should override `queryFn` with `queryOptions.queryFn`", async () => {
+    const canMock = jest.fn().mockResolvedValue({
+      can: true,
+      reason: "Access granted",
+    });
+    const queryFnMock = jest.fn().mockResolvedValue({
+      can: true,
+      reason: "Access granted",
     });
 
-    it("should not throw error when accessControlProvider is undefined", async () => {
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
+    const { result } = renderHook(
+      () =>
+        useCan({
+          action: "list",
+          resource: "posts",
+          queryOptions: {
+            queryFn: queryFnMock,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: canMock,
+          },
+        }),
+      },
+    );
 
-        await waitFor(() => {
-            expect(result.current.data).toEqual({ can: true });
-        });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
     });
 
-    it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-        const canMock = jest.fn().mockResolvedValue({
-            can: true,
-            reason: "Access granted",
-        });
+    expect(canMock).not.toBeCalled();
+    expect(queryFnMock).toBeCalled();
+  });
 
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    queryOptions: {
-                        queryKey: ["foo", "bar"],
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: canMock,
-                    },
-                }),
-            },
-        );
+  it("should use global queryOptions from AccessControlContext", async () => {
+    const mockFn = jest
+      .fn()
+      .mockResolvedValue({ can: true, reason: "Access granted" });
+    const globalQueryOptions = { enabled: false };
 
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
+    const { result } = renderHook(
+      () => useCan({ action: "list", resource: "posts" }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: mockFn,
+            options: { queryOptions: globalQueryOptions },
+          },
+        }),
+      },
+    );
 
-        expect(
-            queryClient.getQueryCache().findAll({
-                queryKey: ["foo", "bar"],
-            }),
-        ).toHaveLength(1);
+    await waitFor(() => {
+      expect(result.current.isFetched).toBeFalsy();
     });
 
-    it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-        const canMock = jest.fn().mockResolvedValue({
-            can: true,
-            reason: "Access granted",
-        });
-        const queryFnMock = jest.fn().mockResolvedValue({
-            can: true,
-            reason: "Access granted",
-        });
-
-        const { result } = renderHook(
-            () =>
-                useCan({
-                    action: "list",
-                    resource: "posts",
-                    queryOptions: {
-                        queryFn: queryFnMock,
-                    },
-                }),
-            {
-                wrapper: TestWrapper({
-                    accessControlProvider: {
-                        can: canMock,
-                    },
-                }),
-            },
-        );
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(canMock).not.toBeCalled();
-        expect(queryFnMock).toBeCalled();
-    });
-
-    it("should use global queryOptions from AccessControlContext", async () => {
-        const mockFn = jest.fn().mockResolvedValue({ can: true, reason: "Access granted" });
-        const globalQueryOptions = { enabled: false };
-      
-        const { result } = renderHook(
-          () => useCan({ action: "list", resource: "posts" }),
-          {
-            wrapper: TestWrapper({
-              accessControlProvider: {
-                can: mockFn,
-                options: { queryOptions: globalQueryOptions },
-              },
-            }),
-          }
-        );
-      
-        await waitFor(() => {
-          expect(result.current.isFetched).toBeFalsy(); 
-        });
-      
-        expect(mockFn).not.toBeCalled();
-      });
+    expect(mockFn).not.toBeCalled();
+  });
 });
 
 describe("useCanWithoutCache", () => {
-    it("should return the can function from the AccessControlContext", () => {
-        const canMock = jest.fn();
+  it("should return the can function from the AccessControlContext", () => {
+    const canMock = jest.fn();
 
-        const { result } = renderHook(() => useCanWithoutCache(), {
-            wrapper: TestWrapper({
-                accessControlProvider: {
-                    can: canMock,
-                },
-            }),
-        });
-
-        result.current.can?.({
-            action: "list",
-            resource: "posts",
-        });
-
-        expect(canMock).toBeCalledWith({
-            action: "list",
-            resource: "posts",
-        });
+    const { result } = renderHook(() => useCanWithoutCache(), {
+      wrapper: TestWrapper({
+        accessControlProvider: {
+          can: canMock,
+        },
+      }),
     });
-    it("should sanitize the `resource` if provided", () => {
-        const canMock = jest.fn();
 
-        const { result } = renderHook(() => useCanWithoutCache(), {
-            wrapper: TestWrapper({
-                accessControlProvider: {
-                    can: canMock,
-                },
-            }),
-        });
-
-        result.current.can?.({
-            action: "list",
-            resource: "posts",
-            params: {
-                id: 1,
-                resource: {
-                    name: "posts",
-                    meta: { icon: "test" },
-                    options: { icon: "test" },
-                    icon: "test",
-                } as any,
-            },
-        });
-
-        expect(canMock).toBeCalledWith({
-            action: "list",
-            resource: "posts",
-            params: {
-                id: 1,
-                resource: {
-                    name: "posts",
-                    meta: {},
-                    options: {},
-                },
-            },
-        });
+    result.current.can?.({
+      action: "list",
+      resource: "posts",
     });
+
+    expect(canMock).toBeCalledWith({
+      action: "list",
+      resource: "posts",
+    });
+  });
+  it("should sanitize the `resource` if provided", () => {
+    const canMock = jest.fn();
+
+    const { result } = renderHook(() => useCanWithoutCache(), {
+      wrapper: TestWrapper({
+        accessControlProvider: {
+          can: canMock,
+        },
+      }),
+    });
+
+    result.current.can?.({
+      action: "list",
+      resource: "posts",
+      params: {
+        id: 1,
+        resource: {
+          name: "posts",
+          meta: { icon: "test" },
+          options: { icon: "test" },
+          icon: "test",
+        } as any,
+      },
+    });
+
+    expect(canMock).toBeCalledWith({
+      action: "list",
+      resource: "posts",
+      params: {
+        id: 1,
+        resource: {
+          name: "posts",
+          meta: {},
+          options: {},
+        },
+      },
+    });
+  });
 });

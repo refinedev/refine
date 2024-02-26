@@ -1,12 +1,12 @@
 import {
-    useActiveDocContext,
-    useVersions,
+  useActiveDocContext,
+  useVersions,
 } from "@docusaurus/plugin-content-docs/client";
 import { useLocation } from "@docusaurus/router";
 
 type VersionLink = {
-    to: string;
-    label: string;
+  to: string;
+  label: string;
 };
 
 /**
@@ -16,28 +16,28 @@ type VersionLink = {
  * @returns {VersionLink[]} A list of links
  */
 const useVersionLinks = () => {
-    const { search, hash } = useLocation();
-    const docContext = useActiveDocContext();
-    const versions = useVersions();
+  const { search, hash } = useLocation();
+  const docContext = useActiveDocContext();
+  const versions = useVersions();
 
-    const getVersionMainDoc = (version) =>
-        version.docs.find((doc) => doc.id === version.mainDocId);
+  const getVersionMainDoc = (version) =>
+    version.docs.find((doc) => doc.id === version.mainDocId);
 
-    const links = versions.map((version) => {
-        // We try to link to the same doc, in another version
-        // When not possible, fallback to the "main doc" of the version
-        const versionDoc =
-            docContext.alternateDocVersions[version.name] ??
-            getVersionMainDoc(version);
-        return {
-            to: `${versionDoc.path}${search}${hash}`,
-            label: version.label,
-        };
-    }) as VersionLink[];
-
+  const links = versions.map((version) => {
+    // We try to link to the same doc, in another version
+    // When not possible, fallback to the "main doc" of the version
+    const versionDoc =
+      docContext.alternateDocVersions[version.name] ??
+      getVersionMainDoc(version);
     return {
-        links,
+      to: `${versionDoc.path}${search}${hash}`,
+      label: version.label,
     };
+  }) as VersionLink[];
+
+  return {
+    links,
+  };
 };
 
 export default useVersionLinks;

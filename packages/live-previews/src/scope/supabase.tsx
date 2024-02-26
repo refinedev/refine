@@ -1,7 +1,7 @@
 import * as RefineSupabase from "@refinedev/supabase";
 
 const SupabaseScope = {
-    RefineSupabase,
+  RefineSupabase,
 };
 
 export default SupabaseScope;

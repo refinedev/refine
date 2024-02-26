@@ -25,9 +25,7 @@ export const DeleteModal: React.FC<IDeleteModalProps> = ({
               Product deletion
             </ModalHeader>
             <ModalBody>
-              <p>
-                { warningMessage}
-              </p>
+              <p>{warningMessage}</p>
             </ModalBody>
             <ModalFooter>
               <Button color="primary" variant="light" onPress={onClose}>

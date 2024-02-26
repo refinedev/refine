@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "@docusaurus/router";
 
 export const UseCases = () => {
-    return <Redirect to="/" />;
+  return <Redirect to="/" />;
 };
 
 export default UseCases;

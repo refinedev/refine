@@ -3,9 +3,9 @@ import * as GraphQLTag from "graphql-tag";
 import * as GraphQLWS from "graphql-ws";
 
 const HasuraScope = {
-    RefineHasura,
-    GraphQLTag,
-    GraphQLWS,
+  RefineHasura,
+  GraphQLTag,
+  GraphQLWS,
 };
 
 export default HasuraScope;

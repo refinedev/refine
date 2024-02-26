@@ -10,70 +10,70 @@ import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Controller } from "react-hook-form";
 
 export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
-    const translate = useTranslate();
-    const {
-        saveButtonProps,
-        register,
-        control,
-        formState: { errors },
-    } = useForm();
+  const translate = useTranslate();
+  const {
+    saveButtonProps,
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Box
-                component="form"
-                sx={{ display: "flex", flexDirection: "column" }}
-                autoComplete="off"
-            >
-                <TextField
-                    {...register("id", {
-                        required: "This field is required",
-                        valueAsNumber: true,
-                    })}
-                    error={!!(errors as any)?.id}
-                    helperText={(errors as any)?.id?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="number"
-                    label={translate("categories.fields.id")}
-                    name="id"
-                    disabled
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
+        <TextField
+          {...register("id", {
+            required: "This field is required",
+            valueAsNumber: true,
+          })}
+          error={!!(errors as any)?.id}
+          helperText={(errors as any)?.id?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label={translate("categories.fields.id")}
+          name="id"
+          disabled
+        />
+        <TextField
+          {...register("title", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.title}
+          helperText={(errors as any)?.title?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label={translate("categories.fields.title")}
+          name="title"
+        />
+        <Controller
+          control={control}
+          name="isActive"
+          // eslint-disable-next-line
+          defaultValue={null as any}
+          render={({ field }) => (
+            <FormControlLabel
+              label={translate("isActive")}
+              control={
+                <Checkbox
+                  {...field}
+                  checked={field.value}
+                  onChange={(event) => {
+                    field.onChange(event.target.checked);
+                  }}
                 />
-                <TextField
-                    {...register("title", {
-                        required: "This field is required",
-                    })}
-                    error={!!(errors as any)?.title}
-                    helperText={(errors as any)?.title?.message}
-                    margin="normal"
-                    fullWidth
-                    InputLabelProps={{ shrink: true }}
-                    type="text"
-                    label={translate("categories.fields.title")}
-                    name="title"
-                />
-                <Controller
-                    control={control}
-                    name="isActive"
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
-                    render={({ field }) => (
-                        <FormControlLabel
-                            label={translate("isActive")}
-                            control={
-                                <Checkbox
-                                    {...field}
-                                    checked={field.value}
-                                    onChange={(event) => {
-                                        field.onChange(event.target.checked);
-                                    }}
-                                />
-                            }
-                        />
-                    )}
-                />
-            </Box>
-        </Edit>
-    );
+              }
+            />
+          )}
+        />
+      </Box>
+    </Edit>
+  );
 };

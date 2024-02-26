@@ -8,28 +8,28 @@ import { IResourceItem, MetaQuery } from "../../interfaces";
  * @internal
  */
 export const useMeta = () => {
-    const { params } = useParsed();
+  const { params } = useParsed();
 
-    const getMetaFn = ({
-        resource,
-        meta: metaFromProp,
-    }: {
-        resource?: IResourceItem;
-        meta?: MetaQuery;
-    } = {}) => {
-        const { meta } = sanitizeResource(resource) ?? { meta: {} };
+  const getMetaFn = ({
+    resource,
+    meta: metaFromProp,
+  }: {
+    resource?: IResourceItem;
+    meta?: MetaQuery;
+  } = {}) => {
+    const { meta } = sanitizeResource(resource) ?? { meta: {} };
 
-        // this fields came from the query params and should be removed from the meta because they are not part of the meta.
-        const {
-            filters: _filters,
-            sorters: _sorters,
-            current: _current,
-            pageSize: _pageSize,
-            ...additionalParams
-        } = params ?? {};
+    // this fields came from the query params and should be removed from the meta because they are not part of the meta.
+    const {
+      filters: _filters,
+      sorters: _sorters,
+      current: _current,
+      pageSize: _pageSize,
+      ...additionalParams
+    } = params ?? {};
 
-        return { ...meta, ...additionalParams, ...metaFromProp };
-    };
+    return { ...meta, ...additionalParams, ...metaFromProp };
+  };
 
-    return getMetaFn;
+  return getMetaFn;
 };

@@ -10,14 +10,14 @@ import { RefineFieldMarkdownProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/markdown} for more details.
  */
 export const MarkdownField: React.FC<RefineFieldMarkdownProps> = ({
-    value = "",
+  value = "",
 }) => {
-    // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
-    return (
-        <ReactMarkdown
-            remarkPlugins={[gfm] as unknown as ReactMarkdown.PluggableList}
-        >
-            {value}
-        </ReactMarkdown>
-    );
+  // There's an issue related with the type inconsistency of the `remark-gfm` and `remark-rehype` packages, we need to cast the `gfm` as any. (https://github.com/orgs/rehypejs/discussions/63)
+  return (
+    <ReactMarkdown
+      remarkPlugins={[gfm] as unknown as ReactMarkdown.PluggableList}
+    >
+      {value}
+    </ReactMarkdown>
+  );
 };

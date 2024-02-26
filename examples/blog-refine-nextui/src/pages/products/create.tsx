@@ -118,7 +118,7 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
                       ]}
                       onSelectionChange={(selectedItem) => {
                         field.onChange(
-                          (selectedItem as Set<string>).values().next().value
+                          (selectedItem as Set<string>).values().next().value,
                         );
                       }}
                     >

@@ -1,7 +1,7 @@
 import * as RefineNestjsxCrud from "@refinedev/nestjsx-crud";
 
 const NestjsxScope = {
-    RefineNestjsxCrud,
+  RefineNestjsxCrud,
 };
 
 export default NestjsxScope;

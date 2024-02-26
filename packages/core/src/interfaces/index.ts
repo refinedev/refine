@@ -57,13 +57,13 @@ export * from "./auditLog";
 
 export type BaseKey = string | number;
 export type BaseRecord = {
-    id?: BaseKey;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
+  id?: BaseKey;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 };
 export type BaseOption = {
-    label: any;
-    value: any;
+  label: any;
+  value: any;
 };
 
 /**
@@ -74,13 +74,13 @@ export interface Option extends BaseOption {}
 
 /* Backward compatible version of 'TreeMenuItem' */
 export type ITreeMenu = IResourceItem & {
-    key?: string;
-    children: ITreeMenu[];
+  key?: string;
+  children: ITreeMenu[];
 };
 
 export type IMenuItem = IResourceItem & {
-    key: string;
-    route: string;
+  key: string;
+  route: string;
 };
 
 export * from "./form-url-params";

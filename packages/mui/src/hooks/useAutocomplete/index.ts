@@ -1,9 +1,9 @@
 import {
-    useSelect as useSelectCore,
-    HttpError,
-    UseSelectProps,
-    UseSelectReturnType,
-    BaseRecord,
+  useSelect as useSelectCore,
+  HttpError,
+  UseSelectProps,
+  UseSelectReturnType,
+  BaseRecord,
 } from "@refinedev/core";
 
 import type { AutocompleteProps } from "@mui/material/Autocomplete";
@@ -12,26 +12,26 @@ import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
 
 export type UseAutocompleteProps<TQueryFnData, TError, TData> = Pick<
-    UseSelectProps<TQueryFnData, TError, TData>,
-    "resource"
+  UseSelectProps<TQueryFnData, TError, TData>,
+  "resource"
 > &
-    Omit<
-        UseSelectProps<TQueryFnData, TError, TData>,
-        "optionLabel" | "optionValue"
-    >;
+  Omit<
+    UseSelectProps<TQueryFnData, TError, TData>,
+    "optionLabel" | "optionValue"
+  >;
 
 type AutocompletePropsType<TQueryFnData> = Required<
-    Pick<
-        AutocompleteProps<TQueryFnData, boolean, boolean, boolean>,
-        "options" | "loading" | "onInputChange" | "filterOptions"
-    >
+  Pick<
+    AutocompleteProps<TQueryFnData, boolean, boolean, boolean>,
+    "options" | "loading" | "onInputChange" | "filterOptions"
+  >
 >;
 
 export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
-    UseSelectReturnType<TData>,
-    "options"
+  UseSelectReturnType<TData>,
+  "options"
 > & {
-    autocompleteProps: AutocompletePropsType<TData>;
+  autocompleteProps: AutocompletePropsType<TData>;
 };
 
 /**
@@ -49,36 +49,35 @@ export type UseAutocompleteReturnType<TData extends BaseRecord> = Omit<
  */
 
 export const useAutocomplete = <
-    TQueryFnData extends BaseRecord = any,
-    TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = any,
+  TError extends HttpError = HttpError,
+  TData extends BaseRecord = TQueryFnData,
 >(
-    props: UseAutocompleteProps<TQueryFnData, TError, TData>,
+  props: UseAutocompleteProps<TQueryFnData, TError, TData>,
 ): UseAutocompleteReturnType<TData> => {
-    const { queryResult, defaultValueQueryResult, onSearch, overtime } =
-        useSelectCore<TQueryFnData, TError, TData>(props);
+  const { queryResult, defaultValueQueryResult, onSearch, overtime } =
+    useSelectCore<TQueryFnData, TError, TData>(props);
 
-    return {
-        autocompleteProps: {
-            options: unionWith(
-                queryResult.data?.data || [],
-                defaultValueQueryResult.data?.data || [],
-                isEqual,
-            ),
-            loading:
-                queryResult.isFetching || defaultValueQueryResult.isFetching,
-            onInputChange: (event, value) => {
-                if (event?.type === "change") {
-                    onSearch(value);
-                } else if (event?.type === "click") {
-                    onSearch("");
-                }
-            },
-            filterOptions: (x) => x,
-        },
-        onSearch,
-        queryResult,
-        defaultValueQueryResult,
-        overtime,
-    };
+  return {
+    autocompleteProps: {
+      options: unionWith(
+        queryResult.data?.data || [],
+        defaultValueQueryResult.data?.data || [],
+        isEqual,
+      ),
+      loading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+      onInputChange: (event, value) => {
+        if (event?.type === "change") {
+          onSearch(value);
+        } else if (event?.type === "click") {
+          onSearch("");
+        }
+      },
+      filterOptions: (x) => x,
+    },
+    onSearch,
+    queryResult,
+    defaultValueQueryResult,
+    overtime,
+  };
 };

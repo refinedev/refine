@@ -1,17 +1,17 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
 } from "@refinedev/antd";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "@refinedev/antd/dist/reset.css";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
@@ -19,72 +19,58 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import DashboardPage from "./pages/dashBoardPage";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <DndProvider backend={HTML5Backend}>
-                <GitHubBanner />
-                <ConfigProvider theme={RefineThemes.Blue}>
-                    <AntdApp>
-                        <Refine
-                            dataProvider={dataProvider(
-                                "https://api.fake-rest.refine.dev",
-                            )}
-                            notificationProvider={useNotificationProvider}
-                            routerProvider={routerProvider}
-                            resources={[
-                                {
-                                    name: "dashboard",
-                                    list: "/",
-                                },
-                                {
-                                    name: "posts",
-                                    list: "/posts",
-                                    show: "/posts/show/:id",
-                                    create: "/posts/create",
-                                    edit: "/posts/edit/:id",
-                                },
-                            ]}
-                        >
-                            <Routes>
-                                <Route
-                                    element={
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    }
-                                >
-                                    <Route index element={<DashboardPage />} />
+  return (
+    <BrowserRouter>
+      <DndProvider backend={HTML5Backend}>
+        <GitHubBanner />
+        <ConfigProvider theme={RefineThemes.Blue}>
+          <AntdApp>
+            <Refine
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              notificationProvider={useNotificationProvider}
+              routerProvider={routerProvider}
+              resources={[
+                {
+                  name: "dashboard",
+                  list: "/",
+                },
+                {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/:id",
+                  create: "/posts/create",
+                  edit: "/posts/edit/:id",
+                },
+              ]}
+            >
+              <Routes>
+                <Route
+                  element={
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }
+                >
+                  <Route index element={<DashboardPage />} />
 
-                                    <Route path="/posts">
-                                        <Route index element={<PostList />} />
-                                        <Route
-                                            path="create"
-                                            element={<PostCreate />}
-                                        />
-                                        <Route
-                                            path="edit/:id"
-                                            element={<PostEdit />}
-                                        />
-                                        <Route
-                                            path="show/:id"
-                                            element={<PostShow />}
-                                        />
-                                    </Route>
+                  <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="create" element={<PostCreate />} />
+                    <Route path="edit/:id" element={<PostEdit />} />
+                    <Route path="show/:id" element={<PostShow />} />
+                  </Route>
 
-                                    <Route
-                                        path="*"
-                                        element={<ErrorComponent />}
-                                    />
-                                </Route>
-                            </Routes>
-                            <UnsavedChangesNotifier />
-                            <DocumentTitleHandler />
-                        </Refine>
-                    </AntdApp>
-                </ConfigProvider>
-            </DndProvider>
-        </BrowserRouter>
-    );
+                  <Route path="*" element={<ErrorComponent />} />
+                </Route>
+              </Routes>
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+          </AntdApp>
+        </ConfigProvider>
+      </DndProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

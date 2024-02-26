@@ -3,10 +3,7 @@
     {
       "type": "category",
       "label": "Getting Started",
-      "items": [
-        "getting-started/overview",
-        "getting-started/quickstart"
-      ],
+      "items": ["getting-started/overview", "getting-started/quickstart"],
       "collapsed": false
     },
     {
@@ -49,9 +46,7 @@
                 {
                   "type": "category",
                   "label": "Access Control",
-                  "items": [
-                    "api-reference/core/hooks/accessControl/useCan"
-                  ]
+                  "items": ["api-reference/core/hooks/accessControl/useCan"]
                 },
                 {
                   "type": "category",
@@ -79,9 +74,7 @@
                 {
                   "type": "category",
                   "label": "Breadcrumb",
-                  "items": [
-                    "api-reference/core/hooks/useBreadcrumb"
-                  ]
+                  "items": ["api-reference/core/hooks/useBreadcrumb"]
                 },
                 {
                   "type": "category",
@@ -106,16 +99,12 @@
                 {
                   "type": "category",
                   "label": "Field",
-                  "items": [
-                    "api-reference/core/hooks/useSelect/index"
-                  ]
+                  "items": ["api-reference/core/hooks/useSelect/index"]
                 },
                 {
                   "type": "category",
                   "label": "Form",
-                  "items": [
-                    "api-reference/core/hooks/useForm"
-                  ]
+                  "items": ["api-reference/core/hooks/useForm"]
                 },
                 {
                   "type": "category",
@@ -128,9 +117,7 @@
                 {
                   "type": "category",
                   "label": "Invalidate",
-                  "items": [
-                    "api-reference/core/hooks/invalidate/useInvalidate"
-                  ]
+                  "items": ["api-reference/core/hooks/invalidate/useInvalidate"]
                 },
                 {
                   "type": "category",
@@ -143,23 +130,17 @@
                 {
                   "type": "category",
                   "label": "Navigation",
-                  "items": [
-                    "api-reference/core/hooks/navigation/useNavigation"
-                  ]
+                  "items": ["api-reference/core/hooks/navigation/useNavigation"]
                 },
                 {
                   "type": "category",
                   "label": "Notification",
-                  "items": [
-                    "api-reference/core/hooks/useNotification/index"
-                  ]
+                  "items": ["api-reference/core/hooks/useNotification/index"]
                 },
                 {
                   "type": "category",
                   "label": "Refine",
-                  "items": [
-                    "api-reference/core/hooks/refine/useTitle"
-                  ]
+                  "items": ["api-reference/core/hooks/refine/useTitle"]
                 },
                 {
                   "type": "category",
@@ -172,16 +153,12 @@
                 {
                   "type": "category",
                   "label": "Show",
-                  "items": [
-                    "api-reference/core/hooks/show/useShow"
-                  ]
+                  "items": ["api-reference/core/hooks/show/useShow"]
                 },
                 {
                   "type": "category",
                   "label": "Table",
-                  "items": [
-                    "api-reference/core/hooks/useTable/index"
-                  ]
+                  "items": ["api-reference/core/hooks/useTable/index"]
                 },
                 {
                   "type": "category",
@@ -213,9 +190,7 @@
                 {
                   "type": "category",
                   "label": "Authorization",
-                  "items": [
-                    "api-reference/core/components/auth/authenticated"
-                  ]
+                  "items": ["api-reference/core/components/auth/authenticated"]
                 },
                 {
                   "type": "category",
@@ -264,16 +239,12 @@
                 {
                   "type": "category",
                   "label": "Import",
-                  "items": [
-                    "api-reference/antd/hooks/import/useImport"
-                  ]
+                  "items": ["api-reference/antd/hooks/import/useImport"]
                 },
                 {
                   "type": "category",
                   "label": "List",
-                  "items": [
-                    "api-reference/antd/hooks/list/useSimpleList"
-                  ]
+                  "items": ["api-reference/antd/hooks/list/useSimpleList"]
                 },
                 {
                   "type": "category",
@@ -286,9 +257,7 @@
                 {
                   "type": "category",
                   "label": "UI",
-                  "items": [
-                    "api-reference/antd/hooks/ui/useModal"
-                  ]
+                  "items": ["api-reference/antd/hooks/ui/useModal"]
                 }
               ]
             },
@@ -743,9 +712,7 @@
             {
               "type": "category",
               "label": "Headless",
-              "items": [
-                "examples/form/headless/save-and-continue"
-              ]
+              "items": ["examples/form/headless/save-and-continue"]
             },
             {
               "type": "category",
@@ -781,34 +748,24 @@
         {
           "type": "category",
           "label": "i18n",
-          "items": [
-            "examples/i18n/i18n-nextjs",
-            "examples/i18n/i18n-react"
-          ]
+          "items": ["examples/i18n/i18n-nextjs", "examples/i18n/i18n-react"]
         },
         "examples/import-export",
         {
           "type": "category",
           "label": "Inputs",
-          "items": [
-            "examples/inputs/customInput",
-            "examples/inputs/datePicker"
-          ]
+          "items": ["examples/inputs/customInput", "examples/inputs/datePicker"]
         },
         "examples/javascript",
         {
           "type": "category",
           "label": "List",
-          "items": [
-            "examples/list/useSimpleList"
-          ]
+          "items": ["examples/list/useSimpleList"]
         },
         {
           "type": "category",
           "label": "Live Provider",
-          "items": [
-            "examples/live-provider/ably"
-          ]
+          "items": ["examples/live-provider/ably"]
         },
         "examples/multi-level-menu/multi-level-menu",
         {
@@ -831,24 +788,18 @@
         {
           "type": "category",
           "label": "Notification Provider",
-          "items": [
-            "examples/notification-provider/react-toastify"
-          ]
+          "items": ["examples/notification-provider/react-toastify"]
         },
         "examples/persistQuery",
         {
           "type": "category",
           "label": "Router Provider",
-          "items": [
-            "examples/router-provider/react-location"
-          ]
+          "items": ["examples/router-provider/react-location"]
         },
         {
           "type": "category",
           "label": "Search",
-          "items": [
-            "examples/search/search"
-          ]
+          "items": ["examples/search/search"]
         },
         {
           "type": "category",
@@ -897,9 +848,7 @@
             {
               "type": "category",
               "label": "Handson Table",
-              "items": [
-                "examples/table/handsontable/handsontable"
-              ]
+              "items": ["examples/table/handsontable/handsontable"]
             }
           ]
         },
@@ -907,9 +856,7 @@
         {
           "type": "category",
           "label": "UI",
-          "items": [
-            "examples/ui/useModal"
-          ]
+          "items": ["examples/ui/useModal"]
         },
         {
           "type": "category",
@@ -944,9 +891,7 @@
         {
           "type": "category",
           "label": "Web3",
-          "items": [
-            "examples/web3/web3Login"
-          ]
+          "items": ["examples/web3/web3Login"]
         }
       ]
     },
@@ -1036,9 +981,7 @@
         {
           "type": "category",
           "label": "Web3",
-          "items": [
-            "advanced-tutorials/web3/ethereum-signin"
-          ]
+          "items": ["advanced-tutorials/web3/ethereum-signin"]
         }
       ]
     },
@@ -1075,10 +1018,7 @@
         "title": "Further Readings",
         "slug": "/further-readings"
       },
-      "items": [
-        "further-readings/benchmarks",
-        "further-readings/telemetry"
-      ]
+      "items": ["further-readings/benchmarks", "further-readings/telemetry"]
     }
   ]
 }

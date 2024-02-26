@@ -1,62 +1,62 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 
 export const getResourcePath = (
-    projectType: ProjectTypes,
+  projectType: ProjectTypes,
 ): { path: string; alias: string } => {
-    switch (projectType) {
-        case ProjectTypes.NEXTJS:
-            return {
-                path: "src/components",
-                alias: "../src/components",
-            };
-        case ProjectTypes.REMIX:
-            return {
-                path: "app/components",
-                alias: "~/components",
-            };
-    }
+  switch (projectType) {
+    case ProjectTypes.NEXTJS:
+      return {
+        path: "src/components",
+        alias: "../src/components",
+      };
+    case ProjectTypes.REMIX:
+      return {
+        path: "app/components",
+        alias: "~/components",
+      };
+  }
 
-    // vite and react
-    return {
-        path: "src/pages",
-        alias: "pages",
-    };
+  // vite and react
+  return {
+    path: "src/pages",
+    alias: "pages",
+  };
 };
 
 export const getProviderPath = (
-    projectType: ProjectTypes,
+  projectType: ProjectTypes,
 ): { path: string; alias: string } => {
-    switch (projectType) {
-        case ProjectTypes.NEXTJS:
-            return {
-                path: "src/providers",
-                alias: "../src/providers",
-            };
-        case ProjectTypes.REMIX:
-            return {
-                path: "app/providers",
-                alias: "~/providers",
-            };
-    }
-
-    // vite and react
-    return {
+  switch (projectType) {
+    case ProjectTypes.NEXTJS:
+      return {
         path: "src/providers",
-        alias: "providers",
-    };
+        alias: "../src/providers",
+      };
+    case ProjectTypes.REMIX:
+      return {
+        path: "app/providers",
+        alias: "~/providers",
+      };
+  }
+
+  // vite and react
+  return {
+    path: "src/providers",
+    alias: "providers",
+  };
 };
 
 export const getFilesPathByProject = (projectType?: ProjectTypes) => {
-    switch (projectType) {
-        case ProjectTypes.REMIX:
-            return "./app";
-        case ProjectTypes.NEXTJS:
-        case ProjectTypes.REACT_SCRIPT:
-        case ProjectTypes.VITE:
-        case ProjectTypes.CRACO:
-        case ProjectTypes.PARCEL:
-        case ProjectTypes.UNKNOWN:
-        default:
-            return "./src";
-    }
+  switch (projectType) {
+    case ProjectTypes.REMIX:
+      return "./app";
+    case ProjectTypes.NEXTJS:
+    case ProjectTypes.REACT_SCRIPT:
+    case ProjectTypes.VITE:
+    case ProjectTypes.CRACO:
+    case ProjectTypes.PARCEL:
+    case ProjectTypes.UNKNOWN:
+    default:
+      return "./src";
+  }
 };

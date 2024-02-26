@@ -1,33 +1,33 @@
 const handleExpression = (expression: unknown) => {
-    if (!expression) {
-        return "";
-    }
+  if (!expression) {
+    return "";
+  }
 
-    if (Array.isArray(expression)) {
-        return expression.join("");
-    }
+  if (Array.isArray(expression)) {
+    return expression.join("");
+  }
 
-    if (typeof expression === "string") {
-        return expression;
-    }
-
-    if (typeof expression === "object") {
-        return expression.toString();
-    }
-
-    if (typeof expression === "function") {
-        return expression.toString();
-    }
-
-    if (typeof expression === "number") {
-        return String(expression);
-    }
-
-    if (typeof expression === "boolean" && expression) {
-        return "true";
-    }
-
+  if (typeof expression === "string") {
     return expression;
+  }
+
+  if (typeof expression === "object") {
+    return expression.toString();
+  }
+
+  if (typeof expression === "function") {
+    return expression.toString();
+  }
+
+  if (typeof expression === "number") {
+    return String(expression);
+  }
+
+  if (typeof expression === "boolean" && expression) {
+    return "true";
+  }
+
+  return expression;
 };
 
 /**
@@ -35,14 +35,14 @@ const handleExpression = (expression: unknown) => {
  * Additionally, it parses expressions like jsx does.
  */
 export const jsx = (
-    strings: TemplateStringsArray,
-    ...expressions: unknown[]
+  strings: TemplateStringsArray,
+  ...expressions: unknown[]
 ) => {
-    const parsed = strings.reduce(
-        (result, currentString, i) =>
-            `${result}${currentString}${handleExpression(expressions[i])}`,
-        "",
-    );
+  const parsed = strings.reduce(
+    (result, currentString, i) =>
+      `${result}${currentString}${handleExpression(expressions[i])}`,
+    "",
+  );
 
-    return parsed.trim();
+  return parsed.trim();
 };

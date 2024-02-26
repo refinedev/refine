@@ -6,13 +6,11 @@ import { TutorialLayoutProvider } from "../context/tutorial-layout-context";
 type Props = React.PropsWithChildren<{}>;
 
 export const TutorialPageLayout = ({ children }: Props) => {
-    return (
-        <TutorialLayoutProvider>
-            <TutorialVisitProvider>
-                <TutorialParameterProvider>
-                    {children}
-                </TutorialParameterProvider>
-            </TutorialVisitProvider>
-        </TutorialLayoutProvider>
-    );
+  return (
+    <TutorialLayoutProvider>
+      <TutorialVisitProvider>
+        <TutorialParameterProvider>{children}</TutorialParameterProvider>
+      </TutorialVisitProvider>
+    </TutorialLayoutProvider>
+  );
 };

@@ -10,89 +10,89 @@ import { UndoableNotification } from "@components/undoableNotification";
  */
 
 export const notificationProvider: NotificationProvider = {
-    open: ({
+  open: ({
+    key,
+    message,
+    description,
+    type,
+    cancelMutation,
+    undoableTimeout,
+  }) => {
+    if (type === "progress") {
+      staticNotification.open({
         key,
-        message,
-        description,
+        description: (
+          <UndoableNotification
+            notificationKey={key}
+            message={message}
+            cancelMutation={() => {
+              cancelMutation?.();
+              staticNotification.destroy(key ?? "");
+            }}
+            undoableTimeout={undoableTimeout}
+          />
+        ),
+        message: null,
+        duration: 0,
+        closeIcon: <></>,
+      });
+    } else {
+      staticNotification.open({
+        key,
+        description: message,
+        message: description ?? null,
         type,
-        cancelMutation,
-        undoableTimeout,
-    }) => {
-        if (type === "progress") {
-            staticNotification.open({
-                key,
-                description: (
-                    <UndoableNotification
-                        notificationKey={key}
-                        message={message}
-                        cancelMutation={() => {
-                            cancelMutation?.();
-                            staticNotification.destroy(key ?? "");
-                        }}
-                        undoableTimeout={undoableTimeout}
-                    />
-                ),
-                message: null,
-                duration: 0,
-                closeIcon: <></>,
-            });
-        } else {
-            staticNotification.open({
-                key,
-                description: message,
-                message: description ?? null,
-                type,
-            });
-        }
-    },
-    close: (key) => staticNotification.destroy(key),
+      });
+    }
+  },
+  close: (key) => staticNotification.destroy(key),
 };
 
 export const useNotificationProvider = (): NotificationProvider => {
-    const { notification: notificationFromContext } = App.useApp();
-    const notification =
-        "open" in notificationFromContext
-            ? notificationFromContext
-            : staticNotification;
+  const { notification: notificationFromContext } = App.useApp();
+  const notification =
+    "open" in notificationFromContext
+      ? notificationFromContext
+      : staticNotification;
 
-    const notificationProvider: NotificationProvider = {
-        open: ({
-            key,
-            message,
-            description,
-            type,
-            cancelMutation,
-            undoableTimeout,
-        }) => {
-            if (type === "progress") {
-                notification.open({
-                    key,
-                    description: (
-                        <UndoableNotification
-                            notificationKey={key}
-                            message={message}
-                            cancelMutation={() => {
-                                cancelMutation?.();
-                                notification.destroy(key ?? "");
-                            }}
-                            undoableTimeout={undoableTimeout}
-                        />
-                    ),
-                    message: null,
-                    duration: 0,
-                    closeIcon: <></>,
-                });
-            } else {
-                notification.open({
-                    key,
-                    description: message,
-                    message: description ?? null,
-                    type,
-                });
-            }
-        },
-        close: (key) => notification.destroy(key),
-    };
+  const notificationProvider: NotificationProvider = {
+    open: ({
+      key,
+      message,
+      description,
+      type,
+      cancelMutation,
+      undoableTimeout,
+    }) => {
+      if (type === "progress") {
+        notification.open({
+          key,
+          description: (
+            <UndoableNotification
+              notificationKey={key}
+              message={message}
+              cancelMutation={() => {
+                cancelMutation?.();
+                notification.destroy(key ?? "");
+              }}
+              undoableTimeout={undoableTimeout}
+            />
+          ),
+          message: null,
+          duration: 0,
+          closeIcon: <></>,
+        });
+      } else {
+        notification.open({
+          key,
+          description: message,
+          message: description ?? null,
+          type,
+        });
+      }
+    },
+    close: (key) => notification.destroy(key),
+  };
 
-    return notificationProvider;
+  return notificationProvider;
 };

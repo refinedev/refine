@@ -4,78 +4,78 @@ import { AuthProvider } from "@refinedev/core";
 import { account } from "./utility";
 
 export const authProvider: AuthProvider = {
-    login: async ({ email, password }) => {
-        try {
-            await account.createEmailSession(email, password);
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        } catch (e) {
-            const { type, message, code } = e as AppwriteException;
-            return {
-                success: false,
-                error: {
-                    message,
-                    name: `${code} - ${type}`,
-                },
-            };
-        }
-    },
-    logout: async () => {
-        try {
-            await account.deleteSession("current");
+  login: async ({ email, password }) => {
+    try {
+      await account.createEmailSession(email, password);
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    } catch (e) {
+      const { type, message, code } = e as AppwriteException;
+      return {
+        success: false,
+        error: {
+          message,
+          name: `${code} - ${type}`,
+        },
+      };
+    }
+  },
+  logout: async () => {
+    try {
+      await account.deleteSession("current");
 
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        } catch (error) {
-            return {
-                success: true,
-                redirectTo: "/",
-            };
-        }
-    },
-    onError: async (error) => {
-        if (error?.code === 401) {
-            return {
-                logout: true,
-            };
-        }
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    } catch (error) {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    }
+  },
+  onError: async (error) => {
+    if (error?.code === 401) {
+      return {
+        logout: true,
+      };
+    }
 
-        return { error };
-    },
-    check: async () => {
-        try {
-            const session = await account.getSession("current");
+    return { error };
+  },
+  check: async () => {
+    try {
+      const session = await account.getSession("current");
 
-            if (session) {
-                return {
-                    authenticated: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                authenticated: false,
-                redirectTo: "/login",
-                error,
-            };
-        }
-
+      if (session) {
         return {
-            authenticated: false,
-            redirectTo: "/login",
+          authenticated: true,
         };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
-        const user = await account.get();
+      }
+    } catch (error: any) {
+      return {
+        authenticated: false,
+        redirectTo: "/login",
+        error,
+      };
+    }
 
-        if (user) {
-            return user;
-        }
+    return {
+      authenticated: false,
+      redirectTo: "/login",
+    };
+  },
+  getPermissions: async () => null,
+  getIdentity: async () => {
+    const user = await account.get();
 
-        return null;
-    },
+    if (user) {
+      return user;
+    }
+
+    return null;
+  },
 };
