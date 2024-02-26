@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 Having a date picker that is simple, intuitive and consistent may be necessary to ensure users have a good experience using your web application.
@@ -19,17 +18,15 @@ Fortunately, the React community has come up with various libraries that provide
 
 In this article, we’ll show you how to implement a date picker using the ‘react-datepicker’ library and how to customize the date picker’s appearance and functionality for your use case.
 
-
-
 [`react-datepicker`](https://www.npmjs.com/package/react-datepicker) is a lightweight library with a lot of features.
 
-To build a simple React date picker, all you need to do is import the custom component and set two props. Advanced features require only a little more time. 
+To build a simple React date picker, all you need to do is import the custom component and set two props. Advanced features require only a little more time.
 
 ## Create a Datepicker
 
 ### Setup
 
-In this article, we’ll use **react-datepicker** in a live environment CodeSandbox. 
+In this article, we’ll use **react-datepicker** in a live environment CodeSandbox.
 
 You can use npm to install the package in an existing project:
 
@@ -40,18 +37,18 @@ npm install react-datepicker
 Once installed, import the custom **DatePicker** component in the file where you want to use it.
 
 ```tsx
-import DatePicker from 'react-datepicker'
+import DatePicker from "react-datepicker";
 ```
 
 You also need to import CSS styles to display elements in all their beauty.
 
 ```tsx
-import 'react-datepicker/dist/react-datepicker.css'
+import "react-datepicker/dist/react-datepicker.css";
 ```
 
 ### Create a basic date picker
 
-**DatePicker** is a controlled component. In other words, the selected date is stored in the state and the date picker gets its value from the state. So we need to initialize the state. 
+**DatePicker** is a controlled component. In other words, the selected date is stored in the state and the date picker gets its value from the state. So we need to initialize the state.
 
 In class components, we initialize a state object and use the **setState()** method to update it.
 
@@ -61,8 +58,8 @@ The **react-datepicker** library exports a custom component by default. When you
 
 Every **DatePicker** component must have at least two props to work:
 
-1. **selected** - set to the selected date, stored in the state. It is similar to **value** prop on `**<input>**` elements. 
-2. **onChange** - set to a callback function with one argument, which stands for the date selected by the user. The function body should call the updater function returned by the **useState** hook to update the state. 
+1. **selected** - set to the selected date, stored in the state. It is similar to **value** prop on `**<input>**` elements.
+2. **onChange** - set to a callback function with one argument, which stands for the date selected by the user. The function body should call the updater function returned by the **useState** hook to update the state.
 
 ```tsx
 import React, { useState } from "react";
@@ -87,9 +84,9 @@ As simple as that, users can select a date. Try it yourself on [CodeSandbox](htt
 
 ### Set initial date
 
-In class components, you set a default date when the state object is initialized. 
+In class components, you set a default date when the state object is initialized.
 
-In functional components, we can set a default date by passing a date value as an argument to the **useState()** hook. For example, **useState(new Date())** will set it to today (the current date). 
+In functional components, we can set a default date by passing a date value as an argument to the **useState()** hook. For example, **useState(new Date())** will set it to today (the current date).
 
 Sometimes it’s better to have no default date at all. You can add a placeholder text to help users pick the right date. Simply set the **placeholderText** prop on the custom component.
 
@@ -125,8 +122,8 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 export default function App() {
   const [date, setDate] = useState(new Date());
-  const [startDate, setStartDate] = useState()
-  const [endDate, setEndDate] = useState()
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   return (
     <div>
       <DatePicker selected={date} onChange={(date) => setDate(date)} />
@@ -229,7 +226,7 @@ export default function App() {
         startDate={startDate}
         endDate={endDate}
         selectsRange
-    />
+      />
     </div>
   );
 }
@@ -261,7 +258,7 @@ export default function App() {
       <DatePicker
         selectsStart
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={(date) => setStartDate(date)}
         startDate={startDate}
       />
     </div>
@@ -269,7 +266,7 @@ export default function App() {
 }
 ```
 
-Next, we need a second **DatePicker** component with a **selectsEnd** prop to specify that it selects the end of the range. 
+Next, we need a second **DatePicker** component with a **selectsEnd** prop to specify that it selects the end of the range.
 
 The component should get its values from the state. So **selected** and **endDate** props should be set to the **endDate** state variable.
 The **onChange** function should update the **endDate** state variable.
@@ -288,23 +285,23 @@ export default function App() {
       <DatePicker
         selectsStart
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={(date) => setStartDate(date)}
         startDate={startDate}
       />
       <DatePicker
         selectsEnd
         selected={endDate}
-        onChange={date => setEndDate(date)}
+        onChange={(date) => setEndDate(date)}
         endDate={endDate}
         startDate={startDate}
         minDate={startDate}
-     />
+      />
     </div>
   );
 }
 ```
 
-The React date picker that selects the end should have a **startDate** prop as well. 
+The React date picker that selects the end should have a **startDate** prop as well.
 
 Also, have the **minDate** prop set to the start date. This will ensure that users can’t select an end date that comes earlier than the start date.
 
@@ -316,7 +313,7 @@ Also, have the **minDate** prop set to the start date. This will ensure that use
 
 Allow users to select both date and time by adding the **showTimeSelect** prop to your DatePicker.
 
-This could be a useful use case for booking appointments or meetings. 
+This could be a useful use case for booking appointments or meetings.
 
 **showTimeSelect** will allow users to select time intervals (9:00, 9:30, 10:00, etc). Set the **timeIntervals** prop to show 15-minute or 5-minute intervals instead.
 
@@ -338,7 +335,7 @@ export default function App() {
         minTime={new Date(0, 0, 0, 12, 30)}
         maxTime={new Date(0, 0, 0, 19, 0)}
         selected={date}
-        onChange={date => setDate(date)}
+        onChange={(date) => setDate(date)}
       />
     </div>
   );
@@ -367,7 +364,7 @@ export default function App() {
         minTime={new Date(0, 0, 0, 12, 30)}
         maxTime={new Date(0, 0, 0, 19, 0)}
         selected={date}
-        onChange={date => setDate(date)}
+        onChange={(date) => setDate(date)}
         dateFormat="MMMM d, yyyy h:mmaa"
       />
     </div>
@@ -377,14 +374,11 @@ export default function App() {
 
 If you want users to enter their own time instead of selecting it, replace the **showTimeSelect** with the **showTimeInput** boolean prop.
 
-
-
-
 ### Conditionally disable dates
 
-Use **filterDate** prop to conditionally disable dates in the calendar. Set its value to a callback function that returns a condition. 
+Use **filterDate** prop to conditionally disable dates in the calendar. Set its value to a callback function that returns a condition.
 
-Users will be able to select only dates that meet the condition. Dates that do not meet the condition will be disabled. 
+Users will be able to select only dates that meet the condition. Dates that do not meet the condition will be disabled.
 
 For example, here’s a function that returns **false** for dates less than (earlier than) today, and **true** for higher (later) dates.
 
@@ -405,7 +399,7 @@ export default function App() {
         showTimeSelect
         filterDate={weekend}
         selected={date}
-        onChange={date => setDate(date)}
+        onChange={(date) => setDate(date)}
       />
     </div>
   );
@@ -418,7 +412,7 @@ export default function App() {
 
 For example, you might want to disable past dates so users can’t select them when booking accommodation or flights.
 
-You can also use **minDate** and **maxDate** props to disable all dates before or after a certain date. 
+You can also use **minDate** and **maxDate** props to disable all dates before or after a certain date.
 
 **filterTime** prop allows you to conditionally disable time values. For example, disable out-of-office hours.
 
@@ -440,10 +434,9 @@ Set the **highlightDates** prop to an array of date values that should be highli
 
 #### isClearable
 
-Simply add the **isClearable** prop to the date picker to display a button to reset the selected date. 
+Simply add the **isClearable** prop to the date picker to display a button to reset the selected date.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/is_clearable.png" alt="react date picker" />
-
 
 <br/>
 
@@ -453,7 +446,7 @@ Use the **locale** prop to specify the date locale. For example, use English (Br
 
 #### dayClassName
 
-**dayClassName** prop allows you to customize the appearance of each day in the calendar. 
+**dayClassName** prop allows you to customize the appearance of each day in the calendar.
 
 You can pass it a callback function that returns a ternary operator. **dayClassName** will apply the className only if the day meets a condition.
 
@@ -469,7 +462,7 @@ The value of the **dateFormat** prop specifies the format of date values.
 
 #### minDate
 
-Set the minimum date, all dates earlier than **minDate** will be disabled. 
+Set the minimum date, all dates earlier than **minDate** will be disabled.
 
 #### excludeDates
 
@@ -481,11 +474,11 @@ Set **includeDates** prop to an array of date values that should be included. Al
 
 #### excludeDateIntervals
 
-Set the value of the **excludeDateIntervals** prop to an array of objects with two properties: **start** and **end**.  The array can have multiple intervals. All dates outside of intervals will be included.
+Set the value of the **excludeDateIntervals** prop to an array of objects with two properties: **start** and **end**. The array can have multiple intervals. All dates outside of intervals will be included.
 
 #### includeDateIntervals
 
-Just like the previous prop, the value of **includeDateIntervals** should be an array of objects (intervals) with two properties: **start** and **end**. 
+Just like the previous prop, the value of **includeDateIntervals** should be an array of objects (intervals) with two properties: **start** and **end**.
 
 Date intervals specified in the array will be included. All dates outside of these intervals will be disabled.
 
@@ -495,7 +488,7 @@ Add this boolean prop to disable your datepicker. It works similarly to HTML ele
 
 #### shouldCloseOnSelect
 
-By default, the calendar closes when the user selects a date. If you want the calendar to stay open, set the **shouldCloseOnSelect** prop to true. 
+By default, the calendar closes when the user selects a date. If you want the calendar to stay open, set the **shouldCloseOnSelect** prop to true.
 
 #### showMonthDropdown and showYearDropdown
 

@@ -246,7 +246,11 @@ const dataProvider = (): DataProvider => ({
   getList: async ({ resource, pagination, filters, sorters }) => {
     if (filters) {
       filters.map((filter) => {
-        if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {
+        if (
+          filter.operator !== "or" &&
+          filter.operator !== "and" &&
+          "field" in filter
+        ) {
           // Handle your logical filters here
           // console.log(typeof filter); // LogicalFilter
         } else {

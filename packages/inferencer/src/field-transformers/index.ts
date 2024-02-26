@@ -4,8 +4,8 @@ import { relationByResource } from "./relation-by-resource";
 import { relationToFieldable } from "./relation-to-fieldable";
 
 export const defaultTransformers = [
-    imageByKey,
-    relationByResource,
-    relationToFieldable,
-    basicToRelation,
+  imageByKey,
+  relationByResource,
+  relationToFieldable,
+  basicToRelation,
 ];

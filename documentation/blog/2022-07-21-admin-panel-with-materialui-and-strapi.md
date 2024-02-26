@@ -56,7 +56,7 @@ Before we dive into the meat of the article, let's first take a look at the tool
 - [Refine](https://refine.dev/docs/)
 - [Refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Refine Material UI Tutorial](https://refine.dev/docs/tutorial/introduction/index/)
+- [Refine Material UI Tutorial](https://refine.dev/tutorial)
 
 Your node version need to be minimum `v16.14.0`
 
@@ -160,7 +160,13 @@ Now, we'll create a new folder named `pages/posts` under `/src`. Under that fold
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useDataGrid, DataGrid, GridColumns, DateField, List } from "@refinedev/mui";
+import {
+  useDataGrid,
+  DataGrid,
+  GridColumns,
+  DateField,
+  List,
+} from "@refinedev/mui";
 
 import { IPost } from "interfaces";
 
@@ -212,7 +218,7 @@ Note you will need `src/App.tsx` file to find your pages and posts. In the `/pag
 export * from "./list";
 ```
 
-[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev//docs/tutorial/adding-crud-pages/mui/add-show-page/)
+[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](/docs/ui-integrations/material-ui/introduction)
 
 <br/>
 <div>
@@ -348,7 +354,7 @@ To show category field in table, we need to add new column to the PostList compo
 
 We use benefits of Strapi V4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
 
-[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](https://refine.dev/docs/tutorial/adding-crud-pages/mui/index/#handling-relationships)
+[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](/docs/guides-concepts/data-fetching)
 
 :::
 
@@ -367,7 +373,13 @@ First, we'll create PostCreate page to create new records.
 
 ```tsx title="src/pages/posts/create"
 import { HttpError } from "@refinedev/core";
-import { Box, TextField, Autocomplete, useAutocomplete, Create } from "@refinedev/mui";
+import {
+  Box,
+  TextField,
+  Autocomplete,
+  useAutocomplete,
+  Create,
+} from "@refinedev/mui";
 import { useForm, Controller } from "@refinedev/react-hook-form";
 
 import { IPost, ICategory } from "interfaces";
@@ -387,7 +399,11 @@ export const PostCreate: React.FC = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("title", { required: "Title is required" })}
           error={!!errors?.title}
@@ -415,7 +431,8 @@ export const PostCreate: React.FC = () => {
                 return item.title ? item.title : "";
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField

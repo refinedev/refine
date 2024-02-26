@@ -1,113 +1,112 @@
 import {
-    CrudFilters,
-    CrudOperators,
-    CrudSorting,
-    CrudFilter,
-    getDefaultFilter as getDefaultFilterCore,
-    getDefaultSortOrder as getDefaultSortOrderCore,
-    ConditionalFilter,
-    LogicalFilter,
+  CrudFilters,
+  CrudOperators,
+  CrudSorting,
+  CrudFilter,
+  getDefaultFilter as getDefaultFilterCore,
+  getDefaultSortOrder as getDefaultSortOrderCore,
+  ConditionalFilter,
+  LogicalFilter,
 } from "@refinedev/core";
 import { SortOrder, SorterResult } from "antd/lib/table/interface";
 
 export const getDefaultSortOrder = (
-    columnName: string,
-    sorter?: CrudSorting,
+  columnName: string,
+  sorter?: CrudSorting,
 ): SortOrder | undefined => {
-    const sort = getDefaultSortOrderCore(columnName, sorter);
+  const sort = getDefaultSortOrderCore(columnName, sorter);
 
-    if (sort) {
-        return `${sort}end`;
-    }
+  if (sort) {
+    return `${sort}end`;
+  }
 
-    return undefined;
+  return undefined;
 };
 
 /**
  * @deprecated getDefaultFilter moved to `@refinedev/core`. Use from `@refinedev/core`
  */
 export const getDefaultFilter = (
-    columnName: string,
-    filters?: CrudFilters,
-    operatorType: CrudOperators = "eq",
+  columnName: string,
+  filters?: CrudFilters,
+  operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
-    return getDefaultFilterCore(columnName, filters, operatorType);
+  return getDefaultFilterCore(columnName, filters, operatorType);
 };
 
 export const mapAntdSorterToCrudSorting = (
-    sorter: SorterResult<any> | SorterResult<any>[],
+  sorter: SorterResult<any> | SorterResult<any>[],
 ): CrudSorting => {
-    const crudSorting: CrudSorting = [];
-    if (Array.isArray(sorter)) {
-        sorter
-            .sort((a, b) => {
-                return ((a.column?.sorter as { multiple?: number }).multiple ??
-                    0) <
-                    ((b.column?.sorter as { multiple?: number }).multiple ?? 0)
-                    ? -1
-                    : 0;
-            })
-            .map((item) => {
-                if (item.field && item.order) {
-                    const field = Array.isArray(item.field)
-                        ? item.field.join(".")
-                        : `${item.field}`;
+  const crudSorting: CrudSorting = [];
+  if (Array.isArray(sorter)) {
+    sorter
+      .sort((a, b) => {
+        return ((a.column?.sorter as { multiple?: number }).multiple ?? 0) <
+          ((b.column?.sorter as { multiple?: number }).multiple ?? 0)
+          ? -1
+          : 0;
+      })
+      .map((item) => {
+        if (item.field && item.order) {
+          const field = Array.isArray(item.field)
+            ? item.field.join(".")
+            : `${item.field}`;
 
-                    crudSorting.push({
-                        field: `${item.columnKey ?? field}`,
-                        order: item.order.replace("end", "") as "asc" | "desc",
-                    });
-                }
-            });
-    } else {
-        if (sorter.field && sorter.order) {
-            const field = Array.isArray(sorter.field)
-                ? sorter.field.join(".")
-                : `${sorter.field}`;
-
-            crudSorting.push({
-                field: `${sorter.columnKey ?? field}`,
-                order: sorter.order.replace("end", "") as "asc" | "desc",
-            });
+          crudSorting.push({
+            field: `${item.columnKey ?? field}`,
+            order: item.order.replace("end", "") as "asc" | "desc",
+          });
         }
-    }
+      });
+  } else {
+    if (sorter.field && sorter.order) {
+      const field = Array.isArray(sorter.field)
+        ? sorter.field.join(".")
+        : `${sorter.field}`;
 
-    return crudSorting;
+      crudSorting.push({
+        field: `${sorter.columnKey ?? field}`,
+        order: sorter.order.replace("end", "") as "asc" | "desc",
+      });
+    }
+  }
+
+  return crudSorting;
 };
 
 export const mapAntdFilterToCrudFilter = (
-    tableFilters: Record<
-        string,
-        (string | number | boolean) | (string | number | boolean)[] | null
-    >,
-    prevFilters: CrudFilters,
-    initialFilters?: CrudFilters,
+  tableFilters: Record<
+    string,
+    (string | number | boolean) | (string | number | boolean)[] | null
+  >,
+  prevFilters: CrudFilters,
+  initialFilters?: CrudFilters,
 ): CrudFilters => {
-    const crudFilters: CrudFilters = [];
-    const mapInitialFilter: Record<string, CrudFilter> = (
-        initialFilters ?? []
-    ).reduce((acc, item) => {
-        const field =
-            (item as ConditionalFilter).key || (item as LogicalFilter).field;
-        return { ...acc, [field]: item };
-    }, {});
+  const crudFilters: CrudFilters = [];
+  const mapInitialFilter: Record<string, CrudFilter> = (
+    initialFilters ?? []
+  ).reduce((acc, item) => {
+    const field =
+      (item as ConditionalFilter).key || (item as LogicalFilter).field;
+    return { ...acc, [field]: item };
+  }, {});
 
-    Object.keys(tableFilters).map((field) => {
-        const value = tableFilters[field];
-        const operator =
-            prevFilters
-                .filter((i) => i.operator !== "or")
-                .find((p: any) => p.field === field)?.operator ||
-            mapInitialFilter[field]?.operator;
+  Object.keys(tableFilters).map((field) => {
+    const value = tableFilters[field];
+    const operator =
+      prevFilters
+        .filter((i) => i.operator !== "or")
+        .find((p: any) => p.field === field)?.operator ||
+      mapInitialFilter[field]?.operator;
 
-        if (operator !== "or" && operator !== "and") {
-            crudFilters.push({
-                field,
-                operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
-                value,
-            });
-        }
-    });
+    if (operator !== "or" && operator !== "and") {
+      crudFilters.push({
+        field,
+        operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
+        value,
+      });
+    }
+  });
 
-    return crudFilters;
+  return crudFilters;
 };

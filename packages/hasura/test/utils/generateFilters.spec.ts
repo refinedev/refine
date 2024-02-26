@@ -2,120 +2,117 @@ import { CrudFilters, CrudOperators } from "@refinedev/core";
 import { generateFilters, handleFilterValue } from "../../src/utils";
 
 describe.each(["hasura-default", "graphql-default"] as const)(
-    "generateFilters with %s naming convention",
-    (namingConvention) => {
-        it("should generate nested filter query for given filters", () => {
-            const filters: CrudFilters = [
-                { field: "title", operator: "contains", value: "test" },
-                { field: "published", operator: "eq", value: true },
-            ];
+  "generateFilters with %s naming convention",
+  (namingConvention) => {
+    it("should generate nested filter query for given filters", () => {
+      const filters: CrudFilters = [
+        { field: "title", operator: "contains", value: "test" },
+        { field: "published", operator: "eq", value: true },
+      ];
 
-            const result = generateFilters(filters, namingConvention);
+      const result = generateFilters(filters, namingConvention);
 
-            expect(result).toEqual({
-                _and: [
-                    { title: { _ilike: "%test%" } },
-                    { published: { _eq: true } },
-                ],
-            });
-        });
+      expect(result).toEqual({
+        _and: [{ title: { _ilike: "%test%" } }, { published: { _eq: true } }],
+      });
+    });
 
-        it("should return undefined for undefined filters", () => {
-            const result = generateFilters(undefined);
+    it("should return undefined for undefined filters", () => {
+      const result = generateFilters(undefined);
 
-            expect(result).toBeUndefined();
-        });
+      expect(result).toBeUndefined();
+    });
 
-        it("should generate nested filter query for nested filters", () => {
-            const filters: CrudFilters = [
-                {
-                    operator: "or",
-                    value: [
-                        { field: "title", operator: "contains", value: "test" },
-                        { field: "published", operator: "eq", value: true },
-                    ],
-                },
-                {
-                    field: "author.name",
-                    operator: "contains",
-                    value: "John",
-                },
-            ];
+    it("should generate nested filter query for nested filters", () => {
+      const filters: CrudFilters = [
+        {
+          operator: "or",
+          value: [
+            { field: "title", operator: "contains", value: "test" },
+            { field: "published", operator: "eq", value: true },
+          ],
+        },
+        {
+          field: "author.name",
+          operator: "contains",
+          value: "John",
+        },
+      ];
 
-            const result = generateFilters(filters, namingConvention);
+      const result = generateFilters(filters, namingConvention);
 
-            expect(result).toEqual({
-                _and: [
-                    {
-                        _or: [
-                            { title: { _ilike: "%test%" } },
-                            { published: { _eq: true } },
-                        ],
-                    },
-                    { author: { name: { _ilike: "%John%" } } },
-                ],
-            });
-        });
+      expect(result).toEqual({
+        _and: [
+          {
+            _or: [
+              { title: { _ilike: "%test%" } },
+              { published: { _eq: true } },
+            ],
+          },
+          { author: { name: { _ilike: "%John%" } } },
+        ],
+      });
+    });
 
-        it("should generate correct hasura operator for filter converted to snake_case operator", () => {
-            const filters: CrudFilters = [
-                {
-                    field: "title",
-                    operator: "null",
-                    value: true,
-                },
-                {
-                    field: "title",
-                    operator: "nnull",
-                    value: false,
-                },
-            ];
+    it("should generate correct hasura operator for filter converted to snake_case operator", () => {
+      const filters: CrudFilters = [
+        {
+          field: "title",
+          operator: "null",
+          value: true,
+        },
+        {
+          field: "title",
+          operator: "nnull",
+          value: false,
+        },
+      ];
 
-            const result = generateFilters(filters, namingConvention);
-            const expected =
-                namingConvention === "hasura-default"
-                    ? {
-                          _and: [
-                              { title: { _is_null: true } },
-                              { title: { _is_null: false } },
-                          ],
-                      }
-                    : {
-                          _and: [
-                              { title: { _isNull: true } },
-                              { title: { _isNull: false } },
-                          ],
-                      };
+      const result = generateFilters(filters, namingConvention);
+      const expected =
+        namingConvention === "hasura-default"
+          ? {
+              _and: [
+                { title: { _is_null: true } },
+                { title: { _is_null: false } },
+              ],
+            }
+          : {
+              _and: [
+                { title: { _isNull: true } },
+                { title: { _isNull: false } },
+              ],
+            };
 
-            expect(result).toEqual(expected);
-        });
-    },
+      expect(result).toEqual(expected);
+    });
+  },
 );
 
 describe("handleFilterValue", () => {
-    const testCases: Array<[CrudOperators, any, any]> = [
-        ["startswiths", "test", "test%"],
-        ["nstartswiths", "test", "test%"],
-        ["endswiths", "test", "%test"],
-        ["nendswiths", "test", "%test"],
-        ["startswith", "test", "^test"],
-        ["nstartswith", "test", "^(?!test)"],
-        ["endswith", "test", "test$"],
-        ["nendswith", "test", "(?<!test)$"],
-        ["nnull", null, false],
-        ["contains", "test", "%test%"],
-        ["containss", "test", "%test%"],
-        ["ncontains", "test", "%test%"],
-        ["ncontainss", "test", "%test%"],
-        ["eq", "test", "test"],
-    ];
+  const testCases: Array<[CrudOperators, any, any]> = [
+    ["startswiths", "test", "test%"],
+    ["nstartswiths", "test", "test%"],
+    ["endswiths", "test", "%test"],
+    ["nendswiths", "test", "%test"],
+    ["startswith", "test", "^test"],
+    ["nstartswith", "test", "^(?!test)"],
+    ["endswith", "test", "test$"],
+    ["nendswith", "test", "(?<!test)$"],
+    ["nnull", null, false],
+    ["contains", "test", "%test%"],
+    ["containss", "test", "%test%"],
+    ["ncontains", "test", "%test%"],
+    ["ncontainss", "test", "%test%"],
+    ["eq", "test", "test"],
+  ];
 
-    it.each(testCases)(
-        "should return correct value for %s operator",
-        (operator, value, expected) => {
-            const result = handleFilterValue(operator, value);
+  it.each(testCases)(
+    "should return correct value for %s operator",
+    (operator, value, expected) => {
+      const result = handleFilterValue(operator, value);
 
-            expect(result).toEqual(expected);
-        },
-    );
+      expect(result).toEqual(expected);
+    },
+  );
 });

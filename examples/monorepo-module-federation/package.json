@@ -7,9 +7,9 @@
     "apps/categories"
   ],
   "scripts": {
+    "build": "npm run build --workspaces",
     "dev": "npm run dev --workspaces",
     "preview": "npm run preview --workspaces",
-    "build": "npm run build --workspaces",
     "stop": "kill-port 4000,4001,4002"
   },
   "devDependencies": {

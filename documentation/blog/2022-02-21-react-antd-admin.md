@@ -42,7 +42,7 @@ You can use it with any UI library you want without any problems. Also, [Ant Des
 
 ## Refine Advanced Tutorial
 
-This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/docs/tutorial/introduction/index/). That's why I suggest you read the basic tutorial of refine.
+This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/tutorial). That's why I suggest you read the basic tutorial of refine.
 
 In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the Refine in our project and how we can use it.
 
@@ -254,7 +254,14 @@ Now, let's create a select component in the header and examine our posts accordi
 
 ```tsx title="src/components/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { AntdLayout, Space, Menu, Button, Icons, Dropdown } from "@refinedev/antd";
+import {
+  AntdLayout,
+  Space,
+  Menu,
+  Button,
+  Icons,
+  Dropdown,
+} from "@refinedev/antd";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -341,7 +348,15 @@ import {
   useTranslate,
   useMany,
 } from "@refinedev/core";
-import { List, Table, TextField, useTable, Space, EditButton, ShowButton } from "@refinedev/antd";
+import {
+  List,
+  Table,
+  TextField,
+  useTable,
+  Space,
+  EditButton,
+  ShowButton,
+} from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -350,7 +365,8 @@ export const PostList: React.FC = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -377,7 +393,11 @@ export const PostList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <Table.Column<IPost>
@@ -509,7 +529,15 @@ Let's start by creating two buttons for the `Admin` and `Editor` roles in our cr
 
 ```tsx title="/src/componets/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { AntdLayout, Space, Menu, Button, Icons, Dropdown, Radio } from "@refinedev/antd";
+import {
+  AntdLayout,
+  Space,
+  Menu,
+  Button,
+  Icons,
+  Dropdown,
+  Radio,
+} from "@refinedev/antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
@@ -677,7 +705,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -704,7 +733,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" />
-        <Table.Column dataIndex="title" title={translate("posts.fields.title")} />
+        <Table.Column
+          dataIndex="title"
+          title={translate("posts.fields.title")}
+        />
         <Table.Column
           dataIndex={["category", "id"]}
           title={translate("posts.fields.category")}
@@ -713,7 +745,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>

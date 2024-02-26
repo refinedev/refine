@@ -22,10 +22,14 @@ const ProductList: React.FC = () => {
   //highlight-next-line
   const [order, setOrder] = useState<"asc" | "desc">("asc");
 
-  const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteList<
-    IProduct,
-    HttpError
-  >({
+  const {
+    data,
+    isLoading,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteList<IProduct, HttpError>({
     resource: "products",
     //highlight-start
     sorters: [
@@ -49,7 +53,11 @@ const ProductList: React.FC = () => {
   return (
     <div>
       {/* highlight-start */}
-      <button onClick={() => setOrder((prev) => (prev === "asc" ? "desc" : "asc"))}>toggle sort</button>
+      <button
+        onClick={() => setOrder((prev) => (prev === "asc" ? "desc" : "asc"))}
+      >
+        toggle sort
+      </button>
       {/* highlight-end */}
 
       <ul>

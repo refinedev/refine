@@ -76,10 +76,16 @@ const PostList: React.FC = () => {
           <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
             First
           </button>
-          <button onClick={() => setCurrent((prev) => prev - 1)} disabled={!hasPrev}>
+          <button
+            onClick={() => setCurrent((prev) => prev - 1)}
+            disabled={!hasPrev}
+          >
             Previous
           </button>
-          <button onClick={() => setCurrent((prev) => prev + 1)} disabled={!hasNext}>
+          <button
+            onClick={() => setCurrent((prev) => prev + 1)}
+            disabled={!hasNext}
+          >
             Next
           </button>
           <button onClick={() => setCurrent(pageCount)} disabled={!hasNext}>

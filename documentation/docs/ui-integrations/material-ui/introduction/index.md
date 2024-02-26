@@ -100,7 +100,11 @@ export const ProductCreate: FC = () => {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           id="name"
           {...register("name", {
@@ -154,14 +158,11 @@ Material UI has its own notification elements but lacks the notification managem
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/antd";
+import { useNotificationProvider } from "@refinedev/mui";
 
 const App = () => {
   return (
-    // `notistack` also requires a context provider to be used
-    <RefineSnackbarProvider>
-      <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>
-    </RefineSnackbarProvider>
+    <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>
   );
 };
 ```
@@ -325,7 +326,10 @@ export const ProductShow = () => {
         Title
       </Typography>
       {/* highlight-next-line */}
-      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
+      <NumberField
+        value={record?.price}
+        options={{ style: "currency", currency: "USD" }}
+      />
     </Show>
   );
 };

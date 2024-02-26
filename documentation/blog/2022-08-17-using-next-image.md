@@ -156,7 +156,9 @@ This is a custom function that resolves external image URLs. It can be passed as
 import Image from "next/image";
 
 const customLoader = ({ src, width, quality }) => {
-  return `https://s3.amazonaws.com/demo/image/${src}?w=${width}&q=${quality || 75}`;
+  return `https://s3.amazonaws.com/demo/image/${src}?w=${width}&q=${
+    quality || 75
+  }`;
 };
 
 const MyImage = (props) => {
@@ -185,7 +187,13 @@ When set to `blur`, the `blurDataURL` value will be used as a placeholder. If `s
 import Image from "next/image";
 import cat from "../public/cat.webp";
 
-<Image src={cat} alt="A picture of white cats" width={500} height={450} placeholder="blur" />;
+<Image
+  src={cat}
+  alt="A picture of white cats"
+  width={500}
+  height={450}
+  placeholder="blur"
+/>;
 ```
 
 ### **`priority`**
@@ -193,7 +201,13 @@ import cat from "../public/cat.webp";
 This prop is particularly useful for images visible above the fold - i.e, the portion of a web page that is visible without scrolling. Images visible above the fold, such as images on a landing page, should use the `priority` prop for the performance boost. This prop tells the browser to preload the image as it's considered a high priority. Lazy loading will be automatically disabled for images using `priority`. It takes a Boolean value and defaults to false:
 
 ```ts
-<Image src="user.webp" alt="User profile photo" width={300} height={300} priority />
+<Image
+  src="user.webp"
+  alt="User profile photo"
+  width={300}
+  height={300}
+  priority
+/>
 ```
 
 ### **`quality`**
@@ -201,7 +215,13 @@ This prop is particularly useful for images visible above the fold - i.e, the po
 An integer that specifies the quality of the optimized image. Its values range between `1` and `100` where `100` is the best quality. Defaults to `75`:
 
 ```ts
-<Image src="user.webp" alt="User profile photo" width={300} height={300} quality={80} />
+<Image
+  src="user.webp"
+  alt="User profile photo"
+  width={300}
+  height={300}
+  quality={80}
+/>
 ```
 
 ### **`sizes`**
@@ -271,7 +291,13 @@ When set to `lazy`, loading the image is deferred until it reaches a calculated 
 When set to `eager`, load the image immediately as soon as the page is mounted. Beware of using the `eager` prop as it's turned out to hurt performance drastically.
 
 ```ts
-<Image src="/background.webp" alt="Page background photo" width={800} height={750} loading="lazy" />
+<Image
+  src="/background.webp"
+  alt="Page background photo"
+  width={800}
+  height={750}
+  loading="lazy"
+/>
 ```
 
 ### **`objectFit`**
@@ -279,7 +305,13 @@ When set to `eager`, load the image immediately as soon as the page is mounted. 
 Sets how an image should be sized to its parent element when using `layout="fill"`. This value is passed to the [object-fit CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) for the src image. Its possible values are `fill`, `cover`, or `contain`:
 
 ```ts
-<Image src="/user.webp" alt="User profile photo" width={300} height={300} objectFit="cover" />
+<Image
+  src="/user.webp"
+  alt="User profile photo"
+  width={300}
+  height={300}
+  objectFit="cover"
+/>
 ```
 
 <br/>
@@ -294,7 +326,13 @@ Sets how an image should be sized to its parent element when using `layout="fill
 Specifies the alignment of the image contents within the image's box. This value is passed to the [object-position CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) applied to the image. Defaults to `50% 50%`:
 
 ```ts
-<Image src="/user.webp" alt="User profile photo" width={300} height={300} objectPosition="right bottom" />
+<Image
+  src="/user.webp"
+  alt="User profile photo"
+  width={300}
+  height={300}
+  objectPosition="right bottom"
+/>
 ```
 
 ### **`onLoadingComplete`**

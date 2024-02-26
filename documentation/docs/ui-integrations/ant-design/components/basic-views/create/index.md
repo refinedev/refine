@@ -710,7 +710,11 @@ const PostCreate: React.FC = () => {
       // highlight-start
       footerButtons={({ saveButtonProps }) => (
         <>
-          <SaveButton {...saveButtonProps} type="primary" style={{ marginRight: 8 }}>
+          <SaveButton
+            {...saveButtonProps}
+            type="primary"
+            style={{ marginRight: 8 }}
+          >
             Save
           </SaveButton>
           <Button type="primary">Custom Button</Button>

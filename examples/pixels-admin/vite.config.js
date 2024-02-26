@@ -6,25 +6,25 @@ import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfil
 import rollupNodePolyFill from "rollup-plugin-polyfill-node";
 
 export default defineConfig({
-    plugins: [react()],
-    optimizeDeps: {
-        esbuildOptions: {
-            // Node.js global to browser globalThis
-            define: {
-                global: "globalThis",
-            },
-            plugins: [
-                NodeGlobalsPolyfillPlugin({
-                    buffer: true,
-                    process: true,
-                }),
-                NodeModulesPolyfillPlugin(),
-            ],
-        },
+  plugins: [react()],
+  optimizeDeps: {
+    esbuildOptions: {
+      // Node.js global to browser globalThis
+      define: {
+        global: "globalThis",
+      },
+      plugins: [
+        NodeGlobalsPolyfillPlugin({
+          buffer: true,
+          process: true,
+        }),
+        NodeModulesPolyfillPlugin(),
+      ],
     },
-    build: {
-        rollupOptions: {
-            plugins: [rollupNodePolyFill()],
-        },
+  },
+  build: {
+    rollupOptions: {
+      plugins: [rollupNodePolyFill()],
     },
+  },
 });

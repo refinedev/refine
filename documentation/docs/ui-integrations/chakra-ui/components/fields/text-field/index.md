@@ -14,7 +14,11 @@ setRefineProps({
 });
 
 const Wrapper = ({ children }) => {
-  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
+  return (
+    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </ChakraUI.ChakraProvider>
+  );
 };
 ```
 

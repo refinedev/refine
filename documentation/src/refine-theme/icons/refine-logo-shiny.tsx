@@ -5,11 +5,11 @@ import { RefineLogoShinyCyan } from "./refine-logo-shiny-cyan";
 import { RefineLogoShinyBlue } from "./refine-logo-shiny-blue";
 
 export const RefineLogoShiny = (props: SVGProps<SVGSVGElement>) => {
-    const { colorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-    if (colorMode === "dark") {
-        return <RefineLogoShinyCyan {...props} />;
-    }
+  if (colorMode === "dark") {
+    return <RefineLogoShinyCyan {...props} />;
+  }
 
-    return <RefineLogoShinyBlue {...props} />;
+  return <RefineLogoShinyBlue {...props} />;
 };

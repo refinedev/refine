@@ -11,69 +11,69 @@ const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
 const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";
 
 const getChangedPackages = () => {
-    const p = require.resolve("lerna/cli.js");
+  const p = require.resolve("lerna/cli.js");
 
-    const output = execSync(`node ${p} ls --since origin/${BASE_REF} --json`, {
-        stdio: "pipe",
-    });
+  const output = execSync(`node ${p} ls --since origin/${BASE_REF} --json`, {
+    stdio: "pipe",
+  });
 
-    const changedPackages = JSON.parse(output.toString());
+  const changedPackages = JSON.parse(output.toString());
 
-    return changedPackages.map((pkg) => pkg.name);
+  return changedPackages.map((pkg) => pkg.name);
 };
 
 const isExampleAffected = (example, changedPackages) => {
-    const examplePath = path.join(EXAMPLES_DIR, example);
+  const examplePath = path.join(EXAMPLES_DIR, example);
 
-    if (changedPackages.length === 0) {
-        return false;
-    }
+  if (changedPackages.length === 0) {
+    return false;
+  }
 
-    const pkgJson = JSON.parse(
-        fs.readFileSync(path.join(examplePath, "package.json")),
-    );
+  const pkgJson = JSON.parse(
+    fs.readFileSync(path.join(examplePath, "package.json")),
+  );
 
-    const dependencies = Object.keys(pkgJson.dependencies || {});
-    const devDependencies = Object.keys(pkgJson.devDependencies || {});
+  const dependencies = Object.keys(pkgJson.dependencies || {});
+  const devDependencies = Object.keys(pkgJson.devDependencies || {});
 
-    const allDependencies = [...dependencies, ...devDependencies];
+  const allDependencies = [...dependencies, ...devDependencies];
 
-    return allDependencies.some((dependency) => {
-        return changedPackages.includes(dependency);
-    });
+  return allDependencies.some((dependency) => {
+    return changedPackages.includes(dependency);
+  });
 };
 
 const isExampleModified = (example) => {
-    const output = execSync(
-        `git diff --quiet HEAD origin/${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
-        { stdio: "pipe" },
-    );
+  const output = execSync(
+    `git diff --quiet HEAD origin/${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
+    { stdio: "pipe" },
+  );
 
-    return output.toString().includes("changed");
+  return output.toString().includes("changed");
 };
 
 const hasPackageJson = (example) => {
-    return fs.existsSync(path.join(EXAMPLES_DIR, example, "package.json"));
+  return fs.existsSync(path.join(EXAMPLES_DIR, example, "package.json"));
 };
 
 const hasE2eTests = (example) => {
-    return fs.existsSync(path.join(EXAMPLES_DIR, example, "cypress.config.ts"));
+  return fs.existsSync(path.join(EXAMPLES_DIR, example, "cypress.config.ts"));
 };
 
 const isDirectory = (example) => {
-    return fs.statSync(path.join(EXAMPLES_DIR, example)).isDirectory();
+  return fs.statSync(path.join(EXAMPLES_DIR, example)).isDirectory();
 };
 
 const isIgnored = (example) => {
-    return ignoredRegexes.some((regex) => regex.test(example));
+  return ignoredRegexes.some((regex) => regex.test(example));
 };
 
 const getExamples = () => {
-    return fs
-        .readdirSync(EXAMPLES_DIR)
-        .filter((dir) => isDirectory(dir))
-        .filter((dir) => !isIgnored(dir))
-        .filter((dir) => hasPackageJson(dir));
+  return fs
+    .readdirSync(EXAMPLES_DIR)
+    .filter((dir) => isDirectory(dir))
+    .filter((dir) => !isIgnored(dir))
+    .filter((dir) => hasPackageJson(dir));
 };
 
 //
@@ -82,20 +82,20 @@ const getExamples = () => {
 const changedPackages = getChangedPackages();
 
 const examples = getExamples().filter((dir) =>
-    BUILD_ALL_EXAMPLES
-        ? true
-        : isExampleAffected(dir, changedPackages) || isExampleModified(dir),
+  BUILD_ALL_EXAMPLES
+    ? true
+    : isExampleAffected(dir, changedPackages) || isExampleModified(dir),
 );
 
 console.log(
-    `Changed packages (${changedPackages.length}):\n- ` +
-        changedPackages.join("\n- "),
+  `Changed packages (${changedPackages.length}):\n- ` +
+    changedPackages.join("\n- "),
 );
 
 console.log("");
 
 console.log(
-    `Affected examples (${examples.length}):\n- ` + examples.join("\n- "),
+  `Affected examples (${examples.length}):\n- ` + examples.join("\n- "),
 );
 
 //
@@ -104,11 +104,11 @@ console.log(
 const examplesWithE2eTests = examples.filter((dir) => hasE2eTests(dir));
 
 const examplesWithoutE2eTests = examples.filter(
-    (dir) => !examplesWithE2eTests.includes(dir),
+  (dir) => !examplesWithE2eTests.includes(dir),
 );
 
 console.log(
-    `\nFound ${examplesWithE2eTests.length} examples with e2e tests and ${examplesWithoutE2eTests.length} without.\n`,
+  `\nFound ${examplesWithE2eTests.length} examples with e2e tests and ${examplesWithoutE2eTests.length} without.\n`,
 );
 
 //
@@ -119,34 +119,34 @@ const chunkSize = Math.ceil(examples.length / CHUNK_COUNT);
 const chunks = [];
 
 for (let i = 0; i < examples.length; i += chunkSize) {
-    const tempChunk = [];
+  const tempChunk = [];
 
-    for (j = 0; j < chunkSize; j++) {
-        if (j % (CHUNK_COUNT / 2) === 1) {
-            if (examplesWithE2eTests.length > 0) {
-                tempChunk.push(examplesWithE2eTests.shift());
-            } else if (examplesWithoutE2eTests.length > 0) {
-                tempChunk.push(examplesWithoutE2eTests.shift());
-            }
-        } else {
-            if (examplesWithoutE2eTests.length > 0) {
-                tempChunk.push(examplesWithoutE2eTests.shift());
-            }
-        }
+  for (j = 0; j < chunkSize; j++) {
+    if (j % (CHUNK_COUNT / 2) === 1) {
+      if (examplesWithE2eTests.length > 0) {
+        tempChunk.push(examplesWithE2eTests.shift());
+      } else if (examplesWithoutE2eTests.length > 0) {
+        tempChunk.push(examplesWithoutE2eTests.shift());
+      }
+    } else {
+      if (examplesWithoutE2eTests.length > 0) {
+        tempChunk.push(examplesWithoutE2eTests.shift());
+      }
     }
+  }
 
-    if (i + chunkSize >= examples.length) {
-        tempChunk.push(...examplesWithE2eTests);
+  if (i + chunkSize >= examples.length) {
+    tempChunk.push(...examplesWithE2eTests);
 
-        tempChunk.push(...examplesWithoutE2eTests);
-    }
+    tempChunk.push(...examplesWithoutE2eTests);
+  }
 
-    chunks.push(tempChunk);
+  chunks.push(tempChunk);
 }
 
 //
 // Set outputs
 //
 chunks.forEach((chunk, i) => {
-    console.log("::set-output name=CHUNK_" + (i + 1) + "::" + chunk.join(","));
+  console.log("::set-output name=CHUNK_" + (i + 1) + "::" + chunk.join(","));
 });

@@ -99,13 +99,15 @@ const dataProvider = {
   deleteOne: ({ resource, id, variables, metaData }) => Promise,
   deleteMany: ({ resource, ids, variables, metaData }) => Promise,
   //highlight-start
-  getList: ({ resource, pagination, pagination, sort, filters, meta }) => Promise,
+  getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
+    Promise,
   //highlight-end
   getMany: ({ resource, ids, metaData }) => Promise,
   getOne: ({ resource, id, metaData }) => Promise,
   update: ({ resource, id, variables, metaData }) => Promise,
   updateMany: ({ resource, ids, variables, metaData }) => Promise,
-  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) =>
+    Promise,
   getApiUrl: () => "",
 };
 ```

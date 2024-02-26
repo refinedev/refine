@@ -12,7 +12,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -97,7 +101,12 @@ const PostList: React.FC = () => {
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th key={header.id}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </th>
               ))}
             </tr>
@@ -107,14 +116,21 @@ const PostList: React.FC = () => {
           {getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
               ))}
             </tr>
           ))}
         </tbody>
       </Table>
       <br />
-      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
     </List>
   );
 };
@@ -281,7 +297,9 @@ const PostList: React.FC = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
   const customDataProvider = {
     ...simpleRestDataProvider,
@@ -653,7 +671,9 @@ const PostList: React.FC = () => {
       // highlight-start
       headerButtons={({ createButtonProps }) => (
         <>
-          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          {createButtonProps && (
+            <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button variant="outline" type="primary">
             Custom Button
           </Button>

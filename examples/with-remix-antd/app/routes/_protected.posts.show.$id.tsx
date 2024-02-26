@@ -11,47 +11,47 @@ import { API_URL } from "~/constants";
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-    const { initialData } = useLoaderData<typeof loader>();
+  const { initialData } = useLoaderData<typeof loader>();
 
-    const { queryResult } = useShow({
-        queryOptions: {
-            initialData,
-        },
-    });
-    const { data, isLoading } = queryResult;
-    const record = data?.data;
+  const { queryResult } = useShow({
+    queryOptions: {
+      initialData,
+    },
+  });
+  const { data, isLoading } = queryResult;
+  const record = data?.data;
 
-    const { data: categoryData } = useOne<ICategory>({
-        resource: "categories",
-        id: record?.category.id || "",
-        queryOptions: {
-            enabled: !!record?.category.id,
-        },
-    });
+  const { data: categoryData } = useOne<ICategory>({
+    resource: "categories",
+    id: record?.category.id || "",
+    queryOptions: {
+      enabled: !!record?.category.id,
+    },
+  });
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>Title</Title>
-            <Text>{record?.title}</Text>
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>Title</Title>
+      <Text>{record?.title}</Text>
 
-            <Title level={5}>Status</Title>
-            <Text>
-                <Tag>{record?.status}</Tag>
-            </Text>
+      <Title level={5}>Status</Title>
+      <Text>
+        <Tag>{record?.status}</Tag>
+      </Text>
 
-            <Title level={5}>Category</Title>
-            <Text>{categoryData?.data.title}</Text>
-        </Show>
-    );
+      <Title level={5}>Category</Title>
+      <Text>{categoryData?.data.title}</Text>
+    </Show>
+  );
 };
 
 export default PostShow;
 
 export async function loader({ params }: LoaderArgs) {
-    const data = await dataProvider(API_URL).getOne<IPost>({
-        resource: "posts",
-        id: params?.id as string,
-    });
+  const data = await dataProvider(API_URL).getOne<IPost>({
+    resource: "posts",
+    id: params?.id as string,
+  });
 
-    return json({ initialData: data });
+  return json({ initialData: data });
 }

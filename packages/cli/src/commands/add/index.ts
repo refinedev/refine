@@ -1,98 +1,42 @@
-import { Argument, Command } from "commander";
-import { Provider, createProvider, providerArgs } from "./create-provider";
-import { createResources } from "./create-resource";
-import { getPreferedPM } from "@utils/package";
+import { Command } from "commander";
+
+import { addCommandPrompt } from "./prompt";
+import { IntegrationCommand } from "./sub-commands/integration/command";
+import { availableIntegrations } from "./sub-commands/integration/packages";
+import { ProviderCommand } from "./sub-commands/provider/command";
+import { createProviders } from "./sub-commands/provider/create-providers";
+import { ResourceCommand } from "./sub-commands/resource/command";
+import { createResources } from "./sub-commands/resource/create-resources";
 
 const load = (program: Command) => {
-    return program
-        .command("add")
-        .allowExcessArguments(false)
-        .addArgument(
-            new Argument("[provider]", "Create a new provider")
-                .choices([...providerArgs, "resource"])
-                .argOptional(),
-        )
-        .addArgument(
-            new Argument(
-                "[resource...]",
-                "Create a new resource files",
-            ).argOptional(),
-        )
-        .option("-p, --path [path]", "Path to generate files")
-        .option(
-            "-a, --actions [actions]",
-            "Only generate the specified resource actions. (ex: list,create,edit,show)",
-            "list,create,edit,show",
-        )
-        .action(action);
+  return program
+    .command("add")
+    .description("Add new resources, providers, or integrations")
+    .allowExcessArguments(false)
+    .action(addCommandAction)
+    .addCommand(ResourceCommand)
+    .addCommand(ProviderCommand)
+    .addCommand(IntegrationCommand);
 };
 
-const action = async (
-    _provider: string,
-    _resource: string,
-    options: { actions: string; path?: string },
-    command: Command,
-) => {
-    const args = command?.args;
-    if (!args.length) {
-        await printNoArgs();
-        return;
-    }
+const addCommandAction = async () => {
+  const { component } = await addCommandPrompt();
 
-    const { providers, resources } = getGroupedArgs(args);
+  if (component.group === "provider") {
+    createProviders([component.component]);
+  }
 
-    if (providers.length) {
-        createProvider(providers, options?.path);
-    }
-
-    if (args.includes("resource")) {
-        createResources(
-            {
-                actions: options?.actions,
-                path: options?.path,
-            },
-            resources,
-        );
-    }
-};
-
-// we need to group args.
-// for example: add auth live resource user post data
-// should be grouped like this:
-// providers: [add, auth, live, data]. resource: [user, post]
-export const getGroupedArgs = (args: string[]) => {
-    const resourceIndex = args.findIndex((arg) => arg === "resource");
-    if (resourceIndex === -1)
-        return {
-            providers: getValidProviders(args as Provider[]),
-            resources: [],
-        };
-
-    const providers = getValidProviders(
-        args.slice(0, resourceIndex) as Provider[],
+  if (component.group === "integration") {
+    const integration = availableIntegrations.find(
+      (integration) => integration.id === component.component,
     );
 
-    const resources = args.slice(resourceIndex + 1);
+    await integration?.runTransformer();
+  }
 
-    return { providers, resources };
-};
-
-const printNoArgs = async () => {
-    const { name } = await getPreferedPM();
-
-    console.log("❌ Please provide a feature name");
-    console.log(
-        `For more information please use: "${name} run refine add help"`,
-    );
-};
-
-const getValidProviders = (providers: Provider[]) => {
-    return providers.filter((provider) => {
-        if (providerArgs.includes(provider)) return true;
-
-        console.log(`❌ "${provider}" is not a valid provider`);
-        return false;
-    });
+  if (component.group === "resource") {
+    await createResources({}, []);
+  }
 };
 
 export default load;

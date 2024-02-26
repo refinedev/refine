@@ -6,32 +6,30 @@ import { UserNav } from "@components/common/UserNav";
 import s from "./SidebarLayout.module.css";
 
 interface SidebarLayoutProps {
-    handleClose: () => void;
+  handleClose: () => void;
 }
 
 export const SidebarLayout: React.FC<PropsWithChildren<SidebarLayoutProps>> = ({
-    children,
-    handleClose,
+  children,
+  handleClose,
 }) => {
-    return (
-        <div className={s.root}>
-            <header className={s.header}>
-                {handleClose && (
-                    <button
-                        onClick={handleClose}
-                        aria-label="Close"
-                        className="hover:text-accent-5 mr-6 flex items-center transition duration-150 ease-in-out focus:outline-none"
-                    >
-                        <Cross className="hover:text-accent-3 h-6 w-6" />
-                        <span className="text-accent-7 ml-2 text-sm ">
-                            Close
-                        </span>
-                    </button>
-                )}
+  return (
+    <div className={s.root}>
+      <header className={s.header}>
+        {handleClose && (
+          <button
+            onClick={handleClose}
+            aria-label="Close"
+            className="hover:text-accent-5 mr-6 flex items-center transition duration-150 ease-in-out focus:outline-none"
+          >
+            <Cross className="hover:text-accent-3 h-6 w-6" />
+            <span className="text-accent-7 ml-2 text-sm ">Close</span>
+          </button>
+        )}
 
-                <UserNav />
-            </header>
-            <div className={s.container}>{children}</div>
-        </div>
-    );
+        <UserNav />
+      </header>
+      <div className={s.container}>{children}</div>
+    </div>
+  );
 };

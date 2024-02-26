@@ -6,5 +6,5 @@ import { WelcomePage as WelcomePageFromCore } from "@refinedev/core";
  * @deprecated `WelcomePage` is deprecated. Use `WelcomePage` from `@refinedev/core` instead.
  */
 export const WelcomePage: React.FC = () => {
-    return <WelcomePageFromCore />;
+  return <WelcomePageFromCore />;
 };

@@ -227,7 +227,8 @@ const dataProvider: DataProvider = {
   createMany: ({ resource, variables, meta }) => Promise,
   deleteMany: ({ resource, ids, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) =>
+    Promise,
 };
 ```
 
@@ -398,7 +399,16 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 Refine will consume this method using the [`useCustom`][use-custom] data hook.
 
 ```ts
-custom: async ({ url, method, filters, sorters, payload, query, headers, meta }) => {
+custom: async ({
+  url,
+  method,
+  filters,
+  sorters,
+  payload,
+  query,
+  headers,
+  meta,
+}) => {
   // You can handle the request according to your API requirements.
 
   return {
@@ -707,9 +717,9 @@ const myDataProvider = {
 ```
 
 [basekey]: /docs/core/interface-references#basekey
-[create-a-data-provider]: /docs/tutorial/understanding-dataprovider/create-dataprovider/
-[swizzle-a-data-provider]: /docs/tutorial/understanding-dataprovider/swizzle/
-[data-provider-tutorial]: /docs/tutorial/understanding-dataprovider/index
+[create-a-data-provider]: /docs/data/data-provider
+[swizzle-a-data-provider]: /docs/packages/cli
+[data-provider-tutorial]: /docs/data/data-provider
 [use-api-url]: /docs/data/hooks/use-api-url
 [use-create]: /docs/data/hooks/use-create
 [use-create-many]: /docs/data/hooks/use-create

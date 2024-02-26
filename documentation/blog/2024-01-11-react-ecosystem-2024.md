@@ -742,12 +742,20 @@ export default function LinePlot({
   marginBottom = 20,
   marginLeft = 20,
 }) {
-  const x = d3.scaleLinear([0, data.length - 1], [marginLeft, width - marginRight]);
+  const x = d3.scaleLinear(
+    [0, data.length - 1],
+    [marginLeft, width - marginRight],
+  );
   const y = d3.scaleLinear(d3.extent(data), [height - marginBottom, marginTop]);
   const line = d3.line((d, i) => x(i), y);
   return (
     <svg width={width} height={height}>
-      <path fill="none" stroke="currentColor" stroke-width="1.5" d={line(data)} />
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        d={line(data)}
+      />
       <g fill="white" stroke="currentColor" stroke-width="1.5">
         {data.map((d, i) => (
           <circle key={i} cx={x(i)} cy={y(d)} r="2.5" />
@@ -798,7 +806,12 @@ It has about [10.6K stars on Github](https://github.com/FormidableLabs/victory) 
 Recharts is built on top of SVG elements with a lightweight dependency on D3 submodules and contains reusable chart components that are customizable via props.
 
 ```tsx
-<LineChart width={400} height={400} data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
+<LineChart
+  width={400}
+  height={400}
+  data={data}
+  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+>
   <XAxis dataKey="name" />
   <Tooltip />
   <CartesianGrid stroke="#f5f5f5" />

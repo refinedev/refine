@@ -1,61 +1,134 @@
 import { NumberField, useSimpleList } from "@refinedev/antd";
-import { Typography, Avatar, Space, List as AntdList } from "antd";
-import { Container, AvatarWrapper, AvatarCircle, TextWrapper } from "./styled";
-
-import { IOrder } from "../../../interfaces";
-
-const { Text } = Typography;
+import { Typography, Avatar, List as AntdList, Flex } from "antd";
+import { ITrendingProducts } from "../../../interfaces";
+import {
+  Rank1Icon,
+  Rank2Icon,
+  Rank3Icon,
+  Rank4Icon,
+  Rank5Icon,
+} from "../../icons";
+import { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
-    const { listProps } = useSimpleList<IOrder>({
-        resource: "orders",
-        pagination: { pageSize: 5 },
-        syncWithLocation: false,
-    });
+  const { listProps } = useSimpleList<ITrendingProducts>({
+    resource: "trendingProducts",
+    pagination: { pageSize: 5, current: 1 },
+    syncWithLocation: false,
+  });
 
-    return (
-        <AntdList
-            {...listProps}
-            pagination={false}
-            renderItem={(item, index) => <MenuItem item={item} index={index} />}
-        ></AntdList>
-    );
+  return (
+    <AntdList
+      {...listProps}
+      pagination={false}
+      size="large"
+      bordered={false}
+      renderItem={(item, index) => {
+        return (
+          <AntdList.Item
+            key={index}
+            style={{
+              borderBlockEnd: "none",
+            }}
+          >
+            <Flex
+              gap={24}
+              style={{
+                width: "100%",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                }}
+              >
+                <Avatar
+                  shape="square"
+                  style={{
+                    borderRadius: 24,
+                  }}
+                  size={{
+                    xs: 64,
+                    sm: 64,
+                    md: 64,
+                    lg: 108,
+                    xl: 120,
+                    xxl: 120,
+                  }}
+                  src={item.product?.images[0]?.url}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 12,
+                    right: -8,
+                  }}
+                >
+                  {RankIcons[index + 1]}
+                </div>
+              </div>
+              <Flex
+                vertical
+                gap="10px"
+                justify="center"
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                }}
+              >
+                <Flex vertical justify="center">
+                  <div>
+                    <Typography.Paragraph
+                      ellipsis={{
+                        rows: 1,
+                        tooltip: {
+                          placement: "top",
+                          title: item.product?.name,
+                        },
+                      }}
+                      style={{
+                        margin: 0,
+                        fontSize: 24,
+                      }}
+                      strong={index <= 2 ? true : false}
+                    >
+                      {item.product?.name}
+                    </Typography.Paragraph>
+                  </div>
+                  <NumberField
+                    type="secondary"
+                    options={{
+                      currency: "USD",
+                      style: "currency",
+                      notation: "standard",
+                    }}
+                    value={item.orderCount * item.product.price}
+                  />
+                </Flex>
+                <Typography.Text
+                  style={{
+                    fontSize: 16,
+                  }}
+                  type="secondary"
+                >
+                  Ordered{" "}
+                  <Typography.Text strong>{item.orderCount} </Typography.Text>
+                  times
+                </Typography.Text>
+              </Flex>
+            </Flex>
+          </AntdList.Item>
+        );
+      }}
+    />
+  );
 };
 
-const MenuItem: React.FC<{ item: IOrder; index: number }> = ({
-    item,
-    index,
-}) => (
-    <Container key={item.id}>
-        <Space size="large">
-            <AvatarWrapper className="menu-item__avatar">
-                <Avatar
-                    size={{
-                        xs: 64,
-                        sm: 64,
-                        md: 64,
-                        lg: 108,
-                        xl: 132,
-                        xxl: 108,
-                    }}
-                    src={item.products[0]?.images[0]?.url}
-                />
-                <AvatarCircle>
-                    <span>#{index + 1}</span>
-                </AvatarCircle>
-            </AvatarWrapper>
-            <TextWrapper>
-                <Text strong>{item.products[0]?.name}</Text>
-                <NumberField
-                    strong
-                    options={{
-                        currency: "USD",
-                        style: "currency",
-                        notation: "standard",
-                    }}
-                    value={item.amount / 100}
-                />
-            </TextWrapper>
-        </Space>
-    </Container>
-);
+const RankIcons: Record<number, ReactNode> = {
+  1: <Rank1Icon />,
+  2: <Rank2Icon />,
+  3: <Rank3Icon />,
+  4: <Rank4Icon />,
+  5: <Rank5Icon />,
+};

@@ -6,144 +6,144 @@ import { defaultRefineOptions } from "@contexts/refine";
 import { useLoadingOvertime } from "./";
 
 describe("useLoadingOvertime Hook", () => {
-    jest.useFakeTimers();
+  jest.useFakeTimers();
 
-    it("should elapsedTime undefined when isLoading false", () => {
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: false,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
+  it("should elapsedTime undefined when isLoading false", () => {
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: false,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
 
-        const { elapsedTime } = result.current;
+    const { elapsedTime } = result.current;
 
-        expect(elapsedTime).toBeUndefined();
+    expect(elapsedTime).toBeUndefined();
+  });
+
+  it("should elapsedTime undefined when interval not start", () => {
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: true,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    act(() => {
+      // default 1000
+      jest.advanceTimersByTime(999);
     });
 
-    it("should elapsedTime undefined when interval not start", () => {
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: true,
-                }),
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
+    const { elapsedTime } = result.current;
+    // should be undefined
+    expect(elapsedTime).toBeUndefined();
+  });
 
-        act(() => {
-            // default 1000
-            jest.advanceTimersByTime(999);
-        });
+  it("should elapsedTime 2000 when interval 3000", () => {
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: true,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
 
-        const { elapsedTime } = result.current;
-        // should be undefined
-        expect(elapsedTime).toBeUndefined();
+    act(() => {
+      // default 1000
+      jest.advanceTimersByTime(2000);
     });
 
-    it("should elapsedTime 2000 when interval 3000", () => {
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: true,
-                }),
-            {
-                wrapper: TestWrapper({}),
+    const { elapsedTime } = result.current;
+    expect(elapsedTime).toBe(2000);
+  });
+
+  it("should override global interval and onInverval", () => {
+    const onInterval = jest.fn();
+    const onIntervalGlobal = jest.fn();
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: true,
+          interval: 1000,
+          onInterval,
+        }),
+      {
+        wrapper: TestWrapper({
+          refineProvider: {
+            hasDashboard: false,
+            ...defaultRefineOptions,
+            options: {
+              ...defaultRefineOptions,
+              overtime: {
+                interval: 5000,
+                onInterval: onIntervalGlobal,
+              },
             },
-        );
+          },
+        }),
+      },
+    );
 
-        act(() => {
-            // default 1000
-            jest.advanceTimersByTime(2000);
-        });
-
-        const { elapsedTime } = result.current;
-        expect(elapsedTime).toBe(2000);
+    act(() => {
+      jest.advanceTimersByTime(2000);
     });
 
-    it("should override global interval and onInverval", () => {
-        const onInterval = jest.fn();
-        const onIntervalGlobal = jest.fn();
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: true,
-                    interval: 1000,
-                    onInterval,
-                }),
+    const { elapsedTime } = result.current;
+    expect(elapsedTime).toBe(2000);
+    expect(onInterval).toBeCalledTimes(1);
+    // should not be called global interval
+    expect(onIntervalGlobal).toBeCalledTimes(0);
+  });
+
+  it("should run global interval and onInterval", () => {
+    const onInterval = jest.fn();
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          resources: [
             {
-                wrapper: TestWrapper({
-                    refineProvider: {
-                        hasDashboard: false,
-                        ...defaultRefineOptions,
-                        options: {
-                            ...defaultRefineOptions,
-                            overtime: {
-                                interval: 5000,
-                                onInterval: onIntervalGlobal,
-                            },
-                        },
-                    },
-                }),
+              name: "posts",
             },
-        );
+          ],
+          refineProvider: {
+            hasDashboard: false,
+            ...defaultRefineOptions,
+            options: {
+              ...defaultRefineOptions,
+              overtime: {
+                interval: 500,
+                onInterval,
+              },
+            },
+          },
+          routerProvider: mockRouterBindings({
+            resource: {
+              name: "posts",
+            },
+          }),
+        }),
+      },
+    );
 
-        act(() => {
-            jest.advanceTimersByTime(2000);
-        });
-
-        const { elapsedTime } = result.current;
-        expect(elapsedTime).toBe(2000);
-        expect(onInterval).toBeCalledTimes(1);
-        // should not be called global interval
-        expect(onIntervalGlobal).toBeCalledTimes(0);
+    act(() => {
+      jest.advanceTimersByTime(1000);
     });
 
-    it("should run global interval and onInterval", () => {
-        const onInterval = jest.fn();
-        const { result } = renderHook(
-            () =>
-                useLoadingOvertime({
-                    isLoading: true,
-                }),
-            {
-                wrapper: TestWrapper({
-                    resources: [
-                        {
-                            name: "posts",
-                        },
-                    ],
-                    refineProvider: {
-                        hasDashboard: false,
-                        ...defaultRefineOptions,
-                        options: {
-                            ...defaultRefineOptions,
-                            overtime: {
-                                interval: 500,
-                                onInterval,
-                            },
-                        },
-                    },
-                    routerProvider: mockRouterBindings({
-                        resource: {
-                            name: "posts",
-                        },
-                    }),
-                }),
-            },
-        );
-
-        act(() => {
-            jest.advanceTimersByTime(1000);
-        });
-
-        const { elapsedTime } = result.current;
-        expect(elapsedTime).toBe(1000);
-        expect(onInterval).toBeCalledTimes(1);
-        expect(onInterval).toBeCalledWith(1000);
-    });
+    const { elapsedTime } = result.current;
+    expect(elapsedTime).toBe(1000);
+    expect(onInterval).toBeCalledTimes(1);
+    expect(onInterval).toBeCalledWith(1000);
+  });
 });

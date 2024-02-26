@@ -17,5 +17,5 @@
     "jsx": "react",
     "baseUrl": "src"
   },
-  "include": [ "src", "/node_modules/**/*" ]
+  "include": ["src", "/node_modules/**/*"]
 }

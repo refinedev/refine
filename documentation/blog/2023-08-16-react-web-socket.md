@@ -128,7 +128,9 @@ wsServer.on("connection", function handleNewConnection(connection) {
   clients[userId] = connection;
   console.log(`${userId} connected.`);
 
-  connection.on("message", (message) => processReceivedMessage(message, userId));
+  connection.on("message", (message) =>
+    processReceivedMessage(message, userId),
+  );
   connection.on("close", () => handleClientDisconnection(userId));
 });
 ```
@@ -253,7 +255,9 @@ function App() {
       <Navbar className="navbar" color="light" light>
         <NavbarBrand href="/">Real-time Collaborative Text Editor</NavbarBrand>
       </Navbar>
-      <div className="container-fluid">{username ? <EditorSection /> : <LoginSection onLogin={setUsername} />}</div>
+      <div className="container-fluid">
+        {username ? <EditorSection /> : <LoginSection onLogin={setUsername} />}
+      </div>
     </>
   );
 }

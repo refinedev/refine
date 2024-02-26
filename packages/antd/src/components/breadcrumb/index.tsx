@@ -1,87 +1,85 @@
 import React from "react";
 import {
-    useBreadcrumb,
-    useLink,
-    useRefineContext,
-    useRouterContext,
-    useRouterType,
-    useResource,
-    matchResourceFromRoute,
+  useBreadcrumb,
+  useLink,
+  useRefineContext,
+  useRouterContext,
+  useRouterType,
+  useResource,
+  matchResourceFromRoute,
 } from "@refinedev/core";
 import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
-    Breadcrumb as AntdBreadcrumb,
-    BreadcrumbProps as AntdBreadcrumbProps,
+  Breadcrumb as AntdBreadcrumb,
+  BreadcrumbProps as AntdBreadcrumbProps,
 } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<AntdBreadcrumbProps>;
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
-    breadcrumbProps,
-    showHome = true,
-    hideIcons = false,
-    meta,
+  breadcrumbProps,
+  showHome = true,
+  hideIcons = false,
+  meta,
 }) => {
-    const routerType = useRouterType();
-    const { breadcrumbs } = useBreadcrumb({
-        meta,
-    });
-    const Link = useLink();
-    const { Link: LegacyLink } = useRouterContext();
-    const { hasDashboard } = useRefineContext();
+  const routerType = useRouterType();
+  const { breadcrumbs } = useBreadcrumb({
+    meta,
+  });
+  const Link = useLink();
+  const { Link: LegacyLink } = useRouterContext();
+  const { hasDashboard } = useRefineContext();
 
-    const { resources } = useResource();
+  const { resources } = useResource();
 
-    const rootRouteResource = matchResourceFromRoute("/", resources);
+  const rootRouteResource = matchResourceFromRoute("/", resources);
 
-    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-    if (breadcrumbs.length === 1) {
-        return null;
+  if (breadcrumbs.length === 1) {
+    return null;
+  }
+
+  const breadCrumbItems = breadcrumbs.map(({ label, icon, href }) => ({
+    key: `breadcrumb-item-${label}`,
+    title: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 4,
+        }}
+      >
+        {!hideIcons && icon}
+        {href ? (
+          <ActiveLink to={href}>{label}</ActiveLink>
+        ) : (
+          <span>{label}</span>
+        )}
+      </div>
+    ),
+  }));
+
+  const getBreadcrumbItems = () => {
+    if (showHome && (hasDashboard || rootRouteResource.found)) {
+      return [
+        {
+          key: "breadcrumb-item-home",
+          title: (
+            <ActiveLink to="/">
+              {rootRouteResource?.resource?.meta?.icon ?? <HomeOutlined />}
+            </ActiveLink>
+          ),
+        },
+        ...breadCrumbItems,
+      ];
     }
 
-    const breadCrumbItems = breadcrumbs.map(({ label, icon, href }) => ({
-        key: `breadcrumb-item-${label}`,
-        title: (
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 4,
-                }}
-            >
-                {!hideIcons && icon}
-                {href ? (
-                    <ActiveLink to={href}>{label}</ActiveLink>
-                ) : (
-                    <span>{label}</span>
-                )}
-            </div>
-        ),
-    }));
+    return breadCrumbItems;
+  };
 
-    const getBreadcrumbItems = () => {
-        if (showHome && (hasDashboard || rootRouteResource.found)) {
-            return [
-                {
-                    key: "breadcrumb-item-home",
-                    title: (
-                        <ActiveLink to="/">
-                            {rootRouteResource?.resource?.meta?.icon ?? (
-                                <HomeOutlined />
-                            )}
-                        </ActiveLink>
-                    ),
-                },
-                ...breadCrumbItems,
-            ];
-        }
-
-        return breadCrumbItems;
-    };
-
-    return <AntdBreadcrumb items={getBreadcrumbItems()} {...breadcrumbProps} />;
+  return <AntdBreadcrumb items={getBreadcrumbItems()} {...breadcrumbProps} />;
 };

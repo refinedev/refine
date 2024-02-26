@@ -116,7 +116,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
                       selectedKeys={[`${field.value}`]}
                       onSelectionChange={(selectedItem) => {
                         field.onChange(
-                          +(selectedItem as Set<string>).values().next().value
+                          +(selectedItem as Set<string>).values().next().value,
                         );
                       }}
                     >

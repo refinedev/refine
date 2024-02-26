@@ -26,8 +26,15 @@ const ProductCreate: React.FC = () => {
 
   return (
     <>
-      <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle Order</Button>
-      <Select label="Category" placeholder="Select a category" withinPortal {...selectProps} />
+      <Button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>
+        Toggle Order
+      </Button>
+      <Select
+        label="Category"
+        placeholder="Select a category"
+        withinPortal
+        {...selectProps}
+      />
     </>
   );
 };

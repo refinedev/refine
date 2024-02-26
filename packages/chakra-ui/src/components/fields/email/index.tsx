@@ -10,9 +10,9 @@ import { EmailFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/email} for more details.
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
-    return (
-        <Link href={`mailto:${value}`} {...rest}>
-            {value}
-        </Link>
-    );
+  return (
+    <Link href={`mailto:${value}`} {...rest}>
+      {value}
+    </Link>
+  );
 };

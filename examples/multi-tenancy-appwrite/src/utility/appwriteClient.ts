@@ -11,11 +11,11 @@ const account = new Account(appwriteClient);
 const storage = new Storage(appwriteClient);
 
 const resources = {
-    tenant: "61cdb05132609",
-    products: "61cb01b17ef57",
-    orders: "61cb019fdbd11",
-    databaseId: "default",
-    stores: "61cd62db95f92",
+  tenant: "61cdb05132609",
+  products: "61cb01b17ef57",
+  orders: "61cb019fdbd11",
+  databaseId: "default",
+  stores: "61cd62db95f92",
 } as const;
 
 export { appwriteClient, account, storage, resources };

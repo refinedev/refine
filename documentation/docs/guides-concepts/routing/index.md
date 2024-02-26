@@ -51,7 +51,11 @@ import { Refine } from "@refinedev/core";
 // highlight-next-line
 import routerProvider from "@refinedev/nextjs-router";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
@@ -212,7 +216,10 @@ Additionally, router integrations exposes an `<UnsavedChangesNotifier />` compon
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-import { routerProvider, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import {
+  routerProvider,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes } from "react-router-dom";
 
 const App = () => (
@@ -243,7 +250,10 @@ Check out the [`UnsavedChangesNotifier` section of the React Router integration 
 ```tsx title="_app.tsx"
 import type { AppProps } from "next/app";
 import { Refine } from "@refinedev/core";
-import { routerProvider, UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
+import {
+  routerProvider,
+  UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router/pages";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -273,12 +283,21 @@ Check out the [`UnsavedChangesNotifier` section of the React Router integration 
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
 
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
 
 // highlight-next-line
-import routerProvider, { UnsavedChangesNotifier } from "@refinedev/remix-router";
+import routerProvider, {
+  UnsavedChangesNotifier,
+} from "@refinedev/remix-router";
 
 export default function App() {
   return (

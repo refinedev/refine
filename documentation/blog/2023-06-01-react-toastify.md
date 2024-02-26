@@ -359,7 +359,11 @@ type UndoableNotification = {
   closeToast?: () => void;
 };
 
-export const UndoableNotification: React.FC<UndoableNotification> = ({ closeToast, cancelMutation, message }) => {
+export const UndoableNotification: React.FC<UndoableNotification> = ({
+  closeToast,
+  cancelMutation,
+  message,
+}) => {
   return (
     <div>
       <p>{message}</p>
@@ -398,21 +402,32 @@ export const notificationProvider: NotificationProvider = {
       if (toast.isActive(key as React.ReactText)) {
         toast.update(key as React.ReactText, {
           progress: undoableTimeout && (undoableTimeout / 10) * 2,
-          render: <UndoableNotification message={message} cancelMutation={cancelMutation} />,
+          render: (
+            <UndoableNotification
+              message={message}
+              cancelMutation={cancelMutation}
+            />
+          ),
           type: "default",
         });
 
         return;
       }
 
-      toast(<UndoableNotification message={message} cancelMutation={cancelMutation} />, {
-        toastId: key,
-        updateId: key,
-        closeOnClick: false,
-        closeButton: false,
-        autoClose: false,
-        progress: undoableTimeout && (undoableTimeout / 10) * 2,
-      });
+      toast(
+        <UndoableNotification
+          message={message}
+          cancelMutation={cancelMutation}
+        />,
+        {
+          toastId: key,
+          updateId: key,
+          closeOnClick: false,
+          closeButton: false,
+          autoClose: false,
+          progress: undoableTimeout && (undoableTimeout / 10) * 2,
+        },
+      );
 
       return;
     }

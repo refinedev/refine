@@ -1,28 +1,28 @@
 import React from "react";
 
 const TailzupLogo = ({ color }) => {
-    const tail = {
-        fontSize: "660px",
-        fontWeight: "light",
-    };
+  const tail = {
+    fontSize: "660px",
+    fontWeight: "light",
+  };
 
-    return (
-        <div>
-            <svg
-                version="1.0"
-                xmlns="http://www.w3.org/2000/svg"
-                width="180"
-                height="auto"
-                viewBox="0 0 2400 500"
-                preserveAspectRatio="xMidYMid meet"
-                className="logo"
-            >
-                <g transform="translate(0.000000,524.000000) scale(0.100000,-0.100000)">
-                    <path
-                        className="move"
-                        stroke={color}
-                        fill={color}
-                        d="M2705 4560 c-55 -3 -125 -14 -155 -24 -269 -85 -430 -188 -569 -361
+  return (
+    <div>
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="180"
+        height="auto"
+        viewBox="0 0 2400 500"
+        preserveAspectRatio="xMidYMid meet"
+        className="logo"
+      >
+        <g transform="translate(0.000000,524.000000) scale(0.100000,-0.100000)">
+          <path
+            className="move"
+            stroke={color}
+            fill={color}
+            d="M2705 4560 c-55 -3 -125 -14 -155 -24 -269 -85 -430 -188 -569 -361
             -68 -85 -71 -91 -117 -185 -92 -193 -89 -189 -289 -315 -190 -119 -422 -296
             -537 -408 -31 -30 -69 -75 -85 -99 -26 -41 -28 -49 -27 -153 0 -110 14 -172
             60 -272 7 -17 14 -34 14 -38 0 -13 109 -241 148 -310 77 -136 208 -289 302
@@ -59,43 +59,43 @@ const TailzupLogo = ({ color }) => {
             m-2160 -1108 c5 -16 8 -65 7 -109 -1 -69 -5 -90 -29 -135 -15 -30 -38 -65 -52
             -78 l-24 -25 -25 26 c-18 18 -31 49 -44 109 -17 77 -18 86 -3 116 21 45 109
             123 139 123 17 0 26 -7 31 -27z"
-                    />
+          />
 
-                    <path
-                        fill={color}
-                        d="M2137 3730 c-40 -12 -55 -27 -62 -61 -11 -47 4 -87 41 -115 29 -22
+          <path
+            fill={color}
+            d="M2137 3730 c-40 -12 -55 -27 -62 -61 -11 -47 4 -87 41 -115 29 -22
           45 -26 98 -26 67 0 127 25 140 58 11 29 6 89 -9 111 -26 38 -135 55 -208 33z"
-                    />
-                </g>
-                <text
-                    x="450"
-                    y="450"
-                    stroke={color}
-                    fill={color}
-                    style={{ fontSize: "520px" }}
-                >
-                    tailzup
-                </text>
-                <text
-                    id="tail"
-                    x="1923"
-                    y="340"
-                    stroke={color}
-                    fill={color}
-                    style={tail}
-                >
-                    <animate
-                        attributeName="rotate"
-                        transformOrigin="center"
-                        values="20;40;20"
-                        dur="2s"
-                        repeatCount="indefinite"
-                    />
-                    !
-                </text>
-            </svg>
-        </div>
-    );
+          />
+        </g>
+        <text
+          x="450"
+          y="450"
+          stroke={color}
+          fill={color}
+          style={{ fontSize: "520px" }}
+        >
+          tailzup
+        </text>
+        <text
+          id="tail"
+          x="1923"
+          y="340"
+          stroke={color}
+          fill={color}
+          style={tail}
+        >
+          <animate
+            attributeName="rotate"
+            transformOrigin="center"
+            values="20;40;20"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+          !
+        </text>
+      </svg>
+    </div>
+  );
 };
 
 export default TailzupLogo;

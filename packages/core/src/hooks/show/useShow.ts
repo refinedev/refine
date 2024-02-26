@@ -5,73 +5,76 @@ import warnOnce from "warn-once";
 import { useMeta, useOne } from "@hooks";
 
 import {
-    BaseRecord,
-    GetOneResponse,
-    SuccessErrorNotification,
-    MetaQuery,
-    LiveModeProps,
-    BaseKey,
-    HttpError,
-    Prettify,
+  BaseRecord,
+  GetOneResponse,
+  SuccessErrorNotification,
+  MetaQuery,
+  LiveModeProps,
+  BaseKey,
+  HttpError,
+  Prettify,
 } from "../../interfaces";
 import { useResource } from "../resource/useResource";
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
-    useLoadingOvertime,
-    UseLoadingOvertimeOptionsProps,
-    UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
-export type useShowReturnType<TData extends BaseRecord = BaseRecord, TError extends HttpError = HttpError> = {
-    queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
-    showId?: BaseKey;
-    setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
+export type useShowReturnType<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+> = {
+  queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
+  showId?: BaseKey;
+  setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 } & UseLoadingOvertimeReturnType;
 
 export type useShowProps<
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TData extends BaseRecord = TQueryFnData,
 > = {
-    /**
-     * Resource name for API data interactions
-     * @default Reads `:resource` from the URL
-     */
-    resource?: string;
-    /**
-     * Data item ID for API data interactions
-     * @default Reads `:id` from the URL
-     */
-    id?: BaseKey;
-    /**
-     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
-     */
-    queryOptions?: UseQueryOptions<
-        GetOneResponse<TQueryFnData>,
-        TError,
-        GetOneResponse<TData>
-    >;
-    /**
-     * Additional meta data to pass to the data provider's `getOne`
-     */
-    meta?: MetaQuery;
-    /**
-     * Additional meta data to pass to the data provider's `getOne`
-     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    /**
-     * Target data provider name for API call to be made
-     * @default `"default"`
-     */
-    dataProviderName?: string;
+  /**
+   * Resource name for API data interactions
+   * @default Reads `:resource` from the URL
+   */
+  resource?: string;
+  /**
+   * Data item ID for API data interactions
+   * @default Reads `:id` from the URL
+   */
+  id?: BaseKey;
+  /**
+   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   */
+  queryOptions?: UseQueryOptions<
+    GetOneResponse<TQueryFnData>,
+    TError,
+    GetOneResponse<TData>
+  >;
+  /**
+   * Additional meta data to pass to the data provider's `getOne`
+   */
+  meta?: MetaQuery;
+  /**
+   * Additional meta data to pass to the data provider's `getOne`
+   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+   */
+  metaData?: MetaQuery;
+  /**
+   * Target data provider name for API call to be made
+   * @default `"default"`
+   */
+  dataProviderName?: string;
 } & LiveModeProps &
-    SuccessErrorNotification<
-        GetOneResponse<TData>,
-        TError,
-        Prettify<{ id?: BaseKey } & MetaQuery>
-    > &
-    UseLoadingOvertimeOptionsProps;
+  SuccessErrorNotification<
+    GetOneResponse<TData>,
+    TError,
+    Prettify<{ id?: BaseKey } & MetaQuery>
+  > &
+  UseLoadingOvertimeOptionsProps;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -87,89 +90,88 @@ export type useShowProps<
  */
 
 export const useShow = <
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TData extends BaseRecord = TQueryFnData,
 >({
-    resource: resourceFromProp,
-    id,
+  resource: resourceFromProp,
+  id,
+  successNotification,
+  errorNotification,
+  meta,
+  metaData,
+  liveMode,
+  onLiveEvent,
+  dataProviderName,
+  queryOptions,
+  overtimeOptions,
+}: useShowProps<TQueryFnData, TError, TData> = {}): useShowReturnType<
+  TData,
+  TError
+> => {
+  const {
+    resource,
+    id: idFromRoute,
+    identifier,
+  } = useResource(resourceFromProp);
+  const { identifier: inferredIdentifier } = useResource();
+  const getMeta = useMeta();
+
+  const getDefaultId = () => {
+    const idFromPropsOrRoute = id ?? idFromRoute;
+
+    if (resourceFromProp && resourceFromProp !== inferredIdentifier) {
+      return id;
+    }
+
+    return idFromPropsOrRoute;
+  };
+  const defaultId = getDefaultId();
+
+  const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
+
+  React.useEffect(() => {
+    setShowId(defaultId);
+  }, [defaultId]);
+
+  const combinedMeta = getMeta({
+    resource,
+    meta: pickNotDeprecated(meta, metaData),
+  });
+
+  warnOnce(
+    Boolean(resourceFromProp) && !Boolean(id),
+    `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
+      `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
+      `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
+  );
+
+  const queryResult = useOne<TQueryFnData, TError, TData>({
+    resource: identifier,
+    id: showId ?? "",
+    queryOptions: {
+      enabled: showId !== undefined,
+      ...queryOptions,
+    },
     successNotification,
     errorNotification,
-    meta,
-    metaData,
+    meta: combinedMeta,
+    metaData: combinedMeta,
     liveMode,
     onLiveEvent,
     dataProviderName,
-    queryOptions,
-    overtimeOptions,
-}: useShowProps<
-    TQueryFnData,
-    TError,
-    TData
-> = {}): useShowReturnType<TData, TError> => {
-    const {
-        resource,
-        id: idFromRoute,
-        identifier,
-    } = useResource(resourceFromProp);
-    const { identifier: inferredIdentifier } = useResource();
-    const getMeta = useMeta();
+  });
 
-    const getDefaultId = () => {
-        const idFromPropsOrRoute = id ?? idFromRoute;
+  const { elapsedTime } = useLoadingOvertime({
+    isLoading: queryResult.isFetching,
+    interval: overtimeOptions?.interval,
+    onInterval: overtimeOptions?.onInterval,
+  });
 
-        if (resourceFromProp && resourceFromProp !== inferredIdentifier) {
-            return id;
-        }
-
-        return idFromPropsOrRoute;
-    };
-    const defaultId = getDefaultId();
-
-    const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
-
-    React.useEffect(() => {
-        setShowId(defaultId);
-    }, [defaultId]);
-
-    const combinedMeta = getMeta({
-        resource,
-        meta: pickNotDeprecated(meta, metaData),
-    });
-
-    warnOnce(
-        Boolean(resourceFromProp) && !Boolean(id),
-        `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
-            `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
-            `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
-    );
-
-    const queryResult = useOne<TQueryFnData, TError, TData>({
-        resource: identifier,
-        id: showId ?? "",
-        queryOptions: {
-            enabled: showId !== undefined,
-            ...queryOptions,
-        },
-        successNotification,
-        errorNotification,
-        meta: combinedMeta,
-        metaData: combinedMeta,
-        liveMode,
-        onLiveEvent,
-        dataProviderName,
-    });
-
-    const { elapsedTime } = useLoadingOvertime({
-        isLoading: queryResult.isFetching,
-        interval: overtimeOptions?.interval,
-        onInterval: overtimeOptions?.onInterval,
-    });
-
-    return {
-        queryResult,
-        showId,
-        setShowId,
-        overtime: { elapsedTime },
-    };
+  return {
+    queryResult,
+    showId,
+    setShowId,
+    overtime: { elapsedTime },
+  };
 };

@@ -16,7 +16,13 @@ const PostCreate: React.FC = () => {
     defaultValue: 11,
   });
 
-  return <Select placeholder="Select a category" style={{ width: 300 }} {...selectProps} />;
+  return (
+    <Select
+      placeholder="Select a category"
+      style={{ width: 300 }}
+      {...selectProps}
+    />
+  );
 };
 // visible-block-end
 setRefineProps({

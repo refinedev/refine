@@ -16,6 +16,6 @@ export const RouterPickerProvider = RouterPickerContext.Provider;
  * @internal This is an internal hook.
  */
 export const useRouterType = () => {
-    const value = React.useContext(RouterPickerContext);
-    return value;
+  const value = React.useContext(RouterPickerContext);
+  return value;
 };

@@ -5,5 +5,5 @@ import { relationRegexp } from "../../field-inferencers/relation";
  * @example removeRelationSuffix("category_id") === "category"
  */
 export const removeRelationSuffix = (key: string) => {
-    return key.replace(relationRegexp, "");
+  return key.replace(relationRegexp, "");
 };

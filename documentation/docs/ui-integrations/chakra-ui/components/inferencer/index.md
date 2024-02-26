@@ -194,7 +194,10 @@ const App: React.FC = () => {
               }
             >
               {/* highlight-next-line */}
-              <Route path="/samples/show/:id" element={<ChakraUIInferencer />} />
+              <Route
+                path="/samples/show/:id"
+                element={<ChakraUIInferencer />}
+              />
             </Route>
           </Routes>
         </Refine>
@@ -310,7 +313,10 @@ const App: React.FC = () => {
               }
             >
               {/* highlight-next-line */}
-              <Route path="/samples/edit/:id" element={<ChakraUIInferencer />} />
+              <Route
+                path="/samples/edit/:id"
+                element={<ChakraUIInferencer />}
+              />
             </Route>
           </Routes>
         </Refine>

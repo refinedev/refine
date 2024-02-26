@@ -1,151 +1,73 @@
-import { useMemo, useState } from "react";
-import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
-import { NumberField } from "@refinedev/antd";
-import { Typography } from "antd";
-import { Line } from "@ant-design/charts";
-import { LineConfig } from "@ant-design/plots/lib/components/line";
-import dayjs, { Dayjs } from "dayjs";
+import { Suspense } from "react";
+import { useTranslate } from "@refinedev/core";
+import { Area, AreaConfig } from "@ant-design/plots";
+import dayjs from "dayjs";
 
-import { IncreaseIcon, DecreaseIcon } from "../../../components/icons";
+import { useConfigProvider } from "../../../context";
 
-import { ISalesChart } from "../../../interfaces";
-import {
-    DailyRevenueWrapper,
-    TitleAreNumber,
-    TitleArea,
-    TitleAreaAmount,
-    RangePicker,
-} from "./styled";
+type Props = {
+  data: AreaConfig["data"];
+  height: number;
+};
 
-export const DailyRevenue: React.FC = () => {
-    const t = useTranslate();
-    const API_URL = useApiUrl();
+export const DailyRevenue = ({ data, height }: Props) => {
+  const t = useTranslate();
+  const { mode } = useConfigProvider();
 
-    const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
-        dayjs().subtract(7, "days").startOf("day"),
-        dayjs().startOf("day"),
-    ]);
-    const [start, end] = dateRange;
+  const config: AreaConfig = {
+    isStack: false,
+    data: data,
+    xField: "timeText",
+    yField: "value",
+    seriesField: "state",
+    animation: true,
+    startOnZero: false,
+    smooth: true,
+    legend: false,
+    xAxis: {
+      range: [0, 1],
+      label: {
+        formatter: (v) => {
+          if (data.length > 7) {
+            return dayjs(v).format("MM/DD");
+          }
 
-    const query = {
-        start,
-        end,
-    };
-
-    const url = `${API_URL}/dailyRevenue`;
-    const { data, isLoading } = useCustom<{
-        data: ISalesChart[];
-        total: number;
-        trend: number;
-    }>({
-        url,
-        method: "get",
-        config: {
-            query,
+          return dayjs(v).format("ddd");
         },
-    });
-
-    const config = useMemo(() => {
-        const config: LineConfig = {
-            data: data?.data.data || [],
-            loading: isLoading,
-            padding: "auto",
-            xField: "date",
-            yField: "value",
-            color: "rgba(255, 255, 255, 0.5)",
-            tooltip: {
-                customContent: (title, data) => {
-                    return `<div style="padding: 8px 4px; font-size:16px; font-weight:600">${data[0]?.value} $</div>`;
-                },
-            },
-
-            xAxis: {
-                label: null,
-                line: null,
-            },
-            yAxis: {
-                label: null,
-                grid: null,
-            },
-            smooth: true,
-            lineStyle: {
-                lineWidth: 4,
-            },
+      },
+    },
+    yAxis: {
+      label: {
+        formatter: (v) => {
+          return `$${Number(v) / 1000}k`;
+        },
+      },
+    },
+    tooltip: {
+      formatter: (data) => {
+        return {
+          name: t("dashboard.revenue.title"),
+          value: new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(data.value),
         };
+      },
+    },
+    theme: mode,
+    areaStyle: () => {
+      return mode === "dark"
+        ? { fill: "l(270) 0:#15171B 0.5:#1677FF 1:#1677FF" }
+        : { fill: "l(270) 0:#ffffff 0.5:#D3EBFF 1:#1677FF" };
+    },
+    color: () => {
+      return mode === "dark" ? "#65A9F3" : "#1677FF";
+    },
+  };
 
-        return config;
-    }, [data]);
-
-    const disabledDate = (date: Dayjs) => date > dayjs();
-
-    return (
-        <DailyRevenueWrapper>
-            <TitleArea>
-                <TitleAreaAmount>
-                    <Typography.Title level={3}>
-                        {t("dashboard.dailyRevenue.title")}
-                    </Typography.Title>
-                    <TitleAreNumber>
-                        <NumberField
-                            style={{ fontSize: 36 }}
-                            strong
-                            options={{
-                                currency: "USD",
-                                style: "currency",
-                                notation: "compact",
-                            }}
-                            value={data?.data.total ?? 0}
-                        />
-                        {(data?.data?.trend ?? 0) > 0 ? (
-                            <IncreaseIcon />
-                        ) : (
-                            <DecreaseIcon />
-                        )}
-                    </TitleAreNumber>
-                </TitleAreaAmount>
-
-                <RangePicker
-                    size="small"
-                    value={dateRange}
-                    onChange={(values) => {
-                        if (values && values[0] && values[1]) {
-                            setDateRange([values[0], values[1]]);
-                        }
-                    }}
-                    disabledDate={disabledDate}
-                    style={{
-                        float: "right",
-                        color: "#fffff !important",
-                        background: "rgba(255, 255, 255, 0.3)",
-                    }}
-                    ranges={{
-                        "This Week": [
-                            dayjs().startOf("week"),
-                            dayjs().endOf("week"),
-                        ],
-                        "Last Month": [
-                            dayjs().startOf("month").subtract(1, "month"),
-                            dayjs().endOf("month").subtract(1, "month"),
-                        ],
-                        "This Month": [
-                            dayjs().startOf("month"),
-                            dayjs().endOf("month"),
-                        ],
-                        "This Year": [
-                            dayjs().startOf("year"),
-                            dayjs().endOf("year"),
-                        ],
-                    }}
-                    format="YYYY/MM/DD"
-                />
-            </TitleArea>
-            <Line
-                padding={0}
-                appendPadding={10}
-                height={135}
-                style={{ maxHeight: "135px" }}
-                {...config}
-            />
-        </DailyRevenueWrapper>
-    );
+  return (
+    <Suspense>
+      <Area {...config} height={height} />
+    </Suspense>
+  );
 };

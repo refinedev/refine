@@ -5,54 +5,54 @@ import { useTelemetryData } from "@hooks/useTelemetryData";
 import { ITelemetryData } from "../../interfaces/telemetry";
 
 const encode = (payload: ITelemetryData): string | undefined => {
-    try {
-        const stringifiedPayload = JSON.stringify(payload || {});
+  try {
+    const stringifiedPayload = JSON.stringify(payload || {});
 
-        if (typeof btoa !== "undefined") {
-            return btoa(stringifiedPayload);
-        }
-
-        return Buffer.from(stringifiedPayload).toString("base64");
-    } catch (err) {
-        return undefined;
+    if (typeof btoa !== "undefined") {
+      return btoa(stringifiedPayload);
     }
+
+    return Buffer.from(stringifiedPayload).toString("base64");
+  } catch (err) {
+    return undefined;
+  }
 };
 
 const throughImage = (src: string) => {
-    const img = new Image();
+  const img = new Image();
 
-    img.src = src;
+  img.src = src;
 };
 
 const throughFetch = (src: string) => {
-    fetch(src);
+  fetch(src);
 };
 
 const transport = (src: string) => {
-    if (typeof Image !== "undefined") {
-        throughImage(src);
-    } else if (typeof fetch !== "undefined") {
-        throughFetch(src);
-    }
+  if (typeof Image !== "undefined") {
+    throughImage(src);
+  } else if (typeof fetch !== "undefined") {
+    throughFetch(src);
+  }
 };
 
 export const Telemetry: React.FC<{}> = () => {
-    const payload = useTelemetryData();
-    const sent = React.useRef(false);
+  const payload = useTelemetryData();
+  const sent = React.useRef(false);
 
-    React.useEffect(() => {
-        if (sent.current) {
-            return;
-        }
-        const encoded = encode(payload);
+  React.useEffect(() => {
+    if (sent.current) {
+      return;
+    }
+    const encoded = encode(payload);
 
-        if (!encoded) {
-            return;
-        }
+    if (!encoded) {
+      return;
+    }
 
-        transport(`https://telemetry.refine.dev/telemetry?payload=${encoded}`);
-        sent.current = true;
-    }, []);
+    transport(`https://telemetry.refine.dev/telemetry?payload=${encoded}`);
+    sent.current = true;
+  }, []);
 
-    return null;
+  return null;
 };

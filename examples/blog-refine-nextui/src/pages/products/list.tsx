@@ -143,7 +143,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
       return <TableCell>{(item as any)[columnKey]}</TableCell>;
     },
-    [products, categoryData]
+    [products, categoryData],
   );
 
   return (

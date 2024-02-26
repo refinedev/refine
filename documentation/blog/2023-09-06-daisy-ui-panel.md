@@ -437,7 +437,10 @@ export const Dashboard: React.FC = () => {
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Hello there...</h1>
-          <p className="py-6">You're here. A deva just as dashing and daisyuing - as yourself refined</p>
+          <p className="py-6">
+            You're here. A deva just as dashing and daisyuing - as yourself
+            refined
+          </p>
           <button className="btn btn-primary">Buckle Up</button>
         </div>
       </div>
@@ -465,7 +468,13 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 //highlight-next-line
@@ -546,7 +555,11 @@ Let's now focus on implementing the features of the dashboard. Inside it, we'll 
 import React from "react";
 import { KpiCard } from "./KpiCard";
 import { IChartDatum } from "../../interfaces";
-import { CurrencyDollarIcon, ShoppingCartIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import {
+  CurrencyDollarIcon,
+  ShoppingCartIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline";
 import { GetListResponse } from "@refinedev/core";
 
 type TStats = {
@@ -625,7 +638,13 @@ type TKpiCardProps = {
   formatTotal?: (value: number | string) => typeof value;
 };
 
-export const KpiCard = ({ title, data, icon, colors, formatTotal = (value) => value }: TKpiCardProps) => {
+export const KpiCard = ({
+  title,
+  data,
+  icon,
+  colors,
+  formatTotal = (value) => value,
+}: TKpiCardProps) => {
   const total = data?.data?.total;
   const trend = data?.data?.trend;
   const calc = Math.round((trend / total) * 100);
@@ -633,8 +652,14 @@ export const KpiCard = ({ title, data, icon, colors, formatTotal = (value) => va
   const textColor = total > trend ? "seagreen" : "crimson";
 
   return (
-    <div className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded" style={{ borderColor: colors?.stroke }}>
-      <div className="stat-figure text-secondary" style={{ color: colors?.fill }}>
+    <div
+      className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
+      style={{ borderColor: colors?.stroke }}
+    >
+      <div
+        className="stat-figure text-secondary"
+        style={{ color: colors?.fill }}
+      >
         {icon}
       </div>
       <div className="stat-title text-l">{title}</div>
@@ -705,7 +730,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
     </>
   );
 };
@@ -750,7 +779,12 @@ type TTabItem = {
 
 export const TabItem = ({ label, isActive, clickHandler }: TTabItem) => {
   return (
-    <a className={`text-l font-bold tab tab-bordered${isActive ? " tab-active" : ""}`} onClick={clickHandler}>
+    <a
+      className={`text-l font-bold tab tab-bordered${
+        isActive ? " tab-active" : ""
+      }`}
+      onClick={clickHandler}
+    >
       {label}
     </a>
   );
@@ -848,7 +882,15 @@ Create the `<ResponsiveAreaChart />` component with the code below:
 
 ```tsx title="src/components/dashboard/ResponsiveAreaChart.tsx"
 import React from "react";
-import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area } from "recharts";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Area,
+} from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
@@ -861,7 +903,11 @@ type TResponsiveAreaChartProps = {
   };
 };
 
-export const ResponsiveAreaChart = ({ kpi, data, colors }: TResponsiveAreaChartProps) => {
+export const ResponsiveAreaChart = ({
+  kpi,
+  data,
+  colors,
+}: TResponsiveAreaChartProps) => {
   return (
     <ResponsiveContainer height={400}>
       <AreaChart
@@ -933,7 +979,15 @@ In a similar way, create the `<ResponsiveBarChart />` component with the below c
 
 ```tsx title="src/components/dashboard/ResponsiveBarChart.tsx"
 import React from "react";
-import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar } from "recharts";
+import {
+  ResponsiveContainer,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Bar,
+} from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
@@ -946,7 +1000,11 @@ type TResponsiveBarChartProps = {
   };
 };
 
-export const ResponsiveBarChart = ({ kpi, data, colors }: TResponsiveBarChartProps) => {
+export const ResponsiveBarChart = ({
+  kpi,
+  data,
+  colors,
+}: TResponsiveBarChartProps) => {
   return (
     <ResponsiveContainer height={400}>
       <BarChart
@@ -1016,7 +1074,14 @@ Let's create the `<ChartTooltip />` component with the following code:
 
 ```tsx title="src/components/dashboard/ChartTooltip.tsx"
 import React from "react";
-export const ChartTooltip = ({ active, payload, label, coordinate, colors, kpi }: any) => {
+export const ChartTooltip = ({
+  active,
+  payload,
+  label,
+  coordinate,
+  colors,
+  kpi,
+}: any) => {
   if (active && payload && payload.length) {
     const dataPoint = payload[0].payload;
 
@@ -1179,7 +1244,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
       {/*highlight-next-line*/}
       <TabView tabs={tabs} />
     </>
@@ -1212,7 +1281,11 @@ import React, { useMemo, useRef } from "react";
 import { getDefaultFilter } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { FunnelIcon, BarsArrowDownIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
+import {
+  FunnelIcon,
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
+} from "@heroicons/react/24/outline";
 export const RecentSales = () => {
   const filterForm: any = useRef(null);
 
@@ -1275,7 +1348,8 @@ export const RecentSales = () => {
           };
 
           const status = getValue() as string;
-          const daisyBadgeClasses = () => "badge badge-" + saleStatusStyleMap[status];
+          const daisyBadgeClasses = () =>
+            "badge badge-" + saleStatusStyleMap[status];
 
           return <div className={daisyBadgeClasses()}>{status}</div>;
         },
@@ -1369,7 +1443,11 @@ export const RecentSales = () => {
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
                     <div className="flex justify-start items-center">
-                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {!header?.isPlaceholder &&
+                        flexRender(
+                          header?.column?.columnDef?.header,
+                          header?.getContext(),
+                        )}
                       {{
                         asc: <BarsArrowUpIcon className="h-4 w-4" />,
                         desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -1384,7 +1462,12 @@ export const RecentSales = () => {
             {getRowModel()?.rows?.map((row) => (
               <tr key={row?.id}>
                 {row?.getVisibleCells()?.map((cell) => (
-                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                  <td key={cell?.id}>
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -1513,7 +1596,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
       <TabView tabs={tabs} />
       {/*highlight-next-line*/}
       <RecentSales />
@@ -1586,12 +1673,23 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 
 function App() {
   return (
@@ -1668,7 +1766,7 @@ With the above changes, we have added possible actions and their routes for the 
 
 **Refine** maps resource paths to page components via route definitions, and using the map infers the resource name of a page at the current URL of the browser. That way, hooks like `useTable()` and `useNavigation()`, and **Inferencer** components like `<HeadlessInferencer />` are always able to infer the default resource name from inside a resource page.
 
-You can find more information about [resources and routing](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) on the **Refine** documentation.
+You can find more information about [resources and routing](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) on the **Refine** documentation.
 
 Now when we navigate along the `/products` paths, we can see some clumsy looking pages in need of proper styling. So, we're interested in getting their code and modifying them according to our needs. We are going to do that one by one in the following sections.
 
@@ -1844,7 +1942,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </th>
                 ))}
               </tr>
@@ -1854,7 +1956,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             {getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -1862,7 +1966,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         </table>
       </div>
       <div style={{ marginTop: "12px" }}>
-        <button onClick={() => setPageIndex(0)} disabled={!getCanPreviousPage()}>
+        <button
+          onClick={() => setPageIndex(0)}
+          disabled={!getCanPreviousPage()}
+        >
           {"<<"}
         </button>
         <button onClick={() => previousPage()} disabled={!getCanPreviousPage()}>
@@ -1871,7 +1978,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
           {">"}
         </button>
-        <button onClick={() => setPageIndex(getPageCount() - 1)} disabled={!getCanNextPage()}>
+        <button
+          onClick={() => setPageIndex(getPageCount() - 1)}
+          disabled={!getCanNextPage()}
+        >
           {">>"}
         </button>
         <span>
@@ -1912,7 +2022,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 The generated code implements a handful of features, including data fetching, button actions, pagination, and JSX markup with minimal styles for presenting the data in a table. This is pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
 
-It uses the [`useTable()`](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
+It uses the [`useTable()`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
 
 We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for tables, buttons, and groups.
 
@@ -1924,7 +2034,12 @@ So, we'll build on top of it and make necessary logic, markup and style modifica
 
 ```tsx title="src/pages/products/list.tsx
 import React, { useRef } from "react";
-import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
+import {
+  IResourceComponentsProps,
+  getDefaultFilter,
+  useDelete,
+  useNavigation,
+} from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2089,7 +2204,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
                     <div className="flex justify-start items-center">
-                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {!header?.isPlaceholder &&
+                        flexRender(
+                          header?.column?.columnDef?.header,
+                          header?.getContext(),
+                        )}
                       {{
                         asc: <BarsArrowUpIcon className="h-4 w-4" />,
                         desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -2104,7 +2223,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             {getRowModel()?.rows?.map((row) => (
               <tr key={row?.id}>
                 {row?.getVisibleCells()?.map((cell) => (
-                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                  <td key={cell?.id}>
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -2127,19 +2251,28 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
           >
             {"<"}
           </button>
-          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
-            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
-            return (
-              <button
-                key={pageNumber}
-                className={"join-item btn btn-sm" + btnActive}
-                onClick={() => setPageIndex(pageNumber - 1)}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
+            (pageNumber) => {
+              const btnActive =
+                pageNumber - 1 == getState()?.pagination?.pageIndex
+                  ? " btn-active"
+                  : "";
+              return (
+                <button
+                  key={pageNumber}
+                  className={"join-item btn btn-sm" + btnActive}
+                  onClick={() => setPageIndex(pageNumber - 1)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            },
+          )}
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => nextPage()}
+            disabled={!getCanNextPage()}
+          >
             {">"}
           </button>
           <button
@@ -2289,7 +2422,11 @@ The modified `<ProductCreate />` component looks like below, so replace the code
 
 ```tsx title="src/pages/products/create.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
+import {
+  useNavigation,
+  IResourceComponentsProps,
+  useSelect,
+} from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
@@ -2332,7 +2469,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.name?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1">Price</label>
@@ -2344,7 +2483,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               valueAsNumber: true,
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.price?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1" htmlFor="category">
@@ -2363,7 +2504,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               </option>
             ))}
           </select>
-          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.category?.id?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1">Description</label>
@@ -2375,7 +2518,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.description?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center my-6">
           <input
@@ -2439,7 +2584,11 @@ The product edit page will have the same form functionality as the create page. 
 
 ```tsx title="src/pages/products/edit.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
+import {
+  useNavigation,
+  IResourceComponentsProps,
+  useSelect,
+} from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
@@ -2499,7 +2648,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.name?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Price</label>
@@ -2511,7 +2662,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               valueAsNumber: true,
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.price?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Category</label>
@@ -2528,7 +2681,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               </option>
             ))}
           </select>
-          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.category?.id?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Description</label>
@@ -2539,7 +2694,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.description?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center">
           <input
@@ -2578,7 +2735,11 @@ The `<ProductShow />` component is more straight forward and the final adopted v
 
 ```tsx title="src/pages/products/show.tsx"
 import React from "react";
-import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import {
+  useShow,
+  useNavigation,
+  IResourceComponentsProps,
+} from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
@@ -2595,7 +2756,10 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     <div className="page-container">
       <div className="page-header">
         <div className="flex justify-start items-center">
-          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("products")}>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => list("products")}
+          >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Product Details</h1>
@@ -2612,7 +2776,9 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
       </div>
       <div className="card">
         <div className="card-body">
-          <div className="text-xl font-bold">{record?.name ?? "Loading..."}</div>
+          <div className="text-xl font-bold">
+            {record?.name ?? "Loading..."}
+          </div>
           <div className="divider p-0 m-0"></div>
           <div className="mb-2">
             <h5 className="mb-1 font-bold">Price</h5>
@@ -2677,13 +2843,29 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 //highlight-next-line
-import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
+import {
+  CategoryList,
+  CategoryCreate,
+  CategoryEdit,
+  CategoryShow,
+} from "./pages/categories";
 
 function App() {
   return (
@@ -2779,7 +2961,12 @@ For the final version of `<CategoryList />`, adopt the following code.
 
 ```tsx title="src/pages/categories/list.tsx"
 import React, { useRef } from "react";
-import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
+import {
+  IResourceComponentsProps,
+  getDefaultFilter,
+  useDelete,
+  useNavigation,
+} from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2809,7 +2996,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         accessorKey: "title",
         header: "Name",
         cell: function render({ getValue }) {
-          return <div className="w-24 md:w-60 lg:w-96 text-center">{getValue() as string}</div>;
+          return (
+            <div className="w-24 md:w-60 lg:w-96 text-center">
+              {getValue() as string}
+            </div>
+          );
         },
       },
       {
@@ -2931,7 +3122,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                   onClick={header?.column?.getToggleSortingHandler()}
                 >
                   <div className="flex justify-center items-center">
-                    {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                    {!header?.isPlaceholder &&
+                      flexRender(
+                        header?.column?.columnDef?.header,
+                        header?.getContext(),
+                      )}
                     {{
                       asc: <BarsArrowUpIcon className="h-4 w-4" />,
                       desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -2948,7 +3143,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
               {row?.getVisibleCells()?.map((cell) => (
                 <td className="text-center" key={cell?.id}>
                   <div className="flex justify-center items-center">
-                    {flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
                   </div>
                 </td>
               ))}
@@ -2972,19 +3170,28 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           >
             {"<"}
           </button>
-          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
-            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
-            return (
-              <button
-                key={pageNumber}
-                className={"join-item btn btn-sm" + btnActive}
-                onClick={() => setPageIndex(pageNumber - 1)}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
+            (pageNumber) => {
+              const btnActive =
+                pageNumber - 1 == getState()?.pagination?.pageIndex
+                  ? " btn-active"
+                  : "";
+              return (
+                <button
+                  key={pageNumber}
+                  className={"join-item btn btn-sm" + btnActive}
+                  onClick={() => setPageIndex(pageNumber - 1)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            },
+          )}
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => nextPage()}
+            disabled={!getCanNextPage()}
+          >
             {">"}
           </button>
           <button
@@ -3065,7 +3272,9 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.title?.message as string}
+          </span>
           <div className="flex justify-end items-center my-6">
             <input
               className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
@@ -3140,7 +3349,9 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.title?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center">
           <input
@@ -3167,7 +3378,11 @@ For the final version of the `<CategoryShow />` page, adopt this code:
 
 ```tsx title="src/pages/categories/show.tsx"
 import React from "react";
-import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import {
+  useShow,
+  useNavigation,
+  IResourceComponentsProps,
+} from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
@@ -3183,7 +3398,10 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     <div className="page-container">
       <div className="page-header">
         <div className="flex justify-between items-center">
-          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("categories")}>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => list("categories")}
+          >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Category Details</h1>
@@ -3281,13 +3499,32 @@ Notice it renders the `<Menu />` and `<Breadcrumb />` components. We'll update t
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
-import { ProductCreate, ProductEdit, ProductList, ProductShow } from "./pages/products";
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
+import {
+  ProductCreate,
+  ProductEdit,
+  ProductList,
+  ProductShow,
+} from "./pages/products";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "./pages/categories";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
 import { HomeIcon, ShoppingCartIcon, TagIcon } from "@heroicons/react/20/solid";
@@ -3404,7 +3641,10 @@ export const Menu = () => {
         {menuItems.map((item) => (
           <li key={item?.key} className="mx-0 flex justify-start items-center">
             <div className="text-gray-600">
-              <NavLink className="text-lg flex items-center" to={item?.route ?? "/"}>
+              <NavLink
+                className="text-lg flex items-center"
+                to={item?.route ?? "/"}
+              >
                 <span className="mr-2">{item?.icon}</span>
                 {item?.label}
               </NavLink>

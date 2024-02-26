@@ -116,7 +116,10 @@ const { saveButtonProps, getInputProps } = useForm({
     status: "",
   },
   validate: {
-    title: (value) => (value.length < 2 ? "Post title should be atleast 2 characters long" : null),
+    title: (value) =>
+      value.length < 2
+        ? "Post title should be atleast 2 characters long"
+        : null,
     status: (value) => (value.length <= 0 ? "Status is required" : null),
   },
 });
@@ -212,7 +215,11 @@ export const PostList: React.FC = () => {
               {headerGroup.headers.map((header) => {
                 return (
                   <th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </th>
                 );
               })}
@@ -224,7 +231,14 @@ export const PostList: React.FC = () => {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  );
                 })}
               </tr>
             );
@@ -232,7 +246,12 @@ export const PostList: React.FC = () => {
         </tbody>
       </Table>
       <br />
-      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
     </List>
   );
 };
@@ -254,7 +273,7 @@ export * from "./list";
 
 Now we are ready to start connecting to our API by adding a resource to our application
 
-[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/tutorial/understanding-resources/index/)
+[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept)
 
 Finally, replace the `src/App.tsx` file with the code below:
 
@@ -265,7 +284,12 @@ Finally, replace the `src/App.tsx` file with the code below:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { useNotificationProvider, RefineThemes, ThemedLayoutV2, AuthPage } from "@refinedev/mantine";
+import {
+  useNotificationProvider,
+  RefineThemes,
+  ThemedLayoutV2,
+  AuthPage,
+} from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
 import routerBindings, {
   NavigateToResource,
@@ -274,7 +298,12 @@ import routerBindings, {
   CatchAllNavigate,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import { MantineProvider, Global, ColorSchemeProvider, ColorScheme } from "@mantine/core";
+import {
+  MantineProvider,
+  Global,
+  ColorSchemeProvider,
+  ColorScheme,
+} from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { useLocalStorage } from "@mantine/hooks";
 
@@ -296,7 +325,10 @@ function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        >
           <MantineProvider
             theme={{
               ...RefineThemes.Blue,
@@ -326,14 +358,19 @@ function App() {
                 <Routes>
                   <Route
                     element={
-                      <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                      <Authenticated
+                        fallback={<CatchAllNavigate to="/login" />}
+                      >
                         <ThemedLayoutV2 Header={() => <Header sticky />}>
                           <Outlet />
                         </ThemedLayoutV2>
                       </Authenticated>
                     }
                   >
-                    <Route index element={<NavigateToResource resource="posts" />} />
+                    <Route
+                      index
+                      element={<NavigateToResource resource="posts" />}
+                    />
 
                     <Route path="/posts">
                       <Route index element={<PostList />} />
@@ -402,7 +439,9 @@ export const authProvider: AuthProvider = {
       localStorage.setItem(TOKEN_KEY, data.jwt);
 
       // set header axios instance
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.jwt}`;
 
       return {
         success: true,
@@ -440,7 +479,7 @@ As highlighted in the previous section, our Strapi API has `posts` and `categori
 
 [Refer to documentation for more info about relation populate.](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
-[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/tutorial/adding-crud-pages/mantine/index/#handling-relationships)
+[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/guides-concepts/data-fetching)
 
 Therefore, for our data provider to return the categories for each post, we need to specify using the `populate` field of the `meta` property in the object we pass to the `useTable` hook.
 
@@ -526,7 +565,8 @@ export const PostCreate = () => {
       status: "",
     },
     validate: {
-      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      title: (value) =>
+        value.length < 5 ? "Title should be atleast 5 characters long" : null,
       category: {
         id: (value) => (value.length <= 0 ? "Title is required" : null),
       },
@@ -540,7 +580,12 @@ export const PostCreate = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <TextInput mt="sm" required={true} label="Title" {...getInputProps("title")} />
+      <TextInput
+        mt="sm"
+        required={true}
+        label="Title"
+        {...getInputProps("title")}
+      />
       <Select
         mt={8}
         label="Status"
@@ -645,7 +690,12 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
       cell: ({ getValue }) => {
         return (
           <Group>
-            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <EditButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
           </Group>
         );
       },
@@ -695,7 +745,8 @@ export const PostEdit = () => {
       },
     },
     validate: {
-      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      title: (value) =>
+        value.length < 5 ? "Title should be atleast 5 characters long" : null,
       category: {
         id: (value) => (value.length <= 0 ? "Title is required" : null),
       },
@@ -812,9 +863,19 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
       cell: ({ getValue }) => {
         return (
           <Group>
-            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <EditButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
             //highlight-start
-            <DeleteButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <DeleteButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
             //highlight-end
           </Group>
         );
@@ -1013,10 +1074,30 @@ function App() {
         </Route>
         //highlight-start
         <Route path="/categories">
-          <Route index element={<MantineListInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="create" element={<MantineCreateInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="edit/:id" element={<MantineEditInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="show/:id" element={<MantineShowInferencer fieldTransformer={fieldTransformer} />} />
+          <Route
+            index
+            element={
+              <MantineListInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="create"
+            element={
+              <MantineCreateInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="edit/:id"
+            element={
+              <MantineEditInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="show/:id"
+            element={
+              <MantineShowInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
         </Route>
         //highlight-end
         {/*...*/}

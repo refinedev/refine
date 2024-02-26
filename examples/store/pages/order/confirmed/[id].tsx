@@ -8,44 +8,44 @@ import { OrderCompletedTemplate } from "@components/orders/OrderCompletedTemplat
 import { SkeletonOrderConfirmed } from "@components/skeletons";
 
 const Confirmed: React.FC = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const id = typeof router.query?.id === "string" ? router.query.id : "";
+  const id = typeof router.query?.id === "string" ? router.query.id : "";
 
-    const { isSuccess, data, isLoading, isError } = useOne<{ order: Order }>({
-        resource: "orders",
-        id,
-        queryOptions: {
-            enabled: !!id,
-            staleTime: Infinity,
-        },
-    });
+  const { isSuccess, data, isLoading, isError } = useOne<{ order: Order }>({
+    resource: "orders",
+    id,
+    queryOptions: {
+      enabled: !!id,
+      staleTime: Infinity,
+    },
+  });
 
-    if (isLoading) {
-        return <SkeletonOrderConfirmed />;
+  if (isLoading) {
+    return <SkeletonOrderConfirmed />;
+  }
+
+  if (isError) {
+    if (IS_BROWSER) {
+      router.replace("/404");
     }
+    return <SkeletonOrderConfirmed />;
+  }
 
-    if (isError) {
-        if (IS_BROWSER) {
-            router.replace("/404");
-        }
-        return <SkeletonOrderConfirmed />;
-    }
+  if (isSuccess) {
+    return (
+      <>
+        <SEO
+          title="Order Confirmed"
+          description="You purchase was successful"
+        />
 
-    if (isSuccess) {
-        return (
-            <>
-                <SEO
-                    title="Order Confirmed"
-                    description="You purchase was successful"
-                />
+        <OrderCompletedTemplate order={data.data.order} />
+      </>
+    );
+  }
 
-                <OrderCompletedTemplate order={data.data.order} />
-            </>
-        );
-    }
-
-    return <></>;
+  return <></>;
 };
 
 export default Confirmed;

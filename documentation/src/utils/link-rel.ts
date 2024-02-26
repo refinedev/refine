@@ -4,21 +4,21 @@ import isInternalUrl from "@docusaurus/isInternalUrl";
  * @param {string} URL to be dest for link
  */
 export const getLinkRel = (URL?: string): string => {
-    let rel = "noopener noreferrer nofollow";
+  let rel = "noopener noreferrer nofollow";
 
-    const isInternalURL = isInternalUrl(URL);
+  const isInternalURL = isInternalUrl(URL);
 
-    if (URL?.includes("github.com/refinedev/refine")) {
-        rel = "noopener";
-    }
+  if (URL?.includes("github.com/refinedev/refine")) {
+    rel = "noopener";
+  }
 
-    if (isInternalURL || URL?.includes("refine.dev")) {
-        rel = "noopener dofollow";
-    }
+  if (isInternalURL || URL?.includes("refine.dev")) {
+    rel = "noopener dofollow";
+  }
 
-    if (isInternalURL || URL?.includes("reactadminpanel.com")) {
-        rel = "noopener dofollow";
-    }
+  if (isInternalURL || URL?.includes("reactadminpanel.com")) {
+    rel = "noopener dofollow";
+  }
 
-    return rel;
+  return rel;
 };

@@ -89,7 +89,9 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -131,7 +133,7 @@ However, in building our food delivery React admin dashboard application, we wil
 
 ## Adding the Data Provider
 
-A [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
+A [`dataProvider`](https://refine.dev/docs/data/data-provider) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
 
 ### The jsonServerDataProvider Provider in Refine
 
@@ -170,7 +172,7 @@ In the course of the tutorial, we will be using Refine's demo finefoodsAPI (http
 
 ## Adding the Auth provider
 
-An [Auth Provider](https://refine.dev/docs/tutorial/understanding-authprovider/index/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
+An [Auth Provider](https://refine.dev/docs/authentication/auth-provider/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
 
 ```tsx
 import { AuthProvider } from "@refinedev/core";
@@ -313,7 +315,12 @@ const renderAuthContent = (content: React.ReactNode) => {
       }}
     >
       <Link to="/">
-        <img style={{ marginBottom: 26 }} src="/images/fine-foods-login.svg" alt="Logo" width="100%" />
+        <img
+          style={{ marginBottom: 26 }}
+          src="/images/fine-foods-login.svg"
+          alt="Logo"
+          width="100%"
+        />
       </Link>
       {content}
     </div>
@@ -322,7 +329,12 @@ const renderAuthContent = (content: React.ReactNode) => {
 
 export const AuthPage: React.FC<AuthProps> = ({ type, formProps }) => {
   return (
-    <AntdAuthPage type={type} wrapperProps={authWrapperProps} renderContent={renderAuthContent} formProps={formProps} />
+    <AntdAuthPage
+      type={type}
+      wrapperProps={authWrapperProps}
+      renderContent={renderAuthContent}
+      formProps={formProps}
+    />
   );
 };
 ```
@@ -340,7 +352,9 @@ import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { WelcomePage, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -368,7 +382,9 @@ function App() {
           >
             <Routes>
               <Route index element={<WelcomePage />} />
-              <Route element={<Authenticated fallback={<Outlet />}></Authenticated>}>
+              <Route
+                element={<Authenticated fallback={<Outlet />}></Authenticated>}
+              >
                 <Route
                   path="/login"
                   element={
@@ -506,26 +522,38 @@ export const DashboardPage: React.FC = () => {
       <Col md={24}>
         <Row gutter={[16, 16]}>
           <Col xl={10} lg={24} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle} style={dashboardCardStyles.dailyRevenue.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle}
+              style={dashboardCardStyles.dailyRevenue.style}
+            >
               <></>
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle} style={dashboardCardStyles.dailyOrders.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle}
+              style={dashboardCardStyles.dailyOrders.style}
+            >
               <></>
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.newCustomers.bodyStyle} style={dashboardCardStyles.newCustomers.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.newCustomers.bodyStyle}
+              style={dashboardCardStyles.newCustomers.style}
+            >
               <></>
             </Card>
           </Col>
         </Row>
       </Col>
       <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-        <Card bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle} title={<Text strong>Delivery map</Text>}>
+        <Card
+          bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle}
+          title={<Text strong>Delivery map</Text>}
+        >
           <></>
         </Card>
       </Col>
@@ -696,7 +724,13 @@ import dayjs, { Dayjs } from "dayjs";
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 
 import { ISalesChart } from "interfaces";
-import { DailyRevenueWrapper, TitleAreNumber, TitleArea, TitleAreaAmount, RangePicker } from "./styled";
+import {
+  DailyRevenueWrapper,
+  TitleAreNumber,
+  TitleArea,
+  TitleAreaAmount,
+  RangePicker,
+} from "./styled";
 
 export const DailyRevenue: React.FC = () => {
   const API_URL = useApiUrl();
@@ -794,14 +828,23 @@ export const DailyRevenue: React.FC = () => {
           }}
           ranges={{
             "This Week": [dayjs().startOf("week"), dayjs().endOf("week")],
-            "Last Month": [dayjs().startOf("month").subtract(1, "month"), dayjs().endOf("month").subtract(1, "month")],
+            "Last Month": [
+              dayjs().startOf("month").subtract(1, "month"),
+              dayjs().endOf("month").subtract(1, "month"),
+            ],
             "This Month": [dayjs().startOf("month"), dayjs().endOf("month")],
             "This Year": [dayjs().startOf("year"), dayjs().endOf("year")],
           }}
           format="YYYY/MM/DD"
         />
       </TitleArea>
-      <Line padding={0} appendPadding={10} height={135} style={{ maxHeight: "135px" }} {...config} />
+      <Line
+        padding={0}
+        appendPadding={10}
+        height={135}
+        style={{ maxHeight: "135px" }}
+        {...config}
+      />
     </DailyRevenueWrapper>
   );
 };
@@ -974,7 +1017,11 @@ export const DailyOrders: React.FC = () => {
           {(data?.data?.trend ?? 0) > 0 ? <IncreaseIcon /> : <DecreaseIcon />}
         </TitleAreNumber>
       </TitleArea>
-      <Column style={{ padding: 0, height: 135 }} appendPadding={10} {...config} />
+      <Column
+        style={{ padding: 0, height: 135 }}
+        appendPadding={10}
+        {...config}
+      />
     </DailyOrderWrapper>
   );
 };
@@ -1135,11 +1182,19 @@ export const NewCustomers: React.FC = () => {
             <Text strong>{data?.data.total ?? 0}</Text>
             <div>
               <Text strong>{data?.data.trend ?? 0}%</Text>
-              {(data?.data?.trend ?? 0) > 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+              {(data?.data?.trend ?? 0) > 0 ? (
+                <IncreaseIcon />
+              ) : (
+                <DecreaseIcon />
+              )}
             </div>
           </HeaderNumbers>
         </Header>
-        <Column style={{ padding: 0, height: 162 }} appendPadding={10} {...config} />
+        <Column
+          style={{ padding: 0, height: 162 }}
+          appendPadding={10}
+          {...config}
+        />
       </NewCustomersWrapper>
     </ConfigProvider>
   );
@@ -1363,12 +1418,24 @@ Now, we create the `orderTimeline` component. Create an `index.tsx` file in the 
 ```tsx title="src/components/dashboard/orderTimeline/index.tsx"
 import { useNavigation } from "@refinedev/core";
 import { useSimpleList } from "@refinedev/antd";
-import { Typography, List as AntdList, Tooltip, ConfigProvider, theme } from "antd";
+import {
+  Typography,
+  List as AntdList,
+  Tooltip,
+  ConfigProvider,
+  theme,
+} from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { IOrder } from "interfaces";
-import { TimelineContent, CreatedAt, Number, Timeline, TimelineItem } from "./styled";
+import {
+  TimelineContent,
+  CreatedAt,
+  Number,
+  Timeline,
+  TimelineItem,
+} from "./styled";
 
 dayjs.extend(relativeTime);
 
@@ -1397,7 +1464,9 @@ export const OrderTimeline: React.FC = () => {
 
   const orderStatusColor = (
     id: string,
-  ): { indicatorColor: string; backgroundColor: string; text: string } | undefined => {
+  ):
+    | { indicatorColor: string; backgroundColor: string; text: string }
+    | undefined => {
     switch (id) {
       case "1":
         return {
@@ -1445,9 +1514,15 @@ export const OrderTimeline: React.FC = () => {
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
         <Timeline>
           {dataSource?.map(({ createdAt, orderNumber, status, id }) => (
-            <TimelineItem key={orderNumber} color={orderStatusColor(status.id.toString())?.indicatorColor}>
+            <TimelineItem
+              key={orderNumber}
+              color={orderStatusColor(status.id.toString())?.indicatorColor}
+            >
               <TimelineContent
-                backgroundColor={orderStatusColor(status.id.toString())?.backgroundColor || "transparent"}
+                backgroundColor={
+                  orderStatusColor(status.id.toString())?.backgroundColor ||
+                  "transparent"
+                }
               >
                 <Tooltip
                   overlayInnerStyle={{ color: "#626262" }}
@@ -1457,7 +1532,9 @@ export const OrderTimeline: React.FC = () => {
                 >
                   <CreatedAt italic>{dayjs(createdAt).fromNow()}</CreatedAt>
                 </Tooltip>
-                <Text>Food Order {orderStatusColor(status.id.toString())?.text}</Text>
+                <Text>
+                  Food Order {orderStatusColor(status.id.toString())?.text}
+                </Text>
                 <Number onClick={() => show("orders", id)} strong>
                   #{orderNumber}
                 </Number>
@@ -1540,14 +1617,28 @@ After adding the packages and configurations, we create the `Map` component. Cre
 <p>
 
 ```tsx title="src/components/map/map.tsx"
-import { Children, cloneElement, FC, isValidElement, PropsWithChildren, useEffect, useRef, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
   center?: google.maps.LatLngLiteral;
 }
 
-const MapComponent: FC<PropsWithChildren<MapProps>> = ({ children, center, zoom = 12, ...options }) => {
+const MapComponent: FC<PropsWithChildren<MapProps>> = ({
+  children,
+  center,
+  zoom = 12,
+  ...options
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -1751,7 +1842,13 @@ Phew!, we have come a long way and thanks for sticking around during the tutoria
 
 ```tsx title="src/pages/Dashboard/index.tsx"
 import { Row, Col, Card, Typography } from "antd";
-import { DailyRevenue, DailyOrders, NewCustomers, DeliveryMap, OrderTimeline } from "components/dashboard";
+import {
+  DailyRevenue,
+  DailyOrders,
+  NewCustomers,
+  DeliveryMap,
+  OrderTimeline,
+} from "components/dashboard";
 
 const { Text } = Typography;
 
@@ -1816,26 +1913,38 @@ export const DashboardPage: React.FC = () => {
       <Col md={24}>
         <Row gutter={[16, 16]}>
           <Col xl={10} lg={24} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle} style={dashboardCardStyles.dailyRevenue.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle}
+              style={dashboardCardStyles.dailyRevenue.style}
+            >
               <DailyRevenue />
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle} style={dashboardCardStyles.dailyOrders.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle}
+              style={dashboardCardStyles.dailyOrders.style}
+            >
               <DailyOrders />
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.newCustomers.bodyStyle} style={dashboardCardStyles.newCustomers.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.newCustomers.bodyStyle}
+              style={dashboardCardStyles.newCustomers.style}
+            >
               <NewCustomers />
             </Card>
           </Col>
         </Row>
       </Col>
       <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-        <Card bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle} title={<Text strong>Delivery map</Text>}>
+        <Card
+          bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle}
+          title={<Text strong>Delivery map</Text>}
+        >
           <DeliveryMap />
         </Card>
       </Col>
@@ -1861,10 +1970,16 @@ export const DashboardPage: React.FC = () => {
 
 ## Add Dashboard Page and resource to the Refine component
 
-We will add the Dashboard page as a route and [resource](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
+We will add the Dashboard page as a route and [resource](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
 
 ```tsx title="src/App.tsx"
-import { Authenticated, ErrorComponent, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import {
+  Authenticated,
+  ErrorComponent,
+  GitHubBanner,
+  Refine,
+  WelcomePage,
+} from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider, Layout } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -1915,7 +2030,11 @@ function App() {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <Layout Header={Header} Title={Title} OffLayoutArea={OffLayoutArea}>
+                    <Layout
+                      Header={Header}
+                      Title={Title}
+                      OffLayoutArea={OffLayoutArea}
+                    >
                       <Outlet />
                     </Layout>
                   </Authenticated>
@@ -1964,7 +2083,11 @@ function App() {
               <Route
                 element={
                   <Authenticated>
-                    <Layout Header={Header} Title={Title} OffLayoutArea={OffLayoutArea}>
+                    <Layout
+                      Header={Header}
+                      Title={Title}
+                      OffLayoutArea={OffLayoutArea}
+                    >
                       <Outlet />
                     </Layout>
                   </Authenticated>
@@ -2005,7 +2128,7 @@ Lets explain the block of code we just added:
 ```
 
 A resource object may include properties that define the resource's `name`, action routes(`list`), and additional `metadata` such as label, icon, audit log settings, sider menu nesting, and so on.
-To read more on resources, view [here](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource).
+To read more on resources, view [here](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource).
 
 - After Adding a resource, we specify the route that the resource will be linked to which is shown below:
 

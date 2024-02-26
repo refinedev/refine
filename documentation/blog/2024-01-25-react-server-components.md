@@ -224,11 +224,18 @@ const PostEditor = ({ blogPost }) => {
 
           <div className="mt-8">
             <label className="text-white mb-2">Add your Blog content</label>
-            <textarea value={post.content} required onChange={(e) => onChange("content", e.target.value)}></textarea>
+            <textarea
+              value={post.content}
+              required
+              onChange={(e) => onChange("content", e.target.value)}
+            ></textarea>
           </div>
 
           <div className="flex justify-end mt-8">
-            <button type="submit" className="px-4 py-4 bg-[#0e9f64] c-white border-radius">
+            <button
+              type="submit"
+              className="px-4 py-4 bg-[#0e9f64] c-white border-radius"
+            >
               Create Post
             </button>
           </div>
@@ -359,11 +366,18 @@ const PostEditor = ({ blogPost }) => {
 
           <div className="mt-8">
             <label className="text-white mb-2">Add your Blog content</label>
-            <textarea value={post.content} required onChange={(e) => onChange("content", e.target.value)}></textarea>
+            <textarea
+              value={post.content}
+              required
+              onChange={(e) => onChange("content", e.target.value)}
+            ></textarea>
           </div>
 
           <div className="flex justify-end mt-8">
-            <button type="submit" className="px-4 py-4 bg-[#0e9f64] c-white border-radius">
+            <button
+              type="submit"
+              className="px-4 py-4 bg-[#0e9f64] c-white border-radius"
+            >
               Create Post
             </button>
           </div>

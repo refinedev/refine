@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`react-router transformer should transform the file
+----------------------------------------------------
+import { Refine, WelcomePage } from "@refinedev/core";
+
+function App() {
+    return (
+        <Refine>
+            <WelcomePage />
+        </Refine>
+    );
+}
+
+export default App;
+---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Refine routerProvider={routerProvider}>
+        <Routes>
+          <Route index element={<WelcomePage />} />
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
+}
+
+export default App;"
+`;
+
+exports[`react-router transformer should transform the file
+----------------------------------------------------
+import { Refine, WelcomePage } from "@refinedev/core";
+
+import { UseListExample, UseOneExample, UseUpdateExample } from 'examples';
+
+function App() {
+    return (
+        <Refine>
+            <WelcomePage />
+            <UseListExample />
+            <UseOneExample />
+            <UseUpdateExample />
+        </Refine>
+    );
+}
+
+export default App;
+---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Refine routerProvider={routerProvider}>
+        <Routes>
+          <Route index element={<WelcomePage />} />
+          <Route path="/use-list-example" element={<UseListExample />} />
+          <Route path="/use-one-example" element={<UseOneExample />} />
+          <Route path="/use-update-example" element={<UseUpdateExample />} />
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
+}
+
+export default App;"
+`;
+
+exports[`react-router transformer should transform the file
+----------------------------------------------------
+import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Refine routerProvider={routerProvider}>
+                <Routes>
+                    <Route index element={<WelcomePage />} />
+                    <Route path="*" element={<ErrorComponent />} />
+                </Routes>
+            </Refine>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+---------------------------------------------------- 1`] = `
+"import { ErrorComponent, Refine, WelcomePage } from "@refinedev/core";
+
+import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Refine routerProvider={routerProvider}>
+        <Routes>
+          <Route index element={<WelcomePage />} />
+          <Route path="*" element={<ErrorComponent />} />
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
+}
+
+export default App;"
+`;

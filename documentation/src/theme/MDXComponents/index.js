@@ -16,7 +16,6 @@ import { GuideBadge } from "@site/src/components/guide-badge";
 import PropTag from "@site/src/components/prop-tag";
 import PropsTable from "@site/src/components/props-table";
 import { RouterBadge } from "@site/src/components/router-badge";
-import { Sandpack } from "@site/src/components/sandpack";
 import UIConditional from "@site/src/components/ui-conditional";
 import CommonDetails from "@site/src/refine-theme/common-details";
 import CommonSummary from "@site/src/refine-theme/common-summary";
@@ -27,35 +26,38 @@ import { Image } from "@site/src/components/image";
 import { Table, FullTable } from "@site/src/refine-theme/common-table";
 import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
 import { InstallPackagesCommand } from "@site/src/partials/npm-scripts/install-packages-commands";
+import { TutorialConditional } from "@site/src/refine-theme/tutorial-conditional";
+import { VideoInView } from "@site/src/components/video-in-view";
 
 export default {
-    ...MDXComponents,
-    Checklist: Checklist,
-    ChecklistItem: ChecklistItem,
-    UIConditional: UIConditional,
-    DiscordBanner: DiscordBanner,
-    GithubBanner: GithubBanner,
-    TwitterBanner: TwitterBanner,
-    PropsTable: PropsTable,
-    PropTag: PropTag,
-    details: CommonDetails,
-    summary: CommonSummary,
-    PromotionBanner: PromotionBanner,
-    Tabs: CommonTabs,
-    TabItem: CommonTabItem,
-    blockquote: Blockquote,
-    GeneralConceptsLink,
-    CodeSandboxExample,
-    ExampleLocalPrompt,
-    ExampleSourcePrompt,
-    BannerRandom,
-    Sandpack,
-    GuideBadge,
-    RouterBadge,
-    GlobalConfigBadge,
-    Image,
-    table: Table,
-    CreateRefineAppCommand: CreateRefineAppCommand,
-    InstallPackagesCommand: InstallPackagesCommand,
-    FullTable: FullTable,
+  ...MDXComponents,
+  Checklist: Checklist,
+  ChecklistItem: ChecklistItem,
+  UIConditional: UIConditional,
+  DiscordBanner: DiscordBanner,
+  GithubBanner: GithubBanner,
+  TwitterBanner: TwitterBanner,
+  PropsTable: PropsTable,
+  PropTag: PropTag,
+  details: CommonDetails,
+  summary: CommonSummary,
+  PromotionBanner: PromotionBanner,
+  Tabs: CommonTabs,
+  TabItem: CommonTabItem,
+  blockquote: Blockquote,
+  GeneralConceptsLink,
+  CodeSandboxExample,
+  ExampleLocalPrompt,
+  ExampleSourcePrompt,
+  BannerRandom,
+  GuideBadge,
+  RouterBadge,
+  GlobalConfigBadge,
+  Image,
+  table: Table,
+  CreateRefineAppCommand: CreateRefineAppCommand,
+  InstallPackagesCommand: InstallPackagesCommand,
+  FullTable: FullTable,
+  TutorialConditional,
+  VideoInView: VideoInView,
 };

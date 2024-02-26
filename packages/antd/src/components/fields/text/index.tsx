@@ -9,5 +9,5 @@ import { TextFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/text} for more details.
  */
 export const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
-    return <Typography.Text {...rest}>{value}</Typography.Text>;
+  return <Typography.Text {...rest}>{value}</Typography.Text>;
 };

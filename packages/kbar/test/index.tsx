@@ -5,12 +5,12 @@ import { AuthProvider, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import {
-    I18nProvider,
-    AccessControlProvider,
-    LegacyAuthProvider,
-    DataProvider,
-    NotificationProvider,
-    IResourceItem,
+  I18nProvider,
+  AccessControlProvider,
+  LegacyAuthProvider,
+  DataProvider,
+  NotificationProvider,
+  IResourceItem,
 } from "@refinedev/core";
 
 import { RefineKbarProvider } from "../src/index";
@@ -28,74 +28,74 @@ import { RefineKbarProvider } from "../src/index";
 } */
 
 const List = () => {
-    return <div>hede</div>;
+  return <div>hede</div>;
 };
 export interface ITestWrapperProps {
-    dataProvider?: DataProvider;
-    authProvider?: AuthProvider;
-    legacyAuthProvider?: LegacyAuthProvider;
-    resources?: IResourceItem[];
-    notificationProvider?: NotificationProvider;
-    accessControlProvider?: AccessControlProvider;
-    i18nProvider?: I18nProvider;
-    routerInitialEntries?: string[];
-    DashboardPage?: React.FC;
+  dataProvider?: DataProvider;
+  authProvider?: AuthProvider;
+  legacyAuthProvider?: LegacyAuthProvider;
+  resources?: IResourceItem[];
+  notificationProvider?: NotificationProvider;
+  accessControlProvider?: AccessControlProvider;
+  i18nProvider?: I18nProvider;
+  routerInitialEntries?: string[];
+  DashboardPage?: React.FC;
 }
 
 export const TestWrapper: (
-    props: ITestWrapperProps,
+  props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
-    dataProvider,
-    authProvider,
-    legacyAuthProvider,
-    resources,
-    notificationProvider,
-    accessControlProvider,
-    routerInitialEntries,
-    DashboardPage,
-    i18nProvider,
+  dataProvider,
+  authProvider,
+  legacyAuthProvider,
+  resources,
+  notificationProvider,
+  accessControlProvider,
+  routerInitialEntries,
+  DashboardPage,
+  i18nProvider,
 }) => {
-    // Previously, MemoryRouter was used in this wrapper. However, the
-    // recommendation by react-router developers (see
-    // https://github.com/remix-run/react-router/discussions/8241#discussioncomment-159686)
-    // is essentially to use the same router as your actual application. Besides
-    // that, it's impossible to check for location changes with MemoryRouter if
-    // needed.
-    if (routerInitialEntries) {
-        routerInitialEntries.forEach((route) => {
-            window.history.replaceState({}, "", route);
-        });
-    }
+  // Previously, MemoryRouter was used in this wrapper. However, the
+  // recommendation by react-router developers (see
+  // https://github.com/remix-run/react-router/discussions/8241#discussioncomment-159686)
+  // is essentially to use the same router as your actual application. Besides
+  // that, it's impossible to check for location changes with MemoryRouter if
+  // needed.
+  if (routerInitialEntries) {
+    routerInitialEntries.forEach((route) => {
+      window.history.replaceState({}, "", route);
+    });
+  }
 
-    // eslint-disable-next-line react/display-name
-    return ({ children }): React.ReactElement => {
-        return (
-            <RefineKbarProvider>
-                <BrowserRouter>
-                    <Refine
-                        dataProvider={dataProvider ?? MockJSONServer}
-                        i18nProvider={i18nProvider}
-                        legacyRouterProvider={MockRouterProvider}
-                        authProvider={authProvider}
-                        legacyAuthProvider={legacyAuthProvider}
-                        notificationProvider={notificationProvider}
-                        resources={resources ?? [{ name: "posts", list: List }]}
-                        accessControlProvider={accessControlProvider}
-                        DashboardPage={DashboardPage ?? undefined}
-                        options={{ disableTelemetry: true }}
-                    >
-                        {children}
-                    </Refine>
-                </BrowserRouter>
-            </RefineKbarProvider>
-        );
-    };
+  // eslint-disable-next-line react/display-name
+  return ({ children }): React.ReactElement => {
+    return (
+      <RefineKbarProvider>
+        <BrowserRouter>
+          <Refine
+            dataProvider={dataProvider ?? MockJSONServer}
+            i18nProvider={i18nProvider}
+            legacyRouterProvider={MockRouterProvider}
+            authProvider={authProvider}
+            legacyAuthProvider={legacyAuthProvider}
+            notificationProvider={notificationProvider}
+            resources={resources ?? [{ name: "posts", list: List }]}
+            accessControlProvider={accessControlProvider}
+            DashboardPage={DashboardPage ?? undefined}
+            options={{ disableTelemetry: true }}
+          >
+            {children}
+          </Refine>
+        </BrowserRouter>
+      </RefineKbarProvider>
+    );
+  };
 };
 export {
-    MockJSONServer,
-    MockRouterProvider,
-    MockAccessControlProvider,
-    MockLiveProvider,
+  MockJSONServer,
+  MockRouterProvider,
+  MockAccessControlProvider,
+  MockLiveProvider,
 } from "./dataMocks";
 
 // re-export everything

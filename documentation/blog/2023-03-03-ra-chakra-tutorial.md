@@ -114,7 +114,7 @@ export default App;
 
 #### Resource
 
-A [resources](https://refine.dev/docs/tutorial/understanding-resources/index/) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+A [resources](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
 To create a resource; define our resources and their action paths. This will inform **Refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.
@@ -333,7 +333,16 @@ import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { List, ShowButton, EditButton, DateField } from "@refinedev/chakra-ui";
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, HStack } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  HStack,
+} from "@chakra-ui/react";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IPost } from "../../interfaces";
 
@@ -395,7 +404,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
               <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <Th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </Th>
                 ))}
               </Tr>
@@ -405,7 +418,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             {getRowModel().rows.map((row) => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
                 ))}
               </Tr>
             ))}
@@ -556,7 +571,11 @@ type PaginationProps = {
   setCurrent: (page: number) => void;
 };
 
-export const Pagination: FC<PaginationProps> = ({ current, pageCount, setCurrent }) => {
+export const Pagination: FC<PaginationProps> = ({
+  current,
+  pageCount,
+  setCurrent,
+}) => {
   const pagination = usePagination({
     current,
     pageCount,
@@ -580,13 +599,21 @@ export const Pagination: FC<PaginationProps> = ({ current, pageCount, setCurrent
           if (typeof page === "string") return <span key={page}>...</span>;
 
           return (
-            <Button key={page} onClick={() => setCurrent(page)} variant={page === current ? "solid" : "outline"}>
+            <Button
+              key={page}
+              onClick={() => setCurrent(page)}
+              variant={page === current ? "solid" : "outline"}
+            >
               {page}
             </Button>
           );
         })}
         {pagination?.next && (
-          <IconButton aria-label="next page" onClick={() => setCurrent(current + 1)} variant="outline">
+          <IconButton
+            aria-label="next page"
+            onClick={() => setCurrent(current + 1)}
+            variant="outline"
+          >
             <IconChevronRight size="18" />
           </IconButton>
         )}
@@ -629,7 +656,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     <List>
       ...
       {/* highlight-start */}
-      <Pagination current={current} pageCount={pageCount} setCurrent={setCurrent} />
+      <Pagination
+        current={current}
+        pageCount={pageCount}
+        setCurrent={setCurrent}
+      />
       {/* highlight-end */}
     </List>
   );
@@ -777,7 +808,14 @@ Next, in the `posts` folder under the `pages` folder, we'll include a `create.ts
 ```tsx title="src/pages/posts/create.tsx"
 import React from "react";
 import { Create } from "@refinedev/chakra-ui";
-import { FormControl, FormLabel, FormErrorMessage, Input, Textarea, Select } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+  Textarea,
+  Select,
+} from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -811,7 +849,9 @@ export const PostCreate = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.title?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
@@ -821,7 +861,9 @@ export const PostCreate = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.title?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!errors?.category}>
@@ -838,7 +880,9 @@ export const PostCreate = () => {
             </option>
           ))}
         </Select>
-        <FormErrorMessage>{(errors as any)?.category?.id?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.category?.id?.message as string}
+        </FormErrorMessage>
       </FormControl>
     </Create>
   );
@@ -919,7 +963,13 @@ For editing a record, we will add an `edit.tsx` file In the `posts` folder under
 ```tsx title="src/pages/posts/edit.tsx"
 import React from "react";
 import { Edit } from "@refinedev/chakra-ui";
-import { FormControl, FormLabel, FormErrorMessage, Input, Select } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+  Select,
+} from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
 
@@ -960,7 +1010,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.id?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.id?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.title}>
@@ -971,7 +1023,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.title?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.title?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.content}>
@@ -982,7 +1036,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.content?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.content?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!errors?.category}>
@@ -999,7 +1055,9 @@ export const PostEdit = () => {
             </option>
           ))}
         </Select>
-        <FormErrorMessage>{(errors as any)?.category?.id?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.category?.id?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.createdAt}>
@@ -1010,7 +1068,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.createdAt?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.createdAt?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.updatedAt}>
@@ -1021,7 +1081,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.updatedAt?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.updatedAt?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.publishedAt}>
@@ -1032,7 +1094,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.publishedAt?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.publishedAt?.message as string}
+        </FormErrorMessage>
       </FormControl>
 
       <FormControl mb="3" isInvalid={!!(errors as any)?.locale}>
@@ -1044,7 +1108,9 @@ export const PostEdit = () => {
             required: "This field is required",
           })}
         />
-        <FormErrorMessage>{(errors as any)?.locale?.message as string}</FormErrorMessage>
+        <FormErrorMessage>
+          {(errors as any)?.locale?.message as string}
+        </FormErrorMessage>
       </FormControl>
     </Edit>
   );
@@ -1192,7 +1258,9 @@ import { IconButton } from "@chakra-ui/react";
 import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
 import { Column } from "@tanstack/react-table";
 
-export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
+  column,
+}) => {
   if (!column.getCanSort()) {
     return null;
   }
@@ -1295,11 +1363,21 @@ we create a new folder named `components` under the `src` folder. Under that fol
 
 ```tsx title="src/components/ColumnFilter.tsx"
 import React, { useState } from "react";
-import { Input, Menu, IconButton, MenuButton, MenuList, VStack, HStack } from "@chakra-ui/react";
+import {
+  Input,
+  Menu,
+  IconButton,
+  MenuButton,
+  MenuList,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import { Column } from "@tanstack/react-table";
 
-export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column }) => {
+export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
+  column,
+}) => {
   const [state, setState] = useState(null as null | { value: any });
 
   if (!column.getCanFilter()) {
@@ -1341,7 +1419,12 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column })
       );
     }
 
-    return <FilterComponent value={state?.value} onChange={(e: any) => change(e.target.value)} />;
+    return (
+      <FilterComponent
+        value={state?.value}
+        onChange={(e: any) => change(e.target.value)}
+      />
+    );
   };
 
   return (
@@ -1359,10 +1442,20 @@ export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({ column })
           <VStack align="flex-start">
             {renderFilterElement()}
             <HStack spacing="1">
-              <IconButton aria-label="Clear" size="sm" colorScheme="red" onClick={clear}>
+              <IconButton
+                aria-label="Clear"
+                size="sm"
+                colorScheme="red"
+                onClick={clear}
+              >
                 <IconX size={18} />
               </IconButton>
-              <IconButton aria-label="Save" size="sm" onClick={save} colorScheme="green">
+              <IconButton
+                aria-label="Save"
+                size="sm"
+                onClick={save}
+                colorScheme="green"
+              >
                 <IconCheck size={18} />
               </IconButton>
             </HStack>

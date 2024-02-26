@@ -6,7 +6,11 @@ import React from "react";
 // highlight-next-line
 import { Option, useSelect } from "@refinedev/core";
 import { useDataGrid, List } from "@refinedev/mui";
-import { DataGrid, GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridValueFormatterParams,
+} from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -73,7 +77,9 @@ const PostsList: React.FC = () => {
             return "Loading...";
           }
 
-          const category = options.find((item) => item.value.toString() === row.category.id.toString());
+          const category = options.find(
+            (item) => item.value.toString() === row.category.id.toString(),
+          );
           return category?.label;
         },
       },
@@ -92,7 +98,12 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight rowsPerPageOptions={[10, 20, 30, 50, 100]} />
+      <DataGrid
+        {...dataGridProps}
+        columns={columns}
+        autoHeight
+        rowsPerPageOptions={[10, 20, 30, 50, 100]}
+      />
     </List>
   );
 };

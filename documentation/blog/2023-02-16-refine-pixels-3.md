@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pix
 hide_table_of_contents: false
 ---
 
-In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
+In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/data/data-provider) and [`authProvider`](https://refine.dev/docs/authentication/auth-provider) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) and `routerProvider` props as well.
 
 CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-supabase/) series.
 
@@ -226,7 +226,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -263,7 +266,7 @@ function App() {
 export default App;
 ```
 
-Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
+Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
 
 ```json title="Typical resource object inside resources array"
 {
@@ -425,8 +428,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -527,9 +536,9 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 [`<List />`](https://ant.design/components/list#list) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component.
 
-[Refer to Ant Design documentation for more information About <List />. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
+[Refer to Ant Design documentation for more information About <List />. →](https://ant.design/components/list#list)
 
-[Refer to complete Refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
+[Refer to complete Refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/ui-integrations/ant-design/introduction)
 
 **2. `useSimpleList()` Hook**
 
@@ -691,8 +700,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
         </Routes>
       </Refine>
@@ -708,7 +723,7 @@ In this example we didn't wrap our `canvases` resource routes with [`<Authentica
 
 However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
+[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
 
 ### `<Refine />` `create` Action
 
@@ -724,11 +739,21 @@ The `<Header />` component looks like this:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import React from "react";
-import { useIsAuthenticated, useLogout, useMenu, useNavigation, useParsed } from "@refinedev/core";
+import {
+  useIsAuthenticated,
+  useLogout,
+  useMenu,
+  useNavigation,
+  useParsed,
+} from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { useModalForm } from "@refinedev/antd";
 
-import { PlusSquareOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
+import {
+  PlusSquareOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "../../../components/canvas";
@@ -765,14 +790,27 @@ export const Header: React.FC = () => {
     <div className="container">
       <div className="layout-header">
         <Link to="/">
-          <Image width="120px" src="/pixels-logo.svg" alt="Pixels Logo" preview={false} />
+          <Image
+            width="120px"
+            src="/pixels-logo.svg"
+            alt="Pixels Logo"
+            preview={false}
+          />
         </Link>
         <Space size="large">
-          <Link to="/" className={`nav-button ${selectedKey === "/" ? "active" : ""}`}>
+          <Link
+            to="/"
+            className={`nav-button ${selectedKey === "/" ? "active" : ""}`}
+          >
             <span className="dot-icon" />
             HOME
           </Link>
-          <Link to="/canvases" className={`nav-button ${selectedKey === "/canvases" ? "active" : ""}`}>
+          <Link
+            to="/canvases"
+            className={`nav-button ${
+              selectedKey === "/canvases" ? "active" : ""
+            }`}
+          >
             <span className="dot-icon" />
             NEW
           </Link>
@@ -854,7 +892,10 @@ type CreateCanvasProps = {
   formProps: FormProps;
 };
 
-export const CreateCanvas: React.FC<CreateCanvasProps> = ({ modalProps, formProps }) => {
+export const CreateCanvas: React.FC<CreateCanvasProps> = ({
+  modalProps,
+  formProps,
+}) => {
   const { data: user } = useGetIdentity<User | null>();
 
   const [values, setValues] = useState(() => {
@@ -972,7 +1013,14 @@ The `<CanvasShow />` component looks like this:
 
 ```tsx title="src/pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+  useCreate,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+  useParsed,
+  useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -1033,7 +1081,11 @@ export const CanvasShow: React.FC = () => {
     <div className="container">
       <div className="paper">
         <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+          <Button
+            type="text"
+            onClick={() => list("canvases")}
+            style={{ textTransform: "uppercase" }}
+          >
             <LeftOutlined />
             Back
           </Button>
@@ -1133,7 +1185,7 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
+[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
 
 ```tsx title="src/App.tsx"
 <Refine
@@ -1200,8 +1252,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
           {/* highlight-end */}
         </Routes>
@@ -1341,8 +1399,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route

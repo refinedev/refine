@@ -118,8 +118,18 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
     title="Category"
     key="category.id"
     filterDropdown={(props) => (
-      <FilterDropdown {...props} mapValue={(selectedKeys) => selectedKeys.map((i) => parseInt(i.toString()))}>
-        <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...categorySelectProps} />
+      <FilterDropdown
+        {...props}
+        mapValue={(selectedKeys) =>
+          selectedKeys.map((i) => parseInt(i.toString()))
+        }
+      >
+        <Select
+          style={{ minWidth: 200 }}
+          mode="multiple"
+          placeholder="Select Category"
+          {...categorySelectProps}
+        />
       </FilterDropdown>
     )}
     defaultFilteredValue={getDefaultFilter("category.id", filters, "in")}

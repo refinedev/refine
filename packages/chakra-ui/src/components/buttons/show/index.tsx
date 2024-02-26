@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import {
-    useCan,
-    useNavigation,
-    useTranslate,
-    useResource,
-    useRouterContext,
-    useRouterType,
-    useLink,
-    AccessControlContext,
+  useCan,
+  useNavigation,
+  useTranslate,
+  useResource,
+  useRouterContext,
+  useRouterType,
+  useLink,
+  AccessControlContext,
 } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconEye } from "@tabler/icons";
@@ -26,103 +26,103 @@ import { ShowButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
-    resource: resourceNameFromProps,
-    resourceNameOrRouteName,
-    recordItemId,
-    hideText = false,
-    accessControl,
-    svgIconProps,
-    meta,
-    children,
-    onClick,
-    ...rest
+  resource: resourceNameFromProps,
+  resourceNameOrRouteName,
+  recordItemId,
+  hideText = false,
+  accessControl,
+  svgIconProps,
+  meta,
+  children,
+  onClick,
+  ...rest
 }) => {
-    const accessControlContext = useContext(AccessControlContext);
+  const accessControlContext = useContext(AccessControlContext);
 
-    const accessControlEnabled =
-        accessControl?.enabled ??
-        accessControlContext.options.buttons.enableAccessControl;
+  const accessControlEnabled =
+    accessControl?.enabled ??
+    accessControlContext.options.buttons.enableAccessControl;
 
-    const hideIfUnauthorized =
-        accessControl?.hideIfUnauthorized ??
-        accessControlContext.options.buttons.hideIfUnauthorized;
-    const { showUrl: generateShowUrl } = useNavigation();
-    const routerType = useRouterType();
-    const Link = useLink();
-    const { Link: LegacyLink } = useRouterContext();
+  const hideIfUnauthorized =
+    accessControl?.hideIfUnauthorized ??
+    accessControlContext.options.buttons.hideIfUnauthorized;
+  const { showUrl: generateShowUrl } = useNavigation();
+  const routerType = useRouterType();
+  const Link = useLink();
+  const { Link: LegacyLink } = useRouterContext();
 
-    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const { id, resource } = useResource(
-        resourceNameFromProps ?? resourceNameOrRouteName,
-    );
+  const { id, resource } = useResource(
+    resourceNameFromProps ?? resourceNameOrRouteName,
+  );
 
-    const { data } = useCan({
-        resource: resource?.name,
-        action: "show",
-        params: { id: recordItemId ?? id, resource },
-        queryOptions: {
-            enabled: accessControlEnabled,
-        },
-    });
+  const { data } = useCan({
+    resource: resource?.name,
+    action: "show",
+    params: { id: recordItemId ?? id, resource },
+    queryOptions: {
+      enabled: accessControlEnabled,
+    },
+  });
 
-    const disabledTitle = () => {
-        if (data?.can) return "";
-        else if (data?.reason) return data.reason;
-        else
-            return translate(
-                "buttons.notAccessTitle",
-                "You don't have permission to access",
-            );
-    };
+  const disabledTitle = () => {
+    if (data?.can) return "";
+    else if (data?.reason) return data.reason;
+    else
+      return translate(
+        "buttons.notAccessTitle",
+        "You don't have permission to access",
+      );
+  };
 
-    const showUrl =
-        resource && (recordItemId || id)
-            ? generateShowUrl(resource, recordItemId! ?? id!, meta)
-            : "";
+  const showUrl =
+    resource && (recordItemId || id)
+      ? generateShowUrl(resource, recordItemId! ?? id!, meta)
+      : "";
 
-    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-        return null;
-    }
+  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+    return null;
+  }
 
-    return (
-        <ActiveLink
-            to={showUrl}
-            replace={false}
-            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-                if (onClick) {
-                    e.preventDefault();
-                    onClick(e);
-                }
-            }}
+  return (
+    <ActiveLink
+      to={showUrl}
+      replace={false}
+      onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+        if (onClick) {
+          e.preventDefault();
+          onClick(e);
+        }
+      }}
+    >
+      {hideText ? (
+        <IconButton
+          variant="outline"
+          aria-label={translate("buttons.show", "Show")}
+          isDisabled={data?.can === false}
+          title={disabledTitle()}
+          data-testid={RefineButtonTestIds.ShowButton}
+          className={RefineButtonClassNames.ShowButton}
+          {...rest}
         >
-            {hideText ? (
-                <IconButton
-                    variant="outline"
-                    aria-label={translate("buttons.show", "Show")}
-                    isDisabled={data?.can === false}
-                    title={disabledTitle()}
-                    data-testid={RefineButtonTestIds.ShowButton}
-                    className={RefineButtonClassNames.ShowButton}
-                    {...rest}
-                >
-                    <IconEye size={20} {...svgIconProps} />
-                </IconButton>
-            ) : (
-                <Button
-                    variant="outline"
-                    isDisabled={data?.can === false}
-                    leftIcon={<IconEye size={20} {...svgIconProps} />}
-                    title={disabledTitle()}
-                    data-testid={RefineButtonTestIds.ShowButton}
-                    className={RefineButtonClassNames.ShowButton}
-                    {...rest}
-                >
-                    {children ?? translate("buttons.show", "Show")}
-                </Button>
-            )}
-        </ActiveLink>
-    );
+          <IconEye size={20} {...svgIconProps} />
+        </IconButton>
+      ) : (
+        <Button
+          variant="outline"
+          isDisabled={data?.can === false}
+          leftIcon={<IconEye size={20} {...svgIconProps} />}
+          title={disabledTitle()}
+          data-testid={RefineButtonTestIds.ShowButton}
+          className={RefineButtonClassNames.ShowButton}
+          {...rest}
+        >
+          {children ?? translate("buttons.show", "Show")}
+        </Button>
+      )}
+    </ActiveLink>
+  );
 };

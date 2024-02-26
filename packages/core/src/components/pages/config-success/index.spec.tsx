@@ -5,31 +5,23 @@ import { render } from "@test";
 import { ConfigSuccessPage } from "./index";
 
 describe("ConfigSuccessPage", () => {
-    it("should render page successfuly", async () => {
-        const { getByText } = render(<ConfigSuccessPage />);
+  it("should render page successfuly", async () => {
+    const { getByText } = render(<ConfigSuccessPage />);
 
-        getByText("Welcome Aboard!");
-        getByText("Your configuration is completed.");
-    });
+    getByText("Welcome Aboard!");
+    getByText("Your configuration is completed.");
+  });
 
-    it("should render 4 buttons", async () => {
-        const { getByText } = render(<ConfigSuccessPage />);
+  const cases = [
+    ["Documentation", "https://refine.dev/docs"],
+    ["Tutorial", "https://refine.dev/tutorial"],
+    ["Templates", "https://refine.dev/templates"],
+    ["Community", "https://discord.gg/refine"],
+  ];
 
-        expect(getByText("Documentation").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/",
-        );
-        expect(getByText("Tutorial").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/docs/tutorial/introduction/index/",
-        );
-        expect(getByText("Examples").closest("a")).toHaveAttribute(
-            "href",
-            "https://refine.dev/examples",
-        );
-        expect(getByText("Community").closest("a")).toHaveAttribute(
-            "href",
-            "https://discord.gg/refine",
-        );
-    });
+  it.each(cases)("should render correct %s href", async (text, expected) => {
+    const { getByText } = render(<ConfigSuccessPage />);
+
+    expect(getByText(text).closest("a")).toHaveAttribute("href", expected);
+  });
 });

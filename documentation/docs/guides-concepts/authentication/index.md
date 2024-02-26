@@ -98,7 +98,10 @@ import { Authenticated } from "@refinedev/core";
 
 const Page = () => {
   return (
-    <Authenticated loading={<div>loading...</div>} fallback={<div>You cannot access this section</div>}>
+    <Authenticated
+      loading={<div>loading...</div>}
+      fallback={<div>You cannot access this section</div>}
+    >
       <h1>Welcome to your dashboard</h1>
     </Authenticated>
   );
@@ -290,5 +293,5 @@ To better understand the auth provider interface, we have created an example tha
 [use-register]: /docs/authentication/hooks/use-register
 [use-forgot-password]: /docs/authentication/hooks/use-forgot-password
 [use-update-password]: /docs/authentication/hooks/use-update-password
-[create-auth-provider-tutorial]: /docs/tutorial/understanding-authprovider/create-authprovider
+[create-auth-provider-tutorial]: /docs/authentication/auth-provider
 [use-one]: /docs/data/hooks/use-one
