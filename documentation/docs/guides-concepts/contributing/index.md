@@ -181,6 +181,8 @@ We are using [biome](https://biomejs.dev) for linting & formatting across the re
 
 We suggest using [biome VSCode extension](https://biomejs.dev/reference/vscode/) to handle linting & formatting on your local environment to avoid unexpected failures on CI.
 
+Since biome doesn't have markdown support yet, we are using prettier to format markdown files.
+
 ### Commit Convention
 
 Commit messages are essential to keep everything clear in our development process. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
