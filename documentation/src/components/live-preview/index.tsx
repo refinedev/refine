@@ -41,9 +41,9 @@ const LivePreviewFrameBase = ({
         const worker = new Worker(
           `${location.protocol}//${location.host}/workers/lz-worker.js`,
         );
-        worker.onmessage = function ({
+        worker.onmessage = ({
           data,
-        }: MessageEvent<{ compressed: string | null }>) {
+        }: MessageEvent<{ compressed: string | null }>) => {
           if (data.compressed) {
             setUrl(
               `${customFields.LIVE_PREVIEW_URL}?code=${data.compressed}${
