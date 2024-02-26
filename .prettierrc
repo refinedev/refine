@@ -4,16 +4,5 @@
   "trailingComma": "all",
   "singleQuote": false,
   "printWidth": 80,
-  "tabWidth": 2,
-  "overrides": [
-    {
-      "files": [
-        "documentation/docs/**/*.{md,mdx}",
-        "documentation/blog/**/*.{md,mdx}"
-      ],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ]
+  "tabWidth": 2
 }

@@ -116,16 +116,5 @@
         "useValidTypeof": "off"
       }
     }
-  },
-  "overrides": [
-    {
-      "include": [
-        "documentation/docs/**/*.{js,jsx,ts,tsx}",
-        "documentation/blog/**/*.{js,jsx,ts,tsx}"
-      ],
-      "formatter": {
-        "lineWidth": 120
-      }
-    }
-  ]
+  }
 }
