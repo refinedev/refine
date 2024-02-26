@@ -246,7 +246,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Id
         </h5>
@@ -258,7 +258,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Title
         </h5>
@@ -270,7 +270,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Slug
         </h5>
@@ -292,7 +292,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Hit
         </h5>
@@ -304,7 +304,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Category
         </h5>
@@ -312,7 +312,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           User
         </h5>
@@ -320,7 +320,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Status
         </h5>
@@ -332,7 +332,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Status Color
         </h5>
@@ -344,7 +344,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Created At
         </h5>
@@ -356,7 +356,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Published At
         </h5>
@@ -368,7 +368,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Image
         </h5>
@@ -385,7 +385,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Tags
         </h5>
@@ -433,7 +433,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         <h5
           class="mantine-Title-root"
           data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Language
         </h5>
