@@ -34,14 +34,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install & build
+      - name: npm install
+        run: npm ci
+      - name: lint
+        run: npm run lint:ci
+      - name: bootstrap & build
         run: |
-          npm ci
           npm run bootstrap:all
           npm run build:all
-      - name: lint
-        run: |
-          npm run lint:ci
       - name: test
         run: |
           npm run test:all:coverage

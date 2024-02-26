@@ -18,7 +18,7 @@
     "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
     "lint": "biome lint .",
-    "lint:ci": "biome ci .",
+    "lint:ci": "biome lint .",
     "lint:fix": "biome lint . --apply",
     "lint:staged": "lint-staged",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
