@@ -5,16 +5,16 @@
 ./packages/devtools/src/utilities/index.ts:42:5 lint/suspicious/useDefaultSwitchClauseLast ━━━━━━━━━━
 
   ! The default clause should be the last switch clause.
-
+  
     40 │         transform: "translateX(-50%)",
     41 │       };
   > 42 │     default:
        │     ^^^^^^^^
     43 │     case "bottom":
     44 │       return {
-
+  
   i The following case clause is here:
-
+  
     41 │       };
     42 │     default:
   > 43 │     case "bottom":
@@ -27,8 +27,8 @@
        │       ^^
     49 │   }
     50 │ };
-
+  
   i Regardless its position, the default clause is always executed when there is no match. To avoid confusion, the default clause should be the last switch clause.
+  
 
-
-Checked 6952 file(s) in 481ms
+Checked 6952 file(s) in 449ms

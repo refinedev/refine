@@ -5,282 +5,282 @@
 ./documentation/src/components/tutorial-toc/index.tsx:50:7 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     48 │           : " hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
     49 │       )}
   > 50 │       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
        │       ^^^^^^^^^^^^^^^^^^^^^^^
     51 │     />
     52 │   );
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/tutorial-toc/index.tsx:147:7 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     145 │     <a
     146 │       href={`#${item.id}`}
   > 147 │       dangerouslySetInnerHTML={{ __html: item.value }}
         │       ^^^^^^^^^^^^^^^^^^^^^^^
     148 │       className={clsx(
     149 │         "text-gray-800 dark:text-gray-0 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/tutorial-toc/index.tsx:224:13 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     222 │                 doc.current,
     223 │             })}
   > 224 │             dangerouslySetInnerHTML={{ __html: formattedTitle }}
         │             ^^^^^^^^^^^^^^^^^^^^^^^
     225 │           />
-    226 │
-
+    226 │ 
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/integrations/card/index.tsx:48:11 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     46 │             "text-xs sm:text-sm",
     47 │           )}
   > 48 │           dangerouslySetInnerHTML={{ __html: description }}
        │           ^^^^^^^^^^^^^^^^^^^^^^^
     49 │         />
     50 │         {!!contributors?.length && (
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/refine-week/refine-week-mobile.tsx:79:11 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     77 │             "mt-10",
     78 │           )}
   > 79 │           dangerouslySetInnerHTML={{ __html: data.description }}
        │           ^^^^^^^^^^^^^^^^^^^^^^^
     80 │         />
-    81 │
-
+    81 │ 
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/refine-week/refine-week-mobile.tsx:194:19 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     192 │                 <div
     193 │                   className={clsx("px-4", "text-gray-600 dark:text-gray-400")}
   > 194 │                   dangerouslySetInnerHTML={{
         │                   ^^^^^^^^^^^^^^^^^^^^^^^
     195 │                     __html: item.description,
     196 │                   }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/refine-week/refine-week-desktop.tsx:52:13 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     50 │               "mt-10",
     51 │             )}
   > 52 │             dangerouslySetInnerHTML={{ __html: data.description }}
        │             ^^^^^^^^^^^^^^^^^^^^^^^
     53 │           />
-    54 │
-
+    54 │ 
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/refine-week/refine-week-desktop.tsx:158:21 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     156 │                   <div
     157 │                     className={clsx("text-gray-600 dark:text-gray-400", "mt-2")}
   > 158 │                     dangerouslySetInnerHTML={{
         │                     ^^^^^^^^^^^^^^^^^^^^^^^
     159 │                       __html: item.description,
     160 │                     }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/example-list/index.tsx:241:11 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     239 │             marginBottom: "0rem",
     240 │           }}
   > 241 │           dangerouslySetInnerHTML={{ __html: example.description }}
         │           ^^^^^^^^^^^^^^^^^^^^^^^
     242 │         />
     243 │         <div
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/components/landing/showcase-wrapper.tsx:182:27 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     180 │                           key={`${token.content}-${key}`}
     181 │                           className="whitespace-pre"
   > 182 │                           dangerouslySetInnerHTML={{
         │                           ^^^^^^^^^^^^^^^^^^^^^^^
     183 │                             __html: content,
     184 │                           }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
-
-./documentation/src/refine-theme/doc-toc.tsx:67:7 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
-
-  ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
-    65 │         "transition-colors duration-200 ease-in-out",
-    66 │       )}
-  > 67 │       dangerouslySetInnerHTML={{
-       │       ^^^^^^^^^^^^^^^^^^^^^^^
-    68 │         __html: value,
-    69 │       }}
-
-  ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./packages/inferencer/src/inferencers/headless/error.tsx:32:13 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     30 │               fontWeight: "bold",
     31 │             }}
   > 32 │             dangerouslySetInnerHTML={{ __html: error ?? "" }}
        │             ^^^^^^^^^^^^^^^^^^^^^^^
     33 │           />
     34 │         </div>
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
+  
 
+./documentation/src/refine-theme/doc-toc.tsx:67:7 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
+
+  ! Avoid passing content using the dangerouslySetInnerHTML prop.
+  
+    65 │         "transition-colors duration-200 ease-in-out",
+    66 │       )}
+  > 67 │       dangerouslySetInnerHTML={{
+       │       ^^^^^^^^^^^^^^^^^^^^^^^
+    68 │         __html: value,
+    69 │       }}
+  
+  ! Setting content using code can expose users to cross-site scripting (XSS) attacks
+  
 
 ./packages/inferencer/src/inferencers/antd/error.tsx:17:17 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     15 │             description={
     16 │               <div
   > 17 │                 dangerouslySetInnerHTML={{
        │                 ^^^^^^^^^^^^^^^^^^^^^^^
     18 │                   __html: error ?? "",
     19 │                 }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./packages/inferencer/src/inferencers/mui/error.tsx:24:16 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     22 │         <Alert severity="error">
     23 │           <AlertTitle>Error</AlertTitle>
   > 24 │           <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
        │                ^^^^^^^^^^^^^^^^^^^^^^^
     25 │         </Alert>
     26 │       </Box>
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./packages/inferencer/src/inferencers/mantine/error.tsx:15:16 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     13 │       <Center style={{ minHeight: 300 }}>
     14 │         <Alert title="Error" color="red" icon={<IconAlertCircle />}>
   > 15 │           <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
        │                ^^^^^^^^^^^^^^^^^^^^^^^
     16 │         </Alert>
     17 │       </Center>
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./packages/inferencer/src/inferencers/chakra-ui/error.tsx:28:18 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     27 │           <AlertDescription mt={4} maxWidth="sm">
   > 28 │             <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
        │                  ^^^^^^^^^^^^^^^^^^^^^^^
     29 │           </AlertDescription>
     30 │         </Alert>
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/refine-theme/doc-toc-mobile.tsx:94:25 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     92 │                           },
     93 │                         )}
   > 94 │                         dangerouslySetInnerHTML={{
        │                         ^^^^^^^^^^^^^^^^^^^^^^^
     95 │                           __html: value,
     96 │                         }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/refine-theme/doc-generated-index-page.tsx:56:19 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     54 │                 <p
     55 │                   className="mb-8"
   > 56 │                   dangerouslySetInnerHTML={{
        │                   ^^^^^^^^^^^^^^^^^^^^^^^
     57 │                     __html: categoryGeneratedIndex.description,
     58 │                   }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/refine-theme/landing-pure-react-code.tsx:205:21 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     203 │                     key={`${token.content}-${key}`}
     204 │                     className="whitespace-pre"
   > 205 │                     dangerouslySetInnerHTML={{
         │                     ^^^^^^^^^^^^^^^^^^^^^^^
     206 │                       __html: token.content,
     207 │                     }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 ./documentation/src/refine-theme/blog-toc.tsx:64:7 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
 
   ! Avoid passing content using the dangerouslySetInnerHTML prop.
-
+  
     62 │         "no-underline hover:no-underline",
     63 │       )}
   > 64 │       dangerouslySetInnerHTML={{
        │       ^^^^^^^^^^^^^^^^^^^^^^^
     65 │         __html: value,
     66 │       }}
-
+  
   ! Setting content using code can expose users to cross-site scripting (XSS) attacks
-
+  
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 3.
-Checked 6952 file(s) in 445ms
+Checked 6952 file(s) in 479ms

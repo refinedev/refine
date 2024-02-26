@@ -5,9 +5,9 @@
 ./examples/store/pages/_document.tsx:3:1 lint/complexity/noStaticOnlyClass ━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Avoid classes that contain only static members.
-
+  
      1 │ import Document, { DocumentContext, DocumentInitialProps } from "next/document";
-     2 │
+     2 │ 
    > 3 │ class CustomDocument extends Document {
        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    > 4 │   static async getInitialProps(
@@ -15,10 +15,10 @@
   > 10 │   }
   > 11 │ }
        │ ^
-    12 │
+    12 │ 
     13 │ export default CustomDocument;
-
+  
   i Prefer using simple functions instead of classes with only static members.
+  
 
-
-Checked 6952 file(s) in 456ms
+Checked 6952 file(s) in 513ms

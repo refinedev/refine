@@ -5,141 +5,141 @@
 ./documentation/src/pages/week-of-refine-supabase/index.tsx:13:11 lint/a11y/useHtmlLang ━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     11 │       <div className="refine-prose">
     12 │         <Head title="Week of Refine | Refine">
   > 13 │           <html data-page="week-of-refine" data-customized="true" />
        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     14 │         </Head>
-    15 │
-
+    15 │ 
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/week-of-refine/index.tsx:73:11 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     71 │       <div className="not-prose">
     72 │         <Head title="RefineWeek | Refine">
   > 73 │           <html data-page="week-of-refine" data-customized="true" />
        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     74 │         </Head>
-    75 │
-
+    75 │ 
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/templates/index.tsx:74:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     72 │     <>
     73 │       <Head>
   > 74 │         <html data-active-page="index" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     75 │         <title>{title}</title>
     76 │         <meta property="og:title" content={title} />
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/week-of-refine-strapi/index.tsx:13:11 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     11 │       <div className="refine-prose">
     12 │         <Head title="Week of Refine | Refine">
   > 13 │           <html data-page="week-of-refine" data-customized="true" />
        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     14 │         </Head>
-    15 │
-
+    15 │ 
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/about/index.tsx:27:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     25 │     <>
     26 │       <Head title="About | Refine">
   > 27 │         <html data-page="about" data-customized="true" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     28 │       </Head>
     29 │       <div className="refine-prose">
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/privacy-policy/index.tsx:12:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     10 │     <CommonLayout>
     11 │       <Head title="Privacy Policy | Refine">
   > 12 │         <html data-page="privacy_policy" data-customized="true" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     13 │       </Head>
     14 │       <div className="refine-prose">
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/enterprise/index.tsx:24:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     22 │     <>
     23 │       <Head>
   > 24 │         <html data-active-page="index" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     25 │         <title>{title}</title>
     26 │         <meta property="og:title" content={title} />
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/pages/index.tsx:24:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     22 │     <>
     23 │       <Head>
   > 24 │         <html data-active-page="index" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     25 │         <title>{title}</title>
     26 │         <meta property="og:title" content={title} />
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/components/templates-detail-page/index.js:11:9 lint/a11y/useHtmlLang ━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
      9 │     <>
     10 │       <Head title={`${content.title} Template | Refine`}>
   > 11 │         <html data-page="templates_refine" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     12 │         <title>{content.title}</title>
     13 │         <meta property="og:title" content={content.title} />
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
-
+  
 
 ./documentation/src/components/integrations/layout/index.tsx:12:9 lint/a11y/useHtmlLang ━━━━━━━━━━━━
 
   ! Provide a lang attribute when using the html element.
-
+  
     10 │     <CommonLayout>
     11 │       <Head title="Integrations | Refine">
   > 12 │         <html data-page="integrations" data-customized="true" />
        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     13 │       </Head>
     14 │       <div className={clsx("refine-prose, pb-16")}>
-
+  
   i Setting a lang attribute on HTML document elements configures the languageused by screen readers when no user default is specified.
+  
 
-
-Checked 6952 file(s) in 452ms
+Checked 6952 file(s) in 461ms

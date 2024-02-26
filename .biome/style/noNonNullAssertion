@@ -5,297 +5,321 @@
 ./examples/template-antd/src/main.tsx:5:21 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     3 │ import App from "./App";
-    4 │
+    4 │ 
   > 5 │ ReactDOM.createRoot(document.getElementById("root")!).render(
       │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     6 │   <React.StrictMode>
     7 │     <App />
-
-
-./examples/multi-tenancy-strapi/src/pages/order/create.tsx:43:22 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-    41 │           return formProps.onFinish?.({
-    42 │             ...values,
-  > 43 │             stores: [params!.tenant],
-       │                      ^^^^^^^
-    44 │           });
-    45 │         }}
-
-  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
-    41 41 │             return formProps.onFinish?.({
-    42 42 │               ...values,
-    43    │ - ············stores:·[params!.tenant],
-       43 │ + ············stores:·[params?.tenant],
-    44 44 │             });
-    45 45 │           }}
-
-
-./examples/field-antd-use-select-basic/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/multi-tenancy-strapi/src/index.tsx:7:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-    5 │ const container = document.getElementById("root");
-    6 │ // eslint-disable-next-line
-  > 7 │ const root = createRoot(container!);
-      │                         ^^^^^^^^^^
-    8 │ root.render(
-    9 │   <React.StrictMode>
-
+  
 
 ./examples/input-date-picker/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
      6 │ const container = document.getElementById("root");
      7 │ // eslint-disable-next-line
    > 8 │ const root = createRoot(container!);
        │                         ^^^^^^^^^^
      9 │ root.render(
     10 │   <React.StrictMode>
-
+  
 
 ./examples/form-react-hook-form-use-form/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
      6 │ const container = document.getElementById("root");
      7 │ // eslint-disable-next-line
    > 8 │ const root = createRoot(container!);
        │                         ^^^^^^^^^^
      9 │ root.render(
     10 │   <React.StrictMode>
-
-
-./examples/form-mantine-use-steps-form/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/table-material-ui-use-data-grid/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/customization-theme-mantine/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/i18n-react/src/index.tsx:9:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     7 │ const container = document.getElementById("root");
-     8 │ // eslint-disable-next-line
-   > 9 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-    10 │ root.render(
-    11 │   <React.StrictMode>
-
-
-./examples/form-mantine-use-drawer-form/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/auth-otp/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-
-
-./examples/store/src/lib/hooks/useCart.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-    15 │     resource: "carts",
-    16 │     // eslint-disable-next-line
-  > 17 │     id: id!,
-       │         ^^^
-    18 │     queryOptions: {
-    19 │       enabled: !!id,
-
-
-./examples/store/src/lib/hooks/useEnrichedLineItems.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-    15 │   const { data: cartData } = useOne<{ cart: Cart }>({
-    16 │     // eslint-disable-next-line
-  > 17 │     id: cartId!,
-       │         ^^^^^^^
-    18 │     resource: "carts",
-    19 │     queryOptions: {
-
-
-./examples/store/src/lib/context/checkout.tsx:92:9 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-
-    90 │     resource: "shipping-options",
-    91 │     // eslint-disable-next-line
-  > 92 │     id: cartId!,
-       │         ^^^^^^^
-    93 │     queryOptions: {
-    94 │       enabled: !!cartId,
-
+  
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:32:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     30 │   describe("deleteMany", () => {
     31 │     it("correct response", async () => {
   > 32 │       const { data } = await DataProvider(API_URL, axiosInstance).deleteMany!({
        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     33 │         resource: "posts",
     34 │         ids: ["20"],
-
+  
   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
+  
      30  30 │     describe("deleteMany", () => {
      31  31 │       it("correct response", async () => {
      32     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).deleteMany!({
          32 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).deleteMany?.({
      33  33 │           resource: "posts",
      34  34 │           ids: ["20"],
-
+  
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:183:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     181 │   describe("getMany", () => {
     182 │     it("correct response", async () => {
   > 183 │       const { data } = await DataProvider(API_URL, axiosInstance).getMany!({
         │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     184 │         resource: "posts",
     185 │         ids: ["30", "29"],
-
+  
   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
+  
     181 181 │     describe("getMany", () => {
     182 182 │       it("correct response", async () => {
     183     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).getMany!({
         183 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).getMany?.({
     184 184 │           resource: "posts",
     185 185 │           ids: ["30", "29"],
-
+  
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:230:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     228 │   describe("updateMany", () => {
     229 │     it("correct response", async () => {
   > 230 │       const { data } = await DataProvider(API_URL, axiosInstance).updateMany!({
         │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     231 │         resource: "posts",
     232 │         ids: ["8", "17"],
-
+  
   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
+  
     228 228 │     describe("updateMany", () => {
     229 229 │       it("correct response", async () => {
     230     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).updateMany!({
         230 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).updateMany?.({
     231 231 │           resource: "posts",
     232 232 │           ids: ["8", "17"],
-
+  
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:249:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     247 │   describe("createMany", () => {
     248 │     it("correct response", async () => {
   > 249 │       const { data } = await DataProvider(API_URL, axiosInstance).createMany!({
         │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     250 │         resource: "posts",
     251 │         variables: [
-
+  
   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
+  
     247 247 │     describe("createMany", () => {
     248 248 │       it("correct response", async () => {
     249     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).createMany!({
         249 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).createMany?.({
     250 250 │           resource: "posts",
     251 251 │           variables: [
-
+  
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:273:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
-
+  
     271 │   describe("custom", () => {
     272 │     it("correct get response", async () => {
   > 273 │       const { data } = await DataProvider(API_URL, axiosInstance).custom!({
         │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     274 │         url: `${API_URL}/posts`,
     275 │         method: "get",
-
+  
   i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
-
+  
     271 271 │     describe("custom", () => {
     272 272 │       it("correct get response", async () => {
     273     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom!({
         273 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom?.({
     274 274 │           url: `${API_URL}/posts`,
     275 275 │           method: "get",
+  
 
+./packages/strapi-v4/test/dataProvider/index.spec.ts:285:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    284 │     it("correct filter response", async () => {
+  > 285 │       const { data } = await DataProvider(API_URL, axiosInstance).custom!({
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    286 │         url: `${API_URL}/posts`,
+    287 │         method: "get",
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    283 283 │   
+    284 284 │       it("correct filter response", async () => {
+    285     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom!({
+        285 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom?.({
+    286 286 │           url: `${API_URL}/posts`,
+    287 287 │           method: "get",
+  
+
+./packages/strapi-v4/test/dataProvider/index.spec.ts:302:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    301 │     it("correct sort response", async () => {
+  > 302 │       const { data } = await DataProvider(API_URL, axiosInstance).custom!({
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    303 │         url: `${API_URL}/posts`,
+    304 │         method: "get",
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    300 300 │   
+    301 301 │       it("correct sort response", async () => {
+    302     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom!({
+        302 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom?.({
+    303 303 │           url: `${API_URL}/posts`,
+    304 304 │           method: "get",
+  
+
+./packages/strapi-v4/test/dataProvider/index.spec.ts:318:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    317 │     it("correct post request", async () => {
+  > 318 │       const { data } = await DataProvider(API_URL, axiosInstance).custom!({
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    319 │         url: `${API_URL}/posts`,
+    320 │         method: "post",
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    316 316 │   
+    317 317 │       it("correct post request", async () => {
+    318     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom!({
+        318 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).custom?.({
+    319 319 │           url: `${API_URL}/posts`,
+    320 320 │           method: "post",
+  
+
+./examples/customization-theme-mantine/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     6 │ const container = document.getElementById("root");
+     7 │ // eslint-disable-next-line
+   > 8 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+     9 │ root.render(
+    10 │   <React.StrictMode>
+  
+
+./examples/auth-otp/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     6 │ const container = document.getElementById("root");
+     7 │ // eslint-disable-next-line
+   > 8 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+     9 │ root.render(
+    10 │   <React.StrictMode>
+  
+
+./packages/react-router-v6/src/legacy/routeProvider.tsx:249:44 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    247 │         key={`${resource.route}`}
+    248 │         path={`${resource.route}`}
+  > 249 │         element={<ResourceComponent route={resource.route!} />}
+        │                                            ^^^^^^^^^^^^^^^
+    250 │       >
+    251 │         <Route
+  
+
+./packages/react-router-v6/src/legacy/routeProvider.tsx:253:46 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    251 │         <Route
+    252 │           path=":action"
+  > 253 │           element={<ResourceComponent route={resource.route!} />}
+        │                                              ^^^^^^^^^^^^^^^
+    254 │         >
+    255 │           <Route
+  
+
+./packages/react-router-v6/src/legacy/routeProvider.tsx:257:48 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    255 │           <Route
+    256 │             path=":id"
+  > 257 │             element={<ResourceComponent route={resource.route!} />}
+        │                                                ^^^^^^^^^^^^^^^
+    258 │           />
+    259 │         </Route>
+  
+
+./packages/react-router-v6/src/document-title-handler.tsx:37:7 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    35 │     const autoGeneratedTitle = generateDefaultDocumentTitle(
+    36 │       translate,
+  > 37 │       resource!,
+       │       ^^^^^^^^^
+    38 │       action,
+    39 │       id + "",
+  
+
+./examples/store/src/lib/hooks/useCart.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    15 │     resource: "carts",
+    16 │     // eslint-disable-next-line
+  > 17 │     id: id!,
+       │         ^^^
+    18 │     queryOptions: {
+    19 │       enabled: !!id,
+  
+
+./examples/store/src/lib/hooks/useEnrichedLineItems.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    15 │   const { data: cartData } = useOne<{ cart: Cart }>({
+    16 │     // eslint-disable-next-line
+  > 17 │     id: cartId!,
+       │         ^^^^^^^
+    18 │     resource: "carts",
+    19 │     queryOptions: {
+  
+
+./packages/strapi/test/dataProvider/index.spec.ts:32:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    30 │   describe("deleteMany", () => {
+    31 │     it("correct response", async () => {
+  > 32 │       const { data } = await DataProvider(API_URL, axiosInstance).deleteMany!({
+       │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    33 │         resource: "posts",
+    34 │         ids: ["46"],
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+     30  30 │     describe("deleteMany", () => {
+     31  31 │       it("correct response", async () => {
+     32     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).deleteMany!({
+         32 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).deleteMany?.({
+     33  33 │           resource: "posts",
+     34  34 │           ids: ["46"],
+  
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 253.
-Checked 6952 file(s) in 450ms
+Checked 6952 file(s) in 486ms

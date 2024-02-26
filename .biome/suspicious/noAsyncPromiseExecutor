@@ -5,7 +5,7 @@
 ./.github/workflows/e2e-examples.js:118:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
-
+  
     117 │ const waitOnFor = (resource) => {
   > 118 │   return new Promise(async (resolve, reject) => {
         │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -15,13 +15,13 @@
   > 131 │   });
         │   ^
     132 │ };
-    133 │
-
+    133 │ 
+  
 
 ./.github/workflows/e2e-examples.js:135:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
-
+  
     134 │ const waitForServer = async (port) => {
   > 135 │   return new Promise(async (resolve, reject) => {
         │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -31,13 +31,13 @@
   > 153 │   });
         │   ^
     154 │ };
-    155 │
-
+    155 │ 
+  
 
 ./.github/workflows/e2e-examples.js:157:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
-
+  
     156 │ const waitForClose = (resource) => {
   > 157 │   return new Promise(async (resolve, reject) => {
         │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@
   > 175 │   });
         │   ^
     176 │ };
-    177 │
+    177 │ 
+  
 
-
-Checked 6952 file(s) in 452ms
+Checked 6952 file(s) in 512ms

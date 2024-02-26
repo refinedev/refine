@@ -5,14 +5,14 @@
 ./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:519:27 lint/suspicious/useValidTypeof ━━━━━━━━━━
 
   ! Invalid `typeof` comparison value
-
+  
     518 │   const isType = (object, expectedType, details) => {
   > 519 │     if (typeof object !== expectedType) {
         │                           ^^^^^^^^^^^^
     520 │       details["expectedType"] = expectedType;
     521 │       throw new WorkboxError("incorrect-type", details);
-
+  
   i not a string literal
- 
+  
 
-Checked 6952 file(s) in 507ms
+Checked 6952 file(s) in 445ms

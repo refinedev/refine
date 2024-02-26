@@ -5,7 +5,7 @@
 ./packages/inferencer/src/inferencers/antd/code-viewer.tsx:71:13 lint/a11y/noAriaHiddenOnFocusable  FIXABLE  ━━━━━━━━━━
 
   ! Disallow aria-hidden="true" from being set on focusable elements.
-
+  
     69 │           >
     70 │             <CodeHighlight code={code} />
   > 71 │             <textarea
@@ -17,11 +17,11 @@
        │             ^^
     86 │             <Button
     87 │               style={{
-
+  
   i aria-hidden should not be set to true on focusable elements because this can lead to confusing behavior for screen reader users.
-
+  
   i Unsafe fix: Remove the aria-hidden attribute from the element.
-
+  
      73  73 │                 defaultValue={(code ?? "").replace(/\\n/g, "\r\n")}
      74  74 │                 id="code-input"
      75     │ - ··············aria-hidden="true"
@@ -29,6 +29,6 @@
          75 │ + ··············style={{
      77  76 │                   padding: 0,
      78  77 │                   margin: 0,
+  
 
-
-Checked 6952 file(s) in 452ms
+Checked 6952 file(s) in 482ms

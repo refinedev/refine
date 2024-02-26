@@ -5,7 +5,7 @@
 ./documentation/src/pages/about/index.tsx:71:15 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     69 │               )}
     70 │             >
   > 71 │               <img
@@ -16,14 +16,14 @@
        │               ^^
     75 │             </div>
     76 │             <div
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/pages/about/index.tsx:568:17 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     566 │             <div className="w-full shrink-0 lg:order-last lg:h-[416px] lg:w-[624px]">
     567 │               <Link to="https://goo.gl/maps/D4NZ5gn6VsWaRtXT6">
   > 568 │                 <img
@@ -35,16 +35,16 @@
         │                 ^^
     573 │               </Link>
     574 │             </div>
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./examples/form-react-hook-form-use-form/src/pages/posts/edit.tsx:76:11 lint/a11y/useAltText ━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     74 │           <br />
-    75 │
+    75 │ 
   > 76 │           <img
        │           ^^^^
   > 77 │             src={queryResult?.data?.data?.thumbnail}
@@ -54,14 +54,14 @@
        │           ^^
     81 │           <br />
     82 │           <br />
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/components/tutorial-toc/index.tsx:77:13 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     75 │         <div className={clsx("flex items-center justify-between", "pt-3")}>
     76 │           <div className="flex items-center gap-2">
   > 77 │             <img
@@ -72,14 +72,28 @@
        │             ^^
     81 │             <span className="text-sm leading-6">
     82 │               {uiNames[preferredUIPackage]}
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
+./documentation/src/refine-theme/common-themed-image.tsx:31:14 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    29 │   return (
+    30 │     <BrowserOnly>
+  > 31 │       {() => <img {...props} src={src} srcSet={srcSet} />}
+       │              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │     </BrowserOnly>
+    33 │   );
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
 ./documentation/src/components/sandpack/index.tsx:342:23 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     340 │                   >
     341 │                     <div className="sp-custom-loading">
   > 342 │                       <img
@@ -90,42 +104,14 @@
         │                       ^^
     346 │                     </div>
     347 │                   </SandpackPreview>
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./examples/store/src/components/common/Avatar/Avatar.tsx:19:16 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    17 │       }}
-    18 │     >
-  > 19 │       {data && <img />}
-       │                ^^^^^^^
-    20 │     </div>
-    21 │   );
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./documentation/src/components/blog/promotion/index.js:86:7 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    84 │         </div> */
-    85 │     <a href="https://s.refine.dev/hackathon2" target="_blank" rel="noreferrer">
-  > 86 │       <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
-       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    87 │     </a>
-    88 │   );
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/components/landing/showcase-wrapper.tsx:54:7 lint/a11y/useAltText ━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     52 │       }}
     53 │     >
   > 54 │       <img
@@ -137,42 +123,14 @@
        │       ^^
     72 │       <ShowcaseIndicator
     73 │         key={`${x}-${y}`}
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./packages/live-previews/src/components/loading.tsx:15:7 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    13 │       }}
-    14 │     >
-  > 15 │       <img src="/loader.gif" className="refine-loading__gif" />
-       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    16 │     </div>
-    17 │   );
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./documentation/src/refine-theme/common-themed-image.tsx:31:14 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    29 │   return (
-    30 │     <BrowserOnly>
-  > 31 │       {() => <img {...props} src={src} srcSet={srcSet} />}
-       │              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    32 │     </BrowserOnly>
-    33 │   );
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/refine-theme/tutorial-sandpack.tsx:645:7 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     643 │       )}
     644 │     >
   > 645 │       <img
@@ -184,14 +142,42 @@
         │       ^^
     652 │     </div>
     653 │   );
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
+./documentation/src/components/blog/promotion/index.js:86:7 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    84 │         </div> */
+    85 │     <a href="https://s.refine.dev/hackathon2" target="_blank" rel="noreferrer">
+  > 86 │       <img src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" />
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    87 │     </a>
+    88 │   );
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
+
+./examples/store/src/components/common/Avatar/Avatar.tsx:19:16 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    17 │       }}
+    18 │     >
+  > 19 │       {data && <img />}
+       │                ^^^^^^^
+    20 │     </div>
+    21 │   );
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
 ./documentation/src/refine-theme/landing-playground.tsx:287:27 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     285 │                           )}
     286 │                         >
   > 287 │                           <img
@@ -203,14 +189,14 @@
         │                           ^^
     301 │                           <img
     302 │                             src="assets/landing-playground-slide-left.svg"
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/refine-theme/landing-playground.tsx:301:27 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     299 │                             }}
     300 │                           />
   > 301 │                           <img
@@ -222,14 +208,14 @@
         │                           ^^
     315 │                         </div>
     316 │                       </div>
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/refine-theme/landing-playground.tsx:339:27 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     337 │                           )}
     338 │                         >
   > 339 │                           <img
@@ -241,14 +227,14 @@
         │                           ^^
     353 │                           <img
     354 │                             src="assets/landing-playground-slide-right.svg"
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./documentation/src/refine-theme/landing-playground.tsx:353:27 lint/a11y/useAltText ━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     351 │                             }}
     352 │                           />
   > 353 │                           <img
@@ -260,14 +246,14 @@
         │                           ^^
     367 │                         </div>
     368 │                       </div>
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./examples/mern-dashboard-client/src/pages/property-details.tsx:261:13 lint/a11y/useAltText ━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     260 │           <Stack>
   > 261 │             <img
         │             ^^^^
@@ -278,15 +264,65 @@
   > 266 │             />
         │             ^^
     267 │           </Stack>
-    268 │
-
+    268 │ 
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
+./documentation/src/refine-theme/templates-list.tsx:47:15 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    45 │               )}
+    46 │             >
+  > 47 │               <img
+       │               ^^^^
+  > 48 │                 className={clsx("aspect-[590/405]", "rounded-t-2xl")}
+  > 49 │                 src={item.image}
+  > 50 │               />
+       │               ^^
+    51 │               <div
+    52 │                 className={clsx(
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
+
+./documentation/src/refine-theme/landing-magic.tsx:244:13 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    242 │             )}
+    243 │           >
+  > 244 │             <img
+        │             ^^^^
+  > 245 │               src="assets/landing-magic-window.svg"
+  > 246 │               className={clsx("w-full", "h-auto")}
+  > 247 │             />
+        │             ^^
+    248 │             <div
+    249 │               className={clsx(
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
+
+./packages/live-previews/src/components/loading.tsx:15:7 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
+  
+    13 │       }}
+    14 │     >
+  > 15 │       <img src="/loader.gif" className="refine-loading__gif" />
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    16 │     </div>
+    17 │   );
+  
+  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
+  
 
 ./packages/devtools-ui/src/components/raffle-handler.tsx:65:9 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     63 │     >
     64 │       <div className={clsx("re-p-5", "re-flex", "re-flex-col", "re-gap-5")}>
   > 65 │         <img
@@ -298,18 +334,18 @@
        │         ^^
     79 │         <p className={clsx("re-text-base", "re-text-gray-300")}>
     80 │           At Refine, we believe in the power of small conversations with our
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 ./packages/devtools-ui/src/components/feed-item.tsx:39:28 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━
 
   ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
+  
     37 │           )}
     38 │         >
   > 39 │           {item.avatar && (
-       │
+       │                            
   > 40 │             <img
   > 41 │               src={item.avatar}
   > 42 │               className={clsx("re-w-5", "re-h-5", "re-rounded-lg")}
@@ -317,47 +353,10 @@
        │             ^^
     44 │           )}
     45 │           <div className={clsx("re-text-xs", "re-text-gray-500")}>
-
+  
   i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./packages/devtools-ui/src/components/feed-item.tsx:85:23 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    83 │         </div>
-    84 │       </div>
-  > 85 │       {item.cover && (
-       │
-  > 86 │         <img
-        ...
-  > 95 │           )}
-  > 96 │         />
-       │         ^^
-    97 │       )}
-    98 │       <div className={clsx("re-flex", "re-flex-col", "re-gap-2")}>
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
-
-./documentation/src/refine-theme/landing-magic.tsx:244:13 lint/a11y/useAltText ━━━━━━━━━━━━━━━━━━━━━
-
-  ! Provide a text alternative through the alt, aria-label or aria-labelledby attribute
-
-    242 │             )}
-    243 │           >
-  > 244 │             <img
-        │             ^^^^
-  > 245 │               src="assets/landing-magic-window.svg"
-  > 246 │               className={clsx("w-full", "h-auto")}
-  > 247 │             />
-        │             ^^
-    248 │             <div
-    249 │               className={clsx(
-
-  i Meaningful alternative text on elements helps users relying on screen readers to understand content's purpose within a page.
-
+  
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 2.
-Checked 6952 file(s) in 445ms
+Checked 6952 file(s) in 507ms
