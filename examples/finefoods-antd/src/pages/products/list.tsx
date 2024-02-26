@@ -9,72 +9,72 @@ import { useLocation } from "react-router-dom";
 type View = "list" | "card";
 
 export const ProductList = ({ children }: PropsWithChildren) => {
-    const go = useGo();
-    const { replace } = useNavigation();
-    const { pathname } = useLocation();
-    const { createUrl } = useNavigation();
+  const go = useGo();
+  const { replace } = useNavigation();
+  const { pathname } = useLocation();
+  const { createUrl } = useNavigation();
 
-    const [view, setView] = useState<View>(
-        (localStorage.getItem("product-view") as View) || "list",
-    );
+  const [view, setView] = useState<View>(
+    (localStorage.getItem("product-view") as View) || "list",
+  );
 
-    const handleViewChange = (value: View) => {
-        // remove query params (pagination, filters, etc.) when changing view
-        replace("");
+  const handleViewChange = (value: View) => {
+    // remove query params (pagination, filters, etc.) when changing view
+    replace("");
 
-        setView(value);
-        localStorage.setItem("product-view", value);
-    };
+    setView(value);
+    localStorage.setItem("product-view", value);
+  };
 
-    const t = useTranslate();
+  const t = useTranslate();
 
-    return (
-        <List
-            breadcrumb={false}
-            headerButtons={(props) => [
-                <Segmented<View>
-                    key="view"
-                    size="large"
-                    value={view}
-                    style={{ marginRight: 24 }}
-                    options={[
-                        {
-                            label: "",
-                            value: "list",
-                            icon: <UnorderedListOutlined />,
-                        },
-                        {
-                            label: "",
-                            value: "card",
-                            icon: <AppstoreOutlined />,
-                        },
-                    ]}
-                    onChange={handleViewChange}
-                />,
-                <CreateButton
-                    {...props.createButtonProps}
-                    key="create"
-                    size="large"
-                    onClick={() => {
-                        return go({
-                            to: `${createUrl("products")}`,
-                            query: {
-                                to: pathname,
-                            },
-                            options: {
-                                keepQuery: true,
-                            },
-                            type: "replace",
-                        });
-                    }}
-                >
-                    {t("products.actions.add")}
-                </CreateButton>,
-            ]}
+  return (
+    <List
+      breadcrumb={false}
+      headerButtons={(props) => [
+        <Segmented<View>
+          key="view"
+          size="large"
+          value={view}
+          style={{ marginRight: 24 }}
+          options={[
+            {
+              label: "",
+              value: "list",
+              icon: <UnorderedListOutlined />,
+            },
+            {
+              label: "",
+              value: "card",
+              icon: <AppstoreOutlined />,
+            },
+          ]}
+          onChange={handleViewChange}
+        />,
+        <CreateButton
+          {...props.createButtonProps}
+          key="create"
+          size="large"
+          onClick={() => {
+            return go({
+              to: `${createUrl("products")}`,
+              query: {
+                to: pathname,
+              },
+              options: {
+                keepQuery: true,
+              },
+              type: "replace",
+            });
+          }}
         >
-            {view === "list" && <ProductListTable />}
-            {view === "card" && <ProductListCard />}
-            {children}
-        </List>
-    );
+          {t("products.actions.add")}
+        </CreateButton>,
+      ]}
+    >
+      {view === "list" && <ProductListTable />}
+      {view === "card" && <ProductListCard />}
+      {children}
+    </List>
+  );
 };

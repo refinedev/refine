@@ -19,16 +19,16 @@ const defaultLocale = dayjs.locale();
  * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
-    value,
-    locales,
-    format: dateFormat = "L",
-    ...rest
+  value,
+  locales,
+  format: dateFormat = "L",
+  ...rest
 }) => {
-    return (
-        <Typography variant="body2" {...rest}>
-            {dayjs(value)
-                .locale(locales || defaultLocale)
-                .format(dateFormat)}
-        </Typography>
-    );
+  return (
+    <Typography variant="body2" {...rest}>
+      {dayjs(value)
+        .locale(locales || defaultLocale)
+        .format(dateFormat)}
+    </Typography>
+  );
 };

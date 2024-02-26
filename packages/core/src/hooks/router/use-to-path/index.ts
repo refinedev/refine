@@ -2,10 +2,10 @@ import { Action, IResourceItem } from "../../../interfaces";
 import { useGetToPath } from "../use-get-to-path";
 
 type UseToPathParams = {
-    resource?: IResourceItem;
-    action: Action;
-    meta?: Record<string, unknown>;
-    legacy?: boolean;
+  resource?: IResourceItem;
+  action: Action;
+  meta?: Record<string, unknown>;
+  legacy?: boolean;
 };
 
 /**
@@ -16,12 +16,12 @@ type UseToPathParams = {
  * `meta` can be provided to compose the routes with parameters. (Can be used for nested routes.)
  */
 export const useToPath = ({
-    resource,
-    action,
-    meta,
-    legacy,
+  resource,
+  action,
+  meta,
+  legacy,
 }: UseToPathParams): string | undefined => {
-    const getToPath = useGetToPath();
+  const getToPath = useGetToPath();
 
-    return getToPath({ resource, action, meta, legacy });
+  return getToPath({ resource, action, meta, legacy });
 };

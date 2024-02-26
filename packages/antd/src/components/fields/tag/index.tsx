@@ -9,5 +9,5 @@ import { TagFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/tag} for more details.
  */
 export const TagField: React.FC<TagFieldProps> = ({ value, ...rest }) => {
-    return <Tag {...rest}>{value?.toString()}</Tag>;
+  return <Tag {...rest}>{value?.toString()}</Tag>;
 };

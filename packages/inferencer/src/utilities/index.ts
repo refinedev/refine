@@ -1,8 +1,8 @@
 export { getFieldableKeys } from "./get-fieldable-keys";
 
 export {
-    pickDataProvider,
-    dataProviderFromResource,
+  pickDataProvider,
+  dataProviderFromResource,
 } from "./pick-data-provider";
 export { pickInferredField } from "./pick-inferred-field";
 
@@ -27,10 +27,10 @@ export { prepareLiveCode } from "./prepare-live-code";
 export { removeHiddenCode } from "./remove-hidden-code";
 
 export {
-    accessor,
-    dotAccessor,
-    shouldDotAccess,
-    getAccessorKey,
+  accessor,
+  dotAccessor,
+  shouldDotAccess,
+  getAccessorKey,
 } from "./accessor";
 export { printImports } from "./print-imports";
 

@@ -1,9 +1,6 @@
 {
   "$schema": "https://unpkg.com/lerna/schemas/lerna-schema.json",
-  "packages": [
-    "packages/*",
-    "examples/*"
-  ],
+  "packages": ["packages/*", "examples/*"],
   "ignore": "{monorepo-*,with-nx}",
   "registry": "https://registry.npmjs.org/",
   "npmClient": "npm",

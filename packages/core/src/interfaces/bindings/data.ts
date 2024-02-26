@@ -11,8 +11,8 @@ import { IDataContext } from "@contexts/data/IDataContext";
 export type SingleDataBinding = IDataContext;
 
 export type MultipleDataBinding = {
-    default: IDataContext;
-    [key: string]: IDataContext;
+  default: IDataContext;
+  [key: string]: IDataContext;
 };
 
 export type DataBindings = SingleDataBinding | MultipleDataBinding;

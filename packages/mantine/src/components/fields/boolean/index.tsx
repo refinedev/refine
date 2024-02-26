@@ -10,21 +10,21 @@ import { BooleanFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
-    value,
-    valueLabelTrue = "true",
-    valueLabelFalse = "false",
-    trueIcon,
-    falseIcon,
-    svgIconProps,
-    ...rest
+  value,
+  valueLabelTrue = "true",
+  valueLabelFalse = "false",
+  trueIcon,
+  falseIcon,
+  svgIconProps,
+  ...rest
 }) => {
-    return (
-        <Tooltip label={value ? valueLabelTrue : valueLabelFalse} {...rest}>
-            <span>
-                {value
-                    ? trueIcon ?? <IconCheck size={18} {...svgIconProps} />
-                    : falseIcon ?? <IconX size={18} {...svgIconProps} />}
-            </span>
-        </Tooltip>
-    );
+  return (
+    <Tooltip label={value ? valueLabelTrue : valueLabelFalse} {...rest}>
+      <span>
+        {value
+          ? trueIcon ?? <IconCheck size={18} {...svgIconProps} />
+          : falseIcon ?? <IconX size={18} {...svgIconProps} />}
+      </span>
+    </Tooltip>
+  );
 };

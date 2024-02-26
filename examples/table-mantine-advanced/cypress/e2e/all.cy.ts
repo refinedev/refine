@@ -2,59 +2,59 @@
 /// <reference types="../../cypress/support" />
 
 describe("table-mantine-advanced", () => {
-    beforeEach(() => {
-        cy.interceptGETPosts();
+  beforeEach(() => {
+    cy.interceptGETPosts();
 
-        cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173");
+  });
+
+  it("the row should be expandable", () => {
+    cy.wait("@getPosts");
+
+    cy.get("#expanded-row").should("not.exist");
+
+    cy.get(".icon-tabler-chevron-right").first().click();
+
+    cy.get("#expanded-row").should("exist");
+  });
+
+  it("delete button should only be showed when at least one row is selected", () => {
+    cy.wait("@getPosts");
+
+    cy.get("#delete-selected").should("not.exist");
+
+    cy.get("tbody tr td .mantine-Checkbox-input").first().click();
+
+    cy.get("#delete-selected").should("exist");
+  });
+
+  it("should fill the form with the row data when click the edit button and save the form", () => {
+    cy.wait("@getPosts");
+
+    cy.interceptGETPost();
+
+    cy.getEditButton().first().click();
+
+    cy.get("#title-input").should("exist");
+
+    cy.wait("@getPost").then((interception) => {
+      const { response } = interception;
+      const data = response!.body;
+
+      cy.get("#title-input").should("have.value", data.title);
     });
 
-    it("the row should be expandable", () => {
-        cy.wait("@getPosts");
+    cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
 
-        cy.get("#expanded-row").should("not.exist");
+    cy.interceptPATCHPost();
 
-        cy.get(".icon-tabler-chevron-right").first().click();
+    cy.get("button").contains("Save").first().click();
 
-        cy.get("#expanded-row").should("exist");
+    cy.wait("@patchPost").then((interception) => {
+      const { request } = interception;
+      const data = request.body;
+
+      expect(data.title).to.equal("Fuga eos enim autem eos.");
     });
-
-    it("delete button should only be showed when at least one row is selected", () => {
-        cy.wait("@getPosts");
-
-        cy.get("#delete-selected").should("not.exist");
-
-        cy.get("tbody tr td .mantine-Checkbox-input").first().click();
-
-        cy.get("#delete-selected").should("exist");
-    });
-
-    it("should fill the form with the row data when click the edit button and save the form", () => {
-        cy.wait("@getPosts");
-
-        cy.interceptGETPost();
-
-        cy.getEditButton().first().click();
-
-        cy.get("#title-input").should("exist");
-
-        cy.wait("@getPost").then((interception) => {
-            const { response } = interception;
-            const data = response!.body;
-
-            cy.get("#title-input").should("have.value", data.title);
-        });
-
-        cy.get("#title-input").clear().type("Fuga eos enim autem eos.");
-
-        cy.interceptPATCHPost();
-
-        cy.get("button").contains("Save").first().click();
-
-        cy.wait("@patchPost").then((interception) => {
-            const { request } = interception;
-            const data = request.body;
-
-            expect(data.title).to.equal("Fuga eos enim autem eos.");
-        });
-    });
+  });
 });

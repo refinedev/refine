@@ -6,12 +6,12 @@ import { useMemoized } from "@hooks/memoized";
  * @internal
  */
 export const useDeepMemo = <T,>(
-    fn: () => T,
-    dependencies: React.DependencyList,
+  fn: () => T,
+  dependencies: React.DependencyList,
 ): T => {
-    const memoizedDependencies = useMemoized(dependencies);
+  const memoizedDependencies = useMemoized(dependencies);
 
-    const value = useMemo(fn, memoizedDependencies);
+  const value = useMemo(fn, memoizedDependencies);
 
-    return value;
+  return value;
 };

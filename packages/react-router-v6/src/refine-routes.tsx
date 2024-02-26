@@ -4,15 +4,15 @@ import { createResourceRoutes } from "./create-resource-routes";
 import { Routes } from "react-router-dom";
 
 type RefineRoutesProps = {
-    children?: (routes: JSX.Element[]) => JSX.Element;
+  children?: (routes: JSX.Element[]) => JSX.Element;
 };
 
 export const RefineRoutes = ({ children }: RefineRoutesProps) => {
-    const { resources: resourcesFromContext } = useResource();
+  const { resources: resourcesFromContext } = useResource();
 
-    const routes = React.useMemo(() => {
-        return createResourceRoutes(resourcesFromContext);
-    }, [resourcesFromContext]);
+  const routes = React.useMemo(() => {
+    return createResourceRoutes(resourcesFromContext);
+  }, [resourcesFromContext]);
 
-    return children ? children(routes) : <Routes>{routes}</Routes>;
+  return children ? children(routes) : <Routes>{routes}</Routes>;
 };

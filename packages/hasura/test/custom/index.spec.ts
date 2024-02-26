@@ -4,59 +4,53 @@ import { createClient, getApiUrl } from "../gqlClient";
 import "./index.mock";
 
 describe("with meta.fields", () => {
-    describe.each(["hasura-default", "graphql-default"] as const)(
-        "custom with %s naming convention",
-        (namingConvention) => {
-            const apiUrl = getApiUrl(namingConvention);
-            const operation =
-                namingConvention === "hasura-default"
-                    ? "posts_aggregate"
-                    : "postsAggregate";
+  describe.each(["hasura-default", "graphql-default"] as const)(
+    "custom with %s naming convention",
+    (namingConvention) => {
+      const apiUrl = getApiUrl(namingConvention);
+      const operation =
+        namingConvention === "hasura-default"
+          ? "posts_aggregate"
+          : "postsAggregate";
 
-            it("correct get query response", async () => {
-                const response = await dataProvider(
-                    createClient(namingConvention),
-                    {
-                        namingConvention,
-                    },
-                ).custom?.({
-                    url: apiUrl,
-                    method: "get",
-                    meta: {
-                        operation,
-                        fields: [
-                            {
-                                operation: "aggregate",
-                                fields: ["count"],
-                                variables: {},
-                            },
-                        ],
-                        variables: {},
-                    },
-                });
+      it("correct get query response", async () => {
+        const response = await dataProvider(createClient(namingConvention), {
+          namingConvention,
+        }).custom?.({
+          url: apiUrl,
+          method: "get",
+          meta: {
+            operation,
+            fields: [
+              {
+                operation: "aggregate",
+                fields: ["count"],
+                variables: {},
+              },
+            ],
+            variables: {},
+          },
+        });
 
-                expect(response?.data.aggregate.count).toBe(283);
-            });
-        },
-    );
+        expect(response?.data.aggregate.count).toBe(283);
+      });
+    },
+  );
 });
 
 describe("with gql", () => {
-    it.each(["gqlQuery", "gqlMutation"] as const)(
-        "correct response with hasura-default & %s",
-        async (gqlOperation) => {
-            const apiUrl = getApiUrl("hasura-default");
+  it.each(["gqlQuery", "gqlMutation"] as const)(
+    "correct response with hasura-default & %s",
+    async (gqlOperation) => {
+      const apiUrl = getApiUrl("hasura-default");
 
-            const response = await dataProvider(
-                createClient("hasura-default"),
-                {
-                    namingConvention: "hasura-default",
-                },
-            ).custom?.({
-                url: apiUrl,
-                method: "get",
-                meta: {
-                    [gqlOperation]: gql`
+      const response = await dataProvider(createClient("hasura-default"), {
+        namingConvention: "hasura-default",
+      }).custom?.({
+        url: apiUrl,
+        method: "get",
+        meta: {
+          [gqlOperation]: gql`
                         query GetPost {
                             posts_aggregate {
                                 aggregate {
@@ -65,28 +59,25 @@ describe("with gql", () => {
                             }
                         }
                     `,
-                },
-            });
-
-            expect(response?.data.posts_aggregate.aggregate.count).toBe(318);
         },
-    );
+      });
 
-    it.each(["gqlQuery", "gqlMutation"] as const)(
-        "correct response with graphql-default & %s",
-        async (gqlOperation) => {
-            const apiUrl = getApiUrl("graphql-default");
+      expect(response?.data.posts_aggregate.aggregate.count).toBe(318);
+    },
+  );
 
-            const response = await dataProvider(
-                createClient("graphql-default"),
-                {
-                    namingConvention: "graphql-default",
-                },
-            ).custom?.({
-                url: apiUrl,
-                method: "get",
-                meta: {
-                    [gqlOperation]: gql`
+  it.each(["gqlQuery", "gqlMutation"] as const)(
+    "correct response with graphql-default & %s",
+    async (gqlOperation) => {
+      const apiUrl = getApiUrl("graphql-default");
+
+      const response = await dataProvider(createClient("graphql-default"), {
+        namingConvention: "graphql-default",
+      }).custom?.({
+        url: apiUrl,
+        method: "get",
+        meta: {
+          [gqlOperation]: gql`
                         query GetPost {
                             postsAggregate {
                                 aggregate {
@@ -95,10 +86,10 @@ describe("with gql", () => {
                             }
                         }
                     `,
-                },
-            });
-
-            expect(response?.data.postsAggregate.aggregate.count).toBe(318);
         },
-    );
+      });
+
+      expect(response?.data.postsAggregate.aggregate.count).toBe(318);
+    },
+  );
 });

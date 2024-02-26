@@ -23,31 +23,31 @@ import { IResourceItem } from "@contexts/resource";
 import { BaseKey } from "src";
 
 export type CanParams = {
-    /**
-     * Resource name for API data interactions
-     */
-    resource: string;
-    /**
-     * Intenden action on resource
-     */
-    action: string;
-    /**
-     * Parameters associated with the resource
-     * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
-     */
-    params?: {
-        resource?: IResourceItem;
-        id?: BaseKey;
-        [key: string]: unknown;
-    };
+  /**
+   * Resource name for API data interactions
+   */
+  resource: string;
+  /**
+   * Intenden action on resource
+   */
+  action: string;
+  /**
+   * Parameters associated with the resource
+   * @type { resource?: [IResourceItem](https://refine.dev/docs/api-reference/core/interfaceReferences/#canparams), id?: [BaseKey](https://refine.dev/docs/api-reference/core/interfaceReferences/#basekey), [key: string]: any }
+   */
+  params?: {
+    resource?: IResourceItem;
+    id?: BaseKey;
+    [key: string]: unknown;
+  };
 };
 
 export type CanResponse = {
-    can: boolean;
-    reason?: string;
-    [key: string]: unknown;
+  can: boolean;
+  reason?: string;
+  [key: string]: unknown;
 };
 
 export type AccessControlBindings = {
-    can: (params: CanParams) => Promise<CanResponse>;
+  can: (params: CanParams) => Promise<CanResponse>;
 };

@@ -8,63 +8,63 @@ import { useModal } from ".";
 const Wrapper = TestWrapper({});
 
 describe("useModal Hook", () => {
-    it("should visible false on init", async () => {
-        const { result } = renderHook(() => useModal(), {
-            wrapper: Wrapper,
-        });
-
-        const { visible } = result.current;
-
-        expect(visible).toEqual(false);
+  it("should visible false on init", async () => {
+    const { result } = renderHook(() => useModal(), {
+      wrapper: Wrapper,
     });
 
-    it("should visible true on pass visible true with prop", async () => {
-        const { result } = renderHook(
-            () =>
-                useModal({
-                    defaultVisible: true,
-                }),
-            {
-                wrapper: Wrapper,
-            },
-        );
+    const { visible } = result.current;
 
-        const { visible } = result.current;
+    expect(visible).toEqual(false);
+  });
 
-        expect(visible).toEqual(true);
+  it("should visible true on pass visible true with prop", async () => {
+    const { result } = renderHook(
+      () =>
+        useModal({
+          defaultVisible: true,
+        }),
+      {
+        wrapper: Wrapper,
+      },
+    );
+
+    const { visible } = result.current;
+
+    expect(visible).toEqual(true);
+  });
+
+  it("should visible true on called show", async () => {
+    const { result } = renderHook(() => useModal(), {
+      wrapper: Wrapper,
     });
 
-    it("should visible true on called show", async () => {
-        const { result } = renderHook(() => useModal(), {
-            wrapper: Wrapper,
-        });
+    const { show } = result.current;
 
-        const { show } = result.current;
-
-        act(() => {
-            show();
-        });
-
-        expect(result.current.visible).toEqual(true);
+    act(() => {
+      show();
     });
 
-    it("should visible false on called show after close", async () => {
-        const { result } = renderHook(() => useModal(), {
-            wrapper: Wrapper,
-        });
+    expect(result.current.visible).toEqual(true);
+  });
 
-        const { show, close } = result.current;
-
-        act(() => {
-            show();
-        });
-
-        expect(result.current.visible).toEqual(true);
-
-        act(() => {
-            close();
-        });
-
-        expect(result.current.visible).toEqual(false);
+  it("should visible false on called show after close", async () => {
+    const { result } = renderHook(() => useModal(), {
+      wrapper: Wrapper,
     });
+
+    const { show, close } = result.current;
+
+    act(() => {
+      show();
+    });
+
+    expect(result.current.visible).toEqual(true);
+
+    act(() => {
+      close();
+    });
+
+    expect(result.current.visible).toEqual(false);
+  });
 });

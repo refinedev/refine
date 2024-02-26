@@ -6,19 +6,19 @@ import { RefineWeek } from "@site/src/components/refine-week";
 import { BlogFooter } from "@site/src/refine-theme/blog-footer";
 
 const RefineWeekSupabase = () => {
-    return (
-        <CommonLayout>
-            <div className="refine-prose">
-                <Head title="Week of Refine | Refine">
-                    <html data-page="week-of-refine" data-customized="true" />
-                </Head>
+  return (
+    <CommonLayout>
+      <div className="refine-prose">
+        <Head title="Week of Refine | Refine">
+          <html data-page="week-of-refine" data-customized="true" />
+        </Head>
 
-                <CommonHeader hasSticky={true} />
-                <RefineWeek variant="supabase" />
-                <BlogFooter />
-            </div>
-        </CommonLayout>
-    );
+        <CommonHeader hasSticky={true} />
+        <RefineWeek variant="supabase" />
+        <BlogFooter />
+      </div>
+    </CommonLayout>
+  );
 };
 
 export default RefineWeekSupabase;

@@ -6,41 +6,41 @@ import { useTableProps, useTableReturnType } from "../useTable";
 import { UseFormReturnType, useForm } from "../../form/useForm";
 
 export type useEditableTableReturnType<
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-    TSearchVariables = unknown,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+  TSearchVariables = unknown,
+  TData extends BaseRecord = TQueryFnData,
 > = useTableReturnType<TData, TError, TSearchVariables> &
-    UseFormReturnType<TQueryFnData, TError, TVariables> & {
-        saveButtonProps: ButtonProps & {
-            onClick: () => void;
-        };
-        cancelButtonProps: ButtonProps & {
-            onClick: () => void;
-        };
-        editButtonProps: (id: BaseKey) => ButtonProps & {
-            onClick: () => void;
-        };
-        isEditing: (id: BaseKey) => boolean;
+  UseFormReturnType<TQueryFnData, TError, TVariables> & {
+    saveButtonProps: ButtonProps & {
+      onClick: () => void;
     };
+    cancelButtonProps: ButtonProps & {
+      onClick: () => void;
+    };
+    editButtonProps: (id: BaseKey) => ButtonProps & {
+      onClick: () => void;
+    };
+    isEditing: (id: BaseKey) => boolean;
+  };
 
 type useEditableTableProps<
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-    TSearchVariables = unknown,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+  TSearchVariables = unknown,
+  TData extends BaseRecord = TQueryFnData,
 > = Omit<
-    useTableProps<TQueryFnData, TError, TSearchVariables, TData>,
-    "successNotification" | "errorNotification"
+  useTableProps<TQueryFnData, TError, TSearchVariables, TData>,
+  "successNotification" | "errorNotification"
 > &
-    UseFormProps<TQueryFnData, TError, TVariables> & {
-        /**
-         * When true, row will be closed after successful submit.
-         */
-        autoSubmitClose?: boolean;
-    };
+  UseFormProps<TQueryFnData, TError, TVariables> & {
+    /**
+     * When true, row will be closed after successful submit.
+     */
+    autoSubmitClose?: boolean;
+  };
 
 /**
  * `useEditeableTable` allows you to implement edit feature on the table with ease,
@@ -58,70 +58,70 @@ type useEditableTableProps<
  *
  */
 export const useEditableTable = <
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
-    TSearchVariables = unknown,
-    TData extends BaseRecord = TQueryFnData,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+  TSearchVariables = unknown,
+  TData extends BaseRecord = TQueryFnData,
 >({
-    autoSubmitClose = true,
-    ...props
+  autoSubmitClose = true,
+  ...props
 }: useEditableTableProps<
-    TQueryFnData,
-    TError,
-    TVariables,
-    TSearchVariables,
-    TData
+  TQueryFnData,
+  TError,
+  TVariables,
+  TSearchVariables,
+  TData
 > = {}): useEditableTableReturnType<
-    TQueryFnData,
-    TError,
-    TVariables,
-    TSearchVariables,
-    TData
+  TQueryFnData,
+  TError,
+  TVariables,
+  TSearchVariables,
+  TData
 > => {
-    const table = useTable<TQueryFnData, TError, TSearchVariables, TData>({
-        ...props,
-        successNotification: undefined,
-        errorNotification: undefined,
-    });
-    const edit = useForm<TQueryFnData, TError, TVariables>({
-        ...props,
-        action: "edit",
-        redirect: false,
-    });
+  const table = useTable<TQueryFnData, TError, TSearchVariables, TData>({
+    ...props,
+    successNotification: undefined,
+    errorNotification: undefined,
+  });
+  const edit = useForm<TQueryFnData, TError, TVariables>({
+    ...props,
+    action: "edit",
+    redirect: false,
+  });
 
-    const { id: editId, setId, saveButtonProps } = edit;
+  const { id: editId, setId, saveButtonProps } = edit;
 
-    const cancelButtonProps = {
-        onClick: () => {
-            setId(undefined);
-        },
-    };
+  const cancelButtonProps = {
+    onClick: () => {
+      setId(undefined);
+    },
+  };
 
-    const editButtonProps = (id: BaseKey) => {
-        return {
-            onClick: () => setId(id),
-        };
-    };
-
-    const isEditing = (id: BaseKey) => id === editId;
-
+  const editButtonProps = (id: BaseKey) => {
     return {
-        ...table,
-        ...edit,
-        formProps: {
-            ...edit.formProps,
-            onFinish: async (values) => {
-                const result = await edit.onFinish(values);
-                if (autoSubmitClose) {
-                    setId(undefined);
-                }
-                return result;
-            },
-        },
-        saveButtonProps,
-        cancelButtonProps,
-        editButtonProps,
-        isEditing,
+      onClick: () => setId(id),
     };
+  };
+
+  const isEditing = (id: BaseKey) => id === editId;
+
+  return {
+    ...table,
+    ...edit,
+    formProps: {
+      ...edit.formProps,
+      onFinish: async (values) => {
+        const result = await edit.onFinish(values);
+        if (autoSubmitClose) {
+          setId(undefined);
+        }
+        return result;
+      },
+    },
+    saveButtonProps,
+    cancelButtonProps,
+    editButtonProps,
+    isEditing,
+  };
 };

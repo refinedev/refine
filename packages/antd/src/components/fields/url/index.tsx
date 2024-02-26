@@ -10,13 +10,13 @@ import { UrlFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
-    children,
-    value,
-    ...rest
+  children,
+  value,
+  ...rest
 }) => {
-    return (
-        <Typography.Link href={value} {...rest}>
-            {children ?? value}
-        </Typography.Link>
-    );
+  return (
+    <Typography.Link href={value} {...rest}>
+      {children ?? value}
+    </Typography.Link>
+  );
 };

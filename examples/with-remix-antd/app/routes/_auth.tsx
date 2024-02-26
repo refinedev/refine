@@ -4,8 +4,8 @@ import { LoaderArgs, redirect } from "@remix-run/node";
 import { authProvider } from "~/authProvider";
 
 export default function AuthLayout() {
-    // no layout is applied for the auth routes
-    return <Outlet />;
+  // no layout is applied for the auth routes
+  return <Outlet />;
 }
 
 /**
@@ -14,11 +14,11 @@ export default function AuthLayout() {
  * But, server-side redirects are more performant.
  */
 export async function loader({ request }: LoaderArgs) {
-    const { authenticated, redirectTo } = await authProvider.check(request);
+  const { authenticated, redirectTo } = await authProvider.check(request);
 
-    if (authenticated) {
-        throw redirect(redirectTo ?? "/");
-    }
+  if (authenticated) {
+    throw redirect(redirectTo ?? "/");
+  }
 
-    return {};
+  return {};
 }

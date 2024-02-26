@@ -8,13 +8,13 @@ export const defaultNotificationProvider: INotificationContext = {};
 export const NotificationContext = createContext<INotificationContext>({});
 
 export const NotificationContextProvider: React.FC<
-    INotificationContext & {
-        children?: React.ReactNode;
-    }
+  INotificationContext & {
+    children?: React.ReactNode;
+  }
 > = ({ open, close, children }) => {
-    return (
-        <NotificationContext.Provider value={{ open, close }}>
-            {children}
-        </NotificationContext.Provider>
-    );
+  return (
+    <NotificationContext.Provider value={{ open, close }}>
+      {children}
+    </NotificationContext.Provider>
+  );
 };

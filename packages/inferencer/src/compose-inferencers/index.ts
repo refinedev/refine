@@ -6,22 +6,22 @@ import { pickInferredField } from "../utilities";
  * @param inferencers The inferencer functions to compose
  */
 export const composeInferencers = (
-    inferencers: Array<FieldInferencer>,
+  inferencers: Array<FieldInferencer>,
 ): FieldInferencer => {
-    const fieldInferencer: FieldInferencer = (
-        key,
-        value,
-        record,
-        infer = fieldInferencer,
-        type,
-    ) => {
-        const inferences = inferencers.map((inferencer) =>
-            inferencer(key, value, record, infer, type),
-        );
-        const picked = pickInferredField(inferences);
+  const fieldInferencer: FieldInferencer = (
+    key,
+    value,
+    record,
+    infer = fieldInferencer,
+    type,
+  ) => {
+    const inferences = inferencers.map((inferencer) =>
+      inferencer(key, value, record, infer, type),
+    );
+    const picked = pickInferredField(inferences);
 
-        return picked;
-    };
+    return picked;
+  };
 
-    return fieldInferencer;
+  return fieldInferencer;
 };

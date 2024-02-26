@@ -22,11 +22,11 @@ const COMPANIES_SELECT_QUERY = gql`
 `;
 
 export const useCompaniesSelect = () => {
-    return useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
-        resource: "companies",
-        optionLabel: "name",
-        meta: {
-            gqlQuery: COMPANIES_SELECT_QUERY,
-        },
-    });
+  return useSelect<GetFieldsFromList<CompaniesSelectQuery>>({
+    resource: "companies",
+    optionLabel: "name",
+    meta: {
+      gqlQuery: COMPANIES_SELECT_QUERY,
+    },
+  });
 };

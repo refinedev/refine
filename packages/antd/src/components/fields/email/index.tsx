@@ -10,9 +10,9 @@ import { EmailFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/email} for more details.
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
-    return (
-        <Typography.Link href={`mailto:${value}`} {...rest}>
-            {value}
-        </Typography.Link>
-    );
+  return (
+    <Typography.Link href={`mailto:${value}`} {...rest}>
+      {value}
+    </Typography.Link>
+  );
 };

@@ -2,27 +2,27 @@ import { Shipping, Addresses, Payment } from "@components";
 import { useCartContext } from "@lib/context";
 
 export const CheckoutForm: React.FC = () => {
-    const { cart } = useCartContext();
+  const { cart } = useCartContext();
 
-    if (!cart?.id) {
-        return null;
-    }
+  if (!cart?.id) {
+    return null;
+  }
 
-    return (
+  return (
+    <div>
+      <div className="grid w-full grid-cols-1 gap-y-8">
         <div>
-            <div className="grid w-full grid-cols-1 gap-y-8">
-                <div>
-                    <Addresses />
-                </div>
-
-                <div>
-                    <Shipping cart={cart} />
-                </div>
-
-                <div>
-                    <Payment />
-                </div>
-            </div>
+          <Addresses />
         </div>
-    );
+
+        <div>
+          <Shipping cart={cart} />
+        </div>
+
+        <div>
+          <Payment />
+        </div>
+      </div>
+    </div>
+  );
 };
