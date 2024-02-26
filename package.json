@@ -33,7 +33,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "biome check"
+      "biome format --write"
     ],
     "*.{md,mdx}": [
       "prettier --config ./.prettierrc --write"
