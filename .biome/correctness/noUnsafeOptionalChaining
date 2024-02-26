@@ -1,0 +1,72 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/inferencer/src/use-relation-fetch/index.ts:148:74 lint/correctness/noUnsafeOptionalChaining ━━━━━━━━━━
+
+  ! Unsafe usage of optional chaining.
+  
+    147 │                                     if (isMultiple && dp.getMany) {
+  > 148 │                                         const { data } = await dp.getMany?.({
+        │                                                                          ^^
+    149 │                                             resource: toPlural(
+    150 │                                                 removeRelationSuffix(field.key),
+  
+  i If it short-circuits with 'undefined' the evaluation will throw TypeError here:
+  
+    147 │                                     if (isMultiple && dp.getMany) {
+  > 148 │                                         const { data } = await dp.getMany?.({
+        │                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 149 │                                             resource: toPlural(
+         ...
+  > 161 │                                             ),
+  > 162 │                                         });
+        │                                         ^^
+    163 │                                         record = data?.[0];
+    164 │                                     } else {
+  
+
+./examples/store/src/components/product/ProductCard/ProductCard.tsx:31:68 lint/correctness/noUnsafeOptionalChaining ━━━━━━━━━━
+
+  ! Unsafe usage of optional chaining.
+  
+    29 │     variant = "default",
+    30 │ }) => {
+  > 31 │     const { amount, currency_code } = product?.variants?.[0].prices?.[0];
+       │                                                                    ^^
+    32 │ 
+    33 │     const rootClassName = cn(
+  
+  i If it short-circuits with 'undefined' the evaluation will throw TypeError here:
+  
+    29 │     variant = "default",
+    30 │ }) => {
+  > 31 │     const { amount, currency_code } = product?.variants?.[0].prices?.[0];
+       │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │ 
+    33 │     const rootClassName = cn(
+  
+
+./examples/app-crm/src/components/layout/account-settings/index.tsx:105:13 lint/correctness/noUnsafeOptionalChaining ━━━━━━━━━━
+
+  ! Unsafe usage of optional chaining.
+  
+    104 │     const { id, name, email, jobTitle, phone, timezone, avatarUrl } =
+  > 105 │         data?.data;
+        │             ^^
+    106 │ 
+    107 │     const getActiveForm = (key: FormKeys) => {
+  
+  i If it short-circuits with 'undefined' the evaluation will throw TypeError here:
+  
+    102 │     }
+    103 │ 
+  > 104 │     const { id, name, email, jobTitle, phone, timezone, avatarUrl } =
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 105 │         data?.data;
+        │         ^^^^^^^^^^
+    106 │ 
+    107 │     const getActiveForm = (key: FormKeys) => {
+  
+
+Checked 6953 file(s) in 528ms

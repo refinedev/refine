@@ -29,16 +29,17 @@ const Layout: React.FC = ({ children }) => {
 };
 
 const PostList: React.FC = () => {
-  const { tableQueryResult, current, setCurrent, pageSize, pageCount } = useTable<IPost>({
-    sorters: {
-      initial: [
-        {
-          field: "id",
-          order: "desc",
-        },
-      ],
-    },
-  });
+  const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
+    useTable<IPost>({
+      sorters: {
+        initial: [
+          {
+            field: "id",
+            order: "desc",
+          },
+        ],
+      },
+    });
   const { edit, create, clone } = useNavigation();
 
   const hasNext = current < pageCount;
@@ -71,10 +72,16 @@ const PostList: React.FC = () => {
           <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
             First
           </button>
-          <button onClick={() => setCurrent((prev) => prev - 1)} disabled={!hasPrev}>
+          <button
+            onClick={() => setCurrent((prev) => prev - 1)}
+            disabled={!hasPrev}
+          >
             Previous
           </button>
-          <button onClick={() => setCurrent((prev) => prev + 1)} disabled={!hasNext}>
+          <button
+            onClick={() => setCurrent((prev) => prev + 1)}
+            disabled={!hasNext}
+          >
             Next
           </button>
           <button onClick={() => setCurrent(pageCount)} disabled={!hasNext}>
@@ -126,7 +133,11 @@ const PostEdit: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <br />
@@ -159,7 +170,11 @@ const PostCreate: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <br />
@@ -238,7 +253,11 @@ export const PostEdit: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
 
@@ -248,7 +267,11 @@ export const PostEdit: React.FC = () => {
           <label>Image: </label>
           <br />
 
-          <img src={queryResult?.data?.data?.thumbnail} width={200} height={200} />
+          <img
+            src={queryResult?.data?.data?.thumbnail}
+            width={200}
+            height={200}
+          />
           <br />
           <br />
         </>
@@ -317,7 +340,11 @@ const PostCreatePage: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <br />
@@ -382,7 +409,11 @@ const PostEditPage: React.FC = () => {
         <option value="rejected">rejected</option>
       </select>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <input type="submit" value="Submit" />
@@ -448,7 +479,11 @@ const PostCreatePage: React.FC = () => {
       <br />
       <label>Content: </label>
       <br />
-      <textarea {...register("content", { required: true })} rows={10} cols={50} />
+      <textarea
+        {...register("content", { required: true })}
+        rows={10}
+        cols={50}
+      />
       {errors.content && <span>This field is required</span>}
       <br />
       <br />

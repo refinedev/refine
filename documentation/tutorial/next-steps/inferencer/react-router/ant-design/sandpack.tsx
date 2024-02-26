@@ -10,16 +10,16 @@ import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files"
 import { TutorialCreateFileButton } from "@site/src/refine-theme/tutorial-create-file-button";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -151,60 +151,57 @@ export const ListCategories = () => {
 // actions
 
 export const CreateListCategoriesTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            name="src/pages/categories/list.tsx"
-            onClick={() => {
-                sandpack.addFile(
-                    "src/pages/categories/list.tsx",
-                    ListCategoriesBase,
-                );
-                sandpack.setActiveFile("/src/pages/categories/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      name="src/pages/categories/list.tsx"
+      onClick={() => {
+        sandpack.addFile("src/pages/categories/list.tsx", ListCategoriesBase);
+        sandpack.setActiveFile("/src/pages/categories/list.tsx");
+      }}
+    />
+  );
 };
 
 export const AddListCategoriesToApp = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppWithCategories);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppWithCategories);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddInferencerToListCategories = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/categories/list.tsx",
-                    ListCategoriesWithInferencer,
-                );
-                sandpack.setActiveFile("/src/pages/categories/list.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/categories/list.tsx",
+          ListCategoriesWithInferencer,
+        );
+        sandpack.setActiveFile("/src/pages/categories/list.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/pages/categories/list.tsx": {
-        code: ListCategoriesWithInferencer,
-        active: true,
-    },
-    "src/App.tsx": {
-        code: AppWithCategories,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/pages/categories/list.tsx": {
+    code: ListCategoriesWithInferencer,
+    active: true,
+  },
+  "src/App.tsx": {
+    code: AppWithCategories,
+  },
 };

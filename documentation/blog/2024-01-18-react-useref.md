@@ -226,10 +226,16 @@ export default function Storefront() {
         <p>iWatch Series 6</p>
         <div className="btns">
           <button>
-            <img src="https://api.iconify.design/flat-color-icons:like.svg?color=%23888888" alt="like" />
+            <img
+              src="https://api.iconify.design/flat-color-icons:like.svg?color=%23888888"
+              alt="like"
+            />
           </button>
           <button>
-            <img src="https://api.iconify.design/icon-park:buy.svg?color=%23888888" alt="add" />
+            <img
+              src="https://api.iconify.design/icon-park:buy.svg?color=%23888888"
+              alt="add"
+            />
           </button>
         </div>
       </div>

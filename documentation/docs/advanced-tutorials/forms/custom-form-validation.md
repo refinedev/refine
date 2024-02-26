@@ -69,7 +69,11 @@ const PostCreate: React.FC = () => {
   // highlight-start
   const apiUrl = useApiUrl();
   const url = `${apiUrl}/posts-unique-check`;
-  const { refetch } = useCustom<PostUniqueCheckResponse, HttpError, PostUniqueCheckRequestQuery>({
+  const { refetch } = useCustom<
+    PostUniqueCheckResponse,
+    HttpError,
+    PostUniqueCheckRequestQuery
+  >({
     url,
     method: "get",
     config: {

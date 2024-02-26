@@ -106,7 +106,8 @@ import { useTranslation } from "react-i18next";
 const { t } = useTranslation();
 
 const i18nProvider: I18nProvider = {
-  translate: (key: string, options?: any, defaultMessage?: string) => t(key, defaultMessage, options),
+  translate: (key: string, options?: any, defaultMessage?: string) =>
+    t(key, defaultMessage, options),
   // ...
 };
 

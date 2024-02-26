@@ -8,9 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run
 hide_table_of_contents: false
 ---
 
-
-
-
 ## What is the Docker run command?
 
 The `docker run` command starts a new container, executes a command inside it, and pulls an image if needed. You can use the Docker run command to create and execute containers based on Docker images.
@@ -19,11 +16,11 @@ The `docker run` command starts a new container, executes a command inside it, a
 
 Docker commands have revolutionized the business by utilizing containerization technology, most commonly used for enabling quicker innovation, easier deployments, and better resource management.
 
-### Containerization and application deployment: 
+### Containerization and application deployment:
 
 The lightweight, isolated environments known as containers, which encapsulate applications and their dependencies, are created and executed using the Docker run the command through which application deployment is simplified.
 
-### Isolated Development and Testing Environments: 
+### Isolated Development and Testing Environments:
 
 Docker run makes setting up isolated environments for development and testing easier. To ensure consistent and reproducible results during the development and testing phases, developers can spin up containers with specific configurations, dependencies, and software versions.
 
@@ -65,7 +62,6 @@ The IMAGE parameter is specified right after 'docker run' in the command(if opti
 
 **For Example, Let's run an image that exists locally:** We have an image with the name '**sample_docker_run**' in our local repository.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image1.png"  alt="docker run command" />
 </div>
@@ -73,7 +69,6 @@ The IMAGE parameter is specified right after 'docker run' in the command(if opti
 <br/>
 
 **Example:** Let's run an image that does not exist locally but in the docker hub. We will use the 'Nginx' image that is not available locally but on the docker hub.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image2.png"  alt="docker run command" />
@@ -83,7 +78,7 @@ The IMAGE parameter is specified right after 'docker run' in the command(if opti
 
 1.  'nginx' image is not found locally, so 'docker run' will now pull the nginx image from the docker hub repository.
 
-### Container options 
+### Container options
 
 Using different OPTIONS in the 'docker run' command, you can name the containers, map the ports, and set up the environment variables.
 
@@ -92,7 +87,6 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 #### Naming the Container
 
 **For example:** I want to name the container with the sample image in the docker run command.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image3.png"  alt="docker run command" />
@@ -107,7 +101,6 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 #### Mapping Port
 
 **For example:** I want to map the port between the container and the host system that allows access to the containerized application on the host. Let's run my sample image container by mapping the port '8080:80'
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image4.png"  alt="docker run command" />
@@ -125,7 +118,6 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 
 **Here is the default value of my environment variable:**
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image5.png"  alt="docker run command" />
 </div>
@@ -135,7 +127,6 @@ Using different OPTIONS in the 'docker run' command, you can name the containers
 1.  Default value set against environment variable.
 
 **Now, I have to change the default value to 'custom_value_set_up_via_docker_run'**
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image6.png"  alt="docker run command" />
@@ -155,7 +146,6 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 **Example:** I want to change my default image(sample_docker_run) command by overriding the command passed through 'docker run'.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image7.png"  alt="docker run command" />
 </div>
@@ -166,14 +156,13 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 2.  **Docker run command section that overrides the existing one:** echo "Hello, this is the custom image that has to override the defined command of docker image."
 
-3.  '**echo'** is the command, and "***Hello, this is the custom image that has to override the defined command of docker image."*** is the argument passed to the command for running it inside the container.
+3.  '**echo'** is the command, and "**_Hello, this is the custom image that has to override the defined command of docker image."_** is the argument passed to the command for running it inside the container.
 
 ## Examples of using the Docker run command
 
 ### Basic examples
 
 **Example:** Let's run the Friendica container, a platform for distributed messaging such as social media communication.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image8.png"  alt="docker run command" />
@@ -185,7 +174,6 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 **Example:** Now, we run another container of Friendica in detached mode with the port mapping so that you can access the Friendica installation wizard at <http://localhost:8080/> from your host system.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image9.png"  alt="docker run command" />
 </div>
@@ -196,14 +184,11 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 2.  As a result, I can access the Friendica installation page from the host system(localhost) at port 8080.
 
-
-
 ## Advanced examples
 
 ### Run container in Network
 
 **Example**: Let's create a network named 'advance-friendica-example' and run the Friendica container in that specific network as it allows the Friendica container to communicate with other containers in the same network.
-
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image10.png"  alt="docker run command" />
@@ -221,21 +206,19 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 **Example:** We want to run the Friendica container with the volume, allowing us to mount the directory of our host system with the container.
 
-
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image11.png"  alt="docker run command" />
 </div>
 
 <br/>
 
-1.  We use '-v' to mount the volume of the host system with the friendica container. In the above Example, we have executed the command '***docker run -d -p 8080:80 -v path/to/host:/var/www/html friendica***'. Where '***path/to/host***' is the path of the host machine, and '***/var/www/html***' is the path of the container directory.
+1.  We use '-v' to mount the volume of the host system with the friendica container. In the above Example, we have executed the command '**_docker run -d -p 8080:80 -v path/to/host:/var/www/html friendica_**'. Where '**_path/to/host_**' is the path of the host machine, and '**_/var/www/html_**' is the path of the container directory.
 
 2.  To ensure that the volume is successfully mounted, you can run 'docker inspect \<container_name_or_id\>' and then navigate to the 'mount' section of the output.
 
 ### Connecting Multiple Containers:
 
-**Example:** Let's run the Redis container along with the friendica container in the newly created network name '***advance-containers-connection***' and ensure that both containers are connected by accessing the Redis container from the friendica container command line.
-
+**Example:** Let's run the Redis container along with the friendica container in the newly created network name '**_advance-containers-connection_**' and ensure that both containers are connected by accessing the Redis container from the friendica container command line.
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/image12.png"  alt="docker run command" />
@@ -261,7 +244,7 @@ The command parameter comes at the end of the 'docker run' command and allows yo
 
 ### Security considerations
 
-### Do not use root user 
+### Do not use root user
 
 Using non-root users while running the containers is recommended to reduce the potential security risks. While executing the 'docker run' command, you can specify the user by using the '--user' parameter(For Example: `docker run --user myuser \<image\>`). You must also ensure that the specified user has only the necessary permissions to perform tasks.
 

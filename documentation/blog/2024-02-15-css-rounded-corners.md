@@ -241,7 +241,8 @@ We will create a blob-like shape using the radius defined on the `border-radius 
 div {
   width: 400px;
   height: 400px;
-  border-radius: 60% 30% 30% 20% /* setting the radius in percentages for random corners */;
+  border-radius: 60% 30% 30% 20%
+    /* setting the radius in percentages for random corners */;
   background: orange;
   font-size: 32px;
   display: grid;
@@ -429,7 +430,17 @@ div.notched-corner {
   height: 400px;
   overflow: hidden;
   background: orange;
-  clip-path: polygon(0 10%, 10% 0, 90% 0, 100% 0%, 100% 90%, 90% 100%, 0% 100%, 0% 90%, 0% 10%);
+  clip-path: polygon(
+    0 10%,
+    10% 0,
+    90% 0,
+    100% 0%,
+    100% 90%,
+    90% 100%,
+    0% 100%,
+    0% 90%,
+    0% 10%
+  );
 }
 
 p {

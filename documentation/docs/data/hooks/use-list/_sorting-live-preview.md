@@ -47,7 +47,11 @@ const ProductList: React.FC = () => {
   return (
     <div>
       {/* highlight-start */}
-      <button onClick={() => setOrder((prev) => (prev === "asc" ? "desc" : "asc"))}>toggle sort</button>
+      <button
+        onClick={() => setOrder((prev) => (prev === "asc" ? "desc" : "asc"))}
+      >
+        toggle sort
+      </button>
       {/* highlight-end */}
 
       <ul>

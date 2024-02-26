@@ -50,7 +50,13 @@ After cleaning up, the `<App />` component should look as below:
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider, ThemedTitle } from "@refinedev/antd";
+import {
+  AuthPage,
+  ErrorComponent,
+  ThemedLayout,
+  useNotificationProvider,
+  ThemedTitle,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import * as Icons from "@ant-design/icons";
 
@@ -95,7 +101,9 @@ function App() {
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
                     <ThemedLayout
                       Header={Header}
-                      Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />}
+                      Title={({ collapsed }) => (
+                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                      )}
                     >
                       <Outlet />
                     </ThemedLayout>
@@ -132,7 +140,9 @@ function App() {
                   <Authenticated>
                     <ThemedLayout
                       Header={Header}
-                      Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />}
+                      Title={({ collapsed }) => (
+                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                      )}
                     >
                       <Outlet />
                     </ThemedLayout>
@@ -335,7 +345,13 @@ Having this in mind, after importing all relevant page components for each resou
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { AuthPage, ErrorComponent, ThemedLayout, useNotificationProvider, ThemedTitle } from "@refinedev/antd";
+import {
+  AuthPage,
+  ErrorComponent,
+  ThemedLayout,
+  useNotificationProvider,
+  ThemedTitle,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 import * as Icons from "@ant-design/icons";
 
@@ -396,14 +412,19 @@ function App() {
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
                     <ThemedLayout
                       Header={Header}
-                      Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />}
+                      Title={({ collapsed }) => (
+                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                      )}
                     >
                       <Outlet />
                     </ThemedLayout>
                   </Authenticated>
                 }
               >
-                <Route index element={<NavigateToResource resource="companies" />} />
+                <Route
+                  index
+                  element={<NavigateToResource resource="companies" />}
+                />
                 <Route path="/companies">
                   <Route index element={<CompanyList />} />
                 </Route>
@@ -443,7 +464,9 @@ function App() {
                   <Authenticated>
                     <ThemedLayout
                       Header={Header}
-                      Title={({ collapsed }) => <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />}
+                      Title={({ collapsed }) => (
+                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                      )}
                     >
                       <Outlet />
                     </ThemedLayout>
@@ -531,7 +554,10 @@ export const CompanyList: React.FC<IResourceComponentsProps> = () => {
           )}
         />
       </List>
-      <CreateCompany modalProps={createModalProps} formProps={createFormProps} />
+      <CreateCompany
+        modalProps={createModalProps}
+        formProps={createFormProps}
+      />
       <EditCompany modalProps={editModalProps} formProps={editFormProps} />
     </>
   );
@@ -598,7 +624,11 @@ The modal itself is contained in `<CreateCompany />` and has the following conte
 import { useApiUrl } from "@refinedev/core";
 import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
 
-import { useStrapiUpload, getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import {
+  useStrapiUpload,
+  getValueProps,
+  mediaUploadMapper,
+} from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY } from "../../constants";
 
@@ -607,7 +637,10 @@ type CreateCompanyProps = {
   formProps: FormProps;
 };
 
-export const CreateCompany: React.FC<CreateCompanyProps> = ({ modalProps, formProps }) => {
+export const CreateCompany: React.FC<CreateCompanyProps> = ({
+  modalProps,
+  formProps,
+}) => {
   const breakpoint = Grid.useBreakpoint();
   const { ...uploadProps } = useStrapiUpload({
     maxCount: 1,
@@ -615,7 +648,11 @@ export const CreateCompany: React.FC<CreateCompanyProps> = ({ modalProps, formPr
   const API_URL = useApiUrl();
 
   return (
-    <Modal {...modalProps} title="Create Company" width={breakpoint.sm ? "600px" : "80%"}>
+    <Modal
+      {...modalProps}
+      title="Create Company"
+      width={breakpoint.sm ? "600px" : "80%"}
+    >
       <Form
         {...formProps}
         layout="vertical"
@@ -709,7 +746,12 @@ The `formProps` are tailored according to and passed to the **Ant Design** `<For
 We are rendering a `<CompanyItem />` component inside the `<CompanyList />` page. Its content looks like this:
 
 ```tsx title="src/components/company/item.tsx"
-import { DeleteButton, UrlField, EmailField, EditButton } from "@refinedev/antd";
+import {
+  DeleteButton,
+  UrlField,
+  EmailField,
+  EditButton,
+} from "@refinedev/antd";
 import { Card, Typography } from "antd";
 
 import { ICompany } from "interfaces";
@@ -742,8 +784,18 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
         </div>
       }
       actions={[
-        <EditButton key="edit" size="small" hideText onClick={() => editShow(item.id)} />,
-        <DeleteButton key="delete" size="small" hideText recordItemId={item.id} />,
+        <EditButton
+          key="edit"
+          size="small"
+          hideText
+          onClick={() => editShow(item.id)}
+        />,
+        <DeleteButton
+          key="delete"
+          size="small"
+          hideText
+          recordItemId={item.id}
+        />,
       ]}
     >
       <Title level={5}>Company Name:</Title>
@@ -858,7 +910,12 @@ In a similar vein to the `<CompanyList />` component, the `<ClientList />` page 
 
 ```tsx title="src/pages/clients/list.tsx"
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
-import { useSimpleList, List, useDrawerForm, CreateButton } from "@refinedev/antd";
+import {
+  useSimpleList,
+  List,
+  useDrawerForm,
+  CreateButton,
+} from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
 import { IClient } from "interfaces";
@@ -913,7 +970,11 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
         formProps={createFormProps}
         saveButtonProps={createSaveButtonProps}
       />
-      <EditClient drawerProps={editDrawerProps} formProps={editFormProps} saveButtonProps={editSaveButtonProps} />
+      <EditClient
+        drawerProps={editDrawerProps}
+        formProps={editFormProps}
+        saveButtonProps={editSaveButtonProps}
+      />
     </>
   );
 };
@@ -951,7 +1012,17 @@ The `<CreateClient />` component looks like this:
 ```tsx title="src/components/client/create.tsx"
 import { Create, useSelect, useModalForm } from "@refinedev/antd";
 
-import { Drawer, DrawerProps, Form, FormProps, Input, ButtonProps, Grid, Select, Button } from "antd";
+import {
+  Drawer,
+  DrawerProps,
+  Form,
+  FormProps,
+  Input,
+  ButtonProps,
+  Grid,
+  Select,
+  Button,
+} from "antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contact";
@@ -962,7 +1033,11 @@ type CreateClientProps = {
   saveButtonProps: ButtonProps;
 };
 
-export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+export const CreateClient: React.FC<CreateClientProps> = ({
+  drawerProps,
+  formProps,
+  saveButtonProps,
+}) => {
   const breakpoint = Grid.useBreakpoint();
 
   const { selectProps } = useSelect<IContact>({
@@ -986,7 +1061,11 @@ export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formPro
 
   return (
     <>
-      <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+      <Drawer
+        {...drawerProps}
+        width={breakpoint.sm ? "500px" : "100%"}
+        bodyStyle={{ padding: 0 }}
+      >
         <Create saveButtonProps={saveButtonProps}>
           <Form
             {...formProps}
@@ -1020,7 +1099,10 @@ export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formPro
         </Create>
       </Drawer>
 
-      <CreateContact modalProps={modalProps} formProps={createContactFormProps} />
+      <CreateContact
+        modalProps={modalProps}
+        formProps={createContactFormProps}
+      />
     </>
   );
 };
@@ -1041,7 +1123,16 @@ Our `edit` action for `clients`, similar to the `create` action, also leverages 
 
 ```tsx title="src/components/client/edit.tsx"
 import { Edit, useSelect } from "@refinedev/antd";
-import { Drawer, DrawerProps, Form, FormProps, Input, ButtonProps, Grid, Select } from "antd";
+import {
+  Drawer,
+  DrawerProps,
+  Form,
+  FormProps,
+  Input,
+  ButtonProps,
+  Grid,
+  Select,
+} from "antd";
 
 type EditClientProps = {
   drawerProps: DrawerProps;
@@ -1049,7 +1140,11 @@ type EditClientProps = {
   saveButtonProps: ButtonProps;
 };
 
-export const EditClient: React.FC<EditClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+export const EditClient: React.FC<EditClientProps> = ({
+  drawerProps,
+  formProps,
+  saveButtonProps,
+}) => {
   const breakpoint = Grid.useBreakpoint();
 
   const { selectProps } = useSelect({
@@ -1062,10 +1157,16 @@ export const EditClient: React.FC<EditClientProps> = ({ drawerProps, formProps, 
   });
 
   return (
-    <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+    <Drawer
+      {...drawerProps}
+      width={breakpoint.sm ? "500px" : "100%"}
+      bodyStyle={{ padding: 0 }}
+    >
       <Edit
         saveButtonProps={saveButtonProps}
-        title={<h4 style={{ padding: "0 24px", fontWeight: "bold" }}>Edit Client</h4>}
+        title={
+          <h4 style={{ padding: "0 24px", fontWeight: "bold" }}>Edit Client</h4>
+        }
       >
         <Form
           {...formProps}
@@ -1231,7 +1332,15 @@ The `list` view for `contacts` makes use of the `useTable()` hook to present con
 <p>
 
 ```tsx title="src/pages/contacts/list.tsx"
-import { List, TagField, useTable, EditButton, DeleteButton, useModalForm, EmailField } from "@refinedev/antd";
+import {
+  List,
+  TagField,
+  useTable,
+  EditButton,
+  DeleteButton,
+  useModalForm,
+  EmailField,
+} from "@refinedev/antd";
 
 import { Table, Space } from "antd";
 
@@ -1268,11 +1377,17 @@ export const ContactList: React.FC = () => {
           <Table.Column dataIndex="last_name" title="Last Name" />
           <Table.Column dataIndex={["client", "name"]} title="Client Company" />
           <Table.Column dataIndex="phone_number" title="Phone Number" />
-          <Table.Column dataIndex="email" title="Email" render={(value: string) => <EmailField value={value} />} />
+          <Table.Column
+            dataIndex="email"
+            title="Email"
+            render={(value: string) => <EmailField value={value} />}
+          />
           <Table.Column
             dataIndex="job"
             title="Job"
-            render={(value: string) => <TagField color={"blue"} value={value} />}
+            render={(value: string) => (
+              <TagField color={"blue"} value={value} />
+            )}
           />
           <Table.Column<{ id: string }>
             title="Actions"
@@ -1286,7 +1401,11 @@ export const ContactList: React.FC = () => {
           />
         </Table>
       </List>
-      <CreateContact modalProps={modalProps} formProps={createContactFormProps} hideCompanySelect={false} />
+      <CreateContact
+        modalProps={modalProps}
+        formProps={createContactFormProps}
+        hideCompanySelect={false}
+      />
     </>
   );
 };
@@ -1323,7 +1442,11 @@ type CreateContactProps = {
   hideCompanySelect?: boolean;
 };
 
-export const CreateContact: React.FC<CreateContactProps> = ({ modalProps, formProps, hideCompanySelect = true }) => {
+export const CreateContact: React.FC<CreateContactProps> = ({
+  modalProps,
+  formProps,
+  hideCompanySelect = true,
+}) => {
   const breakpoint = Grid.useBreakpoint();
   const { selectProps } = useSelect({
     resource: "clients",
@@ -1336,7 +1459,11 @@ export const CreateContact: React.FC<CreateContactProps> = ({ modalProps, formPr
   });
 
   return (
-    <Modal {...modalProps} title="Create Contact" width={breakpoint.sm ? "600px" : "80%"}>
+    <Modal
+      {...modalProps}
+      title="Create Contact"
+      width={breakpoint.sm ? "600px" : "80%"}
+    >
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="First Name"
@@ -1360,7 +1487,11 @@ export const CreateContact: React.FC<CreateContactProps> = ({ modalProps, formPr
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Client Company" name="client" hidden={hideCompanySelect}>
+        <Form.Item
+          label="Client Company"
+          name="client"
+          hidden={hideCompanySelect}
+        >
           <Select {...selectProps} />
         </Form.Item>
         <Form.Item label="Phone Number" name="phone_number">

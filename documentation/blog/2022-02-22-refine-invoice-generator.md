@@ -79,12 +79,17 @@ const strapiAuthHelper = AuthHelper(API_URL + "/api");
 
 export const authProvider: AuthProvider = {
   login: async ({ username, password }) => {
-    const { data, status, statusText } = await strapiAuthHelper.login(username, password);
+    const { data, status, statusText } = await strapiAuthHelper.login(
+      username,
+      password,
+    );
     if (status === 200) {
       localStorage.setItem(TOKEN_KEY, data.jwt);
 
       // set header axios instance
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.jwt}`;
 
       return {
         success: true,
@@ -114,7 +119,9 @@ export const authProvider: AuthProvider = {
   check: async () => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
       return {
         authenticated: true,
       };
@@ -240,7 +247,14 @@ Let's design a component that includes the details of our company. Then let's sh
 <p>
 
 ```tsx title="src/components/company/CompanyItem.tsx"
-import { Card, DeleteButton, UrlField, EmailField, EditButton, Typography } from "@refinedev/antd";
+import {
+  Card,
+  DeleteButton,
+  UrlField,
+  EmailField,
+  EditButton,
+  Typography,
+} from "@refinedev/antd";
 
 import { ICompany } from "interfaces";
 import { API_URL } from "../../constants";
@@ -275,7 +289,12 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
       }
       actions={[
         <EditButton key="edit" size="small" hideText />,
-        <DeleteButton key="delete" size="small" hideText recordItemId={item.id} />,
+        <DeleteButton
+          key="delete"
+          size="small"
+          hideText
+          recordItemId={item.id}
+        />,
       ]}
     >
       <Title level={5}>Company Name:</Title>
@@ -377,7 +396,16 @@ We fetch the data of the `Company` collection that we created by Strapi, thanks 
 Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **Refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
 
 ```tsx title="src/pages/contact/ContactList.tsx"
-import { List, Table, TagField, useTable, Space, EditButton, DeleteButton, useModalForm } from "@refinedev/antd";
+import {
+  List,
+  Table,
+  TagField,
+  useTable,
+  Space,
+  EditButton,
+  DeleteButton,
+  useModalForm,
+} from "@refinedev/antd";
 
 import { IContact } from "interfaces";
 import { CreateContact } from "components/contacts";
@@ -418,7 +446,9 @@ export const ContactsList: React.FC = () => {
           <Table.Column
             dataIndex="job"
             title="Job"
-            render={(value: string) => <TagField color={"blue"} value={value} />}
+            render={(value: string) => (
+              <TagField color={"blue"} value={value} />
+            )}
           />
           <Table.Column<{ id: string }>
             title="Actions"
@@ -433,7 +463,10 @@ export const ContactsList: React.FC = () => {
         </Table>
         //highlight-end
       </List>
-      <CreateContact modalProps={modalProps} formProps={createContactFormProps} />
+      <CreateContact
+        modalProps={modalProps}
+        formProps={createContactFormProps}
+      />
     </>
   );
 };
@@ -456,7 +489,14 @@ Let's design the cards that will appear in our Client List.
 
 ```tsx title="src/components/client/ClientItem.tsx"
 import { useDelete } from "@refinedev/core";
-import { Card, TagField, Typography, Dropdown, Menu, Icons } from "@refinedev/antd";
+import {
+  Card,
+  TagField,
+  Typography,
+  Dropdown,
+  Menu,
+  Icons,
+} from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 
@@ -534,7 +574,12 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
       <Title level={5}>Contacts:</Title>
 
       {item.contacts.map((item) => {
-        return <TagField color={"#d1c4e9"} value={`${item.first_name} ${item.last_name}`} />;
+        return (
+          <TagField
+            color={"#d1c4e9"}
+            value={`${item.first_name} ${item.last_name}`}
+          />
+        );
       })}
     </Card>
   );
@@ -579,7 +624,11 @@ type CreateClientProps = {
   saveButtonProps: ButtonProps;
 };
 
-export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+export const CreateClient: React.FC<CreateClientProps> = ({
+  drawerProps,
+  formProps,
+  saveButtonProps,
+}) => {
   const breakpoint = Grid.useBreakpoint();
 
   const { selectProps } = useSelect<IContact>({
@@ -599,7 +648,11 @@ export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formPro
 
   return (
     <>
-      <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+      <Drawer
+        {...drawerProps}
+        width={breakpoint.sm ? "500px" : "100%"}
+        bodyStyle={{ padding: 0 }}
+      >
         <Create saveButtonProps={saveButtonProps}>
           <Form
             {...formProps}
@@ -633,7 +686,10 @@ export const CreateClient: React.FC<CreateClientProps> = ({ drawerProps, formPro
         </Create>
       </Drawer>
 
-      <CreateContact modalProps={modalProps} formProps={createContactFormProps} />
+      <CreateContact
+        modalProps={modalProps}
+        formProps={createContactFormProps}
+      />
     </>
   );
 };
@@ -668,7 +724,11 @@ type EditClientProps = {
   saveButtonProps: ButtonProps;
 };
 
-export const EditClient: React.FC<EditClientProps> = ({ drawerProps, formProps, saveButtonProps }) => {
+export const EditClient: React.FC<EditClientProps> = ({
+  drawerProps,
+  formProps,
+  saveButtonProps,
+}) => {
   const breakpoint = Grid.useBreakpoint();
 
   const { selectProps } = useSelect({
@@ -677,7 +737,11 @@ export const EditClient: React.FC<EditClientProps> = ({ drawerProps, formProps, 
   });
 
   return (
-    <Drawer {...drawerProps} width={breakpoint.sm ? "500px" : "100%"} bodyStyle={{ padding: 0 }}>
+    <Drawer
+      {...drawerProps}
+      width={breakpoint.sm ? "500px" : "100%"}
+      bodyStyle={{ padding: 0 }}
+    >
       <Edit saveButtonProps={saveButtonProps}>
         <Form
           {...formProps}
@@ -717,7 +781,13 @@ Above, we created Card, Create and Edit components. Let's define and use these c
 ```tsx title="src/pages/client/ClientList.tsx"
 import { IResourceComponentsProps, HttpError } from "@refinedev/core";
 
-import { useSimpleList, AntdList, List, useDrawerForm, CreateButton } from "@refinedev/antd";
+import {
+  useSimpleList,
+  AntdList,
+  List,
+  useDrawerForm,
+  CreateButton,
+} from "@refinedev/antd";
 
 import { IClient } from "interfaces";
 //highlight-next-line
@@ -774,7 +844,11 @@ export const ClientList: React.FC<IResourceComponentsProps> = () => {
         formProps={createFormProps}
         saveButtonProps={createSaveButtonProps}
       />
-      <EditClient drawerProps={editDrawerProps} formProps={editFormProps} saveButtonProps={editSaveButtonProps} />
+      <EditClient
+        drawerProps={editDrawerProps}
+        formProps={editFormProps}
+        saveButtonProps={editSaveButtonProps}
+      />
       //highlight-end
     </>
   );

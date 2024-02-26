@@ -63,7 +63,9 @@ render(
         list: () => (
           <div>
             <p>This page is empty.</p>
-            <RefineMui.ShowButton recordItemId="123">Show Item 123</RefineMui.ShowButton>
+            <RefineMui.ShowButton recordItemId="123">
+              Show Item 123
+            </RefineMui.ShowButton>
           </div>
         ),
       },

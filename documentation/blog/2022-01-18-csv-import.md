@@ -72,7 +72,12 @@ function App() {
     <div style={{ textAlign: "center" }}>
       <h1>REACTJS CSV IMPORT EXAMPLE </h1>
       <form>
-        <input type={"file"} id={"csvFileInput"} accept={".csv"} onChange={handleOnChange} />
+        <input
+          type={"file"}
+          id={"csvFileInput"}
+          accept={".csv"}
+          onChange={handleOnChange}
+        />
 
         <button
           onClick={(e) => {

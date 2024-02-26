@@ -1,0 +1,34 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/inferencer/src/inferencers/antd/code-viewer.tsx:73:25 lint/a11y/noAriaHiddenOnFocusable  FIXABLE  ━━━━━━━━━━
+
+  ! Disallow aria-hidden="true" from being set on focusable elements.
+  
+    71 │                     >
+    72 │                         <CodeHighlight code={code} />
+  > 73 │                         <textarea
+       │                         ^^^^^^^^^
+  > 74 │                             ref={inputRef}
+        ...
+  > 86 │                             }}
+  > 87 │                         />
+       │                         ^^
+    88 │                         <Button
+    89 │                             style={{
+  
+  i aria-hidden should not be set to true on focusable elements because this can lead to confusing behavior for screen reader users.
+  
+  i Unsafe fix: Remove the aria-hidden attribute from the element.
+  
+     75  75 │                               defaultValue={(code ?? "").replace(/\\n/g, "\r\n")}
+     76  76 │                               id="code-input"
+     77     │ - ····························aria-hidden="true"
+     78     │ - ····························style={{
+         77 │ + ····························style={{
+     79  78 │                                   padding: 0,
+     80  79 │                                   margin: 0,
+  
+
+Checked 6953 file(s) in 519ms

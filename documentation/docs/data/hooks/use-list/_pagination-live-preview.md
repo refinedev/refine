@@ -51,7 +51,10 @@ const ProductList: React.FC = () => {
       <span> page: {current} </span>
       <button onClick={() => setCurrent((prev) => prev + 1)}>{">"}</button>
       <span> per page: </span>
-      <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+      <select
+        value={pageSize}
+        onChange={(e) => setPageSize(Number(e.target.value))}
+      >
         {[5, 10, 20].map((size) => (
           <option key={size} value={size}>
             {size}

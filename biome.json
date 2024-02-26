@@ -1,0 +1,120 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": false
+  },
+  "files": {
+    "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
+  },
+  "vcs": {
+    "defaultBranch": "master",
+    "useIgnoreFile": true,
+    "enabled": true,
+    "clientKind": "git"
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingComma": "all",
+      "arrowParentheses": "always"
+    }
+  },
+  "json": {
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useButtonType": "off",
+        "useHtmlLang": "off",
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "useAltText": "off",
+        "noNoninteractiveElementToInteractiveRole": "off",
+        "useValidAnchor": "off",
+        "noBlankTarget": "off",
+        "useIframeTitle": "off",
+        "noAutofocus": "off",
+        "noAriaHiddenOnFocusable": "off",
+        "noNoninteractiveTabindex": "off",
+        "noPositiveTabindex": "off",
+        "useKeyWithMouseEvents": "off"
+      },
+      "complexity": {
+        "noForEach": "off",
+        "useLiteralKeys": "off",
+        "useOptionalChain": "off",
+        "noBannedTypes": "off",
+        "noUselessFragments": "off",
+        "noUselessSwitchCase": "off",
+        "noUselessConstructor": "off",
+        "noExtraBooleanCast": "off",
+        "noStaticOnlyClass": "off",
+        "noUselessCatch": "off",
+        "useArrowFunction": "off",
+        "noUselessRename": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noEmptyPattern": "off",
+        "noUnsafeOptionalChaining": "off",
+        "noSwitchDeclarations": "off",
+        "noUnreachable": "off",
+        "noConstantCondition": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off",
+        "noDelete": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "useTemplate": "off",
+        "noUnusedTemplateLiteral": "off",
+        "noUselessElse": "off",
+        "noNonNullAssertion": "off",
+        "useSingleVarDeclarator": "off",
+        "noParameterAssign": "off",
+        "useSelfClosingElements": "off",
+        "useDefaultParameterLast": "off",
+        "useConst": "off",
+        "noCommaOperator": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noRedundantUseStrict": "off",
+        "noAsyncPromiseExecutor": "off",
+        "noAssignInExpressions": "off",
+        "noImplicitAnyLet": "off",
+        "noPrototypeBuiltins": "off",
+        "noDoubleEquals": "off",
+        "noConfusingVoidType": "off",
+        "noGlobalIsNan": "off",
+        "noArrayIndexKey": "off",
+        "noRedeclare": "off",
+        "noControlCharactersInRegex": "off",
+        "noDuplicateJsxProps": "off",
+        "noShadowRestrictedNames": "off",
+        "useDefaultSwitchClauseLast": "off",
+        "noSelfCompare": "off",
+        "noFallthroughSwitchClause": "off",
+        "noEmptyInterface": "off",
+        "noDuplicateObjectKeys": "off",
+        "useValidTypeof": "off"
+      }
+    }
+  }
+}

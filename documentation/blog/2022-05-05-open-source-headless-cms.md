@@ -56,7 +56,6 @@ Build flexible and faster web projects using [Netlify](https://www.netlifycms.or
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/netlify.jpg" alt="netlify" />
 
-
 It is designed as a one-page React app; so you can add UI widgets, editor plugins and backends to support various Git platform APIs.
 
 ### Ghost
@@ -78,7 +77,6 @@ If you are looking for a framework that will provide extreme customizability to 
 Refine comes with Ant Design and can also be used headless if you prefer.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-05-open-source-headless-cms/refine.jpg" alt="refine" />
-
 
 ### Conclusion
 

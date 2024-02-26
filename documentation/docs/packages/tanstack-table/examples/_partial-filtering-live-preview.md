@@ -78,13 +78,20 @@ const PostList: React.FC = () => {
                 <th key={header.id}>
                   {header.isPlaceholder ? null : (
                     <>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                       {/* highlight-start */}
                       {header.column.getCanFilter() ? (
                         <div>
                           <input
-                            value={(header.column.getFilterValue() as string) ?? ""}
-                            onChange={(e) => header.column.setFilterValue(e.target.value)}
+                            value={
+                              (header.column.getFilterValue() as string) ?? ""
+                            }
+                            onChange={(e) =>
+                              header.column.setFilterValue(e.target.value)
+                            }
                           />
                         </div>
                       ) : null}
@@ -102,7 +109,11 @@ const PostList: React.FC = () => {
           return (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                return (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                );
               })}
             </tr>
           );

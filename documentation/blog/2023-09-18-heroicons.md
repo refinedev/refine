@@ -82,7 +82,11 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input className="text-input" type="email" placeholder="Find Donald or something..." />
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find Donald or something..."
+            />
             <SearchIcon />
           </div>
           <div id="right">
@@ -223,23 +227,20 @@ body {
 
 @keyframes glow {
   0% {
-    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #ff80b3) drop-shadow(
-        0 0 4px #ff4d94
-      )
-      drop-shadow(0 0 5px #ff0066);
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(
+        0 0 3px #ff80b3
+      ) drop-shadow(0 0 4px #ff4d94) drop-shadow(0 0 5px #ff0066);
   }
   29% {
-    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #ff80b3) drop-shadow(
-        0 0 8px #ff4d94
-      )
-      drop-shadow(0 0 10px #ff0066);
+    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(
+        0 0 6px #ff80b3
+      ) drop-shadow(0 0 8px #ff4d94) drop-shadow(0 0 10px #ff0066);
   }
 
   92% {
-    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 9px #ff80b3) drop-shadow(
-        0 0 12px #ff4d94
-      )
-      drop-shadow(0 0 15px #ff0066);
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(
+        0 0 9px #ff80b3
+      ) drop-shadow(0 0 12px #ff4d94) drop-shadow(0 0 15px #ff0066);
   }
 }
 ```
@@ -262,7 +263,11 @@ We'll replace the existing icons with Heroicons components. So, let's import and
 import React, { useState } from "react";
 import TailzupLogo from "../icons/TailzupLogo";
 //highlight-next-line
-import { Bars4Icon, MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  Bars4Icon,
+  MagnifyingGlassIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -279,7 +284,11 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input className="text-input" type="email" placeholder="Find donald trump or something..." />
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find donald trump or something..."
+            />
             {/*highlight-next-line*/}
             <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
           </div>
@@ -288,7 +297,11 @@ const Navbar = () => {
               <li className="nav-item md:order-last">
                 <a href="/">
                   {/*highlight-next-line*/}
-                  <UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
+                  <UserIcon
+                    className="h-8 w-8 glow"
+                    stroke="pink"
+                    strokeWidth={1.2}
+                  />
                 </a>
               </li>
               <li className="nav-item">
@@ -375,23 +388,20 @@ For the `<UserIcon />`, we are applying a `glow` class that animates the icon wi
 
 @keyframes glow {
   0% {
-    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #ff80b3) drop-shadow(
-        0 0 4px #ff4d94
-      )
-      drop-shadow(0 0 5px #ff0066);
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(
+        0 0 3px #ff80b3
+      ) drop-shadow(0 0 4px #ff4d94) drop-shadow(0 0 5px #ff0066);
   }
   29% {
-    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 6px #ff80b3) drop-shadow(
-        0 0 8px #ff4d94
-      )
-      drop-shadow(0 0 10px #ff0066);
+    filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #fff) drop-shadow(
+        0 0 6px #ff80b3
+      ) drop-shadow(0 0 8px #ff4d94) drop-shadow(0 0 10px #ff0066);
   }
 
   92% {
-    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(0 0 9px #ff80b3) drop-shadow(
-        0 0 12px #ff4d94
-      )
-      drop-shadow(0 0 15px #ff0066);
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #fff) drop-shadow(
+        0 0 9px #ff80b3
+      ) drop-shadow(0 0 12px #ff4d94) drop-shadow(0 0 15px #ff0066);
   }
 }
 ```
@@ -457,14 +467,22 @@ const Navbar = () => {
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
-            <input className="text-input" type="email" placeholder="Find Donald  or something..." />
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find Donald  or something..."
+            />
             <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
           </div>
           <div id="right">
             <ul className="items-list">
               <li className="nav-item md:order-last">
                 <a href="/">
-                  <UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
+                  <UserIcon
+                    className="h-8 w-8 glow"
+                    stroke="pink"
+                    strokeWidth={1.2}
+                  />
                 </a>
               </li>
               <li className="nav-item">

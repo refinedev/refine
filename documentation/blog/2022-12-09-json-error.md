@@ -8,8 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error
 hide_table_of_contents: false
 ---
 
-
-
 ## Introduction.
 
 This post aims to address the "Unexpected token in JSON at position 0" error message. We will look into the various possible causes of this message and suggest methods to rectify it.
@@ -23,7 +21,6 @@ Steps we'll cover:
 - [Spelling Error](#spelling-error)
 - [Forgetting to stringify your object:](#forgetting-to-stringify-your-object)
 
-
 ## What is JSON?
 
 JSON which stands for Javascript Object Notation can be said to be a lightweight format for storing and transporting data, it is used often when data is sent from a server to a webpage.
@@ -35,9 +32,9 @@ Let us quickly examine the utilization of JSON for transporting and storing data
 The codeblock below shows how JSON can be used to transport data between local storage and the web page:
 
 ```tsx
-localStorage.setItem('list', JSON.stringfy(list))
+localStorage.setItem("list", JSON.stringfy(list));
 
-JSON.parse(localStorage.getItem('list'))
+JSON.parse(localStorage.getItem("list"));
 ```
 
 Now that we are aware of what JSON is and how it can be applied, let us move on to resolving the "Unexpected token in JSON at position 0" error message.
@@ -49,17 +46,14 @@ In very simple language, "Unexpected token &lt; in JSON at position 0" indicates
 To prove my point, I will attempt to reproduce the mistake. Go to your browser console and execute this code snippet:
 
 ```javascript
-JSON.parse(undefined)
+JSON.parse(undefined);
 ```
 
 The code snippet above will produce this type of error:
 
-
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-1.png"  alt="json error" />
 
 <br />
-
 
 Why? because "undefined" is not JSON but we have tried to parse it as JSON.
 
@@ -69,14 +63,10 @@ The actual "Unexpected token in JSON at position 0" message may vary depending o
 
 Below are some of the different forms in which the error message could be presented:
 
-*   " is not a valid JSON at JSON.parse".
-    
-*   Unexpected token '&lt;', "&lt;!DOCTYPE "... is not valid JSON.
-    
-*   Unexpected token 'o', "not found!" is not valid JSON.
-    
-*   Unexpected token 'o', "\[object obj... is not valid JSON"
-    
+- " is not a valid JSON at JSON.parse".
+- Unexpected token '&lt;', "&lt;!DOCTYPE "... is not valid JSON.
+- Unexpected token 'o', "not found!" is not valid JSON.
+- Unexpected token 'o', "\[object obj... is not valid JSON"
 
 and so on. So going forward I'll be using the general name "JSON.parse unexpected token" to refer to this error.
 
@@ -101,15 +91,12 @@ In this example, I've used the JSON endpoints from [https://dummyjson.com/](http
 I've picked a valid endpoint from this site and went ahead to call the javascript fetch method on it, check out the code snippet and its result below:
 
 ```javascript
-fetch('https://dummyjson.com/products/1')
-  .then(res => res.json())
-  .then(json => console.log(json))
+fetch("https://dummyjson.com/products/1")
+  .then((res) => res.json())
+  .then((json) => console.log(json));
 ```
 
 Using the code snippet above, I want to clarify that `JSON.parse()` is being done by `res.json()` under the hood.
-
-
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-2.png"  alt="json error" />
 
@@ -121,12 +108,11 @@ The image above shows that we got a valid JSON response, now let us move to the 
 
 ```javascript
 fetch("https://dummyjson.com/myProduct/1")
-    .then((res) => res.json())
-    .then((json) => console.log(json));
+  .then((res) => res.json())
+  .then((json) => console.log(json));
 ```
 
 "https://dummyjson.com/myProduct/1" that has been used as our API is an endpoint that I made up, so it is not a valid API endpoint and as you know parsing it will be you trying to parse something that isn't JSON, as it is not a formatted JSON.
-
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-3.png"  alt="json error" />
 
@@ -135,13 +121,10 @@ fetch("https://dummyjson.com/myProduct/1")
 **How To Fix.**
 
 - **Make sure you are using a valid API endpoint:**
-    
-    To make sure you are using a valid JSON endpoint, use [JSONFORMATTER](https://jsonformatter.curiousconcept.com/) to verify your endpoints before using it.
-    
--  Always use the try-and-catch within your fetch method or function to prevent your app from crashing.
-    
+  To make sure you are using a valid JSON endpoint, use [JSONFORMATTER](https://jsonformatter.curiousconcept.com/) to verify your endpoints before using it.
+- Always use the try-and-catch within your fetch method or function to prevent your app from crashing.
 
-##  Spelling Error
+## Spelling Error
 
 This is so much similar to hitting the wrong API, only that you might have been pretty sure that the API endpoint exists.
 
@@ -152,14 +135,8 @@ Spelling errors do not apply only to API endpoints, they can also occur while at
 **How To Fix.**
 
 - Check and proofread well before hitting the API.
-    
 - Make sure you verify your API before hitting it. use JSONFORMATTER.
-    
 - Use the try-and-catch method in your function to prevent your app from crashing.
-    
-
-
-
 
 ## Forgetting to stringify your object:
 
@@ -175,13 +152,12 @@ We are going to take two quick examples in this section, example 1 will represen
 
 Local storage will stand as our servers in this example.
 
-*I have a list of todos that I have written on my web page,* I wish for them to stay even after I have reloaded my page**,** *how do I make that happen?*
+_I have a list of todos that I have written on my web page,_ I wish for them to stay even after I have reloaded my page**,** _how do I make that happen?_
 
-*I have to send those lists as data to my server,* and then to retrieve them whenever I reload the page.
+_I have to send those lists as data to my server,_ and then to retrieve them whenever I reload the page.
 
 ```ts
-localStorage.setItem("list", 
-list);
+localStorage.setItem("list", list);
 ```
 
 In the code snippet that I have provided, I have sent my data to the server without converting the object to a string using `JSON.stringify()`. Let's take a look at the consequence this will have on our page, below is the code snippet for retrieving the list, and an image of the result:
@@ -197,11 +173,9 @@ const getLocalStorage = () => {
 };
 ```
 
-
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-4.png"  alt="json error" />
 
 <br />
-
 
 The error indicates that I'm trying to parse an object, and it's not a valid JSON.
 
@@ -210,8 +184,7 @@ The error indicates that I'm trying to parse an object, and it's not a valid JSO
 All we have to do to fix this error is to stringify our list before sending it to the server:
 
 ```javascript
-localStorage.setItem("list", 
-JSON.stringify(list))
+localStorage.setItem("list", JSON.stringify(list));
 ```
 
 The code snippet above will fix the error.
@@ -219,4 +192,5 @@ The code snippet above will fix the error.
 In general, it is always a good idea to carefully check your JSON data for any syntax errors before attempting to parse it. This will help to ensure that your code is able to properly handle the JSON data and avoid any errors like the "Unexpected token in JSON at position 0" error.
 
 ## Conclusion
+
 In this article, I began by providing a brief overview of what JSON is. Then, I clarified the “JSON.parse unexpected token” error message. Finally, I listed some of the different causes of this error, providing example errors and instructions on how to fix them.
