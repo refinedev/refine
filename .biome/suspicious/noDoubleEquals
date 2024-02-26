@@ -2,289 +2,343 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/chakra-ui/src/components/pages/auth/components/updatePassword/index.tsx:132:55 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/pages/auth/components/updatePassword/index.tsx:127:39 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use !== instead of !=
   
-    130 │                             required: true,
-    131 │                             validate: (val: any) => {
-  > 132 │                                 if (watch("password") != val) {
-        │                                                       ^^
-    133 │                                     return translate(
-    134 │                                         "pages.updatePassword.errors.confirmPasswordNotMatch",
+    125 │               required: true,
+    126 │               validate: (val: any) => {
+  > 127 │                 if (watch("password") != val) {
+        │                                       ^^
+    128 │                   return translate(
+    129 │                     "pages.updatePassword.errors.confirmPasswordNotMatch",
   
   i != is only allowed when comparing against null
   
-    130 │                             required: true,
-    131 │                             validate: (val: any) => {
-  > 132 │                                 if (watch("password") != val) {
-        │                                                       ^^
-    133 │                                     return translate(
-    134 │                                         "pages.updatePassword.errors.confirmPasswordNotMatch",
+    125 │               required: true,
+    126 │               validate: (val: any) => {
+  > 127 │                 if (watch("password") != val) {
+        │                                       ^^
+    128 │                   return translate(
+    129 │                     "pages.updatePassword.errors.confirmPasswordNotMatch",
   
   i Using !== may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use !==
   
-    132 │ ································if·(watch("password")·!==·val)·{
-        │                                                         +       
+    127 │ ················if·(watch("password")·!==·val)·{
+        │                                         +       
 
-./packages/chakra-ui/src/components/fields/number/index.tsx:8:21 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/fields/number/index.tsx:8:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
-       │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
   
   i == is only allowed when comparing against null
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
-       │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    8 │ ········typeof·Intl·===·"object"·&&
-      │                       +            
+    8 │ ····typeof·Intl·===·"object"·&&
+      │                   +            
 
-./packages/chakra-ui/src/components/fields/number/index.tsx:10:34 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/fields/number/index.tsx:10:30 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
-     8 │         typeof Intl == "object" &&
-     9 │         Intl &&
-  > 10 │         typeof Intl.NumberFormat == "function"
-       │                                  ^^
-    11 │     );
+     8 │     typeof Intl == "object" &&
+     9 │     Intl &&
+  > 10 │     typeof Intl.NumberFormat == "function"
+       │                              ^^
+    11 │   );
     12 │ }
   
   i == is only allowed when comparing against null
   
-     8 │         typeof Intl == "object" &&
-     9 │         Intl &&
-  > 10 │         typeof Intl.NumberFormat == "function"
-       │                                  ^^
-    11 │     );
+     8 │     typeof Intl == "object" &&
+     9 │     Intl &&
+  > 10 │     typeof Intl.NumberFormat == "function"
+       │                              ^^
+    11 │   );
     12 │ }
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    10 │ ········typeof·Intl.NumberFormat·===·"function"
-       │                                    +           
+    10 │ ····typeof·Intl.NumberFormat·===·"function"
+       │                                +           
 
-./examples/store/src/lib/click-outside/click-outside.tsx:42:28 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./examples/store/src/lib/click-outside/click-outside.tsx:40:24 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use !== instead of !=
   
-    40 │         }
-    41 │ 
-  > 42 │         if (typeof onClick != "function") {
-       │                            ^^
-    43 │             throw new Error("onClick must be a valid function");
-    44 │         }
+    38 │     }
+    39 │ 
+  > 40 │     if (typeof onClick != "function") {
+       │                        ^^
+    41 │       throw new Error("onClick must be a valid function");
+    42 │     }
   
   i != is only allowed when comparing against null
   
-    40 │         }
-    41 │ 
-  > 42 │         if (typeof onClick != "function") {
-       │                            ^^
-    43 │             throw new Error("onClick must be a valid function");
-    44 │         }
+    38 │     }
+    39 │ 
+  > 40 │     if (typeof onClick != "function") {
+       │                        ^^
+    41 │       throw new Error("onClick must be a valid function");
+    42 │     }
   
   i Using !== may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use !==
   
-    42 │ ········if·(typeof·onClick·!==·"function")·{
-       │                              +              
+    40 │ ····if·(typeof·onClick·!==·"function")·{
+       │                          +              
 
-./packages/mantine/src/components/fields/number/index.tsx:8:21 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./documentation/src/context/CommunityStats/index.tsx:100:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i == is only allowed when comparing against null
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    100 │ ····typeof·Intl·===·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·==·"function";
+        │                   +                                                            
+
+./documentation/src/context/CommunityStats/index.tsx:100:65 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                                                                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i == is only allowed when comparing against null
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                                                                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    100 │ ····typeof·Intl·==·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·===·"function";
+        │                                                                   +            
+
+./packages/mantine/src/components/fields/number/index.tsx:8:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
-       │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
   
   i == is only allowed when comparing against null
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    8 │ ····typeof·Intl·===·"object"·&&
+      │                   +            
+
+./packages/mantine/src/components/fields/number/index.tsx:10:30 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+     8 │     typeof Intl == "object" &&
+     9 │     Intl &&
+  > 10 │     typeof Intl.NumberFormat == "function"
+       │                              ^^
+    11 │   );
+    12 │ }
+  
+  i == is only allowed when comparing against null
+  
+     8 │     typeof Intl == "object" &&
+     9 │     Intl &&
+  > 10 │     typeof Intl.NumberFormat == "function"
+       │                              ^^
+    11 │   );
+    12 │ }
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    10 │ ····typeof·Intl.NumberFormat·===·"function"
+       │                                +           
+
+./packages/core/src/definitions/table/index.ts:74:50 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+    72 │   ) {
+    73 │     return (
+  > 74 │       ("field" in left ? left.field : undefined) ==
+       │                                                  ^^
+    75 │         ("field" in right ? right.field : undefined) &&
+    76 │       left.operator == right.operator
+  
+  i == is only allowed when comparing against null
+  
+    72 │   ) {
+    73 │     return (
+  > 74 │       ("field" in left ? left.field : undefined) ==
+       │                                                  ^^
+    75 │         ("field" in right ? right.field : undefined) &&
+    76 │       left.operator == right.operator
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    74 │ ······("field"·in·left·?·left.field·:·undefined)·===
+       │                                                    +
+
+./packages/core/src/definitions/table/index.ts:76:21 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+    74 │       ("field" in left ? left.field : undefined) ==
+    75 │         ("field" in right ? right.field : undefined) &&
+  > 76 │       left.operator == right.operator
        │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    8 │ ········typeof·Intl·===·"object"·&&
-      │                       +            
-
-./packages/mantine/src/components/fields/number/index.tsx:10:34 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-     8 │         typeof Intl == "object" &&
-     9 │         Intl &&
-  > 10 │         typeof Intl.NumberFormat == "function"
-       │                                  ^^
-    11 │     );
-    12 │ }
+    77 │     );
+    78 │   }
   
   i == is only allowed when comparing against null
   
-     8 │         typeof Intl == "object" &&
-     9 │         Intl &&
-  > 10 │         typeof Intl.NumberFormat == "function"
-       │                                  ^^
-    11 │     );
-    12 │ }
+    74 │       ("field" in left ? left.field : undefined) ==
+    75 │         ("field" in right ? right.field : undefined) &&
+  > 76 │       left.operator == right.operator
+       │                     ^^
+    77 │     );
+    78 │   }
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    10 │ ········typeof·Intl.NumberFormat·===·"function"
-       │                                    +           
+    76 │ ······left.operator·===·right.operator
+       │                       +               
 
-./packages/core/src/definitions/table/index.ts:74:56 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/core/src/definitions/table/index.ts:81:44 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
-    72 │     ) {
-    73 │         return (
-  > 74 │             ("field" in left ? left.field : undefined) ==
-       │                                                        ^^
-    75 │                 ("field" in right ? right.field : undefined) &&
-    76 │             left.operator == right.operator
+    80 │   return (
+  > 81 │     ("key" in left ? left.key : undefined) ==
+       │                                            ^^
+    82 │       ("key" in right ? right.key : undefined) &&
+    83 │     left.operator == right.operator
   
   i == is only allowed when comparing against null
   
-    72 │     ) {
-    73 │         return (
-  > 74 │             ("field" in left ? left.field : undefined) ==
-       │                                                        ^^
-    75 │                 ("field" in right ? right.field : undefined) &&
-    76 │             left.operator == right.operator
+    80 │   return (
+  > 81 │     ("key" in left ? left.key : undefined) ==
+       │                                            ^^
+    82 │       ("key" in right ? right.key : undefined) &&
+    83 │     left.operator == right.operator
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    74 │ ············("field"·in·left·?·left.field·:·undefined)·===
-       │                                                          +
+    81 │ ····("key"·in·left·?·left.key·:·undefined)·===
+       │                                              +
 
-./packages/core/src/definitions/table/index.ts:76:27 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    74 │             ("field" in left ? left.field : undefined) ==
-    75 │                 ("field" in right ? right.field : undefined) &&
-  > 76 │             left.operator == right.operator
-       │                           ^^
-    77 │         );
-    78 │     }
-  
-  i == is only allowed when comparing against null
-  
-    74 │             ("field" in left ? left.field : undefined) ==
-    75 │                 ("field" in right ? right.field : undefined) &&
-  > 76 │             left.operator == right.operator
-       │                           ^^
-    77 │         );
-    78 │     }
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    76 │ ············left.operator·===·right.operator
-       │                             +               
-
-./packages/core/src/definitions/table/index.ts:81:48 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/core/src/definitions/table/index.ts:83:19 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
-    80 │     return (
-  > 81 │         ("key" in left ? left.key : undefined) ==
-       │                                                ^^
-    82 │             ("key" in right ? right.key : undefined) &&
-    83 │         left.operator == right.operator
-  
-  i == is only allowed when comparing against null
-  
-    80 │     return (
-  > 81 │         ("key" in left ? left.key : undefined) ==
-       │                                                ^^
-    82 │             ("key" in right ? right.key : undefined) &&
-    83 │         left.operator == right.operator
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    81 │ ········("key"·in·left·?·left.key·:·undefined)·===
-       │                                                  +
-
-./packages/core/src/definitions/table/index.ts:83:23 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    81 │         ("key" in left ? left.key : undefined) ==
-    82 │             ("key" in right ? right.key : undefined) &&
-  > 83 │         left.operator == right.operator
-       │                       ^^
-    84 │     );
+    81 │     ("key" in left ? left.key : undefined) ==
+    82 │       ("key" in right ? right.key : undefined) &&
+  > 83 │     left.operator == right.operator
+       │                   ^^
+    84 │   );
     85 │ };
   
   i == is only allowed when comparing against null
   
-    81 │         ("key" in left ? left.key : undefined) ==
-    82 │             ("key" in right ? right.key : undefined) &&
-  > 83 │         left.operator == right.operator
-       │                       ^^
-    84 │     );
+    81 │     ("key" in left ? left.key : undefined) ==
+    82 │       ("key" in right ? right.key : undefined) &&
+  > 83 │     left.operator == right.operator
+       │                   ^^
+    84 │   );
     85 │ };
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    83 │ ········left.operator·===·right.operator
-       │                         +               
+    83 │ ····left.operator·===·right.operator
+       │                     +               
 
-./packages/core/src/definitions/table/index.ts:88:16 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/core/src/definitions/table/index.ts:88:14 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
     87 │ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
-  > 88 │     left.field == right.field;
-       │                ^^
+  > 88 │   left.field == right.field;
+       │              ^^
     89 │ // Keep only one CrudFilter per type according to compareFilters
     90 │ // Items in the array that is passed first to unionWith have higher priority
   
   i == is only allowed when comparing against null
   
     87 │ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
-  > 88 │     left.field == right.field;
-       │                ^^
+  > 88 │   left.field == right.field;
+       │              ^^
     89 │ // Keep only one CrudFilter per type according to compareFilters
     90 │ // Items in the array that is passed first to unionWith have higher priority
   
@@ -292,35 +346,116 @@
   
   i Unsafe fix: Use ===
   
-    88 │ ····left.field·===·right.field;
-       │                  +             
+    88 │ ··left.field·===·right.field;
+       │                +             
 
-./packages/core/src/hooks/data/useDeleteMany.ts:360:63 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/core/src/hooks/data/useDeleteMany.ts:355:49 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
-    358 │                             .get(preferLegacyKeys),
-    359 │                         (previous?: any | null) => {
-  > 360 │                             if (!previous || previous.data.id == id) {
-        │                                                               ^^
-    361 │                                 return null;
-    362 │                             }
+    353 │               .get(preferLegacyKeys),
+    354 │             (previous?: any | null) => {
+  > 355 │               if (!previous || previous.data.id == id) {
+        │                                                 ^^
+    356 │                 return null;
+    357 │               }
   
   i == is only allowed when comparing against null
   
-    358 │                             .get(preferLegacyKeys),
-    359 │                         (previous?: any | null) => {
-  > 360 │                             if (!previous || previous.data.id == id) {
-        │                                                               ^^
-    361 │                                 return null;
-    362 │                             }
+    353 │               .get(preferLegacyKeys),
+    354 │             (previous?: any | null) => {
+  > 355 │               if (!previous || previous.data.id == id) {
+        │                                                 ^^
+    356 │                 return null;
+    357 │               }
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    360 │ ····························if·(!previous·||·previous.data.id·===·id)·{
-        │                                                                 +      
+    355 │ ··············if·(!previous·||·previous.data.id·===·id)·{
+        │                                                   +      
+
+./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:22:37 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+    20 │         return !(
+    21 │           isEqual(notificationItem.id, action.payload.id) &&
+  > 22 │           notificationItem.resource == action.payload.resource
+       │                                     ^^
+    23 │         );
+    24 │       });
+  
+  i == is only allowed when comparing against null
+  
+    20 │         return !(
+    21 │           isEqual(notificationItem.id, action.payload.id) &&
+  > 22 │           notificationItem.resource == action.payload.resource
+       │                                     ^^
+    23 │         );
+    24 │       });
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    22 │ ··········notificationItem.resource·===·action.payload.resource
+       │                                       +                        
+
+./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:38:39 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+    36 │           !(
+    37 │             isEqual(notificationItem.id, action.payload.id) &&
+  > 38 │             notificationItem.resource == action.payload.resource
+       │                                       ^^
+    39 │           ),
+    40 │       );
+  
+  i == is only allowed when comparing against null
+  
+    36 │           !(
+    37 │             isEqual(notificationItem.id, action.payload.id) &&
+  > 38 │             notificationItem.resource == action.payload.resource
+       │                                       ^^
+    39 │           ),
+    40 │       );
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    38 │ ············notificationItem.resource·===·action.payload.resource
+       │                                         +                        
+
+./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:45:37 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+    43 │         if (
+    44 │           isEqual(notificationItem.id, action.payload.id) &&
+  > 45 │           notificationItem.resource == action.payload.resource
+       │                                     ^^
+    46 │         ) {
+    47 │           return {
+  
+  i == is only allowed when comparing against null
+  
+    43 │         if (
+    44 │           isEqual(notificationItem.id, action.payload.id) &&
+  > 45 │           notificationItem.resource == action.payload.resource
+       │                                     ^^
+    46 │         ) {
+    47 │           return {
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    45 │ ··········notificationItem.resource·===·action.payload.resource
+       │                                       +                        
 
 ./examples/app-crm-minimal/src/utilities/currency-number.ts:6:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
@@ -376,168 +511,33 @@
     8 │ ····typeof·Intl.NumberFormat·===·"function"
       │                                +           
 
-./documentation/src/context/CommunityStats/index.tsx:102:21 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    100 │ export const convertStatToText = (num: number) => {
-    101 │     const hasIntlSupport =
-  > 102 │         typeof Intl == "object" &&
-        │                     ^^
-    103 │         Intl &&
-    104 │         typeof Intl.NumberFormat == "function";
-  
-  i == is only allowed when comparing against null
-  
-    100 │ export const convertStatToText = (num: number) => {
-    101 │     const hasIntlSupport =
-  > 102 │         typeof Intl == "object" &&
-        │                     ^^
-    103 │         Intl &&
-    104 │         typeof Intl.NumberFormat == "function";
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    102 │ ········typeof·Intl·===·"object"·&&
-        │                       +            
-
-./documentation/src/context/CommunityStats/index.tsx:104:34 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    102 │         typeof Intl == "object" &&
-    103 │         Intl &&
-  > 104 │         typeof Intl.NumberFormat == "function";
-        │                                  ^^
-    105 │ 
-    106 │     if (!hasIntlSupport) {
-  
-  i == is only allowed when comparing against null
-  
-    102 │         typeof Intl == "object" &&
-    103 │         Intl &&
-  > 104 │         typeof Intl.NumberFormat == "function";
-        │                                  ^^
-    105 │ 
-    106 │     if (!hasIntlSupport) {
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    104 │ ········typeof·Intl.NumberFormat·===·"function";
-        │                                    +            
-
-./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:23:51 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    21 │                     return !(
-    22 │                         isEqual(notificationItem.id, action.payload.id) &&
-  > 23 │                         notificationItem.resource == action.payload.resource
-       │                                                   ^^
-    24 │                     );
-    25 │                 },
-  
-  i == is only allowed when comparing against null
-  
-    21 │                     return !(
-    22 │                         isEqual(notificationItem.id, action.payload.id) &&
-  > 23 │                         notificationItem.resource == action.payload.resource
-       │                                                   ^^
-    24 │                     );
-    25 │                 },
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    23 │ ························notificationItem.resource·===·action.payload.resource
-       │                                                     +                        
-
-./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:40:51 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    38 │                     !(
-    39 │                         isEqual(notificationItem.id, action.payload.id) &&
-  > 40 │                         notificationItem.resource == action.payload.resource
-       │                                                   ^^
-    41 │                     ),
-    42 │             );
-  
-  i == is only allowed when comparing against null
-  
-    38 │                     !(
-    39 │                         isEqual(notificationItem.id, action.payload.id) &&
-  > 40 │                         notificationItem.resource == action.payload.resource
-       │                                                   ^^
-    41 │                     ),
-    42 │             );
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    40 │ ························notificationItem.resource·===·action.payload.resource
-       │                                                     +                        
-
-./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:47:47 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-    45 │                 if (
-    46 │                     isEqual(notificationItem.id, action.payload.id) &&
-  > 47 │                     notificationItem.resource == action.payload.resource
-       │                                               ^^
-    48 │                 ) {
-    49 │                     return {
-  
-  i == is only allowed when comparing against null
-  
-    45 │                 if (
-    46 │                     isEqual(notificationItem.id, action.payload.id) &&
-  > 47 │                     notificationItem.resource == action.payload.resource
-       │                                               ^^
-    48 │                 ) {
-    49 │                     return {
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    47 │ ····················notificationItem.resource·===·action.payload.resource
-       │                                                 +                        
-
-./packages/mui/src/components/fields/number/index.tsx:8:21 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+./packages/mui/src/components/fields/number/index.tsx:8:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
-       │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
   
   i == is only allowed when comparing against null
   
      6 │ function toLocaleStringSupportsOptions() {
-     7 │     return !!(
-   > 8 │         typeof Intl == "object" &&
-       │                     ^^
-     9 │         Intl &&
-    10 │         typeof Intl.NumberFormat == "function"
+     7 │   return !!(
+   > 8 │     typeof Intl == "object" &&
+       │                 ^^
+     9 │     Intl &&
+    10 │     typeof Intl.NumberFormat == "function"
   
   i Using === may be unsafe if you are relying on type coercion
   
   i Unsafe fix: Use ===
   
-    8 │ ········typeof·Intl·===·"object"·&&
-      │                       +            
+    8 │ ····typeof·Intl·===·"object"·&&
+      │                   +            
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 14.
-Checked 6953 file(s) in 592ms
+Checked 6952 file(s) in 463ms

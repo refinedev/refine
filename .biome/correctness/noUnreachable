@@ -2,109 +2,109 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/core/src/hooks/auth/useRegister/index.spec.ts:490:25 lint/correctness/noUnreachable ━━━━━━━━━━
+./packages/core/src/hooks/auth/useRegister/index.spec.ts:489:13 lint/correctness/noUnreachable ━━━━━━━━━━
 
   ! This code will never be reached ...
   
-    488 │                     register: () => {
-    489 │                         throw new Error("Unhandled error");
-  > 490 │                         return Promise.resolve({ success: true });
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    491 │                     },
-    492 │                 },
+    487 │           register: () => {
+    488 │             throw new Error("Unhandled error");
+  > 489 │             return Promise.resolve({ success: true });
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    490 │           },
+    491 │         },
   
   i ... because this statement will throw an exception beforehand
   
-    487 │                     ...mockAuthProvider,
-    488 │                     register: () => {
-  > 489 │                         throw new Error("Unhandled error");
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    490 │                         return Promise.resolve({ success: true });
-    491 │                     },
+    486 │           ...mockAuthProvider,
+    487 │           register: () => {
+  > 488 │             throw new Error("Unhandled error");
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    489 │             return Promise.resolve({ success: true });
+    490 │           },
   
 
-./packages/core/src/hooks/auth/useLogin/index.spec.ts:622:25 lint/correctness/noUnreachable ━━━━━━━━━━
+./packages/core/src/hooks/auth/useUpdatePassword/index.spec.ts:174:15 lint/correctness/noUnreachable ━━━━━━━━━━
 
   ! This code will never be reached ...
   
-    620 │                     login: () => {
-    621 │                         throw new Error("Unhandled error");
-  > 622 │                         return Promise.resolve({ success: true });
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    623 │                     },
-    624 │                     check: () => Promise.resolve({ authenticated: false }),
+    172 │             updatePassword: () => {
+    173 │               throw new Error("Unhandled error");
+  > 174 │               return Promise.resolve();
+        │               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    175 │             },
+    176 │           },
   
   i ... because this statement will throw an exception beforehand
   
-    619 │                 authProvider: {
-    620 │                     login: () => {
-  > 621 │                         throw new Error("Unhandled error");
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    622 │                         return Promise.resolve({ success: true });
-    623 │                     },
+    171 │             ...mockLegacyAuthProvider,
+    172 │             updatePassword: () => {
+  > 173 │               throw new Error("Unhandled error");
+        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    174 │               return Promise.resolve();
+    175 │             },
   
 
-./packages/core/src/hooks/auth/useLogout/index.spec.ts:605:25 lint/correctness/noUnreachable ━━━━━━━━━━
+./packages/core/src/hooks/auth/useUpdatePassword/index.spec.ts:499:13 lint/correctness/noUnreachable ━━━━━━━━━━
 
   ! This code will never be reached ...
   
-    603 │                     logout: () => {
-    604 │                         throw new Error("Unhandled error");
-  > 605 │                         return Promise.resolve({ success: true });
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    606 │                     },
-    607 │                 },
+    497 │           updatePassword: () => {
+    498 │             throw new Error("Unhandled error");
+  > 499 │             return Promise.resolve({ success: true });
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    500 │           },
+    501 │         },
   
   i ... because this statement will throw an exception beforehand
   
-    602 │                     ...mockAuthProvider,
-    603 │                     logout: () => {
-  > 604 │                         throw new Error("Unhandled error");
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    605 │                         return Promise.resolve({ success: true });
-    606 │                     },
+    496 │           ...mockAuthProvider,
+    497 │           updatePassword: () => {
+  > 498 │             throw new Error("Unhandled error");
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    499 │             return Promise.resolve({ success: true });
+    500 │           },
   
 
-./packages/core/src/hooks/auth/useUpdatePassword/index.spec.ts:177:29 lint/correctness/noUnreachable ━━━━━━━━━━
+./packages/core/src/hooks/auth/useLogin/index.spec.ts:622:13 lint/correctness/noUnreachable ━━━━━━━━━━
 
   ! This code will never be reached ...
   
-    175 │                         updatePassword: () => {
-    176 │                             throw new Error("Unhandled error");
-  > 177 │                             return Promise.resolve();
-        │                             ^^^^^^^^^^^^^^^^^^^^^^^^^
-    178 │                         },
-    179 │                     },
+    620 │           login: () => {
+    621 │             throw new Error("Unhandled error");
+  > 622 │             return Promise.resolve({ success: true });
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    623 │           },
+    624 │           check: () => Promise.resolve({ authenticated: false }),
   
   i ... because this statement will throw an exception beforehand
   
-    174 │                         ...mockLegacyAuthProvider,
-    175 │                         updatePassword: () => {
-  > 176 │                             throw new Error("Unhandled error");
-        │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    177 │                             return Promise.resolve();
-    178 │                         },
+    619 │         authProvider: {
+    620 │           login: () => {
+  > 621 │             throw new Error("Unhandled error");
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    622 │             return Promise.resolve({ success: true });
+    623 │           },
   
 
-./packages/core/src/hooks/auth/useUpdatePassword/index.spec.ts:504:25 lint/correctness/noUnreachable ━━━━━━━━━━
+./packages/core/src/hooks/auth/useLogout/index.spec.ts:598:13 lint/correctness/noUnreachable ━━━━━━━━━━
 
   ! This code will never be reached ...
   
-    502 │                     updatePassword: () => {
-    503 │                         throw new Error("Unhandled error");
-  > 504 │                         return Promise.resolve({ success: true });
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    505 │                     },
-    506 │                 },
+    596 │           logout: () => {
+    597 │             throw new Error("Unhandled error");
+  > 598 │             return Promise.resolve({ success: true });
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    599 │           },
+    600 │         },
   
   i ... because this statement will throw an exception beforehand
   
-    501 │                     ...mockAuthProvider,
-    502 │                     updatePassword: () => {
-  > 503 │                         throw new Error("Unhandled error");
-        │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    504 │                         return Promise.resolve({ success: true });
-    505 │                     },
+    595 │           ...mockAuthProvider,
+    596 │           logout: () => {
+  > 597 │             throw new Error("Unhandled error");
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    598 │             return Promise.resolve({ success: true });
+    599 │           },
   
 
-Checked 6953 file(s) in 522ms
+Checked 6952 file(s) in 459ms

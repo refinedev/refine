@@ -10,9 +10,9 @@
      2 │ 
    > 3 │ class CustomDocument extends Document {
        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   > 4 │     static async getInitialProps(
+   > 4 │   static async getInitialProps(
         ...
-  > 10 │     }
+  > 10 │   }
   > 11 │ }
        │ ^
     12 │ 
@@ -21,4 +21,4 @@
   i Prefer using simple functions instead of classes with only static members.
   
 
-Checked 6953 file(s) in 528ms
+Checked 6952 file(s) in 463ms

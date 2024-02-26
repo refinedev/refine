@@ -2,141 +2,303 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/chakra-ui/src/components/pages/auth/components/login/index.tsx:85:43 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/pages/auth/components/login/index.tsx:85:27 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    83 │                                 variant="outline"
-    84 │                                 width="full"
-  > 85 │                                 leftIcon={<>{provider?.icon}</>}
-       │                                           ^^^^^^^^^^^^^^^^^^^^^
-    86 │                                 fontSize="sm"
-    87 │                                 onClick={() =>
+    83 │                 variant="outline"
+    84 │                 width="full"
+  > 85 │                 leftIcon={<>{provider?.icon}</>}
+       │                           ^^^^^^^^^^^^^^^^^^^^^
+    86 │                 fontSize="sm"
+    87 │                 onClick={() =>
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    85 │ ································leftIcon={<>{provider?.icon}</>}
-       │                                          ----              -----
+    85 │ ················leftIcon={<>{provider?.icon}</>}
+       │                          ----              -----
 
-./packages/chakra-ui/src/components/pages/auth/components/register/index.tsx:80:43 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/pages/auth/components/register/index.tsx:80:27 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    78 │                                 fontSize="sm"
-    79 │                                 width="full"
-  > 80 │                                 leftIcon={<>{provider?.icon}</>}
-       │                                           ^^^^^^^^^^^^^^^^^^^^^
-    81 │                                 onClick={() =>
-    82 │                                     mutate({
+    78 │                 fontSize="sm"
+    79 │                 width="full"
+  > 80 │                 leftIcon={<>{provider?.icon}</>}
+       │                           ^^^^^^^^^^^^^^^^^^^^^
+    81 │                 onClick={() =>
+    82 │                   mutate({
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    80 │ ································leftIcon={<>{provider?.icon}</>}
-       │                                          ----              -----
+    80 │ ················leftIcon={<>{provider?.icon}</>}
+       │                          ----              -----
 
-./packages/chakra-ui/src/components/crud/list/index.tsx:129:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/list/index.tsx:117:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    127 │                 <Box minW={200}>
-    128 │                     {typeof breadcrumb !== "undefined" ? (
-  > 129 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    130 │                     ) : (
-    131 │                         <Breadcrumb />
+    115 │         <Box minW={200}>
+    116 │           {typeof breadcrumb !== "undefined" ? (
+  > 117 │             <>{breadcrumb}</> ?? undefined
+        │             ^^^^^^^^^^^^^^^^^
+    118 │           ) : (
+    119 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    129 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
+    117 │ ············<>{breadcrumb}</>·??·undefined
+        │             ---          ----             
 
-./packages/chakra-ui/src/components/crud/edit/index.tsx:259:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/edit/index.tsx:254:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    257 │                 <Box minW={200}>
-    258 │                     {typeof breadcrumb !== "undefined" ? (
-  > 259 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    260 │                     ) : (
-    261 │                         <Breadcrumb />
+    252 │         <Box minW={200}>
+    253 │           {typeof breadcrumb !== "undefined" ? (
+  > 254 │             <>{breadcrumb}</> ?? undefined
+        │             ^^^^^^^^^^^^^^^^^
+    255 │           ) : (
+    256 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    259 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
+    254 │ ············<>{breadcrumb}</>·??·undefined
+        │             ---          ----             
 
-./packages/chakra-ui/src/components/crud/show/index.tsx:243:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/show/index.tsx:237:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    241 │                 <Box minW={200}>
-    242 │                     {typeof breadcrumb !== "undefined" ? (
-  > 243 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    244 │                     ) : (
-    245 │                         <Breadcrumb />
+    235 │         <Box minW={200}>
+    236 │           {typeof breadcrumb !== "undefined" ? (
+  > 237 │             <>{breadcrumb}</> ?? undefined
+        │             ^^^^^^^^^^^^^^^^^
+    238 │           ) : (
+    239 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    243 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
+    237 │ ············<>{breadcrumb}</>·??·undefined
+        │             ---          ----             
 
-./packages/mantine/src/components/crud/create/index.tsx:60:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/mantine/src/components/crud/create/index.tsx:61:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    58 │     const breadcrumbComponent =
-    59 │         typeof breadcrumb !== "undefined" ? (
-  > 60 │             <>{breadcrumb}</> ?? undefined
-       │             ^^^^^^^^^^^^^^^^^
-    61 │         ) : (
-    62 │             <Breadcrumb />
+    59 │   const breadcrumbComponent =
+    60 │     typeof breadcrumb !== "undefined" ? (
+  > 61 │       <>{breadcrumb}</> ?? undefined
+       │       ^^^^^^^^^^^^^^^^^
+    62 │     ) : (
+    63 │       <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    60 │ ············<>{breadcrumb}</>·??·undefined
+    61 │ ······<>{breadcrumb}</>·??·undefined
+       │       ---          ----             
+
+./packages/mantine/src/components/crud/list/index.tsx:62:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    60 │   const breadcrumbComponent =
+    61 │     typeof breadcrumb !== "undefined" ? (
+  > 62 │       <>{breadcrumb}</> ?? undefined
+       │       ^^^^^^^^^^^^^^^^^
+    63 │     ) : (
+    64 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    62 │ ······<>{breadcrumb}</>·??·undefined
+       │       ---          ----             
+
+./packages/mantine/src/components/crud/edit/index.tsx:103:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    101 │   const breadcrumbComponent =
+    102 │     typeof breadcrumb !== "undefined" ? (
+  > 103 │       <>{breadcrumb}</> ?? undefined
+        │       ^^^^^^^^^^^^^^^^^
+    104 │     ) : (
+    105 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    103 │ ······<>{breadcrumb}</>·??·undefined
+        │       ---          ----             
+
+./packages/mantine/src/components/crud/show/index.tsx:90:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    88 │   const breadcrumbComponent =
+    89 │     typeof breadcrumb !== "undefined" ? (
+  > 90 │       <>{breadcrumb}</> ?? undefined
+       │       ^^^^^^^^^^^^^^^^^
+    91 │     ) : (
+    92 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    90 │ ······<>{breadcrumb}</>·??·undefined
+       │       ---          ----             
+
+./packages/core/src/components/layoutWrapper/index.spec.tsx:19:17 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    17 │   refineProvider: IRefineContextProvider,
+    18 │ ) => {
+  > 19 │   return render(<>{children}</>, {
+       │                 ^^^^^^^^^^^^^^^
+    20 │     wrapper: TestWrapper({
+    21 │       dataProvider: MockJSONServer,
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    19 │ ··return·render(<>{children}</>,·{
+       │                 ---        ----   
+
+./packages/mui/src/components/crud/create/index.tsx:68:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    66 │   const breadcrumbComponent =
+    67 │     typeof breadcrumb !== "undefined" ? (
+  > 68 │       <>{breadcrumb}</> ?? undefined
+       │       ^^^^^^^^^^^^^^^^^
+    69 │     ) : (
+    70 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    68 │ ······<>{breadcrumb}</>·??·undefined
+       │       ---          ----             
+
+./packages/mui/src/components/crud/list/index.tsx:62:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    60 │   const breadcrumbComponent =
+    61 │     typeof breadcrumb !== "undefined" ? (
+  > 62 │       <>{breadcrumb}</> ?? undefined
+       │       ^^^^^^^^^^^^^^^^^
+    63 │     ) : (
+    64 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    62 │ ······<>{breadcrumb}</>·??·undefined
+       │       ---          ----             
+
+./packages/mui/src/components/crud/edit/index.tsx:109:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+    107 │   const breadcrumbComponent =
+    108 │     typeof breadcrumb !== "undefined" ? (
+  > 109 │       <>{breadcrumb}</> ?? undefined
+        │       ^^^^^^^^^^^^^^^^^
+    110 │     ) : (
+    111 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    109 │ ······<>{breadcrumb}</>·??·undefined
+        │       ---          ----             
+
+./packages/mui/src/components/crud/show/index.tsx:101:7 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+     99 │   const breadcrumbComponent =
+    100 │     typeof breadcrumb !== "undefined" ? (
+  > 101 │       <>{breadcrumb}</> ?? undefined
+        │       ^^^^^^^^^^^^^^^^^
+    102 │     ) : (
+    103 │       <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    101 │ ······<>{breadcrumb}</>·??·undefined
+        │       ---          ----             
+
+./packages/antd/src/components/crud/create/index.tsx:99:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid using unnecessary Fragment.
+  
+     97 │         breadcrumb={
+     98 │           typeof breadcrumb !== "undefined" ? (
+   > 99 │             <>{breadcrumb}</> ?? undefined
+        │             ^^^^^^^^^^^^^^^^^
+    100 │           ) : (
+    101 │             <Breadcrumb />
+  
+  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
+  
+  i Unsafe fix: Remove the Fragment
+  
+    99 │ ············<>{breadcrumb}</>·??·undefined
        │             ---          ----             
 
-./packages/mantine/src/components/crud/list/index.tsx:64:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/show/index.tsx:175:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    62 │     const breadcrumbComponent =
-    63 │         typeof breadcrumb !== "undefined" ? (
-  > 64 │             <>{breadcrumb}</> ?? undefined
-       │             ^^^^^^^^^^^^^^^^^
-    65 │         ) : (
-    66 │             <Breadcrumb />
+    173 │         breadcrumb={
+    174 │           typeof breadcrumb !== "undefined" ? (
+  > 175 │             <>{breadcrumb}</> ?? undefined
+        │             ^^^^^^^^^^^^^^^^^
+    176 │           ) : (
+    177 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    64 │ ············<>{breadcrumb}</>·??·undefined
-       │             ---          ----             
+    175 │ ············<>{breadcrumb}</>·??·undefined
+        │             ---          ----             
 
-./packages/mantine/src/components/crud/edit/index.tsx:102:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/list/index.tsx:102:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    100 │     const breadcrumbComponent =
-    101 │         typeof breadcrumb !== "undefined" ? (
+    100 │         breadcrumb={
+    101 │           typeof breadcrumb !== "undefined" ? (
   > 102 │             <>{breadcrumb}</> ?? undefined
         │             ^^^^^^^^^^^^^^^^^
-    103 │         ) : (
+    103 │           ) : (
     104 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
@@ -146,184 +308,22 @@
     102 │ ············<>{breadcrumb}</>·??·undefined
         │             ---          ----             
 
-./packages/mantine/src/components/crud/show/index.tsx:89:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/edit/index.tsx:190:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
 
   ! Avoid using unnecessary Fragment.
   
-    87 │     const breadcrumbComponent =
-    88 │         typeof breadcrumb !== "undefined" ? (
-  > 89 │             <>{breadcrumb}</> ?? undefined
-       │             ^^^^^^^^^^^^^^^^^
-    90 │         ) : (
-    91 │             <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    89 │ ············<>{breadcrumb}</>·??·undefined
-       │             ---          ----             
-
-./packages/core/src/components/layoutWrapper/index.spec.tsx:19:19 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    17 │     refineProvider: IRefineContextProvider,
-    18 │ ) => {
-  > 19 │     return render(<>{children}</>, {
-       │                   ^^^^^^^^^^^^^^^
-    20 │         wrapper: TestWrapper({
-    21 │             dataProvider: MockJSONServer,
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    19 │ ····return·render(<>{children}</>,·{
-       │                   ---        ----   
-
-./packages/mui/src/components/crud/create/index.tsx:67:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    65 │     const breadcrumbComponent =
-    66 │         typeof breadcrumb !== "undefined" ? (
-  > 67 │             <>{breadcrumb}</> ?? undefined
-       │             ^^^^^^^^^^^^^^^^^
-    68 │         ) : (
-    69 │             <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    67 │ ············<>{breadcrumb}</>·??·undefined
-       │             ---          ----             
-
-./packages/mui/src/components/crud/list/index.tsx:62:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    60 │     const breadcrumbComponent =
-    61 │         typeof breadcrumb !== "undefined" ? (
-  > 62 │             <>{breadcrumb}</> ?? undefined
-       │             ^^^^^^^^^^^^^^^^^
-    63 │         ) : (
-    64 │             <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    62 │ ············<>{breadcrumb}</>·??·undefined
-       │             ---          ----             
-
-./packages/mui/src/components/crud/edit/index.tsx:108:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    106 │     const breadcrumbComponent =
-    107 │         typeof breadcrumb !== "undefined" ? (
-  > 108 │             <>{breadcrumb}</> ?? undefined
+    188 │         breadcrumb={
+    189 │           typeof breadcrumb !== "undefined" ? (
+  > 190 │             <>{breadcrumb}</> ?? undefined
         │             ^^^^^^^^^^^^^^^^^
-    109 │         ) : (
-    110 │             <Breadcrumb />
+    191 │           ) : (
+    192 │             <Breadcrumb />
   
   i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
   
   i Unsafe fix: Remove the Fragment
   
-    108 │ ············<>{breadcrumb}</>·??·undefined
+    190 │ ············<>{breadcrumb}</>·??·undefined
         │             ---          ----             
 
-./packages/mui/src/components/crud/show/index.tsx:101:13 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-     99 │     const breadcrumbComponent =
-    100 │         typeof breadcrumb !== "undefined" ? (
-  > 101 │             <>{breadcrumb}</> ?? undefined
-        │             ^^^^^^^^^^^^^^^^^
-    102 │         ) : (
-    103 │             <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    101 │ ············<>{breadcrumb}</>·??·undefined
-        │             ---          ----             
-
-./packages/antd/src/components/crud/create/index.tsx:98:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-     96 │                 breadcrumb={
-     97 │                     typeof breadcrumb !== "undefined" ? (
-   > 98 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-     99 │                     ) : (
-    100 │                         <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    98 │ ························<>{breadcrumb}</>·??·undefined
-       │                         ---          ----             
-
-./packages/antd/src/components/crud/list/index.tsx:104:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    102 │                 breadcrumb={
-    103 │                     typeof breadcrumb !== "undefined" ? (
-  > 104 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    105 │                     ) : (
-    106 │                         <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    104 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
-
-./packages/antd/src/components/crud/edit/index.tsx:191:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    189 │                 breadcrumb={
-    190 │                     typeof breadcrumb !== "undefined" ? (
-  > 191 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    192 │                     ) : (
-    193 │                         <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    191 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
-
-./packages/antd/src/components/crud/show/index.tsx:181:25 lint/complexity/noUselessFragments  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using unnecessary Fragment.
-  
-    179 │                 breadcrumb={
-    180 │                     typeof breadcrumb !== "undefined" ? (
-  > 181 │                         <>{breadcrumb}</> ?? undefined
-        │                         ^^^^^^^^^^^^^^^^^
-    182 │                     ) : (
-    183 │                         <Breadcrumb />
-  
-  i A fragment is redundant if it contains only one child, or if it is the child of a html element, and is not a keyed fragment.
-  
-  i Unsafe fix: Remove the Fragment
-  
-    181 │ ························<>{breadcrumb}</>·??·undefined
-        │                         ---          ----             
-
-Checked 6953 file(s) in 573ms
+Checked 6952 file(s) in 460ms

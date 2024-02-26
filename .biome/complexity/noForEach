@@ -2,373 +2,373 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./cypress/support/commands/resource.ts:207:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./cypress/support/commands/resource.ts:204:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    206 │         // should be visible id,title,content
-  > 207 │         ["Id", "Title", "Content"].forEach((field) => {
-        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 208 │             cy.get("body").should("contain", field);
-  > 209 │         });
-        │         ^^
-    210 │         // should be visible id,title,content values
-    211 │         const title = response?.body?.title;
+    203 │     // should be visible id,title,content
+  > 204 │     ["Id", "Title", "Content"].forEach((field) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 205 │       cy.get("body").should("contain", field);
+  > 206 │     });
+        │     ^^
+    207 │     // should be visible id,title,content values
+    208 │     const title = response?.body?.title;
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./cypress/support/commands/resource.ts:213:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./cypress/support/commands/resource.ts:210:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    211 │         const title = response?.body?.title;
-    212 │         const content = response?.body?.content;
-  > 213 │         [id, title, content].forEach((value) => {
-        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 214 │             cy.get("body").should("contain", value);
-  > 215 │         });
-        │         ^^
-    216 │     });
-    217 │ 
+    208 │     const title = response?.body?.title;
+    209 │     const content = response?.body?.content;
+  > 210 │     [id, title, content].forEach((value) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 211 │       cy.get("body").should("contain", value);
+  > 212 │     });
+        │     ^^
+    213 │   });
+    214 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./.github/workflows/e2e-examples.js:283:21 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./.github/workflows/check-existing-doc-links.js:29:7 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    281 │                     });
-    282 │ 
-  > 283 │                     pidsOfStart.forEach((pid) => {
-        │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 284 │                         process.kill(pid, "SIGINT");
-  > 285 │                     });
-        │                     ^^
-    286 │ 
-    287 │                     await waitForClose(respondedUrl);
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./.github/workflows/check-existing-doc-links.js:29:13 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    28 │         Promise.all(promises).then((results) => {
-  > 29 │             results.forEach(([status, url]) => {
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 30 │                 if (status === 200) {
+    28 │     Promise.all(promises).then((results) => {
+  > 29 │       results.forEach(([status, url]) => {
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 30 │         if (status === 200) {
         ...
-  > 34 │                 }
-  > 35 │             });
-       │             ^^
-    36 │             resolve();
-    37 │         });
+  > 34 │         }
+  > 35 │       });
+       │       ^^
+    36 │       resolve();
+    37 │     });
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./.github/workflows/check-existing-doc-links.js:66:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━
+./.github/workflows/check-existing-doc-links.js:66:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    64 │     if (fail.length > 0) {
-    65 │         console.log("Broken links:");
-  > 66 │         fail.forEach((link) => {
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^
-  > 67 │             console.log(link);
-  > 68 │         });
-       │         ^^
-    69 │         process.exit(1);
-    70 │     }
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/helpers/separate-imports.ts:85:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-     83 │     if (nextLibImports.length > 0) {
-     84 │         // rename imports
-   > 85 │         nextLibImports.forEach((item) => {
-        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   > 86 │             if (renameImports[item.imported.name]) {
-         ...
-  > 102 │             }
-  > 103 │         });
-        │         ^^
-    104 │ 
-    105 │         source
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/helpers/separate-imports.ts:126:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    124 │     if (otherImportItems.length > 0) {
-    125 │         const otherImportPaths: { [key: string]: ImportSpecifier[] } = {};
-  > 126 │         otherImportItems.forEach((item) => {
-        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 127 │             // find import path
-         ...
-  > 135 │             }
-  > 136 │         });
-        │         ^^
-    137 │ 
-    138 │         Object.keys(otherImportPaths).forEach((importPath) => {
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/helpers/separate-imports.ts:138:9 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    136 │         });
-    137 │ 
-  > 138 │         Object.keys(otherImportPaths).forEach((importPath) => {
-        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 139 │             source
-         ...
-  > 154 │                 });
-  > 155 │         });
-        │         ^^
-    156 │     }
-    157 │ 
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1041:17 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    1039 │                     `Router is responding to: ${getFriendlyURL(url)}`,
-    1040 │                 );
-  > 1041 │                 debugMessages.forEach((msg) => {
-         │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 1042 │                     if (Array.isArray(msg)) {
-          ...
-  > 1046 │                     }
-  > 1047 │                 });
-         │                 ^^
-    1048 │                 logger.groupEnd();
-    1049 │             } // Wrap in try and catch in case the handle method throws a synchronous
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/use-data-grid-columns.ts:61:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    59 │     }
-    60 │ 
-  > 61 │     dataGridElement.forEach((path) => {
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 62 │         const hasColumnsAttribute = path.node.openingElement.attributes.find(
-        ...
-  > 75 │         );
-  > 76 │     });
+    64 │   if (fail.length > 0) {
+    65 │     console.log("Broken links:");
+  > 66 │     fail.forEach((link) => {
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^
+  > 67 │       console.log(link);
+  > 68 │     });
        │     ^^
+    69 │     process.exit(1);
+    70 │   }
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./.github/workflows/e2e-examples.js:269:11 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    267 │           });
+    268 │ 
+  > 269 │           pidsOfStart.forEach((pid) => {
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 270 │             process.kill(pid, "SIGINT");
+  > 271 │           });
+        │           ^^
+    272 │ 
+    273 │           await waitForClose(respondedUrl);
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/helpers/separate-imports.ts:80:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+     78 │   if (nextLibImports.length > 0) {
+     79 │     // rename imports
+   > 80 │     nextLibImports.forEach((item) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   > 81 │       if (renameImports[item.imported.name]) {
+         ...
+   > 97 │       }
+   > 98 │     });
+        │     ^^
+     99 │ 
+    100 │     source
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/helpers/separate-imports.ts:118:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    116 │   if (otherImportItems.length > 0) {
+    117 │     const otherImportPaths: { [key: string]: ImportSpecifier[] } = {};
+  > 118 │     otherImportItems.forEach((item) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 119 │       // find import path
+         ...
+  > 127 │       }
+  > 128 │     });
+        │     ^^
+    129 │ 
+    130 │     Object.keys(otherImportPaths).forEach((importPath) => {
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/helpers/separate-imports.ts:130:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    128 │     });
+    129 │ 
+  > 130 │     Object.keys(otherImportPaths).forEach((importPath) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 131 │       source
+         ...
+  > 146 │         });
+  > 147 │     });
+        │     ^^
+    148 │   }
+    149 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/use-data-grid-columns.ts:61:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    59 │   }
+    60 │ 
+  > 61 │   dataGridElement.forEach((path) => {
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 62 │     const hasColumnsAttribute = path.node.openingElement.attributes.find(
+        ...
+  > 75 │     );
+  > 76 │   });
+       │   ^^
     77 │ };
     78 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./packages/codemod/src/transformations/v4/use-menu-to-core.ts:17:5 lint/complexity/noForEach ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1009:9 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    15 │     toModule: string,
+    1007 │           `Router is responding to: ${getFriendlyURL(url)}`,
+    1008 │         );
+  > 1009 │         debugMessages.forEach((msg) => {
+         │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 1010 │           if (Array.isArray(msg)) {
+          ...
+  > 1014 │           }
+  > 1015 │         });
+         │         ^^
+    1016 │         logger.groupEnd();
+    1017 │       } // Wrap in try and catch in case the handle method throws a synchronous
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/use-menu-to-core.ts:17:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    15 │   toModule: string,
     16 │ ) => {
-  > 17 │     importNamesToMove.forEach((importName) => {
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 18 │         // get the import declaration to be moved
+  > 17 │   importNamesToMove.forEach((importName) => {
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 18 │     // get the import declaration to be moved
         ...
-  > 67 │         });
-  > 68 │     });
-       │     ^^
+  > 67 │     });
+  > 68 │   });
+       │   ^^
     69 │ 
-    70 │     // remove empty import declarations after moving imports e.g. import { } from "@pankod/refine-antd"
+    70 │   // remove empty import declarations after moving imports e.g. import { } from "@pankod/refine-antd"
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./packages/codemod/src/transformations/v4/use-menu-to-core.ts:33:9 lint/complexity/noForEach ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/use-menu-to-core.ts:33:5 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    31 │         if (!importsToBeMoved?.length) return;
+    31 │     if (!importsToBeMoved?.length) return;
     32 │ 
-  > 33 │         importsToBeMoved.forEach((importToMove) => {
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 34 │             // get the import declaration of the import to move
+  > 33 │     importsToBeMoved.forEach((importToMove) => {
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 34 │       // get the import declaration of the import to move
         ...
-  > 66 │             j(importToMove).remove();
-  > 67 │         });
-       │         ^^
-    68 │     });
+  > 66 │       j(importToMove).remove();
+  > 67 │     });
+       │     ^^
+    68 │   });
     69 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./packages/codemod/src/transformations/v4/use-menu-to-core.ts:71:5 lint/complexity/noForEach ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/use-menu-to-core.ts:71:3 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    70 │     // remove empty import declarations after moving imports e.g. import { } from "@pankod/refine-antd"
-  > 71 │     source
-       │     ^^^^^^
-  > 72 │         .find(j.ImportDeclaration)
-  > 73 │         .filter((path) => path.node.source.value === fromModule)
-  > 74 │         .filter((path) => !path.node.specifiers?.length)
-  > 75 │         .forEach((path) => j(path).remove());
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    70 │   // remove empty import declarations after moving imports e.g. import { } from "@pankod/refine-antd"
+  > 71 │   source
+       │   ^^^^^^
+  > 72 │     .find(j.ImportDeclaration)
+  > 73 │     .filter((path) => path.node.source.value === fromModule)
+  > 74 │     .filter((path) => !path.node.specifiers?.length)
+  > 75 │     .forEach((path) => j(path).remove());
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     76 │ };
     77 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:22:5 lint/complexity/noForEach ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:21:3 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    20 │     to: string,
-    21 │ ) => {
-  > 22 │     source
-       │     ^^^^^^
-  > 23 │         .find(j.ImportDeclaration)
+    19 │   to: string,
+    20 │ ) => {
+  > 21 │   source
+       │   ^^^^^^
+  > 22 │     .find(j.ImportDeclaration)
         ...
-  > 28 │             );
-  > 29 │         });
-       │         ^^
-    30 │ };
-    31 │ 
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:38:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    36 │     to: string,
-    37 │ ) => {
-  > 38 │     source
-       │     ^^^^^^
-  > 39 │         .find(j.ExportNamedDeclaration)
-        ...
-  > 48 │             );
-  > 49 │         });
-       │         ^^
-    50 │ };
-    51 │ 
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:58:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    56 │     to: string,
-    57 │ ) => {
-  > 58 │     source
-       │     ^^^^^^
-  > 59 │         .find(j.JSXOpeningElement, { name: { name: "Refine" } })
-        ...
-  > 75 │             }
-  > 76 │         });
-       │         ^^
-    77 │ };
-    78 │ 
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:80:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    79 │ export const routerToLegacyRouter = (j: JSCodeshift, source: Collection) => {
-  > 80 │     Object.entries(legacyMap).forEach(([from, to]) => {
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 81 │         renameImport(j, source, from, to);
-  > 82 │         renameExport(j, source, from, to);
-  > 83 │     });
+  > 27 │       );
+  > 28 │     });
        │     ^^
-    84 │ 
-    85 │     renameProp(j, source, oldRouterProp, newRouterProp);
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:28:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    26 │     });
-    27 │ 
-  > 28 │     authHooks.forEach((authHook) => {
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 29 │         const args = authHook.value.arguments;
-        ...
-  > 77 │         }
-  > 78 │     });
-       │     ^^
-    79 │ };
-    80 │ 
-  
-  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
-  
-
-./packages/codemod/src/transformations/v4/replace-pankod-imports-with-refinedev.ts:31:5 lint/complexity/noForEach ━━━━━━━━━━
-
-  ! Prefer for...of instead of forEach.
-  
-    29 │     const config = new CodemodConfig(CONFIG_FILE_NAME);
+    29 │ };
     30 │ 
-  > 31 │     source
-       │     ^^^^^^
-  > 32 │         .find(j.ImportDeclaration)
-        ...
-  > 61 │             );
-  > 62 │         });
-       │         ^^
-    63 │ };
-    64 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./packages/codemod/src/transformations/v4/replace-pankod-imports-with-refinedev.ts:68:5 lint/complexity/noForEach ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:37:3 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-     66 │     const config = new CodemodConfig(CONFIG_FILE_NAME);
-     67 │ 
-   > 68 │     source
-        │     ^^^^^^
-   > 69 │         .find(j.ExportNamedDeclaration)
-         ...
-  > 100 │             );
-  > 101 │         });
-        │         ^^
-    102 │ };
-    103 │ 
+    35 │   to: string,
+    36 │ ) => {
+  > 37 │   source
+       │   ^^^^^^
+  > 38 │     .find(j.ExportNamedDeclaration)
+        ...
+  > 47 │       );
+  > 48 │     });
+       │     ^^
+    49 │ };
+    50 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:57:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    55 │   to: string,
+    56 │ ) => {
+  > 57 │   source
+       │   ^^^^^^
+  > 58 │     .find(j.JSXOpeningElement, { name: { name: "Refine" } })
+        ...
+  > 74 │       }
+  > 75 │     });
+       │     ^^
+    76 │ };
+    77 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/router-to-legacy-router.ts:79:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    78 │ export const routerToLegacyRouter = (j: JSCodeshift, source: Collection) => {
+  > 79 │   Object.entries(legacyMap).forEach(([from, to]) => {
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 80 │     renameImport(j, source, from, to);
+  > 81 │     renameExport(j, source, from, to);
+  > 82 │   });
+       │   ^^
+    83 │ 
+    84 │   renameProp(j, source, oldRouterProp, newRouterProp);
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:28:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    26 │   });
+    27 │ 
+  > 28 │   authHooks.forEach((authHook) => {
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 29 │     const args = authHook.value.arguments;
+        ...
+  > 76 │     }
+  > 77 │   });
+       │   ^^
+    78 │ };
+    79 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/replace-pankod-imports-with-refinedev.ts:29:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    27 │   const config = new CodemodConfig(CONFIG_FILE_NAME);
+    28 │ 
+  > 29 │   source
+       │   ^^^^^^
+  > 30 │     .find(j.ImportDeclaration)
+        ...
+  > 54 │       );
+  > 55 │     });
+       │     ^^
+    56 │ };
+    57 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+./packages/codemod/src/transformations/v4/replace-pankod-imports-with-refinedev.ts:61:3 lint/complexity/noForEach ━━━━━━━━━━
+
+  ! Prefer for...of instead of forEach.
+  
+    59 │   const config = new CodemodConfig(CONFIG_FILE_NAME);
+    60 │ 
+  > 61 │   source
+       │   ^^^^^^
+  > 62 │     .find(j.ExportNamedDeclaration)
+        ...
+  > 91 │       );
+  > 92 │     });
+       │     ^^
+    93 │ };
+    94 │ 
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 139.
-Checked 6953 file(s) in 551ms
+Checked 6952 file(s) in 457ms

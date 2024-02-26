@@ -10,276 +10,277 @@
     4 │ 
   > 5 │ export const useDemoSidebar = (): [{}, DemoSidebarProps] => {
       │                                    ^^
-    6 │     const [mutationMode, setMutationMode] =
-    7 │         useState<MutationMode>("pessimistic");
+    6 │   const [mutationMode, setMutationMode] = useState<MutationMode>("pessimistic");
+    7 │   const [syncWithLocation, setSyncWithLocation] = useState<boolean>(false);
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/devtools-shared/src/event-types.ts:57:29 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
+./packages/devtools-shared/src/event-types.ts:57:27 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
     56 │ export type DevtoolsEventPayloads = {
-  > 57 │     [DevtoolsEvent.RELOAD]: {};
-       │                             ^^
-    58 │     [DevtoolsEvent.DEVTOOLS_INIT]: { url: string };
-    59 │     [DevtoolsEvent.DEVTOOLS_HANDSHAKE]: { url: string };
+  > 57 │   [DevtoolsEvent.RELOAD]: {};
+       │                           ^^
+    58 │   [DevtoolsEvent.DEVTOOLS_INIT]: { url: string };
+    59 │   [DevtoolsEvent.DEVTOOLS_HANDSHAKE]: { url: string };
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/devtools-shared/src/event-types.ts:66:48 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
+./packages/devtools-shared/src/event-types.ts:66:46 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    64 │     };
-    65 │     [DevtoolsEvent.DEVTOOLS_CONNECTED_APP]: { url: string | null };
-  > 66 │     [DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP]: {};
-       │                                                ^^
-    67 │     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
-    68 │     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
+    64 │   };
+    65 │   [DevtoolsEvent.DEVTOOLS_CONNECTED_APP]: { url: string | null };
+  > 66 │   [DevtoolsEvent.DEVTOOLS_DISCONNECTED_APP]: {};
+       │                                              ^^
+    67 │   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
+    68 │   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/devtools-shared/src/event-types.ts:69:45 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
+./packages/devtools-shared/src/event-types.ts:69:43 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    67 │     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
-    68 │     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
-  > 69 │     [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
-       │                                             ^^
-    70 │     [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
+    67 │   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR]: { name: string };
+    68 │   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
+  > 69 │   [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
+       │                                           ^^
+    70 │   [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
     71 │ };
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/devtools-shared/src/event-types.ts:70:50 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
+./packages/devtools-shared/src/event-types.ts:70:48 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    68 │     [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
-    69 │     [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
-  > 70 │     [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
-       │                                                  ^^
+    68 │   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
+    69 │   [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
+  > 70 │   [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
+       │                                                ^^
     71 │ };
     72 │ 
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/core/src/interfaces/autoSave.ts:18:18 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━━
+./packages/core/src/interfaces/autoSave.ts:18:16 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    16 │     TData extends BaseRecord = BaseRecord,
-    17 │     TError extends HttpError = HttpError,
-  > 18 │     TVariables = {},
-       │                  ^^
+    16 │   TData extends BaseRecord = BaseRecord,
+    17 │   TError extends HttpError = HttpError,
+  > 18 │   TVariables = {},
+       │                ^^
     19 │ > = {
-    20 │     autoSaveProps: Pick<
+    20 │   autoSaveProps: Pick<
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/core/src/interfaces/autoSave.ts:36:18 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━━
+./packages/core/src/interfaces/autoSave.ts:36:16 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    34 │     TData extends BaseRecord = BaseRecord,
-    35 │     TError extends HttpError = HttpError,
-  > 36 │     TVariables = {},
-       │                  ^^
+    34 │   TData extends BaseRecord = BaseRecord,
+    35 │   TError extends HttpError = HttpError,
+  > 36 │   TVariables = {},
+       │                ^^
     37 │ > = {
-    38 │     /**
+    38 │   /**
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/chakra-ui/src/components/crud/types.ts:34:5 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━
+./packages/react-router-v6/src/legacy/index.ts:25:65 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    32 │     BoxProps,
-    33 │     BoxProps,
-  > 34 │     {},
-       │     ^^
-    35 │     RefreshButtonProps,
-    36 │     ListButtonProps
+    23 │   useLocation: typeof useLocation;
+    24 │   Link: typeof Link;
+  > 25 │   useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params;
+       │                                                                 ^^
+    26 │   RouterComponent: React.FC<BrowserRouterProps>;
+    27 │   routes?: RefineRouteProps[];
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/chakra-ui/src/components/crud/types.ts:53:5 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useStepsForm/index.ts:11:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    51 │     BoxProps,
-    52 │     BoxProps,
-  > 53 │     {},
-       │     ^^
-    54 │     EditButtonProps,
-    55 │     DeleteButtonProps,
+     9 │   TError extends HttpError = HttpError,
+    10 │   TVariables extends FieldValues = FieldValues,
+  > 11 │   TContext extends object = {},
+       │                             ^^
+    12 │   TData extends BaseRecord = TQueryFnData,
+    13 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/react-router-v6/src/legacy/index.ts:26:59 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useStepsForm/index.ts:34:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    24 │     Link: typeof Link;
-    25 │     useParams: <
-  > 26 │         Params extends { [K in keyof Params]?: string } = {},
-       │                                                           ^^
-    27 │     >() => Params;
-    28 │     RouterComponent: React.FC<BrowserRouterProps>;
+    32 │   TError extends HttpError = HttpError,
+    33 │   TVariables extends FieldValues = FieldValues,
+  > 34 │   TContext extends object = {},
+       │                             ^^
+    35 │   TData extends BaseRecord = TQueryFnData,
+    36 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./documentation/src/components/checklist/index.tsx:9:38 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useStepsForm/index.ts:68:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-     7 │ import { CheckListIcon } from "@site/src/refine-theme/icons/check-list";
-     8 │ 
-   > 9 │ type Props = React.PropsWithChildren<{}>;
-       │                                      ^^
-    10 │ 
-    11 │ const Checklist: React.FC<Props> = ({ children }) => {
+    66 │   TError extends HttpError = HttpError,
+    67 │   TVariables extends FieldValues = FieldValues,
+  > 68 │   TContext extends object = {},
+       │                             ^^
+    69 │   TData extends BaseRecord = TQueryFnData,
+    70 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/ui-tests/src/tests/crud/edit.tsx:32:64 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useModalForm/index.ts:25:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    30 │ export const crudEditTests = function (
-    31 │     Edit: React.ComponentType<
-  > 32 │         RefineCrudEditProps<any, any, any, any, any, any, any, {}, any, any>
-       │                                                                ^^
-    33 │     >,
-    34 │ ): void {
+    23 │   TError extends HttpError = HttpError,
+    24 │   TVariables extends FieldValues = FieldValues,
+  > 25 │   TContext extends object = {},
+       │                             ^^
+    26 │   TData extends BaseRecord = TQueryFnData,
+    27 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/mantine/src/components/crud/types.ts:31:5 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useModalForm/index.ts:51:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    29 │     GroupProps,
-    30 │     BoxProps,
-  > 31 │     {},
-       │     ^^
-    32 │     EditButtonProps,
-    33 │     DeleteButtonProps,
+    49 │   TError extends HttpError = HttpError,
+    50 │   TVariables extends FieldValues = FieldValues,
+  > 51 │   TContext extends object = {},
+       │                             ^^
+    52 │   TData extends BaseRecord = TQueryFnData,
+    53 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/mantine/src/components/crud/types.ts:55:5 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useModalForm/index.ts:89:29 lint/complexity/noBannedTypes ━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    53 │     GroupProps,
-    54 │     BoxProps,
-  > 55 │     {},
-       │     ^^
-    56 │     RefreshButtonProps,
-    57 │     ListButtonProps
+    87 │   TError extends HttpError = HttpError,
+    88 │   TVariables extends FieldValues = FieldValues,
+  > 89 │   TContext extends object = {},
+       │                             ^^
+    90 │   TData extends BaseRecord = TQueryFnData,
+    91 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/ui-tests/src/tests/crud/show.tsx:32:54 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/types.ts:34:3 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    30 │ export const crudShowTests = function (
-    31 │     Show: React.ComponentType<
-  > 32 │         RefineCrudShowProps<any, any, any, any, any, {}, any, any, any, any>
-       │                                                      ^^
-    33 │     >,
-    34 │ ): void {
+    32 │   BoxProps,
+    33 │   BoxProps,
+  > 34 │   {},
+       │   ^^
+    35 │   RefreshButtonProps,
+    36 │   ListButtonProps
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/ui-tests/src/tests/crud/create.tsx:32:61 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━
+./packages/chakra-ui/src/components/crud/types.ts:53:3 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    30 │ export const crudCreateTests = function (
-    31 │     Create: React.ComponentType<
-  > 32 │         RefineCrudCreateProps<any, any, any, any, any, any, {}>
-       │                                                             ^^
-    33 │     >,
-    34 │ ): void {
+    51 │   BoxProps,
+    52 │   BoxProps,
+  > 53 │   {},
+       │   ^^
+    54 │   EditButtonProps,
+    55 │   DeleteButtonProps,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/ui-tests/src/tests/crud/list.tsx:31:76 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━━━━
+./packages/react-hook-form/src/useForm/index.ts:29:29 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    30 │ export const crudListTests = function (
-  > 31 │     List: React.ComponentType<RefineCrudListProps<any, any, any, any, any, {}>>,
-       │                                                                            ^^
-    32 │ ): void {
-    33 │     describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
+    27 │   TError extends HttpError = HttpError,
+    28 │   TVariables extends FieldValues = FieldValues,
+  > 29 │   TContext extends object = {},
+       │                             ^^
+    30 │   TData extends BaseRecord = TQueryFnData,
+    31 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./documentation/src/components/integrations/layout/index.tsx:8:67 lint/complexity/noBannedTypes ━━━━━━━━━━
+./packages/react-hook-form/src/useForm/index.ts:52:29 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-     6 │ import { BlogFooter } from "@site/src/refine-theme/blog-footer";
-     7 │ 
-   > 8 │ const IntegrationsLayout = ({ children }: React.PropsWithChildren<{}>) => {
-       │                                                                   ^^
-     9 │     return (
-    10 │         <CommonLayout>
+    50 │   TError extends HttpError = HttpError,
+    51 │   TVariables extends FieldValues = FieldValues,
+  > 52 │   TContext extends object = {},
+       │                             ^^
+    53 │   TData extends BaseRecord = TQueryFnData,
+    54 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/react-hook-form/src/useStepsForm/index.ts:11:31 lint/complexity/noBannedTypes ━━━━━━━━━━━
+./packages/react-hook-form/src/useForm/index.ts:86:29 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-     9 │     TError extends HttpError = HttpError,
-    10 │     TVariables extends FieldValues = FieldValues,
-  > 11 │     TContext extends object = {},
-       │                               ^^
-    12 │     TData extends BaseRecord = TQueryFnData,
-    13 │     TResponse extends BaseRecord = TData,
+    84 │   TError extends HttpError = HttpError,
+    85 │   TVariables extends FieldValues = FieldValues,
+  > 86 │   TContext extends object = {},
+       │                             ^^
+    87 │   TData extends BaseRecord = TQueryFnData,
+    88 │   TResponse extends BaseRecord = TData,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
-./packages/react-hook-form/src/useStepsForm/index.ts:34:31 lint/complexity/noBannedTypes ━━━━━━━━━━━
+./packages/mantine/src/components/crud/types.ts:31:3 lint/complexity/noBannedTypes ━━━━━━━━━━━━━━━━━
 
   ! Don't use '{}' as a type.
   
-    32 │     TError extends HttpError = HttpError,
-    33 │     TVariables extends FieldValues = FieldValues,
-  > 34 │     TContext extends object = {},
-       │                               ^^
-    35 │     TData extends BaseRecord = TQueryFnData,
-    36 │     TResponse extends BaseRecord = TData,
+    29 │   GroupProps,
+    30 │   BoxProps,
+  > 31 │   {},
+       │   ^^
+    32 │   EditButtonProps,
+    33 │   DeleteButtonProps,
   
   i Prefer explicitly define the object shape. '{}' means "any non-nullable value".
   
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 175.
-Checked 6953 file(s) in 528ms
+Checked 6952 file(s) in 454ms

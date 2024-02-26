@@ -2,392 +2,381 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./biome-reporter.js:16:14 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./biome-reporter.js:23:14 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    14 │   const tempConfig = getBiomeConfig();
-    15 │ 
-  > 16 │   tempConfig["linter"]["rules"][group][rule] = "warn";
+    21 │   const tempConfig = getBiomeConfig();
+    22 │ 
+  > 23 │   tempConfig["linter"]["rules"][group][rule] = "warn";
        │              ^^^^^^^^
-    17 │ 
-    18 │   return tempConfig;
+    24 │ 
+    25 │   return tempConfig;
   
   i Unsafe fix: Use a literal key instead.
   
-    14 14 │     const tempConfig = getBiomeConfig();
-    15 15 │   
-    16    │ - ··tempConfig["linter"]["rules"][group][rule]·=·"warn";
-       16 │ + ··tempConfig.linter["rules"][group][rule]·=·"warn";
-    17 17 │   
-    18 18 │     return tempConfig;
+    21 21 │     const tempConfig = getBiomeConfig();
+    22 22 │   
+    23    │ - ··tempConfig["linter"]["rules"][group][rule]·=·"warn";
+       23 │ + ··tempConfig.linter["rules"][group][rule]·=·"warn";
+    24 24 │   
+    25 25 │     return tempConfig;
   
 
-./biome-reporter.js:16:24 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./biome-reporter.js:23:24 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    14 │   const tempConfig = getBiomeConfig();
-    15 │ 
-  > 16 │   tempConfig["linter"]["rules"][group][rule] = "warn";
+    21 │   const tempConfig = getBiomeConfig();
+    22 │ 
+  > 23 │   tempConfig["linter"]["rules"][group][rule] = "warn";
        │                        ^^^^^^^
-    17 │ 
-    18 │   return tempConfig;
+    24 │ 
+    25 │   return tempConfig;
   
   i Unsafe fix: Use a literal key instead.
   
-    14 14 │     const tempConfig = getBiomeConfig();
-    15 15 │   
-    16    │ - ··tempConfig["linter"]["rules"][group][rule]·=·"warn";
-       16 │ + ··tempConfig["linter"].rules[group][rule]·=·"warn";
-    17 17 │   
-    18 18 │     return tempConfig;
+    21 21 │     const tempConfig = getBiomeConfig();
+    22 22 │   
+    23    │ - ··tempConfig["linter"]["rules"][group][rule]·=·"warn";
+       23 │ + ··tempConfig["linter"].rules[group][rule]·=·"warn";
+    24 24 │   
+    25 25 │     return tempConfig;
   
 
-./documentation/src/pages/integrations/index.tsx:66:42 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./documentation/src/pages/integrations/index.tsx:61:36 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    64 │             communityDataProviderPackages:
-    65 │                 integrationsData["community-data-provider-packages"],
-  > 66 │             frameworks: integrationsData["frameworks"],
-       │                                          ^^^^^^^^^^^^
-    67 │             integrations: integrationsData["integrations"],
-    68 │             liveProviders: integrationsData["live-providers"],
+    59 │       communityDataProviderPackages:
+    60 │         integrationsData["community-data-provider-packages"],
+  > 61 │       frameworks: integrationsData["frameworks"],
+       │                                    ^^^^^^^^^^^^
+    62 │       integrations: integrationsData["integrations"],
+    63 │       liveProviders: integrationsData["live-providers"],
   
   i Unsafe fix: Use a literal key instead.
   
-     64  64 │               communityDataProviderPackages:
-     65  65 │                   integrationsData["community-data-provider-packages"],
-     66     │ - ············frameworks:·integrationsData["frameworks"],
-         66 │ + ············frameworks:·integrationsData.frameworks,
-     67  67 │               integrations: integrationsData["integrations"],
-     68  68 │               liveProviders: integrationsData["live-providers"],
+     59  59 │         communityDataProviderPackages:
+     60  60 │           integrationsData["community-data-provider-packages"],
+     61     │ - ······frameworks:·integrationsData["frameworks"],
+         61 │ + ······frameworks:·integrationsData.frameworks,
+     62  62 │         integrations: integrationsData["integrations"],
+     63  63 │         liveProviders: integrationsData["live-providers"],
   
 
-./documentation/src/pages/integrations/index.tsx:67:44 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./documentation/src/pages/integrations/index.tsx:62:38 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    65 │                 integrationsData["community-data-provider-packages"],
-    66 │             frameworks: integrationsData["frameworks"],
-  > 67 │             integrations: integrationsData["integrations"],
-       │                                            ^^^^^^^^^^^^^^
-    68 │             liveProviders: integrationsData["live-providers"],
-    69 │             communityPackages: integrationsData["community-packages"],
+    60 │         integrationsData["community-data-provider-packages"],
+    61 │       frameworks: integrationsData["frameworks"],
+  > 62 │       integrations: integrationsData["integrations"],
+       │                                      ^^^^^^^^^^^^^^
+    63 │       liveProviders: integrationsData["live-providers"],
+    64 │       communityPackages: integrationsData["community-packages"],
   
   i Unsafe fix: Use a literal key instead.
   
-     65  65 │                   integrationsData["community-data-provider-packages"],
-     66  66 │               frameworks: integrationsData["frameworks"],
-     67     │ - ············integrations:·integrationsData["integrations"],
-         67 │ + ············integrations:·integrationsData.integrations,
-     68  68 │               liveProviders: integrationsData["live-providers"],
-     69  69 │               communityPackages: integrationsData["community-packages"],
+     60  60 │           integrationsData["community-data-provider-packages"],
+     61  61 │         frameworks: integrationsData["frameworks"],
+     62     │ - ······integrations:·integrationsData["integrations"],
+         62 │ + ······integrations:·integrationsData.integrations,
+     63  63 │         liveProviders: integrationsData["live-providers"],
+     64  64 │         communityPackages: integrationsData["community-packages"],
   
 
-./packages/strapi-v4/test/dataProvider/index.spec.ts:12:13 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:48:22 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    10 │     beforeAll(() => {
-    11 │         axiosInstance.defaults.headers.common[
-  > 12 │             "Authorization"
-       │             ^^^^^^^^^^^^^^^
-    13 │         ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
-    14 │     });
+    46 │         const legacyProp = arg.properties.find(
+    47 │           (property) =>
+  > 48 │             property["key"]?.name === "v3LegacyAuthProviderCompatible",
+       │                      ^^^^^
+    49 │         );
+    50 │ 
   
   i Unsafe fix: Use a literal key instead.
   
-      9   9 │   
-     10  10 │       beforeAll(() => {
-     11     │ - ········axiosInstance.defaults.headers.common[
-     12     │ - ············"Authorization"
-     13     │ - ········]·=·`Bearer·eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
-         11 │ + ········axiosInstance.defaults.headers.common.Authorization·=·`Bearer·eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
-     14  12 │       });
-     15  13 │   
+    46 46 │           const legacyProp = arg.properties.find(
+    47 47 │             (property) =>
+    48    │ - ············property["key"]?.name·===·"v3LegacyAuthProviderCompatible",
+       48 │ + ············property.key?.name·===·"v3LegacyAuthProviderCompatible",
+    49 49 │           );
+    50 50 │   
   
 
-./packages/strapi-v4/test/dataProvider/index.spec.ts:103:28 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:11:34 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    101 │             );
-    102 │ 
-  > 103 │             expect(data[0]["title"]).toBe("foo");
-        │                            ^^^^^^^
-    104 │             expect(data.length).toBe(3);
-    105 │         });
+     9 │     // if they have a meta attribute, skip them.
+    10 │     const hasMeta = attributes.some(
+  > 11 │       (attribute) => attribute?.["name"]?.["name"] === "meta",
+       │                                  ^^^^^^
+    12 │     );
+    13 │     if (hasMeta) return;
   
   i Unsafe fix: Use a literal key instead.
   
-    101 101 │               );
-    102 102 │   
-    103     │ - ············expect(data[0]["title"]).toBe("foo");
-        103 │ + ············expect(data[0].title).toBe("foo");
-    104 104 │               expect(data.length).toBe(3);
-    105 105 │           });
-  
+    11 │ ······(attribute)·=>·attribute?.["name"]?.["name"]·===·"meta",
+       │                                 --    --                      
 
-./examples/multi-tenancy-strapi/src/authProvider.ts:23:21 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:11:44 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    21 │                 // set header axios instance
-    22 │                 axiosInstance.defaults.headers.common[
-  > 23 │                     "Authorization"
-       │                     ^^^^^^^^^^^^^^^
-    24 │                 ] = `Bearer ${data.jwt}`;
-    25 │ 
+     9 │     // if they have a meta attribute, skip them.
+    10 │     const hasMeta = attributes.some(
+  > 11 │       (attribute) => attribute?.["name"]?.["name"] === "meta",
+       │                                            ^^^^^^
+    12 │     );
+    13 │     if (hasMeta) return;
   
   i Unsafe fix: Use a literal key instead.
   
-     20  20 │   
-     21  21 │                   // set header axios instance
-     22     │ - ················axiosInstance.defaults.headers.common[
-     23     │ - ····················"Authorization"
-     24     │ - ················]·=·`Bearer·${data.jwt}`;
-         22 │ + ················axiosInstance.defaults.headers.common.Authorization·=·`Bearer·${data.jwt}`;
-     25  23 │   
-     26  24 │                   return {
-  
+    11 │ ······(attribute)·=>·attribute?.["name"]?.["name"]·===·"meta",
+       │                                           --    --            
 
-./examples/multi-tenancy-strapi/src/authProvider.ts:69:17 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:17:23 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    67 │         if (token) {
-    68 │             axiosInstance.defaults.headers.common[
-  > 69 │                 "Authorization"
-       │                 ^^^^^^^^^^^^^^^
-    70 │             ] = `Bearer ${token}`;
-    71 │             return {
+    15 │     // if they have a metaData change it to meta.
+    16 │     path.node.openingElement.attributes.forEach((attribute) => {
+  > 17 │       if (attribute?.["name"]?.["name"] === "metaData") {
+       │                       ^^^^^^
+    18 │         attribute["name"]["name"] = "meta";
+    19 │       }
   
   i Unsafe fix: Use a literal key instead.
   
-     66  66 │           const token = localStorage.getItem(TOKEN_KEY);
-     67  67 │           if (token) {
-     68     │ - ············axiosInstance.defaults.headers.common[
-     69     │ - ················"Authorization"
-     70     │ - ············]·=·`Bearer·${token}`;
-         68 │ + ············axiosInstance.defaults.headers.common.Authorization·=·`Bearer·${token}`;
-     71  69 │               return {
-     72  70 │                   authenticated: true,
-  
+    17 │ ······if·(attribute?.["name"]?.["name"]·===·"metaData")·{
+       │                      --    --                            
 
-./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:48:34 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:17:33 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    46 │                 const legacyProp = arg.properties.find(
-    47 │                     (property) =>
-  > 48 │                         property["key"]?.name ===
-       │                                  ^^^^^
-    49 │                         "v3LegacyAuthProviderCompatible",
-    50 │                 );
+    15 │     // if they have a metaData change it to meta.
+    16 │     path.node.openingElement.attributes.forEach((attribute) => {
+  > 17 │       if (attribute?.["name"]?.["name"] === "metaData") {
+       │                                 ^^^^^^
+    18 │         attribute["name"]["name"] = "meta";
+    19 │       }
   
   i Unsafe fix: Use a literal key instead.
   
-    46 46 │                   const legacyProp = arg.properties.find(
-    47 47 │                       (property) =>
-    48    │ - ························property["key"]?.name·===
-       48 │ + ························property.key?.name·===
-    49 49 │                           "v3LegacyAuthProviderCompatible",
-    50 50 │                   );
-  
+    17 │ ······if·(attribute?.["name"]?.["name"]·===·"metaData")·{
+       │                                --    --                  
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:11:40 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:18:19 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-     9 │         // if they have a meta attribute, skip them.
-    10 │         const hasMeta = attributes.some(
-  > 11 │             (attribute) => attribute?.["name"]?.["name"] === "meta",
-       │                                        ^^^^^^
-    12 │         );
-    13 │         if (hasMeta) return;
+    16 │     path.node.openingElement.attributes.forEach((attribute) => {
+    17 │       if (attribute?.["name"]?.["name"] === "metaData") {
+  > 18 │         attribute["name"]["name"] = "meta";
+       │                   ^^^^^^
+    19 │       }
+    20 │     });
   
   i Unsafe fix: Use a literal key instead.
   
-    11 │ ············(attribute)·=>·attribute?.["name"]?.["name"]·===·"meta",
-       │                                       --    --                      
-
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:11:50 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
+    16 16 │       path.node.openingElement.attributes.forEach((attribute) => {
+    17 17 │         if (attribute?.["name"]?.["name"] === "metaData") {
+    18    │ - ········attribute["name"]["name"]·=·"meta";
+       18 │ + ········attribute.name["name"]·=·"meta";
+    19 19 │         }
+    20 20 │       });
   
-     9 │         // if they have a meta attribute, skip them.
-    10 │         const hasMeta = attributes.some(
-  > 11 │             (attribute) => attribute?.["name"]?.["name"] === "meta",
-       │                                                  ^^^^^^
-    12 │         );
-    13 │         if (hasMeta) return;
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    11 │ ············(attribute)·=>·attribute?.["name"]?.["name"]·===·"meta",
-       │                                                 --    --            
-
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:17:29 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
-  
-    15 │         // if they have a metaData change it to meta.
-    16 │         path.node.openingElement.attributes.forEach((attribute) => {
-  > 17 │             if (attribute?.["name"]?.["name"] === "metaData") {
-       │                             ^^^^^^
-    18 │                 attribute["name"]["name"] = "meta";
-    19 │             }
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    17 │ ············if·(attribute?.["name"]?.["name"]·===·"metaData")·{
-       │                            --    --                            
-
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:17:39 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
-  
-    15 │         // if they have a metaData change it to meta.
-    16 │         path.node.openingElement.attributes.forEach((attribute) => {
-  > 17 │             if (attribute?.["name"]?.["name"] === "metaData") {
-       │                                       ^^^^^^
-    18 │                 attribute["name"]["name"] = "meta";
-    19 │             }
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    17 │ ············if·(attribute?.["name"]?.["name"]·===·"metaData")·{
-       │                                      --    --                  
 
 ./packages/codemod/src/transformations/v4/metadata-to-meta.ts:18:27 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    16 │         path.node.openingElement.attributes.forEach((attribute) => {
-    17 │             if (attribute?.["name"]?.["name"] === "metaData") {
-  > 18 │                 attribute["name"]["name"] = "meta";
+    16 │     path.node.openingElement.attributes.forEach((attribute) => {
+    17 │       if (attribute?.["name"]?.["name"] === "metaData") {
+  > 18 │         attribute["name"]["name"] = "meta";
        │                           ^^^^^^
-    19 │             }
-    20 │         });
+    19 │       }
+    20 │     });
   
   i Unsafe fix: Use a literal key instead.
   
-    16 16 │           path.node.openingElement.attributes.forEach((attribute) => {
-    17 17 │               if (attribute?.["name"]?.["name"] === "metaData") {
-    18    │ - ················attribute["name"]["name"]·=·"meta";
-       18 │ + ················attribute.name["name"]·=·"meta";
-    19 19 │               }
-    20 20 │           });
+    16 16 │       path.node.openingElement.attributes.forEach((attribute) => {
+    17 17 │         if (attribute?.["name"]?.["name"] === "metaData") {
+    18    │ - ········attribute["name"]["name"]·=·"meta";
+       18 │ + ········attribute["name"].name·=·"meta";
+    19 19 │         }
+    20 20 │       });
   
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:18:35 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
-  
-    16 │         path.node.openingElement.attributes.forEach((attribute) => {
-    17 │             if (attribute?.["name"]?.["name"] === "metaData") {
-  > 18 │                 attribute["name"]["name"] = "meta";
-       │                                   ^^^^^^
-    19 │             }
-    20 │         });
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    16 16 │           path.node.openingElement.attributes.forEach((attribute) => {
-    17 17 │               if (attribute?.["name"]?.["name"] === "metaData") {
-    18    │ - ················attribute["name"]["name"]·=·"meta";
-       18 │ + ················attribute["name"].name·=·"meta";
-    19 19 │               }
-    20 20 │           });
-  
-
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:27:41 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:27:35 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    25 │         // find all arguments
-    26 │         path.node.arguments.forEach((argument) => {
-  > 27 │             const properties = argument["properties"];
-       │                                         ^^^^^^^^^^^^
-    28 │             if (!properties) return;
+    25 │     // find all arguments
+    26 │     path.node.arguments.forEach((argument) => {
+  > 27 │       const properties = argument["properties"];
+       │                                   ^^^^^^^^^^^^
+    28 │       if (!properties) return;
     29 │ 
   
   i Unsafe fix: Use a literal key instead.
   
-    25 25 │           // find all arguments
-    26 26 │           path.node.arguments.forEach((argument) => {
-    27    │ - ············const·properties·=·argument["properties"];
-       27 │ + ············const·properties·=·argument.properties;
-    28 28 │               if (!properties) return;
+    25 25 │       // find all arguments
+    26 26 │       path.node.arguments.forEach((argument) => {
+    27    │ - ······const·properties·=·argument["properties"];
+       27 │ + ······const·properties·=·argument.properties;
+    28 28 │         if (!properties) return;
     29 29 │   
   
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:32:42 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:32:34 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    30 │             // if they have a meta argument, skip them.
-    31 │             const hasMeta = properties.some(
-  > 32 │                 (property) => property?.["key"]?.["name"] === "meta",
-       │                                          ^^^^^
-    33 │             );
-    34 │             if (hasMeta) return;
+    30 │       // if they have a meta argument, skip them.
+    31 │       const hasMeta = properties.some(
+  > 32 │         (property) => property?.["key"]?.["name"] === "meta",
+       │                                  ^^^^^
+    33 │       );
+    34 │       if (hasMeta) return;
   
   i Unsafe fix: Use a literal key instead.
   
-    32 │ ················(property)·=>·property?.["key"]?.["name"]·===·"meta",
-       │                                         --   --                      
+    32 │ ········(property)·=>·property?.["key"]?.["name"]·===·"meta",
+       │                                 --   --                      
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:32:51 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:32:43 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    30 │             // if they have a meta argument, skip them.
-    31 │             const hasMeta = properties.some(
-  > 32 │                 (property) => property?.["key"]?.["name"] === "meta",
-       │                                                   ^^^^^^
-    33 │             );
-    34 │             if (hasMeta) return;
+    30 │       // if they have a meta argument, skip them.
+    31 │       const hasMeta = properties.some(
+  > 32 │         (property) => property?.["key"]?.["name"] === "meta",
+       │                                           ^^^^^^
+    33 │       );
+    34 │       if (hasMeta) return;
   
   i Unsafe fix: Use a literal key instead.
   
-    32 │ ················(property)·=>·property?.["key"]?.["name"]·===·"meta",
-       │                                                  --    --            
+    32 │ ········(property)·=>·property?.["key"]?.["name"]·===·"meta",
+       │                                          --    --            
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:39:32 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:39:22 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    37 │             properties.forEach((property) => {
-    38 │                 if (
-  > 39 │                     property?.["shorthand"] &&
-       │                                ^^^^^^^^^^^
-    40 │                     property?.["key"]?.["name"] === "metaData"
-    41 │                 ) {
+    37 │       properties.forEach((property) => {
+    38 │         if (
+  > 39 │           property?.["shorthand"] &&
+       │                      ^^^^^^^^^^^
+    40 │           property?.["key"]?.["name"] === "metaData"
+    41 │         ) {
   
   i Unsafe fix: Use a literal key instead.
   
-    39 │ ····················property?.["shorthand"]·&&
-       │                               --         --   
+    39 │ ··········property?.["shorthand"]·&&
+       │                     --         --   
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:40:32 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:40:22 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
   
-    38 │                 if (
-    39 │                     property?.["shorthand"] &&
-  > 40 │                     property?.["key"]?.["name"] === "metaData"
-       │                                ^^^^^
-    41 │                 ) {
-    42 │                     property["key"]["name"] = "meta";
+    38 │         if (
+    39 │           property?.["shorthand"] &&
+  > 40 │           property?.["key"]?.["name"] === "metaData"
+       │                      ^^^^^
+    41 │         ) {
+    42 │           property["key"]["name"] = "meta";
   
   i Unsafe fix: Use a literal key instead.
   
-    40 │ ····················property?.["key"]?.["name"]·===·"metaData"
-       │                               --   --                         
+    40 │ ··········property?.["key"]?.["name"]·===·"metaData"
+       │                     --   --                         
+
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:40:31 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    38 │         if (
+    39 │           property?.["shorthand"] &&
+  > 40 │           property?.["key"]?.["name"] === "metaData"
+       │                               ^^^^^^
+    41 │         ) {
+    42 │           property["key"]["name"] = "meta";
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    40 │ ··········property?.["key"]?.["name"]·===·"metaData"
+       │                              --    --               
+
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:42:20 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    40 │           property?.["key"]?.["name"] === "metaData"
+    41 │         ) {
+  > 42 │           property["key"]["name"] = "meta";
+       │                    ^^^^^
+    43 │           property["value"]["name"] === "metaData";
+    44 │           property["shorthand"] = false;
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    40 40 │             property?.["key"]?.["name"] === "metaData"
+    41 41 │           ) {
+    42    │ - ··········property["key"]["name"]·=·"meta";
+       42 │ + ··········property.key["name"]·=·"meta";
+    43 43 │             property["value"]["name"] === "metaData";
+    44 44 │             property["shorthand"] = false;
+  
+
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:42:27 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    40 │           property?.["key"]?.["name"] === "metaData"
+    41 │         ) {
+  > 42 │           property["key"]["name"] = "meta";
+       │                           ^^^^^^
+    43 │           property["value"]["name"] === "metaData";
+    44 │           property["shorthand"] = false;
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    40 40 │             property?.["key"]?.["name"] === "metaData"
+    41 41 │           ) {
+    42    │ - ··········property["key"]["name"]·=·"meta";
+       42 │ + ··········property["key"].name·=·"meta";
+    43 43 │             property["value"]["name"] === "metaData";
+    44 44 │             property["shorthand"] = false;
+  
+
+./packages/codemod/src/transformations/v4/metadata-to-meta.ts:43:20 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    41 │         ) {
+    42 │           property["key"]["name"] = "meta";
+  > 43 │           property["value"]["name"] === "metaData";
+       │                    ^^^^^^^
+    44 │           property["shorthand"] = false;
+    45 │         } else {
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    41 41 │           ) {
+    42 42 │             property["key"]["name"] = "meta";
+    43    │ - ··········property["value"]["name"]·===·"metaData";
+       43 │ + ··········property.value["name"]·===·"metaData";
+    44 44 │             property["shorthand"] = false;
+    45 45 │           } else {
+  
 
 The number of diagnostics exceeds the number allowed by Biome.
-Diagnostics not shown: 640.
-Checked 6953 file(s) in 586ms
+Diagnostics not shown: 627.
+Checked 6952 file(s) in 482ms

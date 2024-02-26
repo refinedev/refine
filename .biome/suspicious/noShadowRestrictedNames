@@ -38,8 +38,8 @@
     2 │ 
   > 3 │ export function Date({ date, formattedDate }) {
       │                 ^^^^
-    4 │     return (
-    5 │         <time dateTime={date} itemProp="datePublished">
+    4 │   return (
+    5 │     <time dateTime={date} itemProp="datePublished">
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -80,8 +80,8 @@
     3 │ 
   > 4 │ const Error = ({ statusCode, title }: ErrorProps): JSX.Element => {
       │       ^^^^^
-    5 │     const getMessage = () => {
-    6 │         if (title) {
+    5 │   const getMessage = () => {
+    6 │     if (title) {
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -214,8 +214,8 @@
      9 │ 
   > 10 │ const Map = () => {
        │       ^^^
-    11 │     const customMarkerIcon = divIcon({
-    12 │         className: "custom-marker-icon",
+    11 │   const customMarkerIcon = divIcon({
+    12 │     className: "custom-marker-icon",
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -242,8 +242,8 @@
     44 │ 
   > 45 │ export const Number: ComponentStory<typeof NumberField> = (args) => {
        │              ^^^^^^
-    46 │     const theme = useTheme();
-    47 │     return (
+    46 │   const theme = useTheme();
+    47 │   return (
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -256,8 +256,8 @@
     23 │ 
   > 24 │ export const Boolean: ComponentStory<typeof BooleanField> = (args) => (
        │              ^^^^^^^
-    25 │     <BooleanField
-    26 │         value={args.value}
+    25 │   <BooleanField
+    26 │     value={args.value}
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -270,10 +270,10 @@
     22 │ 
   > 23 │ export const Date: ComponentStory<typeof DateField> = (args) => {
        │              ^^^^
-    24 │     const theme = useTheme();
-    25 │     return (
+    24 │   const theme = useTheme();
+    25 │   return (
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-Checked 6953 file(s) in 516ms
+Checked 6952 file(s) in 461ms

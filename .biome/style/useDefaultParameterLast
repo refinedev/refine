@@ -2,6 +2,87 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
+./packages/core/src/definitions/helpers/useUserFriendlyName/index.ts:12:28 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+
+  ! This default parameter should follow the last required parameter or should be a required parameter.
+  
+    10 │   } = useRefineContext();
+    11 │ 
+  > 12 │   const getFriendlyName = (name = "", type: "singular" | "plural"): string => {
+       │                            ^^^^^^^^^
+    13 │     const humanizeName = textTransformers.humanize(name);
+    14 │     if (type === "singular") {
+  
+  i The last required parameter is here:
+  
+    10 │   } = useRefineContext();
+    11 │ 
+  > 12 │   const getFriendlyName = (name = "", type: "singular" | "plural"): string => {
+       │                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    13 │     const humanizeName = textTransformers.humanize(name);
+    14 │     if (type === "singular") {
+  
+  i A default parameter that precedes a required parameter cannot be omitted at call site.
+  
+  i Unsafe fix: Turn the parameter into a required parameter.
+  
+    12 │ ··const·getFriendlyName·=·(name·=·"",·type:·"singular"·|·"plural"):·string·=>·{
+       │                                -----                                           
+
+./packages/inferencer/src/compose-inferencers/index.ts:15:5 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+
+  ! This default parameter should follow the last required parameter or should be a required parameter.
+  
+    13 │     value,
+    14 │     record,
+  > 15 │     infer = fieldInferencer,
+       │     ^^^^^^^^^^^^^^^^^^^^^^^
+    16 │     type,
+    17 │   ) => {
+  
+  i The last required parameter is here:
+  
+    14 │     record,
+    15 │     infer = fieldInferencer,
+  > 16 │     type,
+       │     ^^^^
+    17 │   ) => {
+    18 │     const inferences = inferencers.map((inferencer) =>
+  
+  i A default parameter that precedes a required parameter cannot be omitted at call site.
+  
+  i Unsafe fix: Turn the parameter into a required parameter.
+  
+    15 │ ····infer·=·fieldInferencer,
+       │          ------------------ 
+
+./packages/core/src/definitions/helpers/userFriendlyResourceName/index.ts:10:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+
+  ! This default parameter should follow the last required parameter or should be a required parameter.
+  
+     8 │  */
+     9 │ export const userFriendlyResourceName = (
+  > 10 │   resource = "",
+       │   ^^^^^^^^^^^^^
+    11 │   type: "singular" | "plural",
+    12 │ ): string => {
+  
+  i The last required parameter is here:
+  
+     9 │ export const userFriendlyResourceName = (
+    10 │   resource = "",
+  > 11 │   type: "singular" | "plural",
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    12 │ ): string => {
+    13 │   const humanizeResource = humanizeString(resource);
+  
+  i A default parameter that precedes a required parameter cannot be omitted at call site.
+  
+  i Unsafe fix: Turn the parameter into a required parameter.
+  
+    10 │ ··resource·=·"",
+       │           ----- 
+
 ./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:22:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
 
   ! This default parameter should follow the last required parameter or should be a required parameter.
@@ -28,84 +109,4 @@
     22 │ ··deals:·DealAggregate[]·=·[],
        │                         ----- 
 
-./packages/core/src/definitions/helpers/useUserFriendlyName/index.ts:13:9 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
-
-  ! This default parameter should follow the last required parameter or should be a required parameter.
-  
-    12 │     const getFriendlyName = (
-  > 13 │         name = "",
-       │         ^^^^^^^^^
-    14 │         type: "singular" | "plural",
-    15 │     ): string => {
-  
-  i The last required parameter is here:
-  
-    12 │     const getFriendlyName = (
-    13 │         name = "",
-  > 14 │         type: "singular" | "plural",
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    15 │     ): string => {
-    16 │         const humanizeName = textTransformers.humanize(name);
-  
-  i A default parameter that precedes a required parameter cannot be omitted at call site.
-  
-  i Unsafe fix: Turn the parameter into a required parameter.
-  
-    13 │ ········name·=·"",
-       │             ----- 
-
-./packages/core/src/definitions/helpers/userFriendlyResourceName/index.ts:10:5 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
-
-  ! This default parameter should follow the last required parameter or should be a required parameter.
-  
-     8 │  */
-     9 │ export const userFriendlyResourceName = (
-  > 10 │     resource = "",
-       │     ^^^^^^^^^^^^^
-    11 │     type: "singular" | "plural",
-    12 │ ): string => {
-  
-  i The last required parameter is here:
-  
-     9 │ export const userFriendlyResourceName = (
-    10 │     resource = "",
-  > 11 │     type: "singular" | "plural",
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    12 │ ): string => {
-    13 │     const humanizeResource = humanizeString(resource);
-  
-  i A default parameter that precedes a required parameter cannot be omitted at call site.
-  
-  i Unsafe fix: Turn the parameter into a required parameter.
-  
-    10 │ ····resource·=·"",
-       │             ----- 
-
-./packages/inferencer/src/compose-inferencers/index.ts:15:9 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
-
-  ! This default parameter should follow the last required parameter or should be a required parameter.
-  
-    13 │         value,
-    14 │         record,
-  > 15 │         infer = fieldInferencer,
-       │         ^^^^^^^^^^^^^^^^^^^^^^^
-    16 │         type,
-    17 │     ) => {
-  
-  i The last required parameter is here:
-  
-    14 │         record,
-    15 │         infer = fieldInferencer,
-  > 16 │         type,
-       │         ^^^^
-    17 │     ) => {
-    18 │         const inferences = inferencers.map((inferencer) =>
-  
-  i A default parameter that precedes a required parameter cannot be omitted at call site.
-  
-  i Unsafe fix: Turn the parameter into a required parameter.
-  
-    15 │ ········infer·=·fieldInferencer,
-       │              ------------------ 
-
-Checked 6953 file(s) in 539ms
+Checked 6952 file(s) in 503ms

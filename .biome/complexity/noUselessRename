@@ -43,20 +43,20 @@
     3 │ export·{·default·as·default·}·from·"./app/index";
       │                  -----------                     
 
-./packages/appwrite/src/dataProvider.ts:34:21 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━━━
+./packages/appwrite/src/dataProvider.ts:28:15 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━━━
 
   ! Useless rename.
   
-    32 │             const appwriteSorts = getAppwriteSorting(sorters);
-    33 │ 
-  > 34 │             const { total: total, documents: data } =
-       │                     ^^^^^^^^^^^^
-    35 │                 await database.listDocuments<any>(databaseId, resource, [
-    36 │                     ...appwriteFilters,
+    26 │       const appwriteSorts = getAppwriteSorting(sorters);
+    27 │ 
+  > 28 │       const { total: total, documents: data } =
+       │               ^^^^^^^^^^^^
+    29 │         await database.listDocuments<any>(databaseId, resource, [
+    30 │           ...appwriteFilters,
   
   i Safe fix: Remove the renaming.
   
-    34 │ ············const·{·total:·total,·documents:·data·}·=
-       │                          -------                     
+    28 │ ······const·{·total:·total,·documents:·data·}·=
+       │                    -------                     
 
-Checked 6953 file(s) in 531ms
+Checked 6952 file(s) in 467ms

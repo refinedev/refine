@@ -2,100 +2,101 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:19:13 lint/correctness/noSwitchDeclarations  FIXABLE  ━━━━━━━━━━
+./packages/core/src/contexts/undoableQueue/undoableQueueContext.tsx:19:7 lint/correctness/noSwitchDeclarations  FIXABLE  ━━━━━━━━━━
 
   ! Other switch clauses can erroneously access this declaration.
     Wrap the declaration in a block to restrict its access to the switch clause.
   
-    17 │     switch (action.type) {
-    18 │         case ActionTypes.ADD:
-  > 19 │             const newState = state.filter(
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 20 │                 (notificationItem: IUndoableQueue) => {
-        ...
-  > 25 │                 },
-  > 26 │             );
-       │             ^
-    27 │ 
-    28 │             return [
+    17 │   switch (action.type) {
+    18 │     case ActionTypes.ADD:
+  > 19 │       const newState = state.filter((notificationItem: IUndoableQueue) => {
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 20 │         return !(
+  > 21 │           isEqual(notificationItem.id, action.payload.id) &&
+  > 22 │           notificationItem.resource == action.payload.resource
+  > 23 │         );
+  > 24 │       });
+       │       ^^
+    25 │ 
+    26 │       return [
   
   i The declaration is defined in this switch clause:
   
     16 │ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
-    17 │     switch (action.type) {
-  > 18 │         case ActionTypes.ADD:
-       │         ^^^^^^^^^^^^^^^^^^^^^
-  > 19 │             const newState = state.filter(
+    17 │   switch (action.type) {
+  > 18 │     case ActionTypes.ADD:
+       │     ^^^^^^^^^^^^^^^^^^^^^
+  > 19 │       const newState = state.filter((notificationItem: IUndoableQueue) => {
         ...
-  > 33 │                 },
-  > 34 │             ];
-       │             ^^
-    35 │         case ActionTypes.REMOVE:
-    36 │             return state.filter(
+  > 31 │         },
+  > 32 │       ];
+       │       ^^
+    33 │     case ActionTypes.REMOVE:
+    34 │       return state.filter(
   
   i Unsafe fix: Wrap the declaration in a block.
   
     16 16 │   export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
-    17 17 │       switch (action.type) {
-    18    │ - ········case·ActionTypes.ADD:
-       18 │ + ········case·ActionTypes.ADD:·{
-    19 19 │               const newState = state.filter(
-    20 20 │                   (notificationItem: IUndoableQueue) => {
+    17 17 │     switch (action.type) {
+    18    │ - ····case·ActionTypes.ADD:
+       18 │ + ····case·ActionTypes.ADD:·{
+    19 19 │         const newState = state.filter((notificationItem: IUndoableQueue) => {
+    20 20 │           return !(
     ····· │ 
-    33 33 │                   },
-    34 34 │               ];
-    35    │ - ········case·ActionTypes.REMOVE:
-       35 │ + ········}
-       36 │ + ········case·ActionTypes.REMOVE:
-    36 37 │               return state.filter(
-    37 38 │                   (notificationItem: IUndoableQueue) =>
+    31 31 │           },
+    32 32 │         ];
+    33    │ - ····case·ActionTypes.REMOVE:
+       33 │ + ····}
+       34 │ + ····case·ActionTypes.REMOVE:
+    34 35 │         return state.filter(
+    35 36 │           (notificationItem: IUndoableQueue) =>
   
 
-./packages/supabase/src/utils/generateFilter.ts:31:13 lint/correctness/noSwitchDeclarations  FIXABLE  ━━━━━━━━━━
+./packages/supabase/src/utils/generateFilter.ts:31:7 lint/correctness/noSwitchDeclarations  FIXABLE  ━━━━━━━━━━
 
   ! Other switch clauses can erroneously access this declaration.
     Wrap the declaration in a block to restrict its access to the switch clause.
   
-    29 │             return query.ilike(filter.field, `%${filter.value}`);
-    30 │         case "or":
-  > 31 │             const orSyntax = filter.value
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 32 │                 .map((item) => {
+    29 │       return query.ilike(filter.field, `%${filter.value}`);
+    30 │     case "or":
+  > 31 │       const orSyntax = filter.value
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 32 │         .map((item) => {
         ...
-  > 43 │                 })
-  > 44 │                 .join(",");
-       │                 ^^^^^^^^^^
-    45 │             return query.or(orSyntax);
-    46 │ 
+  > 41 │         })
+  > 42 │         .join(",");
+       │         ^^^^^^^^^^
+    43 │       return query.or(orSyntax);
+    44 │ 
   
   i The declaration is defined in this switch clause:
   
-    28 │         case "endswith":
-    29 │             return query.ilike(filter.field, `%${filter.value}`);
-  > 30 │         case "or":
-       │         ^^^^^^^^^^
-  > 31 │             const orSyntax = filter.value
+    28 │     case "endswith":
+    29 │       return query.ilike(filter.field, `%${filter.value}`);
+  > 30 │     case "or":
+       │     ^^^^^^^^^^
+  > 31 │       const orSyntax = filter.value
         ...
-  > 44 │                 .join(",");
-  > 45 │             return query.or(orSyntax);
-       │             ^^^^^^^^^^^^^^^^^^^^^^^^^^
-    46 │ 
-    47 │         case "and":
+  > 42 │         .join(",");
+  > 43 │       return query.or(orSyntax);
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    44 │ 
+    45 │     case "and":
   
   i Unsafe fix: Wrap the declaration in a block.
   
-    28 28 │           case "endswith":
-    29 29 │               return query.ilike(filter.field, `%${filter.value}`);
-    30    │ - ········case·"or":
-       30 │ + ········case·"or":·{
-    31 31 │               const orSyntax = filter.value
-    32 32 │                   .map((item) => {
+    28 28 │       case "endswith":
+    29 29 │         return query.ilike(filter.field, `%${filter.value}`);
+    30    │ - ····case·"or":
+       30 │ + ····case·"or":·{
+    31 31 │         const orSyntax = filter.value
+    32 32 │           .map((item) => {
     ····· │ 
-    44 44 │                   .join(",");
-    45 45 │               return query.or(orSyntax);
-       46 │ + ········}
-    46 47 │   
-    47 48 │           case "and":
+    42 42 │           .join(",");
+    43 43 │         return query.or(orSyntax);
+       44 │ + ····}
+    44 45 │   
+    45 46 │       case "and":
   
 
-Checked 6953 file(s) in 520ms
+Checked 6952 file(s) in 468ms

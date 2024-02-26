@@ -2,52 +2,52 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./.github/workflows/e2e-examples.js:120:24 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:118:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
   
-    119 │ const waitOnFor = (resource) => {
-  > 120 │     return new Promise(async (resolve, reject) => {
-        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 121 │         try {
+    117 │ const waitOnFor = (resource) => {
+  > 118 │   return new Promise(async (resolve, reject) => {
+        │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 119 │     try {
          ...
-  > 132 │         }
-  > 133 │     });
-        │     ^
-    134 │ };
-    135 │ 
+  > 130 │     }
+  > 131 │   });
+        │   ^
+    132 │ };
+    133 │ 
   
 
-./.github/workflows/e2e-examples.js:137:24 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:135:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
   
-    136 │ const waitForServer = async (port) => {
-  > 137 │     return new Promise(async (resolve, reject) => {
-        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 138 │         setTimeout(() => {
+    134 │ const waitForServer = async (port) => {
+  > 135 │   return new Promise(async (resolve, reject) => {
+        │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 136 │     setTimeout(() => {
          ...
-  > 154 │         }
-  > 155 │     });
-        │     ^
-    156 │ };
-    157 │ 
+  > 152 │     }
+  > 153 │   });
+        │   ^
+    154 │ };
+    155 │ 
   
 
-./.github/workflows/e2e-examples.js:159:24 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
+./.github/workflows/e2e-examples.js:157:22 lint/suspicious/noAsyncPromiseExecutor ━━━━━━━━━━━━━━━━━━
 
   ! Promise executor functions should not be `async`.
   
-    158 │ const waitForClose = (resource) => {
-  > 159 │     return new Promise(async (resolve, reject) => {
-        │                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 160 │         setTimeout(() => {
+    156 │ const waitForClose = (resource) => {
+  > 157 │   return new Promise(async (resolve, reject) => {
+        │                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 158 │     setTimeout(() => {
          ...
-  > 176 │         }
-  > 177 │     });
-        │     ^
-    178 │ };
-    179 │ 
+  > 174 │     }
+  > 175 │   });
+        │   ^
+    176 │ };
+    177 │ 
   
 
-Checked 6953 file(s) in 555ms
+Checked 6952 file(s) in 469ms

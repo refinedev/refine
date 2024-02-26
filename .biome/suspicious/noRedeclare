@@ -10,8 +10,8 @@
      8 │ 
    > 9 │ interface Link {
        │           ^^^^
-    10 │     href: string;
-    11 │     label: string;
+    10 │   href: string;
+    11 │   label: string;
   
   i 'Link' is defined here:
   
@@ -21,4 +21,4 @@
     3 │ 
   
 
-Checked 6953 file(s) in 530ms
+Checked 6952 file(s) in 510ms
