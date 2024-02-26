@@ -1,0 +1,282 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./cypress/support/commands/resource.ts:43:55 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    41 │ };
+    42 │ 
+  > 43 │ const assertFormShouldHaveResponseValues = (response: any, ui: UITypes) => {
+       │                                                       ^^^
+    44 │     const body = response?.body;
+    45 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./cypress/support/commands/resource.ts:110:42 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    108 │ };
+    109 │ 
+  > 110 │ const assertSuccessResponse = (response: any, ui: UITypes) => {
+        │                                          ^^^
+    111 │     const body = response?.body;
+    112 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./cypress/support/commands/intercepts/hasura.ts:89:30 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    87 │                         hasuraBlogPosts.data.blog_posts.find(
+    88 │                             (post) => post.id === id,
+  > 89 │                         ) as any;
+       │                              ^^^
+    90 │ 
+    91 │                     if (!post) {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/codemod/src/helpers/separate-imports.ts:12:24 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    10 │ export function separateImports(payload: {
+    11 │     j: JSCodeshift;
+  > 12 │     source: Collection<any>;
+       │                        ^^^
+    13 │     imports: string[];
+    14 │     renameImports: { [key: string]: string };
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/dataProvider.ts:98:28 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+     96 │         const url = `${apiUrl}/${resource}`;
+     97 │ 
+   > 98 │         let dataVariables: any = { data: variables };
+        │                            ^^^
+     99 │ 
+    100 │         if (resource === "users") {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/dataProvider.ts:119:28 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    117 │         const url = `${apiUrl}/${resource}/${id}`;
+    118 │ 
+  > 119 │         let dataVariables: any = { data: variables };
+        │                            ^^^
+    120 │ 
+    121 │         if (resource === "users") {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/dataProvider.ts:144:36 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    142 │                 const url = `${apiUrl}/${resource}/${id}`;
+    143 │ 
+  > 144 │                 let dataVariables: any = { data: variables };
+        │                                    ^^^
+    145 │ 
+    146 │                 if (resource === "users") {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/codemod/src/transformations/use-data-grid-columns.ts:14:70 lint/suspicious/noExplicitAny ━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    12 │ export const parser = "tsx";
+    13 │ 
+  > 14 │ const removeColumnsOnUseDataGrid = (j: JSCodeshift, root: Collection<any>) => {
+       │                                                                      ^^^
+    15 │     const useDataGridHook = root.find(j.CallExpression, {
+    16 │         callee: {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/codemod/src/transformations/use-data-grid-columns.ts:45:67 lint/suspicious/noExplicitAny ━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    43 │ };
+    44 │ 
+  > 45 │ const addColumnsToUseDataGrid = (j: JSCodeshift, root: Collection<any>) => {
+       │                                                                   ^^^
+    46 │     const dataGridElement = root.find(j.JSXElement, {
+    47 │         openingElement: {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/helpers/normalize.ts:1:37 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+  > 1 │ export const getValueProps = (data: any, imageUrl: string) => {
+      │                                     ^^^
+    2 │     if (!data) {
+    3 │         return { fileList: [] };
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/helpers/normalize.ts:10:62 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+     8 │         fileList:
+     9 │             data.fileList ??
+  > 10 │             (Array.isArray(data) ? data : [data]).map((item: any) => {
+       │                                                              ^^^
+    11 │                 const file: any = {
+    12 │                     name: item.name,
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/helpers/normalize.ts:11:29 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+     9 │             data.fileList ??
+    10 │             (Array.isArray(data) ? data : [data]).map((item: any) => {
+  > 11 │                 const file: any = {
+       │                             ^^^
+    12 │                     name: item.name,
+    13 │                     percent: item.percent,
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/helpers/normalize.ts:29:43 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    27 │ };
+    28 │ 
+  > 29 │ export const mediaUploadMapper = (params: any) => {
+       │                                           ^^^
+    30 │     Object.keys(params).map((item) => {
+    31 │         if (params[item]) {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/normalizeData.ts:1:24 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+  > 1 │ const flatten = (data: any) => {
+      │                        ^^^
+    2 │     if (!data.attributes) return data;
+    3 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/normalizeData.ts:10:25 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+     8 │ };
+     9 │ 
+  > 10 │ const isObject = (data: any) =>
+       │                         ^^^
+    11 │     Object.prototype.toString.call(data) === "[object Object]";
+    12 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/normalizeData.ts:13:37 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │     Object.prototype.toString.call(data) === "[object Object]";
+    12 │ 
+  > 13 │ export const normalizeData = (data: any): any => {
+       │                                     ^^^
+    14 │     if (Array.isArray(data)) {
+    15 │         return data.map((item) => normalizeData(item));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/normalizeData.ts:13:43 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │     Object.prototype.toString.call(data) === "[object Object]";
+    12 │ 
+  > 13 │ export const normalizeData = (data: any): any => {
+       │                                           ^^^
+    14 │     if (Array.isArray(data)) {
+    15 │         return data.map((item) => normalizeData(item));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:20:22 lint/suspicious/noExplicitAny ━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    18 │ export const addV3LegacyAuthProviderCompatibleTrueToAuthHooks = (
+    19 │     j: JSCodeshift,
+  > 20 │     root: Collection<any>,
+       │                      ^^^
+    21 │ ) => {
+    22 │     const authHooks = root.find(j.CallExpression, {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/transformHttpError.ts:4:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    2 │ import { transformErrorMessages } from "./transformErrorMessages";
+    3 │ 
+  > 4 │ export const transformHttpError = (err: any): HttpError => {
+      │                                         ^^^
+    5 │     const error = err?.response?.data?.error || {};
+    6 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/test/utils/transformErrorMessages.spec.ts:41:30 lint/suspicious/noExplicitAny ━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    40 │     it("should not throw an error with an empty array", () => {
+  > 41 │         const errorMessages: any = [];
+       │                              ^^^
+    42 │ 
+    43 │         const expectedOutput = {};
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+The number of diagnostics exceeds the number allowed by Biome.
+Diagnostics not shown: 1389.
+Checked 6953 file(s) in 577ms

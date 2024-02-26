@@ -1,26 +1,8 @@
 {
-    "arrowParens": "always",
-    "semi": true,
-    "trailingComma": "all",
-    "singleQuote": false,
-    "printWidth": 80,
-    "tabWidth": 4,
-    "overrides": [
-        {
-            "files": ["*.yml", "*.yaml", "*.json", "*.md"],
-            "options": {
-                "tabWidth": 2
-            }
-        },
-        {
-            "files": [
-                "documentation/docs/**/*.{md,mdx,tsx,js,ts}",
-                "documentation/blog/**/*.{md,mdx,tsx,js,ts}"
-            ],
-            "options": {
-                "tabWidth": 2,
-                "printWidth": 120
-            }
-        }
-    ]
+  "arrowParens": "always",
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": false,
+  "printWidth": 80,
+  "tabWidth": 2
 }
