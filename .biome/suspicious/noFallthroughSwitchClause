@@ -1,0 +1,24 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/blog-react-hot-toast/src/providers/notificationProvider.tsx:18:13 lint/suspicious/noFallthroughSwitchClause ━━━━━━━━━━
+
+  ! This case is falling through to the next case.
+  
+    16 │                 });
+    17 │                 break;
+  > 18 │             case "error":
+       │             ^^^^^^^^^^^^^
+  > 19 │                 toast.error(message, {
+        ...
+  > 25 │                     },
+  > 26 │                 });
+       │                 ^^^
+    27 │             default:
+    28 │                 break;
+  
+  i Add a `break` or `return` statement to the end of this case to prevent fallthrough.
+  
+
+Checked 6953 file(s) in 528ms

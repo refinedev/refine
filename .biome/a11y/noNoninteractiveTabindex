@@ -1,0 +1,73 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/store/src/components/ui/Sidebar/Sidebar.tsx:45:13 lint/a11y/noNoninteractiveTabindex  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element div is non-interactive. Do not use tabIndex.
+  
+    43 │             ref={sidebarRef}
+    44 │             onKeyDown={onKeyDownSidebar}
+  > 45 │             tabIndex={1}
+       │             ^^^^^^^^^^^^
+    46 │         >
+    47 │             <div className="absolute inset-0 overflow-hidden">
+  
+  i Adding non-interactive elements to the keyboard navigation flow can confuse users.
+  
+  i Unsafe fix: Remove the tabIndex attribute.
+  
+    43 43 │               ref={sidebarRef}
+    44 44 │               onKeyDown={onKeyDownSidebar}
+    45    │ - ············tabIndex={1}
+    46 45 │           >
+    47 46 │               <div className="absolute inset-0 overflow-hidden">
+  
+
+./documentation/src/refine-theme/common-codeblock-string.tsx:122:29 lint/a11y/noNoninteractiveTabindex  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element pre is non-interactive. Do not use tabIndex.
+  
+    120 │                     {({ className, tokens, getLineProps, getTokenProps }) => (
+    121 │                         <pre
+  > 122 │                             tabIndex={0}
+        │                             ^^^^^^^^^^^^
+    123 │                             ref={wordWrap.codeBlockRef}
+    124 │                             className={clsx(
+  
+  i Adding non-interactive elements to the keyboard navigation flow can confuse users.
+  
+  i Unsafe fix: Remove the tabIndex attribute.
+  
+    120 120 │                       {({ className, tokens, getLineProps, getTokenProps }) => (
+    121 121 │                           <pre
+    122     │ - ····························tabIndex={0}
+    123     │ - ····························ref={wordWrap.codeBlockRef}
+        122 │ + ····························ref={wordWrap.codeBlockRef}
+    124 123 │                               className={clsx(
+    125 124 │                                   className,
+  
+
+./examples/blog-react-aria/src/components/Header.tsx:19:13 lint/a11y/noNoninteractiveTabindex  FIXABLE  ━━━━━━━━━━
+
+  ! The HTML element div is non-interactive. Do not use tabIndex.
+  
+    17 │                 display: "block",
+    18 │             }}
+  > 19 │             tabIndex={0}
+       │             ^^^^^^^^^^^^
+    20 │         >
+    21 │             <div
+  
+  i Adding non-interactive elements to the keyboard navigation flow can confuse users.
+  
+  i Unsafe fix: Remove the tabIndex attribute.
+  
+    17 17 │                   display: "block",
+    18 18 │               }}
+    19    │ - ············tabIndex={0}
+    20 19 │           >
+    21 20 │               <div
+  
+
+Checked 6953 file(s) in 536ms
