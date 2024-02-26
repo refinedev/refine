@@ -5,6 +5,8 @@ node_modules/
 *.min.js
 packages/**/coverage/
 CHANGELOG.md
+*.js
+*.jsx
 *.ts
 *.tsx
 *.json
