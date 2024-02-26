@@ -2,45 +2,49 @@ import { QueryObserverResult } from "@tanstack/react-query";
 import type { Checkbox } from "antd";
 
 import {
-    BaseRecord,
-    GetListResponse,
-    HttpError,
-    UseSelectProps,
-    useSelect,
-    BaseKey,
-    pickNotDeprecated,
-    BaseOption,
+  BaseRecord,
+  GetListResponse,
+  HttpError,
+  UseSelectProps,
+  useSelect,
+  BaseKey,
+  pickNotDeprecated,
+  BaseOption,
 } from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TOption extends BaseOption = BaseOption,
+  TData extends BaseRecord = BaseRecord,
+  TOption extends BaseOption = BaseOption,
 > = {
-    checkboxGroupProps: Omit<
-        React.ComponentProps<typeof Checkbox.Group>,
-        "options"
-    > & {
-        options: TOption[];
-    };
-    queryResult: QueryObserverResult<GetListResponse<TData>>;
+  checkboxGroupProps: Omit<
+    React.ComponentProps<typeof Checkbox.Group>,
+    "options"
+  > & {
+    options: TOption[];
+  };
+  queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
 type UseCheckboxGroupProps<TQueryFnData, TError, TData> = Omit<
-    UseSelectProps<TQueryFnData, TError, TData>,
-    "defaultValue"
+  UseSelectProps<TQueryFnData, TError, TData>,
+  "defaultValue"
 > & {
-    /**
-     * Sets the default value
-     */
-    defaultValue?: BaseKey[];
-    /**
-     * Set the option's value
-     */
-    optionValue?: keyof TData extends string ? keyof TData : ((item: TData) => string);
-    /**
-     * Set the option's label value
-     */
-    optionLabel?: keyof TData extends string ? keyof TData : ((item: TData) => string);
+  /**
+   * Sets the default value
+   */
+  defaultValue?: BaseKey[];
+  /**
+   * Set the option's value
+   */
+  optionValue?: keyof TData extends string
+    ? keyof TData
+    : (item: TData) => string;
+  /**
+   * Set the option's label value
+   */
+  optionLabel?: keyof TData extends string
+    ? keyof TData
+    : (item: TData) => string;
 };
 
 /**
@@ -55,11 +59,38 @@ type UseCheckboxGroupProps<TQueryFnData, TError, TData> = Omit<
  */
 
 export const useCheckboxGroup = <
-    TQueryFnData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TData extends BaseRecord = TQueryFnData,
-    TOption extends BaseOption = BaseOption,
+  TQueryFnData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TData extends BaseRecord = TQueryFnData,
+  TOption extends BaseOption = BaseOption,
 >({
+  resource,
+  sort,
+  sorters,
+  filters,
+  optionLabel,
+  optionValue,
+  queryOptions,
+  fetchSize,
+  pagination,
+  liveMode,
+  defaultValue,
+  onLiveEvent,
+  liveParams,
+  meta,
+  metaData,
+  dataProviderName,
+}: UseCheckboxGroupProps<
+  TQueryFnData,
+  TError,
+  TData
+>): UseCheckboxGroupReturnType<TData, TOption> => {
+  const { queryResult, options } = useSelect<
+    TQueryFnData,
+    TError,
+    TData,
+    TOption
+  >({
     resource,
     sort,
     sorters,
@@ -73,42 +104,15 @@ export const useCheckboxGroup = <
     defaultValue,
     onLiveEvent,
     liveParams,
-    meta,
-    metaData,
+    meta: pickNotDeprecated(meta, metaData),
+    metaData: pickNotDeprecated(meta, metaData),
     dataProviderName,
-}: UseCheckboxGroupProps<
-    TQueryFnData,
-    TError,
-    TData
->): UseCheckboxGroupReturnType<TData, TOption> => {
-    const { queryResult, options } = useSelect<
-        TQueryFnData,
-        TError,
-        TData,
-        TOption
-    >({
-        resource,
-        sort,
-        sorters,
-        filters,
-        optionLabel,
-        optionValue,
-        queryOptions,
-        fetchSize,
-        pagination,
-        liveMode,
-        defaultValue,
-        onLiveEvent,
-        liveParams,
-        meta: pickNotDeprecated(meta, metaData),
-        metaData: pickNotDeprecated(meta, metaData),
-        dataProviderName,
-    });
-    return {
-        checkboxGroupProps: {
-            options,
-            defaultValue,
-        },
-        queryResult,
-    };
+  });
+  return {
+    checkboxGroupProps: {
+      options,
+      defaultValue,
+    },
+    queryResult,
+  };
 };
