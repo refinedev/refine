@@ -226,7 +226,8 @@ const authProvider: AuthProvider = {
       success: false,
       error: {
         name: "Login Failed!",
-        message: "The email or password that you've entered doesn't match any account.",
+        message:
+          "The email or password that you've entered doesn't match any account.",
       },
     };
   },

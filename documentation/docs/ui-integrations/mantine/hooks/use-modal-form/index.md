@@ -26,7 +26,16 @@ In this example, we will show you how to `"create"` a record with `useModalForm`
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Box, Group, Modal, Pagination, ScrollArea, Select, Table, TextInput } from "@mantine/core";
+import {
+  Box,
+  Group,
+  Modal,
+  Pagination,
+  ScrollArea,
+  Select,
+  Table,
+  TextInput,
+} from "@mantine/core";
 import { List, SaveButton, useModalForm } from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
@@ -110,7 +119,12 @@ const PostList: React.FC = () => {
     <>
       {/* highlight-start */}
       <Modal opened={visible} onClose={close} title={title}>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -139,7 +153,12 @@ const PostList: React.FC = () => {
                       <th key={header.id}>
                         {!header.isPlaceholder && (
                           <Group spacing="xs" noWrap>
-                            <Box>{flexRender(header.column.columnDef.header, header.getContext())}</Box>
+                            <Box>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                            </Box>
                           </Group>
                         )}
                       </th>
@@ -153,7 +172,14 @@ const PostList: React.FC = () => {
                 return (
                   <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => {
-                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </td>
+                      );
                     })}
                   </tr>
                 );
@@ -161,7 +187,12 @@ const PostList: React.FC = () => {
             </tbody>
           </Table>
           <br />
-          <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+          <Pagination
+            position="right"
+            total={pageCount}
+            page={current}
+            onChange={setCurrent}
+          />
         </List>
       </ScrollArea>
     </>
@@ -197,7 +228,16 @@ In this example, we will show you how to `"edit"` a record with `useModalForm`:
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Box, Group, Modal, Pagination, ScrollArea, Select, Table, TextInput } from "@mantine/core";
+import {
+  Box,
+  Group,
+  Modal,
+  Pagination,
+  ScrollArea,
+  Select,
+  Table,
+  TextInput,
+} from "@mantine/core";
 import { EditButton, List, SaveButton, useModalForm } from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
@@ -297,7 +337,12 @@ const PostList: React.FC = () => {
     <>
       {/* highlight-start */}
       <Modal opened={visible} onClose={close} title={title}>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -325,7 +370,12 @@ const PostList: React.FC = () => {
                       <th key={header.id}>
                         {!header.isPlaceholder && (
                           <Group spacing="xs" noWrap>
-                            <Box>{flexRender(header.column.columnDef.header, header.getContext())}</Box>
+                            <Box>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                            </Box>
                           </Group>
                         )}
                       </th>
@@ -339,7 +389,14 @@ const PostList: React.FC = () => {
                 return (
                   <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => {
-                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </td>
+                      );
                     })}
                   </tr>
                 );
@@ -347,7 +404,12 @@ const PostList: React.FC = () => {
             </tbody>
           </Table>
           <br />
-          <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+          <Pagination
+            position="right"
+            total={pageCount}
+            page={current}
+            onChange={setCurrent}
+          />
         </List>
       </ScrollArea>
     </>
@@ -416,8 +478,22 @@ In this example, we will show you how to `"clone"` a record with `useModalForm`.
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { Box, Group, Modal, Pagination, ScrollArea, Select, Table, TextInput } from "@mantine/core";
-import { CloneButton, List, SaveButton, useModalForm } from "@refinedev/mantine";
+import {
+  Box,
+  Group,
+  Modal,
+  Pagination,
+  ScrollArea,
+  Select,
+  Table,
+  TextInput,
+} from "@mantine/core";
+import {
+  CloneButton,
+  List,
+  SaveButton,
+  useModalForm,
+} from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import React from "react";
@@ -487,7 +563,10 @@ const PostList: React.FC = () => {
           return (
             <Group spacing="xs" noWrap>
               {/* highlight-start */}
-              <CloneButton hideText onClick={() => show(getValue() as number)} />
+              <CloneButton
+                hideText
+                onClick={() => show(getValue() as number)}
+              />
               {/* highlight-end */}
             </Group>
           );
@@ -515,7 +594,12 @@ const PostList: React.FC = () => {
     <>
       {/* highlight-start */}
       <Modal opened={visible} onClose={close} title={title}>
-        <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
         <Select
           mt={8}
           label="Status"
@@ -543,7 +627,12 @@ const PostList: React.FC = () => {
                       <th key={header.id}>
                         {!header.isPlaceholder && (
                           <Group spacing="xs" noWrap>
-                            <Box>{flexRender(header.column.columnDef.header, header.getContext())}</Box>
+                            <Box>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                            </Box>
                           </Group>
                         )}
                       </th>
@@ -557,7 +646,14 @@ const PostList: React.FC = () => {
                 return (
                   <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => {
-                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </td>
+                      );
                     })}
                   </tr>
                 );
@@ -565,7 +661,12 @@ const PostList: React.FC = () => {
             </tbody>
           </Table>
           <br />
-          <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+          <Pagination
+            position="right"
+            total={pageCount}
+            page={current}
+            onChange={setCurrent}
+          />
         </List>
       </ScrollArea>
     </>
@@ -851,7 +952,12 @@ const {
 
 return (
   <Modal opened={visible} onClose={close} title={title}>
-    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <TextInput
+      mt={8}
+      label="Title"
+      placeholder="Title"
+      {...getInputProps("title")}
+    />
     <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
       <SaveButton {...saveButtonProps} />
       <Button onClick={close}>Cancel</Button>
@@ -873,7 +979,12 @@ const {
 
 return (
   <Modal opened={visible} onClose={close} title={title}>
-    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <TextInput
+      mt={8}
+      label="Title"
+      placeholder="Title"
+      {...getInputProps("title")}
+    />
     <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
       <Button onClick={submit}>Save</Button>
     </Box>
@@ -900,7 +1011,12 @@ return (
   <>
     <Button onClick={}>Show Modal</Button>
     <Modal opened={visible} onClose={close} title={title}>
-      <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+      <TextInput
+        mt={8}
+        label="Title"
+        placeholder="Title"
+        {...getInputProps("title")}
+      />
       <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
         <SaveButton {...saveButtonProps} />
       </Box>
@@ -918,7 +1034,12 @@ const { getInputProps, modal, saveButtonProps } = useModalForm();
 
 return (
   <Modal {...modal}>
-    <TextInput mt={8} label="Title" placeholder="Title" {...getInputProps("title")} />
+    <TextInput
+      mt={8}
+      label="Title"
+      placeholder="Title"
+      {...getInputProps("title")}
+    />
     <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
       <Button
         {...saveButtonProps}

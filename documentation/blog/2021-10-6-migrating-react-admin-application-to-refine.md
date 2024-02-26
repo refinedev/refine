@@ -50,7 +50,13 @@ Here is an example list page from React-Admin that shows you the list of `id`,`n
 
 ```tsx
 import React from "react";
-import { List as ReactAdminList, Datagrid, TextField, BooleanField, EditButton } from "react-admin";
+import {
+  List as ReactAdminList,
+  Datagrid,
+  TextField,
+  BooleanField,
+  EditButton,
+} from "react-admin";
 
 import LocalizeDateField from "../../fields/LocalizeDateField";
 
@@ -172,7 +178,12 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
           defaultSortOrder={getDefaultSortOrder("id", sorter)}
           width="70px"
         />
-        <Table.Column dataIndex="name" title="Name" sorter defaultSortOrder={getDefaultSortOrder("name", sorter)} />
+        <Table.Column
+          dataIndex="name"
+          title="Name"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("name", sorter)}
+        />
         <Table.Column
           dataIndex="isActive"
           title="Active"
@@ -220,15 +231,44 @@ A resource creation page's code looked like this in React-Admin:
 
 ```tsx
 import React from "react";
-import { required, Create as ReactAdminCreate, SimpleForm, BooleanInput, TextInput, DateTimeInput } from "react-admin";
+import {
+  required,
+  Create as ReactAdminCreate,
+  SimpleForm,
+  BooleanInput,
+  TextInput,
+  DateTimeInput,
+} from "react-admin";
 
 const Create = (props: any) => (
   <ReactAdminCreate {...props}>
     <SimpleForm>
-      <TextInput fullWidth variant="outlined" source="name" validate={[required()]} />
-      <BooleanInput fullWidth variant="outlined" source="isActive" label="Active" />
-      <DateTimeInput source="startDate" label="Start Date" validate={[required()]} fullWidth variant="outlined" />
-      <DateTimeInput source="endDate" label="End Date" validate={[required()]} fullWidth variant="outlined" />
+      <TextInput
+        fullWidth
+        variant="outlined"
+        source="name"
+        validate={[required()]}
+      />
+      <BooleanInput
+        fullWidth
+        variant="outlined"
+        source="isActive"
+        label="Active"
+      />
+      <DateTimeInput
+        source="startDate"
+        label="Start Date"
+        validate={[required()]}
+        fullWidth
+        variant="outlined"
+      />
+      <DateTimeInput
+        source="endDate"
+        label="End Date"
+        validate={[required()]}
+        fullWidth
+        variant="outlined"
+      />
     </SimpleForm>
   </ReactAdminCreate>
 );
@@ -244,7 +284,15 @@ And it looks like this:
 For Refine, code of our campaign create page looks like:
 
 ```tsx
-import { Create, DatePicker, Form, Input, IResourceComponentsProps, Switch, useForm } from "@pankod/refine";
+import {
+  Create,
+  DatePicker,
+  Form,
+  Input,
+  IResourceComponentsProps,
+  Switch,
+  useForm,
+} from "@pankod/refine";
 import dayjs from "dayjs";
 
 export const CampaignsCreate: React.FC<IResourceComponentsProps> = () => {
@@ -252,7 +300,11 @@ export const CampaignsCreate: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical" initialValues={{ isActive: false }}>
+      <Form
+        {...formProps}
+        layout="vertical"
+        initialValues={{ isActive: false }}
+      >
         <Form.Item
           label="Name"
           name="name"

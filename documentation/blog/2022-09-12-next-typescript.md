@@ -103,7 +103,9 @@ type ProfileProps = {
   };
 };
 
-const Profile: React.FunctionComponent<ProfileProps> = ({ profile }): JSX.Element => {
+const Profile: React.FunctionComponent<ProfileProps> = ({
+  profile,
+}): JSX.Element => {
   return (
     <>
       <p>Profile</p>

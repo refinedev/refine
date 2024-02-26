@@ -48,7 +48,11 @@ const SampleList = () => {
         },
         minWidth: 300,
         renderCell: function render({ value }) {
-          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+          return categoryIsLoading ? (
+            <>Loading...</>
+          ) : (
+            categoryData?.data?.find((item) => item.id === value)?.title
+          );
         },
       },
       {
@@ -71,7 +75,12 @@ const SampleList = () => {
 };
 // visible-block-end
 
-render(<RefineMuiDemo initialRoutes={["/samples"]} resources={[{ name: "samples", list: SampleList }]} />);
+render(
+  <RefineMuiDemo
+    initialRoutes={["/samples"]}
+    resources={[{ name: "samples", list: SampleList }]}
+  />,
+);
 ```
 
 :::simple Good to know
@@ -500,7 +509,9 @@ const PostList: React.FC = () => {
       // highlight-start
       headerButtons={({ createButtonProps }) => (
         <>
-          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          {createButtonProps && (
+            <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button type="primary">Custom Button</Button>
         </>
       )}
@@ -593,7 +604,9 @@ const Wrapper = ({ children }) => {
   return (
     <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
       <MuiMaterial.CssBaseline />
-      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <MuiMaterial.GlobalStyles
+        styles={{ html: { WebkitFontSmoothing: "auto" } }}
+      />
       {children}
     </MuiMaterial.ThemeProvider>
   );

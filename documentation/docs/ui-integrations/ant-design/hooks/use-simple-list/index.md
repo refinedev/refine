@@ -115,9 +115,15 @@ interface ICategory {
 }
 
 export const ProductList: React.FC = () => {
-  const { tableQueryResult: productsQueryResult } = useSimpleList<IProduct, HttpError>();
+  const { tableQueryResult: productsQueryResult } = useSimpleList<
+    IProduct,
+    HttpError
+  >();
 
-  const { tableQueryResult: categoriesQueryResult } = useSimpleList<ICategory, HttpError>({
+  const { tableQueryResult: categoriesQueryResult } = useSimpleList<
+    ICategory,
+    HttpError
+  >({
     resource: "categories",
   });
 

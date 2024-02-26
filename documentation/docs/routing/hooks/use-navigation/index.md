@@ -11,8 +11,21 @@ If you're in need of a navigation hook to use to navigate between your actions a
 ```tsx
 import { useNavigation } from "@refinedev/core";
 
-const { list, create, edit, show, clone, push, replace, goBack, listUrl, createUrl, editUrl, showUrl, cloneUrl } =
-  useNavigation();
+const {
+  list,
+  create,
+  edit,
+  show,
+  clone,
+  push,
+  replace,
+  goBack,
+  listUrl,
+  createUrl,
+  editUrl,
+  showUrl,
+  cloneUrl,
+} = useNavigation();
 ```
 
 ## Return Values

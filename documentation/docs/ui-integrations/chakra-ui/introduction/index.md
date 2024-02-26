@@ -51,15 +51,36 @@ import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
-import { List, ShowButton, EditButton, DeleteButton, DateField } from "@refinedev/chakra-ui";
+import {
+  List,
+  ShowButton,
+  EditButton,
+  DeleteButton,
+  DateField,
+} from "@refinedev/chakra-ui";
 
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, HStack, Text } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  HStack,
+  Text,
+} from "@chakra-ui/react";
 
 import { Pagination } from "../../components/pagination";
 
 const columns = [
   { id: "id", header: "ID", accessorKey: "id" },
-  { id: "name", header: "Name", accessorKey: "name", meta: { filterOperator: "contains" } },
+  {
+    id: "name",
+    header: "Name",
+    accessorKey: "name",
+    meta: { filterOperator: "contains" },
+  },
   { id: "price", header: "Price", accessorKey: "price" },
   {
     id: "actions",
@@ -72,7 +93,11 @@ const columns = [
         <HStack>
           <ShowButton hideText size="sm" recordItemId={getValue() as number} />
           <EditButton hideText size="sm" recordItemId={getValue() as number} />
-          <DeleteButton hideText size="sm" recordItemId={getValue() as number} />
+          <DeleteButton
+            hideText
+            size="sm"
+            recordItemId={getValue() as number}
+          />
         </HStack>
       );
     },
@@ -111,7 +136,12 @@ export const ProductList = () => {
               <Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <Th key={header.id}>
-                    <Text>{flexRender(header.column.columnDef.header, header.getContext())}</Text>
+                    <Text>
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                    </Text>
                   </Th>
                 ))}
               </Tr>
@@ -121,14 +151,20 @@ export const ProductList = () => {
             {getRowModel().rows.map((row) => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
                 ))}
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
-      <Pagination current={current} pageCount={pageCount} setCurrent={setCurrent} />
+      <Pagination
+        current={current}
+        pageCount={pageCount}
+        setCurrent={setCurrent}
+      />
     </List>
   );
 };
@@ -160,7 +196,11 @@ type PaginationProps = {
   setCurrent: (page: number) => void;
 };
 
-export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setCurrent }) => {
+export const Pagination: React.FC<PaginationProps> = ({
+  current,
+  pageCount,
+  setCurrent,
+}) => {
   const pagination = usePagination({
     current,
     pageCount,
@@ -184,13 +224,21 @@ export const Pagination: React.FC<PaginationProps> = ({ current, pageCount, setC
           if (typeof page === "string") return <span key={page}>...</span>;
 
           return (
-            <Button key={page} onClick={() => setCurrent(page)} variant={page === current ? "solid" : "outline"}>
+            <Button
+              key={page}
+              onClick={() => setCurrent(page)}
+              variant={page === current ? "solid" : "outline"}
+            >
               {page}
             </Button>
           );
         })}
         {pagination?.next && (
-          <IconButton aria-label="next page" onClick={() => setCurrent(current + 1)} variant="outline">
+          <IconButton
+            aria-label="next page"
+            onClick={() => setCurrent(current + 1)}
+            variant="outline"
+          >
             <IconChevronRight size="18" />
           </IconButton>
         )}
@@ -432,7 +480,12 @@ The list of provided field components are:
 
 ```tsx title="pages/products/show.tsx"
 import { useShow } from "@refinedev/core";
-import { Show, TextField, NumberField, MarkdownField } from "@refinedev/chakra-ui";
+import {
+  Show,
+  TextField,
+  NumberField,
+  MarkdownField,
+} from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const ProductShow = () => {
@@ -470,7 +523,10 @@ export const ProductShow = () => {
         Price
       </Heading>
       {/* highlight-next-line */}
-      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
+      <NumberField
+        value={record?.price}
+        options={{ style: "currency", currency: "USD" }}
+      />
     </Show>
   );
 };

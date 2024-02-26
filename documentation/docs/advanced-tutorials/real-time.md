@@ -44,7 +44,11 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, useNotificationProvider, ErrorComponent } from "@refinedev/antd";
+import {
+  ThemedLayoutV2,
+  useNotificationProvider,
+  ErrorComponent,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 
@@ -135,7 +139,9 @@ We will be alerted about changes in an alert box on top of the form instead of c
 
 export const PostEdit: React.FC = () => {
   //highlight-start
-  const [deprecated, setDeprecated] = useState<"deleted" | "updated" | undefined>();
+  const [deprecated, setDeprecated] = useState<
+    "deleted" | "updated" | undefined
+  >();
   //highlight-end
 
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
@@ -224,7 +230,12 @@ import {
 import { Link } from "react-router-dom";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
-import { LogoutOutlined, UnorderedListOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  UnorderedListOutlined,
+  RightOutlined,
+  LeftOutlined,
+} from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 const { useToken } = theme;
@@ -241,7 +252,8 @@ export const CustomSider: typeof Sider = ({ render }) => {
 
   const breakpoint = Grid.useBreakpoint();
 
-  const isMobile = typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+  const isMobile =
+    typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
   const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
     return tree.map((item: ITreeMenu) => {
@@ -250,11 +262,20 @@ export const CustomSider: typeof Sider = ({ render }) => {
       const icon = meta?.icon;
       const label = meta?.label ?? name;
       const parent = meta?.parent;
-      const route = typeof list === "string" ? list : typeof list !== "function" ? list?.path : key;
+      const route =
+        typeof list === "string"
+          ? list
+          : typeof list !== "function"
+          ? list?.path
+          : key;
 
       if (children.length > 0) {
         return (
-          <SubMenu key={route} icon={icon ?? <UnorderedListOutlined />} title={label}>
+          <SubMenu
+            key={route}
+            icon={icon ?? <UnorderedListOutlined />}
+            title={label}
+          >
             {renderTreeView(children, selectedKey)}
           </SubMenu>
         );
@@ -262,7 +283,12 @@ export const CustomSider: typeof Sider = ({ render }) => {
       const isSelected = route === selectedKey;
       const isRoute = !(parent !== undefined && children.length === 0);
       return (
-        <CanAccess key={route} resource={name.toLowerCase()} action="list" params={{ resource: item }}>
+        <CanAccess
+          key={route}
+          resource={name.toLowerCase()}
+          action="list"
+          params={{ resource: item }}
+        >
           <Menu.Item
             key={route}
             style={{
@@ -271,7 +297,9 @@ export const CustomSider: typeof Sider = ({ render }) => {
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             {route ? <Link to={route || "/"}>{label}</Link> : label}
-            {!collapsed && isSelected && <div className="ant-menu-tree-arrow" />}
+            {!collapsed && isSelected && (
+              <div className="ant-menu-tree-arrow" />
+            )}
           </Menu.Item>
         </CanAccess>
       );
@@ -281,7 +309,10 @@ export const CustomSider: typeof Sider = ({ render }) => {
   const handleLogout = () => {
     if (warnWhen) {
       const confirm = window.confirm(
-        translate("warnWhenUnsavedChanges", "Are you sure you want to leave? You have unsaved changes."),
+        translate(
+          "warnWhenUnsavedChanges",
+          "Are you sure you want to leave? You have unsaved changes.",
+        ),
       );
 
       if (confirm) {
@@ -420,7 +451,12 @@ import {
 import { Link } from "react-router-dom";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
-import { LogoutOutlined, UnorderedListOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
+import {
+  LogoutOutlined,
+  UnorderedListOutlined,
+  RightOutlined,
+  LeftOutlined,
+} from "@ant-design/icons";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
@@ -439,7 +475,8 @@ export const CustomSider: typeof Sider = ({ render }) => {
 
   const breakpoint = Grid.useBreakpoint();
 
-  const isMobile = typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
+  const isMobile =
+    typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
   useSubscription({
     channel: "resources/posts",
@@ -454,11 +491,20 @@ export const CustomSider: typeof Sider = ({ render }) => {
       const icon = meta?.icon;
       const label = meta?.label ?? name;
       const parent = meta?.parent;
-      const route = typeof list === "string" ? list : typeof list !== "function" ? list?.path : key;
+      const route =
+        typeof list === "string"
+          ? list
+          : typeof list !== "function"
+          ? list?.path
+          : key;
 
       if (children.length > 0) {
         return (
-          <SubMenu key={key} icon={icon ?? <UnorderedListOutlined />} title={label}>
+          <SubMenu
+            key={key}
+            icon={icon ?? <UnorderedListOutlined />}
+            title={label}
+          >
             {renderTreeView(children, selectedKey)}
           </SubMenu>
         );
@@ -466,7 +512,12 @@ export const CustomSider: typeof Sider = ({ render }) => {
       const isSelected = route === selectedKey;
       const isRoute = !(parent !== undefined && children.length === 0);
       return (
-        <CanAccess key={key} resource={name.toLowerCase()} action="list" params={{ resource: item }}>
+        <CanAccess
+          key={key}
+          resource={name.toLowerCase()}
+          action="list"
+          params={{ resource: item }}
+        >
           <Menu.Item
             key={route}
             style={{
@@ -477,10 +528,18 @@ export const CustomSider: typeof Sider = ({ render }) => {
             {route ? <Link to={route || "/"}>{label}</Link> : label}
             {route && (
               <>
-                {label.toLowerCase() === "posts" && <Badge size="small" count={subscriptionCount} offset={[2, -15]} />}
+                {label.toLowerCase() === "posts" && (
+                  <Badge
+                    size="small"
+                    count={subscriptionCount}
+                    offset={[2, -15]}
+                  />
+                )}
               </>
             )}
-            {!collapsed && isSelected && <div className="ant-menu-tree-arrow" />}
+            {!collapsed && isSelected && (
+              <div className="ant-menu-tree-arrow" />
+            )}
           </Menu.Item>
         </CanAccess>
       );
@@ -490,7 +549,10 @@ export const CustomSider: typeof Sider = ({ render }) => {
   const handleLogout = () => {
     if (warnWhen) {
       const confirm = window.confirm(
-        translate("warnWhenUnsavedChanges", "Are you sure you want to leave? You have unsaved changes."),
+        translate(
+          "warnWhenUnsavedChanges",
+          "Are you sure you want to leave? You have unsaved changes.",
+        ),
       );
 
       if (confirm) {

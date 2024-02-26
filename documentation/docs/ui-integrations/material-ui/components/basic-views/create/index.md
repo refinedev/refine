@@ -30,7 +30,11 @@ const SampleCreate = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("title", {
             required: "This field is required",
@@ -72,12 +76,14 @@ const SampleCreate = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField
@@ -721,7 +727,11 @@ const PostCreate: React.FC = () => {
       // highlight-start
       footerButtons={({ saveButtonProps }) => (
         <>
-          <SaveButton {...saveButtonProps} type="primary" sx={{ marginRight: 8 }}>
+          <SaveButton
+            {...saveButtonProps}
+            type="primary"
+            sx={{ marginRight: 8 }}
+          >
             Save
           </SaveButton>
           <Button type="primary">Custom Button</Button>
@@ -819,13 +829,14 @@ render(
 const SampleList = () => {
   const { dataGridProps } = RefineMui.useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-    resource: "categories",
-    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-    queryOptions: {
-      enabled: !!dataGridProps?.rows,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    RefineCore.useMany({
+      resource: "categories",
+      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+      queryOptions: {
+        enabled: !!dataGridProps?.rows,
+      },
+    });
 
   const columns = React.useMemo<GridColDef<any>[]>(
     () => [
@@ -850,7 +861,11 @@ const SampleList = () => {
         },
         minWidth: 300,
         renderCell: function render({ value }) {
-          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+          return categoryIsLoading ? (
+            <>Loading...</>
+          ) : (
+            categoryData?.data?.find((item) => item.id === value)?.title
+          );
         },
       },
       {
@@ -876,7 +891,9 @@ const Wrapper = ({ children }) => {
   return (
     <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
       <MuiMaterial.CssBaseline />
-      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <MuiMaterial.GlobalStyles
+        styles={{ html: { WebkitFontSmoothing: "auto" } }}
+      />
       {children}
     </MuiMaterial.ThemeProvider>
   );

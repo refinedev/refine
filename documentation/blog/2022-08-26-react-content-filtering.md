@@ -133,7 +133,8 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/filter/index.tsx"
 import styles from "./index.module.css";
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+const capitalize = (str: string) =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const Filter = ({
   title,
@@ -145,11 +146,21 @@ export const Filter = ({
   onClick: React.MouseEventHandler;
 }) => {
   return (
-    <div className={styles.wrapper} onClick={onClick} style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}>
+    <div
+      className={styles.wrapper}
+      onClick={onClick}
+      style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}
+    >
       <div
         className={styles.circle}
         style={{
-          borderColor: `${title === "draft" ? "gold" : title === "rejected" ? "tomato" : "limegreen"}`,
+          borderColor: `${
+            title === "draft"
+              ? "gold"
+              : title === "rejected"
+              ? "tomato"
+              : "limegreen"
+          }`,
         }}
       ></div>
       <h3 className={styles.title}>{capitalize(title)}</h3>
@@ -229,8 +240,19 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/search/index.tsx"
 import styles from "./index.module.css";
 
-export const Search = ({ onChange }: { onChange: React.ChangeEventHandler }) => {
-  return <input className={styles.search} type="text" onChange={onChange} placeholder="Search by the title ..." />;
+export const Search = ({
+  onChange,
+}: {
+  onChange: React.ChangeEventHandler;
+}) => {
+  return (
+    <input
+      className={styles.search}
+      type="text"
+      onChange={onChange}
+      placeholder="Search by the title ..."
+    />
+  );
 };
 ```
 
@@ -272,11 +294,22 @@ import { motion } from "framer-motion";
 
 export const Card = ({ title, status }: { title: string; status: string }) => {
   return (
-    <motion.div className={styles.wrapper} animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}>
+    <motion.div
+      className={styles.wrapper}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <div
         className={styles.circle}
         style={{
-          borderColor: `${status === "draft" ? "gold" : status === "rejected" ? "tomato" : "limegreen"}`,
+          borderColor: `${
+            status === "draft"
+              ? "gold"
+              : status === "rejected"
+              ? "tomato"
+              : "limegreen"
+          }`,
         }}
       ></div>
       <h3 className={styles.title}>{title}</h3>
@@ -376,7 +409,9 @@ export const Posts = () => {
               isActive={filter === activeFilter}
               onClick={(e: React.MouseEvent) => {
                 const el = e.target as HTMLElement;
-                el.textContent?.toLowerCase() !== activeFilter ? setActiveFilter(filter) : setActiveFilter("");
+                el.textContent?.toLowerCase() !== activeFilter
+                  ? setActiveFilter(filter)
+                  : setActiveFilter("");
               }}
             />
           );
@@ -389,7 +424,9 @@ export const Posts = () => {
       />
       <AnimatePresence>
         {posts
-          ?.filter((el) => el.title.toLowerCase().includes(inputValue.toLowerCase()))
+          ?.filter((el) =>
+            el.title.toLowerCase().includes(inputValue.toLowerCase()),
+          )
           .filter((e) => e.status.includes(activeFilter))
           .map((post: { title: string; status: string }, index: number) => {
             return <Card key={index} title={post.title} status={post.status} />;
@@ -445,7 +482,10 @@ Now that we have implemented the logic and added some styles, let's add the `<Po
 import { Refine, ErrorComponent } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { Posts } from "./pages/posts";

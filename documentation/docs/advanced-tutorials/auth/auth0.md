@@ -32,7 +32,11 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     // highlight-start
-    <Auth0Provider domain="YOUR_DOMAIN" clientId="YOUR_CLIENT_ID" redirectUri={window.location.origin}>
+    <Auth0Provider
+      domain="YOUR_DOMAIN"
+      clientId="YOUR_CLIENT_ID"
+      redirectUri={window.location.origin}
+    >
       <App />
     </Auth0Provider>
     // highlight-end
@@ -105,9 +109,18 @@ In Refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
-import { ThemedLayoutV2, ReadyPage, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import {
+  ThemedLayoutV2,
+  ReadyPage,
+  useNotificationProvider,
+  ErrorComponent,
+  RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+  NavigateToResource,
+  CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -122,7 +135,8 @@ import axios from "axios";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-  const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } = useAuth0();
+  const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
+    useAuth0();
 
   if (isLoading) {
     return <span>loading...</span>;

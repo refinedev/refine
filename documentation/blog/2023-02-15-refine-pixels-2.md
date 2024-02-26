@@ -96,7 +96,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -205,12 +208,14 @@ const dataProvider = {
   createMany: ({ resource, variables, meta }) => Promise,
   deleteOne: ({ resource, id, variables, meta }) => Promise,
   deleteMany: ({ resource, ids, variables, meta }) => Promise,
-  getList: ({ resource, pagination, hasPagination, sort, filters, meta }) => Promise,
+  getList: ({ resource, pagination, hasPagination, sort, filters, meta }) =>
+    Promise,
   getMany: ({ resource, ids, meta }) => Promise,
   getOne: ({ resource, id, meta }) => Promise,
   update: ({ resource, id, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, sort, filters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, meta }) =>
+    Promise,
   getApiUrl: () => "",
 };
 ```
@@ -233,7 +238,9 @@ import { DataProvider } from "@refinedev/core";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
-export const dataProvider = (supabaseClient: SupabaseClient): Required<DataProvider> => {
+export const dataProvider = (
+  supabaseClient: SupabaseClient,
+): Required<DataProvider> => {
   return {
     getList: async ({ resource, pagination, filters, sorters, meta }) => {
       const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
@@ -250,10 +257,12 @@ export const dataProvider = (supabaseClient: SupabaseClient): Required<DataProvi
         const [foreignTable, field] = item.field.split(/\.(.*)/);
 
         if (foreignTable && field) {
-          query.select(meta?.select ?? `*, ${foreignTable}(${field})`).order(field, {
-            ascending: item.order === "asc",
-            foreignTable: foreignTable,
-          });
+          query
+            .select(meta?.select ?? `*, ${foreignTable}(${field})`)
+            .order(field, {
+              ascending: item.order === "asc",
+              foreignTable: foreignTable,
+            });
         } else {
           query.order(item.field, {
             ascending: item.order === "asc",
@@ -619,9 +628,12 @@ export const authProvider: AuthProvider = {
   },
   forgotPassword: async ({ email }) => {
     try {
-      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/update-password`,
-      });
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${window.location.origin}/update-password`,
+        },
+      );
 
       if (error) {
         return {

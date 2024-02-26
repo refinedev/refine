@@ -127,9 +127,10 @@ export default function Home() {
         <div {...stylex.props(style.jtBody)}>
           <h1 {...stylex.props(style.jtHeading)}>Hello, world!</h1>
           <p {...stylex.props(style.jtText)}>
-            This is a template for a simple marketing or informational website. It includes a large callout called a
-            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-            unique.
+            This is a template for a simple marketing or informational website.
+            It includes a large callout called a jumbotron and three supporting
+            pieces of content. Use it as a starting point to create something
+            more unique.
           </p>
         </div>
         <div {...stylex.props(style.jtFooter)}>
@@ -143,9 +144,10 @@ export default function Home() {
         <Card featuredBg={{ backgroundColor: "orange" }}>
           <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
           <p {...stylex.props(style.cardText)}>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.{" "}
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+            tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+            fermentum massa justo sit amet risus. Etiam porta sem malesuada
+            magna mollis euismod. Donec sed odio dui.{" "}
           </p>
           <p>
             <a href="#" role="button">
@@ -156,9 +158,10 @@ export default function Home() {
         <Card>
           <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
           <p {...stylex.props(style.cardText)}>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.{" "}
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+            tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+            fermentum massa justo sit amet risus. Etiam porta sem malesuada
+            magna mollis euismod. Donec sed odio dui.{" "}
           </p>
           <p>
             <a href="#" role="button">
@@ -169,9 +172,10 @@ export default function Home() {
         <Card>
           <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
           <p {...stylex.props(style.cardText)}>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.{" "}
+            Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+            tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+            fermentum massa justo sit amet risus. Etiam porta sem malesuada
+            magna mollis euismod. Donec sed odio dui.{" "}
           </p>
           <p>
             <a href="#" role="button">
@@ -356,8 +360,10 @@ return (
       <div {...stylex.props(style.jtBody)}>
         <h1 {...stylex.props(style.jtHeading)}>Hello, world!</h1>
         <p {...stylex.props(style.jtText)}>
-          This is a template for a simple marketing or informational website. It includes a large callout called a
-          jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+          This is a template for a simple marketing or informational website. It
+          includes a large callout called a jumbotron and three supporting
+          pieces of content. Use it as a starting point to create something more
+          unique.
         </p>
       </div>
       <div {...stylex.props(style.jtFooter)}>
@@ -371,9 +377,10 @@ return (
       <Card featuredBg={{ backgroundColor: "orange" }}>
         <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
         <p {...stylex.props(style.cardText)}>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui.{" "}
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+          tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+          massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+          euismod. Donec sed odio dui.{" "}
         </p>
         <p>
           <a href="#" role="button">
@@ -384,9 +391,10 @@ return (
       <Card>
         <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
         <p {...stylex.props(style.cardText)}>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui.{" "}
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+          tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+          massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+          euismod. Donec sed odio dui.{" "}
         </p>
         <p>
           <a href="#" role="button">
@@ -397,9 +405,10 @@ return (
       <Card>
         <h2 {...stylex.props(style.cardHeading)}>Heading</h2>
         <p {...stylex.props(style.cardText)}>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui.{" "}
+          Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+          tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+          massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+          euismod. Donec sed odio dui.{" "}
         </p>
         <p>
           <a href="#" role="button">

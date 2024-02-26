@@ -299,7 +299,11 @@ const myDataProvider = {
     //...
 
     // highlight-start
-    const { data } = await httpClient.patch(url, { ids, variables }, { headers });
+    const { data } = await httpClient.patch(
+      url,
+      { ids, variables },
+      { headers },
+    );
     // highlight-end
 
     return {

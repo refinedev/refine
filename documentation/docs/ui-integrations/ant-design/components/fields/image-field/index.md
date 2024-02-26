@@ -38,7 +38,11 @@ const PostList: React.FC = () => {
           dataIndex="image"
           render={(_, record) => (
             // highlight-start
-            <ImageField value={record.image[0].url} title={record.image[0].name} width={200} />
+            <ImageField
+              value={record.image[0].url}
+              title={record.image[0].name}
+              width={200}
+            />
             // highlight-end
           )}
           width="50%"
