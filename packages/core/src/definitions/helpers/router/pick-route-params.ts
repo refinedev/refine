@@ -7,13 +7,13 @@ import { isParameter } from "./is-parameter";
  * (e.g. /users/:id/posts/:postId => ['id', 'postId'])
  */
 export const pickRouteParams = (route: string) => {
-    const segments = splitToSegments(removeLeadingTrailingSlashes(route));
+  const segments = splitToSegments(removeLeadingTrailingSlashes(route));
 
-    return segments.flatMap((s) => {
-        if (isParameter(s)) {
-            return [s.slice(1)];
-        }
+  return segments.flatMap((s) => {
+    if (isParameter(s)) {
+      return [s.slice(1)];
+    }
 
-        return [];
-    });
+    return [];
+  });
 };

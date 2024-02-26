@@ -5,89 +5,89 @@ import userEvent from "@testing-library/user-event";
 
 import { ErrorComponent } from ".";
 import {
-    render,
-    fireEvent,
-    TestWrapper as BaseTestWrapper,
-    MockLegacyRouterProvider,
-    ITestWrapperProps,
+  render,
+  fireEvent,
+  TestWrapper as BaseTestWrapper,
+  MockLegacyRouterProvider,
+  ITestWrapperProps,
 } from "@test";
 
 const mHistory = jest.fn();
 
 jest.mock("react-router-dom", () => ({
-    ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
-    useNavigate: () => mHistory,
+  ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
+  useNavigate: () => mHistory,
 }));
 
 const TestWrapper = (props: ITestWrapperProps) =>
-    BaseTestWrapper({
-        ...props,
-        legacyRouterProvider: MockLegacyRouterProvider,
-    });
+  BaseTestWrapper({
+    ...props,
+    legacyRouterProvider: MockLegacyRouterProvider,
+  });
 
 describe("ErrorComponent", () => {
-    pageErrorTests.bind(this)(ErrorComponent);
+  pageErrorTests.bind(this)(ErrorComponent);
 
-    it("renders subtitle successfully", async () => {
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({}),
-        });
-
-        getByText("Sorry, the page you visited does not exist.");
+  it("renders subtitle successfully", async () => {
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("renders button successfully", async () => {
-        const { container, getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({}),
-        });
+    getByText("Sorry, the page you visited does not exist.");
+  });
 
-        expect(container.querySelector("button")).toBeTruthy();
-        getByText("Back Home");
+  it("renders button successfully", async () => {
+    const { container, getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("renders called function successfully if click the button", async () => {
-        const { getByText } = render(<ErrorComponent />, {
-            wrapper: TestWrapper({}),
-        });
+    expect(container.querySelector("button")).toBeTruthy();
+    getByText("Back Home");
+  });
 
-        fireEvent.click(getByText("Back Home"));
-
-        expect(mHistory).toBeCalledWith("/");
+  it("renders called function successfully if click the button", async () => {
+    const { getByText } = render(<ErrorComponent />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("renders error messages if resources action's not found", async () => {
-        const { getByTestId, findByText } = render(
-            <Routes>
-                <Route path="/:resource/:action" element={<ErrorComponent />} />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/create"],
-                }),
-            },
-        );
+    fireEvent.click(getByText("Back Home"));
 
-        userEvent.hover(getByTestId("error-component-tooltip"));
+    expect(mHistory).toBeCalledWith("/");
+  });
 
-        expect(
-            await findByText(
-                `You may have forgotten to add the "create" component to "posts" resource.`,
-            ),
-        ).toBeInTheDocument();
-    });
+  it("renders error messages if resources action's not found", async () => {
+    const { getByTestId, findByText } = render(
+      <Routes>
+        <Route path="/:resource/:action" element={<ErrorComponent />} />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          routerInitialEntries: ["/posts/create"],
+        }),
+      },
+    );
 
-    it("renders error messages if resource action's is different from 'create, edit, show'", async () => {
-        const { getByText } = render(
-            <Routes>
-                <Route path="/:resource/:action" element={<ErrorComponent />} />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/invalidActionType"],
-                }),
-            },
-        );
+    userEvent.hover(getByTestId("error-component-tooltip"));
 
-        getByText("Sorry, the page you visited does not exist.");
-    });
+    expect(
+      await findByText(
+        `You may have forgotten to add the "create" component to "posts" resource.`,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("renders error messages if resource action's is different from 'create, edit, show'", async () => {
+    const { getByText } = render(
+      <Routes>
+        <Route path="/:resource/:action" element={<ErrorComponent />} />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          routerInitialEntries: ["/posts/invalidActionType"],
+        }),
+      },
+    );
+
+    getByText("Sorry, the page you visited does not exist.");
+  });
 });

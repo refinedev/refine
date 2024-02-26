@@ -12,13 +12,13 @@ export const DropdownMenuGroup = DropdownMenu.Group;
 export const DropdownMenuPortal = DropdownMenu.Portal;
 
 export const DropdownContent = React.forwardRef<
-    HTMLDivElement,
-    { children: React.ReactNode } & DropdownMenu.DropdownMenuContentProps &
-        React.RefAttributes<HTMLDivElement>
+  HTMLDivElement,
+  { children: React.ReactNode } & DropdownMenu.DropdownMenuContentProps &
+    React.RefAttributes<HTMLDivElement>
 >(function DropdownContent({ children, className, ...props }, forwardedRef) {
-    return (
-        <DropdownMenu.Content ref={forwardedRef} sideOffset={8} {...props}>
-            <div className={cn(s.root, className)}>{children}</div>
-        </DropdownMenu.Content>
-    );
+  return (
+    <DropdownMenu.Content ref={forwardedRef} sideOffset={8} {...props}>
+      <div className={cn(s.root, className)}>{children}</div>
+    </DropdownMenu.Content>
+  );
 });

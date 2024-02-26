@@ -2,21 +2,21 @@ import preferredPM from "preferred-pm";
 import execa from "execa";
 
 export const updatePackage = async (
-    packages: string[],
-    projectPath: string = process.cwd(),
+  packages: string[],
+  projectPath: string = process.cwd(),
 ) => {
-    try {
-        const { name: pm } = (await preferredPM(projectPath)) ?? {
-            name: "npm",
-        };
+  try {
+    const { name: pm } = (await preferredPM(projectPath)) ?? {
+      name: "npm",
+    };
 
-        const { failed } = await execa(pm ?? "npm", [
-            "install",
-            ...packages.map((p) => `${p}@latest`),
-        ]);
+    const { failed } = await execa(pm ?? "npm", [
+      "install",
+      ...packages.map((p) => `${p}@latest`),
+    ]);
 
-        return !failed;
-    } catch (error) {
-        return false;
-    }
+    return !failed;
+  } catch (error) {
+    return false;
+  }
 };

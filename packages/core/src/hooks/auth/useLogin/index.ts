@@ -1,26 +1,26 @@
 import React from "react";
 import {
-    useMutation,
-    UseMutationOptions,
-    UseMutationResult,
+  useMutation,
+  UseMutationOptions,
+  UseMutationResult,
 } from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
 import qs from "qs";
 
 import {
-    useNavigation,
-    useRouterContext,
-    useNotification,
-    useRouterType,
-    useParsed,
-    useGo,
+  useNavigation,
+  useRouterContext,
+  useNotification,
+  useRouterType,
+  useParsed,
+  useGo,
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
 import {
-    RefineError,
-    OpenNotificationParams,
-    TLoginData,
+  RefineError,
+  OpenNotificationParams,
+  TLoginData,
 } from "../../../interfaces";
 import { AuthActionResponse } from "src/interfaces/bindings/auth";
 import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
@@ -28,75 +28,70 @@ import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseLoginLegacyProps<TVariables> = {
-    v3LegacyAuthProviderCompatible: true;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            TLoginData,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn" | "onError" | "onSuccess"
-    >;
+  v3LegacyAuthProviderCompatible: true;
+  mutationOptions?: Omit<
+    UseMutationOptions<TLoginData, Error | RefineError, TVariables, unknown>,
+    "mutationFn" | "onError" | "onSuccess"
+  >;
 };
 
 export type UseLoginProps<TVariables> = {
-    v3LegacyAuthProviderCompatible?: false;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            AuthActionResponse,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn"
-    >;
+  v3LegacyAuthProviderCompatible?: false;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      AuthActionResponse,
+      Error | RefineError,
+      TVariables,
+      unknown
+    >,
+    "mutationFn"
+  >;
 };
 
 export type UseLoginCombinedProps<TVariables> = {
-    v3LegacyAuthProviderCompatible: boolean;
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            AuthActionResponse | TLoginData,
-            Error | RefineError,
-            TVariables,
-            unknown
-        >,
-        "mutationFn"
-    >;
+  v3LegacyAuthProviderCompatible: boolean;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      AuthActionResponse | TLoginData,
+      Error | RefineError,
+      TVariables,
+      unknown
+    >,
+    "mutationFn"
+  >;
 };
 
 export type UseLoginLegacyReturnType<TVariables> = UseMutationResult<
-    TLoginData,
-    Error | RefineError,
-    TVariables,
-    unknown
+  TLoginData,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export type UseLoginReturnType<TVariables> = UseMutationResult<
-    AuthActionResponse,
-    Error | RefineError,
-    TVariables,
-    unknown
+  AuthActionResponse,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export type UseLoginCombinedReturnType<TVariables> = UseMutationResult<
-    AuthActionResponse | TLoginData,
-    Error | RefineError,
-    TVariables,
-    unknown
+  AuthActionResponse | TLoginData,
+  Error | RefineError,
+  TVariables,
+  unknown
 >;
 
 export function useLogin<TVariables = {}>(
-    props: UseLoginLegacyProps<TVariables>,
+  props: UseLoginLegacyProps<TVariables>,
 ): UseLoginLegacyReturnType<TVariables>;
 
 export function useLogin<TVariables = {}>(
-    props?: UseLoginProps<TVariables>,
+  props?: UseLoginProps<TVariables>,
 ): UseLoginReturnType<TVariables>;
 
 export function useLogin<TVariables = {}>(
-    props?: UseLoginCombinedProps<TVariables>,
+  props?: UseLoginCombinedProps<TVariables>,
 ): UseLoginCombinedReturnType<TVariables>;
 
 /**
@@ -109,165 +104,158 @@ export function useLogin<TVariables = {}>(
  *
  */
 export function useLogin<TVariables = {}>({
-    v3LegacyAuthProviderCompatible,
-    mutationOptions,
+  v3LegacyAuthProviderCompatible,
+  mutationOptions,
 }: UseLoginProps<TVariables> | UseLoginLegacyProps<TVariables> = {}):
-    | UseLoginLegacyReturnType<TVariables>
-    | UseLoginReturnType<TVariables> {
-    const invalidateAuthStore = useInvalidateAuthStore();
-    const routerType = useRouterType();
+  | UseLoginLegacyReturnType<TVariables>
+  | UseLoginReturnType<TVariables> {
+  const invalidateAuthStore = useInvalidateAuthStore();
+  const routerType = useRouterType();
 
-    const go = useGo();
-    const { replace } = useNavigation();
+  const go = useGo();
+  const { replace } = useNavigation();
 
-    const parsed = useParsed();
+  const parsed = useParsed();
 
-    const { useLocation } = useRouterContext();
-    const { search } = useLocation();
+  const { useLocation } = useRouterContext();
+  const { search } = useLocation();
 
-    const { close, open } = useNotification();
-    const { login: legacyLoginFromContext } = useLegacyAuthContext();
-    const { login: loginFromContext } = useAuthBindingsContext();
-    const { keys, preferLegacyKeys } = useKeys();
+  const { close, open } = useNotification();
+  const { login: legacyLoginFromContext } = useLegacyAuthContext();
+  const { login: loginFromContext } = useAuthBindingsContext();
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const to = React.useMemo(() => {
-        if (routerType === "legacy") {
-            const legacySearch = qs.parse(search, {
-                ignoreQueryPrefix: true,
-            });
-            return legacySearch.to;
-        } else {
-            return parsed.params?.to;
+  const to = React.useMemo(() => {
+    if (routerType === "legacy") {
+      const legacySearch = qs.parse(search, {
+        ignoreQueryPrefix: true,
+      });
+      return legacySearch.to;
+    } else {
+      return parsed.params?.to;
+    }
+  }, [routerType, parsed.params, search]);
+
+  const mutation = useMutation<
+    AuthActionResponse,
+    Error | RefineError,
+    TVariables,
+    unknown
+  >({
+    mutationKey: keys().auth().action("login").get(preferLegacyKeys),
+    mutationFn: loginFromContext,
+    onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+      if (success) {
+        close?.("login-error");
+
+        if (successNotification) {
+          open?.(buildSuccessNotification(successNotification));
         }
-    }, [routerType, parsed.params, search]);
+      }
 
-    const mutation = useMutation<
-        AuthActionResponse,
-        Error | RefineError,
-        TVariables,
-        unknown
-    >({
-        mutationKey: keys().auth().action("login").get(preferLegacyKeys),
-        mutationFn: loginFromContext,
-        onSuccess: async ({
-            success,
-            redirectTo,
-            error,
-            successNotification,
-        }) => {
-            if (success) {
-                close?.("login-error");
+      if (error || !success) {
+        open?.(buildNotification(error));
+      }
 
-                if (successNotification) {
-                    open?.(buildSuccessNotification(successNotification));
-                }
-            }
+      if (to && success) {
+        if (routerType === "legacy") {
+          replace(to as string);
+        } else {
+          go({ to: to as string, type: "replace" });
+        }
+      } else if (redirectTo) {
+        if (routerType === "legacy") {
+          replace(redirectTo);
+        } else {
+          go({ to: redirectTo, type: "replace" });
+        }
+      } else {
+        if (routerType === "legacy") {
+          replace("/");
+        }
+      }
 
-            if (error || !success) {
-                open?.(buildNotification(error));
-            }
+      await invalidateAuthStore();
+    },
+    onError: (error: any) => {
+      open?.(buildNotification(error));
+    },
+    ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+    meta: {
+      ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions?.meta),
+      ...getXRay("useLogin", preferLegacyKeys),
+    },
+  });
 
-            if (to && success) {
-                if (routerType === "legacy") {
-                    replace(to as string);
-                } else {
-                    go({ to: to as string, type: "replace" });
-                }
-            } else if (redirectTo) {
-                if (routerType === "legacy") {
-                    replace(redirectTo);
-                } else {
-                    go({ to: redirectTo, type: "replace" });
-                }
-            } else {
-                if (routerType === "legacy") {
-                    replace("/");
-                }
-            }
+  const v3LegacyAuthProviderCompatibleMutation = useMutation<
+    TLoginData,
+    Error | RefineError,
+    TVariables,
+    unknown
+  >({
+    mutationKey: [
+      ...keys().auth().action("login").get(preferLegacyKeys),
+      "v3LegacyAuthProviderCompatible",
+    ],
+    mutationFn: legacyLoginFromContext,
+    onSuccess: async (redirectPathFromAuth) => {
+      if (to) {
+        replace(to as string);
+      }
 
-            await invalidateAuthStore();
-        },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-        meta: {
-            ...(v3LegacyAuthProviderCompatible === true
-                ? {}
-                : mutationOptions?.meta),
-            ...getXRay("useLogin", preferLegacyKeys),
-        },
-    });
+      if (redirectPathFromAuth !== false && !to) {
+        if (typeof redirectPathFromAuth === "string") {
+          if (routerType === "legacy") {
+            replace(redirectPathFromAuth);
+          } else {
+            go({ to: redirectPathFromAuth, type: "replace" });
+          }
+        } else {
+          if (routerType === "legacy") {
+            replace("/");
+          } else {
+            go({ to: "/", type: "replace" });
+          }
+        }
+      }
 
-    const v3LegacyAuthProviderCompatibleMutation = useMutation<
-        TLoginData,
-        Error | RefineError,
-        TVariables,
-        unknown
-    >({
-        mutationKey: [
-            ...keys().auth().action("login").get(preferLegacyKeys),
-            "v3LegacyAuthProviderCompatible",
-        ],
-        mutationFn: legacyLoginFromContext,
-        onSuccess: async (redirectPathFromAuth) => {
-            if (to) {
-                replace(to as string);
-            }
+      await invalidateAuthStore();
 
-            if (redirectPathFromAuth !== false && !to) {
-                if (typeof redirectPathFromAuth === "string") {
-                    if (routerType === "legacy") {
-                        replace(redirectPathFromAuth);
-                    } else {
-                        go({ to: redirectPathFromAuth, type: "replace" });
-                    }
-                } else {
-                    if (routerType === "legacy") {
-                        replace("/");
-                    } else {
-                        go({ to: "/", type: "replace" });
-                    }
-                }
-            }
+      close?.("login-error");
+    },
+    onError: (error: any) => {
+      open?.(buildNotification(error));
+    },
+    ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
+    meta: {
+      ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
+      ...getXRay("useLogin", preferLegacyKeys),
+    },
+  });
 
-            await invalidateAuthStore();
-
-            close?.("login-error");
-        },
-        onError: (error: any) => {
-            open?.(buildNotification(error));
-        },
-        ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-        meta: {
-            ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
-            ...getXRay("useLogin", preferLegacyKeys),
-        },
-    });
-
-    return v3LegacyAuthProviderCompatible
-        ? v3LegacyAuthProviderCompatibleMutation
-        : mutation;
+  return v3LegacyAuthProviderCompatible
+    ? v3LegacyAuthProviderCompatibleMutation
+    : mutation;
 }
 
 const buildNotification = (
-    error?: Error | RefineError,
+  error?: Error | RefineError,
 ): OpenNotificationParams => {
-    return {
-        message: error?.name || "Login Error",
-        description: error?.message || "Invalid credentials",
-        key: "login-error",
-        type: "error",
-    };
+  return {
+    message: error?.name || "Login Error",
+    description: error?.message || "Invalid credentials",
+    key: "login-error",
+    type: "error",
+  };
 };
 
 const buildSuccessNotification = (
-    successNotification: SuccessNotificationResponse,
+  successNotification: SuccessNotificationResponse,
 ): OpenNotificationParams => {
-    return {
-        message: successNotification.message,
-        description: successNotification.description,
-        key: "login-success",
-        type: "success",
-    };
+  return {
+    message: successNotification.message,
+    description: successNotification.description,
+    key: "login-success",
+    type: "success",
+  };
 };

@@ -31,20 +31,20 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
   return (
     <div className="my-3">
       <Card className="rounded-none">
-      <div className="flex items-center px-5">
-        <Button
-          onClick={goBack}
-          className="m-1"
-          color="primary"
-          variant="light"
-          isIconOnly
-          aria-label="Go to products page"
-        >
-          <ArrowLongLeftIcon width={16} />
-        </Button>
+        <div className="flex items-center px-5">
+          <Button
+            onClick={goBack}
+            className="m-1"
+            color="primary"
+            variant="light"
+            isIconOnly
+            aria-label="Go to products page"
+          >
+            <ArrowLongLeftIcon width={16} />
+          </Button>
 
-        <h1 className="text-lg font-bold">Show product</h1>
-      </div>
+          <h1 className="text-lg font-bold">Show product</h1>
+        </div>
         <CardBody>
           <CardHeader className="text-lg font-bold p-5">
             <h2>Product details</h2>

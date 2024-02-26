@@ -1,24 +1,24 @@
 import React from "react";
 import {
-    DevToolsContext,
-    DevtoolsEvent,
-    receive,
+  DevToolsContext,
+  DevtoolsEvent,
+  receive,
 } from "@refinedev/devtools-shared";
 
 export const ReloadOnChanges = () => {
-    const { ws } = React.useContext(DevToolsContext);
+  const { ws } = React.useContext(DevToolsContext);
 
-    React.useEffect(() => {
-        if (ws) {
-            const unsubscribe = receive(ws, DevtoolsEvent.RELOAD, () => {
-                window.location.reload();
-            });
+  React.useEffect(() => {
+    if (ws) {
+      const unsubscribe = receive(ws, DevtoolsEvent.RELOAD, () => {
+        window.location.reload();
+      });
 
-            return unsubscribe;
-        }
+      return unsubscribe;
+    }
 
-        return () => 0;
-    }, [ws]);
+    return () => 0;
+  }, [ws]);
 
-    return null;
+  return null;
 };

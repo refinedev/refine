@@ -8,7 +8,7 @@ import { TranslationContext } from "@contexts/translation";
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/translate/useSetLocale} for more details.
  */
 export const useSetLocale = () => {
-    const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(TranslationContext);
 
-    return useCallback((lang: string) => i18nProvider?.changeLocale(lang), []);
+  return useCallback((lang: string) => i18nProvider?.changeLocale(lang), []);
 };

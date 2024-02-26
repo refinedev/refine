@@ -3,9 +3,9 @@ import * as GraphQLTag from "graphql-tag";
 import * as GraphQLWS from "graphql-ws";
 
 const NestjsQueryScope = {
-    RefineNestjsQuery,
-    GraphQLTag,
-    GraphQLWS,
+  RefineNestjsQuery,
+  GraphQLTag,
+  GraphQLWS,
 };
 
 export default NestjsQueryScope;

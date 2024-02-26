@@ -1,6 +1,6 @@
 import {
-    IResourceItem,
-    ResourceProps,
+  IResourceItem,
+  ResourceProps,
 } from "../../../interfaces/bindings/resource";
 
 import { routeGenerator } from "../routeGenerator";
@@ -12,19 +12,19 @@ import { routeGenerator } from "../routeGenerator";
  * This is kept for backward compability
  */
 export const legacyResourceTransform = (resources: ResourceProps[]) => {
-    const _resources: IResourceItem[] = [];
+  const _resources: IResourceItem[] = [];
 
-    resources.forEach((resource) => {
-        _resources.push({
-            ...resource,
-            label: resource.meta?.label ?? resource.options?.label,
-            route: routeGenerator(resource, resources),
-            canCreate: !!resource.create,
-            canEdit: !!resource.edit,
-            canShow: !!resource.show,
-            canDelete: resource.canDelete,
-        });
+  resources.forEach((resource) => {
+    _resources.push({
+      ...resource,
+      label: resource.meta?.label ?? resource.options?.label,
+      route: routeGenerator(resource, resources),
+      canCreate: !!resource.create,
+      canEdit: !!resource.edit,
+      canShow: !!resource.show,
+      canDelete: resource.canDelete,
     });
+  });
 
-    return _resources;
+  return _resources;
 };

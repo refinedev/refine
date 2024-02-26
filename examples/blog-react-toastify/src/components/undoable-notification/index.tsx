@@ -1,25 +1,25 @@
 type UndoableNotification = {
-    message: string;
-    cancelMutation?: () => void;
-    closeToast?: () => void;
+  message: string;
+  cancelMutation?: () => void;
+  closeToast?: () => void;
 };
 
 export const UndoableNotification: React.FC<UndoableNotification> = ({
-    closeToast,
-    cancelMutation,
-    message,
+  closeToast,
+  cancelMutation,
+  message,
 }) => {
-    return (
-        <div>
-            <p>{message}</p>
-            <button
-                onClick={() => {
-                    cancelMutation?.();
-                    closeToast?.();
-                }}
-            >
-                Undo
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <p>{message}</p>
+      <button
+        onClick={() => {
+          cancelMutation?.();
+          closeToast?.();
+        }}
+      >
+        Undo
+      </button>
+    </div>
+  );
 };

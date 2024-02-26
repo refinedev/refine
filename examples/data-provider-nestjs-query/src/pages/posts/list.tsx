@@ -1,14 +1,14 @@
 import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
 import {
-    List,
-    useTable,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    getDefaultSortOrder,
-    FilterDropdown,
-    useSelect,
-    DateField,
+  List,
+  useTable,
+  EditButton,
+  ShowButton,
+  DeleteButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+  useSelect,
+  DateField,
 } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
@@ -20,92 +20,74 @@ import { BlogPostsListQuery, CategoriesSelectQuery } from "graphql/types";
 type IPost = GetFieldsFromList<BlogPostsListQuery>;
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters, sorters } = useTable<IPost>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-        metaData: {
-            gqlQuery: POSTS_LIST_QUERY,
-        },
-    });
+  const { tableProps, filters, sorters } = useTable<IPost>({
+    initialSorter: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+    metaData: {
+      gqlQuery: POSTS_LIST_QUERY,
+    },
+  });
 
-    const { selectProps } = useSelect<GetFieldsFromList<CategoriesSelectQuery>>(
-        {
-            resource: "categories",
-            metaData: {
-                gqlQuery: CATEGORIES_SELECT_QUERY,
-            },
-        },
-    );
+  const { selectProps } = useSelect<GetFieldsFromList<CategoriesSelectQuery>>({
+    resource: "categories",
+    metaData: {
+      gqlQuery: CATEGORIES_SELECT_QUERY,
+    },
+  });
 
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column
-                    dataIndex="id"
-                    title="ID"
-                    sorter={{ multiple: 2 }}
-                    defaultSortOrder={getDefaultSortOrder("id", sorters)}
-                />
-                <Table.Column
-                    dataIndex="title"
-                    title="Title"
-                    sorter={{ multiple: 1 }}
-                />
-                <Table.Column<IPost>
-                    dataIndex="categoryId"
-                    title="Category"
-                    filterDropdown={(props) => (
-                        <FilterDropdown {...props}>
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...selectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    render={(_, record) => record.category.title}
-                    defaultFilteredValue={getDefaultFilter(
-                        "categoryId",
-                        filters,
-                        "in",
-                    )}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="Created At"
-                    render={(value) => <DateField value={value} format="LLL" />}
-                    defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
-                    sorter
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <DeleteButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+        />
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          sorter={{ multiple: 1 }}
+        />
+        <Table.Column<IPost>
+          dataIndex="categoryId"
+          title="Category"
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
+            </FilterDropdown>
+          )}
+          render={(_, record) => record.category.title}
+          defaultFilteredValue={getDefaultFilter("categoryId", filters, "in")}
+        />
+        <Table.Column
+          dataIndex="createdAt"
+          title="Created At"
+          render={(value) => <DateField value={value} format="LLL" />}
+          defaultSortOrder={getDefaultSortOrder("createdAt", sorters)}
+          sorter
+        />
+        <Table.Column<IPost>
+          title="Actions"
+          dataIndex="actions"
+          render={(_, record) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
+            </Space>
+          )}
+        />
+      </Table>
+    </List>
+  );
 };

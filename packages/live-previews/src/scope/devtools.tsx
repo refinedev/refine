@@ -1,10 +1,10 @@
 const MockRefineDevtools = {
-    DevtoolsProvider: ({ children }: { children: React.ReactNode }) => children,
-    DevtoolsPanel: () => null,
+  DevtoolsProvider: ({ children }: { children: React.ReactNode }) => children,
+  DevtoolsPanel: () => null,
 };
 
 const DevtoolsScope = {
-    RefineDevtools: MockRefineDevtools,
+  RefineDevtools: MockRefineDevtools,
 };
 
 export default DevtoolsScope;

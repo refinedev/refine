@@ -1,7 +1,7 @@
 import * as RefineKBar from "@refinedev/kbar";
 
 const KBarScope = {
-    RefineKBar,
+  RefineKBar,
 };
 
 export default KBarScope;

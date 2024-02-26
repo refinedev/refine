@@ -7,31 +7,31 @@ import { authProvider, emails } from "@/providers";
  * We use this hook to skip the login page and demonstrate the application more quickly.
  */
 export const useAutoLoginForDemo = () => {
-    const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const login = useCallback(async () => {
-        const email = localStorage.getItem("auto_login") || emails[0];
-        try {
-            await authProvider.login({
-                email,
-            });
-        } catch (_error) {
-        } finally {
-            setIsLoading(false);
-        }
-    }, [isLoading]);
+  const login = useCallback(async () => {
+    const email = localStorage.getItem("auto_login") || emails[0];
+    try {
+      await authProvider.login({
+        email,
+      });
+    } catch (_error) {
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading]);
 
-    useEffect(() => {
-        const shouldLogin = localStorage.getItem("auto_login") !== "false";
-        if (!shouldLogin) {
-            setIsLoading(false);
-            return;
-        }
+  useEffect(() => {
+    const shouldLogin = localStorage.getItem("auto_login") !== "false";
+    if (!shouldLogin) {
+      setIsLoading(false);
+      return;
+    }
 
-        login();
-    }, []);
+    login();
+  }, []);
 
-    return { loading: isLoading };
+  return { loading: isLoading };
 };
 
 /**
@@ -39,7 +39,7 @@ export const useAutoLoginForDemo = () => {
  *  This is used to skip the login page and demonstrate the application more quickly.
  */
 export const enableAutoLogin = (email: string) => {
-    localStorage.setItem("auto_login", email);
+  localStorage.setItem("auto_login", email);
 };
 
 /**
@@ -47,5 +47,5 @@ export const enableAutoLogin = (email: string) => {
  *  This is used to skip the login page and demonstrate the application more quickly.
  */
 export const disableAutoLogin = () => {
-    localStorage.setItem("auto_login", "false");
+  localStorage.setItem("auto_login", "false");
 };

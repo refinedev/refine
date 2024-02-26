@@ -9,3 +9,4 @@ CHANGELOG.md
 *.jsx
 *.ts
 *.tsx
+*.json

@@ -7,34 +7,34 @@ import { Form, Input } from "antd";
 import { ICategory } from "../../interfaces";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, formLoading } = useForm<ICategory>();
+  const { formProps, saveButtonProps, formLoading } = useForm<ICategory>();
 
-    return (
-        <Edit saveButtonProps={saveButtonProps} isLoading={formLoading}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Description"
-                    name="description"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+  return (
+    <Edit saveButtonProps={saveButtonProps} isLoading={formLoading}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };

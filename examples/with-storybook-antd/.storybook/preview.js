@@ -7,65 +7,65 @@ import { MemoryRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 
 export const parameters = {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-        matchers: {
-            color: /(background|color)$/i,
-            date: /Date$/,
-        },
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
     },
+  },
 };
 
 export const RefineWithLayout = (Story) => (
-    <MemoryRouter>
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: Story,
-                },
-            ]}
+  <MemoryRouter>
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: Story,
+        },
+      ]}
+    >
+      <Routes>
+        <Route
+          element={
+            <Layout>
+              <Outlet />
+            </Layout>
+          }
         >
-            <Routes>
-                <Route
-                    element={
-                        <Layout>
-                            <Outlet />
-                        </Layout>
-                    }
-                >
-                    <Route index element={<NavigateToResource />} />
+          <Route index element={<NavigateToResource />} />
 
-                    <Route path="posts">
-                        <Route index element={<Story />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </Refine>
-    </MemoryRouter>
+          <Route path="posts">
+            <Route index element={<Story />} />
+          </Route>
+        </Route>
+      </Routes>
+    </Refine>
+  </MemoryRouter>
 );
 
 export const RefineWithoutLayout = (Story) => (
-    <MemoryRouter>
-        <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            resources={[
-                {
-                    name: "posts",
-                    list: "/posts",
-                },
-            ]}
-        >
-            <Routes>
-                <Route index element={<NavigateToResource />} />
+  <MemoryRouter>
+    <Refine
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <Routes>
+        <Route index element={<NavigateToResource />} />
 
-                <Route path="posts">
-                    <Route index element={<Story />} />
-                </Route>
-            </Routes>
-        </Refine>
-    </MemoryRouter>
+        <Route path="posts">
+          <Route index element={<Story />} />
+        </Route>
+      </Routes>
+    </Refine>
+  </MemoryRouter>
 );

@@ -6,18 +6,18 @@ import { CheckResponse } from "../../../interfaces";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseIsAuthenticatedLegacyProps = {
-    v3LegacyAuthProviderCompatible: true;
-    params?: any;
+  v3LegacyAuthProviderCompatible: true;
+  params?: any;
 };
 
 export type UseIsAuthenticatedProps = {
-    v3LegacyAuthProviderCompatible?: false;
-    params?: any;
+  v3LegacyAuthProviderCompatible?: false;
+  params?: any;
 };
 
 export type UseIsAuthenticatedCombinedProps = {
-    v3LegacyAuthProviderCompatible: boolean;
-    params?: any;
+  v3LegacyAuthProviderCompatible: boolean;
+  params?: any;
 };
 
 export type UseIsAuthenticatedLegacyReturnType = UseQueryResult<any, any>;
@@ -25,20 +25,20 @@ export type UseIsAuthenticatedLegacyReturnType = UseQueryResult<any, any>;
 export type UseIsAuthenticatedReturnType = UseQueryResult<CheckResponse, any>;
 
 export type UseIsAuthenticatedCombinedReturnType = UseQueryResult<
-    CheckResponse | any,
-    any
+  CheckResponse | any,
+  any
 >;
 
 export function useIsAuthenticated(
-    props: UseIsAuthenticatedLegacyProps,
+  props: UseIsAuthenticatedLegacyProps,
 ): UseIsAuthenticatedLegacyReturnType;
 
 export function useIsAuthenticated(
-    props?: UseIsAuthenticatedProps,
+  props?: UseIsAuthenticatedProps,
 ): UseIsAuthenticatedReturnType;
 
 export function useIsAuthenticated(
-    props?: UseIsAuthenticatedCombinedProps,
+  props?: UseIsAuthenticatedCombinedProps,
 ): UseIsAuthenticatedCombinedReturnType;
 
 /**
@@ -47,47 +47,43 @@ export function useIsAuthenticated(
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated} for more details.
  */
 export function useIsAuthenticated({
-    v3LegacyAuthProviderCompatible = false,
-    params,
+  v3LegacyAuthProviderCompatible = false,
+  params,
 }: UseIsAuthenticatedProps | UseIsAuthenticatedLegacyProps = {}):
-    | UseIsAuthenticatedReturnType
-    | UseIsAuthenticatedLegacyReturnType {
-    const { checkAuth } = useLegacyAuthContext();
-    const { check } = useAuthBindingsContext();
-    const { keys, preferLegacyKeys } = useKeys();
+  | UseIsAuthenticatedReturnType
+  | UseIsAuthenticatedLegacyReturnType {
+  const { checkAuth } = useLegacyAuthContext();
+  const { check } = useAuthBindingsContext();
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery({
-        queryKey: keys()
-            .auth()
-            .action("check")
-            .params(params)
-            .get(preferLegacyKeys),
-        queryFn: async () => (await check?.(params)) ?? {},
-        retry: false,
-        enabled: !v3LegacyAuthProviderCompatible,
-        meta: {
-            ...getXRay("useIsAuthenticated", preferLegacyKeys),
-        },
-    });
+  const queryResponse = useQuery({
+    queryKey: keys()
+      .auth()
+      .action("check")
+      .params(params)
+      .get(preferLegacyKeys),
+    queryFn: async () => (await check?.(params)) ?? {},
+    retry: false,
+    enabled: !v3LegacyAuthProviderCompatible,
+    meta: {
+      ...getXRay("useIsAuthenticated", preferLegacyKeys),
+    },
+  });
 
-    const legacyQueryResponse = useQuery({
-        queryKey: [
-            ...keys()
-                .auth()
-                .action("check")
-                .params(params)
-                .get(preferLegacyKeys),
-            "v3LegacyAuthProviderCompatible",
-        ],
-        queryFn: async () => (await checkAuth?.(params)) ?? {},
-        retry: false,
-        enabled: v3LegacyAuthProviderCompatible,
-        meta: {
-            ...getXRay("useIsAuthenticated", preferLegacyKeys),
-        },
-    });
+  const legacyQueryResponse = useQuery({
+    queryKey: [
+      ...keys().auth().action("check").params(params).get(preferLegacyKeys),
+      "v3LegacyAuthProviderCompatible",
+    ],
+    queryFn: async () => (await checkAuth?.(params)) ?? {},
+    retry: false,
+    enabled: v3LegacyAuthProviderCompatible,
+    meta: {
+      ...getXRay("useIsAuthenticated", preferLegacyKeys),
+    },
+  });
 
-    return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
+  return v3LegacyAuthProviderCompatible ? legacyQueryResponse : queryResponse;
 }
 
 /**

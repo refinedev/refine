@@ -7,39 +7,39 @@ import { render, TestWrapper } from "@test";
 import { List } from "./index";
 
 const renderList = (list: ReactNode) => {
-    return render(
-        <Routes>
-            <Route path="/:resource" element={list} />
-        </Routes>,
-        {
-            wrapper: TestWrapper({
-                routerInitialEntries: ["/posts"],
-            }),
-        },
-    );
+  return render(
+    <Routes>
+      <Route path="/:resource" element={list} />
+    </Routes>,
+    {
+      wrapper: TestWrapper({
+        routerInitialEntries: ["/posts"],
+      }),
+    },
+  );
 };
 
 describe("<List/>", () => {
-    crudListTests.bind(this)(List);
+  crudListTests.bind(this)(List);
 
-    it("should customize default buttons with default props", async () => {
-        const { queryByTestId } = renderList(
-            <List
-                createButtonProps={{ className: "customize-test" }}
-                headerButtons={({ createButtonProps }) => {
-                    expect(createButtonProps).toBeDefined();
+  it("should customize default buttons with default props", async () => {
+    const { queryByTestId } = renderList(
+      <List
+        createButtonProps={{ className: "customize-test" }}
+        headerButtons={({ createButtonProps }) => {
+          expect(createButtonProps).toBeDefined();
 
-                    return (
-                        <>
-                            <CreateButton {...createButtonProps} />
-                        </>
-                    );
-                }}
-            />,
-        );
+          return (
+            <>
+              <CreateButton {...createButtonProps} />
+            </>
+          );
+        }}
+      />,
+    );
 
-        expect(queryByTestId(RefineButtonTestIds.CreateButton)).toHaveClass(
-            "customize-test",
-        );
-    });
+    expect(queryByTestId(RefineButtonTestIds.CreateButton)).toHaveClass(
+      "customize-test",
+    );
+  });
 });

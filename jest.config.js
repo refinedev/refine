@@ -1,4 +1,4 @@
 module.exports = {
-    projects: ["<rootDir>/packages/*/jest.config.js"],
-    coverageDirectory: "<rootDir>/coverage/",
+  projects: ["<rootDir>/packages/*/jest.config.js"],
+  coverageDirectory: "<rootDir>/coverage/",
 };

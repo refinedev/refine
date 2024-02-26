@@ -3,39 +3,39 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
 export interface ClientStyleContextData {
-    reset: () => void;
+  reset: () => void;
 }
 
 interface ClientCacheProviderProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const ClientStyleContext = React.createContext<ClientStyleContextData>({
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    reset: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  reset: () => {},
 });
 
 const createEmotionCache = () => {
-    return createCache({ key: "css" });
+  return createCache({ key: "css" });
 };
 
 export const ClientStyleCacheProvider = ({
-    children,
+  children,
 }: ClientCacheProviderProps) => {
-    const [cache, setCache] = React.useState(createEmotionCache());
+  const [cache, setCache] = React.useState(createEmotionCache());
 
-    const clientStyleContextValue = React.useMemo(
-        () => ({
-            reset() {
-                setCache(createEmotionCache());
-            },
-        }),
-        [],
-    );
+  const clientStyleContextValue = React.useMemo(
+    () => ({
+      reset() {
+        setCache(createEmotionCache());
+      },
+    }),
+    [],
+  );
 
-    return (
-        <ClientStyleContext.Provider value={clientStyleContextValue}>
-            <CacheProvider value={cache}>{children}</CacheProvider>
-        </ClientStyleContext.Provider>
-    );
+  return (
+    <ClientStyleContext.Provider value={clientStyleContextValue}>
+      <CacheProvider value={cache}>{children}</CacheProvider>
+    </ClientStyleContext.Provider>
+  );
 };

@@ -9,139 +9,133 @@ import { convertBase64 } from "../../utils";
 import { ICategory, IPost } from "../../interfaces";
 
 interface FormValues {
-    title: string;
-    status: string;
-    category: {
-        id: string;
-    };
-    content: string;
-    images: string[];
+  title: string;
+  status: string;
+  category: {
+    id: string;
+  };
+  content: string;
+  images: string[];
 }
 
 export const PostEdit: React.FC = () => {
-    const [isUploadLoading, setIsUploadLoading] = useState(false);
+  const [isUploadLoading, setIsUploadLoading] = useState(false);
 
-    const {
-        saveButtonProps,
-        getInputProps,
-        setFieldValue,
-        values,
-        errors,
-        refineCore: { queryResult },
-    } = useForm<IPost, HttpError, FormValues>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-            content: "",
-            images: [],
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-            content: (value) =>
-                value.length < 10 ? "Too short content" : null,
-        },
-    });
+  const {
+    saveButtonProps,
+    getInputProps,
+    setFieldValue,
+    values,
+    errors,
+    refineCore: { queryResult },
+  } = useForm<IPost, HttpError, FormValues>({
+    initialValues: {
+      title: "",
+      status: "",
+      category: {
+        id: "",
+      },
+      content: "",
+      images: [],
+    },
+    validate: {
+      title: (value) => (value.length < 2 ? "Too short title" : null),
+      status: (value) => (value.length <= 0 ? "Status is required" : null),
+      category: {
+        id: (value) => (value.length <= 0 ? "Category is required" : null),
+      },
+      content: (value) => (value.length < 10 ? "Too short content" : null),
+    },
+  });
 
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-    });
+  const { selectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: queryResult?.data?.data.category.id,
+  });
 
-    const handleOnDrop = (files: FileWithPath[]) => {
-        try {
-            setIsUploadLoading(true);
+  const handleOnDrop = (files: FileWithPath[]) => {
+    try {
+      setIsUploadLoading(true);
 
-            files.map(async (file) => {
-                const base64 = await convertBase64(file);
+      files.map(async (file) => {
+        const base64 = await convertBase64(file);
 
-                if (values.images) {
-                    setFieldValue("images", [...values.images, base64]);
-                } else {
-                    setFieldValue("images", [base64]);
-                }
-            });
-
-            setIsUploadLoading(false);
-        } catch (error) {
-            setIsUploadLoading(false);
+        if (values.images) {
+          setFieldValue("images", [...values.images, base64]);
+        } else {
+          setFieldValue("images", [base64]);
         }
-    };
+      });
 
-    const previews = values.images?.map((base64, index) => {
-        return <Image key={index} src={base64} />;
-    });
+      setIsUploadLoading(false);
+    } catch (error) {
+      setIsUploadLoading(false);
+    }
+  };
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
-                />
-                <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
-                <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-                <Text mt={8} weight={500} size="sm" color="#212529">
-                    Content
-                </Text>
-                <Text mt={8} weight={500} size="sm">
-                    Content
-                </Text>
-                <MDEditor
-                    data-color-mode="light"
-                    {...getInputProps("content")}
-                />
-                {errors.content && (
-                    <Text mt={2} weight={500} size="xs" color="red">
-                        {errors.content}
-                    </Text>
-                )}
+  const previews = values.images?.map((base64, index) => {
+    return <Image key={index} src={base64} />;
+  });
 
-                <Text mt={8} weight={500} size="sm" color="#212529">
-                    Images
-                </Text>
-                <Dropzone
-                    accept={IMAGE_MIME_TYPE}
-                    onDrop={handleOnDrop}
-                    loading={isUploadLoading}
-                >
-                    <Text align="center">Drop images here</Text>
-                </Dropzone>
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <form>
+        <TextInput
+          mt={8}
+          label="Title"
+          placeholder="Title"
+          {...getInputProps("title")}
+        />
+        <Select
+          mt={8}
+          label="Status"
+          placeholder="Pick one"
+          {...getInputProps("status")}
+          data={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+        />
+        <Select
+          mt={8}
+          label="Category"
+          placeholder="Pick one"
+          {...getInputProps("category.id")}
+          {...selectProps}
+        />
+        <Text mt={8} weight={500} size="sm" color="#212529">
+          Content
+        </Text>
+        <Text mt={8} weight={500} size="sm">
+          Content
+        </Text>
+        <MDEditor data-color-mode="light" {...getInputProps("content")} />
+        {errors.content && (
+          <Text mt={2} weight={500} size="xs" color="red">
+            {errors.content}
+          </Text>
+        )}
 
-                <SimpleGrid
-                    cols={4}
-                    breakpoints={[{ maxWidth: "sm", cols: 2 }]}
-                    mt={previews?.length > 0 ? "xl" : 0}
-                >
-                    {previews}
-                </SimpleGrid>
-            </form>
-        </Edit>
-    );
+        <Text mt={8} weight={500} size="sm" color="#212529">
+          Images
+        </Text>
+        <Dropzone
+          accept={IMAGE_MIME_TYPE}
+          onDrop={handleOnDrop}
+          loading={isUploadLoading}
+        >
+          <Text align="center">Drop images here</Text>
+        </Dropzone>
+
+        <SimpleGrid
+          cols={4}
+          breakpoints={[{ maxWidth: "sm", cols: 2 }]}
+          mt={previews?.length > 0 ? "xl" : 0}
+        >
+          {previews}
+        </SimpleGrid>
+      </form>
+    </Edit>
+  );
 };

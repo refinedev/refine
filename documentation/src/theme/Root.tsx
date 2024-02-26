@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { CommunityStatsProvider } from "../context/CommunityStats";
 
 const Root: FC = ({ children }) => {
-    return <CommunityStatsProvider>{children}</CommunityStatsProvider>;
+  return <CommunityStatsProvider>{children}</CommunityStatsProvider>;
 };
 
 export default Root;

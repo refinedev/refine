@@ -4,10 +4,10 @@ export * from "./components";
 export * from "./contexts";
 
 export {
-    getDefaultSortOrder,
-    getDefaultFilter,
-    mapAntdSorterToCrudSorting,
-    mapAntdFilterToCrudFilter,
+  getDefaultSortOrder,
+  getDefaultFilter,
+  mapAntdSorterToCrudSorting,
+  mapAntdFilterToCrudFilter,
 } from "./definitions/table";
 export { getValueFromEvent } from "./definitions/upload";
 

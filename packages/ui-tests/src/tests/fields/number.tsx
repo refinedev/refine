@@ -4,47 +4,41 @@ import { RefineFieldNumberProps } from "@refinedev/ui-types";
 import { render } from "@test";
 
 export const fieldNumberTests = function (
-    NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
+  NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
 ): void {
-    describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
-        it("renders numbers with given formatting", () => {
-            const testPrice = 12345.6789;
-            const options = {
-                style: "currency",
-                currency: "EUR",
-                maximumFractionDigits: 1,
-                minimumFractionDigits: 1,
-            };
-            const locale = "de-DE";
+  describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
+    it("renders numbers with given formatting", () => {
+      const testPrice = 12345.6789;
+      const options = {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 1,
+      };
+      const locale = "de-DE";
 
-            const { getByText } = render(
-                <NumberField
-                    value={testPrice}
-                    locale={locale}
-                    options={options}
-                />,
-            );
+      const { getByText } = render(
+        <NumberField value={testPrice} locale={locale} options={options} />,
+      );
 
-            const formattedTestPrice = testPrice
-                .toLocaleString(locale, options)
-                .replace(String.fromCharCode(160), " ");
+      const formattedTestPrice = testPrice
+        .toLocaleString(locale, options)
+        .replace(String.fromCharCode(160), " ");
 
-            // node 14 uses non-breaking space resulting in imcompatibility
-            getByText(formattedTestPrice);
-        });
-
-        it("should render NaN when value is undefined", () => {
-            const { getByText } = render(<NumberField value={undefined} />);
-
-            getByText("NaN");
-        });
-
-        it("should render NaN when value is string", () => {
-            const { getByText } = render(
-                <NumberField value={"not a number"} />,
-            );
-
-            getByText("NaN");
-        });
+      // node 14 uses non-breaking space resulting in imcompatibility
+      getByText(formattedTestPrice);
     });
+
+    it("should render NaN when value is undefined", () => {
+      const { getByText } = render(<NumberField value={undefined} />);
+
+      getByText("NaN");
+    });
+
+    it("should render NaN when value is string", () => {
+      const { getByText } = render(<NumberField value={"not a number"} />);
+
+      getByText("NaN");
+    });
+  });
 };

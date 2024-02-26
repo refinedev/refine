@@ -5,20 +5,20 @@ import { FieldTransformer } from "../types";
  * @param transformers The transformer functions to compose
  */
 export const composeTransformers = (
-    transformers: Array<FieldTransformer>,
+  transformers: Array<FieldTransformer>,
 ): FieldTransformer => {
-    const fieldTransformer: FieldTransformer = (
-        fields,
-        resources,
-        resource,
-        record,
-        infer,
-        type,
-    ) => {
-        return transformers.reduce((acc, transformer) => {
-            return transformer(acc, resources, resource, record, infer, type);
-        }, fields);
-    };
+  const fieldTransformer: FieldTransformer = (
+    fields,
+    resources,
+    resource,
+    record,
+    infer,
+    type,
+  ) => {
+    return transformers.reduce((acc, transformer) => {
+      return transformer(acc, resources, resource, record, infer, type);
+    }, fields);
+  };
 
-    return fieldTransformer;
+  return fieldTransformer;
 };

@@ -13,191 +13,191 @@ import * as TanstackReactTable from "@tanstack/react-table";
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
 declare global {
-    interface Window {
-        routerSettings?: { initialEntries?: string[] };
-        refineProps?: Partial<React.ComponentProps<typeof RefineCore.Refine>>;
-        __refineIconSVGContent?: string;
-        __refineTitleContent?: string;
-    }
+  interface Window {
+    routerSettings?: { initialEntries?: string[] };
+    refineProps?: Partial<React.ComponentProps<typeof RefineCore.Refine>>;
+    __refineIconSVGContent?: string;
+    __refineTitleContent?: string;
+  }
 }
 
 export const ExternalNavigationContext = React.createContext<{
-    go: RefineCore.GoFunction;
-    setGo: (ref: { current: RefineCore.GoFunction }) => void;
+  go: RefineCore.GoFunction;
+  setGo: (ref: { current: RefineCore.GoFunction }) => void;
 }>({
-    go: () => undefined,
-    setGo: () => undefined,
+  go: () => undefined,
+  setGo: () => undefined,
 });
 
 const ExternalNavigationProvider = ({ children }: React.PropsWithChildren) => {
-    const [navigation, setNavigation] = React.useState<{
-        current: RefineCore.GoFunction;
-    }>({ current: () => undefined });
+  const [navigation, setNavigation] = React.useState<{
+    current: RefineCore.GoFunction;
+  }>({ current: () => undefined });
 
-    return (
-        <ExternalNavigationContext.Provider
-            value={{
-                go: (...args) => navigation.current(...args),
-                setGo: (go) => setNavigation(go),
-            }}
-        >
-            {children}
-        </ExternalNavigationContext.Provider>
-    );
+  return (
+    <ExternalNavigationContext.Provider
+      value={{
+        go: (...args) => navigation.current(...args),
+        setGo: (go) => setNavigation(go),
+      }}
+    >
+      {children}
+    </ExternalNavigationContext.Provider>
+  );
 };
 
 const NavigationHandler = () => {
-    const context = React.useContext(ExternalNavigationContext);
-    const go = RefineCore.useGo();
-    const goRef = React.useRef(go);
+  const context = React.useContext(ExternalNavigationContext);
+  const go = RefineCore.useGo();
+  const goRef = React.useRef(go);
 
-    React.useEffect(() => {
-        if (context) {
-            goRef.current = go;
-            context.setGo(goRef);
-        }
-    }, []);
+  React.useEffect(() => {
+    if (context) {
+      goRef.current = go;
+      context.setGo(goRef);
+    }
+  }, []);
 
-    return null;
+  return null;
 };
 
 const Refine = (
-    props: React.ComponentProps<typeof RefineCore.Refine>,
+  props: React.ComponentProps<typeof RefineCore.Refine>,
 ): JSX.Element => {
-    const { options: hiddenRefineOptions, ...hiddenRefineProps } =
-        window.refineProps ?? {};
-    return (
-        <RefineCore.Refine
-            {...props}
-            options={{
-                disableTelemetry: true,
-                ...(props?.options || {}),
-                ...(hiddenRefineOptions || {}),
-                reactQuery: {
-                    devtoolConfig: false,
-                    ...(props?.options?.reactQuery || {}),
-                    ...(hiddenRefineOptions?.reactQuery || {}),
-                },
-            }}
-            {...hiddenRefineProps}
-        >
-            {props.children}
-            <NavigationHandler />
-        </RefineCore.Refine>
-    );
+  const { options: hiddenRefineOptions, ...hiddenRefineProps } =
+    window.refineProps ?? {};
+  return (
+    <RefineCore.Refine
+      {...props}
+      options={{
+        disableTelemetry: true,
+        ...(props?.options || {}),
+        ...(hiddenRefineOptions || {}),
+        reactQuery: {
+          devtoolConfig: false,
+          ...(props?.options?.reactQuery || {}),
+          ...(hiddenRefineOptions?.reactQuery || {}),
+        },
+      }}
+      {...hiddenRefineProps}
+    >
+      {props.children}
+      <NavigationHandler />
+    </RefineCore.Refine>
+  );
 };
 
 const setInitialRoutes = (initialEntries: string[]): void => {
-    if (typeof window !== "undefined") {
-        window.routerSettings = {
-            initialEntries,
-        };
-    }
+  if (typeof window !== "undefined") {
+    window.routerSettings = {
+      initialEntries,
+    };
+  }
 };
 
 const setRefineProps = (
-    props: Partial<React.ComponentProps<typeof RefineCore.Refine>>,
+  props: Partial<React.ComponentProps<typeof RefineCore.Refine>>,
 ) => {
-    if (typeof window !== "undefined") {
-        window.refineProps = props;
-    }
+  if (typeof window !== "undefined") {
+    window.refineProps = props;
+  }
 };
 
 const DemoMemoryRouterComponent = (
-    props: React.ComponentProps<typeof MemoryRouterComponent>,
+  props: React.ComponentProps<typeof MemoryRouterComponent>,
 ): JSX.Element => {
-    return (
-        <MemoryRouterComponent
-            {...props}
-            {...(typeof window !== "undefined" ? window.routerSettings : {})}
-        />
-    );
+  return (
+    <MemoryRouterComponent
+      {...props}
+      {...(typeof window !== "undefined" ? window.routerSettings : {})}
+    />
+  );
 };
 
 const DemoMemoryRouter = (
-    props: React.ComponentProps<typeof ReactRouterDom.MemoryRouter>,
+  props: React.ComponentProps<typeof ReactRouterDom.MemoryRouter>,
 ): JSX.Element => {
-    return (
-        <ReactRouterDom.MemoryRouter
-            {...props}
-            {...(typeof window !== "undefined" ? window.routerSettings : {})}
-        />
-    );
+  return (
+    <ReactRouterDom.MemoryRouter
+      {...props}
+      {...(typeof window !== "undefined" ? window.routerSettings : {})}
+    />
+  );
 };
 
 const LegacyRefineReactRouterV6 = {
-    ...LegacyRefineReactRouterV6Base,
-    MemoryRouterComponent: DemoMemoryRouterComponent,
-    default: {
-        ...LegacyRefineReactRouterV6Base.default,
-        RouterComponent: DemoMemoryRouterComponent,
-    },
+  ...LegacyRefineReactRouterV6Base,
+  MemoryRouterComponent: DemoMemoryRouterComponent,
+  default: {
+    ...LegacyRefineReactRouterV6Base.default,
+    RouterComponent: DemoMemoryRouterComponent,
+  },
 };
 
 /**
  * @deprecated please use `setInitialRoutes` instead
  */
 const LegacyRefineDemoReactRouterV6 = (
-    initialRoutes?: string[],
+  initialRoutes?: string[],
 ): RefineCore.IRouterProvider => {
-    if (initialRoutes) {
-        setInitialRoutes(initialRoutes);
-    }
+  if (initialRoutes) {
+    setInitialRoutes(initialRoutes);
+  }
 
-    return LegacyRefineReactRouterV6.default;
+  return LegacyRefineReactRouterV6.default;
 };
 
 const RefineHeadlessDemo: React.FC<
-    Partial<RefineCore.RefineProps> & {
-        initialRoutes?: string[];
-    }
+  Partial<RefineCore.RefineProps> & {
+    initialRoutes?: string[];
+  }
 > = ({ initialRoutes, ...rest }) => {
-    if (initialRoutes) {
-        setInitialRoutes(initialRoutes);
-    }
+  if (initialRoutes) {
+    setInitialRoutes(initialRoutes);
+  }
 
-    return (
-        <Refine
-            legacyRouterProvider={LegacyRefineReactRouterV6.default}
-            dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
-            options={{
-                disableTelemetry: true,
-                reactQuery: {
-                    devtoolConfig: false,
-                },
-            }}
-            {...rest}
-        />
-    );
+  return (
+    <Refine
+      legacyRouterProvider={LegacyRefineReactRouterV6.default}
+      dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
+      options={{
+        disableTelemetry: true,
+        reactQuery: {
+          devtoolConfig: false,
+        },
+      }}
+      {...rest}
+    />
+  );
 };
 
 export const RefineCommonScope = {
-    // React
-    React,
-    ...React,
-    // Core
-    RefineCore: {
-        ...RefineCore,
-        ExternalNavigationProvider,
-        Refine,
-    },
-    ReactRouterDom: {
-        ...ReactRouterDom,
-        BrowserRouter: DemoMemoryRouter,
-    },
-    // Data
-    RefineSimpleRest,
-    // Utilities
-    setInitialRoutes,
-    setRefineProps,
-    RefineReactRouterV6: RefineReactRouterV6Base,
-    LegacyRefineReactRouterV6,
-    LegacyRefineDemoReactRouterV6,
-    // UI
-    RefineHeadlessDemo,
-    // Other
-    RefineReactHookForm,
-    RefineReactTable,
-    ReactHookForm,
-    TanstackReactTable,
+  // React
+  React,
+  ...React,
+  // Core
+  RefineCore: {
+    ...RefineCore,
+    ExternalNavigationProvider,
+    Refine,
+  },
+  ReactRouterDom: {
+    ...ReactRouterDom,
+    BrowserRouter: DemoMemoryRouter,
+  },
+  // Data
+  RefineSimpleRest,
+  // Utilities
+  setInitialRoutes,
+  setRefineProps,
+  RefineReactRouterV6: RefineReactRouterV6Base,
+  LegacyRefineReactRouterV6,
+  LegacyRefineDemoReactRouterV6,
+  // UI
+  RefineHeadlessDemo,
+  // Other
+  RefineReactHookForm,
+  RefineReactTable,
+  ReactHookForm,
+  TanstackReactTable,
 };
