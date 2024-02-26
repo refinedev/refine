@@ -175,6 +175,12 @@ Check out the example usage of `<Sandpack />` in Core API's `useForm` hook docum
 
 Refine is a monorepo with multiple packages and examples. To make sure we're keeping things clean and in order, we're using couple of tools to enforce a good development experience.
 
+### Linting & Formatting
+
+We are using [biome](https://biomejs.dev) for linting & formatting across the repository.
+
+We suggest using [biome VSCode extension](https://biomejs.dev/reference/vscode/) to handle linting & formatting on your local environment to avoid unexpected failures on CI.
+
 ### Commit Convention
 
 Commit messages are essential to keep everything clear in our development process. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
