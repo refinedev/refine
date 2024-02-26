@@ -6,84 +6,81 @@ import { TestWrapper } from "@test";
 import { useCancelNotification } from "./";
 
 describe("useCancelNotification Hook", () => {
-    it("returns context correct value", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(React, "useReducer");
+  it("returns context correct value", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(React, "useReducer");
 
-        const mockNotificationState = [
-            {
-                id: "1",
-                resource: "posts",
-                seconds: 5000,
-                isRunning: true,
-            },
-        ];
-        useReducerSpy.mockImplementation(() => [
-            mockNotificationState,
-            dispatch,
-        ]);
+    const mockNotificationState = [
+      {
+        id: "1",
+        resource: "posts",
+        seconds: 5000,
+        isRunning: true,
+      },
+    ];
+    useReducerSpy.mockImplementation(() => [mockNotificationState, dispatch]);
 
-        const { result } = renderHook(() => useCancelNotification(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
-
-        expect(result.current.notifications).toEqual(mockNotificationState);
+    const { result } = renderHook(() => useCancelNotification(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+      }),
     });
 
-    it("returns context false value", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(React, "useReducer");
+    expect(result.current.notifications).toEqual(mockNotificationState);
+  });
 
-        const mockNotificationState = [
-            {
-                id: "1",
-                resource: "posts",
-                seconds: 5000,
-                isRunning: true,
-            },
-        ];
-        useReducerSpy.mockImplementation(() => [[], dispatch]);
+  it("returns context false value", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(React, "useReducer");
 
-        const { result } = renderHook(() => useCancelNotification(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
+    const mockNotificationState = [
+      {
+        id: "1",
+        resource: "posts",
+        seconds: 5000,
+        isRunning: true,
+      },
+    ];
+    useReducerSpy.mockImplementation(() => [[], dispatch]);
 
-        expect(result.current.notifications).not.toEqual(mockNotificationState);
+    const { result } = renderHook(() => useCancelNotification(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+      }),
     });
 
-    it("context dispatch not called", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(React, "useReducer");
+    expect(result.current.notifications).not.toEqual(mockNotificationState);
+  });
 
-        useReducerSpy.mockImplementation(() => [[], dispatch]);
+  it("context dispatch not called", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(React, "useReducer");
 
-        renderHook(() => useCancelNotification(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
+    useReducerSpy.mockImplementation(() => [[], dispatch]);
 
-        expect(dispatch).not.toBeCalled();
+    renderHook(() => useCancelNotification(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+      }),
     });
 
-    it("context dispatch called", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(React, "useReducer");
+    expect(dispatch).not.toBeCalled();
+  });
 
-        useReducerSpy.mockImplementation(() => [[], dispatch]);
+  it("context dispatch called", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(React, "useReducer");
 
-        const { result } = renderHook(() => useCancelNotification(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-            }),
-        });
+    useReducerSpy.mockImplementation(() => [[], dispatch]);
 
-        result.current.notificationDispatch({});
-
-        expect(dispatch).toBeCalled();
+    const { result } = renderHook(() => useCancelNotification(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+      }),
     });
+
+    result.current.notificationDispatch({});
+
+    expect(dispatch).toBeCalled();
+  });
 });

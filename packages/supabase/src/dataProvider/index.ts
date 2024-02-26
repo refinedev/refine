@@ -3,270 +3,266 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
 export const dataProvider = (
-    supabaseClient: SupabaseClient<any, any, any>,
+  supabaseClient: SupabaseClient<any, any, any>,
 ): Required<DataProvider> => {
-    return {
-        getList: async ({ resource, pagination, filters, sorters, meta }) => {
-            const {
-                current = 1,
-                pageSize = 10,
-                mode = "server",
-            } = pagination ?? {};
+  return {
+    getList: async ({ resource, pagination, filters, sorters, meta }) => {
+      const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            const query = client.from(resource).select(meta?.select ?? "*", {
-                count: meta?.count ?? "exact",
+      const query = client.from(resource).select(meta?.select ?? "*", {
+        count: meta?.count ?? "exact",
+      });
+
+      if (mode === "server") {
+        query.range((current - 1) * pageSize, current * pageSize - 1);
+      }
+
+      sorters?.map((item) => {
+        const [foreignTable, field] = item.field.split(/\.(.*)/);
+
+        if (foreignTable && field) {
+          query
+            .select(meta?.select ?? `*, ${foreignTable}(${field})`)
+            .order(field, {
+              ascending: item.order === "asc",
+              foreignTable: foreignTable,
             });
+        } else {
+          query.order(item.field, {
+            ascending: item.order === "asc",
+          });
+        }
+      });
 
-            if (mode === "server") {
-                query.range((current - 1) * pageSize, current * pageSize - 1);
-            }
+      filters?.map((item) => {
+        generateFilter(item, query);
+      });
 
-            sorters?.map((item) => {
-                const [foreignTable, field] = item.field.split(/\.(.*)/);
+      const { data, count, error } = await query;
 
-                if (foreignTable && field) {
-                    query
-                        .select(meta?.select ?? `*, ${foreignTable}(${field})`)
-                        .order(field, {
-                            ascending: item.order === "asc",
-                            foreignTable: foreignTable,
-                        });
-                } else {
-                    query.order(item.field, {
-                        ascending: item.order === "asc",
-                    });
-                }
-            });
+      if (error) {
+        return handleError(error);
+      }
 
-            filters?.map((item) => {
-                generateFilter(item, query);
-            });
+      return {
+        data: data || [],
+        total: count || 0,
+      } as any;
+    },
 
-            const { data, count, error } = await query;
+    getMany: async ({ resource, ids, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            if (error) {
-                return handleError(error);
-            }
+      const query = client.from(resource).select(meta?.select ?? "*");
 
-            return {
-                data: data || [],
-                total: count || 0,
-            } as any;
-        },
+      if (meta?.idColumnName) {
+        query.in(meta.idColumnName, ids);
+      } else {
+        query.in("id", ids);
+      }
 
-        getMany: async ({ resource, ids, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const { data, error } = await query;
 
-            const query = client.from(resource).select(meta?.select ?? "*");
+      if (error) {
+        return handleError(error);
+      }
 
-            if (meta?.idColumnName) {
-                query.in(meta.idColumnName, ids);
-            } else {
-                query.in("id", ids);
-            }
+      return {
+        data: data || [],
+      } as any;
+    },
 
-            const { data, error } = await query;
+    create: async ({ resource, variables, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            if (error) {
-                return handleError(error);
-            }
+      const query = client.from(resource).insert(variables);
 
-            return {
-                data: data || [],
-            } as any;
-        },
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-        create: async ({ resource, variables, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const { data, error } = await query;
 
-            const query = client.from(resource).insert(variables);
+      if (error) {
+        return handleError(error);
+      }
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-            const { data, error } = await query;
+    createMany: async ({ resource, variables, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            if (error) {
-                return handleError(error);
-            }
+      const query = client.from(resource).insert(variables);
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-        createMany: async ({ resource, variables, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const { data, error } = await query;
 
-            const query = client.from(resource).insert(variables);
+      if (error) {
+        return handleError(error);
+      }
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+      return {
+        data: data as any,
+      };
+    },
 
-            const { data, error } = await query;
+    update: async ({ resource, id, variables, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            if (error) {
-                return handleError(error);
-            }
+      const query = client.from(resource).update(variables);
 
-            return {
-                data: data as any,
-            };
-        },
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-        update: async ({ resource, id, variables, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      if (meta?.select) {
+        query.select(meta.select);
+      }
 
-            const query = client.from(resource).update(variables);
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-            if (meta?.select) {
-                query.select(meta.select);
-            }
+    updateMany: async ({ resource, ids, variables, meta }) => {
+      const response = await Promise.all(
+        ids.map(async (id) => {
+          const client = meta?.schema
+            ? supabaseClient.schema(meta.schema)
+            : supabaseClient;
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+          const query = client.from(resource).update(variables);
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+          if (meta?.idColumnName) {
+            query.eq(meta.idColumnName, id);
+          } else {
+            query.match({ id });
+          }
 
-        updateMany: async ({ resource, ids, variables, meta }) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const client = meta?.schema
-                        ? supabaseClient.schema(meta.schema)
-                        : supabaseClient;
+          if (meta?.select) {
+            query.select(meta.select);
+          }
 
-                    const query = client.from(resource).update(variables);
+          const { data, error } = await query;
+          if (error) {
+            return handleError(error);
+          }
 
-                    if (meta?.idColumnName) {
-                        query.eq(meta.idColumnName, id);
-                    } else {
-                        query.match({ id });
-                    }
+          return (data || [])[0] as any;
+        }),
+      );
 
-                    if (meta?.select) {
-                        query.select(meta.select);
-                    }
+      return {
+        data: response,
+      };
+    },
 
-                    const { data, error } = await query;
-                    if (error) {
-                        return handleError(error);
-                    }
+    getOne: async ({ resource, id, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-                    return (data || [])[0] as any;
-                }),
-            );
+      const query = client.from(resource).select(meta?.select ?? "*");
 
-            return {
-                data: response,
-            };
-        },
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-        getOne: async ({ resource, id, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            const query = client.from(resource).select(meta?.select ?? "*");
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+    deleteOne: async ({ resource, id, meta }) => {
+      const client = meta?.schema
+        ? supabaseClient.schema(meta.schema)
+        : supabaseClient;
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+      const query = client.from(resource).delete();
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+      if (meta?.idColumnName) {
+        query.eq(meta.idColumnName, id);
+      } else {
+        query.match({ id });
+      }
 
-        deleteOne: async ({ resource, id, meta }) => {
-            const client = meta?.schema
-                ? supabaseClient.schema(meta.schema)
-                : supabaseClient;
+      const { data, error } = await query;
+      if (error) {
+        return handleError(error);
+      }
 
-            const query = client.from(resource).delete();
+      return {
+        data: (data || [])[0] as any,
+      };
+    },
 
-            if (meta?.idColumnName) {
-                query.eq(meta.idColumnName, id);
-            } else {
-                query.match({ id });
-            }
+    deleteMany: async ({ resource, ids, meta }) => {
+      const response = await Promise.all(
+        ids.map(async (id) => {
+          const client = meta?.schema
+            ? supabaseClient.schema(meta.schema)
+            : supabaseClient;
 
-            const { data, error } = await query;
-            if (error) {
-                return handleError(error);
-            }
+          const query = client.from(resource).delete();
 
-            return {
-                data: (data || [])[0] as any,
-            };
-        },
+          if (meta?.idColumnName) {
+            query.eq(meta.idColumnName, id);
+          } else {
+            query.match({ id });
+          }
 
-        deleteMany: async ({ resource, ids, meta }) => {
-            const response = await Promise.all(
-                ids.map(async (id) => {
-                    const client = meta?.schema
-                        ? supabaseClient.schema(meta.schema)
-                        : supabaseClient;
+          const { data, error } = await query;
+          if (error) {
+            return handleError(error);
+          }
 
-                    const query = client.from(resource).delete();
+          return (data || [])[0] as any;
+        }),
+      );
 
-                    if (meta?.idColumnName) {
-                        query.eq(meta.idColumnName, id);
-                    } else {
-                        query.match({ id });
-                    }
+      return {
+        data: response,
+      };
+    },
 
-                    const { data, error } = await query;
-                    if (error) {
-                        return handleError(error);
-                    }
+    getApiUrl: () => {
+      throw Error("Not implemented on refine-supabase data provider.");
+    },
 
-                    return (data || [])[0] as any;
-                }),
-            );
-
-            return {
-                data: response,
-            };
-        },
-
-        getApiUrl: () => {
-            throw Error("Not implemented on refine-supabase data provider.");
-        },
-
-        custom: () => {
-            throw Error("Not implemented on refine-supabase data provider.");
-        },
-    };
+    custom: () => {
+      throw Error("Not implemented on refine-supabase data provider.");
+    },
+  };
 };

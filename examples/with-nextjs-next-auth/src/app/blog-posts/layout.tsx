@@ -5,18 +5,18 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Layout({ children }: React.PropsWithChildren) {
-    const data = await getData();
+  const data = await getData();
 
-    if (!data.session?.user) {
-        return redirect("/login");
-    }
+  if (!data.session?.user) {
+    return redirect("/login");
+  }
 
-    return <ThemedLayout>{children}</ThemedLayout>;
+  return <ThemedLayout>{children}</ThemedLayout>;
 }
 
 async function getData() {
-    const session = await getServerSession(authOptions);
-    return {
-        session,
-    };
+  const session = await getServerSession(authOptions);
+  return {
+    session,
+  };
 }

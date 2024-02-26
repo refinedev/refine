@@ -100,7 +100,11 @@ export const ProductCreate: FC = () => {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           id="name"
           {...register("name", {
@@ -158,9 +162,7 @@ import { useNotificationProvider } from "@refinedev/mui";
 
 const App = () => {
   return (
-    <Refine notificationProvider={useNotificationProvider}>
-      {/* ... */}
-    </Refine>
+    <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>
   );
 };
 ```
@@ -324,7 +326,10 @@ export const ProductShow = () => {
         Title
       </Typography>
       {/* highlight-next-line */}
-      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
+      <NumberField
+        value={record?.price}
+        options={{ style: "currency", currency: "USD" }}
+      />
     </Show>
   );
 };

@@ -226,7 +226,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -425,8 +428,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -691,8 +700,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
         </Routes>
       </Refine>
@@ -724,11 +739,21 @@ The `<Header />` component looks like this:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import React from "react";
-import { useIsAuthenticated, useLogout, useMenu, useNavigation, useParsed } from "@refinedev/core";
+import {
+  useIsAuthenticated,
+  useLogout,
+  useMenu,
+  useNavigation,
+  useParsed,
+} from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { useModalForm } from "@refinedev/antd";
 
-import { PlusSquareOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
+import {
+  PlusSquareOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "../../../components/canvas";
@@ -765,14 +790,27 @@ export const Header: React.FC = () => {
     <div className="container">
       <div className="layout-header">
         <Link to="/">
-          <Image width="120px" src="/pixels-logo.svg" alt="Pixels Logo" preview={false} />
+          <Image
+            width="120px"
+            src="/pixels-logo.svg"
+            alt="Pixels Logo"
+            preview={false}
+          />
         </Link>
         <Space size="large">
-          <Link to="/" className={`nav-button ${selectedKey === "/" ? "active" : ""}`}>
+          <Link
+            to="/"
+            className={`nav-button ${selectedKey === "/" ? "active" : ""}`}
+          >
             <span className="dot-icon" />
             HOME
           </Link>
-          <Link to="/canvases" className={`nav-button ${selectedKey === "/canvases" ? "active" : ""}`}>
+          <Link
+            to="/canvases"
+            className={`nav-button ${
+              selectedKey === "/canvases" ? "active" : ""
+            }`}
+          >
             <span className="dot-icon" />
             NEW
           </Link>
@@ -854,7 +892,10 @@ type CreateCanvasProps = {
   formProps: FormProps;
 };
 
-export const CreateCanvas: React.FC<CreateCanvasProps> = ({ modalProps, formProps }) => {
+export const CreateCanvas: React.FC<CreateCanvasProps> = ({
+  modalProps,
+  formProps,
+}) => {
   const { data: user } = useGetIdentity<User | null>();
 
   const [values, setValues] = useState(() => {
@@ -972,7 +1013,14 @@ The `<CanvasShow />` component looks like this:
 
 ```tsx title="src/pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+  useCreate,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+  useParsed,
+  useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -1033,7 +1081,11 @@ export const CanvasShow: React.FC = () => {
     <div className="container">
       <div className="paper">
         <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+          <Button
+            type="text"
+            onClick={() => list("canvases")}
+            style={{ textTransform: "uppercase" }}
+          >
             <LeftOutlined />
             Back
           </Button>
@@ -1200,8 +1252,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
           {/* highlight-end */}
         </Routes>
@@ -1341,8 +1399,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route

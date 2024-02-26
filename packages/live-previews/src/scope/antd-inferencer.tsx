@@ -1,7 +1,7 @@
 import * as RefineAntdInferencer from "@refinedev/inferencer/antd";
 
 const AntdInferencerScope = {
-    RefineAntdInferencer,
+  RefineAntdInferencer,
 };
 
 export default AntdInferencerScope;

@@ -1,21 +1,21 @@
 import {
-    GitHubBanner,
-    Refine,
-    AuthProvider,
-    Authenticated,
+  GitHubBanner,
+  Refine,
+  AuthProvider,
+  Authenticated,
 } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    ThemedLayoutV2,
-    ErrorComponent,
-    RefineThemes,
+  useNotificationProvider,
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    NavigateToResource,
-    CatchAllNavigate,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  CatchAllNavigate,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
@@ -27,147 +27,131 @@ import { Login } from "./pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const authProvider: AuthProvider = {
-        login: async ({ username }) => {
-            if (username === "admin") {
-                localStorage.setItem("username", username);
-                return {
-                    success: true,
-                    redirectTo: "/",
-                };
-            }
+  const authProvider: AuthProvider = {
+    login: async ({ username }) => {
+      if (username === "admin") {
+        localStorage.setItem("username", username);
+        return {
+          success: true,
+          redirectTo: "/",
+        };
+      }
 
-            return {
-                success: false,
-                error: {
-                    message: "Login failed",
-                    name: "Invalid username",
-                },
-            };
+      return {
+        success: false,
+        error: {
+          message: "Login failed",
+          name: "Invalid username",
         },
-        logout: async () => {
-            localStorage.removeItem("username");
-            return {
-                success: true,
-                redirectTo: "/login",
-            };
-        },
-        onError: async (error) => {
-            if (error.response?.status === 401) {
-                return {
-                    logout: true,
-                };
-            }
+      };
+    },
+    logout: async () => {
+      localStorage.removeItem("username");
+      return {
+        success: true,
+        redirectTo: "/login",
+      };
+    },
+    onError: async (error) => {
+      if (error.response?.status === 401) {
+        return {
+          logout: true,
+        };
+      }
 
-            return { error };
-        },
-        check: async () =>
-            localStorage.getItem("username")
-                ? {
-                      authenticated: true,
-                  }
-                : {
-                      authenticated: false,
-                      redirectTo: "/login",
-                  },
-        getPermissions: async () => ["admin"],
-    };
+      return { error };
+    },
+    check: async () =>
+      localStorage.getItem("username")
+        ? {
+            authenticated: true,
+          }
+        : {
+            authenticated: false,
+            redirectTo: "/login",
+          },
+    getPermissions: async () => ["admin"],
+  };
 
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <ConfigProvider theme={RefineThemes.Blue}>
-                <AntdApp>
-                    <Refine
-                        dataProvider={dataProvider(API_URL)}
-                        authProvider={authProvider}
-                        routerProvider={routerProvider}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: "/posts",
-                                show: "/posts/show/:id",
-                                create: "/posts/create",
-                                edit: "/posts/edit/:id",
-                            },
-                        ]}
-                        notificationProvider={useNotificationProvider}
-                        options={{
-                            syncWithLocation: true,
-                            warnWhenUnsavedChanges: true,
-                        }}
-                    >
-                        <Routes>
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="authenticated-routes"
-                                        fallback={
-                                            <CatchAllNavigate to="/login" />
-                                        }
-                                    >
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route
-                                    index
-                                    element={
-                                        <NavigateToResource resource="posts" />
-                                    }
-                                />
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
+          <Refine
+            dataProvider={dataProvider(API_URL)}
+            authProvider={authProvider}
+            routerProvider={routerProvider}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                show: "/posts/show/:id",
+                create: "/posts/create",
+                edit: "/posts/edit/:id",
+              },
+            ]}
+            notificationProvider={useNotificationProvider}
+            options={{
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
+            }}
+          >
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
-                                <Route path="/posts">
-                                    <Route index element={<PostList />} />
-                                    <Route
-                                        path="create"
-                                        element={<PostCreate />}
-                                    />
-                                    <Route
-                                        path="edit/:id"
-                                        element={<PostEdit />}
-                                    />
-                                    <Route
-                                        path="show/:id"
-                                        element={<PostShow />}
-                                    />
-                                </Route>
-                            </Route>
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                  <Route path="show/:id" element={<PostShow />} />
+                </Route>
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated
-                                        key="auth-pages"
-                                        fallback={<Outlet />}
-                                    >
-                                        <NavigateToResource resource="posts" />
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="/login" element={<Login />} />
-                            </Route>
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<Login />} />
+              </Route>
 
-                            <Route
-                                element={
-                                    <Authenticated key="catch-all">
-                                        <ThemedLayoutV2>
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                    </Authenticated>
-                                }
-                            >
-                                <Route path="*" element={<ErrorComponent />} />
-                            </Route>
-                        </Routes>
-                        <UnsavedChangesNotifier />
-                        <DocumentTitleHandler />
-                    </Refine>
-                </AntdApp>
-            </ConfigProvider>
-        </BrowserRouter>
-    );
+              <Route
+                element={
+                  <Authenticated key="catch-all">
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
+              >
+                <Route path="*" element={<ErrorComponent />} />
+              </Route>
+            </Routes>
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+        </AntdApp>
+      </ConfigProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;

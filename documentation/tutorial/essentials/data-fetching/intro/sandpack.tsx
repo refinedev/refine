@@ -8,15 +8,15 @@ import { dependencies, files as initialFiles } from "../../intro/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={files}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={files}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 const UpdatedAppTsxCode = /* tsx */ `
@@ -55,56 +55,56 @@ export const dataProvider: DataProvider = {
 `.trim();
 
 export const FocusOnDataProviderFile = ({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <span
-            onClick={() => {
-                sandpack.openFile("/src/providers/data-provider.ts");
-            }}
-            className={clsx(
-                "cursor-pointer",
-                "text-refine-link-light dark:text-refine-link-dark",
-                "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
-                "hover:underline",
-            )}
-        >
-            {children}
-        </span>
-    );
+  return (
+    <span
+      onClick={() => {
+        sandpack.openFile("/src/providers/data-provider.ts");
+      }}
+      className={clsx(
+        "cursor-pointer",
+        "text-refine-link-light dark:text-refine-link-dark",
+        "[&>code]:!text-refine-link-light dark:[&>code]:!text-refine-link-dark",
+        "hover:underline",
+      )}
+    >
+      {children}
+    </span>
+  );
 };
 
 export const AddDataProviderToRefine = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", UpdatedAppTsxCode);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", UpdatedAppTsxCode);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const files = {
-    ...initialFiles,
-    "src/providers/data-provider.ts": {
-        code: DataProviderTsCode,
-    },
+  ...initialFiles,
+  "src/providers/data-provider.ts": {
+    code: DataProviderTsCode,
+  },
 };
 
 export const finalFiles = {
-    ...removeActiveFromFiles(files),
-    "src/App.tsx": {
-        code: UpdatedAppTsxCode,
-        active: true,
-    },
-    "src/providers/data-provider.ts": {
-        code: DataProviderTsCode,
-    },
+  ...removeActiveFromFiles(files),
+  "src/App.tsx": {
+    code: UpdatedAppTsxCode,
+    active: true,
+  },
+  "src/providers/data-provider.ts": {
+    code: DataProviderTsCode,
+  },
 };

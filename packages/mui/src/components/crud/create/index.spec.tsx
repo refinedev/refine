@@ -9,75 +9,75 @@ import { SaveButton } from "@components/buttons";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 
 describe("Create", () => {
-    crudCreateTests.bind(this)(Create);
+  crudCreateTests.bind(this)(Create);
 
-    it("should render breadcrumb", async () => {
-        const { getAllByLabelText } = render(
-            <Routes>
-                <Route
-                    path="/:resource/:action"
-                    element={<Create resource="posts" />}
-                />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/create"],
-                }),
-            },
-        );
+  it("should render breadcrumb", async () => {
+    const { getAllByLabelText } = render(
+      <Routes>
+        <Route
+          path="/:resource/:action"
+          element={<Create resource="posts" />}
+        />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          routerInitialEntries: ["/posts/create"],
+        }),
+      },
+    );
 
-        expect(getAllByLabelText("breadcrumb")).not.toBeNull();
-    });
+    expect(getAllByLabelText("breadcrumb")).not.toBeNull();
+  });
 
-    it("should not render breadcrumb", async () => {
-        const { queryByLabelText } = render(
-            <Routes>
-                <Route
-                    path="/:resource/:action"
-                    element={<Create resource="posts" breadcrumb={null} />}
-                />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/create"],
-                }),
-            },
-        );
+  it("should not render breadcrumb", async () => {
+    const { queryByLabelText } = render(
+      <Routes>
+        <Route
+          path="/:resource/:action"
+          element={<Create resource="posts" breadcrumb={null} />}
+        />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          routerInitialEntries: ["/posts/create"],
+        }),
+      },
+    );
 
-        expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
-    });
+    expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
+  });
 
-    it("should customize default buttons with default props", async () => {
-        const { queryByTestId } = render(
-            <Routes>
-                <Route
-                    path="/:resource/:action"
-                    element={
-                        <Create
-                            resource="posts"
-                            saveButtonProps={{ className: "customize-test" }}
-                            footerButtons={({ saveButtonProps }) => {
-                                expect(saveButtonProps).toBeDefined();
+  it("should customize default buttons with default props", async () => {
+    const { queryByTestId } = render(
+      <Routes>
+        <Route
+          path="/:resource/:action"
+          element={
+            <Create
+              resource="posts"
+              saveButtonProps={{ className: "customize-test" }}
+              footerButtons={({ saveButtonProps }) => {
+                expect(saveButtonProps).toBeDefined();
 
-                                return (
-                                    <>
-                                        <SaveButton {...saveButtonProps} />
-                                    </>
-                                );
-                            }}
-                        />
-                    }
-                />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/posts/create"],
-                }),
-            },
-        );
+                return (
+                  <>
+                    <SaveButton {...saveButtonProps} />
+                  </>
+                );
+              }}
+            />
+          }
+        />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          routerInitialEntries: ["/posts/create"],
+        }),
+      },
+    );
 
-        expect(queryByTestId(RefineButtonTestIds.SaveButton)).toHaveClass(
-            "customize-test",
-        );
-    });
+    expect(queryByTestId(RefineButtonTestIds.SaveButton)).toHaveClass(
+      "customize-test",
+    );
+  });
 });

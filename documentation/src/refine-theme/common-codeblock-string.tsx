@@ -1,10 +1,10 @@
 import { usePrismTheme, useThemeConfig } from "@docusaurus/theme-common";
 import {
-    containsLineNumbers,
-    parseCodeBlockTitle,
-    parseLanguage,
-    parseLines,
-    useCodeWordWrap,
+  containsLineNumbers,
+  parseCodeBlockTitle,
+  parseLanguage,
+  parseLines,
+  useCodeWordWrap,
 } from "@docusaurus/theme-common/internal";
 import Line from "@theme/CodeBlock/Line";
 import clsx from "clsx";
@@ -15,166 +15,166 @@ import { CommonCopyButton } from "./common-copy-button";
 import { CommonWordWrapButton } from "./common-wordwrap-button";
 
 const DefaultDocumentIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={12}
-        height={14}
-        viewBox="0 0 12 14"
-        fill="none"
-        {...props}
-    >
-        <path
-            fill="currentColor"
-            fillRule="evenodd"
-            d="M11 4.994V11.6A1.4 1.4 0 0 1 9.6 13H2.4A1.4 1.4 0 0 1 1 11.6V2.4A1.4 1.4 0 0 1 2.4 1h4.606a1.4 1.4 0 0 1 .99.41l2.594 2.594a1.4 1.4 0 0 1 .41.99ZM0 2.4A2.4 2.4 0 0 1 2.4 0h4.606a2.4 2.4 0 0 1 1.697.703l2.594 2.594A2.4 2.4 0 0 1 12 4.994V11.6A2.4 2.4 0 0 1 9.6 14H2.4A2.4 2.4 0 0 1 0 11.6V2.4ZM3.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"
-            clipRule="evenodd"
-        />
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={12}
+    height={14}
+    viewBox="0 0 12 14"
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M11 4.994V11.6A1.4 1.4 0 0 1 9.6 13H2.4A1.4 1.4 0 0 1 1 11.6V2.4A1.4 1.4 0 0 1 2.4 1h4.606a1.4 1.4 0 0 1 .99.41l2.594 2.594a1.4 1.4 0 0 1 .41.99ZM0 2.4A2.4 2.4 0 0 1 2.4 0h4.606a2.4 2.4 0 0 1 1.697.703l2.594 2.594A2.4 2.4 0 0 1 12 4.994V11.6A2.4 2.4 0 0 1 9.6 14H2.4A2.4 2.4 0 0 1 0 11.6V2.4ZM3.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"
+      clipRule="evenodd"
+    />
+  </svg>
 );
 
 const CodeBlockTitle = ({
-    children,
-    icon = <DefaultDocumentIcon />,
+  children,
+  icon = <DefaultDocumentIcon />,
 }: {
-    children?: React.ReactNode;
-    icon?: React.ReactNode;
+  children?: React.ReactNode;
+  icon?: React.ReactNode;
 }) => {
-    return (
-        <div
-            className={clsx(
-                "py-3",
-                "px-4",
-                "bg-gray-100 dark:bg-gray-700",
-                "text-gray-800",
-                "dark:text-gray-100",
-                "text-xs",
-                "flex items-center",
-                "gap-2",
-                "rounded-tl-lg",
-                "rounded-tr-lg",
-            )}
-        >
-            {icon}
-            {children}
-        </div>
-    );
+  return (
+    <div
+      className={clsx(
+        "py-3",
+        "px-4",
+        "bg-gray-100 dark:bg-gray-700",
+        "text-gray-800",
+        "dark:text-gray-100",
+        "text-xs",
+        "flex items-center",
+        "gap-2",
+        "rounded-tl-lg",
+        "rounded-tr-lg",
+      )}
+    >
+      {icon}
+      {children}
+    </div>
+  );
 };
 
 export const CodeBlockString = ({
-    children,
-    className: blockClassName = "",
-    metastring,
-    title: titleProp,
-    showLineNumbers: showLineNumbersProp,
-    language: languageProp,
-    icon,
-    style,
+  children,
+  className: blockClassName = "",
+  metastring,
+  title: titleProp,
+  showLineNumbers: showLineNumbersProp,
+  language: languageProp,
+  icon,
+  style,
 }) => {
-    const {
-        prism: { defaultLanguage, magicComments },
-    } = useThemeConfig();
-    const language =
-        languageProp ?? parseLanguage(blockClassName) ?? defaultLanguage;
-    const prismTheme = usePrismTheme();
-    const wordWrap = useCodeWordWrap();
-    // We still parse the metastring in case we want to support more syntax in the
-    // future. Note that MDX doesn't strip quotes when parsing metastring:
-    // "title=\"xyz\"" => title: "\"xyz\""
-    const title = parseCodeBlockTitle(metastring) || titleProp;
+  const {
+    prism: { defaultLanguage, magicComments },
+  } = useThemeConfig();
+  const language =
+    languageProp ?? parseLanguage(blockClassName) ?? defaultLanguage;
+  const prismTheme = usePrismTheme();
+  const wordWrap = useCodeWordWrap();
+  // We still parse the metastring in case we want to support more syntax in the
+  // future. Note that MDX doesn't strip quotes when parsing metastring:
+  // "title=\"xyz\"" => title: "\"xyz\""
+  const title = parseCodeBlockTitle(metastring) || titleProp;
 
-    const { lineClassNames, code } = parseLines(children, {
-        metastring,
-        language,
-        magicComments,
-    });
+  const { lineClassNames, code } = parseLines(children, {
+    metastring,
+    language,
+    magicComments,
+  });
 
-    const showLineNumbers =
-        showLineNumbersProp ?? containsLineNumbers(metastring);
+  const showLineNumbers =
+    showLineNumbersProp ?? containsLineNumbers(metastring);
 
-    return (
-        <CommonCodeBlockContainer
-            as="div"
-            className={clsx(
-                "refine-common-code-block",
-                language && `language-${language}`,
-                "rounded-lg",
-                "bg-refine-react-light-code",
-                "dark:bg-refine-react-dark-code",
-                "border",
-                "border-gray-300",
-                "dark:border-0",
-                "mb-6",
-                "relative",
-                "refine-wider-container",
-            )}
-            style={style}
+  return (
+    <CommonCodeBlockContainer
+      as="div"
+      className={clsx(
+        "refine-common-code-block",
+        language && `language-${language}`,
+        "rounded-lg",
+        "bg-refine-react-light-code",
+        "dark:bg-refine-react-dark-code",
+        "border",
+        "border-gray-300",
+        "dark:border-0",
+        "mb-6",
+        "relative",
+        "refine-wider-container",
+      )}
+      style={style}
+    >
+      {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
+      <div className={clsx("relative", "pt-3", "pb-0", "not-prose")}>
+        <Highlight
+          {...defaultProps}
+          theme={prismTheme}
+          code={code}
+          language={language ?? "text"}
         >
-            {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
-            <div className={clsx("relative", "pt-3", "pb-0", "not-prose")}>
-                <Highlight
-                    {...defaultProps}
-                    theme={prismTheme}
-                    code={code}
-                    language={language ?? "text"}
-                >
-                    {({ className, tokens, getLineProps, getTokenProps }) => (
-                        <pre
-                            tabIndex={0}
-                            ref={wordWrap.codeBlockRef}
-                            className={clsx(
-                                className,
-                                "bg-transparent",
-                                "!mt-0",
-                                "!mb-0",
-                                "m-0",
-                                "px-0",
-                                "pt-0",
-                                "font-jetBrains-mono",
-                                "pb-3",
-                            )}
-                        >
-                            <code
-                                className={clsx(
-                                    "font-[inherit]",
-                                    "bg-transparent",
-                                    "inline-block",
-                                    "min-w-full",
-                                )}
-                            >
-                                {tokens.map((line, i) => (
-                                    <Line
-                                        key={i}
-                                        line={line}
-                                        getLineProps={getLineProps}
-                                        getTokenProps={getTokenProps}
-                                        classNames={clsx(
-                                            lineClassNames[i],
-                                            "px-4",
-                                            "text-xs sm:text-sm 2xl:text-sm",
-                                        )}
-                                        showLineNumbers={showLineNumbers}
-                                    />
-                                ))}
-                            </code>
-                        </pre>
-                    )}
-                </Highlight>
-            </div>
-            <div
-                className={clsx(
-                    "absolute",
-                    title ? "top-2 right-2" : "top-3 right-3",
-                    "flex items-center gap-2",
-                )}
+          {({ className, tokens, getLineProps, getTokenProps }) => (
+            <pre
+              tabIndex={0}
+              ref={wordWrap.codeBlockRef}
+              className={clsx(
+                className,
+                "bg-transparent",
+                "!mt-0",
+                "!mb-0",
+                "m-0",
+                "px-0",
+                "pt-0",
+                "font-jetBrains-mono",
+                "pb-3",
+              )}
             >
-                {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
-                    <CommonWordWrapButton
-                        onClick={wordWrap.toggle}
-                        isEnabled={wordWrap.isEnabled}
-                    />
+              <code
+                className={clsx(
+                  "font-[inherit]",
+                  "bg-transparent",
+                  "inline-block",
+                  "min-w-full",
                 )}
-                <CommonCopyButton className={clsx()} code={code} />
-            </div>
-        </CommonCodeBlockContainer>
-    );
+              >
+                {tokens.map((line, i) => (
+                  <Line
+                    key={i}
+                    line={line}
+                    getLineProps={getLineProps}
+                    getTokenProps={getTokenProps}
+                    classNames={clsx(
+                      lineClassNames[i],
+                      "px-4",
+                      "text-xs sm:text-sm 2xl:text-sm",
+                    )}
+                    showLineNumbers={showLineNumbers}
+                  />
+                ))}
+              </code>
+            </pre>
+          )}
+        </Highlight>
+      </div>
+      <div
+        className={clsx(
+          "absolute",
+          title ? "top-2 right-2" : "top-3 right-3",
+          "flex items-center gap-2",
+        )}
+      >
+        {(wordWrap.isEnabled || wordWrap.isCodeScrollable) && (
+          <CommonWordWrapButton
+            onClick={wordWrap.toggle}
+            isEnabled={wordWrap.isEnabled}
+          />
+        )}
+        <CommonCopyButton className={clsx()} code={code} />
+      </div>
+    </CommonCodeBlockContainer>
+  );
 };

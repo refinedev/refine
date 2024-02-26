@@ -9,5 +9,5 @@ import { TextFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/text} for more details.
  */
 export const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
-    return <Text {...rest}>{value}</Text>;
+  return <Text {...rest}>{value}</Text>;
 };

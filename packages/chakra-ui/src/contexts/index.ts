@@ -1,4 +1,4 @@
 export {
-    ThemedLayoutContext,
-    ThemedLayoutContextProvider,
+  ThemedLayoutContext,
+  ThemedLayoutContextProvider,
 } from "./themedLayoutContext";

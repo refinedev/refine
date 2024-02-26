@@ -8,16 +8,16 @@ import { finalFiles as initialFiles } from "../../inferring-parameters/react-rou
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            showNavigator
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      showNavigator
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -220,65 +220,65 @@ export const authProvider: AuthProvider = {
 // actions
 
 export const AddCustomRedirectToEdit = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/edit.tsx",
-                    EditProductWithCustomRedirect,
-                );
-                sandpack.setActiveFile("/src/pages/products/edit.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/edit.tsx",
+          EditProductWithCustomRedirect,
+        );
+        sandpack.setActiveFile("/src/pages/products/edit.tsx");
+      }}
+    />
+  );
 };
 
 export const AddCustomRedirectToCreate = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/products/create.tsx",
-                    CreateProductWithCustomRedirect,
-                );
-                sandpack.setActiveFile("/src/pages/products/create.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/pages/products/create.tsx",
+          CreateProductWithCustomRedirect,
+        );
+        sandpack.setActiveFile("/src/pages/products/create.tsx");
+      }}
+    />
+  );
 };
 
 export const AddRedirectsToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderWithRedirects,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderWithRedirects,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/pages/products/edit.tsx": {
-        code: EditProductWithCustomRedirect,
-    },
-    "src/pages/products/create.tsx": {
-        code: CreateProductWithCustomRedirect,
-    },
-    "src/providers/auth-provider.ts": {
-        code: AuthProviderWithRedirects,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/pages/products/edit.tsx": {
+    code: EditProductWithCustomRedirect,
+  },
+  "src/pages/products/create.tsx": {
+    code: CreateProductWithCustomRedirect,
+  },
+  "src/providers/auth-provider.ts": {
+    code: AuthProviderWithRedirects,
+    active: true,
+  },
 };

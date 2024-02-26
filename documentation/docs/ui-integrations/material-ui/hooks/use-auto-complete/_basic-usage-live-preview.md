@@ -19,10 +19,19 @@ const PostCreate: React.FC = () => {
       {...autocompleteProps}
       getOptionLabel={(item) => item.title}
       isOptionEqualToValue={(option, value) =>
-        value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+        value === undefined ||
+        option?.id?.toString() === (value?.id ?? value)?.toString()
       }
       placeholder="Select a category"
-      renderInput={(params) => <TextField {...params} label="Category" margin="normal" variant="outlined" required />}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Category"
+          margin="normal"
+          variant="outlined"
+          required
+        />
+      )}
     />
   );
 };

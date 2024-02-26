@@ -71,7 +71,14 @@ We created our missions and invoice collections fields. Our goal here is to defi
 Let's use the refine-antd package's [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook to create our page, and let's define the fields in our Table Component.
 
 ```tsx title="src/pages/MissionList.tsx"
-import { List, Table, useTable, TagField, useModalForm, EditButton } from "@refinedev/antd";
+import {
+  List,
+  Table,
+  useTable,
+  TagField,
+  useModalForm,
+  EditButton,
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 
@@ -85,7 +92,10 @@ export const MissionList: React.FC = () => {
         //highlight-start
         <Table.Column dataIndex="id" title="ID" />
         <Table.Column dataIndex="mission" title="Mission" />
-        <Table.Column dataIndex="mission_description" title="Mission Description" />
+        <Table.Column
+          dataIndex="mission_description"
+          title="Mission Description"
+        />
         <Table.Column dataIndex="day" title="Day(s)" />
         <Table.Column
           dataIndex="daily_rate"
@@ -95,7 +105,12 @@ export const MissionList: React.FC = () => {
         <Table.Column<IMission>
           title="Total"
           render={(_, record) => {
-            return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+            return (
+              <TagField
+                value={`${record.daily_rate * record.day} $`}
+                color="green"
+              />
+            );
           }}
         />
         <Table.Column<IMission>
@@ -103,7 +118,12 @@ export const MissionList: React.FC = () => {
           dataIndex="actions"
           key="actions"
           render={(_value, record) => (
-            <EditButton hideText size="small" recordItemId={record.id} onClick={() => editShow(record.id)} />
+            <EditButton
+              hideText
+              size="small"
+              recordItemId={record.id}
+              onClick={() => editShow(record.id)}
+            />
           )}
         />
         //highlight-end
@@ -145,7 +165,10 @@ type CreateMissionProps = {
   formProps: FormProps;
 };
 
-export const CreateMission: React.FC<CreateMissionProps> = ({ modalProps, formProps }) => {
+export const CreateMission: React.FC<CreateMissionProps> = ({
+  modalProps,
+  formProps,
+}) => {
   return (
     //highlight-start
     <Modal {...modalProps} title="Create Contact">
@@ -212,7 +235,10 @@ export const MissionList: React.FC = () => {
         <Table {...tableProps}>
           <Table.Column dataIndex="id" title="ID" />
           <Table.Column dataIndex="mission" title="Mission" />
-          <Table.Column dataIndex="mission_description" title="Mission Description" />
+          <Table.Column
+            dataIndex="mission_description"
+            title="Mission Description"
+          />
           <Table.Column dataIndex="day" title="Day(s)" />
           <Table.Column
             dataIndex="daily_rate"
@@ -222,7 +248,12 @@ export const MissionList: React.FC = () => {
           <Table.Column<IMission>
             title="Total"
             render={(_, record) => {
-              return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+              return (
+                <TagField
+                  value={`${record.daily_rate * record.day} $`}
+                  color="green"
+                />
+              );
             }}
           />
         </Table>
@@ -323,7 +354,11 @@ export const InvoiceList: React.FC = () => {
             title="Discount(%)"
             render={(value) => <TagField color="blue" value={value} />}
           />
-          <Table.Column dataIndex="tax" title="Tax(%)" render={(value) => <TagField color="cyan" value={value} />} />
+          <Table.Column
+            dataIndex="tax"
+            title="Tax(%)"
+            render={(value) => <TagField color="cyan" value={value} />}
+          />
           <Table.Column dataIndex="custom_id" title="Custom Invoice ID" />
 
           <Table.Column
@@ -338,7 +373,11 @@ export const InvoiceList: React.FC = () => {
               return (
                 <Space>
                   <EditButton hideText size="small" recordItemId={record.id} />
-                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton
+                    hideText
+                    size="small"
+                    recordItemId={record.id}
+                  />
                 </Space>
               );
             }}
@@ -376,7 +415,15 @@ Then, we fill our Refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 ```tsx title="src/pages/invoice/CreateInvoice"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, Form, Input, Select, useForm, useSelect, DatePicker } from "@refinedev/antd";
+import {
+  Create,
+  Form,
+  Input,
+  Select,
+  useForm,
+  useSelect,
+  DatePicker,
+} from "@refinedev/antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
@@ -552,7 +599,11 @@ export const InvoiceList: React.FC = () => {
               return (
                 <Space>
                   <EditButton hideText size="small" recordItemId={record.id} />
-                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton
+                    hideText
+                    size="small"
+                    recordItemId={record.id}
+                  />
                   //highlight-start
                   <Button
                     size="small"
@@ -592,7 +643,15 @@ Now that we have the data of the Invoices we can edit the PdfLayout.
 import { useRef } from "react";
 
 //highlight-start
-import { Document, Image, Page, StyleSheet, View, Text, PDFViewer } from "@react-pdf/renderer";
+import {
+  Document,
+  Image,
+  Page,
+  StyleSheet,
+  View,
+  Text,
+  PDFViewer,
+} from "@react-pdf/renderer";
 //highlight-end
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
@@ -612,10 +671,17 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
       <Document>
         <Page style={styles.page} size="A4">
           <View>
-            <Image src={API_URL + record?.company?.logo?.url} style={{ width: "120px", height: "auto" }} />
+            <Image
+              src={API_URL + record?.company?.logo?.url}
+              style={{ width: "120px", height: "auto" }}
+            />
             <View style={styles.invoiceTextNumberContainer}>
-              <Text style={styles.invoiceText}>{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
-              <Text style={styles.invoiceId}>{`Invoice ID: INVOICE_#${record?.id}`}</Text>
+              <Text
+                style={styles.invoiceText}
+              >{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
+              <Text
+                style={styles.invoiceId}
+              >{`Invoice ID: INVOICE_#${record?.id}`}</Text>
             </View>
           </View>
           <View style={styles.dividerLG} />
@@ -624,45 +690,79 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
             <View style={styles.invoiceFor}>
               <Text style={styles.invoiceForFromTitle}>invoice For:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.client?.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.first_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.last_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.email}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.client?.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.first_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.last_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.email}
+                </Text>
               </View>
             </View>
 
             <View style={styles.invoiceFrom}>
               <Text style={styles.invoiceForFromTitle}>From:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.company.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.company.city}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.city}
+                </Text>
                 <Text style={styles.invoiceForFromText}>
                   {record?.company.address}, {record?.company.country}
                 </Text>
               </View>
               <View style={styles.dividerSM} />
               <View>
-                <Text style={styles.invoiceForFromText}>{`Invoice ID: ${record?.id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Custom ID: ${record?.custom_id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Date: ${record?.date}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice ID: ${record?.id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Custom ID: ${record?.custom_id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Date: ${record?.date}`}</Text>
               </View>
             </View>
           </View>
 
           <View style={styles.table}>
             <View style={styles.tableHeader}>
-              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>Mission</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day Rate</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Total</Text>
+              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>
+                Mission
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day Rate
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Total
+              </Text>
             </View>
             {record?.missions.map((item) => {
               return (
                 <View key={item.id} style={styles.tableRow}>
-                  <Text style={[styles.tableCol, { width: "40%" }]}>{item.mission}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.day}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate * item.day}</Text>
+                  <Text style={[styles.tableCol, { width: "40%" }]}>
+                    {item.mission}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.day}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.daily_rate}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.daily_rate * item.day}
+                  </Text>
                 </View>
               );
             })}
@@ -670,13 +770,19 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
 
           <View style={styles.signatureTotalContainer}>
             <View style={styles.signatureContainer}>
-              <Text style={styles.signatureText}>Signature: ________________</Text>
-              <Text style={styles.signatureText}>Date: {record?.date.toString()}</Text>
+              <Text style={styles.signatureText}>
+                Signature: ________________
+              </Text>
+              <Text style={styles.signatureText}>
+                Date: {record?.date.toString()}
+              </Text>
             </View>
 
             <View style={styles.totalContainer}>
               <Text style={styles.totalText}>SUBTOTAL: {subtotal}</Text>
-              <Text style={styles.totalText}>Discount(%): {record?.discount}</Text>
+              <Text style={styles.totalText}>
+                Discount(%): {record?.discount}
+              </Text>
               <Text style={styles.totalText}>Tax(%): {record?.tax}</Text>
               <Text style={styles.totalText}>
                 Total($):

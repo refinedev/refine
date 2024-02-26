@@ -11,27 +11,27 @@ import { Notifications } from "./notifications";
 const { useToken } = theme;
 
 export const Header: React.FC = () => {
-    const { token } = useToken();
+  const { token } = useToken();
 
-    const headerStyles: React.CSSProperties = {
-        backgroundColor: token.colorBgElevated,
-        display: "flex",
-        justifyContent: !!searchClient ? "space-between" : "flex-end",
-        alignItems: "center",
-        padding: "0px 24px",
-        height: "64px",
-        position: "sticky",
-        top: 0,
-        zIndex: 999,
-    };
+  const headerStyles: React.CSSProperties = {
+    backgroundColor: token.colorBgElevated,
+    display: "flex",
+    justifyContent: !!searchClient ? "space-between" : "flex-end",
+    alignItems: "center",
+    padding: "0px 24px",
+    height: "64px",
+    position: "sticky",
+    top: 0,
+    zIndex: 999,
+  };
 
-    return (
-        <Layout.Header style={headerStyles}>
-            {!!searchClient ? <AlgoliaSearch /> : null}
-            <Space align="center" size="middle">
-                <Notifications />
-                <CurrentUser />
-            </Space>
-        </Layout.Header>
-    );
+  return (
+    <Layout.Header style={headerStyles}>
+      {!!searchClient ? <AlgoliaSearch /> : null}
+      <Space align="center" size="middle">
+        <Notifications />
+        <CurrentUser />
+      </Space>
+    </Layout.Header>
+  );
 };

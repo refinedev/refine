@@ -7,51 +7,51 @@ import { buildProviderChoices } from "./sub-commands/provider/prompt";
 import { ProviderId } from "./sub-commands/provider/providers";
 
 const wrapChoices = (
-    group: string,
-    choices: ListChoiceOptions[],
+  group: string,
+  choices: ListChoiceOptions[],
 ): ListChoiceOptions<AddCommandComponentAnswer>[] => {
-    return choices.map((choice) => {
-        return {
-            ...choice,
-            name: ` . ${choice.name}`,
-            value: {
-                group,
-                component: choice.value,
-            },
-        };
-    });
+  return choices.map((choice) => {
+    return {
+      ...choice,
+      name: ` . ${choice.name}`,
+      value: {
+        group,
+        component: choice.value,
+      },
+    };
+  });
 };
 
 type AddCommandComponentAnswer =
-    | { group: "provider"; component: ProviderId }
-    | { group: "integration"; component: IntegrationId }
-    | { group: "resource"; component: "resource" };
+  | { group: "provider"; component: ProviderId }
+  | { group: "integration"; component: IntegrationId }
+  | { group: "resource"; component: "resource" };
 
 interface AddCommandAnswer {
-    component: AddCommandComponentAnswer;
+  component: AddCommandComponentAnswer;
 }
 
 export const addCommandPrompt = async () => {
-    return await inquirer.prompt<AddCommandAnswer>([
+  return await inquirer.prompt<AddCommandAnswer>([
+    {
+      type: "list",
+      name: "component",
+      message: "What do you want to add?",
+      choices: [
+        new inquirer.Separator(chalk.bold("Provider")),
+        ...wrapChoices("provider", buildProviderChoices()),
+        new inquirer.Separator(chalk.bold("Integration")),
+        ...wrapChoices("integration", buildIntegrationChoices()),
+        new inquirer.Separator(chalk.bold("Resource")),
         {
-            type: "list",
-            name: "component",
-            message: "What do you want to add?",
-            choices: [
-                new inquirer.Separator(chalk.bold("Provider")),
-                ...wrapChoices("provider", buildProviderChoices()),
-                new inquirer.Separator(chalk.bold("Integration")),
-                ...wrapChoices("integration", buildIntegrationChoices()),
-                new inquirer.Separator(chalk.bold("Resource")),
-                {
-                    name: chalk.blueBright(" .  Add new resource"),
-                    value: {
-                        group: "resource",
-                        component: "resource",
-                    },
-                },
-            ],
-            pageSize: 25,
+          name: chalk.blueBright(" .  Add new resource"),
+          value: {
+            group: "resource",
+            component: "resource",
+          },
         },
-    ]);
+      ],
+      pageSize: 25,
+    },
+  ]);
 };

@@ -172,7 +172,12 @@ const PostList: React.FC = () => {
             render={(_, record) => (
               <Space>
                 {/* highlight-start */}
-                <EditButton hideText size="small" recordItemId={record.id} onClick={() => editModalShow(record.id)} />
+                <EditButton
+                  hideText
+                  size="small"
+                  recordItemId={record.id}
+                  onClick={() => editModalShow(record.id)}
+                />
                 {/* highlight-end */}
               </Space>
             )}
@@ -301,7 +306,12 @@ const PostList: React.FC = () => {
             render={(_, record) => (
               <Space>
                 {/* highlight-start */}
-                <CloneButton hideText size="small" recordItemId={record.id} onClick={() => cloneModalShow(record.id)} />
+                <CloneButton
+                  hideText
+                  size="small"
+                  recordItemId={record.id}
+                  onClick={() => cloneModalShow(record.id)}
+                />
                 {/* highlight-end */}
               </Space>
             )}
@@ -722,7 +732,8 @@ return (
     footer={
       <Button
         onClick={(
-          e: React.MouseEvent<HTMLAnchorElement, MouseEvent> & React.MouseEvent<HTMLButtonElement, MouseEvent>,
+          e: React.MouseEvent<HTMLAnchorElement, MouseEvent> &
+            React.MouseEvent<HTMLButtonElement, MouseEvent>,
         ) => modalProps.onCancel(e)}
       >
         Cancel

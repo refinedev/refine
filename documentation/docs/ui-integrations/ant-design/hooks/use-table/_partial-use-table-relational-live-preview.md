@@ -50,7 +50,8 @@ const PostList: React.FC = () => {
 
   // highlight-start
   // Creates the array of ids. This will filter and fetch the category data for the relevant posts.
-  const categoryIds = tableProps.dataSource?.map((p) => p.category.id.toString()) || [];
+  const categoryIds =
+    tableProps.dataSource?.map((p) => p.category.id.toString()) || [];
   // Fetches the category of each post. It uses the useMany hook to fetch the category data from the API.
   const { data, isFetching } = useMany<ICategory>({
     resource: "categories",
@@ -88,13 +89,26 @@ const PostList: React.FC = () => {
             return data?.data.find((p) => p.id === value)?.title;
           }}
           filterDropdown={(props: FilterDropdownProps) => (
-            <FilterDropdown {...props} mapValue={(selectedKeys) => selectedKeys.map((i) => parseInt(i.toString()))}>
-              <Select style={{ minWidth: 200 }} mode="multiple" {...selectProps} />
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKeys) =>
+                selectedKeys.map((i) => parseInt(i.toString()))
+              }
+            >
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                {...selectProps}
+              />
             </FilterDropdown>
           )}
         />
         {/* highlight-end */}
-        <Table.Column dataIndex="status" title="Status" render={(value: string) => <TagField value={value} />} />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+        />
       </Table>
     </List>
   );

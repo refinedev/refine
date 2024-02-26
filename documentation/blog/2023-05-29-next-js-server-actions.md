@@ -8,9 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-29-next-js-se
 hide_table_of_contents: false
 ---
 
-
-
-
 ## Overview
 
 Delivering flawless user experience and structured data retrieval is of the most important when it comes to web development. Next.js, a robust React framework, has become the go-to choice for developers seeking to optimize server-side rendering (SSR) and client-side rendering (CSR) capabilities. One crucial aspect that sets Next.js apart is its comprehensive toolkit for data fetching and server actions.
@@ -27,10 +24,10 @@ Steps we'll cover:
 
 ## Basics of Next.js
 
-
 Next.js is a powerful framework built on top of React that simplifies and improves the building of modern front-end apps. It combines the best features of server-side rendering (SSR) and client-side rendering (CSR), offering developers flexibility and performance optimization.
 
 ### Server-Side Rendering (SSR) vs. Client-Side Rendering (CSR) in Next.js
+
 Server-side rendering involves generating the HTML for a web page on the server and sending it to the client. This approach improves initial page load time and enables search engine optimization (SEO) since search engine crawlers can easily parse the fully rendered HTML. Next.js excels at server-side rendering, allowing you to pre-render pages dynamically or statically.
 
 Client-side rendering, on the other hand, relies on JavaScript to render web pages on the client's browser. This approach provides interactivity and dynamic content updates but may result in slower initial page loads. Next.js supports hybrid rendering, allowing you to select between server-side and client-side rendering according on the needs of your application.
@@ -41,12 +38,12 @@ Client-side rendering, on the other hand, relies on JavaScript to render web pag
 2. Automatic Code Splitting: Next.js intelligently splits your code into smaller chunks, allowing for faster initial page loads. It only loads the JavaScript required for the current page, reducing bandwidth and optimizing performance.
 3. Server-Side Rendering Made Easy: Next.js makes server-side rendering seamless. With functions like `getStaticProps` and `getServerSideProps`, you can fetch data during the server-rendering process, ensuring your pages have the necessary data before rendering. This is particularly useful for static generation and dynamic rendering scenarios.
 
-
 ## Data Fetching in Next.js
 
 Data fetching is a crucial aspect of web development, and Next.js provides several built-in methods to handle data fetching and rendering. These methods enable you to fetch data during the server-side rendering process or on the client-side, depending on your specific requirements. Let's explore the various data fetching techniques offered by Next.js and see how they can be implemented with code examples.
 
 ## Client-Side Data Fetching
+
 Next.js offers functions that enable data fetching on the client-side, providing dynamic updates without a full page reload. The most commonly used function is `useEffect` from React, which allows us to execute code after the component has rendered. Within the `useEffect` hook, we can utilize the `fetch` API or any other data fetching library to retrieve data from an API endpoint.
 
 ```tsx
@@ -76,8 +73,8 @@ function MyComponent() {
 
 In the code above, we define a functional component `MyComponent` that fetches data from an API endpoint using the `fetch` API. The fetched data is stored in the `data` state variable using the `setData` function. We use the `useEffect` hook with an empty dependency array `[]` to ensure the data fetching only occurs once when the component mounts.
 
-
 ## Server-Side Data Fetching
+
 Next.js provides two functions, `getStaticProps` and `getServerSideProps`, for server-side data fetching during the rendering process. These functions allow you to fetch data from an API or a database and pass it as props to your page components.
 
 ```tsx
@@ -111,14 +108,12 @@ Next.js also provides other data fetching options, such as `getInitialProps` for
 
 Next.js simplifies the process of data fetching by seamlessly integrating it into the rendering pipeline. Whether you need to fetch data on the client-side or during server-side rendering, Next.js provides the necessary tools to make data fetching efficient and straightforward.
 
-
-
-
 ## Server Actions in Next.js
 
 Server actions are an integral part of web applications, allowing you to handle server-side logic and perform operations such as data manipulation, authentication, and more. Next.js provides a powerful feature called API routes, which enables you to create custom server endpoints to handle server actions seamlessly. Let's explore how to implement server actions using API routes in Next.js with code examples.
 
 ### Creating an API Route:
+
 To create an API route in Next.js, you need to create a file inside the `pages/api` directory. The file should be named based on the desired endpoint, for example, `pages/api/users.js`. Within this file, you can define your server action logic.
 
 ```tsx
@@ -139,7 +134,8 @@ export default function handler(req, res) {
 In the code snippet above, we create an API route `users.js` inside the `pages/api` directory. Within the `handler` function, we perform the desired server action, such as retrieving a list of users. In this case, we define a simple array of users and return it as the response using `res.status(200).json(users)`.
 
 ### Server Side communication using Server Actions
-Next.js presents a feature of Server Actions, which is still in its alpha stage. This feature is constructed upon React [Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#actions). With these actions, data alterations may be initiated on the server-side, leading to decreased client-side JavaScript, and enhanced forms that progress over time. 
+
+Next.js presents a feature of Server Actions, which is still in its alpha stage. This feature is constructed upon React [Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#actions). With these actions, data alterations may be initiated on the server-side, leading to decreased client-side JavaScript, and enhanced forms that progress over time.
 
 If you want to add server actions in your Next project, go into your `next.config.js` file and enable the experimental `serverActions` flag.
 
@@ -183,7 +179,6 @@ export default function ProductCard({ productId }) {
 
 The code above is a React functional component in Next.js called `AddToCart`. It is responsible for rendering a form with a `Add to Cart` button. Let's break down the code and understand its functionality.
 
-
 1. The component is exported as the default export, meaning it can be imported and used in other files.
 2. The component takes a `productId` prop, which presumably represents the ID of the product being displayed on the card. This prop can be used to fetch the relevant product information or perform any necessary operations.
 3. The `addToCart` function is an asynchronous function declared inside the component. It is triggered when the form is submitted (i.e., when the "Add to Cart" button is clicked). The function has access to the `data` parameter, which can be passed to it when it is called.
@@ -194,9 +189,10 @@ The code above is a React functional component in Next.js called `AddToCart`. It
 8. Inside the form, there is a single button with the text `Add to Cart` that triggers the form submission when clicked.
 
 ### How to Invoke Server Action
+
 When working with Next.js and server actions, there are several methods available for invoking these actions. Let's explore these methods in detail:
 
-**Using `action` prop**:  React `action` prop can be used to invoke a server action on a form element as we can see from the piece of code below:
+**Using `action` prop**: React `action` prop can be used to invoke a server action on a form element as we can see from the piece of code below:
 
 ```tsx
 export default function TodoApp() {
@@ -217,7 +213,7 @@ export default function TodoApp() {
 
 In the code snippet above, `TodoApp` component serves as a simple todo application. It allows users to add new todos by submitting a form. The `addTodoItem` function, triggered when the form is submitted, performs server-side actions related to adding a todo item. It retrieves, a todo ID using a `getTodoId` function and saves the todo item to a database using the `saveToDb` function. The code provides a basic structure for a todo app, allowing users to add todos with server-side handling.
 
-**Using** `formAction` **prop**:  In our Next.js code, we can handle form actions on elements such as `<button>` using the `formAction` prop as we can see from the code below:
+**Using** `formAction` **prop**: In our Next.js code, we can handle form actions on elements such as `<button>` using the `formAction` prop as we can see from the code below:
 
 ```tsx
 export default function Form() {
@@ -243,7 +239,7 @@ export default function Form() {
 
 In the above example, the `Submit` function is invoked when the form is submitted, while the `submitFile` function is invoked when the file input is clicked. The server actions are triggered by the `formAction` prop.
 
-`startTransition` **custom invocation**:  Apart from the two ways of invoking server actions that we just listed above, there is another way we can perform a server action. This method involves using the `startTransition`, provided by the React `useTransition` hook, and we can use when we are not performing form server actions.
+`startTransition` **custom invocation**: Apart from the two ways of invoking server actions that we just listed above, there is another way we can perform a server action. This method involves using the `startTransition`, provided by the React `useTransition` hook, and we can use when we are not performing form server actions.
 
 ```tsx
 import { useTransition } from "react";
@@ -261,6 +257,7 @@ function TodoAppClientComponent({ id }) {
 In the code above, the `startTransition` function wraps the invocation of the `addTodo` server action. When the button is clicked, the server action is executed. Using `startTransition` allows you to control the timing of the server action invocation.
 
 ### Client-Side Communication with API Routes
+
 Next.js makes it seamless to communicate with API routes from the client-side code. You can use the `fetch` API or any other HTTP library to make requests to your API endpoints.
 
 ```tsx
@@ -292,11 +289,10 @@ function MyComponent() {
 In the code above, we define a component `MyComponent` that fetches users from the `/api/users` endpoint using the `fetch` API. The fetched data is stored in the `users` state variable using the `setUsers` function. We use the `useEffect` hook with an empty dependency array `[]` to ensure the data fetching only occurs once when the component mounts.
 
 Note that when making requests to API routes from the client-side code, you can use relative URLs like `/api/users` since Next.js automatically routes requests to the appropriate API route.
-Next.js API routes provide a powerful mechanism to handle server actions seamlessly within your application. Whether you need to fetch data, perform data mutations, or handle authentication, API routes enable you to define custom server endpoints with ease. 
-
+Next.js API routes provide a powerful mechanism to handle server actions seamlessly within your application. Whether you need to fetch data, perform data mutations, or handle authentication, API routes enable you to define custom server endpoints with ease.
 
 ## Conclusion
 
-We explored the basics of Next.js, simplified setup process, and advantages. We delved into data fetching, showcasing both client-side and server-side techniques with code examples. Additionally, we explored the concept of server actions using Next.js API routes, enabling custom server endpoints for handling server-side logic and operations. 
+We explored the basics of Next.js, simplified setup process, and advantages. We delved into data fetching, showcasing both client-side and server-side techniques with code examples. Additionally, we explored the concept of server actions using Next.js API routes, enabling custom server endpoints for handling server-side logic and operations.
 
 Next.js continues to evolve and empower developers to build web applications that deliver exceptional user experiences. By embracing Next.js' data fetching and server action capabilities, developers can unlock the true potential of modern web development and stay at the forefront of the ever-changing web landscape. So, embark on your Next.js journey, explore its vast capabilities, and elevate your web development projects to new heights.

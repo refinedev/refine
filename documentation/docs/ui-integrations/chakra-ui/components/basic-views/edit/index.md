@@ -12,7 +12,11 @@ setRefineProps({
 });
 
 const Wrapper = ({ children }) => {
-  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
+  return (
+    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </ChakraUI.ChakraProvider>
+  );
 };
 
 const DummyListPage = () => (
@@ -50,7 +54,13 @@ import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/chakra-ui";
-import { FormControl, FormErrorMessage, FormLabel, Input, Select } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Select,
+} from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -78,7 +88,11 @@ const PostEdit: React.FC = () => {
     <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
       <FormControl mb="3" isInvalid={!!errors?.title}>
         <FormLabel>Title</FormLabel>
-        <Input id="title" type="text" {...register("title", { required: "Title is required" })} />
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
         <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
       </FormControl>
       <FormControl mb="3" isInvalid={!!errors?.status}>
@@ -271,7 +285,9 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
   const customDataProvider = {
     ...simpleRestDataProvider,
@@ -413,7 +429,15 @@ import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { useModalForm } from "@refinedev/react-hook-form";
 import { Edit } from "@refinedev/chakra-ui";
-import { Modal, Button, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody } from "@chakra-ui/react";
+import {
+  Modal,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalHeader,
+  ModalBody,
+} from "@chakra-ui/react";
 
 const PostEdit: React.FC = () => {
   const {
@@ -490,7 +514,12 @@ import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/chakra-ui";
-import { Input, FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import {
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+} from "@chakra-ui/react";
 import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
@@ -509,7 +538,11 @@ const PostEdit: React.FC = () => {
     >
       <FormControl mb="3" isInvalid={!!errors?.title}>
         <FormLabel>Title</FormLabel>
-        <Input id="title" type="text" {...register("title", { required: "Title is required" })} />
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
         <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
       </FormControl>
     </Edit>
@@ -964,7 +997,9 @@ const PostEdit: React.FC = () => {
       headerButtons={({ refreshButtonProps, listButtonProps }) => (
         <HStack>
           <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
-          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          {listButtonProps && (
+            <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button colorScheme="red">Custom Button</Button>
         </HStack>
       )}
@@ -1142,7 +1177,9 @@ const PostEdit: React.FC = () => {
       footerButtons={({ saveButtonProps, deleteButtonProps }) => (
         <HStack borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
           <SaveButton {...saveButtonProps} hideText />
-          {deleteButtonProps && <DeleteButton {...deleteButtonProps} hideText />}
+          {deleteButtonProps && (
+            <DeleteButton {...deleteButtonProps} hideText />
+          )}
           <Button colorScheme="red" variant="solid">
             Custom Button
           </Button>
@@ -1244,7 +1281,13 @@ import { EditButton } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
 
 import { Edit } from "@refinedev/chakra-ui";
-import { FormControl, FormErrorMessage, FormLabel, Input, Select } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Select,
+} from "@chakra-ui/react";
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
@@ -1291,7 +1334,11 @@ const PostEdit: React.FC = () => {
     >
       <FormControl mb="3" isInvalid={!!errors?.title}>
         <FormLabel>Title</FormLabel>
-        <Input id="title" type="text" {...register("title", { required: "Title is required" })} />
+        <Input
+          id="title"
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
         <FormErrorMessage>{`${errors.title?.message}`}</FormErrorMessage>
       </FormControl>
       <FormControl mb="3" isInvalid={!!errors?.status}>

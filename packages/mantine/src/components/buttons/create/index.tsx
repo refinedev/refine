@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import {
-    useNavigation,
-    useTranslate,
-    useCan,
-    useResource,
-    useRouterContext,
-    useRouterType,
-    useLink,
-    AccessControlContext,
+  useNavigation,
+  useTranslate,
+  useCan,
+  useResource,
+  useRouterContext,
+  useRouterType,
+  useLink,
+  AccessControlContext,
 } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons";
@@ -20,114 +20,113 @@ import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
-    resource: resourceNameFromProps,
-    resourceNameOrRouteName,
-    hideText = false,
-    accessControl,
-    svgIconProps,
-    meta,
-    children,
-    onClick,
-    ...rest
+  resource: resourceNameFromProps,
+  resourceNameOrRouteName,
+  hideText = false,
+  accessControl,
+  svgIconProps,
+  meta,
+  children,
+  onClick,
+  ...rest
 }) => {
-    const accessControlContext = useContext(AccessControlContext);
+  const accessControlContext = useContext(AccessControlContext);
 
-    const accessControlEnabled =
-        accessControl?.enabled ??
-        accessControlContext.options.buttons.enableAccessControl;
+  const accessControlEnabled =
+    accessControl?.enabled ??
+    accessControlContext.options.buttons.enableAccessControl;
 
-    const hideIfUnauthorized =
-        accessControl?.hideIfUnauthorized ??
-        accessControlContext.options.buttons.hideIfUnauthorized;
-    const translate = useTranslate();
-    const routerType = useRouterType();
-    const Link = useLink();
-    const { Link: LegacyLink } = useRouterContext();
+  const hideIfUnauthorized =
+    accessControl?.hideIfUnauthorized ??
+    accessControlContext.options.buttons.hideIfUnauthorized;
+  const translate = useTranslate();
+  const routerType = useRouterType();
+  const Link = useLink();
+  const { Link: LegacyLink } = useRouterContext();
 
-    const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-    const { createUrl: generateCreateUrl } = useNavigation();
+  const { createUrl: generateCreateUrl } = useNavigation();
 
-    const { resource } = useResource(
-        resourceNameFromProps ?? resourceNameOrRouteName,
-    );
+  const { resource } = useResource(
+    resourceNameFromProps ?? resourceNameOrRouteName,
+  );
 
-    const { data } = useCan({
-        resource: resource?.name,
-        action: "create",
-        queryOptions: {
-            enabled: accessControlEnabled,
-        },
-        params: {
-            resource,
-        },
-    });
+  const { data } = useCan({
+    resource: resource?.name,
+    action: "create",
+    queryOptions: {
+      enabled: accessControlEnabled,
+    },
+    params: {
+      resource,
+    },
+  });
 
-    const disabledTitle = () => {
-        if (data?.can) return "";
-        else if (data?.reason) return data.reason;
-        else
-            return translate(
-                "buttons.notAccessTitle",
-                "You don't have permission to access",
-            );
-    };
+  const disabledTitle = () => {
+    if (data?.can) return "";
+    else if (data?.reason) return data.reason;
+    else
+      return translate(
+        "buttons.notAccessTitle",
+        "You don't have permission to access",
+      );
+  };
 
-    const createUrl = resource ? generateCreateUrl(resource, meta) : "";
+  const createUrl = resource ? generateCreateUrl(resource, meta) : "";
 
-    const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, ...commonProps } = rest;
 
-    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-        return null;
-    }
+  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+    return null;
+  }
 
-    return (
-        <Anchor
-            component={ActiveLink as any}
-            to={createUrl}
-            replace={false}
-            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-                if (data?.can === false) {
-                    e.preventDefault();
-                    return;
-                }
-                if (onClick) {
-                    e.preventDefault();
-                    onClick(e);
-                }
-            }}
+  return (
+    <Anchor
+      component={ActiveLink as any}
+      to={createUrl}
+      replace={false}
+      onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+        if (data?.can === false) {
+          e.preventDefault();
+          return;
+        }
+        if (onClick) {
+          e.preventDefault();
+          onClick(e);
+        }
+      }}
+    >
+      {hideText ? (
+        <ActionIcon
+          title={disabledTitle()}
+          disabled={data?.can === false}
+          color="primary"
+          {...(variant
+            ? {
+                variant: mapButtonVariantToActionIconVariant(variant),
+              }
+            : { variant: "filled" })}
+          data-testid={RefineButtonTestIds.CreateButton}
+          className={RefineButtonClassNames.CreateButton}
+          {...commonProps}
         >
-            {hideText ? (
-                <ActionIcon
-                    title={disabledTitle()}
-                    disabled={data?.can === false}
-                    color="primary"
-                    {...(variant
-                        ? {
-                              variant:
-                                  mapButtonVariantToActionIconVariant(variant),
-                          }
-                        : { variant: "filled" })}
-                    data-testid={RefineButtonTestIds.CreateButton}
-                    className={RefineButtonClassNames.CreateButton}
-                    {...commonProps}
-                >
-                    <IconSquarePlus size={18} {...svgIconProps} />
-                </ActionIcon>
-            ) : (
-                <Button
-                    disabled={data?.can === false}
-                    leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
-                    title={disabledTitle()}
-                    data-testid={RefineButtonTestIds.CreateButton}
-                    className={RefineButtonClassNames.CreateButton}
-                    color="primary"
-                    variant="filled"
-                    {...rest}
-                >
-                    {children ?? translate("buttons.create", "Create")}
-                </Button>
-            )}
-        </Anchor>
-    );
+          <IconSquarePlus size={18} {...svgIconProps} />
+        </ActionIcon>
+      ) : (
+        <Button
+          disabled={data?.can === false}
+          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          title={disabledTitle()}
+          data-testid={RefineButtonTestIds.CreateButton}
+          className={RefineButtonClassNames.CreateButton}
+          color="primary"
+          variant="filled"
+          {...rest}
+        >
+          {children ?? translate("buttons.create", "Create")}
+        </Button>
+      )}
+    </Anchor>
+  );
 };

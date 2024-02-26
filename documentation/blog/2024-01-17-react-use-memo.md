@@ -120,7 +120,10 @@ const Blog = ({ signedIn }) => {
   // const sortedPosts = useMemo(() => sortPosts(updatedPosts), [updatedPosts]);
 
   useEffect(() => {
-    const id = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000);
+    const id = setInterval(
+      () => setLocalTime(new Date().toLocaleTimeString()),
+      1000,
+    );
     return () => clearInterval(id);
   }, []);
 

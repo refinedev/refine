@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconFileExport } from "@tabler/icons";
@@ -16,35 +16,35 @@ import { ExportButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
-    hideText = false,
-    children,
-    loading = false,
-    svgIconProps,
-    ...rest
+  hideText = false,
+  children,
+  loading = false,
+  svgIconProps,
+  ...rest
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    return hideText ? (
-        <IconButton
-            variant="outline"
-            aria-label={translate("buttons.export", "Export")}
-            isLoading={loading}
-            data-testid={RefineButtonTestIds.ExportButton}
-            className={RefineButtonClassNames.ExportButton}
-            {...rest}
-        >
-            <IconFileExport size={20} {...svgIconProps} />
-        </IconButton>
-    ) : (
-        <Button
-            variant="outline"
-            isLoading={loading}
-            leftIcon={<IconFileExport size={20} {...svgIconProps} />}
-            data-testid={RefineButtonTestIds.ExportButton}
-            className={RefineButtonClassNames.ExportButton}
-            {...rest}
-        >
-            {children ?? translate("buttons.export", "Export")}
-        </Button>
-    );
+  return hideText ? (
+    <IconButton
+      variant="outline"
+      aria-label={translate("buttons.export", "Export")}
+      isLoading={loading}
+      data-testid={RefineButtonTestIds.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
+      {...rest}
+    >
+      <IconFileExport size={20} {...svgIconProps} />
+    </IconButton>
+  ) : (
+    <Button
+      variant="outline"
+      isLoading={loading}
+      leftIcon={<IconFileExport size={20} {...svgIconProps} />}
+      data-testid={RefineButtonTestIds.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
+      {...rest}
+    >
+      {children ?? translate("buttons.export", "Export")}
+    </Button>
+  );
 };

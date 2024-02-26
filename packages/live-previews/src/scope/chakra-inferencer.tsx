@@ -1,7 +1,7 @@
 import * as RefineChakraInferencer from "@refinedev/inferencer/chakra-ui";
 
 const ChakraInferencerScope = {
-    RefineChakraInferencer,
+  RefineChakraInferencer,
 };
 
 export default ChakraInferencerScope;

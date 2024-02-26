@@ -56,7 +56,7 @@ export const DashboardPage: React.FC = () => {
           trend={dailyRevenue?.data.trend ?? 0}
           target={10_500}
           formattedTotal={`${currencyFormatter.format(
-            dailyRevenue?.data.total ?? 0
+            dailyRevenue?.data.total ?? 0,
           )}`}
           formattedTarget={`${currencyFormatter.format(10_500)}`}
         />
@@ -66,7 +66,7 @@ export const DashboardPage: React.FC = () => {
           trend={dailyOrders?.data.trend ?? 0}
           target={500}
           formattedTotal={`${numberFormatter.format(
-            dailyOrders?.data.total ?? 0
+            dailyOrders?.data.total ?? 0,
           )}`}
           formattedTarget={`${numberFormatter.format(500)}`}
         />
@@ -76,7 +76,7 @@ export const DashboardPage: React.FC = () => {
           trend={newCustomers?.data.trend ?? 0}
           target={200}
           formattedTotal={`${numberFormatter.format(
-            newCustomers?.data.total ?? 0
+            newCustomers?.data.total ?? 0,
           )}`}
           formattedTarget={`${numberFormatter.format(200)}`}
         />
@@ -86,21 +86,32 @@ export const DashboardPage: React.FC = () => {
           <Tab key="revenue" title="Revenue">
             <Card shadow="none" radius="none">
               <CardBody>
-                <DisplayAreaGraph data={dailyRevenue?.data?.data ?? []} stroke="#8884d8" fill="#cfeafc" />
+                <DisplayAreaGraph
+                  data={dailyRevenue?.data?.data ?? []}
+                  stroke="#8884d8"
+                  fill="#cfeafc"
+                />
               </CardBody>
             </Card>
           </Tab>
           <Tab key="orders" title="Orders">
             <Card shadow="none" radius="none">
               <CardBody>
-                <DisplayBarChart data={dailyOrders?.data?.data ?? []} fill="#ffce90" />{" "}
+                <DisplayBarChart
+                  data={dailyOrders?.data?.data ?? []}
+                  fill="#ffce90"
+                />{" "}
               </CardBody>
             </Card>
           </Tab>
           <Tab key="customers" title="Customers">
             <Card shadow="none" radius="none">
               <CardBody>
-                <DisplayAreaGraph data={newCustomers?.data?.data ?? []} stroke="#00bd56" fill="#ccf3f3" />{" "}
+                <DisplayAreaGraph
+                  data={newCustomers?.data?.data ?? []}
+                  stroke="#00bd56"
+                  fill="#ccf3f3"
+                />{" "}
               </CardBody>
             </Card>
           </Tab>

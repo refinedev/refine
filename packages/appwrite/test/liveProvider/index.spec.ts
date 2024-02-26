@@ -2,107 +2,107 @@ import { Client as Appwrite } from "appwrite";
 import { liveProvider } from "../../src";
 
 const mockClient: Appwrite = {
-    subscribe: jest.fn(() => jest.fn()),
+  subscribe: jest.fn(() => jest.fn()),
 } as unknown as Appwrite;
 
 const testDate = new Date().getTime();
 
 describe("liveProvider", () => {
-    it("calls appwriteClient.subscribe with correct channel", () => {
-        const provider = liveProvider(mockClient);
-        const dummyCallback = () => undefined;
+  it("calls appwriteClient.subscribe with correct channel", () => {
+    const provider = liveProvider(mockClient);
+    const dummyCallback = () => undefined;
 
-        provider?.subscribe({
-            channel: "resources/testChannel",
-            types: ["*"],
-            callback: dummyCallback,
-        });
-
-        expect(mockClient.subscribe).toHaveBeenCalledWith(
-            "databases.default.collections.testChannel.documents",
-            expect.any(Function),
-        );
+    provider?.subscribe({
+      channel: "resources/testChannel",
+      types: ["*"],
+      callback: dummyCallback,
     });
 
-    it("calls appwriteClient.subscribe with correct channel when specific ids given", () => {
-        const provider = liveProvider(mockClient);
-        const dummyCallback = () => undefined;
+    expect(mockClient.subscribe).toHaveBeenCalledWith(
+      "databases.default.collections.testChannel.documents",
+      expect.any(Function),
+    );
+  });
 
-        provider?.subscribe({
-            channel: "resources/testChannel",
-            types: ["*"],
-            callback: dummyCallback,
-            params: {
-                ids: ["a", "b"],
-            },
-        });
+  it("calls appwriteClient.subscribe with correct channel when specific ids given", () => {
+    const provider = liveProvider(mockClient);
+    const dummyCallback = () => undefined;
 
-        expect(mockClient.subscribe).toHaveBeenCalledWith(
-            [
-                "databases.default.collections.testChannel.documents.a",
-                "databases.default.collections.testChannel.documents.b",
-            ],
-            expect.any(Function),
-        );
+    provider?.subscribe({
+      channel: "resources/testChannel",
+      types: ["*"],
+      callback: dummyCallback,
+      params: {
+        ids: ["a", "b"],
+      },
     });
 
-    it("calls appwriteClient.subscribe with correct channel when specific ids given", () => {
-        jest.useFakeTimers();
+    expect(mockClient.subscribe).toHaveBeenCalledWith(
+      [
+        "databases.default.collections.testChannel.documents.a",
+        "databases.default.collections.testChannel.documents.b",
+      ],
+      expect.any(Function),
+    );
+  });
 
-        const mockClientWithEvent: Appwrite = {
-            subscribe: jest.fn((channel, cb) => {
-                setImmediate(() => {
-                    cb({
-                        events: ["database.documents.create"],
-                        timestamp: testDate / 1000,
-                        payload: "test",
-                    });
-                });
-            }),
-        } as unknown as Appwrite;
+  it("calls appwriteClient.subscribe with correct channel when specific ids given", () => {
+    jest.useFakeTimers();
 
-        const provider = liveProvider(mockClientWithEvent);
-        const dummyCallback = jest.fn();
-
-        provider?.subscribe({
-            channel: "resources/testChannel",
-            types: ["*"],
-            callback: dummyCallback,
-            params: {
-                ids: ["a", "b"],
-            },
-        });
-
-        jest.runAllTimers();
-
-        expect(dummyCallback).toHaveBeenCalledWith({
-            type: "created",
-            channel: "resources/testChannel",
-            date: new Date(testDate),
+    const mockClientWithEvent: Appwrite = {
+      subscribe: jest.fn((channel, cb) => {
+        setImmediate(() => {
+          cb({
+            events: ["database.documents.create"],
+            timestamp: testDate / 1000,
             payload: "test",
+          });
         });
+      }),
+    } as unknown as Appwrite;
 
-        jest.clearAllTimers();
-        jest.useRealTimers();
+    const provider = liveProvider(mockClientWithEvent);
+    const dummyCallback = jest.fn();
+
+    provider?.subscribe({
+      channel: "resources/testChannel",
+      types: ["*"],
+      callback: dummyCallback,
+      params: {
+        ids: ["a", "b"],
+      },
     });
 
-    it("runs given function to unsubscribe", () => {
-        const provider = liveProvider(mockClient);
-        const dummyCallback = jest.fn();
+    jest.runAllTimers();
 
-        const unsubscribeFunction = jest.fn();
-
-        provider?.subscribe({
-            channel: "resources/testChannel",
-            types: ["*"],
-            callback: dummyCallback,
-            params: {
-                ids: ["a", "b"],
-            },
-        });
-
-        provider?.unsubscribe(unsubscribeFunction);
-
-        expect(unsubscribeFunction).toHaveBeenCalled();
+    expect(dummyCallback).toHaveBeenCalledWith({
+      type: "created",
+      channel: "resources/testChannel",
+      date: new Date(testDate),
+      payload: "test",
     });
+
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
+  it("runs given function to unsubscribe", () => {
+    const provider = liveProvider(mockClient);
+    const dummyCallback = jest.fn();
+
+    const unsubscribeFunction = jest.fn();
+
+    provider?.subscribe({
+      channel: "resources/testChannel",
+      types: ["*"],
+      callback: dummyCallback,
+      params: {
+        ids: ["a", "b"],
+      },
+    });
+
+    provider?.unsubscribe(unsubscribeFunction);
+
+    expect(unsubscribeFunction).toHaveBeenCalled();
+  });
 });

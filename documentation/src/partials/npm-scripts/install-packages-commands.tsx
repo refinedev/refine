@@ -7,33 +7,33 @@ import { CodeBlock } from "@site/src/theme/CodeBlock/base";
 import TabItem from "@theme/TabItem";
 
 type Props = {
-    args?: string;
+  args?: string;
 };
 
 export const InstallPackagesCommand: FC<PropsWithChildren<Props>> = ({
-    args,
-    children,
+  args,
+  children,
 }) => {
-    const commands = {
-        npm: `npm i ${args}`,
-        pnpm: `pnpm add ${args}`,
-        yarn: `yarn add ${args}`,
-    };
+  const commands = {
+    npm: `npm i ${args}`,
+    pnpm: `pnpm add ${args}`,
+    yarn: `yarn add ${args}`,
+  };
 
-    return (
-        <Tabs>
-            <TabItem value="npm" label="npm" default>
-                <CodeBlock className="language-bash">{commands.npm}</CodeBlock>
-                {children}
-            </TabItem>
-            <TabItem value="pnpm" label="pnpm">
-                <CodeBlock className="language-bash">{commands.pnpm}</CodeBlock>
-                {children}
-            </TabItem>
-            <TabItem value="yarn" label="yarn">
-                <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-                {children}
-            </TabItem>
-        </Tabs>
-    );
+  return (
+    <Tabs>
+      <TabItem value="npm" label="npm" default>
+        <CodeBlock className="language-bash">{commands.npm}</CodeBlock>
+        {children}
+      </TabItem>
+      <TabItem value="pnpm" label="pnpm">
+        <CodeBlock className="language-bash">{commands.pnpm}</CodeBlock>
+        {children}
+      </TabItem>
+      <TabItem value="yarn" label="yarn">
+        <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
+        {children}
+      </TabItem>
+    </Tabs>
+  );
 };

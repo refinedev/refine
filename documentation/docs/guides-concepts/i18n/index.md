@@ -323,7 +323,13 @@ import {
   useTranslate,
   useMany,
 } from "@refinedev/core";
-import { List, useTable, TextField, EditButton, ShowButton } from "@refinedev/antd";
+import {
+  List,
+  useTable,
+  TextField,
+  EditButton,
+  ShowButton,
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -333,7 +339,8 @@ export const PostList: React.FC = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -360,7 +367,11 @@ export const PostList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <Table.Column<IPost>

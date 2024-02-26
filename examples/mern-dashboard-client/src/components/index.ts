@@ -15,12 +15,12 @@ import AgentCard from "./agent/AgentCard";
 import TopAgent from "./home/TopAgent";
 
 export {
-    Profile,
-    PropertyCard,
-    CustomButton,
-    PieChart,
-    PropertyReferrals,
-    TotalRevenue,
-    AgentCard,
-    TopAgent,
+  Profile,
+  PropertyCard,
+  CustomButton,
+  PieChart,
+  PropertyReferrals,
+  TotalRevenue,
+  AgentCard,
+  TopAgent,
 };

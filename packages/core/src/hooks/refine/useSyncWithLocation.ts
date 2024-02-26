@@ -4,7 +4,7 @@ import { RefineContext } from "@contexts/refine";
 import { IRefineContextOptions } from "../../interfaces";
 
 type UseSyncWithLocationType = () => {
-    syncWithLocation: IRefineContextOptions["syncWithLocation"];
+  syncWithLocation: IRefineContextOptions["syncWithLocation"];
 };
 
 /**
@@ -14,7 +14,7 @@ type UseSyncWithLocationType = () => {
  * @see {@link https://refine.dev/docs/api-reference/core/components/refine-config/#syncwithlocation} for more details.
  */
 export const useSyncWithLocation: UseSyncWithLocationType = () => {
-    const { syncWithLocation } = useContext(RefineContext);
+  const { syncWithLocation } = useContext(RefineContext);
 
-    return { syncWithLocation };
+  return { syncWithLocation };
 };

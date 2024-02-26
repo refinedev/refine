@@ -1,62 +1,62 @@
 import { ProjectIdResponse } from "src/interfaces/api";
 
 export const fetchNewProjectId = async () => {
-    try {
-        const response = await fetch("/api/.refine/projects", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-        });
+  try {
+    const response = await fetch("/api/.refine/projects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
 
-        const data = (await response.json()) as ProjectIdResponse;
+    const data = (await response.json()) as ProjectIdResponse;
 
-        if (data?.projectId) {
-            return data.projectId;
-        }
-    } catch (_) {
-        //
+    if (data?.projectId) {
+      return data.projectId;
     }
+  } catch (_) {
+    //
+  }
 
-    return null;
+  return null;
 };
 
 export const getCurrentProjectIdStatus = async () => {
-    try {
-        const response = await fetch("/api/project-id/status");
+  try {
+    const response = await fetch("/api/project-id/status");
 
-        if (response.status === 400) {
-            return undefined;
-        }
-
-        if (response.status === 404) {
-            return false;
-        }
-
-        if (response.status === 200) {
-            return true;
-        }
-    } catch (_) {
-        //
+    if (response.status === 400) {
+      return undefined;
     }
 
-    return undefined;
+    if (response.status === 404) {
+      return false;
+    }
+
+    if (response.status === 200) {
+      return true;
+    }
+  } catch (_) {
+    //
+  }
+
+  return undefined;
 };
 
 export const updateProjectId = async (projectId: string) => {
-    const response = await fetch("/api/project-id/update", {
-        body: JSON.stringify({ projectId }),
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-        },
-    });
+  const response = await fetch("/api/project-id/update", {
+    body: JSON.stringify({ projectId }),
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
 
-    if (response.status === 200) {
-        return true;
-    }
+  if (response.status === 200) {
+    return true;
+  }
 
-    return false;
+  return false;
 };

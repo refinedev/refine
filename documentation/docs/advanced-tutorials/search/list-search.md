@@ -23,7 +23,8 @@ export const PostList: React.FC = () => {
   // highlight-next-line
   const { listProps } = useSimpleList<IPost>();
 
-  const categoryIds = listProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    listProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -35,7 +36,9 @@ export const PostList: React.FC = () => {
   const renderItem = (item: IPost) => {
     const { title, hit, content } = item;
 
-    const categoryTitle = data?.data.find((category: ICategory) => category.id === item.category.id)?.title;
+    const categoryTitle = data?.data.find(
+      (category: ICategory) => category.id === item.category.id,
+    )?.title;
 
     return (
       <AntdList.Item
@@ -82,7 +85,12 @@ After creating the `<PostList>` component, add it to the resource with `list` pr
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, useNotificationProvider, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import {
+  ThemedLayoutV2,
+  useNotificationProvider,
+  ErrorComponent,
+  RefineThemes,
+} from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 

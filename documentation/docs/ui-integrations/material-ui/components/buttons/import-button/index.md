@@ -41,7 +41,9 @@ const PostsList: React.FC = () => {
   return (
     <List
       // highlight-start
-      headerButtons={<ImportButton inputProps={inputProps} loading={isLoading} />}
+      headerButtons={
+        <ImportButton inputProps={inputProps} loading={isLoading} />
+      }
       // highlight-end
     >
       <DataGrid {...dataGridProps} columns={columns} autoHeight />

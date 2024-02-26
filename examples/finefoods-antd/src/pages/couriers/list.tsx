@@ -1,148 +1,277 @@
 import {
-    useTranslate,
-    IResourceComponentsProps,
-    useDelete,
-    useNavigation,
+  useTranslate,
+  getDefaultFilter,
+  useNavigation,
+  useGo,
 } from "@refinedev/core";
-import { List, useTable } from "@refinedev/antd";
 import {
-    EditOutlined,
-    CloseCircleOutlined,
-    MoreOutlined,
-} from "@ant-design/icons";
-import { Table, Avatar, Dropdown, Menu, Space, Typography } from "antd";
-
+  CreateButton,
+  EditButton,
+  FilterDropdown,
+  List,
+  useTable,
+} from "@refinedev/antd";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
+import { Table, Avatar, Typography, theme, InputNumber, Input } from "antd";
+import InputMask from "react-input-mask";
 import { ICourier } from "../../interfaces";
+import {
+  PaginationTotal,
+  CourierStatus,
+  CourierTableColumnRating,
+} from "../../components";
+import { useLocation } from "react-router-dom";
+import { PropsWithChildren } from "react";
 
-export const CourierList: React.FC<IResourceComponentsProps> = () => {
-    const { show, edit } = useNavigation();
-    const t = useTranslate();
+export const CourierList = ({ children }: PropsWithChildren) => {
+  const go = useGo();
+  const { pathname } = useLocation();
+  const { createUrl } = useNavigation();
+  const t = useTranslate();
+  const { token } = theme.useToken();
 
-    const { tableProps } = useTable<ICourier>({
-        initialSorter: [
-            {
-                field: "id",
-                order: "desc",
-            },
-        ],
-    });
+  const { tableProps, filters } = useTable<ICourier>({
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "",
+        },
+        {
+          field: "licensePlate",
+          operator: "contains",
+          value: "",
+        },
+        {
+          field: "email",
+          operator: "contains",
+          value: "",
+        },
+      ],
+    },
+  });
 
-    const { mutate: mutateDelete } = useDelete();
-
-    const moreMenu = (id: number) => (
-        <Menu
-            mode="vertical"
-            onClick={({ domEvent }) => domEvent.stopPropagation()}
+  return (
+    <>
+      <List
+        breadcrumb={false}
+        headerButtons={(props) => [
+          <CreateButton
+            {...props.createButtonProps}
+            key="create"
+            size="large"
+            onClick={() => {
+              return go({
+                to: `${createUrl("couriers")}`,
+                query: {
+                  to: pathname,
+                },
+                options: {
+                  keepQuery: true,
+                },
+                type: "replace",
+              });
+            }}
+          >
+            {t("couriers.actions.add")}
+          </CreateButton>,
+        ]}
+      >
+        <Table
+          {...tableProps}
+          rowKey="id"
+          scroll={{ x: true }}
+          pagination={{
+            ...tableProps.pagination,
+            showTotal: (total) => (
+              <PaginationTotal total={total} entityName="products" />
+            ),
+          }}
         >
-            <Menu.Item
-                key="accept"
+          <Table.Column
+            title={
+              <Typography.Text
                 style={{
-                    fontSize: 15,
-                    display: "flex",
-                    alignItems: "center",
-                    fontWeight: 500,
+                  whiteSpace: "nowrap",
                 }}
-                icon={
-                    <EditOutlined
-                        style={{
-                            color: "#52c41a",
-                            fontSize: 17,
-                            fontWeight: 500,
-                        }}
-                    />
-                }
-                onClick={() => {
-                    edit("couriers", id);
-                }}
-            >
-                {t("buttons.edit")}
-            </Menu.Item>
-            <Menu.Item
-                key="reject"
+              >
+                ID #
+              </Typography.Text>
+            }
+            dataIndex="id"
+            key="id"
+            width={80}
+            render={(value) => (
+              <Typography.Text
                 style={{
-                    fontSize: 15,
-                    display: "flex",
-                    alignItems: "center",
-                    fontWeight: 500,
+                  whiteSpace: "nowrap",
                 }}
-                icon={
-                    <CloseCircleOutlined
-                        style={{
-                            color: "#EE2A1E",
-                            fontSize: 17,
-                        }}
-                    />
-                }
-                onClick={() => {
-                    mutateDelete({
-                        resource: "couriers",
-                        id,
-                        mutationMode: "undoable",
-                    });
+              >
+                #{value}
+              </Typography.Text>
+            )}
+            filterIcon={(filtered) => (
+              <SearchOutlined
+                style={{
+                  color: filtered ? token.colorPrimary : undefined,
                 }}
-            >
-                {t("buttons.delete")}
-            </Menu.Item>
-        </Menu>
-    );
-
-    return (
-        <List>
-            <Table
-                {...tableProps}
-                rowKey="id"
-                onRow={(record) => {
-                    return {
-                        onClick: () => {
-                            show("couriers", record.id);
-                        },
-                    };
+              />
+            )}
+            defaultFilteredValue={getDefaultFilter("id", filters, "eq")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <InputNumber
+                  addonBefore="#"
+                  style={{ width: "100%" }}
+                  placeholder={t("products.filter.id.placeholder")}
+                />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column<ICourier>
+            key="avatar"
+            dataIndex="avatar"
+            title={t("couriers.fields.avatar.label")}
+            render={(_, record) => (
+              <Avatar
+                src={record.avatar?.[0]?.url}
+                alt={record?.avatar?.[0].name}
+              />
+            )}
+          />
+          <Table.Column<ICourier>
+            key="name"
+            dataIndex="name"
+            title={t("couriers.fields.name.label")}
+            filterIcon={(filtered) => (
+              <SearchOutlined
+                style={{
+                  color: filtered ? token.colorPrimary : undefined,
                 }}
-            >
-                <Table.Column
-                    key="name"
-                    title={t("couriers.fields.name")}
-                    render={(record) => (
-                        <Space>
-                            <Avatar size={74} src={record.avatar?.[0]?.url} />
-                            <Typography.Text style={{ wordBreak: "inherit" }}>
-                                {record.name} {record.surname}
-                            </Typography.Text>
-                        </Space>
-                    )}
+              />
+            )}
+            defaultFilteredValue={getDefaultFilter("name", filters, "contains")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder={t("couriers.filter.name.placeholder")} />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column
+            key="licensePlate"
+            dataIndex="licensePlate"
+            title={() => {
+              return (
+                <Typography.Text
+                  style={{
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {t("couriers.fields.licensePlate.label")}
+                </Typography.Text>
+              );
+            }}
+            filterIcon={(filtered) => (
+              <SearchOutlined
+                style={{
+                  color: filtered ? token.colorPrimary : undefined,
+                }}
+              />
+            )}
+            defaultFilteredValue={getDefaultFilter(
+              "licensePlate",
+              filters,
+              "contains",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input
+                  placeholder={t("couriers.filter.licensePlate.placeholder")}
                 />
-                <Table.Column
-                    dataIndex="gsm"
-                    title={t("couriers.fields.gsm")}
+              </FilterDropdown>
+            )}
+            render={(value) => (
+              <Typography.Text
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {value}
+              </Typography.Text>
+            )}
+          />
+          <Table.Column
+            dataIndex="gsm"
+            key="gsm"
+            title={t("couriers.fields.gsm.label")}
+            filterIcon={(filtered) => (
+              <SearchOutlined
+                style={{
+                  color: filtered ? token.colorPrimary : undefined,
+                }}
+              />
+            )}
+            defaultFilteredValue={getDefaultFilter("gsm", filters, "eq")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <InputMask mask="(999) 999 99 99">
+                  {/* 
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore */}
+                  {(props: InputProps) => <Input {...props} />}
+                </InputMask>
+              </FilterDropdown>
+            )}
+            render={(value) => (
+              <Typography.Text
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {value}
+              </Typography.Text>
+            )}
+          />
+          <Table.Column<ICourier>
+            dataIndex={["store", "title"]}
+            key="store"
+            title={t("couriers.fields.store.label")}
+          />
+          <Table.Column<ICourier>
+            dataIndex="id"
+            key="ratings"
+            title={t("couriers.fields.rating.label")}
+            render={(_, record) => {
+              return <CourierTableColumnRating courier={record} />;
+            }}
+          />
+          <Table.Column<ICourier>
+            dataIndex="status"
+            key="status"
+            title={t("couriers.fields.status.label")}
+            render={(_, record) => {
+              return <CourierStatus value={record.status} />;
+            }}
+          />
+          <Table.Column
+            title={t("table.actions")}
+            key="actions"
+            fixed="right"
+            align="center"
+            render={(_, record: ICourier) => {
+              return (
+                <EditButton
+                  icon={<EyeOutlined />}
+                  hideText
+                  recordItemId={record.id}
                 />
-                <Table.Column
-                    dataIndex="email"
-                    title={t("couriers.fields.email")}
-                />
-                <Table.Column
-                    dataIndex="address"
-                    title={t("couriers.fields.address")}
-                />
-                <Table.Column<ICourier>
-                    fixed="right"
-                    title={t("table.actions")}
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        <Dropdown
-                            overlay={moreMenu(record.id)}
-                            trigger={["click"]}
-                        >
-                            <MoreOutlined
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    fontSize: 24,
-                                }}
-                            />
-                        </Dropdown>
-                    )}
-                />
-            </Table>
-        </List>
-    );
+              );
+            }}
+          />
+        </Table>
+      </List>
+      {children}
+    </>
+  );
 };

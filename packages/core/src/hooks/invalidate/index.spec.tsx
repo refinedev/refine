@@ -6,190 +6,190 @@ import * as ReactQuery from "@tanstack/react-query";
 import { IQueryKeys } from "src/interfaces";
 
 describe("useInvalidate", () => {
-    it("with empty invalidations array", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+  it("with empty invalidations array", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
 
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
 
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
-
-        result.current({
-            resource: "posts",
-            invalidates: [],
-            dataProviderName: "rest",
-            id: "1",
-        });
-
-        expect(dispatch).not.toBeCalled();
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
     });
 
-    it("with false invalidation", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
-
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
-
-        result.current({
-            resource: "posts",
-            invalidates: false,
-            dataProviderName: "rest",
-            id: "1",
-        });
-
-        expect(dispatch).not.toBeCalled();
+    result.current({
+      resource: "posts",
+      invalidates: [],
+      dataProviderName: "rest",
+      id: "1",
     });
 
-    it("with list invalidation", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+    expect(dispatch).not.toBeCalled();
+  });
 
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
+  it("with false invalidation", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
 
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
 
-        result.current({
-            resource: "posts",
-            invalidates: ["list"],
-            dataProviderName: "rest",
-        });
-
-        expect(dispatch).toBeCalledWith(
-            ["rest", "posts", "list"],
-            expect.anything(),
-            expect.anything(),
-        );
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
     });
 
-    it("with detail invalidation", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
-
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
-
-        result.current({
-            resource: "posts",
-            invalidates: ["list", "detail"],
-            dataProviderName: "rest",
-            id: "1",
-        });
-
-        expect(dispatch).toHaveBeenCalledWith(
-            expect.arrayContaining(["rest", "posts", "list"]),
-            expect.anything(),
-            expect.anything(),
-        );
-
-        expect(dispatch).toHaveBeenCalledWith(
-            expect.arrayContaining(["rest", "posts", "detail", "1"]),
-            expect.anything(),
-            expect.anything(),
-        );
+    result.current({
+      resource: "posts",
+      invalidates: false,
+      dataProviderName: "rest",
+      id: "1",
     });
 
-    it("with 'all' invalidation", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+    expect(dispatch).not.toBeCalled();
+  });
 
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
+  it("with list invalidation", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
 
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
 
-        await result.current({
-            resource: "posts",
-            invalidates: ["detail", "all", "list", "many", "resourceAll"],
-            dataProviderName: "rest",
-            id: "1",
-        });
-
-        expect(dispatch).toBeCalledWith(
-            expect.arrayContaining(["rest", "posts", "detail", "1"]),
-            expect.anything(),
-            expect.anything(),
-        );
-        expect(dispatch).toBeCalledWith(
-            expect.arrayContaining(["rest"]),
-            expect.anything(),
-            expect.anything(),
-        );
-        expect(dispatch).toBeCalledWith(
-            expect.arrayContaining(["rest", "posts"]),
-            expect.anything(),
-            expect.anything(),
-        );
-        expect(dispatch).toBeCalledWith(
-            expect.arrayContaining(["rest", "posts", "list"]),
-            expect.anything(),
-            expect.anything(),
-        );
-        expect(dispatch).toBeCalledWith(
-            expect.arrayContaining(["rest", "posts", "getMany"]),
-            expect.anything(),
-            expect.anything(),
-        );
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
     });
 
-    it("with 'wrong invalidate key' ", async () => {
-        const dispatch = jest.fn();
-        const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-        useReducerSpy.mockImplementation(
-            () =>
-                ({
-                    invalidateQueries: dispatch,
-                } as any),
-        );
-
-        const { result } = renderHook(() => useInvalidate(), {
-            wrapper: TestWrapper({}),
-        });
-
-        result.current({
-            resource: "posts",
-            invalidates: ["wrong-key"] as unknown as (keyof IQueryKeys)[],
-            dataProviderName: "rest",
-            id: "1",
-        });
-
-        expect(dispatch).not.toBeCalled();
+    result.current({
+      resource: "posts",
+      invalidates: ["list"],
+      dataProviderName: "rest",
     });
+
+    expect(dispatch).toBeCalledWith(
+      ["rest", "posts", "list"],
+      expect.anything(),
+      expect.anything(),
+    );
+  });
+
+  it("with detail invalidation", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
+
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
+    });
+
+    result.current({
+      resource: "posts",
+      invalidates: ["list", "detail"],
+      dataProviderName: "rest",
+      id: "1",
+    });
+
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.arrayContaining(["rest", "posts", "list"]),
+      expect.anything(),
+      expect.anything(),
+    );
+
+    expect(dispatch).toHaveBeenCalledWith(
+      expect.arrayContaining(["rest", "posts", "detail", "1"]),
+      expect.anything(),
+      expect.anything(),
+    );
+  });
+
+  it("with 'all' invalidation", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
+
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
+    });
+
+    await result.current({
+      resource: "posts",
+      invalidates: ["detail", "all", "list", "many", "resourceAll"],
+      dataProviderName: "rest",
+      id: "1",
+    });
+
+    expect(dispatch).toBeCalledWith(
+      expect.arrayContaining(["rest", "posts", "detail", "1"]),
+      expect.anything(),
+      expect.anything(),
+    );
+    expect(dispatch).toBeCalledWith(
+      expect.arrayContaining(["rest"]),
+      expect.anything(),
+      expect.anything(),
+    );
+    expect(dispatch).toBeCalledWith(
+      expect.arrayContaining(["rest", "posts"]),
+      expect.anything(),
+      expect.anything(),
+    );
+    expect(dispatch).toBeCalledWith(
+      expect.arrayContaining(["rest", "posts", "list"]),
+      expect.anything(),
+      expect.anything(),
+    );
+    expect(dispatch).toBeCalledWith(
+      expect.arrayContaining(["rest", "posts", "getMany"]),
+      expect.anything(),
+      expect.anything(),
+    );
+  });
+
+  it("with 'wrong invalidate key' ", async () => {
+    const dispatch = jest.fn();
+    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
+
+    useReducerSpy.mockImplementation(
+      () =>
+        ({
+          invalidateQueries: dispatch,
+        }) as any,
+    );
+
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
+    });
+
+    result.current({
+      resource: "posts",
+      invalidates: ["wrong-key"] as unknown as (keyof IQueryKeys)[],
+      dataProviderName: "rest",
+      id: "1",
+    });
+
+    expect(dispatch).not.toBeCalled();
+  });
 });

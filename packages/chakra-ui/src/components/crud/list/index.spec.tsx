@@ -7,48 +7,48 @@ import { render, TestWrapper } from "@test";
 import { List } from "./index";
 
 const renderList = (list: ReactNode) => {
-    return render(
-        <Routes>
-            <Route path="/:resource" element={list} />
-        </Routes>,
-        {
-            wrapper: TestWrapper({
-                routerInitialEntries: ["/posts"],
-            }),
-        },
-    );
+  return render(
+    <Routes>
+      <Route path="/:resource" element={list} />
+    </Routes>,
+    {
+      wrapper: TestWrapper({
+        routerInitialEntries: ["/posts"],
+      }),
+    },
+  );
 };
 
 describe("<List/>", () => {
-    beforeEach(() => {
-        // This is an issue on `chakra-ui` side rather than `refine`. Ignoring for now but might need to be fixed.
-        jest.spyOn(console, "error").mockImplementation((message) => {
-            if (message?.includes?.("validateDOMNesting")) {
-                return;
-            }
+  beforeEach(() => {
+    // This is an issue on `chakra-ui` side rather than `refine`. Ignoring for now but might need to be fixed.
+    jest.spyOn(console, "error").mockImplementation((message) => {
+      if (message?.includes?.("validateDOMNesting")) {
+        return;
+      }
 
-            console.warn(message);
-        });
+      console.warn(message);
     });
+  });
 
-    crudListTests.bind(this)(List);
+  crudListTests.bind(this)(List);
 
-    it("should customize default buttons with default props", async () => {
-        const { queryByTestId } = renderList(
-            <List
-                createButtonProps={{ className: "customize-test" }}
-                headerButtons={({ createButtonProps }) => {
-                    return (
-                        <>
-                            <CreateButton {...createButtonProps} />
-                        </>
-                    );
-                }}
-            />,
-        );
+  it("should customize default buttons with default props", async () => {
+    const { queryByTestId } = renderList(
+      <List
+        createButtonProps={{ className: "customize-test" }}
+        headerButtons={({ createButtonProps }) => {
+          return (
+            <>
+              <CreateButton {...createButtonProps} />
+            </>
+          );
+        }}
+      />,
+    );
 
-        expect(queryByTestId(RefineButtonTestIds.CreateButton)).toHaveClass(
-            "customize-test",
-        );
-    });
+    expect(queryByTestId(RefineButtonTestIds.CreateButton)).toHaveClass(
+      "customize-test",
+    );
+  });
 });

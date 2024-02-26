@@ -8,13 +8,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-07-react-lazy
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 Lazy Loading has been a concept in software development in general not just in web development. Lazy Loading can and used in desktop and mobile development. It is just another trick in making performance better in applications.
 Lazy loading is a technique used to optimize the performance of a website or application. It's an approach that loads only the necessary resources when they're needed, instead of downloading everything at once. This way, users don't have to wait for all the resources to be downloaded before they can use the site or app.
 
 Steps we'll cover:
+
 - [What is lazy loading?](#what-is-lazy-loading)
 - [What is React.lazy](#what-is-reactlazy)
 - [Suspense](#suspense)
@@ -22,9 +22,7 @@ Steps we'll cover:
 - [Route-based code-splitting](#route-based-code-splitting)
 - [Component-based code-splitting](#component-based-code-splitting)
 
-
 ## What is lazy loading?
-
 
 The idea behind lazy loading is that it reduces the initial page load time, resulting in faster page loading and a better user experience. It's particularly useful for websites or applications that contain a lot of content, as it ensures that only essential resources are loaded initially.
 
@@ -33,8 +31,8 @@ Let's use a blog website as an example to describe how lazy loading will be effe
 The blog website has a home page, a list page, and a detail page. The home page is the main page of the website, which is the first page that users see when they enter the website. The list page is the page that displays the list of blog articles. The detail page is the page that displays the content of the blog article.
 If the home page loads the list and detail pages are also loaded with it, we will see that this will increase the page load time of the home page.
 
-home page - 39KB 
-list page - 90KB 
+home page - 39KB
+list page - 90KB
 detail page - 88KB
 
 We will see that a total of 217KB of the file will be loaded just for loading the home page. We can mitigate against this by breaking the bundle up and loading them at will. When the home page is loaded, only the home page is loaded. This will speed up the page load time because we are now loading only 39KB instead of the whole 217 KB.
@@ -57,6 +55,7 @@ So, `lazy()` is a function in the React bundle. We can import it like this:
 ```tsx
 import { lazy } from "react";
 ```
+
 // OR
 
 ```
@@ -103,14 +102,14 @@ import DetailPage from "./DetailPage";
 const DetailPage = React.lazy(() => import("./DetailPage"));
 
 export const HomePage = () => {
-    return (
-      <ul>
-         {this.props.blogs.map((blog, index) => {
-           return <DetailPage blog={blog} />;
-         })}
-      </ul>
-      );
-    };
+  return (
+    <ul>
+      {this.props.blogs.map((blog, index) => {
+        return <DetailPage blog={blog} />;
+      })}
+    </ul>
+  );
+};
 ```
 
 Now, the DetailPage component will be broken out into a separate bundle and will not be loaded in the initial load time of the HomePage.
@@ -118,9 +117,6 @@ When we run this code we will get an error: `React component suspended while ren
 This is because a lazily loaded component with `React.lazy` must be wrapped inside `Suspense` component.
 
 What is Suspense?
-
-
-
 
 ## Suspense
 
@@ -130,11 +126,12 @@ To use the Suspense component, we import it from the "react" package.
 ```tsx
 import { Suspense } from "react";
 ```
+
 Next, we wrap a `React.lazy` loaded component inside it:
 
 ```tsx
 <Suspense>
-    <LazyComponent />
+  <LazyComponent />
 </Suspense>
 ```
 
@@ -158,8 +155,8 @@ The `fallback` can take a JSX element:
 <Suspense fallback={<div>Loading...</div>}>
   <LazyComponent />
 </Suspense>
-
 ```
+
 ## Catching Loading Errors
 
 When using `React.lazy`, it is important to catch any loading errors that might occur(for example, if a network error occurs).
@@ -200,7 +197,7 @@ Now, we use this error boundary like this:
   <Suspense fallback={<div>Loading...</div>}>
     <LazyComponent />
   </Suspense>
-</ErrorBoundary>;
+</ErrorBoundary>
 ```
 
 ## Route-based code-splitting
@@ -257,8 +254,6 @@ Now, `Home` and `About` will be broken off into their separate bundles. These bu
 </a>
 </div>
 
-
-
 ## Component-based code-splitting
 
 We have two types of components in React. There are Route-based components and Component-based components. We have learned about Route-based components in the above section.
@@ -271,5 +266,3 @@ Headers, dropdowns, and buttons are not to be lazily loaded because they are eas
 We started by learning the definition of lazy loading, what it means and what good it brings to web development and software development at large. In the next sections, we learned about React.lazy function and how to use it. Next, we learned examples of how to lazily load Route-based and Component-based components in our React application.
 
 `React.lazy` is a powerful feature of React that allows components to be loaded lazily from the server. It is a way to make components available only when they are needed, thus improving the performance of an application.
-
-

@@ -81,7 +81,11 @@ import { CanAccess } from "@refinedev/core";
 
 export const ListPage = () => {
   return (
-    <CanAccess resource="products" action="list" fallback={<h1>You are not authorized to see this page.</h1>}>
+    <CanAccess
+      resource="products"
+      action="list"
+      fallback={<h1>You are not authorized to see this page.</h1>}
+    >
       <>
         <h1>Products</h1>
         <CanAccess resource="products" action="show" params={{ id: 1 }}>

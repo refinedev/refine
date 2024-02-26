@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -17,32 +17,32 @@ import { ExportButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
-    hideText = false,
-    children,
-    loading = false,
-    svgIconProps,
-    ...rest
+  hideText = false,
+  children,
+  loading = false,
+  svgIconProps,
+  ...rest
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
+  const { sx, ...restProps } = rest;
 
-    return (
-        <LoadingButton
-            {...rest}
-            loading={loading}
-            startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
-            loadingPosition={hideText ? "center" : "start"}
-            sx={{ minWidth: 0, ...sx }}
-            data-testid={RefineButtonTestIds.ExportButton}
-            className={RefineButtonClassNames.ExportButton}
-            {...restProps}
-        >
-            {hideText ? (
-                <ImportExportOutlined fontSize="small" {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.export", "Export")
-            )}
-        </LoadingButton>
-    );
+  return (
+    <LoadingButton
+      {...rest}
+      loading={loading}
+      startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
+      loadingPosition={hideText ? "center" : "start"}
+      sx={{ minWidth: 0, ...sx }}
+      data-testid={RefineButtonTestIds.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
+      {...restProps}
+    >
+      {hideText ? (
+        <ImportExportOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? translate("buttons.export", "Export")
+      )}
+    </LoadingButton>
+  );
 };

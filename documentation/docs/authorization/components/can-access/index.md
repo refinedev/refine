@@ -62,7 +62,9 @@ Callback to be called when [`useCan`][use-can] returns false.
 ```tsx
 <CanAccess
   onUnauthorized={({ resource, reason, action, params }) =>
-    console.log(`You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`)
+    console.log(
+      `You cannot access ${resource}-${params.id} resource with ${action} action because ${reason}`,
+    )
   }
 >
   <YourComponent />

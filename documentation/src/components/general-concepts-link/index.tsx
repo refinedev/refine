@@ -9,13 +9,13 @@ For more information, refer to the [General Concepts documentation](/docs/guides
 `;
 
 const GeneralConceptsLink = () => {
-    return (
-        <div>
-            <Admonition type="simple" title="Good to know">
-                <ReactMarkdown>{md}</ReactMarkdown>
-            </Admonition>
-        </div>
-    );
+  return (
+    <div>
+      <Admonition type="simple" title="Good to know">
+        <ReactMarkdown>{md}</ReactMarkdown>
+      </Admonition>
+    </div>
+  );
 };
 
 export default GeneralConceptsLink;

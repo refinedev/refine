@@ -8,33 +8,32 @@ import { TranslationContext } from "@contexts/translation";
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/translate/useTranslate} for more details.
  */
 export const useTranslate = () => {
-    const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(TranslationContext);
 
-    const fn = useMemo(() => {
-        function translate(
-            key: string,
-            options?: any,
-            defaultMessage?: string,
-        ): string;
-        function translate(key: string, defaultMessage?: string): string;
+  const fn = useMemo(() => {
+    function translate(
+      key: string,
+      options?: any,
+      defaultMessage?: string,
+    ): string;
+    function translate(key: string, defaultMessage?: string): string;
 
-        function translate(
-            key: string,
-            options?: string | any,
-            defaultMessage?: string,
-        ) {
-            return (
-                i18nProvider?.translate(key, options, defaultMessage) ??
-                defaultMessage ??
-                (typeof options === "string" &&
-                typeof defaultMessage === "undefined"
-                    ? options
-                    : key)
-            );
-        }
+    function translate(
+      key: string,
+      options?: string | any,
+      defaultMessage?: string,
+    ) {
+      return (
+        i18nProvider?.translate(key, options, defaultMessage) ??
+        defaultMessage ??
+        (typeof options === "string" && typeof defaultMessage === "undefined"
+          ? options
+          : key)
+      );
+    }
 
-        return translate;
-    }, [i18nProvider]);
+    return translate;
+  }, [i18nProvider]);
 
-    return fn;
+  return fn;
 };

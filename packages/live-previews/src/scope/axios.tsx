@@ -1,7 +1,7 @@
 import * as AxiosScope from "axios";
 
 const AxiosImports = {
-    AxiosScope,
+  AxiosScope,
 };
 
 export default AxiosImports;

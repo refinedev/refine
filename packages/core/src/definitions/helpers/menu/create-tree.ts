@@ -3,85 +3,83 @@ import { getParentResource } from "../router";
 import { createResourceKey } from "./create-resource-key";
 
 export type Tree = {
-    item: IResourceItem;
-    children: { [key: string]: Tree };
+  item: IResourceItem;
+  children: { [key: string]: Tree };
 };
 
 export type FlatTreeItem = IResourceItem & {
-    key: string;
-    children: FlatTreeItem[];
+  key: string;
+  children: FlatTreeItem[];
 };
 
 export const createTree = (
-    resources: IResourceItem[],
-    legacy = false,
+  resources: IResourceItem[],
+  legacy = false,
 ): FlatTreeItem[] => {
-    const root: Tree = {
-        item: {
-            name: "__root__",
-        },
-        children: {},
-    };
+  const root: Tree = {
+    item: {
+      name: "__root__",
+    },
+    children: {},
+  };
 
-    resources.forEach((resource) => {
-        const parents: IResourceItem[] = [];
+  resources.forEach((resource) => {
+    const parents: IResourceItem[] = [];
 
-        let currentParent = getParentResource(resource, resources);
-        while (currentParent) {
-            parents.push(currentParent);
-            currentParent = getParentResource(currentParent, resources);
-        }
-        parents.reverse();
+    let currentParent = getParentResource(resource, resources);
+    while (currentParent) {
+      parents.push(currentParent);
+      currentParent = getParentResource(currentParent, resources);
+    }
+    parents.reverse();
 
-        let currentTree = root;
+    let currentTree = root;
 
-        parents.forEach((parent) => {
-            const key =
-                (legacy ? parent.route : undefined) ??
-                parent.identifier ??
-                parent.name;
+    parents.forEach((parent) => {
+      const key =
+        (legacy ? parent.route : undefined) ?? parent.identifier ?? parent.name;
 
-            if (!currentTree.children[key]) {
-                currentTree.children[key] = {
-                    item: parent,
-                    children: {},
-                };
-            }
-            currentTree = currentTree.children[key];
-        });
-
-        const key =
-            (legacy ? resource.route : undefined) ??
-            resource.identifier ??
-            resource.name;
-
-        if (!currentTree.children[key]) {
-            currentTree.children[key] = {
-                item: resource,
-                children: {},
-            };
-        }
+      if (!currentTree.children[key]) {
+        currentTree.children[key] = {
+          item: parent,
+          children: {},
+        };
+      }
+      currentTree = currentTree.children[key];
     });
 
-    const flatten = (tree: Tree): FlatTreeItem[] => {
-        const items: FlatTreeItem[] = [];
+    const key =
+      (legacy ? resource.route : undefined) ??
+      resource.identifier ??
+      resource.name;
 
-        Object.keys(tree.children).forEach((key) => {
-            const itemKey = createResourceKey(
-                tree.children[key].item,
-                resources,
-                legacy,
-            );
-            const item: FlatTreeItem = {
-                ...tree.children[key].item,
-                key: itemKey,
-                children: flatten(tree.children[key]),
-            };
-            items.push(item);
-        });
+    if (!currentTree.children[key]) {
+      currentTree.children[key] = {
+        item: resource,
+        children: {},
+      };
+    }
+  });
 
-        return items;
-    };
+  const flatten = (tree: Tree): FlatTreeItem[] => {
+    const items: FlatTreeItem[] = [];
 
-    return flatten(root);
+    Object.keys(tree.children).forEach((key) => {
+      const itemKey = createResourceKey(
+        tree.children[key].item,
+        resources,
+        legacy,
+      );
+      const item: FlatTreeItem = {
+        ...tree.children[key].item,
+        key: itemKey,
+        children: flatten(tree.children[key]),
+      };
+      items.push(item);
+    });
+
+    return items;
+  };
+
+  return flatten(root);
 };

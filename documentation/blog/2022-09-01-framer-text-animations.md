@@ -210,7 +210,10 @@ function App() {
                 transition={{ duration: 3 }}
                 key={image}
               >
-                <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="image" />
+                <img
+                  src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
+                  alt="image"
+                />
               </motion.div>
             );
           })}

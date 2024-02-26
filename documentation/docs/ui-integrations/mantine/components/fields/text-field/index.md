@@ -16,7 +16,11 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineCore.MantineProvider
+      theme={RefineMantine.LightTheme}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}
@@ -53,13 +57,14 @@ const PostShow: React.FC = () => {
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne<ICategory>({
-    resource: "categories",
-    id: record?.category?.id,
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useOne<ICategory>({
+      resource: "categories",
+      id: record?.category?.id,
+      queryOptions: {
+        enabled: !!record,
+      },
+    });
 
   return (
     <Show isLoading={isLoading}>
@@ -69,7 +74,9 @@ const PostShow: React.FC = () => {
       <Title mt="sm" order={5}>
         Category
       </Title>
-      <TextField value={categoryIsLoading ? "Loading..." : categoryData?.data?.title} />
+      <TextField
+        value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
+      />
     </Show>
   );
 };

@@ -11,18 +11,18 @@ import { Controller } from "react-hook-form";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
-    accessor,
-    printImports,
-    isIDKey,
-    dotAccessor,
-    noOp,
-    getVariableName,
-    translatePrettyString,
-    getMetaProps,
-    idQuoteWrapper,
-    deepHasKey,
+  jsx,
+  componentName,
+  accessor,
+  printImports,
+  isIDKey,
+  dotAccessor,
+  noOp,
+  getVariableName,
+  translatePrettyString,
+  getMetaProps,
+  idQuoteWrapper,
+  deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -30,10 +30,10 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
-    InferencerResultComponent,
-    InferField,
-    ImportElement,
-    RendererContext,
+  InferencerResultComponent,
+  InferField,
+  ImportElement,
+  RendererContext,
 } from "../../types";
 
 /**
@@ -41,132 +41,121 @@ import {
  * @internal used internally from inferencer components
  */
 export const renderer = ({
-    resource,
-    fields,
-    meta,
-    isCustomPage,
-    id,
-    i18n,
+  resource,
+  fields,
+  meta,
+  isCustomPage,
+  id,
+  i18n,
 }: RendererContext) => {
-    const COMPONENT_NAME = componentName(
-        resource.label ?? resource.name,
-        "edit",
-    );
-    const recordName = getVariableName(resource.label ?? resource.name, "Data");
-    const imports: Array<ImportElement> = [
-        ["Edit", "@refinedev/mui"],
-        ["Box", "@mui/material"],
-        ["useForm", "@refinedev/react-hook-form"],
-        ["IResourceComponentsProps", "@refinedev/core"],
-    ];
+  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "edit");
+  const recordName = getVariableName(resource.label ?? resource.name, "Data");
+  const imports: Array<ImportElement> = [
+    ["Edit", "@refinedev/mui"],
+    ["Box", "@mui/material"],
+    ["useForm", "@refinedev/react-hook-form"],
+    ["IResourceComponentsProps", "@refinedev/core"],
+  ];
 
-    if (i18n) {
-        imports.push(["useTranslate", "@refinedev/core"]);
-    }
+  if (i18n) {
+    imports.push(["useTranslate", "@refinedev/core"]);
+  }
 
-    // has gqlQuery or gqlMutation in "meta"
-    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
-    if (hasGql) {
-        imports.push(["gql", "graphql-tag", true]);
-    }
+  // has gqlQuery or gqlMutation in "meta"
+  const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+  if (hasGql) {
+    imports.push(["gql", "graphql-tag", true]);
+  }
 
-    const relationFields: (InferField | null)[] = fields.filter(
-        (field) => field?.relation && !field?.fieldable && field?.resource,
-    );
+  const relationFields: (InferField | null)[] = fields.filter(
+    (field) => field?.relation && !field?.fieldable && field?.resource,
+  );
 
-    const relationHooksCode = relationFields
-        .filter(Boolean)
-        .map((field) => {
-            if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["useAutocomplete", "@refinedev/mui"]);
-                let val = accessor(
-                    recordName,
-                    field.key,
-                    field.accessor,
-                    false,
-                );
+  const relationHooksCode = relationFields
+    .filter(Boolean)
+    .map((field) => {
+      if (field?.relation && !field.fieldable && field.resource) {
+        imports.push(["useAutocomplete", "@refinedev/mui"]);
+        let val = accessor(recordName, field.key, field.accessor, false);
 
-                if (field.multiple && field.accessor) {
-                    val = `${accessor(
-                        recordName,
-                        field.key,
-                    )}?.map((item: any) => ${accessor(
-                        "item",
-                        undefined,
-                        field.accessor,
-                    )})`;
-                }
+        if (field.multiple && field.accessor) {
+          val = `${accessor(
+            recordName,
+            field.key,
+          )}?.map((item: any) => ${accessor(
+            "item",
+            undefined,
+            field.accessor,
+          )})`;
+        }
 
-                return `
+        return `
                 const { autocompleteProps: ${getVariableName(
-                    field.key,
-                    "AutocompleteProps",
+                  field.key,
+                  "AutocompleteProps",
                 )} } =
                 useAutocomplete({
                     resource: "${field.resource.name}",
                     defaultValue: ${val},
                     ${getMetaProps(
-                        field?.resource?.identifier ?? field?.resource?.name,
-                        meta,
-                        ["getList"],
+                      field?.resource?.identifier ?? field?.resource?.name,
+                      meta,
+                      ["getList"],
                     )}
                 });
             `;
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const renderRelationFields = (field: InferField) => {
-        if (field.relation && field.resource) {
-            imports.push(
-                ["Autocomplete", "@mui/material"],
-                ["Controller", "react-hook-form"],
-            );
-            const variableName = getVariableName(
-                field.key,
-                "AutocompleteProps",
-            );
+  const renderRelationFields = (field: InferField) => {
+    if (field.relation && field.resource) {
+      imports.push(
+        ["Autocomplete", "@mui/material"],
+        ["Controller", "react-hook-form"],
+      );
+      const variableName = getVariableName(field.key, "AutocompleteProps");
 
-            const optionLabelProperty = field.relationInfer
-                ? field.relationInfer.accessor
-                    ? typeof field.relationInfer.accessor === "string"
-                        ? field.relationInfer.accessor
-                        : field.relationInfer.accessor[0]
-                    : "title"
-                : "title";
+      const optionLabelProperty = field.relationInfer
+        ? field.relationInfer.accessor
+          ? typeof field.relationInfer.accessor === "string"
+            ? field.relationInfer.accessor
+            : field.relationInfer.accessor[0]
+          : "title"
+        : "title";
 
-            // check optionLabelProperty can be accessed via dot notation
-            const isBracketNotation =
-                optionLabelProperty.includes(".") ||
-                optionLabelProperty.includes("[") ||
-                optionLabelProperty.includes("]") ||
-                optionLabelProperty.includes("-");
+      // check optionLabelProperty can be accessed via dot notation
+      const isBracketNotation =
+        optionLabelProperty.includes(".") ||
+        optionLabelProperty.includes("[") ||
+        optionLabelProperty.includes("]") ||
+        optionLabelProperty.includes("-");
 
-            const optionLabelItemValue = field.accessor
-                ? accessor("item", undefined, field.accessor, false)
-                : "(item?.id ?? item)";
+      const optionLabelItemValue = field.accessor
+        ? accessor("item", undefined, field.accessor, false)
+        : "(item?.id ?? item)";
 
-            const optionEqualValue = field.accessor
-                ? accessor("value", undefined, field.accessor, false)
-                : "(value?.id ?? value)";
+      const optionEqualValue = field.accessor
+        ? accessor("value", undefined, field.accessor, false)
+        : "(value?.id ?? value)";
 
-            const optionChangeValue = field.accessor
-                ? "value"
-                : field.multiple
-                ? "value?.map((item: any) => item?.id ?? item)"
-                : "value?.id ?? value";
+      const optionChangeValue = field.accessor
+        ? "value"
+        : field.multiple
+          ? "value?.map((item: any) => item?.id ?? item)"
+          : "value?.id ?? value";
 
-            return jsx`
+      return jsx`
                 <Controller
                     control={control}
                     name="${dotAccessor(field.key, undefined)}"
                     rules={{ required: "This field is required" }}
                     // eslint-disable-next-line
                     ${
-                        field.multiple
-                            ? "defaultValue={[] as any}"
-                            : "defaultValue={null as any}"
+                      field.multiple
+                        ? "defaultValue={[] as any}"
+                        : "defaultValue={null as any}"
                     }
                     render={({ field }) => (
                         <Autocomplete
@@ -183,9 +172,9 @@ export const renderer = ({
                                             p?.id?.toString() ===
                                             ${optionLabelItemValue}?.toString(),
                                     )?.${
-                                        isBracketNotation
-                                            ? `["${optionLabelProperty}"]`
-                                            : optionLabelProperty
+                                      isBracketNotation
+                                        ? `["${optionLabelProperty}"]`
+                                        : optionLabelProperty
                                     } ?? ""
                                 );
                             }}
@@ -197,23 +186,23 @@ export const renderer = ({
                                 <TextField
                                     {...params}
                                     label=${translatePrettyString({
-                                        resource,
-                                        field,
-                                        i18n,
+                                      resource,
+                                      field,
+                                      i18n,
                                     })}
                                     margin="normal"
                                     variant="outlined"
                                     error={!!${accessor(
-                                        "(errors as any)",
-                                        field.key,
-                                        field.accessor,
-                                        false,
+                                      "(errors as any)",
+                                      field.key,
+                                      field.accessor,
+                                      false,
                                     )}}
                                     helperText={${accessor(
-                                        "(errors as any)",
-                                        field.key,
-                                        field.accessor,
-                                        false,
+                                      "(errors as any)",
+                                      field.key,
+                                      field.accessor,
+                                      false,
                                     )}?.message}
                                     required
                                 />
@@ -222,44 +211,41 @@ export const renderer = ({
                     )}
                 />
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const basicInputFields = (field: InferField) => {
-        if (
-            field.type === "text" ||
-            field.type === "url" ||
-            field.type === "email" ||
-            field.type === "number" ||
-            field.type === "date" ||
-            field.type === "richtext"
-        ) {
-            imports.push(["TextField", "@mui/material"]);
+  const basicInputFields = (field: InferField) => {
+    if (
+      field.type === "text" ||
+      field.type === "url" ||
+      field.type === "email" ||
+      field.type === "number" ||
+      field.type === "date" ||
+      field.type === "richtext"
+    ) {
+      imports.push(["TextField", "@mui/material"]);
 
-            if (field.multiple) {
-                imports.push(["Box", "@mui/material"]);
+      if (field.multiple) {
+        imports.push(["Box", "@mui/material"]);
 
-                const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = dotAccessor(field.key, "${index}", field.accessor);
 
-                const errorVal =
-                    accessor("(errors as any)", field.key, undefined, false) +
-                    "?.[index]";
+        const errorVal =
+          accessor("(errors as any)", field.key, undefined, false) +
+          "?.[index]";
 
-                return `
+        return `
                     <Box sx={{display: "flex", gap: 1}}>
-                        {${accessor(
-                            recordName,
-                            field.key,
-                        )}?.map((item: any, index: number) => (
+                        {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                             <TextField
                                 key={index}
                                 {...register(\`${val}\`, {
                                     required: "This field is required",
                                     ${
-                                        field.type === "number"
-                                            ? "valueAsNumber: true,"
-                                            : ""
+                                      field.type === "number"
+                                        ? "valueAsNumber: true,"
+                                        : ""
                                     }
                                 })}
                                 error={!!${errorVal}}
@@ -268,90 +254,87 @@ export const renderer = ({
                                 fullWidth
                                 InputLabelProps={{ shrink: true }}
                                 ${
-                                    field.type !== "date" &&
-                                    field.type !== "richtext"
-                                        ? `type="${field.type}"`
-                                        : ""
+                                  field.type !== "date" &&
+                                  field.type !== "richtext"
+                                    ? `type="${field.type}"`
+                                    : ""
                                 }
                                 ${field.type === "richtext" ? "multiline" : ""}
                                 label=${translatePrettyString({
-                                    resource,
-                                    field,
-                                    i18n,
+                                  resource,
+                                  field,
+                                  i18n,
                                 })}
                                 name={\`${dotAccessor(
-                                    field.key,
-                                    undefined,
-                                    field.accessor,
+                                  field.key,
+                                  undefined,
+                                  field.accessor,
                                 )}.\${index}\`}
                             />
                         ))}
                     </Box>
                 `;
-            }
-            return jsx`
+      }
+      return jsx`
                 <TextField
                     {...register("${dotAccessor(
-                        field.key,
-                        undefined,
-                        field.accessor,
+                      field.key,
+                      undefined,
+                      field.accessor,
                     )}", {
                         required: "This field is required",
                         ${field.type === "number" ? "valueAsNumber: true," : ""}
                     })}
                     error={!!${accessor(
-                        "(errors as any)",
-                        field.key,
-                        field.accessor,
-                        false,
+                      "(errors as any)",
+                      field.key,
+                      field.accessor,
+                      false,
                     )}}
                     helperText={${accessor(
-                        "(errors as any)",
-                        field.key,
-                        field.accessor,
-                        false,
+                      "(errors as any)",
+                      field.key,
+                      field.accessor,
+                      false,
                     )}?.message}
                     margin="normal"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
                     ${
-                        field.type !== "date" && field.type !== "richtext"
-                            ? `type="${field.type}"`
-                            : ""
+                      field.type !== "date" && field.type !== "richtext"
+                        ? `type="${field.type}"`
+                        : ""
                     }
                     ${field.type === "richtext" ? "multiline" : ""}
                     label=${translatePrettyString({
-                        resource,
-                        field,
-                        i18n,
+                      resource,
+                      field,
+                      i18n,
                     })}
                     name="${dotAccessor(field.key, undefined, field.accessor)}"
                     ${isIDKey(field.key) ? "disabled" : ""}
                 />
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const booleanFields = (field: InferField) => {
-        if (field.type === "boolean") {
-            imports.push(
-                ["Checkbox", "@mui/material"],
-                ["FormControlLabel", "@mui/material"],
-                ["Controller", "react-hook-form"],
-            );
+  const booleanFields = (field: InferField) => {
+    if (field.type === "boolean") {
+      imports.push(
+        ["Checkbox", "@mui/material"],
+        ["FormControlLabel", "@mui/material"],
+        ["Controller", "react-hook-form"],
+      );
 
-            if (field.multiple) {
-                imports.push(["Box", "@mui/material"]);
+      if (field.multiple) {
+        imports.push(["Box", "@mui/material"]);
 
-                const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = dotAccessor(field.key, "${index}", field.accessor);
 
-                return `
+        return `
                     <Box sx={{display: "flex", gap: 1}}>
-                        {${accessor(
-                            recordName,
-                            field.key,
-                        )}?.map((item: any, index: number) => (
+                        {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                             <Controller
                                 key={index}
                                 control={control}
@@ -360,11 +343,11 @@ export const renderer = ({
                                 defaultValue={null as any}
                                 render={({ field }) => (
                                     <FormControlLabel label=${translatePrettyString(
-                                        {
-                                            resource,
-                                            field,
-                                            i18n,
-                                        },
+                                      {
+                                        resource,
+                                        field,
+                                        i18n,
+                                      },
                                     )} control={
                                         <Checkbox
                                             {...field}
@@ -379,9 +362,9 @@ export const renderer = ({
                         ))}
                     </Box>
                 `;
-            }
+      }
 
-            return jsx`
+      return jsx`
                 <Controller
                     control={control}
                     name="${dotAccessor(field.key, undefined, field.accessor)}"
@@ -389,9 +372,9 @@ export const renderer = ({
                     defaultValue={null as any}
                     render={({ field }) => (
                         <FormControlLabel label=${translatePrettyString({
-                            resource,
-                            field,
-                            i18n,
+                          resource,
+                          field,
+                          i18n,
                         })} control={
                             <Checkbox
                                 {...field}
@@ -404,15 +387,15 @@ export const renderer = ({
                     )}
                 />
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const dateFields = (field: InferField) => {
-        if (field.type === "date") {
-            const basicRender = basicInputFields(field);
+  const dateFields = (field: InferField) => {
+    if (field.type === "date") {
+      const basicRender = basicInputFields(field);
 
-            return `
+      return `
                 {/*
                     DatePicker component is not included in "@refinedev/mui" package.
                     To use a <DatePicker> component, you can follow the official documentation for Material UI.
@@ -421,33 +404,33 @@ export const renderer = ({
                 */}
                 ${basicRender}
                 `;
-        }
+    }
+    return undefined;
+  };
+
+  const renderedFields: Array<string | undefined> = fields.map((field) => {
+    switch (field?.type) {
+      case "text":
+      case "number":
+      case "email":
+      case "url":
+      case "richtext":
+        return basicInputFields(field);
+      case "date":
+        return dateFields(field);
+      case "boolean":
+        return booleanFields(field);
+      case "relation":
+        return renderRelationFields(field);
+      default:
         return undefined;
-    };
+    }
+  });
 
-    const renderedFields: Array<string | undefined> = fields.map((field) => {
-        switch (field?.type) {
-            case "text":
-            case "number":
-            case "email":
-            case "url":
-            case "richtext":
-                return basicInputFields(field);
-            case "date":
-                return dateFields(field);
-            case "boolean":
-                return booleanFields(field);
-            case "relation":
-                return renderRelationFields(field);
-            default:
-                return undefined;
-        }
-    });
+  noOp(imports);
+  const useTranslateHook = i18n && `const translate = useTranslate();`;
 
-    noOp(imports);
-    const useTranslateHook = i18n && `const translate = useTranslate();`;
-
-    return jsx`
+  return jsx`
     ${printImports(imports)}
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
@@ -460,31 +443,30 @@ export const renderer = ({
             formState: { errors },
         } = useForm(
             ${
-                isCustomPage
-                    ? `{
+              isCustomPage
+                ? `{
                 refineCoreProps: {
                     resource: "${resource.name}",
                     id: ${idQuoteWrapper(id)},
                     action: "edit",
                     ${getMetaProps(
-                        resource?.identifier ?? resource?.name,
-                        meta,
-                        ["update", "getOne"],
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      ["update", "getOne"],
                     )}
                 }
             }`
-                    : getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["update", "getOne"],
-                      )
-                    ? `{ refineCoreProps: { ${getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["update", "getOne"],
-                      )} }
+                : getMetaProps(resource?.identifier ?? resource?.name, meta, [
+                      "update",
+                      "getOne",
+                    ])
+                  ? `{ refineCoreProps: { ${getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      ["update", "getOne"],
+                    )} }
               }`
-                    : ""
+                  : ""
             }
         );
 
@@ -511,19 +493,19 @@ export const renderer = ({
  * @experimental This is an experimental component
  */
 export const EditInferencer: InferencerResultComponent = createInferencer({
-    type: "edit",
-    additionalScope: [
-        ["@refinedev/mui", "RefineMui", { Edit, useAutocomplete }],
-        ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
-        [
-            "@mui/material",
-            "MuiMaterial",
-            { Box, Autocomplete, TextField, Checkbox, FormControlLabel },
-        ],
-        ["react-hook-form", "ReactHookForm", { Controller }],
+  type: "edit",
+  additionalScope: [
+    ["@refinedev/mui", "RefineMui", { Edit, useAutocomplete }],
+    ["@refinedev/react-hook-form", "RefineReactHookForm", { useForm }],
+    [
+      "@mui/material",
+      "MuiMaterial",
+      { Box, Autocomplete, TextField, Checkbox, FormControlLabel },
     ],
-    codeViewerComponent: SharedCodeViewer,
-    loadingComponent: LoadingComponent,
-    errorComponent: ErrorComponent,
-    renderer,
+    ["react-hook-form", "ReactHookForm", { Controller }],
+  ],
+  codeViewerComponent: SharedCodeViewer,
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+  renderer,
 });

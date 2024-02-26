@@ -215,7 +215,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="mb-2 md:border-b py-2">
         <div className="container mx-auto">
           <div className="flex justify-between gap-2">
-            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <img
+              className="w-32 ml-2"
+              src="https://refine.dev/img/refine_logo.png"
+              alt="Logo"
+            />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
                 <li key={name} className="float-left">
@@ -295,7 +299,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="mb-2 md:border-b py-2">
         <div className="container mx-auto">
           <div className="flex justify-between gap-2">
-            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <img
+              className="w-32 ml-2"
+              src="https://refine.dev/img/refine_logo.png"
+              alt="Logo"
+            />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
                 <li key={name} className="float-left">

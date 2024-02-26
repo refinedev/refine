@@ -1,7 +1,7 @@
 import * as RefineMantineInferencer from "@refinedev/inferencer/mantine";
 
 const MantineInferencerScope = {
-    RefineMantineInferencer,
+  RefineMantineInferencer,
 };
 
 export default MantineInferencerScope;

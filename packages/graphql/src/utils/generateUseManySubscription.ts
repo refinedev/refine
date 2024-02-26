@@ -3,42 +3,42 @@ import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 
 type GenerateUseManySubscriptionParams = {
-    resource: string;
-    meta: MetaQuery;
-    ids?: BaseKey[];
+  resource: string;
+  meta: MetaQuery;
+  ids?: BaseKey[];
 };
 
 type GenerateUseManySubscriptionReturnValues = {
-    variables: any;
-    query: string;
-    operation: string;
+  variables: any;
+  query: string;
+  operation: string;
 };
 
 export const generateUseManySubscription = ({
-    resource,
-    meta,
-    ids,
+  resource,
+  meta,
+  ids,
 }: GenerateUseManySubscriptionParams): GenerateUseManySubscriptionReturnValues => {
-    if (!ids) {
-        console.error(
-            "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
-        );
-    }
+  if (!ids) {
+    console.error(
+      "[useSubscription]: `ids` is required in `params` for graphql subscriptions",
+    );
+  }
 
-    const camelResource = camelCase(resource);
+  const camelResource = camelCase(resource);
 
-    const operation = meta.operation ?? camelResource;
+  const operation = meta.operation ?? camelResource;
 
-    const { query, variables } = gql.subscription({
-        operation,
-        variables: {
-            where: {
-                value: { id_in: ids },
-                type: "JSON",
-            },
-        },
-        fields: meta.fields,
-    });
+  const { query, variables } = gql.subscription({
+    operation,
+    variables: {
+      where: {
+        value: { id_in: ids },
+        type: "JSON",
+      },
+    },
+    fields: meta.fields,
+  });
 
-    return { query, variables, operation };
+  return { query, variables, operation };
 };

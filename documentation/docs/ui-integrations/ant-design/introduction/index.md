@@ -143,7 +143,9 @@ const App = () => {
   return (
     <ConfigProvider theme={RefineThemes.Green}>
       <AntdApp>
-        <Refine notificationProvider={useNotificationProvider}>{/* ... */}</Refine>
+        <Refine notificationProvider={useNotificationProvider}>
+          {/* ... */}
+        </Refine>
       </AntdApp>
     </ConfigProvider>
   );
@@ -307,7 +309,10 @@ export const ProductShow = () => {
 
       <Typography.Title level={5}>Price</Typography.Title>
       {/* highlight-next-line */}
-      <NumberField value={record?.price} options={{ style: "currency", currency: "USD" }} />
+      <NumberField
+        value={record?.price}
+        options={{ style: "currency", currency: "USD" }}
+      />
     </Show>
   );
 };

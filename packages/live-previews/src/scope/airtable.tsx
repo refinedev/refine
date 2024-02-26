@@ -1,7 +1,7 @@
 import * as RefineAirtable from "@refinedev/airtable";
 
 const AirtableScope = {
-    RefineAirtable,
+  RefineAirtable,
 };
 
 export default AirtableScope;

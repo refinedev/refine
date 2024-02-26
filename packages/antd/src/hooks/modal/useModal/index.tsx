@@ -1,18 +1,18 @@
 import { ModalProps } from "antd";
 import {
-    useModal as useCoreModal,
-    useModalReturnType as useCoreModelReturnType,
+  useModal as useCoreModal,
+  useModalReturnType as useCoreModelReturnType,
 } from "@refinedev/core";
 
 export type useModalReturnType = {
-    modalProps: ModalProps;
+  modalProps: ModalProps;
 } & Omit<useCoreModelReturnType, "visible">;
 
 export type useModalProps = {
-    /**
-     * Default props for Ant Design {@link https://ant.design/components/modal/ `<Modal>`} component.
-     */
-    modalProps?: ModalProps;
+  /**
+   * Default props for Ant Design {@link https://ant.design/components/modal/ `<Modal>`} component.
+   */
+  modalProps?: ModalProps;
 };
 
 /**
@@ -21,23 +21,23 @@ export type useModalProps = {
  * @see {@link https://refine.dev/docs/api-reference/antd/hooks/ui/useModal} for more details.
  */
 export const useModal = ({
-    modalProps = {},
+  modalProps = {},
 }: useModalProps = {}): useModalReturnType => {
-    const { show, close, visible } = useCoreModal({
-        defaultVisible: modalProps.open,
-    });
+  const { show, close, visible } = useCoreModal({
+    defaultVisible: modalProps.open,
+  });
 
-    return {
-        modalProps: {
-            ...modalProps,
-            onCancel: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-                modalProps.onCancel?.(e);
-                close();
-            },
-            open: visible,
-            visible,
-        },
-        show,
-        close,
-    };
+  return {
+    modalProps: {
+      ...modalProps,
+      onCancel: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        modalProps.onCancel?.(e);
+        close();
+      },
+      open: visible,
+      visible,
+    },
+    show,
+    close,
+  };
 };

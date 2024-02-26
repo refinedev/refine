@@ -57,7 +57,14 @@ const PostList: React.FC = () => {
         {getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
-              return <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>;
+              return (
+                <th key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              );
             })}
           </tr>
         ))}
@@ -67,7 +74,11 @@ const PostList: React.FC = () => {
           return (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                return (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                );
               })}
             </tr>
           );

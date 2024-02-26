@@ -179,7 +179,9 @@ const MyDeleteComponent = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
 
   const customDataProvider = {
     ...simpleRestDataProvider,
@@ -287,7 +289,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
-  return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

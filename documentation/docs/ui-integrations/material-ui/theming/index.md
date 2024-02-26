@@ -15,7 +15,8 @@ If you don't want to use the default Mantine theme, [`RefineThemes`](https://git
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 // dark themes
-const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } = RefineThemes;
+const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } =
+  RefineThemes;
 ```
 
 ```tsx
@@ -494,7 +495,9 @@ export interface CustomTheme {
 
 declare module "@mui/material/styles" {
   interface Theme extends import("@mui/material/styles").Theme, CustomTheme {}
-  interface ThemeOptions extends import("@mui/material/styles").ThemeOptions, CustomTheme {}
+  interface ThemeOptions
+    extends import("@mui/material/styles").ThemeOptions,
+      CustomTheme {}
 }
 ```
 
@@ -520,7 +523,12 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+  SampleList,
+  SampleCreate,
+  SampleEdit,
+  SampleShow,
+} from "pages/samples";
 
 const App: React.FC = () => {
   // highlight-next-line
@@ -528,7 +536,9 @@ const App: React.FC = () => {
 
   return (
     // highlight-next-line
-    <ThemeProvider theme={prefersDarkMode ? RefineThemes.BlueDark : RefineThemes.Blue}>
+    <ThemeProvider
+      theme={prefersDarkMode ? RefineThemes.BlueDark : RefineThemes.Blue}
+    >
       <CssBaseline />
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
@@ -584,7 +594,12 @@ Control the Dark Mode with just one click! We prepared an example that shows how
            <p>
 
 ```tsx title="src/contexts/index.tsx"
-import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
+import React, {
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { ThemeProvider } from "@mui/material";
 import { RefineThemes } from "@refinedev/mui";
 
@@ -593,14 +608,22 @@ type ColorModeContextType = {
   setMode: () => void;
 };
 
-export const ColorModeContext = createContext<ColorModeContextType>({} as ColorModeContextType);
+export const ColorModeContext = createContext<ColorModeContextType>(
+  {} as ColorModeContextType,
+);
 
-export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const colorModeFromLocalStorage = localStorage.getItem("colorMode");
-  const isSystemPreferenceDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isSystemPreferenceDark = window?.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
 
   const systemPreference = isSystemPreferenceDark ? "dark" : "light";
-  const [mode, setMode] = useState(colorModeFromLocalStorage || systemPreference);
+  const [mode, setMode] = useState(
+    colorModeFromLocalStorage || systemPreference,
+  );
 
   useEffect(() => {
     window.localStorage.setItem("colorMode", mode);
@@ -621,7 +644,11 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children
         mode,
       }}
     >
-      <ThemeProvider theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}>{children}</ThemeProvider>
+      <ThemeProvider
+        theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}
+      >
+        {children}
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 };
@@ -637,7 +664,12 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, useNotificationProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineSnackbarProvider,
+  useNotificationProvider,
+} from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -646,7 +678,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+  SampleList,
+  SampleCreate,
+  SampleEdit,
+  SampleShow,
+} from "pages/samples";
 
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
@@ -727,7 +764,12 @@ export default App;
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineSnackbarProvider, useNotificationProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  ErrorComponent,
+  RefineSnackbarProvider,
+  useNotificationProvider,
+} from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
@@ -736,7 +778,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+  SampleList,
+  SampleCreate,
+  SampleEdit,
+  SampleShow,
+} from "pages/samples";
 
 import { ColorModeContextProvider, ColorModeContext } from "./contexts";
 
@@ -832,7 +879,12 @@ import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { SampleList, SampleCreate, SampleEdit, SampleShow } from "pages/samples";
+import {
+  SampleList,
+  SampleCreate,
+  SampleEdit,
+  SampleShow,
+} from "pages/samples";
 
 const App: React.FC = () => {
   return (
@@ -890,7 +942,12 @@ If you want to customize the default layout elements provided with `@refinedev/m
 [create-refine-app]: /docs/getting-started/quickstart.md
 
 ```tsx live shared
-import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
+import React, {
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   Create,
   useDataGrid,
@@ -918,14 +975,22 @@ type ColorModeContextType = {
   setMode: () => void;
 };
 
-const ColorModeContext = createContext<ColorModeContextType>({} as ColorModeContextType);
+const ColorModeContext = createContext<ColorModeContextType>(
+  {} as ColorModeContextType,
+);
 
-const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
+const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const colorModeFromLocalStorage = localStorage.getItem("colorMode");
-  const isSystemPreferenceDark = window?.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isSystemPreferenceDark = window?.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
 
   const systemPreference = isSystemPreferenceDark ? "dark" : "light";
-  const [mode, setMode] = useState(colorModeFromLocalStorage || systemPreference);
+  const [mode, setMode] = useState(
+    colorModeFromLocalStorage || systemPreference,
+  );
 
   useEffect(() => {
     window.localStorage.setItem("colorMode", mode);
@@ -947,7 +1012,11 @@ const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => 
       }}
     >
       <MuiMaterial.ThemeProvider
-        theme={mode === "light" ? RefineMui.RefineThemes.Blue : RefineMui.RefineThemes.BlueDark}
+        theme={
+          mode === "light"
+            ? RefineMui.RefineThemes.Blue
+            : RefineMui.RefineThemes.BlueDark
+        }
       >
         {children}
       </MuiMaterial.ThemeProvider>
@@ -989,7 +1058,11 @@ const SampleList = () => {
         },
         minWidth: 300,
         renderCell: function render({ value }) {
-          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+          return categoryIsLoading ? (
+            <>Loading...</>
+          ) : (
+            categoryData?.data?.find((item) => item.id === value)?.title
+          );
         },
       },
       {
@@ -1086,7 +1159,11 @@ const SampleEdit = () => {
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
-      <MuiMaterial.Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <MuiMaterial.Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("id", {
             required: "This field is required",
@@ -1142,12 +1219,14 @@ const SampleEdit = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField
@@ -1183,7 +1262,11 @@ const SampleCreate = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <MuiMaterial.Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <MuiMaterial.Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("title", {
             required: "This field is required",
@@ -1225,12 +1308,14 @@ const SampleCreate = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField

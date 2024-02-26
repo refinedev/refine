@@ -4,7 +4,7 @@
  * This function will use the component name and the code and append the `render` method to the code.
  */
 export const prepareLiveCode = (code?: string, componentName?: string) => {
-    return `
+  return `
     ${code ?? ""}
     
     render(typeof ${componentName} !== "undefined" ? <${componentName} /> : <></>);

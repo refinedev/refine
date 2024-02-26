@@ -40,7 +40,11 @@ import routerProvider from "@refinedev/nextjs-router";
 
 import { Layout } from "components/Layout";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
@@ -182,7 +186,9 @@ export default function CategoryList() {
         <ul>
           {tableData?.map((category) => (
             <li key={category.id}>
-              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
+              <Link href={`/categories/show/${category.id}`}>
+                {category.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -389,7 +395,9 @@ export default function CategoryList() {
         <ul>
           {tableData?.map((category) => (
             <li key={category.id}>
-              <Link href={`/categories/show/${category.id}`}>{category.label}</Link>
+              <Link href={`/categories/show/${category.id}`}>
+                {category.label}
+              </Link>
             </li>
           ))}
         </ul>
