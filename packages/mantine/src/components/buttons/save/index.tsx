@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons";
@@ -17,34 +17,34 @@ import { SaveButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
-    hideText = false,
-    svgIconProps,
-    children,
-    ...rest
+  hideText = false,
+  svgIconProps,
+  children,
+  ...rest
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
-    return hideText ? (
-        <ActionIcon
-            variant={mapButtonVariantToActionIconVariant(variant, "filled")}
-            data-testid={RefineButtonTestIds.SaveButton}
-            className={RefineButtonClassNames.SaveButton}
-            {...commonProps}
-        >
-            <IconDeviceFloppy size={18} {...svgIconProps} />
-        </ActionIcon>
-    ) : (
-        <Button
-            variant="filled"
-            leftSection={<IconDeviceFloppy size={18} {...svgIconProps} />}
-            data-testid={RefineButtonTestIds.SaveButton}
-            className={RefineButtonClassNames.SaveButton}
-            vars={vars}
-            {...rest}
-        >
-            {children ?? translate("buttons.save", "Save")}
-        </Button>
-    );
+  return hideText ? (
+    <ActionIcon
+      variant={mapButtonVariantToActionIconVariant(variant, "filled")}
+      data-testid={RefineButtonTestIds.SaveButton}
+      className={RefineButtonClassNames.SaveButton}
+      {...commonProps}
+    >
+      <IconDeviceFloppy size={18} {...svgIconProps} />
+    </ActionIcon>
+  ) : (
+    <Button
+      variant="filled"
+      leftSection={<IconDeviceFloppy size={18} {...svgIconProps} />}
+      data-testid={RefineButtonTestIds.SaveButton}
+      className={RefineButtonClassNames.SaveButton}
+      vars={vars}
+      {...rest}
+    >
+      {children ?? translate("buttons.save", "Save")}
+    </Button>
+  );
 };

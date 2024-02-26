@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
 import {
-    RefineButtonClassNames,
-    RefineButtonTestIds,
+  RefineButtonClassNames,
+  RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons";
@@ -17,45 +17,45 @@ import { ImportButtonProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
-    inputProps,
-    hideText = false,
-    loading = false,
-    svgIconProps,
-    children,
-    ...rest
+  inputProps,
+  hideText = false,
+  loading = false,
+  svgIconProps,
+  children,
+  ...rest
 }) => {
-    const translate = useTranslate();
+  const translate = useTranslate();
 
-    const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
-    return (
-        <label style={{display: "flex"}}>
-            <input {...inputProps} multiple hidden />
-            {hideText ? (
-                <ActionIcon
-                    variant={mapButtonVariantToActionIconVariant(variant, "default")}
-                    component="span"
-                    loading={loading}
-                    data-testid={RefineButtonTestIds.ImportButton}
-                    className={RefineButtonClassNames.ImportButton}
-                    {...commonProps}
-                >
-                    <IconFileImport size={18} {...svgIconProps} />
-                </ActionIcon>
-            ) : (
-                <Button
-                    variant="default"
-                    component="div"
-                    leftSection={<IconFileImport size={18} {...svgIconProps} />}
-                    loading={loading}
-                    data-testid={RefineButtonTestIds.ImportButton}
-                    className={RefineButtonClassNames.ImportButton}
-                    vars={vars}
-                    {...rest}
-                >
-                    {children ?? translate("buttons.import", "Import")}
-                </Button>
-            )}
-        </label>
-    );
+  return (
+    <label style={{ display: "flex" }}>
+      <input {...inputProps} multiple hidden />
+      {hideText ? (
+        <ActionIcon
+          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          component="span"
+          loading={loading}
+          data-testid={RefineButtonTestIds.ImportButton}
+          className={RefineButtonClassNames.ImportButton}
+          {...commonProps}
+        >
+          <IconFileImport size={18} {...svgIconProps} />
+        </ActionIcon>
+      ) : (
+        <Button
+          variant="default"
+          component="div"
+          leftSection={<IconFileImport size={18} {...svgIconProps} />}
+          loading={loading}
+          data-testid={RefineButtonTestIds.ImportButton}
+          className={RefineButtonClassNames.ImportButton}
+          vars={vars}
+          {...rest}
+        >
+          {children ?? translate("buttons.import", "Import")}
+        </Button>
+      )}
+    </label>
+  );
 };

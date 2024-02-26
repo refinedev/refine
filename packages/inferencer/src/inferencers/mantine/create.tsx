@@ -1,31 +1,26 @@
 import {
-    Create,
-    useForm,
-    useSelect,
-    useMultiSelect,
-    MultiSelect,
-    Select,
+  Create,
+  useForm,
+  useSelect,
+  useMultiSelect,
+  MultiSelect,
+  Select,
 } from "@refinedev/mantine";
-import {
-    TextInput,
-    Checkbox,
-    Textarea,
-    NumberInput,
-} from "@mantine/core";
+import { TextInput, Checkbox, Textarea, NumberInput } from "@mantine/core";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
-    printImports,
-    isIDKey,
-    getOptionLabel,
-    dotAccessor,
-    noOp,
-    getVariableName,
-    translatePrettyString,
-    getMetaProps,
-    deepHasKey,
+  jsx,
+  componentName,
+  printImports,
+  isIDKey,
+  getOptionLabel,
+  dotAccessor,
+  noOp,
+  getVariableName,
+  translatePrettyString,
+  getMetaProps,
+  deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -33,9 +28,9 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
-    InferencerResultComponent,
-    InferField,
-    RendererContext,
+  InferencerResultComponent,
+  InferField,
+  RendererContext,
 } from "../../types";
 
 /**
@@ -43,158 +38,158 @@ import {
  * @internal used internally from inferencer components
  */
 export const renderer = ({
-    resource,
-    fields,
-    meta,
-    isCustomPage,
-    i18n,
+  resource,
+  fields,
+  meta,
+  isCustomPage,
+  i18n,
 }: RendererContext) => {
-    const COMPONENT_NAME = componentName(
-        resource.label ?? resource.name,
-        "create",
-    );
-    const imports: Array<
-        [element: string, module: string, isDefaultImport?: boolean]
-    > = [
-        ["IResourceComponentsProps", "@refinedev/core"],
-        ["Create", "@refinedev/mantine"],
-        ["useForm", "@refinedev/mantine"],
-    ];
-    let initialValues: Record<string, any> = {};
+  const COMPONENT_NAME = componentName(
+    resource.label ?? resource.name,
+    "create",
+  );
+  const imports: Array<
+    [element: string, module: string, isDefaultImport?: boolean]
+  > = [
+    ["IResourceComponentsProps", "@refinedev/core"],
+    ["Create", "@refinedev/mantine"],
+    ["useForm", "@refinedev/mantine"],
+  ];
+  let initialValues: Record<string, any> = {};
 
-    if (i18n) {
-        imports.push(["useTranslate", "@refinedev/core"]);
-    }
+  if (i18n) {
+    imports.push(["useTranslate", "@refinedev/core"]);
+  }
 
-    // has gqlQuery or gqlMutation in "meta"
-    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
-    if (hasGql) {
-        imports.push(["gql", "graphql-tag", true]);
-    }
+  // has gqlQuery or gqlMutation in "meta"
+  const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+  if (hasGql) {
+    imports.push(["gql", "graphql-tag", true]);
+  }
 
-    const relationFields: (InferField | null)[] = fields.filter(
-        (field) => field?.relation && !field?.fieldable && field?.resource,
-    );
+  const relationFields: (InferField | null)[] = fields.filter(
+    (field) => field?.relation && !field?.fieldable && field?.resource,
+  );
 
-    const relationHooksCode = relationFields
-        .filter(Boolean)
-        .map((field) => {
-            if (field?.relation && !field.fieldable && field.resource) {
-                if (field.multiple) {
-                    imports.push(["useMultiSelect", "@refinedev/mantine"]);
-                } else {
-                    imports.push(["useSelect", "@refinedev/mantine"]);
-                }
+  const relationHooksCode = relationFields
+    .filter(Boolean)
+    .map((field) => {
+      if (field?.relation && !field.fieldable && field.resource) {
+        if (field.multiple) {
+          imports.push(["useMultiSelect", "@refinedev/mantine"]);
+        } else {
+          imports.push(["useSelect", "@refinedev/mantine"]);
+        }
 
-                return `
+        return `
                 const { selectProps: ${getVariableName(
-                    field.key,
-                    "SelectProps",
+                  field.key,
+                  "SelectProps",
                 )} } =
                 ${field.multiple ? "useMultiSelect" : "useSelect"}({
                     resource: "${field.resource.name}",
                     ${getOptionLabel(field)}
                     ${getMetaProps(
-                        field?.resource?.identifier ?? field?.resource?.name,
-                        meta,
-                        ["getList"],
+                      field?.resource?.identifier ?? field?.resource?.name,
+                      meta,
+                      ["getList"],
                     )}
                 });
             `;
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const renderRelationFields = (field: InferField) => {
-        if (field.relation && field.resource) {
-            initialValues = {
-                ...initialValues,
-                [field.key]: field.multiple
-                    ? []
-                    : field.accessor
-                    ? {
-                          [typeof field.accessor === "string"
-                              ? field.accessor
-                              : field.accessor[0]]: "",
-                      }
-                    : "",
-            };
+  const renderRelationFields = (field: InferField) => {
+    if (field.relation && field.resource) {
+      initialValues = {
+        ...initialValues,
+        [field.key]: field.multiple
+          ? []
+          : field.accessor
+            ? {
+                [typeof field.accessor === "string"
+                  ? field.accessor
+                  : field.accessor[0]]: "",
+              }
+            : "",
+      };
 
-            const variableName = getVariableName(field.key, "SelectProps");
+      const variableName = getVariableName(field.key, "SelectProps");
 
-            if (field.multiple) {
-                imports.push(["MultiSelect", "@refinedev/mantine"]);
+      if (field.multiple) {
+        imports.push(["MultiSelect", "@refinedev/mantine"]);
 
-                return jsx`
+        return jsx`
                     <MultiSelect mt="sm" label=${translatePrettyString({
-                        resource,
-                        field,
-                        i18n,
+                      resource,
+                      field,
+                      i18n,
                     })} {...getInputProps("${dotAccessor(
-                    field.key,
-                    undefined,
-                )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                      field.key,
+                      undefined,
+                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
                 `;
-            }
+      }
 
-            imports.push(["Select", "@refinedev/mantine"]);
+      imports.push(["Select", "@refinedev/mantine"]);
 
-            return jsx`
+      return jsx`
                 <Select mt="sm" label=${translatePrettyString({
-                    resource,
-                    field,
-                    i18n,
+                  resource,
+                  field,
+                  i18n,
                 })} {...getInputProps("${dotAccessor(
-                field.key,
-                undefined,
-                field.accessor,
-            )}")} {...${variableName}} />
+                  field.key,
+                  undefined,
+                  field.accessor,
+                )}")} {...${variableName}} />
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const textFields = (field: InferField) => {
+    if (
+      field.type === "text" ||
+      field.type === "email" ||
+      field.type === "date" ||
+      field.type === "url"
+    ) {
+      if (isIDKey(field.key)) {
         return undefined;
-    };
+      }
 
-    const textFields = (field: InferField) => {
-        if (
-            field.type === "text" ||
-            field.type === "email" ||
-            field.type === "date" ||
-            field.type === "url"
-        ) {
-            if (isIDKey(field.key)) {
-                return undefined;
-            }
+      imports.push(["TextInput", "@mantine/core"]);
 
-            imports.push(["TextInput", "@mantine/core"]);
+      initialValues = {
+        ...initialValues,
+        [field.key]: field.multiple ? [] : "",
+      };
 
-            initialValues = {
-                ...initialValues,
-                [field.key]: field.multiple ? [] : "",
-            };
+      if (field.multiple) {
+        return undefined;
+      }
 
-            if (field.multiple) {
-                return undefined;
-            }
-
-            return jsx`
+      return jsx`
                 <TextInput mt="sm" label=${translatePrettyString({
-                    resource,
-                    field,
-                    i18n,
+                  resource,
+                  field,
+                  i18n,
                 })} {...getInputProps("${dotAccessor(
-                field.key,
-                undefined,
-                field.accessor,
-            )}")} />
+                  field.key,
+                  undefined,
+                  field.accessor,
+                )}")} />
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const imageFields = (field: InferField) => {
-        if (field.type === "image") {
-            return jsx`
+  const imageFields = (field: InferField) => {
+    if (field.type === "image") {
+      return jsx`
             {/*
                 Dropzone component is not included in "@refinedev/mantine" package.
                 To use a <Dropzone> component, you can follow the official documentation for Mantine.
@@ -202,43 +197,43 @@ export const renderer = ({
                 Docs: https://mantine.dev/others/dropzone/
             */}
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const booleanFields = (field: InferField) => {
+    if (field.type === "boolean") {
+      imports.push(["Checkbox", "@mantine/core"]);
+
+      initialValues = {
+        ...initialValues,
+        [field.key]: field.multiple ? [] : "",
+      };
+
+      if (field.multiple) {
         return undefined;
-    };
+      }
 
-    const booleanFields = (field: InferField) => {
-        if (field.type === "boolean") {
-            imports.push(["Checkbox", "@mantine/core"]);
-
-            initialValues = {
-                ...initialValues,
-                [field.key]: field.multiple ? [] : "",
-            };
-
-            if (field.multiple) {
-                return undefined;
-            }
-
-            return jsx`
+      return jsx`
                 <Checkbox mt="sm" label=${translatePrettyString({
-                    resource,
-                    field,
-                    i18n,
+                  resource,
+                  field,
+                  i18n,
                 })} {...getInputProps("${dotAccessor(
-                field.key,
-                undefined,
-                field.accessor,
-            )}", { type: 'checkbox' })} />
+                  field.key,
+                  undefined,
+                  field.accessor,
+                )}", { type: 'checkbox' })} />
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const dateFields = (field: InferField) => {
-        if (field.type === "date") {
-            const textInputRender = textFields(field);
+  const dateFields = (field: InferField) => {
+    if (field.type === "date") {
+      const textInputRender = textFields(field);
 
-            return `
+      return `
                 {/*
                     DatePicker component is not included in "@refinedev/mantine" package.
                     To use a <DatePicker> component, you can follow the official documentation for Mantine.
@@ -247,108 +242,108 @@ export const renderer = ({
                 */}
                 ${textInputRender ?? ""}
             `;
-        }
+    }
+    return undefined;
+  };
+
+  const richtextFields = (field: InferField) => {
+    if (field.type === "richtext") {
+      imports.push(["Textarea", "@mantine/core"]);
+
+      initialValues = {
+        ...initialValues,
+        [field.key]: field.multiple ? [] : "",
+      };
+
+      if (field.multiple) {
         return undefined;
-    };
+      }
 
-    const richtextFields = (field: InferField) => {
-        if (field.type === "richtext") {
-            imports.push(["Textarea", "@mantine/core"]);
-
-            initialValues = {
-                ...initialValues,
-                [field.key]: field.multiple ? [] : "",
-            };
-
-            if (field.multiple) {
-                return undefined;
-            }
-
-            return jsx`
+      return jsx`
                 <Textarea mt="sm" label=${translatePrettyString({
-                    resource,
-                    field,
-                    i18n,
+                  resource,
+                  field,
+                  i18n,
                 })} autosize {...getInputProps("${dotAccessor(
-                field.key,
-                undefined,
-                field.accessor,
-            )}")} />
+                  field.key,
+                  undefined,
+                  field.accessor,
+                )}")} />
             `;
-        }
+    }
 
+    return undefined;
+  };
+
+  const numberFields = (field: InferField) => {
+    if (field.type === "number") {
+      if (isIDKey(field.key)) {
         return undefined;
-    };
+      }
 
-    const numberFields = (field: InferField) => {
-        if (field.type === "number") {
-            if (isIDKey(field.key)) {
-                return undefined;
-            }
+      imports.push(["NumberInput", "@mantine/core"]);
 
-            imports.push(["NumberInput", "@mantine/core"]);
+      initialValues = {
+        ...initialValues,
+        [field.key]: field.multiple ? [] : "",
+      };
 
-            initialValues = {
-                ...initialValues,
-                [field.key]: field.multiple ? [] : "",
-            };
+      if (field.multiple) {
+        return undefined;
+      }
 
-            if (field.multiple) {
-                return undefined;
-            }
-
-            return jsx`
+      return jsx`
                 <NumberInput mt="sm" label=${translatePrettyString({
-                    resource,
-                    field,
-                    i18n,
+                  resource,
+                  field,
+                  i18n,
                 })} {...getInputProps("${dotAccessor(
-                field.key,
-                undefined,
-                field.accessor,
-            )}")}/>
+                  field.key,
+                  undefined,
+                  field.accessor,
+                )}")}/>
             `;
-        }
+    }
 
-        return undefined;
-    };
+    return undefined;
+  };
 
-    const wrapper = (code?: string) => {
-        if (code) {
-            return jsx`
+  const wrapper = (code?: string) => {
+    if (code) {
+      return jsx`
                 ${code}
         `;
-        }
+    }
+    return undefined;
+  };
+
+  const renderedFields: Array<string | undefined> = fields.map((field) => {
+    switch (field?.type) {
+      case "url":
+      case "text":
+      case "email":
+        return wrapper(textFields(field));
+      case "number":
+        return wrapper(numberFields(field));
+      case "richtext":
+        return wrapper(richtextFields(field));
+      case "image":
+        return wrapper(imageFields(field));
+      case "date":
+        return wrapper(dateFields(field));
+      case "boolean":
+        return wrapper(booleanFields(field));
+      case "relation":
+        return wrapper(renderRelationFields(field));
+      default:
         return undefined;
-    };
+    }
+  });
 
-    const renderedFields: Array<string | undefined> = fields.map((field) => {
-        switch (field?.type) {
-            case "url":
-            case "text":
-            case "email":
-                return wrapper(textFields(field));
-            case "number":
-                return wrapper(numberFields(field));
-            case "richtext":
-                return wrapper(richtextFields(field));
-            case "image":
-                return wrapper(imageFields(field));
-            case "date":
-                return wrapper(dateFields(field));
-            case "boolean":
-                return wrapper(booleanFields(field));
-            case "relation":
-                return wrapper(renderRelationFields(field));
-            default:
-                return undefined;
-        }
-    });
+  noOp(imports);
+  const useTranslateHook = i18n && `const translate = useTranslate();`;
 
-    noOp(imports);
-    const useTranslateHook = i18n && `const translate = useTranslate();`;
-
-    return jsx`
+  return jsx`
     ${printImports(imports)}
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
@@ -356,26 +351,26 @@ export const renderer = ({
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},
             ${
-                isCustomPage
-                    ? `refineCoreProps: {
+              isCustomPage
+                ? `refineCoreProps: {
                         resource: "${resource.name}",
                         action: "create",
                         ${getMetaProps(
-                            resource.identifier ?? resource.name,
-                            meta,
-                            ["create", "getOne"],
-                        )}
-                    }`
-                    : getMetaProps(resource.identifier ?? resource.name, meta, [
-                          "create",
-                          "getOne",
-                      ])
-                    ? `refineCoreProps: { ${getMetaProps(
                           resource.identifier ?? resource.name,
                           meta,
                           ["create", "getOne"],
-                      )} }`
-                    : ""
+                        )}
+                    }`
+                : getMetaProps(resource.identifier ?? resource.name, meta, [
+                      "create",
+                      "getOne",
+                    ])
+                  ? `refineCoreProps: { ${getMetaProps(
+                      resource.identifier ?? resource.name,
+                      meta,
+                      ["create", "getOne"],
+                    )} }`
+                  : ""
             }
         });
 
@@ -394,33 +389,33 @@ export const renderer = ({
  * @experimental This is an experimental component
  */
 export const CreateInferencer: InferencerResultComponent = createInferencer({
-    type: "create",
-    additionalScope: [
-        [
-            "@refinedev/mantine",
-            "RefineMantine",
-            {
-                Create,
-                useForm,
-                useSelect,
-                useMultiSelect,
-                MultiSelect,
-                Select
-            }
-        ],
-        [
-            "@mantine/core",
-            "MantineCore",
-            {
-                TextInput,
-                Checkbox,
-                Textarea,
-                NumberInput
-            },
-        ],
+  type: "create",
+  additionalScope: [
+    [
+      "@refinedev/mantine",
+      "RefineMantine",
+      {
+        Create,
+        useForm,
+        useSelect,
+        useMultiSelect,
+        MultiSelect,
+        Select,
+      },
     ],
-    codeViewerComponent: SharedCodeViewer,
-    loadingComponent: LoadingComponent,
-    errorComponent: ErrorComponent,
-    renderer,
+    [
+      "@mantine/core",
+      "MantineCore",
+      {
+        TextInput,
+        Checkbox,
+        Textarea,
+        NumberInput,
+      },
+    ],
+  ],
+  codeViewerComponent: SharedCodeViewer,
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+  renderer,
 });

@@ -3,219 +3,191 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { GetManyResponse, useMany } from "@refinedev/core";
 import {
-    List,
-    ShowButton,
-    EditButton,
-    DeleteButton,
-    DateField,
+  List,
+  ShowButton,
+  EditButton,
+  DeleteButton,
+  DateField,
 } from "@refinedev/mantine";
 
 import {
-    Box,
-    Group,
-    ScrollArea,
-    Select,
-    Table,
-    Pagination,
+  Box,
+  Group,
+  ScrollArea,
+  Select,
+  Table,
+  Pagination,
 } from "@mantine/core";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                header: "ID",
-                accessorKey: "id",
-            },
-            {
-                id: "title",
-                header: "Title",
-                accessorKey: "title",
-                meta: {
-                    filterOperator: "contains",
-                },
-            },
-            {
-                id: "status",
-                header: "Status",
-                accessorKey: "status",
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return (
-                            <Select
-                                defaultValue="published"
-                                data={[
-                                    { label: "Published", value: "published" },
-                                    { label: "Draft", value: "draft" },
-                                    { label: "Rejected", value: "rejected" },
-                                ]}
-                                {...props}
-                            />
-                        );
-                    },
-                    filterOperator: "eq",
-                },
-            },
-            {
-                id: "category.id",
-                header: "Category",
-                enableColumnFilter: false,
-                accessorKey: "category.id",
-                cell: function render({ getValue, table }) {
-                    const meta = table.options.meta as {
-                        categoriesData: GetManyResponse<ICategory>;
-                    };
-                    const category = meta.categoriesData?.data.find(
-                        (item) => item.id === getValue(),
-                    );
-                    return category?.title ?? "Loading...";
-                },
-            },
-            {
-                id: "createdAt",
-                header: "Created At",
-                accessorKey: "createdAt",
-                cell: function render({ getValue }) {
-                    return (
-                        <DateField value={getValue() as string} format="LLL" />
-                    );
-                },
-                enableColumnFilter: false,
-            },
-            {
-                id: "actions",
-                header: "Actions",
-                accessorKey: "id",
-                enableColumnFilter: false,
-                enableSorting: false,
-                cell: function render({ getValue }) {
-                    return (
-                        <Group gap="xs" wrap="nowrap">
-                            <ShowButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                            <EditButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                            <DeleteButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
-                        </Group>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
-        refineCore: {
-            setCurrent,
-            pageCount,
-            current,
-            tableQueryResult: { data: tableData },
-        },
-    } = useTable({
-        columns,
-    });
-
-    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    setOptions((prev) => ({
-        ...prev,
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        header: "ID",
+        accessorKey: "id",
+      },
+      {
+        id: "title",
+        header: "Title",
+        accessorKey: "title",
         meta: {
-            ...prev.meta,
-            categoriesData,
+          filterOperator: "contains",
         },
-    }));
+      },
+      {
+        id: "status",
+        header: "Status",
+        accessorKey: "status",
+        meta: {
+          filterElement: function render(props: FilterElementProps) {
+            return (
+              <Select
+                defaultValue="published"
+                data={[
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Rejected", value: "rejected" },
+                ]}
+                {...props}
+              />
+            );
+          },
+          filterOperator: "eq",
+        },
+      },
+      {
+        id: "category.id",
+        header: "Category",
+        enableColumnFilter: false,
+        accessorKey: "category.id",
+        cell: function render({ getValue, table }) {
+          const meta = table.options.meta as {
+            categoriesData: GetManyResponse<ICategory>;
+          };
+          const category = meta.categoriesData?.data.find(
+            (item) => item.id === getValue(),
+          );
+          return category?.title ?? "Loading...";
+        },
+      },
+      {
+        id: "createdAt",
+        header: "Created At",
+        accessorKey: "createdAt",
+        cell: function render({ getValue }) {
+          return <DateField value={getValue() as string} format="LLL" />;
+        },
+        enableColumnFilter: false,
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        enableColumnFilter: false,
+        enableSorting: false,
+        cell: function render({ getValue }) {
+          return (
+            <Group gap="xs" wrap="nowrap">
+              <ShowButton hideText recordItemId={getValue() as number} />
+              <EditButton hideText recordItemId={getValue() as number} />
+              <DeleteButton hideText recordItemId={getValue() as number} />
+            </Group>
+          );
+        },
+      },
+    ],
+    [],
+  );
 
-    return (
-        <ScrollArea>
-            <List>
-                <Table highlightOnHover>
-                    <thead>
-                        {getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <Group gap="xs" wrap="nowrap">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                    <Group gap="xs" wrap="nowrap">
-                                                        <ColumnSorter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                        <ColumnFilter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                    </Group>
-                                                </Group>
-                                            )}
-                                        </th>
-                                    );
-                                })}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </Table>
+  const {
+    getHeaderGroups,
+    getRowModel,
+    setOptions,
+    refineCore: {
+      setCurrent,
+      pageCount,
+      current,
+      tableQueryResult: { data: tableData },
+    },
+  } = useTable({
+    columns,
+  });
 
-                <Group
-                  justify="right"
-                  mt="md"
-                >
-                    <Pagination
-                        total={pageCount}
-                        value={current}
-                        onChange={setCurrent}
-                    />
-                </Group>
-            </List>
-        </ScrollArea>
-    );
+  const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+  const { data: categoriesData } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
+
+  setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+      categoriesData,
+    },
+  }));
+
+  return (
+    <ScrollArea>
+      <List>
+        <Table highlightOnHover>
+          <thead>
+            {getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th key={header.id}>
+                      {!header.isPlaceholder && (
+                        <Group gap="xs" wrap="nowrap">
+                          <Box>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                          </Box>
+                          <Group gap="xs" wrap="nowrap">
+                            <ColumnSorter column={header.column} />
+                            <ColumnFilter column={header.column} />
+                          </Group>
+                        </Group>
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+
+        <Group justify="right" mt="md">
+          <Pagination total={pageCount} value={current} onChange={setCurrent} />
+        </Group>
+      </List>
+    </ScrollArea>
+  );
 };

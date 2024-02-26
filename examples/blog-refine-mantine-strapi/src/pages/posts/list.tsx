@@ -7,121 +7,117 @@ import { Table, Pagination, Group } from "@mantine/core";
 import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<IPost>[]>(
-        () => [
-            {
-                id: "id",
-                accessorKey: "id",
-                header: "Id",
-            },
-            {
-                id: "title",
-                accessorKey: "title",
-                header: "Title",
-            },
+  const columns = React.useMemo<ColumnDef<IPost>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: "Id",
+      },
+      {
+        id: "title",
+        accessorKey: "title",
+        header: "Title",
+      },
 
-            {
-                id: "createdAt",
-                accessorKey: "createdAt",
-                header: "Created At",
-                cell: function render({ getValue }) {
-                    return <DateField format="LL" value={getValue<string>()} />;
-                },
-            },
-            {
-                id: "category",
-                header: "Category",
-                accessorFn: ({ category }) => {
-                    return category?.title;
-                },
-            },
-            {
-                id: "actions",
-                accessorKey: "id",
-                header: "Actions",
-                cell: ({ getValue }) => {
-                    return (
-                        <Group>
-                            <EditButton
-                                hideText
-                                size="xs"
-                                recordItemId={getValue() as number}
-                                variant="subtle"
-                            />
-                            <DeleteButton
-                                hideText
-                                size="xs"
-                                recordItemId={getValue() as number}
-                                variant="subtle"
-                            />
-                        </Group>
-                    );
-                },
-            },
-        ],
-        [],
-    );
-
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
-        columns,
-        refineCoreProps: {
-            meta: {
-                populate: ["category"],
-            },
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        header: "Created At",
+        cell: function render({ getValue }) {
+          return <DateField format="LL" value={getValue<string>()} />;
         },
-    });
-
-    return (
-        <List>
-            <Table highlightOnHover striped withTableBorder withColumnBorders>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => {
-                                return (
-                                    <th key={header.id}>
-                                        {!header.isPlaceholder &&
-                                            flexRender(
-                                                header.column.columnDef.header,
-                                                header.getContext(),
-                                            )}
-                                    </th>
-                                );
-                            })}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => {
-                        return (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => {
-                                    return (
-                                        <td key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </Table>
-
-            <Group mt="md" justify="right">
-                <Pagination
-                    total={pageCount}
-                    value={current}
-                    onChange={setCurrent}
-                />
+      },
+      {
+        id: "category",
+        header: "Category",
+        accessorFn: ({ category }) => {
+          return category?.title;
+        },
+      },
+      {
+        id: "actions",
+        accessorKey: "id",
+        header: "Actions",
+        cell: ({ getValue }) => {
+          return (
+            <Group>
+              <EditButton
+                hideText
+                size="xs"
+                recordItemId={getValue() as number}
+                variant="subtle"
+              />
+              <DeleteButton
+                hideText
+                size="xs"
+                recordItemId={getValue() as number}
+                variant="subtle"
+              />
             </Group>
-        </List>
-    );
+          );
+        },
+      },
+    ],
+    [],
+  );
+
+  const {
+    getHeaderGroups,
+    getRowModel,
+    refineCore: { setCurrent, pageCount, current },
+  } = useTable({
+    columns,
+    refineCoreProps: {
+      meta: {
+        populate: ["category"],
+      },
+    },
+  });
+
+  return (
+    <List>
+      <Table highlightOnHover striped withTableBorder withColumnBorders>
+        <thead>
+          {getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <th key={header.id}>
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                  </th>
+                );
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+
+      <Group mt="md" justify="right">
+        <Pagination total={pageCount} value={current} onChange={setCurrent} />
+      </Group>
+    </List>
+  );
 };

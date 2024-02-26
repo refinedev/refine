@@ -7,30 +7,29 @@ import { Header as DefaultHeader } from "./header";
 import { ThemedLayoutContextProvider } from "../../contexts";
 
 export const Layout: React.FC<RefineLayoutLayoutProps> = ({
-    Sider,
-    Header,
-    Title,
-    Footer,
-    OffLayoutArea,
-    children,
+  Sider,
+  Header,
+  Title,
+  Footer,
+  OffLayoutArea,
+  children,
 }) => {
-    const SiderToRender = Sider ?? DefaultSider;
-    const HeaderToRender = Header ?? DefaultHeader;
+  const SiderToRender = Sider ?? DefaultSider;
+  const HeaderToRender = Header ?? DefaultHeader;
 
   return (
     <ThemedLayoutContextProvider>
       <AppShell
         header={{ height: 50 }}
-        navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: true } }}
+        navbar={{ width: 200, breakpoint: "sm", collapsed: { mobile: true } }}
         padding="md"
       >
-
         <AppShell.Header>
-            <HeaderToRender />
+          <HeaderToRender />
         </AppShell.Header>
 
         <AppShell.Navbar>
-            <SiderToRender Title={Title} />
+          <SiderToRender Title={Title} />
         </AppShell.Navbar>
 
         <AppShell.Main>
@@ -42,5 +41,5 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
         {OffLayoutArea && <OffLayoutArea />}
       </AppShell>
     </ThemedLayoutContextProvider>
-  )
+  );
 };

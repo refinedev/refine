@@ -1,6 +1,6 @@
 import React from "react";
 import { AppShell } from "@mantine/core";
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure } from "@mantine/hooks";
 
 import {
   RefineThemedLayoutV2Props,
@@ -8,56 +8,51 @@ import {
 } from "@refinedev/mantine";
 
 import {
-    ThemedSiderV2 as DefaultSider,
-    ThemedHeaderV2 as DefaultHeader
+  ThemedSiderV2 as DefaultSider,
+  ThemedHeaderV2 as DefaultHeader,
 } from "@refinedev/mantine";
 
 export const Layout: React.FC<RefineThemedLayoutV2Props> = ({
-    Sider,
-    Header,
-    Title,
-    Footer,
-    OffLayoutArea,
-    initialSiderCollapsed,
-    children,
+  Sider,
+  Header,
+  Title,
+  Footer,
+  OffLayoutArea,
+  initialSiderCollapsed,
+  children,
 }) => {
-    const SiderToRender = Sider ?? DefaultSider;
-    const HeaderToRender = Header ?? DefaultHeader;
+  const SiderToRender = Sider ?? DefaultSider;
+  const HeaderToRender = Header ?? DefaultHeader;
 
-    return (
-    <ThemedLayoutContextProvider
-        initialSiderCollapsed={initialSiderCollapsed}
-    >
-        <AppShell
-            header={{
-                height: {
-                    base: 0,
-                    xs: 50,
-                    sm: 50,
-                }
-            }}
-            navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: true } }}
-            padding="md"
-        >
-
+  return (
+    <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
+      <AppShell
+        header={{
+          height: {
+            base: 0,
+            xs: 50,
+            sm: 50,
+          },
+        }}
+        navbar={{ width: 200, breakpoint: "sm", collapsed: { mobile: true } }}
+        padding="md"
+      >
         <AppShell.Header>
-            <HeaderToRender />
+          <HeaderToRender />
         </AppShell.Header>
 
         <AppShell.Navbar>
-            <SiderToRender />
+          <SiderToRender />
         </AppShell.Navbar>
 
         <AppShell.Main>
-            {children}
+          {children}
 
-            {Footer && <Footer />}
+          {Footer && <Footer />}
         </AppShell.Main>
 
         {OffLayoutArea && <OffLayoutArea />}
-        </AppShell>
+      </AppShell>
     </ThemedLayoutContextProvider>
-    )
+  );
 };
-
-

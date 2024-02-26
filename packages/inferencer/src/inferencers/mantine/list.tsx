@@ -1,14 +1,14 @@
 import {
-    List,
-    EditButton,
-    ShowButton,
-    DeleteButton,
-    TagField,
-    EmailField,
-    UrlField,
-    BooleanField,
-    DateField,
-    MarkdownField,
+  List,
+  EditButton,
+  ShowButton,
+  DeleteButton,
+  TagField,
+  EmailField,
+  UrlField,
+  BooleanField,
+  DateField,
+  MarkdownField,
 } from "@refinedev/mantine";
 import { useTable } from "@refinedev/react-table";
 import { ScrollArea, Table, Pagination, Group, Image } from "@mantine/core";
@@ -16,16 +16,16 @@ import { flexRender } from "@tanstack/react-table";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
-    accessor,
-    printImports,
-    dotAccessor,
-    noOp,
-    getVariableName,
-    translatePrettyString,
-    getMetaProps,
-    deepHasKey,
+  jsx,
+  componentName,
+  accessor,
+  printImports,
+  dotAccessor,
+  noOp,
+  getVariableName,
+  translatePrettyString,
+  getMetaProps,
+  deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -33,18 +33,18 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
-    ImportElement,
-    InferencerResultComponent,
-    InferField,
-    RendererContext,
+  ImportElement,
+  InferencerResultComponent,
+  InferField,
+  RendererContext,
 } from "../../types";
 
 const getAccessorKey = (field: InferField) => {
-    return Array.isArray(field.accessor) || field.multiple
-        ? `accessorKey: "${field.key}"`
-        : field.accessor
-        ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
-        : `accessorKey: "${field.key}"`;
+  return Array.isArray(field.accessor) || field.multiple
+    ? `accessorKey: "${field.key}"`
+    : field.accessor
+      ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
+      : `accessorKey: "${field.key}"`;
 };
 
 /**
@@ -52,72 +52,69 @@ const getAccessorKey = (field: InferField) => {
  * @internal used internally from inferencer components
  */
 export const renderer = ({
-    resource,
-    fields,
-    meta,
-    isCustomPage,
-    i18n,
+  resource,
+  fields,
+  meta,
+  isCustomPage,
+  i18n,
 }: RendererContext) => {
-    const COMPONENT_NAME = componentName(
-        resource.label ?? resource.name,
-        "list",
-    );
-    const recordName = "tableData?.data";
-    const imports: Array<ImportElement> = [
-        ["IResourceComponentsProps", "@refinedev/core"],
-        ["useTable", "@refinedev/react-table"],
-        ["ColumnDef", "@tanstack/react-table"],
-        ["flexRender", "@tanstack/react-table"],
-        ["ScrollArea", "@mantine/core"],
-        ["List", "@refinedev/mantine"],
-        ["Table", "@mantine/core"],
-        ["Pagination", "@mantine/core"],
-        ["Group", "@mantine/core"],
-        ["EditButton", "@refinedev/mantine"],
-        ["ShowButton", "@refinedev/mantine"],
-        ["DeleteButton", "@refinedev/mantine"],
-    ];
+  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
+  const recordName = "tableData?.data";
+  const imports: Array<ImportElement> = [
+    ["IResourceComponentsProps", "@refinedev/core"],
+    ["useTable", "@refinedev/react-table"],
+    ["ColumnDef", "@tanstack/react-table"],
+    ["flexRender", "@tanstack/react-table"],
+    ["ScrollArea", "@mantine/core"],
+    ["List", "@refinedev/mantine"],
+    ["Table", "@mantine/core"],
+    ["Pagination", "@mantine/core"],
+    ["Group", "@mantine/core"],
+    ["EditButton", "@refinedev/mantine"],
+    ["ShowButton", "@refinedev/mantine"],
+    ["DeleteButton", "@refinedev/mantine"],
+  ];
 
-    if (i18n) {
-        imports.push(["useTranslate", "@refinedev/core"]);
-    }
+  if (i18n) {
+    imports.push(["useTranslate", "@refinedev/core"]);
+  }
 
-    // has gqlQuery or gqlMutation in "meta"
-    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
-    if (hasGql) {
-        imports.push(["gql", "graphql-tag", true]);
-    }
+  // has gqlQuery or gqlMutation in "meta"
+  const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+  if (hasGql) {
+    imports.push(["gql", "graphql-tag", true]);
+  }
 
-    const relationFields: (InferField | null)[] = fields.filter(
-        (field) => field?.relation && !field?.fieldable && field?.resource,
-    );
+  const relationFields: (InferField | null)[] = fields.filter(
+    (field) => field?.relation && !field?.fieldable && field?.resource,
+  );
 
-    const relationHooksCode = relationFields
-        .filter(Boolean)
-        .map((field) => {
-            if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["GetManyResponse", "@refinedev/core"]);
-                imports.push(["useMany", "@refinedev/core"]);
+  const relationHooksCode = relationFields
+    .filter(Boolean)
+    .map((field) => {
+      if (field?.relation && !field.fieldable && field.resource) {
+        imports.push(["GetManyResponse", "@refinedev/core"]);
+        imports.push(["useMany", "@refinedev/core"]);
 
-                let idsString = "";
+        let idsString = "";
 
-                if (field.multiple) {
-                    idsString = `[].concat(...(${recordName}?.map((item) => ${accessor(
-                        "item",
-                        field.key,
-                        field.accessor,
-                        false,
-                    )}) ?? []))`;
-                } else {
-                    idsString = `${recordName}?.map((item) => ${accessor(
-                        "item",
-                        field.key,
-                        field.accessor,
-                        false,
-                    )}) ?? []`;
-                }
+        if (field.multiple) {
+          idsString = `[].concat(...(${recordName}?.map((item) => ${accessor(
+            "item",
+            field.key,
+            field.accessor,
+            false,
+          )}) ?? []))`;
+        } else {
+          idsString = `${recordName}?.map((item) => ${accessor(
+            "item",
+            field.key,
+            field.accessor,
+            false,
+          )}) ?? []`;
+        }
 
-                return `
+        return `
                 const { data: ${getVariableName(field.key, "Data")} } =
                 useMany({
                     resource: "${field.resource.name}",
@@ -126,160 +123,146 @@ export const renderer = ({
                         enabled: !!${recordName},
                     },
                     ${getMetaProps(
-                        field?.resource?.identifier ?? field?.resource?.name,
-                        meta,
-                        ["getMany"],
+                      field?.resource?.identifier ?? field?.resource?.name,
+                      meta,
+                      ["getMany"],
                     )}
                 });
                 `;
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const relationVariableNames = relationFields
-        ?.map((field) => {
-            if (field && field.resource) {
-                return getVariableName(field.key, "Data");
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+  const relationVariableNames = relationFields
+    ?.map((field) => {
+      if (field && field.resource) {
+        return getVariableName(field.key, "Data");
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const renderRelationFields = (field: InferField) => {
-        if (field.relation && field.resource) {
-            const variableName = `${getVariableName(field.key, "Data")}?.data`;
+  const renderRelationFields = (field: InferField) => {
+    if (field.relation && field.resource) {
+      const variableName = `${getVariableName(field.key, "Data")}?.data`;
 
-            if (Array.isArray(field.accessor)) {
-                // not handled - not possible case
-                return undefined;
-            }
+      if (Array.isArray(field.accessor)) {
+        // not handled - not possible case
+        return undefined;
+      }
 
-            const id = `id: "${field.key}"`;
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
-            const accessorKey = getAccessorKey(field);
+      const id = `id: "${field.key}"`;
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
+      const accessorKey = getAccessorKey(field);
 
-            let cell = "";
+      let cell = "";
 
-            // if multiple, then map it with tagfield
-            // if not, then just show the value
+      // if multiple, then map it with tagfield
+      // if not, then just show the value
 
-            if (field.multiple) {
-                imports.push(["TagField", "@refinedev/mantine"]);
-                let val = "item";
+      if (field.multiple) {
+        imports.push(["TagField", "@refinedev/mantine"]);
+        let val = "item";
 
-                // for multiple
-                if (field?.relationInfer) {
-                    val = accessor(
-                        "item",
-                        undefined,
-                        field.relationInfer.accessor,
-                    );
-                }
+        // for multiple
+        if (field?.relationInfer) {
+          val = accessor("item", undefined, field.relationInfer.accessor);
+        }
 
-                if (
-                    field?.relationInfer &&
-                    field?.relationInfer?.type === "object" &&
-                    !field?.relationInfer?.accessor
-                ) {
-                    console.log(
-                        "@refinedev/inferencer: Inferencer failed to render this field",
-                        {
-                            key: field.key,
-                            relation: field.relationInfer,
-                        },
-                    );
+        if (
+          field?.relationInfer &&
+          field?.relationInfer?.type === "object" &&
+          !field?.relationInfer?.accessor
+        ) {
+          console.log(
+            "@refinedev/inferencer: Inferencer failed to render this field",
+            {
+              key: field.key,
+              relation: field.relationInfer,
+            },
+          );
 
-                    return `cell: function render({ getValue }) {
+          return `cell: function render({ getValue }) {
                         return (
                             <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
                         )
                     }`;
-                }
+        }
 
-                cell = `cell: function render({ getValue, table }) {
+        cell = `cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         ${getVariableName(field.key, "Data")}: GetManyResponse;
                     };
 
-                    const ${getVariableName(
-                        field.key,
-                    )} = getValue<any[]>()?.map((item) => {
-                        return meta.${getVariableName(
-                            field.key,
-                            "Data",
-                        )}?.data?.find(
+                    const ${getVariableName(field.key)} = getValue<any[]>()?.map((item) => {
+                        return meta.${getVariableName(field.key, "Data")}?.data?.find(
                             (resourceItems) => resourceItems.id === ${accessor(
-                                "item",
-                                undefined,
-                                field.accessor,
+                              "item",
+                              undefined,
+                              field.accessor,
                             )}
                         );
                     })
 
                     return (
                         <Group gap="xs">
-                            {${getVariableName(
-                                field.key,
-                            )}?.map((item, index) => (
+                            {${getVariableName(field.key)}?.map((item, index) => (
                                 <TagField key={index} value={${val}} />
                             ))}
                         </Group>
                     )
                 }
             `;
-            } else {
-                if (field?.relationInfer) {
-                    // if relationInfer type is object and accessor is undefined then don't try to render
-                    const cannotRender =
-                        field?.relationInfer?.type === "object" &&
-                        !field?.relationInfer?.accessor;
+      } else {
+        if (field?.relationInfer) {
+          // if relationInfer type is object and accessor is undefined then don't try to render
+          const cannotRender =
+            field?.relationInfer?.type === "object" &&
+            !field?.relationInfer?.accessor;
 
-                    if (cannotRender) {
-                        console.log(
-                            "@refinedev/inferencer: Inferencer failed to render this field",
-                            {
-                                key: field.key,
-                                relation: field.relationInfer,
-                            },
-                        );
-                    }
+          if (cannotRender) {
+            console.log(
+              "@refinedev/inferencer: Inferencer failed to render this field",
+              {
+                key: field.key,
+                relation: field.relationInfer,
+              },
+            );
+          }
 
-                    cell = `cell: function render({ getValue, table }) {
+          cell = `cell: function render({ getValue, table }) {
                         const meta = table.options.meta as {
-                            ${getVariableName(
-                                field.key,
-                                "Data",
-                            )}: GetManyResponse;
+                            ${getVariableName(field.key, "Data")}: GetManyResponse;
                         };
 
                         const ${getVariableName(
-                            field.key,
+                          field.key,
                         )} = meta.${variableName}?.find(
                             (item) => item.id == getValue<any>(),
                         );
 
                         return ${
-                            cannotRender
-                                ? `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`
-                                : `${accessor(
-                                      getVariableName(field.key),
-                                      undefined,
-                                      field?.relationInfer?.accessor,
-                                  )} ?? "Loading..."`
+                          cannotRender
+                            ? `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`
+                            : `${accessor(
+                                getVariableName(field.key),
+                                undefined,
+                                field?.relationInfer?.accessor,
+                              )} ?? "Loading..."`
                         };
                     },`;
-                } else {
-                    cell = "";
-                }
-            }
+        } else {
+          cell = "";
+        }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${header},
@@ -287,47 +270,45 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const imageFields = (field: InferField) => {
-        if (field.type === "image") {
-            imports.push(["Image", "@mantine/core"]);
+  const imageFields = (field: InferField) => {
+    if (field.type === "image") {
+      imports.push(["Image", "@mantine/core"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     ${field?.accessor ? "try {" : ""}
                         return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue<any>()",
-                            undefined,
-                            Array.isArray(field.accessor)
-                                ? field.accessor
-                                : undefined,
-                            " + ",
+                          "getValue<any>()",
+                          undefined,
+                          Array.isArray(field.accessor)
+                            ? field.accessor
+                            : undefined,
+                          " + ",
                         )}} />
                     ${
-                        field?.accessor
-                            ? " } catch (error) { return null; }"
-                            : ""
+                      field?.accessor ? " } catch (error) { return null; }" : ""
                     }
 
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         ${field?.accessor ? "try {" : ""}
                             return (
@@ -338,15 +319,15 @@ export const renderer = ({
                                 </Group>
                             )
                         ${
-                            field?.accessor
-                                ? " } catch (error) { return null; }"
-                                : ""
+                          field?.accessor
+                            ? " } catch (error) { return null; }"
+                            : ""
                         }
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -354,42 +335,42 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const emailFields = (field: InferField) => {
-        if (field.type === "email") {
-            imports.push(["EmailField", "@refinedev/mantine"]);
+  const emailFields = (field: InferField) => {
+    if (field.type === "email") {
+      imports.push(["EmailField", "@refinedev/mantine"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <EmailField value={${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        ' + " " + ',
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      ' + " " + ',
                     )}} />
                 }
             `;
 
-            if (field.multiple) {
-                imports.push(["TagField", "@refinedev/mantine"]);
+      if (field.multiple) {
+        imports.push(["TagField", "@refinedev/mantine"]);
 
-                const val = accessor("item", undefined, field.accessor, " + ");
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -400,9 +381,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -410,42 +391,42 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const urlFields = (field: InferField) => {
-        if (field.type === "url") {
-            imports.push(["UrlField", "@refinedev/mantine"]);
+  const urlFields = (field: InferField) => {
+    if (field.type === "url") {
+      imports.push(["UrlField", "@refinedev/mantine"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <UrlField value={${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        " + ",
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      " + ",
                     )}} />
                 }
             `;
 
-            if (field.multiple) {
-                imports.push(["TagField", "@refinedev/mantine"]);
+      if (field.multiple) {
+        imports.push(["TagField", "@refinedev/mantine"]);
 
-                const val = accessor("item", undefined, field.accessor, " + ");
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -456,9 +437,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -466,40 +447,40 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const booleanFields = (field: InferField) => {
-        if (field?.type === "boolean") {
-            imports.push(["BooleanField", "@refinedev/mantine"]);
+  const booleanFields = (field: InferField) => {
+    if (field?.type === "boolean") {
+      imports.push(["BooleanField", "@refinedev/mantine"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <BooleanField value={${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        " + ",
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      " + ",
                     )}} />
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -510,9 +491,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -520,41 +501,41 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
+    }
 
-        return undefined;
-    };
+    return undefined;
+  };
 
-    const dateFields = (field: InferField) => {
-        if (field.type === "date") {
-            imports.push(["DateField", "@refinedev/mantine"]);
+  const dateFields = (field: InferField) => {
+    if (field.type === "date") {
+      imports.push(["DateField", "@refinedev/mantine"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <DateField value={${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        ' + " " + ',
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      ' + " " + ',
                     )}} />
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -565,9 +546,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -575,39 +556,39 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const richtextFields = (field: InferField) => {
-        if (field?.type === "richtext") {
-            imports.push(["MarkdownField", "@refinedev/mantine"]);
+  const richtextFields = (field: InferField) => {
+    if (field?.type === "richtext") {
+      imports.push(["MarkdownField", "@refinedev/mantine"]);
 
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <MarkdownField value={(${accessor(
-                        "getValue<string>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
+                      "getValue<string>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
                     )})?.slice(0, 80) + "..." } />
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -618,9 +599,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -628,35 +609,30 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
+    }
 
-        return undefined;
-    };
+    return undefined;
+  };
 
-    const basicFields = (field: InferField) => {
-        if (field && (field.type === "text" || field.type === "number")) {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const basicFields = (field: InferField) => {
+    if (field && (field.type === "text" || field.type === "number")) {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = "";
+      let cell = "";
 
-            if (field.multiple) {
-                imports.push(["TagField", "@refinedev/mantine"]);
+      if (field.multiple) {
+        imports.push(["TagField", "@refinedev/mantine"]);
 
-                const val = accessor(
-                    "item",
-                    undefined,
-                    field.accessor,
-                    ' + " " + ',
-                );
+        const val = accessor("item", undefined, field.accessor, ' + " " + ');
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <Group gap="xs">
@@ -667,23 +643,23 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            if (!field.multiple && Array.isArray(field.accessor)) {
-                cell = `
+      if (!field.multiple && Array.isArray(field.accessor)) {
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <>{${accessor(
-                                "getValue()",
-                                field.key,
-                                field.accessor,
+                              "getValue()",
+                              field.key,
+                              field.accessor,
                             )}}</>
                         );
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -691,33 +667,33 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
-
-    const {
-        canEdit,
-        canShow,
-        canDelete: canDeleteProp,
-        meta: resourceMeta,
-    } = resource ?? {};
-
-    const canDelete = canDeleteProp || resourceMeta?.canDelete;
-
-    if (canEdit) {
-        imports.push(["EditButton", "@refinedev/mantine"]);
     }
-    if (canShow) {
-        imports.push(["ShowButton", "@refinedev/mantine"]);
-    }
-    if (canDelete) {
-        imports.push(["DeleteButton", "@refinedev/mantine"]);
-    }
+    return undefined;
+  };
 
-    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
-    const actionButtons =
-        canEdit || canShow || canDelete
-            ? jsx`
+  const {
+    canEdit,
+    canShow,
+    canDelete: canDeleteProp,
+    meta: resourceMeta,
+  } = resource ?? {};
+
+  const canDelete = canDeleteProp || resourceMeta?.canDelete;
+
+  if (canEdit) {
+    imports.push(["EditButton", "@refinedev/mantine"]);
+  }
+  if (canShow) {
+    imports.push(["ShowButton", "@refinedev/mantine"]);
+  }
+  if (canDelete) {
+    imports.push(["DeleteButton", "@refinedev/mantine"]);
+  }
+
+  const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
+  const actionButtons =
+    canEdit || canShow || canDelete
+      ? jsx`
     {
         id: "actions",
         accessorKey: "id",
@@ -726,68 +702,68 @@ export const renderer = ({
             return (
                 <Group gap="xs">
                     ${
-                        canShow
-                            ? jsx`
+                      canShow
+                        ? jsx`
                     <ShowButton
                         hideText
                         recordItemId={getValue() as string}
                     />
                     `
-                            : ""
+                        : ""
                     }
                     ${
-                        canEdit
-                            ? jsx`<EditButton
+                      canEdit
+                        ? jsx`<EditButton
                         hideText
                         recordItemId={getValue() as string}
                     />`
-                            : ""
+                        : ""
                     }
                     ${
-                        canDelete
-                            ? jsx`
+                      canDelete
+                        ? jsx`
                     <DeleteButton
                         hideText
                         recordItemId={getValue() as string}
                     />
                     `
-                            : ""
+                        : ""
                     }
                 </Group>
             );
         },
     },
         `
-            : "";
+      : "";
 
-    const renderedFields: Array<string | undefined> = fields.map((field) => {
-        switch (field?.type) {
-            case "text":
-            case "number":
-                return basicFields(field);
-            case "richtext":
-                return richtextFields(field);
-            case "email":
-                return emailFields(field);
-            case "image":
-                return imageFields(field);
-            case "date":
-                return dateFields(field);
-            case "boolean":
-                return booleanFields(field);
-            case "url":
-                return urlFields(field);
-            case "relation":
-                return renderRelationFields(field);
-            default:
-                return undefined;
-        }
-    });
+  const renderedFields: Array<string | undefined> = fields.map((field) => {
+    switch (field?.type) {
+      case "text":
+      case "number":
+        return basicFields(field);
+      case "richtext":
+        return richtextFields(field);
+      case "email":
+        return emailFields(field);
+      case "image":
+        return imageFields(field);
+      case "date":
+        return dateFields(field);
+      case "boolean":
+        return booleanFields(field);
+      case "url":
+        return urlFields(field);
+      case "relation":
+        return renderRelationFields(field);
+      default:
+        return undefined;
+    }
+  });
 
-    noOp(imports);
-    const useTranslateHook = i18n && `const translate = useTranslate();`;
+  noOp(imports);
+  const useTranslateHook = i18n && `const translate = useTranslate();`;
 
-    return jsx`
+  return jsx`
     import React from "react";
     ${printImports(imports)}
 
@@ -810,26 +786,24 @@ export const renderer = ({
         } = useTable({
             columns,
             ${
-                isCustomPage
-                    ? `
+              isCustomPage
+                ? `
             refineCoreProps: {
                 resource: "${resource.name}",
                 ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
-                    "getList",
+                  "getList",
                 ])}
             }
             `
-                    : getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["getList"],
-                      )
-                    ? `refineCoreProps: { ${getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["getList"],
-                      )} },`
-                    : ""
+                : getMetaProps(resource?.identifier ?? resource?.name, meta, [
+                      "getList",
+                    ])
+                  ? `refineCoreProps: { ${getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      ["getList"],
+                    )} },`
+                  : ""
             }
         });
 
@@ -908,34 +882,34 @@ export const renderer = ({
  * @experimental This is an experimental component
  */
 export const ListInferencer: InferencerResultComponent = createInferencer({
-    type: "list",
-    additionalScope: [
-        [
-            "@refinedev/mantine",
-            "RefineMantine",
-            {
-                List,
-                EditButton,
-                ShowButton,
-                DeleteButton,
-                TagField,
-                EmailField,
-                UrlField,
-                BooleanField,
-                DateField,
-                MarkdownField,
-            },
-        ],
-        ["@refinedev/react-table", "RefineReactTable", { useTable }],
-        [
-            "@mantine/core",
-            "MantineCore",
-            { ScrollArea, Table, Pagination, Group, Image },
-        ],
-        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
+  type: "list",
+  additionalScope: [
+    [
+      "@refinedev/mantine",
+      "RefineMantine",
+      {
+        List,
+        EditButton,
+        ShowButton,
+        DeleteButton,
+        TagField,
+        EmailField,
+        UrlField,
+        BooleanField,
+        DateField,
+        MarkdownField,
+      },
     ],
-    codeViewerComponent: SharedCodeViewer,
-    loadingComponent: LoadingComponent,
-    errorComponent: ErrorComponent,
-    renderer,
+    ["@refinedev/react-table", "RefineReactTable", { useTable }],
+    [
+      "@mantine/core",
+      "MantineCore",
+      { ScrollArea, Table, Pagination, Group, Image },
+    ],
+    ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
+  ],
+  codeViewerComponent: SharedCodeViewer,
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+  renderer,
 });

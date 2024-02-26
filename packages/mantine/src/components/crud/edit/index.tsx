@@ -1,242 +1,238 @@
 import React from "react";
 import {
-    Box,
-    Card,
-    Group,
-    ActionIcon,
-    Stack,
-    Title,
-    LoadingOverlay,
+  Box,
+  Card,
+  Group,
+  ActionIcon,
+  Stack,
+  Title,
+  LoadingOverlay,
 } from "@mantine/core";
 import {
-    useBack,
-    useGo,
-    useMutationMode,
-    useNavigation,
-    useRefineContext,
-    useResource,
-    useUserFriendlyName,
-    useRouterType,
-    useToPath,
-    useTranslate,
+  useBack,
+  useGo,
+  useMutationMode,
+  useNavigation,
+  useRefineContext,
+  useResource,
+  useUserFriendlyName,
+  useRouterType,
+  useToPath,
+  useTranslate,
 } from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons";
 import {
-    DeleteButton,
-    ListButton,
-    RefreshButton,
-    SaveButton,
-    Breadcrumb,
-    ListButtonProps,
-    RefreshButtonProps,
-    DeleteButtonProps,
-    SaveButtonProps,
-    AutoSaveIndicator,
+  DeleteButton,
+  ListButton,
+  RefreshButton,
+  SaveButton,
+  Breadcrumb,
+  ListButtonProps,
+  RefreshButtonProps,
+  DeleteButtonProps,
+  SaveButtonProps,
+  AutoSaveIndicator,
 } from "@components";
 import { EditProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Edit: React.FC<EditProps> = (props) => {
-    const {
-        children,
-        resource: resourceFromProps,
-        recordItemId,
-        deleteButtonProps: deleteButtonPropsFromProps,
-        mutationMode: mutationModeFromProps,
-        saveButtonProps: saveButtonPropsFromProps,
-        canDelete,
-        dataProviderName,
-        isLoading,
-        footerButtons: footerButtonsFromProps,
-        footerButtonProps,
-        headerButtons: headerButtonsFromProps,
-        headerButtonProps,
-        wrapperProps,
-        contentProps,
-        headerProps,
-        goBack: goBackFromProps,
-        breadcrumb: breadcrumbFromProps,
-        title,
-        autoSaveProps,
-    } = props;
-    const translate = useTranslate();
-    const { options: { breadcrumb: globalBreadcrumb } = {} } =
-        useRefineContext();
-    const { mutationMode: mutationModeContext } = useMutationMode();
-    const mutationMode = mutationModeFromProps ?? mutationModeContext;
+  const {
+    children,
+    resource: resourceFromProps,
+    recordItemId,
+    deleteButtonProps: deleteButtonPropsFromProps,
+    mutationMode: mutationModeFromProps,
+    saveButtonProps: saveButtonPropsFromProps,
+    canDelete,
+    dataProviderName,
+    isLoading,
+    footerButtons: footerButtonsFromProps,
+    footerButtonProps,
+    headerButtons: headerButtonsFromProps,
+    headerButtonProps,
+    wrapperProps,
+    contentProps,
+    headerProps,
+    goBack: goBackFromProps,
+    breadcrumb: breadcrumbFromProps,
+    title,
+    autoSaveProps,
+  } = props;
+  const translate = useTranslate();
+  const {
+    options: { breadcrumb: globalBreadcrumb } = {},
+  } = useRefineContext();
+  const { mutationMode: mutationModeContext } = useMutationMode();
+  const mutationMode = mutationModeFromProps ?? mutationModeContext;
 
-    const routerType = useRouterType();
-    const back = useBack();
-    const go = useGo();
-    const { goBack, list: legacyGoList } = useNavigation();
-    const getUserFriendlyName = useUserFriendlyName();
+  const routerType = useRouterType();
+  const back = useBack();
+  const go = useGo();
+  const { goBack, list: legacyGoList } = useNavigation();
+  const getUserFriendlyName = useUserFriendlyName();
 
-    const {
-        resource,
-        action,
-        id: idFromParams,
-        identifier,
-    } = useResource(resourceFromProps);
+  const {
+    resource,
+    action,
+    id: idFromParams,
+    identifier,
+  } = useResource(resourceFromProps);
 
-    const goListPath = useToPath({
-        resource,
-        action: "list",
-    });
+  const goListPath = useToPath({
+    resource,
+    action: "list",
+  });
 
-    const id = recordItemId ?? idFromParams;
+  const id = recordItemId ?? idFromParams;
 
-    const breadcrumb =
-        typeof breadcrumbFromProps === "undefined"
-            ? globalBreadcrumb
-            : breadcrumbFromProps;
+  const breadcrumb =
+    typeof breadcrumbFromProps === "undefined"
+      ? globalBreadcrumb
+      : breadcrumbFromProps;
 
-    const hasList = resource?.list && !recordItemId;
+  const hasList = resource?.list && !recordItemId;
 
-    const isDeleteButtonVisible =
-        canDelete ??
-        ((resource?.meta?.canDelete ?? resource?.canDelete) ||
-            deleteButtonPropsFromProps);
+  const isDeleteButtonVisible =
+    canDelete ??
+    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+      deleteButtonPropsFromProps);
 
-    const breadcrumbComponent =
-        typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
-        ) : (
-            <Breadcrumb />
-        );
+  const breadcrumbComponent =
+    typeof breadcrumb !== "undefined" ? (
+      <>{breadcrumb}</> ?? undefined
+    ) : (
+      <Breadcrumb />
+    );
 
-    const loadingOverlayVisible =
-        isLoading ?? saveButtonPropsFromProps?.disabled ?? false;
+  const loadingOverlayVisible =
+    isLoading ?? saveButtonPropsFromProps?.disabled ?? false;
 
-    const listButtonProps: ListButtonProps | undefined = hasList
-        ? {
-              ...(isLoading ? { disabled: true } : {}),
-              resource: routerType === "legacy" ? resource?.route : identifier,
-          }
-        : undefined;
-
-    const refreshButtonProps: RefreshButtonProps = {
+  const listButtonProps: ListButtonProps | undefined = hasList
+    ? {
         ...(isLoading ? { disabled: true } : {}),
         resource: routerType === "legacy" ? resource?.route : identifier,
+      }
+    : undefined;
+
+  const refreshButtonProps: RefreshButtonProps = {
+    ...(isLoading ? { disabled: true } : {}),
+    resource: routerType === "legacy" ? resource?.route : identifier,
+    recordItemId: id,
+    dataProviderName,
+  };
+
+  const deleteButtonProps: DeleteButtonProps | undefined = isDeleteButtonVisible
+    ? ({
+        ...(isLoading ? { disabled: true } : {}),
+        resource: routerType === "legacy" ? resource?.route : identifier,
+        mutationMode,
+        onSuccess: () => {
+          if (routerType === "legacy") {
+            legacyGoList(resource?.route ?? resource?.name ?? "");
+          } else {
+            go({ to: goListPath });
+          }
+        },
         recordItemId: id,
         dataProviderName,
-    };
+        ...deleteButtonPropsFromProps,
+      } as const)
+    : undefined;
 
-    const deleteButtonProps: DeleteButtonProps | undefined =
-        isDeleteButtonVisible
-            ? ({
-                  ...(isLoading ? { disabled: true } : {}),
-                  resource:
-                      routerType === "legacy" ? resource?.route : identifier,
-                  mutationMode,
-                  onSuccess: () => {
-                      if (routerType === "legacy") {
-                          legacyGoList(resource?.route ?? resource?.name ?? "");
-                      } else {
-                          go({ to: goListPath });
-                      }
-                  },
-                  recordItemId: id,
-                  dataProviderName,
-                  ...deleteButtonPropsFromProps,
-              } as const)
-            : undefined;
+  const saveButtonProps: SaveButtonProps = {
+    ...(isLoading ? { disabled: true } : {}),
+    ...saveButtonPropsFromProps,
+  };
 
-    const saveButtonProps: SaveButtonProps = {
-        ...(isLoading ? { disabled: true } : {}),
-        ...saveButtonPropsFromProps,
-    };
+  const defaultHeaderButtons = (
+    <>
+      {autoSaveProps && <AutoSaveIndicator {...autoSaveProps} />}
+      {hasList && <ListButton {...listButtonProps} />}
+      <RefreshButton {...refreshButtonProps} />
+    </>
+  );
 
-    const defaultHeaderButtons = (
-        <>
-            {autoSaveProps && <AutoSaveIndicator {...autoSaveProps} />}
-            {hasList && <ListButton {...listButtonProps} />}
-            <RefreshButton {...refreshButtonProps} />
-        </>
+  const defaultFooterButtons = (
+    <>
+      {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
+      <SaveButton {...saveButtonProps} />
+    </>
+  );
+
+  const buttonBack =
+    goBackFromProps === false || goBackFromProps === null ? null : (
+      <ActionIcon
+        onClick={
+          action !== "list" && typeof action !== "undefined"
+            ? routerType === "legacy"
+              ? goBack
+              : back
+            : undefined
+        }
+      >
+        {typeof goBackFromProps !== "undefined" ? (
+          goBackFromProps
+        ) : (
+          <IconArrowLeft />
+        )}
+      </ActionIcon>
     );
 
-    const defaultFooterButtons = (
-        <>
-            {isDeleteButtonVisible && <DeleteButton {...deleteButtonProps} />}
-            <SaveButton {...saveButtonProps} />
-        </>
-    );
+  const headerButtons = headerButtonsFromProps
+    ? typeof headerButtonsFromProps === "function"
+      ? headerButtonsFromProps({
+          defaultButtons: defaultHeaderButtons,
+          listButtonProps,
+          refreshButtonProps,
+        })
+      : headerButtonsFromProps
+    : defaultHeaderButtons;
 
-    const buttonBack =
-        (goBackFromProps === false || goBackFromProps === null) ? null : (
-            <ActionIcon
-                onClick={
-                    action !== "list" && typeof action !== "undefined"
-                        ? routerType === "legacy"
-                            ? goBack
-                            : back
-                        : undefined
-                }
-            >
-                {typeof goBackFromProps !== "undefined" ? (
-                    goBackFromProps
-                ) : (
-                    <IconArrowLeft />
+  const footerButtons = footerButtonsFromProps
+    ? typeof footerButtonsFromProps === "function"
+      ? footerButtonsFromProps({
+          defaultButtons: defaultFooterButtons,
+          deleteButtonProps,
+          saveButtonProps,
+        })
+      : footerButtonsFromProps
+    : defaultFooterButtons;
+
+  return (
+    <Card p="md" {...wrapperProps}>
+      <LoadingOverlay visible={loadingOverlayVisible} />
+      <Group justify="space-between" {...headerProps}>
+        <Stack gap="xs">
+          {breadcrumbComponent}
+          <Group gap="xs">
+            {buttonBack}
+            {title ?? (
+              <Title order={3} className={RefinePageHeaderClassNames.Title}>
+                {translate(
+                  `${identifier}.titles.edit`,
+                  `Edit ${getUserFriendlyName(
+                    resource?.meta?.label ??
+                      resource?.options?.label ??
+                      resource?.label ??
+                      identifier,
+                    "singular",
+                  )}`,
                 )}
-            </ActionIcon>
-        );
-
-    const headerButtons = headerButtonsFromProps
-        ? typeof headerButtonsFromProps === "function"
-            ? headerButtonsFromProps({
-                  defaultButtons: defaultHeaderButtons,
-                  listButtonProps,
-                  refreshButtonProps,
-              })
-            : headerButtonsFromProps
-        : defaultHeaderButtons;
-
-    const footerButtons = footerButtonsFromProps
-        ? typeof footerButtonsFromProps === "function"
-            ? footerButtonsFromProps({
-                  defaultButtons: defaultFooterButtons,
-                  deleteButtonProps,
-                  saveButtonProps,
-              })
-            : footerButtonsFromProps
-        : defaultFooterButtons;
-
-    return (
-        <Card p="md" {...wrapperProps}>
-            <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group justify="space-between" {...headerProps}>
-                <Stack gap="xs">
-                    {breadcrumbComponent}
-                    <Group gap="xs">
-                        {buttonBack}
-                        {title ?? (
-                            <Title
-                                order={3}
-                                className={RefinePageHeaderClassNames.Title}
-                            >
-                                {translate(
-                                    `${identifier}.titles.edit`,
-                                    `Edit ${getUserFriendlyName(
-                                        resource?.meta?.label ??
-                                            resource?.options?.label ??
-                                            resource?.label ??
-                                            identifier,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Title>
-                        )}
-                    </Group>
-                </Stack>
-                <Group gap="xs" {...headerButtonProps}>
-                    {headerButtons}
-                </Group>
-            </Group>
-            <Box pt="sm" {...contentProps}>
-                {children}
-            </Box>
-            <Group justify="right" gap="xs" mt="md" {...footerButtonProps}>
-                {footerButtons}
-            </Group>
-        </Card>
-    );
+              </Title>
+            )}
+          </Group>
+        </Stack>
+        <Group gap="xs" {...headerButtonProps}>
+          {headerButtons}
+        </Group>
+      </Group>
+      <Box pt="sm" {...contentProps}>
+        {children}
+      </Box>
+      <Group justify="right" gap="xs" mt="md" {...footerButtonProps}>
+        {footerButtons}
+      </Group>
+    </Card>
+  );
 };
