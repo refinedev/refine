@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "organizeImports": {
-    "enabled": true
+    "enabled": false
   },
   "files": {
     "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
@@ -116,16 +116,5 @@
         "useValidTypeof": "off"
       }
     }
-  },
-  "overrides": [
-    {
-      "include": [
-        "documentation/docs/**/*.{md,mdx,tsx,js,ts}",
-        "documentation/blog/**/*.{md,mdx,tsx,js,ts}"
-      ],
-      "formatter": {
-        "lineWidth": 120
-      }
-    }
-  ]
+  }
 }
