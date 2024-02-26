@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-29-router-nav
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 React Router version 6 shipped recently with several new features and improvements. One such feature is the `Navigate` component. It is the component equivalent of the `useNavigate` hook.
@@ -16,11 +15,12 @@ React Router version 6 shipped recently with several new features and improvemen
 This article will take a deep dive into the `Navigate` component.
 
 Steps we'll cover:
+
 - [Getting started with React router](#getting-started-with-react-router)
 - [Installing React router](#installing-react-router)
 - [Setting up React router](#setting-up-react-router)
 - [Setting up routes](#setting-up-routes)
-- [How to use the  `Navigate` component](#how-to-use-the--navigate-component)
+- [How to use the `Navigate` component](#how-to-use-the--navigate-component)
 
 ## Prerequisites
 
@@ -31,6 +31,7 @@ To run the examples in this article, you need to have some following.
 ## Getting started with React router
 
 In this section, you will learn how to set up React router in an existing React project.
+
 ## Installing React router
 
 Depending on your package manager, install React router from the NPM package registry using one of the commands below.
@@ -65,17 +66,17 @@ root.render(
     <Router>
       <App />
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
-##  Setting up routes
+## Setting up routes
 
 In React router version 6, you can use the `Routes` and `Route` Components to set up the routes in your application. You can import and use them like so:
 
 ```tsx
 import { Route, Routes } from "react-router-dom";
-import { Home, Blog } from "./components"
+import { Home, Blog } from "./components";
 
 function App() {
   return (
@@ -89,9 +90,7 @@ function App() {
 }
 ```
 
-
-
-## How to use the  `Navigate` component
+## How to use the `Navigate` component
 
 The `Navigate` component is one of the several built-in components in React router version 6. It is a wrapper for the `useNavigate` hook, and the current location changes when you render it.
 
@@ -99,12 +98,12 @@ The `Navigate` component is one of the several built-in components in React rout
 import { Navigate } from "react-router-dom";
 ```
 
-Import `Navigate` from `react-router-dom` to start using it. The `Navigate` component takes up to three `props`, only one of which is required. The other two are optional. 
+Import `Navigate` from `react-router-dom` to start using it. The `Navigate` component takes up to three `props`, only one of which is required. The other two are optional.
 
 Below are the explanations for these three `props`.
 
 ```tsx
-<Navigate to="/dashboard" state={{ todos: []}} replace={true} />
+<Navigate to="/dashboard" state={{ todos: [] }} replace={true} />
 ```
 
 - `to` - A required prop. Its value should be the path which you want to navigate.
@@ -181,4 +180,4 @@ The `props` you pass to the `Navigate` component are the same as the arguments r
 
 `Navigate` component is one of the built-in components that shipped with React router version 6. It is a React component equivalent of the `useNavigate` hook. It uses `useNavigate` internally. The props you pass to `Navigate` are the same as the arguments you pass to the function returned by `useNavigate`.
 
-Unlike functional components in React, ES6 classes do not support hooks. Therefore,  `Navigate` is a handy equivalent of  `useNavigate` when working with class-based React components.  
+Unlike functional components in React, ES6 classes do not support hooks. Therefore, `Navigate` is a handy equivalent of `useNavigate` when working with class-based React components.

@@ -50,7 +50,14 @@ module.exports = {
 Let's start with the initialization of the Refine app in the `app/root.tsx` file:
 
 ```tsx title=app/root.tsx
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
@@ -456,7 +463,10 @@ export async function login({ username, password }: LoginForm) {
   }
 }
 
-export async function requireUserId(request: Request, redirectTo: string = new URL(request.url).pathname) {
+export async function requireUserId(
+  request: Request,
+  redirectTo: string = new URL(request.url).pathname,
+) {
   try {
     const user = await authProvider.check?.({ request, storage });
     return user;
@@ -511,11 +521,17 @@ const LoginPage: React.FC = () => {
     <>
       <h1>{translate("pages.login.title", "Sign in your account")}</h1>
       <form method="post">
-        <input type="hidden" name="redirectTo" value={searchParams.get("to") ?? undefined} />
+        <input
+          type="hidden"
+          name="redirectTo"
+          value={searchParams.get("to") ?? undefined}
+        />
         <table>
           <tbody>
             <tr>
-              <td>{translate("pages.login.username", undefined, "username")}:</td>
+              <td>
+                {translate("pages.login.username", undefined, "username")}:
+              </td>
               <td>
                 <input
                   name="username"
@@ -530,7 +546,9 @@ const LoginPage: React.FC = () => {
               </td>
             </tr>
             <tr>
-              <td>{translate("pages.login.password", undefined, "password")}:</td>
+              <td>
+                {translate("pages.login.password", undefined, "password")}:
+              </td>
               <td>
                 <input type="password" name="password" required size={20} />
               </td>
@@ -756,7 +774,11 @@ const anyUsefulMeta = params?.resource?.meta?.yourUsefulMeta;
 
 export const accessControlProvider = {
   can: async ({ resource, action, params }) => {
-    if (resourceName === "posts" && anyUsefulMeta === true && action === "edit") {
+    if (
+      resourceName === "posts" &&
+      anyUsefulMeta === true &&
+      action === "edit"
+    ) {
       return {
         can: false,
         reason: "Unauthorized",

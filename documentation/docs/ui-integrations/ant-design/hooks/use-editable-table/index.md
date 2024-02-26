@@ -142,8 +142,14 @@ import {
 } from "antd";
 
 export const PostList: React.FC = () => {
-  const { tableProps, formProps, isEditing, saveButtonProps, cancelButtonProps, editButtonProps } =
-    useEditableTable<IPost>();
+  const {
+    tableProps,
+    formProps,
+    isEditing,
+    saveButtonProps,
+    cancelButtonProps,
+    editButtonProps,
+  } = useEditableTable<IPost>();
 
   return (
     <List>

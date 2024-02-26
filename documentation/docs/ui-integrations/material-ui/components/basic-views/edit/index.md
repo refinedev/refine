@@ -33,7 +33,11 @@ const SampleEdit = () => {
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("id", {
             required: "This field is required",
@@ -76,12 +80,14 @@ const SampleEdit = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField
@@ -347,7 +353,9 @@ render(
         list: () => (
           <div>
             <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId="123">Edit Item 123</RefineMui.EditButton>
+            <RefineMui.EditButton recordItemId="123">
+              Edit Item 123
+            </RefineMui.EditButton>
           </div>
         ),
         edit: PostEdit,
@@ -447,7 +455,11 @@ const SampleEdit = () => {
       // highlight-next-line
       mutationMode="undoable"
     >
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("id", {
             required: "This field is required",
@@ -490,12 +502,14 @@ const SampleEdit = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField
@@ -929,7 +943,9 @@ const PostEdit: React.FC = () => {
       headerButtons={({ refreshButtonProps, listButtonProps }) => (
         <>
           <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
-          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
+          {listButtonProps && (
+            <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button type="primary">Custom Button</Button>
         </>
       )}
@@ -1084,7 +1100,9 @@ const PostEdit: React.FC = () => {
         <>
           <Button type="primary">Custom Button</Button>
           <SaveButton {...saveButtonProps} hideText />
-          {deleteButtonProps && <DeleteButton {...deleteButtonProps} hideText />}
+          {deleteButtonProps && (
+            <DeleteButton {...deleteButtonProps} hideText />
+          )}
         </>
       )}
       // highlight-end
@@ -1215,7 +1233,11 @@ const SampleEdit = () => {
       // highlight-next-line
       autoSaveProps={autoSaveProps}
     >
-      <Box component="form" sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column" }}
+        autoComplete="off"
+      >
         <TextField
           {...register("id", {
             required: "This field is required",
@@ -1258,12 +1280,14 @@ const SampleEdit = () => {
               }}
               getOptionLabel={(item) => {
                 return (
-                  categoryAutocompleteProps?.options?.find((p) => p?.id?.toString() === item?.id?.toString())?.title ??
-                  ""
+                  categoryAutocompleteProps?.options?.find(
+                    (p) => p?.id?.toString() === item?.id?.toString(),
+                  )?.title ?? ""
                 );
               }}
               isOptionEqualToValue={(option, value) =>
-                value === undefined || option?.id?.toString() === (value?.id ?? value)?.toString()
+                value === undefined ||
+                option?.id?.toString() === (value?.id ?? value)?.toString()
               }
               renderInput={(params) => (
                 <TextField
@@ -1316,13 +1340,14 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
   const { dataGridProps } = RefineMui.useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-    resource: "categories",
-    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-    queryOptions: {
-      enabled: !!dataGridProps?.rows,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    RefineCore.useMany({
+      resource: "categories",
+      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+      queryOptions: {
+        enabled: !!dataGridProps?.rows,
+      },
+    });
 
   const columns = React.useMemo<GridColDef<any>[]>(
     () => [
@@ -1347,7 +1372,11 @@ const SampleList = () => {
         },
         minWidth: 300,
         renderCell: function render({ value }) {
-          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+          return categoryIsLoading ? (
+            <>Loading...</>
+          ) : (
+            categoryData?.data?.find((item) => item.id === value)?.title
+          );
         },
       },
       {
@@ -1387,7 +1416,9 @@ const Wrapper = ({ children }) => {
   return (
     <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
       <MuiMaterial.CssBaseline />
-      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <MuiMaterial.GlobalStyles
+        styles={{ html: { WebkitFontSmoothing: "auto" } }}
+      />
       {children}
     </MuiMaterial.ThemeProvider>
   );

@@ -22,10 +22,14 @@ const ProductList: React.FC = () => {
   //highlight-next-line
   const [value, setValue] = useState("Cotton");
 
-  const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteList<
-    IProduct,
-    HttpError
-  >({
+  const {
+    data,
+    isLoading,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteList<IProduct, HttpError>({
     resource: "products",
     //highlight-start
     filters: [

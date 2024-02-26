@@ -141,7 +141,12 @@ As a best-practice, we suggest writing your queries/mutations in a separate file
 import gql from "graphql-tag";
 
 export const POSTS_LIST_QUERY = gql`
-  query PostsList($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {
+  query PostsList(
+    $offset: Int!
+    $limit: Int!
+    $order_by: [posts_order_by!]
+    $where: posts_bool_exp
+  ) {
     posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {
       id
       title
@@ -213,7 +218,11 @@ const { tableProps } = useTable<GetFieldsFromList<PostsListQuery>>({
   meta: { gqlQuery: POSTS_LIST_QUERY },
 });
 
-const { formProps } = useForm<GetFields<PostEditMutation>, HttpError, GetVariables<PostEditVariables>>({
+const { formProps } = useForm<
+  GetFields<PostEditMutation>,
+  HttpError,
+  GetVariables<PostEditVariables>
+>({
   meta: { gqlMutation: POST_EDIT_MUTATION },
 });
 ```
@@ -292,7 +301,12 @@ GetFields<PostCreateMutation>; // { id: string; }
 Let's say you have the following query:
 
 ```graphql
-query PostsList($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {
+query PostsList(
+  $offset: Int!
+  $limit: Int!
+  $order_by: [posts_order_by!]
+  $where: posts_bool_exp
+) {
   posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {
     id
     posts_aggregate(where: $where) {
@@ -309,7 +323,10 @@ This query will generate the following type:
 ```ts
 export type PostsListQuery = {
   posts: Array<
-    Pick<Types.Posts, "id" | "title" | "content" | "category_id" | "created_at"> & {
+    Pick<
+      Types.Posts,
+      "id" | "title" | "content" | "category_id" | "created_at"
+    > & {
       category?: Types.Maybe<Pick<Types.Categories, "id" | "title">>;
     }
   >;
@@ -368,7 +385,11 @@ PostCreateVariables; // { title: string; content: string; }
 ```tsx title="app.tsx"
 import Refine from "@refinedev/core";
 // highlight-next-line
-import dataProvider, { GraphQLClient, liveProvider, graphqlWS } from "@refinedev/hasura";
+import dataProvider, {
+  GraphQLClient,
+  liveProvider,
+  graphqlWS,
+} from "@refinedev/hasura";
 
 const client = new GraphQLClient("<API_URL>", {
   headers: {

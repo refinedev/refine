@@ -227,7 +227,8 @@ const dataProvider: DataProvider = {
   createMany: ({ resource, variables, meta }) => Promise,
   deleteMany: ({ resource, ids, variables, meta }) => Promise,
   updateMany: ({ resource, ids, variables, meta }) => Promise,
-  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
+  custom: ({ url, method, filters, sorters, payload, query, headers, meta }) =>
+    Promise,
 };
 ```
 
@@ -398,7 +399,16 @@ It's useful if you have non-standard REST API endpoints or want to make a connec
 Refine will consume this method using the [`useCustom`][use-custom] data hook.
 
 ```ts
-custom: async ({ url, method, filters, sorters, payload, query, headers, meta }) => {
+custom: async ({
+  url,
+  method,
+  filters,
+  sorters,
+  payload,
+  query,
+  headers,
+  meta,
+}) => {
   // You can handle the request according to your API requirements.
 
   return {

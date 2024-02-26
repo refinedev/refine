@@ -23,8 +23,15 @@ export const Header: React.FC = () => {
         backgroundColor: "#FFF",
       }}
     >
-      <AutoComplete style={{ width: "100%", maxWidth: "550px" }} filterOption={false}>
-        <Input size="large" placeholder="Search posts or categories" suffix={<SearchOutlined />} />
+      <AutoComplete
+        style={{ width: "100%", maxWidth: "550px" }}
+        filterOption={false}
+      >
+        <Input
+          size="large"
+          placeholder="Search posts or categories"
+          suffix={<SearchOutlined />}
+        />
       </AutoComplete>
     </Layout.Header>
   );
@@ -138,7 +145,9 @@ export const Header: React.FC = () => {
     queryOptions: {
       enabled: false,
       onSuccess: (data) => {
-        const postOptionGroup = data.data.map((item) => renderItem(item.title, "posts", item.id));
+        const postOptionGroup = data.data.map((item) =>
+          renderItem(item.title, "posts", item.id),
+        );
         if (postOptionGroup.length > 0) {
           setOptions([
             {
@@ -169,7 +178,11 @@ export const Header: React.FC = () => {
         options={options}
         onSearch={(value: string) => setValue(value)}
       >
-        <Input size="large" placeholder="Search posts or categories" suffix={<SearchOutlined />} />
+        <Input
+          size="large"
+          placeholder="Search posts or categories"
+          suffix={<SearchOutlined />}
+        />
       </AutoComplete>
     </Layout.Header>
   );

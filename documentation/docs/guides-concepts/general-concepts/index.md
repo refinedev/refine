@@ -90,7 +90,9 @@ import { DataProvider } from "@refinedev/core";
 
 const myDataProvider: DataProvider = {
   getOne: async ({ resource, id }) => {
-    const response = await fetch(`https://example.com/api/v1/${resource}/${id}`);
+    const response = await fetch(
+      `https://example.com/api/v1/${resource}/${id}`,
+    );
     const data = await response.json();
 
     return { data };
@@ -217,7 +219,9 @@ const myAccessControlProvider: AccessControlProvider = {
 };
 
 export const App = () => {
-  return <Refine accessControlProvider={myAccessControlProvider}>{/* ... */}</Refine>;
+  return (
+    <Refine accessControlProvider={myAccessControlProvider}>{/* ... */}</Refine>
+  );
 };
 ```
 
@@ -233,7 +237,12 @@ export const MyPage = () => {
     <CanAccess resource="users" action="show" params={{ id: 1 }}>
       <>
         My Page
-        <CanAccess resource="users" action="block" params={{ id: 1 }} fallback={"You are not authorized."}>
+        <CanAccess
+          resource="users"
+          action="block"
+          params={{ id: 1 }}
+          fallback={"You are not authorized."}
+        >
           // Only authorized users can see this button.
           <BlockUserButton />
         </CanAccess>
@@ -251,8 +260,16 @@ You can use `useCan` hook to control access in your components.
 import { ErrorComponent, useCan } from "@refinedev/core";
 
 export const MyPage = () => {
-  const { data: show } = useCan({ resource: "users", action: "show", params: { id: 1 } });
-  const { data: block } = useCan({ resource: "users", action: "block", params: { id: 1 } });
+  const { data: show } = useCan({
+    resource: "users",
+    action: "show",
+    params: { id: 1 },
+  });
+  const { data: block } = useCan({
+    resource: "users",
+    action: "block",
+    params: { id: 1 },
+  });
 
   if (!show?.can) {
     return <ErrorComponent />;
@@ -496,9 +513,12 @@ const auditLogProvider: AuditLogProvider = {
   get: async (params) => {
     const { resource, meta, action, author, metaData } = params;
 
-    const response = await fetch(`https://example.com/api/audit-logs/${resource}/${meta.id}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `https://example.com/api/audit-logs/${resource}/${meta.id}`,
+      {
+        method: "GET",
+      },
+    );
 
     const data = await response.json();
 
@@ -849,7 +869,9 @@ const Component = () => {
     .data("default") // Name of the data provider
     .resource("products") // Identifier of the resource
     .action("list") // Type of the operation
-    .params({ filters: [{ field: "title", operator: "contains", value: "test" }] }) // Parameters of the operation
+    .params({
+      filters: [{ field: "title", operator: "contains", value: "test" }],
+    }) // Parameters of the operation
     .get();
 
   console.log(generatedKey);

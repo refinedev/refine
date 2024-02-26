@@ -57,7 +57,11 @@ const authProvider = {
   getIdentity: async () => null,
 };
 
-import { useMany as CoreUseMany, useShow as RefineCoreUseShow, useOne as RefineCoreUseOne } from "@refinedev/core";
+import {
+  useMany as CoreUseMany,
+  useShow as RefineCoreUseShow,
+  useOne as RefineCoreUseOne,
+} from "@refinedev/core";
 import {
   List as RefineAntdList,
   TextField as RefineAntdTextField,
@@ -91,7 +95,8 @@ const PostList: React.FC = () => {
     },
   });
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
   const { data, isLoading } = CoreUseMany<ICategory>({
     resource: "61c43adc284ac",
     ids: categoryIds,
@@ -118,7 +123,11 @@ const PostList: React.FC = () => {
               return <RefineAntdTextField value="Loading..." />;
             }
 
-            return <RefineAntdTextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <RefineAntdTextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <AntdTable.Column<IPost>
@@ -126,8 +135,16 @@ const PostList: React.FC = () => {
           dataIndex="actions"
           render={(_, record) => (
             <AntdSpace>
-              <RefineAntdEditButton hideText size="small" recordItemId={record.id} />
-              <RefineAntdShowButton hideText size="small" recordItemId={record.id} />
+              <RefineAntdEditButton
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
+              <RefineAntdShowButton
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
             </AntdSpace>
           )}
         />
@@ -187,7 +204,8 @@ const PostCreate: React.FC = () => {
 };
 
 const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } =
+    RefineAntdUseForm<IPost>();
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
@@ -243,24 +261,29 @@ const PostShow: React.FC = () => {
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = RefineCoreUseOne<ICategory>({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    RefineCoreUseOne<ICategory>({
+      resource: "categories",
+      id: record?.category?.id || "",
+      queryOptions: {
+        enabled: !!record,
+      },
+    });
 
   return (
     <RefineAntdShow isLoading={isLoading}>
       <AntdTypography.Title level={5}>Id</AntdTypography.Title>
       <AntdTypography.Text>{record?.id}</AntdTypography.Text>
 
-      <AntdTypography.Title level={5}>AntdTypography.Title</AntdTypography.Title>
+      <AntdTypography.Title level={5}>
+        AntdTypography.Title
+      </AntdTypography.Title>
       <AntdTypography.Text>{record?.title}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Category</AntdTypography.Title>
-      <AntdTypography.Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</AntdTypography.Text>
+      <AntdTypography.Text>
+        {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+      </AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Content</AntdTypography.Title>
       <AntdTypography.Text>{record?.content}</AntdTypography.Text>
@@ -361,7 +384,10 @@ setInitialRoutes(["/"]);
 // src/App.tsx
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+  CatchAllNavigate,
+  NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
@@ -419,7 +445,10 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="61c43ad33b857" />}
+              />
 
               <Route path="/posts">
                 <Route index element={<PostList />} />
@@ -513,7 +542,14 @@ Now that we've created our collections, we can create and list documents. Let's 
 
 ```tsx
 import { useMany } from "@refinedev/core";
-import { List, TextField, useTable, EditButton, ShowButton, getDefaultSortOrder } from "@refinedev/antd";
+import {
+  List,
+  TextField,
+  useTable,
+  EditButton,
+  ShowButton,
+  getDefaultSortOrder,
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "interfaces";
@@ -530,7 +566,8 @@ export const PostsList: React.FC = () => {
     },
   });
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "61bc4afa9ee2c",
     ids: categoryIds,
@@ -542,7 +579,12 @@ export const PostsList: React.FC = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="ID" sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
+        <Table.Column
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
         <Table.Column dataIndex="title" title="Title" sorter />
         <Table.Column
           dataIndex="categoryId"
@@ -552,7 +594,11 @@ export const PostsList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <Table.Column<IPost>
@@ -578,7 +624,10 @@ export const PostsList: React.FC = () => {
 setInitialRoutes(["/"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+  CatchAllNavigate,
+  NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
@@ -641,7 +690,10 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="61c43ad33b857" />}
+              />
 
               <Route path="/posts">
                 <Route index element={<PostList />} />
@@ -760,7 +812,12 @@ export const PostsCreate: React.FC = () => {
           <MDEditor data-color-mode="light" />
         </Form.Item>
         <Form.Item label="Images">
-          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
             <Upload.Dragger
               name="file"
               listType="picture"
@@ -769,7 +826,11 @@ export const PostsCreate: React.FC = () => {
                 try {
                   const rcFile = file as RcFile;
 
-                  const { $id } = await storage.createFile("default", rcFile.name, rcFile);
+                  const { $id } = await storage.createFile(
+                    "default",
+                    rcFile.name,
+                    rcFile,
+                  );
 
                   const url = storage.getFileView("default", $id);
 
@@ -779,7 +840,9 @@ export const PostsCreate: React.FC = () => {
                 }
               }}
             >
-              <p className="ant-upload-text">Drag &amp; drop a file in this area</p>
+              <p className="ant-upload-text">
+                Drag &amp; drop a file in this area
+              </p>
             </Upload.Dragger>
           </Form.Item>
         </Form.Item>
@@ -796,7 +859,10 @@ export const PostsCreate: React.FC = () => {
 setInitialRoutes(["/posts/create"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+  CatchAllNavigate,
+  NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
@@ -859,7 +925,10 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="61c43ad33b857" />}
+              />
 
               <Route path="/posts">
                 <Route index element={<PostList />} />
@@ -996,7 +1065,12 @@ export const PostsEdit: React.FC = () => {
           <MDEditor data-color-mode="light" />
         </Form.Item>
         <Form.Item label="Images">
-          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
             <Upload.Dragger
               name="file"
               listType="picture"
@@ -1005,7 +1079,11 @@ export const PostsEdit: React.FC = () => {
                 try {
                   const rcFile = file as RcFile;
 
-                  const { $id } = await storage.createFile("default", rcFile.name, rcFile);
+                  const { $id } = await storage.createFile(
+                    "default",
+                    rcFile.name,
+                    rcFile,
+                  );
 
                   const url = storage.getFileView("default", $id);
 
@@ -1015,7 +1093,9 @@ export const PostsEdit: React.FC = () => {
                 }
               }}
             >
-              <p className="ant-upload-text">Drag &amp; drop a file in this area</p>
+              <p className="ant-upload-text">
+                Drag &amp; drop a file in this area
+              </p>
             </Upload.Dragger>
           </Form.Item>
         </Form.Item>
@@ -1032,7 +1112,10 @@ export const PostsEdit: React.FC = () => {
 setInitialRoutes(["/posts/edit/61c4697ab9ff9"]);
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, {
+  CatchAllNavigate,
+  NavigateToResource,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
@@ -1095,7 +1178,10 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="61c43ad33b857" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="61c43ad33b857" />}
+              />
 
               <Route path="/posts">
                 <Route index element={<PostList />} />

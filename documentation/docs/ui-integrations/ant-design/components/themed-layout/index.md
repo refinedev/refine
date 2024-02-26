@@ -651,7 +651,11 @@ const App = () => {
     <Refine
     /* ... */
     >
-      <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
+      <ThemedLayoutV2
+        Header={ThemedHeaderV2}
+        Sider={ThemedSiderV2}
+        Title={ThemedTitleV2}
+      >
         /* ... */
       </ThemedLayoutV2>
     </Refine>
@@ -694,7 +698,11 @@ setInitialRoutes(["/"]);
 
 import { Refine } from "@refinedev/core";
 // highlight-next-line
-import { ThemedLayoutV2, RefineThemes, useThemedLayoutContext } from "@refinedev/antd";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  useThemedLayoutContext,
+} from "@refinedev/antd";
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -709,11 +717,19 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 // highlight-start
 const DashboardPage = () => {
-  const { siderCollapsed, setSiderCollapsed, mobileSiderOpen, setMobileSiderOpen } = useThemedLayoutContext();
+  const {
+    siderCollapsed,
+    setSiderCollapsed,
+    mobileSiderOpen,
+    setMobileSiderOpen,
+  } = useThemedLayoutContext();
 
   return (
     <Space style={{ paddingTop: 30 }}>
-      <Button type="primary" onClick={() => setMobileSiderOpen(!mobileSiderOpen)}>
+      <Button
+        type="primary"
+        onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
+      >
         toggle mobile sider
       </Button>
       <Button type="primary" onClick={() => setSiderCollapsed(!siderCollapsed)}>

@@ -40,7 +40,10 @@ export const ListPage: React.FC = () => {
       <Col lg={6} xs={24}>
         <Form layout="vertical" {...searchFormProps}>
           <Form.Item label="Search" name="q">
-            <Input placeholder="ID, Title, Content, etc." prefix={<SearchOutlined />} />
+            <Input
+              placeholder="ID, Title, Content, etc."
+              prefix={<SearchOutlined />}
+            />
           </Form.Item>
           <Form.Item label="Created At" name="createdAt">
             <RangePicker />

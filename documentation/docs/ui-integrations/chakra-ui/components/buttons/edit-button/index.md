@@ -15,7 +15,11 @@ setRefineProps({
 });
 
 const Wrapper = ({ children }) => {
-  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
+  return (
+    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </ChakraUI.ChakraProvider>
+  );
 };
 
 const EditPage = () => {
@@ -29,7 +33,11 @@ const EditPage = () => {
       </ChakraUI.Text>
       <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
 
-      <ChakraUI.Button size="sm" onClick={() => list("posts")} colorScheme="green">
+      <ChakraUI.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
         Go back
       </ChakraUI.Button>
     </ChakraUI.VStack>
@@ -58,7 +66,15 @@ import {
   // highlight-next-line
   EditButton,
 } from "@refinedev/chakra-ui";
-import { TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import {
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
@@ -109,7 +125,11 @@ const PostList: React.FC = () => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <Th key={header.id}>
-                      {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                      {!header.isPlaceholder &&
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </Th>
                   );
                 })}
@@ -121,7 +141,14 @@ const PostList: React.FC = () => {
               return (
                 <Tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
-                    return <Td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</Td>;
+                    return (
+                      <Td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </Td>
+                    );
                   })}
                 </Tr>
               );
@@ -213,7 +240,9 @@ import { Refine } from "@refinedev/core";
 import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
-  return <EditButton colorScheme="black" resource="categories" recordItemId="2" />;
+  return (
+    <EditButton colorScheme="black" resource="categories" recordItemId="2" />
+  );
 };
 // visible-block-end
 
@@ -305,7 +334,9 @@ The `accessControl` prop can be used to skip the access control check with its `
 import { EditButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
-  return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

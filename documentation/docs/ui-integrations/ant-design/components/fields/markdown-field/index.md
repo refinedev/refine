@@ -60,7 +60,9 @@ render(
         list: () => (
           <div>
             <p>This page is empty.</p>
-            <RefineAntd.ShowButton recordItemId="123">Show Item 123</RefineAntd.ShowButton>
+            <RefineAntd.ShowButton recordItemId="123">
+              Show Item 123
+            </RefineAntd.ShowButton>
           </div>
         ),
         show: SampleShow,

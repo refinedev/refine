@@ -215,7 +215,10 @@ return (
       },
     ]}
   >
-    <MDEditor commands={[commands.bold, commands.italic, help]} data-color-mode="light" />
+    <MDEditor
+      commands={[commands.bold, commands.italic, help]}
+      data-color-mode="light"
+    />
   </Form.Item>
 );
 ```
@@ -231,7 +234,10 @@ execute: () => {
 Then, we pass it to the `commands` array on the `MDEditor` component:
 
 ```tsx
-<MDEditor commands={[commands.bold, commands.italic, help]} data-color-mode="light" />
+<MDEditor
+  commands={[commands.bold, commands.italic, help]}
+  data-color-mode="light"
+/>
 ```
 
  <div className="centered-image">
@@ -251,7 +257,12 @@ We can add custom extra commands using the same approach as the `commands` prop.
 ```tsx
 <MDEditor
   commands={[commands.bold, commands.italic, help]}
-  extraCommands={[commands.title1, commands.title2, commands.codePreview, commands.codeEdit]}
+  extraCommands={[
+    commands.title1,
+    commands.title2,
+    commands.codePreview,
+    commands.codeEdit,
+  ]}
   data-color-mode="light"
 />
 ```
@@ -350,14 +361,20 @@ Then, we'll configure the editor to format and preview kaTeX expressions as math
         const txt = children[0] || "";
         if (inline) {
           if (typeof txt === "string" && /^\$\$(.*)\$\$/.test(txt)) {
-            const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, "$1"), {
-              throwOnError: false,
-            });
+            const html = katex.renderToString(
+              txt.replace(/^\$\$(.*)\$\$/, "$1"),
+              {
+                throwOnError: false,
+              },
+            );
             return <code dangerouslySetInnerHTML={{ __html: html }} />;
           }
           return <code>{txt}</code>;
         }
-        const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
+        const code =
+          props.node && props.node.children
+            ? getCodeString(props.node.children)
+            : txt;
         if (
           typeof code === "string" &&
           typeof className === "string" &&
@@ -366,7 +383,12 @@ Then, we'll configure the editor to format and preview kaTeX expressions as math
           const html = katex.renderToString(code, {
             throwOnError: false,
           });
-          return <code style={{ fontSize: "150%" }} dangerouslySetInnerHTML={{ __html: html }} />;
+          return (
+            <code
+              style={{ fontSize: "150%" }}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          );
         }
         return <code className={String(className)}>{txt}</code>;
       },

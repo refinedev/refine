@@ -14,7 +14,14 @@ const ProductCreate: React.FC = () => {
     resource: "categories",
   });
 
-  return <Select label="Category" placeholder="Select a category" withinPortal {...selectProps} />;
+  return (
+    <Select
+      label="Category"
+      placeholder="Select a category"
+      withinPortal
+      {...selectProps}
+    />
+  );
 };
 // visible-block-end
 setRefineProps({

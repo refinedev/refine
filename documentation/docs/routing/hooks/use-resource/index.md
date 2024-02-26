@@ -84,10 +84,22 @@ Identifier value for the current resource, this can either be the `identifier` p
 
 ```ts
 interface IResourceComponents {
-  list?: string | React.ComponentType<any> | { component: React.ComponentType<any>; path: string };
-  create?: string | React.ComponentType<any> | { component: React.ComponentType<any>; path: string };
-  edit?: string | React.ComponentType<any> | { component: React.ComponentType<any>; path: string };
-  show?: string | React.ComponentType<any> | { component: React.ComponentType<any>; path: string };
+  list?:
+    | string
+    | React.ComponentType<any>
+    | { component: React.ComponentType<any>; path: string };
+  create?:
+    | string
+    | React.ComponentType<any>
+    | { component: React.ComponentType<any>; path: string };
+  edit?:
+    | string
+    | React.ComponentType<any>
+    | { component: React.ComponentType<any>; path: string };
+  show?:
+    | string
+    | React.ComponentType<any>
+    | { component: React.ComponentType<any>; path: string };
 }
 
 interface IResourceItem extends IResourceComponents {

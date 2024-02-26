@@ -269,7 +269,10 @@ The `useSession()` React Hook in the NextAuth.js client is the easiest way to ch
 ```ts title="pages/_app.jsx"
 import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps: { session, ...pageProps } }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
@@ -301,19 +304,35 @@ export default function Home() {
         <h1 className={styles.title}>My Blog</h1>
         <div className={styles.row}>
           <div className={styles.blogCard}>
-            <Image src="/Getting-Started-with-NextJS-Inside.jpeg" alt="blog1" width={300} height={200} />
+            <Image
+              src="/Getting-Started-with-NextJS-Inside.jpeg"
+              alt="blog1"
+              width={300}
+              height={200}
+            />
             <div className={styles.blogCardContent}>
               <h2>Nexjs for Beginers</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quisquam, quidem.
+              </p>
 
               <a href="/blog1">Read More</a>
             </div>
           </div>
           <div className={styles.blogCard}>
-            <Image src="/pasted image 0.png" alt="blog1" width={300} height={200} />
+            <Image
+              src="/pasted image 0.png"
+              alt="blog1"
+              width={300}
+              height={200}
+            />
             <div className={styles.blogCardContent}>
               <h2>Django Full Course</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quisquam, quidem.
+              </p>
 
               <a href="/blog1">Read More</a>
             </div>
@@ -417,19 +436,35 @@ export default function Home() {
           <h1 className={styles.title}>My Blog</h1>
           <div className={styles.row}>
             <div className={styles.blogCard}>
-              <Image src="/Getting-Started-with-NextJS-Inside.jpeg" alt="blog1" width={300} height={200} />
+              <Image
+                src="/Getting-Started-with-NextJS-Inside.jpeg"
+                alt="blog1"
+                width={300}
+                height={200}
+              />
               <div className={styles.blogCardContent}>
                 <h2>Nexjs for Beginers</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, quidem.
+                </p>
 
                 <a href="/blog1">Read More</a>
               </div>
             </div>
             <div className={styles.blogCard}>
-              <Image src="/pasted image 0.png" alt="blog1" width={300} height={200} />
+              <Image
+                src="/pasted image 0.png"
+                alt="blog1"
+                width={300}
+                height={200}
+              />
               <div className={styles.blogCardContent}>
                 <h2>Django Full Course</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, quidem.
+                </p>
 
                 <a href="/blog1">Read More</a>
               </div>
@@ -478,13 +513,15 @@ export default async function handler(req, res) {
       {
         id: 1,
         title: "Blog 1",
-        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.",
+        content:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.",
         image: "/images/blog1.jpg",
       },
       {
         id: 2,
         title: "Blog 2",
-        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.",
+        content:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.",
         image: "/images/blog2.jpg",
       },
     ];

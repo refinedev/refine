@@ -127,7 +127,10 @@ const App: React.FC = () => {
           >
             <Route index element={<NavigateToResource />} />
             <Route path="/posts" element={<div>dummy posts page</div>} />
-            <Route path="/categories" element={<div>dummy categories page</div>} />
+            <Route
+              path="/categories"
+              element={<div>dummy categories page</div>}
+            />
           </Route>
         </Routes>
       </Refine>
@@ -198,7 +201,10 @@ const App: React.FC = () => {
           >
             <Route index element={<NavigateToResource />} />
             <Route path="/posts" element={<div>dummy posts page</div>} />
-            <Route path="/categories" element={<div>dummy categories page</div>} />
+            <Route
+              path="/categories"
+              element={<div>dummy categories page</div>}
+            />
           </Route>
         </Routes>
       </Refine>

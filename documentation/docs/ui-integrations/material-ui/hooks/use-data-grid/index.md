@@ -74,7 +74,8 @@ export const PostsList: React.FC = () => {
   const { dataGridProps } = useDataGrid();
 
   //highlight-start
-  const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } = dataGridProps;
+  const { sortingMode, sortModel, onSortModelChange, ...restDataGridProps } =
+    dataGridProps;
   //highlight-end
 
   return (
@@ -156,7 +157,8 @@ export const PostsList: React.FC = () => {
   const { dataGridProps } = useDataGrid();
 
   //highlight-start
-  const { filterMode, filterModel, onFilterModelChange, ...restDataGridProps } = dataGridProps;
+  const { filterMode, filterModel, onFilterModelChange, ...restDataGridProps } =
+    dataGridProps;
   //highlight-end
 
   return (
@@ -195,7 +197,10 @@ const columns: GridColDef[] = [
 export const PostsList: React.FC = () => {
   const { dataGridProps, setFilters } = useDataGrid();
 
-  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  const handleFilter = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean,
+  ) => {
     setFilters([
       {
         field: "status",
@@ -207,7 +212,10 @@ export const PostsList: React.FC = () => {
 
   return (
     <List>
-      <FormControlLabel label="Filter by Draft Status" control={<Checkbox onChange={handleFilter} />} />
+      <FormControlLabel
+        label="Filter by Draft Status"
+        control={<Checkbox onChange={handleFilter} />}
+      />
       <DataGrid {...dataGridProps} columns={columns} autoHeight />
     </List>
   );

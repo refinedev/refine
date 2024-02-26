@@ -190,9 +190,12 @@ const authProvider: AuthProvider = {
   },
   forgotPassword: async ({ email }) => {
     try {
-      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/update-password`,
-      });
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${window.location.origin}/update-password`,
+        },
+      );
 
       if (error) {
         return {
@@ -349,7 +352,10 @@ Before we start, let's take a look at the `App.tsx` file. This is the root compo
 import { Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { supabaseClient } from "./utility";
@@ -444,7 +450,13 @@ Let's create a `<LoginPage />` component in the `src/pages/login/index.tsx` dire
 import { useState } from "react";
 import { useLogin } from "@refinedev/core";
 
-import { Window, WindowHeader, WindowContent, TextInput, Button } from "react95";
+import {
+  Window,
+  WindowHeader,
+  WindowContent,
+  TextInput,
+  Button,
+} from "react95";
 
 interface ILoginForm {
   email: string;
@@ -474,7 +486,11 @@ export const LoginPage = () => {
           <span> Refine Login</span>
         </WindowHeader>
         <div style={{ marginTop: 8 }}>
-          <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png" alt="refine-logo" width={100} />
+          <img
+            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+            alt="refine-logo"
+            width={100}
+          />
         </div>
         <WindowContent>
           <form
@@ -595,7 +611,11 @@ export const Footer: React.FC = () => {
     <AppBar style={{ top: "unset", bottom: 0 }}>
       <Toolbar style={{ justifyContent: "space-between" }}>
         <div style={{ position: "relative", display: "inline-block" }}>
-          <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
+          <Button
+            onClick={() => setOpen(!open)}
+            active={open}
+            style={{ fontWeight: "bold" }}
+          >
             <img
               src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
               alt="refine logo"
@@ -855,7 +875,10 @@ function App() {
                   </Authenticated>
                 }
               >
-                <Route index element={<NavigateToResource resource="posts" />} />
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
                 <Route path="/posts">
                   <Route index element={<PostList />} />
@@ -991,7 +1014,10 @@ export const PostList = () => {
                 gap: 16,
               }}
             >
-              <Button size="sm" onClick={() => edit("posts", getValue() as number)}>
+              <Button
+                size="sm"
+                onClick={() => edit("posts", getValue() as number)}
+              >
                 Edit
               </Button>
               <Button
@@ -999,7 +1025,9 @@ export const PostList = () => {
                 onClick={() => {
                   const id = getValue() as number;
 
-                  const result = window.confirm("Are you sure you want to delete this post?");
+                  const result = window.confirm(
+                    "Are you sure you want to delete this post?",
+                  );
 
                   if (result) {
                     deletePost({
@@ -1054,7 +1082,10 @@ export const PostList = () => {
                         colSpan={header.colSpan}
                         onClick={header.column.getToggleSortingHandler()}
                       >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                       </TableHeadCell>
                     ))}
                   </TableRow>
@@ -1067,7 +1098,10 @@ export const PostList = () => {
                       {row.getVisibleCells().map((cell) => {
                         return (
                           <TableDataCell key={cell.id}>
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
                           </TableDataCell>
                         );
                       })}
@@ -1167,7 +1201,15 @@ Let's update a `<PostCreate />` component in `src/pages/posts/create.tsx` direct
 ```tsx title="src/pages/posts/create.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
+import {
+  Select,
+  GroupBox,
+  Button,
+  TextInput,
+  Window,
+  WindowHeader,
+  WindowContent,
+} from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostCreate: React.FC = () => {
@@ -1193,7 +1235,10 @@ export const PostCreate: React.FC = () => {
           <label>Title: </label>
           <br />
           <br />
-          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          <TextInput
+            {...register("title", { required: true })}
+            placeholder="Type here..."
+          />
           {errors.title && <span>This field is required</span>}
           <br />
           <br />
@@ -1218,7 +1263,12 @@ export const PostCreate: React.FC = () => {
           <br />
           <label>Content: </label>
           <br />
-          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
+          <TextInput
+            {...register("content", { required: true })}
+            multiline
+            rows={10}
+            cols={50}
+          />
 
           {errors.content && <span>This field is required</span>}
           <br />
@@ -1245,7 +1295,15 @@ Now, let's update a `<PostEdit />` component in `src/pages/posts/edit.tsx` direc
 ```tsx title="src/pages/posts/edit.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
+import {
+  Select,
+  GroupBox,
+  Button,
+  TextInput,
+  Window,
+  WindowHeader,
+  WindowContent,
+} from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostEdit: React.FC = () => {
@@ -1270,7 +1328,10 @@ export const PostEdit: React.FC = () => {
         <form onSubmit={handleSubmit(onFinish)}>
           <label>Title: </label>
           <br />
-          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          <TextInput
+            {...register("title", { required: true })}
+            placeholder="Type here..."
+          />
           {errors.title && <span>This field is required</span>}
           <br />
           <br />
@@ -1295,7 +1356,12 @@ export const PostEdit: React.FC = () => {
           <br />
           <label>Content: </label>
           <br />
-          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
+          <TextInput
+            {...register("content", { required: true })}
+            multiline
+            rows={10}
+            cols={50}
+          />
 
           {errors.content && <span>This field is required</span>}
           <br />

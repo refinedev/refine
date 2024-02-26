@@ -23,10 +23,16 @@ export const LanguageSwitcher = () => {
   return (
     <div>
       <span>Languages</span>
-      <button disabled={currentLocale === "en"} onClick={() => changeLanguage("en")}>
+      <button
+        disabled={currentLocale === "en"}
+        onClick={() => changeLanguage("en")}
+      >
         English
       </button>
-      <button disabled={currentLocale === "es"} onClick={() => changeLanguage("es")}>
+      <button
+        disabled={currentLocale === "es"}
+        onClick={() => changeLanguage("es")}
+      >
         Spanish
       </button>
     </div>

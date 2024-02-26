@@ -2,7 +2,13 @@
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { List, SaveButton, EditButton, TextField, useEditableTable } from "@refinedev/antd";
+import {
+  List,
+  SaveButton,
+  EditButton,
+  TextField,
+  useEditableTable,
+} from "@refinedev/antd";
 import { Table, Form, Space, Button, Input } from "antd";
 
 interface IPost {
@@ -65,7 +71,13 @@ const PostList: React.FC = () => {
                   </Space>
                 );
               }
-              return <EditButton {...editButtonProps(record.id)} hideText size="small" />;
+              return (
+                <EditButton
+                  {...editButtonProps(record.id)}
+                  hideText
+                  size="small"
+                />
+              );
             }}
           />
         </Table>
