@@ -33,7 +33,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       variant={mapButtonVariantToActionIconVariant(variant, "default")}
       loading={loading}
       data-testid={RefineButtonTestIds.ExportButton}
-      // className={RefineButtonClassNames.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
       {...commonProps}
     >
       <IconFileExport size={18} {...svgIconProps} />
@@ -45,7 +45,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}
       vars={vars}
-      // className={RefineButtonClassNames.ExportButton}
+      className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
       {children ?? translate("buttons.export", "Export")}
