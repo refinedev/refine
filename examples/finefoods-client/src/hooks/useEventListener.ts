@@ -37,7 +37,7 @@ function useEventListener<
     }
 
     const eventListener: typeof handler = (event) => {
-      if (!!savedHandler?.current) {
+      if (savedHandler?.current) {
         savedHandler.current(event);
       }
     };

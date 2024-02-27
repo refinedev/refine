@@ -60,7 +60,7 @@
         "noUselessFragments": "off",
         "noUselessSwitchCase": "off",
         "noUselessConstructor": "off",
-        "noExtraBooleanCast": "off",
+        "noExtraBooleanCast": "error",
         "noStaticOnlyClass": "off",
         "noUselessCatch": "error",
         "useArrowFunction": "off",
