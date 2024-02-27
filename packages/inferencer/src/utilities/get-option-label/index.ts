@@ -1,7 +1,7 @@
 import { InferField } from "../../types";
 
 export const getOptionLabel = (field: InferField) => {
-  if (field.relationInfer?.accessor) {
+  if (field.relationInfer) {
     if (Array.isArray(field.relationInfer.accessor)) {
       return `optionLabel: "${field.relationInfer.accessor[0]}",`;
     }
