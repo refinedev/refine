@@ -102,7 +102,7 @@
         "noPrototypeBuiltins": "off",
         "noDoubleEquals": "off",
         "noConfusingVoidType": "off",
-        "noGlobalIsNan": "off",
+        "noGlobalIsNan": "error",
         "noArrayIndexKey": "off",
         "noRedeclare": "error",
         "noControlCharactersInRegex": "off",

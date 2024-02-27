@@ -208,7 +208,7 @@ export const TutorialTOC = () => {
             id={doc.id}
             width="100%"
             height="100%"
-            unitNo={isNaN(Number(unitNo)) ? undefined : unitNo}
+            unitNo={Number.isNaN(unitNo) ? undefined : unitNo}
             isCurrent={doc.current}
           />
         </div>
