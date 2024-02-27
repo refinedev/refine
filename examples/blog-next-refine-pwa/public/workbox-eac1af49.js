@@ -629,20 +629,19 @@ define(["exports"], (exports) => {
       }
 
       return handler;
-    } else {
-      {
-        finalAssertExports.isType(handler, "function", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "handler",
-        });
-      }
-
-      return {
-        handle: handler,
-      };
     }
+    {
+      finalAssertExports.isType(handler, "function", {
+        moduleName: "workbox-routing",
+        className: "Route",
+        funcName: "constructor",
+        paramName: "handler",
+      });
+    }
+
+    return {
+      handle: handler,
+    };
   };
 
   /*
@@ -2418,15 +2417,14 @@ define(["exports"], (exports) => {
 
         if (!response) {
           throw error;
-        } else {
-          logger.log(
-            `While responding to '${getFriendlyURL(request.url)}', ` +
-              `an ${
-                error instanceof Error ? error.toString() : ""
-              } error occurred. Using a fallback response provided by ` +
-              `a handlerDidError plugin.`,
-          );
         }
+        logger.log(
+          `While responding to '${getFriendlyURL(request.url)}', ` +
+            `an ${
+              error instanceof Error ? error.toString() : ""
+            } error occurred. Using a fallback response provided by ` +
+            `a handlerDidError plugin.`,
+        );
       }
 
       for (const callback of handler.iterateCallbacks("handlerWillRespond")) {

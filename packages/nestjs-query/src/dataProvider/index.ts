@@ -475,14 +475,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
           return {
             data: response[meta.operation],
           };
-        } else {
-          throw Error("GraphQL operation name required.");
         }
-      } else {
-        throw Error(
-          "GraphQL needs operation, fields and variables values in meta object.",
-        );
+        throw Error("GraphQL operation name required.");
       }
+      throw Error(
+        "GraphQL needs operation, fields and variables values in meta object.",
+      );
     },
   };
 };

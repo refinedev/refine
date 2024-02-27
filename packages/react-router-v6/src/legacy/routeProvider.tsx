@@ -219,9 +219,8 @@ export const RouteProvider = ({
       }
 
       return authData?.authenticated;
-    } else {
-      return true;
     }
+    return true;
   }, [authData, isError, authProvider?.isLegacy]);
 
   if (isFetching) {

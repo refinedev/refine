@@ -18,9 +18,8 @@ export const getResourcePath = (
   if (hookName === "useCan") {
     if (legacyKey) {
       return "key[1].resource";
-    } else {
-      return "key[1]";
     }
+    return "key[1]";
   }
   if (scopes[hookName] === "audit-log") {
     if (hookName === "useLog") {
@@ -39,9 +38,8 @@ export const getResourcePath = (
       case "useMany":
         if (legacyKey) {
           return "key[1]";
-        } else {
-          return "key[2]";
         }
+        return "key[2]";
       case "useCreate":
       case "useCreateMany":
       case "useDelete":

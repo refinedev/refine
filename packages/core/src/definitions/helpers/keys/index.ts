@@ -220,13 +220,14 @@ class DataResourceKeyBuilder extends BaseKeyBuilder {
   ): ParamsKeyBuilder | DataIdRequiringKeyBuilder | DataIdsRequiringKeyBuilder {
     if (actionType === "one") {
       return new DataIdRequiringKeyBuilder([...this.segments, actionType]);
-    } else if (actionType === "many") {
-      return new DataIdsRequiringKeyBuilder([...this.segments, actionType]);
-    } else if (["list", "infinite"].includes(actionType)) {
-      return new ParamsKeyBuilder([...this.segments, actionType]);
-    } else {
-      throw new Error("Invalid action type");
     }
+    if (actionType === "many") {
+      return new DataIdsRequiringKeyBuilder([...this.segments, actionType]);
+    }
+    if (["list", "infinite"].includes(actionType)) {
+      return new ParamsKeyBuilder([...this.segments, actionType]);
+    }
+    throw new Error("Invalid action type");
   }
 }
 

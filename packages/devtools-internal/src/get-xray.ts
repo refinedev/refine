@@ -17,16 +17,15 @@ export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
       resourcePath: null,
       legacyKey: false,
     };
-  } else {
-    const trace = getTrace().slice(1);
-
-    const resourcePath = getResourcePath(hookName as RefineHook, legacyKey);
-
-    return {
-      hookName,
-      trace,
-      resourcePath,
-      legacyKey,
-    };
   }
+  const trace = getTrace().slice(1);
+
+  const resourcePath = getResourcePath(hookName as RefineHook, legacyKey);
+
+  return {
+    hookName,
+    trace,
+    resourcePath,
+    legacyKey,
+  };
 }

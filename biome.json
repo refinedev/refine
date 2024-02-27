@@ -84,7 +84,7 @@
       "style": {
         "useTemplate": "off",
         "noUnusedTemplateLiteral": "off",
-        "noUselessElse": "off",
+        "noUselessElse": "error",
         "noNonNullAssertion": "off",
         "useSingleVarDeclarator": "off",
         "noParameterAssign": "off",

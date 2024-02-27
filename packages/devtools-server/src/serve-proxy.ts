@@ -162,10 +162,9 @@ export const serveProxy = async (app: Express) => {
           jwt = _jwt;
           saveAuth(token, jwt);
         })(proxyRes, req, res);
-      } else {
-        res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
-        proxyRes.pipe(res, { end: true });
       }
+      res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+      proxyRes.pipe(res, { end: true });
     },
   });
 

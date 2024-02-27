@@ -22,9 +22,8 @@ export const arrayInfer: FieldInferencer = (
           multiple: true,
           priority: 1,
         };
-      } else {
-        return false;
       }
+      return false;
     }
     const basicType = infer(key, value[0], record, infer, type) || {
       type: "string" as InferType,

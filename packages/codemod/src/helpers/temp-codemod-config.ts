@@ -26,13 +26,12 @@ export class CodemodConfig {
       const file = fs.readFileSync(this.filename, "utf8");
       if (file) {
         return JSON.parse(file) as ConfigFileSchema;
-      } else {
-        try {
-          fs.writeFileSync(this.filename, JSON.stringify(empty));
-        } catch (_error) {}
-
-        return empty;
       }
+      try {
+        fs.writeFileSync(this.filename, JSON.stringify(empty));
+      } catch (_error) {}
+
+      return empty;
     } catch (error) {
       return empty;
     }

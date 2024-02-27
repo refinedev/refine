@@ -22,7 +22,8 @@ export const NotificationMessage = ({ audit, deal }: Props) => {
         <Text strong>{deal.stage?.title || "Unassigned"}</Text>.
       </Text>
     );
-  } else if (audit.action === "CREATE") {
+  }
+  if (audit.action === "CREATE") {
     return (
       <Text>
         <Text strong>{audit.user?.name}</Text>

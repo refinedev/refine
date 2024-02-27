@@ -18,8 +18,7 @@ export async function send<T extends DevtoolsEvent>(
       ws.addEventListener("open", listener);
     });
     return;
-  } else {
-    ws.send(JSON.stringify({ event, payload }));
-    return;
   }
+  ws.send(JSON.stringify({ event, payload }));
+  return;
 }

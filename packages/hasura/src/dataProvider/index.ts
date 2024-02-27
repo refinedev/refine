@@ -585,30 +585,27 @@ const dataProvider = (
             return {
               data: response[meta.operation],
             };
-          } else {
-            const { query, variables } = gql.mutation({
-              operation: meta.operation,
-              fields: meta.fields,
-              variables: meta.variables,
-            });
-
-            const response = await gqlClient.request<BaseRecord>(
-              query,
-              variables,
-            );
-
-            return {
-              data: response[meta.operation],
-            };
           }
-        } else {
-          throw Error("GraphQL operation name required.");
+          const { query, variables } = gql.mutation({
+            operation: meta.operation,
+            fields: meta.fields,
+            variables: meta.variables,
+          });
+
+          const response = await gqlClient.request<BaseRecord>(
+            query,
+            variables,
+          );
+
+          return {
+            data: response[meta.operation],
+          };
         }
-      } else {
-        throw Error(
-          "GraphQL need to operation, fields and variables values in meta object.",
-        );
+        throw Error("GraphQL operation name required.");
       }
+      throw Error(
+        "GraphQL need to operation, fields and variables values in meta object.",
+      );
     },
   };
 };

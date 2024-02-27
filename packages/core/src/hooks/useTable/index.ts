@@ -398,20 +398,19 @@ export function useTable<
           },
         }) ?? ""
       );
-    } else {
-      const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
-
-      const stringifyParams = stringifyTableParams({
-        pagination: {
-          pageSize,
-          current,
-        },
-        sorters: sorters ?? sorter,
-        filters,
-        ...currentQueryParams,
-      });
-      return `${pathname ?? ""}?${stringifyParams ?? ""}`;
     }
+    const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
+
+    const stringifyParams = stringifyTableParams({
+      pagination: {
+        pageSize,
+        current,
+      },
+      sorters: sorters ?? sorter,
+      filters,
+      ...currentQueryParams,
+    });
+    return `${pathname ?? ""}?${stringifyParams ?? ""}`;
   };
 
   useEffect(() => {
@@ -435,15 +434,14 @@ export function useTable<
         parsedParams?.params ?? {};
 
       return rest;
-    } else {
-      // We get QueryString parameters that are uncontrolled by refine.
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
-        ignoreQueryPrefix: true,
-      });
-
-      return rest;
     }
+    // We get QueryString parameters that are uncontrolled by refine.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
+      ignoreQueryPrefix: true,
+    });
+
+    return rest;
   };
 
   useEffect(() => {

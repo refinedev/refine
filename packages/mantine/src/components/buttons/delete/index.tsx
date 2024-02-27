@@ -77,12 +77,12 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const disabledTitle = () => {
     if (data?.can) return "";
-    else if (data?.reason) return data.reason;
-    else
-      return translate(
-        "buttons.notAccessTitle",
-        "You don't have permission to access",
-      );
+    if (data?.reason) return data.reason;
+
+    return translate(
+      "buttons.notAccessTitle",
+      "You don't have permission to access",
+    );
   };
 
   const [opened, setOpened] = useState(false);

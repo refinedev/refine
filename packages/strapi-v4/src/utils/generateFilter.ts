@@ -9,9 +9,8 @@ export const generateNestedFilterField = (field: string) => {
     let fieldQuery = "";
     fields.map((v) => (fieldQuery += `[${v}]`));
     return fieldQuery;
-  } else {
-    return `[${fields[0]}]`;
   }
+  return `[${fields[0]}]`;
 };
 
 export const generateFilter = (filters?: CrudFilters) => {

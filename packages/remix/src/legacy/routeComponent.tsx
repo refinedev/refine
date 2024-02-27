@@ -85,9 +85,8 @@ export function RemixRouteComponent(
           </CanAccess>
         </LayoutWrapper>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 
   if (resource) {

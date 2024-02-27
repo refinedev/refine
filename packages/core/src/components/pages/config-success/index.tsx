@@ -53,31 +53,31 @@ export const ConfigSuccessPage: React.FC = () => {
   const getGridTemplateColumns = () => {
     if (isMobile) {
       return "1, 280px";
-    } else if (isTablet) {
-      return "2, 280px";
-    } else {
-      return "4, 1fr";
     }
+    if (isTablet) {
+      return "2, 280px";
+    }
+    return "4, 1fr";
   };
 
   const getHeaderFontSize = () => {
     if (isMobile) {
       return "32px";
-    } else if (isTablet) {
-      return "40px";
-    } else {
-      return "48px";
     }
+    if (isTablet) {
+      return "40px";
+    }
+    return "48px";
   };
 
   const getSubHeaderFontSize = () => {
     if (isMobile) {
       return "16px";
-    } else if (isTablet) {
-      return "20px";
-    } else {
-      return "24px";
     }
+    if (isTablet) {
+      return "20px";
+    }
+    return "24px";
   };
 
   return (

@@ -182,11 +182,10 @@ const ThemeProvider = ({
         return RefineMui.RefineThemes[
           themeFromWindow as keyof typeof RefineMui.RefineThemes
         ];
-      } else {
-        return RefineMui.RefineThemes[
-          `${themeFromWindow}Dark` as keyof typeof RefineMui.RefineThemes
-        ];
       }
+      return RefineMui.RefineThemes[
+        `${themeFromWindow}Dark` as keyof typeof RefineMui.RefineThemes
+      ];
     }
 
     return undefined;

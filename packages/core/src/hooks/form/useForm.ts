@@ -324,9 +324,9 @@ export const useForm = <
 
   const getAction = () => {
     if (actionFromProps) return actionFromProps;
-    else if (actionFromRoute === "edit" || actionFromRoute === "clone")
+    if (actionFromRoute === "edit" || actionFromRoute === "clone")
       return actionFromRoute;
-    else return "create";
+    return "create";
   };
   const action = getAction();
 
