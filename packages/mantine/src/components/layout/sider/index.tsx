@@ -27,7 +27,7 @@ import {
 
 import { IconList, IconPower, IconDashboard } from "@tabler/icons";
 
-import { ThemedTitle as DefaultTitle } from "@components";
+import { RefineTitle as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
 import { RefineLayoutSiderProps } from "../types";
