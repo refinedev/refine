@@ -327,27 +327,27 @@ module.exports = {
           "linear-gradient(207deg, rgba(62, 207, 142, 0.15) 0%, rgba(62, 207, 142, 0.00) 100%)",
         "banner-examples-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-modal-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-modal-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-sider-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-sider-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-text":
           "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
@@ -427,7 +427,8 @@ module.exports = {
         ],
         "enterprise-frequent-updates-light-md":
           "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
-        "new-badge-border-dark": `conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)`,
+        "new-badge-border-dark":
+          "conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)",
         "new-badge-border-light": `conic-gradient(
                     from 45deg at 50% 50%,
                     #b7dbff,

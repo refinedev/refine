@@ -632,7 +632,7 @@ export const renderer = ({
   const canList = !!list;
 
   noOp(imports);
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     ${printImports(imports)}
@@ -640,7 +640,7 @@ export const renderer = ({
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
         ${useTranslateHook}
         const { edit, list } = useNavigation();
-        ${isCustomPage ? "" : `const { id } = useResource();`}
+        ${isCustomPage ? "" : "const { id } = useResource();"}
         const { queryResult } = useShow(${
           isCustomPage
             ? `{ 

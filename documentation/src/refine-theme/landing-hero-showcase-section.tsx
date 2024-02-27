@@ -66,7 +66,7 @@ export const LandingHeroShowcaseSection = () => {
                 "ease-out",
               )}
               style={{
-                width: `calc((100% - (3 * 8px)) / 4)`,
+                width: "calc((100% - (3 * 8px)) / 4)",
                 minWidth: "244px",
                 transform: `translateX(calc((100% + 8px) * ${apps.findIndex(
                   (f) => f.name === activeApp.name,

@@ -126,7 +126,7 @@ const handleSignInCallbacks: (
       // After grabbing the session_token, convert it to JWT, then redirect to /after-login
       tokenize(sessionToken).then((tokenized) => {
         onToken(sessionToken, tokenized ?? "");
-        res.redirect(`/after-login`);
+        res.redirect("/after-login");
       });
     });
   };

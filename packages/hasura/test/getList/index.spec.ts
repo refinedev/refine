@@ -11,7 +11,7 @@ describe("with meta.fields", () => {
       const categoryFieldName =
         namingConvention === "hasura-default" ? "category_id" : "categoryId";
 
-      it(`correct response`, async () => {
+      it("correct response", async () => {
         const { data, total } = await dataProvider(client, {
           namingConvention,
         }).getList({

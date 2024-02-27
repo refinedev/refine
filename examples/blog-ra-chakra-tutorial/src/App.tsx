@@ -32,7 +32,7 @@ function App() {
         <ChakraProvider theme={RefineThemes.Blue}>
           <Refine
             authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
             notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             options={{

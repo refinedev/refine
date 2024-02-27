@@ -83,7 +83,7 @@
       },
       "style": {
         "useTemplate": "off",
-        "noUnusedTemplateLiteral": "off",
+        "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
         "noNonNullAssertion": "off",
         "useSingleVarDeclarator": "off",

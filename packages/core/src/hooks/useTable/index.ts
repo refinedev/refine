@@ -364,7 +364,7 @@ export function useTable<
   React.useEffect(() => {
     warnOnce(
       typeof identifier === "undefined",
-      `useTable: \`resource\` is not defined.`,
+      "useTable: `resource` is not defined.",
     );
   }, [identifier]);
 

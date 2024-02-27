@@ -45,7 +45,7 @@ export const replaceImports = (
         imports.add(
           `const${namedImports.replace(
             nameChangeRegex,
-            `$1: $3$4`,
+            "$1: $3$4",
           )} = ${importName};`,
         );
       }

@@ -785,7 +785,7 @@ export const renderer = ({
 
   noOp(imports);
 
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     import React from "react";

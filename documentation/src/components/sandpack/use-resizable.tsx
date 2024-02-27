@@ -25,7 +25,7 @@ export const useResizable = ({
 
     setSize(boundaries);
 
-    container.querySelectorAll(`.sp-stack`).forEach((item) => {
+    container.querySelectorAll(".sp-stack").forEach((item) => {
       (item as HTMLDivElement).style.pointerEvents = "none";
     });
   };
@@ -37,7 +37,7 @@ export const useResizable = ({
 
     if (!container) return;
 
-    container.querySelectorAll(`.sp-stack`).forEach((item) => {
+    container.querySelectorAll(".sp-stack").forEach((item) => {
       (item as HTMLDivElement).style.pointerEvents = "";
     });
 

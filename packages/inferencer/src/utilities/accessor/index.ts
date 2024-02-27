@@ -19,7 +19,7 @@ function accessorSingle(variableName: string, key?: string, accessor?: string) {
   }
 
   if (accessor) {
-    base += `?.`;
+    base += "?.";
     if (shouldDotAccess(accessor)) {
       base += accessor;
     } else {

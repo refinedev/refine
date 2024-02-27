@@ -12,7 +12,7 @@ export const fieldMarkdownTests = function (
     it("renders markDown text with correct value", () => {
       const { getByText, container } = render(
         <div data-testid="custom-field">
-          <MarkdownField value={`**MarkdownField Test**`} />
+          <MarkdownField value={"**MarkdownField Test**"} />
         </div>,
       );
 

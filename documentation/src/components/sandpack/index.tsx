@@ -391,7 +391,7 @@ const SandpackBase = ({
         <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
           (k) => `${k}@${dependencies[k]}`,
         )}`}</p>
-        <h3>{`Code Files`}</h3>
+        <h3>{"Code Files"}</h3>
         {Object.keys(files ?? {}).map((f) => (
           <div key={f}>
             <div>{`File: ${f}`}</div>

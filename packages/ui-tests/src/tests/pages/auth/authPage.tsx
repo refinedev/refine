@@ -8,7 +8,7 @@ export const authPageTests = function (
 ): void {
   describe("[@refinedev/ui-tests] Common Tests / Auth Page", () => {
     it.each(["register", "forgotPassword", "updatePassword", "login"] as const)(
-      `should render %s type`,
+      "should render %s type",
       async (type) => {
         const { getByText } = render(<AuthPage type={type} />, {
           wrapper: TestWrapper({}),

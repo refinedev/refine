@@ -33,7 +33,7 @@ export const CommunityStatsProvider: FC = ({ children }) => {
       setLoading(true);
 
       const response = await fetch(
-        `https://stargate.refine.dev/community-numbers`,
+        "https://stargate.refine.dev/community-numbers",
         {
           method: "GET",
           headers: {

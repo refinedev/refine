@@ -8,7 +8,7 @@ describe("form-antd-custom-validation", () => {
     cy.intercept(
       {
         method: "GET",
-        pathname: `/posts-unique-check`,
+        pathname: "/posts-unique-check",
       },
       {
         body: {

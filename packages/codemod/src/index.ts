@@ -211,10 +211,10 @@ export async function run(): Promise<void> {
       console.log();
 
       console.log(
-        `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
+        "Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4",
       );
       console.log(
-        `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
+        "You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.",
       );
       console.log(
         `Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.`,

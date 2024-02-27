@@ -1072,7 +1072,7 @@ describe("useUpdateMany Hook", () => {
                 id,
                 ...previous.data,
                 ...values,
-                foo: `bar-one`,
+                foo: "bar-one",
               };
 
               return {

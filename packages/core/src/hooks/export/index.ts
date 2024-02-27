@@ -213,7 +213,7 @@ export const useExport = <
         typeof exportOptions !== "undefined" &&
         exportOptions !== null,
       `[useExport]: resource: "${identifier}" \n\n` +
-        `Both \`unparseConfig\` and \`exportOptions\` are set, \`unparseConfig\` will take precedence`,
+        "Both `unparseConfig` and `exportOptions` are set, `unparseConfig` will take precedence",
     );
 
     const options: ExportOptions = {
@@ -228,8 +228,8 @@ export const useExport = <
     warnOnce(
       exportOptions?.decimalSeparator !== undefined,
       `[useExport]: resource: "${identifier}" \n\n` +
-        `Use of \`decimalSeparator\` no longer supported, please use \`mapData\` instead.\n\n` +
-        `See https://refine.dev/docs/api-reference/core/hooks/import-export/useExport/`,
+        "Use of `decimalSeparator` no longer supported, please use `mapData` instead.\n\n" +
+        "See https://refine.dev/docs/api-reference/core/hooks/import-export/useExport/",
     );
 
     if (!hasUnparseConfig) {

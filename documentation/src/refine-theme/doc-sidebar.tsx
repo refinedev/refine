@@ -188,7 +188,7 @@ const SidebarCategory = ({
             width:
               variant === "desktop"
                 ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-                : `calc(100% + 16px)`,
+                : "calc(100% + 16px)",
           }}
         />
       </Comp>
@@ -387,7 +387,7 @@ const SidebarLink = ({
           width:
             variant === "desktop"
               ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-              : `calc(100% + 16px)`,
+              : "calc(100% + 16px)",
         }}
       />
       {line && (
