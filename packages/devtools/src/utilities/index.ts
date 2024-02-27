@@ -39,8 +39,8 @@ export const getPanelPosition = (placement: Placement) => {
         top: `calc(${SIZE}px + ${BUFFER}px)`,
         transform: "translateX(-50%)",
       };
-    default:
     case "bottom":
+    default:
       return {
         left: "50%",
         bottom: `calc(${SIZE}px + ${BUFFER}px)`,

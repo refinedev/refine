@@ -108,7 +108,7 @@
         "noControlCharactersInRegex": "off",
         "noDuplicateJsxProps": "error",
         "noShadowRestrictedNames": "off",
-        "useDefaultSwitchClauseLast": "off",
+        "useDefaultSwitchClauseLast": "error",
         "noSelfCompare": "error",
         "noFallthroughSwitchClause": "off",
         "noEmptyInterface": "error",
