@@ -99,7 +99,7 @@
         "noAsyncPromiseExecutor": "error",
         "noAssignInExpressions": "off",
         "noImplicitAnyLet": "off",
-        "noPrototypeBuiltins": "off",
+        "noPrototypeBuiltins": "error",
         "noDoubleEquals": "off",
         "noConfusingVoidType": "off",
         "noGlobalIsNan": "error",
