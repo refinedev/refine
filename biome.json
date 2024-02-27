@@ -44,24 +44,24 @@
         "useAltText": "warn",
         "noNoninteractiveElementToInteractiveRole": "warn",
         "useValidAnchor": "warn",
+        "noBlankTarget": "error",
         "useIframeTitle": "warn",
         "noAutofocus": "warn",
         "noAriaHiddenOnFocusable": "warn",
         "noNoninteractiveTabindex": "warn",
         "noPositiveTabindex": "warn",
-        "useKeyWithMouseEvents": "warn",
-        "noBlankTarget": "error"
+        "useKeyWithMouseEvents": "warn"
       },
       "complexity": {
         "noForEach": "off",
-        "noUselessFragments": "off",
-        "noStaticOnlyClass": "off",
         "useLiteralKeys": "warn",
-        "noBannedTypes": "warn",
         "useOptionalChain": "error",
+        "noBannedTypes": "warn",
+        "noUselessFragments": "off",
         "noUselessSwitchCase": "error",
         "noUselessConstructor": "error",
         "noExtraBooleanCast": "error",
+        "noStaticOnlyClass": "off",
         "noUselessCatch": "error",
         "useArrowFunction": "error",
         "noUselessRename": "error"
@@ -82,14 +82,14 @@
         "noDangerouslySetInnerHtml": "warn"
       },
       "style": {
-        "useSingleVarDeclarator": "off",
-        "noNonNullAssertion": "warn",
-        "noParameterAssign": "warn",
-        "useDefaultParameterLast": "warn",
         "useTemplate": "error",
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
+        "noNonNullAssertion": "warn",
+        "useSingleVarDeclarator": "off",
+        "noParameterAssign": "warn",
         "useSelfClosingElements": "error",
+        "useDefaultParameterLast": "warn",
         "useConst": "error",
         "noCommaOperator": "error"
       },
