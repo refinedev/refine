@@ -595,7 +595,6 @@ describe("useLogout Hook", () => {
           ...mockAuthProvider,
           logout: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
         },
       }),

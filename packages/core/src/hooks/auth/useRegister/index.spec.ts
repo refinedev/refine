@@ -486,7 +486,6 @@ describe("useRegister Hook", () => {
           ...mockAuthProvider,
           register: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
         },
       }),

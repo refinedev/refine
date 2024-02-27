@@ -171,7 +171,6 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             ...mockLegacyAuthProvider,
             updatePassword: () => {
               throw new Error("Unhandled error");
-              return Promise.resolve();
             },
           },
         }),
@@ -496,7 +495,6 @@ describe("useUpdatePassword Hook", () => {
           ...mockAuthProvider,
           updatePassword: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
         },
       }),

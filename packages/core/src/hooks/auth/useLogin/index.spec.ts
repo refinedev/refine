@@ -619,7 +619,6 @@ describe("useLogin Hook", () => {
         authProvider: {
           login: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
           check: () => Promise.resolve({ authenticated: false }),
           onError: () => Promise.resolve({}),

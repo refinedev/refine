@@ -71,7 +71,7 @@
         "noEmptyPattern": "off",
         "noUnsafeOptionalChaining": "off",
         "noSwitchDeclarations": "off",
-        "noUnreachable": "off",
+        "noUnreachable": "error",
         "noConstantCondition": "off"
       },
       "performance": {
