@@ -287,7 +287,7 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           defaultValue={`${getState().pagination.pageIndex + 1}`}
           onChange={(e) => {
             const { value } = e.target;
-            if (Number.isNaN(value)) {
+            if (Number.isNaN(Number(value))) {
               return;
             }
             const page = value ? Number(value) - 1 : 0;
