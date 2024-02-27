@@ -1,4 +1,4 @@
-import { CrudFilters, LogicalFilter } from "@refinedev/core";
+import { CrudFilters, LogicalFilter, ConditionalFilter } from "@refinedev/core";
 import { mapOperator } from "./mapOperator";
 import { stringify, parse } from "qs";
 
@@ -14,6 +14,53 @@ export const generateNestedFilterField = (field: string) => {
   }
 };
 
+const generateLogicalFilter = (filter: LogicalFilter, parent = ""): string => {
+  const { field, operator, value } = filter;
+
+  let rawQuery = "";
+
+  const mappedOperator = mapOperator(operator);
+
+  if (Array.isArray(value)) {
+    value.map((val, index) => {
+      rawQuery +=
+        "&filters" +
+        parent +
+        `${generateNestedFilterField(
+          field,
+        )}[$${mappedOperator}][${index}]=${val}`;
+    });
+  } else {
+    rawQuery +=
+      "&filters" +
+      parent +
+      `${generateNestedFilterField(field)}[$${mappedOperator}]=${value}`;
+  }
+  return rawQuery;
+};
+
+const generateConditionalFilter = (
+  filter: ConditionalFilter,
+  parent = "",
+): string => {
+  let rawQuery = "";
+
+  filter.value.map((item, index) => {
+    if (item.operator !== "or" && item.operator !== "and" && "field" in item) {
+      rawQuery += generateLogicalFilter(
+        item,
+        parent + `[$${filter.operator}][${index}]`,
+      );
+    } else {
+      rawQuery += generateConditionalFilter(
+        item,
+        parent + `[$${filter.operator}][${index}]`,
+      );
+    }
+  });
+  return rawQuery;
+};
+
 export const generateFilter = (filters?: CrudFilters) => {
   let rawQuery = "";
 
@@ -24,40 +71,15 @@ export const generateFilter = (filters?: CrudFilters) => {
         filter.operator !== "and" &&
         "field" in filter
       ) {
-        const { field, operator, value } = filter;
-
-        const mapedOperator = mapOperator(operator);
-
-        if (Array.isArray(value)) {
-          value.map((val, index) => {
-            rawQuery += `&filters${generateNestedFilterField(
-              field,
-            )}[$${mapedOperator}][${index}]=${val}`;
-          });
-        } else {
-          rawQuery += `&filters${generateNestedFilterField(
-            field,
-          )}[$${mapedOperator}]=${value}`;
-        }
+        rawQuery += generateLogicalFilter(filter);
       } else {
-        const { value } = filter;
-
-        value.map((item, index) => {
-          const { field, operator, value } = item as LogicalFilter;
-
-          const mapedOperator = mapOperator(operator);
-
-          rawQuery += `&filters[$${
-            filter.operator
-          }][${index}]${generateNestedFilterField(
-            field,
-          )}[$${mapedOperator}]=${value}`;
-        });
+        rawQuery += generateConditionalFilter(filter);
       }
     });
   }
 
-  const parsedQuery = parse(rawQuery);
+  const parsedQuery = parse(rawQuery, { depth: 7 });
+
   const queryFilters = stringify(parsedQuery, { encodeValuesOnly: true });
 
   return queryFilters;
