@@ -70,7 +70,7 @@
         "useExhaustiveDependencies": "off",
         "noEmptyPattern": "error",
         "noUnsafeOptionalChaining": "off",
-        "noSwitchDeclarations": "off",
+        "noSwitchDeclarations": "error",
         "noUnreachable": "error",
         "noConstantCondition": "error"
       },

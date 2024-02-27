@@ -15,7 +15,7 @@ const initialState: IUndoableQueue[] = [];
 
 export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
   switch (action.type) {
-    case ActionTypes.ADD:
+    case ActionTypes.ADD: {
       const newState = state.filter((notificationItem: IUndoableQueue) => {
         return !(
           isEqual(notificationItem.id, action.payload.id) &&
@@ -30,6 +30,7 @@ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
           isRunning: true,
         },
       ];
+    }
     case ActionTypes.REMOVE:
       return state.filter(
         (notificationItem: IUndoableQueue) =>
