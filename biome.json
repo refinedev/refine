@@ -59,7 +59,7 @@
         "noBannedTypes": "off",
         "noUselessFragments": "off",
         "noUselessSwitchCase": "error",
-        "noUselessConstructor": "off",
+        "noUselessConstructor": "error",
         "noExtraBooleanCast": "error",
         "noStaticOnlyClass": "off",
         "noUselessCatch": "error",

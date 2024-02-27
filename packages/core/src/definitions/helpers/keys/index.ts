@@ -169,20 +169,12 @@ class BaseKeyBuilder {
 }
 
 class ParamsKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   params(paramsValue?: ParamsType) {
     return new BaseKeyBuilder([...this.segments, paramsValue]);
   }
 }
 
 class DataIdRequiringKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   id(idValue?: IdType) {
     return new ParamsKeyBuilder([
       ...this.segments,
@@ -192,10 +184,6 @@ class DataIdRequiringKeyBuilder extends BaseKeyBuilder {
 }
 
 class DataIdsRequiringKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   ids(...idsValue: IdsType) {
     return new ParamsKeyBuilder([
       ...this.segments,
@@ -205,10 +193,6 @@ class DataIdsRequiringKeyBuilder extends BaseKeyBuilder {
 }
 
 class DataResourceKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   action(actionType: ParametrizedDataActions): ParamsKeyBuilder;
   action(actionType: IdRequiredDataActions): DataIdRequiringKeyBuilder;
   action(actionType: IdsRequiredDataActions): DataIdsRequiringKeyBuilder;
@@ -232,10 +216,6 @@ class DataResourceKeyBuilder extends BaseKeyBuilder {
 }
 
 class DataKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   resource(resourceName?: string) {
     return new DataResourceKeyBuilder([...this.segments, resourceName]);
   }
@@ -249,50 +229,30 @@ class DataKeyBuilder extends BaseKeyBuilder {
 }
 
 class AuthKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   action(actionType: AuthActionType) {
     return new ParamsKeyBuilder([...this.segments, actionType]);
   }
 }
 
 class AccessResourceKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   action(resourceName: string) {
     return new ParamsKeyBuilder([...this.segments, resourceName]);
   }
 }
 
 class AccessKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   resource(resourceName?: string) {
     return new AccessResourceKeyBuilder([...this.segments, resourceName]);
   }
 }
 
 class AuditActionKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   action(actionType: Extract<AuditActionType, "list">) {
     return new ParamsKeyBuilder([...this.segments, actionType]);
   }
 }
 
 class AuditKeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   resource(resourceName?: string) {
     return new AuditActionKeyBuilder([...this.segments, resourceName]);
   }
@@ -303,10 +263,6 @@ class AuditKeyBuilder extends BaseKeyBuilder {
 }
 
 export class KeyBuilder extends BaseKeyBuilder {
-  constructor(segments: KeySegment[]) {
-    super(segments);
-  }
-
   data(name?: string) {
     return new DataKeyBuilder(["data", name || "default"]);
   }
