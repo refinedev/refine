@@ -114,25 +114,24 @@ const getProjectsWithE2E = async () => {
   ).filter(Boolean);
 };
 
-const waitOnFor = (resource) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await waitOn({
-        resources: [resource],
-        log: true,
-      });
+const waitOnFor = async (resource) => {
+  try {
+    await waitOn({
+      resources: [resource],
+      log: true,
+    });
 
-      resolve(resource);
-    } catch (error) {
-      if (error) console.log(error);
+    return resource;
+  } catch (error) {
+    if (error) console.log(error);
 
-      resolve(false);
-    }
-  });
+    return false;
+  }
 };
 
 const waitForServer = async (port) => {
-  return new Promise(async (resolve, reject) => {
+  // biome-ignore lint/suspicious/noAsyncPromiseExecutor: We have a valid use-case here.
+  return new Promise(async (resolve) => {
     setTimeout(() => {
       resolve(false);
     }, 120000);
@@ -154,7 +153,8 @@ const waitForServer = async (port) => {
 };
 
 const waitForClose = (resource) => {
-  return new Promise(async (resolve, reject) => {
+  // biome-ignore lint/suspicious/noAsyncPromiseExecutor: We have a valid use-case here.
+  return new Promise(async (resolve) => {
     setTimeout(() => {
       resolve(false);
     }, 120000);

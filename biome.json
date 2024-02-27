@@ -96,7 +96,7 @@
       "suspicious": {
         "noExplicitAny": "off",
         "noRedundantUseStrict": "error",
-        "noAsyncPromiseExecutor": "off",
+        "noAsyncPromiseExecutor": "error",
         "noAssignInExpressions": "off",
         "noImplicitAnyLet": "off",
         "noPrototypeBuiltins": "off",
