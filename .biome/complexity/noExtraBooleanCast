@@ -37,24 +37,6 @@
     59 │ ··if·(!!metaValues.length)·{
        │       --                    
 
-./packages/core/src/hooks/form/useForm.ts:348:8 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid redundant `Boolean` call
-  
-    346 │     (isClone || isEdit) &&
-    347 │       Boolean(resourceFromProps) &&
-  > 348 │       !Boolean(idFromProps) &&
-        │        ^^^^^^^^^^^^^^^^^^^^
-    349 │       queryOptions?.enabled !== false,
-    350 │     `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
-  
-  i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
-  
-  i Unsafe fix: Remove redundant `Boolean` call
-  
-    348 │ ······!Boolean(idFromProps)·&&
-        │        --------           -   
-
 ./packages/simple-rest/src/provider.ts:46:26 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
 
   ! Avoid redundant double-negation.
@@ -88,6 +70,24 @@
   
     143 │ ····Boolean(resourceFromProp)·&&·!Boolean(id),
         │                                   --------  - 
+
+./packages/core/src/hooks/form/useForm.ts:348:8 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant `Boolean` call
+  
+    346 │     (isClone || isEdit) &&
+    347 │       Boolean(resourceFromProps) &&
+  > 348 │       !Boolean(idFromProps) &&
+        │        ^^^^^^^^^^^^^^^^^^^^
+    349 │       queryOptions?.enabled !== false,
+    350 │     `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
+  
+  i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant `Boolean` call
+  
+    348 │ ······!Boolean(idFromProps)·&&
+        │        --------           -   
 
 ./examples/finefoods-client/src/hooks/useEventListener.ts:40:11 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
 
@@ -142,4 +142,4 @@
     30 │ ······{!!searchClient·?·<AlgoliaSearch·/>·:·null}
        │        --                                        
 
-Checked 6952 file(s) in 460ms
+Checked 6952 file(s) in 488ms

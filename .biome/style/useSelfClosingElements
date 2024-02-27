@@ -186,69 +186,6 @@
     107 │ ··········></Route>
         │           -- ----- 
 
-./documentation/src/theme/Admonition/index.tsx:30:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
-
-  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
-    28 │       strokeLinejoin="round"
-    29 │     >
-  > 30 │       <polyline points="4 17 10 11 4 5"></polyline>
-       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
-    32 │     </svg>
-  
-  i Unsafe fix: Use a SelfClosingElement instead
-  
-     28  28 │         strokeLinejoin="round"
-     29  29 │       >
-     30     │ - ······<polyline·points="4·17·10·11·4·5"></polyline>
-         30 │ + ······<polyline·points="4·17·10·11·4·5"·/>
-     31  31 │         <line x1="12" y1="19" x2="20" y2="19"></line>
-     32  32 │       </svg>
-  
-
-./documentation/src/theme/Admonition/index.tsx:31:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
-
-  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
-    29 │     >
-    30 │       <polyline points="4 17 10 11 4 5"></polyline>
-  > 31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
-       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    32 │     </svg>
-    33 │   );
-  
-  i Unsafe fix: Use a SelfClosingElement instead
-  
-     29  29 │       >
-     30  30 │         <polyline points="4 17 10 11 4 5"></polyline>
-     31     │ - ······<line·x1="12"·y1="19"·x2="20"·y2="19"></line>
-         31 │ + ······<line·x1="12"·y1="19"·x2="20"·y2="19"·/>
-     32  32 │       </svg>
-     33  33 │     );
-  
-
-./documentation/src/theme/BlogListPage/index.js:82:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
-
-  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
-  
-    80 │         )}
-    81 │       >
-  > 82 │         <div className="border-b border-gray-100 dark:border-gray-700"></div>
-       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    83 │       </div>
-    84 │       <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
-  
-  i Unsafe fix: Use a SelfClosingElement instead
-  
-     80  80 │           )}
-     81  81 │         >
-     82     │ - ········<div·className="border-b·border-gray-100·dark:border-gray-700"></div>
-         82 │ + ········<div·className="border-b·border-gray-100·dark:border-gray-700"·/>
-     83  83 │         </div>
-     84  84 │         <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
-  
-
 ./packages/mantine/src/components/crud/edit/index.spec.tsx:59:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
@@ -393,26 +330,90 @@
     512 │ ········></Route>
         │         -- ----- 
 
-./documentation/src/components/tutorial-toc/index.tsx:145:5 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
+./documentation/src/theme/Admonition/index.tsx:30:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
 
   ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
   
-    144 │   return (
-  > 145 │     <a
-        │     ^^
-  > 146 │       href={`#${item.id}`}
-         ...
-  > 152 │       )}
-  > 153 │     ></a>
-        │     ^^^^^
-    154 │   );
-    155 │ };
+    28 │       strokeLinejoin="round"
+    29 │     >
+  > 30 │       <polyline points="4 17 10 11 4 5"></polyline>
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
+    32 │     </svg>
   
   i Unsafe fix: Use a SelfClosingElement instead
   
-    153 │ ····></a>
-        │     -- - 
+     28  28 │         strokeLinejoin="round"
+     29  29 │       >
+     30     │ - ······<polyline·points="4·17·10·11·4·5"></polyline>
+         30 │ + ······<polyline·points="4·17·10·11·4·5"·/>
+     31  31 │         <line x1="12" y1="19" x2="20" y2="19"></line>
+     32  32 │       </svg>
+  
+
+./documentation/src/theme/Admonition/index.tsx:31:7 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
+
+  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
+  
+    29 │     >
+    30 │       <polyline points="4 17 10 11 4 5"></polyline>
+  > 31 │       <line x1="12" y1="19" x2="20" y2="19"></line>
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │     </svg>
+    33 │   );
+  
+  i Unsafe fix: Use a SelfClosingElement instead
+  
+     29  29 │       >
+     30  30 │         <polyline points="4 17 10 11 4 5"></polyline>
+     31     │ - ······<line·x1="12"·y1="19"·x2="20"·y2="19"></line>
+         31 │ + ······<line·x1="12"·y1="19"·x2="20"·y2="19"·/>
+     32  32 │       </svg>
+     33  33 │     );
+  
+
+./packages/mantine/src/components/crud/show/index.spec.tsx:98:11 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
+
+  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
+  
+     96 │       const { getByText, queryByTestId } = render(
+     97 │         <Routes>
+   > 98 │           <Route
+        │           ^^^^^^
+   > 99 │             path="/:resource/:action/:id"
+         ...
+  > 107 │             }
+  > 108 │           ></Route>
+        │           ^^^^^^^^^
+    109 │         </Routes>,
+    110 │         {
+  
+  i Unsafe fix: Use a SelfClosingElement instead
+  
+    108 │ ··········></Route>
+        │           -- ----- 
+
+./documentation/src/theme/BlogListPage/index.js:82:9 lint/style/useSelfClosingElements  FIXABLE  ━━━━━━━━━━
+
+  ! JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.
+  
+    80 │         )}
+    81 │       >
+  > 82 │         <div className="border-b border-gray-100 dark:border-gray-700"></div>
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    83 │       </div>
+    84 │       <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
+  
+  i Unsafe fix: Use a SelfClosingElement instead
+  
+     80  80 │           )}
+     81  81 │         >
+     82     │ - ········<div·className="border-b·border-gray-100·dark:border-gray-700"></div>
+         82 │ + ········<div·className="border-b·border-gray-100·dark:border-gray-700"·/>
+     83  83 │         </div>
+     84  84 │         <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
+  
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 138.
-Checked 6952 file(s) in 460ms
+Checked 6952 file(s) in 452ms

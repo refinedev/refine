@@ -2,16 +2,31 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2164:15 lint/suspicious/noAssignInExpressions ━━━━━━━━━━
+./packages/strapi-v4/src/utils/generateFilter.ts:10:24 lint/suspicious/noAssignInExpressions ━━━━━━━━━━
 
   ! The assignment should not be in an expression.
   
-    2162 │       let promise;
-    2163 │ 
-  > 2164 │       while ((promise = this._extendLifetimePromises.shift())) {
+     8 │   if (fields.length > 1) {
+     9 │     let fieldQuery = "";
+  > 10 │     fields.map((v) => (fieldQuery += `[${v}]`));
+       │                        ^^^^^^^^^^^^^^^^^^^^^^
+    11 │     return fieldQuery;
+    12 │   } else {
+  
+  i The use of assignments in expressions is confusing.
+    Expressions are often considered as side-effect free.
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2162:15 lint/suspicious/noAssignInExpressions ━━━━━━━━━━
+
+  ! The assignment should not be in an expression.
+  
+    2160 │       let promise;
+    2161 │ 
+  > 2162 │       while ((promise = this._extendLifetimePromises.shift())) {
          │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    2165 │         await promise;
-    2166 │       }
+    2163 │         await promise;
+    2164 │       }
   
   i The use of assignments in expressions is confusing.
     Expressions are often considered as side-effect free.
@@ -27,21 +42,6 @@
         │                                        ^^^^^^^^^^^^^^^^^^
     690 │ 
     691 │     if (hasPaginationProperty && !hasMode) {
-  
-  i The use of assignments in expressions is confusing.
-    Expressions are often considered as side-effect free.
-  
-
-./packages/strapi-v4/src/utils/generateFilter.ts:10:24 lint/suspicious/noAssignInExpressions ━━━━━━━━━━
-
-  ! The assignment should not be in an expression.
-  
-     8 │   if (fields.length > 1) {
-     9 │     let fieldQuery = "";
-  > 10 │     fields.map((v) => (fieldQuery += `[${v}]`));
-       │                        ^^^^^^^^^^^^^^^^^^^^^^
-    11 │     return fieldQuery;
-    12 │   } else {
   
   i The use of assignments in expressions is confusing.
     Expressions are often considered as side-effect free.
@@ -77,4 +77,4 @@
     Expressions are often considered as side-effect free.
   
 
-Checked 6952 file(s) in 456ms
+Checked 6952 file(s) in 487ms

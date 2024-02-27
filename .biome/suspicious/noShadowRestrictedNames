@@ -114,18 +114,6 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/finefoods-material-ui/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Map" property.
-  
-  > 1 │ import Map from "./map";
-      │        ^^^
-    2 │ import MapMarker from "./marker";
-    3 │ 
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
 ./examples/finefoods-material-ui/src/components/dashboard/deliveryMap/index.tsx:4:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
@@ -140,15 +128,14 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/finefoods-antd/src/components/order/deliveryMap/index.tsx:2:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+./examples/finefoods-material-ui/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
   
-    1 │ import { IOrder } from "../../../interfaces";
-  > 2 │ import { Map, MapMarker } from "../../map";
-      │          ^^^
+  > 1 │ import Map from "./map";
+      │        ^^^
+    2 │ import MapMarker from "./marker";
     3 │ 
-    4 │ type Props = {
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -180,16 +167,15 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/finefoods-antd/src/components/dashboard/allOrdersMap/index.tsx:3:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+./examples/finefoods-antd/src/components/order/deliveryMap/index.tsx:2:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
   
-    1 │ import { useList, useNavigation } from "@refinedev/core";
-    2 │ 
-  > 3 │ import { Map, MapMarker } from "../..";
+    1 │ import { IOrder } from "../../../interfaces";
+  > 2 │ import { Map, MapMarker } from "../../map";
       │          ^^^
-    4 │ import { IOrder } from "../../../interfaces";
-    5 │ 
+    3 │ 
+    4 │ type Props = {
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -202,6 +188,20 @@
       │        ^^^
     2 │ import MapMarker from "./marker";
     3 │ import AdvancedMarker from "./advanced-marker";
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
+./examples/finefoods-antd/src/components/dashboard/allOrdersMap/index.tsx:3:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Map" property.
+  
+    1 │ import { useList, useNavigation } from "@refinedev/core";
+    2 │ 
+  > 3 │ import { Map, MapMarker } from "../..";
+      │          ^^^
+    4 │ import { IOrder } from "../../../interfaces";
+    5 │ 
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -276,4 +276,4 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-Checked 6952 file(s) in 461ms
+Checked 6952 file(s) in 490ms

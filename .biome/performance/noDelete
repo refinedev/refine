@@ -22,48 +22,6 @@
      67  67 │   
   
 
-./documentation/src/utils/remove-active-from-files.ts:6:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid the delete operator which can impact performance.
-  
-    4 │   const newFiles = Object.keys(files).reduce((acc, file) => {
-    5 │     const newFile = { ...(files[file] as SandpackFile) };
-  > 6 │     delete newFile.active;
-      │     ^^^^^^^^^^^^^^^^^^^^^
-    7 │     return { ...acc, [file]: newFile };
-    8 │   }, {} as SandpackFiles);
-  
-  i Unsafe fix: Use an undefined assignment instead.
-  
-     4  4 │     const newFiles = Object.keys(files).reduce((acc, file) => {
-     5  5 │       const newFile = { ...(files[file] as SandpackFile) };
-     6    │ - ····delete·newFile.active;
-        6 │ + ····newFile.active·=·undefined;
-     7  7 │       return { ...acc, [file]: newFile };
-     8  8 │     }, {} as SandpackFiles);
-  
-
-./documentation/src/utils/remove-active-from-files.ts:19:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid the delete operator which can impact performance.
-  
-    17 │   const newFiles = Object.keys(files).reduce((acc, file) => {
-    18 │     const newFile = { ...(files[file] as SandpackFile) };
-  > 19 │     delete newFile.active;
-       │     ^^^^^^^^^^^^^^^^^^^^^
-    20 │     if (file === activeFile) {
-    21 │       newFile.active = true;
-  
-  i Unsafe fix: Use an undefined assignment instead.
-  
-    17 17 │     const newFiles = Object.keys(files).reduce((acc, file) => {
-    18 18 │       const newFile = { ...(files[file] as SandpackFile) };
-    19    │ - ····delete·newFile.active;
-       19 │ + ····newFile.active·=·undefined;
-    20 20 │       if (file === activeFile) {
-    21 21 │         newFile.active = true;
-  
-
 ./packages/remix/src/parse-table-params.ts:15:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━━━━━━━
 
   ! Avoid the delete operator which can impact performance.
@@ -145,6 +103,48 @@
          82 │ + ······newParams.url·=·undefined;
      83  83 │   
      84  84 │         return [
+  
+
+./documentation/src/utils/remove-active-from-files.ts:6:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid the delete operator which can impact performance.
+  
+    4 │   const newFiles = Object.keys(files).reduce((acc, file) => {
+    5 │     const newFile = { ...(files[file] as SandpackFile) };
+  > 6 │     delete newFile.active;
+      │     ^^^^^^^^^^^^^^^^^^^^^
+    7 │     return { ...acc, [file]: newFile };
+    8 │   }, {} as SandpackFiles);
+  
+  i Unsafe fix: Use an undefined assignment instead.
+  
+     4  4 │     const newFiles = Object.keys(files).reduce((acc, file) => {
+     5  5 │       const newFile = { ...(files[file] as SandpackFile) };
+     6    │ - ····delete·newFile.active;
+        6 │ + ····newFile.active·=·undefined;
+     7  7 │       return { ...acc, [file]: newFile };
+     8  8 │     }, {} as SandpackFiles);
+  
+
+./documentation/src/utils/remove-active-from-files.ts:19:5 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid the delete operator which can impact performance.
+  
+    17 │   const newFiles = Object.keys(files).reduce((acc, file) => {
+    18 │     const newFile = { ...(files[file] as SandpackFile) };
+  > 19 │     delete newFile.active;
+       │     ^^^^^^^^^^^^^^^^^^^^^
+    20 │     if (file === activeFile) {
+    21 │       newFile.active = true;
+  
+  i Unsafe fix: Use an undefined assignment instead.
+  
+    17 17 │     const newFiles = Object.keys(files).reduce((acc, file) => {
+    18 18 │       const newFile = { ...(files[file] as SandpackFile) };
+    19    │ - ····delete·newFile.active;
+       19 │ + ····newFile.active·=·undefined;
+    20 20 │       if (file === activeFile) {
+    21 21 │         newFile.active = true;
   
 
 ./packages/nextjs-router/src/common/parse-table-params.ts:15:3 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━
@@ -250,4 +250,4 @@
     137 137 │           });
   
 
-Checked 6952 file(s) in 460ms
+Checked 6952 file(s) in 509ms

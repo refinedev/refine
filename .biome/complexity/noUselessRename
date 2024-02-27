@@ -2,32 +2,6 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./documentation/src/theme/TutorialItem/Paginator/index.js:1:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━
-
-  ! Useless rename.
-  
-  > 1 │ export { default as default } from "../../../refine-theme/tutorial-paginator";
-      │          ^^^^^^^^^^^^^^^^^^
-    2 │ 
-  
-  i Safe fix: Remove the renaming.
-  
-    1 │ export·{·default·as·default·}·from·"../../../refine-theme/tutorial-paginator";
-      │                  -----------                                                  
-
-./examples/store/src/components/common/FeatureBar/index.ts:1:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━
-
-  ! Useless rename.
-  
-  > 1 │ export { default as default } from "./FeatureBar";
-      │          ^^^^^^^^^^^^^^^^^^
-    2 │ 
-  
-  i Safe fix: Remove the renaming.
-  
-    1 │ export·{·default·as·default·}·from·"./FeatureBar";
-      │                  -----------                      
-
 ./packages/nextjs-router/src/index.ts:3:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━━━━━━
 
   ! Useless rename.
@@ -59,4 +33,4 @@
     28 │ ······const·{·total:·total,·documents:·data·}·=
        │                    -------                     
 
-Checked 6952 file(s) in 467ms
+Checked 6952 file(s) in 503ms

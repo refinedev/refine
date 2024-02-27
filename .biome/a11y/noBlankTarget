@@ -2,40 +2,4 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./documentation/src/components/blog/promotion/index.js:11:49 lint/a11y/noBlankTarget  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using target="_blank" without rel="noreferrer".
-  
-     9 │       <div>
-    10 │         {" "}
-  > 11 │         <a href="https://s.refine.dev/new-blog" target="_blank">
-       │                                                 ^^^^^^^^^^^^^^^
-    12 │           refine.new
-    13 │         </a>{" "}
-  
-  i Opening external links in new tabs without rel="noreferrer" is a security risk. See the explanation for more details.
-  
-  i Safe fix: Add the rel="noreferrer" attribute.
-  
-    11 │ ········<a·href="https://s.refine.dev/new-blog"·target="_blank"·rel="noreferrer">
-       │                                                                +++++++++++++++++ 
-
-./documentation/src/components/blog/promotion/index.js:37:55 lint/a11y/noBlankTarget  FIXABLE  ━━━━━━━━━━
-
-  ! Avoid using target="_blank" without rel="noreferrer".
-  
-    35 │         <br />
-    36 │         Try{" "}
-  > 37 │         <a href="https://github.com/refinedev/refine" target="_blank">
-       │                                                       ^^^^^^^^^^^^^^^
-    38 │           refine
-    39 │         </a>{" "}
-  
-  i Opening external links in new tabs without rel="noreferrer" is a security risk. See the explanation for more details.
-  
-  i Safe fix: Add the rel="noreferrer" attribute.
-  
-    37 │ ········<a·href="https://github.com/refinedev/refine"·target="_blank"·rel="noreferrer">
-       │                                                                      +++++++++++++++++ 
-
-Checked 6952 file(s) in 456ms
+Checked 6952 file(s) in 471ms

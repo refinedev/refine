@@ -2,6 +2,20 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
+./cypress/support/commands/intercepts/hasura.ts:89:18 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    87 │             hasuraBlogPosts.data.blog_posts.find(
+    88 │               (post) => post.id === id,
+  > 89 │             ) as any;
+       │                  ^^^
+    90 │ 
+    91 │           if (!post) {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
 ./cypress/support/commands/resource.ts:43:55 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ! Unexpected any. Specify a different type.
@@ -30,16 +44,16 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
-./cypress/support/commands/intercepts/hasura.ts:89:18 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+./packages/codemod/src/helpers/separate-imports.ts:12:22 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
 
   ! Unexpected any. Specify a different type.
   
-    87 │             hasuraBlogPosts.data.blog_posts.find(
-    88 │               (post) => post.id === id,
-  > 89 │             ) as any;
-       │                  ^^^
-    90 │ 
-    91 │           if (!post) {
+    10 │ export function separateImports(payload: {
+    11 │   j: JSCodeshift;
+  > 12 │   source: Collection<any>;
+       │                      ^^^
+    13 │   imports: string[];
+    14 │   renameImports: { [key: string]: string };
   
   i any disables many type checking rules. Its use should be avoided.
   
@@ -82,6 +96,76 @@
         │                            ^^^
     141 │ 
     142 │         if (resource === "users") {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./examples/multi-tenancy-strapi/src/interfaces/index.d.ts:10:10 lint/suspicious/noExplicitAny ━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+     8 │   title: string;
+     9 │   description: string;
+  > 10 │   image: any; // eslint-disable-line
+       │          ^^^
+    11 │   stores: IStore;
+    12 │ }
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/chakra-ui/test/dataMocks.ts:46:53 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    44 │ };
+    45 │ 
+  > 46 │ export const MockJSONServer = MockDataProvider() as any;
+       │                                                     ^^^
+    47 │ 
+    48 │ export const MockRouterProvider = {
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/chakra-ui/test/dataMocks.ts:66:22 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    64 │     const params = useParams();
+    65 │ 
+  > 66 │     return params as any;
+       │                      ^^^
+    67 │   },
+    68 │   Link,
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/chakra-ui/test/dataMocks.ts:71:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    69 │   Prompt: () => null,
+    70 │ };
+  > 71 │ export const MockAccessControlProvider: any = {
+       │                                         ^^^
+    72 │   can: () => Promise.resolve({ can: true }),
+    73 │ };
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/chakra-ui/test/dataMocks.ts:75:32 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    73 │ };
+    74 │ 
+  > 75 │ export const MockLiveProvider: any = {
+       │                                ^^^
+    76 │   subscribe: () => ({}),
+    77 │   unsubscribe: () => ({}),
   
   i any disables many type checking rules. Its use should be avoided.
   
@@ -140,16 +224,30 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
-./packages/codemod/src/helpers/separate-imports.ts:12:22 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
+./examples/i18n-nextjs/src/app/blog-posts/page.tsx:40:27 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
 
   ! Unexpected any. Specify a different type.
   
-    10 │ export function separateImports(payload: {
-    11 │   j: JSCodeshift;
-  > 12 │   source: Collection<any>;
-       │                      ^^^
-    13 │   imports: string[];
-    14 │   renameImports: { [key: string]: string };
+    38 │           dataIndex="content"
+    39 │           title={t("blog_posts.fields.content")}
+  > 40 │           render={(value: any) => {
+       │                           ^^^
+    41 │             if (!value) return "-";
+    42 │             return <MarkdownField value={value.slice(0, 80) + "..."} />;
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./examples/i18n-nextjs/src/app/blog-posts/page.tsx:70:27 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    68 │           dataIndex={["createdAt"]}
+    69 │           title={t("blog_posts.fields.createdAt")}
+  > 70 │           render={(value: any) => <DateField value={value} />}
+       │                           ^^^
+    71 │         />
+    72 │         <Table.Column
   
   i any disables many type checking rules. Its use should be avoided.
   
@@ -180,103 +278,6 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
-./packages/strapi-v4/src/utils/normalizeData.ts:13:37 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    11 │   Object.prototype.toString.call(data) === "[object Object]";
-    12 │ 
-  > 13 │ export const normalizeData = (data: any): any => {
-       │                                     ^^^
-    14 │   if (Array.isArray(data)) {
-    15 │     return data.map((item) => normalizeData(item));
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/strapi-v4/src/utils/normalizeData.ts:13:43 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    11 │   Object.prototype.toString.call(data) === "[object Object]";
-    12 │ 
-  > 13 │ export const normalizeData = (data: any): any => {
-       │                                           ^^^
-    14 │   if (Array.isArray(data)) {
-    15 │     return data.map((item) => normalizeData(item));
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/strapi-v4/src/utils/transformHttpError.ts:4:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    2 │ import { transformErrorMessages } from "./transformErrorMessages";
-    3 │ 
-  > 4 │ export const transformHttpError = (err: any): HttpError => {
-      │                                         ^^^
-    5 │   const error = err?.response?.data?.error || {};
-    6 │ 
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/strapi-v4/test/utils/transformErrorMessages.spec.ts:41:26 lint/suspicious/noExplicitAny ━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    40 │   it("should not throw an error with an empty array", () => {
-  > 41 │     const errorMessages: any = [];
-       │                          ^^^
-    42 │ 
-    43 │     const expectedOutput = {};
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:46:53 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    44 │ };
-    45 │ 
-  > 46 │ export const MockJSONServer = MockDataProvider() as any;
-       │                                                     ^^^
-    47 │ 
-    48 │ export const MockRouterProvider = {
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:66:22 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    64 │     const params = useParams();
-    65 │ 
-  > 66 │     return params as any;
-       │                      ^^^
-    67 │   },
-    68 │   Link,
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:71:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    69 │   Prompt: () => null,
-    70 │ };
-  > 71 │ export const MockAccessControlProvider: any = {
-       │                                         ^^^
-    72 │   can: () => Promise.resolve({ can: true }),
-    73 │ };
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 1389.
-Checked 6952 file(s) in 495ms
+Checked 6952 file(s) in 530ms

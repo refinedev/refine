@@ -163,21 +163,21 @@
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1009:9 lint/complexity/noForEach ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1007:9 lint/complexity/noForEach ━━━━━━━━━━
 
   ! Prefer for...of instead of forEach.
   
-    1007 │           `Router is responding to: ${getFriendlyURL(url)}`,
-    1008 │         );
-  > 1009 │         debugMessages.forEach((msg) => {
+    1005 │           `Router is responding to: ${getFriendlyURL(url)}`,
+    1006 │         );
+  > 1007 │         debugMessages.forEach((msg) => {
          │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 1010 │           if (Array.isArray(msg)) {
+  > 1008 │           if (Array.isArray(msg)) {
           ...
-  > 1014 │           }
-  > 1015 │         });
+  > 1012 │           }
+  > 1013 │         });
          │         ^^
-    1016 │         logger.groupEnd();
-    1017 │       } // Wrap in try and catch in case the handle method throws a synchronous
+    1014 │         logger.groupEnd();
+    1015 │       } // Wrap in try and catch in case the handle method throws a synchronous
   
   i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
   

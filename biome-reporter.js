@@ -39,6 +39,6 @@ for (const [group, rules] of lintGroups) {
 
     execSync(`npm run biome lint . &> .biome/${group}/${rule}`);
 
-    fs.writeFileSync("./biome.json", JSON.stringify(originalBiomeConfig));
+    execSync("git checkout -- biome.json");
   }
 }

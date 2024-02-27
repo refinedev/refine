@@ -98,6 +98,21 @@
   i Consider methods such as .splice or .push instead.
   
 
+./packages/mui/src/theme/index.ts:80:5 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Avoid the use of spread (`...`) syntax on accumulators.
+  
+    79 │   return {
+  > 80 │     ...acc,
+       │     ^^^^^^
+    81 │     [key]: createTheme({
+    82 │       palette: {
+  
+  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
+  
+  i Consider methods such as .splice or .push instead.
+  
+
 ./packages/antd/src/definitions/table/index.ts:91:14 lint/performance/noAccumulatingSpread ━━━━━━━━━━
 
   ! Avoid the use of spread (`...`) syntax on accumulators.
@@ -114,19 +129,4 @@
   i Consider methods such as .splice or .push instead.
   
 
-./packages/mui/src/theme/index.ts:80:5 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Avoid the use of spread (`...`) syntax on accumulators.
-  
-    79 │   return {
-  > 80 │     ...acc,
-       │     ^^^^^^
-    81 │     [key]: createTheme({
-    82 │       palette: {
-  
-  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
-  
-  i Consider methods such as .splice or .push instead.
-  
-
-Checked 6952 file(s) in 465ms
+Checked 6952 file(s) in 476ms

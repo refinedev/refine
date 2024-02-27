@@ -20,6 +20,24 @@
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
 
+./packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx:9:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
+
+  ! Alternative text title element cannot be empty
+  
+     8 │ const defaultIcon = (
+   > 9 │   <svg
+       │   ^^^^
+  > 10 │     width={24}
+        ...
+  > 15 │     data-testid="refine-logo"
+  > 16 │   >
+       │   ^
+    17 │     <path
+    18 │       fillRule="evenodd"
+  
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  
+
 ./documentation/src/assets/popover-icons/integrations.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
@@ -345,24 +363,6 @@
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
 
-./packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx:9:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
-
-  ! Alternative text title element cannot be empty
-  
-     8 │ const defaultIcon = (
-   > 9 │   <svg
-       │   ^^^^
-  > 10 │     width={24}
-        ...
-  > 15 │     data-testid="refine-logo"
-  > 16 │   >
-       │   ^
-    17 │     <path
-    18 │       fillRule="evenodd"
-  
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
-
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 405.
-Checked 6952 file(s) in 519ms
+Checked 6952 file(s) in 462ms

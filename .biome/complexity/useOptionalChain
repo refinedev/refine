@@ -89,67 +89,67 @@
      68  67 │       )
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:915:15 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:913:15 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    913 │           event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
-    914 │ 
-  > 915 │           if (event.ports && event.ports[0]) {
+    911 │           event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
+    912 │ 
+  > 913 │           if (event.ports && event.ports[0]) {
         │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    916 │             void requestPromises.then(() => event.ports[0].postMessage(true));
-    917 │           }
+    914 │             void requestPromises.then(() => event.ports[0].postMessage(true));
+    915 │           }
   
   i Unsafe fix: Change to an optional chain.
   
-     913  913 │             event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
-     914  914 │   
-     915      │ - ··········if·(event.ports·&&·event.ports[0])·{
-          915 │ + ··········if·(event.ports?.[0])·{
-     916  916 │               void requestPromises.then(() => event.ports[0].postMessage(true));
-     917  917 │             }
+     911  911 │             event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
+     912  912 │   
+     913      │ - ··········if·(event.ports·&&·event.ports[0])·{
+          913 │ + ··········if·(event.ports?.[0])·{
+     914  914 │               void requestPromises.then(() => event.ports[0].postMessage(true));
+     915  915 │             }
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:963:21 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:961:21 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    961 │         url,
-    962 │       });
-  > 963 │       let handler = route && route.handler;
+    959 │         url,
+    960 │       });
+  > 961 │       let handler = route && route.handler;
         │                     ^^^^^^^^^^^^^^^^^^^^^^
-    964 │       const debugMessages = [];
-    965 │ 
+    962 │       const debugMessages = [];
+    963 │ 
   
   i Unsafe fix: Change to an optional chain.
   
-     961  961 │           url,
-     962  962 │         });
-     963      │ - ······let·handler·=·route·&&·route.handler;
-          963 │ + ······let·handler·=·route?.handler;
-     964  964 │         const debugMessages = [];
-     965  965 │   
+     959  959 │           url,
+     960  960 │         });
+     961      │ - ······let·handler·=·route·&&·route.handler;
+          961 │ + ······let·handler·=·route?.handler;
+     962  962 │         const debugMessages = [];
+     963  963 │   
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1033:28 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1031:28 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    1031 │       } // Get route's catch handler, if it exists
-    1032 │ 
-  > 1033 │       const catchHandler = route && route.catchHandler;
+    1029 │       } // Get route's catch handler, if it exists
+    1030 │ 
+  > 1031 │       const catchHandler = route && route.catchHandler;
          │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    1034 │ 
-    1035 │       if (
+    1032 │ 
+    1033 │       if (
   
   i Unsafe fix: Change to an optional chain.
   
-    1031 1031 │         } // Get route's catch handler, if it exists
+    1029 1029 │         } // Get route's catch handler, if it exists
+    1030 1030 │   
+    1031      │ - ······const·catchHandler·=·route·&&·route.catchHandler;
+         1031 │ + ······const·catchHandler·=·route?.catchHandler;
     1032 1032 │   
-    1033      │ - ······const·catchHandler·=·route·&&·route.catchHandler;
-         1033 │ + ······const·catchHandler·=·route?.catchHandler;
-    1034 1034 │   
-    1035 1035 │         if (
+    1033 1033 │         if (
   
 
 ./packages/chakra-ui/src/components/buttons/delete/index.tsx:118:13 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
@@ -213,6 +213,21 @@
     5 5 │   }
     6 6 │   
   
+
+./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:19:3 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    18 │ const filterDeal = (deal?: DealAggregate) =>
+  > 19 │   deal?.groupBy && deal.groupBy?.closeDateMonth && deal.groupBy?.closeDateYear;
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    20 │ 
+    21 │ const mapDeals = (
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    19 │ ··deal?.groupBy·&&·deal.groupBy?.closeDateMonth·&&·deal.groupBy?.closeDateYear;
+       │   -----------------                                                            
 
 ./packages/mantine/src/components/buttons/delete/index.tsx:107:13 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
@@ -298,30 +313,33 @@
      82  82 │                       return (
   
 
-./packages/cli/src/commands/proxy/index.ts:55:17 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./examples/blog-react-dnd/src/pages/dashBoardPage.tsx:20:7 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    53 │             proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
-    54 │               if (
-  > 55 │                 proxyRes &&
-       │                 ^^^^^^^^^^^
-  > 56 │                 proxyRes.headers &&
-  > 57 │                 proxyRes.headers["set-cookie"]
-       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    58 │               ) {
-    59 │                 proxyRes.headers["set-cookie"][i] = cookie.replace(
+    18 │   const columnItem = (columnName: string) => {
+    19 │     return (
+  > 20 │       orders &&
+       │       ^^^^^^^^^
+  > 21 │       orders
+        ...
+  > 30 │           />
+  > 31 │         ))
+       │         ^^
+    32 │     );
+    33 │   };
   
   i Unsafe fix: Change to an optional chain.
   
-     53  53 │               proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
-     54  54 │                 if (
-     55     │ - ················proxyRes·&&
-     56     │ - ················proxyRes.headers·&&
-     57     │ - ················proxyRes.headers["set-cookie"]
-         55 │ + ················proxyRes?.headers?.["set-cookie"]
-     58  56 │                 ) {
-     59  57 │                   proxyRes.headers["set-cookie"][i] = cookie.replace(
+    18 18 │     const columnItem = (columnName: string) => {
+    19 19 │       return (
+    20    │ - ······orders·&&
+    21    │ - ······orders
+    22    │ - ········.filter((order)·=>·order.column·===·columnName)
+       20 │ + ······orders
+       21 │ + ········?.filter((order)·=>·order.column·===·columnName)
+    23 22 │           .map((order, index) => (
+    24 23 │             <Cards
   
 
 ./packages/inferencer/src/utilities/get-option-label/index.ts:4:7 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
@@ -365,63 +383,53 @@
     124 124 │         }
   
 
-./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:19:3 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./examples/with-web3/src/authProvider.ts:40:9 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    18 │ const filterDeal = (deal?: DealAggregate) =>
-  > 19 │   deal?.groupBy && deal.groupBy?.closeDateMonth && deal.groupBy?.closeDateYear;
-       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    20 │ 
-    21 │ const mapDeals = (
+    38 │   logout: async () => {
+    39 │     localStorage.removeItem(TOKEN_KEY);
+  > 40 │     if (provider && provider.close) {
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    41 │       await provider.close;
+    42 │ 
   
   i Unsafe fix: Change to an optional chain.
   
-    19 │ ··deal?.groupBy·&&·deal.groupBy?.closeDateMonth·&&·deal.groupBy?.closeDateYear;
-       │   -----------------                                                            
+    38 38 │     logout: async () => {
+    39 39 │       localStorage.removeItem(TOKEN_KEY);
+    40    │ - ····if·(provider·&&·provider.close)·{
+       40 │ + ····if·(provider?.close)·{
+    41 41 │         await provider.close;
+    42 42 │   
+  
 
-./packages/inferencer/src/inferencers/mui/list.tsx:131:11 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+./packages/cli/src/commands/proxy/index.ts:55:17 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
 
   ! Change to an optional chain.
   
-    129 │   const relationVariableNames = relationFields
-    130 │     ?.map((field) => {
-  > 131 │       if (field && field.resource) {
-        │           ^^^^^^^^^^^^^^^^^^^^^^^
-    132 │         return `${getVariableName(field.key, "Data")}?.data`;
-    133 │       }
+    53 │             proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
+    54 │               if (
+  > 55 │                 proxyRes &&
+       │                 ^^^^^^^^^^^
+  > 56 │                 proxyRes.headers &&
+  > 57 │                 proxyRes.headers["set-cookie"]
+       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    58 │               ) {
+    59 │                 proxyRes.headers["set-cookie"][i] = cookie.replace(
   
   i Unsafe fix: Change to an optional chain.
   
-    129 129 │     const relationVariableNames = relationFields
-    130 130 │       ?.map((field) => {
-    131     │ - ······if·(field·&&·field.resource)·{
-        131 │ + ······if·(field?.resource)·{
-    132 132 │           return `${getVariableName(field.key, "Data")}?.data`;
-    133 133 │         }
-  
-
-./packages/inferencer/src/inferencers/mantine/list.tsx:139:11 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
-
-  ! Change to an optional chain.
-  
-    137 │   const relationVariableNames = relationFields
-    138 │     ?.map((field) => {
-  > 139 │       if (field && field.resource) {
-        │           ^^^^^^^^^^^^^^^^^^^^^^^
-    140 │         return getVariableName(field.key, "Data");
-    141 │       }
-  
-  i Unsafe fix: Change to an optional chain.
-  
-    137 137 │     const relationVariableNames = relationFields
-    138 138 │       ?.map((field) => {
-    139     │ - ······if·(field·&&·field.resource)·{
-        139 │ + ······if·(field?.resource)·{
-    140 140 │           return getVariableName(field.key, "Data");
-    141 141 │         }
+     53  53 │               proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
+     54  54 │                 if (
+     55     │ - ················proxyRes·&&
+     56     │ - ················proxyRes.headers·&&
+     57     │ - ················proxyRes.headers["set-cookie"]
+         55 │ + ················proxyRes?.headers?.["set-cookie"]
+     58  56 │                 ) {
+     59  57 │                   proxyRes.headers["set-cookie"][i] = cookie.replace(
   
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 20.
-Checked 6952 file(s) in 499ms
+Checked 6952 file(s) in 455ms

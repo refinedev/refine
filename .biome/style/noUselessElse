@@ -60,60 +60,67 @@
     16 15 │   
   
 
-./packages/devtools-shared/src/send.ts:21:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:631:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
 
   ! This else clause can be omitted because previous branches break early.
   
-    19 │     });
-    20 │     return;
-  > 21 │   } else {
-       │     ^^^^^^
-  > 22 │     ws.send(JSON.stringify({ event, payload }));
-  > 23 │     return;
-  > 24 │   }
-       │   ^
-    25 │ }
-    26 │ 
+    630 │       return handler;
+  > 631 │     } else {
+        │       ^^^^^^
+  > 632 │       {
+         ...
+  > 643 │       };
+  > 644 │     }
+        │     ^
+    645 │   };
+    646 │ 
   
   i Unsafe fix: Omit the else clause.
   
-    19 19 │       });
-    20 20 │       return;
-    21    │ - ··}·else·{
-       21 │ + ··}
-    22 22 │       ws.send(JSON.stringify({ event, payload }));
-    23 23 │       return;
-    24    │ - ··}
-    25 24 │   }
-    26 25 │   
+     629  629 │   
+     630  630 │         return handler;
+     631      │ - ····}·else·{
+          631 │ + ····}
+     632  632 │         {
+     633  633 │           finalAssertExports.isType(handler, "function", {
+    ········· │ 
+     642  642 │           handle: handler,
+     643  643 │         };
+     644      │ - ····}
+     645  644 │     };
+     646  645 │   
   
 
-./packages/react-router-v6/src/navigate-to-resource.tsx:32:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2420:11 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
 
   ! This else clause can be omitted because previous branches break early.
   
-    30 │     console.warn("No resource is found to navigate to.");
-    31 │     return null;
-  > 32 │   } else {
-       │     ^^^^^^
-  > 33 │     console.warn("No resource is found to navigate to.");
-  > 34 │     return null;
-  > 35 │   }
-       │   ^
-    36 │ };
-    37 │ 
+    2418 │         if (!response) {
+    2419 │           throw error;
+  > 2420 │         } else {
+         │           ^^^^^^
+  > 2421 │           logger.log(
+          ...
+  > 2427 │           );
+  > 2428 │         }
+         │         ^
+    2429 │       }
+    2430 │ 
   
   i Unsafe fix: Omit the else clause.
   
-    30 30 │       console.warn("No resource is found to navigate to.");
-    31 31 │       return null;
-    32    │ - ··}·else·{
-       32 │ + ··}
-    33 33 │       console.warn("No resource is found to navigate to.");
-    34 34 │       return null;
-    35    │ - ··}
-    36 35 │   };
-    37 36 │   
+    2418 2418 │           if (!response) {
+    2419 2419 │             throw error;
+    2420      │ - ········}·else·{
+         2420 │ + ········}
+    2421 2421 │             logger.log(
+    2422 2422 │               `While responding to '${getFriendlyURL(request.url)}', ` +
+    ········· │ 
+    2426 2426 │                 `a handlerDidError plugin.`,
+    2427 2427 │             );
+    2428      │ - ········}
+    2429 2428 │         }
+    2430 2429 │   
   
 
 ./packages/devtools-server/src/serve-api.ts:139:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━━
@@ -185,94 +192,6 @@
     169 168 │   };
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:633:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    632 │       return handler;
-  > 633 │     } else {
-        │       ^^^^^^
-  > 634 │       {
-         ...
-  > 645 │       };
-  > 646 │     }
-        │     ^
-    647 │   };
-    648 │ 
-  
-  i Unsafe fix: Omit the else clause.
-  
-     631  631 │   
-     632  632 │         return handler;
-     633      │ - ····}·else·{
-          633 │ + ····}
-     634  634 │         {
-     635  635 │           finalAssertExports.isType(handler, "function", {
-    ········· │ 
-     644  644 │           handle: handler,
-     645  645 │         };
-     646      │ - ····}
-     647  646 │     };
-     648  647 │   
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2422:11 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    2420 │         if (!response) {
-    2421 │           throw error;
-  > 2422 │         } else {
-         │           ^^^^^^
-  > 2423 │           logger.log(
-          ...
-  > 2429 │           );
-  > 2430 │         }
-         │         ^
-    2431 │       }
-    2432 │ 
-  
-  i Unsafe fix: Omit the else clause.
-  
-    2420 2420 │           if (!response) {
-    2421 2421 │             throw error;
-    2422      │ - ········}·else·{
-         2422 │ + ········}
-    2423 2423 │             logger.log(
-    2424 2424 │               `While responding to '${getFriendlyURL(request.url)}', ` +
-    ········· │ 
-    2428 2428 │                 `a handlerDidError plugin.`,
-    2429 2429 │             );
-    2430      │ - ········}
-    2431 2430 │         }
-    2432 2431 │   
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:222:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    221 │       return authData?.authenticated;
-  > 222 │     } else {
-        │       ^^^^^^
-  > 223 │       return true;
-  > 224 │     }
-        │     ^
-    225 │   }, [authData, isError, authProvider?.isLegacy]);
-    226 │ 
-  
-  i Unsafe fix: Omit the else clause.
-  
-    220 220 │   
-    221 221 │         return authData?.authenticated;
-    222     │ - ····}·else·{
-        222 │ + ····}
-    223 223 │         return true;
-    224     │ - ····}
-    225 224 │     }, [authData, isError, authProvider?.isLegacy]);
-    226 225 │   
-  
-
 ./packages/devtools-server/src/serve-proxy.ts:165:9 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━
 
   ! This else clause can be omitted because previous branches break early.
@@ -301,36 +220,99 @@
     170 169 │     });
   
 
-./packages/nestjsx-crud/src/provider.ts:36:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━━━━━━━
+./packages/devtools-shared/src/send.ts:21:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
 
   ! This else clause can be omitted because previous branches break early.
   
-    34 │         total: data.length,
-    35 │       };
-  > 36 │     } else {
-       │       ^^^^^^
-  > 37 │       // with pagination
-        ...
-  > 41 │       };
-  > 42 │     }
-       │     ^
-    43 │   },
-    44 │ 
+    19 │     });
+    20 │     return;
+  > 21 │   } else {
+       │     ^^^^^^
+  > 22 │     ws.send(JSON.stringify({ event, payload }));
+  > 23 │     return;
+  > 24 │   }
+       │   ^
+    25 │ }
+    26 │ 
   
   i Unsafe fix: Omit the else clause.
   
-     34  34 │           total: data.length,
-     35  35 │         };
-     36     │ - ····}·else·{
-         36 │ + ····}
-     37  37 │         // with pagination
-     38  38 │         return {
-    ······· │ 
-     40  40 │           total: data.total,
-     41  41 │         };
-     42     │ - ····}
-     43  42 │     },
-     44  43 │   
+    19 19 │       });
+    20 20 │       return;
+    21    │ - ··}·else·{
+       21 │ + ··}
+    22 22 │       ws.send(JSON.stringify({ event, payload }));
+    23 23 │       return;
+    24    │ - ··}
+    25 24 │   }
+    26 25 │   
+  
+
+./packages/chakra-ui/src/components/buttons/create/index.tsx:68:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    66 │   const disabledTitle = () => {
+    67 │     if (data?.can) return "";
+  > 68 │     else if (data?.reason) return data.reason;
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 69 │     else
+  > 70 │       return translate(
+  > 71 │         "buttons.notAccessTitle",
+  > 72 │         "You don't have permission to access",
+  > 73 │       );
+       │       ^^
+    74 │   };
+    75 │ 
+  
+  i Unsafe fix: Omit the else clause.
+  
+    68 │ ····else·if·(data?.reason)·return·data.reason;
+       │     -----                                     
+
+./packages/chakra-ui/src/components/buttons/create/index.tsx:69:5 lint/style/noUselessElse ━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    67 │     if (data?.can) return "";
+    68 │     else if (data?.reason) return data.reason;
+  > 69 │     else
+       │     ^^^^
+  > 70 │       return translate(
+  > 71 │         "buttons.notAccessTitle",
+  > 72 │         "You don't have permission to access",
+  > 73 │       );
+       │       ^^
+    74 │   };
+    75 │ 
+  
+
+./packages/react-router-v6/src/navigate-to-resource.tsx:32:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    30 │     console.warn("No resource is found to navigate to.");
+    31 │     return null;
+  > 32 │   } else {
+       │     ^^^^^^
+  > 33 │     console.warn("No resource is found to navigate to.");
+  > 34 │     return null;
+  > 35 │   }
+       │   ^
+    36 │ };
+    37 │ 
+  
+  i Unsafe fix: Omit the else clause.
+  
+    30 30 │       console.warn("No resource is found to navigate to.");
+    31 31 │       return null;
+    32    │ - ··}·else·{
+       32 │ + ··}
+    33 33 │       console.warn("No resource is found to navigate to.");
+    34 34 │       return null;
+    35    │ - ··}
+    36 35 │   };
+    37 36 │   
   
 
 ./packages/core/src/definitions/helpers/keys/index.ts:223:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
@@ -386,84 +368,6 @@
     231 │ }
   
 
-./packages/chakra-ui/src/components/buttons/create/index.tsx:68:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    66 │   const disabledTitle = () => {
-    67 │     if (data?.can) return "";
-  > 68 │     else if (data?.reason) return data.reason;
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 69 │     else
-  > 70 │       return translate(
-  > 71 │         "buttons.notAccessTitle",
-  > 72 │         "You don't have permission to access",
-  > 73 │       );
-       │       ^^
-    74 │   };
-    75 │ 
-  
-  i Unsafe fix: Omit the else clause.
-  
-    68 │ ····else·if·(data?.reason)·return·data.reason;
-       │     -----                                     
-
-./packages/chakra-ui/src/components/buttons/create/index.tsx:69:5 lint/style/noUselessElse ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    67 │     if (data?.can) return "";
-    68 │     else if (data?.reason) return data.reason;
-  > 69 │     else
-       │     ^^^^
-  > 70 │       return translate(
-  > 71 │         "buttons.notAccessTitle",
-  > 72 │         "You don't have permission to access",
-  > 73 │       );
-       │       ^^
-    74 │   };
-    75 │ 
-  
-
-./packages/chakra-ui/src/components/buttons/list/index.tsx:77:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    75 │   const disabledTitle = () => {
-    76 │     if (data?.can) return "";
-  > 77 │     else if (data?.reason) return data.reason;
-       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 78 │     else
-  > 79 │       return translate(
-  > 80 │         "buttons.notAccessTitle",
-  > 81 │         "You don't have permission to access",
-  > 82 │       );
-       │       ^^
-    83 │   };
-    84 │ 
-  
-  i Unsafe fix: Omit the else clause.
-  
-    77 │ ····else·if·(data?.reason)·return·data.reason;
-       │     -----                                     
-
-./packages/chakra-ui/src/components/buttons/list/index.tsx:78:5 lint/style/noUselessElse ━━━━━━━━━━━
-
-  ! This else clause can be omitted because previous branches break early.
-  
-    76 │     if (data?.can) return "";
-    77 │     else if (data?.reason) return data.reason;
-  > 78 │     else
-       │     ^^^^
-  > 79 │       return translate(
-  > 80 │         "buttons.notAccessTitle",
-  > 81 │         "You don't have permission to access",
-  > 82 │       );
-       │       ^^
-    83 │   };
-    84 │ 
-  
-
 ./packages/remix/src/legacy/routeComponent.tsx:88:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━
 
   ! This else clause can be omitted because previous branches break early.
@@ -490,6 +394,106 @@
      92  91 │   
   
 
+./documentation/src/theme/TagsList/index.tsx:196:7 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    194 │     if (aIndex === -1) {
+    195 │       return bIndex === -1 ? 0 : 1;
+  > 196 │     } else {
+        │       ^^^^^^
+  > 197 │       return bIndex === -1 ? -1 : aIndex - bIndex;
+  > 198 │     }
+        │     ^
+    199 │   });
+    200 │ 
+  
+  i Unsafe fix: Omit the else clause.
+  
+    194 194 │       if (aIndex === -1) {
+    195 195 │         return bIndex === -1 ? 0 : 1;
+    196     │ - ····}·else·{
+        196 │ + ····}
+    197 197 │         return bIndex === -1 ? -1 : aIndex - bIndex;
+    198     │ - ····}
+    199 198 │     });
+    200 199 │   
+  
+
+./packages/remix/src/legacy/prompt.tsx:16:9 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    14 │         setWarnWhen?.(false);
+    15 │         return false;
+  > 16 │       } else {
+       │         ^^^^^^
+  > 17 │         return true;
+  > 18 │       }
+       │       ^
+    19 │     }
+    20 │     return false;
+  
+  i Unsafe fix: Omit the else clause.
+  
+    14 14 │           setWarnWhen?.(false);
+    15 15 │           return false;
+    16    │ - ······}·else·{
+       16 │ + ······}
+    17 17 │           return true;
+    18    │ - ······}
+    19 18 │       }
+    20 19 │       return false;
+  
+
+./packages/remix/src/unsaved-changes-notifier.tsx:45:9 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    43 │         setWarnWhen?.(false);
+    44 │         return false;
+  > 45 │       } else {
+       │         ^^^^^^
+  > 46 │         return true;
+  > 47 │       }
+       │       ^
+    48 │     }
+    49 │     return false;
+  
+  i Unsafe fix: Omit the else clause.
+  
+    43 43 │           setWarnWhen?.(false);
+    44 44 │           return false;
+    45    │ - ······}·else·{
+       45 │ + ······}
+    46 46 │           return true;
+    47    │ - ······}
+    48 47 │       }
+    49 48 │       return false;
+  
+
+./packages/chakra-ui/src/components/buttons/list/index.tsx:77:5 lint/style/noUselessElse  FIXABLE  ━━━━━━━━━━
+
+  ! This else clause can be omitted because previous branches break early.
+  
+    75 │   const disabledTitle = () => {
+    76 │     if (data?.can) return "";
+  > 77 │     else if (data?.reason) return data.reason;
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 78 │     else
+  > 79 │       return translate(
+  > 80 │         "buttons.notAccessTitle",
+  > 81 │         "You don't have permission to access",
+  > 82 │       );
+       │       ^^
+    83 │   };
+    84 │ 
+  
+  i Unsafe fix: Omit the else clause.
+  
+    77 │ ····else·if·(data?.reason)·return·data.reason;
+       │     -----                                     
+
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 144.
-Checked 6952 file(s) in 458ms
+Checked 6952 file(s) in 451ms

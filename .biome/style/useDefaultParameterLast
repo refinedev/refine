@@ -2,6 +2,32 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
+./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:22:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+
+  ! This default parameter should follow the last required parameter or should be a required parameter.
+  
+    21 │ const mapDeals = (
+  > 22 │   deals: DealAggregate[] = [],
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    23 │   state: string,
+    24 │ ): MappedDealData[] => {
+  
+  i The last required parameter is here:
+  
+    21 │ const mapDeals = (
+    22 │   deals: DealAggregate[] = [],
+  > 23 │   state: string,
+       │   ^^^^^^^^^^^^^
+    24 │ ): MappedDealData[] => {
+    25 │   return deals.filter(filterDeal).map((deal) => {
+  
+  i A default parameter that precedes a required parameter cannot be omitted at call site.
+  
+  i Unsafe fix: Turn the parameter into a required parameter.
+  
+    22 │ ··deals:·DealAggregate[]·=·[],
+       │                         ----- 
+
 ./packages/core/src/definitions/helpers/useUserFriendlyName/index.ts:12:28 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
 
   ! This default parameter should follow the last required parameter or should be a required parameter.
@@ -28,33 +54,6 @@
   
     12 │ ··const·getFriendlyName·=·(name·=·"",·type:·"singular"·|·"plural"):·string·=>·{
        │                                -----                                           
-
-./packages/inferencer/src/compose-inferencers/index.ts:15:5 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
-
-  ! This default parameter should follow the last required parameter or should be a required parameter.
-  
-    13 │     value,
-    14 │     record,
-  > 15 │     infer = fieldInferencer,
-       │     ^^^^^^^^^^^^^^^^^^^^^^^
-    16 │     type,
-    17 │   ) => {
-  
-  i The last required parameter is here:
-  
-    14 │     record,
-    15 │     infer = fieldInferencer,
-  > 16 │     type,
-       │     ^^^^
-    17 │   ) => {
-    18 │     const inferences = inferencers.map((inferencer) =>
-  
-  i A default parameter that precedes a required parameter cannot be omitted at call site.
-  
-  i Unsafe fix: Turn the parameter into a required parameter.
-  
-    15 │ ····infer·=·fieldInferencer,
-       │          ------------------ 
 
 ./packages/core/src/definitions/helpers/userFriendlyResourceName/index.ts:10:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
 
@@ -83,30 +82,31 @@
     10 │ ··resource·=·"",
        │           ----- 
 
-./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:22:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+./packages/inferencer/src/compose-inferencers/index.ts:15:5 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
 
   ! This default parameter should follow the last required parameter or should be a required parameter.
   
-    21 │ const mapDeals = (
-  > 22 │   deals: DealAggregate[] = [],
-       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    23 │   state: string,
-    24 │ ): MappedDealData[] => {
+    13 │     value,
+    14 │     record,
+  > 15 │     infer = fieldInferencer,
+       │     ^^^^^^^^^^^^^^^^^^^^^^^
+    16 │     type,
+    17 │   ) => {
   
   i The last required parameter is here:
   
-    21 │ const mapDeals = (
-    22 │   deals: DealAggregate[] = [],
-  > 23 │   state: string,
-       │   ^^^^^^^^^^^^^
-    24 │ ): MappedDealData[] => {
-    25 │   return deals.filter(filterDeal).map((deal) => {
+    14 │     record,
+    15 │     infer = fieldInferencer,
+  > 16 │     type,
+       │     ^^^^
+    17 │   ) => {
+    18 │     const inferences = inferencers.map((inferencer) =>
   
   i A default parameter that precedes a required parameter cannot be omitted at call site.
   
   i Unsafe fix: Turn the parameter into a required parameter.
   
-    22 │ ··deals:·DealAggregate[]·=·[],
-       │                         ----- 
+    15 │ ····infer·=·fieldInferencer,
+       │          ------------------ 
 
-Checked 6952 file(s) in 503ms
+Checked 6952 file(s) in 451ms
