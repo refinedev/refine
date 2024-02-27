@@ -516,6 +516,7 @@ define(["exports"], (exports) => {
   };
 
   const isType = (object, expectedType, details) => {
+    // biome-ignore lint/suspicious/useValidTypeof: this code isn't belong to us.
     if (typeof object !== expectedType) {
       details["expectedType"] = expectedType;
       throw new WorkboxError("incorrect-type", details);

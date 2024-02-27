@@ -113,7 +113,7 @@
         "noFallthroughSwitchClause": "off",
         "noEmptyInterface": "error",
         "noDuplicateObjectKeys": "error",
-        "useValidTypeof": "off"
+        "useValidTypeof": "error"
       }
     }
   }
