@@ -76,9 +76,6 @@ export const PostCreate: React.FC = () => {
           label="Tags"
           placeholder="Pick multiple"
           defaultValue={[]}
-          /* filter={(options, search, limit) => {
-                        return !!item.label?.toLowerCase().includes(value);
-                    }} */
         />
         <Text mt={8} fw={500} size="sm" color="#212529">
           Content

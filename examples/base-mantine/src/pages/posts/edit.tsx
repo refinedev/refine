@@ -92,9 +92,6 @@ export const PostEdit: React.FC = () => {
           label="Tags"
           placeholder="Pick multiple"
           defaultValue={defaultTags}
-          /* filter={(value, _selected, item) => {
-                        return !!item.label?.toLowerCase().includes(value);
-                    }} */
         />
         <Text mt={8} fw={500} size="sm" color="#212529">
           Content
