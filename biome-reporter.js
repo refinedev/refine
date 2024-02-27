@@ -28,7 +28,9 @@ function getModifiedConfig(group, rule) {
 for (const [group, rules] of lintGroups) {
   if (group === "recommended") continue;
 
-  for (const rule of Object.keys(rules)) {
+  for (const [rule, value] of Object.entries(rules)) {
+    if (value !== "off") continue;
+
     const modifiedConfig = JSON.stringify(
       getModifiedConfig(group, rule),
       null,
