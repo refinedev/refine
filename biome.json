@@ -104,7 +104,7 @@
         "noConfusingVoidType": "off",
         "noGlobalIsNan": "off",
         "noArrayIndexKey": "off",
-        "noRedeclare": "off",
+        "noRedeclare": "error",
         "noControlCharactersInRegex": "off",
         "noDuplicateJsxProps": "error",
         "noShadowRestrictedNames": "off",

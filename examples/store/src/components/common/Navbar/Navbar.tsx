@@ -4,12 +4,7 @@ import { Logo, Container } from "@components/ui";
 import { NavbarRoot } from "./NavbarRoot";
 import { UserNav, Searchbar } from "@components/common";
 
-import s from "./Navbar.module.css";
-
-interface Link {
-  href: string;
-  label: string;
-}
+import styles from "./Navbar.module.css";
 
 interface NavbarProps {
   links?: { title: string; id: string }[];
@@ -19,21 +14,21 @@ export const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
     <NavbarRoot>
       <Container clean className="max-w-8xl mx-auto px-6">
-        <div className={s.nav}>
+        <div className={styles.nav}>
           <div className="flex flex-1 items-center">
             <Link href="/">
               <>
                 <Logo short />
               </>
             </Link>
-            <nav className={s.navMenu}>
-              <Link href="/search" className={s.link}>
+            <nav className={styles.navMenu}>
+              <Link href="/search" className={styles.link}>
                 All
               </Link>
               {links?.map((col) => (
                 <Link
                   href={`/search/${col.id}`}
-                  className={s.link}
+                  className={styles.link}
                   key={col.id}
                 >
                   {col.title}
