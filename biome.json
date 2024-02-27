@@ -68,7 +68,7 @@
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
-        "noEmptyPattern": "off",
+        "noEmptyPattern": "error",
         "noUnsafeOptionalChaining": "off",
         "noSwitchDeclarations": "off",
         "noUnreachable": "error",
