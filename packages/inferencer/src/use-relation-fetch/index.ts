@@ -126,7 +126,7 @@ export const useRelationFetch = ({
                   let record: Record<string, unknown> | undefined = {};
 
                   if (isMultiple && dp.getMany) {
-                    const { data } = await dp.getMany?.({
+                    const { data } = await dp.getMany({
                       resource: toPlural(removeRelationSuffix(field.key)),
                       ids: [requestId],
                       meta: pickMeta(
