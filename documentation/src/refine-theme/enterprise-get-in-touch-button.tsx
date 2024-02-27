@@ -5,9 +5,13 @@ import React, { FC, SVGProps } from "react";
 type Props = {
     className?: string;
     linkClassName?: string;
+    variant?: "plain" | "default";
 };
 
-export const EnterpriseGetInTouchButton: FC<Props> = (props) => {
+export const EnterpriseGetInTouchButton: FC<Props> = ({
+    variant = "default",
+    ...props
+}) => {
     return (
         <div
             className={clsx(
@@ -26,8 +30,14 @@ export const EnterpriseGetInTouchButton: FC<Props> = (props) => {
                 className={clsx(
                     "self-start",
                     "rounded-full",
-                    "!text-gray-0 dark:!text-gray-900",
-                    "bg-refine-blue dark:bg-refine-cyan-alt",
+                    variant === "default" && [
+                        "!text-gray-0 dark:!text-gray-900",
+                        "bg-enterprise-cta-button-bg-light dark:bg-enterprise-cta-button-bg-dark",
+                    ],
+                    variant === "plain" && [
+                        "dark:bg-gray-900 bg-gray-0",
+                        "!text-gray-900 dark:!text-gray-0",
+                    ],
                     "transition-[filter]",
                     "duration-150",
                     "ease-in-out",
@@ -45,8 +55,16 @@ export const EnterpriseGetInTouchButton: FC<Props> = (props) => {
                 )}
             >
                 <GetInTouchIcon />
-                <span className={clsx("text-base", "font-semibold")}>
-                    Get in touch
+                <span
+                    className={clsx(
+                        "text-base",
+                        "font-semibold",
+                        variant === "default" &&
+                            "text-gray-0 dark:text-gray-900",
+                        variant === "plain" && "dark:text-gray-0 text-gray-900",
+                    )}
+                >
+                    Contact us
                 </span>
             </Link>
         </div>
@@ -60,7 +78,7 @@ const GetInTouchIcon = (props: SVGProps<SVGSVGElement>) => (
         height={16}
         fill="none"
         {...props}
-        className={clsx("text-gray-0 dark:text-gray-900", props.className)}
+        className={clsx(props.className)}
     >
         <path
             fill="currentColor"

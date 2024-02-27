@@ -18,20 +18,19 @@ export const EnterpriseGetInTouchCta: FC<Props> = (props) => {
                     "gap-4 landing-sm:gap-6",
                     "py-6 pr-6 pl-6 landing-md:pl-12",
                     "rounded-2xl landing-md:rounded-full",
-                    "dark:bg-gray-800 bg-gray-50",
-                    "dark:bg-enterprise-cta-dark dark:landing-md:bg-enterprise-cta-dark-md",
-                    "bg-enterprise-cta-light landing-md:bg-enterprise-cta-light-md",
+                    "text-gray-0 dark:text-gray-900",
+                    "bg-enterprise-cta-button-bg-light dark:bg-enterprise-cta-button-bg-dark",
                 )}
             >
                 <h2
                     className={clsx(
                         "text-sm landing-sm:text-2xl",
-                        "dark:text-gray-400 text-gray-600",
+                        "font-medium",
                     )}
                 >
-                    Ready to try Refine Enterprise Edition?
+                    Ready to unlock the full potential?
                 </h2>
-                <EnterpriseGetInTouchButton />
+                <EnterpriseGetInTouchButton variant="plain" />
             </div>
         </div>
     );

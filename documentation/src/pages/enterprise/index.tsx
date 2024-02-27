@@ -58,37 +58,31 @@ const Enterprise: React.FC = () => {
                                 "landing-lg:-mt-40",
                             )}
                         />
-                        <EnterpriseSecurity
-                            className={clsx(sectionPadding, sectionWidth)}
-                        />
-                        <EnterpriseGetInTouchCta
-                            className={clsx(
-                                sectionPadding,
-                                sectionWidth,
-                                "w-full landing-lg:max-w-[792px] mx-auto",
-                            )}
-                        />
-                        <EnterpriseFlexibility
-                            className={clsx(sectionPadding, sectionWidth)}
-                        />
-                        <EnterpriseDataSource
-                            className={clsx(sectionPadding, sectionWidth)}
-                        />
-                        <EnterpriseGetInTouchCta
-                            className={clsx(
-                                sectionPadding,
-                                sectionWidth,
-                                "w-full landing-lg:max-w-[792px] mx-auto",
-                            )}
-                        />
-                        <EnterpriseFrequentUpdates
-                            className={clsx(sectionPadding, sectionWidth)}
-                        />
                         <div className={clsx("w-full", "overflow-hidden")}>
                             <EnterpriseTable
                                 className={clsx(sectionWidth, sectionPadding)}
                             />
                         </div>
+                        <EnterpriseSecurity
+                            className={clsx(sectionPadding, sectionWidth)}
+                        />
+                        <EnterpriseFlexibility
+                            className={clsx(sectionPadding, sectionWidth)}
+                        />
+                        <EnterpriseGetInTouchCta
+                            className={clsx(
+                                sectionPadding,
+                                sectionWidth,
+                                "w-full landing-lg:max-w-[792px] mx-auto",
+                            )}
+                        />
+                        <EnterpriseDataSource
+                            className={clsx(sectionPadding, sectionWidth)}
+                        />
+                        <EnterpriseFrequentUpdates
+                            className={clsx(sectionPadding, sectionWidth)}
+                        />
+
                         <LandingTrustedByDevelopers
                             className={clsx(sectionPadding, sectionWidth)}
                         />
