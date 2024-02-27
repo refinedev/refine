@@ -124,7 +124,7 @@ export const ConfigSuccessPage: React.FC = () => {
             transform: "translateX(-50%)",
           }}
         />
-        <div style={{ height: isMobile ? "40px" : "80px" }}></div>
+        <div style={{ height: isMobile ? "40px" : "80px" }} />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div
             style={{
@@ -142,7 +142,7 @@ export const ConfigSuccessPage: React.FC = () => {
             height: isMobile ? "120px" : isTablet ? "200px" : "30vh",
             minHeight: isMobile ? "120px" : isTablet ? "200px" : "200px",
           }}
-        ></div>
+        />
         <div
           style={{
             display: "flex",
@@ -170,7 +170,7 @@ export const ConfigSuccessPage: React.FC = () => {
             Your configuration is completed.
           </h4>
         </div>
-        <div style={{ height: "64px" }}></div>
+        <div style={{ height: "64px" }} />
         <div
           style={{
             display: "grid",

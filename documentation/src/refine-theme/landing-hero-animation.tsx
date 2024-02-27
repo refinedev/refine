@@ -320,7 +320,7 @@ export const LandingHeroAnimation = React.memo(function HeroAnimation() {
               "bg-landing-hero-beam-bottom-light dark:bg-landing-hero-beam-bottom",
               "animate-landing-hero-beam-bottom",
             )}
-          ></div>
+          />
         </div>
       </div>
     </div>

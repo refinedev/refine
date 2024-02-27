@@ -262,7 +262,7 @@ export const ShowcaseWrapper = React.memo(
                   "w-full",
                   "h-full",
                 )}
-              ></div>
+              />
               {highlights.map((h) => (
                 <HighlightItem key={`${h.x}-${h.y}`} {...h} />
               ))}

@@ -44,7 +44,7 @@ export const buttonListTests = function (
     it("should render label as children if specified", async () => {
       const { container, getByText } = render(
         <Routes>
-          <Route path="/:resource" element={<ListButton />}></Route>
+          <Route path="/:resource" element={<ListButton />} />
         </Routes>,
         {
           wrapper: TestWrapper({

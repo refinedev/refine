@@ -46,7 +46,7 @@ export const crudListTests = function (
     });
 
     it("should render optional title with title prop", async () => {
-      const { getByText } = renderList(<List title="New Title"></List>);
+      const { getByText } = renderList(<List title="New Title" />);
 
       getByText("New Title");
     });

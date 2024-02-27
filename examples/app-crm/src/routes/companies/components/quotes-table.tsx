@@ -168,7 +168,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
                   mode="multiple"
                   placeholder="Select Stage"
                   options={statusOptions}
-                ></Select>
+                />
               </FilterDropdown>
             )}
           />

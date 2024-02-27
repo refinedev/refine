@@ -56,7 +56,7 @@ describe("Edit", () => {
   it("should render optional resource with resource prop", async () => {
     const { getByText } = render(
       <Routes>
-        <Route path="/:resource" element={<Edit resource="posts" />}></Route>
+        <Route path="/:resource" element={<Edit resource="posts" />} />
       </Routes>,
       {
         wrapper: TestWrapper({
@@ -112,7 +112,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -142,7 +142,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
 
         {
@@ -171,7 +171,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -191,7 +191,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<Edit deleteButtonProps={{ size: "lg" }} />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -447,10 +447,7 @@ describe("auto save", () => {
 
     const { getByText, getByTestId } = render(
       <Routes>
-        <Route
-          path="/:resource/edit/:id"
-          element={<EditPageWithAutoSave />}
-        ></Route>
+        <Route path="/:resource/edit/:id" element={<EditPageWithAutoSave />} />
       </Routes>,
       {
         wrapper: TestWrapper({
@@ -506,10 +503,7 @@ describe("auto save", () => {
 
     const { getByText, getByTestId } = render(
       <Routes>
-        <Route
-          path="/:resource/edit/:id"
-          element={<EditPageWithAutoSave />}
-        ></Route>
+        <Route path="/:resource/edit/:id" element={<EditPageWithAutoSave />} />
       </Routes>,
       {
         wrapper: TestWrapper({

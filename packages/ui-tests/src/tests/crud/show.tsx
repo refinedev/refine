@@ -102,7 +102,7 @@ export const crudShowTests = function (
     it("should render optional resource with resource prop", async () => {
       const { getByText } = render(
         <Routes>
-          <Route path="/:resource" element={<Show resource="posts" />}></Route>
+          <Route path="/:resource" element={<Show resource="posts" />} />
         </Routes>,
         {
           wrapper: TestWrapper({

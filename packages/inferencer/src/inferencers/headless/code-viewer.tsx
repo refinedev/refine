@@ -184,7 +184,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               </a>
             </div>
           </div>
-          <div style={{ height: "50px" }}></div>
+          <div style={{ height: "50px" }} />
           <Modal visible={isOpen} onClose={onClose}>
             <div
               style={{

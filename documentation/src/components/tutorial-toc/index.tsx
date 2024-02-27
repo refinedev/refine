@@ -150,7 +150,7 @@ const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
         activeId === item.id &&
           "!text-refine-link-light dark:!text-refine-link-dark",
       )}
-    ></a>
+    />
   );
 };
 

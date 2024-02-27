@@ -105,7 +105,7 @@ describe("Show", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
