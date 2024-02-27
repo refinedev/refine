@@ -64,7 +64,7 @@
         "noStaticOnlyClass": "off",
         "noUselessCatch": "error",
         "useArrowFunction": "off",
-        "noUselessRename": "off"
+        "noUselessRename": "error"
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
