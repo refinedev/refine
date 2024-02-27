@@ -141,6 +141,8 @@ module.exports = {
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
         "landing-sweet-spot-code-light":
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.02), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.04), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.04), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.05), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.06), 0px 82px 80px 0px rgba(0, 0, 0, 0.09)",
+        "landing-wai-shadow-light": "0px -1.5px 0px rgba(237,242,247,0.5)",
+        "landing-wai-shadow-dark": "0px -1.5px 0px rgba(20,20,31,0.5)",
       },
       backgroundColor: {
         "landing-header-bg": "rgba(10, 10, 41, 0.70)",
@@ -464,6 +466,20 @@ module.exports = {
                     #E6CCFF,
                     #E6CCFF
                 )`,
+        "enterprise-cta-button-bg-light":
+          "radial-gradient(100% 375% at 100% 50%, #8000FF 0%, #3333FF 100%)",
+        "enterprise-cta-button-bg-dark":
+          "radial-gradient(100% 375% at 100% 50%, #26D97F 0%, #47EBEB 100%)",
+        "landing-wai-sunshine-light":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-light.png)",
+        "landing-wai-sunshine-dark":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-normal.webp)",
+        "landing-wai-grid-light":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal-light.png)",
+        "landing-wai-grid-dark":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal.png)",
+        "landing-wai-bg-dark":
+          "radial-gradient(57.03% 100% at 50% 0%, rgba(71, 235, 235, 0.25) 0%, rgba(71, 235, 235, 0) 100%)",
       },
       backgroundPosition: {
         "landing-wizard-option-right": "top -350px right -350px, center",
