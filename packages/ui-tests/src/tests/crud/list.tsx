@@ -27,9 +27,9 @@ const renderList = (
   );
 };
 
-export const crudListTests = function (
+export const crudListTests = (
   List: React.ComponentType<RefineCrudListProps<any, any, any, any, any, {}>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());

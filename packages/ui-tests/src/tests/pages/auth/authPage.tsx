@@ -3,9 +3,9 @@ import { AuthPageProps } from "@refinedev/core";
 
 import { render, TestWrapper } from "@test";
 
-export const authPageTests = function (
+export const authPageTests = (
   AuthPage: FC<AuthPageProps<any, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Auth Page", () => {
     it.each(["register", "forgotPassword", "updatePassword", "login"] as const)(
       "should render %s type",

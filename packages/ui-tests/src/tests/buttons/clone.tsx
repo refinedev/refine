@@ -7,9 +7,9 @@ import {
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 
-export const buttonCloneTests = function (
+export const buttonCloneTests = (
   CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Clone Button", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());

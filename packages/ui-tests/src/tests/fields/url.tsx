@@ -3,11 +3,11 @@ import { RefineFieldUrlProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldUrlTests = function (
+export const fieldUrlTests = (
   UrlField: React.ComponentType<
     RefineFieldUrlProps<string | undefined, any, any>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Url Field", () => {
     const url = "https://www.google.com/";
 

@@ -27,11 +27,11 @@ const renderCreate = (
   );
 };
 
-export const crudCreateTests = function (
+export const crudCreateTests = (
   Create: React.ComponentType<
     RefineCrudCreateProps<any, any, any, any, any, any, {}>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());

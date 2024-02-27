@@ -20,7 +20,7 @@ const projectIdAppender: RequestHandler = async (req, res, next) => {
   next();
 };
 
-const restream: Options["onProxyReq"] = function (proxyReq, req) {
+const restream: Options["onProxyReq"] = (proxyReq, req) => {
   if (req.body) {
     const bodyData = JSON.stringify(req.body);
     // incase if content-type is application/x-www-form-urlencoded -> we need to change to application/json
@@ -84,7 +84,7 @@ const loadAuth = async () => {
 const handleLogoutToken: (
   token?: string,
 ) => NonNullable<Options["onProxyReq"]> = (token) => {
-  return function (proxyReq, req) {
+  return (proxyReq, req) => {
     if (req.url.includes("self-service/logout/api")) {
       const bodyData = JSON.stringify({
         session_token: token,
@@ -99,7 +99,7 @@ const handleLogoutToken: (
 const handleSignInCallbacks: (
   onToken: (token?: string, jwt?: string) => void,
 ) => NonNullable<Options["onProxyRes"]> = (onToken) => {
-  return function (proxyRes, req, res) {
+  return (proxyRes, req, res) => {
     let body = "";
     proxyRes.on("data", (chunk) => {
       body += chunk;

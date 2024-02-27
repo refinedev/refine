@@ -27,11 +27,11 @@ const renderShow = (
   );
 };
 
-export const crudShowTests = function (
+export const crudShowTests = (
   Show: React.ComponentType<
     RefineCrudShowProps<any, any, any, any, any, {}, any, any, any, any>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());

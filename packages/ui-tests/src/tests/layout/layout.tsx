@@ -3,9 +3,9 @@ import { RefineLayoutLayoutProps } from "@refinedev/ui-types";
 
 import { act, render, TestWrapper } from "@test";
 
-export const layoutLayoutTests = function (
+export const layoutLayoutTests = (
   LayoutElement: React.ComponentType<RefineLayoutLayoutProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Layout Element", () => {
     it("Layout renders sider, header, footer, title, offLayoutArea if given props", async () => {
       const customTitleContent = "customTitleContent";

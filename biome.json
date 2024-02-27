@@ -63,7 +63,7 @@
         "noExtraBooleanCast": "error",
         "noStaticOnlyClass": "off",
         "noUselessCatch": "error",
-        "useArrowFunction": "off",
+        "useArrowFunction": "error",
         "noUselessRename": "error"
       },
       "correctness": {
