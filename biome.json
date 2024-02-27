@@ -112,7 +112,7 @@
         "noSelfCompare": "off",
         "noFallthroughSwitchClause": "off",
         "noEmptyInterface": "error",
-        "noDuplicateObjectKeys": "off",
+        "noDuplicateObjectKeys": "error",
         "useValidTypeof": "off"
       }
     }
