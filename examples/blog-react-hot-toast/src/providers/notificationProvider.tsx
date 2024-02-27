@@ -24,6 +24,7 @@ export const notificationProvider: NotificationProvider = {
             color: "#fff",
           },
         });
+        break;
       default:
         break;
     }

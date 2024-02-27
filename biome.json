@@ -110,7 +110,7 @@
         "noShadowRestrictedNames": "off",
         "useDefaultSwitchClauseLast": "error",
         "noSelfCompare": "error",
-        "noFallthroughSwitchClause": "off",
+        "noFallthroughSwitchClause": "error",
         "noEmptyInterface": "error",
         "noDuplicateObjectKeys": "error",
         "useValidTypeof": "error"
