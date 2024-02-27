@@ -106,7 +106,7 @@
         "noArrayIndexKey": "off",
         "noRedeclare": "off",
         "noControlCharactersInRegex": "off",
-        "noDuplicateJsxProps": "off",
+        "noDuplicateJsxProps": "error",
         "noShadowRestrictedNames": "off",
         "useDefaultSwitchClauseLast": "off",
         "noSelfCompare": "off",
