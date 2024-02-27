@@ -134,7 +134,7 @@ export const renderer = ({
       const variableIsLoading = getVariableName(field.key, "IsLoading");
 
       if (field.multiple) {
-        const variableDataLength = accessor(recordName, field.key) + "?.length";
+        const variableDataLength = `${accessor(recordName, field.key)}?.length`;
         return jsx`
                 <div style={{ marginTop: "6px" }}>
                     <h5>${translatePrettyString({

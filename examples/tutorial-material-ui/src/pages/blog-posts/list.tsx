@@ -41,7 +41,7 @@ export const BlogPostList = () => {
         headerName: "Content",
         minWidth: 250,
         renderCell: function render({ value }) {
-          return <MarkdownField value={(value ?? "").slice(0, 80) + "..."} />;
+          return <MarkdownField value={`${(value ?? "").slice(0, 80)}...`} />;
         },
       },
       {

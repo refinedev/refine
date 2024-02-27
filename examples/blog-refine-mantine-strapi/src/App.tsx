@@ -73,7 +73,7 @@ function App() {
             <NotificationsProvider position="top-right">
               <Refine
                 authProvider={authProvider}
-                dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+                dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 resources={[

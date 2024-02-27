@@ -82,7 +82,7 @@
         "noDangerouslySetInnerHtml": "off"
       },
       "style": {
-        "useTemplate": "off",
+        "useTemplate": "error",
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
         "noNonNullAssertion": "off",

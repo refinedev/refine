@@ -332,7 +332,7 @@ const SandpackBase = ({
                             flexBasis: 0,
                             width: previewOnly
                               ? "100%"
-                              : 100 - horizontalSize + "%",
+                              : `${100 - horizontalSize}%`,
                           }),
                       gap: 0,
                       height: options.editorHeight ?? height, // use the original editor height

@@ -174,7 +174,7 @@ export const renderer = ({
                       i18n,
                     })}
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {
@@ -262,7 +262,7 @@ export const renderer = ({
                     })}
                     valuePropName="checked"
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {
@@ -293,7 +293,7 @@ export const renderer = ({
                       i18n,
                     })}
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {

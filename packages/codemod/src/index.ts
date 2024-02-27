@@ -175,7 +175,7 @@ export async function run(): Promise<void> {
   ) {
     console.error("Invalid transform choice, pick one of:");
     console.error(
-      TRANSFORMER_INQUIRER_CHOICES.map((x) => "- " + x.value).join("\n"),
+      TRANSFORMER_INQUIRER_CHOICES.map((x) => `- ${x.value}`).join("\n"),
     );
     process.exit(1);
   }

@@ -136,11 +136,7 @@ define(["exports"], (exports) => {
       const classNameStr = className ? `${className}.` : "";
 
       if (isReturnValueProblem) {
-        return (
-          "The return value from " +
-          `'${moduleName}.${classNameStr}${funcName}()' ` +
-          `must be an instance of class ${expectedClassName}.`
-        );
+        return `The return value from '${moduleName}.${classNameStr}${funcName}()' must be an instance of class ${expectedClassName}.`;
       }
 
       return (
@@ -172,15 +168,9 @@ define(["exports"], (exports) => {
       );
     },
     "add-to-cache-list-unexpected-type": ({ entry }) => {
-      return (
-        "An unexpected entry was passed to " +
-        `'workbox-precaching.PrecacheController.addToCacheList()' The entry ` +
-        `'${JSON.stringify(
-          entry,
-        )}' isn't supported. You must supply an array of ` +
-        "strings with one or more characters, objects with a url property or " +
-        "Request objects."
-      );
+      return `An unexpected entry was passed to 'workbox-precaching.PrecacheController.addToCacheList()' The entry '${JSON.stringify(
+        entry,
+      )}' isn't supported. You must supply an array of strings with one or more characters, objects with a url property or Request objects.`;
     },
     "add-to-cache-list-conflicting-entries": ({ firstEntry, secondEntry }) => {
       if (!firstEntry || !secondEntry) {
@@ -190,13 +180,7 @@ define(["exports"], (exports) => {
         );
       }
 
-      return (
-        "Two of the entries passed to " +
-        `'workbox-precaching.PrecacheController.addToCacheList()' had the URL ` +
-        `${firstEntry} but different revision details. Workbox is ` +
-        "unable to cache and version the asset correctly. Please remove one " +
-        "of the entries."
-      );
+      return `Two of the entries passed to 'workbox-precaching.PrecacheController.addToCacheList()' had the URL ${firstEntry} but different revision details. Workbox is unable to cache and version the asset correctly. Please remove one of the entries.`;
     },
     "plugin-error-request-will-fetch": ({ thrownErrorMessage }) => {
       if (!thrownErrorMessage) {
@@ -205,10 +189,7 @@ define(["exports"], (exports) => {
         );
       }
 
-      return (
-        `An error was thrown by a plugins 'requestWillFetch()' method. ` +
-        `The thrown error message was: '${thrownErrorMessage}'.`
-      );
+      return `An error was thrown by a plugins 'requestWillFetch()' method. The thrown error message was: '${thrownErrorMessage}'.`;
     },
     "invalid-cache-name": ({ cacheNameId, value }) => {
       if (!cacheNameId) {
@@ -217,11 +198,9 @@ define(["exports"], (exports) => {
         );
       }
 
-      return (
-        "You must provide a name containing at least one character for " +
-        `setCacheDetails({${cacheNameId}: '...'}). Received a value of ` +
-        `'${JSON.stringify(value)}'`
-      );
+      return `You must provide a name containing at least one character for setCacheDetails({${cacheNameId}: '...'}). Received a value of '${JSON.stringify(
+        value,
+      )}'`;
     },
     "unregister-route-but-not-found-with-method": ({ method }) => {
       if (!method) {
@@ -231,10 +210,7 @@ define(["exports"], (exports) => {
         );
       }
 
-      return (
-        `The route you're trying to unregister was not  previously ` +
-        `registered for the method type '${method}'.`
-      );
+      return `The route you're trying to unregister was not  previously registered for the method type '${method}'.`;
     },
     "unregister-route-route-not-registered": () => {
       return (
@@ -246,10 +222,7 @@ define(["exports"], (exports) => {
       return `Replaying the background sync queue '${name}' failed.`;
     },
     "duplicate-queue-name": ({ name }) => {
-      return (
-        `The Queue name '${name}' is already being used. ` +
-        "All instances of backgroundSync.Queue must be given unique names."
-      );
+      return `The Queue name '${name}' is already being used. All instances of backgroundSync.Queue must be given unique names.`;
     },
     "expired-test-without-max-age": ({ methodName, paramName }) => {
       return (
@@ -263,11 +236,7 @@ define(["exports"], (exports) => {
       funcName,
       paramName,
     }) => {
-      return (
-        `The supplied '${paramName}' parameter was an unsupported type. ` +
-        `Please check the docs for ${moduleName}.${className}.${funcName} for ` +
-        "valid input types."
-      );
+      return `The supplied '${paramName}' parameter was an unsupported type. Please check the docs for ${moduleName}.${className}.${funcName} for valid input types.`;
     },
     "not-array-of-class": ({
       value,
@@ -277,36 +246,22 @@ define(["exports"], (exports) => {
       funcName,
       paramName,
     }) => {
-      return (
-        `The supplied '${paramName}' parameter must be an array of ` +
-        `'${expectedClass}' objects. Received '${JSON.stringify(value)},'. ` +
-        `Please check the call to ${moduleName}.${className}.${funcName}() ` +
-        "to fix the issue."
-      );
+      return `The supplied '${paramName}' parameter must be an array of '${expectedClass}' objects. Received '${JSON.stringify(
+        value,
+      )},'. Please check the call to ${moduleName}.${className}.${funcName}() to fix the issue.`;
     },
     "max-entries-or-age-required": ({ moduleName, className, funcName }) => {
-      return (
-        "You must define either config.maxEntries or config.maxAgeSeconds" +
-        `in ${moduleName}.${className}.${funcName}`
-      );
+      return `You must define either config.maxEntries or config.maxAgeSecondsin ${moduleName}.${className}.${funcName}`;
     },
     "statuses-or-headers-required": ({ moduleName, className, funcName }) => {
-      return (
-        "You must define either config.statuses or config.headers" +
-        `in ${moduleName}.${className}.${funcName}`
-      );
+      return `You must define either config.statuses or config.headersin ${moduleName}.${className}.${funcName}`;
     },
     "invalid-string": ({ moduleName, funcName, paramName }) => {
       if (!paramName || !moduleName || !funcName) {
         throw new Error(`Unexpected input to 'invalid-string' error.`);
       }
 
-      return (
-        `When using strings, the '${paramName}' parameter must start with ` +
-        `'http' (for cross-origin matches) or '/' (for same-origin matches). ` +
-        `Please see the docs for ${moduleName}.${funcName}() for ` +
-        "more info."
-      );
+      return `When using strings, the '${paramName}' parameter must start with 'http' (for cross-origin matches) or '/' (for same-origin matches). Please see the docs for ${moduleName}.${funcName}() for more info.`;
     },
     "channel-name-required": () => {
       return (
@@ -331,32 +286,21 @@ define(["exports"], (exports) => {
         throw new Error(`Unexpected input to 'unit-must-be-bytes' error.`);
       }
 
-      return (
-        `The 'unit' portion of the Range header must be set to 'bytes'. ` +
-        `The Range header provided was "${normalizedRangeHeader}"`
-      );
+      return `The 'unit' portion of the Range header must be set to 'bytes'. The Range header provided was "${normalizedRangeHeader}"`;
     },
     "single-range-only": ({ normalizedRangeHeader }) => {
       if (!normalizedRangeHeader) {
         throw new Error(`Unexpected input to 'single-range-only' error.`);
       }
 
-      return (
-        "Multiple ranges are not supported. Please use a  single start " +
-        "value, and optional end value. The Range header provided was " +
-        `"${normalizedRangeHeader}"`
-      );
+      return `Multiple ranges are not supported. Please use a  single start value, and optional end value. The Range header provided was "${normalizedRangeHeader}"`;
     },
     "invalid-range-values": ({ normalizedRangeHeader }) => {
       if (!normalizedRangeHeader) {
         throw new Error(`Unexpected input to 'invalid-range-values' error.`);
       }
 
-      return (
-        "The Range header is missing both start and end values. At least " +
-        "one of those values is needed. The Range header provided was " +
-        `"${normalizedRangeHeader}"`
-      );
+      return `The Range header is missing both start and end values. At least one of those values is needed. The Range header provided was "${normalizedRangeHeader}"`;
     },
     "no-range-header": () => {
       return "No Range header was found in the Request provided.";
@@ -368,16 +312,10 @@ define(["exports"], (exports) => {
       );
     },
     "attempt-to-cache-non-get-request": ({ url, method }) => {
-      return (
-        `Unable to cache '${url}' because it is a '${method}' request and ` +
-        `only 'GET' requests can be cached.`
-      );
+      return `Unable to cache '${url}' because it is a '${method}' request and only 'GET' requests can be cached.`;
     },
     "cache-put-with-no-response": ({ url }) => {
-      return (
-        `There was an attempt to cache '${url}' but the response was not ` +
-        "defined."
-      );
+      return `There was an attempt to cache '${url}' but the response was not defined.`;
     },
     "no-response": ({ url, error }) => {
       let message = `The strategy could not generate a response for '${url}'.`;
@@ -389,43 +327,27 @@ define(["exports"], (exports) => {
       return message;
     },
     "bad-precaching-response": ({ url, status }) => {
-      return (
-        `The precaching request for '${url}' failed` +
-        (status ? ` with an HTTP status of ${status}.` : ".")
-      );
+      return `The precaching request for '${url}' failed${
+        status ? ` with an HTTP status of ${status}.` : "."
+      }`;
     },
     "non-precached-url": ({ url }) => {
-      return (
-        `createHandlerBoundToURL('${url}') was called, but that URL is ` +
-        "not precached. Please pass in a URL that is precached instead."
-      );
+      return `createHandlerBoundToURL('${url}') was called, but that URL is not precached. Please pass in a URL that is precached instead.`;
     },
     "add-to-cache-list-conflicting-integrities": ({ url }) => {
-      return (
-        "Two of the entries passed to " +
-        `'workbox-precaching.PrecacheController.addToCacheList()' had the URL ` +
-        `${url} with different integrity values. Please remove one of them.`
-      );
+      return `Two of the entries passed to 'workbox-precaching.PrecacheController.addToCacheList()' had the URL ${url} with different integrity values. Please remove one of them.`;
     },
     "missing-precache-entry": ({ cacheName, url }) => {
       return `Unable to find a precached response in ${cacheName} for ${url}.`;
     },
     "cross-origin-copy-response": ({ origin }) => {
-      return (
-        "workbox-core.copyResponse() can only be used with same-origin " +
-        `responses. It was passed a response with origin ${origin}.`
-      );
+      return `workbox-core.copyResponse() can only be used with same-origin responses. It was passed a response with origin ${origin}.`;
     },
     "opaque-streams-source": ({ type }) => {
-      const message =
-        "One of the workbox-streams sources resulted in an " +
-        `'${type}' response.`;
+      const message = `One of the workbox-streams sources resulted in an '${type}' response.`;
 
       if (type === "opaqueredirect") {
-        return (
-          `${message} Please do not use a navigation request that results ` +
-          "in a redirect as a source."
-        );
+        return `${message} Please do not use a navigation request that results in a redirect as a source.`;
       }
 
       return `${message} Please ensure your sources are CORS-enabled.`;
@@ -761,9 +683,7 @@ define(["exports"], (exports) => {
         if (url.origin !== location.origin && result.index !== 0) {
           {
             logger.debug(
-              `The regular expression '${regExp.toString()}' only partially matched ` +
-                `against the cross-origin URL '${url.toString()}'. RegExpRoute's will only ` +
-                "handle cross-origin requests if they match the entire URL.",
+              `The regular expression '${regExp.toString()}' only partially matched against the cross-origin URL '${url.toString()}'. RegExpRoute's will only handle cross-origin requests if they match the entire URL.`,
             );
           }
 
@@ -980,8 +900,7 @@ define(["exports"], (exports) => {
       if (!handler && this._defaultHandlerMap.has(method)) {
         {
           debugMessages.push(
-            "Failed to find a matching route. Falling " +
-              `back to the default handler for ${method}.`,
+            `Failed to find a matching route. Falling back to the default handler for ${method}.`,
           );
         }
 
@@ -1041,10 +960,9 @@ define(["exports"], (exports) => {
               // Still include URL here as it will be async from the console group
               // and may not make sense without the URL
               logger.groupCollapsed(
-                "Error thrown when responding to: " +
-                  ` ${getFriendlyURL(
-                    url,
-                  )}. Falling back to route's Catch Handler.`,
+                `Error thrown when responding to:  ${getFriendlyURL(
+                  url,
+                )}. Falling back to route's Catch Handler.`,
               );
               logger.error("Error thrown by:", route);
               logger.error(err);
@@ -1070,10 +988,9 @@ define(["exports"], (exports) => {
               // Still include URL here as it will be async from the console group
               // and may not make sense without the URL
               logger.groupCollapsed(
-                "Error thrown when responding to: " +
-                  ` ${getFriendlyURL(
-                    url,
-                  )}. Falling back to global Catch Handler.`,
+                `Error thrown when responding to:  ${getFriendlyURL(
+                  url,
+                )}. Falling back to global Catch Handler.`,
               );
               logger.error("Error thrown by:", route);
               logger.error(err);
@@ -1129,9 +1046,9 @@ define(["exports"], (exports) => {
             // not the right thing to do.
             if (matchResult instanceof Promise) {
               logger.warn(
-                `While routing ${getFriendlyURL(url)}, an async ` +
-                  "matchCallback function was used. Please convert the " +
-                  "following route to use a synchronous matchCallback function:",
+                `While routing ${getFriendlyURL(
+                  url,
+                )}, an async matchCallback function was used. Please convert the following route to use a synchronous matchCallback function:`,
                 route,
               );
             }
@@ -1341,9 +1258,7 @@ define(["exports"], (exports) => {
 
         if (new RegExp(`${wildcards}`).exec(valueToCheck)) {
           logger.debug(
-            `The '$capture' parameter contains an Express-style wildcard ` +
-              `character (${wildcards}). Strings are now always interpreted as ` +
-              "exact matches; use a RegExp for partial or wildcard matches.",
+            `The '$capture' parameter contains an Express-style wildcard character (${wildcards}). Strings are now always interpreted as exact matches; use a RegExp for partial or wildcard matches.`,
           );
         }
       }
@@ -1355,9 +1270,7 @@ define(["exports"], (exports) => {
             url.origin !== captureUrl.origin
           ) {
             logger.debug(
-              `${capture} only partially matches the cross-origin URL ` +
-                `${url.toString()}. This route will only handle cross-origin requests ` +
-                "if they match the entire URL.",
+              `${capture} only partially matches the cross-origin URL ${url.toString()}. This route will only handle cross-origin requests if they match the entire URL.`,
             );
           }
         }
@@ -1587,8 +1500,7 @@ define(["exports"], (exports) => {
   async function executeQuotaErrorCallbacks() {
     {
       logger.log(
-        `About to run ${quotaErrorCallbacks.size} ` +
-          "callbacks to clean up caches.",
+        `About to run ${quotaErrorCallbacks.size} callbacks to clean up caches.`,
       );
     }
 
@@ -1758,8 +1670,9 @@ define(["exports"], (exports) => {
         if (possiblePreloadResponse) {
           {
             logger.log(
-              "Using a preloaded navigation response for " +
-                `'${getFriendlyURL(request.url)}'`,
+              `Using a preloaded navigation response for '${getFriendlyURL(
+                request.url,
+              )}'`,
             );
           }
 
@@ -1801,9 +1714,9 @@ define(["exports"], (exports) => {
         );
 
         logger.debug(
-          "Network request for " +
-            `'${getFriendlyURL(request.url)}' returned a response with ` +
-            `status '${fetchResponse.status}'.`,
+          `Network request for '${getFriendlyURL(
+            request.url,
+          )}' returned a response with status '${fetchResponse.status}'.`,
         );
 
         for (const callback of this.iterateCallbacks("fetchDidSucceed")) {
@@ -1818,8 +1731,9 @@ define(["exports"], (exports) => {
       } catch (error) {
         {
           logger.log(
-            "Network request for " +
-              `'${getFriendlyURL(request.url)}' threw an error.`,
+            `Network request for '${getFriendlyURL(
+              request.url,
+            )}' threw an error.`,
             error,
           );
         } // `originalRequest` will only exist if a `fetchDidFail` callback
@@ -1935,10 +1849,9 @@ define(["exports"], (exports) => {
 
         if (vary) {
           logger.debug(
-            `The response for ${getFriendlyURL(effectiveRequest.url)} ` +
-              `has a 'Vary: ${vary}' header. ` +
-              "Consider setting the {ignoreVary: true} option on your strategy " +
-              "to ensure cache matching and deletion works as expected.",
+            `The response for ${getFriendlyURL(
+              effectiveRequest.url,
+            )} has a 'Vary: ${vary}' header. Consider setting the {ignoreVary: true} option on your strategy to ensure cache matching and deletion works as expected.`,
           );
         }
       }
@@ -1946,8 +1859,9 @@ define(["exports"], (exports) => {
       if (!response) {
         {
           logger.error(
-            "Cannot cache non-existent response for " +
-              `'${getFriendlyURL(effectiveRequest.url)}'.`,
+            `Cannot cache non-existent response for '${getFriendlyURL(
+              effectiveRequest.url,
+            )}'.`,
           );
         }
 
@@ -1961,8 +1875,9 @@ define(["exports"], (exports) => {
       if (!responseToCache) {
         {
           logger.debug(
-            `Response '${getFriendlyURL(effectiveRequest.url)}' ` +
-              "will not be cached.",
+            `Response '${getFriendlyURL(
+              effectiveRequest.url,
+            )}' will not be cached.`,
             responseToCache,
           );
         }
@@ -2209,15 +2124,11 @@ define(["exports"], (exports) => {
             if (responseToCache.status !== 200) {
               if (responseToCache.status === 0) {
                 logger.warn(
-                  `The response for '${this.request.url}' ` +
-                    `is an opaque response. The caching strategy that you're ` +
-                    "using will not cache opaque responses by default.",
+                  `The response for '${this.request.url}' is an opaque response. The caching strategy that you're using will not cache opaque responses by default.`,
                 );
               } else {
                 logger.debug(
-                  `The response for '${this.request.url}' ` +
-                    `returned a status code of '${response.status}' and won't ` +
-                    "be cached as a result.",
+                  `The response for '${this.request.url}' returned a status code of '${response.status}' and won't be cached as a result.`,
                 );
               }
             }
@@ -2418,11 +2329,9 @@ define(["exports"], (exports) => {
           throw error;
         }
         logger.log(
-          `While responding to '${getFriendlyURL(request.url)}', ` +
-            `an ${
-              error instanceof Error ? error.toString() : ""
-            } error occurred. Using a fallback response provided by ` +
-            "a handlerDidError plugin.",
+          `While responding to '${getFriendlyURL(request.url)}', an ${
+            error instanceof Error ? error.toString() : ""
+          } error occurred. Using a fallback response provided by a handlerDidError plugin.`,
         );
       }
 
@@ -2670,8 +2579,7 @@ define(["exports"], (exports) => {
         const onNetworkTimeout = async () => {
           {
             logs.push(
-              "Timing out the network response at " +
-                `${this._networkTimeoutSeconds} seconds.`,
+              `Timing out the network response at ${this._networkTimeoutSeconds} seconds.`,
             );
           }
 
@@ -2732,7 +2640,7 @@ define(["exports"], (exports) => {
         {
           if (response) {
             logs.push(
-              `Found a cached response in the '${this.cacheName}'` + " cache.",
+              `Found a cached response in the '${this.cacheName}' cache.`,
             );
           } else {
             logs.push(`No response found in the '${this.cacheName}' cache.`);
@@ -2814,8 +2722,7 @@ define(["exports"], (exports) => {
 
         if (!response) {
           throw new Error(
-            "Timed out the network response after " +
-              `${this._networkTimeoutSeconds} seconds.`,
+            `Timed out the network response after ${this._networkTimeoutSeconds} seconds.`,
           );
         }
       } catch (err) {

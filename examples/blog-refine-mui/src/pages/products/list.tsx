@@ -76,7 +76,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         headerName: translate("Description"),
         minWidth: 500,
         renderCell: function render({ value }) {
-          return <MarkdownField value={(value ?? "").slice(0, 80) + "..."} />;
+          return <MarkdownField value={`${(value ?? "").slice(0, 80)}...`} />;
         },
       },
       {

@@ -39,7 +39,7 @@ export const Directory: React.FC<Props> = ({
         depth={depth}
         isDirOpen={open}
         onClick={toggle}
-        path={prefixedPath + "/"}
+        path={`${prefixedPath}/`}
       />
 
       {open && (

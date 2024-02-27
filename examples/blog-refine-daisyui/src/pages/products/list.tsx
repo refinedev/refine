@@ -225,7 +225,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
               return (
                 <button
                   key={pageNumber}
-                  className={"join-item btn btn-sm" + btnActive}
+                  className={`join-item btn btn-sm${btnActive}`}
                   onClick={() => setPageIndex(pageNumber - 1)}
                 >
                   {pageNumber}

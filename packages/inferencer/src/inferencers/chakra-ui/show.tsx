@@ -144,7 +144,7 @@ export const renderer = ({
       const variableIsLoading = getVariableName(field.key, "IsLoading");
 
       if (field.multiple) {
-        const variableDataLength = accessor(recordName, field.key) + "?.length";
+        const variableDataLength = `${accessor(recordName, field.key)}?.length`;
         imports.push(
           ["TagField", "@refinedev/chakra-ui"],
           ["HStack", "@chakra-ui/react"],

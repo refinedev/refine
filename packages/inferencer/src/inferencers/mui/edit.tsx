@@ -231,9 +231,12 @@ export const renderer = ({
 
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
-        const errorVal =
-          accessor("(errors as any)", field.key, undefined, false) +
-          "?.[index]";
+        const errorVal = `${accessor(
+          "(errors as any)",
+          field.key,
+          undefined,
+          false,
+        )}?.[index]`;
 
         return `
                     <Box sx={{display: "flex", gap: 1}}>

@@ -169,8 +169,12 @@ export const renderer = ({
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
         const valError = accessor(
-          accessor("(errors as any)", field.key, undefined, false) +
-            "?.[index]",
+          `${accessor(
+            "(errors as any)",
+            field.key,
+            undefined,
+            false,
+          )}?.[index]`,
           undefined,
           field.accessor,
         );
@@ -261,9 +265,12 @@ export const renderer = ({
       if (field.multiple) {
         const val = dotAccessor(field.key, undefined, field.accessor);
 
-        const errorVal =
-          accessor("(errors as any)", field.key, undefined, false) +
-          "?.[index]";
+        const errorVal = `${accessor(
+          "(errors as any)",
+          field.key,
+          undefined,
+          false,
+        )}?.[index]`;
 
         return `
                     <>
