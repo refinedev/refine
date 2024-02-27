@@ -3,28 +3,28 @@ title: Building an Customizable Invoice Generator App with Refine, Strapi & Ant 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-invoice-generator
 authors: melih
-tags: [refine, react, strapi]
+tags: [Refine, react, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
 :::
 
-Looking for an invoice generator that is easy to use and lets you customize your invoices? With **refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
+Looking for an invoice generator that is easy to use and lets you customize your invoices? With **Refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
 
 <!--truncate-->
 
 ## Introduction
 
-We are almost ready to launch our **refine** Invoice Generator. In this Part II article, we'll customize it just a little more and then take an in-depth look at what you can do with the finished **refine** product!
+We are almost ready to launch our **Refine** Invoice Generator. In this Part II article, we'll customize it just a little more and then take an in-depth look at what you can do with the finished **Refine** product!
 
 In this part, we will create a missions part for the services your company provides. Then we will create our invoice page using these missions and the clients and contacts we created in Part I. In addition, you will not only be able to create your invoices, but you will also be able to view and download these invoices as PDF.
 
@@ -34,7 +34,7 @@ This article is written as a continuation of our [Develop your Own Customizable 
 
 :::
 
-Let's see together how easily and in a short time we can develop our project with its refine features.
+Let's see together how easily and in a short time we can develop our project with its Refine features.
 
 ## Create New Strapi Collections
 
@@ -64,14 +64,21 @@ In our Part I article, we created our company, contact and client collections. I
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
 <br />
 
-We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **refine** Missions page using this collection. And let's understand better by creating an example missions with **refine**.
+We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **Refine** Missions page using this collection. And let's understand better by creating an example missions with **Refine**.
 
 ## Refine Missions Page
 
 Let's use the refine-antd package's [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook to create our page, and let's define the fields in our Table Component.
 
 ```tsx title="src/pages/MissionList.tsx"
-import { List, Table, useTable, TagField, useModalForm, EditButton } from "@refinedev/antd";
+import {
+  List,
+  Table,
+  useTable,
+  TagField,
+  useModalForm,
+  EditButton,
+} from "@refinedev/antd";
 
 import { IMission } from "interfaces";
 
@@ -85,7 +92,10 @@ export const MissionList: React.FC = () => {
         //highlight-start
         <Table.Column dataIndex="id" title="ID" />
         <Table.Column dataIndex="mission" title="Mission" />
-        <Table.Column dataIndex="mission_description" title="Mission Description" />
+        <Table.Column
+          dataIndex="mission_description"
+          title="Mission Description"
+        />
         <Table.Column dataIndex="day" title="Day(s)" />
         <Table.Column
           dataIndex="daily_rate"
@@ -95,7 +105,12 @@ export const MissionList: React.FC = () => {
         <Table.Column<IMission>
           title="Total"
           render={(_, record) => {
-            return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+            return (
+              <TagField
+                value={`${record.daily_rate * record.day} $`}
+                color="green"
+              />
+            );
           }}
         />
         <Table.Column<IMission>
@@ -103,7 +118,12 @@ export const MissionList: React.FC = () => {
           dataIndex="actions"
           key="actions"
           render={(_value, record) => (
-            <EditButton hideText size="small" recordItemId={record.id} onClick={() => editShow(record.id)} />
+            <EditButton
+              hideText
+              size="small"
+              recordItemId={record.id}
+              onClick={() => editShow(record.id)}
+            />
           )}
         />
         //highlight-end
@@ -113,12 +133,12 @@ export const MissionList: React.FC = () => {
 };
 ```
 
-We defined the fields we created on the strapi side with the **refine** Table and created our table. Let's take a look at how our table looks like.
+We defined the fields we created on the strapi side with the **Refine** Table and created our table. Let's take a look at how our table looks like.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
 <br />
 
-As you can see, we were able to create and display our table very simply thanks to the **refine**. Let's learn how to create a Mission from our refine interface now.
+As you can see, we were able to create and display our table very simply thanks to the **Refine**. Let's learn how to create a Mission from our Refine interface now.
 
 ### Refine Missions Create Page
 
@@ -145,7 +165,10 @@ type CreateMissionProps = {
   formProps: FormProps;
 };
 
-export const CreateMission: React.FC<CreateMissionProps> = ({ modalProps, formProps }) => {
+export const CreateMission: React.FC<CreateMissionProps> = ({
+  modalProps,
+  formProps,
+}) => {
   return (
     //highlight-start
     <Modal {...modalProps} title="Create Contact">
@@ -180,7 +203,7 @@ export const CreateMission: React.FC<CreateMissionProps> = ({ modalProps, formPr
 </p>
 </details>
 
-Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
+Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **Refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
 
 ```tsx title="src/pages/MissionList.tsx"
 import { List, Table, useTable, TagField, useModalForm } from "@refinedev/antd";
@@ -212,7 +235,10 @@ export const MissionList: React.FC = () => {
         <Table {...tableProps}>
           <Table.Column dataIndex="id" title="ID" />
           <Table.Column dataIndex="mission" title="Mission" />
-          <Table.Column dataIndex="mission_description" title="Mission Description" />
+          <Table.Column
+            dataIndex="mission_description"
+            title="Mission Description"
+          />
           <Table.Column dataIndex="day" title="Day(s)" />
           <Table.Column
             dataIndex="daily_rate"
@@ -222,7 +248,12 @@ export const MissionList: React.FC = () => {
           <Table.Column<IMission>
             title="Total"
             render={(_, record) => {
-              return <TagField value={`${record.daily_rate * record.day} $`} color="green" />;
+              return (
+                <TagField
+                  value={`${record.daily_rate * record.day} $`}
+                  color="green"
+                />
+              );
             }}
           />
         </Table>
@@ -238,9 +269,9 @@ export const MissionList: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
 <br />
 
-Missions Page is now ready, you can create and manage your business's products or services here with **refine**.
+Missions Page is now ready, you can create and manage your business's products or services here with **Refine**.
 
-Our next step is to create invoices according to these tasks and clients. Let's create, organize and display invoices with **refine**.
+Our next step is to create invoices according to these tasks and clients. Let's create, organize and display invoices with **Refine**.
 
 ## Refine Invoices Page
 
@@ -323,7 +354,11 @@ export const InvoiceList: React.FC = () => {
             title="Discount(%)"
             render={(value) => <TagField color="blue" value={value} />}
           />
-          <Table.Column dataIndex="tax" title="Tax(%)" render={(value) => <TagField color="cyan" value={value} />} />
+          <Table.Column
+            dataIndex="tax"
+            title="Tax(%)"
+            render={(value) => <TagField color="cyan" value={value} />}
+          />
           <Table.Column dataIndex="custom_id" title="Custom Invoice ID" />
 
           <Table.Column
@@ -338,7 +373,11 @@ export const InvoiceList: React.FC = () => {
               return (
                 <Space>
                   <EditButton hideText size="small" recordItemId={record.id} />
-                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton
+                    hideText
+                    size="small"
+                    recordItemId={record.id}
+                  />
                 </Space>
               );
             }}
@@ -356,17 +395,17 @@ export const InvoiceList: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
 <br />
 
-As you can see, we were able to list invoices with **refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
+As you can see, we were able to list invoices with **Refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
 
 Our invoice contains all the information. With `Refine Invoice Generator` you can define the company issuing the invoice, discount percentage, tax percentage, customId and similar information in a single invoice.
 
-Let's understand better by creating an invoice example from our **refine** UI.
+Let's understand better by creating an invoice example from our **Refine** UI.
 
 ### Refine Create Invoice Page
 
-Here, we first fetch the company, contacts and missions using the **refine**'s [useSelect](https://refine.dev/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
+Here, we first fetch the company, contacts and missions using the **Refine**'s [useSelect](https://refine.dev/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
 
-Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
+Then, we fill our Refine [Create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
 
 <details>
 <summary>Show Code</summary>
@@ -376,7 +415,15 @@ Then, we fill our refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 ```tsx title="src/pages/invoice/CreateInvoice"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import { Create, Form, Input, Select, useForm, useSelect, DatePicker } from "@refinedev/antd";
+import {
+  Create,
+  Form,
+  Input,
+  Select,
+  useForm,
+  useSelect,
+  DatePicker,
+} from "@refinedev/antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
@@ -462,7 +509,7 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
 <br />
 
-Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
+Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **Refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
 
 ## View and Download Invoice as PDF
 
@@ -552,7 +599,11 @@ export const InvoiceList: React.FC = () => {
               return (
                 <Space>
                   <EditButton hideText size="small" recordItemId={record.id} />
-                  <DeleteButton hideText size="small" recordItemId={record.id} />
+                  <DeleteButton
+                    hideText
+                    size="small"
+                    recordItemId={record.id}
+                  />
                   //highlight-start
                   <Button
                     size="small"
@@ -592,7 +643,15 @@ Now that we have the data of the Invoices we can edit the PdfLayout.
 import { useRef } from "react";
 
 //highlight-start
-import { Document, Image, Page, StyleSheet, View, Text, PDFViewer } from "@react-pdf/renderer";
+import {
+  Document,
+  Image,
+  Page,
+  StyleSheet,
+  View,
+  Text,
+  PDFViewer,
+} from "@react-pdf/renderer";
 //highlight-end
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
@@ -612,10 +671,17 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
       <Document>
         <Page style={styles.page} size="A4">
           <View>
-            <Image src={API_URL + record?.company?.logo?.url} style={{ width: "120px", height: "auto" }} />
+            <Image
+              src={API_URL + record?.company?.logo?.url}
+              style={{ width: "120px", height: "auto" }}
+            />
             <View style={styles.invoiceTextNumberContainer}>
-              <Text style={styles.invoiceText}>{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
-              <Text style={styles.invoiceId}>{`Invoice ID: INVOICE_#${record?.id}`}</Text>
+              <Text
+                style={styles.invoiceText}
+              >{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
+              <Text
+                style={styles.invoiceId}
+              >{`Invoice ID: INVOICE_#${record?.id}`}</Text>
             </View>
           </View>
           <View style={styles.dividerLG} />
@@ -624,45 +690,79 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
             <View style={styles.invoiceFor}>
               <Text style={styles.invoiceForFromTitle}>invoice For:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.client?.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.first_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.last_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.email}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.client?.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.first_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.last_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.email}
+                </Text>
               </View>
             </View>
 
             <View style={styles.invoiceFrom}>
               <Text style={styles.invoiceForFromTitle}>From:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.company.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.company.city}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.city}
+                </Text>
                 <Text style={styles.invoiceForFromText}>
                   {record?.company.address}, {record?.company.country}
                 </Text>
               </View>
               <View style={styles.dividerSM} />
               <View>
-                <Text style={styles.invoiceForFromText}>{`Invoice ID: ${record?.id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Custom ID: ${record?.custom_id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Date: ${record?.date}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice ID: ${record?.id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Custom ID: ${record?.custom_id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Date: ${record?.date}`}</Text>
               </View>
             </View>
           </View>
 
           <View style={styles.table}>
             <View style={styles.tableHeader}>
-              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>Mission</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day Rate</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Total</Text>
+              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>
+                Mission
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day Rate
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Total
+              </Text>
             </View>
             {record?.missions.map((item) => {
               return (
                 <View key={item.id} style={styles.tableRow}>
-                  <Text style={[styles.tableCol, { width: "40%" }]}>{item.mission}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.day}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item.daily_rate * item.day}</Text>
+                  <Text style={[styles.tableCol, { width: "40%" }]}>
+                    {item.mission}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.day}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.daily_rate}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item.daily_rate * item.day}
+                  </Text>
                 </View>
               );
             })}
@@ -670,13 +770,19 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
 
           <View style={styles.signatureTotalContainer}>
             <View style={styles.signatureContainer}>
-              <Text style={styles.signatureText}>Signature: ________________</Text>
-              <Text style={styles.signatureText}>Date: {record?.date.toString()}</Text>
+              <Text style={styles.signatureText}>
+                Signature: ________________
+              </Text>
+              <Text style={styles.signatureText}>
+                Date: {record?.date.toString()}
+              </Text>
             </View>
 
             <View style={styles.totalContainer}>
               <Text style={styles.totalText}>SUBTOTAL: {subtotal}</Text>
-              <Text style={styles.totalText}>Discount(%): {record?.discount}</Text>
+              <Text style={styles.totalText}>
+                Discount(%): {record?.discount}
+              </Text>
               <Text style={styles.totalText}>Tax(%): {record?.tax}</Text>
               <Text style={styles.totalText}>
                 Total($):
@@ -832,8 +938,8 @@ PDF download may not work in codeSandbox mode. With [**this**](https://n59710.cs
 
 ## Conclusion
 
-In this post, we've created a fully customizable and completely functional Invoice Generator app. If you want to construct an application similar to this, you may add any feature with **refine** and personalize your invoice generator to your liking. We developed in very short amount of time, thanks to **refine**'s features and the possibilities it provides for customization.
+In this post, we've created a fully customizable and completely functional Invoice Generator app. If you want to construct an application similar to this, you may add any feature with **Refine** and personalize your invoice generator to your liking. We developed in very short amount of time, thanks to **Refine**'s features and the possibilities it provides for customization.
 
-You can develop any web application or admin panel you want in a very short time with **refine**.
+You can develop any web application or admin panel you want in a very short time with **Refine**.
 
-With **refine**'s headless and SSR-Next.js features, it is possible and very easy to develop both **B2B** and **B2C** applications using a single framework.
+With **Refine**'s headless and SSR-Next.js features, it is possible and very easy to develop both **B2B** and **B2C** applications using a single framework.

@@ -1,5 +1,29 @@
 # @refinedev/cli
 
+## 2.16.26
+
+### Patch Changes
+
+-   [#5663](https://github.com/refinedev/refine/pull/5663) [`363fd4ed5f6`](https://github.com/refinedev/refine/commit/363fd4ed5f6dffbd70c2acf43ce310ab773589fb) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: demo access control provider typing.
+
+## 2.16.25
+
+### Patch Changes
+
+-   [#5640](https://github.com/refinedev/refine/pull/5640) [`e504c5b043c`](https://github.com/refinedev/refine/commit/e504c5b043c8cef7341356eeaa16df10e5e79a60) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: added "integration" option to "add" command.
+
+    Now you can run the following command to add integration into your existing project:
+
+    ```bash
+    > npm run refine add integration
+
+    ? Which integration do you want to add? (Use arrow keys)
+    ❯ Ant Design - Setup Ant Design with Refine
+      React Router - Setup routing with React Router
+    ```
+
+    For now, `Ant Design` integration doesn't support `NextJS` and `Remix` projects.
+
 ## 2.16.24
 
 ### Patch Changes

@@ -4,12 +4,12 @@ import { useRefineContext } from "@hooks/refine";
 import { ConfigErrorPage } from "../config-error";
 
 export const WelcomePage = () => {
-    const { __initialized } = useRefineContext();
+  const { __initialized } = useRefineContext();
 
-    return (
-        <>
-            <ConfigSuccessPage />
-            {!__initialized && <ConfigErrorPage />}
-        </>
-    );
+  return (
+    <>
+      <ConfigSuccessPage />
+      {!__initialized && <ConfigErrorPage />}
+    </>
+  );
 };

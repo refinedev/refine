@@ -11,31 +11,29 @@ import { API_URL } from "src/constants";
 import "src/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-    return (
-        <>
-            <GitHubBanner />
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
-            >
-                <Head>
-                    <title>
-                        Finefoods headless storefront example - refine
-                    </title>
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-                    />
-                    <link rel="icon" type="image/png" href="/favicon.ico" />
-                </Head>
-                <BasketContextProvider>
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
-                </BasketContextProvider>
-            </Refine>
-        </>
-    );
+  return (
+    <>
+      <GitHubBanner />
+      <Refine
+        routerProvider={routerProvider}
+        dataProvider={dataProvider(API_URL)}
+      >
+        <Head>
+          <title>Finefoods headless storefront example - refine</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          />
+          <link rel="icon" type="image/png" href="/favicon.ico" />
+        </Head>
+        <BasketContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </BasketContextProvider>
+      </Refine>
+    </>
+  );
 }
 
 export default MyApp;

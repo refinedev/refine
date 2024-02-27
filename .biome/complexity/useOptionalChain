@@ -1,0 +1,427 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/codemod/src/helpers/install.ts:53:9 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    51 │     const command: string = useYarn ? "yarnpkg" : "npm";
+    52 │ 
+  > 53 │     if (dependencies && dependencies.length) {
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    54 │       /**
+    55 │        * If there are dependencies, run a variation of `{displayCommand} add`.
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     51  51 │       const command: string = useYarn ? "yarnpkg" : "npm";
+     52  52 │   
+     53     │ - ····if·(dependencies·&&·dependencies.length)·{
+         53 │ + ····if·(dependencies?.length)·{
+     54  54 │         /**
+     55  55 │          * If there are dependencies, run a variation of `{displayCommand} add`.
+  
+
+./packages/codemod/src/helpers/install.ts:144:9 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    142 │     const command: string = useYarn ? "yarnpkg" : "npm";
+    143 │ 
+  > 144 │     if (dependencies && dependencies.length) {
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    145 │       /**
+    146 │        * If there are dependencies, run a variation of `{displayCommand} remove`.
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    142 142 │       const command: string = useYarn ? "yarnpkg" : "npm";
+    143 143 │   
+    144     │ - ····if·(dependencies·&&·dependencies.length)·{
+        144 │ + ····if·(dependencies?.length)·{
+    145 145 │         /**
+    146 146 │          * If there are dependencies, run a variation of `{displayCommand} remove`.
+  
+
+./packages/codemod/src/index.ts:46:9 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    44 │     errorMessage = "Git directory is not clean";
+    45 │   } catch (err) {
+  > 46 │     if (err && err.stderr && err.stderr.indexOf("Not a git repository") >= 0) {
+       │         ^^^^^^^^^^^^^^^^^
+    47 │       clean = true;
+    48 │     }
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     44  44 │       errorMessage = "Git directory is not clean";
+     45  45 │     } catch (err) {
+     46     │ - ····if·(err·&&·err.stderr·&&·err.stderr.indexOf("Not·a·git·repository")·>=·0)·{
+         46 │ + ····if·(err?.stderr·&&·err.stderr.indexOf("Not·a·git·repository")·>=·0)·{
+     47  47 │         clean = true;
+     48  48 │       }
+  
+
+./packages/codemod/src/transformations/v4/replace-pankod-imports-with-refinedev.ts:65:9 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    63 │     .filter(
+    64 │       (path) =>
+  > 65 │         path.node.source &&
+       │         ^^^^^^^^^^^^^^^^^^^
+  > 66 │         path.node.source.value?.toString()?.startsWith(previousScope) &&
+       │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    67 │         !deprecatedPackages.includes(path.node.source.value?.toString() ?? ""),
+    68 │     )
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     63  63 │       .filter(
+     64  64 │         (path) =>
+     65     │ - ········path.node.source·&&
+     66     │ - ········path.node.source.value?.toString()?.startsWith(previousScope)·&&
+         65 │ + ········path.node.source?.value?.toString()?.startsWith(previousScope)·&&
+     67  66 │           !deprecatedPackages.includes(path.node.source.value?.toString() ?? ""),
+     68  67 │       )
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:915:15 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    913 │           event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
+    914 │ 
+  > 915 │           if (event.ports && event.ports[0]) {
+        │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    916 │             void requestPromises.then(() => event.ports[0].postMessage(true));
+    917 │           }
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     913  913 │             event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
+     914  914 │   
+     915      │ - ··········if·(event.ports·&&·event.ports[0])·{
+          915 │ + ··········if·(event.ports?.[0])·{
+     916  916 │               void requestPromises.then(() => event.ports[0].postMessage(true));
+     917  917 │             }
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:963:21 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    961 │         url,
+    962 │       });
+  > 963 │       let handler = route && route.handler;
+        │                     ^^^^^^^^^^^^^^^^^^^^^^
+    964 │       const debugMessages = [];
+    965 │ 
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     961  961 │           url,
+     962  962 │         });
+     963      │ - ······let·handler·=·route·&&·route.handler;
+          963 │ + ······let·handler·=·route?.handler;
+     964  964 │         const debugMessages = [];
+     965  965 │   
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1033:28 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    1031 │       } // Get route's catch handler, if it exists
+    1032 │ 
+  > 1033 │       const catchHandler = route && route.catchHandler;
+         │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    1034 │ 
+    1035 │       if (
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    1031 1031 │         } // Get route's catch handler, if it exists
+    1032 1032 │   
+    1033      │ - ······const·catchHandler·=·route·&&·route.catchHandler;
+         1033 │ + ······const·catchHandler·=·route?.catchHandler;
+    1034 1034 │   
+    1035 1035 │         if (
+  
+
+./packages/chakra-ui/src/components/buttons/delete/index.tsx:118:13 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    116 │         {
+    117 │           onSuccess: (value) => {
+  > 118 │             onSuccess && onSuccess(value);
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    119 │           },
+    120 │         },
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    116 116 │           {
+    117 117 │             onSuccess: (value) => {
+    118     │ - ············onSuccess·&&·onSuccess(value);
+        118 │ + ············onSuccess?.(value);
+    119 119 │             },
+    120 120 │           },
+  
+
+./packages/core/src/definitions/helpers/queryKeys/index.ts:36:10 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    34 │         ...keys.resourceAll,
+    35 │         "getMany",
+  > 36 │         (ids && ids.map(String)) as QueryKey,
+       │          ^^^^^^^^^^^^^^^^^^^^^^
+    37 │         { ...(pickNotDeprecated(meta, metaData) || {}) } as QueryKey,
+    38 │       ].filter((item) => item !== undefined),
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     34  34 │           ...keys.resourceAll,
+     35  35 │           "getMany",
+     36     │ - ········(ids·&&·ids.map(String))·as·QueryKey,
+         36 │ + ········(ids?.map(String))·as·QueryKey,
+     37  37 │           { ...(pickNotDeprecated(meta, metaData) || {}) } as QueryKey,
+     38  38 │         ].filter((item) => item !== undefined),
+  
+
+./examples/store/src/lib/click-outside/has-parent.js:4:10 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    3 │ export default function hasParent(element, root) {
+  > 4 │   return root && root.contains(element) && isInDOM(element);
+      │          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    5 │ }
+    6 │ 
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    2 2 │   
+    3 3 │   export default function hasParent(element, root) {
+    4   │ - ··return·root·&&·root.contains(element)·&&·isInDOM(element);
+      4 │ + ··return·root?.contains(element)·&&·isInDOM(element);
+    5 5 │   }
+    6 6 │   
+  
+
+./packages/mantine/src/components/buttons/delete/index.tsx:107:13 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    105 │         {
+    106 │           onSuccess: (value) => {
+  > 107 │             onSuccess && onSuccess(value);
+        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    108 │           },
+    109 │         },
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    105 105 │           {
+    106 106 │             onSuccess: (value) => {
+    107     │ - ············onSuccess·&&·onSuccess(value);
+        107 │ + ············onSuccess?.(value);
+    108 108 │             },
+    109 109 │           },
+  
+
+./examples/store/src/components/checkout/Addresses/Addresses.tsx:54:14 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    52 │         <div>
+    53 │           <div className="text-small-regular bg-primary px-8 py-6">
+  > 54 │             {cart && cart.shipping_address ? (
+       │              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    55 │               <div className="flex items-start gap-x-8">
+    56 │                 <div className={s.mark}>✓</div>
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     52  52 │           <div>
+     53  53 │             <div className="text-small-regular bg-primary px-8 py-6">
+     54     │ - ············{cart·&&·cart.shipping_address·?·(
+         54 │ + ············{cart?.shipping_address·?·(
+     55  55 │                 <div className="flex items-start gap-x-8">
+     56  56 │                   <div className={s.mark}>✓</div>
+  
+
+./examples/store/src/components/checkout/Addresses/Addresses.tsx:105:18 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    103 │               </div>
+    104 │               <div className="text-small-regular px-8 py-6">
+  > 105 │                 {cart && cart.billing_address ? (
+        │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    106 │                   <div className="flex items-start gap-x-8">
+    107 │                     <div className={s.mark}>✓</div>
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    103 103 │                 </div>
+    104 104 │                 <div className="text-small-regular px-8 py-6">
+    105     │ - ················{cart·&&·cart.billing_address·?·(
+        105 │ + ················{cart?.billing_address·?·(
+    106 106 │                     <div className="flex items-start gap-x-8">
+    107 107 │                       <div className={s.mark}>✓</div>
+  
+
+./examples/store/src/components/checkout/Shipping/Shipping.tsx:80:18 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    78 │                 onChange={(value: string) => handleChange(value, onChange)}
+    79 │               >
+  > 80 │                 {shippingMethods && shippingMethods.length ? (
+       │                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    81 │                   shippingMethods.map((option) => {
+    82 │                     return (
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     78  78 │                   onChange={(value: string) => handleChange(value, onChange)}
+     79  79 │                 >
+     80     │ - ················{shippingMethods·&&·shippingMethods.length·?·(
+         80 │ + ················{shippingMethods?.length·?·(
+     81  81 │                     shippingMethods.map((option) => {
+     82  82 │                       return (
+  
+
+./packages/cli/src/commands/proxy/index.ts:55:17 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    53 │             proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
+    54 │               if (
+  > 55 │                 proxyRes &&
+       │                 ^^^^^^^^^^^
+  > 56 │                 proxyRes.headers &&
+  > 57 │                 proxyRes.headers["set-cookie"]
+       │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    58 │               ) {
+    59 │                 proxyRes.headers["set-cookie"][i] = cookie.replace(
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     53  53 │               proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
+     54  54 │                 if (
+     55     │ - ················proxyRes·&&
+     56     │ - ················proxyRes.headers·&&
+     57     │ - ················proxyRes.headers["set-cookie"]
+         55 │ + ················proxyRes?.headers?.["set-cookie"]
+     58  56 │                 ) {
+     59  57 │                   proxyRes.headers["set-cookie"][i] = cookie.replace(
+  
+
+./packages/inferencer/src/utilities/get-option-label/index.ts:4:7 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    3 │ export const getOptionLabel = (field: InferField) => {
+  > 4 │   if (field.relationInfer && field.relationInfer.accessor) {
+      │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    5 │     if (Array.isArray(field.relationInfer.accessor)) {
+    6 │       return `optionLabel: "${field.relationInfer.accessor[0]}",`;
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     2  2 │   
+     3  3 │   export const getOptionLabel = (field: InferField) => {
+     4    │ - ··if·(field.relationInfer·&&·field.relationInfer.accessor)·{
+        4 │ + ··if·(field.relationInfer?.accessor)·{
+     5  5 │       if (Array.isArray(field.relationInfer.accessor)) {
+     6  6 │         return `optionLabel: "${field.relationInfer.accessor[0]}",`;
+  
+
+./packages/inferencer/src/inferencers/headless/list.tsx:122:11 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    120 │   const relationVariableNames = relationFields
+    121 │     ?.map((field) => {
+  > 122 │       if (field && field.resource) {
+        │           ^^^^^^^^^^^^^^^^^^^^^^^
+    123 │         return getVariableName(field.key, "Data");
+    124 │       }
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    120 120 │     const relationVariableNames = relationFields
+    121 121 │       ?.map((field) => {
+    122     │ - ······if·(field·&&·field.resource)·{
+        122 │ + ······if·(field?.resource)·{
+    123 123 │           return getVariableName(field.key, "Data");
+    124 124 │         }
+  
+
+./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:19:3 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    18 │ const filterDeal = (deal?: DealAggregate) =>
+  > 19 │   deal?.groupBy && deal.groupBy?.closeDateMonth && deal.groupBy?.closeDateYear;
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    20 │ 
+    21 │ const mapDeals = (
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    19 │ ··deal?.groupBy·&&·deal.groupBy?.closeDateMonth·&&·deal.groupBy?.closeDateYear;
+       │   -----------------                                                            
+
+./packages/inferencer/src/inferencers/mui/list.tsx:131:11 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    129 │   const relationVariableNames = relationFields
+    130 │     ?.map((field) => {
+  > 131 │       if (field && field.resource) {
+        │           ^^^^^^^^^^^^^^^^^^^^^^^
+    132 │         return `${getVariableName(field.key, "Data")}?.data`;
+    133 │       }
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    129 129 │     const relationVariableNames = relationFields
+    130 130 │       ?.map((field) => {
+    131     │ - ······if·(field·&&·field.resource)·{
+        131 │ + ······if·(field?.resource)·{
+    132 132 │           return `${getVariableName(field.key, "Data")}?.data`;
+    133 133 │         }
+  
+
+./packages/inferencer/src/inferencers/mantine/list.tsx:139:11 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━
+
+  ! Change to an optional chain.
+  
+    137 │   const relationVariableNames = relationFields
+    138 │     ?.map((field) => {
+  > 139 │       if (field && field.resource) {
+        │           ^^^^^^^^^^^^^^^^^^^^^^^
+    140 │         return getVariableName(field.key, "Data");
+    141 │       }
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    137 137 │     const relationVariableNames = relationFields
+    138 138 │       ?.map((field) => {
+    139     │ - ······if·(field·&&·field.resource)·{
+        139 │ + ······if·(field?.resource)·{
+    140 140 │           return getVariableName(field.key, "Data");
+    141 141 │         }
+  
+
+The number of diagnostics exceeds the number allowed by Biome.
+Diagnostics not shown: 20.
+Checked 6952 file(s) in 499ms

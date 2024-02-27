@@ -41,7 +41,11 @@ const PostList: React.FC = () => {
   const { tableProps } = useTable<IPost, HttpError>();
 
   // highlight-start
-  const { formProps, drawerProps, show, saveButtonProps } = useDrawerForm<IPost, HttpError, IPost>({
+  const { formProps, drawerProps, show, saveButtonProps } = useDrawerForm<
+    IPost,
+    HttpError,
+    IPost
+  >({
     action: "create",
   });
   // highlight-end
@@ -138,7 +142,13 @@ setInitialRoutes(["/posts"]);
 import { HttpError } from "@refinedev/core";
 import React from "react";
 
-import { Edit, EditButton, List, useDrawerForm, useTable } from "@refinedev/antd";
+import {
+  Edit,
+  EditButton,
+  List,
+  useDrawerForm,
+  useTable,
+} from "@refinedev/antd";
 import { Drawer, Form, Input, Select, Space, Table } from "antd";
 
 interface IPost {
@@ -151,7 +161,11 @@ const PostList: React.FC = () => {
   const { tableProps } = useTable<IPost, HttpError>();
 
   // highlight-start
-  const { formProps, drawerProps, show, saveButtonProps, id } = useDrawerForm<IPost, HttpError, IPost>({
+  const { formProps, drawerProps, show, saveButtonProps, id } = useDrawerForm<
+    IPost,
+    HttpError,
+    IPost
+  >({
     action: "edit",
     warnWhenUnsavedChanges: true,
   });
@@ -179,7 +193,12 @@ const PostList: React.FC = () => {
             render={(_, record) => (
               // highlight-start
               <Space>
-                <EditButton hideText size="small" recordItemId={record.id} onClick={() => show(record.id)} />
+                <EditButton
+                  hideText
+                  size="small"
+                  recordItemId={record.id}
+                  onClick={() => show(record.id)}
+                />
               </Space>
               // highlight-end
             )}

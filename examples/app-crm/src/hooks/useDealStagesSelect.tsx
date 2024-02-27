@@ -21,8 +21,8 @@ const DEAL_STAGES_SELECT_QUERY = gql`
 `;
 
 export const useDealStagesSelect = () => {
-    return useSelect<GetFieldsFromList<DealStagesSelectQuery>>({
-        resource: "dealStages",
-        meta: { gqlQuery: DEAL_STAGES_SELECT_QUERY },
-    });
+  return useSelect<GetFieldsFromList<DealStagesSelectQuery>>({
+    resource: "dealStages",
+    meta: { gqlQuery: DEAL_STAGES_SELECT_QUERY },
+  });
 };

@@ -3,7 +3,7 @@ title: React Hook Form Validation with Complete Examples
 description: We'll implement React Hook Form custom validations and schema validations using yup.
 slug: react-hook-form-validation-examples
 authors: david_omotayo
-tags: [react, react-hook-form, refine, tutorial]
+tags: [react, react-hook-form, Refine, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/social.png
 hide_table_of_contents: false
 ---
@@ -19,7 +19,7 @@ In this guide, we’ll introduce [React Hook Form](https://www.react-hook-form.c
 Steps we'll cover:
 
 - [What is React Hook Form?](#what-is-react-hook-form)
-- [What is refine?](#what-is-refine)
+- [What is Refine?](#what-is-refine)
 - [Project setup](#project-setup)
   - [Integrating React Hook Forms](#integrating-react-hook-forms)
 - [Validating forms with React Hook Forms](#validating-forms-with-react-hook-forms)
@@ -31,12 +31,12 @@ Steps we'll cover:
 
 ## Prerequisite
 
-We'll be using refine to set up an example project for this article, and since refine is a TypeScript first library, you need to have a good understanding of TypeScript to follow along with this tutorial.
+We'll be using Refine to set up an example project for this article, and since Refine is a TypeScript first library, you need to have a good understanding of TypeScript to follow along with this tutorial.
 
 You'll also need the following:
 
 - The LTS version of [Node.js](https://nodejs.org/en) installed on your machine
-- Fundamental knowledge of [React](https://react.dev/) and [**refine**](https://refine.dev/)
+- Fundamental knowledge of [React](https://react.dev/) and [**Refine**](https://refine.dev/)
 - Basic understanding of [Material UI](https://mui.com/)
 
 ## What is React Hook Form?
@@ -55,11 +55,11 @@ The package is super light, it has a minified size of 24.6kb and a minified + gz
 
 <br/>
 
-## What is refine?
+## What is Refine?
 
-**refine** is a headless React-based framework for rapidly building CRUD applications like admin panels, dashboards, and internal tools. The framework uses a collection of helper hooks, components, and data providers that give you complete control over your application's user interface.
+**Refine** is a headless React-based framework for rapidly building CRUD applications like admin panels, dashboards, and internal tools. The framework uses a collection of helper hooks, components, and data providers that give you complete control over your application's user interface.
 
-There are a lot of benefits to using **refine** in your applications, to name a few:
+There are a lot of benefits to using **Refine** in your applications, to name a few:
 
 - It is headless, meaning you can either use it as is or pair it up with third-party UI libraries.
 - Easy learning curve
@@ -67,13 +67,13 @@ There are a lot of benefits to using **refine** in your applications, to name a 
 - Backend agnostic, you can connect with any backend technologies
 - Authentication, state management, data fetching routing, and more are prioritized.
 
-Visit [**refine**'s documentation](https://refine.dev/docs/) to learn more about the framework.
+Visit [**Refine**'s documentation](https://refine.dev/docs/) to learn more about the framework.
 
 ## Project setup
 
-Before we get into the nitty-gritty of how React Hook Form works and how to use it to validate forms in your projects, let's set up an example project with **refine** for reference purposes.
+Before we get into the nitty-gritty of how React Hook Form works and how to use it to validate forms in your projects, let's set up an example project with **Refine** for reference purposes.
 
-First things first, open your command line tool, cd to your folder of choice, and run the following command to bootstrap a **refine** React template using the `create refine-app` tool:
+First things first, open your command line tool, cd to your folder of choice, and run the following command to bootstrap a **Refine** React template using the `create refine-app` tool:
 
 ```
 npm create refine-app@latest tutorial
@@ -84,7 +84,7 @@ Select the following options to proceed:
 
 ```bash
 ✔ Downloaded remote source successfully.
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · tutorial
 ✔ Choose your backend service to connect: · REST API
 ✔ Do you want to use a UI Framework?: · Material UI
@@ -108,9 +108,9 @@ The second command will start the development server for our project and automat
 
 <br />
 
-You should see a similar **refine** welcome page rendered to your browser just like in the image above.
+You should see a similar **Refine** welcome page rendered to your browser just like in the image above.
 
-Next, we'll install the **refine** React Hook Form package and set up **refine**. To do that, go back to the command line and run the following command to install the `@refinedev/react-hook-form` package:
+Next, we'll install the **Refine** React Hook Form package and set up **Refine**. To do that, go back to the command line and run the following command to install the `@refinedev/react-hook-form` package:
 
 ```
 npm i @refinedev/react-hook-form react-hook-form
@@ -135,18 +135,50 @@ import Button from "@mui/material/Button";
 const Create: React.FC = () => {
   return (
     <form style={{ display: "flex", flexDirection: "column" }}>
-      <TextField fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />
-      <TextField fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
-      <TextField fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />
-      <TextField fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+      <TextField
+        fullWidth
+        sx={{ maxWidth: 600 }}
+        label="First Name"
+        margin="dense"
+      />
+      <TextField
+        fullWidth
+        sx={{ maxWidth: 600 }}
+        label="Last Name"
+        margin="dense"
+      />
+      <TextField
+        fullWidth
+        sx={{ maxWidth: 600 }}
+        label="Address"
+        margin="dense"
+      />
+      <TextField
+        fullWidth
+        sx={{ maxWidth: 600 }}
+        label="Number"
+        margin="dense"
+        type="number"
+      />
       <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
         <InputLabel id="type-label">Work</InputLabel>
-        <Select sx={{ maxWidth: 600 }} margin="dense" type="select" labelId="type-label" label="Work">
+        <Select
+          sx={{ maxWidth: 600 }}
+          margin="dense"
+          type="select"
+          labelId="type-label"
+          label="Work"
+        >
           <MenuItem value="employed">Employed</MenuItem>
           <MenuItem value="unemployed">Unemployed</MenuItem>
         </Select>
       </FormControl>
-      <TextField fullWidth sx={{ maxWidth: 600 }} label="Company" margin="dense" />
+      <TextField
+        fullWidth
+        sx={{ maxWidth: 600 }}
+        label="Company"
+        margin="dense"
+      />
       <TextField fullWidth sx={{ maxWidth: 600 }} label="Role" margin="dense" />
       <Button
         type="submit"
@@ -187,11 +219,18 @@ To do so, open the `App.tsx` file and import the `create.tsx` file, then add it 
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import { useNotificationProvider, RefineSnackbarProvider, ThemedLayoutV2 } from "@refinedev/mui";
+import {
+  useNotificationProvider,
+  RefineSnackbarProvider,
+  ThemedLayoutV2,
+} from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -262,7 +301,7 @@ That's it for the project setup, next we'll integrate React Hook Forms into our 
 
 ### Integrating React Hook Forms
 
-**refine** is a framework built with many micro-frontend solutions in mind, and form validation isn't an exception. As a result, it offers a React Hook Form adapter that allows you to seamlessly integrate the React Hook Form library with **refine**.
+**Refine** is a framework built with many micro-frontend solutions in mind, and form validation isn't an exception. As a result, it offers a React Hook Form adapter that allows you to seamlessly integrate the React Hook Form library with **Refine**.
 
 But before we start implementing React Hook Form in our app, we need to first understand its fundamentals.
 
@@ -357,26 +396,53 @@ const Create: React.FC = () => {
         control={control}
         name="firstname"
         render={({ field }) => (
-          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="First Name"
+            margin="dense"
+          />
         )}
       />
       <Controller
         control={control}
         name="lastname"
         render={({ field }) => (
-          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Last Name"
+            margin="dense"
+          />
         )}
       />
       <Controller
         control={control}
         name="address"
-        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Address"
+            margin="dense"
+          />
+        )}
       />
       <Controller
         control={control}
         name="number"
         render={({ field }) => (
-          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Number"
+            margin="dense"
+            type="number"
+          />
         )}
       />
       <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
@@ -385,7 +451,14 @@ const Create: React.FC = () => {
           control={control}
           name="work"
           render={({ field }) => (
-            <Select sx={{ maxWidth: 600 }} margin="dense" {...field} type="select" labelId="type-label" label="Work">
+            <Select
+              sx={{ maxWidth: 600 }}
+              margin="dense"
+              {...field}
+              type="select"
+              labelId="type-label"
+              label="Work"
+            >
               <MenuItem value="employed">Employed</MenuItem>
               <MenuItem value="unemployed">Unemployed</MenuItem>
             </Select>
@@ -395,12 +468,28 @@ const Create: React.FC = () => {
       <Controller
         control={control}
         name="company"
-        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Company" margin="dense" />}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Company"
+            margin="dense"
+          />
+        )}
       />
       <Controller
         control={control}
         name="role"
-        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Role" margin="dense" />}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Role"
+            margin="dense"
+          />
+        )}
       />
       <Button
         type="submit"
@@ -500,7 +589,15 @@ We can do this by adding a `minLength` property to the `<Controller />` componen
   name="firstname"
   // highlight-next-line
   rules={{ required: true, minLength: 5 }}
-  render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />}
+  render={({ field }) => (
+    <TextField
+      {...field}
+      fullWidth
+      sx={{ maxWidth: 600 }}
+      label="First Name"
+      margin="dense"
+    />
+  )}
 />
 ```
 
@@ -514,11 +611,23 @@ To display the error, we’d have to render a message based on the state of the 
   name="firstname"
   // highlight-next-line
   rules={{ required: true, minLength: 5 }}
-  render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="First Name" margin="dense" />}
+  render={({ field }) => (
+    <TextField
+      {...field}
+      fullWidth
+      sx={{ maxWidth: 600 }}
+      label="First Name"
+      margin="dense"
+    />
+  )}
 />;
 // highlight-start
 {
-  errors.firstname && <span style={{ color: "red" }}>You need to enter at least 5 characters!</span>;
+  errors.firstname && (
+    <span style={{ color: "red" }}>
+      You need to enter at least 5 characters!
+    </span>
+  );
 }
 // highlight-end
 ```
@@ -782,18 +891,24 @@ const schema = Yup.object().shape({
   address: Yup.string().label("Address").trim().required().min(3),
   number: Yup.number().label("Number").required(),
   work: Yup.string().label("Work").required().oneOf(["unemployed", "employed"]),
-  company: Yup.string().when("work", ([work]: string | string[], schema: Yup.AnySchema) => {
-    if (work === "employed") {
-      return schema.required().min(3).max(64);
-    }
-    return schema.notRequired();
-  }),
-  role: Yup.string().when("work", ([work]: string | string[], schema: Yup.AnySchema) => {
-    if (work === "employed") {
-      return schema.required().min(3).max(64);
-    }
-    return schema.notRequired();
-  }),
+  company: Yup.string().when(
+    "work",
+    ([work]: string | string[], schema: Yup.AnySchema) => {
+      if (work === "employed") {
+        return schema.required().min(3).max(64);
+      }
+      return schema.notRequired();
+    },
+  ),
+  role: Yup.string().when(
+    "work",
+    ([work]: string | string[], schema: Yup.AnySchema) => {
+      if (work === "employed") {
+        return schema.required().min(3).max(64);
+      }
+      return schema.notRequired();
+    },
+  ),
 });
 
 const Create: React.FC = () => {
@@ -813,7 +928,10 @@ const Create: React.FC = () => {
   const work = watch("work");
 
   return (
-    <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(handleSubmission)}>
+    <form
+      style={{ display: "flex", flexDirection: "column" }}
+      onSubmit={handleSubmit(handleSubmission)}
+    >
       <Controller
         control={control}
         name="firstname"
@@ -834,19 +952,40 @@ const Create: React.FC = () => {
         control={control}
         name="lastname"
         render={({ field }) => (
-          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Last Name" margin="dense" />
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Last Name"
+            margin="dense"
+          />
         )}
       />
       <Controller
         control={control}
         name="address"
-        render={({ field }) => <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Address" margin="dense" />}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Address"
+            margin="dense"
+          />
+        )}
       />
       <Controller
         control={control}
         name="number"
         render={({ field }) => (
-          <TextField {...field} fullWidth sx={{ maxWidth: 600 }} label="Number" margin="dense" type="number" />
+          <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="Number"
+            margin="dense"
+            type="number"
+          />
         )}
       />
       <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }}>
@@ -855,7 +994,14 @@ const Create: React.FC = () => {
           control={control}
           name="work"
           render={({ field }) => (
-            <Select sx={{ maxWidth: 600 }} margin="dense" {...field} type="select" labelId="type-label" label="Work">
+            <Select
+              sx={{ maxWidth: 600 }}
+              margin="dense"
+              {...field}
+              type="select"
+              labelId="type-label"
+              label="Work"
+            >
               <MenuItem value="employed">Employed</MenuItem>
               <MenuItem value="unemployed">Unemployed</MenuItem>
             </Select>
@@ -953,7 +1099,10 @@ const handleSubmission = (data: IFormValue) => console.log(data);
 Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` method and `formSubmission` function to it:
 
 ```tsx
-<form onSubmit={handleSubmit(formSubmission)} style={{ display: "flex", flexDirection: "column" }}>
+<form
+  onSubmit={handleSubmit(formSubmission)}
+  style={{ display: "flex", flexDirection: "column" }}
+>
   ...
 </form>
 ```
@@ -964,11 +1113,11 @@ Now, if you save your progress and head over to the browser, you should get a lo
 
 <br />
 
-If you’d like to use your form data in other parts of your **refine** application, for example, the List page. All you have to do is destructure the `onFinish` method from the `useForm` hook and pass it to the `handleSubmit` function on the form.
+If you’d like to use your form data in other parts of your **Refine** application, for example, the List page. All you have to do is destructure the `onFinish` method from the `useForm` hook and pass it to the `handleSubmit` function on the form.
 
 ## Conclusion
 
-There you have it, we’ve successfully built a form that can validate input values, display dynamic error messages, and render fields based on the selected select option, using **refine**, React Hook Form, and **yup schema validator**.
+There you have it, we’ve successfully built a form that can validate input values, display dynamic error messages, and render fields based on the selected select option, using **Refine**, React Hook Form, and **yup schema validator**.
 
 ## Example
 

@@ -12,21 +12,21 @@ import { BooleanFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
-    value,
-    valueLabelTrue = "true",
-    valueLabelFalse = "false",
-    trueIcon,
-    falseIcon,
-    svgIconProps,
-    ...rest
+  value,
+  valueLabelTrue = "true",
+  valueLabelFalse = "false",
+  trueIcon,
+  falseIcon,
+  svgIconProps,
+  ...rest
 }) => {
-    return (
-        <Tooltip title={value ? valueLabelTrue : valueLabelFalse} {...rest}>
-            {value ? (
-                <span>{trueIcon ?? <CheckOutlined {...svgIconProps} />}</span>
-            ) : (
-                <span>{falseIcon ?? <CloseOutlined {...svgIconProps} />}</span>
-            )}
-        </Tooltip>
-    );
+  return (
+    <Tooltip title={value ? valueLabelTrue : valueLabelFalse} {...rest}>
+      {value ? (
+        <span>{trueIcon ?? <CheckOutlined {...svgIconProps} />}</span>
+      ) : (
+        <span>{falseIcon ?? <CloseOutlined {...svgIconProps} />}</span>
+      )}
+    </Tooltip>
+  );
 };

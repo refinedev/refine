@@ -1,9 +1,9 @@
 ---
 title: How to Build a React Admin Panel with Mantine and Strapi
-description: We'll be building a simple React Admin Panel with refine and Mantine using Strapi as a backend service.
+description: We'll be building a simple React Admin Panel with Refine and Mantine using Strapi as a backend service.
 slug: react-admin-panel
 authors: joseph_mawa
-tags: [refine, strapi, mantine, tutorial, react]
+tags: [Refine, strapi, mantine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fsocial.png
 hide_table_of_contents: false
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Ffeatured.png
@@ -11,25 +11,25 @@ featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23
 
 ## Introduction
 
-Building complex, data-intensive front-end user interfaces(UIs) such as admin panels, dashboards, and other internal tools from scratch can be a daunting and laborious process. React frameworks such as [refine](https://github.com/refinedev/refine) make the process easier because that is a problem they are attempting to solve.
+Building complex, data-intensive front-end user interfaces(UIs) such as admin panels, dashboards, and other internal tools from scratch can be a daunting and laborious process. React frameworks such as [Refine](https://github.com/refinedev/refine) make the process easier because that is a problem they are attempting to solve.
 
-refine is a free, open-source, and MIT-licensed React framework for building CRUD apps. It has integrations for popular UI frameworks and design systems such as Material UI, Chakra UI, Ant Design, and Mantine. You can build any CRUD app like React admin panel.
+Refine is a free, open-source, and MIT-licensed React framework for building CRUD apps. It has integrations for popular UI frameworks and design systems such as Material UI, Chakra UI, Ant Design, and Mantine. You can build any CRUD app like React admin panel.
 
-Though it comes with several features out of the box, refine is customizable. If you don't fancy any of the above UI frameworks or design systems, you can also use "headless" refine.
+Though it comes with several features out of the box, Refine is customizable. If you don't fancy any of the above UI frameworks or design systems, you can also use "headless" refine.
 
-Every data-intensive front-end application must source data from somewhere. refine has integrations for popular content management systems and cloud databases such as Strapi, Hasura, and Firebase.
+Every data-intensive front-end application must source data from somewhere. Refine has integrations for popular content management systems and cloud databases such as Strapi, Hasura, and Firebase.
 
 All the above integrations are opt-in. In this article, we will build a simple React Admin Panel using refine. We will use [Mantine](https://mantine.dev/) as the UI component library and [Strapi](https://strapi.io/) as our back-end service.
 
 ## What is Strapi?
 
-[Strapi](https://strapi.io/) is a popular open-source headless CMS built using Node. It is flexible and has an intuitive UI. The refine ecosystem has data providers for the most popular content management systems, such as Strapi, and cloud databases like Firebase and Supabase.
+[Strapi](https://strapi.io/) is a popular open-source headless CMS built using Node. It is flexible and has an intuitive UI. The Refine ecosystem has data providers for the most popular content management systems, such as Strapi, and cloud databases like Firebase and Supabase.
 
-While creating a project using the refine command line tool, select Strapi as your back-end service. The refine command line tool will bootstrap a refine application with all the requisite packages and functionalities.
+While creating a project using the Refine command line tool, select Strapi as your back-end service. The Refine command line tool will bootstrap a Refine application with all the requisite packages and functionalities.
 
-You don't need a Strapi instance to learn how to use Strapi with refine. The refine ecosystem has a [fake Strapi API](https://automatic-sweltering-dog.strapiapp.com) that you can use when learning to integrate Strapi in a refine project.
+You don't need a Strapi instance to learn how to use Strapi with refine. The Refine ecosystem has a [fake Strapi API](https://automatic-sweltering-dog.strapiapp.com) that you can use when learning to integrate Strapi in a Refine project.
 
-The refine command line tool will install the `@refinedev/strapi-v4` data provider when you choose it as your back-end service during project creation. You can then import and use it in your application like so:
+The Refine command line tool will install the `@refinedev/strapi-v4` data provider when you choose it as your back-end service during project creation. You can then import and use it in your application like so:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -49,21 +49,21 @@ function App() {
 
 [Mantine](https://mantine.dev/) is a free, open-source MIT-licensed React components library. Mantine can help you build fully functional and accessible web applications fast. You can use it with most modern React frameworks such as Next, Gatsby, and Remix.
 
-As highlighted above, one of the benefits of using refine is the built-in support for most of the popular design systems, UI frameworks, and component libraries. Mantine is one of the component libraries for which refine has built-in support.
+As highlighted above, one of the benefits of using Refine is the built-in support for most of the popular design systems, UI frameworks, and component libraries. Mantine is one of the component libraries for which Refine has built-in support.
 
-When creating a refine application using `npm create refine-app`, select Mantine as the UI framework in the command prompt. The refine command line tool will bootstrap a refine application and install the necessary Mantine packages.
+When creating a Refine application using `npm create refine-app`, select Mantine as the UI framework in the command prompt. The Refine command line tool will bootstrap a Refine application and install the necessary Mantine packages.
 
-You can then import the refine Mantine components and hooks you want to use from the `@refinedev/mantine` package like so:
+You can then import the Refine Mantine components and hooks you want to use from the `@refinedev/mantine` package like so:
 
 ```ts
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
 ```
 
-The refine ecosystem comprises several hooks and components for Mantine. You can read the refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more on the different Mantine hooks and Components and how to use them.
+The Refine ecosystem comprises several hooks and components for Mantine. You can read the Refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more on the different Mantine hooks and Components and how to use them.
 
-## Create a new refine app
+## Create a new Refine app
 
-In this article, you will learn to create a simple React admin panel with refine and Mantine using Strapi as a headless content management system.
+In this article, you will learn to create a simple React admin panel with Refine and Mantine using Strapi as a headless content management system.
 
 Let's use the `npm create refine-app` command to interactively initialize the project.
 
@@ -93,19 +93,19 @@ After the app has started, you should see the following page:
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/welcome.jpeg"  alt="react admin panel" />
 
-If your landing page is similar to the screenshot above, you have successfully created a refine project. We will build a React admin panel by modifying the project you have just created.
+If your landing page is similar to the screenshot above, you have successfully created a Refine project. We will build a React admin panel by modifying the project you have just created.
 
-## Built-in refine hooks and components for Mantine
+## Built-in Refine hooks and components for Mantine
 
-refine has several built-in hooks and components for Mantine. Most built-in refine Mantine hooks and components directly export or use their corresponding core Mantine hooks and components internally.
+Refine has several built-in hooks and components for Mantine. Most built-in Refine Mantine hooks and components directly export or use their corresponding core Mantine hooks and components internally.
 
-You can read the refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more and how to use them.
+You can read the Refine [Mantine API documentation](https://refine.dev/docs/api-reference/mantine/) for more and how to use them.
 
 ## `useForm` - For form management
 
-One of the hooks we will use a lot in this article is the [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) hook. As its name suggests, you can use it to manage forms when working with Mantine and refine. It is based on and has all the features of the core Mantine and refine `useForm` hooks with additional features.
+One of the hooks we will use a lot in this article is the [`useForm`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/) hook. As its name suggests, you can use it to manage forms when working with Mantine and refine. It is based on and has all the features of the core Mantine and Refine `useForm` hooks with additional features.
 
-The refine documentation does a great job of explaining the `useForm` hook. Check it out to understand the `useForm` hook in-depth and how to use it.
+The Refine documentation does a great job of explaining the `useForm` hook. Check it out to understand the `useForm` hook in-depth and how to use it.
 
 ```tsx
 import { useForm } from "@refinedev/mantine";
@@ -116,7 +116,10 @@ const { saveButtonProps, getInputProps } = useForm({
     status: "",
   },
   validate: {
-    title: (value) => (value.length < 2 ? "Post title should be atleast 2 characters long" : null),
+    title: (value) =>
+      value.length < 2
+        ? "Post title should be atleast 2 characters long"
+        : null,
     status: (value) => (value.length <= 0 ? "Status is required" : null),
   },
 });
@@ -126,11 +129,11 @@ const { saveButtonProps, getInputProps } = useForm({
 
 Another hook that we will use in this article is the [`useTable`](https://refine.dev/docs/packages/documentation/react-table/) hook. It is part of the [@refinedev/react-table](https://github.com/refinedev/refine/tree/master/packages/react-table) package. The `@refinedev/react-table` package is an adapter for the [TanStack Table](https://tanstack.com/table/v8). It has all the features of the [TanStack Table](https://tanstack.com/table/v8) package out of the box. It also has features for filtering, sorting, and pagination.
 
-Similarly, we will use basic layout and UI components such as `List`, `Create`, `Edit`, and `Show`. As I pointed out above, the refine documentation explains them well. Refer to the appropriate sections of the refine documentation to understand a component that might be unfamiliar to you.
+Similarly, we will use basic layout and UI components such as `List`, `Create`, `Edit`, and `Show`. As I pointed out above, the Refine documentation explains them well. Refer to the appropriate sections of the Refine documentation to understand a component that might be unfamiliar to you.
 
-## How to build a React admin panel with refine, Mantine and Strapi
+## How to build a React admin panel with Refine, Mantine and Strapi
 
-In this section, we will build a React admin panel with CRUD functionality using refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://automatic-sweltering-dog.strapiapp.com/api). Follow the steps below if you have created a refine project by following the steps under the "Create a new refine app" section above.
+In this section, we will build a React admin panel with CRUD functionality using Refine, Mantine and Strapi. We will utilize a fake [Strapi version 4 API](https://automatic-sweltering-dog.strapiapp.com/api). Follow the steps below if you have created a Refine project by following the steps under the "Create a new Refine app" section above.
 
 ### How to list records
 
@@ -212,7 +215,11 @@ export const PostList: React.FC = () => {
               {headerGroup.headers.map((header) => {
                 return (
                   <th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </th>
                 );
               })}
@@ -224,7 +231,14 @@ export const PostList: React.FC = () => {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  );
                 })}
               </tr>
             );
@@ -232,7 +246,12 @@ export const PostList: React.FC = () => {
         </tbody>
       </Table>
       <br />
-      <Pagination position="right" total={pageCount} page={current} onChange={setCurrent} />
+      <Pagination
+        position="right"
+        total={pageCount}
+        page={current}
+        onChange={setCurrent}
+      />
     </List>
   );
 };
@@ -242,7 +261,7 @@ export const PostList: React.FC = () => {
 
 In the `<PostList />` component above, we used the [`useTable`](https://refine.dev/docs/packages/documentation/react-table) hook from the `@refinedev/react-table` package. The `useTable` hook is headless by design. Therefore, the responsibility for managing the UI lies with you.
 
-We imported several other UI components from the `@refinedev/mantine` package. I won't explain them here. Read the [refine Mantine](https://refine.dev/docs/api-reference/mantine/) or the core [Mantine](https://mantine.dev/guides/cra/) documentation.
+We imported several other UI components from the `@refinedev/mantine` package. I won't explain them here. Read the [Refine Mantine](https://refine.dev/docs/api-reference/mantine/) or the core [Mantine](https://mantine.dev/guides/cra/) documentation.
 
 Create a `src/pages/posts/index.tsx` file and add the following export statement to it.
 
@@ -250,11 +269,11 @@ Create a `src/pages/posts/index.tsx` file and add the following export statement
 export * from "./list";
 ```
 
-## Adding resources and connect pages to refine app
+## Adding resources and connect pages to Refine app
 
 Now we are ready to start connecting to our API by adding a resource to our application
 
-[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/tutorial/understanding-resources/index/)
+[Refer to documentation for more info about `resources` concept](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept)
 
 Finally, replace the `src/App.tsx` file with the code below:
 
@@ -265,7 +284,12 @@ Finally, replace the `src/App.tsx` file with the code below:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { useNotificationProvider, RefineThemes, ThemedLayoutV2, AuthPage } from "@refinedev/mantine";
+import {
+  useNotificationProvider,
+  RefineThemes,
+  ThemedLayoutV2,
+  AuthPage,
+} from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
 import routerBindings, {
   NavigateToResource,
@@ -274,7 +298,12 @@ import routerBindings, {
   CatchAllNavigate,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import { MantineProvider, Global, ColorSchemeProvider, ColorScheme } from "@mantine/core";
+import {
+  MantineProvider,
+  Global,
+  ColorSchemeProvider,
+  ColorScheme,
+} from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { useLocalStorage } from "@mantine/hooks";
 
@@ -296,7 +325,10 @@ function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        >
           <MantineProvider
             theme={{
               ...RefineThemes.Blue,
@@ -326,14 +358,19 @@ function App() {
                 <Routes>
                   <Route
                     element={
-                      <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                      <Authenticated
+                        fallback={<CatchAllNavigate to="/login" />}
+                      >
                         <ThemedLayoutV2 Header={() => <Header sticky />}>
                           <Outlet />
                         </ThemedLayoutV2>
                       </Authenticated>
                     }
                   >
-                    <Route index element={<NavigateToResource resource="posts" />} />
+                    <Route
+                      index
+                      element={<NavigateToResource resource="posts" />}
+                    />
 
                     <Route path="/posts">
                       <Route index element={<PostList />} />
@@ -369,11 +406,11 @@ export default App;
 
 **In the code above:**
 
-We defined the `resources` property of the `<Refine />` component. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+We defined the `resources` property of the `<Refine />` component. It just defines the routes for the CRUD pages. The routes are used by **Refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
 
 You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
 
-We'll use [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6/) for routing in our application. refine provides router bindings and utilities for React Router v6. It is built on top of the `react-router-dom` and it provides easy integration between refine and `react-router-dom`.
+We'll use [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6/) for routing in our application. Refine provides router bindings and utilities for React Router v6. It is built on top of the `react-router-dom` and it provides easy integration between Refine and `react-router-dom`.
 
 We used to `<Route />` components to define the routes for rendering the CRUD pages and authentication pages. For protected routes, we used the [`<Authenticated />`](https://refine.dev/docs/api-reference/core/components/auth/authenticated) component. The `<Authenticated />` component will redirect the user to the login page if they are not logged in.
 
@@ -388,7 +425,7 @@ export const TOKEN_KEY = "strapi-jwt-token";
 
 ### Understanding the `authProvider` concept
 
-Similarly, `npm create refine-app` bootstraps a refine application with default `authProvider`. You should have the `src/authProvider.ts` file if you created the application using `npm create refine-app` while following the steps above.
+Similarly, `npm create refine-app` bootstraps a Refine application with default `authProvider`. You should have the `src/authProvider.ts` file if you created the application using `npm create refine-app` while following the steps above.
 
 Of particular interest is the `login` method of the `authProvider`. We will use email and password to log into our application. Be sure the `login` method has the code below.
 
@@ -402,7 +439,9 @@ export const authProvider: AuthProvider = {
       localStorage.setItem(TOKEN_KEY, data.jwt);
 
       // set header axios instance
-      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.jwt}`;
 
       return {
         success: true,
@@ -430,7 +469,7 @@ For this demonstration, use the credentials below to log into an existing accoun
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/login-page.jpeg"  alt="react admin panel" className="border border-gray-200 rounded" />
 
-When you log into your refine application, you should have a table similar to the image below. Though still incomplete, it is a simple React admin panel.
+When you log into your Refine application, you should have a table similar to the image below. Though still incomplete, it is a simple React admin panel.
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list.jpeg"  alt="react admin panel" />
 
@@ -440,7 +479,7 @@ As highlighted in the previous section, our Strapi API has `posts` and `categori
 
 [Refer to documentation for more info about relation populate.](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
-[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/tutorial/adding-crud-pages/mantine/index/#handling-relationships)
+[Refer to tutorial section for more info about handling relationships.](https://refine.dev/docs/guides-concepts/data-fetching)
 
 Therefore, for our data provider to return the categories for each post, we need to specify using the `populate` field of the `meta` property in the object we pass to the `useTable` hook.
 
@@ -499,7 +538,7 @@ The code above should modify your table to include a Category column like the im
 
 In the previous sections, you learned how to fetch the list of posts from the Strapi API whenever the user logs in. However, in an React admin panel, you should also be able to create a new record. And that is what you will learn in this section.
 
-By default, refine adds a create button to the `<List />` component. You should see it in the top right corner. However, clicking the create button will open a non-existent page.
+By default, Refine adds a create button to the `<List />` component. You should see it in the top right corner. However, clicking the create button will open a non-existent page.
 
 We need to create a component that will render when a user clicks the create button. The component will contain the form we shall use to create a new post. Create the `src/pages/posts/create.tsx` file. You can copy and paste the code below into it.
 
@@ -526,7 +565,8 @@ export const PostCreate = () => {
       status: "",
     },
     validate: {
-      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      title: (value) =>
+        value.length < 5 ? "Title should be atleast 5 characters long" : null,
       category: {
         id: (value) => (value.length <= 0 ? "Title is required" : null),
       },
@@ -540,7 +580,12 @@ export const PostCreate = () => {
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-      <TextInput mt="sm" required={true} label="Title" {...getInputProps("title")} />
+      <TextInput
+        mt="sm"
+        required={true}
+        label="Title"
+        {...getInputProps("title")}
+      />
       <Select
         mt={8}
         label="Status"
@@ -645,7 +690,12 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
       cell: ({ getValue }) => {
         return (
           <Group>
-            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <EditButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
           </Group>
         );
       },
@@ -695,7 +745,8 @@ export const PostEdit = () => {
       },
     },
     validate: {
-      title: (value) => (value.length < 5 ? "Title should be atleast 5 characters long" : null),
+      title: (value) =>
+        value.length < 5 ? "Title should be atleast 5 characters long" : null,
       category: {
         id: (value) => (value.length <= 0 ? "Title is required" : null),
       },
@@ -812,9 +863,19 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
       cell: ({ getValue }) => {
         return (
           <Group>
-            <EditButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <EditButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
             //highlight-start
-            <DeleteButton hideText size="xs" recordItemId={getValue() as number} variant="subtle" />
+            <DeleteButton
+              hideText
+              size="xs"
+              recordItemId={getValue() as number}
+              variant="subtle"
+            />
             //highlight-end
           </Group>
         );
@@ -873,7 +934,7 @@ Your edit page should now include a delete button on the bottom right.
 
 ## How to implement mutation mode
 
-Mutation mode is a handy feature in refine when performing side effects. It can help you provide a better user experience to your clients. You can configure your refine app to use any of the three mutation modes below.
+Mutation mode is a handy feature in Refine when performing side effects. It can help you provide a better user experience to your clients. You can configure your Refine app to use any of the three mutation modes below.
 
 - Pessimistic
 - Optimistic
@@ -881,15 +942,15 @@ Mutation mode is a handy feature in refine when performing side effects. It can 
 
 ### Pessimistic mutation mode
 
-With pessimistic mutation mode, refine initiates the mutation immediately. It applies UI updates and redirects after the mutation update returns successfully. The pessimistic mode is the default mutation mode.
+With pessimistic mutation mode, Refine initiates the mutation immediately. It applies UI updates and redirects after the mutation update returns successfully. The pessimistic mode is the default mutation mode.
 
 ### Optimistic mutation mode
 
-When using the optimistic mutation mode, refine applies the mutation locally and immediately updates UI and redirects without waiting for a response from the server. It updates the UI accordingly in case there is an error.
+When using the optimistic mutation mode, Refine applies the mutation locally and immediately updates UI and redirects without waiting for a response from the server. It updates the UI accordingly in case there is an error.
 
 ### Undoable mutation mode
 
-With the undoable mutation mode, refine applies the mutation locally, updates the UI, and redirects. It then waits for a customizable timeout before making the mutation. You can cancel the mutation update within the timeout. It also updates the UI if the mutation update returns an error.
+With the undoable mutation mode, Refine applies the mutation locally, updates the UI, and redirects. It then waits for a customizable timeout before making the mutation. You can cancel the mutation update within the timeout. It also updates the UI if the mutation update returns an error.
 
 You can configure the mutation mode using the `options` prop of the `<Refine />` component.
 
@@ -915,9 +976,9 @@ export default App;
 
 ## How to share the current page with filters
 
-With refine, it is possible to sync the URL with the contents of a page. Assuming the `posts` page has a multi-page table sorted in ascending order, you can display the currently active page and the sort order in the URL using query parameters.
+With Refine, it is possible to sync the URL with the contents of a page. Assuming the `posts` page has a multi-page table sorted in ascending order, you can display the currently active page and the sort order in the URL using query parameters.
 
-By default, `npm create refine-app` bootstraps a refine application with the `syncWithLocation` option set to `true`. You can review the code in the `src/App.tsx` file to confirm.
+By default, `npm create refine-app` bootstraps a Refine application with the `syncWithLocation` option set to `true`. You can review the code in the `src/App.tsx` file to confirm.
 
 ```tsx title="src/App.tsx"
 // ...
@@ -939,9 +1000,9 @@ function App() {
 export default App;
 ```
 
-## Using the refine Mantine Inferencer
+## Using the Refine Mantine Inferencer
 
-In the previous sections, we performed CRUD operations by building components from scratch. The refine ecosystem has the [Inferencer](https://refine.dev/docs/api-reference/mantine/components/inferencer/) package for generating CRUD pages based on the responses from your API.
+In the previous sections, we performed CRUD operations by building components from scratch. The Refine ecosystem has the [Inferencer](https://refine.dev/docs/api-reference/mantine/components/inferencer/) package for generating CRUD pages based on the responses from your API.
 
 The sole purpose of the Inferencer is to set you off by generating CRUD pages. You can then customize the components to suit your needs. Depending on your design system or component library, import Inferencer from the `@refinedev/inferencer` package.
 
@@ -1013,10 +1074,30 @@ function App() {
         </Route>
         //highlight-start
         <Route path="/categories">
-          <Route index element={<MantineListInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="create" element={<MantineCreateInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="edit/:id" element={<MantineEditInferencer fieldTransformer={fieldTransformer} />} />
-          <Route path="show/:id" element={<MantineShowInferencer fieldTransformer={fieldTransformer} />} />
+          <Route
+            index
+            element={
+              <MantineListInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="create"
+            element={
+              <MantineCreateInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="edit/:id"
+            element={
+              <MantineEditInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
+          <Route
+            path="show/:id"
+            element={
+              <MantineShowInferencer fieldTransformer={fieldTransformer} />
+            }
+          />
         </Route>
         //highlight-end
         {/*...*/}
@@ -1032,15 +1113,15 @@ export default App;
 
 </details>
 
-The code above will generate CRUD pages for you out of the box. Each of the other design systems or component libraries which refine supports has its corresponding Inferencer. Import and add it to your `<Refine />` component as in the above example.
+The code above will generate CRUD pages for you out of the box. Each of the other design systems or component libraries which Refine supports has its corresponding Inferencer. Import and add it to your `<Refine />` component as in the above example.
 
 ## Conclusion
 
-When looking to build a React admin panel, refine is one of the react frameworks worth exploring. As highlighted above, it supports most of the popular design systems and UI frameworks like Material UI, Ant design, Chakra UI, and Mantine.
+When looking to build a React admin panel, Refine is one of the react frameworks worth exploring. As highlighted above, it supports most of the popular design systems and UI frameworks like Material UI, Ant design, Chakra UI, and Mantine.
 
-Furthermore, refine has out-of-the-box support for authentication, i18n, routing, and state management. The refine command line tool can get you up and running instantly with all the necessary configurations for a basic refine project. You can modify the default settings to suit your needs.
+Furthermore, Refine has out-of-the-box support for authentication, i18n, routing, and state management. The Refine command line tool can get you up and running instantly with all the necessary configurations for a basic Refine project. You can modify the default settings to suit your needs.
 
-All the refine features I have highlighted above will significantly increase your development speed, improve your development experience and reduce time to production, especially when building complex front-end applications.
+All the Refine features I have highlighted above will significantly increase your development speed, improve your development experience and reduce time to production, especially when building complex front-end applications.
 
 ## Live CodeSandbox Example
 

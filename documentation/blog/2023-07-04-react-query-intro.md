@@ -106,12 +106,18 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const retrievePosts = async () => {
-  const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts",
+  );
   return response.data;
 };
 
 const DisplayPosts = () => {
-  const { data: posts, error, isLoading } = useQuery("postsData", retrievePosts);
+  const {
+    data: posts,
+    error,
+    isLoading,
+  } = useQuery("postsData", retrievePosts);
 
   if (isLoading) return <div>Fetching posts...</div>;
   if (error) return <div>An error occurred: {error.message}</div>;
@@ -156,7 +162,9 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const mutation = useMutation((newPost) => axios.post("https://jsonplaceholder.typicode.com/posts", newPost));
+  const mutation = useMutation((newPost) =>
+    axios.post("https://jsonplaceholder.typicode.com/posts", newPost),
+  );
 
   const submitData = () => {
     mutation.mutate({ title, body });
@@ -176,8 +184,18 @@ const CreatePost = () => {
 
   return (
     <div>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input type="text" value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      <input
+        type="text"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        placeholder="Body"
+      />
       <button onClick={submitData}>Submit</button>
     </div>
   );
@@ -223,7 +241,9 @@ const UpdatePost = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const mutation = useMutation((updatedPost) => axios.put("https://jsonplaceholder.typicode.com/posts/1", updatedPost));
+  const mutation = useMutation((updatedPost) =>
+    axios.put("https://jsonplaceholder.typicode.com/posts/1", updatedPost),
+  );
 
   const submitData = () => {
     mutation.mutate({ title, body });
@@ -243,8 +263,18 @@ const UpdatePost = () => {
 
   return (
     <div>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input type="text" value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      <input
+        type="text"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        placeholder="Body"
+      />
       <button onClick={submitData}>Update</button>
     </div>
   );
@@ -266,7 +296,9 @@ import { useMutation } from "react-query";
 import axios from "axios";
 
 const DeletePost = () => {
-  const mutation = useMutation(() => axios.delete("https://jsonplaceholder.typicode.com/posts/1"));
+  const mutation = useMutation(() =>
+    axios.delete("https://jsonplaceholder.typicode.com/posts/1"),
+  );
 
   const deleteData = () => {
     mutation.mutate();
@@ -302,16 +334,16 @@ Following the steps above illustrates how best to use the `useMutation` hook and
 
 ## React Query and Frameworks
 
-React-based framework like [refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/) and [useList](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
+React-based framework like [Refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. Refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/) and [useList](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
 
-The `useUpdate` hook in refine is an extended version of the `useMutation` hook from React Query. This hook is used when you want to update a record. It uses the `update` method as the mutation function from the `dataProvider` that is passed to **refine**.
+The `useUpdate` hook in Refine is an extended version of the `useMutation` hook from React Query. This hook is used when you want to update a record. It uses the `update` method as the mutation function from the `dataProvider` that is passed to **Refine**.
 
-On the other hand, the `useList` hook in refine is an extended version of the `useQuery` hook from React Query. It is used when you need to fetch data according to sort, filter, pagination, etc., from a `resource`.
+On the other hand, the `useList` hook in Refine is an extended version of the `useQuery` hook from React Query. It is used when you need to fetch data according to sort, filter, pagination, etc., from a `resource`.
 
-If you are in search of a framework that utilizes the power React query has got, refine is an absolutely great choice as it solves issues concerning data querying and server state management complexity.
+If you are in search of a framework that utilizes the power React query has got, Refine is an absolutely great choice as it solves issues concerning data querying and server state management complexity.
 
 ## Conclusion
 
 In this beginner's guide, we explored the world of React Query and its core concepts. We learned that React Query is a powerful tool for handling data fetching, caching, and state management in React applications.
 
-Frameworks like refine extend the capabilities of React Query, offering a comprehensive solution for data-intensive applications. By leveraging React Query, developers can enhance the efficiency and user experience of their React projects. Thank you for reading!
+Frameworks like Refine extend the capabilities of React Query, offering a comprehensive solution for data-intensive applications. By leveraging React Query, developers can enhance the efficiency and user experience of their React projects. Thank you for reading!

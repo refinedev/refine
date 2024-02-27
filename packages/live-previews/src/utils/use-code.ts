@@ -4,65 +4,65 @@ import { decompressFromEncodedURIComponent } from "lz-string";
 import base64url from "base64url";
 
 type UseCodeReturn = {
-    code: string | null;
-    css: string | null;
-    isReady: boolean;
-    hasQuery: boolean;
-    disableScroll: boolean;
-    useTailwind: boolean;
+  code: string | null;
+  css: string | null;
+  isReady: boolean;
+  hasQuery: boolean;
+  disableScroll: boolean;
+  useTailwind: boolean;
 };
 
 export const useCode = (): UseCodeReturn => {
-    const { query, isReady } = useRouter();
-    const {
-        code: compressed,
-        disableScroll,
-        tailwind,
-        css: cssCompressed,
-    } = query ?? {};
+  const { query, isReady } = useRouter();
+  const {
+    code: compressed,
+    disableScroll,
+    tailwind,
+    css: cssCompressed,
+  } = query ?? {};
 
-    const code = React.useMemo(() => {
-        if (!isReady) return "";
-        if (!compressed) return "";
-        const decompressed = decompressFromEncodedURIComponent(
-            compressed as string,
-        );
-        const fixed = decompressed?.replace(/React\$1/g, "React");
+  const code = React.useMemo(() => {
+    if (!isReady) return "";
+    if (!compressed) return "";
+    const decompressed = decompressFromEncodedURIComponent(
+      compressed as string,
+    );
+    const fixed = decompressed?.replace(/React\$1/g, "React");
 
-        const shouldChangeEntrypoint =
-            fixed.match(/render\(<App \/>\);?/) &&
-            fixed.match(/createRoot\(container\);?/);
+    const shouldChangeEntrypoint =
+      fixed.match(/render\(<App \/>\);?/) &&
+      fixed.match(/createRoot\(container\);?/);
 
-        let content = fixed;
+    let content = fixed;
 
-        if (shouldChangeEntrypoint) {
-            content = fixed.replace(/render\(<App \/>\);?/, "");
-            content = content.replace(
-                /createRoot\(container\);?/,
-                "{ render };",
-            );
-        }
+    if (shouldChangeEntrypoint) {
+      content = fixed.replace(/render\(<App \/>\);?/, "");
+      content = content.replace(
+        /createRoot\(container\);?/,
+        "{ render: (children) => render(<RefineCore.ExternalNavigationProvider>{children}</RefineCore.ExternalNavigationProvider>) };",
+      );
+    }
 
-        return content;
-    }, [compressed, isReady]);
+    return content;
+  }, [compressed, isReady]);
 
-    const css = React.useMemo(() => {
-        if (!isReady) return "";
-        if (!cssCompressed) return "";
-        try {
-            return base64url.decode(cssCompressed as string);
-        } catch (err) {
-            console.log("CSS Decode Error", { err });
-            return "";
-        }
-    }, [cssCompressed, isReady]);
+  const css = React.useMemo(() => {
+    if (!isReady) return "";
+    if (!cssCompressed) return "";
+    try {
+      return base64url.decode(cssCompressed as string);
+    } catch (err) {
+      console.log("CSS Decode Error", { err });
+      return "";
+    }
+  }, [cssCompressed, isReady]);
 
-    return {
-        code,
-        css,
-        isReady,
-        hasQuery: !!compressed,
-        disableScroll: !!disableScroll,
-        useTailwind: !!tailwind,
-    };
+  return {
+    code,
+    css,
+    isReady,
+    hasQuery: !!compressed,
+    disableScroll: !!disableScroll,
+    useTailwind: !!tailwind,
+  };
 };

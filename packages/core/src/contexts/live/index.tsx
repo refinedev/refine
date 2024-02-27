@@ -5,12 +5,10 @@ import { ILiveContext, ILiveContextProvider } from "./ILiveContext";
 export const LiveContext = React.createContext<ILiveContext>(undefined);
 
 export const LiveContextProvider: React.FC<ILiveContextProvider> = ({
-    liveProvider,
-    children,
+  liveProvider,
+  children,
 }) => {
-    return (
-        <LiveContext.Provider value={liveProvider}>
-            {children}
-        </LiveContext.Provider>
-    );
+  return (
+    <LiveContext.Provider value={liveProvider}>{children}</LiveContext.Provider>
+  );
 };

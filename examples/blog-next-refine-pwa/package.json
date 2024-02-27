@@ -1,20 +1,20 @@
 {
   "name": "blog-next-refine-pwa",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "build": "refine build && rm -rf .next/cache",
-    "start:prod": "refine start",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
+    "start:prod": "refine start"
   },
   "dependencies": {
-    "@refinedev/core": "^4.47.1",
-    "@refinedev/cli": "^2.16.24",
+    "@refinedev/cli": "^2.16.26",
+    "@refinedev/core": "^4.47.2",
     "@refinedev/nextjs-router": "^6.0.0",
     "@refinedev/simple-rest": "^5.0.2",
-    "next": "^14.1.0",
     "cross-env": "^7.0.3",
+    "next": "^14.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

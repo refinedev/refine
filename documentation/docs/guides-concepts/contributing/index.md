@@ -113,7 +113,7 @@ Since Refine's repository uses the hoist option of Lerna, you need to use the sa
 Now that we've bootstrapped and built the packages and examples we want to work on, we can start them in watch mode. This way, the packages and examples we've started will re-compile when we make a change in any of them.
 
 ```sh title="Terminal"
-npm run start -- --scope @refinedev/antd --scope base-antd
+npm run dev -- --scope @refinedev/antd --scope base-antd
 ```
 
 After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
@@ -128,7 +128,7 @@ Notice that we're not using `--includeDependencies` flag in this command. This i
 
 ### Running Tests
 
-Just like the `start` command, we can use the `test` command to run tests for the packages and examples we're working on.
+Just like the `dev` command, we can use the `test` command to run tests for the packages and examples we're working on.
 
 ```sh title="Terminal"
 npm run test -- --scope @refinedev/antd
@@ -155,7 +155,7 @@ npm run dev:docs
 
 - You can also use `npm run dev:blog` to start the blog section of the documentation.
 
-- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run start` command.
+- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run dev` command.
 
 - To create a production build of the documentation, you can use `npm run build` command. Then, you can use `npm run serve` command to serve the production build in your local machine.
 
@@ -174,6 +174,14 @@ Check out the example usage of `<Sandpack />` in Core API's `useForm` hook docum
 ## Committing Your Work and Preparing a Pull Request
 
 Refine is a monorepo with multiple packages and examples. To make sure we're keeping things clean and in order, we're using couple of tools to enforce a good development experience.
+
+### Linting & Formatting
+
+We are using [biome](https://biomejs.dev) for linting & formatting across the repository.
+
+We suggest using [biome VSCode extension](https://biomejs.dev/reference/vscode/) to handle linting & formatting on your local environment to avoid unexpected failures on CI.
+
+Since biome doesn't have markdown support yet, we are using prettier to format markdown files.
 
 ### Commit Convention
 

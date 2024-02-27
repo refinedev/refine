@@ -3,20 +3,20 @@ title: Create Full Featured Admin Panel with React and Ant Design
 description: We will see how easy it is to develop a functional Admin panel with the perfect harmony of Refine and Ant Design.
 slug: refine-react-ant-design-admin-panel-framework
 authors: melih
-tags: [refine, ant-design, react, tutorial]
+tags: [Refine, ant-design, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 :::
 
-[**refine**](https://refine.dev/) is a **headless** [React](https://en.reactjs.org/) **internal tool** framework. It helps you develop quickly while developing both B2B and B2C applications. While speeding you up, it is never restricted and has a fully customizable structure.
+[**Refine**](https://refine.dev/) is a **headless** [React](https://en.reactjs.org/) **internal tool** framework. It helps you develop quickly while developing both B2B and B2C applications. While speeding you up, it is never restricted and has a fully customizable structure.
 
 <!--truncate-->
 
@@ -38,17 +38,17 @@ You should know that **refine** version 4.x.x is backward compatible with versio
 
 You can use it with any UI library you want without any problems. Also, [Ant Design](https://ant.design/) as out-of-the-box is supported.
 
-**refine** directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
+**Refine** directly provides Ant Design components and some hooks to work with those components. These hooks give you the required props for those Ant Design components.
 
 ## Refine Advanced Tutorial
 
-This article will proceed through refine's [Refine Basic Tutorial](https://refine.dev/docs/tutorial/introduction/index/). That's why I suggest you read the basic tutorial of refine.
+This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/tutorial). That's why I suggest you read the basic tutorial of refine.
 
-In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the refine in our project and how we can use it.
+In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the Refine in our project and how we can use it.
 
 ### Create Refine Project
 
-Let's start by creating our refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a refine project.
+Let's start by creating our Refine project. You can use the [superplate](https://github.com/pankod/superplate) to create a Refine project.
 
 ```bash
 npm create refine-app@latest refine-advanced-tutorial -- -p refine-react -b v3
@@ -87,7 +87,7 @@ npm run dev
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.gif" alt="Refine Tutorial" />
 <br />
 
-As you have seen, our example project is ready. Now let's examine how the features offered by **refine** are included in a project and how they are used.
+As you have seen, our example project is ready. Now let's examine how the features offered by **Refine** are included in a project and how they are used.
 
 ## Adding i18n Provider to Your Project
 
@@ -137,7 +137,7 @@ root.render(
 );
 ```
 
-Let's define our i18n provider and give it a **refine**.
+Let's define our i18n provider and give it a **Refine**.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -254,7 +254,14 @@ Now, let's create a select component in the header and examine our posts accordi
 
 ```tsx title="src/components/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { AntdLayout, Space, Menu, Button, Icons, Dropdown } from "@refinedev/antd";
+import {
+  AntdLayout,
+  Space,
+  Menu,
+  Button,
+  Icons,
+  Dropdown,
+} from "@refinedev/antd";
 //highlight-next-line
 import { useTranslation } from "react-i18next";
 
@@ -341,7 +348,15 @@ import {
   useTranslate,
   useMany,
 } from "@refinedev/core";
-import { List, Table, TextField, useTable, Space, EditButton, ShowButton } from "@refinedev/antd";
+import {
+  List,
+  Table,
+  TextField,
+  useTable,
+  Space,
+  EditButton,
+  ShowButton,
+} from "@refinedev/antd";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -350,7 +365,8 @@ export const PostList: React.FC = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -377,7 +393,11 @@ export const PostList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
         <Table.Column<IPost>
@@ -401,15 +421,15 @@ export const PostList: React.FC = () => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.gif" alt="Refine i18n Provider" />
 <br />
 
-You can add the translation you want and organize your content according to different languages ​​together with the **refine** i18n Provider.
+You can add the translation you want and organize your content according to different languages ​​together with the **Refine** i18n Provider.
 
-Check out [refine i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/) for more detailed information and step-by-step guide
+Check out [Refine i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/) for more detailed information and step-by-step guide
 
 ## Add Live Provider(Realtime) to Your Project with Refine
 
-refine lets you add Realtime support to your app via liveProvider prop for `<Refine>`. It can be used to update and show data in Realtime throughout your app.
+Refine lets you add Realtime support to your app via liveProvider prop for `<Refine>`. It can be used to update and show data in Realtime throughout your app.
 
-Now let's make our application Realtime using the [refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/)
+Now let's make our application Realtime using the [Refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/)
 
 We will using [Ably](https://ably.com/) in this article to provide Realtime features.
 
@@ -488,7 +508,7 @@ You can configure `liveMode`, this example use "auto" mode.
 
 Check out [Refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/) for more detailed information and step-by-step guide.
 
-Our project is now Realtime! Thanks to **refine** Live Provider, we made our project Realtime by adding only 2 lines.
+Our project is now Realtime! Thanks to **Refine** Live Provider, we made our project Realtime by adding only 2 lines.
 
 Let's see how our RealTime Project works.
 
@@ -497,9 +517,9 @@ Let's see how our RealTime Project works.
 
 ## Add Access Control to Your Project with Refine
 
-You can control your project as you wish with the **refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/docs/core/providers/accessControl-provider/) to our refine project.
+You can control your project as you wish with the **Refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/docs/core/providers/accessControl-provider/) to our Refine project.
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. refine is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries (Casbin, CASL, Cerbos, AccessControl.js). can method would be the entry point for those solutions.
+Access control is a broad topic where there are lots of advanced solutions that provide different set of features. Refine is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries (Casbin, CASL, Cerbos, AccessControl.js). can method would be the entry point for those solutions.
 
 [Refer to the Access Control Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/accessControl-provider/)
 
@@ -509,7 +529,15 @@ Let's start by creating two buttons for the `Admin` and `Editor` roles in our cr
 
 ```tsx title="/src/componets/header.tsx"
 import { useGetLocale, useSetLocale } from "@refinedev/core";
-import { AntdLayout, Space, Menu, Button, Icons, Dropdown, Radio } from "@refinedev/antd";
+import {
+  AntdLayout,
+  Space,
+  Menu,
+  Button,
+  Icons,
+  Dropdown,
+  Radio,
+} from "@refinedev/antd";
 import { useTranslation } from "react-i18next";
 
 const { DownOutlined } = Icons;
@@ -576,7 +604,7 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Refine Access Control Provider" />
 <br />
 
-In this article, we will use [Cerbos](https://cerbos.dev/) to **refine** Access Control.
+In this article, we will use [Cerbos](https://cerbos.dev/) to **Refine** Access Control.
 
 ```bash
 npm install cerbos
@@ -644,7 +672,7 @@ const cerbos = new Cerbos({
 
 We will perform our actions according to the role we choose from the header. As you can see above, we set this with the `access Control Provider` `can` method.
 
-Now using the **refine** [`useCan`](https://refine.dev/docs/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
+Now using the **Refine** [`useCan`](https://refine.dev/docs/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
 
 ```tsx title="src/pages/PostList.tsx"
 import {
@@ -677,7 +705,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -704,7 +733,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" />
-        <Table.Column dataIndex="title" title={translate("posts.fields.title")} />
+        <Table.Column
+          dataIndex="title"
+          title={translate("posts.fields.title")}
+        />
         <Table.Column
           dataIndex={["category", "id"]}
           title={translate("posts.fields.category")}
@@ -713,7 +745,11 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
@@ -777,14 +813,14 @@ Here, if the selected role is Admin, the 'Hit' section will appear in our Table.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
 <br />
 
-Check out [**refine** Access Control](https://refine.dev/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
+Check out [**Refine** Access Control](https://refine.dev/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
 
 ## Conclusion
 
-In this tutorial, we have shown that the features of the **refine** internal tool Framework are useful and how simple it is. These features will shorten your development time considerably. While Refine offers you the opportunity to develop quickly, it does not limit you and gives you the opportunity to customize your project as you wish.
+In this tutorial, we have shown that the features of the **Refine** internal tool Framework are useful and how simple it is. These features will shorten your development time considerably. While Refine offers you the opportunity to develop quickly, it does not limit you and gives you the opportunity to customize your project as you wish.
 
-We saw how simple it was for refine to include and use the Internationalization (i18n), Live Provider(Realtime) and Access Control features. You can develop more complex applications in a simple way with **refine**.
+We saw how simple it was for Refine to include and use the Internationalization (i18n), Live Provider(Realtime) and Access Control features. You can develop more complex applications in a simple way with **Refine**.
 
-With **refine** react admin, you can develop any web application you want with `Admin Panel`, Basic `Crud App` or Next.js-SSR Support.
+With **Refine** react admin, you can develop any web application you want with `Admin Panel`, Basic `Crud App` or Next.js-SSR Support.
 
-**refine** offers the opportunity to develop `B2B` and `B2C` applications without any restrictions and in a fully customizable manner.
+**Refine** offers the opportunity to develop `B2B` and `B2C` applications without any restrictions and in a fully customizable manner.

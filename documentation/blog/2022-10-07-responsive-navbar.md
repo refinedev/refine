@@ -10,9 +10,9 @@ hide_table_of_contents: false
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -20,24 +20,24 @@ Just be aware that the source code example in this post have been updated to ver
 
 ## Introduction
 
-In this article, you'll see how to create responsive navbars in **refine** apps using the following CSS frameworks:
+In this article, you'll see how to create responsive navbars in **Refine** apps using the following CSS frameworks:
 
 1. Tailwind CSS
 2. Bootstrap
 
-refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
+Refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
 
 Steps we'll cover:
 
-- [Setting Up a refine App](#setting-up-a-refine-app)
+- [Setting Up a Refine App](#setting-up-a-refine-app)
 - [Responsive Navbar with Tailwind](#responsive-navbar-with-tailwind)
 - [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
 - [Responsive Navbar with Bootstrap](#responsive-navbar-with-bootstrap)
 - [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
 
-## Setting Up a refine App
+## Setting Up a Refine App
 
-We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
+We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **Refine** application.
 
 ```
 npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
@@ -118,7 +118,7 @@ const App: React.FC = () => {
 export default App;
 ```
 
-**refine** works based on consuming data from APIs. You can consume Rest APIs using `dataproviders`. Data providers are **refine** components that make it possible to consume APIs and data services easily.
+**Refine** works based on consuming data from APIs. You can consume Rest APIs using `dataproviders`. Data providers are **Refine** components that make it possible to consume APIs and data services easily.
 
 For this tutorial, we don't want consume API since we only want to focus navigating. The key point is `dataProvider` is required property. So we need give it anyway even if we don't want to consume the API. We use the fake Rest API available at `https://api.fake-rest.refine.dev/`.
 
@@ -199,7 +199,7 @@ We're using the following tailwind classes for creating a responsive navbar layo
 - `text-green-500` changes text color to green with 500 font weight.
 - `bg-white` sets the background color of the element to white.
 
-Layout component is used for the customization of **refine** app's layout. Create `components/Layout.tsx` file inside the `src` folder.
+Layout component is used for the customization of **Refine** app's layout. Create `components/Layout.tsx` file inside the `src` folder.
 
 Create the following navbar using Tailwind CSS inside the `Layout` component. We can get all the `menuItems` from `<Refine />` using `useMenu()` hook.
 
@@ -215,7 +215,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="mb-2 md:border-b py-2">
         <div className="container mx-auto">
           <div className="flex justify-between gap-2">
-            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <img
+              className="w-32 ml-2"
+              src="https://refine.dev/img/refine_logo.png"
+              alt="Logo"
+            />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
                 <li key={name} className="float-left">
@@ -295,7 +299,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="mb-2 md:border-b py-2">
         <div className="container mx-auto">
           <div className="flex justify-between gap-2">
-            <img className="w-32 ml-2" src="https://refine.dev/img/refine_logo.png" alt="Logo" />
+            <img
+              className="w-32 ml-2"
+              src="https://refine.dev/img/refine_logo.png"
+              alt="Logo"
+            />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
                 <li key={name} className="float-left">
@@ -322,7 +330,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ## Responsive Navbar with Bootstrap
 
-I've already walked you through [setting up refine app](#refine-setup). Now, we'll create navbar inside `Layout.tsx` and pass it as a prop to `<Refine />` component.
+I've already walked you through [setting up Refine app](#refine-setup). Now, we'll create navbar inside `Layout.tsx` and pass it as a prop to `<Refine />` component.
 
 First, install **react-bootstrap**:
 
@@ -336,7 +344,7 @@ npm install bootstrap react-bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 ```
 
-Add navbar component inside the layout component and then create navbar items. We'll use **refine** logo for our navbar.
+Add navbar component inside the layout component and then create navbar items. We'll use **Refine** logo for our navbar.
 
 ```tsx title="src/components/Layout.tsx"
 import { Navbar, Nav } from "react-bootstrap";

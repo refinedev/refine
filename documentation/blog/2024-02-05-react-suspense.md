@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-react-susp
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on February 5, 2024 to re-organize content for better understanding of React Suspense._**
+**_This article was last updated on February 5, 2024 to reorganize content for better understanding of React Suspense._**
 
 ## Introduction
 
@@ -118,7 +118,7 @@ function MyComponent() {
   if (isError)
     return (
       <div>
-        Opps failed to fetch data! <a href="/home">Home page</a>
+        Oops failed to fetch data! <a href="/home">Home page</a>
       </div>
     );
 
@@ -238,7 +238,7 @@ After that, you can wrap the `Suspense` component using the Error boundary like 
 
 Instead of declaring an error boundary as in the example above, you can also use the [React error boundary](https://github.com/bvaughn/react-error-boundary) package. It's a popular React error boundary component. You can install it from the npm package registry using any package manager of choice.
 
-The refine blog also has an in-depth article about error boundaries. You can check it out [here](https://refine.dev/blog/react-error-boundaries/).
+The Refine blog also has an in-depth article about error boundaries. You can check it out [here](https://refine.dev/blog/react-error-boundaries/).
 
 ## Common Mistakes When Using React Suspense
 

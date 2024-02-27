@@ -6,41 +6,41 @@ import { IStore } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
 export const StoreSelect: React.FC = () => {
-    const getToPath = useGetToPath();
-    const go = useGo();
-    const { resource, action, params } = useParsed<{ tenant: string }>();
+  const getToPath = useGetToPath();
+  const go = useGo();
+  const { resource, action, params } = useParsed<{ tenant: string }>();
 
-    const { selectProps: storeSelectProps } = useSelect<IStore>({
-        resource: resources.stores,
-        optionLabel: "title",
-        optionValue: "id",
-        meta: {
-            tenant: undefined,
-        },
-    });
+  const { selectProps: storeSelectProps } = useSelect<IStore>({
+    resource: resources.stores,
+    optionLabel: "title",
+    optionValue: "id",
+    meta: {
+      tenant: undefined,
+    },
+  });
 
-    return (
-        <Select
-            defaultValue={params?.tenant}
-            style={{ width: 120 }}
-            onChange={(tenant) =>
-                go({
-                    to: getToPath({
-                        resource,
-                        action: action || "list",
-                        meta: {
-                            tenant,
-                        },
-                    }),
-                })
-            }
-            onSelect={() => false}
-        >
-            {storeSelectProps.options?.map(({ value, label }) => (
-                <Select.Option key={value} value={value}>
-                    {label}
-                </Select.Option>
-            ))}
-        </Select>
-    );
+  return (
+    <Select
+      defaultValue={params?.tenant}
+      style={{ width: 120 }}
+      onChange={(tenant) =>
+        go({
+          to: getToPath({
+            resource,
+            action: action || "list",
+            meta: {
+              tenant,
+            },
+          }),
+        })
+      }
+      onSelect={() => false}
+    >
+      {storeSelectProps.options?.map(({ value, label }) => (
+        <Select.Option key={value} value={value}>
+          {label}
+        </Select.Option>
+      ))}
+    </Select>
+  );
 };

@@ -1,9 +1,9 @@
 ---
-title: Pilot & refine architecture
-description: We'll be taking a look at the architecture of refine and how week of refine series will be structured.
+title: Pilot & Refine architecture
+description: We'll be taking a look at the architecture of Refine and how week of Refine series will be structured.
 slug: refine-pixels-1
 authors: abdullah_numan
-tags: [refine-week, refine, supabase, ant-design]
+tags: [refine-week, Refine, supabase, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/social.png
 hide_table_of_contents: false
 ---
@@ -12,22 +12,22 @@ hide_table_of_contents: false
 
 ### RefineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 - Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
 - Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 5 - [Creating an Admin Dashboard with Refine](https://refine.dev/blog/refine-pixels-5/)
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 7 - [Audit Log With Refine](https://refine.dev/blog/refine-pixels-7/)
 
 <br/>
 <br/>
 
-This post provides an introduction to [**refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
+This post provides an introduction to [**Refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
-It also presents the [RefineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **refine** within a week.
+It also presents the [RefineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**Refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **Refine** within a week.
 
-At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **refine** and **Supabase**.
+At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **Refine** and **Supabase**.
 
 [The live version of the app is be available here.](https://pixels.refine.dev/)
 
@@ -53,17 +53,17 @@ To get completed admin source code simply run:
  npm create refine-app@latest -- --example pixels-admin
 ```
 
-## What is **refine** ?
+## What is **Refine** ?
 
-**refine** is a highly customizable **React** based framework for building CRUD apps that comes with a headless core package and supplementary "pick-and-plug" modules for the UI, backend API clients and Internationalization support.
+**Refine** is a highly customizable **React** based framework for building CRUD apps that comes with a headless core package and supplementary "pick-and-plug" modules for the UI, backend API clients and Internationalization support.
 
-**refine**'s (intentionally decapitalized) core is strongly opinionated about RESTful conventions, HTTPS networking, state management, authentication and authorization. It is, however, unopinionated about the UI and render logic. This makes it customizable according to one's choice of UI library and frameworks.
+**Refine**'s (intentionally decapitalized) core is strongly opinionated about RESTful conventions, HTTPS networking, state management, authentication and authorization. It is, however, unopinionated about the UI and render logic. This makes it customizable according to one's choice of UI library and frameworks.
 
-In a nutshell, you can build rock-solid CRUD apps easily using refine✨.
+In a nutshell, you can build rock-solid CRUD apps easily using Refine✨.
 
-## refine Architecture
+## Refine Architecture
 
-Everything in **refine** is centered around the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
+Everything in **Refine** is centered around the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -99,13 +99,15 @@ const dataProvider = {
   deleteOne: ({ resource, id, variables, metaData }) => Promise,
   deleteMany: ({ resource, ids, variables, metaData }) => Promise,
   //highlight-start
-  getList: ({ resource, pagination, pagination, sort, filters, meta }) => Promise,
+  getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
+    Promise,
   //highlight-end
   getMany: ({ resource, ids, metaData }) => Promise,
   getOne: ({ resource, id, metaData }) => Promise,
   update: ({ resource, id, variables, metaData }) => Promise,
   updateMany: ({ resource, ids, variables, metaData }) => Promise,
-  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) =>
+    Promise,
   getApiUrl: () => "",
 };
 ```
@@ -137,7 +139,7 @@ const { data } = useList<Canvas>({
 The hooks, in turn, leverage [**React Query**](https://react-query-v3.tanstack.com/) hooks in order to make API calls asked by the provider methods. Here's an early sneak peek into the action under the hood:
 
 <details>
-<summary>Show refine `useList` hook code</summary>
+<summary>Show Refine `useList` hook code</summary>
 <p>
 
 ```tsx
@@ -198,7 +200,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 </p>
 </details>
 
-We'll be visiting code like this often, but if you examine closely you can see that **refine** uses **React Query** to handle caching, state management as well as errors out-of-the-box.
+We'll be visiting code like this often, but if you examine closely you can see that **Refine** uses **React Query** to handle caching, state management as well as errors out-of-the-box.
 
 The following diagram illustrates the interactions:
 
@@ -208,7 +210,7 @@ The following diagram illustrates the interactions:
 
 ## Providers and Hooks
 
-**refine**'s power lies in the abstraction of various app component logic such as authentication, authorization, routing and data fetching - inside individual providers and their corresponding hooks.
+**Refine**'s power lies in the abstraction of various app component logic such as authentication, authorization, routing and data fetching - inside individual providers and their corresponding hooks.
 
 Common providers include:
 
@@ -219,13 +221,13 @@ Common providers include:
 - [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
 - [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
 
-For an exhaustive list of providers, please visit the **refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
+For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
 
-Each method in these providers comes with its corresponding hook to be used from inside UI components and pages. For more details, please refer to the **refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
+Each method in these providers comes with its corresponding hook to be used from inside UI components and pages. For more details, please refer to the **Refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
 
 ## Support Packages
 
-**refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/), [**Material UI**](https://refine.dev/docs/api-reference/mui/), [**Chakra UI**](https://refine.dev/docs/api-reference/chakra-ui/) and [**Mantine**](https://refine.dev/docs/api-reference/mantine/). Backend supplementary modules include [**Supabase**](https://supabase.com/), [**GraphQL**](https://graphql.org/), and [**NestJS**](https://nestjs.com/)
+**Refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **Refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/), [**Material UI**](https://refine.dev/docs/api-reference/mui/), [**Chakra UI**](https://refine.dev/docs/api-reference/chakra-ui/) and [**Mantine**](https://refine.dev/docs/api-reference/mantine/). Backend supplementary modules include [**Supabase**](https://supabase.com/), [**GraphQL**](https://graphql.org/), and [**NestJS**](https://nestjs.com/)
 
 For a complete list of all these modules, check out [this page](https://refine.dev/docs/packages/list-of-packages/).
 
@@ -233,26 +235,26 @@ For a complete list of all these modules, check out [this page](https://refine.d
 
 [**Supabase**](https://supabase.com/) is an open source alternative to Firebase. It is a hosted backend that provides a realtime database, authentication, storage, and API services.
 
-refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/packages/documentation/data-providers/supabase/).
+Refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/packages/documentation/data-providers/supabase/).
 
 We'll be using **Supabase** to build our backend for **Pixels** app.
 
-## A week of refine ft. Supabase
+## A week of Refine ft. Supabase
 
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="refine banner" />
 
   <br/>
   <br/>
 
-In this tutorial series, we will be going through most of the core features of [**refine**](https://github.com/refinedev/refine) by building two apps related to drawing pixels on a canvas. This section is intended to provide an overview.
+In this tutorial series, we will be going through most of the core features of [**Refine**](https://github.com/refinedev/refine) by building two apps related to drawing pixels on a canvas. This section is intended to provide an overview.
 
 The first one, the client app - **Pixels**, allows a logged in user to create a canvas and draw on it together with other users. It also displays a public gallery of all canvases and a "Featured Canvases" page.
 
 The second app, **Pixels Admin** is an admin dashboard that allows authorized users like `editor`s and `admin`s to view the list of users registered with **Pixels** app and manage user drawn canvases, with actions like promoting, unpromoting and deleting a canvas.
 
-We will be building these two apps day-by-day over a period of 7 days. And while doing so, we will dive deep into the details of related providers, hooks, UI components and how **refine** works behind the scenes.
+We will be building these two apps day-by-day over a period of 7 days. And while doing so, we will dive deep into the details of related providers, hooks, UI components and how **Refine** works behind the scenes.
 
-As far as our features and functionalities go, we will cover most of the providers and some of the related hooks. For the UI side, we will be using the optional [**Ant Design**](https://refine.dev/docs/api-reference/antd/) package supported by **refine**. For the backend, we will use a PostgreSQL database hosted on the [**Supabase**](https://supabase.com/) cloud.
+As far as our features and functionalities go, we will cover most of the providers and some of the related hooks. For the UI side, we will be using the optional [**Ant Design**](https://refine.dev/docs/api-reference/antd/) package supported by **Refine**. For the backend, we will use a PostgreSQL database hosted on the [**Supabase**](https://supabase.com/) cloud.
 
 <br />
 
@@ -260,11 +262,11 @@ Here are the detailed outlines split per day:
 
 ### Day One - On RefineWeek
 
-This post. Hello! :wave: :wave: **refine** welcomes you! We are here :smile: :smile:
+This post. Hello! :wave: :wave: **Refine** welcomes you! We are here :smile: :smile:
 
 ### Day Two - Setting Up the Client App
 
-We start with setting up the **Pixels** client app using `create refine-app`. We choose **refine**'s optional **Ant Design** and **Supabase** modules as our support packages. After initialization, we explore the boilerplate code created by `create refine-app` and look into the details of the `dataProvider` and `authProvider` objects and briefly discuss their mechanisms.
+We start with setting up the **Pixels** client app using `create refine-app`. We choose **Refine**'s optional **Ant Design** and **Supabase** modules as our support packages. After initialization, we explore the boilerplate code created by `create refine-app` and look into the details of the `dataProvider` and `authProvider` objects and briefly discuss their mechanisms.
 
 ### Day Three - Adding CRUD Actions & Authentication
 
@@ -290,7 +292,7 @@ We are going to use **Supabase**'s **Realtime** [PostgreSQL CDC](https://supabas
 
 ### Day Five - Initialize and Build Pixels Admin App
 
-Basing on the learning from the client app, we quickly implement an admin dashboard app and explore how **refine**'s **Ant Design** support module is geared to rapidly build CRUD pages for a **refine** app.
+Basing on the learning from the client app, we quickly implement an admin dashboard app and explore how **Refine**'s **Ant Design** support module is geared to rapidly build CRUD pages for a **Refine** app.
 
 Here are the requirements for **Pixels Admin**:
 
@@ -319,7 +321,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 ## Summary
 
-In this post, we introduced the **refine** framework and the [RefineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **Refine** framework and the [RefineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **Refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We laid out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 

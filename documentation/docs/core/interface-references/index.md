@@ -51,7 +51,7 @@ type CrudOperators =
   | "containss" // Contains, case sensitive
   | "ncontainss" // Doesn't contain, case sensitive
   | "between" // Between
-  | "nbetween" // Doesn't between
+  | "nbetween" // Not between
   | "null" // Is null
   | "nnull" // Is not null
   | "startswith" // Starts with
@@ -150,15 +150,27 @@ type UseImportInputPropsType = {
 ### SuccessErrorNotification
 
 ```tsx
-type SuccessErrorNotification<TData = unknown, TError = unknown, TVariables = unknown> = {
+type SuccessErrorNotification<
+  TData = unknown,
+  TError = unknown,
+  TVariables = unknown,
+> = {
   successNotification?:
     | OpenNotificationParams
     | false
-    | ((data?: TData, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+    | ((
+        data?: TData,
+        values?: TVariables,
+        resource?: string,
+      ) => OpenNotificationParams | false);
   errorNotification?:
     | OpenNotificationParams
     | false
-    | ((error?: TError, values?: TVariables, resource?: string) => OpenNotificationParams | false);
+    | ((
+        error?: TError,
+        values?: TVariables,
+        resource?: string,
+      ) => OpenNotificationParams | false);
 };
 ```
 
@@ -254,6 +266,58 @@ type CanResponse = {
   can: boolean;
   reason?: string;
   [key: string]: unknown;
+};
+```
+
+### DataProvider
+
+```tsx
+type DataProvider {
+    getList: <TData extends BaseRecord = BaseRecord>(
+        params: GetListParams,
+    ) => Promise<GetListResponse<TData>>;
+
+    getMany?: <TData extends BaseRecord = BaseRecord>(
+        params: GetManyParams,
+    ) => Promise<GetManyResponse<TData>>;
+
+    getOne: <TData extends BaseRecord = BaseRecord>(
+        params: GetOneParams,
+    ) => Promise<GetOneResponse<TData>>;
+
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: CreateParams<TVariables>,
+    ) => Promise<CreateResponse<TData>>;
+
+    createMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: CreateManyParams<TVariables>,
+    ) => Promise<CreateManyResponse<TData>>;
+
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: UpdateParams<TVariables>,
+    ) => Promise<UpdateResponse<TData>>;
+
+    updateMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: UpdateManyParams<TVariables>,
+    ) => Promise<UpdateManyResponse<TData>>;
+
+    deleteOne: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: DeleteOneParams<TVariables>,
+    ) => Promise<DeleteOneResponse<TData>>;
+
+    deleteMany?: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: DeleteManyParams<TVariables>,
+    ) => Promise<DeleteManyResponse<TData>>;
+
+    getApiUrl: () => string;
+
+    custom?: <
+        TData extends BaseRecord = BaseRecord,
+        TQuery = unknown,
+        TPayload = unknown,
+    >(
+        params: CustomParams<TQuery, TPayload>,
+    ) => Promise<CustomResponse<TData>>;
 };
 ```
 

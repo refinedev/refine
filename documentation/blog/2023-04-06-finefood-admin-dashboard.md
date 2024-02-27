@@ -1,9 +1,9 @@
 ---
-title: Building a React Admin Dashboard with refine
-description: We will be building a Complete React CRUD application using refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
+title: Building a React Admin Dashboard with Refine
+description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: building-react-admin-dashboard
 authors: peter_osah
-tags: [refine, react, tutorial]
+tags: [Refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
 ---
@@ -12,23 +12,23 @@ hide_table_of_contents: false
 
 React is a well-known front-end framework used to create interactive user interfaces. It has aided in the building of data-intensive front-end applications like admin dashboards, and analytics applications, among others. However, in building these applications, there exists a tedious, repetitive process that usually comprises the setup of the boilerplate application, the application design, styling, API Client setup, server state, and client state management setup, amongst others.
 
-[refine](https://github.com/refinedev/refine) is a React-based front-end application framework that eliminates these tedious, repetitive processes. It is a "headless" framework by design, which implies that it is not opinionated about your styling and design choices. It has built-in router providers for the most popular React routing libraries, like React Router, Next.js Router, React Location and Remix Router, and is shipped with integrations of popular component libraries and design systems, like Ant Design, Material UI, Chakra UI, and Mantime. It also contains hooks and providers, that allow for data management and easy integration with custom backend APIs and popular backend services such as Appwrite, Hasura, Strapi, and others.
+[Refine](https://github.com/refinedev/refine) is a React-based front-end application framework that eliminates these tedious, repetitive processes. It is a "headless" framework by design, which implies that it is not opinionated about your styling and design choices. It has built-in router providers for the most popular React routing libraries, like React Router, Next.js Router, React Location and Remix Router, and is shipped with integrations of popular component libraries and design systems, like Ant Design, Material UI, Chakra UI, and Mantime. It also contains hooks and providers, that allow for data management and easy integration with custom backend APIs and popular backend services such as Appwrite, Hasura, Strapi, and others.
 
-In this tutorial, we will be building a React admin dashboard application using refine and highlighting the features of refine that may convince you to use refine to build your next frontend React admin application.
+In this tutorial, we will be building a React admin dashboard application using Refine and highlighting the features of Refine that may convince you to use Refine to build your next frontend React admin application.
 
 [You can find the live example demo here](https://example.admin.refine.dev/)
 
-## Why use refine?
+## Why use Refine?
 
-refine as a framework of React is headless in design. this implies that you can build an app with refine with so much customization or you can integrate component libraries like Ant Design, Material UI, Chakra UI, and Mantime into your application with less difficulty.
+Refine as a framework of React is headless in design. this implies that you can build an app with Refine with so much customization or you can integrate component libraries like Ant Design, Material UI, Chakra UI, and Mantime into your application with less difficulty.
 
-refine creates a higher abstraction of functionalities like authentication, routing, client state management, internationalization and many more. You can integrate external API services and BAAS(Backend as a service) with little effort and you are sure of building scalable applications without the unnecessary overhead accompanied with building applications from scratch.
+Refine creates a higher abstraction of functionalities like authentication, routing, client state management, internationalization and many more. You can integrate external API services and BAAS(Backend as a service) with little effort and you are sure of building scalable applications without the unnecessary overhead accompanied with building applications from scratch.
 
-## A short note on migrating from refine 3 to refine 4
+## A short note on migrating from Refine 3 to Refine 4
 
-Recently, the refine team decided to address and tackle most of the issues raised by the community on refine version 3 such as developer experience and core functionality issues by releasing refine version 4 which addresses those issues while also adding new functionality to the framework. Some of the significant changes and improvements added to the new version are:
+Recently, the Refine team decided to address and tackle most of the issues raised by the community on Refine version 3 such as developer experience and core functionality issues by releasing Refine version 4 which addresses those issues while also adding new functionality to the framework. Some of the significant changes and improvements added to the new version are:
 
-- **Codemod support**: The addition of codemod to the refine core package implies that one can easily migrate from refine version 3 to refine version 4 with a single command on the root directory of your project:
+- **Codemod support**: The addition of codemod to the Refine core package implies that one can easily migrate from Refine version 3 to Refine version 4 with a single command on the root directory of your project:
 
 ```
 npx @refinedev/codemod@latest refine3-to-refine4
@@ -36,19 +36,19 @@ npx @refinedev/codemod@latest refine3-to-refine4
 
 The command above handles the changes on your existing project and ensures that you do not manually update the project with those changes. Pretty awesome right?
 
-- **New NPM Organization**: The Refine NPM organization changes from `@pankod` to `@refinedev` thus implies that the package name for refine changes to `@refinedev` automatically.
+- **New NPM Organization**: The Refine NPM organization changes from `@pankod` to `@refinedev` thus implies that the package name for Refine changes to `@refinedev` automatically.
 
-- **Enterprise based Routing and Router independence**: In Refine version 4, the `routerProvider` acts solely a bridge between the router and refine and doesn’t specify the manner at which routes are created as opposed to version 3. Routes are detached from refine and are more flexible and customizable.
+- **Enterprise based Routing and Router independence**: In Refine version 4, the `routerProvider` acts solely a bridge between the router and Refine and doesn’t specify the manner at which routes are created as opposed to version 3. Routes are detached from Refine and are more flexible and customizable.
 
-In order to view more on the updates on refine version 4, refer to the [comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) on the documentation. Its guide is comprehensive enough to get you up to speed in using the new version.
+In order to view more on the updates on Refine version 4, refer to the [comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) on the documentation. Its guide is comprehensive enough to get you up to speed in using the new version.
 
-## Building A refine Admin Dashboard – A Food delivery React Admin dashboard
+## Building A Refine Admin Dashboard – A Food delivery React Admin dashboard
 
 In this article, we will be building a food delivery React admin dashboard in order to illustrate how you can build your next react-based admin dashboard with refine.
 
-### Setting up/Bootstrapping the refine Application.
+### Setting up/Bootstrapping the Refine Application.
 
-To create our refine application for this article, we will use the `refine CLI`. The CLI generates a project with the basic structure and configurations of refine. In order to use it, launch your terminal and type the following command:
+To create our Refine application for this article, we will use the `refine CLI`. The CLI generates a project with the basic structure and configurations of refine. In order to use it, launch your terminal and type the following command:
 
 ```
 npm create refine-app@latest -- -o refine-antd refine-react-admin-dashboard
@@ -72,7 +72,7 @@ Following installation, we will go into our newly created project directory and 
 npm run dev
 ```
 
-The refine application should be up on http://localhost:3000 after you run the command. To access it, go to
+The Refine application should be up on http://localhost:3000 after you run the command. To access it, go to
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fwelcome.png"  alt="react crud app airtable" />
 
@@ -80,7 +80,7 @@ The refine application should be up on http://localhost:3000 after you run the c
 
 ## Add properties to <Refine/> component
 
-So, we will navigate to the `App.tsx` file under the `src` folder and see the code bootstrapped for us on creating the refine application.
+So, we will navigate to the `App.tsx` file under the `src` folder and see the code bootstrapped for us on creating the Refine application.
 
 ```tsx title="src/App.tsx"
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
@@ -89,7 +89,9 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -125,17 +127,17 @@ export default App;
 ```
 
 In the code above, we can see that the app comes preconfigured with providers such as
-the `ColorModeContextProvider`, `dataProvider`, `notificationProvider` and many others. Also, there is a new addition of `BrowserRouter`, `Route`, `Routes` imports from `react-router-dom`. This goes in line with what was explained on the previous section on refine version 4 detaching the Routes from refine in order to give more flexibility and customizability.
+the `ColorModeContextProvider`, `dataProvider`, `notificationProvider` and many others. Also, there is a new addition of `BrowserRouter`, `Route`, `Routes` imports from `react-router-dom`. This goes in line with what was explained on the previous section on Refine version 4 detaching the Routes from Refine in order to give more flexibility and customizability.
 
 However, in building our food delivery React admin dashboard application, we will add providers that handles data Management and Authentication as well as add routes for the auth pages and dashboard.
 
 ## Adding the Data Provider
 
-A [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) in refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
+A [`dataProvider`](https://refine.dev/docs/data/data-provider) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
 
-### The jsonServerDataProvider Provider in refine
+### The jsonServerDataProvider Provider in Refine
 
-The `jsonServerDataProvider` provider was introduced in refine version 4 as a replacement of the `dataProvider` of the simple-rest dependency of the refine core package. The provider will handle the HTTP requests we will make on our application.
+The `jsonServerDataProvider` provider was introduced in Refine version 4 as a replacement of the `dataProvider` of the simple-rest dependency of the Refine core package. The provider will handle the HTTP requests we will make on our application.
 
 So, we will update the contents of to the `app.tsx` in the `src` directory with the code below:
 
@@ -166,11 +168,11 @@ function App() {
 export default App;
 ```
 
-In the course of the tutorial, we will be using refine's demo finefoodsAPI (https://api.finefoods.refine.dev) in building the application. In the code above, we added the API to our `jsonServerDataProvider `.
+In the course of the tutorial, we will be using Refine's demo finefoodsAPI (https://api.finefoods.refine.dev) in building the application. In the code above, we added the API to our `jsonServerDataProvider `.
 
 ## Adding the Auth provider
 
-An [Auth Provider](https://refine.dev/docs/tutorial/understanding-authprovider/index/) in refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
+An [Auth Provider](https://refine.dev/docs/authentication/auth-provider/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
 
 ```tsx
 import { AuthProvider } from "@refinedev/core";
@@ -190,7 +192,7 @@ const authProvider: AuthProvider = {
 };
 ```
 
-In order to add an authProvider to our application, we create a file `authProvider.ts` file in the `src/authProvider.ts` directory. We then map the prefined methods for an authProvider in refine into the `authProvider.ts` file. This is as shown in the code below:
+In order to add an authProvider to our application, we create a file `authProvider.ts` file in the `src/authProvider.ts` directory. We then map the prefined methods for an authProvider in Refine into the `authProvider.ts` file. This is as shown in the code below:
 
 <details>
 <summary>Show authProvider.ts code</summary>
@@ -313,7 +315,12 @@ const renderAuthContent = (content: React.ReactNode) => {
       }}
     >
       <Link to="/">
-        <img style={{ marginBottom: 26 }} src="/images/fine-foods-login.svg" alt="Logo" width="100%" />
+        <img
+          style={{ marginBottom: 26 }}
+          src="/images/fine-foods-login.svg"
+          alt="Logo"
+          width="100%"
+        />
       </Link>
       {content}
     </div>
@@ -322,7 +329,12 @@ const renderAuthContent = (content: React.ReactNode) => {
 
 export const AuthPage: React.FC<AuthProps> = ({ type, formProps }) => {
   return (
-    <AntdAuthPage type={type} wrapperProps={authWrapperProps} renderContent={renderAuthContent} formProps={formProps} />
+    <AntdAuthPage
+      type={type}
+      wrapperProps={authWrapperProps}
+      renderContent={renderAuthContent}
+      formProps={formProps}
+    />
   );
 };
 ```
@@ -340,7 +352,9 @@ import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { WelcomePage, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerBindings, { UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import jsonServerDataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
@@ -368,7 +382,9 @@ function App() {
           >
             <Routes>
               <Route index element={<WelcomePage />} />
-              <Route element={<Authenticated fallback={<Outlet />}></Authenticated>}>
+              <Route
+                element={<Authenticated fallback={<Outlet />}></Authenticated>}
+              >
                 <Route
                   path="/login"
                   element={
@@ -506,26 +522,38 @@ export const DashboardPage: React.FC = () => {
       <Col md={24}>
         <Row gutter={[16, 16]}>
           <Col xl={10} lg={24} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle} style={dashboardCardStyles.dailyRevenue.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle}
+              style={dashboardCardStyles.dailyRevenue.style}
+            >
               <></>
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle} style={dashboardCardStyles.dailyOrders.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle}
+              style={dashboardCardStyles.dailyOrders.style}
+            >
               <></>
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.newCustomers.bodyStyle} style={dashboardCardStyles.newCustomers.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.newCustomers.bodyStyle}
+              style={dashboardCardStyles.newCustomers.style}
+            >
               <></>
             </Card>
           </Col>
         </Row>
       </Col>
       <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-        <Card bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle} title={<Text strong>Delivery map</Text>}>
+        <Card
+          bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle}
+          title={<Text strong>Delivery map</Text>}
+        >
           <></>
         </Card>
       </Col>
@@ -696,7 +724,13 @@ import dayjs, { Dayjs } from "dayjs";
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 
 import { ISalesChart } from "interfaces";
-import { DailyRevenueWrapper, TitleAreNumber, TitleArea, TitleAreaAmount, RangePicker } from "./styled";
+import {
+  DailyRevenueWrapper,
+  TitleAreNumber,
+  TitleArea,
+  TitleAreaAmount,
+  RangePicker,
+} from "./styled";
 
 export const DailyRevenue: React.FC = () => {
   const API_URL = useApiUrl();
@@ -794,14 +828,23 @@ export const DailyRevenue: React.FC = () => {
           }}
           ranges={{
             "This Week": [dayjs().startOf("week"), dayjs().endOf("week")],
-            "Last Month": [dayjs().startOf("month").subtract(1, "month"), dayjs().endOf("month").subtract(1, "month")],
+            "Last Month": [
+              dayjs().startOf("month").subtract(1, "month"),
+              dayjs().endOf("month").subtract(1, "month"),
+            ],
             "This Month": [dayjs().startOf("month"), dayjs().endOf("month")],
             "This Year": [dayjs().startOf("year"), dayjs().endOf("year")],
           }}
           format="YYYY/MM/DD"
         />
       </TitleArea>
-      <Line padding={0} appendPadding={10} height={135} style={{ maxHeight: "135px" }} {...config} />
+      <Line
+        padding={0}
+        appendPadding={10}
+        height={135}
+        style={{ maxHeight: "135px" }}
+        {...config}
+      />
     </DailyRevenueWrapper>
   );
 };
@@ -974,7 +1017,11 @@ export const DailyOrders: React.FC = () => {
           {(data?.data?.trend ?? 0) > 0 ? <IncreaseIcon /> : <DecreaseIcon />}
         </TitleAreNumber>
       </TitleArea>
-      <Column style={{ padding: 0, height: 135 }} appendPadding={10} {...config} />
+      <Column
+        style={{ padding: 0, height: 135 }}
+        appendPadding={10}
+        {...config}
+      />
     </DailyOrderWrapper>
   );
 };
@@ -1135,11 +1182,19 @@ export const NewCustomers: React.FC = () => {
             <Text strong>{data?.data.total ?? 0}</Text>
             <div>
               <Text strong>{data?.data.trend ?? 0}%</Text>
-              {(data?.data?.trend ?? 0) > 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+              {(data?.data?.trend ?? 0) > 0 ? (
+                <IncreaseIcon />
+              ) : (
+                <DecreaseIcon />
+              )}
             </div>
           </HeaderNumbers>
         </Header>
-        <Column style={{ padding: 0, height: 162 }} appendPadding={10} {...config} />
+        <Column
+          style={{ padding: 0, height: 162 }}
+          appendPadding={10}
+          {...config}
+        />
       </NewCustomersWrapper>
     </ConfigProvider>
   );
@@ -1363,12 +1418,24 @@ Now, we create the `orderTimeline` component. Create an `index.tsx` file in the 
 ```tsx title="src/components/dashboard/orderTimeline/index.tsx"
 import { useNavigation } from "@refinedev/core";
 import { useSimpleList } from "@refinedev/antd";
-import { Typography, List as AntdList, Tooltip, ConfigProvider, theme } from "antd";
+import {
+  Typography,
+  List as AntdList,
+  Tooltip,
+  ConfigProvider,
+  theme,
+} from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { IOrder } from "interfaces";
-import { TimelineContent, CreatedAt, Number, Timeline, TimelineItem } from "./styled";
+import {
+  TimelineContent,
+  CreatedAt,
+  Number,
+  Timeline,
+  TimelineItem,
+} from "./styled";
 
 dayjs.extend(relativeTime);
 
@@ -1397,7 +1464,9 @@ export const OrderTimeline: React.FC = () => {
 
   const orderStatusColor = (
     id: string,
-  ): { indicatorColor: string; backgroundColor: string; text: string } | undefined => {
+  ):
+    | { indicatorColor: string; backgroundColor: string; text: string }
+    | undefined => {
     switch (id) {
       case "1":
         return {
@@ -1445,9 +1514,15 @@ export const OrderTimeline: React.FC = () => {
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm }}>
         <Timeline>
           {dataSource?.map(({ createdAt, orderNumber, status, id }) => (
-            <TimelineItem key={orderNumber} color={orderStatusColor(status.id.toString())?.indicatorColor}>
+            <TimelineItem
+              key={orderNumber}
+              color={orderStatusColor(status.id.toString())?.indicatorColor}
+            >
               <TimelineContent
-                backgroundColor={orderStatusColor(status.id.toString())?.backgroundColor || "transparent"}
+                backgroundColor={
+                  orderStatusColor(status.id.toString())?.backgroundColor ||
+                  "transparent"
+                }
               >
                 <Tooltip
                   overlayInnerStyle={{ color: "#626262" }}
@@ -1457,7 +1532,9 @@ export const OrderTimeline: React.FC = () => {
                 >
                   <CreatedAt italic>{dayjs(createdAt).fromNow()}</CreatedAt>
                 </Tooltip>
-                <Text>Food Order {orderStatusColor(status.id.toString())?.text}</Text>
+                <Text>
+                  Food Order {orderStatusColor(status.id.toString())?.text}
+                </Text>
                 <Number onClick={() => show("orders", id)} strong>
                   #{orderNumber}
                 </Number>
@@ -1476,7 +1553,7 @@ export const OrderTimeline: React.FC = () => {
 
 In the code above:
 
-- We used the `useSimpleList()` hook to handle sending a request to the endpoint. The `useSimpleList()` hook in refine allows you to get data directly from the API in a list format that is compatible with Ant Design List component. some parameters that the `useSimpleList()` passes include:
+- We used the `useSimpleList()` hook to handle sending a request to the endpoint. The `useSimpleList()` hook in Refine allows you to get data directly from the API in a list format that is compatible with Ant Design List component. some parameters that the `useSimpleList()` passes include:
 
   - The resource parameter. This parameter is usually used as an API endpoint path.
   - The `pagination` parameter which accounts for paginating the endpoint using the `pageSize` and `pageNumber` params.
@@ -1540,14 +1617,28 @@ After adding the packages and configurations, we create the `Map` component. Cre
 <p>
 
 ```tsx title="src/components/map/map.tsx"
-import { Children, cloneElement, FC, isValidElement, PropsWithChildren, useEffect, useRef, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
   center?: google.maps.LatLngLiteral;
 }
 
-const MapComponent: FC<PropsWithChildren<MapProps>> = ({ children, center, zoom = 12, ...options }) => {
+const MapComponent: FC<PropsWithChildren<MapProps>> = ({
+  children,
+  center,
+  zoom = 12,
+  ...options
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -1730,7 +1821,7 @@ export const DeliveryMap: React.FC = () => {
 
 In the code above:
 
-- We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
+- We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in Refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
   To get more information about the hook, visit its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
 
 - On getting the data back from the endpoint, we render the position of the order on the map using the marker.
@@ -1751,7 +1842,13 @@ Phew!, we have come a long way and thanks for sticking around during the tutoria
 
 ```tsx title="src/pages/Dashboard/index.tsx"
 import { Row, Col, Card, Typography } from "antd";
-import { DailyRevenue, DailyOrders, NewCustomers, DeliveryMap, OrderTimeline } from "components/dashboard";
+import {
+  DailyRevenue,
+  DailyOrders,
+  NewCustomers,
+  DeliveryMap,
+  OrderTimeline,
+} from "components/dashboard";
 
 const { Text } = Typography;
 
@@ -1816,26 +1913,38 @@ export const DashboardPage: React.FC = () => {
       <Col md={24}>
         <Row gutter={[16, 16]}>
           <Col xl={10} lg={24} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle} style={dashboardCardStyles.dailyRevenue.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyRevenue.bodyStyle}
+              style={dashboardCardStyles.dailyRevenue.style}
+            >
               <DailyRevenue />
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle} style={dashboardCardStyles.dailyOrders.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.dailyOrders.bodyStyle}
+              style={dashboardCardStyles.dailyOrders.style}
+            >
               <DailyOrders />
             </Card>
           </Col>
 
           <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-            <Card bodyStyle={dashboardCardStyles.newCustomers.bodyStyle} style={dashboardCardStyles.newCustomers.style}>
+            <Card
+              bodyStyle={dashboardCardStyles.newCustomers.bodyStyle}
+              style={dashboardCardStyles.newCustomers.style}
+            >
               <NewCustomers />
             </Card>
           </Col>
         </Row>
       </Col>
       <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-        <Card bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle} title={<Text strong>Delivery map</Text>}>
+        <Card
+          bodyStyle={dashboardCardStyles.deliveryMap.bodyStyle}
+          title={<Text strong>Delivery map</Text>}
+        >
           <DeliveryMap />
         </Card>
       </Col>
@@ -1861,10 +1970,16 @@ export const DashboardPage: React.FC = () => {
 
 ## Add Dashboard Page and resource to the Refine component
 
-We will add the Dashboard page as a route and [resource](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
+We will add the Dashboard page as a route and [resource](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
 
 ```tsx title="src/App.tsx"
-import { Authenticated, ErrorComponent, GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import {
+  Authenticated,
+  ErrorComponent,
+  GitHubBanner,
+  Refine,
+  WelcomePage,
+} from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider, Layout } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -1915,7 +2030,11 @@ function App() {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <Layout Header={Header} Title={Title} OffLayoutArea={OffLayoutArea}>
+                    <Layout
+                      Header={Header}
+                      Title={Title}
+                      OffLayoutArea={OffLayoutArea}
+                    >
                       <Outlet />
                     </Layout>
                   </Authenticated>
@@ -1964,7 +2083,11 @@ function App() {
               <Route
                 element={
                   <Authenticated>
-                    <Layout Header={Header} Title={Title} OffLayoutArea={OffLayoutArea}>
+                    <Layout
+                      Header={Header}
+                      Title={Title}
+                      OffLayoutArea={OffLayoutArea}
+                    >
                       <Outlet />
                     </Layout>
                   </Authenticated>
@@ -1987,10 +2110,10 @@ export default App;
 
 Lets explain the block of code we just added:
 
-- We added a dashboard resource to the `<Refine/>` component. A resource is a fundamental component of a refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. The resources property accepts an array of objects in the format:
+- We added a dashboard resource to the `<Refine/>` component. A resource is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. The resources property accepts an array of objects in the format:
 
 ```tsx title="src/App.tsx"
-/* snippet of the resource parameter on the refine component in app.tsx */
+/* snippet of the resource parameter on the Refine component in app.tsx */
 
     resources={[
       {
@@ -2005,7 +2128,7 @@ Lets explain the block of code we just added:
 ```
 
 A resource object may include properties that define the resource's `name`, action routes(`list`), and additional `metadata` such as label, icon, audit log settings, sider menu nesting, and so on.
-To read more on resources, view [here](https://refine.dev/docs/tutorial/understanding-resources/index/#what-is-resource).
+To read more on resources, view [here](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource).
 
 - After Adding a resource, we specify the route that the resource will be linked to which is shown below:
 
@@ -2094,4 +2217,4 @@ In this Article, We covered how to create a React Admin Dashboard with Refine. W
 - How to add resources and work with Refine's new routing pattern.
 - How to use utility hooks like `UseSimpleList`, `useList`, `useCustom` and many more.
 
-This article demonstrates the versatility of using refine to create applications like a React Admin Dashboard. refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/docs/getting-started/overview/).
+This article demonstrates the versatility of using Refine to create applications like a React Admin Dashboard. Refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/docs/getting-started/overview/).

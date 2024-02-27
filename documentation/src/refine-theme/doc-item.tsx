@@ -7,18 +7,18 @@ import { TutorialUIPackageProvider } from "../context/TutorialUIPackageContext/i
 import { TutorialChecklistProvider } from "../context/TutorialChecklistContext";
 
 export const DocItem = (props) => {
-    const MDXComponent = props.content;
+  const MDXComponent = props.content;
 
-    return (
-        <DocProvider content={props.content}>
-            <TutorialUIPackageProvider>
-                <TutorialChecklistProvider>
-                    <DocItemMetadata />
-                    <DocItemLayout>
-                        <MDXComponent />
-                    </DocItemLayout>
-                </TutorialChecklistProvider>
-            </TutorialUIPackageProvider>
-        </DocProvider>
-    );
+  return (
+    <DocProvider content={props.content}>
+      <TutorialUIPackageProvider>
+        <TutorialChecklistProvider>
+          <DocItemMetadata />
+          <DocItemLayout>
+            <MDXComponent />
+          </DocItemLayout>
+        </TutorialChecklistProvider>
+      </TutorialUIPackageProvider>
+    </DocProvider>
+  );
 };

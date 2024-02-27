@@ -5,27 +5,27 @@ import { ThemedLayoutV2 } from "@refinedev/antd";
 import { authenticator } from "~/utils/auth.server";
 
 export default function AuthenticatedLayout() {
-    // `<ThemedLayoutV2>` is only applied if the user is authenticated
-    return (
-        <ThemedLayoutV2>
-            <Outlet />
-        </ThemedLayoutV2>
-    );
+  // `<ThemedLayoutV2>` is only applied if the user is authenticated
+  return (
+    <ThemedLayoutV2>
+      <Outlet />
+    </ThemedLayoutV2>
+  );
 }
 
 export const loader = async ({ request }: LoaderArgs) => {
-    const session = await authenticator.isAuthenticated(request);
-    const pathname = new URL(request.url).pathname;
+  const session = await authenticator.isAuthenticated(request);
+  const pathname = new URL(request.url).pathname;
 
-    let to = ``;
-    // ignore only `/` routes
-    if (pathname !== "/") {
-        to = `?to=${pathname}`;
-    }
+  let to = ``;
+  // ignore only `/` routes
+  if (pathname !== "/") {
+    to = `?to=${pathname}`;
+  }
 
-    if (!session) {
-        return redirect(`/login${to}`);
-    }
+  if (!session) {
+    return redirect(`/login${to}`);
+  }
 
-    return {};
+  return {};
 };

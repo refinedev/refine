@@ -2,8 +2,8 @@
 id: create-project
 title: 3. Create your refine project
 tutorial:
-  prev: tutorial/getting-started/{preferredUI}/prepare-env
-  next: tutorial/getting-started/{preferredUI}/generate-crud-pages
+  prev: 3.xx.xx/tutorial/getting-started/{preferredUI}/prepare-env
+  next: 3.xx.xx/tutorial/getting-started/{preferredUI}/generate-crud-pages
 ---
 
 import Tabs from '@theme/Tabs';

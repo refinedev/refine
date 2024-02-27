@@ -23,13 +23,13 @@ const CONTACTS_SELECT_QUERY = gql`
 `;
 
 export const useContactsSelect = (params?: { filters?: CrudFilters }) => {
-    const { filters } = params || {};
-    return useSelect<GetFieldsFromList<ContactsSelectQuery>>({
-        resource: "contacts",
-        optionLabel: "name",
-        filters,
-        meta: {
-            gqlQuery: CONTACTS_SELECT_QUERY,
-        },
-    });
+  const { filters } = params || {};
+  return useSelect<GetFieldsFromList<ContactsSelectQuery>>({
+    resource: "contacts",
+    optionLabel: "name",
+    filters,
+    meta: {
+      gqlQuery: CONTACTS_SELECT_QUERY,
+    },
+  });
 };

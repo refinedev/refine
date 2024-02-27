@@ -1,0 +1,17 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1805:13 lint/correctness/noConstantCondition ━━━━━━━━━━
+
+  ! Unexpected constant condition.
+  
+    1803 │         );
+    1804 │ 
+  > 1805 │         if ("development" !== "production") {
+         │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    1806 │           logger.debug(
+    1807 │             `Network request for ` +
+  
+
+Checked 6952 file(s) in 452ms

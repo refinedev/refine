@@ -51,11 +51,17 @@ const App = () => (
 ```tsx title="app.tsx"
 import Refine from "@refinedev/core";
 // highlight-next-line
-import dataProvider, { GraphQLClient, liveProvider, graphqlWS } from "@refinedev/graphql";
+import dataProvider, {
+  GraphQLClient,
+  liveProvider,
+  graphqlWS,
+} from "@refinedev/graphql";
 
 const client = new GraphQLClient("https://api.example.com/graphql");
 // highlight-next-line
-const wsClient = graphqlWS.createClient({ url: "wss://api.example.com/graphql" });
+const wsClient = graphqlWS.createClient({
+  url: "wss://api.example.com/graphql",
+});
 
 const App = () => (
   <Refine

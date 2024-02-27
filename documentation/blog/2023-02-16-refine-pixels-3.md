@@ -1,38 +1,38 @@
 ---
 title: Adding CRUD Actions and Authentication
-description: We'll initialize our Pixels app using refine and get familiar with the boilerplate code to be created with the create refine-app CLI tool.
+description: We'll initialize our Pixels app using Refine and get familiar with the boilerplate code to be created with the create refine-app CLI tool.
 slug: refine-pixels-3
 authors: abdullah_numan
-tags: [refine-week, refine, supabase]
+tags: [refine-week, Refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/social.png
 hide_table_of_contents: false
 ---
 
-In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/tutorial/understanding-dataprovider/index/) and [`authProvider`](https://refine.dev/docs/tutorial/understanding-authprovider/index/) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) and `routerProvider` props as well.
+In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/data/data-provider) and [`authProvider`](https://refine.dev/docs/authentication/auth-provider) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) and `routerProvider` props as well.
 
 CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-supabase/) series.
 
-This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ### RefineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 - Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
 - Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 5 - [Creating an Admin Dashboard with Refine](https://refine.dev/blog/refine-pixels-5/)
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 7 - [Audit Log With Refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
-In the last episode, we explored **refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package.
+In the last episode, we explored **Refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package.
 
 We mentioned that `dataProvider` methods allow us to communicate with API endpoints and `authProvider` methods help us with authentication and authorization. We are able to access and invoke these methods from consumer components via their corresponding hooks.
 
 In this post, we will be leveraging **Supabase** `dataProvider` methods to implement CRUD operations for a `canvases` resource. We are going to start by adding `canvases` as a resource on which we will be able to perform `create`, `show` and `list` actions. We will first work on a public gallery that lists all canvases and a dashboard page that shows a selection of featured canvases by implementing the the `list` action. We will allow users to perform the canvas `create` action from a modal. Then we will also implement the `show` action for a canvas.
 
-We will then apply **Supabase** auth provider to allow only logged in users to carry out `create` actions on `canvases` and `pixels`. On the way, we will explore how **refine** does the heavylifting under the hood for us with [**React Query**](https://react-query-v3.tanstack.com/), and its own set of providers and hooks - making CRUD operations implementation a breeze.
+We will then apply **Supabase** auth provider to allow only logged in users to carry out `create` actions on `canvases` and `pixels`. On the way, we will explore how **Refine** does the heavylifting under the hood for us with [**React Query**](https://react-query-v3.tanstack.com/), and its own set of providers and hooks - making CRUD operations implementation a breeze.
 
 But before we start, we have to set up **Supabase** with our database tables and get the access credentials.
 
@@ -44,7 +44,7 @@ After signing up and logging in to a developer account, we have to complete the 
 
 1. Create a PostgreSQL server with an appropriate name.
 2. Create necessary tables in the database and add relationships.
-3. Get API keys provided by **Supabase** for the server and set up `supabaseClient` inside our **refine** project.
+3. Get API keys provided by **Supabase** for the server and set up `supabaseClient` inside our **Refine** project.
 
 Below, we go over these steps one by one.
 
@@ -189,7 +189,7 @@ For simplicity, we'll disable Row Level Security:
 
 ### 3. Set Up `supabaseClient` for `<Refine />` Providers
 
-Now it's time to use the **Supabase** hosted database server inside our **refine** app.
+Now it's time to use the **Supabase** hosted database server inside our **Refine** app.
 
 First, we need to get the access credentials for our server from the **Supabase** dashboard. We can avail them by following [this section](https://supabase.com/docs/guides/with-react#get-the-api-keys) in the **Supabase** quickstart guide.
 
@@ -226,7 +226,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -263,7 +266,7 @@ function App() {
 export default App;
 ```
 
-Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/tutorial/understanding-resources/index/) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
+Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
 
 ```json title="Typical resource object inside resources array"
 {
@@ -275,9 +278,9 @@ Focusing on the top, in order to add a resource to our app, we have to introduce
 
 We can have as many resource items inside our `resources` array as the number of entities we have in our app.
 
-**refine** simplifies CRUD actions and acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API. It's worth spending a few minutes exploring the possible properties of a resource item from the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) docs here.
+**Refine** simplifies CRUD actions and acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API. It's worth spending a few minutes exploring the possible properties of a resource item from the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) docs here.
 
-For the above `canvases` resource, the `name` property denotes the name of the resource. Behind the scenes, **refine** auto-magically adds RESTful routes for the actions defined on a resource `name` to the `routerProvider` object - i.e. for us here along the `/canvases` path.
+For the above `canvases` resource, the `name` property denotes the name of the resource. Behind the scenes, **Refine** auto-magically adds RESTful routes for the actions defined on a resource `name` to the `routerProvider` object - i.e. for us here along the `/canvases` path.
 
 `list` and `show` properties represent the CRUD actions we want. And their values are the components we want to render when we navigate to their respective RESTful routes, such as `/canvases` and `/canvases/show/a-canvas-slug`.
 
@@ -304,7 +307,7 @@ For our app, we'll configure our `resources` object with actions for `canvases`.
 
 We will consider these two actions with their respective components and routes in the coming sections.
 
-We should have the `CanvasList` and `CanvasShow` components premade. In a **refine** app, CRUD action related components are typically placed in a directory that has a structure like this: `src/pages/resource_name/`.
+We should have the `CanvasList` and `CanvasShow` components premade. In a **Refine** app, CRUD action related components are typically placed in a directory that has a structure like this: `src/pages/resource_name/`.
 
 In our case, we'll house `canvases` related components in the `src/pages/canvases/` folder.
 
@@ -425,8 +428,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -463,7 +472,7 @@ We move this files to `src/providers/authProvider.ts` and `src/components/layout
 
 The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
 
-**refine** defines the routes for `list` action to be the `/canvases` path, and adds it to the `routerProvider` object. `/canvases` path, in turn, renders the `<CanvasList />` component, as specified in the `resources` array.
+**Refine** defines the routes for `list` action to be the `/canvases` path, and adds it to the `routerProvider` object. `/canvases` path, in turn, renders the `<CanvasList />` component, as specified in the `resources` array.
 
 The contents of our `<CanvasList />` component look like this:
 
@@ -517,7 +526,7 @@ export const CanvasList: React.FC = () => {
 };
 ```
 
-There are a few of things to note here: the first being the use of **Ant Design** with **refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
+There are a few of things to note here: the first being the use of **Ant Design** with **Refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
 
 Let's briefly discuss what's going on:
 
@@ -527,9 +536,9 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 [`<List />`](https://ant.design/components/list#list) component takes in the props inside `listProps` object that `useSimpleList()` hook prepares for us from the fetched canvases array and shows each canvas data inside the `<CanvasTile />` component. All the props and presentation logic are being handled inside the **Ant Design** `<List />` component.
 
-[Refer to Ant Design documentation for more information About <List />. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
+[Refer to Ant Design documentation for more information About <List />. →](https://ant.design/components/list#list)
 
-[Refer to complete refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/tutorial/introduction/select-framework/)
+[Refer to complete Refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/ui-integrations/ant-design/introduction)
 
 **2. `useSimpleList()` Hook**
 
@@ -554,7 +563,7 @@ In this project, our goal is to allow unauthenticated users to view created canv
 
 We already did this implementation when we created required files before starting the this section. In the next section, we will explain how redirect unauthenticated users to the login page if they attempt to perform create, update, or delete actions on canvases.
 
-### Public Routes in refine
+### Public Routes in Refine
 
 If we revisit the `authProvider` object, we can see that the `check()` method only allows logged in users. All other attempts are rejected. We will use this logic to compose our routes.
 
@@ -625,7 +634,7 @@ check: async () => {
 </p>
 </details>
 
-**refine** provides [`<Authenticated/>`](/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/authentication/components/authenticated) component.
+**Refine** provides [`<Authenticated/>`](/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/authentication/components/authenticated) component.
 
 Let's look at the routes implementation:
 
@@ -691,8 +700,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
         </Routes>
       </Refine>
@@ -708,7 +723,7 @@ In this example we didn't wrap our `canvases` resource routes with [`<Authentica
 
 However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
+[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
 
 ### `<Refine />` `create` Action
 
@@ -724,11 +739,21 @@ The `<Header />` component looks like this:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import React from "react";
-import { useIsAuthenticated, useLogout, useMenu, useNavigation, useParsed } from "@refinedev/core";
+import {
+  useIsAuthenticated,
+  useLogout,
+  useMenu,
+  useNavigation,
+  useParsed,
+} from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { useModalForm } from "@refinedev/antd";
 
-import { PlusSquareOutlined, LogoutOutlined, LoginOutlined } from "@ant-design/icons";
+import {
+  PlusSquareOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import { Button, Image, Space } from "antd";
 
 import { CreateCanvas } from "../../../components/canvas";
@@ -765,14 +790,27 @@ export const Header: React.FC = () => {
     <div className="container">
       <div className="layout-header">
         <Link to="/">
-          <Image width="120px" src="/pixels-logo.svg" alt="Pixels Logo" preview={false} />
+          <Image
+            width="120px"
+            src="/pixels-logo.svg"
+            alt="Pixels Logo"
+            preview={false}
+          />
         </Link>
         <Space size="large">
-          <Link to="/" className={`nav-button ${selectedKey === "/" ? "active" : ""}`}>
+          <Link
+            to="/"
+            className={`nav-button ${selectedKey === "/" ? "active" : ""}`}
+          >
             <span className="dot-icon" />
             HOME
           </Link>
-          <Link to="/canvases" className={`nav-button ${selectedKey === "/canvases" ? "active" : ""}`}>
+          <Link
+            to="/canvases"
+            className={`nav-button ${
+              selectedKey === "/canvases" ? "active" : ""
+            }`}
+          >
             <span className="dot-icon" />
             NEW
           </Link>
@@ -854,7 +892,10 @@ type CreateCanvasProps = {
   formProps: FormProps;
 };
 
-export const CreateCanvas: React.FC<CreateCanvasProps> = ({ modalProps, formProps }) => {
+export const CreateCanvas: React.FC<CreateCanvasProps> = ({
+  modalProps,
+  formProps,
+}) => {
   const { data: user } = useGetIdentity<User | null>();
 
   const [values, setValues] = useState(() => {
@@ -934,7 +975,7 @@ Notice the use of the `formProps.onFinish()` method on `<Form />`'s `onFinish` p
 
 Behind the scenes, `useModalForm()` ultimately calls the `useCreate()` data hook which fetches the data with the `dataProvider.create()` method.
 
-For details about how the `useCreate()` hook works, please refer to [this **refine** documentation](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/).
+For details about how the `useCreate()` hook works, please refer to [this **Refine** documentation](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/).
 
 Notice also that we are passing the `redirect` property to the `useModalForm()` hook which specifies that we redirect to the `show` action of the resource. We'll come to this in the next section related to adding `show` action in our `canvases` resource.
 
@@ -972,7 +1013,14 @@ The `<CanvasShow />` component looks like this:
 
 ```tsx title="src/pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+  useCreate,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+  useParsed,
+  useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -1033,7 +1081,11 @@ export const CanvasShow: React.FC = () => {
     <div className="container">
       <div className="paper">
         <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+          <Button
+            type="text"
+            onClick={() => list("canvases")}
+            style={{ textTransform: "uppercase" }}
+          >
             <LeftOutlined />
             Back
           </Button>
@@ -1133,7 +1185,7 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/tutorial/understanding-authprovider/index)
+[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
 
 ```tsx title="src/App.tsx"
 <Refine
@@ -1148,7 +1200,7 @@ If we click on the `Create` canvas button, we are redirected to `/login` route.
 
 For implementing authentication, we look back at the `App.tsx` file.
 
-**refine**'s **Supabase** module has produced all the auth page variations we need to register an account, login, recover password and update password - along with the code for routing, `https` requests and authentication providers.
+**Refine**'s **Supabase** module has produced all the auth page variations we need to register an account, login, recover password and update password - along with the code for routing, `https` requests and authentication providers.
 
 Namely, authentication related routing has been added:
 
@@ -1200,8 +1252,14 @@ const App = () => {
               }
             />
             <Route path="/register" element={<AuthPage type="register" />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
           {/* highlight-end */}
         </Routes>
@@ -1341,8 +1399,14 @@ function App() {
                 }
               />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -1378,7 +1442,7 @@ Since we haven't created any account with the `auth.users` table on our **Supaba
 
 At this point, if we register with our email and a password, it gets added to the `auth.users` table in **Supabase**.
 
-After registration, the user is automatically signed in and the browser redirects to the root route, which takes us to the `/canvases` route thanks to **refine**'s sensible routing defaults.
+After registration, the user is automatically signed in and the browser redirects to the root route, which takes us to the `/canvases` route thanks to **Refine**'s sensible routing defaults.
 
 And now, since we are logged in, we should be able to create a canvas. After successful creation of a canvas, we should be redirected to `/canvases/:id`:
 
@@ -1410,7 +1474,7 @@ In our **Supabase** backend, we have to configure and enable GitHub authenticati
 
 And now we should be able to sign in to our app with GitHub as well.
 
-## Implementing a Public Home Page with refine
+## Implementing a Public Home Page with Refine
 
 Now it's time to focus on the Home page of our application. We put the `<CanvasFeaturedList />` in this page:
 
@@ -1463,8 +1527,8 @@ I've done that and the featured canvases are listed in the `Home` route:
 
 In this post, we added `canvases` resource to our `<Refine />` component. We implemented `list` action on a public gallery and a dashboard page and the `show` action to display a canvas. The `create` action is implemented from inside a modal accessible on a button click. While working through these, we inspected into individual data provider methods and hooks for these actions.
 
-We also saw how **refine** handles a simple email/password based authentication out-of-the-box. We then went ahead implemented social login using `GitHub` authentication provider.
+We also saw how **Refine** handles a simple email/password based authentication out-of-the-box. We then went ahead implemented social login using `GitHub` authentication provider.
 
-In the next article, we'll move things to the next level by adding live collaboration features using **refine**'s **Supabase** `liveProvider`.
+In the next article, we'll move things to the next level by adding live collaboration features using **Refine**'s **Supabase** `liveProvider`.
 
 [Click here to read "Adding Realtime Collaboration" article. &#8594](https://refine.dev/blog/refine-pixels-4/)

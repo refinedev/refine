@@ -1,0 +1,145 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./documentation/docusaurus.config.js:52:15 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━━━
+
+  ! Avoid redundant `Boolean` call
+  
+    50 │       "@docusaurus/preset-classic",
+    51 │       {
+  > 52 │         docs: Boolean(process.env.DISABLE_DOCS)
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    53 │           ? false
+    54 │           : {
+  
+  i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant `Boolean` call
+  
+    52 │ ········docs:·Boolean(process.env.DISABLE_DOCS)
+       │               --------                        -
+
+./packages/inferencer/src/utilities/get-meta-props/index.ts:59:7 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant double-negation.
+  
+    58 │   const metaValues = metaByActions.join(",");
+  > 59 │   if (!!metaValues.length) {
+       │       ^^^^^^^^^^^^^^^^^^^
+    60 │     return `meta:{${metaValues}}`;
+    61 │   }
+  
+  i It is not necessary to use double-negation when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant double-negation
+  
+    59 │ ··if·(!!metaValues.length)·{
+       │       --                    
+
+./packages/core/src/hooks/form/useForm.ts:348:8 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant `Boolean` call
+  
+    346 │     (isClone || isEdit) &&
+    347 │       Boolean(resourceFromProps) &&
+  > 348 │       !Boolean(idFromProps) &&
+        │        ^^^^^^^^^^^^^^^^^^^^
+    349 │       queryOptions?.enabled !== false,
+    350 │     `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
+  
+  i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant `Boolean` call
+  
+    348 │ ······!Boolean(idFromProps)·&&
+        │        --------           -   
+
+./packages/simple-rest/src/provider.ts:46:26 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant double-negation.
+  
+    45 │     const combinedQuery = { ...query, ...queryFilters };
+  > 46 │     const urlWithQuery = !!Object.keys(combinedQuery).length
+       │                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    47 │       ? `${url}?${stringify(combinedQuery)}`
+    48 │       : url;
+  
+  i It is not necessary to use double-negation when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant double-negation
+  
+    46 │ ····const·urlWithQuery·=·!!Object.keys(combinedQuery).length
+       │                          --                                 
+
+./packages/core/src/hooks/show/useShow.ts:143:35 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant `Boolean` call
+  
+    142 │   warnOnce(
+  > 143 │     Boolean(resourceFromProp) && !Boolean(id),
+        │                                   ^^^^^^^^^^^
+    144 │     `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
+    145 │       `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
+  
+  i It is not necessary to use `Boolean` call when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant `Boolean` call
+  
+    143 │ ····Boolean(resourceFromProp)·&&·!Boolean(id),
+        │                                   --------  - 
+
+./examples/finefoods-client/src/hooks/useEventListener.ts:40:11 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant double-negation.
+  
+    39 │     const eventListener: typeof handler = (event) => {
+  > 40 │       if (!!savedHandler?.current) {
+       │           ^^^^^^^^^^^^^^^^^^^^^^^
+    41 │         savedHandler.current(event);
+    42 │       }
+  
+  i It is not necessary to use double-negation when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant double-negation
+  
+    40 │ ······if·(!!savedHandler?.current)·{
+       │           --                        
+
+./examples/app-crm/src/components/layout/header.tsx:19:21 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant double-negation.
+  
+    17 │     backgroundColor: token.colorBgElevated,
+    18 │     display: "flex",
+  > 19 │     justifyContent: !!searchClient ? "space-between" : "flex-end",
+       │                     ^^^^^^^^^^^^^^
+    20 │     alignItems: "center",
+    21 │     padding: "0px 24px",
+  
+  i It is not necessary to use double-negation when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant double-negation
+  
+    19 │ ····justifyContent:·!!searchClient·?·"space-between"·:·"flex-end",
+       │                     --                                            
+
+./examples/app-crm/src/components/layout/header.tsx:30:8 lint/complexity/noExtraBooleanCast  FIXABLE  ━━━━━━━━━━
+
+  ! Avoid redundant double-negation.
+  
+    28 │   return (
+    29 │     <Layout.Header style={headerStyles}>
+  > 30 │       {!!searchClient ? <AlgoliaSearch /> : null}
+       │        ^^^^^^^^^^^^^^
+    31 │       <Space align="center" size="middle">
+    32 │         <Notifications />
+  
+  i It is not necessary to use double-negation when a value will already be coerced to a boolean.
+  
+  i Unsafe fix: Remove redundant double-negation
+  
+    30 │ ······{!!searchClient·?·<AlgoliaSearch·/>·:·null}
+       │        --                                        
+
+Checked 6952 file(s) in 460ms

@@ -4,11 +4,11 @@ import Typography from "@mui/material/Typography";
 import { NumberFieldProps } from "../types";
 
 function toLocaleStringSupportsOptions() {
-    return !!(
-        typeof Intl == "object" &&
-        Intl &&
-        typeof Intl.NumberFormat == "function"
-    );
+  return !!(
+    typeof Intl == "object" &&
+    Intl &&
+    typeof Intl.NumberFormat == "function"
+  );
 }
 
 /**
@@ -17,18 +17,18 @@ function toLocaleStringSupportsOptions() {
  * @see {@link https://refine.dev/docs/api-reference/mui/components/fields/number} for more details.
  */
 export const NumberField: React.FC<NumberFieldProps> = ({
-    value,
-    locale,
-    options,
-    ...rest
+  value,
+  locale,
+  options,
+  ...rest
 }) => {
-    const number = Number(value);
+  const number = Number(value);
 
-    return (
-        <Typography variant="body2" {...rest}>
-            {toLocaleStringSupportsOptions()
-                ? number.toLocaleString(locale, options)
-                : number}
-        </Typography>
-    );
+  return (
+    <Typography variant="body2" {...rest}>
+      {toLocaleStringSupportsOptions()
+        ? number.toLocaleString(locale, options)
+        : number}
+    </Typography>
+  );
 };

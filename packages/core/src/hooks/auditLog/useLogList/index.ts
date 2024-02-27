@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import {
-    useQuery,
-    UseQueryResult,
-    UseQueryOptions,
+  useQuery,
+  UseQueryResult,
+  UseQueryOptions,
 } from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
@@ -11,12 +11,12 @@ import { useKeys } from "@hooks/useKeys";
 import { getXRay } from "@refinedev/devtools-internal";
 
 export type UseLogProps<TQueryFnData, TError, TData> = {
-    resource: string;
-    action?: string;
-    meta?: Record<number | string, any>;
-    author?: Record<number | string, any>;
-    queryOptions?: UseQueryOptions<TQueryFnData, TError, TData>;
-    metaData?: MetaQuery;
+  resource: string;
+  action?: string;
+  meta?: Record<number | string, any>;
+  author?: Record<number | string, any>;
+  queryOptions?: UseQueryOptions<TQueryFnData, TError, TData>;
+  metaData?: MetaQuery;
 };
 
 /**
@@ -30,43 +30,43 @@ export type UseLogProps<TQueryFnData, TError, TData> = {
  *
  */
 export const useLogList = <
-    TQueryFnData = any,
-    TError extends HttpError = HttpError,
-    TData = TQueryFnData,
+  TQueryFnData = any,
+  TError extends HttpError = HttpError,
+  TData = TQueryFnData,
 >({
-    resource,
-    action,
-    meta,
-    author,
-    metaData,
-    queryOptions,
+  resource,
+  action,
+  meta,
+  author,
+  metaData,
+  queryOptions,
 }: UseLogProps<TQueryFnData, TError, TData>): UseQueryResult<TData> => {
-    const { get } = useContext(AuditLogContext);
-    const { keys, preferLegacyKeys } = useKeys();
+  const { get } = useContext(AuditLogContext);
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const queryResponse = useQuery<TQueryFnData, TError, TData>({
-        queryKey: keys()
-            .audit()
-            .resource(resource)
-            .action("list")
-            .params(meta)
-            .get(preferLegacyKeys),
-        queryFn: () =>
-            get?.({
-                resource,
-                action,
-                author,
-                meta,
-                metaData,
-            }) ?? Promise.resolve([]),
-        enabled: typeof get !== "undefined",
-        ...queryOptions,
-        retry: false,
-        meta: {
-            ...queryOptions?.meta,
-            ...getXRay("useLogList", preferLegacyKeys),
-        },
-    });
+  const queryResponse = useQuery<TQueryFnData, TError, TData>({
+    queryKey: keys()
+      .audit()
+      .resource(resource)
+      .action("list")
+      .params(meta)
+      .get(preferLegacyKeys),
+    queryFn: () =>
+      get?.({
+        resource,
+        action,
+        author,
+        meta,
+        metaData,
+      }) ?? Promise.resolve([]),
+    enabled: typeof get !== "undefined",
+    ...queryOptions,
+    retry: false,
+    meta: {
+      ...queryOptions?.meta,
+      ...getXRay("useLogList", preferLegacyKeys),
+    },
+  });
 
-    return queryResponse;
+  return queryResponse;
 };

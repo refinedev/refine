@@ -1,0 +1,51 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/blog-next-refine-pwa/public/sw.js:72:3 lint/suspicious/noRedundantUseStrict  FIXABLE  ━━━━━━━━━━
+
+  ! Redundant use strict directive.
+  
+    70 │ }
+    71 │ define(["./workbox-eac1af49"], function (workbox) {
+  > 72 │   "use strict";
+       │   ^^^^^^^^^^^^^
+    73 │ 
+    74 │   /**
+  
+  i The entire contents of JavaScript modules are automatically in strict mode, with no statement needed to initiate it.
+  
+  i Safe fix: Remove the redundant use strict directive.
+  
+     70  70 │   }
+     71  71 │   define(["./workbox-eac1af49"], function (workbox) {
+     72     │ - ··"use·strict";
+     73     │ - 
+         72 │ + ··
+     74  73 │     /**
+     75  74 │      * Welcome to your Workbox-powered service worker!
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2:3 lint/suspicious/noRedundantUseStrict  FIXABLE  ━━━━━━━━━━
+
+  ! Redundant use strict directive.
+  
+    1 │ define(["exports"], function (exports) {
+  > 2 │   "use strict";
+      │   ^^^^^^^^^^^^^
+    3 │ 
+    4 │   try {
+  
+  i The entire contents of JavaScript modules are automatically in strict mode, with no statement needed to initiate it.
+  
+  i Safe fix: Remove the redundant use strict directive.
+  
+       1    1 │   define(["exports"], function (exports) {
+       2      │ - ··"use·strict";
+       3      │ - 
+            2 │ + ··
+       4    3 │     try {
+       5    4 │       self["workbox:core:6.5.3"] && _();
+  
+
+Checked 6952 file(s) in 507ms

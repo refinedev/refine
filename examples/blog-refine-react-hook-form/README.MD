@@ -21,28 +21,28 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 ### Running the development server.
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 ### Building for production.
 
 ```bash
-    npm run build
+npm run build
 ```
 
 ### Running the production server.
 
 ```bash
-    npm run start
+npm run dev
 ```
 
 ## Learn More
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
 
-- **Material UI** [Docs](https://refine.dev/docs/tutorial/introduction/index/)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
+-   **Material UI** [Docs](https://refine.dev/docs/tutorial/introduction/index/)
+-   **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+-   **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
 
 ## License
 

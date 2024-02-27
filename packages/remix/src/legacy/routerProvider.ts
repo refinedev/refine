@@ -5,25 +5,25 @@ import { Prompt } from "./prompt";
 import { useParams } from "./useParams";
 
 export const RouterProvider: IRouterProvider = {
-    useHistory: () => {
-        const navigate = useNavigate();
+  useHistory: () => {
+    const navigate = useNavigate();
 
-        return {
-            push: navigate,
-            replace: (path: string) => {
-                navigate(path, { replace: true });
-            },
-            goBack: () => {
-                navigate(-1);
-            },
-        };
-    },
-    useLocation: () => {
-        const location = useLocation();
+    return {
+      push: navigate,
+      replace: (path: string) => {
+        navigate(path, { replace: true });
+      },
+      goBack: () => {
+        navigate(-1);
+      },
+    };
+  },
+  useLocation: () => {
+    const location = useLocation();
 
-        return location;
-    },
-    useParams,
-    Prompt,
-    Link,
+    return location;
+  },
+  useParams,
+  Prompt,
+  Link,
 };

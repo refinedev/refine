@@ -5,11 +5,11 @@ import { NewBadgeShinyCyan } from "./new-badge-shiny-cyan";
 import { NewBadgeShinyBlue } from "./new-badge-shiny-blue";
 
 export const NewBadgeShiny = (props: SVGProps<SVGSVGElement>) => {
-    const { colorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-    if (colorMode === "dark") {
-        return <NewBadgeShinyCyan {...props} />;
-    }
+  if (colorMode === "dark") {
+    return <NewBadgeShinyCyan {...props} />;
+  }
 
-    return <NewBadgeShinyBlue {...props} />;
+  return <NewBadgeShinyBlue {...props} />;
 };

@@ -8,7 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ```tsx live  shared
-const { useNavigation: useNavigationShared, useLogout: useLogoutShared } = RefineCore;
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } =
+  RefineCore;
 const {
   Typography: { Title: SharedTitle },
   Button,
@@ -69,7 +70,7 @@ Refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with Refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on Refine app.
 
-We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/docs/tutorial/introduction/index/) section first.
+We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/tutorial) section first.
 
 [Refer to docs for more information about data provider &#8594](/docs/data/data-provider)
 
@@ -309,9 +310,12 @@ const authProvider: AuthProvider = {
   },
   forgotPassword: async ({ email }) => {
     try {
-      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/update-password`,
-      });
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${window.location.origin}/update-password`,
+        },
+      );
 
       if (error) {
         return {
@@ -530,7 +534,7 @@ Before diving into Supabase features, we'll add simple CRUD pages to make the ap
 
 :::note
 
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorial/introduction/index/) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/tutorial) to learn more about creating CRUD pages.
 
 :::
 
@@ -577,7 +581,13 @@ export const PostList: React.FC = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column key="id" dataIndex="id" title="ID" sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
+        <Table.Column
+          key="id"
+          dataIndex="id"
+          title="ID"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+        />
         <Table.Column key="title" dataIndex="title" title="Title" sorter />
         <Table.Column
           key="categoryId"
@@ -586,7 +596,12 @@ export const PostList: React.FC = () => {
           defaultSortOrder={getDefaultSortOrder("categories.title", sorter)}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
-              <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Category" {...selectProps} />
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...selectProps}
+              />
             </FilterDropdown>
           )}
         />
@@ -672,7 +687,12 @@ export const PostCreate: React.FC = () => {
           <MDEditor data-color-mode="light" />
         </Form.Item>
         <Form.Item label="Images">
-          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
             <Upload.Dragger
               name="file"
               listType="picture"
@@ -680,12 +700,16 @@ export const PostCreate: React.FC = () => {
               customRequest={async ({ file, onError, onSuccess }) => {
                 try {
                   const rcFile = file as RcFile;
-                  await supabaseClient.storage.from("refine").upload(`public/${rcFile.name}`, file, {
-                    cacheControl: "3600",
-                    upsert: true,
-                  });
+                  await supabaseClient.storage
+                    .from("refine")
+                    .upload(`public/${rcFile.name}`, file, {
+                      cacheControl: "3600",
+                      upsert: true,
+                    });
 
-                  const { data } = await supabaseClient.storage.from("refine").getPublicUrl(`public/${rcFile.name}`);
+                  const { data } = await supabaseClient.storage
+                    .from("refine")
+                    .getPublicUrl(`public/${rcFile.name}`);
 
                   const xhr = new XMLHttpRequest();
                   onSuccess && onSuccess({ url: data?.publicUrl }, xhr);
@@ -717,7 +741,13 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 ```tsx title="src/pages/posts/edit.tsx"
 import React, { useState } from "react";
 
-import { Edit, ListButton, RefreshButton, useForm, useSelect } from "@refinedev/antd";
+import {
+  Edit,
+  ListButton,
+  RefreshButton,
+  useForm,
+  useSelect,
+} from "@refinedev/antd";
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/lib/upload/interface";
 
@@ -808,7 +838,12 @@ export const PostEdit: React.FC = () => {
           <MDEditor data-color-mode="light" />
         </Form.Item>
         <Form.Item label="Images">
-          <Form.Item name="images" valuePropName="fileList" normalize={normalizeFile} noStyle>
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
             <Upload.Dragger
               name="file"
               listType="picture"
@@ -817,15 +852,19 @@ export const PostEdit: React.FC = () => {
                 const rcFile = file as RcFile;
                 const fileUrl = `public/${rcFile.name}`;
 
-                const { error } = await supabaseClient.storage.from("refine").upload(fileUrl, file, {
-                  cacheControl: "3600",
-                  upsert: true,
-                });
+                const { error } = await supabaseClient.storage
+                  .from("refine")
+                  .upload(fileUrl, file, {
+                    cacheControl: "3600",
+                    upsert: true,
+                  });
 
                 if (error) {
                   return onError?.(error);
                 }
-                const { data, error: urlError } = await supabaseClient.storage.from("refine").getPublicUrl(fileUrl);
+                const { data, error: urlError } = await supabaseClient.storage
+                  .from("refine")
+                  .getPublicUrl(fileUrl);
 
                 if (urlError) {
                   return onError?.(urlError);
@@ -1028,7 +1067,10 @@ Let's check out the `Authentication` property:
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
 import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
-import routerProvider, { NavigateToResource, CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, {
+  NavigateToResource,
+  CatchAllNavigate,
+} from "@refinedev/react-router-v6";
 //highlight-end
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -1067,8 +1109,14 @@ function App() {
             >
               <Route path="/login" element={<AuthPage />} />
               <Route path="/register" element={<AuthPage type="register" />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
             {/* highlight-end */}
           </Routes>
@@ -1113,7 +1161,16 @@ interface IPost {
 }
 
 import { useMany } from "@refinedev/core";
-import { List, TextField, TagField, useTable, Create, useForm, useSelect, CreateButton } from "@refinedev/antd";
+import {
+  List,
+  TextField,
+  TagField,
+  useTable,
+  Create,
+  useForm,
+  useSelect,
+  CreateButton,
+} from "@refinedev/antd";
 import { Table, Form, Input, Select } from "antd";
 
 const PostCreate: React.FC = () => {
@@ -1184,7 +1241,8 @@ const PostList: React.FC = () => {
     syncWithLocation: true,
   });
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -1206,10 +1264,18 @@ const PostList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
-        <Table.Column dataIndex="status" title="Status" render={(value: string) => <TagField value={value} />} />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+        />
       </Table>
     </List>
   );
@@ -1503,7 +1569,9 @@ const { tableProps, sorter } = useTable({
   resource: "posts",
   //highlight-start
   filters: {
-    initial: [{ field: "categories.title", operator: "eq", value: "Beginning" }],
+    initial: [
+      { field: "categories.title", operator: "eq", value: "Beginning" },
+    ],
   },
   meta: {
     select: "*, categories!inner(title)",

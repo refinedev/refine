@@ -1,36 +1,35 @@
 {
+  "name": "@refinedev/react-table",
   "version": "5.6.6",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
   "private": false,
+  "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/refinedev/refine.git",
+    "directory": "packages/react-table"
+  },
+  "license": "MIT",
+  "author": "refine",
   "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build"
+    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "prepare": "npm run build",
+    "test": "jest --passWithNoTests --runInBand"
   },
-  "name": "@refinedev/react-table",
-  "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
-  "author": "refine",
-  "module": "dist/esm/index.js",
-  "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
-    "@tanstack/react-table": "^8.2.6",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+  "dependencies": {
+    "@tanstack/react-table": "^8.2.6"
   },
   "devDependencies": {
-    "@refinedev/core": "^4.47.1",
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@refinedev/core": "^4.47.1",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
@@ -39,16 +38,17 @@
     "tslib": "^2.3.1",
     "tsup": "^6.7.0"
   },
-  "dependencies": {
-    "@tanstack/react-table": "^8.2.6"
+  "peerDependencies": {
+    "@refinedev/core": "^4.46.1",
+    "@tanstack/react-table": "^8.2.6",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/refinedev/refine.git",
-    "directory": "packages/react-table"
+  "engines": {
+    "node": ">=10"
   },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
 }

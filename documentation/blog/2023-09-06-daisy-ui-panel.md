@@ -3,7 +3,7 @@ title: Building a React Admin Panel with Refine and daisyUI
 description: We'll build a simple React admin panel using Refine and daisyUI.
 slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
-tags: [refine, tutorial, react]
+tags: [Refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg
 hide_table_of_contents: false
 is_featured: true
@@ -11,55 +11,55 @@ is_featured: true
 
 ## Introduction
 
-In this post, we go through the process of developing a React admin panel using [**refine**](https://github.com/refinedev/refine) and [**daisyUI**](https://daisyui.com).
+In this post, we go through the process of developing a React admin panel using [**Refine**](https://github.com/refinedev/refine) and [**daisyUI**](https://daisyui.com).
 
-**refine**is a React-based framework that helps quickly build data-heavy applications like dashboards, admin panels and storefronts. It comes with a headless core package that integrates with any UI framework and design system.
+**Refine**is a React-based framework that helps quickly build data-heavy applications like dashboards, admin panels and storefronts. It comes with a headless core package that integrates with any UI framework and design system.
 
 **daisyUI** is a component templates library built on top of TailwindCSS. It provides us with short semantic classes composed from TailwindCSS utilities and a growing collection of convenient component templates that helps quickly build React components for our app.
 
-**daisyUI** can easily be integrated with **refine**, and in this post we are going to see how to do that while building a dashboard and admin panel app using **refine**'s **Fine Foods** API.
+**daisyUI** can easily be integrated with **Refine**, and in this post we are going to see how to do that while building a dashboard and admin panel app using **Refine**'s **Fine Foods** API.
 
 ## Overview
 
-The React admin panel we are going to build uses the **refine** hosted **Fine Foods** API to display a dashboard of KPI data, and CRUD pages for `products` and `categories` resources. The dashboard will present various data in cards, charts and a table. And the `products` and `categories` resources will have `list`, `create`, `show` and `edit` pages.
+The React admin panel we are going to build uses the **Refine** hosted **Fine Foods** API to display a dashboard of KPI data, and CRUD pages for `products` and `categories` resources. The dashboard will present various data in cards, charts and a table. And the `products` and `categories` resources will have `list`, `create`, `show` and `edit` pages.
 
-We start this post with a brief discussion on **refine** architecture - particularly how it works under the hood with React contexts backed by providers, hooks and components. We also talk about **daisyUI**, the short, semantic classes such as `btn`, `menu`, `tab`, etc., and their variants it provides and how they facilitate rapid building of React components using a growing library of prestyled daisyUI templates.
+We start this post with a brief discussion on **Refine** architecture - particularly how it works under the hood with React contexts backed by providers, hooks and components. We also talk about **daisyUI**, the short, semantic classes such as `btn`, `menu`, `tab`, etc., and their variants it provides and how they facilitate rapid building of React components using a growing library of prestyled daisyUI templates.
 
-We then initialize a **refine** app, and integrate and configure **daisyUI**. Afterwards, we move on to building the features of the admin panel.
+We then initialize a **Refine** app, and integrate and configure **daisyUI**. Afterwards, we move on to building the features of the admin panel.
 
 We first build the dashboard page where we present stats for relevant KPIs in cards, charts and a table. We use the React-based [**Recharts**](https://recharts.org) library for plotting our data.
 
-In the later half of the post, we add CRUD pages for `products` and `categories` resources. We define the `resources` prop on `<Refine />` component, resource action paths, and their route definitions. CRUD actions covered for both resources are `list`, `create`, `show`, `update` and `delete`. We then make use of **refine** hooks such as `useTable()` and `useForm()` for entering, fetching and presenting data from the API. We build the UI with predefined daisyUI templates for buttons, menus, tabs, stats, etc.
+In the later half of the post, we add CRUD pages for `products` and `categories` resources. We define the `resources` prop on `<Refine />` component, resource action paths, and their route definitions. CRUD actions covered for both resources are `list`, `create`, `show`, `update` and `delete`. We then make use of **Refine** hooks such as `useTable()` and `useForm()` for entering, fetching and presenting data from the API. We build the UI with predefined daisyUI templates for buttons, menus, tabs, stats, etc.
 
-Towards the end, we see how to customize the layout of a **refine** app. We replace the default leftside navigation to adopt a top navbar by leveraging `useMenu()`, `useNavigation()` and `useBreadcrumb()` hooks.
+Towards the end, we see how to customize the layout of a **Refine** app. We replace the default leftside navigation to adopt a top navbar by leveraging `useMenu()`, `useNavigation()` and `useBreadcrumb()` hooks.
 
-## What is refine?
+## What is Refine?
 
-**refine** is a powerful React framework for building Enterprise web applications. It is particularly focused on creating data-heavy apps like dashboards, admin panels and internal tools. It comes with a core headless package that provides different sets of hooks and components for dealing with concerns like data fetching, authentication, authorization, etc. It also has supplmentary packages which enable rapid development of **React** applications by integrating with various backend services like **Airtable**, **Supabase** and **Strapi** as well as UI frameworks like **Ant Design**, **Material UI**, **Chakra UI** and **Mantine**.
+**Refine** is a powerful React framework for building Enterprise web applications. It is particularly focused on creating data-heavy apps like dashboards, admin panels and internal tools. It comes with a core headless package that provides different sets of hooks and components for dealing with concerns like data fetching, authentication, authorization, etc. It also has supplmentary packages which enable rapid development of **React** applications by integrating with various backend services like **Airtable**, **Supabase** and **Strapi** as well as UI frameworks like **Ant Design**, **Material UI**, **Chakra UI** and **Mantine**.
 
 ### Architecture
 
-**refine** separates app concerns such as data fetching, authentication, access control, etc., into layers of React contexts each backed by a provider object, a set of corresponding hooks as well as relevant components. For example, the data layer represents a context dependent on a [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/#methods) object with a set of methods for handling CRUD actions. The data layer is accessed with a set of data hooks that help invoke the CRUD methods from UI components.
+**Refine** separates app concerns such as data fetching, authentication, access control, etc., into layers of React contexts each backed by a provider object, a set of corresponding hooks as well as relevant components. For example, the data layer represents a context dependent on a [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/#methods) object with a set of methods for handling CRUD actions. The data layer is accessed with a set of data hooks that help invoke the CRUD methods from UI components.
 
 This means, we would have all CRUD related methods such as `getList()`, `create()`, `show()`, `update()` and `delete()` inside a `dataProvider` object and we are able to access them from a UI component using [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/), [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/), etc., data hooks. The data hooks, in turn, make use of [**React Query**](https://tanstack.com/query/v3/) for data fetching, caching state management and error handling.
 
-The **refine** data hooks mentioned above are basically core hooks. Higher level hooks which are built top of these hooks exist, such as the [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#installation) hook provided by `@refinedev/react-table` support package that integrates [**React Table**](https://tanstack.com/table/v8/docs/api/core/table) with **refine** core. Higher level hooks adds additional features that increase development efficiency. For example, the `useList()` hook is employed by the `useTable()` hook that helps present data in a table using all the features of React Table. Similarly, the `useCreate()` core data hook is utilized inside the `useForm()` high level hook provided by the `@refinedev/react-hook-form` package which augments form related CRUD actions with [**React Hook Form**](https://react-hook-form.com/get-started).
+The **Refine** data hooks mentioned above are basically core hooks. Higher level hooks which are built top of these hooks exist, such as the [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#installation) hook provided by `@refinedev/react-table` support package that integrates [**React Table**](https://tanstack.com/table/v8/docs/api/core/table) with **Refine** core. Higher level hooks adds additional features that increase development efficiency. For example, the `useList()` hook is employed by the `useTable()` hook that helps present data in a table using all the features of React Table. Similarly, the `useCreate()` core data hook is utilized inside the `useForm()` high level hook provided by the `@refinedev/react-hook-form` package which augments form related CRUD actions with [**React Hook Form**](https://react-hook-form.com/get-started).
 
 ### Resource Definitions
 
-**refine**'s resource definitions are specified inside the `resources` object. The `resources` object is passed to the `resources` prop of the `<Refine />` component. Resource definitions, in combination with route definitions, set up a **refine** app's nav menu items, their navigation URLs, as well as breadcrumbs, and help infer the default resource name of a CRUD page along a route.
+**Refine**'s resource definitions are specified inside the `resources` object. The `resources` object is passed to the `resources` prop of the `<Refine />` component. Resource definitions, in combination with route definitions, set up a **Refine** app's nav menu items, their navigation URLs, as well as breadcrumbs, and help infer the default resource name of a CRUD page along a route.
 
 ### Routing
 
-Routing in **refine** is supported by the `react-router-dom` package. **refine**`v4` supports explicit routing by delegating everything related to routing to the [**React Router**](https://reactrouter.com/en/main/start/overview) APIs.
+Routing in **Refine** is supported by the `react-router-dom` package. **Refine**`v4` supports explicit routing by delegating everything related to routing to the [**React Router**](https://reactrouter.com/en/main/start/overview) APIs.
 
 ### Inferencer
 
-**refine**'s [**Inferencer**](https://refine.dev/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data on a page.
+**Refine**'s [**Inferencer**](https://refine.dev/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data on a page.
 
 ### UI Framework Integration
 
-**refine**'s core package is designed to be "headless" which gives the freedom to integrate it with any UI component library or framework.
+**Refine**'s core package is designed to be "headless" which gives the freedom to integrate it with any UI component library or framework.
 
 ## What is daisyUI?
 
@@ -75,11 +75,11 @@ Composing responsive, color, size, and shape variant classes manually with the `
 
 Feel free to check out the [daisyUI documentation](https://daisyui.com/docs/install/) to learn more.
 
-## Initialize a refine App
+## Initialize a Refine App
 
-For this app, we are going to start with **refine**'s headless core, using `create refine-app` to scaffold our pages and generate the initial page code. We will then make necessary logic and UI adjustments and then apply daisyUI classes to our components.
+For this app, we are going to start with **Refine**'s headless core, using `create refine-app` to scaffold our pages and generate the initial page code. We will then make necessary logic and UI adjustments and then apply daisyUI classes to our components.
 
-So, let's get started with initializing the **refine** app first.
+So, let's get started with initializing the **Refine** app first.
 
 We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/documentation/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
 
@@ -100,7 +100,7 @@ Select the following options when prompted:
 ✔ Would you mind sending us your choices so that we can improve create refine-app? · yes
 ```
 
-Take a note of the `Headless` choice. We are asking for **refine** core package with plain JSX markup.
+Take a note of the `Headless` choice. We are asking for **Refine** core package with plain JSX markup.
 
 After completing the app initialization, let's navigate to the project folder and start our app with:
 
@@ -172,11 +172,11 @@ With these changes, we'll start fresh towards building the dashboard page first 
 
 Notice, we are now using the **Fine Foods** REST API in the `dataProvider` prop of `<Refine />`.
 
-The **Fine Foods** API is an example of the REST API hosted by **refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/categories` endpoints for our resource pages.
+The **Fine Foods** API is an example of the REST API hosted by **Refine** with a collection of end points. In this app, we will be querying the `/dailyRevenue`, `/dailyOrders`, `/newCustomers` and `/orders` endpoints for fetching data for our dashboard page. Later on, we'll also be accessing its `/products` and `/categories` endpoints for our resource pages.
 
 ### daisyUI Installation
 
-We are using daisyUI as our UI library. In order to integrate daisyUI into our **refine** app, we have to first perform a [ **Vite** installation](https://tailwindcss.com/docs/guides/vite) of **TailwindCSS**, its dependencies, and set up their configurations.
+We are using daisyUI as our UI library. In order to integrate daisyUI into our **Refine** app, we have to first perform a [ **Vite** installation](https://tailwindcss.com/docs/guides/vite) of **TailwindCSS**, its dependencies, and set up their configurations.
 
 Go ahead an follow the below steps to first add TailwindCSS, PostCSS and Autoprefixer packages and then initialize `tailwind.config.js`:
 
@@ -338,7 +338,7 @@ After these changes, with the server running, TailwindCSS watches for the use of
 
 ### Other Packages
 
-We have to install **refine**'s support packages for **React Table** and **React Hook Form**. We are using [**Tailwind Heroicons**](https://github.com/tailwindlabs/heroicons) for our icons, the [**Day.js**](https://day.js.org) library for time calculations and [**Recharts**](https://recharts.org/en-US/api) library to plot our charts for KPI data. So, run the following and we are good to go:
+We have to install **Refine**'s support packages for **React Table** and **React Hook Form**. We are using [**Tailwind Heroicons**](https://github.com/tailwindlabs/heroicons) for our icons, the [**Day.js**](https://day.js.org) library for time calculations and [**Recharts**](https://recharts.org/en-US/api) library to plot our charts for KPI data. So, run the following and we are good to go:
 
 ```
 npm install @refinedev/react-table @refinedev/react-hook-form @heroicons/react dayjs recharts
@@ -437,7 +437,10 @@ export const Dashboard: React.FC = () => {
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Hello there...</h1>
-          <p className="py-6">You're here. A deva just as dashing and daisyuing - as yourself refined</p>
+          <p className="py-6">
+            You're here. A deva just as dashing and daisyuing - as yourself
+            refined
+          </p>
           <button className="btn btn-primary">Buckle Up</button>
         </div>
       </div>
@@ -465,7 +468,13 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 //highlight-next-line
@@ -546,7 +555,11 @@ Let's now focus on implementing the features of the dashboard. Inside it, we'll 
 import React from "react";
 import { KpiCard } from "./KpiCard";
 import { IChartDatum } from "../../interfaces";
-import { CurrencyDollarIcon, ShoppingCartIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import {
+  CurrencyDollarIcon,
+  ShoppingCartIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline";
 import { GetListResponse } from "@refinedev/core";
 
 type TStats = {
@@ -625,7 +638,13 @@ type TKpiCardProps = {
   formatTotal?: (value: number | string) => typeof value;
 };
 
-export const KpiCard = ({ title, data, icon, colors, formatTotal = (value) => value }: TKpiCardProps) => {
+export const KpiCard = ({
+  title,
+  data,
+  icon,
+  colors,
+  formatTotal = (value) => value,
+}: TKpiCardProps) => {
   const total = data?.data?.total;
   const trend = data?.data?.trend;
   const calc = Math.round((trend / total) * 100);
@@ -633,8 +652,14 @@ export const KpiCard = ({ title, data, icon, colors, formatTotal = (value) => va
   const textColor = total > trend ? "seagreen" : "crimson";
 
   return (
-    <div className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded" style={{ borderColor: colors?.stroke }}>
-      <div className="stat-figure text-secondary" style={{ color: colors?.fill }}>
+    <div
+      className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
+      style={{ borderColor: colors?.stroke }}
+    >
+      <div
+        className="stat-figure text-secondary"
+        style={{ color: colors?.fill }}
+      >
         {icon}
       </div>
       <div className="stat-title text-l">{title}</div>
@@ -705,7 +730,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
     </>
   );
 };
@@ -713,9 +742,9 @@ export const Dashboard: React.FC = () => {
 
 </details>
 
-Notice we are fetching data from three **Fine Foods** API end points: `/dailyRevenue`, `/dailyOrders` and `/newCustomers`. We are fetching them with the `useList()` **refine** core hook. We are querying them as resources although in our **refine** admin panel app they are not. The `filters` object is used to get the past 7 days' data.
+Notice we are fetching data from three **Fine Foods** API end points: `/dailyRevenue`, `/dailyOrders` and `/newCustomers`. We are fetching them with the `useList()` **Refine** core hook. We are querying them as resources although in our **Refine** admin panel app they are not. The `filters` object is used to get the past 7 days' data.
 
-You can find more details in the [**refine** `useList()` docs here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
+You can find more details in the [**Refine** `useList()` docs here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
 
 With these changes, our dashboard page has three KPI cards displayed at the top:
 
@@ -750,7 +779,12 @@ type TTabItem = {
 
 export const TabItem = ({ label, isActive, clickHandler }: TTabItem) => {
   return (
-    <a className={`text-l font-bold tab tab-bordered${isActive ? " tab-active" : ""}`} onClick={clickHandler}>
+    <a
+      className={`text-l font-bold tab tab-bordered${
+        isActive ? " tab-active" : ""
+      }`}
+      onClick={clickHandler}
+    >
       {label}
     </a>
   );
@@ -848,7 +882,15 @@ Create the `<ResponsiveAreaChart />` component with the code below:
 
 ```tsx title="src/components/dashboard/ResponsiveAreaChart.tsx"
 import React from "react";
-import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area } from "recharts";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Area,
+} from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
@@ -861,7 +903,11 @@ type TResponsiveAreaChartProps = {
   };
 };
 
-export const ResponsiveAreaChart = ({ kpi, data, colors }: TResponsiveAreaChartProps) => {
+export const ResponsiveAreaChart = ({
+  kpi,
+  data,
+  colors,
+}: TResponsiveAreaChartProps) => {
   return (
     <ResponsiveContainer height={400}>
       <AreaChart
@@ -933,7 +979,15 @@ In a similar way, create the `<ResponsiveBarChart />` component with the below c
 
 ```tsx title="src/components/dashboard/ResponsiveBarChart.tsx"
 import React from "react";
-import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar } from "recharts";
+import {
+  ResponsiveContainer,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Bar,
+} from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
@@ -946,7 +1000,11 @@ type TResponsiveBarChartProps = {
   };
 };
 
-export const ResponsiveBarChart = ({ kpi, data, colors }: TResponsiveBarChartProps) => {
+export const ResponsiveBarChart = ({
+  kpi,
+  data,
+  colors,
+}: TResponsiveBarChartProps) => {
   return (
     <ResponsiveContainer height={400}>
       <BarChart
@@ -1016,7 +1074,14 @@ Let's create the `<ChartTooltip />` component with the following code:
 
 ```tsx title="src/components/dashboard/ChartTooltip.tsx"
 import React from "react";
-export const ChartTooltip = ({ active, payload, label, coordinate, colors, kpi }: any) => {
+export const ChartTooltip = ({
+  active,
+  payload,
+  label,
+  coordinate,
+  colors,
+  kpi,
+}: any) => {
   if (active && payload && payload.length) {
     const dataPoint = payload[0].payload;
 
@@ -1179,7 +1244,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
       {/*highlight-next-line*/}
       <TabView tabs={tabs} />
     </>
@@ -1212,7 +1281,11 @@ import React, { useMemo, useRef } from "react";
 import { getDefaultFilter } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { FunnelIcon, BarsArrowDownIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
+import {
+  FunnelIcon,
+  BarsArrowDownIcon,
+  BarsArrowUpIcon,
+} from "@heroicons/react/24/outline";
 export const RecentSales = () => {
   const filterForm: any = useRef(null);
 
@@ -1275,7 +1348,8 @@ export const RecentSales = () => {
           };
 
           const status = getValue() as string;
-          const daisyBadgeClasses = () => "badge badge-" + saleStatusStyleMap[status];
+          const daisyBadgeClasses = () =>
+            "badge badge-" + saleStatusStyleMap[status];
 
           return <div className={daisyBadgeClasses()}>{status}</div>;
         },
@@ -1369,7 +1443,11 @@ export const RecentSales = () => {
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
                     <div className="flex justify-start items-center">
-                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {!header?.isPlaceholder &&
+                        flexRender(
+                          header?.column?.columnDef?.header,
+                          header?.getContext(),
+                        )}
                       {{
                         asc: <BarsArrowUpIcon className="h-4 w-4" />,
                         desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -1384,7 +1462,12 @@ export const RecentSales = () => {
             {getRowModel()?.rows?.map((row) => (
               <tr key={row?.id}>
                 {row?.getVisibleCells()?.map((cell) => (
-                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                  <td key={cell?.id}>
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -1398,7 +1481,7 @@ export const RecentSales = () => {
 
 </details>
 
-In the `<RecentSales />` component, we are using a `useTable()` hook, which is a high level hook provided by **refine**'s **React Table** supported `@refinedev/react-table` package. It queries the `/orders` endpoint and implements a table with filtering and sorting features.
+In the `<RecentSales />` component, we are using a `useTable()` hook, which is a high level hook provided by **Refine**'s **React Table** supported `@refinedev/react-table` package. It queries the `/orders` endpoint and implements a table with filtering and sorting features.
 
 We'll come to the details of `useTable()` when we create `list` pages for `products` and `categories` resources.
 
@@ -1513,7 +1596,11 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats dailyRevenue={dailyRevenue} dailyOrders={dailyOrders} newCustomers={newCustomers} />
+      <Stats
+        dailyRevenue={dailyRevenue}
+        dailyOrders={dailyOrders}
+        newCustomers={newCustomers}
+      />
       <TabView tabs={tabs} />
       {/*highlight-next-line*/}
       <RecentSales />
@@ -1540,13 +1627,13 @@ Having completed the dashboard page above, in this section, we'll add CRUD pages
 
 ## Product Pages
 
-We want `list`, `create`, `edit` and `show` pages for the `products`. Since we are using **refine**'s headless core without any supported UI library, it helps if we use the **Inferencer** to generate the pages for us. We'll leverage the power of **refine**'s `<HeadlessInferencer />` component in the CRUD pages.
+We want `list`, `create`, `edit` and `show` pages for the `products`. Since we are using **Refine**'s headless core without any supported UI library, it helps if we use the **Inferencer** to generate the pages for us. We'll leverage the power of **Refine**'s `<HeadlessInferencer />` component in the CRUD pages.
 
 There are two steps to getting the **Inferencer** generated page code:
 
 1. Scaffold the CRUD pages by running the **Inferencer** to implement all the `products` pages with `<HeadlessInferencer />`. `<HeadlessInferencer />` then generates the actual codes for us that we can get from the page in the browser.
 
-2. Navigate along the `/products` path to an action route in your browser and get the code from the page by clicking on the `Show the auto-generated code` button. It is graciously provided to us by **refine** :smile:
+2. Navigate along the `/products` path to an action route in your browser and get the code from the page by clicking on the `Show the auto-generated code` button. It is graciously provided to us by **Refine** :smile:
 
 We'll scaffold the pages first with the following **Inferencer** command:
 
@@ -1586,12 +1673,23 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 
 function App() {
   return (
@@ -1666,9 +1764,9 @@ Notice towards the top that we have imported the scaffolded components (the ones
 
 With the above changes, we have added possible actions and their routes for the `products` resource. We defined the routes and pages for `list`, `create`, `edit` and `show` actions and have enabled `delete` action as well. The page mapping for each route are handled with the `<Route />` component.
 
-**refine** maps resource paths to page components via route definitions, and using the map infers the resource name of a page at the current URL of the browser. That way, hooks like `useTable()` and `useNavigation()`, and **Inferencer** components like `<HeadlessInferencer />` are always able to infer the default resource name from inside a resource page.
+**Refine** maps resource paths to page components via route definitions, and using the map infers the resource name of a page at the current URL of the browser. That way, hooks like `useTable()` and `useNavigation()`, and **Inferencer** components like `<HeadlessInferencer />` are always able to infer the default resource name from inside a resource page.
 
-You can find more information about [resources and routing](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) on the **refine** documentation.
+You can find more information about [resources and routing](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) on the **Refine** documentation.
 
 Now when we navigate along the `/products` paths, we can see some clumsy looking pages in need of proper styling. So, we're interested in getting their code and modifying them according to our needs. We are going to do that one by one in the following sections.
 
@@ -1844,7 +1942,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th key={header.id}>
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </th>
                 ))}
               </tr>
@@ -1854,7 +1956,9 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             {getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -1862,7 +1966,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         </table>
       </div>
       <div style={{ marginTop: "12px" }}>
-        <button onClick={() => setPageIndex(0)} disabled={!getCanPreviousPage()}>
+        <button
+          onClick={() => setPageIndex(0)}
+          disabled={!getCanPreviousPage()}
+        >
           {"<<"}
         </button>
         <button onClick={() => previousPage()} disabled={!getCanPreviousPage()}>
@@ -1871,7 +1978,10 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
         <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
           {">"}
         </button>
-        <button onClick={() => setPageIndex(getPageCount() - 1)} disabled={!getCanNextPage()}>
+        <button
+          onClick={() => setPageIndex(getPageCount() - 1)}
+          disabled={!getCanNextPage()}
+        >
           {">>"}
         </button>
         <span>
@@ -1912,7 +2022,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 The generated code implements a handful of features, including data fetching, button actions, pagination, and JSX markup with minimal styles for presenting the data in a table. This is pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
 
-It uses the [`useTable()`](https://refine.dev/docs/tutorial/understanding-resources/index/#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
+It uses the [`useTable()`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
 
 We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for tables, buttons, and groups.
 
@@ -1924,7 +2034,12 @@ So, we'll build on top of it and make necessary logic, markup and style modifica
 
 ```tsx title="src/pages/products/list.tsx
 import React, { useRef } from "react";
-import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
+import {
+  IResourceComponentsProps,
+  getDefaultFilter,
+  useDelete,
+  useNavigation,
+} from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2089,7 +2204,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
                     <div className="flex justify-start items-center">
-                      {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                      {!header?.isPlaceholder &&
+                        flexRender(
+                          header?.column?.columnDef?.header,
+                          header?.getContext(),
+                        )}
                       {{
                         asc: <BarsArrowUpIcon className="h-4 w-4" />,
                         desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -2104,7 +2223,12 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
             {getRowModel()?.rows?.map((row) => (
               <tr key={row?.id}>
                 {row?.getVisibleCells()?.map((cell) => (
-                  <td key={cell?.id}>{flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}</td>
+                  <td key={cell?.id}>
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -2127,19 +2251,28 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
           >
             {"<"}
           </button>
-          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
-            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
-            return (
-              <button
-                key={pageNumber}
-                className={"join-item btn btn-sm" + btnActive}
-                onClick={() => setPageIndex(pageNumber - 1)}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
+            (pageNumber) => {
+              const btnActive =
+                pageNumber - 1 == getState()?.pagination?.pageIndex
+                  ? " btn-active"
+                  : "";
+              return (
+                <button
+                  key={pageNumber}
+                  className={"join-item btn btn-sm" + btnActive}
+                  onClick={() => setPageIndex(pageNumber - 1)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            },
+          )}
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => nextPage()}
+            disabled={!getCanNextPage()}
+          >
             {">"}
           </button>
           <button
@@ -2175,7 +2308,7 @@ It is definitely possible to refactor the components into smaller, testable ones
 
 **1. Data Fetching and Processing**
 
-The [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#basic-usage) hook from the `@refinedev/react-table` package is used to fetch data from the **Fine Foods** `/products` endpoint. The refine-React Table's `useTable()` hook is a higher level hook built on top of **refine**'s core [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook provided by `@refinedev/core`. It combines the power of `useTable()` core hook with React Table's [`useReactTable()`](https://tanstack.com/table/v8/docs/api/core/table) APIs:
+The [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#basic-usage) hook from the `@refinedev/react-table` package is used to fetch data from the **Fine Foods** `/products` endpoint. The refine-React Table's `useTable()` hook is a higher level hook built on top of **Refine**'s core [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook provided by `@refinedev/core`. It combines the power of `useTable()` core hook with React Table's [`useReactTable()`](https://tanstack.com/table/v8/docs/api/core/table) APIs:
 
 ```tsx
 // Inside ProductList component
@@ -2279,7 +2412,7 @@ With these changes, when we navigate to the `/products` route, our products list
 
 We have already scaffolded the `<ProductCreate />` component using the **Inferencer**. Following the same process described for `<ProductList />`, we can get the code for `<ProductCreate />` component from the page at `/products/create`. We won't get into the detailed steps here, as moving ahead, you can repeat the process of getting the page code from the modal at all action routes. You can then make the necessary adjustments and come up with the final code.
 
-The `<HeadlessInferencer />` uses **refine**'s `@refinedev/react-hook-form` APIs to build forms for `create` and `edit` pages. The **refine-React Hook Form** package integrates the `useForm()` core hook with the features of **React Hook Form**'s `useForm()` hook.
+The `<HeadlessInferencer />` uses **Refine**'s `@refinedev/react-hook-form` APIs to build forms for `create` and `edit` pages. The **refine-React Hook Form** package integrates the `useForm()` core hook with the features of **React Hook Form**'s `useForm()` hook.
 
 The modified `<ProductCreate />` component looks like below, so replace the code inside `src/pages/products/create.tsx` with this one:
 
@@ -2289,7 +2422,11 @@ The modified `<ProductCreate />` component looks like below, so replace the code
 
 ```tsx title="src/pages/products/create.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
+import {
+  useNavigation,
+  IResourceComponentsProps,
+  useSelect,
+} from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
@@ -2332,7 +2469,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.name?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1">Price</label>
@@ -2344,7 +2483,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               valueAsNumber: true,
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.price?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1" htmlFor="category">
@@ -2363,7 +2504,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               </option>
             ))}
           </select>
-          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.category?.id?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="m-1">Description</label>
@@ -2375,7 +2518,9 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.description?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center my-6">
           <input
@@ -2396,7 +2541,7 @@ Here's the break down of the component:
 
 **1. Data Fetching and Form Management**
 
-The most significant part of the product `create` page lies in the use of the [`useForm()`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook imported from `@refinedev/react-hook-form` supplementary package. The refine-React Hook Form `useForm()` hook combines the power of the `useForm()` **refine** core hook that primarily handles form submission, data fetching, caching, state management and serverside error handling. Integrating `react-hook-form` augments form features to include better form fields state management and error handling.
+The most significant part of the product `create` page lies in the use of the [`useForm()`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook imported from `@refinedev/react-hook-form` supplementary package. The refine-React Hook Form `useForm()` hook combines the power of the `useForm()` **Refine** core hook that primarily handles form submission, data fetching, caching, state management and serverside error handling. Integrating `react-hook-form` augments form features to include better form fields state management and error handling.
 
 ```ts
 const {
@@ -2407,13 +2552,13 @@ const {
 } = useForm();
 ```
 
-We are grabbing the `onFinish` object returned from the **refine** core and passing it to React Hook Form's `handleSubmit()` submission handler which upon submission passes the field values to the `dataProvider.create()` method under the hood. Notice we are registering the fields with React Hook Form's `register()` method for controlling the fields and emitting error messages.
+We are grabbing the `onFinish` object returned from the **Refine** core and passing it to React Hook Form's `handleSubmit()` submission handler which upon submission passes the field values to the `dataProvider.create()` method under the hood. Notice we are registering the fields with React Hook Form's `register()` method for controlling the fields and emitting error messages.
 
 Notice that we are not passing any resource name to `useForm()`. Like `useTable()`, it is inferred from the current URL.
 
 We are also using the `useSelect()` core hook to fetch and populate `categories` items to present inside `<select />` fields.
 
-More on the [`useSelect()` hook in the refine docs here](https://refine.dev/docs/api-reference/core/hooks/useSelect/#defaultvalue).
+More on the [`useSelect()` hook in the Refine docs here](https://refine.dev/docs/api-reference/core/hooks/useSelect/#defaultvalue).
 
 **2. daisyUI Style**
 
@@ -2439,7 +2584,11 @@ The product edit page will have the same form functionality as the create page. 
 
 ```tsx title="src/pages/products/edit.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps, useSelect } from "@refinedev/core";
+import {
+  useNavigation,
+  IResourceComponentsProps,
+  useSelect,
+} from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
@@ -2499,7 +2648,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.name?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.name?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Price</label>
@@ -2511,7 +2662,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               valueAsNumber: true,
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.price?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.price?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Category</label>
@@ -2528,7 +2681,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               </option>
             ))}
           </select>
-          <span style={{ color: "red" }}>{(errors as any)?.category?.id?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.category?.id?.message as string}
+          </span>
         </div>
         <div className="form-control my-4">
           <label className="label">Description</label>
@@ -2539,7 +2694,9 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.description?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.description?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center">
           <input
@@ -2578,7 +2735,11 @@ The `<ProductShow />` component is more straight forward and the final adopted v
 
 ```tsx title="src/pages/products/show.tsx"
 import React from "react";
-import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import {
+  useShow,
+  useNavigation,
+  IResourceComponentsProps,
+} from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
@@ -2595,7 +2756,10 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
     <div className="page-container">
       <div className="page-header">
         <div className="flex justify-start items-center">
-          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("products")}>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => list("products")}
+          >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Product Details</h1>
@@ -2612,7 +2776,9 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
       </div>
       <div className="card">
         <div className="card-body">
-          <div className="text-xl font-bold">{record?.name ?? "Loading..."}</div>
+          <div className="text-xl font-bold">
+            {record?.name ?? "Loading..."}
+          </div>
           <div className="divider p-0 m-0"></div>
           <div className="mb-2">
             <h5 className="mb-1 font-bold">Price</h5>
@@ -2677,13 +2843,29 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
 import { Dashboard } from "./pages/dashboard";
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 //highlight-next-line
-import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
+import {
+  CategoryList,
+  CategoryCreate,
+  CategoryEdit,
+  CategoryShow,
+} from "./pages/categories";
 
 function App() {
   return (
@@ -2779,7 +2961,12 @@ For the final version of `<CategoryList />`, adopt the following code.
 
 ```tsx title="src/pages/categories/list.tsx"
 import React, { useRef } from "react";
-import { IResourceComponentsProps, getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
+import {
+  IResourceComponentsProps,
+  getDefaultFilter,
+  useDelete,
+  useNavigation,
+} from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2809,7 +2996,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         accessorKey: "title",
         header: "Name",
         cell: function render({ getValue }) {
-          return <div className="w-24 md:w-60 lg:w-96 text-center">{getValue() as string}</div>;
+          return (
+            <div className="w-24 md:w-60 lg:w-96 text-center">
+              {getValue() as string}
+            </div>
+          );
         },
       },
       {
@@ -2931,7 +3122,11 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                   onClick={header?.column?.getToggleSortingHandler()}
                 >
                   <div className="flex justify-center items-center">
-                    {!header?.isPlaceholder && flexRender(header?.column?.columnDef?.header, header?.getContext())}
+                    {!header?.isPlaceholder &&
+                      flexRender(
+                        header?.column?.columnDef?.header,
+                        header?.getContext(),
+                      )}
                     {{
                       asc: <BarsArrowUpIcon className="h-4 w-4" />,
                       desc: <BarsArrowDownIcon className="h-4 w-4" />,
@@ -2948,7 +3143,10 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
               {row?.getVisibleCells()?.map((cell) => (
                 <td className="text-center" key={cell?.id}>
                   <div className="flex justify-center items-center">
-                    {flexRender(cell?.column?.columnDef?.cell, cell?.getContext())}
+                    {flexRender(
+                      cell?.column?.columnDef?.cell,
+                      cell?.getContext(),
+                    )}
                   </div>
                 </td>
               ))}
@@ -2972,19 +3170,28 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           >
             {"<"}
           </button>
-          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map((pageNumber) => {
-            const btnActive = pageNumber - 1 == getState()?.pagination?.pageIndex ? " btn-active" : "";
-            return (
-              <button
-                key={pageNumber}
-                className={"join-item btn btn-sm" + btnActive}
-                onClick={() => setPageIndex(pageNumber - 1)}
-              >
-                {pageNumber}
-              </button>
-            );
-          })}
-          <button className="join-item btn btn-sm btn-ghost" onClick={() => nextPage()} disabled={!getCanNextPage()}>
+          {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
+            (pageNumber) => {
+              const btnActive =
+                pageNumber - 1 == getState()?.pagination?.pageIndex
+                  ? " btn-active"
+                  : "";
+              return (
+                <button
+                  key={pageNumber}
+                  className={"join-item btn btn-sm" + btnActive}
+                  onClick={() => setPageIndex(pageNumber - 1)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            },
+          )}
+          <button
+            className="join-item btn btn-sm btn-ghost"
+            onClick={() => nextPage()}
+            disabled={!getCanNextPage()}
+          >
             {">"}
           </button>
           <button
@@ -3065,7 +3272,9 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.title?.message as string}
+          </span>
           <div className="flex justify-end items-center my-6">
             <input
               className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
@@ -3140,7 +3349,9 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
               required: "This field is required",
             })}
           />
-          <span style={{ color: "red" }}>{(errors as any)?.title?.message as string}</span>
+          <span style={{ color: "red" }}>
+            {(errors as any)?.title?.message as string}
+          </span>
         </div>
         <div className="flex justify-end items-center">
           <input
@@ -3167,7 +3378,11 @@ For the final version of the `<CategoryShow />` page, adopt this code:
 
 ```tsx title="src/pages/categories/show.tsx"
 import React from "react";
-import { useShow, useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import {
+  useShow,
+  useNavigation,
+  IResourceComponentsProps,
+} from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
@@ -3183,7 +3398,10 @@ export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
     <div className="page-container">
       <div className="page-header">
         <div className="flex justify-between items-center">
-          <button className="mr-2 btn btn-primary btn-sm btn-ghost" onClick={() => list("categories")}>
+          <button
+            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            onClick={() => list("categories")}
+          >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Category Details</h1>
@@ -3227,7 +3445,7 @@ After all these changes for the `category` resource, we should be able to naviga
 
 ## Update the Layout
 
-In this section, we'll customize the app layout for a top navbar menu with icons for each item. In **refine**, the `<Layout />` component is passed to the topmost `<Route />` element, meaning it becomes a common partial to all pages:
+In this section, we'll customize the app layout for a top navbar menu with icons for each item. In **Refine**, the `<Layout />` component is passed to the topmost `<Route />` element, meaning it becomes a common partial to all pages:
 
 ```tsx title="App.tsx"
 <Refine>
@@ -3251,7 +3469,7 @@ In this section, we'll customize the app layout for a top navbar menu with icons
 
 Currently, the layout places the navigation menu to the left of the page. We want to move it to the top as a navbar.
 
-To begin with, we'll remove **refine**'s `layout` class from there and add some Tailwind classes to move the items to the top. At `src/components/layout/index.tsx`, make it look like this:
+To begin with, we'll remove **Refine**'s `layout` class from there and add some Tailwind classes to move the items to the top. At `src/components/layout/index.tsx`, make it look like this:
 
 ```tsx title="src/components/layout/index.tsx"
 import { PropsWithChildren } from "react";
@@ -3281,13 +3499,32 @@ Notice it renders the `<Menu />` and `<Breadcrumb />` components. We'll update t
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout";
-import { ProductCreate, ProductEdit, ProductList, ProductShow } from "./pages/products";
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "./pages/categories";
+import {
+  ProductCreate,
+  ProductEdit,
+  ProductList,
+  ProductShow,
+} from "./pages/products";
+import {
+  CategoryCreate,
+  CategoryEdit,
+  CategoryList,
+  CategoryShow,
+} from "./pages/categories";
 import { Dashboard } from "./pages/dashboard";
 //highlight-next-line
 import { HomeIcon, ShoppingCartIcon, TagIcon } from "@heroicons/react/20/solid";
@@ -3404,7 +3641,10 @@ export const Menu = () => {
         {menuItems.map((item) => (
           <li key={item?.key} className="mx-0 flex justify-start items-center">
             <div className="text-gray-600">
-              <NavLink className="text-lg flex items-center" to={item?.route ?? "/"}>
+              <NavLink
+                className="text-lg flex items-center"
+                to={item?.route ?? "/"}
+              >
                 <span className="mr-2">{item?.icon}</span>
                 {item?.label}
               </NavLink>
@@ -3475,13 +3715,13 @@ Here's the walkthrough of all the resource list pages:
 
 ## Summary
 
-In this post, we got familiar with how to build a React dashboard and admin panel with **refine** and **daisyUI**. We saw how to easily integrate daisyUI with **refine**'s headless core and supplementary packages for **React Table** and **React Hook Form**.
+In this post, we got familiar with how to build a React dashboard and admin panel with **Refine** and **daisyUI**. We saw how to easily integrate daisyUI with **Refine**'s headless core and supplementary packages for **React Table** and **React Hook Form**.
 
-We used the **Fine Foods** API for our app. We first built a dashboard page to present several KPI data in cards, charts and a table. While doing so, we learned how to use **refine**'s core `useList()` hook, and its excellent support for presenting data in tables with `useTable()` by integrating with **React Table**. We used **Recharts** plotting library to create charts of our KPI data. We utilized daisyUI templates with prestyled component classes to style the cards and table.
+We used the **Fine Foods** API for our app. We first built a dashboard page to present several KPI data in cards, charts and a table. While doing so, we learned how to use **Refine**'s core `useList()` hook, and its excellent support for presenting data in tables with `useTable()` by integrating with **React Table**. We used **Recharts** plotting library to create charts of our KPI data. We utilized daisyUI templates with prestyled component classes to style the cards and table.
 
 We generated CRUD pages with the **Inferencer** tool, and we went ahead to further customize them according to our needs. We styled them conveniently with short, semantic, component ready classes offered by daisyUI. We also felt the need to use regular Tailwind Flex, color, size, shape and responsive utility classes, and found that daisyUI offers such flexibility out-of-the-box.
 
-We saw that **refine** brings the power of **React Hook Form** into its pages with its supplementary `@refinedev/react-form-hook` package that helps effortlessly manage data fetching, form state, caching and error handling in a CRUD application with the `useForm()` hook. We found that daisyUI can fit in seamlessly among all to build enterprise level data-heavy applications like admin panels, dashboards and other internal tools.
+We saw that **Refine** brings the power of **React Hook Form** into its pages with its supplementary `@refinedev/react-form-hook` package that helps effortlessly manage data fetching, form state, caching and error handling in a CRUD application with the `useForm()` hook. We found that daisyUI can fit in seamlessly among all to build enterprise level data-heavy applications like admin panels, dashboards and other internal tools.
 
 We initially dashed, frequently dazed, and finally established an admin panel by getting refine.d.
 

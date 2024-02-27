@@ -2,153 +2,147 @@
 /// <reference types="../../cypress/support" />
 
 describe("table-chakra-ui-basic", () => {
-    beforeEach(() => {
-        cy.interceptGETPosts();
+  beforeEach(() => {
+    cy.interceptGETPosts();
 
-        cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173");
+  });
+
+  it("should work with sorter", () => {
+    cy.wait("@getPosts");
+
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          _sort: "id",
+          _order: "asc",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getAscPosts");
+
+    cy.get(".icon-tabler-chevron-down").first().click();
+
+    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
+
+    cy.wait("@getAscPosts");
+
+    cy.interceptGETPosts();
+
+    cy.get(".icon-tabler-chevron-down").first().click();
+
+    cy.url().should(
+      "not.include",
+      "sorters[0][field]=id&sorters[0][order]=desc",
+    );
+
+    cy.wait("@getPosts").then((interception) => {
+      const { request } = interception;
+      const { _sort } = request.query;
+
+      expect(_sort).to.contains("id");
     });
 
-    it("should work with sorter", () => {
-        cy.wait("@getPosts");
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          _sort: "id",
+          _order: "desc",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getDescPosts");
 
-        cy.intercept(
-            {
-                url: "/posts*",
-                query: {
-                    _sort: "id",
-                    _order: "asc",
-                },
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getAscPosts");
+    cy.get(".icon-tabler-selector").first().click();
 
-        cy.get(".icon-tabler-chevron-down").first().click();
+    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
 
-        cy.url().should(
-            "include",
-            "sorters[0][field]=id&sorters[0][order]=asc",
-        );
+    cy.wait("@getDescPosts");
+  });
 
-        cy.wait("@getAscPosts");
+  it("should work with filter", () => {
+    cy.wait("@getPosts");
 
-        cy.interceptGETPosts();
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          title_like: "lorem",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getFilteredPosts");
 
-        cy.get(".icon-tabler-chevron-down").first().click();
+    cy.get(".icon-tabler-filter").eq(0).click();
+    cy.get("#title").type("lorem");
+    cy.get(".icon-tabler-check").click();
 
-        cy.url().should(
-            "not.include",
-            "sorters[0][field]=id&sorters[0][order]=desc",
-        );
+    cy.url().should(
+      "include",
+      `filters[0][field]=title&filters[0][operator]=contains&filters[0][value]=lorem`,
+    );
 
-        cy.wait("@getPosts").then((interception) => {
-            const { request } = interception;
-            const { _sort } = request.query;
+    cy.wait("@getFilteredPosts");
+  });
 
-            expect(_sort).to.contains("id");
-        });
+  it("should work with pagination", () => {
+    cy.wait("@getPosts");
 
-        cy.intercept(
-            {
-                url: "/posts*",
-                query: {
-                    _sort: "id",
-                    _order: "desc",
-                },
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getDescPosts");
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          _start: "10",
+          _end: "20",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getSecondPagePosts");
 
-        cy.get(".icon-tabler-selector").first().click();
+    cy.get("#next-page").click();
 
-        cy.url().should(
-            "include",
-            "sorters[0][field]=id&sorters[0][order]=desc",
-        );
+    cy.url().should("include", "current=2");
 
-        cy.wait("@getDescPosts");
+    cy.wait("@getSecondPagePosts").then((interception) => {
+      const { request } = interception;
+      const { _start, _end } = request.query;
+
+      expect(_start).to.equal("10");
+      expect(_end).to.equal("20");
     });
 
-    it("should work with filter", () => {
-        cy.wait("@getPosts");
+    cy.get("#prev-page").click();
 
-        cy.intercept(
-            {
-                url: "/posts*",
-                query: {
-                    title_like: "lorem",
-                },
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getFilteredPosts");
+    cy.url().should("include", "current=1");
 
-        cy.get(".icon-tabler-filter").eq(0).click();
-        cy.get("#title").type("lorem");
-        cy.get(".icon-tabler-check").click();
+    cy.wait("@getPosts").then((interception) => {
+      const { request } = interception;
+      const { _start, _end } = request.query;
 
-        cy.url().should(
-            "include",
-            `filters[0][field]=title&filters[0][operator]=contains&filters[0][value]=lorem`,
-        );
-
-        cy.wait("@getFilteredPosts");
+      expect(_start).to.equal("0");
+      expect(_end).to.equal("10");
     });
+  });
 
-    it("should work with pagination", () => {
-        cy.wait("@getPosts");
+  it("should set current `1` when filter changed", () => {
+    cy.wait("@getPosts");
 
-        cy.intercept(
-            {
-                url: "/posts*",
-                query: {
-                    _start: "10",
-                    _end: "20",
-                },
-            },
-            {
-                fixture: "posts.json",
-            },
-        ).as("getSecondPagePosts");
+    cy.get("#next-page").click();
 
-        cy.get("#next-page").click();
+    cy.get(".icon-tabler-filter").eq(0).click();
+    cy.get("#title").type("lorem");
+    cy.get(".icon-tabler-check").click();
 
-        cy.url().should("include", "current=2");
-
-        cy.wait("@getSecondPagePosts").then((interception) => {
-            const { request } = interception;
-            const { _start, _end } = request.query;
-
-            expect(_start).to.equal("10");
-            expect(_end).to.equal("20");
-        });
-
-        cy.get("#prev-page").click();
-
-        cy.url().should("include", "current=1");
-
-        cy.wait("@getPosts").then((interception) => {
-            const { request } = interception;
-            const { _start, _end } = request.query;
-
-            expect(_start).to.equal("0");
-            expect(_end).to.equal("10");
-        });
-    });
-
-    it("should set current `1` when filter changed", () => {
-        cy.wait("@getPosts");
-
-        cy.get("#next-page").click();
-
-        cy.get(".icon-tabler-filter").eq(0).click();
-        cy.get("#title").type("lorem");
-        cy.get(".icon-tabler-check").click();
-
-        cy.url().should("include", "current=1");
-    });
+    cy.url().should("include", "current=1");
+  });
 });

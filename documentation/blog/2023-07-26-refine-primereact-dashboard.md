@@ -3,7 +3,7 @@ title: Building a React Admin Panel with PrimeReact and Refine
 description: We'll build a simple React admin Panel using Refine and PrimeReact.
 slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
-tags: [refine, tutorial, react]
+tags: [Refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
 is_featured: true
@@ -14,36 +14,36 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-In this blog, we'll show you how to create a React admin panel using [**refine**](https://github.com/refinedev/refine) and [PrimeReact](https://github.com/primefaces/primereact).
+In this blog, we'll show you how to create a React admin panel using [**Refine**](https://github.com/refinedev/refine) and [PrimeReact](https://github.com/primefaces/primereact).
 
-First, we'll explain what **refine** is and how it helps build admin panels easily.
+First, we'll explain what **Refine** is and how it helps build admin panels easily.
 
-Next, we'll guide you step-by-step on creating a new **refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional React admin panel.
+Next, we'll guide you step-by-step on creating a new **Refine** application and installing PrimeReact. You'll learn how to combine these technologies to make a fully functional React admin panel.
 
 Throughout this post, we'll also cover the basics of PrimeReact, including its components and how to use them in your app.
 
 By the end of this blog, you'll have a fully functional React admin panel that you can use as a starting point for your future projects.
 
-Let's get started and explore the power of **refine** and PrimeReact together!
+Let's get started and explore the power of **Refine** and PrimeReact together!
 
-## What is refine?
+## What is Refine?
 
-**refine** is a powerful framework for building web applications, specifically focused on creating admin panels, internal tools, and dashboards. It provides hooks and components that simplify the development process, making it faster and more efficient.
+**Refine** is a powerful framework for building web applications, specifically focused on creating admin panels, internal tools, and dashboards. It provides hooks and components that simplify the development process, making it faster and more efficient.
 
-Instead of building everything from scratch, **refine** comes with ready-made features like data handling, authentication, access control, and more. You can also customize these features to suit your needs. This way, you can focus on building your app's core functionality instead of worrying about the infrastructure.
+Instead of building everything from scratch, **Refine** comes with ready-made features like data handling, authentication, access control, and more. You can also customize these features to suit your needs. This way, you can focus on building your app's core functionality instead of worrying about the infrastructure.
 
-Moreover, **refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. So, you can use any UI library like PrimeReact to build your app's user interface. Additionally, it supports out-of-the-box [UI libraries](https://refine.dev/integrations/).
+Moreover, **Refine** is designed to be "headless" which gives you the freedom to style it exactly as you want. So, you can use any UI library like PrimeReact to build your app's user interface. Additionally, it supports out-of-the-box [UI libraries](https://refine.dev/integrations/).
 
-You can learn more about **refine** from the [documentation](https://refine.dev/docs/).
+You can learn more about **Refine** from the [documentation](https://refine.dev/docs/).
 
-## Create a new refine app
+## Create a new Refine app
 
-We have two scaffolder options for bootstrapping a new **refine** application: [Browser-based Scaffolder](https://refine.dev/?playground=true) and **CLI-based Scaffolder**. You can choose whichever you prefer.
+We have two scaffolder options for bootstrapping a new **Refine** application: [Browser-based Scaffolder](https://refine.dev/?playground=true) and **CLI-based Scaffolder**. You can choose whichever you prefer.
 
 <Tabs>
   <TabItem value="Browser-based-scaffolder" label="With Browser-based" default>
 
-The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create refine app seamlessly in your browser.
+The [Browser-based Scaffolder](https://refine.dev/?playground=true) is an efficient tool that allows you to create Refine app seamlessly in your browser.
 
 You can choose the libraries and frameworks you want to work with, and the tool will generate a boilerplate code for you.
 
@@ -70,7 +70,7 @@ npm run dev
 We'll use the `npm create refine-app` command to interactively initialize the project.
 
 ```bash
-npm create refine-app@latest refine-with-primereact
+npm create refine-app@latest -- --branch inferencer refine-with-primereact
 ```
 
 Select the following options when prompted:
@@ -117,7 +117,7 @@ Check out the [PrimeReact website](https://primereact.org/) to learn more.
 
 ## Overview
 
-Now that we've covered the basics of **refine** and PrimeReact, let's build a React admin panel using these technologies.
+Now that we've covered the basics of **Refine** and PrimeReact, let's build a React admin panel using these technologies.
 
 At the end of this tutorial, we'll have a project structure like below:
 
@@ -152,7 +152,10 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
     ```tsx title="src/App.tsx"
     import { ErrorComponent, Refine } from "@refinedev/core";
     import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-    import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+    import routerBindings, {
+      DocumentTitleHandler,
+      UnsavedChangesNotifier,
+    } from "@refinedev/react-router-v6";
     import dataProvider from "@refinedev/simple-rest";
     import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -187,7 +190,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
 
 After these changes, we ready to start building our admin panel step-by-step. In the next sections, we'll update the `src/App.tsx` file to add the necessary components and pages.
 
-If you don't have any experience with **refine**, we recommend you to check out the [tutorial](https://refine.dev/docs/tutorial/introduction/index/) to learn more about the framework.
+If you don't have any experience with **Refine**, we recommend you to check out the [tutorial](https://refine.dev/tutorial) to learn more about the framework.
 
 ## Install PrimeReact
 
@@ -321,7 +324,14 @@ type KpiCardProps = {
   formatTotal?: (value: number) => number | string;
 };
 
-export const KpiCard = ({ title, color, total, trend, icon, formatTotal = (value) => value }: KpiCardProps) => {
+export const KpiCard = ({
+  title,
+  color,
+  total,
+  trend,
+  icon,
+  formatTotal = (value) => value,
+}: KpiCardProps) => {
   const renderTrend = () => {
     const calc = Math.round((trend / total) * 100);
 
@@ -347,9 +357,14 @@ export const KpiCard = ({ title, color, total, trend, icon, formatTotal = (value
         <div className="flex justify-content-between">
           <div>
             <span className="block font-bold text-xl mb-3">{title}</span>
-            <div className="text-900 font-medium text-2xl">{formatTotal(total)}</div>
+            <div className="text-900 font-medium text-2xl">
+              {formatTotal(total)}
+            </div>
           </div>
-          <div className="flex align-items-center justify-content-center" style={{ width: "2.5rem", height: "2.5rem" }}>
+          <div
+            className="flex align-items-center justify-content-center"
+            style={{ width: "2.5rem", height: "2.5rem" }}
+          >
             <i className={`pi ${icon} text-${color} text-2xl`} />
           </div>
         </div>
@@ -370,7 +385,7 @@ This component is built using PrimeReact and PrimeFlex libraries. If you want to
 
 In the code above, we created a `<KpiCard />` component that renders a card with the given props. It displays the title, total, trend, and icon. The `formatTotal` prop allows you to format the total value as you wish.
 
-Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **refine** and `dayjs` to arrange query parameters.
+Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/) hook from **Refine** and `dayjs` to arrange query parameters.
 
 `useCustom` allows us to make specific requests to the API. It should be used on non-resource endpoints which means that it doesn't have a CRUD operation. In our case, we'll use it to fetch the data for the KPI cards and charts.
 
@@ -648,13 +663,28 @@ export const ChartView = ({ revenue, orders, customers }: ChartViewProps) => {
     <Card className="shadow-1">
       <TabView>
         <TabPanel header="Daily Revenue">
-          <Chart type="line" data={revenuelineData} options={commonLineOptions} style={{ height: "400px" }} />
+          <Chart
+            type="line"
+            data={revenuelineData}
+            options={commonLineOptions}
+            style={{ height: "400px" }}
+          />
         </TabPanel>
         <TabPanel header="Daily Orders">
-          <Chart type="bar" data={orderBarData} options={commonLineOptions} style={{ height: "400px" }} />
+          <Chart
+            type="bar"
+            data={orderBarData}
+            options={commonLineOptions}
+            style={{ height: "400px" }}
+          />
         </TabPanel>
         <TabPanel header="New Customers">
-          <Chart type="line" data={newCustomersLineData} options={commonLineOptions} style={{ height: "400px" }} />
+          <Chart
+            type="line"
+            data={newCustomersLineData}
+            options={commonLineOptions}
+            style={{ height: "400px" }}
+          />
         </TabPanel>
       </TabView>
     </Card>
@@ -824,7 +854,12 @@ export const RecentSales = () => {
   };
 
   const statusBodyTemplate = (rowData: IOrder) => {
-    return <Tag value={rowData.status.text} severity={getSeverity(rowData.status.text)} />;
+    return (
+      <Tag
+        value={rowData.status.text}
+        severity={getSeverity(rowData.status.text)}
+      />
+    );
   };
 
   const dateBodyTemplate = (rowData: IOrder) => {
@@ -892,11 +927,30 @@ export const RecentSales = () => {
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "2rem" }} />
-        <Column field="amount" header="Amount" body={amountBodyTemplate} sortable />
-        <Column field="user.fullName" header="Ordered By" style={{ minWidth: "10rem" }} sortable />
+        <Column
+          field="amount"
+          header="Amount"
+          body={amountBodyTemplate}
+          sortable
+        />
+        <Column
+          field="user.fullName"
+          header="Ordered By"
+          style={{ minWidth: "10rem" }}
+          sortable
+        />
         <Column field="user.gender" header="Gender" sortable />
-        <Column field="user.gsm" header="Tel" align="center" style={{ minWidth: "12rem" }} />
-        <Column field="address.text" header="Delivery Address" style={{ minWidth: "16rem" }} />
+        <Column
+          field="user.gsm"
+          header="Tel"
+          align="center"
+          style={{ minWidth: "12rem" }}
+        />
+        <Column
+          field="address.text"
+          header="Delivery Address"
+          style={{ minWidth: "16rem" }}
+        />
         <Column
           field="status.text"
           header="Delivery Status"
@@ -921,7 +975,7 @@ export const RecentSales = () => {
 
 </details>
 
-In the code above, we used the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** for data fetching, pagination, sorting, and filtering.
+In the code above, we used the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact for UI and the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **Refine** for data fetching, pagination, sorting, and filtering.
 
 Let's import the `<RecentSales />` component in `src/pages/dashboard/index.tsx` and render it below the charts.
 
@@ -965,7 +1019,10 @@ Now that we have the dashboard, let's create the product CRUD pages. Before that
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -1026,15 +1083,15 @@ export default App;
 
 </details>
 
-The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
+The resource definition above don't create any CRUD pages. It just defines the routes for the CRUD pages. The routes are used by **Refine** hooks and components. For example, the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook uses the `list`, `create`, `edit`, and `show` routes to navigate between the pages. Also, data hooks like [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) use the resource name when you don't pass the `resource` prop.
 
-You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **refine** documentation.
+You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) on the **Refine** documentation.
 
 Let's create the product CRUD pages step by step and add routes for rendering them.
 
 ### List Page
 
-The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **refine** and the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact.
+The product list page will display the products in a table. It will allow users to filter, sort, and paginate the products. For this, we'll use the [`useTable`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from **Refine** and the [`<DataTable />`](https://primereact.org/datatable/) component from PrimeReact.
 
 Let's create a `<ProductList />` component in `src/pages/products/list.tsx` directory with the following code:
 
@@ -1043,7 +1100,13 @@ Let's create a `<ProductList />` component in `src/pages/products/list.tsx` dire
 <summary>Show ProductList component</summary>
 
 ```tsx title="src/pages/products/list.tsx"
-import { useTable, getDefaultFilter, useNavigation, useDelete, useMany } from "@refinedev/core";
+import {
+  useTable,
+  getDefaultFilter,
+  useNavigation,
+  useDelete,
+  useMany,
+} from "@refinedev/core";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -1107,7 +1170,9 @@ export const ProductList = () => {
   };
 
   const categoryBodyTemplate = (rowData: IProduct) => {
-    const category = categoryData?.data?.find((item) => item.id === rowData.category?.id);
+    const category = categoryData?.data?.find(
+      (item) => item.id === rowData.category?.id,
+    );
 
     return category?.title ?? "Loading...";
   };
@@ -1115,9 +1180,27 @@ export const ProductList = () => {
   const actionBodyTemplate = (rowData: IProduct) => {
     return (
       <>
-        <Button icon="pi pi-pencil" rounded text severity="secondary" onClick={() => edit("products", rowData.id)} />
-        <Button icon="pi pi-eye" rounded text severity="secondary" onClick={() => show("products", rowData.id)} />
-        <Button icon="pi pi-trash" rounded text severity="danger" onClick={() => confirmDeleteProduct(rowData.id)} />
+        <Button
+          icon="pi pi-pencil"
+          rounded
+          text
+          severity="secondary"
+          onClick={() => edit("products", rowData.id)}
+        />
+        <Button
+          icon="pi pi-eye"
+          rounded
+          text
+          severity="secondary"
+          onClick={() => show("products", rowData.id)}
+        />
+        <Button
+          icon="pi pi-trash"
+          rounded
+          text
+          severity="danger"
+          onClick={() => confirmDeleteProduct(rowData.id)}
+        />
       </>
     );
   };
@@ -1160,7 +1243,11 @@ export const ProductList = () => {
       title={
         <div className="flex justify-content-between align-items-center">
           <span className="p-card-title">Products</span>
-          <Button icon="pi pi-plus" label="Create" onClick={() => create("products")} />
+          <Button
+            icon="pi pi-plus"
+            label="Create"
+            onClick={() => create("products")}
+          />
         </div>
       }
     >
@@ -1192,11 +1279,30 @@ export const ProductList = () => {
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "1rem" }} />
-        <Column field="name" header="Name" style={{ minWidth: "12rem" }} sortable />
-        <Column field="price" header="Price" body={amountBodyTemplate} sortable />
+        <Column
+          field="name"
+          header="Name"
+          style={{ minWidth: "12rem" }}
+          sortable
+        />
+        <Column
+          field="price"
+          header="Price"
+          body={amountBodyTemplate}
+          sortable
+        />
         <Column header="Category" body={categoryBodyTemplate} />
-        <Column field="description" header="Description" style={{ minWidth: "24rem" }} />
-        <Column body={actionBodyTemplate} header="Actions" align="center" style={{ minWidth: "10rem" }} />
+        <Column
+          field="description"
+          header="Description"
+          style={{ minWidth: "24rem" }}
+        />
+        <Column
+          body={actionBodyTemplate}
+          header="Actions"
+          align="center"
+          style={{ minWidth: "10rem" }}
+        />
       </DataTable>
     </Card>
   );
@@ -1226,7 +1332,10 @@ Next, import the `<ProductList />` component in `src/App.tsx` and add a route fo
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //highlight-next-line
@@ -1366,7 +1475,13 @@ export const ProductCreate = () => {
       className="shadow-1"
       title={
         <div className="flex align-items-center">
-          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <Button
+            onClick={goBack}
+            icon="pi pi-arrow-left"
+            className="mr-1"
+            text
+            severity="secondary"
+          />
           <span>Create Product</span>
         </div>
       }
@@ -1439,7 +1554,9 @@ export const ProductCreate = () => {
                   })}
                 />
                 <small className="p-error">&nbsp;</small>
-                <small className="p-error">{errors.category?.id?.message}</small>
+                <small className="p-error">
+                  {errors.category?.id?.message}
+                </small>
               </div>
             )}
           />
@@ -1598,10 +1715,21 @@ export const ProductEdit = () => {
       title={
         <div className="flex justify-content-between align-items-center">
           <div className="flex align-items-center">
-            <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+            <Button
+              onClick={goBack}
+              icon="pi pi-arrow-left"
+              className="mr-1"
+              text
+              severity="secondary"
+            />
             <span>Edit Product</span>
           </div>
-          <Button label="Refresh" icon="pi pi-refresh" outlined onClick={() => queryResult?.refetch()} />
+          <Button
+            label="Refresh"
+            icon="pi pi-refresh"
+            outlined
+            onClick={() => queryResult?.refetch()}
+          />
         </div>
       }
     >
@@ -1673,7 +1801,9 @@ export const ProductEdit = () => {
                   })}
                 />
                 <small className="p-error">&nbsp;</small>
-                <small className="p-error">{errors.category?.id?.message}</small>
+                <small className="p-error">
+                  {errors.category?.id?.message}
+                </small>
               </div>
             )}
           />
@@ -1777,7 +1907,7 @@ After these changes, when we navigate to the `/products/edit/:id` path, you shou
 
 ### Show Page
 
-The product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **refine**.
+The product show page will display the details of an existing product. It will allow users to see the details of an existing product. For this, we'll use the [`useShow`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook from **Refine**.
 
 Let's create a `<ProductShow />` component in `src/pages/products/show.tsx` directory with the following code:
 
@@ -1812,7 +1942,13 @@ export const ProductShow = () => {
       className="shadow-1"
       title={
         <div className="flex align-items-center">
-          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <Button
+            onClick={goBack}
+            icon="pi pi-arrow-left"
+            className="mr-1"
+            text
+            severity="secondary"
+          />
           <span>Product Details</span>
         </div>
       }
@@ -1915,13 +2051,21 @@ Let's start by defining the "category" resource in `src/App.tsx` file as follows
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
@@ -2002,7 +2146,12 @@ First, let's create a `list.tsx` file in `src/pages/categories` directory with t
 <summary>Show CategoryList component</summary>
 
 ```tsx title="src/pages/categories/list.tsx"
-import { useTable, getDefaultFilter, useNavigation, useDelete } from "@refinedev/core";
+import {
+  useTable,
+  getDefaultFilter,
+  useNavigation,
+  useDelete,
+} from "@refinedev/core";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -2053,9 +2202,27 @@ export const CategoryList = () => {
   const actionBodyTemplate = (rowData: ICategory) => {
     return (
       <>
-        <Button icon="pi pi-pencil" rounded text severity="secondary" onClick={() => edit("categories", rowData.id)} />
-        <Button icon="pi pi-eye" rounded text severity="secondary" onClick={() => show("categories", rowData.id)} />
-        <Button icon="pi pi-trash" rounded text severity="danger" onClick={() => confirmDeleteProduct(rowData.id)} />
+        <Button
+          icon="pi pi-pencil"
+          rounded
+          text
+          severity="secondary"
+          onClick={() => edit("categories", rowData.id)}
+        />
+        <Button
+          icon="pi pi-eye"
+          rounded
+          text
+          severity="secondary"
+          onClick={() => show("categories", rowData.id)}
+        />
+        <Button
+          icon="pi pi-trash"
+          rounded
+          text
+          severity="danger"
+          onClick={() => confirmDeleteProduct(rowData.id)}
+        />
       </>
     );
   };
@@ -2098,7 +2265,11 @@ export const CategoryList = () => {
       title={
         <div className="flex justify-content-between align-items-center">
           <span className="p-card-title">Categories</span>
-          <Button icon="pi pi-plus" label="Create" onClick={() => create("categories")} />
+          <Button
+            icon="pi pi-plus"
+            label="Create"
+            onClick={() => create("categories")}
+          />
         </div>
       }
     >
@@ -2129,8 +2300,18 @@ export const CategoryList = () => {
         loading={tableQueryResult?.isLoading}
         header={header}
       >
-        <Column field="id" header="Id" sortable style={{ minWidth: "1rem", width: "10rem" }} />
-        <Column field="title" header="Name" style={{ minWidth: "12rem" }} sortable />
+        <Column
+          field="id"
+          header="Id"
+          sortable
+          style={{ minWidth: "1rem", width: "10rem" }}
+        />
+        <Column
+          field="title"
+          header="Name"
+          style={{ minWidth: "12rem" }}
+          sortable
+        />
         <Column
           body={actionBodyTemplate}
           header="Actions"
@@ -2190,7 +2371,13 @@ export const CategoryCreate = () => {
       className="shadow-1"
       title={
         <div className="flex align-items-center">
-          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <Button
+            onClick={goBack}
+            icon="pi pi-arrow-left"
+            className="mr-1"
+            text
+            severity="secondary"
+          />
           <span>Create Category</span>
         </div>
       }
@@ -2274,10 +2461,21 @@ export const CategoryEdit = () => {
       title={
         <div className="flex justify-content-between align-items-center">
           <div className="flex align-items-center">
-            <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+            <Button
+              onClick={goBack}
+              icon="pi pi-arrow-left"
+              className="mr-1"
+              text
+              severity="secondary"
+            />
             <span>Edit Category</span>
           </div>
-          <Button label="Refresh" icon="pi pi-refresh" outlined onClick={() => queryResult?.refetch()} />
+          <Button
+            label="Refresh"
+            icon="pi pi-refresh"
+            outlined
+            onClick={() => queryResult?.refetch()}
+          />
         </div>
       }
     >
@@ -2339,7 +2537,13 @@ export const CategoryShow = () => {
       className="shadow-1"
       title={
         <div className="flex align-items-center">
-          <Button onClick={goBack} icon="pi pi-arrow-left" className="mr-1" text severity="secondary" />
+          <Button
+            onClick={goBack}
+            icon="pi pi-arrow-left"
+            className="mr-1"
+            text
+            severity="secondary"
+          />
           <span>Category Details</span>
         </div>
       }
@@ -2373,15 +2577,28 @@ Next, import the category CRUD pages in `src/App.tsx` and add routes for renderi
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
 //highlight-start
-import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
+import {
+  CategoryList,
+  CategoryCreate,
+  CategoryEdit,
+  CategoryShow,
+} from "./pages/categories";
 //highlight-end
 
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -2469,7 +2686,7 @@ After these changes, you should be able to navigate to the category CRUD pages a
 
 ## Update the Layout
 
-In this section, we'll update the `<Layout />` component that is created by default when we created the project with **refine** scaffold.
+In this section, we'll update the `<Layout />` component that is created by default when we created the project with **Refine** scaffold.
 
 It renders the `<Menu />` and `<Breadcrumb />` components with simple HTML elements. We'll update them to use the components from the PrimeReact library.
 
@@ -2484,15 +2701,28 @@ Additionally, we'll add `meta` property to the resources to render icons in the 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";
-import { ProductList, ProductCreate, ProductEdit, ProductShow } from "./pages/products";
-import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
+import {
+  ProductList,
+  ProductCreate,
+  ProductEdit,
+  ProductShow,
+} from "./pages/products";
+import {
+  CategoryList,
+  CategoryCreate,
+  CategoryEdit,
+  CategoryShow,
+} from "./pages/categories";
 
 //highlight-next-line
 import { Layout } from "./components/layout";
@@ -2642,7 +2872,9 @@ export const Menu = () => {
         <div onClick={options.onClick}>
           <Link to={menuItem.route ?? "/"} className={options.className}>
             {item.icon}
-            <span className={classNames("ml-2", options.labelClassName)}>{item.label}</span>
+            <span className={classNames("ml-2", options.labelClassName)}>
+              {item.label}
+            </span>
           </Link>
         </div>
       );
@@ -2683,9 +2915,14 @@ export const Breadcrumb = () => {
     icon: breadcrumb.icon,
     template: (item, options) => {
       return breadcrumb.href ? (
-        <Link to={breadcrumb.href} className={classNames("text-color", options.className)}>
+        <Link
+          to={breadcrumb.href}
+          className={classNames("text-color", options.className)}
+        >
           {item.icon}
-          <span className={classNames("ml-2 ", options.labelClassName)}>{item.label}</span>
+          <span className={classNames("ml-2 ", options.labelClassName)}>
+            {item.label}
+          </span>
         </Link>
       ) : (
         <span className={options.className}>
@@ -2695,7 +2932,9 @@ export const Breadcrumb = () => {
     },
   }));
 
-  return <BreadCrumb className="surface-ground pl-0 border-none" model={items} />;
+  return (
+    <BreadCrumb className="surface-ground pl-0 border-none" model={items} />
+  );
 };
 ```
 
@@ -2711,15 +2950,15 @@ After these changes, you can see the final result as below. Also, you can intera
 
 ## Conclusion
 
-In this blog post, we explored the powerful combination of **refine** and PrimeReact to build a fully functional React admin panel. We started by understanding what **refine** is and how it simplifies the process of creating admin panels.
+In this blog post, we explored the powerful combination of **Refine** and PrimeReact to build a fully functional React admin panel. We started by understanding what **Refine** is and how it simplifies the process of creating admin panels.
 
-Then, we created a new **refine** app and installed PrimeReact to enhance our UI with a rich set of components. We built various features for our admin panel, including a dashboard with KPI cards, charts, and recent sales information.
+Then, we created a new **Refine** app and installed PrimeReact to enhance our UI with a rich set of components. We built various features for our admin panel, including a dashboard with KPI cards, charts, and recent sales information.
 
-Next, we created CRUD pages for managing products and categories, showcasing how easy it is to handle data with **refine**. We also updated the layout, menu, and breadcrumb to improve the overall user experience.
+Next, we created CRUD pages for managing products and categories, showcasing how easy it is to handle data with **Refine**. We also updated the layout, menu, and breadcrumb to improve the overall user experience.
 
-Throughout the development process, we learned how **refine** and PrimeReact work seamlessly together and we've seen how easy it is to adapt and customize the components to suit our specific needs.
+Throughout the development process, we learned how **Refine** and PrimeReact work seamlessly together and we've seen how easy it is to adapt and customize the components to suit our specific needs.
 
-By now, you should have a good understanding of how to create a React admin panel using **refine** and PrimeReact. Feel free to experiment and customize further to suit your specific project requirements.
+By now, you should have a good understanding of how to create a React admin panel using **Refine** and PrimeReact. Feel free to experiment and customize further to suit your specific project requirements.
 
 With this new knowledge in hand, you are well-equipped to build powerful and feature-rich admin panels for your web applications. Happy coding!
 

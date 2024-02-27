@@ -6,51 +6,51 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useBack } from "./";
 
 describe("useBack Hook", () => {
-    it("should return routerProvider back function", () => {
-        const mockBack = jest.fn();
+  it("should return routerProvider back function", () => {
+    const mockBack = jest.fn();
 
-        const { result } = renderHook(() => useBack(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-                dataProvider: MockJSONServer,
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        back: () => mockBack,
-                    },
-                }),
-            }),
-        });
-
-        result.current();
-
-        expect(mockBack).toBeCalledTimes(1);
+    const { result } = renderHook(() => useBack(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterBindings({
+          fns: {
+            back: () => mockBack,
+          },
+        }),
+      }),
     });
 
-    it("if routerProvider back function is not defined, should return undefined", () => {
-        const { result } = renderHook(() => useBack(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-                dataProvider: MockJSONServer,
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        back: undefined,
-                    },
-                }),
-            }),
-        });
+    result.current();
 
-        const back = result.current();
+    expect(mockBack).toBeCalledTimes(1);
+  });
 
-        expect(back).toEqual(undefined);
+  it("if routerProvider back function is not defined, should return undefined", () => {
+    const { result } = renderHook(() => useBack(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterBindings({
+          fns: {
+            back: undefined,
+          },
+        }),
+      }),
     });
 
-    it("if it is used outside of router provider, should return undefined", () => {
-        jest.spyOn(React, "useContext").mockReturnValue(undefined);
+    const back = result.current();
 
-        const { result } = renderHook(() => useBack());
+    expect(back).toEqual(undefined);
+  });
 
-        const back = result.current();
+  it("if it is used outside of router provider, should return undefined", () => {
+    jest.spyOn(React, "useContext").mockReturnValue(undefined);
 
-        expect(back).toEqual(undefined);
-    });
+    const { result } = renderHook(() => useBack());
+
+    const back = result.current();
+
+    expect(back).toEqual(undefined);
+  });
 });

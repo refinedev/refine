@@ -65,7 +65,7 @@ npm create refine-app@latest
 
 - GitHub stars: +16K
 - License: MIT
-- Links: [Demo](https://example.crm.refine.dev/) | [Documentation](https://refine.dev/docs/tutorial/introduction/index/) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/app-crm)
+- Links: [Demo](https://example.crm.refine.dev/) | [Documentation](https://refine.dev/tutorial) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/app-crm)
 
 ## Ant Design pro
 
@@ -221,5 +221,5 @@ npm run start
 
 ## Conclusion
 
-You may have noticed that some of the libraries mentioned in this article are free versions of paid templates. While these open-source libraries can be enhanced by adding required features, they may not meet your needs. Therefore, if you are searching for a library that can assist you in creating advanced React admin dashboards with all necessary features for free, I would recommend considering refine or Tremor.
+You may have noticed that some of the libraries mentioned in this article are free versions of paid templates. While these open-source libraries can be enhanced by adding required features, they may not meet your needs. Therefore, if you are searching for a library that can assist you in creating advanced React admin dashboards with all necessary features for free, I would recommend considering Refine or Tremor.
 However, If you are looking to create something minimal quickly, the rest of the libraries mentioned would suffice. Ultimately, it depends on your specific project requirements and complexity.

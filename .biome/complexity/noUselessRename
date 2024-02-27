@@ -1,0 +1,62 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./documentation/src/theme/TutorialItem/Paginator/index.js:1:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━
+
+  ! Useless rename.
+  
+  > 1 │ export { default as default } from "../../../refine-theme/tutorial-paginator";
+      │          ^^^^^^^^^^^^^^^^^^
+    2 │ 
+  
+  i Safe fix: Remove the renaming.
+  
+    1 │ export·{·default·as·default·}·from·"../../../refine-theme/tutorial-paginator";
+      │                  -----------                                                  
+
+./examples/store/src/components/common/FeatureBar/index.ts:1:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━
+
+  ! Useless rename.
+  
+  > 1 │ export { default as default } from "./FeatureBar";
+      │          ^^^^^^^^^^^^^^^^^^
+    2 │ 
+  
+  i Safe fix: Remove the renaming.
+  
+    1 │ export·{·default·as·default·}·from·"./FeatureBar";
+      │                  -----------                      
+
+./packages/nextjs-router/src/index.ts:3:10 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Useless rename.
+  
+    1 │ export * from "./app/index";
+    2 │ 
+  > 3 │ export { default as default } from "./app/index";
+      │          ^^^^^^^^^^^^^^^^^^
+    4 │ 
+  
+  i Safe fix: Remove the renaming.
+  
+    3 │ export·{·default·as·default·}·from·"./app/index";
+      │                  -----------                     
+
+./packages/appwrite/src/dataProvider.ts:28:15 lint/complexity/noUselessRename  FIXABLE  ━━━━━━━━━━━━
+
+  ! Useless rename.
+  
+    26 │       const appwriteSorts = getAppwriteSorting(sorters);
+    27 │ 
+  > 28 │       const { total: total, documents: data } =
+       │               ^^^^^^^^^^^^
+    29 │         await database.listDocuments<any>(databaseId, resource, [
+    30 │           ...appwriteFilters,
+  
+  i Safe fix: Remove the renaming.
+  
+    28 │ ······const·{·total:·total,·documents:·data·}·=
+       │                    -------                     
+
+Checked 6952 file(s) in 467ms

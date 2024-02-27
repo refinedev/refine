@@ -9,9 +9,9 @@ import { ImageFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/image} for more details.
  */
 export const ImageField: React.FC<ImageFieldProps> = ({
-    value,
-    imageTitle,
-    ...rest
+  value,
+  imageTitle,
+  ...rest
 }) => {
-    return <Image {...rest} src={value} title={imageTitle} />;
+  return <Image {...rest} src={value} title={imageTitle} />;
 };

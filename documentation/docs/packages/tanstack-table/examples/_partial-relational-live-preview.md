@@ -62,7 +62,9 @@ const PostList: React.FC = () => {
             categoryData: GetManyResponse<ICategory>;
           };
           // Gets the  category from the meta.categoryData object, which is the result of the useMany hook We pass this data to meta with the setOptions function.
-          const category = meta.categoryData?.data?.find((item) => item.id === getValue());
+          const category = meta.categoryData?.data?.find(
+            (item) => item.id === getValue(),
+          );
 
           return category?.title ?? "Loading...";
         },
@@ -113,7 +115,14 @@ const PostList: React.FC = () => {
         {getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
-              return <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>;
+              return (
+                <th key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              );
             })}
           </tr>
         ))}
@@ -123,7 +132,11 @@ const PostList: React.FC = () => {
           return (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {
-                return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>;
+                return (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                );
               })}
             </tr>
           );

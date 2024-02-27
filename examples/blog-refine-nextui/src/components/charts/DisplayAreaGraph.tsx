@@ -12,10 +12,14 @@ import {
 import { IDisplayAreaGraphProps } from "../../interfaces";
 import { formatDate } from "./DisplayBarChart";
 
-export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, stroke, fill }) => {
+export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({
+  data,
+  stroke,
+  fill,
+}) => {
   const transformedData = data.map(({ date, value }) => ({
     date: formatDate.format(new Date(date)),
-    value
+    value,
   }));
 
   return (
@@ -25,7 +29,7 @@ export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({ data, strok
         <XAxis dataKey="date" />
         <YAxis dataKey="value" />
         <Tooltip label="Daily Revenue" />
-        <Area type="monotone" dataKey="value"  stroke={stroke}  fill={fill} />
+        <Area type="monotone" dataKey="value" stroke={stroke} fill={fill} />
       </AreaChart>
     </ResponsiveContainer>
   );

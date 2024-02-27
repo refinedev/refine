@@ -1,22 +1,22 @@
 ---
 title: We are going back to 1995! The perfect harmony of Modern stack and Win95
-description: With the refine being headless, we may use any UI we choose for our Admin Panel. In this tutorial, we'll create a Nostalgic-style admin panel using refine and React95 UI.
+description: With the Refine being headless, we may use any UI we choose for our Admin Panel. In this tutorial, we'll create a Nostalgic-style admin panel using Refine and React95 UI.
 slug: awesome-react-windows95-ui-with-refine
 authors: melih
-tags: [refine, react, supabase, tutorial]
+tags: [Refine, react, supabase, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---
 
-**refine** allows you to include any UI in your project and take full advantage of all its features without worrying about compatibility. To create a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we can use the **refine** because it is **headless**.
+**Refine** allows you to include any UI in your project and take full advantage of all its features without worrying about compatibility. To create a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we can use the **Refine** because it is **headless**.
 
 ## Introduction
 
-In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **refine** and [Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
+In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **Refine** and [Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
 
-## Create a new refine app
+## Create a new Refine app
 
-Let's start by creating our **refine** project. We'll use the `npm create refine-app` command to interactively initialize the project.
+Let's start by creating our **Refine** project. We'll use the `npm create refine-app` command to interactively initialize the project.
 
 ```bash
 npm create refine-app@latest refine-with-react95
@@ -34,7 +34,7 @@ Select the following options when prompted:
 ✔ Choose a package manager: · npm
 ```
 
-That's it! After the installation process is finished, our **refine** project is ready. Before we start editing our project, we need to install the `react95` and `styled-components` packages.
+That's it! After the installation process is finished, our **Refine** project is ready. Before we start editing our project, we need to install the `react95` and `styled-components` packages.
 
 ```bash
 npm i react95 styled-components
@@ -50,11 +50,11 @@ Once the installation is complete, we can start editing our project.
 
 ## Overview of the created project
 
-**refine** provides us with a ready-to-use project according to the options we choose during the installation process. Let's take a look at the files and folders created by **refine**.
+**Refine** provides us with a ready-to-use project according to the options we choose during the installation process. Let's take a look at the files and folders created by **Refine**.
 
 ### Supabase Client
 
-By default, **refine** creates a `supabaseClient` for you in the `src/utility/supabaseClient.ts` file. You can see the default code below.
+By default, **Refine** creates a `supabaseClient` for you in the `src/utility/supabaseClient.ts` file. You can see the default code below.
 
 <details>
 <summary>src/utility/supabaseClient.ts</summary>
@@ -85,7 +85,7 @@ You can learn more about the it in the [Data Provider](/docs/data/data-provider)
 
 ### AuthProvider
 
-By default, **refine** also creates an `authProvider` for you in the `src/authProvider.ts` file. You can see the default code below.
+By default, **Refine** also creates an `authProvider` for you in the `src/authProvider.ts` file. You can see the default code below.
 
 <details>
 <summary>src/authProvider.ts</summary>
@@ -190,9 +190,12 @@ const authProvider: AuthProvider = {
   },
   forgotPassword: async ({ email }) => {
     try {
-      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/update-password`,
-      });
+      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${window.location.origin}/update-password`,
+        },
+      );
 
       if (error) {
         return {
@@ -339,7 +342,7 @@ You can learn more about the it in the [Auth Provider](/docs/authentication/auth
 
 ### Root component: `App.tsx`
 
-Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/core/refine-component) component. This component is the main component of **refine**. It is used to configure the application and to provide the context to all the other components.
+Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/core/refine-component) component. This component is the main component of **Refine**. It is used to configure the application and to provide the context to all the other components.
 
 <details>
 
@@ -349,7 +352,10 @@ Before we start, let's take a look at the `App.tsx` file. This is the root compo
 import { Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { supabaseClient } from "./utility";
@@ -388,7 +394,7 @@ export default App;
 
 </details>
 
-In this component, **refine** provides ready-to-use features with which you can easily create a CRUD application. You can find detailed information about all of them in [**refine**](https://refine.dev/) documentation.
+In this component, **Refine** provides ready-to-use features with which you can easily create a CRUD application. You can find detailed information about all of them in [**Refine**](https://refine.dev/) documentation.
 
 ## React95 Setup
 
@@ -444,7 +450,13 @@ Let's create a `<LoginPage />` component in the `src/pages/login/index.tsx` dire
 import { useState } from "react";
 import { useLogin } from "@refinedev/core";
 
-import { Window, WindowHeader, WindowContent, TextInput, Button } from "react95";
+import {
+  Window,
+  WindowHeader,
+  WindowContent,
+  TextInput,
+  Button,
+} from "react95";
 
 interface ILoginForm {
   email: string;
@@ -474,7 +486,11 @@ export const LoginPage = () => {
           <span> Refine Login</span>
         </WindowHeader>
         <div style={{ marginTop: 8 }}>
-          <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png" alt="refine-logo" width={100} />
+          <img
+            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+            alt="refine-logo"
+            width={100}
+          />
         </div>
         <WindowContent>
           <form
@@ -595,7 +611,11 @@ export const Footer: React.FC = () => {
     <AppBar style={{ top: "unset", bottom: 0 }}>
       <Toolbar style={{ justifyContent: "space-between" }}>
         <div style={{ position: "relative", display: "inline-block" }}>
-          <Button onClick={() => setOpen(!open)} active={open} style={{ fontWeight: "bold" }}>
+          <Button
+            onClick={() => setOpen(!open)}
+            active={open}
+            style={{ fontWeight: "bold" }}
+          >
             <img
               src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
               alt="refine logo"
@@ -855,7 +875,10 @@ function App() {
                   </Authenticated>
                 }
               >
-                <Route index element={<NavigateToResource resource="posts" />} />
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
 
                 <Route path="/posts">
                   <Route index element={<PostList />} />
@@ -991,7 +1014,10 @@ export const PostList = () => {
                 gap: 16,
               }}
             >
-              <Button size="sm" onClick={() => edit("posts", getValue() as number)}>
+              <Button
+                size="sm"
+                onClick={() => edit("posts", getValue() as number)}
+              >
                 Edit
               </Button>
               <Button
@@ -999,7 +1025,9 @@ export const PostList = () => {
                 onClick={() => {
                   const id = getValue() as number;
 
-                  const result = window.confirm("Are you sure you want to delete this post?");
+                  const result = window.confirm(
+                    "Are you sure you want to delete this post?",
+                  );
 
                   if (result) {
                     deletePost({
@@ -1054,7 +1082,10 @@ export const PostList = () => {
                         colSpan={header.colSpan}
                         onClick={header.column.getToggleSortingHandler()}
                       >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                       </TableHeadCell>
                     ))}
                   </TableRow>
@@ -1067,7 +1098,10 @@ export const PostList = () => {
                       {row.getVisibleCells().map((cell) => {
                         return (
                           <TableDataCell key={cell.id}>
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
                           </TableDataCell>
                         );
                       })}
@@ -1151,7 +1185,7 @@ After fetching the data, we used the React95 table components to render the data
 
 ### Create Page and Edit Page
 
-We have created our post list page. Now we will create page where we can create posts. **refine** provides a [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **refine**. We will use this to manage our form state.
+We have created our post list page. Now we will create page where we can create posts. **Refine** provides a [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **Refine**. We will use this to manage our form state.
 
 So, let's install the `@refinedev/react-hook-form` and dependencies.
 
@@ -1167,7 +1201,15 @@ Let's update a `<PostCreate />` component in `src/pages/posts/create.tsx` direct
 ```tsx title="src/pages/posts/create.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
+import {
+  Select,
+  GroupBox,
+  Button,
+  TextInput,
+  Window,
+  WindowHeader,
+  WindowContent,
+} from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostCreate: React.FC = () => {
@@ -1193,7 +1235,10 @@ export const PostCreate: React.FC = () => {
           <label>Title: </label>
           <br />
           <br />
-          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          <TextInput
+            {...register("title", { required: true })}
+            placeholder="Type here..."
+          />
           {errors.title && <span>This field is required</span>}
           <br />
           <br />
@@ -1218,7 +1263,12 @@ export const PostCreate: React.FC = () => {
           <br />
           <label>Content: </label>
           <br />
-          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
+          <TextInput
+            {...register("content", { required: true })}
+            multiline
+            rows={10}
+            cols={50}
+          />
 
           {errors.content && <span>This field is required</span>}
           <br />
@@ -1245,7 +1295,15 @@ Now, let's update a `<PostEdit />` component in `src/pages/posts/edit.tsx` direc
 ```tsx title="src/pages/posts/edit.tsx"
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { Select, GroupBox, Button, TextInput, Window, WindowHeader, WindowContent } from "react95";
+import {
+  Select,
+  GroupBox,
+  Button,
+  TextInput,
+  Window,
+  WindowHeader,
+  WindowContent,
+} from "react95";
 import { Controller } from "react-hook-form";
 
 export const PostEdit: React.FC = () => {
@@ -1270,7 +1328,10 @@ export const PostEdit: React.FC = () => {
         <form onSubmit={handleSubmit(onFinish)}>
           <label>Title: </label>
           <br />
-          <TextInput {...register("title", { required: true })} placeholder="Type here..." />
+          <TextInput
+            {...register("title", { required: true })}
+            placeholder="Type here..."
+          />
           {errors.title && <span>This field is required</span>}
           <br />
           <br />
@@ -1295,7 +1356,12 @@ export const PostEdit: React.FC = () => {
           <br />
           <label>Content: </label>
           <br />
-          <TextInput {...register("content", { required: true })} multiline rows={10} cols={50} />
+          <TextInput
+            {...register("content", { required: true })}
+            multiline
+            rows={10}
+            cols={50}
+          />
 
           {errors.content && <span>This field is required</span>}
           <br />
@@ -1331,4 +1397,4 @@ Edit and create pages almost look the same. We can use the same form for both pa
 
 ## Conclusion
 
-**refine** is a very powerful and flexible internal tool development framework. The features it provides will greatly reduce your development time. In this example, we have shown step-by-step how a development can be quick and easy using a custom UI and refine-core features. **refine** does not restrict you, and it delivers almost all of your project's requirements via the hooks it provides, regardless of the UI.
+**Refine** is a very powerful and flexible internal tool development framework. The features it provides will greatly reduce your development time. In this example, we have shown step-by-step how a development can be quick and easy using a custom UI and refine-core features. **Refine** does not restrict you, and it delivers almost all of your project's requirements via the hooks it provides, regardless of the UI.

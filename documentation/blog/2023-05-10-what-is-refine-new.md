@@ -1,20 +1,20 @@
 ---
-title: refine.new - Introducing the Fastest Way to Create refine Apps
-description: Discover how refine.new and the refine framework are transforming the way developers create front-end applications in the React ecosystem
+title: refine.new - Introducing the Fastest Way to Create Refine Apps
+description: Discover how refine.new and the Refine framework are transforming the way developers create front-end applications in the React ecosystem
 slug: what-is-refine-new
 authors: necati
-tags: [community, refine]
+tags: [community, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-10-what-is-refine-new/social.png
 hide_table_of_contents: false
 ---
 
 ## Introduction
 
-I would like to introduce our new open source browser tool - [refine.new](https://refine.new/) for creating refine apps and how its transforming the way developers create web applications in the React ecosystem.
+I would like to introduce our new open source browser tool - [refine.new](https://refine.new/) for creating Refine apps and how its transforming the way developers create web applications in the React ecosystem.
 
-Let's recap the refine architecture first 💙
+Let's recap the Refine architecture first 💙
 
-As you know, [refine](https://github.com/refinedev/refine) is an open-source React-based framework designed to simplify and accelerate the development of web applications with SSR support with [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).  
+As you know, [Refine](https://github.com/refinedev/refine) is an open-source React-based framework designed to simplify and accelerate the development of web applications with SSR support with [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).  
 It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
 
  <div className="centered-image"  >
@@ -28,18 +28,18 @@ It is specifically tailored for data-intensive applications like admin panels, d
 
 It eliminates repetitive tasks in CRUD operations and provides industry-standard solutions for critical project components like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-The refine is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+The Refine is **headless by design**, offering unlimited styling and customization options. Moreover, Refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
-refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/)
+Refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [Directus](https://directus.io/)
 
-[Refer to documentation for more info about refine&#8594](https://refine.dev/docs/)
-[Step up to refine tutorials &#8594](https://refine.dev/docs/tutorial/introduction/index/)
+[Refer to documentation for more info about Refine&#8594](https://refine.dev/docs/)
+[Step up to Refine tutorials &#8594](https://refine.dev/tutorial)
 
-✨ With the introduction of [refine.new](https://refine.new/), developers can now create refine apps in just **15 seconds**.
+✨ With the introduction of [refine.new](https://refine.new/), developers can now create Refine apps in just **15 seconds**.
 
 ## What is refine.new?
 
-[refine.new](https://refine.new/) is an innovative browser-based tool that lets you create a new refine application in just 15 seconds by making step-by-step selections directly in your browser.
+[refine.new](https://refine.new/) is an innovative browser-based tool that lets you create a new Refine application in just 15 seconds by making step-by-step selections directly in your browser.
 
 <br/>
 
@@ -68,7 +68,7 @@ You can download the complete project code and use as a starting point for your 
 
 💥 Yes, it's fully open source and free to use.
 
-View the example refine app built using refine.new from [this link](https://refine.new/preview/8606c751-2ea8-47cd-a8fe-b8a01b4a0951).
+View the example Refine app built using refine.new from [this link](https://refine.new/preview/8606c751-2ea8-47cd-a8fe-b8a01b4a0951).
 
  <div className="centered-image"  >
 <a href="https://refine.new/preview/8606c751-2ea8-47cd-a8fe-b8a01b4a0951">
@@ -76,13 +76,13 @@ View the example refine app built using refine.new from [this link](https://refi
   </a>
 </div>
 
-## Why do developers need refine?
+## Why do developers need Refine?
 
-[refine](https://github.com/refinedev/refine) and [refine.new](https://refine.new/) are game-changers in the React ecosystem, making it incredibly easy for developers to build complete CRUD applications in no time. Here's how these tools make developers' lives easier:
+[Refine](https://github.com/refinedev/refine) and [refine.new](https://refine.new/) are game-changers in the React ecosystem, making it incredibly easy for developers to build complete CRUD applications in no time. Here's how these tools make developers' lives easier:
 
 ### Time-saving and easy-to-use
 
-[refine.new](https://refine.new/) allows developers to create complete applications with interactive UI in just 15 seconds, eliminating the need for complex configurations or setups. refine also offers a zero-config, one-minute setup with a single CLI command, making it easy to get started on projects quickly
+[refine.new](https://refine.new/) allows developers to create complete applications with interactive UI in just 15 seconds, eliminating the need for complex configurations or setups. Refine also offers a zero-config, one-minute setup with a single CLI command, making it easy to get started on projects quickly
 
 ### Consistent and high-quality code
 
@@ -90,18 +90,18 @@ View the example refine app built using refine.new from [this link](https://refi
 
 ### Enterprise-grade applications
 
-[refine](https://github.com/refinedev/refine) are designed for building large-scale projects, making it an ideal choice for developers who work on enterprise-grade applications. With full test coverage and a robust, future-proof architecture, you can trust that your application will be reliable and scalable.
+[Refine](https://github.com/refinedev/refine) are designed for building large-scale projects, making it an ideal choice for developers who work on enterprise-grade applications. With full test coverage and a robust, future-proof architecture, you can trust that your application will be reliable and scalable.
 
 ### Open-source and free
 
-Both refine and refine.new are open-source and free, allowing developers to access and modify the complete code base as needed. This empowers developers to contribute to the project, learn from the source code, and create custom solutions tailored to their requirements.
+Both Refine and refine.new are open-source and free, allowing developers to access and modify the complete code base as needed. This empowers developers to contribute to the project, learn from the source code, and create custom solutions tailored to their requirements.
 
 ### Reduced development time
 
-By automating repetitive tasks and providing built-in solutions for critical project components, refine and refine.new significantly reduce development time. This allows developers to focus on implementing unique features that set their application apart from the competition.
+By automating repetitive tasks and providing built-in solutions for critical project components, Refine and refine.new significantly reduce development time. This allows developers to focus on implementing unique features that set their application apart from the competition.
 
 ## Conclusion
 
-refine and refine.new are transforming the React.js ecosystem by making it easier than ever for developers to build high-quality, data-intensive applications in record time. With an extensive range of project variations, enterprise-grade features, and a streamlined development process, these tools are poised to become the go-to choice for developers working on CRUD applications in the React.js ecosystem.
+Refine and refine.new are transforming the React.js ecosystem by making it easier than ever for developers to build high-quality, data-intensive applications in record time. With an extensive range of project variations, enterprise-grade features, and a streamlined development process, these tools are poised to become the go-to choice for developers working on CRUD applications in the React.js ecosystem.
 
-Experience the power of refine and refine.new for yourself and see how they can revolutionize your development process!
+Experience the power of Refine and refine.new for yourself and see how they can revolutionize your development process!

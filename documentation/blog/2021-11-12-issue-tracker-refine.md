@@ -3,16 +3,16 @@ title: Create Your Easy Customizable Internal Issue Tracker With Refine and Supa
 description: This web application will  us to create issue and tasks for your team members. You will also be able to choose the priority of these tasks, their tags, and which person to assign them to.
 slug: customizable-issue-tracker-with-refine-and-supabase
 authors: melih
-tags: [refine, supabase, react, tutorial]
+tags: [Refine, supabase, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
 
 :::caution
 
-This post was created using version 3.x.x of **refine**. Although we plan to update it with the latest version of **refine** as soon as possible, you can still benefit from the post in the meantime.
+This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -132,11 +132,11 @@ Let's create a test task to better understand key relation.
 
 As you can see, since we have defined the ids of our label, status, priority and users tables as references to our tasks table, we can now use their values.
 
-Let's look at how we can use this data we created on the Supabase side with refine .
+Let's look at how we can use this data we created on the Supabase side with Refine .
 
 ## Refine Project Setup
 
-Now let's refine the task-manager panel. With superplate, we can quickly create a refine project
+Now let's Refine the task-manager panel. With superplate, we can quickly create a Refine project
 
 ```bash
   npm create refine-app@latest refine-task-manager -- -b v3
@@ -156,7 +156,7 @@ Now let's refine the task-manager panel. With superplate, we can quickly create 
 
 After the project setup is loaded, let's start by entering our project and making the necessary changes.
 
-Let's add our supabase url and key to our refine project.
+Let's add our supabase url and key to our Refine project.
 
 ```ts title="src/utility/supabaseClient.ts"
 import { createClient } from "@refinedev/supabase";
@@ -179,7 +179,16 @@ Our purpose here is to log in if there is a registered user in the supabase. If 
 import React from "react";
 import { useLogin, useNavigation } from "@refinedev/core";
 
-import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
+import {
+  Row,
+  Col,
+  AntdLayout,
+  Card,
+  Typography,
+  Form,
+  Input,
+  Button,
+} from "@refinedev/antd";
 
 import "./styles.css";
 
@@ -228,7 +237,11 @@ export const Login: React.FC = () => {
                   password: "refine-supabase",
                 }}
               >
-                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, type: "email" }]}
+                >
                   <Input size="large" placeholder="Email" />
                 </Form.Item>
                 <Form.Item
@@ -298,7 +311,16 @@ export const Login: React.FC = () => {
 ```tsx title="src/pages/signup.tsx"
 import React from "react";
 import { useNavigation } from "@refinedev/core";
-import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
+import {
+  Row,
+  Col,
+  AntdLayout,
+  Card,
+  Typography,
+  Form,
+  Input,
+  Button,
+} from "@refinedev/antd";
 import "./styles.css";
 import { supabaseClient } from "utility";
 
@@ -353,7 +375,11 @@ export const Signup: React.FC = () => {
                   push("login");
                 }}
               >
-                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, type: "email" }]}
+                >
                   <Input size="large" placeholder="Email" />
                 </Form.Item>
                 <Form.Item
@@ -364,7 +390,13 @@ export const Signup: React.FC = () => {
                 >
                   <Input type="password" placeholder="●●●●●●●●" size="large" />
                 </Form.Item>
-                <Button type="primary" size="large" htmlType="submit" block style={{ marginTop: 24 }}>
+                <Button
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  block
+                  style={{ marginTop: 24 }}
+                >
                   Create Account
                 </Button>
               </Form>
@@ -456,12 +488,12 @@ function App() {
 export default App;
 ```
 
-Here we define our login and signup pages. We then use the refine's [router-provider](https://refine.dev/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
+Here we define our login and signup pages. We then use the Refine's [router-provider](https://refine.dev/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 <br />
 
-We can now create supabase users and log in from our refine interface.
+We can now create supabase users and log in from our Refine interface.
 
 ## Add Resource
 
@@ -523,7 +555,12 @@ We can now create lists of tasks and make changes to them.
 
 ```tsx title="src/pages/task/list.tsx"
 import React from "react";
-import { useMany, IResourceComponentsProps, HttpError, CrudFilters } from "@refinedev/core";
+import {
+  useMany,
+  IResourceComponentsProps,
+  HttpError,
+  CrudFilters,
+} from "@refinedev/core";
 
 import {
   useTable,
@@ -541,15 +578,27 @@ import {
   Card,
 } from "@refinedev/antd";
 
-import { ILabel, IPriority, ITask, ITaskFilterVariables, IStatus, IAuthUser } from "interfaces";
+import {
+  ILabel,
+  IPriority,
+  ITask,
+  ITaskFilterVariables,
+  IStatus,
+  IAuthUser,
+} from "interfaces";
 
 import { Filter } from "../task";
 
 export const TaskList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, searchFormProps } = useTable<ITask, HttpError, ITaskFilterVariables>({
+  const { tableProps, searchFormProps } = useTable<
+    ITask,
+    HttpError,
+    ITaskFilterVariables
+  >({
     onSearch: (params) => {
       const filters: CrudFilters = [];
-      const { title, label, priority, users, status, start_time, end_time } = params;
+      const { title, label, priority, users, status, start_time, end_time } =
+        params;
 
       filters.push(
         {
@@ -611,7 +660,8 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
   });
 
   const labelIds = tableProps?.dataSource?.map((item) => item.label) ?? [];
-  const priorityIds = tableProps?.dataSource?.map((item) => item.priority) ?? [];
+  const priorityIds =
+    tableProps?.dataSource?.map((item) => item.priority) ?? [];
   const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
   const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
 
@@ -652,8 +702,12 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               render={(value) => {
                 return (
                   <TagField
-                    color={labels?.data.find((item) => item.id === value)?.color}
-                    value={labels?.data.find((item) => item.id === value)?.title}
+                    color={
+                      labels?.data.find((item) => item.id === value)?.color
+                    }
+                    value={
+                      labels?.data.find((item) => item.id === value)?.title
+                    }
                   />
                 );
               }}
@@ -662,32 +716,54 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               dataIndex="priority"
               title="Priority"
               render={(value) => {
-                return <TextField value={priority?.data.find((item) => item.id === value)?.title} />;
+                return (
+                  <TextField
+                    value={
+                      priority?.data.find((item) => item.id === value)?.title
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="users"
               title="Assigned"
               render={(value) => {
-                return <TagField value={assigned?.data.find((item) => item.id === value)?.email} />;
+                return (
+                  <TagField
+                    value={
+                      assigned?.data.find((item) => item.id === value)?.email
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="status"
               title="Status"
               render={(value) => {
-                return <TextField value={status?.data.find((item) => item.id === value)?.title} />;
+                return (
+                  <TextField
+                    value={
+                      status?.data.find((item) => item.id === value)?.title
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="start_time"
               title="Start Date"
-              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+              render={(value) => (
+                <DateField format="DD/MM/YYYY" value={value} />
+              )}
             />
             <Table.Column
               dataIndex="end_time"
               title="Due Date"
-              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+              render={(value) => (
+                <DateField format="DD/MM/YYYY" value={value} />
+              )}
             />
             <Table.Column<ITask>
               title="Actions"
@@ -695,9 +771,21 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               render={(_, record): React.ReactNode => {
                 return (
                   <Space>
-                    <ShowButton size="small" recordItemId={record.id} hideText />
-                    <EditButton size="small" recordItemId={record.id} hideText />
-                    <DeleteButton size="small" recordItemId={record.id} hideText />
+                    <ShowButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
+                    <EditButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
+                    <DeleteButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
                   </Space>
                 );
               }}
@@ -712,7 +800,16 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
 
 ```tsx title="src/pages/task/filter.tsx"
 import React from "react";
-import { Form, FormProps, Input, useSelect, Select, DatePicker, Icons, Button } from "@refinedev/antd";
+import {
+  Form,
+  FormProps,
+  Input,
+  useSelect,
+  Select,
+  DatePicker,
+  Icons,
+  Button,
+} from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -818,7 +915,7 @@ export interface ITaskFilterVariables {
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
 <br />
 
-Using refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering.
+Using Refine's [tableSearch](https://refine.dev/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering.
 
 As seen in the example, we listed and showed the task table we created in supabase with refine. Now you can make changes as you want with refine.
 
@@ -829,7 +926,15 @@ Now how do we create task? Let's examine how we can edit them and see their deta
 ```tsx title="src/pages/task/create.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import { useForm, Create, Form, Input, Select, useSelect, DatePicker } from "@refinedev/antd";
+import {
+  useForm,
+  Create,
+  Form,
+  Input,
+  Select,
+  useSelect,
+  DatePicker,
+} from "@refinedev/antd";
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -1252,13 +1357,13 @@ Our project is done. Lets see how its look like.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
 <br />
 
-As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider.
+As you can see, we made a simple and short task manager application using Refine on our front end and using its data-provider.
 
 [Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker)
 
 For more information about Refine: [Refine Github Page](https://github.com/refinedev/refine)
 
-For other examples and articles that will interest you with refine: [https://refine.dev/blog/](https://refine.dev/blog/)
+For other examples and articles that will interest you with Refine: [https://refine.dev/blog/](https://refine.dev/blog/)
 
 ## Example
 

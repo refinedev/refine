@@ -3,17 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docusaurus": "docusaurus",
-    "start": "docusaurus start",
-    "dev:lean": "DISABLE_DOCGEN=true DISABLE_VERSIONING=true DISABLE_EXAMPLES=true DISABLE_CHECKLISTS=true npm run start",
-    "dev:docs": "DISABLE_BLOG=true npm run dev:lean",
-    "dev:blog": "DISABLE_DOCS=true LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview npm run dev:lean",
     "build": "NODE_OPTIONS=\"--max-old-space-size=8192\" docusaurus build",
     "build:plugins": "sucrase ./plugins -d ./plugins --transforms typescript,imports && npx prettier --write ./plugins",
-    "swizzle": "docusaurus swizzle",
+    "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
+    "dev": "docusaurus start",
+    "dev:blog": "DISABLE_DOCS=true LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview npm run dev:lean",
+    "dev:docs": "DISABLE_BLOG=true npm run dev:lean",
+    "dev:lean": "DISABLE_DOCGEN=true DISABLE_VERSIONING=true DISABLE_EXAMPLES=true DISABLE_CHECKLISTS=true npm run dev",
+    "docusaurus": "docusaurus",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "swizzle": "docusaurus swizzle"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.10.0",
@@ -32,6 +44,7 @@
     "dedent": "^0.7.0",
     "docusaurus-plugin-copy": "^0.1.1",
     "dotenv": "^16.0.2",
+    "fireworks-js": "^1.4.1",
     "framer-motion": "^6.5.1",
     "postcss": "^8.4.16",
     "prism-react-renderer": "^1.3.5",
@@ -51,18 +64,6 @@
     "swc-loader": "^0.2.3",
     "tailwindcss": "^3.3.5",
     "title-case": "^3.0.3"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.4.0",

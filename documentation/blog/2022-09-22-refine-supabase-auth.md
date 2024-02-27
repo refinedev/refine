@@ -3,7 +3,7 @@ title: OTP Authentication with Supabase and Twilio in React
 description: We'll implement OTP(SMS) authorization using Twilio and Supabase in React app.
 slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
-tags: [react, supabase, refine, access-control, tutorial]
+tags: [react, supabase, Refine, access-control, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
@@ -21,10 +21,10 @@ You can access the example app we'll be building in the article by following thi
 Steps we'll cover:
 
 - [What is Supabase?](#what-is-supabase)
-- [What is refine?](#what-is-refine)
+- [What is Refine?](#what-is-refine)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
+- [Installing Tailwind CSS for Refine project](#installing-tailwind-css-for-refine-project)
 - [Set up the Supabase Project](#set-up-the-supabase-project)
 - [Create the Login Page](#create-the-login-page)
 - [Data Provider](#data-provider)
@@ -36,13 +36,13 @@ Steps we'll cover:
 
 One of the great features of Supabase is its Auth service. Supabase Auth allows you to easily add OTP-based authentication to your app with just a few lines of code.
 
-In this guide, you will implement OTP-based login in **refine** using the Supabase library.
+In this guide, you will implement OTP-based login in **Refine** using the Supabase library.
 
-## What is refine?
+## What is Refine?
 
-[refine](https://github.com/refinedev/refine) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
+[Refine](https://github.com/refinedev/refine) is a React-based open-source frameworks for building admin panels, dashboards, internal tools and storefront apps rapidly. It helps developers to avoid from repetitive tasks demanded by CRUD operations and provides solutions for like authentication, access control, routing, networking, state management.
 
-One of the great features of refine is its out-of-the-box data providers integrations. refine has a built-in data provider for supabase and we'll see how to use it properly.
+One of the great features of Refine is its out-of-the-box data providers integrations. Refine has a built-in data provider for supabase and we'll see how to use it properly.
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ To follow this guide, you must install the latest Node.js version on your system
 
 ## Getting Started
 
-Start by creating the refine app using the [create refine-app](https://refine.dev/docs/getting-started/quickstart/) CLI tool.
+Start by creating the Refine app using the [create refine-app](https://refine.dev/docs/getting-started/quickstart/) CLI tool.
 
 ```
 npm create refine-app@latest refine-supabase-auth
@@ -58,7 +58,7 @@ npm create refine-app@latest refine-supabase-auth
 
 ```bash
 ✔ Downloaded remote source successfully.
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · refine-supabase-auth
 ✔ Choose your backend service to connect: · Supabase
 ✔ Do you want to use a UI Framework?: · no
@@ -71,9 +71,9 @@ npm create refine-app@latest refine-supabase-auth
 
 Choose the headless option while specifying the UI framework, as you will be integrating tailwind in this tutorial. You can select your preferred package manager; this tutorial will use yarn. Choose the `supabase` option when selecting the Data Provider.
 
-Here is the source code of [refine supabase data provider](https://github.com/refinedev/refine/tree/master/packages/supabase)
+Here is the source code of [Refine supabase data provider](https://github.com/refinedev/refine/tree/master/packages/supabase)
 
-## Installing Tailwind CSS for refine project
+## Installing Tailwind CSS for Refine project
 
 Next, navigate to your project directory and install the following packages.
 
@@ -93,7 +93,7 @@ Run the following command to initialize Tailwind in your project.
 npx tailwindcss init
 ```
 
-Update the recently added `tailwind.config.js` file to add some theming to the refine app.
+Update the recently added `tailwind.config.js` file to add some theming to the Refine app.
 
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
@@ -148,7 +148,7 @@ Now, create the `App.css` file and add the following content.
 
 In the `App.tsx` file, import the `App.css` file to add the styling.
 
-Run the `npm run dev` command to start the refine development server.
+Run the `npm run dev` command to start the Refine development server.
 
 ```
 npm run dev
@@ -227,7 +227,10 @@ export const LoginPage = () => {
   const { mutate: login } = useLogin();
 
   const onLogin = () => {
-    login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
+    login(
+      { mobileNo: mobileNoRef.current, otp: otpRef.current },
+      { onError: (error) => setError(error.message) },
+    );
   };
 
   const mobileFormRender = () => (
@@ -308,7 +311,7 @@ to redirect the user to the home page if they are already logged in.
 
 [Refer to the Auth Provider documentation to learn more about authentication. → ](/docs/authentication/auth-provider)
 
-[Refer to the documentation to learn more routing in **refine** → ](/docs/packages/list-of-packages)
+[Refer to the documentation to learn more routing in **Refine** → ](/docs/packages/list-of-packages)
 
 <details>
 <summary>Show `App.tsx` Code</summary>
@@ -326,7 +329,13 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 // highlight-end
 
 import authProvider from "./authProvider";
@@ -392,19 +401,19 @@ Also, notice that `create refine-app` has already imported the `authProvider` an
 
 ## Data Provider
 
-The `dataProvider` acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. It requests and returns the data using predefined methods like `create()`, `getMany()`, etc. **refine** consumes these methods via data hooks.
+The `dataProvider` acts as a data layer for your app that makes the HTTP requests and encapsulates how the data is retrieved. It requests and returns the data using predefined methods like `create()`, `getMany()`, etc. **Refine** consumes these methods via data hooks.
 
-For example, when you use the `useList` hook, **refine** internally calls the `getList()` method of the data provider.
+For example, when you use the `useList` hook, **Refine** internally calls the `getList()` method of the data provider.
 
-In this case, we pass the `supabaseClient` as the data provider. Supabase is supported out-of-the-box as a data provider by **refine**. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
+In this case, we pass the `supabaseClient` as the data provider. Supabase is supported out-of-the-box as a data provider by **Refine**. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
 
-[You can learn more about data provider in the refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
 
 ## Auth Provider
 
-The `authProvider` is an object that refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.
+The `authProvider` is an object that Refine uses to authenticate and authorize the users. The auth provider must have methods like `login()`, `register()`, etc., to manage authentication in your app. These methods should return a Promise and are accessible via hooks.
 
-`create refine-app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
+`create refine-app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, Refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
 
 [You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
@@ -506,7 +515,10 @@ In the `onLogin()` function of the `<LoginPage />` component, pass the mobile nu
 const { mutate: login } = useLogin();
 
 const onLogin = () => {
-  login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
+  login(
+    { mobileNo: mobileNoRef.current, otp: otpRef.current },
+    { onError: (error) => setError(error.message) },
+  );
 };
 ```
 
@@ -574,11 +586,21 @@ export const Countries = () => {
         <Table.Body>
           {countries?.data.map((country: Record<string, string>) => (
             <Table.Row key={country.id}>
-              <span className="text-dark font-medium opacity-50">{country.id}</span>
-              <span className="text-dark font-medium opacity-50">{country.name}</span>
-              <span className="text-dark font-medium opacity-50">{country.iso2}</span>
-              <span className="text-dark font-medium opacity-50">{country.local_name}</span>
-              <span className="text-dark font-medium opacity-50">{country.continent}</span>
+              <span className="text-dark font-medium opacity-50">
+                {country.id}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.name}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.iso2}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.local_name}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.continent}
+              </span>
             </Table.Row>
           ))}
         </Table.Body>
@@ -600,7 +622,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="flex min-h-screen flex-col">
       <div className="bg-gray mb-2 py-3">
         <div className="container mx-auto flex">
-          <Button color="accent" size="sm" className="ml-auto shadow" onClick={() => logout()}>
+          <Button
+            color="accent"
+            size="sm"
+            className="ml-auto shadow"
+            onClick={() => logout()}
+          >
             Logout
           </Button>
         </div>
@@ -669,7 +696,10 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="countries" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="countries" />}
+              />
               <Route path="/countries" element={<Countries />} />
             </Route>
 
@@ -712,9 +742,9 @@ export default App;
 
 ## Conclusion
 
-OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in **refine** using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens.
+OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in **Refine** using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens.
 
-Following this article's steps, you should now have a **refine** application with OTP-based authentication enabled.
+Following this article's steps, you should now have a **Refine** application with OTP-based authentication enabled.
 
 <br/>
 <div>

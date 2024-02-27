@@ -19,7 +19,7 @@ jobs:
       - name: lint
         run: |
           npm ci
-          npm run lint
+          npm run lint:ci
   build:
     runs-on: ubuntu-latest
     concurrency:
@@ -53,7 +53,7 @@ jobs:
           npm run build:all
       - name: Test
         run: |
-          npm run test:all --skip-nx-cache
+          npm run test:all -- --skip-nx-cache
 
   tsdoc-check:
     runs-on: ubuntu-latest

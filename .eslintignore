@@ -1,6 +1,0 @@
-build/
-dist/
-node_modules/
-.snapshots/
-*.min.js
-**/**/coverage

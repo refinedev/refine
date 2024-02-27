@@ -164,7 +164,11 @@ const UserList = () => {
       <AntdTable {...tableProps} rowKey="id">
         <AntdTable.Column dataIndex="firstName" title="First Name" />
         <AntdTable.Column dataIndex="lastName" title="Last Name" />
-        <AntdTable.Column dataIndex="email" title="Email" render={(value) => <AntdEmailField value={value} />} />
+        <AntdTable.Column
+          dataIndex="email"
+          title="Email"
+          render={(value) => <AntdEmailField value={value} />}
+        />
         <AntdTable.Column
           title="Actions"
           dataIndex="actions"
@@ -832,7 +836,11 @@ const App: React.FC = () => {
           const enforcer = await newEnforcer(model, adapter);
 
           if (action === "delete" || action === "edit" || action === "show") {
-            const can = await enforcer.enforce(role, `${resource}/${params?.id}`, action);
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.id}`,
+              action,
+            );
 
             return { can };
           }
@@ -914,14 +922,22 @@ const App: React.FC = () => {
           const enforcer = await newEnforcer(model, adapter);
 
           if (action === "delete" || action === "edit" || action === "show") {
-            const can = await enforcer.enforce(role, `${resource}/${params?.id}`, action);
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.id}`,
+              action,
+            );
 
             return { can };
           }
 
           // highlight-start
           if (action === "field") {
-            const can = await enforcer.enforce(role, `${resource}/${params?.field}`, action);
+            const can = await enforcer.enforce(
+              role,
+              `${resource}/${params?.field}`,
+              action,
+            );
             return { can };
           }
           // highlight-end
@@ -965,7 +981,9 @@ export const PostList: React.FC = () => {
           <Table.Column
             dataIndex="hit"
             title="Hit"
-            render={(value: number) => <NumberField value={value} options={{ notation: "compact" }} />}
+            render={(value: number) => (
+              <NumberField value={value} options={{ notation: "compact" }} />
+            )}
           />
         )}
         // highlight-end
@@ -1039,7 +1057,12 @@ const PostListWithHit = () => {
           <AntdTable.Column
             dataIndex="hit"
             title="Hit"
-            render={(value: number) => <AntdNumberField value={value} options={{ notation: "compact" }} />}
+            render={(value: number) => (
+              <AntdNumberField
+                value={value}
+                options={{ notation: "compact" }}
+              />
+            )}
           />
         )}
         <AntdTable.Column
@@ -1087,14 +1110,26 @@ const App: React.FC = () => {
             can: async ({ resource, action, params }) => {
               const enforcer = await CasbinNewEnforcer(model, adapter);
 
-              if (action === "delete" || action === "edit" || action === "show") {
-                const can = await enforcer.enforce(role, `${resource}/${params?.id}`, action);
+              if (
+                action === "delete" ||
+                action === "edit" ||
+                action === "show"
+              ) {
+                const can = await enforcer.enforce(
+                  role,
+                  `${resource}/${params?.id}`,
+                  action,
+                );
 
                 return { can };
               }
 
               if (action === "field") {
-                const can = await enforcer.enforce(role, `${resource}/${params?.field}`, action);
+                const can = await enforcer.enforce(
+                  role,
+                  `${resource}/${params?.field}`,
+                  action,
+                );
                 return { can };
               }
 
@@ -1180,7 +1215,12 @@ const PostListWithHit = () => {
           <AntdTable.Column
             dataIndex="hit"
             title="Hit"
-            render={(value: number) => <AntdNumberField value={value} options={{ notation: "compact" }} />}
+            render={(value: number) => (
+              <AntdNumberField
+                value={value}
+                options={{ notation: "compact" }}
+              />
+            )}
           />
         )}
         <AntdTable.Column
@@ -1228,14 +1268,26 @@ const App: React.FC = () => {
             can: async ({ resource, action, params }) => {
               const enforcer = await CasbinNewEnforcer(model, adapter);
 
-              if (action === "delete" || action === "edit" || action === "show") {
-                const can = await enforcer.enforce(role, `${resource}/${params?.id}`, action);
+              if (
+                action === "delete" ||
+                action === "edit" ||
+                action === "show"
+              ) {
+                const can = await enforcer.enforce(
+                  role,
+                  `${resource}/${params?.id}`,
+                  action,
+                );
 
                 return { can };
               }
 
               if (action === "field") {
-                const can = await enforcer.enforce(role, `${resource}/${params?.field}`, action);
+                const can = await enforcer.enforce(
+                  role,
+                  `${resource}/${params?.field}`,
+                  action,
+                );
                 return { can };
               }
 

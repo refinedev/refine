@@ -1,9 +1,9 @@
 ---
 title: Building a React Admin Dashboard with Tremor Library
-description: We'll build a simple React admin dashboard using refine and Tremor.
+description: We'll build a simple React admin dashboard using Refine and Tremor.
 slug: building-react-admin-dashboard-with-tremor
 authors: joseph_mawa
-tags: [refine, tutorial, react]
+tags: [Refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/social.png
 hide_table_of_contents: false
 ---
@@ -12,21 +12,21 @@ hide_table_of_contents: false
 
 Front-end UIs have increasingly become more complex in the recent past. As a result, several front-end frameworks emerged to improve your development experience. One of these front-end frameworks is refine.
 
-refine is an open-source, MIT-licensed, React-based framework for building complex data-intensive UIs such as dashboards, admin panels, and internal tools.
+Refine is an open-source, MIT-licensed, React-based framework for building complex data-intensive UIs such as dashboards, admin panels, and internal tools.
 
-A typical refine project setup created using the project template in the refine ecosystem comes with a complete suite of tools and configurations. However, it is also highly customizable. Therefore, you can integrate other frameworks like Tremor in your refine application.
+A typical Refine project setup created using the project template in the Refine ecosystem comes with a complete suite of tools and configurations. However, it is also highly customizable. Therefore, you can integrate other frameworks like Tremor in your Refine application.
 
 [Tremor](https://www.tremor.so/) is a free, open-source, Apache-2.0-licensed React library for building dashboards. It is a relatively new but popular library. You can use it with React and React-based frameworks like Next and refine.
 
-In this article, we will build a simple React admin dashboard using refine and Tremor.
+In this article, we will build a simple React admin dashboard using Refine and Tremor.
 
 What we'll cover in this article:
 
-- [What is refine](#what-is-refine)
-- [How to create a refine application](#how-to-create-a-refine-application)
+- [What is Refine](#what-is-refine)
+- [How to create a Refine application](#how-to-create-a-refine-application)
 - [What is Tremor](#what-is-tremor)
 - [How to start using Tremor](#how-to-start-using-tremor)
-- [How to build a React admin dashboard with Tremor and refine](#how-to-build-a-react-admin-dashboard-with-tremor-and-refine)
+- [How to build a React admin dashboard with Tremor and Refine](#how-to-build-a-react-admin-dashboard-with-tremor-and-refine)
 
 ## Prerequisites
 
@@ -35,25 +35,25 @@ You need to have the following to try out the examples in this article:
 - The Node runtime environment. If you haven't, install it for your operating system from the Node [downloads](https://nodejs.org/en/download/) page.
 - A text editor like [VS Code](https://code.visualstudio.com/Download) or [Sublime Text](https://www.sublimetext.com/download). If you haven't, download one for your operating system from the respective downloads page.
 
-## What is refine
+## What is Refine
 
-As the introduction explains, refine is a free, open-source, MIT-licensed, React-based framework for building data-intensive front-end applications and UIs such as admin panels, dashboards, and internal tools.
+As the introduction explains, Refine is a free, open-source, MIT-licensed, React-based framework for building data-intensive front-end applications and UIs such as admin panels, dashboards, and internal tools.
 
-[refine](https://github.com/refinedev/refine) has a rich ecosystem of tools and packages to improve your development experience. A typical refine project comes with out-of-the-box support for routing, authentication, state management, networking, and internalization.
+[Refine](https://github.com/refinedev/refine) has a rich ecosystem of tools and packages to improve your development experience. A typical Refine project comes with out-of-the-box support for routing, authentication, state management, networking, and internalization.
 
-refine also integrates some of the popular design systems and UI frameworks like Material UI, Chakra UI, Mantine, and Ant design out of the box. You can opt out and use "headless" refine if the supported design systems and UI frameworks do not meet your needs.
+Refine also integrates some of the popular design systems and UI frameworks like Material UI, Chakra UI, Mantine, and Ant design out of the box. You can opt out and use "headless" Refine if the supported design systems and UI frameworks do not meet your needs.
 
-You can quickly bootstrap a complete refine application using create refine-app or the refine.new platform. refine goes out of its way to generate components based on your data source using the refine Inferencer.
+You can quickly bootstrap a complete Refine application using create refine-app or the refine.new platform. Refine goes out of its way to generate components based on your data source using the Refine Inferencer.
 
-## How to create a refine application
+## How to create a Refine application
 
-You can create a refine application using create refine-app or the [refine browser tool](https://refine.dev/?playground=true) platform. Both create refine-app and refine.new platform can bootstrap a new application, complete with all the necessary setup.
+You can create a Refine application using create refine-app or the [Refine browser tool](https://refine.dev/?playground=true) platform. Both create refine-app and refine.new platform can bootstrap a new application, complete with all the necessary setup.
 
-Follow the steps below to create a headless refine application using the refine browser tool.
+Follow the steps below to create a headless Refine application using the Refine browser tool.
 
-### Step 1 — Create new refine application
+### Step 1 — Create new Refine application
 
-Follow the steps to create a new refine project. Select Vite as your build tool, Headless as the UI framework, REST API as the back-end service, and no authentication provider.
+Follow the steps to create a new Refine project. Select Vite as your build tool, Headless as the UI framework, REST API as the back-end service, and no authentication provider.
 
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="react admin dashboard" />
@@ -95,7 +95,7 @@ Your project should look like the image below.
 
 <br />
 
-Though we created a “Headless” refine project, the template we used comes with some basic styling. Some styles will affect our project when we use Tremor and Tailwind CSS later. Let’s remove some of them by applying the changes below to the `src/App.css` file.
+Though we created a “Headless” Refine project, the template we used comes with some basic styling. Some styles will affect our project when we use Tremor and Tailwind CSS later. Let’s remove some of them by applying the changes below to the `src/App.css` file.
 
 <details>
 <summary>Show App.css code</summary>
@@ -155,9 +155,9 @@ td:last-child {
 
 <br />
 
-Like refine, [Tremor](https://www.tremor.so/) is a free, open-source React library for building dashboards. Unlike refine, Tremor is Apache-2.0-licensed. Though still in beta while writing this article, Tremor is a popular package with over [11K+ GitHub](https://github.com/tremorlabs/tremor) stars.
+Like Refine, [Tremor](https://www.tremor.so/) is a free, open-source React library for building dashboards. Unlike Refine, Tremor is Apache-2.0-licensed. Though still in beta while writing this article, Tremor is a popular package with over [11K+ GitHub](https://github.com/tremorlabs/tremor) stars.
 
-You can integrate Tremor in a React, Next.js, or Redwood project. In this article, we will integrate it in a refine project. Tremor uses Tailwind CSS internally. Therefore, any project that intends to use it has to install Tailwind CSS and its peer dependencies.
+You can integrate Tremor in a React, Next.js, or Redwood project. In this article, we will integrate it in a Refine project. Tremor uses Tailwind CSS internally. Therefore, any project that intends to use it has to install Tailwind CSS and its peer dependencies.
 
 Tremor has several built-in Components to get you up and running. You have to import and render a Component you want and pass to it the appropriate props.
 
@@ -183,9 +183,9 @@ Check out the documentation for a complete list of the built-in components and h
 
 As mentioned above, you install Tremor and its peer dependencies before using it. The installation instructions depend on whether you use React or a React framework like Next.
 
-Do check out the documentation for detailed installation instructions. In this article, we will use Tremor in a refine project.
+Do check out the documentation for detailed installation instructions. In this article, we will use Tremor in a Refine project.
 
-If you have created a refine application as described in one of the previous sub-sections, follow the steps below to install and set up Tremor for your application. We will install Tremor manually in this article. However, you can also use the [Tremor CLI](https://github.com/tremorlabs/tremor-cli). The CLI requires first installing and configuring Tailwind CSS and its dependencies.
+If you have created a Refine application as described in one of the previous sub-sections, follow the steps below to install and set up Tremor for your application. We will install Tremor manually in this article. However, you can also use the [Tremor CLI](https://github.com/tremorlabs/tremor-cli). The CLI requires first installing and configuring Tailwind CSS and its dependencies.
 
 ### Step 1 — Install Tremor
 
@@ -303,12 +303,16 @@ module.exports = {
       boxShadow: {
         // light
         "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         // dark
         "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "dark-tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        "dark-tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "dark-tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "dark-tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
         "tremor-small": "0.375rem",
@@ -390,17 +394,17 @@ root.render(
 );
 ```
 
-That is everything you need to start using Tremor and Tailwind CSS in your refine project. You may need to restart the development server.
+That is everything you need to start using Tremor and Tailwind CSS in your Refine project. You may need to restart the development server.
 
-## How to build a React admin dashboard with Tremor and refine
+## How to build a React admin dashboard with Tremor and Refine
 
-In this section, we will build a simple React admin dashboard with Tremor and refine. This section assumes you have created a refine project and installed Tremor, Tailwind CSS, and its peer dependencies. Check out the installation instructions in the previous sub-sections if you haven't.
+In this section, we will build a simple React admin dashboard with Tremor and refine. This section assumes you have created a Refine project and installed Tremor, Tailwind CSS, and its peer dependencies. Check out the installation instructions in the previous sub-sections if you haven't.
 
-Launch the refine project you created in your favorite text editor and follow the steps below to add a basic admin dashboard.
+Launch the Refine project you created in your favorite text editor and follow the steps below to add a basic admin dashboard.
 
 ### Step 1 — Set up your resources
 
-When we created a refine project using the refine.new platform, the refine Inferencer generated components using the data returned from the `categories` and `blog_posts` resources of our [fake REST API](https://api.fake-rest.refine.dev/).
+When we created a Refine project using the refine.new platform, the Refine Inferencer generated components using the data returned from the `categories` and `blog_posts` resources of our [fake REST API](https://api.fake-rest.refine.dev/).
 
 In this article, we will add a dashboard to the generated project. We will use the [fake restaurant API](https://api.finefoods.refine.dev/) for our dashboard. Let's add the `dashboard` resource to the `<Refine />` component like in the example below.
 
@@ -569,7 +573,17 @@ Tremor has several dashboard layout templates. We will use one of them in this p
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 export const DashboardPage: React.FC = () => {
   return (
@@ -633,7 +647,17 @@ Now that we have the layout of our project, let's retrieve the data to display f
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 //highlight-start
 import { useApiUrl, useCustom } from "@refinedev/core";
@@ -686,7 +710,15 @@ In the code above, we used the `useCustom` hook to retrieve the data from our fa
 You can log the data above to the browser console to see what it looks like. We will now create one component for the three KPIs and reuse it for all three. Create the `src/pages/dashboard/kpiCard/index.tsx` file, and copy and paste the code below.
 
 ```tsx title="src/pages/dashboard/kpiCard/index.tsx"
-import { Card, Text, Metric, Flex, ProgressBar, BadgeDelta, DeltaType } from "@tremor/react";
+import {
+  Card,
+  Text,
+  Metric,
+  Flex,
+  ProgressBar,
+  BadgeDelta,
+  DeltaType,
+} from "@tremor/react";
 
 const getDeltaType = (trend: number): DeltaType => {
   if (trend < -35) return "decrease";
@@ -744,7 +776,17 @@ We will reuse the same component for all three KPIs. Import and render the above
 
 ```tsx title="src/pages/dashboard/index.tsx"
 import React from "react";
-import { Card, Grid, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels } from "@tremor/react";
+import {
+  Card,
+  Grid,
+  Title,
+  Text,
+  Tab,
+  TabList,
+  TabGroup,
+  TabPanel,
+  TabPanels,
+} from "@tremor/react";
 
 import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -807,21 +849,30 @@ export const DashboardPage: React.FC = () => {
                 total={`$ ${dailyRevenue?.data.total ?? 0}`}
                 trend={dailyRevenue?.data.trend ?? 0}
                 target="$ 10,500"
-                percentage={calculatePercentage(dailyRevenue?.data.total ?? 0, 10_500)}
+                percentage={calculatePercentage(
+                  dailyRevenue?.data.total ?? 0,
+                  10_500,
+                )}
               />
               <KpiCard
                 title="Weekly Orders"
                 total={`${dailyOrders?.data.total ?? 0}`}
                 trend={dailyOrders?.data.trend ?? 0}
                 target="500"
-                percentage={calculatePercentage(dailyOrders?.data.total ?? 0, 500)}
+                percentage={calculatePercentage(
+                  dailyOrders?.data.total ?? 0,
+                  500,
+                )}
               />
               <KpiCard
                 title="New Customers"
                 total={`${newCustomers?.data.total ?? 0}`}
                 trend={newCustomers?.data.trend ?? 0}
                 target="200"
-                percentage={calculatePercentage(newCustomers?.data.total ?? 0, 200)}
+                percentage={calculatePercentage(
+                  newCustomers?.data.total ?? 0,
+                  200,
+                )}
               />
               //highlight-end
             </Grid>
@@ -860,7 +911,17 @@ Similarly, let us create a component to visualize the daily variation of our KPI
 
 ```tsx title="src/pages/dashboard/chartView/index.tsx"
 import { useState } from "react";
-import { AreaChart, Card, Flex, Text, Title, Icon, TabGroup, TabList, Tab } from "@tremor/react";
+import {
+  AreaChart,
+  Card,
+  Flex,
+  Text,
+  Title,
+  Icon,
+  TabGroup,
+  TabList,
+  Tab,
+} from "@tremor/react";
 
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
@@ -876,9 +937,11 @@ interface IProps {
 }
 
 // Basic formatters for the chart values
-const dollarFormatter = (value: number) => `$ ${Intl.NumberFormat("us").format(value).toString()}`;
+const dollarFormatter = (value: number) =>
+  `$ ${Intl.NumberFormat("us").format(value).toString()}`;
 
-const numberFormatter = (value: number) => `${Intl.NumberFormat("us").format(value).toString()}`;
+const numberFormatter = (value: number) =>
+  `${Intl.NumberFormat("us").format(value).toString()}`;
 
 const formatDate = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -916,14 +979,25 @@ export function ChartView({ revenue, orders, customers }: IProps) {
     <Card>
       <div className="md:flex justify-between">
         <div>
-          <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
+          <Flex
+            justifyContent="start"
+            className="space-x-0.5"
+            alignItems="center"
+          >
             <Title> Performance History </Title>
-            <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows daily performance change" />
+            <Icon
+              icon={InformationCircleIcon}
+              variant="simple"
+              tooltip="Shows daily performance change"
+            />
           </Flex>
           <Text> Daily increase or decrease per domain </Text>
         </div>
         <div className="mt-6 md:mt-0">
-          <TabGroup index={selectedKpi} onIndexChange={(idx) => setSelectedKpi(idx)}>
+          <TabGroup
+            index={selectedKpi}
+            onIndexChange={(idx) => setSelectedKpi(idx)}
+          >
             <TabList>
               <Tab>Revenue</Tab>
               <Tab>Orders</Tab>
@@ -1033,7 +1107,7 @@ Your dashboard Overview section should now look like the image below.
 
 ### Step 4 — Create Details section of the dashboard
 
-We have finished creating the Overview section. Let's create the Details section of the dashboard. When you click the Details button, refine renders a blank placeholder component which, at the moment, looks like the image below.
+We have finished creating the Overview section. Let's create the Details section of the dashboard. When you click the Details button, Refine renders a blank placeholder component which, at the moment, looks like the image below.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="react admin dashboard" />
 
@@ -1149,7 +1223,9 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
         accessorKey: "status",
         cell: function render({ row, getValue }) {
           const deltaType = getDeltaType(row?.original?.statusId ?? 0);
-          return <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>;
+          return (
+            <BadgeDelta deltaType={deltaType}>{getValue<any>()}</BadgeDelta>
+          );
         },
         header: "Delivery Status",
         enableColumnFilter: false,
@@ -1228,7 +1304,11 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
     <Card>
       <Flex justifyContent="start" className="space-x-0.5" alignItems="center">
         <Title>Customer Orders</Title>
-        <Icon icon={InformationCircleIcon} variant="simple" tooltip="Shows customer orders" />
+        <Icon
+          icon={InformationCircleIcon}
+          variant="simple"
+          tooltip="Shows customer orders"
+        />
       </Flex>
 
       <Table>
@@ -1239,10 +1319,15 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
                 <TableHeaderCell key={header.id}>
                   {!header.isPlaceholder && (
                     <>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                       {header.column.getCanFilter() ? (
                         <TextInput
-                          value={(header.column.getFilterValue() as string) ?? ""}
+                          value={
+                            (header.column.getFilterValue() as string) ?? ""
+                          }
                           placeholder={`Enter ${header.column.id}`}
                           onChange={(e) => {
                             const { value } = e.target;
@@ -1261,13 +1346,19 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           {getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                <TableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Flex className="mt-2  flex-wrap gap-2" justifyContent="between" alignItems="center">
+      <Flex
+        className="mt-2  flex-wrap gap-2"
+        justifyContent="between"
+        alignItems="center"
+      >
         <Flex className="w-4/8 flex-wrap gap-2">
           <Button
             size="xs"
@@ -1324,7 +1415,10 @@ export const Details: React.FC<IResourceComponentsProps> = () => {
           }}
         />
 
-        <Select className="w-2/8" onValueChange={(value) => setPageSize(Number(value))}>
+        <Select
+          className="w-2/8"
+          onValueChange={(value) => setPageSize(Number(value))}
+        >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <SelectItem key={pageSize} value={`${pageSize}`}>
               {pageSize}
@@ -1385,19 +1479,19 @@ The Details section of your dashboard should now look like the image below.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="react admin dashboard" />
 
-You have just built a simple dashboard using refine and Tremor. To explore more on what you can do with refine or Tremor, check out the [refine](https://refine.dev/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
+You have just built a simple dashboard using Refine and Tremor. To explore more on what you can do with Refine or Tremor, check out the [Refine](https://refine.dev/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
 
 ## Conclusion
 
-Using front-end frameworks, such as refine or Tremor, is inevitable when building complex data-intensive and interactive front-end applications such as admin panels.
+Using front-end frameworks, such as Refine or Tremor, is inevitable when building complex data-intensive and interactive front-end applications such as admin panels.
 
-They significantly reduce development time and improve your development experience. With tools such as create refine-app and refine.new platform in the refine ecosystem, you can create a production-ready application within minutes.
+They significantly reduce development time and improve your development experience. With tools such as create refine-app and refine.new platform in the Refine ecosystem, you can create a production-ready application within minutes.
 
-A production-ready refine application comes with an out-of-the-box setup for state management, route management, internationalization, authentication, and integration for the most popular cloud platforms like Firebase and Supabase.
+A production-ready Refine application comes with an out-of-the-box setup for state management, route management, internationalization, authentication, and integration for the most popular cloud platforms like Firebase and Supabase.
 
 On the other hand, Tremor is a new but promising React framework for building dashboards. You can use it with most React frameworks like Next, Redwood, and refine.
 
-As highlighted above, when you integrate refine with Tremor, you can build complex applications fast. Both frameworks are free and open source with permissible licenses.
+As highlighted above, when you integrate Refine with Tremor, you can build complex applications fast. Both frameworks are free and open source with permissible licenses.
 
 <br/>
 <div>

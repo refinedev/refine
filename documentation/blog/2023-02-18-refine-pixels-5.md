@@ -1,29 +1,29 @@
 ---
-title: Creating an Admin Dashboard with refine
+title: Creating an Admin Dashboard with Refine
 description: We'll be building a admin backend app for the Pixels client app.
 slug: refine-pixels-5
 authors: abdullah_numan
-tags: [refine-week, refine, supabase]
+tags: [refine-week, Refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-pixels-5%2Fsocial.png
 hide_table_of_contents: false
 ---
 
-This post is the first part of an admin dashboard app built using [**refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
+This post is the first part of an admin dashboard app built using [**Refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
 
-This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities within a week.
+This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities within a week.
 
 - You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
 - Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
 
 ### RefineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 - Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
 - Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 5 - [Creating an Admin Dashboard with Refine](https://refine.dev/blog/refine-pixels-5/)
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 7 - [Audit Log With Refine](https://refine.dev/blog/refine-pixels-7/)
 
 ## Overview
 
@@ -35,7 +35,7 @@ The dashboard shows a list of all users. It also has a list for canvases.
 
 The user list is read only and the canvas list will eventually allow editors and admins - particular to their roles - to manipulate their subject data. We will implement proper authorization for editor and admin roles on Day 6, but for now we will implement relevant CRUD operations that will apply to any authenticated user.
 
-For the API requests, we will be using the `dataProvider` object **refine** gave us for **Supabase**. Since we covered CRUD related concepts and architecture in depth on [Day 3](https://refine.dev/blog/refine-pixels-3/), in this post, we'll focus more on the **Ant Design** components side.
+For the API requests, we will be using the `dataProvider` object **Refine** gave us for **Supabase**. Since we covered CRUD related concepts and architecture in depth on [Day 3](https://refine.dev/blog/refine-pixels-3/), in this post, we'll focus more on the **Ant Design** components side.
 
 Let's begin with the project set up.
 
@@ -50,7 +50,7 @@ npm create refine-app@latest pixels-admin
 We will use **Supabase** for our backend, and **Ant Design** for our UI. We want to be able to customize the **Ant Design** theme and layout. So, we have the below answers related to **Supabase** and **Ant Design**:
 
 ```bash
-✔ Choose a project template · refine(Vite)
+✔ Choose a project template · Refine(Vite)
 ✔ What would you like to name your project?: · pixels-admin
 ✔ Choose your backend service to connect: · Supabase
 ✔ Do you want to use a UI Framework?: · Ant Design
@@ -59,7 +59,7 @@ We will use **Supabase** for our backend, and **Ant Design** for our UI. We want
 ✔ Choose a package manager: · npm
 ```
 
-After completion of the initialization process, we should have the same **refine**, **Supabase** and **Ant Design** boilerplate code generated for us like before.
+After completion of the initialization process, we should have the same **Refine**, **Supabase** and **Ant Design** boilerplate code generated for us like before.
 
 We'll start tweaking the relevant code straight away as we add features to our app - since we have already explored the boilerplate code in significant depth on Day 2 in [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/) and on Day 3 in [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/). This will give us more time to focus on related **Ant Design** components and what they handle for us in the background.
 
@@ -84,7 +84,10 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
+import routerBindings, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -172,8 +175,17 @@ After creating files above you need to add some imports and [routes](/docs/packa
 <p>
 
 ```tsx title="App.tsx"
-import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  Authenticated,
+  CanAccess,
+  GitHubBanner,
+  Refine,
+} from "@refinedev/core";
+import {
+  ErrorComponent,
+  ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -187,7 +199,11 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
+import {
+  auditLogProvider,
+  authProvider,
+  accessControlProvider,
+} from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
@@ -254,9 +270,18 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/login"
+                element={<AuthPage type="login" registerLink={false} />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -316,24 +341,40 @@ export const UserList = () => {
       <Table {...tableProps} rowKey={"id"}>
         <Table.Column
           dataIndex="avatar_url"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>
+          }
           render={(_, record: TUser) => (
-            <Avatar icon={<UserOutlined />} src={record.avatar_url} size={{ xs: 24, sm: 32, md: 40 }} />
+            <Avatar
+              icon={<UserOutlined />}
+              src={record.avatar_url}
+              size={{ xs: 24, sm: 32, md: 40 }}
+            />
           )}
         />
         <Table.Column
           dataIndex="id"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>}
-          render={(_, record: TUser) => <p style={{ textAlign: "center" }}>{record?.id}</p>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>
+          }
+          render={(_, record: TUser) => (
+            <p style={{ textAlign: "center" }}>{record?.id}</p>
+          )}
         />
         <Table.Column
           dataIndex="email"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>
+          }
           render={() => <p style={{ textAlign: "center" }}>Not listed</p>}
         />
         <Table.Column
           dataIndex="full_name"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Full Name</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
+              Full Name
+            </h4>
+          }
           render={(_, record: TUser) =>
             record.full_name ? (
               <p
@@ -357,7 +398,11 @@ export const UserList = () => {
         />
         <Table.Column
           dataIndex="username"
-          title={<h4 style={{ textAlign: "center", fontWeight: "bold" }}>Username</h4>}
+          title={
+            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
+              Username
+            </h4>
+          }
           render={(_, record: TUser) =>
             record.username ? (
               <p
@@ -391,15 +436,15 @@ export const UserList = () => {
 
 The components tree looks very plain, but there is plenty going on in there. Firstly, the `useTable()` hook that handles all the data fetching stuff with **React Query** in the background. The `<List />` and `<Table />` components also do intense secret service for us. We'll go over them one by one below.
 
-### refine Ant Design `useTable()` Hook
+### Refine Ant Design `useTable()` Hook
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) is a **refine** **Ant Design** hook served to us from the `@refinedev/antd` package. As we can see above, it returns us a `tableProps` object:
+[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) is a **Refine** **Ant Design** hook served to us from the `@refinedev/antd` package. As we can see above, it returns us a `tableProps` object:
 
 ```tsx
 const { tableProps } = useTable<TUser>();
 ```
 
-`useTable()` is built on top of **refine** core's [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
+`useTable()` is built on top of **Refine** core's [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
 
 Here, we did not need to set any configuration for our API request and the returned response. The `resource.name` was figured by `useTable` from the `resources` prop that was passed to `<Refine />`. It is possible to set options for **sorting**, **filtering**, **pagination**, etc. with an object passed to `useTable()`.
 
@@ -407,11 +452,11 @@ For all the features that come with the `useTable()` hook, visit [the API refere
 
 The properties of the `tableProps` object produced are intended to be passed to a `<Table />` component, which we'll consider after `<List />`.
 
-### refine Ant Design `<List />` Component
+### Refine Ant Design `<List />` Component
 
 The [`<List />`](https://refine.dev/docs/api-reference/antd/components/basic-views/list/) component represents a list view. It is a wrapper around the contents of the list. It accepts a number of relevant props and comes with their sensible defaults, such as for `resource` name and `title` of the page.
 
-In our case, we don't have to pass in any prop because **refine** figures the `resource` name and `title` from the `resources` prop. In other words, the `<List />` component above is conveniently equivalent to this:
+In our case, we don't have to pass in any prop because **Refine** figures the `resource` name and `title` from the `resources` prop. In other words, the `<List />` component above is conveniently equivalent to this:
 
 ```tsx
 <List resource="users" title="Users">
@@ -421,9 +466,9 @@ In our case, we don't have to pass in any prop because **refine** figures the `r
 
 For more on the usage of `<List />`, look into [the details here](https://refine.dev/docs/api-reference/antd/components/basic-views/list/).
 
-### refine Ant Design `<Table />` Component
+### Refine Ant Design `<Table />` Component
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **refine** makes `<Table />` available to us with the `@refinedev/antd` module.
+[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **Refine** makes `<Table />` available to us with the `@refinedev/antd` module.
 
 Besides passing in the `tableProps` object to `<Table />`, we are required to provide a unique `rowKey` prop to identify each row in the table:
 
@@ -435,7 +480,7 @@ Besides passing in the `tableProps` object to `<Table />`, we are required to pr
 
 The records inside `tableProps` are placed inside `<Table.Column />`s of a row of the table - one record per row. If you're new to this, feel free to dive into the [**Ant Design** docs for `<Table />`](https://ant.design/components/table).
 
-### refine Ant Design `<Table.Column />` Children
+### Refine Ant Design `<Table.Column />` Children
 
 `<Table.Column />`s represent individual columns in the table. A column header is set by `<Table.Column />`'s `title` prop. The value of a field in a record is set by the `dataIndex` prop. For example, for the following column, `dataIndex="email"` tells our app to fill the `Email` column of a row associated with a particular `record` with the value of the record's `email` property:
 
@@ -477,7 +522,7 @@ return (
 
 After adding resources we need to create routes for them. For the routes, we'll use the `<UserList/>` and `<CanvasList/>` components we created earlier.
 
-[Refer to the CRUD Pages tutorial for more information. →](/docs/tutorial/adding-crud-pages/antd/index)
+[Refer to the CRUD Pages tutorial for more information. →](/docs/ui-integrations/ant-design/introduction)
 
 ```tsx title="App.tsx"
 // ...
@@ -521,9 +566,18 @@ function App() {
               </Authenticated>
             }
           >
-            <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-            <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-            <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+            <Route
+              path="/login"
+              element={<AuthPage type="login" registerLink={false} />}
+            />
+            <Route
+              path="/forgot-password"
+              element={<AuthPage type="forgotPassword" />}
+            />
+            <Route
+              path="/update-password"
+              element={<AuthPage type="updatePassword" />}
+            />
           </Route>
 
           <Route
@@ -558,8 +612,17 @@ Remember, we've already replaced `App.tx` code with the following:
 <p>
 
 ```tsx title="App.tsx"
-import { Authenticated, CanAccess, GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  Authenticated,
+  CanAccess,
+  GitHubBanner,
+  Refine,
+} from "@refinedev/core";
+import {
+  ErrorComponent,
+  ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import routerBindings, {
@@ -573,7 +636,11 @@ import "@refinedev/antd/dist/reset.css";
 
 import { Title } from "./components/layout";
 import { supabaseClient } from "./utility";
-import { auditLogProvider, authProvider, accessControlProvider } from "./providers";
+import {
+  auditLogProvider,
+  authProvider,
+  accessControlProvider,
+} from "./providers";
 import { CanvasList, UserList } from "./pages";
 import { AuthPage } from "./pages/auth";
 
@@ -640,9 +707,18 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route path="/login" element={<AuthPage type="login" registerLink={false} />} />
-              <Route path="/forgot-password" element={<AuthPage type="forgotPassword" />} />
-              <Route path="/update-password" element={<AuthPage type="updatePassword" />} />
+              <Route
+                path="/login"
+                element={<AuthPage type="login" registerLink={false} />}
+              />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
             </Route>
 
             <Route
@@ -700,7 +776,7 @@ password: demodemo
 
 <br />
 
-## Editable Table Using refine and Ant Design
+## Editable Table Using Refine and Ant Design
 
 For our `<CanvasList />` view, we want to allow **editors** and **admins** to promote or delete a `canvas` item. This means, we need to be able to send `POST`, `PUT`/`PATCH` and `DELETE` requests. `@refinedev/antd`'s `useEditableTable()` hook makes life beautiful for us.
 
@@ -713,7 +789,12 @@ We have a `useEditableTable()` hook in action inside our `<CanvasList />` compon
 ```tsx title="pages/canvases/list.tsx"
 import { useState } from "react";
 import { useUpdate } from "@refinedev/core";
-import { List, useEditableTable, useModal, DeleteButton } from "@refinedev/antd";
+import {
+  List,
+  useEditableTable,
+  useModal,
+  DeleteButton,
+} from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
 import { TCanvas } from "../../types/canvas";
@@ -917,7 +998,7 @@ export const CanvasList = () => {
 </p>
 </details>
 
-### refine Ant Design `useEditableTable()` Hook
+### Refine Ant Design `useEditableTable()` Hook
 
 The `useEditableTable()` hook is the extension of `@refinedev/antd`'s `useTable()` hook. It returns a `formProps` object that we can pass to `<Form />` components in order to handle form actions, loading and displaying success and error messages.
 
@@ -935,7 +1016,7 @@ The items of `formProps` object are passed to the `<Form />` component:
 
 We can do much more with the `useEditableTable()` hook, like activating editing fields when a row is clicked . Here's the elaborate [documentation for `useEditableTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useEditableTable/)
 
-### refine Ant Design `<DeleteButton />`
+### Refine Ant Design `<DeleteButton />`
 
 Thanks to the `formProps` being passed to `<Form />`, implementing `delete` action becomes a piece of cake:
 
@@ -1053,7 +1134,7 @@ In this post, we initialized an admin dashboard app for our **Pixels** client ap
 
 Inside the lists, we fetched data from these resources and rendered them inside tables. We implemented two types of tables using two distinct `@refinedev/antd` hooks: `useTable()` for regular tables and `useEditableTable()` that allows data in the table to be mutated.
 
-These hooks are supported by **refine** core's `useMany()` hook, which uses the `getMany()` data provider method to interact with external API.
+These hooks are supported by **Refine** core's `useMany()` hook, which uses the `getMany()` data provider method to interact with external API.
 
 In the UI side, these hooks automatically make available appropriate props to be passed to `<Table />` and `<Form />` components.
 

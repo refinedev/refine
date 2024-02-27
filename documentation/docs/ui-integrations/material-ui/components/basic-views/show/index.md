@@ -11,7 +11,13 @@ We will show what `<Show>` does using properties with examples.
 // visible-block-start
 import React from "react";
 import { useShow, useOne } from "@refinedev/core";
-import { Show, NumberField, TextFieldComponent as TextField, MarkdownField, DateField } from "@refinedev/mui";
+import {
+  Show,
+  NumberField,
+  TextFieldComponent as TextField,
+  MarkdownField,
+  DateField,
+} from "@refinedev/mui";
 import { Stack, Typography } from "@mui/material";
 
 const SampleShow = () => {
@@ -238,7 +244,10 @@ const PostShow: React.FC = () => {
     <Show
       /* highlight-start */
       canDelete={permissionsData?.includes("admin")}
-      canEdit={permissionsData?.includes("editor") || permissionsData?.includes("admin")}
+      canEdit={
+        permissionsData?.includes("editor") ||
+        permissionsData?.includes("admin")
+      }
       /* highlight-end */
     >
       <p>Rest of your page here</p>
@@ -718,7 +727,13 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 // visible-block-start
-import { Show, ListButton, EditButton, DeleteButton, RefreshButton } from "@refinedev/mui";
+import {
+  Show,
+  ListButton,
+  EditButton,
+  DeleteButton,
+  RefreshButton,
+} from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostShow: React.FC = () => {
@@ -727,12 +742,23 @@ const PostShow: React.FC = () => {
   return (
     <Show
       // highlight-start
-      headerButtons={({ deleteButtonProps, editButtonProps, listButtonProps, refreshButtonProps }) => (
+      headerButtons={({
+        deleteButtonProps,
+        editButtonProps,
+        listButtonProps,
+        refreshButtonProps,
+      }) => (
         <>
           <Button type="primary">Custom Button</Button>
-          {listButtonProps && <ListButton {...listButtonProps} meta={{ foo: "bar" }} />}
-          {editButtonProps && <EditButton {...editButtonProps} meta={{ foo: "bar" }} />}
-          {deleteButtonProps && <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />}
+          {listButtonProps && (
+            <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
+          )}
+          {editButtonProps && (
+            <EditButton {...editButtonProps} meta={{ foo: "bar" }} />
+          )}
+          {deleteButtonProps && (
+            <DeleteButton {...deleteButtonProps} meta={{ foo: "bar" }} />
+          )}
           <RefreshButton {...refreshButtonProps} meta={{ foo: "bar" }} />
         </>
       )}
@@ -941,13 +967,14 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
   const { dataGridProps } = RefineMui.useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = RefineCore.useMany({
-    resource: "categories",
-    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-    queryOptions: {
-      enabled: !!dataGridProps?.rows,
-    },
-  });
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    RefineCore.useMany({
+      resource: "categories",
+      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+      queryOptions: {
+        enabled: !!dataGridProps?.rows,
+      },
+    });
 
   const columns = React.useMemo<GridColDef<any>[]>(
     () => [
@@ -972,7 +999,11 @@ const SampleList = () => {
         },
         minWidth: 300,
         renderCell: function render({ value }) {
-          return categoryIsLoading ? <>Loading...</> : categoryData?.data?.find((item) => item.id === value)?.title;
+          return categoryIsLoading ? (
+            <>Loading...</>
+          ) : (
+            categoryData?.data?.find((item) => item.id === value)?.title
+          );
         },
       },
       {
@@ -1012,7 +1043,9 @@ const Wrapper = ({ children }) => {
   return (
     <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
       <MuiMaterial.CssBaseline />
-      <MuiMaterial.GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+      <MuiMaterial.GlobalStyles
+        styles={{ html: { WebkitFontSmoothing: "auto" } }}
+      />
       {children}
     </MuiMaterial.ThemeProvider>
   );

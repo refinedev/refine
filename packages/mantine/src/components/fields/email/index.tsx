@@ -10,9 +10,9 @@ import { EmailFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/email} for more details.
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
-    return (
-        <Anchor href={`mailto:${value}`} {...rest}>
-            {value}
-        </Anchor>
-    );
+  return (
+    <Anchor href={`mailto:${value}`} {...rest}>
+      {value}
+    </Anchor>
+  );
 };

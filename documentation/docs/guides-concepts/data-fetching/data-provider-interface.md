@@ -1,5 +1,12 @@
 ```ts
-import { DataProvider, HttpError, Pagination, CrudSorting, CrudFilters, CrudOperators } from "@refinedev/core";
+import {
+  DataProvider,
+  HttpError,
+  Pagination,
+  CrudSorting,
+  CrudFilters,
+  CrudOperators,
+} from "@refinedev/core";
 import { stringify } from "query-string";
 import axios, { AxiosInstance } from "axios";
 
@@ -102,9 +109,12 @@ export const dataProvider = (
 
     const queryFilters = generateFilter(filters);
 
-    const { data, headers } = await httpClient[requestMethod](`${url}?${stringify(query)}&${stringify(queryFilters)}`, {
-      headers: headersFromMeta,
-    });
+    const { data, headers } = await httpClient[requestMethod](
+      `${url}?${stringify(query)}&${stringify(queryFilters)}`,
+      {
+        headers: headersFromMeta,
+      },
+    );
 
     const total = +headers["x-total-count"];
 
@@ -155,7 +165,9 @@ const generateFilter = (filters?: CrudFilters) => {
   if (filters) {
     filters.map((filter) => {
       if (filter.operator === "or" || filter.operator === "and") {
-        throw new Error(`[@refinedev/simple-rest]: /docs/data/data-provider#creating-a-data-provider`);
+        throw new Error(
+          `[@refinedev/simple-rest]: /docs/data/data-provider#creating-a-data-provider`,
+        );
       }
 
       if ("field" in filter) {

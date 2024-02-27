@@ -1,83 +1,83 @@
 import {
-    useMutation,
-    UseMutationOptions,
-    UseMutationResult,
+  useMutation,
+  UseMutationOptions,
+  UseMutationResult,
 } from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
 
 import {
-    useDataProvider,
-    useHandleNotification,
-    useTranslate,
-    useOnError,
-    useMeta,
+  useDataProvider,
+  useHandleNotification,
+  useTranslate,
+  useOnError,
+  useMeta,
 } from "@hooks";
 import {
-    CreateResponse,
-    BaseRecord,
-    HttpError,
-    SuccessErrorNotification,
-    MetaQuery,
-    Prettify,
+  CreateResponse,
+  BaseRecord,
+  HttpError,
+  SuccessErrorNotification,
+  MetaQuery,
+  Prettify,
 } from "../../interfaces";
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
-    useLoadingOvertime,
-    UseLoadingOvertimeOptionsProps,
-    UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { useKeys } from "@hooks/useKeys";
 
 interface UseCustomMutationConfig {
-    headers?: {};
+  headers?: {};
 }
 
 type useCustomMutationParams<TData, TError, TVariables> = {
-    url: string;
-    method: "post" | "put" | "patch" | "delete";
-    values: TVariables;
-    /**
-     * Meta data for `dataProvider`
-     */
-    meta?: MetaQuery;
-    /**
-     * Meta data for `dataProvider`
-     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    dataProviderName?: string;
-    config?: UseCustomMutationConfig;
+  url: string;
+  method: "post" | "put" | "patch" | "delete";
+  values: TVariables;
+  /**
+   * Meta data for `dataProvider`
+   */
+  meta?: MetaQuery;
+  /**
+   * Meta data for `dataProvider`
+   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+   */
+  metaData?: MetaQuery;
+  dataProviderName?: string;
+  config?: UseCustomMutationConfig;
 } & SuccessErrorNotification<
-    CreateResponse<TData>,
-    TError,
-    Prettify<UseCustomMutationConfig & MetaQuery>
+  CreateResponse<TData>,
+  TError,
+  Prettify<UseCustomMutationConfig & MetaQuery>
 >;
 
 export type UseCustomMutationReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
 > = UseMutationResult<
-    CreateResponse<TData>,
-    TError,
-    useCustomMutationParams<TData, TError, TVariables>,
-    unknown
+  CreateResponse<TData>,
+  TError,
+  useCustomMutationParams<TData, TError, TVariables>,
+  unknown
 >;
 
 export type UseCustomMutationProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
 > = {
-    mutationOptions?: Omit<
-        UseMutationOptions<
-            CreateResponse<TData>,
-            TError,
-            useCustomMutationParams<TData, TError, TVariables>,
-            unknown
-        >,
-        "mutationFn" | "onError" | "onSuccess"
-    >;
+  mutationOptions?: Omit<
+    UseMutationOptions<
+      CreateResponse<TData>,
+      TError,
+      useCustomMutationParams<TData, TError, TVariables>,
+      unknown
+    >,
+    "mutationFn" | "onError" | "onSuccess"
+  >;
 } & UseLoadingOvertimeOptionsProps;
 
 /**
@@ -94,130 +94,130 @@ export type UseCustomMutationProps<
  */
 
 export const useCustomMutation = <
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = {},
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
 >({
-    mutationOptions,
-    overtimeOptions,
+  mutationOptions,
+  overtimeOptions,
 }: UseCustomMutationProps<
-    TData,
-    TError,
-    TVariables
+  TData,
+  TError,
+  TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> &
-    UseLoadingOvertimeReturnType => {
-    const authProvider = useActiveAuthProvider();
-    const { mutate: checkError } = useOnError({
-        v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
-    const handleNotification = useHandleNotification();
-    const dataProvider = useDataProvider();
-    const translate = useTranslate();
-    const getMeta = useMeta();
-    const { keys, preferLegacyKeys } = useKeys();
+  UseLoadingOvertimeReturnType => {
+  const authProvider = useActiveAuthProvider();
+  const { mutate: checkError } = useOnError({
+    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+  });
+  const handleNotification = useHandleNotification();
+  const dataProvider = useDataProvider();
+  const translate = useTranslate();
+  const getMeta = useMeta();
+  const { keys, preferLegacyKeys } = useKeys();
 
-    const mutation = useMutation<
-        CreateResponse<TData>,
-        TError,
-        useCustomMutationParams<TData, TError, TVariables>,
-        unknown
-    >(
-        ({
-            url,
-            method,
-            values,
-            meta,
-            metaData,
-            dataProviderName,
-            config,
-        }: useCustomMutationParams<TData, TError, TVariables>) => {
-            const combinedMeta = getMeta({
-                meta: pickNotDeprecated(meta, metaData),
-            });
+  const mutation = useMutation<
+    CreateResponse<TData>,
+    TError,
+    useCustomMutationParams<TData, TError, TVariables>,
+    unknown
+  >(
+    ({
+      url,
+      method,
+      values,
+      meta,
+      metaData,
+      dataProviderName,
+      config,
+    }: useCustomMutationParams<TData, TError, TVariables>) => {
+      const combinedMeta = getMeta({
+        meta: pickNotDeprecated(meta, metaData),
+      });
 
-            const { custom } = dataProvider(dataProviderName);
+      const { custom } = dataProvider(dataProviderName);
 
-            if (custom) {
-                return custom<TData>({
-                    url,
-                    method,
-                    payload: values,
-                    meta: combinedMeta,
-                    metaData: combinedMeta,
-                    headers: { ...config?.headers },
-                });
-            }
+      if (custom) {
+        return custom<TData>({
+          url,
+          method,
+          payload: values,
+          meta: combinedMeta,
+          metaData: combinedMeta,
+          headers: { ...config?.headers },
+        });
+      }
 
-            throw Error("Not implemented custom on data provider.");
-        },
+      throw Error("Not implemented custom on data provider.");
+    },
+    {
+      onSuccess: (
+        data,
         {
-            onSuccess: (
-                data,
-                {
-                    successNotification: successNotificationFromProp,
-                    config,
-                    meta,
-                    metaData,
-                },
-            ) => {
-                const notificationConfig =
-                    typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data, {
-                              ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
-                          })
-                        : successNotificationFromProp;
-
-                handleNotification(notificationConfig);
-            },
-            onError: (
-                err: TError,
-                {
-                    errorNotification: errorNotificationFromProp,
-                    method,
-                    config,
-                    meta,
-                    metaData,
-                },
-            ) => {
-                checkError(err);
-
-                const notificationConfig =
-                    typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err, {
-                              ...config,
-                              ...(pickNotDeprecated(meta, metaData) || {}),
-                          })
-                        : errorNotificationFromProp;
-
-                handleNotification(notificationConfig, {
-                    key: `${method}-notification`,
-                    message: translate(
-                        "notifications.error",
-                        { statusCode: err.statusCode },
-                        `Error (status code: ${err.statusCode})`,
-                    ),
-                    description: err.message,
-                    type: "error",
-                });
-            },
-            mutationKey: keys()
-                .data()
-                .mutation("customMutation")
-                .get(preferLegacyKeys),
-            ...mutationOptions,
-            meta: {
-                ...mutationOptions?.meta,
-                ...getXRay("useCustomMutation", preferLegacyKeys),
-            },
+          successNotification: successNotificationFromProp,
+          config,
+          meta,
+          metaData,
         },
-    );
+      ) => {
+        const notificationConfig =
+          typeof successNotificationFromProp === "function"
+            ? successNotificationFromProp(data, {
+                ...config,
+                ...(pickNotDeprecated(meta, metaData) || {}),
+              })
+            : successNotificationFromProp;
 
-    const { elapsedTime } = useLoadingOvertime({
-        isLoading: mutation.isLoading,
-        interval: overtimeOptions?.interval,
-        onInterval: overtimeOptions?.onInterval,
-    });
+        handleNotification(notificationConfig);
+      },
+      onError: (
+        err: TError,
+        {
+          errorNotification: errorNotificationFromProp,
+          method,
+          config,
+          meta,
+          metaData,
+        },
+      ) => {
+        checkError(err);
 
-    return { ...mutation, overtime: { elapsedTime } };
+        const notificationConfig =
+          typeof errorNotificationFromProp === "function"
+            ? errorNotificationFromProp(err, {
+                ...config,
+                ...(pickNotDeprecated(meta, metaData) || {}),
+              })
+            : errorNotificationFromProp;
+
+        handleNotification(notificationConfig, {
+          key: `${method}-notification`,
+          message: translate(
+            "notifications.error",
+            { statusCode: err.statusCode },
+            `Error (status code: ${err.statusCode})`,
+          ),
+          description: err.message,
+          type: "error",
+        });
+      },
+      mutationKey: keys()
+        .data()
+        .mutation("customMutation")
+        .get(preferLegacyKeys),
+      ...mutationOptions,
+      meta: {
+        ...mutationOptions?.meta,
+        ...getXRay("useCustomMutation", preferLegacyKeys),
+      },
+    },
+  );
+
+  const { elapsedTime } = useLoadingOvertime({
+    isLoading: mutation.isLoading,
+    interval: overtimeOptions?.interval,
+    onInterval: overtimeOptions?.onInterval,
+  });
+
+  return { ...mutation, overtime: { elapsedTime } };
 };

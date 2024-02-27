@@ -3,7 +3,7 @@ title: Creating a React search bar and content filtering components
 description: Article about how to create Search bar and filter component in React
 slug: react-search-bar-and-filtering
 authors: madars_biss
-tags: [react, refine, tutorial]
+tags: [react, Refine, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/refine-filter-social.png
 hide_table_of_contents: false
 ---
@@ -18,9 +18,9 @@ You will often meet various implementations in e-commerce stores, human resource
 
 Steps we'll cover:
 
-- [Why refine framework?](#why-refine-framework)
+- [Why Refine framework?](#why-refine-framework)
 - [App wireframe](#app-wireframe)
-- [Setting up the refine](#setting-up-the-refine)
+- [Setting up the Refine](#setting-up-the-refine)
 - [Add global styling](#add-global-styling)
 - [Creating the components](#creating-the-components)
   - [Creating a filter box](#creating-a-filter-box)
@@ -34,17 +34,17 @@ Today we will be building a filtering system that will let us sort the results t
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/final-app.jpeg" alt="Final app view" />
 
-We will use the [refine](https://github.com/refinedev/refine) framework, which is based on React and allows users to build tools rapidly.
+We will use the [Refine](https://github.com/refinedev/refine) framework, which is based on React and allows users to build tools rapidly.
 
-## Why refine framework?
+## Why Refine framework?
 
-Every refine project is easy to set up since it allows users to use the interactive terminal wizard. It takes less than a minute, with complete user control and no trade-offs between speed and flexibility.
+Every Refine project is easy to set up since it allows users to use the interactive terminal wizard. It takes less than a minute, with complete user control and no trade-offs between speed and flexibility.
 
-refine includes a built-in data provider that enables users to connect to any API. The data providers come with built-in support for pagination, sorting, filtering, and other features. refine also provides some useful hooks and components that make it easier to build the app.
+Refine includes a built-in data provider that enables users to connect to any API. The data providers come with built-in support for pagination, sorting, filtering, and other features. Refine also provides some useful hooks and components that make it easier to build the app.
 
-Just like data providers, refine also provides providers for authentication, authorization, and internationalization etc. These providers are optional and can be easily replaced with custom ones.
+Just like data providers, Refine also provides providers for authentication, authorization, and internationalization etc. These providers are optional and can be easily replaced with custom ones.
 
-refine is a headless framework, meaning it does not include any UI components by default. This allows users to use any UI library they prefer or even create their own.
+Refine is a headless framework, meaning it does not include any UI components by default. This allows users to use any UI library they prefer or even create their own.
 
 ## App wireframe
 
@@ -57,7 +57,7 @@ When putting everything into the wireframe, we get the following schema:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.jpeg" alt="wireframe" />
 
-## Setting up the refine
+## Setting up the Refine
 
 We'll use the `npm create refine-app` command to interactively initialize the project, which will let us choose the project name, package manager, and other options.
 
@@ -90,7 +90,7 @@ After the app has started, you should see the following page:
 
 ## Add global styling
 
-refine is a headless Framework, so it does not include any UI components by default. However, refine supports all major UI libraries, including [Ant Design](https://ant.design/), [Material UI](https://material-ui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
+Refine is a headless Framework, so it does not include any UI components by default. However, Refine supports all major UI libraries, including [Ant Design](https://ant.design/), [Material UI](https://material-ui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 For this tutorial, we selected headless option, so we will create our own UI components. Let's start by adding some global styles.
 
@@ -133,7 +133,8 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/filter/index.tsx"
 import styles from "./index.module.css";
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+const capitalize = (str: string) =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const Filter = ({
   title,
@@ -145,11 +146,21 @@ export const Filter = ({
   onClick: React.MouseEventHandler;
 }) => {
   return (
-    <div className={styles.wrapper} onClick={onClick} style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}>
+    <div
+      className={styles.wrapper}
+      onClick={onClick}
+      style={{ backgroundColor: `${isActive ? "lavender" : "white"}` }}
+    >
       <div
         className={styles.circle}
         style={{
-          borderColor: `${title === "draft" ? "gold" : title === "rejected" ? "tomato" : "limegreen"}`,
+          borderColor: `${
+            title === "draft"
+              ? "gold"
+              : title === "rejected"
+              ? "tomato"
+              : "limegreen"
+          }`,
         }}
       ></div>
       <h3 className={styles.title}>{capitalize(title)}</h3>
@@ -229,8 +240,19 @@ After creating the files, we will add the following code to the `src/components/
 ```typescript title="src/components/search/index.tsx"
 import styles from "./index.module.css";
 
-export const Search = ({ onChange }: { onChange: React.ChangeEventHandler }) => {
-  return <input className={styles.search} type="text" onChange={onChange} placeholder="Search by the title ..." />;
+export const Search = ({
+  onChange,
+}: {
+  onChange: React.ChangeEventHandler;
+}) => {
+  return (
+    <input
+      className={styles.search}
+      type="text"
+      onChange={onChange}
+      placeholder="Search by the title ..."
+    />
+  );
 };
 ```
 
@@ -272,11 +294,22 @@ import { motion } from "framer-motion";
 
 export const Card = ({ title, status }: { title: string; status: string }) => {
   return (
-    <motion.div className={styles.wrapper} animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }}>
+    <motion.div
+      className={styles.wrapper}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <div
         className={styles.circle}
         style={{
-          borderColor: `${status === "draft" ? "gold" : status === "rejected" ? "tomato" : "limegreen"}`,
+          borderColor: `${
+            status === "draft"
+              ? "gold"
+              : status === "rejected"
+              ? "tomato"
+              : "limegreen"
+          }`,
         }}
       ></div>
       <h3 className={styles.title}>{title}</h3>
@@ -376,7 +409,9 @@ export const Posts = () => {
               isActive={filter === activeFilter}
               onClick={(e: React.MouseEvent) => {
                 const el = e.target as HTMLElement;
-                el.textContent?.toLowerCase() !== activeFilter ? setActiveFilter(filter) : setActiveFilter("");
+                el.textContent?.toLowerCase() !== activeFilter
+                  ? setActiveFilter(filter)
+                  : setActiveFilter("");
               }}
             />
           );
@@ -389,7 +424,9 @@ export const Posts = () => {
       />
       <AnimatePresence>
         {posts
-          ?.filter((el) => el.title.toLowerCase().includes(inputValue.toLowerCase()))
+          ?.filter((el) =>
+            el.title.toLowerCase().includes(inputValue.toLowerCase()),
+          )
           .filter((e) => e.status.includes(activeFilter))
           .map((post: { title: string; status: string }, index: number) => {
             return <Card key={index} title={post.title} status={post.status} />;
@@ -400,7 +437,7 @@ export const Posts = () => {
 };
 ```
 
-We first imported the `useState` hook to track the state of the app. Then we imported the [`useMany`](https://refine.dev/docs/core/hooks/data/useMany/) hook from refine to access the records of the integrated data API.
+We first imported the `useState` hook to track the state of the app. Then we imported the [`useMany`](https://refine.dev/docs/core/hooks/data/useMany/) hook from Refine to access the records of the integrated data API.
 
 Then we imported all the components we created in the earlier phase of the tutorial, as well as the `framer-motion` library for animations and custom style rules to style the layout.
 
@@ -445,7 +482,10 @@ Now that we have implemented the logic and added some styles, let's add the `<Po
 import { Refine, ErrorComponent } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings, { UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
+import routerBindings, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { Posts } from "./pages/posts";
@@ -494,11 +534,11 @@ function App() {
 export default App;
 ```
 
-This is the root file of the refine app, where we passed `routeProvider` for the routing, `dataProvider` to access the data API, and included the resources on the `/` route to use the `Posts` component we created in the previous step of the tutorial.
+This is the root file of the Refine app, where we passed `routeProvider` for the routing, `dataProvider` to access the data API, and included the resources on the `/` route to use the `Posts` component we created in the previous step of the tutorial.
 
 :::tip
 
-Dataproviders are refine components making it possible to consume different API's and data services conveniently.
+Dataproviders are Refine components making it possible to consume different API's and data services conveniently.
 
 [Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/docs/core/providers/data-provider/)
 
@@ -530,11 +570,11 @@ Finally, let's test the app on mobile screen sizes.
 
 ## Conclusion
 
-In this tutorial, we first designed the overall layout for the app, then set up the refine project and created the global style rules. Then we created the individual components, put together the logic, and passed it to the refine app.
+In this tutorial, we first designed the overall layout for the app, then set up the Refine project and created the global style rules. Then we created the individual components, put together the logic, and passed it to the Refine app.
 
 Two different types of content filtering (filter buttons and search bar) were implemented. In order to improve the overall user experience, we used the Framer motion library to add some great animations.
 
-Feel free to modify the app with your own custom features. Play around with different color schemes, layouts, and font families. Also, since refine comes with a rich data provider, feel free to extend the content card with description, author, dates, or even images.
+Feel free to modify the app with your own custom features. Play around with different color schemes, layouts, and font families. Also, since Refine comes with a rich data provider, feel free to extend the content card with description, author, dates, or even images.
 
 <br/>
 <div>

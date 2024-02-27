@@ -416,7 +416,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
         liveDemo:
             "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/master/examples/auth-antd",
         github: "https://github.com/refinedev/refine/tree/master/examples/auth-antd",
-        tutorial: "https://refine.dev/docs/tutorial/introduction/index/",
+        tutorial: "https://refine.dev/tutorial",
         reactPlatform: "Vite",
         uiFramework: "Ant Design",
         dataProvider: "Rest API",
@@ -435,7 +435,7 @@ Complete internal tool template built with Material UI. Features authentication 
         liveDemo:
             "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-material-ui",
         github: "https://github.com/refinedev/refine/tree/master/examples/auth-material-ui",
-        tutorial: "https://refine.dev/docs/tutorial/introduction/index/",
+        tutorial: "https://refine.dev/tutorial",
         reactPlatform: "Vite",
         uiFramework: "Material UI",
         dataProvider: "Rest API",
@@ -454,7 +454,7 @@ Complete internal tool template built with Material UI. Features authentication 
         liveDemo:
             "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-mantine",
         github: "https://github.com/refinedev/refine/tree/master/examples/auth-mantine",
-        tutorial: "https://refine.dev/docs/tutorial/introduction/index/",
+        tutorial: "https://refine.dev/tutorial",
         reactPlatform: "Vite",
         uiFramework: "Mantine",
         dataProvider: "Rest API",
@@ -473,7 +473,7 @@ Complete internal tool template built with Mantine. Features authentication and 
         liveDemo:
             "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-chakra-ui",
         github: "https://github.com/refinedev/refine/tree/master/examples/auth-chakra-ui",
-        tutorial: "https://refine.dev/docs/tutorial/introduction/index/",
+        tutorial: "https://refine.dev/tutorial",
         reactPlatform: "Vite",
         uiFramework: "Chakra UI",
         dataProvider: "Rest API",

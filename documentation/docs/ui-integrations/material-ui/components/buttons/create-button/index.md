@@ -170,7 +170,9 @@ The `accessControl` prop can be used to skip access control check with its `enab
 import { CreateButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-  return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

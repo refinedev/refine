@@ -1,46 +1,46 @@
 ---
-title: Audit Log With refine
-description: We'll apply refine's built-in audit logging functionality
+title: Audit Log With Refine
+description: We'll apply Refine's built-in audit logging functionality
 slug: refine-pixels-7
 authors: abdullah_numan
-tags: [refine-week, refine, supabase]
+tags: [refine-week, Refine, supabase]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Fsocial.png
 hide_table_of_contents: false
 ---
 
 ### RefineWeek series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-pixels-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-pixels-1/)
 - Day 2 - [Setting Up the Client App](https://refine.dev/blog/refine-pixels-2/)
 - Day 3 - [Adding CRUD Actions and Authentication](https://refine.dev/blog/refine-pixels-3/)
 - Day 4 - [Adding Realtime Collaboration](https://refine.dev/blog/refine-pixels-4/)
-- Day 5 - [Creating an Admin Dashboard with refine](https://refine.dev/blog/refine-pixels-5/)
+- Day 5 - [Creating an Admin Dashboard with Refine](https://refine.dev/blog/refine-pixels-5/)
 - Day 6 - [Implementing Role Based Access Control](https://refine.dev/blog/refine-pixels-6/)
-- Day 7 - [Audit Log With refine](https://refine.dev/blog/refine-pixels-7/)
+- Day 7 - [Audit Log With Refine](https://refine.dev/blog/refine-pixels-7/)
 
-In this post, we apply **refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**RefineWeek**](http://localhost:3000/week-of-refine/) series. **refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
+In this post, we apply **Refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**RefineWeek**](http://localhost:3000/week-of-refine/) series. **Refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
 
-This is Day 7, and **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with **refine** within a week.
+This is Day 7, and **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ## Overview
 
-In this series, we have been exploring **refine**'s internals by building two apps: the **Pixels** client that allows users to create and collboratively draw on a canvas, and the **Pixels Admin** app that allows admins and editors to manage canvases created by users.
+In this series, we have been exploring **Refine**'s internals by building two apps: the **Pixels** client that allows users to create and collboratively draw on a canvas, and the **Pixels Admin** app that allows admins and editors to manage canvases created by users.
 
 We implemented CRUD actions for **Pixels** client app on [Day 3](https://refine.dev/blog/refine-pixels-3/) and for the admin app on [Day 5](https://refine.dev/blog/refine-pixels-5/). In this episode, we enable audit logging on database mutations by defining the `auditLogProvider` object and passing it to `<Refine />`.
 
-We are using **refine**'s supplemental [**Supabase**](https://supabase.com/) `@refinedev/supabase` package for our `dataProvider` client. The database mutation methods in **Supabase** `dataProvider` already come with audit logging mechanism implemented on them. For each successful database mutation, i.e. `create`, `update` and `delete` actions, a log event is emitted and a `params` object representing the change is made available to the `auditLogProvider.create()` method.
+We are using **Refine**'s supplemental [**Supabase**](https://supabase.com/) `@refinedev/supabase` package for our `dataProvider` client. The database mutation methods in **Supabase** `dataProvider` already come with audit logging mechanism implemented on them. For each successful database mutation, i.e. `create`, `update` and `delete` actions, a log event is emitted and a `params` object representing the change is made available to the `auditLogProvider.create()` method.
 
 We will store the log entries in a `logs` table in our **Supabase** database. So, we have to set up the `logs` table with a shape that complies with the `params` object sent from the mutation.
 
-We will start by examining the shape of the `params` object and specifying how the `logs` table should look like - before we go ahead and create the table with appropriate columns from our **Supabase** dashboard. We will then work on the `auditLogProvider` methods, and use the `useLogList()` hook to list `pixels` logs inside a modal for each canvas item. Finally, like we did in other parts, we will dig into the existing code to explore how **refine** emits a log event and how mutation methods implement audit logging under the hood.
+We will start by examining the shape of the `params` object and specifying how the `logs` table should look like - before we go ahead and create the table with appropriate columns from our **Supabase** dashboard. We will then work on the `auditLogProvider` methods, and use the `useLogList()` hook to list `pixels` logs inside a modal for each canvas item. Finally, like we did in other parts, we will dig into the existing code to explore how **Refine** emits a log event and how mutation methods implement audit logging under the hood.
 
 Let's dive in!
 
-## `logs` Table for **refine** Audit Logs
+## `logs` Table for **Refine** Audit Logs
 
 We need to set up the `logs` table from the **Supabase** dashboard. But let's first figure out the columns we need for the table. The table should have as columns the properties of the log `params` object emitted by a mutation.
 
-### **refine**'s Log Params Object
+### **Refine**'s Log Params Object
 
 A successful resource `create` action makes the following log `params` object available to the `auditLogProvider.create()` method:
 
@@ -230,7 +230,7 @@ When we want to query the `logs` table, we will use the `useLogList()` audit log
 
 With this done, we are ready to log all `pixels` creations and show the `pixels` log list for each of our canvases.
 
-## Audit Logging with **refine**
+## Audit Logging with **Refine**
 
 In order to enable audit logging feature in our app, we have to first pass the `auditLogProvider` prop to `<Refine />`. Since `pixels` are being created in the **Pixels** app, that's where we are going to implement it:
 
@@ -255,7 +255,14 @@ In the **Pixels** app, `pixels` are created by the `onSubmit()` event handler de
 
 ```tsx title="pages/canvases/show.tsx"
 import { useState } from "react";
-import { useCreate, useGetIdentity, useNavigation, useShow, useParsed, useIsAuthenticated } from "@refinedev/core";
+import {
+  useCreate,
+  useGetIdentity,
+  useNavigation,
+  useShow,
+  useParsed,
+  useIsAuthenticated,
+} from "@refinedev/core";
 import { useModal } from "@refinedev/antd";
 
 import { LeftOutlined } from "@ant-design/icons";
@@ -316,7 +323,11 @@ export const CanvasShow: React.FC = () => {
     <div className="container">
       <div className="paper">
         <div className="paper-header">
-          <Button type="text" onClick={() => list("canvases")} style={{ textTransform: "uppercase" }}>
+          <Button
+            type="text"
+            onClick={() => list("canvases")}
+            style={{ textTransform: "uppercase" }}
+          >
             <LeftOutlined />
             Back
           </Button>
@@ -393,7 +404,7 @@ The `mutate()` function being invoked inside `onSubmit()` handler is destrcuture
 
 Notice that we are passing the `currentCanvas` as `metaData.canvas`, which we expect to be populated inside the `meta` property of the log `params` object. As we'll see below, we are going to use it to filter our `GET` request to the `logs` table using `useLogList()` hook.
 
-### Audit Log List with **refine**
+### Audit Log List with **Refine**
 
 We are going to display the `pixels` log list for a canvas in the `<LogList />` component. In the **Pixels** app, it is contained in the `<CanvasShow />` page and housed inside a modal accessible by clicking on the `View Changes` button. The `<LogList />` component uses the `useLogList()` hook to query the `logs` table:
 
@@ -421,13 +432,19 @@ export const LogList = ({ currentCanvas }: TLogListProps) => {
       dataSource={data}
       renderItem={(item: any) => (
         <List.Item>
-          <List.Item.Meta avatar={<Avatar src={item?.author?.user_metadata?.avatar_url} size={20} />} />
+          <List.Item.Meta
+            avatar={
+              <Avatar src={item?.author?.user_metadata?.avatar_url} size={20} />
+            }
+          />
           <Typography.Text style={{ fontSize: "12px" }}>
             <strong>{item?.author?.user_metadata?.email}</strong>
             {` ${item.action}d a pixel on canvas: `}
             <strong>{`${item?.meta?.canvas?.name} `}</strong>
             <span style={{ fontSize: "10px", color: "#9c9c9c" }}>
-              {`${formattedDate(item.created_at)} - ${timeFromNow(item.created_at)}`}
+              {`${formattedDate(item.created_at)} - ${timeFromNow(
+                item.created_at,
+              )}`}
             </span>
           </Typography.Text>
         </List.Item>
@@ -463,7 +480,7 @@ We don't have a case for creating a pixel in the **Pixels Admin** app. But we ca
 
 ## Low Level Inspection
 
-We are now going to examine how audit logging comes built-in inside **refine**'s mutation hooks.
+We are now going to examine how audit logging comes built-in inside **Refine**'s mutation hooks.
 
 ### Log `params` Object
 
@@ -522,18 +539,18 @@ The code snippets above are enough to give us a peek inside what is going, but f
 
 ## Summary
 
-In this episode, we activated **refine**'s built-in audit logging feature by defining and passing the `auditLogProvider`prop to `<Refine />`. We we learned that **refine** implements audit logging from its resource mutation hooks by sending a log `params` object to the `auditProvider.create()` method, and when audit logging is activated, every successful mutation creates an entry in the `logs` table.
+In this episode, we activated **Refine**'s built-in audit logging feature by defining and passing the `auditLogProvider`prop to `<Refine />`. We we learned that **Refine** implements audit logging from its resource mutation hooks by sending a log `params` object to the `auditProvider.create()` method, and when audit logging is activated, every successful mutation creates an entry in the `logs` table.
 
 We implemented audit logging for `create` actions of the `pixels` resource in our **Pixels** app and saved the entries in a `logs` table in our **Supabase** database. We then fetched the pixel creation logs for each canvas using the `useLoglist()` hook and displayed the in a modal. We leverage the `meta` property of the log `params` object in order to filter our `auditProvider.get()` request.
 
 ## Series Wrap Up
 
-In this **RefineWeek** series, built the following two apps with **refine**:
+In this **RefineWeek** series, built the following two apps with **Refine**:
 
 [**Pixels**](https://github.com/refinedev/refine/tree/master/examples/pixels) - the client app that allows users to create a canvas and draw collaboratively on
 [**Pixels Admin**](https://github.com/refinedev/refine/tree/master/examples/pixels-admin) - the admin dashboard that helps managers manage users and canvases
 
-While building these twp apps, we have covered core **refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
+While building these twp apps, we have covered core **Refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
 
 - [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
 - [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
@@ -543,10 +560,10 @@ While building these twp apps, we have covered core **refine** concepts like the
 - [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
 - [`notificationProvider`](https://refine.dev/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
 
-There are more to **refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
+There are more to **Refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
 
-We also covered supplementary **Supabase** anhd **Ant Design** packages. **refine** has fantastic support for **Ant Design** components. And we have seen how **refine-antd** components complement data fetching by the data providers and help readily present the response data with hooks like `useSimpleList()`, `useTable()` and `useEditableTable()`.
+We also covered supplementary **Supabase** anhd **Ant Design** packages. **Refine** has fantastic support for **Ant Design** components. And we have seen how **refine-antd** components complement data fetching by the data providers and help readily present the response data with hooks like `useSimpleList()`, `useTable()` and `useEditableTable()`.
 
 We can always build on what we have covered so far. There are plenty of things that we can do moving froward, like customizing the layout, header, auth pages, how exactly the `notificationProvider` works, how to implement the `i18nProvider`, etc.
 
-Please feel free to reach out to the **refine** team or join the [**refine** Discord channel](https://discord.gg/refine) to learn more and / or contribute!
+Please feel free to reach out to the **Refine** team or join the [**Refine** Discord channel](https://discord.gg/refine) to learn more and / or contribute!

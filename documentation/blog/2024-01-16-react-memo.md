@@ -176,7 +176,10 @@ const Blog = ({ signedIn }) => {
   const sortedPosts = sortPosts(updatedPosts);
 
   useEffect(() => {
-    const id = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000);
+    const id = setInterval(
+      () => setLocalTime(new Date().toLocaleTimeString()),
+      1000,
+    );
     return () => clearInterval(id);
   }, []);
 
@@ -280,7 +283,7 @@ If we examine closely, we can see that this is indeed the case: we have `<Post /
 
 <br/>
 
-Notice, rendering `<Post />` is accompanied by `<LatestPost />` at 3 seonds interval, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`. That is, they are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
+Notice, rendering `<Post />` is accompanied by `<LatestPost />` at 3 seconds interval, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`. That is, they are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
 
 All these re-renders are futile for `<Post />` and costly for the app. So we are going to prevent them using component memoization.
 

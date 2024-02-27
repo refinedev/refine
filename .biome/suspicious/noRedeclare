@@ -1,0 +1,24 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/store/src/components/common/Navbar/Navbar.tsx:9:11 lint/suspicious/noRedeclare ━━━━━━━━━━
+
+  ! Shouldn't redeclare 'Link'. Consider to delete it or rename it.
+  
+     7 │ import s from "./Navbar.module.css";
+     8 │ 
+   > 9 │ interface Link {
+       │           ^^^^
+    10 │   href: string;
+    11 │   label: string;
+  
+  i 'Link' is defined here:
+  
+  > 1 │ import Link from "next/link";
+      │        ^^^^
+    2 │ import { Logo, Container } from "@components/ui";
+    3 │ 
+  
+
+Checked 6952 file(s) in 510ms

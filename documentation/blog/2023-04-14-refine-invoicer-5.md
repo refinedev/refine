@@ -3,18 +3,18 @@ title: Adding PDF Renderer
 description: We are going to add PDF renderer to our PDF Invoice Generator app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 slug: refine-react-invoice-generator-5
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+tags: [refine-week, Refine, strapi, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/social.png
 hide_table_of_contents: false
 ---
 
 In this post, we add pdf renderer to **PDF Invoice Generator** app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 
-This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
+This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
 
 ### RefineWeek ft. Strapi series
 
-- Day 1 - [Pilot & refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
+- Day 1 - [Pilot & Refine architecture](https://refine.dev/blog/refine-react-invoice-generator-1/)
 - Day 2 - [Setting Up the Invoicer App](https://refine.dev/blog/refine-react-invoice-generator-2/)
 - Day 3 - [Adding CRUD Actions & Views](https://refine.dev/blog/refine-react-invoice-generator-3/)
 - Day 4 - [Creating Mission and Invoices Pages](https://refine.dev/blog/refine-react-invoice-generator-4/)
@@ -25,9 +25,9 @@ This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev
 
 ## Overview
 
-Over the last two episodes, we have implemented CRUD operations on several resources of our **PDF Invoice Generator** app. On the way, we have explored `dataProvider`, `authProvider`, `resources`, `routerProvider` and their corresponding hooks that give **refine** powerful tools to rapidly build data heavy applications. We became familiar with some sophisticated hooks such as `useSimpleList()`, `useModalForm()` and `useDrawerForm()` that makes building with **refine** a convenience many developers seek.
+Over the last two episodes, we have implemented CRUD operations on several resources of our **PDF Invoice Generator** app. On the way, we have explored `dataProvider`, `authProvider`, `resources`, `routerProvider` and their corresponding hooks that give **Refine** powerful tools to rapidly build data heavy applications. We became familiar with some sophisticated hooks such as `useSimpleList()`, `useModalForm()` and `useDrawerForm()` that makes building with **Refine** a convenience many developers seek.
 
-In this article, we come past the **refine** features and add a pdf renderer to display our invoices in a PDF screen.
+In this article, we come past the **Refine** features and add a pdf renderer to display our invoices in a PDF screen.
 
 We are going to add the pdf renderer inside a modal and make it accessible from the invoices `list` page at `/invoices`.
 
@@ -50,7 +50,15 @@ And build the PDF layout component like this:
 <p>
 
 ```tsx title="src/components/pd/pdfLayout.tsx"
-import { Document, Image, Page, StyleSheet, View, Text, PDFViewer } from "@react-pdf/renderer";
+import {
+  Document,
+  Image,
+  Page,
+  StyleSheet,
+  View,
+  Text,
+  PDFViewer,
+} from "@react-pdf/renderer";
 import { IInvoice } from "interfaces";
 import { API_URL } from "../../constants";
 
@@ -69,10 +77,17 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
       <Document>
         <Page style={styles.page} size="A4">
           <View>
-            <Image src={API_URL + record?.company?.logo?.url} style={{ width: "120px", height: "auto" }} />
+            <Image
+              src={API_URL + record?.company?.logo?.url}
+              style={{ width: "120px", height: "auto" }}
+            />
             <View style={styles.invoiceTextNumberContainer}>
-              <Text style={styles.invoiceText}>{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
-              <Text style={styles.invoiceId}>{`Invoice ID: INVOICE_#${record?.id}`}</Text>
+              <Text
+                style={styles.invoiceText}
+              >{`Invoice: Invoice_#${record?.id}${record?.name}`}</Text>
+              <Text
+                style={styles.invoiceId}
+              >{`Invoice ID: INVOICE_#${record?.id}`}</Text>
             </View>
           </View>
           <View style={styles.dividerLG} />
@@ -81,45 +96,79 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
             <View style={styles.invoiceFor}>
               <Text style={styles.invoiceForFromTitle}>invoice For:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.client?.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.first_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.last_name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.contact?.email}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.client?.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.first_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.last_name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.contact?.email}
+                </Text>
               </View>
             </View>
 
             <View style={styles.invoiceFrom}>
               <Text style={styles.invoiceForFromTitle}>From:</Text>
               <View>
-                <Text style={styles.invoiceForFromText}>{record?.company.name}</Text>
-                <Text style={styles.invoiceForFromText}>{record?.company.city}</Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.name}
+                </Text>
+                <Text style={styles.invoiceForFromText}>
+                  {record?.company.city}
+                </Text>
                 <Text style={styles.invoiceForFromText}>
                   {record?.company.address}, {record?.company.country}
                 </Text>
               </View>
               <View style={styles.dividerSM} />
               <View>
-                <Text style={styles.invoiceForFromText}>{`Invoice ID: ${record?.id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Custom ID: ${record?.custom_id}`}</Text>
-                <Text style={styles.invoiceForFromText}>{`Invoice Date: ${record?.date}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice ID: ${record?.id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Custom ID: ${record?.custom_id}`}</Text>
+                <Text
+                  style={styles.invoiceForFromText}
+                >{`Invoice Date: ${record?.date}`}</Text>
               </View>
             </View>
           </View>
 
           <View style={styles.table}>
             <View style={styles.tableHeader}>
-              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>Mission</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Day Rate</Text>
-              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>Total</Text>
+              <Text style={[styles.tableHeaderItem, { width: "40%" }]}>
+                Mission
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Day Rate
+              </Text>
+              <Text style={[styles.tableHeaderItem, { width: "20%" }]}>
+                Total
+              </Text>
             </View>
             {record?.missions.map((item) => {
               return (
                 <View key={item.id} style={styles.tableRow}>
-                  <Text style={[styles.tableCol, { width: "40%" }]}>{item.mission}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.day}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.daily_rate}</Text>
-                  <Text style={[styles.tableCol, { width: "20%" }]}>{item?.daily_rate * item?.day}</Text>
+                  <Text style={[styles.tableCol, { width: "40%" }]}>
+                    {item.mission}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item?.day}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item?.daily_rate}
+                  </Text>
+                  <Text style={[styles.tableCol, { width: "20%" }]}>
+                    {item?.daily_rate * item?.day}
+                  </Text>
                 </View>
               );
             })}
@@ -127,13 +176,19 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
 
           <View style={styles.signatureTotalContainer}>
             <View style={styles.signatureContainer}>
-              <Text style={styles.signatureText}>Signature: ________________</Text>
-              <Text style={styles.signatureText}>Date: {record?.date.toString()}</Text>
+              <Text style={styles.signatureText}>
+                Signature: ________________
+              </Text>
+              <Text style={styles.signatureText}>
+                Date: {record?.date.toString()}
+              </Text>
             </View>
 
             <View style={styles.totalContainer}>
               <Text style={styles.totalText}>SUBTOTAL: {subtotal}</Text>
-              <Text style={styles.totalText}>Discount(%): {record?.discount}</Text>
+              <Text style={styles.totalText}>
+                Discount(%): {record?.discount}
+              </Text>
               <Text style={styles.totalText}>Tax(%): {record?.tax}</Text>
               <Text style={styles.totalText}>
                 Total($):
@@ -266,7 +321,7 @@ const styles = StyleSheet.create({
 
 Everything here is React-PDF stuff so we won't be delving into any of the components here. However, if you are interested in exploring what's happening, please feel free to check out the cool [`@react-pdf/renderer` docs here](https://react-pdf.org/components).
 
-### Displaying PDF Renderer in refine Modal
+### Displaying PDF Renderer in Refine Modal
 
 As implemented on [Day 4](https://refine.dev/blog/refine-react-invoice-generator-4/), our `invoices` `list` page renders the `<InvoiceList />` component, which displays invoice data in rows of a table.
 
@@ -281,7 +336,15 @@ Here's the updated `<InvoiceList />` component:
 ```tsx title="src/pages/invoices/list.tsx"
 import { useState } from "react";
 import { useModal } from "@refinedev/core";
-import { List, useTable, DateField, TagField, EmailField, DeleteButton, EditButton } from "@refinedev/antd";
+import {
+  List,
+  useTable,
+  DateField,
+  TagField,
+  EmailField,
+  DeleteButton,
+  EditButton,
+} from "@refinedev/antd";
 
 // It is recommended to use explicit import as seen below to reduce bundle size.
 // import { IconName } from "@ant-design/icons";
@@ -332,7 +395,9 @@ export const InvoiceList: React.FC = () => {
             title="Missions"
             render={(value) => {
               return value.map((item: IMission) => {
-                return <TagField key={item?.id} color="blue" value={item?.mission} />;
+                return (
+                  <TagField key={item?.id} color="blue" value={item?.mission} />
+                );
               });
             }}
           />
@@ -341,7 +406,11 @@ export const InvoiceList: React.FC = () => {
             title="Discount(%)"
             render={(value) => <TagField color="blue" value={value} />}
           />
-          <Table.Column dataIndex="tax" title="Tax(%)" render={(value) => <TagField color="cyan" value={value} />} />
+          <Table.Column
+            dataIndex="tax"
+            title="Tax(%)"
+            render={(value) => <TagField color="cyan" value={value} />}
+          />
           <Table.Column dataIndex="custom_id" title="Custom Invoice ID" />
 
           <Table.Column
@@ -356,7 +425,11 @@ export const InvoiceList: React.FC = () => {
               return (
                 <Space>
                   <EditButton hideText size="small" recordItemId={record?.id} />
-                  <DeleteButton hideText size="small" recordItemId={record?.id} />
+                  <DeleteButton
+                    hideText
+                    size="small"
+                    recordItemId={record?.id}
+                  />
                   {record.company && (
                     <Button
                       size="small"
@@ -398,16 +471,16 @@ OK. With this done, we can now go ahead and test our app and should be able to v
 
 In this **#RefineWeek** series, we built a pdf invoice generator which allows users to create companies, add their clients, their contacts. They are also able to create missions with payment details such as daily rate and number of days for the mission to be completed, and issue invoices on those missions.
 
-While building the app, we covered several core **refine** concepts, particularly how data providers and hooks interact in data fetching and authentication. We made use of `dataProvider` and `authProvider` props, along with `resources` and `routerProvider`.
+While building the app, we covered several core **Refine** concepts, particularly how data providers and hooks interact in data fetching and authentication. We made use of `dataProvider` and `authProvider` props, along with `resources` and `routerProvider`.
 
-We also made distinction between **refine** core modules and support packages such as the `@refinedev/strapi-4` which provides support to core features like `dataProvider` and `authProvider` with respect to communicating with the backend API.
+We also made distinction between **Refine** core modules and support packages such as the `@refinedev/strapi-4` which provides support to core features like `dataProvider` and `authProvider` with respect to communicating with the backend API.
 
-We became familiar with the new `resources` and routing definitions in **refine** version `v4`, where a particular resource item specifies the path to all its pages, instead of the exact component to render. The component to render is now specified in the route definitions, giving us more flexibility and control over defining a better routing system.
+We became familiar with the new `resources` and routing definitions in **Refine** version `v4`, where a particular resource item specifies the path to all its pages, instead of the exact component to render. The component to render is now specified in the route definitions, giving us more flexibility and control over defining a better routing system.
 
-We delved into the details about the fantastic support **refine** has for **Ant Design** components. We saw that **refine** lets us use **Ant Design** components out of the box, but also has its own library of support package in `@refinedev/antd`. We experienced the convenience of powerful **refine-Ant Design** hooks such as `useSimpleList()`, `useModalForm()` and `useDrawerForm()` that handle tremendous amount of heavy tasks such as data fetching and state management. We explored the excruciating details of how **refine** accomplishes these heavylifting in the background by digging into the source code of some of these hooks.
+We delved into the details about the fantastic support **Refine** has for **Ant Design** components. We saw that **Refine** lets us use **Ant Design** components out of the box, but also has its own library of support package in `@refinedev/antd`. We experienced the convenience of powerful **refine-Ant Design** hooks such as `useSimpleList()`, `useModalForm()` and `useDrawerForm()` that handle tremendous amount of heavy tasks such as data fetching and state management. We explored the excruciating details of how **Refine** accomplishes these heavylifting in the background by digging into the source code of some of these hooks.
 
-There are a lot more to **refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
+There are a lot more to **Refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
 
 We can always build on what we have covered so far. There are plenty of things that we can do moving forward, like implementing access control with the `accessControlProvider`, audit logging with the `auditLogProvider`, customizing the layout, header, auth pages, etc.
 
-Please feel free to reach out to the refine team or join the [refine Discord Channel](https://discord.gg/refine) to learn more and / or contribute!
+Please feel free to reach out to the Refine team or join the [Refine Discord Channel](https://discord.gg/refine) to learn more and / or contribute!

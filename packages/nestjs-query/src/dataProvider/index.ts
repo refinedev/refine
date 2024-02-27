@@ -12,263 +12,242 @@ import { generateFilters, generatePaging, generateSorting } from "../utils";
 import { getOperationFields, isMutation } from "../utils/graphql";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
-    return {
-        getList: async ({ resource, pagination, sorters, filters, meta }) => {
-            const operation = camelcase(resource);
+  return {
+    getList: async ({ resource, pagination, sorters, filters, meta }) => {
+      const operation = camelcase(resource);
 
-            const paging = generatePaging(pagination || {});
+      const paging = generatePaging(pagination || {});
 
-            const queryVariables: VariableOptions = {};
+      const queryVariables: VariableOptions = {};
 
-            let query;
-            let variables;
+      let query;
+      let variables;
 
-            if (meta?.gqlQuery) {
-                query = meta?.gqlQuery;
+      if (meta?.gqlQuery) {
+        query = meta?.gqlQuery;
 
-                variables = {
-                    filter: filters
-                        ? generateFilters(filters as LogicalFilter[])
-                        : {},
-                    sorting: sorters ? generateSorting(sorters) : [],
-                    paging,
-                };
-            } else {
-                if (filters) {
-                    queryVariables["filter"] = {
-                        type: camelcase(`${singular(resource)}Filter`, {
-                            pascalCase: true,
-                        }),
-                        required: true,
-                        value: generateFilters(filters as LogicalFilter[]),
-                    };
-                }
+        variables = {
+          filter: filters ? generateFilters(filters as LogicalFilter[]) : {},
+          sorting: sorters ? generateSorting(sorters) : [],
+          paging,
+        };
+      } else {
+        if (filters) {
+          queryVariables["filter"] = {
+            type: camelcase(`${singular(resource)}Filter`, {
+              pascalCase: true,
+            }),
+            required: true,
+            value: generateFilters(filters as LogicalFilter[]),
+          };
+        }
 
-                if (sorters) {
-                    queryVariables["sorting"] = {
-                        type: camelcase(`${singular(resource)}Sort`, {
-                            pascalCase: true,
-                        }),
-                        required: true,
-                        list: [true],
-                        value: generateSorting(sorters),
-                    };
-                }
+        if (sorters) {
+          queryVariables["sorting"] = {
+            type: camelcase(`${singular(resource)}Sort`, {
+              pascalCase: true,
+            }),
+            required: true,
+            list: [true],
+            value: generateSorting(sorters),
+          };
+        }
 
-                if (paging) {
-                    queryVariables["paging"] = {
-                        type: "OffsetPaging",
-                        required: true,
-                        value: paging,
-                    };
-                }
+        if (paging) {
+          queryVariables["paging"] = {
+            type: "OffsetPaging",
+            required: true,
+            value: paging,
+          };
+        }
 
-                const gqlQuery = gql.query({
-                    operation,
-                    fields: [{ nodes: meta?.fields }, "totalCount"],
-                    variables: queryVariables,
-                });
+        const gqlQuery = gql.query({
+          operation,
+          fields: [{ nodes: meta?.fields }, "totalCount"],
+          variables: queryVariables,
+        });
 
-                query = gqlQuery.query;
-                variables = gqlQuery.variables;
-            }
+        query = gqlQuery.query;
+        variables = gqlQuery.variables;
+      }
 
-            const response = await client.request<BaseRecord>(query, variables);
+      const response = await client.request<BaseRecord>(query, variables);
 
-            return {
-                data: response[operation].nodes,
-                total: response[operation].totalCount,
-            };
+      return {
+        data: response[operation].nodes,
+        total: response[operation].totalCount,
+      };
+    },
+
+    getMany: async ({ resource, ids, meta }) => {
+      const operation = camelcase(resource);
+
+      if (meta?.gqlQuery) {
+        const response = await client.request<BaseRecord>(meta.gqlQuery, {
+          filter: {
+            id: { in: ids },
+          },
+        });
+
+        return {
+          data: response[operation].nodes,
+        };
+      }
+
+      const { query, variables } = gql.query({
+        operation,
+        fields: [{ nodes: meta?.fields || ["id"] }],
+        variables: {
+          filter: {
+            type: camelcase(`${singular(resource)}Filter`, {
+              pascalCase: true,
+            }),
+            required: true,
+            value: {
+              id: { in: ids },
+            },
+          },
         },
+      });
 
-        getMany: async ({ resource, ids, meta }) => {
-            const operation = camelcase(resource);
+      const response = await client.request<BaseRecord>(query, variables);
 
-            if (meta?.gqlQuery) {
-                const response = await client.request<BaseRecord>(
-                    meta.gqlQuery,
-                    {
-                        filter: {
-                            id: { in: ids },
-                        },
-                    },
-                );
+      return {
+        data: response[operation].nodes,
+      };
+    },
 
-                return {
-                    data: response[operation].nodes,
-                };
-            }
+    create: async ({ resource, variables, meta }) => {
+      const operation = `createOne${camelcase(singular(resource), {
+        pascalCase: true,
+      })}`;
 
-            const { query, variables } = gql.query({
-                operation,
-                fields: [{ nodes: meta?.fields || ["id"] }],
-                variables: {
-                    filter: {
-                        type: camelcase(`${singular(resource)}Filter`, {
-                            pascalCase: true,
-                        }),
-                        required: true,
-                        value: {
-                            id: { in: ids },
-                        },
-                    },
-                },
-            });
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-            const response = await client.request<BaseRecord>(query, variables);
+      if (gqlOperation) {
+        const response = await client.request<BaseRecord>(gqlOperation, {
+          input: { [camelcase(singular(resource))]: variables },
+        });
 
-            return {
-                data: response[operation].nodes,
-            };
+        return {
+          data: response[operation],
+        };
+      }
+
+      const { query, variables: queryVariables } = gql.mutation({
+        operation,
+        fields: meta?.fields || ["id"],
+        variables: {
+          input: {
+            type: `CreateOne${camelcase(singular(resource), {
+              pascalCase: true,
+            })}Input`,
+            required: true,
+            value: {
+              [camelcase(singular(resource))]: variables,
+            },
+          },
         },
+      });
 
-        create: async ({ resource, variables, meta }) => {
-            const operation = `createOne${camelcase(singular(resource), {
-                pascalCase: true,
-            })}`;
+      const response = await client.request<BaseRecord>(query, queryVariables);
 
-            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+      return {
+        data: response[operation],
+      };
+    },
 
-            if (gqlOperation) {
-                const response = await client.request<BaseRecord>(
-                    gqlOperation,
-                    { input: { [camelcase(singular(resource))]: variables } },
-                );
+    createMany: async ({ resource, variables, meta }) => {
+      const pascalResource = camelcase(resource, { pascalCase: true });
+      const operation = `createMany${pascalResource}`;
 
-                return {
-                    data: response[operation],
-                };
-            }
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-            const { query, variables: queryVariables } = gql.mutation({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    input: {
-                        type: `CreateOne${camelcase(singular(resource), {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            [camelcase(singular(resource))]: variables,
-                        },
-                    },
-                },
-            });
+      if (gqlOperation) {
+        const response = await client.request<BaseRecord>(gqlOperation, {
+          input: {
+            [camelcase(resource)]: variables,
+          },
+        });
 
-            const response = await client.request<BaseRecord>(
-                query,
-                queryVariables,
-            );
+        return {
+          data: response[operation],
+        };
+      }
 
-            return {
-                data: response[operation],
-            };
+      const { query, variables: queryVariables } = gql.mutation({
+        operation,
+        fields: meta?.fields || ["id"],
+        variables: {
+          input: {
+            type: `CreateMany${camelcase(resource, {
+              pascalCase: true,
+            })}Input`,
+            required: true,
+            value: {
+              [camelcase(resource)]: variables,
+            },
+          },
         },
+      });
 
-        createMany: async ({ resource, variables, meta }) => {
-            const pascalResource = camelcase(resource, { pascalCase: true });
-            const operation = `createMany${pascalResource}`;
+      const response = await client.request<BaseRecord>(query, queryVariables);
 
-            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+      return {
+        data: response[operation],
+      };
+    },
+    update: async ({ resource, id, variables, meta }) => {
+      const operation = `updateOne${camelcase(singular(resource), {
+        pascalCase: true,
+      })}`;
 
-            if (gqlOperation) {
-                const response = await client.request<BaseRecord>(
-                    gqlOperation,
-                    {
-                        input: {
-                            [camelcase(resource)]: variables,
-                        },
-                    },
-                );
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-                return {
-                    data: response[operation],
-                };
-            }
+      if (gqlOperation) {
+        const response = await client.request<BaseRecord>(gqlOperation, {
+          input: {
+            id,
+            update: variables,
+          },
+        });
 
-            const { query, variables: queryVariables } = gql.mutation({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    input: {
-                        type: `CreateMany${camelcase(resource, {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            [camelcase(resource)]: variables,
-                        },
-                    },
-                },
-            });
+        return {
+          data: response[operation],
+        };
+      }
 
-            const response = await client.request<BaseRecord>(
-                query,
-                queryVariables,
-            );
-
-            return {
-                data: response[operation],
-            };
+      const { query, variables: queryVariables } = gql.mutation({
+        operation,
+        fields: meta?.fields || ["id"],
+        variables: {
+          input: {
+            type: `UpdateOne${camelcase(singular(resource), {
+              pascalCase: true,
+            })}Input`,
+            required: true,
+            value: {
+              id,
+              update: variables,
+            },
+          },
         },
-        update: async ({ resource, id, variables, meta }) => {
-            const operation = `updateOne${camelcase(singular(resource), {
-                pascalCase: true,
-            })}`;
+      });
 
-            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+      const response = await client.request<BaseRecord>(query, queryVariables);
 
-            if (gqlOperation) {
-                const response = await client.request<BaseRecord>(
-                    gqlOperation,
-                    {
-                        input: {
-                            id,
-                            update: variables,
-                        },
-                    },
-                );
+      return {
+        data: response[operation],
+      };
+    },
+    updateMany: async ({ resource, ids, variables, meta }) => {
+      const pascalResource = camelcase(resource, {
+        pascalCase: true,
+      });
 
-                return {
-                    data: response[operation],
-                };
-            }
+      const mutationOperation = `updateMany${pascalResource}`;
 
-            const { query, variables: queryVariables } = gql.mutation({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    input: {
-                        type: `UpdateOne${camelcase(singular(resource), {
-                            pascalCase: true,
-                        })}Input`,
-                        required: true,
-                        value: {
-                            id,
-                            update: variables,
-                        },
-                    },
-                },
-            });
-
-            const response = await client.request<BaseRecord>(
-                query,
-                queryVariables,
-            );
-
-            return {
-                data: response[operation],
-            };
-        },
-        updateMany: async ({ resource, ids, variables, meta }) => {
-            const pascalResource = camelcase(resource, {
-                pascalCase: true,
-            });
-
-            const mutationOperation = `updateMany${pascalResource}`;
-
-            const mutation = gqlTag`
+      const mutation = gqlTag`
                 mutation UpdateMany${pascalResource}($input: UpdateMany${pascalResource}Input!) {
                     ${mutationOperation}(input: $input) {
                         updatedCount
@@ -276,37 +255,37 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 }
             `;
 
-            await client.request<BaseRecord>(mutation, {
-                input: { filter: { id: { in: ids } }, update: variables },
-            });
+      await client.request<BaseRecord>(mutation, {
+        input: { filter: { id: { in: ids } }, update: variables },
+      });
 
-            const operation = camelcase(resource);
+      const operation = camelcase(resource);
 
-            let query, queryVariables;
+      let query, queryVariables;
 
-            if (meta?.fields) {
-                const gqlQuery = gql.query({
-                    operation,
-                    fields: [{ nodes: meta?.fields || ["id"] }],
-                    variables: {
-                        filter: {
-                            type: camelcase(`${singular(resource)}Filter`, {
-                                pascalCase: true,
-                            }),
-                            required: true,
-                            value: {
-                                id: { in: ids },
-                            },
-                        },
-                    },
-                });
-                query = gqlQuery.query;
-                queryVariables = gqlQuery.variables;
-            } else {
-                query = gqlTag`
+      if (meta?.fields) {
+        const gqlQuery = gql.query({
+          operation,
+          fields: [{ nodes: meta?.fields || ["id"] }],
+          variables: {
+            filter: {
+              type: camelcase(`${singular(resource)}Filter`, {
+                pascalCase: true,
+              }),
+              required: true,
+              value: {
+                id: { in: ids },
+              },
+            },
+          },
+        });
+        query = gqlQuery.query;
+        queryVariables = gqlQuery.variables;
+      } else {
+        query = gqlTag`
                     query GetMany${pascalResource}($filter: ${singular(
-                    pascalResource,
-                )}Filter!) {
+                      pascalResource,
+                    )}Filter!) {
                         ${operation}(filter: $filter) {
                             nodes {
                                 id
@@ -315,90 +294,83 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     }
                 `;
 
-                queryVariables = {
-                    filter: { id: { in: ids } },
-                };
-            }
+        queryVariables = {
+          filter: { id: { in: ids } },
+        };
+      }
 
-            const response = await client.request<BaseRecord>(
-                query,
-                queryVariables,
-            );
+      const response = await client.request<BaseRecord>(query, queryVariables);
 
-            return {
-                data: response[operation].nodes,
-            };
-        },
-        getOne: async ({ resource, id, meta }) => {
-            const operation = camelcase(singular(resource));
+      return {
+        data: response[operation].nodes,
+      };
+    },
+    getOne: async ({ resource, id, meta }) => {
+      const operation = camelcase(singular(resource));
 
-            const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+      const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
 
-            if (gqlOperation) {
-                let query = gqlOperation;
-                const variables = { id };
+      if (gqlOperation) {
+        let query = gqlOperation;
+        const variables = { id };
 
-                if (isMutation(gqlOperation)) {
-                    const stringFields = getOperationFields(gqlOperation);
+        if (isMutation(gqlOperation)) {
+          const stringFields = getOperationFields(gqlOperation);
 
-                    query = gqlTag`
+          query = gqlTag`
                         query Get${camelcase(singular(resource), {
-                            pascalCase: true,
+                          pascalCase: true,
                         })}($id: ID!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }
                         }
                     `;
-                }
+        }
 
-                const response = await client.request<BaseRecord>(
-                    query,
-                    variables,
-                );
+        const response = await client.request<BaseRecord>(query, variables);
 
-                return {
-                    data: response[operation],
-                };
-            }
+        return {
+          data: response[operation],
+        };
+      }
 
-            const { query, variables } = gql.query({
-                operation,
-                fields: meta?.fields || ["id"],
-                variables: {
-                    id: {
-                        type: "ID",
-                        required: true,
-                        value: id,
-                    },
-                },
-            });
-
-            const response = await client.request<BaseRecord>(query, variables);
-
-            return {
-                data: response[operation],
-            };
+      const { query, variables } = gql.query({
+        operation,
+        fields: meta?.fields || ["id"],
+        variables: {
+          id: {
+            type: "ID",
+            required: true,
+            value: id,
+          },
         },
-        deleteOne: async ({ resource, id, meta }) => {
-            const pascalResource = camelcase(singular(resource), {
-                pascalCase: true,
-            });
+      });
 
-            const operation = `deleteOne${pascalResource}`;
+      const response = await client.request<BaseRecord>(query, variables);
 
-            if (meta?.gqlMutation) {
-                const response = await client.request<BaseRecord>(
-                    meta.gqlMutation,
-                    { input: { id } },
-                );
+      return {
+        data: response[operation],
+      };
+    },
+    deleteOne: async ({ resource, id, meta }) => {
+      const pascalResource = camelcase(singular(resource), {
+        pascalCase: true,
+      });
 
-                return {
-                    data: response[operation],
-                };
-            }
+      const operation = `deleteOne${pascalResource}`;
 
-            const query = gqlTag`
+      if (meta?.gqlMutation) {
+        const response = await client.request<BaseRecord>(meta.gqlMutation, {
+          input: { id },
+        });
+
+        return {
+          data: response[operation],
+        };
+      }
+
+      const query = gqlTag`
                     mutation DeleteOne${pascalResource}($input: DeleteOne${pascalResource}Input!) {
                         ${operation}(input: $input) {
                             id
@@ -406,21 +378,21 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                     }
                 `;
 
-            const response = await client.request<BaseRecord>(query, {
-                input: { id },
-            });
+      const response = await client.request<BaseRecord>(query, {
+        input: { id },
+      });
 
-            return {
-                data: response[operation],
-            };
-        },
-        deleteMany: async ({ resource, ids }) => {
-            const pascalResource = camelcase(resource, {
-                pascalCase: true,
-            });
-            const operation = `deleteMany${pascalResource}`;
+      return {
+        data: response[operation],
+      };
+    },
+    deleteMany: async ({ resource, ids }) => {
+      const pascalResource = camelcase(resource, {
+        pascalCase: true,
+      });
+      const operation = `deleteMany${pascalResource}`;
 
-            const query = gqlTag`
+      const query = gqlTag`
                 mutation DeleteMany${pascalResource}($input: DeleteMany${pascalResource}Input!) {
                     ${operation}(input: $input) {
                         deletedCount
@@ -428,96 +400,91 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
                 }
             `;
 
-            const variables = {
-                input: {
-                    filter: {
-                        id: { in: ids },
-                    },
-                },
-            };
-
-            await client.request<BaseRecord>(query, variables);
-
-            return {
-                data: [],
-            };
+      const variables = {
+        input: {
+          filter: {
+            id: { in: ids },
+          },
         },
-        getApiUrl: () => {
-            throw Error(
-                "Not implemented on refine-nestjs-query data provider.",
-            );
-        },
-        custom: async ({ url, method, headers, meta }) => {
-            if (url) {
-                client.setEndpoint(url);
-            }
+      };
 
-            if (headers) {
-                client.setHeaders(headers);
-            }
+      await client.request<BaseRecord>(query, variables);
 
-            const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+      return {
+        data: [],
+      };
+    },
+    getApiUrl: () => {
+      throw Error("Not implemented on refine-nestjs-query data provider.");
+    },
+    custom: async ({ url, method, headers, meta }) => {
+      if (url) {
+        client.setEndpoint(url);
+      }
 
-            if (gqlOperation) {
-                const response: any = await client.request(
-                    gqlOperation,
-                    meta?.variables ?? {},
-                );
+      if (headers) {
+        client.setHeaders(headers);
+      }
 
-                return { data: response };
-            }
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-            if (meta?.rawQuery) {
-                const response = await client.request<BaseRecord>(
-                    meta.rawQuery,
-                    meta.variables,
-                );
+      if (gqlOperation) {
+        const response: any = await client.request(
+          gqlOperation,
+          meta?.variables ?? {},
+        );
 
-                return { data: response };
-            }
+        return { data: response };
+      }
 
-            if (meta) {
-                if (meta.operation) {
-                    let query, variables;
+      if (meta?.rawQuery) {
+        const response = await client.request<BaseRecord>(
+          meta.rawQuery,
+          meta.variables,
+        );
 
-                    if (method === "get") {
-                        const gqlQuery = gql.query({
-                            operation: meta.operation,
-                            fields: meta.fields,
-                            variables: meta.variables,
-                        });
+        return { data: response };
+      }
 
-                        query = gqlQuery.query;
-                        variables = gqlQuery.variables;
-                    } else {
-                        const gqlMutation = gql.mutation({
-                            operation: meta.operation,
-                            fields: meta.fields,
-                            variables: meta.variables,
-                        });
+      if (meta) {
+        if (meta.operation) {
+          let query, variables;
 
-                        query = gqlMutation.query;
-                        variables = gqlMutation.variables;
-                    }
+          if (method === "get") {
+            const gqlQuery = gql.query({
+              operation: meta.operation,
+              fields: meta.fields,
+              variables: meta.variables,
+            });
 
-                    const response = await client.request<BaseRecord>(
-                        query,
-                        variables,
-                    );
+            query = gqlQuery.query;
+            variables = gqlQuery.variables;
+          } else {
+            const gqlMutation = gql.mutation({
+              operation: meta.operation,
+              fields: meta.fields,
+              variables: meta.variables,
+            });
 
-                    return {
-                        data: response[meta.operation],
-                    };
-                } else {
-                    throw Error("GraphQL operation name required.");
-                }
-            } else {
-                throw Error(
-                    "GraphQL needs operation, fields and variables values in meta object.",
-                );
-            }
-        },
-    };
+            query = gqlMutation.query;
+            variables = gqlMutation.variables;
+          }
+
+          const response = await client.request<BaseRecord>(query, variables);
+
+          return {
+            data: response[meta.operation],
+          };
+        } else {
+          throw Error("GraphQL operation name required.");
+        }
+      } else {
+        throw Error(
+          "GraphQL needs operation, fields and variables values in meta object.",
+        );
+      }
+    },
+  };
 };
 
 export default dataProvider;

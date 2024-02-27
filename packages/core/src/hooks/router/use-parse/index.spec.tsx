@@ -6,51 +6,51 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useParse } from "./";
 
 describe("useParse Hook", () => {
-    it("should return routerProvider parse function", () => {
-        const mockParse = jest.fn();
+  it("should return routerProvider parse function", () => {
+    const mockParse = jest.fn();
 
-        const { result } = renderHook(() => useParse(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-                dataProvider: MockJSONServer,
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        parse: () => mockParse,
-                    },
-                }),
-            }),
-        });
-
-        result.current();
-
-        expect(mockParse).toBeCalledTimes(1);
+    const { result } = renderHook(() => useParse(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterBindings({
+          fns: {
+            parse: () => mockParse,
+          },
+        }),
+      }),
     });
 
-    it("if routerProvider parse function is not defined, should return empty object", () => {
-        const { result } = renderHook(() => useParse(), {
-            wrapper: TestWrapper({
-                resources: [{ name: "posts" }],
-                dataProvider: MockJSONServer,
-                routerProvider: mockRouterBindings({
-                    fns: {
-                        parse: undefined,
-                    },
-                }),
-            }),
-        });
+    result.current();
 
-        const parse = result.current();
+    expect(mockParse).toBeCalledTimes(1);
+  });
 
-        expect(parse).toEqual({});
+  it("if routerProvider parse function is not defined, should return empty object", () => {
+    const { result } = renderHook(() => useParse(), {
+      wrapper: TestWrapper({
+        resources: [{ name: "posts" }],
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterBindings({
+          fns: {
+            parse: undefined,
+          },
+        }),
+      }),
     });
 
-    it("if it is used outside of router provider, should return empty object", () => {
-        jest.spyOn(React, "useContext").mockReturnValue(undefined);
+    const parse = result.current();
 
-        const { result } = renderHook(() => useParse());
+    expect(parse).toEqual({});
+  });
 
-        const parse = result.current();
+  it("if it is used outside of router provider, should return empty object", () => {
+    jest.spyOn(React, "useContext").mockReturnValue(undefined);
 
-        expect(parse).toEqual({});
-    });
+    const { result } = renderHook(() => useParse());
+
+    const parse = result.current();
+
+    expect(parse).toEqual({});
+  });
 });

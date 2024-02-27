@@ -6,167 +6,164 @@ import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
 import { AuthProvider } from "src/interfaces";
 
 const mockAuthProvider: AuthProvider = {
-    login: async () => ({ success: true }),
-    check: async () => ({ authenticated: true }),
-    onError: async () => ({}),
-    logout: async () => ({ success: true }),
+  login: async () => ({ success: true }),
+  check: async () => ({ authenticated: true }),
+  onError: async () => ({}),
+  logout: async () => ({ success: true }),
 };
 
 describe("Auth Page Forgot Password", () => {
-    it("should render card title", async () => {
-        const { getByText } = render(<ForgotPasswordPage />, {
-            wrapper: TestWrapper({}),
-        });
-
-        expect(getByText(/forgot your password?/i)).toBeInTheDocument();
+  it("should render card title", async () => {
+    const { getByText } = render(<ForgotPasswordPage />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("should render email input", async () => {
-        const { getByLabelText } = render(<ForgotPasswordPage />, {
-            wrapper: TestWrapper({}),
-        });
+    expect(getByText(/forgot your password?/i)).toBeInTheDocument();
+  });
 
-        expect(getByLabelText(/email/i)).toBeInTheDocument();
+  it("should render email input", async () => {
+    const { getByLabelText } = render(<ForgotPasswordPage />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("should login link", async () => {
-        const { getByRole } = render(<ForgotPasswordPage />, {
-            wrapper: TestWrapper({}),
-        });
+    expect(getByLabelText(/email/i)).toBeInTheDocument();
+  });
 
-        expect(
-            getByRole("link", {
-                name: /sign in/i,
-            }),
-        ).toBeInTheDocument();
+  it("should login link", async () => {
+    const { getByRole } = render(<ForgotPasswordPage />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("should not render login link when is false", async () => {
-        const { queryByRole } = render(
-            <ForgotPasswordPage loginLink={false} />,
-            {
-                wrapper: TestWrapper({}),
-            },
-        );
+    expect(
+      getByRole("link", {
+        name: /sign in/i,
+      }),
+    ).toBeInTheDocument();
+  });
 
-        expect(
-            queryByRole("link", {
-                name: /sign in/i,
-            }),
-        ).not.toBeInTheDocument();
+  it("should not render login link when is false", async () => {
+    const { queryByRole } = render(<ForgotPasswordPage loginLink={false} />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("should render reset button", async () => {
-        const { getByRole } = render(<ForgotPasswordPage />, {
-            wrapper: TestWrapper({}),
-        });
+    expect(
+      queryByRole("link", {
+        name: /sign in/i,
+      }),
+    ).not.toBeInTheDocument();
+  });
 
-        expect(
-            getByRole("button", {
-                name: /send reset/i,
-            }),
-        ).toBeInTheDocument();
+  it("should render reset button", async () => {
+    const { getByRole } = render(<ForgotPasswordPage />, {
+      wrapper: TestWrapper({}),
     });
 
-    it("should renderContent only", async () => {
-        const { queryByText, queryByTestId, queryByRole, queryByLabelText } =
-            render(
-                <ForgotPasswordPage
-                    renderContent={() => <div data-testid="custom-content" />}
-                />,
-                {
-                    wrapper: TestWrapper({}),
-                },
-            );
+    expect(
+      getByRole("button", {
+        name: /send reset/i,
+      }),
+    ).toBeInTheDocument();
+  });
 
-        expect(queryByLabelText(/email/i)).not.toBeInTheDocument();
-        expect(queryByText(/refine project/i)).not.toBeInTheDocument();
-        expect(queryByTestId("refine-logo")).not.toBeInTheDocument();
-        expect(
-            queryByRole("button", {
-                name: /reset/i,
-            }),
-        ).not.toBeInTheDocument();
-        expect(queryByTestId("custom-content")).toBeInTheDocument();
+  it("should renderContent only", async () => {
+    const { queryByText, queryByTestId, queryByRole, queryByLabelText } =
+      render(
+        <ForgotPasswordPage
+          renderContent={() => <div data-testid="custom-content" />}
+        />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+    expect(queryByLabelText(/email/i)).not.toBeInTheDocument();
+    expect(queryByText(/refine project/i)).not.toBeInTheDocument();
+    expect(queryByTestId("refine-logo")).not.toBeInTheDocument();
+    expect(
+      queryByRole("button", {
+        name: /reset/i,
+      }),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId("custom-content")).toBeInTheDocument();
+  });
+
+  it("should customizable with renderContent", async () => {
+    const { queryByText, queryByTestId, queryByRole, queryByLabelText } =
+      render(
+        <ForgotPasswordPage
+          renderContent={(content: any, title: any) => (
+            <div>
+              {title}
+              <div data-testid="custom-content">
+                <div>Custom Content</div>
+              </div>
+              {content}
+            </div>
+          )}
+        />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+    expect(queryByText(/custom content/i)).toBeInTheDocument();
+    expect(queryByTestId("custom-content")).toBeInTheDocument();
+    expect(queryByLabelText(/email/i)).toBeInTheDocument();
+    expect(
+      queryByRole("button", {
+        name: /reset/i,
+      }),
+    ).toBeInTheDocument();
+    expect(queryByTestId("custom-content")).toBeInTheDocument();
+  });
+
+  it("should run forgotPassword mutation when form is submitted", async () => {
+    const forgotPasswordMock = jest.fn();
+    const { getByLabelText, getByDisplayValue } = render(
+      <ForgotPasswordPage />,
+      {
+        wrapper: TestWrapper({
+          authProvider: {
+            ...mockAuthProvider,
+            forgotPassword: forgotPasswordMock,
+          },
+        }),
+      },
+    );
+
+    fireEvent.change(getByLabelText(/email/i), {
+      target: { value: "demo@refine.dev" },
     });
 
-    it("should customizable with renderContent", async () => {
-        const { queryByText, queryByTestId, queryByRole, queryByLabelText } =
-            render(
-                <ForgotPasswordPage
-                    renderContent={(content: any, title: any) => (
-                        <div>
-                            {title}
-                            <div data-testid="custom-content">
-                                <div>Custom Content</div>
-                            </div>
-                            {content}
-                        </div>
-                    )}
-                />,
-                {
-                    wrapper: TestWrapper({}),
-                },
-            );
+    fireEvent.click(getByDisplayValue(/send reset/i));
 
-        expect(queryByText(/custom content/i)).toBeInTheDocument();
-        expect(queryByTestId("custom-content")).toBeInTheDocument();
-        expect(queryByLabelText(/email/i)).toBeInTheDocument();
-        expect(
-            queryByRole("button", {
-                name: /reset/i,
-            }),
-        ).toBeInTheDocument();
-        expect(queryByTestId("custom-content")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(forgotPasswordMock).toBeCalledTimes(1);
     });
 
-    it("should run forgotPassword mutation when form is submitted", async () => {
-        const forgotPasswordMock = jest.fn();
-        const { getByLabelText, getByDisplayValue } = render(
-            <ForgotPasswordPage />,
-            {
-                wrapper: TestWrapper({
-                    authProvider: {
-                        ...mockAuthProvider,
-                        forgotPassword: forgotPasswordMock,
-                    },
-                }),
-            },
-        );
+    expect(forgotPasswordMock).toBeCalledWith({
+      email: "demo@refine.dev",
+    });
+  });
 
-        fireEvent.change(getByLabelText(/email/i), {
-            target: { value: "demo@refine.dev" },
-        });
+  it("should work with legacy router provider Link", async () => {
+    const LinkComponentMock = jest.fn();
 
-        fireEvent.click(getByDisplayValue(/send reset/i));
-
-        await waitFor(() => {
-            expect(forgotPasswordMock).toBeCalledTimes(1);
-        });
-
-        expect(forgotPasswordMock).toBeCalledWith({
-            email: "demo@refine.dev",
-        });
+    render(<ForgotPasswordPage />, {
+      wrapper: TestWrapper({
+        legacyRouterProvider: {
+          ...mockLegacyRouterProvider(),
+          Link: LinkComponentMock,
+        },
+      }),
     });
 
-    it("should work with legacy router provider Link", async () => {
-        const LinkComponentMock = jest.fn();
-
-        render(<ForgotPasswordPage />, {
-            wrapper: TestWrapper({
-                legacyRouterProvider: {
-                    ...mockLegacyRouterProvider(),
-                    Link: LinkComponentMock,
-                },
-            }),
-        });
-
-        expect(LinkComponentMock).toBeCalledWith(
-            {
-                to: "/login",
-                children: "Sign in",
-            },
-            {},
-        );
-    });
+    expect(LinkComponentMock).toBeCalledWith(
+      {
+        to: "/login",
+        children: "Sign in",
+      },
+      {},
+    );
+  });
 });

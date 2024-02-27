@@ -57,7 +57,9 @@ const authProvider: AuthProvider = {
     // ...
     // We're setting the Authorization header when the user logs in.
     // highlight-next-line
-    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+    axiosInstance.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
   },
   logout: async () => {
     // ...

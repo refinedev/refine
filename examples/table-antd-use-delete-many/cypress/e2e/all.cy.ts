@@ -2,44 +2,44 @@
 /// <reference types="../../cypress/support" />
 
 describe("table-antd-use-delete-many", () => {
-    beforeEach(() => {
-        cy.interceptGETPosts();
-        cy.interceptGETCategories();
+  beforeEach(() => {
+    cy.interceptGETPosts();
+    cy.interceptGETCategories();
 
-        cy.visit("http://localhost:5173");
-    });
+    cy.visit("http://localhost:5173");
+  });
 
-    it("should be view list page", () => {
-        cy.resourceList();
-    });
+  it("should be view list page", () => {
+    cy.resourceList();
+  });
 
-    it("should select all rows when click the checkbox in the table header", () => {
-        cy.getAntdLoadingOverlay().should("not.exist");
+  it("should select all rows when click the checkbox in the table header", () => {
+    cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get(".ant-table-thead .ant-checkbox-input").first().click();
+    cy.get(".ant-table-thead .ant-checkbox-input").first().click();
 
-        cy.get(".ant-table-row-selected").should("have.length", 10);
-    });
+    cy.get(".ant-table-row-selected").should("have.length", 10);
+  });
 
-    it("delete button should be disabled when no row is selected", () => {
-        cy.getAntdLoadingOverlay().should("not.exist");
+  it("delete button should be disabled when no row is selected", () => {
+    cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get(".ant-btn-primary").eq(0).should("be.disabled");
-    });
+    cy.get(".ant-btn-primary").eq(0).should("be.disabled");
+  });
 
-    it("should be able to delete all selected rows", () => {
-        cy.getAntdLoadingOverlay().should("not.exist");
+  it("should be able to delete all selected rows", () => {
+    cy.getAntdLoadingOverlay().should("not.exist");
 
-        cy.get(".ant-table-row .ant-checkbox-input").eq(1).click();
-        cy.get(".ant-table-row .ant-checkbox-input").eq(2).click();
+    cy.get(".ant-table-row .ant-checkbox-input").eq(1).click();
+    cy.get(".ant-table-row .ant-checkbox-input").eq(2).click();
 
-        cy.get(".ant-table-row-selected").should("have.length", 2);
+    cy.get(".ant-table-row-selected").should("have.length", 2);
 
-        cy.interceptDELETEPost();
+    cy.interceptDELETEPost();
 
-        cy.get(".ant-btn-primary").contains("Delete").click();
+    cy.get(".ant-btn-primary").contains("Delete").click();
 
-        cy.wait("@deletePost");
-        cy.wait("@deletePost");
-    });
+    cy.wait("@deletePost");
+    cy.wait("@deletePost");
+  });
 });

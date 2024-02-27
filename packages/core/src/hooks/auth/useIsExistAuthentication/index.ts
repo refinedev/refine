@@ -5,8 +5,8 @@ import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
  * @internal
  */
 export const useIsExistAuthentication = (): boolean => {
-    const { isProvided: legacyIsProvided } = useLegacyAuthContext();
-    const { isProvided } = useAuthBindingsContext();
+  const { isProvided: legacyIsProvided } = useLegacyAuthContext();
+  const { isProvided } = useAuthBindingsContext();
 
-    return Boolean(isProvided || legacyIsProvided);
+  return Boolean(isProvided || legacyIsProvided);
 };

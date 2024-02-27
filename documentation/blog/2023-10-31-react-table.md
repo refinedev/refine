@@ -1,5 +1,5 @@
 ---
-title:  Introduction to React Table - TanStack Table Adapter for React
+title: Introduction to React Table - TanStack Table Adapter for React
 description: We'll explore how to use TanStack Table(React Table) in a react project. We'll also explore how to use TanStack Table with refine.
 slug: tanstack-react-table
 authors: joseph_mawa
@@ -7,9 +7,6 @@ tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/social.png
 hide_table_of_contents: false
 ---
-
-
-
 
 ## Introduction
 
@@ -19,22 +16,21 @@ With libraries such as [TanStack Table](https://tanstack.com/table/v8), you can 
 
 Because it is headless by design, TanStack only has the table logic, state, and API for creating the UI components but doesn't implement the markup or styling.
 
-You can use it with Vanilla JavaScript or popular front-end frameworks like React, refine, Vue,  Solid, and Svelte using adapters. This article will introduce you to TanStack Table and React Table, the TanStack Table adapter for react. We will also explore how to use TanStack in a refine project.
+You can use it with Vanilla JavaScript or popular front-end frameworks like React, Refine, Vue, Solid, and Svelte using adapters. This article will introduce you to TanStack Table and React Table, the TanStack Table adapter for react. We will also explore how to use TanStack in a Refine project.
 
 What we'll cover in this article:
-
 
 - [What is TanStack table](#what-is-tanstack-table)
 - [What is React Table](#what-is-react-table)
 - [How to use React Table](#how-to-use-react-table)
-- [How to use React Table with refine](#how-to-use-react-table-with-refine)
+- [How to use React Table with Refine](#how-to-use-react-table-with-refine)
   - [Pagination](#pagination)
   - [Sorting](#sorting)
   - [Filtering](#filtering)
 
 ## What is TanStack table
 
-As explained above, [TanStack Table](https://tanstack.com/table/v8) is a headless and framework-agnostic package for building tables and data grids. It has adapters for some of the most popular front-end frameworks like React, refine, Vue, Solid, and Svelte.
+As explained above, [TanStack Table](https://tanstack.com/table/v8) is a headless and framework-agnostic package for building tables and data grids. It has adapters for some of the most popular front-end frameworks like React, Refine, Vue, Solid, and Svelte.
 
 The core TanStack Table package exposes several APIs. You can access these APIs directly from the core TanStack API or one of the adapters for your front-end framework.
 
@@ -59,7 +55,7 @@ npm i @tanstack/react-table
 The React Table adapter exports the `useReactTable` hook. The `useReactTable` hook takes an options object as argument and returns a table object.
 
 ```tsx
-const table = useReactTable(options)
+const table = useReactTable(options);
 ```
 
 The options object has several properties, which we will not explore in detail in this article. However, you should have the data and the table column objects. The example below illustrates the basic use of the `useReactTable` hook.
@@ -101,7 +97,7 @@ const columns = [
     header: "Full Name",
   }),
   columnHelper.accessor("gender", {
-    header: 'Gender'
+    header: "Gender",
   }),
 ];
 
@@ -126,7 +122,7 @@ function App() {
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </th>
                 );
@@ -165,9 +161,9 @@ The `useReactTable` returns an object consisting of several methods you can use 
 
 The table object has several other properties that you can look up in the React Table documentation.
 
-## How to use React Table with refine
+## How to use React Table with Refine
 
-TanStack Table is framework agnostic. Therefore, you need an adapter to use it with front-end frameworks like [refine](https://github.com/refinedev/refine/stargazers). The refine ecosystem has the [`@refinedev/react-table`](https://github.com/refinedev/refine/tree/master/packages/react-table) adapter for integrating TanStack Table into your refine application.
+TanStack Table is framework agnostic. Therefore, you need an adapter to use it with front-end frameworks like [Refine](https://github.com/refinedev/refine/stargazers). The Refine ecosystem has the [`@refinedev/react-table`](https://github.com/refinedev/refine/tree/master/packages/react-table) adapter for integrating TanStack Table into your Refine application.
 
 Depending on your package manager, first, install it from the NPM package registry. The command below assumes you're using the NPM package manager.
 
@@ -175,14 +171,13 @@ Depending on your package manager, first, install it from the NPM package regist
 npm i @refinedev/react-table
 ```
 
-Under the hood, the `@refinedev/react-table` package uses refine's `useList` hook. It has out-of-the-box support for all the features of the core TanStack table package and much more.
+Under the hood, the `@refinedev/react-table` package uses Refine's `useList` hook. It has out-of-the-box support for all the features of the core TanStack table package and much more.
 
 The `@refinedev/react-table` package exports the `useTable` hook. The `useTable` hook reads the resource from the URL and returns the data from the API endpoint in its basic usage.
 
-The code below illustrates how to use React Table with refine. If you have a running refine project already, use the example code below to display data from the the [categories](https://api.fake-rest.refine.dev/categories)resource of the [fake REST API](https://api.fake-rest.refine.dev/) in tabular form using the `@refinedev/react-table` package.
+The code below illustrates how to use React Table with refine. If you have a running Refine project already, use the example code below to display data from the the [categories](https://api.fake-rest.refine.dev/categories)resource of the [fake REST API](https://api.fake-rest.refine.dev/) in tabular form using the `@refinedev/react-table` package.
 
-The fake REST API was created by the refine team to try out the examples in refine.
-
+The fake REST API was created by the Refine team to try out the examples in refine.
 
 <details>
 
@@ -240,7 +235,7 @@ export const CategoryList = () => {
         },
       },
     ],
-    []
+    [],
   );
 
   const { edit, show } = useNavigation();
@@ -284,7 +279,7 @@ export const CategoryList = () => {
                     {!header.isPlaceholder &&
                       flexRender(
                         header.column.columnDef.header,
-                        header.getContext()
+                        header.getContext(),
                       )}
                   </th>
                 ))}
@@ -308,8 +303,8 @@ export const CategoryList = () => {
   );
 };
 ```
-</details>
 
+</details>
 
 <div class="img-container">
     <div class="window">
@@ -320,20 +315,15 @@ export const CategoryList = () => {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table.png" alt="react slick" />
 </div>
 
+As in the above example, Refine's React Table adapter exports the `useTable` hook. You need to create the table column and pass it as an argument to the `useTable` hook.
 
-As in the above example, refine's React Table adapter exports the `useTable` hook. You need to create the table column and pass it as an argument to the `useTable` hook.
-
-The `useTable` hook returns several methods and properties that you can use to retrieve the table headers and rows and add other useful table features. Be aware that the refine TanStack table adapter is headless. You are responsible for the markup and styling as in the above example.
+The `useTable` hook returns several methods and properties that you can use to retrieve the table headers and rows and add other useful table features. Be aware that the Refine TanStack table adapter is headless. You are responsible for the markup and styling as in the above example.
 
 The above example retrieves the data and displays it in a simple table. However, a typical table will need additional features such as pagination, sorting, and filtering. Let us explore how to add them in the sub-sections below.
-
-
-
 
 ### Pagination
 
 The `useTable` hook returns an object with several methods such as `setPageIndex`, `getPageCount`, and `previousPage`. You can use some of these methods to manage pagination in the table. The method names are pretty much self-explanatory.
-
 
 <details>
 
@@ -446,8 +436,6 @@ export const CategoryList = () => {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="react slick" />
 </div>
 
-
-
 After adding the changes above, you can now navigate to any page of the data. By default, pagination is handled on the server side. If you want pagination to be handled on the client side, set the value of the `pagination.mode` property to `"client` like so:
 
 ```tsx
@@ -550,9 +538,6 @@ export const CategoryList = () => {
 };
 ```
 
-
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -561,9 +546,6 @@ export const CategoryList = () => {
     </div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-sorting.png" alt="react slick" />
 </div>
-
-
-
 
 You can now click the Title header to sort the table in ascending or descending order of the title.
 
@@ -574,7 +556,6 @@ Similar to pagination and sorting explained in the previous two sections, the ob
 When defining the table column, you can specify which columns can be filtered and specify the filter operator using the `filterOperator` property of the `meta` object. The default filter operator is `"eq"` for all fields.
 
 Add the following changes to the code above.
-
 
 <details>
 
@@ -718,8 +699,6 @@ export const CategoryList = () => {
 
 </details>
 
-
-
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -729,11 +708,7 @@ export const CategoryList = () => {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-filtering.png" alt="react slick" />
 </div>
 
-
-
 You will now see a search field that you can use to search for an entry in the title field.
-
-
 
 <div class="img-container">
     <div class="window">
@@ -748,8 +723,8 @@ There are several features of React Table that we haven't explored in this secti
 
 ## Conclusion
 
-TanStack table is a headless, framework-agnostic library for managing data and data grids. Because it's framework-independent, you can use it with the most popular front-end frameworks like React, Vue, Svelte, Solid, and refine using adapters.
+TanStack table is a headless, framework-agnostic library for managing data and data grids. Because it's framework-independent, you can use it with the most popular front-end frameworks like React, Vue, Svelte, Solid, and Refine using adapters.
 
 React Table is the TanStack adapter for React. It enables you to manage your table state in a "react way." It has all the features of the core TanStack table package and much more.
 
-refine also has an adapter that you can use to integrate TanStack table into your refine application.
+Refine also has an adapter that you can use to integrate TanStack table into your Refine application.

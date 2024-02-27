@@ -60,7 +60,6 @@ export interface ICategory {
   cover: string;
 }
 
-
 export interface IProductCategory {
   value: number;
   label: string;
@@ -75,12 +74,11 @@ export interface IDeleteModalProps {
 
 interface IDisplayAreaGraphProps {
   data: IChartDatum[];
-  stroke: string,
-  fill: string,
+  stroke: string;
+  fill: string;
 }
 
 interface IDisplayBarChartProps {
   data: IChartDatum[];
-  fill: string,
+  fill: string;
 }
-

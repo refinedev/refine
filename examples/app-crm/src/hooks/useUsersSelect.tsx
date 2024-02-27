@@ -22,11 +22,11 @@ const USERS_SELECT_QUERY = gql`
 `;
 
 export const useUsersSelect = () => {
-    return useSelect<GetFieldsFromList<UsersSelectQuery>>({
-        resource: "users",
-        optionLabel: "name",
-        meta: {
-            gqlQuery: USERS_SELECT_QUERY,
-        },
-    });
+  return useSelect<GetFieldsFromList<UsersSelectQuery>>({
+    resource: "users",
+    optionLabel: "name",
+    meta: {
+      gqlQuery: USERS_SELECT_QUERY,
+    },
+  });
 };

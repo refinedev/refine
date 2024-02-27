@@ -13,8 +13,8 @@ export { sequentialPromises } from "./sequentialPromises";
 export { pickDataProvider } from "./pickDataProvider";
 export { handleMultiple } from "./handleMultiple";
 export {
-    getNextPageParam,
-    getPreviousPageParam,
+  getNextPageParam,
+  getPreviousPageParam,
 } from "./useInfinitePagination";
 export { pickNotDeprecated } from "./pickNotDeprecated";
 export { legacyResourceTransform } from "./legacy-resource-transform";

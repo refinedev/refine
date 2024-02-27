@@ -5,6 +5,6 @@ import axios from "axios";
 axios.defaults.adapter = "http";
 
 afterAll(() => {
-    nock.cleanAll();
-    nock.restore();
+  nock.cleanAll();
+  nock.restore();
 });

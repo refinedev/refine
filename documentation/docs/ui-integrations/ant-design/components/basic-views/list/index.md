@@ -32,7 +32,8 @@ const PostList: React.FC = () => {
     syncWithLocation: true,
   });
 
-  const categoryIds = tableProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const categoryIds =
+    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -54,10 +55,18 @@ const PostList: React.FC = () => {
               return <TextField value="Loading..." />;
             }
 
-            return <TextField value={data?.data.find((item) => item.id === value)?.title} />;
+            return (
+              <TextField
+                value={data?.data.find((item) => item.id === value)?.title}
+              />
+            );
           }}
         />
-        <Table.Column dataIndex="status" title="Status" render={(value: string) => <TagField value={value} />} />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value: string) => <TagField value={value} />}
+        />
       </Table>
     </List>
   );
@@ -491,7 +500,9 @@ const PostList: React.FC = () => {
       // highlight-start
       headerButtons={({ createButtonProps }) => (
         <>
-          {createButtonProps && <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />}
+          {createButtonProps && (
+            <CreateButton {...createButtonProps} meta={{ foo: "bar" }} />
+          )}
           <Button type="primary">Custom Button</Button>
         </>
       )}

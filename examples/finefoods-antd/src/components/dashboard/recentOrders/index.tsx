@@ -1,132 +1,160 @@
-import { useNavigation, useTranslate } from "@refinedev/core";
-import { useTable } from "@refinedev/antd";
-import { Typography, Table, Avatar, Space, Tag } from "antd";
-import {
-    RecentOrdersColumn,
-    Price,
-    OrderId,
-    Title,
-    TitleWrapper,
-} from "./styled";
+import { useNavigation } from "@refinedev/core";
+import { NumberField, useTable } from "@refinedev/antd";
+import { Typography, Table, theme, Space, Flex } from "antd";
 
 import { OrderActions } from "../../../components";
 
 import { IOrder } from "../../../interfaces";
-
-const { Text, Paragraph } = Typography;
+import { useStyles } from "./styled";
+import { getUniqueListWithCount } from "../../../utils";
 
 export const RecentOrders: React.FC = () => {
-    const t = useTranslate();
-    const { tableProps } = useTable<IOrder>({
-        resource: "orders",
-        initialSorter: [
-            {
-                field: "createdAt",
-                order: "desc",
-            },
-        ],
-        initialPageSize: 4,
-        permanentFilter: [
-            {
-                field: "status.text",
-                operator: "eq",
-                value: "Pending",
-            },
-        ],
-        syncWithLocation: false,
-    });
+  const { token } = theme.useToken();
+  const { styles } = useStyles();
 
-    const { show } = useNavigation();
+  const { tableProps } = useTable<IOrder>({
+    resource: "orders",
+    initialSorter: [
+      {
+        field: "createdAt",
+        order: "desc",
+      },
+    ],
+    initialPageSize: 10,
+    permanentFilter: [
+      {
+        field: "status.text",
+        operator: "eq",
+        value: "Pending",
+      },
+    ],
+    syncWithLocation: false,
+  });
 
-    return (
-        <Table
-            {...tableProps}
-            pagination={{ ...tableProps.pagination, simple: true }}
-            showHeader={false}
-            rowKey="id"
-        >
-            <Table.Column<IOrder>
-                key="avatar"
-                render={(_, record) => (
-                    <Avatar
-                        size={{
-                            xs: 60,
-                            lg: 108,
-                            xl: 132,
-                            xxl: 144,
-                        }}
-                        src={record?.products[0]?.images[0].url}
-                    />
-                )}
-            />
-            <RecentOrdersColumn
-                key="summary"
-                render={(_, record) => (
-                    <TitleWrapper>
-                        <Title strong>{record.products[0]?.name}</Title>
-                        <Paragraph
-                            ellipsis={{
-                                rows: 2,
-                                tooltip: record.products[0]?.description,
-                                symbol: <span>...</span>,
-                            }}
-                        >
-                            {record.products[0]?.description}
-                        </Paragraph>
+  const { show } = useNavigation();
 
-                        <OrderId
-                            strong
-                            onClick={() => {
-                                show("orders", record.id);
-                            }}
-                        >
-                            #{record.orderNumber}
-                        </OrderId>
-                    </TitleWrapper>
-                )}
+  return (
+    <Table
+      {...tableProps}
+      pagination={{
+        ...tableProps.pagination,
+        hideOnSinglePage: true,
+        showSizeChanger: false,
+        className: styles.pagination,
+      }}
+      showHeader={false}
+      rowKey="id"
+    >
+      <Table.Column<IOrder>
+        dataIndex="orderNumber"
+        className={styles.column}
+        render={(_, record) => (
+          <Typography.Link
+            strong
+            onClick={() => show("orders", record.id)}
+            style={{
+              whiteSpace: "nowrap",
+              color: token.colorTextHeading,
+            }}
+          >
+            #{record.orderNumber}
+          </Typography.Link>
+        )}
+      />
+      <Table.Column<IOrder>
+        dataIndex="id"
+        className={styles.column}
+        render={(_, record) => {
+          return (
+            <Space
+              size={0}
+              direction="vertical"
+              style={{
+                maxWidth: "220px",
+              }}
+            >
+              <Typography.Text
+                style={{
+                  fontSize: 14,
+                }}
+              >
+                {record?.user?.firstName} {record?.user?.lastName}
+              </Typography.Text>
+              <Typography.Text
+                ellipsis
+                style={{
+                  fontSize: 12,
+                }}
+                type="secondary"
+              >
+                {record?.user?.addresses?.[0]?.text}
+              </Typography.Text>
+            </Space>
+          );
+        }}
+      />
+      <Table.Column<IOrder>
+        dataIndex="products"
+        className={styles.column}
+        render={(products: IOrder["products"]) => {
+          if (!products.length) {
+            return <Typography.Text>-</Typography.Text>;
+          }
+
+          const uniqueProducts = getUniqueListWithCount<
+            IOrder["products"][number]
+          >({ list: products, field: "id" });
+
+          return (
+            <Space
+              size={0}
+              direction="vertical"
+              style={{
+                maxWidth: "220px",
+              }}
+            >
+              {uniqueProducts.map((product) => (
+                <Flex key={product.id} gap={4}>
+                  <Typography.Text ellipsis>{product.name}</Typography.Text>
+                  <span
+                    style={{
+                      color: token.colorTextSecondary,
+                    }}
+                  >
+                    x{product.count}
+                  </span>
+                </Flex>
+              ))}
+            </Space>
+          );
+        }}
+      />
+      <Table.Column<IOrder>
+        dataIndex="amount"
+        className={styles.column}
+        align="end"
+        render={(amount) => {
+          return (
+            <NumberField
+              value={amount / 100}
+              style={{
+                whiteSpace: "nowrap",
+              }}
+              options={{
+                style: "currency",
+                currency: "USD",
+              }}
             />
-            <RecentOrdersColumn
-                key="summary"
-                render={(_, record) => (
-                    <Space direction="vertical">
-                        <Title
-                            strong
-                        >{`${record.courier.name} ${record.courier.surname}`}</Title>
-                        <Text>{record.adress.text}</Text>
-                    </Space>
-                )}
-            />
-            <Table.Column<IOrder>
-                dataIndex="amount"
-                render={(value, record) => (
-                    <Space
-                        size="large"
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <Price
-                            strong
-                            options={{
-                                currency: "USD",
-                                style: "currency",
-                                notation: "standard",
-                            }}
-                            value={value / 100}
-                        />
-                        <Tag color="orange">
-                            {t(`enum.orderStatuses.${record.status.text}`)}
-                        </Tag>
-                    </Space>
-                )}
-            />
-            <Table.Column<IOrder>
-                fixed="right"
-                key="actions"
-                align="center"
-                render={(_, record) => <OrderActions record={record} />}
-            />
-        </Table>
-    );
+          );
+        }}
+      />
+      <Table.Column<IOrder>
+        fixed="right"
+        key="actions"
+        className={styles.column}
+        align="end"
+        render={(_, record) => <OrderActions record={record} />}
+      />
+    </Table>
+  );
 };

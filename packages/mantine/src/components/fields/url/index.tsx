@@ -11,14 +11,14 @@ import { UrlFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
-    children,
-    value,
-    title,
-    ...rest
+  children,
+  value,
+  title,
+  ...rest
 }) => {
-    return (
-        <Anchor href={value} title={title} {...rest}>
-            {children ?? value}
-        </Anchor>
-    );
+  return (
+    <Anchor href={value} title={title} {...rest}>
+      {children ?? value}
+    </Anchor>
+  );
 };
