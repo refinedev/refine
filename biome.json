@@ -100,7 +100,7 @@
         "noAssignInExpressions": "error",
         "noImplicitAnyLet": "off",
         "noPrototypeBuiltins": "error",
-        "noDoubleEquals": "off",
+        "noDoubleEquals": "error",
         "noConfusingVoidType": "off",
         "noGlobalIsNan": "error",
         "noArrayIndexKey": "off",

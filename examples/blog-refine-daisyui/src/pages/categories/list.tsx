@@ -211,7 +211,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
             (pageNumber) => {
               const btnActive =
-                pageNumber - 1 == getState()?.pagination?.pageIndex
+                pageNumber - 1 === getState()?.pagination?.pageIndex
                   ? " btn-active"
                   : "";
               return (

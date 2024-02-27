@@ -351,7 +351,7 @@ export const useDeleteMany = <
               .params(preferredMeta)
               .get(preferLegacyKeys),
             (previous?: any | null) => {
-              if (!previous || previous.data.id == id) {
+              if (!previous || previous.data.id === id) {
                 return null;
               }
               return {

@@ -71,21 +71,21 @@ export const compareFilters = (
     right.operator !== "or"
   ) {
     return (
-      ("field" in left ? left.field : undefined) ==
+      ("field" in left ? left.field : undefined) ===
         ("field" in right ? right.field : undefined) &&
-      left.operator == right.operator
+      left.operator === right.operator
     );
   }
 
   return (
-    ("key" in left ? left.key : undefined) ==
+    ("key" in left ? left.key : undefined) ===
       ("key" in right ? right.key : undefined) &&
-    left.operator == right.operator
+    left.operator === right.operator
   );
 };
 
 export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
-  left.field == right.field;
+  left.field === right.field;
 // Keep only one CrudFilter per type according to compareFilters
 // Items in the array that is passed first to unionWith have higher priority
 // CrudFilter items with undefined values are necessary to signify no filter
