@@ -35,7 +35,7 @@
         "@refinedev/hasura": "^6.5.0",
         "@refinedev/inferencer": "^4.5.18",
         "@refinedev/kbar": "^1.1.0",
-        "@refinedev/mantine": "^3.0.0",
+        "@refinedev/mantine": "^2.29.4",
         "@refinedev/mui": "^5.14.3",
         "@refinedev/nestjs-query": "^1.1.1",
         "@refinedev/nestjsx-crud": "^5.0.2",
