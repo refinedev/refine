@@ -109,7 +109,7 @@
         "noDuplicateJsxProps": "error",
         "noShadowRestrictedNames": "off",
         "useDefaultSwitchClauseLast": "off",
-        "noSelfCompare": "off",
+        "noSelfCompare": "error",
         "noFallthroughSwitchClause": "off",
         "noEmptyInterface": "error",
         "noDuplicateObjectKeys": "error",

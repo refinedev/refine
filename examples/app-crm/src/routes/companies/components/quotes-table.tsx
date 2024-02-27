@@ -84,7 +84,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
     });
   }, [filters]);
 
-  const hasData = tableProps?.dataSource?.length || 0 > 0;
+  const hasData = (tableProps?.dataSource?.length || 0) > 0;
 
   return (
     <Card
