@@ -25,7 +25,6 @@ import { Header } from "./components";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <MantineProvider theme={RefineThemes.Magenta as any}>
         <Refine
           routerProvider={routerProvider}
@@ -48,7 +47,7 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2 Header={Header}>
+                <ThemedLayoutV2 Header={Header} Footer={GitHubBanner}>
                   <Outlet />
                 </ThemedLayoutV2>
               }

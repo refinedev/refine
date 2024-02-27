@@ -45,7 +45,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <MantineProvider theme={RefineThemes.Blue}>
           <Refine
@@ -87,7 +86,10 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2 Header={() => <Header sticky />}>
+                    <ThemedLayoutV2
+                      Header={() => <Header sticky />}
+                      Footer={GitHubBanner}
+                    >
                       <Outlet />
                     </ThemedLayoutV2>
                   </Authenticated>

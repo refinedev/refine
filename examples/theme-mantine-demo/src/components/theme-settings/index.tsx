@@ -33,10 +33,10 @@ const ThemeSettings: FC<Props> = ({ onThemeClick }) => {
       <Box
         style={{
           position: "fixed",
-          bottom: "16px",
+          bottom: "40px",
           left: "50%",
           transform: "translateX(-50%)",
-          zIndex: 100,
+          zIndex: 300,
         }}
       >
         <Button onClick={show}>Open Theme settings</Button>

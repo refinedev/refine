@@ -32,7 +32,6 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <MantineProvider
         theme={{
           ...customTheme,
@@ -66,7 +65,7 @@ const App: React.FC = () => {
                   key="authenticated-routes"
                   fallback={<CatchAllNavigate to="/login" />}
                 >
-                  <ThemedLayoutV2>
+                  <ThemedLayoutV2 Footer={GitHubBanner}>
                     <Outlet />
                   </ThemedLayoutV2>
                 </Authenticated>

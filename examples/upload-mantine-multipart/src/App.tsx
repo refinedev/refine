@@ -25,7 +25,6 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           routerProvider={routerProvider}
@@ -48,7 +47,7 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayoutV2 Footer={GitHubBanner}>
                   <Outlet />
                 </ThemedLayoutV2>
               }

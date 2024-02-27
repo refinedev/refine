@@ -23,7 +23,6 @@ import { BlogPostShow } from "./pages/blog-posts/show";
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           routerProvider={routerProvider}
@@ -46,7 +45,7 @@ function App() {
             warnWhenUnsavedChanges: true,
           }}
         >
-          <ThemedLayoutV2>
+          <ThemedLayoutV2 Footer={GitHubBanner}>
             <Routes>
               <Route
                 index

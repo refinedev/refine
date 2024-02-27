@@ -56,7 +56,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         {/* You can change the theme colors here. example: theme={{ ...RefineThemes.Magenta, colorScheme:colorScheme }} */}
         <MantineProvider
@@ -104,7 +103,10 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2 Header={() => <Header sticky />}>
+                    <ThemedLayoutV2
+                      Header={() => <Header sticky />}
+                      Footer={GitHubBanner}
+                    >
                       <Outlet />
                     </ThemedLayoutV2>
                   </Authenticated>

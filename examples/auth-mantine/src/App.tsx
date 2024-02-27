@@ -156,7 +156,6 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -184,7 +183,7 @@ const App: React.FC = () => {
                   key="authenticated-routes"
                   fallback={<CatchAllNavigate to="/login" />}
                 >
-                  <ThemedLayoutV2>
+                  <ThemedLayoutV2 Footer={GitHubBanner}>
                     <Outlet />
                   </ThemedLayoutV2>
                 </Authenticated>
