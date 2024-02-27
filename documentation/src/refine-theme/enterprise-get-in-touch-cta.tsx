@@ -4,9 +4,13 @@ import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 
 type Props = {
   className?: string;
+  label?: string;
 };
 
-export const EnterpriseGetInTouchCta: FC<Props> = (props) => {
+export const EnterpriseGetInTouchCta: FC<Props> = ({
+  label = "Ready to unlock the full potential?",
+  ...props
+}) => {
   return (
     <div className={clsx(props.className)}>
       <div
@@ -23,7 +27,7 @@ export const EnterpriseGetInTouchCta: FC<Props> = (props) => {
         )}
       >
         <h2 className={clsx("text-sm landing-sm:text-2xl", "font-medium")}>
-          Ready to unlock the full potential?
+          {label}
         </h2>
         <EnterpriseGetInTouchButton variant="plain" />
       </div>
