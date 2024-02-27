@@ -80,5 +80,8 @@
     "react-docgen-typescript": "^2.2.2",
     "sucrase": "^3.27.0",
     "typescript": "^4.4.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
