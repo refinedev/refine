@@ -4,10 +4,8 @@ import React from "react";
 import { render, RenderOptions } from "@testing-library/react";
 
 export function customRender(ui: React.ReactNode, options?: RenderOptions) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (window.MantineProvider) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const MantineProvider = window.MantineProvider;
     if (!options) {
@@ -17,6 +15,18 @@ export function customRender(ui: React.ReactNode, options?: RenderOptions) {
     }
     if (!options.wrapper) {
       options.wrapper = MantineProvider;
+    } else {
+      const Wrapper = options.wrapper;
+      options.wrapper = ({
+        children,
+        ...rest
+      }: { children: React.ReactElement }) => {
+        return (
+          <MantineProvider>
+            <Wrapper {...rest}>{children}</Wrapper>
+          </MantineProvider>
+        );
+      };
     }
   }
 

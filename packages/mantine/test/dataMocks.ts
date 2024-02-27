@@ -7,13 +7,6 @@ import {
 } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
-/* import {
-    IDataContext,
-    IRouterContext,
-    IAccessControlContext,
-    ILiveContext,
-} from "@refinedev/core"; */
-
 export const posts = [
   {
     id: "1",

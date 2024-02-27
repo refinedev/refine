@@ -44,7 +44,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           component="div"
           leftSection={<IconFileImport size={18} {...svgIconProps} />}
           loading={loading}

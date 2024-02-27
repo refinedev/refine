@@ -18,7 +18,7 @@ import { mockRouterBindings, MockJSONServer } from "@test";
 import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 import { MantineProvider } from "@mantine/core";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
 // @ts-ignore
 window.MantineProvider = MantineProvider;
 
@@ -125,9 +125,8 @@ export {
   mockLegacyRouterProvider,
   MockRouterProvider,
   mockLegacyAuthProvider,
+  render,
 } from "@refinedev/ui-tests";
 
 // re-export everything
 export * from "@testing-library/react";
-
-export { customRender as render } from "./render";

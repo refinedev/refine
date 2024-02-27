@@ -79,7 +79,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     </ActionIcon>
   ) : (
     <Button
-      variant="default"
+      variant={variant || "default"}
       leftSection={<IconRefresh size={18} {...svgIconProps} />}
       loading={isInvalidating}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {

@@ -116,7 +116,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           vars={vars}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
-          variant="filled"
+          variant={variant || "filled"}
           {...rest}
         >
           {children ?? translate("buttons.create", "Create")}

@@ -119,7 +119,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           disabled={data?.can === false}
           leftSection={<IconEye size={18} {...svgIconProps} />}
           title={disabledTitle()}

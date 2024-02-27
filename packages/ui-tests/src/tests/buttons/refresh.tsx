@@ -78,8 +78,7 @@ export const buttonRefreshTests = function (
     });
 
     it("should invalidates when button is clicked", async () => {
-      jest.resetAllMocks();
-      jest.restoreAllMocks();
+      jest.clearAllMocks();
 
       const { getByText } = render(
         <Routes>
@@ -121,8 +120,7 @@ export const buttonRefreshTests = function (
     });
 
     it("should when onClick is not passed, NOT invalidates when button is clicked", async () => {
-      jest.resetAllMocks();
-      jest.restoreAllMocks();
+      jest.clearAllMocks();
 
       const onClickMock = jest.fn();
 

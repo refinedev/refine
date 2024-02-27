@@ -40,7 +40,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     </ActionIcon>
   ) : (
     <Button
-      variant="default"
+      variant={variant || "default"}
       loading={loading}
       leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}

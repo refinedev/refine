@@ -55,7 +55,6 @@ export const useSelect = <
       data: options,
       onSearchChange: onSearch,
       searchable: true,
-      //filterDataOnExactSearchMatch: true,
       clearable: true,
     },
     queryResult,
