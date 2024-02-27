@@ -97,7 +97,7 @@
         "noExplicitAny": "off",
         "noRedundantUseStrict": "error",
         "noAsyncPromiseExecutor": "error",
-        "noAssignInExpressions": "off",
+        "noAssignInExpressions": "error",
         "noImplicitAnyLet": "off",
         "noPrototypeBuiltins": "error",
         "noDoubleEquals": "off",

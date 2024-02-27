@@ -7,7 +7,11 @@ export const generateNestedFilterField = (field: string) => {
 
   if (fields.length > 1) {
     let fieldQuery = "";
-    fields.map((v) => (fieldQuery += `[${v}]`));
+
+    fields.forEach((v) => {
+      fieldQuery += `[${v}]`;
+    });
+
     return fieldQuery;
   }
   return `[${fields[0]}]`;

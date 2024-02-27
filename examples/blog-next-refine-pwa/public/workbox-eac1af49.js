@@ -2157,6 +2157,7 @@ define(["exports"], (exports) => {
     async doneWaiting() {
       let promise;
 
+      // biome-ignore lint/suspicious/noAssignInExpressions:
       while ((promise = this._extendLifetimePromises.shift())) {
         await promise;
       }
