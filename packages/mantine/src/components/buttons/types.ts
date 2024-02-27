@@ -1,4 +1,4 @@
-import { ButtonProps, ClassNames } from "@mantine/core";
+import { ButtonProps, ButtonVariant } from "@mantine/core";
 import { UseImportInputPropsType } from "@refinedev/core";
 import {
   RefineCloneButtonProps,
@@ -14,40 +14,41 @@ import {
 } from "@refinedev/ui-types";
 import { TablerIconProps } from "@tabler/icons";
 
-export type MantiteButtonProps = Omit<ButtonProps, "classNames"> & {
+export type MantineButtonProps = Omit<ButtonProps, "classNames"> & {
   size?: string;
+  variant?: ButtonVariant;
 };
 
 export type ShowButtonProps = RefineShowButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type ImportButtonProps = RefineImportButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     inputProps: UseImportInputPropsType;
     svgIconProps?: TablerIconProps;
@@ -55,35 +56,35 @@ export type ImportButtonProps = RefineImportButtonProps<
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
-  MantiteButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }

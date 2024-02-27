@@ -45,11 +45,13 @@ const ThemedLayoutV2WithoutContext: React.FC<RefineThemedLayoutV2Props> = ({
         <SiderToRender Title={Title} />
       </AppShell.Navbar>
 
-      <AppShell.Main>
-        {children}
+      <AppShell.Main>{children}</AppShell.Main>
 
-        {Footer && <Footer />}
-      </AppShell.Main>
+      {Footer && (
+        <AppShell.Footer>
+          <Footer />
+        </AppShell.Footer>
+      )}
 
       {OffLayoutArea && <OffLayoutArea />}
     </AppShell>

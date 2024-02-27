@@ -203,7 +203,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         justify={collapsedLayout ? "center" : "flex-start"}
         style={{
           height: "var(--app-shell-header-height)",
-          borderBottom: `1px solid var(--_app-shell-border-color)`,
+          borderBottom: `1px solid var(--app-shell-border-color)`,
           borderRight: `0`,
         }}
       >
@@ -226,8 +226,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         mx="-xs"
         pl="xs"
         pr="0"
+        mr="0"
         style={{
-          borderRight: `1px solid var(--_app-shell-border-color)`,
+          borderRight: `1px solid var(--app-shell-border-color)`,
           minHeight: `calc(100vh - var(--app-shell-header-height))`,
         }}
       >
