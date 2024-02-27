@@ -56,7 +56,6 @@ export const getFilesPathByProject = (projectType?: ProjectTypes) => {
     case ProjectTypes.CRACO:
     case ProjectTypes.PARCEL:
     case ProjectTypes.UNKNOWN:
-    default:
       return "./src";
   }
 };

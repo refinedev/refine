@@ -58,7 +58,7 @@
         "useOptionalChain": "error",
         "noBannedTypes": "off",
         "noUselessFragments": "off",
-        "noUselessSwitchCase": "off",
+        "noUselessSwitchCase": "error",
         "noUselessConstructor": "off",
         "noExtraBooleanCast": "error",
         "noStaticOnlyClass": "off",

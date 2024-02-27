@@ -225,7 +225,6 @@ describe("Edit", () => {
             switch (action) {
               case "list":
                 return Promise.resolve({ can: true });
-              case "delete":
               default:
                 return Promise.resolve({ can: false });
             }
