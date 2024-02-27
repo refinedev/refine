@@ -28,7 +28,7 @@ function useEventListener<
 
   useEffect(() => {
     const targetElement: T | Window = element?.current || window;
-    if (!(targetElement && targetElement.addEventListener)) {
+    if (!targetElement?.addEventListener) {
       return;
     }
 

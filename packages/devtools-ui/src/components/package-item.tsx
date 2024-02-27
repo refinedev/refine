@@ -226,7 +226,7 @@ export const PackageItem = ({ item, blocked, onUpdate, onOutdated }: Props) => {
                   "re-leading-4",
                 )}
               >
-                {latestData && latestData.latestVersion
+                {latestData?.latestVersion
                   ? `v${latestData.latestVersion}`
                   : ""}
               </span>

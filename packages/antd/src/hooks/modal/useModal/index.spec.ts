@@ -93,13 +93,12 @@ describe("useModal Hook", () => {
     expect(result.current.modalProps.visible).toEqual(true);
 
     act(() => {
-      modalProps.onCancel &&
-        modalProps.onCancel(
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          }) as any,
-        );
+      modalProps.onCancel?.(
+        new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+        }) as any,
+      );
     });
 
     expect(result.current.modalProps.open).toEqual(false);
@@ -120,13 +119,12 @@ describe("useModal Hook", () => {
     expect(result.current.modalProps.visible).toEqual(true);
 
     act(() => {
-      modalProps.onCancel &&
-        modalProps.onCancel(
-          new MouseEvent("click", {
-            bubbles: true,
-            cancelable: true,
-          }) as any,
-        );
+      modalProps.onCancel?.(
+        new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+        }) as any,
+      );
     });
 
     expect(result.current.modalProps.open).toEqual(false);

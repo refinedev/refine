@@ -115,7 +115,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
         {
           onSuccess: (value) => {
-            onSuccess && onSuccess(value);
+            onSuccess?.(value);
           },
         },
       );

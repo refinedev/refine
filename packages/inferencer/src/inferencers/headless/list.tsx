@@ -119,7 +119,7 @@ export const renderer = ({
 
   const relationVariableNames = relationFields
     ?.map((field) => {
-      if (field && field.resource) {
+      if (field?.resource) {
         return getVariableName(field.key, "Data");
       }
       return undefined;

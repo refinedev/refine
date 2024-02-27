@@ -51,7 +51,7 @@ export const Addresses: React.FC = () => {
       ) : (
         <div>
           <div className="text-small-regular bg-primary px-8 py-6">
-            {cart && cart.shipping_address ? (
+            {cart?.shipping_address ? (
               <div className="flex items-start gap-x-8">
                 <div className={s.mark}>✓</div>
                 <div className={s.checkedAddress}>
@@ -102,7 +102,7 @@ export const Addresses: React.FC = () => {
                 <h2>Billing address</h2>
               </div>
               <div className="text-small-regular px-8 py-6">
-                {cart && cart.billing_address ? (
+                {cart?.billing_address ? (
                   <div className="flex items-start gap-x-8">
                     <div className={s.mark}>✓</div>
                     <div className={s.checkedAddress}>

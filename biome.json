@@ -55,7 +55,7 @@
       "complexity": {
         "noForEach": "off",
         "useLiteralKeys": "off",
-        "useOptionalChain": "off",
+        "useOptionalChain": "error",
         "noBannedTypes": "off",
         "noUselessFragments": "off",
         "noUselessSwitchCase": "off",

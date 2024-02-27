@@ -16,20 +16,17 @@ function DashboardPage() {
   }, [products]);
 
   const columnItem = (columnName: string) => {
-    return (
-      orders &&
-      orders
-        .filter((order) => order.column === columnName)
-        .map((order, index) => (
-          <Cards
-            key={order.id}
-            name={order.name}
-            material={order.material}
-            setOrders={setOrders}
-            index={index}
-          />
-        ))
-    );
+    return orders
+      ?.filter((order) => order.column === columnName)
+      .map((order, index) => (
+        <Cards
+          key={order.id}
+          name={order.name}
+          material={order.material}
+          setOrders={setOrders}
+          index={index}
+        />
+      ));
   };
 
   const { ORDERS, IN_PROGRESS, DELIVERED, RETURNED } = ColumnTypes;

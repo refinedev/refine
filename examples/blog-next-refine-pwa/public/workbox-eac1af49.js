@@ -910,7 +910,7 @@ define(["exports"], (exports) => {
 
           event.waitUntil(requestPromises); // If a MessageChannel was used, reply to the message on success.
 
-          if (event.ports && event.ports[0]) {
+          if (event.ports?.[0]) {
             void requestPromises.then(() => event.ports[0].postMessage(true));
           }
         }
@@ -958,7 +958,7 @@ define(["exports"], (exports) => {
         sameOrigin,
         url,
       });
-      let handler = route && route.handler;
+      let handler = route?.handler;
       const debugMessages = [];
 
       {
@@ -1028,7 +1028,7 @@ define(["exports"], (exports) => {
         responsePromise = Promise.reject(err);
       } // Get route's catch handler, if it exists
 
-      const catchHandler = route && route.catchHandler;
+      const catchHandler = route?.catchHandler;
 
       if (
         responsePromise instanceof Promise &&

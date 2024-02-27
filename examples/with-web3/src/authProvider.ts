@@ -36,7 +36,7 @@ export const authProvider: AuthProvider = {
   },
   logout: async () => {
     localStorage.removeItem(TOKEN_KEY);
-    if (provider && provider.close) {
+    if (provider?.close) {
       await provider.close;
 
       provider = null;
