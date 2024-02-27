@@ -2,32 +2,6 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:22:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
-
-  ! This default parameter should follow the last required parameter or should be a required parameter.
-  
-    21 │ const mapDeals = (
-  > 22 │   deals: DealAggregate[] = [],
-       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    23 │   state: string,
-    24 │ ): MappedDealData[] => {
-  
-  i The last required parameter is here:
-  
-    21 │ const mapDeals = (
-    22 │   deals: DealAggregate[] = [],
-  > 23 │   state: string,
-       │   ^^^^^^^^^^^^^
-    24 │ ): MappedDealData[] => {
-    25 │   return deals.filter(filterDeal).map((deal) => {
-  
-  i A default parameter that precedes a required parameter cannot be omitted at call site.
-  
-  i Unsafe fix: Turn the parameter into a required parameter.
-  
-    22 │ ··deals:·DealAggregate[]·=·[],
-       │                         ----- 
-
 ./packages/core/src/definitions/helpers/useUserFriendlyName/index.ts:12:28 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
 
   ! This default parameter should follow the last required parameter or should be a required parameter.
@@ -109,4 +83,30 @@
     15 │ ····infer·=·fieldInferencer,
        │          ------------------ 
 
-Checked 6952 file(s) in 451ms
+./examples/app-crm-minimal/src/routes/dashboard/components/deals-chart/utils.ts:22:3 lint/style/useDefaultParameterLast  FIXABLE  ━━━━━━━━━━
+
+  ! This default parameter should follow the last required parameter or should be a required parameter.
+  
+    21 │ const mapDeals = (
+  > 22 │   deals: DealAggregate[] = [],
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    23 │   state: string,
+    24 │ ): MappedDealData[] => {
+  
+  i The last required parameter is here:
+  
+    21 │ const mapDeals = (
+    22 │   deals: DealAggregate[] = [],
+  > 23 │   state: string,
+       │   ^^^^^^^^^^^^^
+    24 │ ): MappedDealData[] => {
+    25 │   return deals.filter(filterDeal).map((deal) => {
+  
+  i A default parameter that precedes a required parameter cannot be omitted at call site.
+  
+  i Unsafe fix: Turn the parameter into a required parameter.
+  
+    22 │ ··deals:·DealAggregate[]·=·[],
+       │                         ----- 
+
+Checked 6952 file(s) in 487ms

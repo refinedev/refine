@@ -39,32 +39,32 @@
   i Check this thorough explanation to better understand the context.
   
 
-./examples/store/src/components/auth/ForgotPassword.tsx:45:13 lint/a11y/useValidAnchor ━━━━━━━━━━━━━
+./examples/store/src/components/auth/ForgotPassword.tsx:44:13 lint/a11y/useValidAnchor ━━━━━━━━━━━━━
 
   ! Use a button element instead of an a element.
   
-    43 │           <a
-    44 │             className="text-accent-9 cursor-pointer font-bold hover:underline"
-  > 45 │             onClick={() => setModalView("LOGIN_VIEW")}
+    42 │           <a
+    43 │             className="text-accent-9 cursor-pointer font-bold hover:underline"
+  > 44 │             onClick={() => setModalView("LOGIN_VIEW")}
        │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    46 │           >
-    47 │             Log In
+    45 │           >
+    46 │             Log In
   
   i Anchor elements should only be used for default sections or page navigation
   
   i Check this thorough explanation to better understand the context.
   
 
-./examples/store/src/components/auth/SignUpView.tsx:134:13 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━━
+./examples/store/src/components/auth/SignUpView.tsx:133:13 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━━
 
   ! Use a button element instead of an a element.
   
-    132 │           <a
-    133 │             className="text-accent-9 cursor-pointer font-bold hover:underline"
-  > 134 │             onClick={() => setModalView("LOGIN_VIEW")}
+    131 │           <a
+    132 │             className="text-accent-9 cursor-pointer font-bold hover:underline"
+  > 133 │             onClick={() => setModalView("LOGIN_VIEW")}
         │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    135 │           >
-    136 │             Log In
+    134 │           >
+    135 │             Log In
   
   i Anchor elements should only be used for default sections or page navigation
   
@@ -83,38 +83,6 @@
     104 │             Sign Up
   
   i Anchor elements should only be used for default sections or page navigation
-  
-  i Check this thorough explanation to better understand the context.
-  
-
-./packages/antd/src/components/pages/login/index.tsx:113:21 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
-
-  ! Provide a valid value for the attribute href.
-  
-    111 │                       fontSize: "12px",
-    112 │                     }}
-  > 113 │                     href="#"
-        │                     ^^^^^^^^
-    114 │                   >
-    115 │                     {translate(
-  
-  i The href attribute should be a valid a URL
-  
-  i Check this thorough explanation to better understand the context.
-  
-
-./packages/antd/src/components/pages/login/index.tsx:134:22 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
-
-  ! Provide a valid value for the attribute href.
-  
-    132 │                 <Typography.Text style={{ fontSize: 12 }}>
-    133 │                   {translate("pages.login.noAccount", "Don’t have an account?")}{" "}
-  > 134 │                   <a href="#" style={{ fontWeight: "bold" }}>
-        │                      ^^^^^^^^
-    135 │                     {translate("pages.login.signup", "Sign up")}
-    136 │                   </a>
-  
-  i The href attribute should be a valid a URL
   
   i Check this thorough explanation to better understand the context.
   
@@ -145,6 +113,38 @@
         │                      ^^^^^^^^
     105 │                     Sign up
     106 │                   </a>
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./packages/antd/src/components/pages/login/index.tsx:113:21 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    111 │                       fontSize: "12px",
+    112 │                     }}
+  > 113 │                     href="#"
+        │                     ^^^^^^^^
+    114 │                   >
+    115 │                     {translate(
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./packages/antd/src/components/pages/login/index.tsx:134:22 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    132 │                 <Typography.Text style={{ fontSize: 12 }}>
+    133 │                   {translate("pages.login.noAccount", "Don’t have an account?")}{" "}
+  > 134 │                   <a href="#" style={{ fontWeight: "bold" }}>
+        │                      ^^^^^^^^
+    135 │                     {translate("pages.login.signup", "Sign up")}
+    136 │                   </a>
   
   i The href attribute should be a valid a URL
   
@@ -338,4 +338,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 2.
-Checked 6952 file(s) in 491ms
+Checked 6952 file(s) in 477ms

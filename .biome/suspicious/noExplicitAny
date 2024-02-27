@@ -100,76 +100,6 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
-./examples/multi-tenancy-strapi/src/interfaces/index.d.ts:10:10 lint/suspicious/noExplicitAny ━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-     8 │   title: string;
-     9 │   description: string;
-  > 10 │   image: any; // eslint-disable-line
-       │          ^^^
-    11 │   stores: IStore;
-    12 │ }
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:46:53 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    44 │ };
-    45 │ 
-  > 46 │ export const MockJSONServer = MockDataProvider() as any;
-       │                                                     ^^^
-    47 │ 
-    48 │ export const MockRouterProvider = {
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:66:22 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    64 │     const params = useParams();
-    65 │ 
-  > 66 │     return params as any;
-       │                      ^^^
-    67 │   },
-    68 │   Link,
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:71:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    69 │   Prompt: () => null,
-    70 │ };
-  > 71 │ export const MockAccessControlProvider: any = {
-       │                                         ^^^
-    72 │   can: () => Promise.resolve({ can: true }),
-    73 │ };
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./packages/chakra-ui/test/dataMocks.ts:75:32 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    73 │ };
-    74 │ 
-  > 75 │ export const MockLiveProvider: any = {
-       │                                ^^^
-    76 │   subscribe: () => ({}),
-    77 │   unsubscribe: () => ({}),
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
 ./packages/strapi-v4/src/helpers/normalize.ts:1:37 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━
 
   ! Unexpected any. Specify a different type.
@@ -224,30 +154,16 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
-./examples/i18n-nextjs/src/app/blog-posts/page.tsx:40:27 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
+./packages/devtools-server/src/reload-on-change.ts:16:30 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
 
   ! Unexpected any. Specify a different type.
   
-    38 │           dataIndex="content"
-    39 │           title={t("blog_posts.fields.content")}
-  > 40 │           render={(value: any) => {
-       │                           ^^^
-    41 │             if (!value) return "-";
-    42 │             return <MarkdownField value={value.slice(0, 80) + "..."} />;
-  
-  i any disables many type checking rules. Its use should be avoided.
-  
-
-./examples/i18n-nextjs/src/app/blog-posts/page.tsx:70:27 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━
-
-  ! Unexpected any. Specify a different type.
-  
-    68 │           dataIndex={["createdAt"]}
-    69 │           title={t("blog_posts.fields.createdAt")}
-  > 70 │           render={(value: any) => <DateField value={value} />}
-       │                           ^^^
-    71 │         />
-    72 │         <Table.Column
+    14 │             if (client.readyState === OPEN) {
+    15 │               console.log("Reloading connected client...");
+  > 16 │               send(client as any, DevtoolsEvent.RELOAD, {});
+       │                              ^^^
+    17 │             }
+    18 │           });
   
   i any disables many type checking rules. Its use should be avoided.
   
@@ -278,6 +194,89 @@
   i any disables many type checking rules. Its use should be avoided.
   
 
+./packages/strapi-v4/src/utils/normalizeData.ts:13:37 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │   Object.prototype.toString.call(data) === "[object Object]";
+    12 │ 
+  > 13 │ export const normalizeData = (data: any): any => {
+       │                                     ^^^
+    14 │   if (Array.isArray(data)) {
+    15 │     return data.map((item) => normalizeData(item));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/normalizeData.ts:13:43 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    11 │   Object.prototype.toString.call(data) === "[object Object]";
+    12 │ 
+  > 13 │ export const normalizeData = (data: any): any => {
+       │                                           ^^^
+    14 │   if (Array.isArray(data)) {
+    15 │     return data.map((item) => normalizeData(item));
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/strapi-v4/src/utils/transformHttpError.ts:4:41 lint/suspicious/noExplicitAny ━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    2 │ import { transformErrorMessages } from "./transformErrorMessages";
+    3 │ 
+  > 4 │ export const transformHttpError = (err: any): HttpError => {
+      │                                         ^^^
+    5 │   const error = err?.response?.data?.error || {};
+    6 │ 
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/devtools-server/src/index.ts:29:23 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    27 │   ws.on("connection", (client) => {
+    28 │     // Initialize development client
+  > 29 │     receive(client as any, DevtoolsEvent.DEVTOOLS_INIT, (data) => {
+       │                       ^^^
+    30 │       if (db.connectedApp) {
+    31 │         // send client the devtools client url if already connected
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/devtools-server/src/index.ts:32:24 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    30 │       if (db.connectedApp) {
+    31 │         // send client the devtools client url if already connected
+  > 32 │         send(client as any, DevtoolsEvent.DEVTOOLS_ALREADY_CONNECTED, {
+       │                        ^^^
+    33 │           url: db.connectedApp,
+    34 │         });
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
+./packages/devtools-server/src/index.ts:40:21 lint/suspicious/noExplicitAny ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Unexpected any. Specify a different type.
+  
+    39 │         ws.clients.forEach((c) => {
+  > 40 │           send(c as any, DevtoolsEvent.DEVTOOLS_CONNECTED_APP, {
+       │                     ^^^
+    41 │             url: db.connectedApp,
+    42 │           });
+  
+  i any disables many type checking rules. Its use should be avoided.
+  
+
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 1389.
-Checked 6952 file(s) in 530ms
+Checked 6952 file(s) in 478ms

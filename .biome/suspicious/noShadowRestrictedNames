@@ -114,6 +114,18 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
+./examples/finefoods-material-ui/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Map" property.
+  
+  > 1 │ import Map from "./map";
+      │        ^^^
+    2 │ import MapMarker from "./marker";
+    3 │ 
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
 ./examples/finefoods-material-ui/src/components/dashboard/deliveryMap/index.tsx:4:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
@@ -124,18 +136,6 @@
       │          ^^^
     5 │ import { IOrder } from "../../../interfaces";
     6 │ 
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
-./examples/finefoods-material-ui/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Map" property.
-  
-  > 1 │ import Map from "./map";
-      │        ^^^
-    2 │ import MapMarker from "./marker";
-    3 │ 
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -180,18 +180,6 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-./examples/finefoods-antd/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
-
-  ! Do not shadow the global "Map" property.
-  
-  > 1 │ import Map from "./map";
-      │        ^^^
-    2 │ import MapMarker from "./marker";
-    3 │ import AdvancedMarker from "./advanced-marker";
-  
-  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
-  
-
 ./examples/finefoods-antd/src/components/dashboard/allOrdersMap/index.tsx:3:10 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
 
   ! Do not shadow the global "Map" property.
@@ -202,6 +190,18 @@
       │          ^^^
     4 │ import { IOrder } from "../../../interfaces";
     5 │ 
+  
+  i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
+  
+
+./examples/finefoods-antd/src/components/map/index.tsx:1:8 lint/suspicious/noShadowRestrictedNames ━━━━━━━━━━
+
+  ! Do not shadow the global "Map" property.
+  
+  > 1 │ import Map from "./map";
+      │        ^^^
+    2 │ import MapMarker from "./marker";
+    3 │ import AdvancedMarker from "./advanced-marker";
   
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
@@ -276,4 +276,4 @@
   i Consider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.
   
 
-Checked 6952 file(s) in 490ms
+Checked 6952 file(s) in 484ms

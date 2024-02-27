@@ -20,24 +20,6 @@
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
 
-./packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx:9:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
-
-  ! Alternative text title element cannot be empty
-  
-     8 │ const defaultIcon = (
-   > 9 │   <svg
-       │   ^^^^
-  > 10 │     width={24}
-        ...
-  > 15 │     data-testid="refine-logo"
-  > 16 │   >
-       │   ^
-    17 │     <path
-    18 │       fillRule="evenodd"
-  
-  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
-  
-
 ./documentation/src/assets/popover-icons/integrations.tsx:5:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
 
   ! Alternative text title element cannot be empty
@@ -47,11 +29,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <g opacity="0.75">
-    16 │       <path
+    14 │     <g opacity="0.75">
+    15 │       <path
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -65,11 +47,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -83,11 +65,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -101,11 +83,11 @@
        │   ^^^^
    > 6 │     width="25"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -119,11 +101,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -173,11 +155,29 @@
        │   ^^^^
    > 6 │     width="34"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <g opacity="0.75">
-    16 │       <path
+    14 │     <g opacity="0.75">
+    15 │       <path
+  
+  i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
+  
+
+./packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx:9:3 lint/a11y/noSvgWithoutTitle ━━━━━━━━━━
+
+  ! Alternative text title element cannot be empty
+  
+     8 │ const defaultIcon = (
+   > 9 │   <svg
+       │   ^^^^
+  > 10 │     width={24}
+        ...
+  > 15 │     data-testid="refine-logo"
+  > 16 │   >
+       │   ^
+    17 │     <path
+    18 │       fillRule="evenodd"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -191,11 +191,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <g opacity="0.75">
-    16 │       <path
+    14 │     <g opacity="0.75">
+    15 │       <path
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -209,11 +209,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -227,11 +227,11 @@
        │   ^^^^
    > 6 │     width="10"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       d="M1.06102 0.938983C0.826703 1.1733 0.826702 1.5532 1.06102 1.78751L8.2735 9L1.06102 16.2125C0.826701 16.4468 0.826702 16.8267 1.06102 17.061C1.29533 17.2953 1.67523 17.2953 1.90954 17.061L9.5463 9.42426C9.78061 9.18995 9.78061 8.81005 9.5463 8.57573L1.90954 0.938983C1.67523 0.704669 1.29533 0.704669 1.06102 0.938983Z"
+    14 │     <path
+    15 │       d="M1.06102 0.938983C0.826703 1.1733 0.826702 1.5532 1.06102 1.78751L8.2735 9L1.06102 16.2125C0.826701 16.4468 0.826702 16.8267 1.06102 17.061C1.29533 17.2953 1.67523 17.2953 1.90954 17.061L9.5463 9.42426C9.78061 9.18995 9.78061 8.81005 9.5463 8.57573L1.90954 0.938983C1.67523 0.704669 1.29533 0.704669 1.06102 0.938983Z"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -245,11 +245,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <g opacity="0.75">
-    16 │       <path
+    14 │     <g opacity="0.75">
+    15 │       <path
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -263,11 +263,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <g opacity="0.75">
-    16 │       <path
+    14 │     <g opacity="0.75">
+    15 │       <path
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -281,11 +281,11 @@
        │   ^^^^
    > 6 │     width="28"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -299,11 +299,11 @@
        │   ^^^^
    > 6 │     width="32"
         ...
-  > 13 │     className={props.className ? props.className : undefined}
-  > 14 │   >
+  > 12 │     {...props}
+  > 13 │   >
        │   ^
-    15 │     <path
-    16 │       opacity="0.75"
+    14 │     <path
+    15 │       opacity="0.75"
   
   i For accessibility purposes, SVGs should have an alternative text, provided via title element. If the svg element has role="img", you should add the aria-label or aria-labelledby attribute.
   
@@ -365,4 +365,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 405.
-Checked 6952 file(s) in 462ms
+Checked 6952 file(s) in 485ms

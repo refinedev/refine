@@ -2,38 +2,6 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./packages/chakra-ui/src/theme/index.ts:96:7 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━
-
-  ! Avoid the use of spread (`...`) syntax on accumulators.
-  
-    94 │     const themeName = key as keyof typeof refineCustomThemes;
-    95 │     return {
-  > 96 │       ...acc,
-       │       ^^^^^^
-    97 │       [key]: extendTheme({
-    98 │         config: {
-  
-  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
-  
-  i Consider methods such as .splice or .push instead.
-  
-
-./packages/mantine/src/theme/index.ts:189:5 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━━
-
-  ! Avoid the use of spread (`...`) syntax on accumulators.
-  
-    187 │   const themeName = key as keyof typeof refineColors;
-    188 │   return {
-  > 189 │     ...acc,
-        │     ^^^^^^
-    190 │     [themeName]: {
-    191 │       globalStyles: (theme: MantineTheme) => ({
-  
-  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
-  
-  i Consider methods such as .splice or .push instead.
-  
-
 ./documentation/src/utils/remove-active-from-files.ts:7:14 lint/performance/noAccumulatingSpread ━━━━━━━━━━
 
   ! Avoid the use of spread (`...`) syntax on accumulators.
@@ -60,6 +28,38 @@
        │              ^^^^^^
     24 │   }, {} as SandpackFiles);
     25 │ 
+  
+  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
+  
+  i Consider methods such as .splice or .push instead.
+  
+
+./packages/chakra-ui/src/theme/index.ts:96:7 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━
+
+  ! Avoid the use of spread (`...`) syntax on accumulators.
+  
+    94 │     const themeName = key as keyof typeof refineCustomThemes;
+    95 │     return {
+  > 96 │       ...acc,
+       │       ^^^^^^
+    97 │       [key]: extendTheme({
+    98 │         config: {
+  
+  i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
+  
+  i Consider methods such as .splice or .push instead.
+  
+
+./packages/mantine/src/theme/index.ts:189:5 lint/performance/noAccumulatingSpread ━━━━━━━━━━━━━━━━━━
+
+  ! Avoid the use of spread (`...`) syntax on accumulators.
+  
+    187 │   const themeName = key as keyof typeof refineColors;
+    188 │   return {
+  > 189 │     ...acc,
+        │     ^^^^^^
+    190 │     [themeName]: {
+    191 │       globalStyles: (theme: MantineTheme) => ({
   
   i Spread syntax should be avoided on accumulators (like those in `.reduce`) because it causes a time complexity of `O(n^2)`.
   
@@ -129,4 +129,4 @@
   i Consider methods such as .splice or .push instead.
   
 
-Checked 6952 file(s) in 476ms
+Checked 6952 file(s) in 483ms

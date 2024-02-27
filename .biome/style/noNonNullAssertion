@@ -26,6 +26,63 @@
     10 │   <React.StrictMode>
   
 
+./examples/table-material-ui-use-data-grid/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     6 │ const container = document.getElementById("root");
+     7 │ // eslint-disable-next-line
+   > 8 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+     9 │ root.render(
+    10 │   <React.StrictMode>
+  
+
+./examples/multi-tenancy-strapi/src/pages/order/create.tsx:43:22 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    41 │           return formProps.onFinish?.({
+    42 │             ...values,
+  > 43 │             stores: [params!.tenant],
+       │                      ^^^^^^^
+    44 │           });
+    45 │         }}
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    41 41 │             return formProps.onFinish?.({
+    42 42 │               ...values,
+    43    │ - ············stores:·[params!.tenant],
+       43 │ + ············stores:·[params?.tenant],
+    44 44 │             });
+    45 45 │           }}
+  
+
+./examples/field-antd-use-select-basic/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     6 │ const container = document.getElementById("root");
+     7 │ // eslint-disable-next-line
+   > 8 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+     9 │ root.render(
+    10 │   <React.StrictMode>
+  
+
+./examples/form-mantine-use-steps-form/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     6 │ const container = document.getElementById("root");
+     7 │ // eslint-disable-next-line
+   > 8 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+     9 │ root.render(
+    10 │   <React.StrictMode>
+  
+
 ./examples/form-react-hook-form-use-form/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━
 
   ! Forbidden non-null assertion.
@@ -36,6 +93,30 @@
        │                         ^^^^^^^^^^
      9 │ root.render(
     10 │   <React.StrictMode>
+  
+
+./examples/multi-tenancy-strapi/src/index.tsx:7:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    5 │ const container = document.getElementById("root");
+    6 │ // eslint-disable-next-line
+  > 7 │ const root = createRoot(container!);
+      │                         ^^^^^^^^^^
+    8 │ root.render(
+    9 │   <React.StrictMode>
+  
+
+./examples/i18n-react/src/index.tsx:9:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+     7 │ const container = document.getElementById("root");
+     8 │ // eslint-disable-next-line
+   > 9 │ const root = createRoot(container!);
+       │                         ^^^^^^^^^^
+    10 │ root.render(
+    11 │   <React.StrictMode>
   
 
 ./packages/strapi-v4/test/dataProvider/index.spec.ts:32:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
@@ -203,7 +284,7 @@
     320 320 │           method: "post",
   
 
-./examples/customization-theme-mantine/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━
+./examples/form-mantine-use-drawer-form/src/main.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━
 
   ! Forbidden non-null assertion.
   
@@ -213,90 +294,6 @@
        │                         ^^^^^^^^^^
      9 │ root.render(
     10 │   <React.StrictMode>
-  
-
-./examples/auth-otp/src/index.tsx:8:25 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-     6 │ const container = document.getElementById("root");
-     7 │ // eslint-disable-next-line
-   > 8 │ const root = createRoot(container!);
-       │                         ^^^^^^^^^^
-     9 │ root.render(
-    10 │   <React.StrictMode>
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:249:44 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    247 │         key={`${resource.route}`}
-    248 │         path={`${resource.route}`}
-  > 249 │         element={<ResourceComponent route={resource.route!} />}
-        │                                            ^^^^^^^^^^^^^^^
-    250 │       >
-    251 │         <Route
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:253:46 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    251 │         <Route
-    252 │           path=":action"
-  > 253 │           element={<ResourceComponent route={resource.route!} />}
-        │                                              ^^^^^^^^^^^^^^^
-    254 │         >
-    255 │           <Route
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:257:48 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    255 │           <Route
-    256 │             path=":id"
-  > 257 │             element={<ResourceComponent route={resource.route!} />}
-        │                                                ^^^^^^^^^^^^^^^
-    258 │           />
-    259 │         </Route>
-  
-
-./packages/react-router-v6/src/document-title-handler.tsx:37:7 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    35 │     const autoGeneratedTitle = generateDefaultDocumentTitle(
-    36 │       translate,
-  > 37 │       resource!,
-       │       ^^^^^^^^^
-    38 │       action,
-    39 │       id + "",
-  
-
-./examples/store/src/lib/hooks/useCart.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    15 │     resource: "carts",
-    16 │     // eslint-disable-next-line
-  > 17 │     id: id!,
-       │         ^^^
-    18 │     queryOptions: {
-    19 │       enabled: !!id,
-  
-
-./examples/store/src/lib/hooks/useEnrichedLineItems.ts:17:9 lint/style/noNonNullAssertion ━━━━━━━━━━
-
-  ! Forbidden non-null assertion.
-  
-    15 │   const { data: cartData } = useOne<{ cart: Cart }>({
-    16 │     // eslint-disable-next-line
-  > 17 │     id: cartId!,
-       │         ^^^^^^^
-    18 │     resource: "carts",
-    19 │     queryOptions: {
   
 
 ./packages/strapi/test/dataProvider/index.spec.ts:32:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
@@ -318,6 +315,27 @@
          32 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).deleteMany?.({
      33  33 │           resource: "posts",
      34  34 │           ids: ["46"],
+  
+
+./packages/strapi/test/dataProvider/index.spec.ts:130:30 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    128 │   describe("getMany", () => {
+    129 │     it("correct response", async () => {
+  > 130 │       const { data } = await DataProvider(API_URL, axiosInstance).getMany!({
+        │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    131 │         resource: "posts",
+    132 │         ids: ["49"],
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    128 128 │     describe("getMany", () => {
+    129 129 │       it("correct response", async () => {
+    130     │ - ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).getMany!({
+        130 │ + ······const·{·data·}·=·await·DataProvider(API_URL,·axiosInstance).getMany?.({
+    131 131 │           resource: "posts",
+    132 132 │           ids: ["49"],
   
 
 The number of diagnostics exceeds the number allowed by Biome.

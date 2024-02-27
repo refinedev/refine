@@ -58,6 +58,20 @@
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
 
+./packages/nestjsx-crud/src/provider.ts:198:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    196 │     }
+    197 │ 
+  > 198 │     let axiosResponse;
+        │         ^^^^^^^^^^^^^
+    199 │     switch (method) {
+    200 │       case "put":
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
 ./packages/core/src/definitions/helpers/routeGenerator/index.ts:13:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
 
   ! This variable has implicitly the any type.
@@ -68,34 +82,6 @@
        │       ^^^^^
     14 │ 
     15 │   const parentPrefix = getParentPrefixForResource(
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
-./packages/nestjsx-crud/src/provider.ts:199:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    197 │     }
-    198 │ 
-  > 199 │     let axiosResponse;
-        │         ^^^^^^^^^^^^^
-    200 │     switch (method) {
-    201 │       case "put":
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
-./packages/core/src/hooks/auditLog/useLog/index.ts:104:11 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    102 │       }
-    103 │ 
-  > 104 │       let authorData;
-        │           ^^^^^^^^^^
-    105 │       if (isLoading && !!auditLogContext?.create) {
-    106 │         authorData = await refetch();
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -141,15 +127,16 @@
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
 
-./packages/core/src/contexts/data/index.tsx:22:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━
+./packages/core/src/hooks/auditLog/useLog/index.ts:104:11 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
 
   ! This variable has implicitly the any type.
   
-    21 │ export const DataContextProvider: React.FC<Props> = ({ children, ...rest }) => {
-  > 22 │   let dataProviders;
-       │       ^^^^^^^^^^^^^
-    23 │   if (!rest.getList || !rest.getOne) {
-    24 │     dataProviders = rest as IDataMultipleContextProvider;
+    102 │       }
+    103 │ 
+  > 104 │       let authorData;
+        │           ^^^^^^^^^^
+    105 │       if (isLoading && !!auditLogContext?.create) {
+    106 │         authorData = await refetch();
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -177,6 +164,19 @@
         │                     ^^^^^^^^
     124 │ 
     125 │                 try {
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
+./packages/core/src/contexts/data/index.tsx:22:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    21 │ export const DataContextProvider: React.FC<Props> = ({ children, ...rest }) => {
+  > 22 │   let dataProviders;
+       │       ^^^^^^^^^^^^^
+    23 │   if (!rest.getList || !rest.getOne) {
+    24 │     dataProviders = rest as IDataMultipleContextProvider;
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -280,4 +280,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 6.
-Checked 6952 file(s) in 487ms
+Checked 6952 file(s) in 482ms

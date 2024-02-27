@@ -44,30 +44,30 @@
   i Remove void
   
 
-./examples/mern-dashboard-client/src/interfaces/common.d.ts:35:16 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+./packages/hasura/src/utils/graphql.ts:28:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
   
-    33 │   onFinish: (
-    34 │     values: FieldValues,
-  > 35 │   ) => Promise<void | CreateResponse<BaseRecord> | UpdateResponse<BaseRecord>>;
-       │                ^^^^
-    36 │   formLoading: boolean;
-    37 │   handleSubmit: FormEventHandler<HTMLFormElement> | undefined;
+    26 │   visit(newDocumentNode, {
+    27 │     Field: {
+  > 28 │       enter(node): SelectionSetNode | void {
+       │                                       ^^^^
+    29 │         if (isInitialEnter) {
+    30 │           isInitialEnter = false;
   
   i Remove void
   
 
-./examples/store/src/components/ui/Modal/Modal.tsx:11:19 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+./packages/nestjs-query/src/utils/graphql.ts:17:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
   
-     9 │   className?: string;
-    10 │   onClose: () => void;
-  > 11 │   onEnter?: () => void | null;
-       │                   ^^^^
-    12 │ }
-    13 │ 
+    15 │   visit(documentNode, {
+    16 │     Field: {
+  > 17 │       enter(node): SelectionSetNode | void {
+       │                                       ^^^^
+    18 │         if (isInitialEnter) {
+    19 │           isInitialEnter = false;
   
   i Remove void
   
@@ -86,16 +86,16 @@
   i Remove void
   
 
-./packages/hasura/src/utils/graphql.ts:28:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━━
+./examples/store/src/components/ui/Modal/Modal.tsx:11:19 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
   
-    26 │   visit(newDocumentNode, {
-    27 │     Field: {
-  > 28 │       enter(node): SelectionSetNode | void {
-       │                                       ^^^^
-    29 │         if (isInitialEnter) {
-    30 │           isInitialEnter = false;
+     9 │   className?: string;
+    10 │   onClose: () => void;
+  > 11 │   onEnter?: () => void | null;
+       │                   ^^^^
+    12 │ }
+    13 │ 
   
   i Remove void
   
@@ -167,61 +167,6 @@
   i Remove void
   
 
-./packages/core/src/hooks/form/useForm.ts:216:72 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    214 │   onFinish: (
-    215 │     values: TVariables,
-  > 216 │   ) => Promise<CreateResponse<TResponse> | UpdateResponse<TResponse> | void>;
-        │                                                                        ^^^^
-    217 │   redirect: (
-    218 │     redirect: RedirectAction,
-  
-  i Remove void
-  
-
-./packages/core/src/hooks/form/useForm.ts:423:52 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    421 │     }
-    422 │ 
-  > 423 │     return new Promise<CreateResponse<TResponse> | void>((resolve, reject) => {
-        │                                                    ^^^^
-    424 │       if (mutationMode !== "pessimistic") {
-    425 │         resolve();
-  
-  i Remove void
-  
-
-./packages/core/src/hooks/form/useForm.ts:482:42 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    480 │   const onFinishAutoSaveMutation = (
-    481 │     values: TVariables,
-  > 482 │   ): Promise<UpdateResponse<TResponse> | void> | void => {
-        │                                          ^^^^
-    483 │     if (!resource || !isEdit) return;
-    484 │ 
-  
-  i Remove void
-  
-
-./packages/core/src/hooks/form/useForm.ts:553:52 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    552 │     // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
-  > 553 │     return new Promise<UpdateResponse<TResponse> | void>((resolve, reject) => {
-        │                                                    ^^^^
-    554 │       if (mutationMode !== "pessimistic") {
-    555 │         resolve();
-  
-  i Remove void
-  
-
 ./packages/core/src/hooks/auth/useOnError/index.ts:35:21 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
@@ -278,6 +223,62 @@
   i Remove void
   
 
+./packages/core/src/hooks/auth/useLogout/index.ts:66:30 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    64 │   TLogoutData,
+    65 │   Error | RefineError,
+  > 66 │   (TVariables & Variables) | void,
+       │                              ^^^^
+    67 │   unknown
+    68 │ >;
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:73:30 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    71 │   AuthActionResponse,
+    72 │   Error | RefineError,
+  > 73 │   (TVariables & Variables) | void,
+       │                              ^^^^
+    74 │   unknown
+    75 │ >;
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:80:30 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    78 │   AuthActionResponse | TLogoutData,
+    79 │   Error | RefineError,
+  > 80 │   (TVariables & Variables) | void,
+       │                              ^^^^
+    81 │   unknown
+    82 │ >;
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:120:32 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    118 │     AuthActionResponse,
+    119 │     Error | RefineError,
+  > 120 │     (TVariables & Variables) | void,
+        │                                ^^^^
+    121 │     unknown
+    122 │   >({
+  
+  i Remove void
+  
+
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 8.
-Checked 6952 file(s) in 537ms
+Checked 6952 file(s) in 485ms

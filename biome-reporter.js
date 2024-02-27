@@ -25,11 +25,19 @@ function getModifiedConfig(group, rule) {
   return tempConfig;
 }
 
+const disabledRules = [
+  "noForEach",
+  "noStaticOnlyClass",
+  "noUselessFragments",
+  "useSingleVarDeclarator",
+];
+
 for (const [group, rules] of lintGroups) {
   if (group === "recommended") continue;
 
   for (const [rule, value] of Object.entries(rules)) {
-    if (value !== "off") continue;
+    if (value === "error") continue;
+    if (disabledRules.includes(rule)) continue;
 
     const modifiedConfig = JSON.stringify(
       getModifiedConfig(group, rule),

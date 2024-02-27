@@ -2,25 +2,6 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
-./documentation/src/components/live-preview/index.tsx:68:7 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━
-
-  ! Provide a title attribute when using iframe elements.
-  
-    66 │   if (url) {
-    67 │     return (
-  > 68 │       <iframe
-       │       ^^^^^^^
-  > 69 │         loading="lazy"
-        ...
-  > 79 │         }}
-  > 80 │       />
-       │       ^^
-    81 │     );
-    82 │   }
-  
-  i Screen readers rely on the title set on an iframe to describe the content being displayed.
-  
-
 ./documentation/src/refine-theme/landing-playground.tsx:167:19 lint/a11y/useIframeTitle ━━━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
@@ -39,21 +20,21 @@
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
   
 
-./packages/devtools/src/panel.tsx:85:17 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+./documentation/src/components/live-preview/index.tsx:68:7 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━
 
   ! Provide a title attribute when using iframe elements.
   
-     83 │             <ResizablePane visible={visible} placement={placement}>
-     84 │               {({ resizing }) => (
-   > 85 │                 <iframe
-        │                 ^^^^^^^
-   > 86 │                   allow="clipboard-write;"
-         ...
-  > 106 │                   }}
-  > 107 │                 />
-        │                 ^^
-    108 │               )}
-    109 │             </ResizablePane>
+    66 │   if (url) {
+    67 │     return (
+  > 68 │       <iframe
+       │       ^^^^^^^
+  > 69 │         loading="lazy"
+        ...
+  > 79 │         }}
+  > 80 │       />
+       │       ^^
+    81 │     );
+    82 │   }
   
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
   
@@ -96,4 +77,23 @@
   i Screen readers rely on the title set on an iframe to describe the content being displayed.
   
 
-Checked 6952 file(s) in 479ms
+./packages/devtools/src/panel.tsx:85:17 lint/a11y/useIframeTitle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Provide a title attribute when using iframe elements.
+  
+     83 │             <ResizablePane visible={visible} placement={placement}>
+     84 │               {({ resizing }) => (
+   > 85 │                 <iframe
+        │                 ^^^^^^^
+   > 86 │                   allow="clipboard-write;"
+         ...
+  > 106 │                   }}
+  > 107 │                 />
+        │                 ^^
+    108 │               )}
+    109 │             </ResizablePane>
+  
+  i Screen readers rely on the title set on an iframe to describe the content being displayed.
+  
+
+Checked 6952 file(s) in 491ms

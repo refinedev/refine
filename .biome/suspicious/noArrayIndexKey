@@ -2,6 +2,81 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
+./packages/react-router-v6/src/legacy/routeProvider.tsx:269:39 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    267 │         .filter((p: RefineRouteProps) => !p.layout)
+    268 │         .map((route, i) => (
+  > 269 │           <Route key={`custom-route-${i}`} {...route} element={route.element} />
+        │                                       ^
+    270 │         ))}
+    271 │       <Route
+  
+  i This is the source of the key value.
+  
+    266 │       {[...(customRoutes || [])]
+    267 │         .filter((p: RefineRouteProps) => !p.layout)
+  > 268 │         .map((route, i) => (
+        │                      ^
+    269 │           <Route key={`custom-route-${i}`} {...route} element={route.element} />
+    270 │         ))}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/react-router-v6/src/legacy/routeProvider.tsx:283:36 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    281 │           .map((route, i) => (
+    282 │             <Route
+  > 283 │               key={`custom-route-${i}`}
+        │                                    ^
+    284 │               {...route}
+    285 │               element={route.element}
+  
+  i This is the source of the key value.
+  
+    279 │         {[...(customRoutes || [])]
+    280 │           .filter((p: RefineRouteProps) => p.layout)
+  > 281 │           .map((route, i) => (
+        │                        ^
+    282 │             <Route
+    283 │               key={`custom-route-${i}`}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/react-router-v6/src/legacy/routeProvider.tsx:328:37 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    326 │     <Routes>
+    327 │       {[...(customRoutes || [])].map((route, i) => (
+  > 328 │         <Route key={`custom-route-${i}`} {...route} />
+        │                                     ^
+    329 │       ))}
+    330 │       <Route path="/" element={renderLoginRouteElement()} />
+  
+  i This is the source of the key value.
+  
+    325 │   const renderUnauthorized = () => (
+    326 │     <Routes>
+  > 327 │       {[...(customRoutes || [])].map((route, i) => (
+        │                                              ^
+    328 │         <Route key={`custom-route-${i}`} {...route} />
+    329 │       ))}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
 ./examples/store/src/components/address/EditAddress/EditAddress.tsx:246:30 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
@@ -77,231 +152,6 @@
   i Check the React documentation. 
   
 
-./documentation/src/refine-theme/common-tabs.tsx:132:16 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    130 │       {childTabs.map((tabItem, i) =>
-    131 │         cloneElement(tabItem, {
-  > 132 │           key: i,
-        │                ^
-    133 │           hidden: tabItem.props.value !== selectedValue,
-    134 │           className: clsx(tabItem.props.className ?? [], "refine-tab-content"),
-  
-  i This is the source of the key value.
-  
-    128 │   return (
-    129 │     <div className="p-4">
-  > 130 │       {childTabs.map((tabItem, i) =>
-        │                                ^
-    131 │         cloneElement(tabItem, {
-    132 │           key: i,
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/refine-theme/tutorial-header.tsx:172:34 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    170 │                         return (
-    171 │                           <a
-  > 172 │                             key={i}
-        │                                  ^
-    173 │                             href={href}
-    174 │                             target="_blank"
-  
-  i This is the source of the key value.
-  
-    167 │                       )}
-    168 │                     >
-  > 169 │                       {socialLinks.map(({ href, icon: Icon }, i) => {
-        │                                                               ^
-    170 │                         return (
-    171 │                           <a
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/refine-theme/enterprise-table.tsx:263:16 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    261 │       {items.map((item, index) => (
-    262 │         <TableItem
-  > 263 │           key={index}
-        │                ^^^^^
-    264 │           activeTab={activeTab}
-    265 │           {...item}
-  
-  i This is the source of the key value.
-  
-    259 │     <>
-    260 │       <TableItemHeading>{title}</TableItemHeading>
-  > 261 │       {items.map((item, index) => (
-        │                         ^^^^^
-    262 │         <TableItem
-    263 │           key={index}
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/refine-theme/common-footer.tsx:57:24 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    55 │               return (
-    56 │                 <a
-  > 57 │                   key={i}
-       │                        ^
-    58 │                   href={href}
-    59 │                   target="_blank"
-  
-  i This is the source of the key value.
-  
-    52 │             )}
-    53 │           >
-  > 54 │             {socialLinks.map(({ href, icon: Icon }, i) => {
-       │                                                     ^
-    55 │               return (
-    56 │                 <a
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:270:39 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    268 │         .filter((p: RefineRouteProps) => !p.layout)
-    269 │         .map((route, i) => (
-  > 270 │           <Route key={`custom-route-${i}`} {...route} element={route.element} />
-        │                                       ^
-    271 │         ))}
-    272 │       <Route
-  
-  i This is the source of the key value.
-  
-    267 │       {[...(customRoutes || [])]
-    268 │         .filter((p: RefineRouteProps) => !p.layout)
-  > 269 │         .map((route, i) => (
-        │                      ^
-    270 │           <Route key={`custom-route-${i}`} {...route} element={route.element} />
-    271 │         ))}
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:284:36 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    282 │           .map((route, i) => (
-    283 │             <Route
-  > 284 │               key={`custom-route-${i}`}
-        │                                    ^
-    285 │               {...route}
-    286 │               element={route.element}
-  
-  i This is the source of the key value.
-  
-    280 │         {[...(customRoutes || [])]
-    281 │           .filter((p: RefineRouteProps) => p.layout)
-  > 282 │           .map((route, i) => (
-        │                        ^
-    283 │             <Route
-    284 │               key={`custom-route-${i}`}
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./packages/react-router-v6/src/legacy/routeProvider.tsx:329:37 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    327 │     <Routes>
-    328 │       {[...(customRoutes || [])].map((route, i) => (
-  > 329 │         <Route key={`custom-route-${i}`} {...route} />
-        │                                     ^
-    330 │       ))}
-    331 │       <Route path="/" element={renderLoginRouteElement()} />
-  
-  i This is the source of the key value.
-  
-    326 │   const renderUnauthorized = () => (
-    327 │     <Routes>
-  > 328 │       {[...(customRoutes || [])].map((route, i) => (
-        │                                              ^
-    329 │         <Route key={`custom-route-${i}`} {...route} />
-    330 │       ))}
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/refine-theme/landing-sliding-highlights.tsx:134:22 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    132 │       >
-    133 │         {highlights.map(({ title, icon: Icon }, index) => (
-  > 134 │           <Item key={index} index={index} title={title} Icon={Icon} y={y} />
-        │                      ^^^^^
-    135 │         ))}
-    136 │       </motion.div>
-  
-  i This is the source of the key value.
-  
-    131 │         className={clsx("h-8 md:h-12 w-full relative")}
-    132 │       >
-  > 133 │         {highlights.map(({ title, icon: Icon }, index) => (
-        │                                                 ^^^^^
-    134 │           <Item key={index} index={index} title={title} Icon={Icon} y={y} />
-    135 │         ))}
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/refine-theme/enterprise-security-features.tsx:25:18 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    23 │         return (
-    24 │           <div
-  > 25 │             key={index}
-       │                  ^^^^^
-    26 │             className={clsx(
-    27 │               "not-prose",
-  
-  i This is the source of the key value.
-  
-    20 │       )}
-    21 │     >
-  > 22 │       {list.map((item, index) => {
-       │                        ^^^^^
-    23 │         return (
-    24 │           <div
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
 ./documentation/src/components/tutorial-circle/index.tsx:106:20 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
@@ -352,75 +202,50 @@
   i Check the React documentation. 
   
 
-./documentation/src/refine-theme/common-header/mobile-menu-modal.tsx:138:18 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+./documentation/src/components/refine-week/refine-week-mobile.tsx:123:20 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
   
-    136 │         return (
-    137 │           <div
-  > 138 │             key={i}
-        │                  ^
-    139 │             className={clsx(
-    140 │               "not-prose",
+    121 │           return (
+    122 │             <div
+  > 123 │               key={index}
+        │                    ^^^^^
+    124 │               className={clsx(
+    125 │                 "relative",
   
   i This is the source of the key value.
   
-    132 │   return (
-    133 │     <div className={clsx(props.className)}>
-  > 134 │       {MENU_ITEMS.map((item, i) => {
-        │                              ^
-    135 │         const Icon = "icon" in item && item.icon;
-    136 │         return (
+    118 │         )}
+    119 │       >
+  > 120 │         {data.timeline.map((item, index) => {
+        │                                   ^^^^^
+    121 │           return (
+    122 │             <div
   
   i The order of the items may change, and this also affects performances and component state.
   
   i Check the React documentation. 
   
 
-./documentation/src/refine-theme/tutorial-footer.tsx:89:26 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+./documentation/src/components/refine-week/refine-week-desktop.tsx:109:23 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
   
-    87 │                 return (
-    88 │                   <a
-  > 89 │                     key={i}
-       │                          ^
-    90 │                     href={href}
-    91 │                     target="_blank"
+    107 │         {data.timeline.map((item, index) => {
+    108 │           return (
+  > 109 │             <div key={index} className={clsx("relative")}>
+        │                       ^^^^^
+    110 │               {item?.publishDate && (
+    111 │                 <PublishCountdown
   
   i This is the source of the key value.
   
-    84 │               )}
-    85 │             >
-  > 86 │               {socialLinks.map(({ href, icon: Icon }, i) => {
-       │                                                       ^
-    87 │                 return (
-    88 │                   <a
-  
-  i The order of the items may change, and this also affects performances and component state.
-  
-  i Check the React documentation. 
-  
-
-./documentation/src/components/landing/showcase-wrapper.tsx:164:37 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
-
-  ! Avoid using the index of an array as key property in an element.
-  
-    162 │                       line,
-    163 │                     })}
-  > 164 │                     key={`${code}-${i}`}
-        │                                     ^
-    165 │                   >
-    166 │                     {line.map((token, key) => {
-  
-  i This is the source of the key value.
-  
-    157 │             {({ tokens, getLineProps, getTokenProps }) => (
-    158 │               <>
-  > 159 │                 {tokens.map((line, i) => (
-        │                                    ^
-    160 │                   <div
-    161 │                     {...getLineProps({
+    105 │         )}
+    106 │       >
+  > 107 │         {data.timeline.map((item, index) => {
+        │                                   ^^^^^
+    108 │           return (
+    109 │             <div key={index} className={clsx("relative")}>
   
   i The order of the items may change, and this also affects performances and component state.
   
@@ -452,49 +277,225 @@
   i Check the React documentation. 
   
 
-./documentation/src/refine-theme/doc-breadcrumbs.tsx:87:34 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+./documentation/src/components/props-table/index.tsx:90:51 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
   
-    86 │           return (
-  > 87 │             <React.Fragment key={idx}>
-       │                                  ^^^
-    88 │               <li
-    89 │                 className={clsx(
+    88 │         <>
+    89 │           {splitted.map((t, i) => (
+  > 90 │             <code className="max-w-xs h-min" key={i}>
+       │                                                   ^
+    91 │               <ReactMarkdown>{t}</ReactMarkdown>
+    92 │             </code>
   
   i This is the source of the key value.
   
-    81 │           </li>
-    82 │         )}
-  > 83 │         {breadcrumbList.map((item, idx) => {
-       │                                    ^^^
-    84 │           const isLast = idx === breadcrumbs.length - 1;
-    85 │ 
+    87 │       ) : hasLongTypeInUnion && isUnion ? (
+    88 │         <>
+  > 89 │           {splitted.map((t, i) => (
+       │                             ^
+    90 │             <code className="max-w-xs h-min" key={i}>
+    91 │               <ReactMarkdown>{t}</ReactMarkdown>
   
   i The order of the items may change, and this also affects performances and component state.
   
   i Check the React documentation. 
   
 
-./documentation/src/components/refine-week/refine-week-mobile.tsx:123:20 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+./documentation/src/components/example-list/index.tsx:261:22 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
 
   ! Avoid using the index of an array as key property in an element.
   
-    121 │           return (
-    122 │             <div
-  > 123 │               key={index}
-        │                    ^^^^^
-    124 │               className={clsx(
-    125 │                 "relative",
+    259 │             return (
+    260 │               <a
+  > 261 │                 key={i}
+        │                      ^
+    262 │                 href={button.link}
+    263 │                 className={clsx("flex items-center gap-2", "no-underline")}
   
   i This is the source of the key value.
   
-    118 │         )}
-    119 │       >
-  > 120 │         {data.timeline.map((item, index) => {
-        │                                   ^^^^^
-    121 │           return (
-    122 │             <div
+    256 │             <span>Code</span>
+    257 │           </a>
+  > 258 │           {example.buttons.map((button, i) => {
+        │                                         ^
+    259 │             return (
+    260 │               <a
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/inferencer/src/components/shared-code-viewer/index.tsx:346:22 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    344 │             {tokens.map((line, i) => (
+    345 │               <div
+  > 346 │                 key={i}
+        │                      ^
+    347 │                 {...getLineProps({
+    348 │                   line,
+  
+  i This is the source of the key value.
+  
+    342 │             }}
+    343 │           >
+  > 344 │             {tokens.map((line, i) => (
+        │                                ^
+    345 │               <div
+    346 │                 key={i}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/inferencer/src/components/shared-code-viewer/index.tsx:354:26 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    352 │                 {line.map((token, key) => (
+    353 │                   <span
+  > 354 │                     key={key}
+        │                          ^^^
+    355 │                     {...getTokenProps({
+    356 │                       token,
+  
+  i This is the source of the key value.
+  
+    350 │                 })}
+    351 │               >
+  > 352 │                 {line.map((token, key) => (
+        │                                   ^^^
+    353 │                   <span
+    354 │                     key={key}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/inferencer/src/components/code-highlight/index.tsx:51:25 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    49 │           >
+    50 │             {tokens.map((line, i) => (
+  > 51 │               <div key={i} {...getLineProps({ line, key: i })}>
+       │                         ^
+    52 │                 {line.map((token, key) => (
+    53 │                   <span key={key} {...getTokenProps({ token, key })} />
+  
+  i This is the source of the key value.
+  
+    48 │             }}
+    49 │           >
+  > 50 │             {tokens.map((line, i) => (
+       │                                ^
+    51 │               <div key={i} {...getLineProps({ line, key: i })}>
+    52 │                 {line.map((token, key) => (
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./packages/inferencer/src/components/code-highlight/index.tsx:53:30 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    51 │               <div key={i} {...getLineProps({ line, key: i })}>
+    52 │                 {line.map((token, key) => (
+  > 53 │                   <span key={key} {...getTokenProps({ token, key })} />
+       │                              ^^^
+    54 │                 ))}
+    55 │               </div>
+  
+  i This is the source of the key value.
+  
+    50 │             {tokens.map((line, i) => (
+    51 │               <div key={i} {...getLineProps({ line, key: i })}>
+  > 52 │                 {line.map((token, key) => (
+       │                                   ^^^
+    53 │                   <span key={key} {...getTokenProps({ token, key })} />
+    54 │                 ))}
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./documentation/src/components/landing/showcase-wrapper.tsx:164:37 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    162 │                       line,
+    163 │                     })}
+  > 164 │                     key={`${code}-${i}`}
+        │                                     ^
+    165 │                   >
+    166 │                     {line.map((token, key) => {
+  
+  i This is the source of the key value.
+  
+    157 │             {({ tokens, getLineProps, getTokenProps }) => (
+    158 │               <>
+  > 159 │                 {tokens.map((line, i) => (
+        │                                    ^
+    160 │                   <div
+    161 │                     {...getLineProps({
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./documentation/src/refine-theme/common-tabs.tsx:132:16 lint/suspicious/noArrayIndexKey ━━━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    130 │       {childTabs.map((tabItem, i) =>
+    131 │         cloneElement(tabItem, {
+  > 132 │           key: i,
+        │                ^
+    133 │           hidden: tabItem.props.value !== selectedValue,
+    134 │           className: clsx(tabItem.props.className ?? [], "refine-tab-content"),
+  
+  i This is the source of the key value.
+  
+    128 │   return (
+    129 │     <div className="p-4">
+  > 130 │       {childTabs.map((tabItem, i) =>
+        │                                ^
+    131 │         cloneElement(tabItem, {
+    132 │           key: i,
+  
+  i The order of the items may change, and this also affects performances and component state.
+  
+  i Check the React documentation. 
+  
+
+./documentation/src/refine-theme/tutorial-header.tsx:172:34 lint/suspicious/noArrayIndexKey ━━━━━━━━━━
+
+  ! Avoid using the index of an array as key property in an element.
+  
+    170 │                         return (
+    171 │                           <a
+  > 172 │                             key={i}
+        │                                  ^
+    173 │                             href={href}
+    174 │                             target="_blank"
+  
+  i This is the source of the key value.
+  
+    167 │                       )}
+    168 │                     >
+  > 169 │                       {socialLinks.map(({ href, icon: Icon }, i) => {
+        │                                                               ^
+    170 │                         return (
+    171 │                           <a
   
   i The order of the items may change, and this also affects performances and component state.
   
@@ -503,4 +504,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 81.
-Checked 6952 file(s) in 483ms
+Checked 6952 file(s) in 481ms
