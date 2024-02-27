@@ -44,7 +44,7 @@
         "useAltText": "off",
         "noNoninteractiveElementToInteractiveRole": "off",
         "useValidAnchor": "off",
-        "noBlankTarget": "off",
+        "noBlankTarget": "error",
         "useIframeTitle": "off",
         "noAutofocus": "off",
         "noAriaHiddenOnFocusable": "off",
@@ -62,7 +62,7 @@
         "noUselessConstructor": "off",
         "noExtraBooleanCast": "off",
         "noStaticOnlyClass": "off",
-        "noUselessCatch": "off",
+        "noUselessCatch": "error",
         "useArrowFunction": "off",
         "noUselessRename": "off"
       },
@@ -90,12 +90,12 @@
         "noParameterAssign": "off",
         "useSelfClosingElements": "off",
         "useDefaultParameterLast": "off",
-        "useConst": "off",
+        "useConst": "error",
         "noCommaOperator": "off"
       },
       "suspicious": {
         "noExplicitAny": "off",
-        "noRedundantUseStrict": "off",
+        "noRedundantUseStrict": "error",
         "noAsyncPromiseExecutor": "off",
         "noAssignInExpressions": "off",
         "noImplicitAnyLet": "off",
@@ -111,7 +111,7 @@
         "useDefaultSwitchClauseLast": "off",
         "noSelfCompare": "off",
         "noFallthroughSwitchClause": "off",
-        "noEmptyInterface": "off",
+        "noEmptyInterface": "error",
         "noDuplicateObjectKeys": "off",
         "useValidTypeof": "off"
       }
