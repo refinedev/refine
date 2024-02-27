@@ -50,12 +50,7 @@ export const getFilesPathByProject = (projectType?: ProjectTypes) => {
   switch (projectType) {
     case ProjectTypes.REMIX:
       return "./app";
-    case ProjectTypes.NEXTJS:
-    case ProjectTypes.REACT_SCRIPT:
-    case ProjectTypes.VITE:
-    case ProjectTypes.CRACO:
-    case ProjectTypes.PARCEL:
-    case ProjectTypes.UNKNOWN:
+    default:
       return "./src";
   }
 };

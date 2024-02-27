@@ -377,6 +377,25 @@ export function useTable<
   const [current, setCurrent] = useState<number>(defaultCurrent);
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
+  const getCurrentQueryParams = (): object => {
+    if (routerType === "new") {
+      // We get QueryString parameters that are uncontrolled by refine.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { sorters, filters, pageSize, current, ...rest } =
+        parsedParams?.params ?? {};
+
+      return rest;
+    }
+
+    // We get QueryString parameters that are uncontrolled by refine.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
+      ignoreQueryPrefix: true,
+    });
+
+    return rest;
+  };
+
   const createLinkForSyncWithLocation = ({
     pagination: { current, pageSize },
     sorter,
@@ -394,7 +413,7 @@ export function useTable<
             ...(isPaginationEnabled ? { current, pageSize } : {}),
             sorters: sorter,
             filters,
-            ...currentQueryParams(),
+            ...getCurrentQueryParams(),
           },
         }) ?? ""
       );
@@ -410,6 +429,7 @@ export function useTable<
       filters,
       ...currentQueryParams,
     });
+
     return `${pathname ?? ""}?${stringifyParams ?? ""}`;
   };
 
@@ -426,28 +446,10 @@ export function useTable<
     }
   }, [search]);
 
-  const currentQueryParams = (): object => {
-    if (routerType === "new") {
-      // We get QueryString parameters that are uncontrolled by refine.
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { sorters, filters, pageSize, current, ...rest } =
-        parsedParams?.params ?? {};
-
-      return rest;
-    }
-    // We get QueryString parameters that are uncontrolled by refine.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
-      ignoreQueryPrefix: true,
-    });
-
-    return rest;
-  };
-
   useEffect(() => {
     if (syncWithLocation) {
       // Careful! This triggers render
-      const queryParams = currentQueryParams();
+      const queryParams = getCurrentQueryParams();
 
       if (routerType === "new") {
         go({
