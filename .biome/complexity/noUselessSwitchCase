@@ -466,37 +466,70 @@
      61  60 │             }
   
 
-./examples/with-meta-properties/src/rest-data-provider/utils/mapOperator.ts:11:5 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+./packages/antd/src/components/crud/edit/index.spec.tsx:209:15 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
   
-     9 │     case "contains":
-    10 │       return "_like";
-  > 11 │     case "eq":
-       │     ^^^^^^^^^^
-    12 │     default:
-    13 │       return "";
+    207 │               case "list":
+    208 │                 return Promise.resolve({ can: true });
+  > 209 │               case "delete":
+        │               ^^^^^^^^^^^^^^
+    210 │               default:
+    211 │                 return Promise.resolve({ can: false });
   
   i because the default clause is present:
   
-    10 │       return "_like";
-    11 │     case "eq":
-  > 12 │     default:
-       │     ^^^^^^^^
-  > 13 │       return "";
-       │       ^^^^^^^^^^
-    14 │   }
-    15 │ };
+    208 │                 return Promise.resolve({ can: true });
+    209 │               case "delete":
+  > 210 │               default:
+        │               ^^^^^^^^
+  > 211 │                 return Promise.resolve({ can: false });
+        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │             }
+    213 │           },
   
   i Unsafe fix: Remove the useless case.
   
-     9  9 │       case "contains":
-    10 10 │         return "_like";
-    11    │ - ····case·"eq":
-    12    │ - ····default:
-       11 │ + ····default:
-    13 12 │         return "";
-    14 13 │     }
+    207 207 │                 case "list":
+    208 208 │                   return Promise.resolve({ can: true });
+    209     │ - ··············case·"delete":
+    210     │ - ··············default:
+        209 │ + ··············default:
+    211 210 │                   return Promise.resolve({ can: false });
+    212 211 │               }
+  
+
+./packages/antd/src/components/crud/show/index.spec.tsx:57:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+
+  ! Useless case clause.
+  
+    55 │             case "list":
+    56 │               return Promise.resolve({ can: true });
+  > 57 │             case "delete":
+       │             ^^^^^^^^^^^^^^
+    58 │             default:
+    59 │               return Promise.resolve({ can: false });
+  
+  i because the default clause is present:
+  
+    56 │               return Promise.resolve({ can: true });
+    57 │             case "delete":
+  > 58 │             default:
+       │             ^^^^^^^^
+  > 59 │               return Promise.resolve({ can: false });
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    60 │           }
+    61 │         },
+  
+  i Unsafe fix: Remove the useless case.
+  
+     55  55 │               case "list":
+     56  56 │                 return Promise.resolve({ can: true });
+     57     │ - ············case·"delete":
+     58     │ - ············default:
+         57 │ + ············default:
+     59  58 │                 return Promise.resolve({ can: false });
+     60  59 │             }
   
 
 ./packages/devtools-ui/src/components/package-item.tsx:58:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
@@ -565,72 +598,6 @@
      75  74 │       }
   
 
-./packages/antd/src/components/crud/show/index.spec.tsx:57:13 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
-
-  ! Useless case clause.
-  
-    55 │             case "list":
-    56 │               return Promise.resolve({ can: true });
-  > 57 │             case "delete":
-       │             ^^^^^^^^^^^^^^
-    58 │             default:
-    59 │               return Promise.resolve({ can: false });
-  
-  i because the default clause is present:
-  
-    56 │               return Promise.resolve({ can: true });
-    57 │             case "delete":
-  > 58 │             default:
-       │             ^^^^^^^^
-  > 59 │               return Promise.resolve({ can: false });
-       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    60 │           }
-    61 │         },
-  
-  i Unsafe fix: Remove the useless case.
-  
-     55  55 │               case "list":
-     56  56 │                 return Promise.resolve({ can: true });
-     57     │ - ············case·"delete":
-     58     │ - ············default:
-         57 │ + ············default:
-     59  58 │                 return Promise.resolve({ can: false });
-     60  59 │             }
-  
-
-./packages/antd/src/components/crud/edit/index.spec.tsx:209:15 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
-
-  ! Useless case clause.
-  
-    207 │               case "list":
-    208 │                 return Promise.resolve({ can: true });
-  > 209 │               case "delete":
-        │               ^^^^^^^^^^^^^^
-    210 │               default:
-    211 │                 return Promise.resolve({ can: false });
-  
-  i because the default clause is present:
-  
-    208 │                 return Promise.resolve({ can: true });
-    209 │               case "delete":
-  > 210 │               default:
-        │               ^^^^^^^^
-  > 211 │                 return Promise.resolve({ can: false });
-        │                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    212 │             }
-    213 │           },
-  
-  i Unsafe fix: Remove the useless case.
-  
-    207 207 │                 case "list":
-    208 208 │                   return Promise.resolve({ can: true });
-    209     │ - ··············case·"delete":
-    210     │ - ··············default:
-        209 │ + ··············default:
-    211 210 │                   return Promise.resolve({ can: false });
-    212 211 │               }
-  
-
 ./packages/devtools-ui/src/components/add-package-drawer.tsx:98:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
 
   ! Useless case clause.
@@ -664,6 +631,39 @@
     101 100 │       }
   
 
+./packages/devtools-ui/src/components/add-package-drawer.tsx:112:7 lint/complexity/noUselessSwitchCase  FIXABLE  ━━━━━━━━━━
+
+  ! Useless case clause.
+  
+    110 │       case "error":
+    111 │         return "Error";
+  > 112 │       case "idle":
+        │       ^^^^^^^^^^^^
+    113 │       default:
+    114 │         return "Install";
+  
+  i because the default clause is present:
+  
+    111 │         return "Error";
+    112 │       case "idle":
+  > 113 │       default:
+        │       ^^^^^^^^
+  > 114 │         return "Install";
+        │         ^^^^^^^^^^^^^^^^^
+    115 │     }
+    116 │   }, [status]);
+  
+  i Unsafe fix: Remove the useless case.
+  
+    110 110 │         case "error":
+    111 111 │           return "Error";
+    112     │ - ······case·"idle":
+    113     │ - ······default:
+        112 │ + ······default:
+    114 113 │           return "Install";
+    115 114 │       }
+  
+
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 1.
-Checked 6952 file(s) in 458ms
+Checked 6952 file(s) in 507ms

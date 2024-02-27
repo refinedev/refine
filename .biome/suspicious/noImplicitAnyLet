@@ -2,6 +2,20 @@
 > refinejs-repo@0.0.0 biome
 > biome lint .
 
+./packages/strapi-v4/src/dataProvider.ts:266:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    264 │     }
+    265 │ 
+  > 266 │     let axiosResponse;
+        │         ^^^^^^^^^^^^^
+    267 │     switch (method) {
+    268 │       case "put":
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
 ./packages/codemod/src/transformations/refine2-to-refine3.ts:607:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
 
   ! This variable has implicitly the any type.
@@ -30,20 +44,6 @@
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
 
-./packages/strapi-v4/src/dataProvider.ts:266:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    264 │     }
-    265 │ 
-  > 266 │     let axiosResponse;
-        │         ^^^^^^^^^^^^^
-    267 │     switch (method) {
-    268 │       case "put":
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
 ./packages/strapi/src/dataProvider.ts:231:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━━━━
 
   ! This variable has implicitly the any type.
@@ -54,19 +54,6 @@
         │         ^^^^^^^^^^^^^
     232 │     switch (method) {
     233 │       case "put":
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
-./packages/core/src/contexts/data/index.tsx:22:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    21 │ export const DataContextProvider: React.FC<Props> = ({ children, ...rest }) => {
-  > 22 │   let dataProviders;
-       │       ^^^^^^^^^^^^^
-    23 │   if (!rest.getList || !rest.getOne) {
-    24 │     dataProviders = rest as IDataMultipleContextProvider;
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -95,33 +82,6 @@
         │         ^^^^^^^^^^^^^
     200 │     switch (method) {
     201 │       case "put":
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
-./packages/inferencer/src/use-relation-fetch/index.ts:122:21 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    121 │               if (requestId) {
-  > 122 │                 let responseData;
-        │                     ^^^^^^^^^^^^
-    123 │                 let isPlural;
-    124 │ 
-  
-  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
-  
-
-./packages/inferencer/src/use-relation-fetch/index.ts:123:21 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
-
-  ! This variable has implicitly the any type.
-  
-    121 │               if (requestId) {
-    122 │                 let responseData;
-  > 123 │                 let isPlural;
-        │                     ^^^^^^^^
-    124 │ 
-    125 │                 try {
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -181,16 +141,42 @@
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
 
-./packages/simple-rest/src/provider.ts:171:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━━━
+./packages/core/src/contexts/data/index.tsx:22:7 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━
 
   ! This variable has implicitly the any type.
   
-    169 │     }
-    170 │ 
-  > 171 │     let axiosResponse;
-        │         ^^^^^^^^^^^^^
-    172 │     switch (method) {
-    173 │       case "put":
+    21 │ export const DataContextProvider: React.FC<Props> = ({ children, ...rest }) => {
+  > 22 │   let dataProviders;
+       │       ^^^^^^^^^^^^^
+    23 │   if (!rest.getList || !rest.getOne) {
+    24 │     dataProviders = rest as IDataMultipleContextProvider;
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
+./packages/inferencer/src/use-relation-fetch/index.ts:122:21 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    121 │               if (requestId) {
+  > 122 │                 let responseData;
+        │                     ^^^^^^^^^^^^
+    123 │                 let isPlural;
+    124 │ 
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
+./packages/inferencer/src/use-relation-fetch/index.ts:123:21 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    121 │               if (requestId) {
+    122 │                 let responseData;
+  > 123 │                 let isPlural;
+        │                     ^^^^^^^^
+    124 │ 
+    125 │                 try {
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -219,6 +205,20 @@
        │         ^^^^^^^^
     19 │ 
     20 │     if ([ProjectTypes.NEXTJS, ProjectTypes.REMIX].includes(projectType)) {
+  
+  i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
+  
+
+./packages/simple-rest/src/provider.ts:171:9 lint/suspicious/noImplicitAnyLet ━━━━━━━━━━━━━━━━━━━━━━
+
+  ! This variable has implicitly the any type.
+  
+    169 │     }
+    170 │ 
+  > 171 │     let axiosResponse;
+        │         ^^^^^^^^^^^^^
+    172 │     switch (method) {
+    173 │       case "put":
   
   i Variable declarations without type annotation and initialization have implicitly the any type. Declare type or initialize the variable with some value.
   
@@ -280,4 +280,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 6.
-Checked 6952 file(s) in 459ms
+Checked 6952 file(s) in 487ms

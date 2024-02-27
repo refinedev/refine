@@ -30,88 +30,6 @@
     15 15 │             if (
   
 
-./examples/blog-next-refine-pwa/public/sw.js:71:32 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
-
-  ! This function expression can be turned into an arrow function.
-  
-     69 │   };
-     70 │ }
-   > 71 │ define(["./workbox-eac1af49"], function (workbox) {
-        │                                ^^^^^^^^^^^^^^^^^^^^
-   > 72 │   "use strict";
-         ...
-  > 123 │   );
-  > 124 │ });
-        │ ^
-    125 │ //# sourceMappingURL=sw.js.map
-    126 │ 
-  
-  i Function expressions that don't use this can be turned into arrow functions.
-  
-  i Safe fix: Use an arrow function instead.
-  
-     69  69 │     };
-     70  70 │   }
-     71     │ - define(["./workbox-eac1af49"],·function·(workbox)·{
-         71 │ + define(["./workbox-eac1af49"],·(workbox)·=>·{
-     72  72 │     "use strict";
-     73  73 │   
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:31:19 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
-
-  ! This function expression can be turned into an arrow function.
-  
-    29 │     };
-    30 │ 
-  > 31 │     const print = function (method, args) {
-       │                   ^^^^^^^^^^^^^^^^^^^^^^^^^
-  > 32 │       if (self.__WB_DISABLE_DEV_LOGS) {
-        ...
-  > 62 │       }
-  > 63 │     }; // eslint-disable-next-line @typescript-eslint/ban-types
-       │     ^
-    64 │ 
-    65 │     const api = {};
-  
-  i Function expressions that don't use this can be turned into arrow functions.
-  
-  i Safe fix: Use an arrow function instead.
-  
-      29   29 │       };
-      30   30 │   
-      31      │ - ····const·print·=·function·(method,·args)·{
-           31 │ + ····const·print·=·(method,·args)·=>·{
-      32   32 │         if (self.__WB_DISABLE_DEV_LOGS) {
-      33   33 │           return;
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1:21 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
-
-  ! This function expression can be turned into an arrow function.
-  
-     > 1 │ define(["exports"], function (exports) {
-         │                     ^^^^^^^^^^^^^^^^^^^^
-     > 2 │   "use strict";
-     > 3 │ 
-     > 4 │   try {
-          ...
-  > 2878 │   exports.registerRoute = registerRoute;
-  > 2879 │ });
-         │ ^
-    2880 │ //# sourceMappingURL=workbox-eac1af49.js.map
-    2881 │ 
-  
-  i Function expressions that don't use this can be turned into arrow functions.
-  
-  i Safe fix: Use an arrow function instead.
-  
-       1      │ - define(["exports"],·function·(exports)·{
-            1 │ + define(["exports"],·(exports)·=>·{
-       2    2 │     "use strict";
-       3    3 │   
-  
-
 ./packages/devtools-server/src/serve-proxy.ts:23:41 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
 
   ! This function expression can be turned into an arrow function.
@@ -605,6 +523,101 @@
     10 10 │       it("renders boolean values correctly", () => {
   
 
+./packages/ui-tests/src/tests/fields/file.tsx:6:31 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
+
+  ! This function expression can be turned into an arrow function.
+  
+     4 │ import { render } from "@test";
+     5 │ 
+   > 6 │ export const fieldFileTests = function (
+       │                               ^^^^^^^^^^
+   > 7 │   FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
+        ...
+  > 31 │     });
+  > 32 │   });
+  > 33 │ };
+       │ ^
+    34 │ 
+  
+  i Function expressions that don't use this can be turned into arrow functions.
+  
+  i Safe fix: Use an arrow function instead.
+  
+     4  4 │   import { render } from "@test";
+     5  5 │   
+     6    │ - export·const·fieldFileTests·=·function·(
+        6 │ + export·const·fieldFileTests·=·(
+     7  7 │     FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
+     8    │ - ):·void·{
+        8 │ + ):·void·=>·{
+     9  9 │     describe("[@refinedev/ui-tests] Common Tests / File Field", () => {
+    10 10 │       it("renders an anchor with file link", () => {
+  
+
+./packages/ui-tests/src/tests/fields/markdown.tsx:6:35 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
+
+  ! This function expression can be turned into an arrow function.
+  
+     4 │ import { render } from "@test";
+     5 │ 
+   > 6 │ export const fieldMarkdownTests = function (
+       │                                   ^^^^^^^^^^
+   > 7 │   MarkdownField: React.ComponentType<
+        ...
+  > 30 │     });
+  > 31 │   });
+  > 32 │ };
+       │ ^
+    33 │ 
+  
+  i Function expressions that don't use this can be turned into arrow functions.
+  
+  i Safe fix: Use an arrow function instead.
+  
+     4  4 │   import { render } from "@test";
+     5  5 │   
+     6    │ - export·const·fieldMarkdownTests·=·function·(
+        6 │ + export·const·fieldMarkdownTests·=·(
+     7  7 │     MarkdownField: React.ComponentType<
+     8  8 │       RefineFieldMarkdownProps<string | undefined>
+     9  9 │     >,
+    10    │ - ):·void·{
+       10 │ + ):·void·=>·{
+    11 11 │     describe("[@refinedev/ui-tests] Common Tests / Markdown Field", () => {
+    12 12 │       it("renders markDown text with correct value", () => {
+  
+
+./packages/ui-tests/src/tests/fields/email.tsx:6:32 lint/complexity/useArrowFunction  FIXABLE  ━━━━━━━━━━
+
+  ! This function expression can be turned into an arrow function.
+  
+     4 │ import { render } from "@test";
+     5 │ 
+   > 6 │ export const fieldEmailTests = function (
+       │                                ^^^^^^^^^^
+   > 7 │   EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
+        ...
+  > 17 │     });
+  > 18 │   });
+  > 19 │ };
+       │ ^
+    20 │ 
+  
+  i Function expressions that don't use this can be turned into arrow functions.
+  
+  i Safe fix: Use an arrow function instead.
+  
+     4  4 │   import { render } from "@test";
+     5  5 │   
+     6    │ - export·const·fieldEmailTests·=·function·(
+        6 │ + export·const·fieldEmailTests·=·(
+     7  7 │     EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
+     8    │ - ):·void·{
+        8 │ + ):·void·=>·{
+     9  9 │     describe("[@refinedev/ui-tests] Common Tests / Email Field", () => {
+    10 10 │       it("renders email with mailto href", () => {
+  
+
 The number of diagnostics exceeds the number allowed by Biome.
-Diagnostics not shown: 31.
-Checked 6952 file(s) in 467ms
+Diagnostics not shown: 25.
+Checked 6952 file(s) in 489ms

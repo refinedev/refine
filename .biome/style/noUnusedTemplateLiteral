@@ -22,27 +22,6 @@
     51 51 │   
   
 
-./documentation/src/partials/npm-scripts/create-refine-app-command.tsx:27:25 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
-
-  ! Do not use template literals if interpolation and special-character handling are not needed.
-  
-    25 │       <TabItem value="yarn" label="yarn">
-    26 │         <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-  > 27 │         <ReactMarkdown>{`> Only supports yarn@1 version.`}</ReactMarkdown>
-       │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    28 │       </TabItem>
-    29 │     </Tabs>
-  
-  i Unsafe fix: Replace with string literal
-  
-    25 25 │         <TabItem value="yarn" label="yarn">
-    26 26 │           <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-    27    │ - ········<ReactMarkdown>{`>·Only·supports·yarn@1·version.`}</ReactMarkdown>
-       27 │ + ········<ReactMarkdown>{">·Only·supports·yarn@1·version."}</ReactMarkdown>
-    28 28 │         </TabItem>
-    29 29 │       </Tabs>
-  
-
 ./cypress/support/commands/document-title-handler.ts:32:47 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
 
   ! Do not use template literals if interpolation and special-character handling are not needed.
@@ -62,6 +41,27 @@
        32 │ + ······cy.document().its("title").should("eq",·"refine");
     33 33 │         break;
     34 34 │     }
+  
+
+./documentation/src/partials/npm-scripts/create-refine-app-command.tsx:27:25 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━
+
+  ! Do not use template literals if interpolation and special-character handling are not needed.
+  
+    25 │       <TabItem value="yarn" label="yarn">
+    26 │         <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
+  > 27 │         <ReactMarkdown>{`> Only supports yarn@1 version.`}</ReactMarkdown>
+       │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    28 │       </TabItem>
+    29 │     </Tabs>
+  
+  i Unsafe fix: Replace with string literal
+  
+    25 25 │         <TabItem value="yarn" label="yarn">
+    26 26 │           <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
+    27    │ - ········<ReactMarkdown>{`>·Only·supports·yarn@1·version.`}</ReactMarkdown>
+       27 │ + ········<ReactMarkdown>{">·Only·supports·yarn@1·version."}</ReactMarkdown>
+    28 28 │         </TabItem>
+    29 29 │       </Tabs>
   
 
 ./.github/workflows/e2e-examples.js:55:17 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━
@@ -421,4 +421,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 283.
-Checked 6952 file(s) in 467ms
+Checked 6952 file(s) in 487ms

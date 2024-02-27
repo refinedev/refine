@@ -87,38 +87,6 @@
   i Check this thorough explanation to better understand the context.
   
 
-./examples/customization-login/src/pages/login/index.tsx:92:21 lint/a11y/useValidAnchor ━━━━━━━━━━━━
-
-  ! Provide a valid value for the attribute href.
-  
-    90 │                       fontSize: "12px",
-    91 │                     }}
-  > 92 │                     href="#"
-       │                     ^^^^^^^^
-    93 │                   >
-    94 │                     Forgot password?
-  
-  i The href attribute should be a valid a URL
-  
-  i Check this thorough explanation to better understand the context.
-  
-
-./examples/customization-login/src/pages/login/index.tsx:104:22 lint/a11y/useValidAnchor ━━━━━━━━━━━
-
-  ! Provide a valid value for the attribute href.
-  
-    102 │                 <Text style={{ fontSize: 12 }}>
-    103 │                   Don’t have an account?{" "}
-  > 104 │                   <a href="#" style={{ fontWeight: "bold" }}>
-        │                      ^^^^^^^^
-    105 │                     Sign up
-    106 │                   </a>
-  
-  i The href attribute should be a valid a URL
-  
-  i Check this thorough explanation to better understand the context.
-  
-
 ./packages/antd/src/components/pages/login/index.tsx:113:21 lint/a11y/useValidAnchor ━━━━━━━━━━━━━━━
 
   ! Provide a valid value for the attribute href.
@@ -145,6 +113,38 @@
         │                      ^^^^^^^^
     135 │                     {translate("pages.login.signup", "Sign up")}
     136 │                   </a>
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/customization-login/src/pages/login/index.tsx:92:21 lint/a11y/useValidAnchor ━━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    90 │                       fontSize: "12px",
+    91 │                     }}
+  > 92 │                     href="#"
+       │                     ^^^^^^^^
+    93 │                   >
+    94 │                     Forgot password?
+  
+  i The href attribute should be a valid a URL
+  
+  i Check this thorough explanation to better understand the context.
+  
+
+./examples/customization-login/src/pages/login/index.tsx:104:22 lint/a11y/useValidAnchor ━━━━━━━━━━━
+
+  ! Provide a valid value for the attribute href.
+  
+    102 │                 <Text style={{ fontSize: 12 }}>
+    103 │                   Don’t have an account?{" "}
+  > 104 │                   <a href="#" style={{ fontWeight: "bold" }}>
+        │                      ^^^^^^^^
+    105 │                     Sign up
+    106 │                   </a>
   
   i The href attribute should be a valid a URL
   
@@ -338,4 +338,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 2.
-Checked 6952 file(s) in 456ms
+Checked 6952 file(s) in 491ms

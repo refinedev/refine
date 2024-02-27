@@ -44,6 +44,62 @@
   i Remove void
   
 
+./examples/mern-dashboard-client/src/interfaces/common.d.ts:35:16 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    33 │   onFinish: (
+    34 │     values: FieldValues,
+  > 35 │   ) => Promise<void | CreateResponse<BaseRecord> | UpdateResponse<BaseRecord>>;
+       │                ^^^^
+    36 │   formLoading: boolean;
+    37 │   handleSubmit: FormEventHandler<HTMLFormElement> | undefined;
+  
+  i Remove void
+  
+
+./examples/store/src/components/ui/Modal/Modal.tsx:11:19 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+     9 │   className?: string;
+    10 │   onClose: () => void;
+  > 11 │   onEnter?: () => void | null;
+       │                   ^^^^
+    12 │ }
+    13 │ 
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/export/csvDownload.interface.ts:12:16 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    10 │ export type SyncClickHandler = (
+    11 │   event: MouseEventHandler<HTMLAnchorElement>,
+  > 12 │ ) => boolean | void;
+       │                ^^^^
+    13 │ export type AsyncClickHandler = (
+    14 │   event: MouseEventHandler<HTMLAnchorElement>,
+  
+  i Remove void
+  
+
+./packages/hasura/src/utils/graphql.ts:28:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    26 │   visit(newDocumentNode, {
+    27 │     Field: {
+  > 28 │       enter(node): SelectionSetNode | void {
+       │                                       ^^^^
+    29 │         if (isInitialEnter) {
+    30 │           isInitialEnter = false;
+  
+  i Remove void
+  
+
 ./packages/core/src/contexts/auth/IAuthContext.ts:1:27 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
@@ -166,20 +222,6 @@
   i Remove void
   
 
-./examples/store/src/components/ui/Modal/Modal.tsx:11:19 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-     9 │   className?: string;
-    10 │   onClose: () => void;
-  > 11 │   onEnter?: () => void | null;
-       │                   ^^^^
-    12 │ }
-    13 │ 
-  
-  i Remove void
-  
-
 ./packages/core/src/hooks/auth/useOnError/index.ts:35:21 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
 
   ! void is not valid as a constituent in a union type
@@ -190,34 +232,6 @@
        │                     ^^^^
     36 │   unknown,
     37 │   unknown,
-  
-  i Remove void
-  
-
-./packages/hasura/src/utils/graphql.ts:28:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    26 │   visit(newDocumentNode, {
-    27 │     Field: {
-  > 28 │       enter(node): SelectionSetNode | void {
-       │                                       ^^^^
-    29 │         if (isInitialEnter) {
-    30 │           isInitialEnter = false;
-  
-  i Remove void
-  
-
-./examples/mern-dashboard-client/src/interfaces/common.d.ts:35:16 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    33 │   onFinish: (
-    34 │     values: FieldValues,
-  > 35 │   ) => Promise<void | CreateResponse<BaseRecord> | UpdateResponse<BaseRecord>>;
-       │                ^^^^
-    36 │   formLoading: boolean;
-    37 │   handleSubmit: FormEventHandler<HTMLFormElement> | undefined;
   
   i Remove void
   
@@ -264,20 +278,6 @@
   i Remove void
   
 
-./packages/core/src/hooks/auth/useLogout/index.ts:66:30 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
-
-  ! void is not valid as a constituent in a union type
-  
-    64 │   TLogoutData,
-    65 │   Error | RefineError,
-  > 66 │   (TVariables & Variables) | void,
-       │                              ^^^^
-    67 │   unknown
-    68 │ >;
-  
-  i Remove void
-  
-
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 8.
-Checked 6952 file(s) in 494ms
+Checked 6952 file(s) in 537ms

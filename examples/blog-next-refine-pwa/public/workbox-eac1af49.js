@@ -1,6 +1,4 @@
-define(["exports"], function (exports) {
-  "use strict";
-
+define(["exports"], (exports) => {
   try {
     self["workbox:core:6.5.3"] && _();
   } catch (e) {}
@@ -28,7 +26,7 @@ define(["exports"], function (exports) {
       groupEnd: null, // No colored prefix on groupEnd
     };
 
-    const print = function (method, args) {
+    const print = (method, args) => {
       if (self.__WB_DISABLE_DEV_LOGS) {
         return;
       }

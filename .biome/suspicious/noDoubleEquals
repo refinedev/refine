@@ -110,60 +110,6 @@
     40 │ ····if·(typeof·onClick·!==·"function")·{
        │                          +              
 
-./documentation/src/context/CommunityStats/index.tsx:100:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-     98 │ export const convertStatToText = (num: number) => {
-     99 │   const hasIntlSupport =
-  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
-        │                 ^^
-    101 │ 
-    102 │   if (!hasIntlSupport) {
-  
-  i == is only allowed when comparing against null
-  
-     98 │ export const convertStatToText = (num: number) => {
-     99 │   const hasIntlSupport =
-  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
-        │                 ^^
-    101 │ 
-    102 │   if (!hasIntlSupport) {
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    100 │ ····typeof·Intl·===·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·==·"function";
-        │                   +                                                            
-
-./documentation/src/context/CommunityStats/index.tsx:100:65 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
-
-  ! Use === instead of ==
-  
-     98 │ export const convertStatToText = (num: number) => {
-     99 │   const hasIntlSupport =
-  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
-        │                                                                 ^^
-    101 │ 
-    102 │   if (!hasIntlSupport) {
-  
-  i == is only allowed when comparing against null
-  
-     98 │ export const convertStatToText = (num: number) => {
-     99 │   const hasIntlSupport =
-  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
-        │                                                                 ^^
-    101 │ 
-    102 │   if (!hasIntlSupport) {
-  
-  i Using === may be unsafe if you are relying on type coercion
-  
-  i Unsafe fix: Use ===
-  
-    100 │ ····typeof·Intl·==·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·===·"function";
-        │                                                                   +            
-
 ./packages/mantine/src/components/fields/number/index.tsx:8:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
@@ -511,6 +457,60 @@
     8 │ ····typeof·Intl.NumberFormat·===·"function"
       │                                +           
 
+./documentation/src/context/CommunityStats/index.tsx:100:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i == is only allowed when comparing against null
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    100 │ ····typeof·Intl·===·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·==·"function";
+        │                   +                                                            
+
+./documentation/src/context/CommunityStats/index.tsx:100:65 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
+
+  ! Use === instead of ==
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                                                                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i == is only allowed when comparing against null
+  
+     98 │ export const convertStatToText = (num: number) => {
+     99 │   const hasIntlSupport =
+  > 100 │     typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+        │                                                                 ^^
+    101 │ 
+    102 │   if (!hasIntlSupport) {
+  
+  i Using === may be unsafe if you are relying on type coercion
+  
+  i Unsafe fix: Use ===
+  
+    100 │ ····typeof·Intl·==·"object"·&&·Intl·&&·typeof·Intl.NumberFormat·===·"function";
+        │                                                                   +            
+
 ./packages/mui/src/components/fields/number/index.tsx:8:17 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━
 
   ! Use === instead of ==
@@ -540,4 +540,4 @@
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 14.
-Checked 6952 file(s) in 463ms
+Checked 6952 file(s) in 438ms

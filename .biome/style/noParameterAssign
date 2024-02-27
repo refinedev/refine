@@ -24,74 +24,6 @@
   i Use a local variable instead.
   
 
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:900:17 lint/style/noParameterAssign ━━━━━━━━━━
-
-  ! Reassigning a function parameter is confusing.
-  
-    898 │             payload.urlsToCache.map((entry) => {
-    899 │               if (typeof entry === "string") {
-  > 900 │                 entry = [entry];
-        │                 ^^^^^
-    901 │               }
-    902 │ 
-  
-  i The parameter is declared here:
-  
-    897 │           const requestPromises = Promise.all(
-  > 898 │             payload.urlsToCache.map((entry) => {
-        │                                      ^^^^^
-    899 │               if (typeof entry === "string") {
-    900 │                 entry = [entry];
-  
-  i Use a local variable instead.
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1065:17 lint/style/noParameterAssign ━━━━━━━━━━
-
-  ! Reassigning a function parameter is confusing.
-  
-    1063 │             } catch (catchErr) {
-    1064 │               if (catchErr instanceof Error) {
-  > 1065 │                 err = catchErr;
-         │                 ^^^
-    1066 │               }
-    1067 │             }
-  
-  i The parameter is declared here:
-  
-    1037 │         (this._catchHandler || catchHandler)
-    1038 │       ) {
-  > 1039 │         responsePromise = responsePromise.catch(async (err) => {
-         │                                                        ^^^
-    1040 │           // If there's a route catch handler, process that first
-    1041 │           if (catchHandler) {
-  
-  i Use a local variable instead.
-  
-
-./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2358:9 lint/style/noParameterAssign ━━━━━━━━━━
-
-  ! Reassigning a function parameter is confusing.
-  
-    2356 │       // Allow for flexible options to be passed.
-    2357 │       if (options instanceof FetchEvent) {
-  > 2358 │         options = {
-         │         ^^^^^^^
-    2359 │           event: options,
-    2360 │           request: options.request,
-  
-  i The parameter is declared here:
-  
-    2353 │      */
-    2354 │ 
-  > 2355 │     handleAll(options) {
-         │               ^^^^^^^
-    2356 │       // Allow for flexible options to be passed.
-    2357 │       if (options instanceof FetchEvent) {
-  
-  i Use a local variable instead.
-  
-
 ./packages/strapi-v4/src/utils/normalizeData.ts:20:7 lint/style/noParameterAssign ━━━━━━━━━━━━━━━━━━
 
   ! Reassigning a function parameter is confusing.
@@ -180,6 +112,74 @@
        │                               ^^^^^^^^^
     14 │   if (Array.isArray(data)) {
     15 │     return data.map((item) => normalizeData(item));
+  
+  i Use a local variable instead.
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:898:17 lint/style/noParameterAssign ━━━━━━━━━━
+
+  ! Reassigning a function parameter is confusing.
+  
+    896 │             payload.urlsToCache.map((entry) => {
+    897 │               if (typeof entry === "string") {
+  > 898 │                 entry = [entry];
+        │                 ^^^^^
+    899 │               }
+    900 │ 
+  
+  i The parameter is declared here:
+  
+    895 │           const requestPromises = Promise.all(
+  > 896 │             payload.urlsToCache.map((entry) => {
+        │                                      ^^^^^
+    897 │               if (typeof entry === "string") {
+    898 │                 entry = [entry];
+  
+  i Use a local variable instead.
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:1063:17 lint/style/noParameterAssign ━━━━━━━━━━
+
+  ! Reassigning a function parameter is confusing.
+  
+    1061 │             } catch (catchErr) {
+    1062 │               if (catchErr instanceof Error) {
+  > 1063 │                 err = catchErr;
+         │                 ^^^
+    1064 │               }
+    1065 │             }
+  
+  i The parameter is declared here:
+  
+    1035 │         (this._catchHandler || catchHandler)
+    1036 │       ) {
+  > 1037 │         responsePromise = responsePromise.catch(async (err) => {
+         │                                                        ^^^
+    1038 │           // If there's a route catch handler, process that first
+    1039 │           if (catchHandler) {
+  
+  i Use a local variable instead.
+  
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:2356:9 lint/style/noParameterAssign ━━━━━━━━━━
+
+  ! Reassigning a function parameter is confusing.
+  
+    2354 │       // Allow for flexible options to be passed.
+    2355 │       if (options instanceof FetchEvent) {
+  > 2356 │         options = {
+         │         ^^^^^^^
+    2357 │           event: options,
+    2358 │           request: options.request,
+  
+  i The parameter is declared here:
+  
+    2351 │      */
+    2352 │ 
+  > 2353 │     handleAll(options) {
+         │               ^^^^^^^
+    2354 │       // Allow for flexible options to be passed.
+    2355 │       if (options instanceof FetchEvent) {
   
   i Use a local variable instead.
   
@@ -380,4 +380,4 @@
   i Use a local variable instead.
   
 
-Checked 6952 file(s) in 457ms
+Checked 6952 file(s) in 487ms

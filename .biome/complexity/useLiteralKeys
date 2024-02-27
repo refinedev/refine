@@ -86,6 +86,47 @@
      64  64 │         communityPackages: integrationsData["community-packages"],
   
 
+./examples/multi-tenancy-strapi/src/authProvider.ts:19:47 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    18 │         // set header axios instance
+  > 19 │         axiosInstance.defaults.headers.common["Authorization"] =
+       │                                               ^^^^^^^^^^^^^^^
+    20 │           `Bearer ${data.jwt}`;
+    21 │ 
+  
+  i Unsafe fix: Use a literal key instead.
+  
+     17  17 │   
+     18  18 │           // set header axios instance
+     19     │ - ········axiosInstance.defaults.headers.common["Authorization"]·=
+         19 │ + ········axiosInstance.defaults.headers.common.Authorization·=
+     20  20 │             `Bearer ${data.jwt}`;
+     21  21 │   
+  
+
+./examples/multi-tenancy-strapi/src/authProvider.ts:64:45 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
+
+  ! The computed expression can be simplified without the use of a string literal.
+  
+    62 │     const token = localStorage.getItem(TOKEN_KEY);
+    63 │     if (token) {
+  > 64 │       axiosInstance.defaults.headers.common["Authorization"] =
+       │                                             ^^^^^^^^^^^^^^^
+    65 │         `Bearer ${token}`;
+    66 │       return {
+  
+  i Unsafe fix: Use a literal key instead.
+  
+     62  62 │       const token = localStorage.getItem(TOKEN_KEY);
+     63  63 │       if (token) {
+     64     │ - ······axiosInstance.defaults.headers.common["Authorization"]·=
+         64 │ + ······axiosInstance.defaults.headers.common.Authorization·=
+     65  65 │           `Bearer ${token}`;
+     66  66 │         return {
+  
+
 ./packages/codemod/src/transformations/v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks.ts:48:22 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
 
   ! The computed expression can be simplified without the use of a string literal.
@@ -335,48 +376,6 @@
     44 44 │             property["shorthand"] = false;
   
 
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:42:27 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
-  
-    40 │           property?.["key"]?.["name"] === "metaData"
-    41 │         ) {
-  > 42 │           property["key"]["name"] = "meta";
-       │                           ^^^^^^
-    43 │           property["value"]["name"] === "metaData";
-    44 │           property["shorthand"] = false;
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    40 40 │             property?.["key"]?.["name"] === "metaData"
-    41 41 │           ) {
-    42    │ - ··········property["key"]["name"]·=·"meta";
-       42 │ + ··········property["key"].name·=·"meta";
-    43 43 │             property["value"]["name"] === "metaData";
-    44 44 │             property["shorthand"] = false;
-  
-
-./packages/codemod/src/transformations/v4/metadata-to-meta.ts:43:20 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━
-
-  ! The computed expression can be simplified without the use of a string literal.
-  
-    41 │         ) {
-    42 │           property["key"]["name"] = "meta";
-  > 43 │           property["value"]["name"] === "metaData";
-       │                    ^^^^^^^
-    44 │           property["shorthand"] = false;
-    45 │         } else {
-  
-  i Unsafe fix: Use a literal key instead.
-  
-    41 41 │           ) {
-    42 42 │             property["key"]["name"] = "meta";
-    43    │ - ··········property["value"]["name"]·===·"metaData";
-       43 │ + ··········property.value["name"]·===·"metaData";
-    44 44 │             property["shorthand"] = false;
-    45 45 │           } else {
-  
-
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 627.
-Checked 6952 file(s) in 482ms
+Checked 6952 file(s) in 464ms
