@@ -1,0 +1,283 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/core/src/interfaces/bindings/router.ts:63:48 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    61 │ };
+    62 │ 
+  > 63 │ export type GoFunction = (config: GoConfig) => void | string;
+       │                                                ^^^^
+    64 │ 
+    65 │ export type BackFunction = () => void;
+  
+  i Remove void
+  
+
+./packages/core/src/interfaces/autoSave.ts:26:40 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    24 │   onFinishAutoSave: (
+    25 │     values: TVariables,
+  > 26 │   ) => Promise<UpdateResponse<TData> | void> | void;
+       │                                        ^^^^
+    27 │ };
+    28 │ 
+  
+  i Remove void
+  
+
+./examples/store/src/lib/context/ui.tsx:14:32 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    12 │   openSidebar: () => void;
+    13 │   closeSidebar: () => void;
+  > 14 │   closeSidebarIfPresent: () => void | false;
+       │                                ^^^^
+    15 │   openModal: () => void;
+    16 │   closeModal: () => void;
+  
+  i Remove void
+  
+
+./packages/core/src/contexts/auth/IAuthContext.ts:1:27 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+  > 1 │ export type TLogoutData = void | false | string;
+      │                           ^^^^
+    2 │ export type TLoginData = void | false | string | object;
+    3 │ export type TRegisterData = void | false | string;
+  
+  i Remove void
+  
+
+./packages/core/src/contexts/auth/IAuthContext.ts:2:26 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    1 │ export type TLogoutData = void | false | string;
+  > 2 │ export type TLoginData = void | false | string | object;
+      │                          ^^^^
+    3 │ export type TRegisterData = void | false | string;
+    4 │ export type TForgotPasswordData = void | false | string;
+  
+  i Remove void
+  
+
+./packages/core/src/contexts/auth/IAuthContext.ts:3:29 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    1 │ export type TLogoutData = void | false | string;
+    2 │ export type TLoginData = void | false | string | object;
+  > 3 │ export type TRegisterData = void | false | string;
+      │                             ^^^^
+    4 │ export type TForgotPasswordData = void | false | string;
+    5 │ export type TUpdatePasswordData = void | false | string;
+  
+  i Remove void
+  
+
+./packages/core/src/contexts/auth/IAuthContext.ts:4:35 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    2 │ export type TLoginData = void | false | string | object;
+    3 │ export type TRegisterData = void | false | string;
+  > 4 │ export type TForgotPasswordData = void | false | string;
+      │                                   ^^^^
+    5 │ export type TUpdatePasswordData = void | false | string;
+    6 │ 
+  
+  i Remove void
+  
+
+./packages/core/src/contexts/auth/IAuthContext.ts:5:35 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    3 │ export type TRegisterData = void | false | string;
+    4 │ export type TForgotPasswordData = void | false | string;
+  > 5 │ export type TUpdatePasswordData = void | false | string;
+      │                                   ^^^^
+    6 │ 
+    7 │ /**
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/form/useForm.ts:216:72 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    214 │   onFinish: (
+    215 │     values: TVariables,
+  > 216 │   ) => Promise<CreateResponse<TResponse> | UpdateResponse<TResponse> | void>;
+        │                                                                        ^^^^
+    217 │   redirect: (
+    218 │     redirect: RedirectAction,
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/form/useForm.ts:423:52 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    421 │     }
+    422 │ 
+  > 423 │     return new Promise<CreateResponse<TResponse> | void>((resolve, reject) => {
+        │                                                    ^^^^
+    424 │       if (mutationMode !== "pessimistic") {
+    425 │         resolve();
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/form/useForm.ts:482:42 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    480 │   const onFinishAutoSaveMutation = (
+    481 │     values: TVariables,
+  > 482 │   ): Promise<UpdateResponse<TResponse> | void> | void => {
+        │                                          ^^^^
+    483 │     if (!resource || !isEdit) return;
+    484 │ 
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/form/useForm.ts:553:52 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    552 │     // setTimeout is required to make onSuccess e.g. callbacks to work if component unmounts i.e. on route change
+  > 553 │     return new Promise<UpdateResponse<TResponse> | void>((resolve, reject) => {
+        │                                                    ^^^^
+    554 │       if (mutationMode !== "pessimistic") {
+    555 │         resolve();
+  
+  i Remove void
+  
+
+./examples/store/src/components/ui/Modal/Modal.tsx:11:19 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+     9 │   className?: string;
+    10 │   onClose: () => void;
+  > 11 │   onEnter?: () => void | null;
+       │                   ^^^^
+    12 │ }
+    13 │ 
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useOnError/index.ts:35:21 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    33 │ >;
+    34 │ export type UseOnErrorCombinedReturnType = UseMutationResult<
+  > 35 │   OnErrorResponse | void,
+       │                     ^^^^
+    36 │   unknown,
+    37 │   unknown,
+  
+  i Remove void
+  
+
+./packages/hasura/src/utils/graphql.ts:28:39 lint/suspicious/noConfusingVoidType ━━━━━━━━━━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    26 │   visit(newDocumentNode, {
+    27 │     Field: {
+  > 28 │       enter(node): SelectionSetNode | void {
+       │                                       ^^^^
+    29 │         if (isInitialEnter) {
+    30 │           isInitialEnter = false;
+  
+  i Remove void
+  
+
+./examples/mern-dashboard-client/src/interfaces/common.d.ts:35:16 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    33 │   onFinish: (
+    34 │     values: FieldValues,
+  > 35 │   ) => Promise<void | CreateResponse<BaseRecord> | UpdateResponse<BaseRecord>>;
+       │                ^^^^
+    36 │   formLoading: boolean;
+    37 │   handleSubmit: FormEventHandler<HTMLFormElement> | undefined;
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:30:34 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    28 │       TLogoutData,
+    29 │       Error | RefineError,
+  > 30 │       (TVariables & Variables) | void,
+       │                                  ^^^^
+    31 │       unknown
+    32 │     >,
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:43:34 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    41 │       AuthActionResponse,
+    42 │       Error | RefineError,
+  > 43 │       (TVariables & Variables) | void,
+       │                                  ^^^^
+    44 │       unknown
+    45 │     >,
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:56:34 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    54 │       AuthActionResponse | TLogoutData,
+    55 │       Error | RefineError,
+  > 56 │       (TVariables & Variables) | void,
+       │                                  ^^^^
+    57 │       unknown
+    58 │     >,
+  
+  i Remove void
+  
+
+./packages/core/src/hooks/auth/useLogout/index.ts:66:30 lint/suspicious/noConfusingVoidType ━━━━━━━━━━
+
+  ! void is not valid as a constituent in a union type
+  
+    64 │   TLogoutData,
+    65 │   Error | RefineError,
+  > 66 │   (TVariables & Variables) | void,
+       │                              ^^^^
+    67 │   unknown
+    68 │ >;
+  
+  i Remove void
+  
+
+The number of diagnostics exceeds the number allowed by Biome.
+Diagnostics not shown: 8.
+Checked 6952 file(s) in 494ms

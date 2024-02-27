@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import {
-    useMany,
-    CrudFilters,
-    HttpError,
-    getDefaultFilter,
+  useMany,
+  CrudFilters,
+  HttpError,
+  getDefaultFilter,
 } from "@refinedev/core";
 import { List, useSimpleList, NumberField, useSelect } from "@refinedev/antd";
 import {
-    Typography,
-    List as AntdList,
-    Space,
-    Select,
-    Form,
-    DatePicker,
+  Typography,
+  List as AntdList,
+  Space,
+  Select,
+  Form,
+  DatePicker,
 } from "antd";
 import dayjs from "dayjs";
 
@@ -22,120 +22,120 @@ const { Text } = Typography;
 import { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const { listProps, searchFormProps, filters } = useSimpleList<
-        IPost,
-        HttpError,
-        IPostFilterVariables
-    >({
-        pagination: {
-            pageSize: 3,
+  const { listProps, searchFormProps, filters } = useSimpleList<
+    IPost,
+    HttpError,
+    IPostFilterVariables
+  >({
+    pagination: {
+      pageSize: 3,
+    },
+    onSearch: (params) => {
+      const filters: CrudFilters = [];
+      const { category, createdAt } = params;
+
+      filters.push(
+        {
+          field: "category.id",
+          operator: "eq",
+          value: category,
         },
-        onSearch: (params) => {
-            const filters: CrudFilters = [];
-            const { category, createdAt } = params;
-
-            filters.push(
-                {
-                    field: "category.id",
-                    operator: "eq",
-                    value: category,
-                },
-                {
-                    field: "createdAt",
-                    operator: "gte",
-                    value: createdAt ? createdAt[0].toISOString() : undefined,
-                },
-                {
-                    field: "createdAt",
-                    operator: "lte",
-                    value: createdAt ? createdAt[1].toISOString() : undefined,
-                },
-            );
-
-            return filters;
+        {
+          field: "createdAt",
+          operator: "gte",
+          value: createdAt ? createdAt[0].toISOString() : undefined,
         },
-    });
-
-    const categoryIds =
-        listProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
+        {
+          field: "createdAt",
+          operator: "lte",
+          value: createdAt ? createdAt[1].toISOString() : undefined,
         },
-    });
+      );
 
-    const renderItem = (item: IPost) => {
-        const { title, hit, content } = item;
+      return filters;
+    },
+  });
 
-        const categoryTitle = data?.data.find(
-            (category: ICategory) => category.id === item.category.id,
-        )?.title;
+  const categoryIds =
+    listProps?.dataSource?.map((item) => item.category.id) ?? [];
+  const { data } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
-        return (
-            <AntdList.Item
-                actions={[
-                    <Space key={item.id} direction="vertical" align="end">
-                        <NumberField
-                            value={hit}
-                            options={{
-                                notation: "compact",
-                            }}
-                        />
-                        <Text>{categoryTitle}</Text>
-                    </Space>,
-                ]}
-            >
-                <AntdList.Item.Meta title={title} description={content} />
-            </AntdList.Item>
-        );
-    };
+  const renderItem = (item: IPost) => {
+    const { title, hit, content } = item;
 
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: getDefaultFilter("category.id", filters),
-    });
-
-    const createdAt = useMemo(() => {
-        const start = getDefaultFilter("createdAt", filters, "gte");
-        const end = getDefaultFilter("createdAt", filters, "lte");
-
-        const startFrom = dayjs(start);
-        const endAt = dayjs(end);
-
-        if (start && end) {
-            return [startFrom, endAt];
-        }
-        return undefined;
-    }, [filters]);
+    const categoryTitle = data?.data.find(
+      (category: ICategory) => category.id === item.category.id,
+    )?.title;
 
     return (
-        <List>
-            <Form
-                {...searchFormProps}
-                layout="vertical"
-                onValuesChange={() => searchFormProps.form?.submit()}
-                initialValues={{
-                    category: getDefaultFilter("category.id", filters),
-                    createdAt,
-                }}
-            >
-                <Space wrap>
-                    <Form.Item label="Category" name="category">
-                        <Select
-                            {...categorySelectProps}
-                            style={{ minWidth: "250px" }}
-                            allowClear
-                            placeholder="Search Categories"
-                        />
-                    </Form.Item>
-                    <Form.Item label="Created At" name="createdAt">
-                        <RangePicker />
-                    </Form.Item>
-                </Space>
-            </Form>
-            <AntdList {...listProps} renderItem={renderItem} />
-        </List>
+      <AntdList.Item
+        actions={[
+          <Space key={item.id} direction="vertical" align="end">
+            <NumberField
+              value={hit}
+              options={{
+                notation: "compact",
+              }}
+            />
+            <Text>{categoryTitle}</Text>
+          </Space>,
+        ]}
+      >
+        <AntdList.Item.Meta title={title} description={content} />
+      </AntdList.Item>
     );
+  };
+
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    defaultValue: getDefaultFilter("category.id", filters),
+  });
+
+  const createdAt = useMemo(() => {
+    const start = getDefaultFilter("createdAt", filters, "gte");
+    const end = getDefaultFilter("createdAt", filters, "lte");
+
+    const startFrom = dayjs(start);
+    const endAt = dayjs(end);
+
+    if (start && end) {
+      return [startFrom, endAt];
+    }
+    return undefined;
+  }, [filters]);
+
+  return (
+    <List>
+      <Form
+        {...searchFormProps}
+        layout="vertical"
+        onValuesChange={() => searchFormProps.form?.submit()}
+        initialValues={{
+          category: getDefaultFilter("category.id", filters),
+          createdAt,
+        }}
+      >
+        <Space wrap>
+          <Form.Item label="Category" name="category">
+            <Select
+              {...categorySelectProps}
+              style={{ minWidth: "250px" }}
+              allowClear
+              placeholder="Search Categories"
+            />
+          </Form.Item>
+          <Form.Item label="Created At" name="createdAt">
+            <RangePicker />
+          </Form.Item>
+        </Space>
+      </Form>
+      <AntdList {...listProps} renderItem={renderItem} />
+    </List>
+  );
 };

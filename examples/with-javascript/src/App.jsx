@@ -1,14 +1,14 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
-    useNotificationProvider,
-    Layout,
-    ErrorComponent,
+  useNotificationProvider,
+  Layout,
+  ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
-    NavigateToResource,
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
+  NavigateToResource,
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -19,55 +19,52 @@ import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider(API_URL)}
-                routerProvider={routerProvider}
-                resources={[
-                    {
-                        name: "posts",
-                        list: "/posts",
-                        create: "/posts/create",
-                        edit: "/posts/edit/:id",
-                        show: "/posts/show/:id",
-                    },
-                ]}
-                notificationProvider={useNotificationProvider}
-                options={{
-                    warnWhenUnsavedChanges: true,
-                    syncWithLocation: true,
-                }}
-            >
-                <Routes>
-                    <Route
-                        element={
-                            <Layout>
-                                <Outlet />
-                            </Layout>
-                        }
-                    >
-                        <Route
-                            index
-                            element={<NavigateToResource resource="posts" />}
-                        />
+  return (
+    <BrowserRouter>
+      <GitHubBanner />
+      <Refine
+        dataProvider={dataProvider(API_URL)}
+        routerProvider={routerProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+            show: "/posts/show/:id",
+          },
+        ]}
+        notificationProvider={useNotificationProvider}
+        options={{
+          warnWhenUnsavedChanges: true,
+          syncWithLocation: true,
+        }}
+      >
+        <Routes>
+          <Route
+            element={
+              <Layout>
+                <Outlet />
+              </Layout>
+            }
+          >
+            <Route index element={<NavigateToResource resource="posts" />} />
 
-                        <Route path="posts">
-                            <Route index element={<PostList />} />
-                            <Route path="create" element={<PostCreate />} />
-                            <Route path="edit/:id" element={<PostEdit />} />
-                            <Route path="show/:id" element={<PostShow />} />
-                        </Route>
+            <Route path="posts">
+              <Route index element={<PostList />} />
+              <Route path="create" element={<PostCreate />} />
+              <Route path="edit/:id" element={<PostEdit />} />
+              <Route path="show/:id" element={<PostShow />} />
+            </Route>
 
-                        <Route path="*" element={<ErrorComponent />} />
-                    </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
+            <Route path="*" element={<ErrorComponent />} />
+          </Route>
+        </Routes>
+        <UnsavedChangesNotifier />
+        <DocumentTitleHandler />
+      </Refine>
+    </BrowserRouter>
+  );
 };
 
 export default App;

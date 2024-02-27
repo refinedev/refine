@@ -7,35 +7,35 @@ import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
-    hasDashboard: false,
-    ...defaultRefineOptions,
-    options: defaultRefineOptions,
+  hasDashboard: false,
+  ...defaultRefineOptions,
+  options: defaultRefineOptions,
 };
 
 describe("useLiveMode Hook", () => {
-    it("context: auto, params: off -> returns off", async () => {
-        const { result } = renderHook(() => useLiveMode("off"), {
-            wrapper: TestWrapper({
-                refineProvider: {
-                    ...mockRefineProvider,
-                    liveMode: "auto",
-                },
-            }),
-        });
-
-        expect(result.current).toBe("off");
+  it("context: auto, params: off -> returns off", async () => {
+    const { result } = renderHook(() => useLiveMode("off"), {
+      wrapper: TestWrapper({
+        refineProvider: {
+          ...mockRefineProvider,
+          liveMode: "auto",
+        },
+      }),
     });
 
-    it("returns context value", async () => {
-        const { result } = renderHook(() => useLiveMode(undefined), {
-            wrapper: TestWrapper({
-                refineProvider: {
-                    ...mockRefineProvider,
-                    liveMode: "auto",
-                },
-            }),
-        });
+    expect(result.current).toBe("off");
+  });
 
-        expect(result.current).toBe("auto");
+  it("returns context value", async () => {
+    const { result } = renderHook(() => useLiveMode(undefined), {
+      wrapper: TestWrapper({
+        refineProvider: {
+          ...mockRefineProvider,
+          liveMode: "auto",
+        },
+      }),
     });
+
+    expect(result.current).toBe("auto");
+  });
 });

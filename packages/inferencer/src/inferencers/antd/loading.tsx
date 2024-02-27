@@ -4,12 +4,12 @@ import { Spin, Row, Col } from "antd";
 import { CreateInferencerConfig } from "../../types";
 
 export const LoadingComponent: CreateInferencerConfig["loadingComponent"] =
-    () => {
-        return (
-            <Row justify="center" align="middle" style={{ minHeight: "300px" }}>
-                <Col>
-                    <Spin size="large" />
-                </Col>
-            </Row>
-        );
-    };
+  () => {
+    return (
+      <Row justify="center" align="middle" style={{ minHeight: "300px" }}>
+        <Col>
+          <Spin size="large" />
+        </Col>
+      </Row>
+    );
+  };

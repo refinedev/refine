@@ -8,9 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-lis
 hide_table_of_contents: false
 ---
 
-
-
-
 ## Brief overview of the importance of listing Docker containers
 
 Listing containers is an essential task if you are working with containerized applications as this allows you to see the running container on a Docker host, monitor their health, efficiently utilize the resource, help identify potential causes of the problem, help balance loads, organize container placement, and also take care of security by checking the presence of unauthorized or malicious containers.
@@ -66,6 +63,7 @@ If you want to see all containers, add a keyword with the ‘**docker ps**’ co
 ### Differentiating between running and stopped containers in the output:
 
 In the output of the ‘**docker ps -a**’ command, you can distinguish between running and stopped containers by looking at the ‘STATUS’ column. If the value is ‘up 3 hours’, the container has been running for the last 3 hours, and if the value is ‘Exited 4 hours go’, the container was stopped 4 hours ago.
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image4.png"  alt="react tooltip" />
 </div>
@@ -77,15 +75,16 @@ In the output of the ‘**docker ps -a**’ command, you can distinguish between
 ### docker ps -l command to list the latest created container
 
 ‘**docker ps -l**’ is used to list the latest container created, but the ‘-l’ keyword is depreciated in recent versions of docker. Instead of ‘-l’, you can use ‘docker ps -n 1’ to see the latest one. Using ‘**docker ps -n 1**’, it is important to set the limit of showing the latest containers; you must add the number of limits after the ‘-n’ keyword. For Example, if you want to list the last 5 latest containers created, then you can execute ‘**docker ps -n 5**’.
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image5.png"  alt="react tooltip" />
 </div>
 
 <br/>
 
-## Explanation of the usefulness in scenarios where the latest container is of interest 
+## Explanation of the usefulness in scenarios where the latest container is of interest
 
-### Rollback on encountering issues with the latest update: 
+### Rollback on encountering issues with the latest update:
 
 Suppose you regularly deploy new updates to your containerized application, and anything goes wrong after the last update. In that case, this command will help you easily identify most latest containers created since the last update for immediate rollback to the older version.
 
@@ -121,16 +120,13 @@ Most of the time, in the ‘**docker ps**’ command output, the additional info
 
 <br/>
 
-
-
-
 ## Suitable for scenarios where only the container IDs are required:
 
-### Orchestration Environment  
+### Orchestration Environment
 
 Most companies, especially enterprises, use orchestration tools like Kubernetes and docker swarm. These orchestration tools often utilize Container IDs to manage and schedule containers. You can retrieve a container ID and run operations on containers in the orchestration environment using docker ps -q.
 
-### Connecting Containers 
+### Connecting Containers
 
 In a distributed architecture, we usually must establish a connection between containers for resource sharing, network connectivity, and scalability. For creating a connection between containers, we need to have IDs specific to them. Using the command ‘docker ps -q’, we can quickly fetch the required ids to create a connection.
 
@@ -164,9 +160,10 @@ Suppose you want to get the customized output that will only contain the column 
 
 Double curly brackets {{}} are used to denote placeholders that relate to particular container properties such as ID, Names, Image, and Status. These placeholders will be replaced by actual values when you run the command.
 
-## Examples of customizing the displayed information 
+## Examples of customizing the displayed information
 
 Let’s customize an output that only displays Container ID, Image, and Name:
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image9.png"  alt="react tooltip" />
 </div>
@@ -174,6 +171,7 @@ Let’s customize an output that only displays Container ID, Image, and Name:
 <br/>
 
 > Let’s customize an output that displays the latest containers with Container ID, Status, and additional column SIZE:
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image10.png"  alt="react tooltip" />
 </div>
@@ -189,6 +187,7 @@ Docker also provides advanced filtering options that will allow you to list the 
 ## Filtering based on various criteria such as name, label, status, etc.
 
 **Filtering Based on Name:** Only show the container with the name ‘admiring_benz’(**Command**: ‘docker ps –filter “name=admiring_benz”’)
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image11.png"  alt="react tooltip" />
 </div>
@@ -198,6 +197,7 @@ Docker also provides advanced filtering options that will allow you to list the 
 **Filtering Based on Status:** Filter output based on different statuses e.g exited, created or running etc.
 
 **Commands**: docker ps –filter “status=running”, docker ps –filter “status=exited”, docker ps –filter “status=created”
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image12.png"  alt="react tooltip" />
 </div>
@@ -205,6 +205,7 @@ Docker also provides advanced filtering options that will allow you to list the 
 <br/>
 
 **Filtering Based on Label:** Filter output by using Filter keyword multiple times for status attribute and label conditioning.(**Command**: docker ps --filter "status=created" --filter "label=com.example.version=1.0")
+
 <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/image13.PNG"  alt="react tooltip" />
 </div>
@@ -213,7 +214,7 @@ Docker also provides advanced filtering options that will allow you to list the 
 
 ## Conclusion
 
-##  Recap of the different options and commands covered  
+## Recap of the different options and commands covered
 
 1.  'docker ps' command can be use to list all containers that are running.
 

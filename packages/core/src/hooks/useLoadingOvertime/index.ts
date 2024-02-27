@@ -2,51 +2,51 @@ import { useEffect, useState } from "react";
 import { useRefineContext } from "..";
 
 export type UseLoadingOvertimeRefineContext = Omit<
-    UseLoadingOvertimeCoreProps,
-    "isLoading" | "interval"
+  UseLoadingOvertimeCoreProps,
+  "isLoading" | "interval"
 > &
-    Required<Pick<UseLoadingOvertimeCoreProps, "interval">>;
+  Required<Pick<UseLoadingOvertimeCoreProps, "interval">>;
 
 export type UseLoadingOvertimeOptionsProps = {
-    overtimeOptions?: UseLoadingOvertimeCoreOptions;
+  overtimeOptions?: UseLoadingOvertimeCoreOptions;
 };
 
 export type UseLoadingOvertimeReturnType = {
-    overtime: {
-        elapsedTime?: number;
-    };
+  overtime: {
+    elapsedTime?: number;
+  };
 };
 
 type UseLoadingOvertimeCoreOptions = Omit<
-    UseLoadingOvertimeCoreProps,
-    "isLoading"
+  UseLoadingOvertimeCoreProps,
+  "isLoading"
 >;
 
 type UseLoadingOvertimeCoreReturnType = {
-    elapsedTime?: number;
+  elapsedTime?: number;
 };
 
 export type UseLoadingOvertimeCoreProps = {
-    /**
-     * The loading state. If true, the elapsed time will be calculated.
-     */
-    isLoading: boolean;
+  /**
+   * The loading state. If true, the elapsed time will be calculated.
+   */
+  isLoading: boolean;
 
-    /**
-     * The interval in milliseconds. If the loading time exceeds this time, the `onInterval` callback will be called.
-     * If not specified, the `interval` value from the `overtime` option of the `RefineProvider` will be used.
-     *
-     * @default: 1000 (1 second)
-     */
-    interval?: number;
+  /**
+   * The interval in milliseconds. If the loading time exceeds this time, the `onInterval` callback will be called.
+   * If not specified, the `interval` value from the `overtime` option of the `RefineProvider` will be used.
+   *
+   * @default: 1000 (1 second)
+   */
+  interval?: number;
 
-    /**
-     * The callback function that will be called when the loading time exceeds the specified time.
-     * If not specified, the `onInterval` value from the `overtime` option of the `RefineProvider` will be used.
-     *
-     * @param elapsedInterval The elapsed time in milliseconds.
-     */
-    onInterval?: (elapsedInterval: number) => void;
+  /**
+   * The callback function that will be called when the loading time exceeds the specified time.
+   * If not specified, the `onInterval` value from the `overtime` option of the `RefineProvider` will be used.
+   *
+   * @param elapsedInterval The elapsed time in milliseconds.
+   */
+  onInterval?: (elapsedInterval: number) => void;
 };
 
 /**
@@ -63,52 +63,50 @@ export type UseLoadingOvertimeCoreProps = {
  * });
  */
 export const useLoadingOvertime = ({
-    isLoading,
-    interval: intervalProp,
-    onInterval: onIntervalProp,
+  isLoading,
+  interval: intervalProp,
+  onInterval: onIntervalProp,
 }: UseLoadingOvertimeCoreProps): UseLoadingOvertimeCoreReturnType => {
-    const [elapsedTime, setElapsedTime] = useState<number | undefined>(
-        undefined,
-    );
-    // get overtime options from refine context
-    const { options } = useRefineContext();
-    const { overtime } = options;
+  const [elapsedTime, setElapsedTime] = useState<number | undefined>(undefined);
+  // get overtime options from refine context
+  const { options } = useRefineContext();
+  const { overtime } = options;
 
-    // pick props or refine context options
-    const interval = intervalProp ?? overtime.interval;
-    const onInterval = onIntervalProp ?? overtime?.onInterval;
+  // pick props or refine context options
+  const interval = intervalProp ?? overtime.interval;
+  const onInterval = onIntervalProp ?? overtime?.onInterval;
 
-    useEffect(() => {
-        let intervalFn: ReturnType<typeof setInterval>;
+  useEffect(() => {
+    let intervalFn: ReturnType<typeof setInterval>;
 
-        if (isLoading) {
-            intervalFn = setInterval(() => {
-                // increase elapsed time
-                setElapsedTime((prevElapsedTime) => {
-                    if (prevElapsedTime === undefined) {
-                        return interval;
-                    }
+    if (isLoading) {
+      intervalFn = setInterval(() => {
+        // increase elapsed time
+        setElapsedTime((prevElapsedTime) => {
+          if (prevElapsedTime === undefined) {
+            return interval;
+          }
 
-                    return prevElapsedTime + interval;
-                });
-            }, interval);
-        }
+          return prevElapsedTime + interval;
+        });
+      }, interval);
+    }
 
-        return () => {
-            clearInterval(intervalFn);
-            // reset elapsed time
-            setElapsedTime(undefined);
-        };
-    }, [isLoading, interval]);
-
-    useEffect(() => {
-        // call onInterval callback
-        if (onInterval && elapsedTime) {
-            onInterval(elapsedTime);
-        }
-    }, [elapsedTime]);
-
-    return {
-        elapsedTime,
+    return () => {
+      clearInterval(intervalFn);
+      // reset elapsed time
+      setElapsedTime(undefined);
     };
+  }, [isLoading, interval]);
+
+  useEffect(() => {
+    // call onInterval callback
+    if (onInterval && elapsedTime) {
+      onInterval(elapsedTime);
+    }
+  }, [elapsedTime]);
+
+  return {
+    elapsedTime,
+  };
 };

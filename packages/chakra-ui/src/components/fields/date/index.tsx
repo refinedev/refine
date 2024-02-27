@@ -18,16 +18,16 @@ import { DateFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
-    value,
-    locales,
-    format: dateFormat = "L",
-    ...rest
+  value,
+  locales,
+  format: dateFormat = "L",
+  ...rest
 }) => {
-    return (
-        <Text {...rest}>
-            {dayjs(value)
-                .locale(locales || defaultLocale)
-                .format(dateFormat)}
-        </Text>
-    );
+  return (
+    <Text {...rest}>
+      {dayjs(value)
+        .locale(locales || defaultLocale)
+        .format(dateFormat)}
+    </Text>
+  );
 };

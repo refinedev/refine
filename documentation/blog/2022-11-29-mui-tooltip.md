@@ -8,15 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-toolti
 hide_table_of_contents: false
 ---
 
-
-
-
-
-
-
-
-
-
 ## Introduction
 
 Material UI is a dynamic React framework that offers abundant customizable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.
@@ -24,6 +15,7 @@ Material UI is a dynamic React framework that offers abundant customizable compo
 This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application.
 
 Steps we'll cover:
+
 - [What is Material UI?](#what-is-material-ui)
 - [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
 - [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
@@ -33,9 +25,11 @@ Steps we'll cover:
 - [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
 
 ## What is Material UI?
+
 Material UI is a user interface framework that provides pre-defined and customizable React components to help with web development. The Material UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.
 
 Material UI comes with several component categories, including
+
 - Data Display components
 - Input components
 - Navigation components
@@ -44,52 +38,50 @@ Material UI comes with several component categories, including
 The Material UI Tooltip is a vivid example of the Data display components.
 
 ## Getting started with Material UI Tooltip
+
 Tooltips reveal explanatory text when an element is hovered, focused, or tapped. Material UI includes custom Tooltip components that help highlight the context of an element on the DOM.
 
 Here’s a demo of how to use the Material UI `<Tooltip/>` component:
 
 ```ts
-import * as React from 'react';
-import  ZoomInIcon from '@mui/icons-material/ZoomIn';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import * as React from "react";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function BasicTooltip() {
   return (
-    <div style={{margin: '100px'}}>
-    <Tooltip title="Zoom In">
-      <IconButton>
-        <ZoomInIcon />
-      </IconButton>
-    </Tooltip>
+    <div style={{ margin: "100px" }}>
+      <Tooltip title="Zoom In">
+        <IconButton>
+          <ZoomInIcon />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 }
-
 ```
 
 Here’s the result:
-
 
 <div className="centered-image"  >
    <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="Material UI tooltip " />
 </div>
 
-
 ## Positioning Material UI Tooltips
-The Tooltip has 12 different placement options. They lack directional arrows and instead rely on the motion from the source to convey direction.
 
+The Tooltip has 12 different placement options. They lack directional arrows and instead rely on the motion from the source to convey direction.
 
 <details>
 <summary>Show Code</summary>
 <p>
 
 ```ts
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function PositionedTooltips() {
   return (
@@ -164,30 +156,30 @@ export default function PositionedTooltips() {
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.gif"  alt="Material UI tooltip " />
 </div>
 
-
-
 **Note**: Tooltip positioning is critical when using them in a web application. A poorly placed Tooltip may detract from the overall UX of the app.
 
 ## How to customize your Material UI Tooltip component
+
 Material UI Tooltip is a very dynamic component, so it has several variations. Here are a few ways you can customize Material UI Tooltip in your next project:
 
 ### Arrow Tooltips
+
 You can use the `arrow` prop to add an arrow to your tooltip, indicating which element it refers to. This gives the Tooltip element more definition as it points at the element it describes.
 
 Here’s what I mean:
 
 ```ts
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function ArrowTooltips() {
   return (
-    <div style={{margin: '25%'}}>
+    <div style={{ margin: "25%" }}>
       {/* adding the arrow prop to ensure our tooltip has a pointer */}
-    <Tooltip title="Arrow Tooltip" arrow>
-      <Button>Arrow Tooltip</Button>
-    </Tooltip>
+      <Tooltip title="Arrow Tooltip" arrow>
+        <Button>Arrow Tooltip</Button>
+      </Tooltip>
     </div>
   );
 }
@@ -195,22 +187,21 @@ export default function ArrowTooltips() {
 
 Here’s what it looks like:
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="Material UI tooltip " />
 </div>
 
 ### Width variations
+
 The Material UI Tooltip component wraps long text by default, but you can adjust its width to suit your preferences and how well it fits that aspect of your application.
 
 Here’s a sample:
 
 ```ts
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 
 const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -224,7 +215,7 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 'none',
+    maxWidth: "none",
   },
 });
 
@@ -236,7 +227,7 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
 
 export default function VariableWidth() {
   return (
-    <div style={{margin: '25%'}}>
+    <div style={{ margin: "25%" }}>
       <Tooltip title={longText}>
         <Button sx={{ m: 1 }}>Default Width [300px]</Button>
       </Tooltip>
@@ -251,26 +242,24 @@ export default function VariableWidth() {
 }
 ```
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.gif"  alt="Material UI tooltip " />
 </div>
 
-
-
 ### Material UI Tooltip Transitions
+
 The Material UI Tooltip can be animated with different transitions and display delay variations. It could be set to grow, fade and zoom like this:
 
 ```ts
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import Fade from '@mui/material/Fade';
-import Zoom from '@mui/material/Zoom';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import Fade from "@mui/material/Fade";
+import Zoom from "@mui/material/Zoom";
 
 export default function TransitionsTooltips() {
   return (
-    <div style={{margin: '25%'}}>
+    <div style={{ margin: "25%" }}>
       <Tooltip title="Grow" TransitionProps={{ timeout: 1000 }}>
         <Button>Grow</Button>
       </Tooltip>
@@ -281,36 +270,37 @@ export default function TransitionsTooltips() {
       >
         <Button>Fade</Button>
       </Tooltip>
-      <Tooltip TransitionComponent={Zoom} title="Zoom" TransitionProps={{ timeout: 1000 }}>
+      <Tooltip
+        TransitionComponent={Zoom}
+        title="Zoom"
+        TransitionProps={{ timeout: 1000 }}
+      >
         <Button>Zoom</Button>
       </Tooltip>
     </div>
   );
 }
-
 ```
 
 In the code above, three tooltips have been set to display with varying transitions. The tooltips will grow, fade and zoom with a 1000ms delay.
 
 Here’s the result:
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.gif"  alt="Material UI tooltip " />
 </div>
 
-
 ### Virtual element placement
+
 Say you want to control the Tooltip's position and relate it to your mouse movements; you can use the `anchorEl` prop to implement a custom placement. The `anchorEl` prop's value can be a reference to a bogus DOM element. You must create an object in the shape of the [VirtualElement](https://popper.js.org/docs/v2/virtual-elements/).
 
 Here’s a demo:
 
 ```ts
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Tooltip from '@mui/material/Tooltip';
-import { Instance } from '@popperjs/core';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Tooltip from "@mui/material/Tooltip";
+import { Instance } from "@popperjs/core";
 
 export default function AnchorElTooltips() {
   const positionRef = React.useRef<{ x: number; y: number }>({
@@ -329,37 +319,37 @@ export default function AnchorElTooltips() {
   };
 
   return (
-    <div style={{marginTop: 100}}>
-    <Tooltip
-      title="Hover moves"
-      placement="top"
-      arrow
-      PopperProps={{
-        popperRef,
-        anchorEl: {
-          getBoundingClientRect: () => {
-            return new DOMRect(
-              positionRef.current.x,
-              areaRef.current!.getBoundingClientRect().y,
-              0,
-              0,
-            );
+    <div style={{ marginTop: 100 }}>
+      <Tooltip
+        title="Hover moves"
+        placement="top"
+        arrow
+        PopperProps={{
+          popperRef,
+          anchorEl: {
+            getBoundingClientRect: () => {
+              return new DOMRect(
+                positionRef.current.x,
+                areaRef.current!.getBoundingClientRect().y,
+                0,
+                0,
+              );
+            },
           },
-        },
-      }}
-    >
-      <Box
-        ref={areaRef}
-        onMouseMove={handleMouseMove}
-        sx={{
-          bgcolor: 'primary.main',
-          color: 'primary.contrastText',
-          p: 2,
         }}
       >
-        Hover
-      </Box>
-    </Tooltip>
+        <Box
+          ref={areaRef}
+          onMouseMove={handleMouseMove}
+          sx={{
+            bgcolor: "primary.main",
+            color: "primary.contrastText",
+            p: 2,
+          }}
+        >
+          Hover
+        </Box>
+      </Tooltip>
     </div>
   );
 }
@@ -369,23 +359,20 @@ In the code above,
 
 Here’s the result:
 
-
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="Material UI tooltip " />
 </div>
 
-
-
 ## Material UI Tooltip Event Triggers
+
 You can control the kind of events that have to be carried out for your Tooltip to display. You can customize the actions required to show a Tooltip like this:
 
 ```tsx
-import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import * as React from "react";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 export default function TriggersTooltips() {
   const [open, setOpen] = React.useState(false);
@@ -399,7 +386,7 @@ export default function TriggersTooltips() {
   };
 
   return (
-    <div style={{margin: '25%'}}>
+    <div style={{ margin: "25%" }}>
       <Grid container justifyContent="center">
         <Grid item>
           <Tooltip disableFocusListener disableTouchListener title="Hover">
@@ -429,16 +416,13 @@ export default function TriggersTooltips() {
     </div>
   );
 }
-
 ```
 
 Here’s the result:
 
-
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="Material UI tooltip" />
 </div>
-
 
 <br/>
 <div>
@@ -448,6 +432,7 @@ Here’s the result:
 </div>
 
 ## Material UI Tooltip custom children elements
+
 The Material UI tooltip's child element must have DOM event listeners. If the child is a custom React element, you must ensure that its props are distributed to the underlying DOM element.
 
 ```tsx
@@ -464,30 +449,26 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 <Tooltip title="Spread the props">
   <MyComponent />
-</Tooltip>
+</Tooltip>;
 ```
 
 ## Building a Login form UI with React and Material UI Tooltip
+
 The Material UI Tooltip component can be used in so many ways and in different aspects of any web application. For the sake of this article, we will demonstrate some of its functionalities in a typical currency Login form UI.
 
 Here’s the code:
 
 ```ts
-import * as React from 'react';
-import Tooltip from '@mui/material/Tooltip';
-import Fade from '@mui/material/Fade';
-import Zoom from '@mui/material/Zoom';
+import * as React from "react";
+import Tooltip from "@mui/material/Tooltip";
+import Fade from "@mui/material/Fade";
+import Zoom from "@mui/material/Zoom";
 
 export default function TransitionsTooltips() {
   return (
     <div className="login-container">
-      <Tooltip
-      title="Please fill in this field."
-      placement='right'>
-            <input className='input'
-            type='text'
-            placeholder='Username'
-            />
+      <Tooltip title="Please fill in this field." placement="right">
+        <input className="input" type="text" placeholder="Username" />
       </Tooltip>
       <Tooltip
         TransitionComponent={Fade}
@@ -495,17 +476,15 @@ export default function TransitionsTooltips() {
         title="Password should be at least 10 characters and include 1 uppercase and 1 lowercase alpha character, 1 number and 1 special character. Passwords are case sensitive. "
         placement="right"
       >
-            <input
-            type='password'
-            className='input'
-            placeholder='Password'
-            placement="right"
-            />
+        <input
+          type="password"
+          className="input"
+          placeholder="Password"
+          placement="right"
+        />
       </Tooltip>
-      <Tooltip TransitionComponent={Zoom}
-      title=""
-      placement='right'>
-        <button className='button'>Login</button>
+      <Tooltip TransitionComponent={Zoom} title="" placement="right">
+        <button className="button">Login</button>
       </Tooltip>
     </div>
   );
@@ -520,19 +499,6 @@ Here’s the result:
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="Material UI tooltip" />
 </div>
 
-
 ## Conclusion
+
 This article showcased the importance of Material UI to web applications. We then put the spotlight on the Material UI Tooltip component describing its striking functionalities and application in a React application. We also looked into a Login page with instructions displayed in Material UI Tooltips as a potential use case.
-
-
-
-
-
-
-
-
-
-
-
-
-

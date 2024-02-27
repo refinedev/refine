@@ -119,7 +119,10 @@ Next, open the tailwind.config.js file and add the path to all your template fil
 ```tsx title="tailwind.config.js"
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
   },
@@ -160,7 +163,10 @@ As a first step, navigate to the `_app.tsx` file inside the pages folder. When y
 ```tsx title="pages/_app.tsx"
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/nextjs-router/pages";
+import routerProvider, {
+  DocumentTitleHandler,
+  UnsavedChangesNotifier,
+} from "@refinedev/nextjs-router/pages";
 import type { NextPage } from "next";
 import { AppProps } from "next/app";
 
@@ -431,9 +437,11 @@ export default function Index() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>({
-    resource: "products",
-  });
+  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>(
+    {
+      resource: "products",
+    },
+  );
   return {
     props: { products: data },
   };
@@ -467,7 +475,13 @@ export interface Props {
   cardImage: string;
 }
 
-const ProductCards: React.FC<Props> = ({ price, title, category, description, cardImage }) => {
+const ProductCards: React.FC<Props> = ({
+  price,
+  title,
+  category,
+  description,
+  cardImage,
+}) => {
   return (
     <div className="max-w-xs pb-2 outline outline-[#042940] relative">
       <div className="bg-[#fff] flex justify-center items-center py-4 relative">
@@ -488,7 +502,9 @@ const ProductCards: React.FC<Props> = ({ price, title, category, description, ca
           </button>
         </div>
         <p>{`${(description || []).slice(0, 100)}`}...</p>
-        <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">{category}</p>
+        <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">
+          {category}
+        </p>
       </div>
     </div>
   );
@@ -562,9 +578,11 @@ const ProductList: React.FC<ItemProp> = ({ products }) => {
 export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>({
-    resource: "products",
-  });
+  const data = await dataProvider("https://fakestoreapi.com").getList<IProduct>(
+    {
+      resource: "products",
+    },
+  );
   return {
     props: { products: data },
   };

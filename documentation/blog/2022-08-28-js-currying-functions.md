@@ -56,13 +56,34 @@ const curriedCreateMessage = curry(createMessage);
 // First accumulator is a variadic function
 console.log(curriedCreateMessage("Hi")("Haskell")("Whadup?")); // Hi, Haskell! Whadup?
 console.log(curriedCreateMessage("Hi", "Haskell", "Whadup?")); // Hi, Haskell! Whadup?
-console.log(curriedCreateMessage("Hi", "Haskell", "Whadup?", "Say something", `Let's talk.`));
+console.log(
+  curriedCreateMessage(
+    "Hi",
+    "Haskell",
+    "Whadup?",
+    "Say something",
+    `Let's talk.`,
+  ),
+);
 // Hi, Haskell! Whadup?
 
 // Subsequent accumulators are unary
-console.log(curriedCreateMessage("Hi")("Haskell", "Whadup?", "Say something", `Let's talk.`));
+console.log(
+  curriedCreateMessage("Hi")(
+    "Haskell",
+    "Whadup?",
+    "Say something",
+    `Let's talk.`,
+  ),
+);
 // [Function: accumulator]
-console.log(curriedCreateMessage("Hi")("Haskell")("Whadup?", "Say something", `Let's talk.`));
+console.log(
+  curriedCreateMessage("Hi")("Haskell")(
+    "Whadup?",
+    "Say something",
+    `Let's talk.`,
+  ),
+);
 // Hi, Haskell! Whadup?
 ```
 
@@ -86,9 +107,22 @@ function curry(f) {
 Doing so allows `accumulator(...a)` to be variadic at every level of the recursive stack. So, now we can take multiple arguments in the subsequent calls as well:
 
 ```javascript
-console.log(curriedCreateMessage("Hi")("Haskell", "Whadup?", "Say something", `Let's talk.`));
+console.log(
+  curriedCreateMessage("Hi")(
+    "Haskell",
+    "Whadup?",
+    "Say something",
+    `Let's talk.`,
+  ),
+);
 // Hi, Haskell! Whadup?
-console.log(curriedCreateMessage("Hi", "Haskell")("Whadup?", "Say something", `Let's talk.`));
+console.log(
+  curriedCreateMessage("Hi", "Haskell")(
+    "Whadup?",
+    "Say something",
+    `Let's talk.`,
+  ),
+);
 // Hi, Haskell! Whadup?
 ```
 
@@ -162,7 +196,10 @@ However, we can go ahead and implement variadic currying by returning unary accu
 
 ```javascript
 function createMessage(...texts) {
-  return texts.reduce((combinedText, currentText) => combinedText + currentText, "");
+  return texts.reduce(
+    (combinedText, currentText) => combinedText + currentText,
+    "",
+  );
 }
 ```
 
@@ -177,9 +214,11 @@ For a curried function, `vCurriedCreateMessage()`, returned from `vCurry()` by p
 
 ```javascript
 const vCurriedCreateMessage = vCurry(createMessage);
-const messageHaskell = vCurriedCreateMessage("Hi Haskell,")(`I hope you're doing good!`)(
-  `We're discussing currying here. Do you wanna join in?`,
-)("See you soon!")("Bye.");
+const messageHaskell = vCurriedCreateMessage("Hi Haskell,")(
+  `I hope you're doing good!`,
+)(`We're discussing currying here. Do you wanna join in?`)("See you soon!")(
+  "Bye.",
+);
 
 messageHaskell();
 ```
@@ -209,10 +248,15 @@ const vCurriedCreateMessage = vCurry(createMessage);
 const messageHaskellShorter = vCurriedCreateMessage(
   "Hi Haskell,\n",
   `You can't see this.`,
-)(`I hope you're doing good!\n`)(`We're discussing currying here. Do you wanna join in?`, "Bye");
-const messageHaskell = vCurriedCreateMessage("Hi Haskell,\n")(`I hope you're doing good!\n`)(
-  `We're discussing currying here. Do you wanna join in?\n`,
-)("See you soon!\n")("Bye.");
+)(`I hope you're doing good!\n`)(
+  `We're discussing currying here. Do you wanna join in?`,
+  "Bye",
+);
+const messageHaskell = vCurriedCreateMessage("Hi Haskell,\n")(
+  `I hope you're doing good!\n`,
+)(`We're discussing currying here. Do you wanna join in?\n`)("See you soon!\n")(
+  "Bye.",
+);
 const messageHaskellLonger = messageHaskell("\nAbdullah Numan");
 
 console.log(messageHaskellShorter()); // Additional arguments ignored: `You can't see this.`

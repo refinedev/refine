@@ -5,13 +5,13 @@ import { UrlField } from "@components";
 import { FileFieldProps } from "../types";
 
 export const FileField: React.FC<FileFieldProps> = ({
-    title,
-    src,
-    ...rest
+  title,
+  src,
+  ...rest
 }) => {
-    return (
-        <UrlField value={src} title={title} {...rest}>
-            {title ?? src}
-        </UrlField>
-    );
+  return (
+    <UrlField value={src} title={title} {...rest}>
+      {title ?? src}
+    </UrlField>
+  );
 };

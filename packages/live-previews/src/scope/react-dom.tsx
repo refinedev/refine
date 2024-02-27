@@ -3,15 +3,15 @@
  */
 
 const createRoot = () => {
-    return {
-        render: () => undefined,
-    };
+  return {
+    render: () => undefined,
+  };
 };
 
 const ReactDomClient = {
-    ReactDomClient: {
-        createRoot,
-    },
+  ReactDomClient: {
+    createRoot,
+  },
 };
 
 export default ReactDomClient;

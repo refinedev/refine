@@ -222,7 +222,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { EditButton } from "@refinedev/mui";
 
 export const MyListComponent = () => {
-  return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 

@@ -8,25 +8,25 @@ import { CategoryCreateMutation } from "graphql/types";
 import { CATEGORY_CREATE_MUTATION } from "./queries";
 
 export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } = useForm<
-        GetFields<CategoryCreateMutation>
-    >({ meta: { gqlMutation: CATEGORY_CREATE_MUTATION } });
+  const { formProps, saveButtonProps } = useForm<
+    GetFields<CategoryCreateMutation>
+  >({ meta: { gqlMutation: CATEGORY_CREATE_MUTATION } });
 
-    return (
-        <Create saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-            </Form>
-        </Create>
-    );
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+    </Create>
+  );
 };

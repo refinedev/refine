@@ -108,7 +108,12 @@ Here is what the `App.tsx` file should look like:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import {
+  useNotificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -205,7 +210,12 @@ Check your `App.tsx` file and it should now look like this:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import {
+  useNotificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -278,7 +288,8 @@ const TestPage = () => {
         Find me in <code>./web/src/pages/TestPage/TestPage.tsx</code>
       </p>
       <p>
-        My default route is named <code>test</code>, link to me with `<Link to={routes.test()}>Test</Link>`
+        My default route is named <code>test</code>, link to me with `
+        <Link to={routes.test()}>Test</Link>`
       </p>
     </>
   );
@@ -385,7 +396,12 @@ Check your `App.tsx` file and change it to the following:
 
 ```typescript
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider, Layout, ReadyPage, ErrorComponent } from "@refinedev/antd";
+import {
+  useNotificationProvider,
+  Layout,
+  ReadyPage,
+  ErrorComponent,
+} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
@@ -440,8 +456,18 @@ export const PostList: React.FC = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" key="id" title="ID" render={(value) => <TextField value={value} />} />
-        <Table.Column dataIndex="title" key="title" title="Title" render={(value) => <TextField value={value} />} />
+        <Table.Column
+          dataIndex="id"
+          key="id"
+          title="ID"
+          render={(value) => <TextField value={value} />}
+        />
+        <Table.Column
+          dataIndex="title"
+          key="title"
+          title="Title"
+          render={(value) => <TextField value={value} />}
+        />
         <Table.Column
           dataIndex="createdAt"
           key="createdAt"
@@ -629,7 +655,9 @@ export const Loading = () => <div>Loading...</div>;
 
 export const Empty = () => <div>Post not found</div>;
 
-export const Failure = ({ error }: CellFailureProps) => <div className="rw-cell-error">{error?.message}</div>;
+export const Failure = ({ error }: CellFailureProps) => (
+  <div className="rw-cell-error">{error?.message}</div>
+);
 
 export const Success = ({ post }: CellSuccessProps<FindPostById>) => {
   return <Post post={post} />;
@@ -779,7 +807,12 @@ export const Login: React.FC = () => {
     >
       <div style={{ height: "100vh", display: "flex" }}>
         <div style={{ maxWidth: "200px", margin: "auto" }}>
-          <Button type="primary" size="large" block onClick={() => loginWithRedirect()}>
+          <Button
+            type="primary"
+            size="large"
+            block
+            onClick={() => loginWithRedirect()}
+          >
             Sign in to Refine app
           </Button>
         </div>
@@ -793,7 +826,11 @@ Finally, open the `Apx.tsx` file and paste the following code:
 
 ```typescript
 import { Refine, AuthProvider } from "@refinedev/core";
-import { useNotificationProvider, Layout, ErrorComponent } from "@refinedev/antd";
+import {
+  useNotificationProvider,
+  Layout,
+  ErrorComponent,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
@@ -980,7 +1017,13 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-const ScaffoldLayout = ({ title, titleTo, buttonLabel, buttonTo, children }: LayoutProps) => {
+const ScaffoldLayout = ({
+  title,
+  titleTo,
+  buttonLabel,
+  buttonTo,
+  children,
+}: LayoutProps) => {
   const { logIn, logOut, isAuthenticated } = useAuth();
 
   return !isAuthenticated ? (
@@ -1034,9 +1077,19 @@ import ScaffoldLayout from "src/layouts/ScaffoldLayout";
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
+      <Set
+        wrap={ScaffoldLayout}
+        title="Posts"
+        titleTo="posts"
+        buttonLabel="New Post"
+        buttonTo="newPost"
+      >
         <Route path="/posts/new" page={PostNewPostPage} name="newPost" />
-        <Route path="/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+        <Route
+          path="/posts/{id:Int}/edit"
+          page={PostEditPostPage}
+          name="editPost"
+        />
         <Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
         <Route path="/posts" page={PostPostsPage} name="posts" />
         <Route path="/" page={PostPostsPage} name="posts" />

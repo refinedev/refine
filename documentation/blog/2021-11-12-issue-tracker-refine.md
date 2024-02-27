@@ -179,7 +179,16 @@ Our purpose here is to log in if there is a registered user in the supabase. If 
 import React from "react";
 import { useLogin, useNavigation } from "@refinedev/core";
 
-import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
+import {
+  Row,
+  Col,
+  AntdLayout,
+  Card,
+  Typography,
+  Form,
+  Input,
+  Button,
+} from "@refinedev/antd";
 
 import "./styles.css";
 
@@ -228,7 +237,11 @@ export const Login: React.FC = () => {
                   password: "refine-supabase",
                 }}
               >
-                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, type: "email" }]}
+                >
                   <Input size="large" placeholder="Email" />
                 </Form.Item>
                 <Form.Item
@@ -298,7 +311,16 @@ export const Login: React.FC = () => {
 ```tsx title="src/pages/signup.tsx"
 import React from "react";
 import { useNavigation } from "@refinedev/core";
-import { Row, Col, AntdLayout, Card, Typography, Form, Input, Button } from "@refinedev/antd";
+import {
+  Row,
+  Col,
+  AntdLayout,
+  Card,
+  Typography,
+  Form,
+  Input,
+  Button,
+} from "@refinedev/antd";
 import "./styles.css";
 import { supabaseClient } from "utility";
 
@@ -353,7 +375,11 @@ export const Signup: React.FC = () => {
                   push("login");
                 }}
               >
-                <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, type: "email" }]}
+                >
                   <Input size="large" placeholder="Email" />
                 </Form.Item>
                 <Form.Item
@@ -364,7 +390,13 @@ export const Signup: React.FC = () => {
                 >
                   <Input type="password" placeholder="●●●●●●●●" size="large" />
                 </Form.Item>
-                <Button type="primary" size="large" htmlType="submit" block style={{ marginTop: 24 }}>
+                <Button
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  block
+                  style={{ marginTop: 24 }}
+                >
                   Create Account
                 </Button>
               </Form>
@@ -523,7 +555,12 @@ We can now create lists of tasks and make changes to them.
 
 ```tsx title="src/pages/task/list.tsx"
 import React from "react";
-import { useMany, IResourceComponentsProps, HttpError, CrudFilters } from "@refinedev/core";
+import {
+  useMany,
+  IResourceComponentsProps,
+  HttpError,
+  CrudFilters,
+} from "@refinedev/core";
 
 import {
   useTable,
@@ -541,15 +578,27 @@ import {
   Card,
 } from "@refinedev/antd";
 
-import { ILabel, IPriority, ITask, ITaskFilterVariables, IStatus, IAuthUser } from "interfaces";
+import {
+  ILabel,
+  IPriority,
+  ITask,
+  ITaskFilterVariables,
+  IStatus,
+  IAuthUser,
+} from "interfaces";
 
 import { Filter } from "../task";
 
 export const TaskList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, searchFormProps } = useTable<ITask, HttpError, ITaskFilterVariables>({
+  const { tableProps, searchFormProps } = useTable<
+    ITask,
+    HttpError,
+    ITaskFilterVariables
+  >({
     onSearch: (params) => {
       const filters: CrudFilters = [];
-      const { title, label, priority, users, status, start_time, end_time } = params;
+      const { title, label, priority, users, status, start_time, end_time } =
+        params;
 
       filters.push(
         {
@@ -611,7 +660,8 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
   });
 
   const labelIds = tableProps?.dataSource?.map((item) => item.label) ?? [];
-  const priorityIds = tableProps?.dataSource?.map((item) => item.priority) ?? [];
+  const priorityIds =
+    tableProps?.dataSource?.map((item) => item.priority) ?? [];
   const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
   const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
 
@@ -652,8 +702,12 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               render={(value) => {
                 return (
                   <TagField
-                    color={labels?.data.find((item) => item.id === value)?.color}
-                    value={labels?.data.find((item) => item.id === value)?.title}
+                    color={
+                      labels?.data.find((item) => item.id === value)?.color
+                    }
+                    value={
+                      labels?.data.find((item) => item.id === value)?.title
+                    }
                   />
                 );
               }}
@@ -662,32 +716,54 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               dataIndex="priority"
               title="Priority"
               render={(value) => {
-                return <TextField value={priority?.data.find((item) => item.id === value)?.title} />;
+                return (
+                  <TextField
+                    value={
+                      priority?.data.find((item) => item.id === value)?.title
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="users"
               title="Assigned"
               render={(value) => {
-                return <TagField value={assigned?.data.find((item) => item.id === value)?.email} />;
+                return (
+                  <TagField
+                    value={
+                      assigned?.data.find((item) => item.id === value)?.email
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="status"
               title="Status"
               render={(value) => {
-                return <TextField value={status?.data.find((item) => item.id === value)?.title} />;
+                return (
+                  <TextField
+                    value={
+                      status?.data.find((item) => item.id === value)?.title
+                    }
+                  />
+                );
               }}
             />
             <Table.Column
               dataIndex="start_time"
               title="Start Date"
-              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+              render={(value) => (
+                <DateField format="DD/MM/YYYY" value={value} />
+              )}
             />
             <Table.Column
               dataIndex="end_time"
               title="Due Date"
-              render={(value) => <DateField format="DD/MM/YYYY" value={value} />}
+              render={(value) => (
+                <DateField format="DD/MM/YYYY" value={value} />
+              )}
             />
             <Table.Column<ITask>
               title="Actions"
@@ -695,9 +771,21 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
               render={(_, record): React.ReactNode => {
                 return (
                   <Space>
-                    <ShowButton size="small" recordItemId={record.id} hideText />
-                    <EditButton size="small" recordItemId={record.id} hideText />
-                    <DeleteButton size="small" recordItemId={record.id} hideText />
+                    <ShowButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
+                    <EditButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
+                    <DeleteButton
+                      size="small"
+                      recordItemId={record.id}
+                      hideText
+                    />
                   </Space>
                 );
               }}
@@ -712,7 +800,16 @@ export const TaskList: React.FC<IResourceComponentsProps> = () => {
 
 ```tsx title="src/pages/task/filter.tsx"
 import React from "react";
-import { Form, FormProps, Input, useSelect, Select, DatePicker, Icons, Button } from "@refinedev/antd";
+import {
+  Form,
+  FormProps,
+  Input,
+  useSelect,
+  Select,
+  DatePicker,
+  Icons,
+  Button,
+} from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
@@ -829,7 +926,15 @@ Now how do we create task? Let's examine how we can edit them and see their deta
 ```tsx title="src/pages/task/create.tsx"
 import { IResourceComponentsProps } from "@refinedev/core";
 
-import { useForm, Create, Form, Input, Select, useSelect, DatePicker } from "@refinedev/antd";
+import {
+  useForm,
+  Create,
+  Form,
+  Input,
+  Select,
+  useSelect,
+  DatePicker,
+} from "@refinedev/antd";
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 

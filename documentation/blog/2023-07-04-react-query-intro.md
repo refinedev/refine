@@ -106,12 +106,18 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const retrievePosts = async () => {
-  const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts",
+  );
   return response.data;
 };
 
 const DisplayPosts = () => {
-  const { data: posts, error, isLoading } = useQuery("postsData", retrievePosts);
+  const {
+    data: posts,
+    error,
+    isLoading,
+  } = useQuery("postsData", retrievePosts);
 
   if (isLoading) return <div>Fetching posts...</div>;
   if (error) return <div>An error occurred: {error.message}</div>;
@@ -156,7 +162,9 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const mutation = useMutation((newPost) => axios.post("https://jsonplaceholder.typicode.com/posts", newPost));
+  const mutation = useMutation((newPost) =>
+    axios.post("https://jsonplaceholder.typicode.com/posts", newPost),
+  );
 
   const submitData = () => {
     mutation.mutate({ title, body });
@@ -176,8 +184,18 @@ const CreatePost = () => {
 
   return (
     <div>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input type="text" value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      <input
+        type="text"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        placeholder="Body"
+      />
       <button onClick={submitData}>Submit</button>
     </div>
   );
@@ -223,7 +241,9 @@ const UpdatePost = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const mutation = useMutation((updatedPost) => axios.put("https://jsonplaceholder.typicode.com/posts/1", updatedPost));
+  const mutation = useMutation((updatedPost) =>
+    axios.put("https://jsonplaceholder.typicode.com/posts/1", updatedPost),
+  );
 
   const submitData = () => {
     mutation.mutate({ title, body });
@@ -243,8 +263,18 @@ const UpdatePost = () => {
 
   return (
     <div>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input type="text" value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body" />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      <input
+        type="text"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        placeholder="Body"
+      />
       <button onClick={submitData}>Update</button>
     </div>
   );
@@ -266,7 +296,9 @@ import { useMutation } from "react-query";
 import axios from "axios";
 
 const DeletePost = () => {
-  const mutation = useMutation(() => axios.delete("https://jsonplaceholder.typicode.com/posts/1"));
+  const mutation = useMutation(() =>
+    axios.delete("https://jsonplaceholder.typicode.com/posts/1"),
+  );
 
   const deleteData = () => {
     mutation.mutate();

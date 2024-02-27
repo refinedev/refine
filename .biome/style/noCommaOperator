@@ -1,0 +1,18 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/core/src/definitions/helpers/generateDocumentTitle/index.spec.ts:94:80 lint/style/noCommaOperator ━━━━━━━━━━
+
+  ! The comma operator is disallowed.
+  
+    93 │   it("should pass `id` to `translate` function", () => {
+  > 94 │     generateDefaultDocumentTitle(translateMock, { name: "posts" }, "show", "1"),
+       │                                                                                ^
+    95 │       expect(translateMock).toHaveBeenCalledWith(
+    96 │         "documentTitle.posts.show",
+  
+  i Its use is often confusing and obscures side effects.
+  
+
+Checked 6952 file(s) in 510ms

@@ -8,7 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-19-router-use
 hide_table_of_contents: false
 ---
 
-
 ## Introduction
 
 React Router is a popular routing library for React. The latest version, React router version 6, shipped with several new features and improved compatibility with the latest version of React. Since hooks have become the preferred way of writing React code, React Router version 6 also heavily uses React hooks.
@@ -16,6 +15,7 @@ React Router is a popular routing library for React. The latest version, React r
 One such hook is the `useNavigate` hook. The `useNavigate` hook lets you navigate programmatically within your React code. In this article, you will learn the `useNavigate` hook and how to use it. We will also hint at when you might choose the `useNavigate` hook over the `Navigate` component.
 
 Steps we'll cover:
+
 - [How to set up React Router V6](#how-to-set-up-react-router-v6)
 - [How to use the useNavigate hook](#how-to-use-the-usenavigate-hook)
 
@@ -66,11 +66,9 @@ root.render(
     <Router>
       <App />
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
-
-
 
 ### Configure routes
 
@@ -79,7 +77,7 @@ After that, you can set up the routes like in the example below.
 
 ```tsx
 import { Route, Routes } from "react-router-dom";
-import { Home, Blog } from "./components"
+import { Home, Blog } from "./components";
 
 function App() {
   return (
@@ -94,7 +92,6 @@ function App() {
 ```
 
 That is just about everything you need to do to start using React router version 6.
-
 
 ## How to use the `useNavigate` hook
 
@@ -141,7 +138,7 @@ After navigation, the data you passed using `navigate` is accessible inside the 
 
 ```tsx
 const location = useLocation();
-console.log(location.state) 
+console.log(location.state);
 // { message: 'Failed to submit form' }
 ```
 
@@ -159,12 +156,9 @@ The `useNavigate` hook shipped with React Router version 6. It comes in handy if
 
 The **`useNavigate`** hook is functionally similar to the `Navigate` component. Since you can't directly use hooks with ES6 classes, the `Navigate` component comes in handy when working with class-based components.
 
-
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
 </a>
 </div>
-

@@ -52,7 +52,6 @@ The above command will prompt you to select the configurations for your project.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="terminal" />
 
-
 Now change the directory into the project folder and install the required dependencies with the command below.
 
 ```shell
@@ -77,7 +76,10 @@ The above command will install the the **button**, **textfield**, and **data-tab
 Next, add the **Sveltematerial** UI CDN to the `app.html` file to use the default theme.
 
 ```javascript
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/bare.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/bare.min.css"
+/>
 ```
 
 Then create a components folder in the src folder and create a `Table.svelte` file to add a data table to display the posts we'll get from the **Refine-fake-API**.
@@ -124,8 +126,9 @@ Then import the components and declare the necessary variables.
 
 ```ts title="Table.svelte"
 <script lang="ts">
-  import DataTable, {(Head, Body, Row, Cell)} from '@smui/data-table'; import LinearProgress from
-  '@smui/linear-progress'; import Button from '@smui/button'; export let items: any[] = [] export let loaded = false
+  import DataTable, {(Head, Body, Row, Cell)} from '@smui/data-table'; import
+  LinearProgress from '@smui/linear-progress'; import Button from
+  '@smui/button'; export let items: any[] = [] export let loaded = false
 </script>
 ```
 
@@ -304,7 +307,9 @@ You can learn more about the Sveltekit routing [here](https://kit.svelte.dev/doc
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
   const { id } = params;
-  const data = await fetch(`https://api.fake-rest.refine.dev/posts/${id}`).then((res) => res.json());
+  const data = await fetch(`https://api.fake-rest.refine.dev/posts/${id}`).then(
+    (res) => res.json(),
+  );
   return data;
 }
 ```

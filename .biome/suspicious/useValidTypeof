@@ -1,0 +1,18 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./examples/blog-next-refine-pwa/public/workbox-eac1af49.js:521:27 lint/suspicious/useValidTypeof ━━━━━━━━━━
+
+  ! Invalid `typeof` comparison value
+  
+    520 │   const isType = (object, expectedType, details) => {
+  > 521 │     if (typeof object !== expectedType) {
+        │                           ^^^^^^^^^^^^
+    522 │       details["expectedType"] = expectedType;
+    523 │       throw new WorkboxError("incorrect-type", details);
+  
+  i not a string literal
+  
+
+Checked 6952 file(s) in 496ms

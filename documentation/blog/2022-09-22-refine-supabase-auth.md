@@ -227,7 +227,10 @@ export const LoginPage = () => {
   const { mutate: login } = useLogin();
 
   const onLogin = () => {
-    login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
+    login(
+      { mobileNo: mobileNoRef.current, otp: otpRef.current },
+      { onError: (error) => setError(error.message) },
+    );
   };
 
   const mobileFormRender = () => (
@@ -326,7 +329,13 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 // highlight-end
 
 import authProvider from "./authProvider";
@@ -506,7 +515,10 @@ In the `onLogin()` function of the `<LoginPage />` component, pass the mobile nu
 const { mutate: login } = useLogin();
 
 const onLogin = () => {
-  login({ mobileNo: mobileNoRef.current, otp: otpRef.current }, { onError: (error) => setError(error.message) });
+  login(
+    { mobileNo: mobileNoRef.current, otp: otpRef.current },
+    { onError: (error) => setError(error.message) },
+  );
 };
 ```
 
@@ -574,11 +586,21 @@ export const Countries = () => {
         <Table.Body>
           {countries?.data.map((country: Record<string, string>) => (
             <Table.Row key={country.id}>
-              <span className="text-dark font-medium opacity-50">{country.id}</span>
-              <span className="text-dark font-medium opacity-50">{country.name}</span>
-              <span className="text-dark font-medium opacity-50">{country.iso2}</span>
-              <span className="text-dark font-medium opacity-50">{country.local_name}</span>
-              <span className="text-dark font-medium opacity-50">{country.continent}</span>
+              <span className="text-dark font-medium opacity-50">
+                {country.id}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.name}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.iso2}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.local_name}
+              </span>
+              <span className="text-dark font-medium opacity-50">
+                {country.continent}
+              </span>
             </Table.Row>
           ))}
         </Table.Body>
@@ -600,7 +622,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="flex min-h-screen flex-col">
       <div className="bg-gray mb-2 py-3">
         <div className="container mx-auto flex">
-          <Button color="accent" size="sm" className="ml-auto shadow" onClick={() => logout()}>
+          <Button
+            color="accent"
+            size="sm"
+            className="ml-auto shadow"
+            onClick={() => logout()}
+          >
             Logout
           </Button>
         </div>
@@ -669,7 +696,10 @@ function App() {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="countries" />} />
+              <Route
+                index
+                element={<NavigateToResource resource="countries" />}
+              />
               <Route path="/countries" element={<Countries />} />
             </Route>
 

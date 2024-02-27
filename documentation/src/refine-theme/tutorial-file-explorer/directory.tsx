@@ -9,51 +9,51 @@ import { ModuleList } from "./module-list";
 import type { SandpackFileExplorerProp } from ".";
 
 export interface Props extends SandpackFileExplorerProp {
-    prefixedPath: string;
-    files: SandpackBundlerFiles;
-    selectFile: (path: string) => void;
-    activeFile: NonNullable<SandpackOptions["activeFile"]>;
-    depth: number;
-    visibleFiles: NonNullable<SandpackOptions["visibleFiles"]>;
+  prefixedPath: string;
+  files: SandpackBundlerFiles;
+  selectFile: (path: string) => void;
+  activeFile: NonNullable<SandpackOptions["activeFile"]>;
+  depth: number;
+  visibleFiles: NonNullable<SandpackOptions["visibleFiles"]>;
 }
 
 export const Directory: React.FC<Props> = ({
-    prefixedPath,
-    files,
-    selectFile,
-    activeFile,
-    depth,
-    autoHiddenFiles,
-    visibleFiles,
-    initialCollapsedFolder,
+  prefixedPath,
+  files,
+  selectFile,
+  activeFile,
+  depth,
+  autoHiddenFiles,
+  visibleFiles,
+  initialCollapsedFolder,
 }) => {
-    const [open, setOpen] = React.useState(
-        !initialCollapsedFolder?.includes(prefixedPath),
-    );
+  const [open, setOpen] = React.useState(
+    !initialCollapsedFolder?.includes(prefixedPath),
+  );
 
-    const toggle = (): void => setOpen((prev) => !prev);
+  const toggle = (): void => setOpen((prev) => !prev);
 
-    return (
-        <div key={prefixedPath}>
-            <File
-                depth={depth}
-                isDirOpen={open}
-                onClick={toggle}
-                path={prefixedPath + "/"}
-            />
+  return (
+    <div key={prefixedPath}>
+      <File
+        depth={depth}
+        isDirOpen={open}
+        onClick={toggle}
+        path={prefixedPath + "/"}
+      />
 
-            {open && (
-                <ModuleList
-                    activeFile={activeFile}
-                    autoHiddenFiles={autoHiddenFiles}
-                    depth={depth + 1}
-                    files={files}
-                    initialCollapsedFolder={initialCollapsedFolder}
-                    prefixedPath={prefixedPath}
-                    selectFile={selectFile}
-                    visibleFiles={visibleFiles}
-                />
-            )}
-        </div>
-    );
+      {open && (
+        <ModuleList
+          activeFile={activeFile}
+          autoHiddenFiles={autoHiddenFiles}
+          depth={depth + 1}
+          files={files}
+          initialCollapsedFolder={initialCollapsedFolder}
+          prefixedPath={prefixedPath}
+          selectFile={selectFile}
+          visibleFiles={visibleFiles}
+        />
+      )}
+    </div>
+  );
 };

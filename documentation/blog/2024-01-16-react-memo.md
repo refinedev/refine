@@ -176,7 +176,10 @@ const Blog = ({ signedIn }) => {
   const sortedPosts = sortPosts(updatedPosts);
 
   useEffect(() => {
-    const id = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000);
+    const id = setInterval(
+      () => setLocalTime(new Date().toLocaleTimeString()),
+      1000,
+    );
     return () => clearInterval(id);
   }, []);
 

@@ -1,5 +1,5 @@
 import { AuthPage } from "@components/auth-page";
 
 export default async function ForgotPassword() {
-    return <AuthPage type="updatePassword" />;
+  return <AuthPage type="updatePassword" />;
 }

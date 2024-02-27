@@ -7,79 +7,79 @@ import { Form, Input, Select } from "antd";
 import { IInvoice } from "interfaces";
 
 export const InvoiceEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
-        metaData: { populate: ["company", "contact", "missions"] },
-    });
+  const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
+    metaData: { populate: ["company", "contact", "missions"] },
+  });
 
-    const defaultValue = queryResult?.data?.data;
+  const defaultValue = queryResult?.data?.data;
 
-    const { selectProps: companySelectProps } = useSelect({
-        resource: "companies",
-        defaultValue: defaultValue?.company?.id,
-        optionLabel: "name",
-    });
+  const { selectProps: companySelectProps } = useSelect({
+    resource: "companies",
+    defaultValue: defaultValue?.company?.id,
+    optionLabel: "name",
+  });
 
-    const { selectProps: contactSelectProps } = useSelect({
-        resource: "contacts",
-        defaultValue: defaultValue?.contact?.id,
-        optionLabel: "first_name",
-    });
+  const { selectProps: contactSelectProps } = useSelect({
+    resource: "contacts",
+    defaultValue: defaultValue?.contact?.id,
+    optionLabel: "first_name",
+  });
 
-    const { selectProps: missionSelectProps } = useSelect({
-        resource: "missions",
-        optionLabel: "mission",
-    });
+  const { selectProps: missionSelectProps } = useSelect({
+    resource: "missions",
+    optionLabel: "mission",
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item label="Invoice Name" name="name">
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Company"
-                    name={["company", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...companySelectProps} />
-                </Form.Item>
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item label="Invoice Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Company"
+          name={["company", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...companySelectProps} />
+        </Form.Item>
 
-                <Form.Item
-                    label="Mission"
-                    name={["missions"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...missionSelectProps} mode="multiple" />
-                </Form.Item>
-                <Form.Item label="Discount(%)" name="discount">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Tax(%)" name="tax">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Custom ID" name="custom_id">
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Contact"
-                    name={["contact", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...contactSelectProps} />
-                </Form.Item>
-            </Form>
-        </Edit>
-    );
+        <Form.Item
+          label="Mission"
+          name={["missions"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...missionSelectProps} mode="multiple" />
+        </Form.Item>
+        <Form.Item label="Discount(%)" name="discount">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Tax(%)" name="tax">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Custom ID" name="custom_id">
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Contact"
+          name={["contact", "id"]}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...contactSelectProps} />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
 };

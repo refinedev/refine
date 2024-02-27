@@ -6,28 +6,28 @@ import { Button } from "antd";
 import { Text } from "@/components";
 
 interface Props {
-    onClick: () => void;
+  onClick: () => void;
 }
 
 export const KanbanAddCardButton: FC<PropsWithChildren<Props>> = ({
-    children,
-    onClick,
+  children,
+  onClick,
 }) => {
-    return (
-        <Button
-            size="large"
-            icon={<PlusSquareOutlined className="md" />}
-            style={{
-                margin: "16px",
-                backgroundColor: "white",
-            }}
-            onClick={onClick}
-        >
-            {children ?? (
-                <Text size="md" type="secondary">
-                    Add new card
-                </Text>
-            )}
-        </Button>
-    );
+  return (
+    <Button
+      size="large"
+      icon={<PlusSquareOutlined className="md" />}
+      style={{
+        margin: "16px",
+        backgroundColor: "white",
+      }}
+      onClick={onClick}
+    >
+      {children ?? (
+        <Text size="md" type="secondary">
+          Add new card
+        </Text>
+      )}
+    </Button>
+  );
 };

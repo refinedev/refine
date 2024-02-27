@@ -151,7 +151,11 @@ const Navbar = () => {
       >
         <div id="items" className="my-2">
           <div className="left mx-2 p-2">
-            <input className="text-input" type="email" placeholder="Find donald trump or something..." />
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find donald trump or something..."
+            />
             <SearchIcon />
           </div>
           <div>
@@ -180,7 +184,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      <HamburgerIcon
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
     </nav>
   );
 };
@@ -450,7 +457,11 @@ Next, we look at the sibling of the container of the list we just "flexed" - the
   className="left mx-2 p-2 flex justify-center items-center"
   //highlight-end
 >
-  <input className="text-input" type="email" placeholder="Find danielle trump or sth..." />
+  <input
+    className="text-input"
+    type="email"
+    placeholder="Find danielle trump or sth..."
+  />
   <SearchIcon />
 </div>
 ```
@@ -469,11 +480,18 @@ Then, we want to correctly position the search bar and the nav list items. We wa
     className="left mx-2 p-2 order-last md:order-none flex justify-center items-center"
     //highlight-end
   >
-    <input className="text-input" type="email" placeholder="Find danield trump or st..." />
+    <input
+      className="text-input"
+      type="email"
+      placeholder="Find danield trump or st..."
+    />
     <SearchIcon />
   </div>
   <div>
-    <ul id="right" className="flex flex-col md:flex-row md:justify-start md:items-center">
+    <ul
+      id="right"
+      className="flex flex-col md:flex-row md:justify-start md:items-center"
+    >
       <li className="nav-item md:order-last">
         <a href="/">
           <Avatar />
@@ -555,11 +573,18 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
       className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
     >
       <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
-        <input className="text-input" type="email" placeholder="Find danielle trump or stormy..." />
+        <input
+          className="text-input"
+          type="email"
+          placeholder="Find danielle trump or stormy..."
+        />
         <SearchIcon />
       </div>
       <div>
-        <ul id="right" className="flex flex-col md:flex-row md:justify-start md:items-center">
+        <ul
+          id="right"
+          className="flex flex-col md:flex-row md:justify-start md:items-center"
+        >
           <li className="nav-item md:order-last">
             <a href="/">
               <Avatar />
@@ -584,7 +609,10 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
       </div>
     </div>
   </div>
-  <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+  <HamburgerIcon
+    isMobileMenuOpen={isMobileMenuOpen}
+    setIsMobileMenuOpen={setIsMobileMenuOpen}
+  />
 </nav>
 ```
 
@@ -634,11 +662,18 @@ const Navbar = () => {
           className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
         >
           <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
-            <input className="text-input" type="email" placeholder="Find all trump or storm his estates..." />
+            <input
+              className="text-input"
+              type="email"
+              placeholder="Find all trump or storm his estates..."
+            />
             <SearchIcon />
           </div>
           <div>
-            <ul id="right" className="flex flex-col md:flex-row md:justify-start md:items-center">
+            <ul
+              id="right"
+              className="flex flex-col md:flex-row md:justify-start md:items-center"
+            >
               <li className="nav-item md:order-last">
                 <a href="/">
                   <Avatar />
@@ -663,7 +698,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <HamburgerIcon isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      <HamburgerIcon
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
     </nav>
   );
 };

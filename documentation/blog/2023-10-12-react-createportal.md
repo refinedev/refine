@@ -58,7 +58,10 @@ export function PortalDemo() {
   return (
     <div>
       <p>This child is placed in the parent div.</p>
-      {createPortal(<p>This child is placed in the document body.</p>, document.body)}
+      {createPortal(
+        <p>This child is placed in the document body.</p>,
+        document.body,
+      )}
     </div>
   );
 }
@@ -102,7 +105,10 @@ function PortalDemo() {
     <div style={{ color: "red" }}>
       <p>This will be red.</p>
 
-      {createPortal(<p>This won't be red.</p>, document.getElementById("portal"))}
+      {createPortal(
+        <p>This won't be red.</p>,
+        document.getElementById("portal"),
+      )}
     </div>
   );
 }
@@ -148,7 +154,11 @@ function App() {
   return (
     <div>
       <button onClick={() => setShowModal(true)}>Open modal.</button>
-      {showModal && createPortal(<Modal onClose={() => setShowModal(false)} />, document.body)}
+      {showModal &&
+        createPortal(
+          <Modal onClose={() => setShowModal(false)} />,
+          document.body,
+        )}
     </div>
   );
 }

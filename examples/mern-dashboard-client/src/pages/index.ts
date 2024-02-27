@@ -9,13 +9,13 @@ import PropertyDetails from "./property-details";
 import EditProperty from "./edit-property";
 
 export {
-    AgentProfile,
-    Agents,
-    AllProperties,
-    CreateProperty,
-    Home,
-    Login,
-    MyProfile,
-    PropertyDetails,
-    EditProperty,
+  AgentProfile,
+  Agents,
+  AllProperties,
+  CreateProperty,
+  Home,
+  Login,
+  MyProfile,
+  PropertyDetails,
+  EditProperty,
 };

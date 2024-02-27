@@ -52,7 +52,8 @@ type updatePasswordVariables = {
 };
 
 export const UpdatePasswordPage = () => {
-  const { mutate: updatePassword } = useUpdatePassword<updatePasswordVariables>();
+  const { mutate: updatePassword } =
+    useUpdatePassword<updatePasswordVariables>();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

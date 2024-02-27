@@ -3,18 +3,18 @@ import { flexRender } from "@tanstack/react-table";
 
 import { createInferencer } from "../../create-inferencer";
 import {
-    jsx,
-    componentName,
-    accessor,
-    printImports,
-    dotAccessor,
-    noOp,
-    getVariableName,
-    translatePrettyString,
-    translateButtonTitle,
-    translateActionTitle,
-    getMetaProps,
-    deepHasKey,
+  jsx,
+  componentName,
+  accessor,
+  printImports,
+  dotAccessor,
+  noOp,
+  getVariableName,
+  translatePrettyString,
+  translateButtonTitle,
+  translateActionTitle,
+  getMetaProps,
+  deepHasKey,
 } from "../../utilities";
 
 import { ErrorComponent } from "./error";
@@ -22,18 +22,18 @@ import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
 import {
-    InferencerResultComponent,
-    InferField,
-    ImportElement,
-    RendererContext,
+  InferencerResultComponent,
+  InferField,
+  ImportElement,
+  RendererContext,
 } from "../../types";
 
 const getAccessorKey = (field: InferField) => {
-    return Array.isArray(field.accessor) || field.multiple
-        ? `accessorKey: "${field.key}"`
-        : field.accessor
-        ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
-        : `accessorKey: "${field.key}"`;
+  return Array.isArray(field.accessor) || field.multiple
+    ? `accessorKey: "${field.key}"`
+    : field.accessor
+      ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
+      : `accessorKey: "${field.key}"`;
 };
 
 /**
@@ -41,66 +41,63 @@ const getAccessorKey = (field: InferField) => {
  * @internal used internally from inferencer components
  */
 export const renderer = ({
-    resource,
-    fields,
-    meta,
-    isCustomPage,
-    i18n,
+  resource,
+  fields,
+  meta,
+  isCustomPage,
+  i18n,
 }: RendererContext) => {
-    const COMPONENT_NAME = componentName(
-        resource.label ?? resource.name,
-        "list",
-    );
-    const recordName = "tableData?.data";
-    const imports: Array<ImportElement> = [
-        ["React", "react", true],
-        ["IResourceComponentsProps", "@refinedev/core"],
-        ["useNavigation", "@refinedev/core"],
-        ["useTable", "@refinedev/react-table"],
-        ["ColumnDef", "@tanstack/react-table"],
-        ["flexRender", "@tanstack/react-table"],
-    ];
+  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
+  const recordName = "tableData?.data";
+  const imports: Array<ImportElement> = [
+    ["React", "react", true],
+    ["IResourceComponentsProps", "@refinedev/core"],
+    ["useNavigation", "@refinedev/core"],
+    ["useTable", "@refinedev/react-table"],
+    ["ColumnDef", "@tanstack/react-table"],
+    ["flexRender", "@tanstack/react-table"],
+  ];
 
-    if (i18n) {
-        imports.push(["useTranslate", "@refinedev/core"]);
-    }
+  if (i18n) {
+    imports.push(["useTranslate", "@refinedev/core"]);
+  }
 
-    // has gqlQuery or gqlMutation in "meta"
-    const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
-    if (hasGql) {
-        imports.push(["gql", "graphql-tag", true]);
-    }
+  // has gqlQuery or gqlMutation in "meta"
+  const hasGql = deepHasKey(meta || {}, ["gqlQuery", "gqlMutation"]);
+  if (hasGql) {
+    imports.push(["gql", "graphql-tag", true]);
+  }
 
-    const relationFields: (InferField | null)[] = fields.filter(
-        (field) => field?.relation && !field?.fieldable && field?.resource,
-    );
+  const relationFields: (InferField | null)[] = fields.filter(
+    (field) => field?.relation && !field?.fieldable && field?.resource,
+  );
 
-    const relationHooksCode = relationFields
-        .filter(Boolean)
-        .map((field) => {
-            if (field?.relation && !field.fieldable && field.resource) {
-                imports.push(["GetManyResponse", "@refinedev/core"]);
-                imports.push(["useMany", "@refinedev/core"]);
+  const relationHooksCode = relationFields
+    .filter(Boolean)
+    .map((field) => {
+      if (field?.relation && !field.fieldable && field.resource) {
+        imports.push(["GetManyResponse", "@refinedev/core"]);
+        imports.push(["useMany", "@refinedev/core"]);
 
-                let idsString = "";
+        let idsString = "";
 
-                if (field.multiple) {
-                    idsString = `[].concat(...(${recordName}?.map((item) => ${accessor(
-                        "item",
-                        field.key,
-                        field.accessor,
-                        false,
-                    )}) ?? []))`;
-                } else {
-                    idsString = `${recordName}?.map((item) => ${accessor(
-                        "item",
-                        field.key,
-                        field.accessor,
-                        false,
-                    )}) ?? []`;
-                }
+        if (field.multiple) {
+          idsString = `[].concat(...(${recordName}?.map((item) => ${accessor(
+            "item",
+            field.key,
+            field.accessor,
+            false,
+          )}) ?? []))`;
+        } else {
+          idsString = `${recordName}?.map((item) => ${accessor(
+            "item",
+            field.key,
+            field.accessor,
+            false,
+          )}) ?? []`;
+        }
 
-                return `
+        return `
                 const { data: ${getVariableName(field.key, "Data")} } =
                 useMany({
                     resource: "${field.resource.name}",
@@ -109,99 +106,89 @@ export const renderer = ({
                         enabled: !!${recordName},
                     },
                     ${getMetaProps(
-                        field?.resource?.identifier ?? field?.resource?.name,
-                        meta,
-                        ["getMany"],
+                      field?.resource?.identifier ?? field?.resource?.name,
+                      meta,
+                      ["getMany"],
                     )}
                 });
                 `;
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const relationVariableNames = relationFields
-        ?.map((field) => {
-            if (field && field.resource) {
-                return getVariableName(field.key, "Data");
-            }
-            return undefined;
-        })
-        .filter(Boolean);
+  const relationVariableNames = relationFields
+    ?.map((field) => {
+      if (field && field.resource) {
+        return getVariableName(field.key, "Data");
+      }
+      return undefined;
+    })
+    .filter(Boolean);
 
-    const renderRelationFields = (field: InferField) => {
-        if (field.relation && field.resource) {
-            const variableName = `${getVariableName(field.key, "Data")}?.data`;
+  const renderRelationFields = (field: InferField) => {
+    if (field.relation && field.resource) {
+      const variableName = `${getVariableName(field.key, "Data")}?.data`;
 
-            if (Array.isArray(field.accessor)) {
-                return undefined;
-            }
+      if (Array.isArray(field.accessor)) {
+        return undefined;
+      }
 
-            const id = `id: "${field.key}"`;
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
-            const accessorKey = getAccessorKey(field);
+      const id = `id: "${field.key}"`;
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
+      const accessorKey = getAccessorKey(field);
 
-            let cell = "";
+      let cell = "";
 
-            // if multiple, then map it with tagfield
-            // if not, then just show the value
+      // if multiple, then map it with tagfield
+      // if not, then just show the value
 
-            if (field.multiple) {
-                let val = "item";
+      if (field.multiple) {
+        let val = "item";
 
-                // for multiple
-                if (field?.relationInfer) {
-                    val = accessor(
-                        "item",
-                        undefined,
-                        field.relationInfer.accessor,
-                    );
-                }
+        // for multiple
+        if (field?.relationInfer) {
+          val = accessor("item", undefined, field.relationInfer.accessor);
+        }
 
-                if (
-                    field?.relationInfer &&
-                    field?.relationInfer?.type === "object" &&
-                    !field?.relationInfer?.accessor
-                ) {
-                    console.log(
-                        "@refinedev/inferencer: Inferencer failed to render this field",
-                        {
-                            key: field.key,
-                            relation: field.relationInfer,
-                        },
-                    );
+        if (
+          field?.relationInfer &&
+          field?.relationInfer?.type === "object" &&
+          !field?.relationInfer?.accessor
+        ) {
+          console.log(
+            "@refinedev/inferencer: Inferencer failed to render this field",
+            {
+              key: field.key,
+              relation: field.relationInfer,
+            },
+          );
 
-                    return `cell: function render({ getValue }) {
+          return `cell: function render({ getValue }) {
                         return (
                             <span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>
                         )
                     }`;
-                }
+        }
 
-                cell = `cell: function render({ getValue, table }) {
+        cell = `cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
                         ${getVariableName(field.key, "Data")}: GetManyResponse;
                     };
 
                     ${field?.accessor ? "try {" : ""}
 
-                    const ${getVariableName(
-                        field.key,
-                        "",
-                    )} = getValue<any[]>()?.map((item) => {
-                        return meta.${getVariableName(
-                            field.key,
-                            "Data",
-                        )}?.data?.find(
+                    const ${getVariableName(field.key, "")} = getValue<any[]>()?.map((item) => {
+                        return meta.${getVariableName(field.key, "Data")}?.data?.find(
                             (resourceItems) => resourceItems.id === ${accessor(
-                                "item",
-                                undefined,
-                                field.accessor,
+                              "item",
+                              undefined,
+                              field.accessor,
                             )}
                         );
                     })
@@ -209,10 +196,7 @@ export const renderer = ({
 
                     return (
                         <ul>
-                            {${getVariableName(
-                                field.key,
-                                "",
-                            )}?.map((item, index) => (
+                            {${getVariableName(field.key, "")}?.map((item, index) => (
                                 <li key={index}>
                                     {${val}}
                                 </li>
@@ -220,67 +204,62 @@ export const renderer = ({
                         </ul>
                     )
                     ${
-                        field?.accessor
-                            ? " } catch (error) { return null; }"
-                            : ""
+                      field?.accessor ? " } catch (error) { return null; }" : ""
                     }
                 }
             `;
-            } else {
-                if (field?.relationInfer) {
-                    const cannotRender =
-                        field?.relationInfer?.type === "object" &&
-                        !field?.relationInfer?.accessor;
+      } else {
+        if (field?.relationInfer) {
+          const cannotRender =
+            field?.relationInfer?.type === "object" &&
+            !field?.relationInfer?.accessor;
 
-                    if (cannotRender) {
-                        console.log(
-                            "@refinedev/inferencer: Inferencer failed to render this field",
-                            {
-                                key: field.key,
-                                relation: field.relationInfer,
-                            },
-                        );
-                    }
+          if (cannotRender) {
+            console.log(
+              "@refinedev/inferencer: Inferencer failed to render this field",
+              {
+                key: field.key,
+                relation: field.relationInfer,
+              },
+            );
+          }
 
-                    cell = `cell: function render({ getValue, table }) {
+          cell = `cell: function render({ getValue, table }) {
                         const meta = table.options.meta as {
-                            ${getVariableName(
-                                field.key,
-                                "Data",
-                            )}: GetManyResponse;
+                            ${getVariableName(field.key, "Data")}: GetManyResponse;
                         };
 
                         ${field?.accessor ? "try {" : ""}
 
                         const ${getVariableName(
-                            field.key,
-                            "",
+                          field.key,
+                          "",
                         )} = meta.${variableName}?.find(
                             (item) => item.id == getValue<any>(),
                         );
 
                         return ${
-                            cannotRender
-                                ? `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`
-                                : `${accessor(
-                                      getVariableName(field.key),
-                                      undefined,
-                                      field?.relationInfer?.accessor,
-                                  )} ?? "Loading..."`
+                          cannotRender
+                            ? `<span title="Inferencer failed to render this field (Cannot find key)">Cannot Render</span>`
+                            : `${accessor(
+                                getVariableName(field.key),
+                                undefined,
+                                field?.relationInfer?.accessor,
+                              )} ?? "Loading..."`
                         };
 
                         ${
-                            field?.accessor
-                                ? " } catch (error) { return null; }"
-                                : ""
+                          field?.accessor
+                            ? " } catch (error) { return null; }"
+                            : ""
                         }
                     },`;
-                } else {
-                    cell = "";
-                }
-            }
+        } else {
+          cell = "";
+        }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${header},
@@ -288,44 +267,42 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const imageFields = (field: InferField) => {
-        if (field.type === "image") {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const imageFields = (field: InferField) => {
+    if (field.type === "image") {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     ${field?.accessor ? "try {" : ""}
                         return <img style={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue<any>()",
-                            undefined,
-                            Array.isArray(field.accessor)
-                                ? field.accessor
-                                : undefined,
-                            " + ",
+                          "getValue<any>()",
+                          undefined,
+                          Array.isArray(field.accessor)
+                            ? field.accessor
+                            : undefined,
+                          " + ",
                         )}} />
                     ${
-                        field?.accessor
-                            ? " } catch (error) { return null; }"
-                            : ""
+                      field?.accessor ? " } catch (error) { return null; }" : ""
                     }
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         ${field?.accessor ? "try {" : ""}
                             return (
@@ -336,15 +313,15 @@ export const renderer = ({
                                 </ul>
                             )
                         ${
-                            field?.accessor
-                                ? " } catch (error) { return null; }"
-                                : ""
+                          field?.accessor
+                            ? " } catch (error) { return null; }"
+                            : ""
                         }
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -352,43 +329,45 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const emailFields = (field: InferField) => {
-        if (field.type === "email") {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const emailFields = (field: InferField) => {
+    if (field.type === "email") {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <a href={"mailto:" + ${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        ' + " " + ',
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      ' + " " + ',
                     )}}>{${accessor(
-                "getValue<any>()",
-                undefined,
-                Array.isArray(field.accessor) ? field.accessor : undefined,
-                ' + " " + ',
-            )}}</a>
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      ' + " " + ',
+                    )}}</a>
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <ul>
@@ -401,9 +380,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -411,43 +390,45 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const urlFields = (field: InferField) => {
-        if (field.type === "url") {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const urlFields = (field: InferField) => {
+    if (field.type === "url") {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return <a href={${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        " + ",
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      " + ",
                     )}}>{${accessor(
-                "getValue<any>()",
-                undefined,
-                Array.isArray(field.accessor) ? field.accessor : undefined,
-                " + ",
-            )}}</a>
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      " + ",
+                    )}}</a>
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <ul>
@@ -460,9 +441,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -470,38 +451,38 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const booleanFields = (field: InferField) => {
-        if (field?.type === "boolean") {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const booleanFields = (field: InferField) => {
+    if (field?.type === "boolean") {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return ${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        " + ",
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      " + ",
                     )} ? "yes" : "no"
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <ul>
@@ -514,9 +495,9 @@ export const renderer = ({
                         );
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -524,39 +505,39 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
+    }
 
-        return undefined;
-    };
+    return undefined;
+  };
 
-    const dateFields = (field: InferField) => {
-        if (field.type === "date") {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const dateFields = (field: InferField) => {
+    if (field.type === "date") {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = jsx`
+      let cell = jsx`
                 cell: function render({ getValue }) {
                     return (new Date(${accessor(
-                        "getValue<any>()",
-                        undefined,
-                        Array.isArray(field.accessor)
-                            ? field.accessor
-                            : undefined,
-                        ' + " " + ',
+                      "getValue<any>()",
+                      undefined,
+                      Array.isArray(field.accessor)
+                        ? field.accessor
+                        : undefined,
+                      ' + " " + ',
                     )})).toLocaleString(undefined, { timeZone: "UTC" })
                 }
             `;
 
-            if (field.multiple) {
-                const val = accessor("item", undefined, field.accessor, " + ");
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, " + ");
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <ul>
@@ -569,9 +550,9 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -579,37 +560,32 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const basicFields = (field: InferField) => {
-        if (
-            field &&
-            (field.type === "text" ||
-                field.type === "number" ||
-                field.type === "richtext")
-        ) {
-            const id = `id: "${field.key}"`;
-            const accessorKey = getAccessorKey(field);
-            const header = `header: ${translatePrettyString({
-                resource,
-                field,
-                i18n,
-                noBraces: true,
-            })}`;
+  const basicFields = (field: InferField) => {
+    if (
+      field &&
+      (field.type === "text" ||
+        field.type === "number" ||
+        field.type === "richtext")
+    ) {
+      const id = `id: "${field.key}"`;
+      const accessorKey = getAccessorKey(field);
+      const header = `header: ${translatePrettyString({
+        resource,
+        field,
+        i18n,
+        noBraces: true,
+      })}`;
 
-            let cell = "";
+      let cell = "";
 
-            if (field.multiple) {
-                const val = accessor(
-                    "item",
-                    undefined,
-                    field.accessor,
-                    ' + " " + ',
-                );
+      if (field.multiple) {
+        const val = accessor("item", undefined, field.accessor, ' + " " + ');
 
-                cell = `
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <ul>
@@ -622,23 +598,23 @@ export const renderer = ({
                         )
                     }
                 `;
-            }
+      }
 
-            if (!field.multiple && Array.isArray(field.accessor)) {
-                cell = `
+      if (!field.multiple && Array.isArray(field.accessor)) {
+        cell = `
                     cell: function render({ getValue }) {
                         return (
                             <>{${accessor(
-                                "getValue<any>()",
-                                field.key,
-                                field.accessor,
+                              "getValue<any>()",
+                              field.key,
+                              field.accessor,
                             )}}</>
                         );
                     }
                 `;
-            }
+      }
 
-            return `
+      return `
                 {
                     ${id},
                     ${accessorKey},
@@ -646,17 +622,17 @@ export const renderer = ({
                     ${cell}
                 }
             `;
-        }
-        return undefined;
-    };
+    }
+    return undefined;
+  };
 
-    const { canEdit, canShow, canCreate } = resource ?? {};
+  const { canEdit, canShow, canCreate } = resource ?? {};
 
-    const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
+  const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
 
-    const actionButtons =
-        canEdit || canShow
-            ? jsx`
+  const actionButtons =
+    canEdit || canShow
+      ? jsx`
     {
         id: "actions",
         accessorKey: "id",
@@ -672,74 +648,74 @@ export const renderer = ({
                     }}
                 >
                 ${
-                    canShow
-                        ? jsx`
+                  canShow
+                    ? jsx`
                     <button
                         onClick={() => {
                             show("${resource.name}", getValue() as string);
                         }}
                     >
                         ${translateButtonTitle({
-                            action: "show",
-                            i18n,
-                            noQuotes: true,
+                          action: "show",
+                          i18n,
+                          noQuotes: true,
                         })}
                     </button>
                     `
-                        : ""
+                    : ""
                 }
                     ${
-                        canEdit
-                            ? jsx`
+                      canEdit
+                        ? jsx`
                             <button
                             onClick={() => {
                                 edit("${resource.name}", getValue() as string);
                             }}
                         >
                             ${translateButtonTitle({
-                                action: "edit",
-                                i18n,
-                                noQuotes: true,
+                              action: "edit",
+                              i18n,
+                              noQuotes: true,
                             })}
                         </button>
                     `
-                            : ""
+                        : ""
                     }
                 </div>
             );
         },
     },
         `
-            : "";
+      : "";
 
-    const renderedFields: Array<string | undefined> = fields.map((field) => {
-        switch (field?.type) {
-            case "text":
-            case "number":
-            case "richtext":
-                return basicFields(field);
-            case "email":
-                return emailFields(field);
-            case "image":
-                return imageFields(field);
-            case "date":
-                return dateFields(field);
-            case "boolean":
-                return booleanFields(field);
-            case "url":
-                return urlFields(field);
-            case "relation":
-                return renderRelationFields(field);
-            default:
-                return undefined;
-        }
-    });
+  const renderedFields: Array<string | undefined> = fields.map((field) => {
+    switch (field?.type) {
+      case "text":
+      case "number":
+      case "richtext":
+        return basicFields(field);
+      case "email":
+        return emailFields(field);
+      case "image":
+        return imageFields(field);
+      case "date":
+        return dateFields(field);
+      case "boolean":
+        return booleanFields(field);
+      case "url":
+        return urlFields(field);
+      case "relation":
+        return renderRelationFields(field);
+      default:
+        return undefined;
+    }
+  });
 
-    noOp(imports);
+  noOp(imports);
 
-    const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && `const translate = useTranslate();`;
 
-    return jsx`
+  return jsx`
     ${printImports(imports)}
     
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
@@ -749,13 +725,13 @@ export const renderer = ({
         ], [${i18n ? "translate" : ""}]);
 
         ${
-            canEdit || canShow
-                ? jsx`
+          canEdit || canShow
+            ? jsx`
         const { ${canEdit ? "edit," : ""} ${canShow ? "show," : ""} ${
-                      canCreate ? "create," : ""
-                  } } = useNavigation();
+          canCreate ? "create," : ""
+        } } = useNavigation();
         `
-                : ""
+            : ""
         }
 
         const {
@@ -777,26 +753,24 @@ export const renderer = ({
         } = useTable({
             columns,
             ${
-                isCustomPage
-                    ? `
+              isCustomPage
+                ? `
             refineCoreProps: {
                 resource: "${resource.name}",
                 ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
-                    "getList",
+                  "getList",
                 ])}
             }
             `
-                    : getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["getList"],
-                      )
-                    ? `refineCoreProps: { ${getMetaProps(
-                          resource?.identifier ?? resource?.name,
-                          meta,
-                          ["getList"],
-                      )} },`
-                    : ""
+                : getMetaProps(resource?.identifier ?? resource?.name, meta, [
+                      "getList",
+                    ])
+                  ? `refineCoreProps: { ${getMetaProps(
+                      resource?.identifier ?? resource?.name,
+                      meta,
+                      ["getList"],
+                    )} },`
+                  : ""
             }
             
         });
@@ -815,20 +789,20 @@ export const renderer = ({
             <div style={{ padding: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <h1>${translateActionTitle({
-                    resource,
-                    action: "list",
-                    i18n,
+                  resource,
+                  action: "list",
+                  i18n,
                 })}</h1>
                 ${
-                    canCreate
-                        ? jsx`<button onClick={() => create("${
-                              resource.name
-                          }")}>${translateButtonTitle({
-                              action: "create",
-                              i18n,
-                              noQuotes: true,
-                          })}</button>`
-                        : ""
+                  canCreate
+                    ? jsx`<button onClick={() => create("${
+                        resource.name
+                      }")}>${translateButtonTitle({
+                        action: "create",
+                        i18n,
+                        noQuotes: true,
+                      })}</button>`
+                    : ""
                 }
             </div>
                 <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
@@ -895,7 +869,7 @@ export const renderer = ({
                     </span>
                     <span>
                         | ${
-                            i18n ? `{translate("pagination.go")}` : "Go to Page"
+                          i18n ? `{translate("pagination.go")}` : "Go to Page"
                         }:{" "}
                         <input
                             type="number"
@@ -917,9 +891,9 @@ export const renderer = ({
                         {[10, 20, 30, 40, 50].map((pageSize) => (
                             <option key={pageSize} value={pageSize}>
                                 ${
-                                    i18n
-                                        ? `{translate("pagination.show")}`
-                                        : "Show"
+                                  i18n
+                                    ? `{translate("pagination.show")}`
+                                    : "Show"
                                 } {pageSize}
                             </option>
                         ))}
@@ -935,13 +909,13 @@ export const renderer = ({
  * @experimental This is an experimental component
  */
 export const ListInferencer: InferencerResultComponent = createInferencer({
-    type: "list",
-    additionalScope: [
-        ["@refinedev/react-table", "RefineReactTable", { useTable }],
-        ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
-    ],
-    codeViewerComponent: SharedCodeViewer,
-    loadingComponent: LoadingComponent,
-    errorComponent: ErrorComponent,
-    renderer,
+  type: "list",
+  additionalScope: [
+    ["@refinedev/react-table", "RefineReactTable", { useTable }],
+    ["@tanstack/react-table", "TanstackReactTable", { flexRender }],
+  ],
+  codeViewerComponent: SharedCodeViewer,
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+  renderer,
 });

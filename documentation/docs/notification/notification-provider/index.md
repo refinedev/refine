@@ -96,7 +96,10 @@ return (
   <TabItem value="mui">
 
 ```tsx
-import { useNotificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  useNotificationProvider,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 
 return (
   <RefineSnackbarProvider>
@@ -231,18 +234,29 @@ const notificationProvider: NotificationProvider = {
       if (toast.isActive(key)) {
         toast.update(key, {
           progress: undoableTimeout && (undoableTimeout / 10) * 2,
-          render: <UndoableNotification message={message} cancelMutation={cancelMutation} />,
+          render: (
+            <UndoableNotification
+              message={message}
+              cancelMutation={cancelMutation}
+            />
+          ),
           type: "default",
         });
       } else {
-        toast(<UndoableNotification message={message} cancelMutation={cancelMutation} />, {
-          toastId: key,
-          updateId: key,
-          closeOnClick: false,
-          closeButton: false,
-          autoClose: false,
-          progress: undoableTimeout && (undoableTimeout / 10) * 2,
-        });
+        toast(
+          <UndoableNotification
+            message={message}
+            cancelMutation={cancelMutation}
+          />,
+          {
+            toastId: key,
+            updateId: key,
+            closeOnClick: false,
+            closeButton: false,
+            autoClose: false,
+            progress: undoableTimeout && (undoableTimeout / 10) * 2,
+          },
+        );
       }
     } else {
       //highlight-end
@@ -276,7 +290,11 @@ type UndoableNotification = {
   closeToast?: () => void;
 };
 
-export const UndoableNotification: React.FC<UndoableNotification> = ({ closeToast, cancelMutation, message }) => {
+export const UndoableNotification: React.FC<UndoableNotification> = ({
+  closeToast,
+  cancelMutation,
+  message,
+}) => {
   return (
     <div>
       <p>{message}</p>

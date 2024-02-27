@@ -8,45 +8,45 @@ import { SkeletonOrderConfirmed } from "@components/skeletons";
 import { OrderDetailsTemplate } from "@components/orders/OrderDetailsTemplate";
 
 const Details: React.FC = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const id = typeof router.query?.id === "string" ? router.query.id : "";
+  const id = typeof router.query?.id === "string" ? router.query.id : "";
 
-    const { isSuccess, data, isLoading, isError } = useOne<{ order: Order }>({
-        resource: "orders",
-        id,
-        queryOptions: {
-            enabled: !!id,
-            staleTime: 60 * 60 * 1000, // 1 hour,
-        },
-    });
+  const { isSuccess, data, isLoading, isError } = useOne<{ order: Order }>({
+    resource: "orders",
+    id,
+    queryOptions: {
+      enabled: !!id,
+      staleTime: 60 * 60 * 1000, // 1 hour,
+    },
+  });
 
-    if (isLoading) {
-        return <SkeletonOrderConfirmed />;
+  if (isLoading) {
+    return <SkeletonOrderConfirmed />;
+  }
+
+  if (isError) {
+    if (IS_BROWSER) {
+      router.replace("/404");
     }
 
-    if (isError) {
-        if (IS_BROWSER) {
-            router.replace("/404");
-        }
+    return <SkeletonOrderConfirmed />;
+  }
 
-        return <SkeletonOrderConfirmed />;
-    }
+  if (isSuccess) {
+    return (
+      <>
+        <SEO
+          title={`Order #${data.data.order.display_id}`}
+          description="View your order"
+        />
 
-    if (isSuccess) {
-        return (
-            <>
-                <SEO
-                    title={`Order #${data.data.order.display_id}`}
-                    description="View your order"
-                />
+        <OrderDetailsTemplate order={data.data.order} />
+      </>
+    );
+  }
 
-                <OrderDetailsTemplate order={data.data.order} />
-            </>
-        );
-    }
-
-    return <></>;
+  return <></>;
 };
 
 export default Details;

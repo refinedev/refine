@@ -182,7 +182,16 @@ useCustom({
 
 const myDataProvider = {
   //...
-  custom: async ({ url, method, sort, filters, payload, query, headers, meta }) => {
+  custom: async ({
+    url,
+    method,
+    sort,
+    filters,
+    payload,
+    query,
+    headers,
+    meta,
+  }) => {
     const foo = meta?.foo;
 
     console.log(foo); // "bar"

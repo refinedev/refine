@@ -1,0 +1,42 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/devtools/src/components/devtools-selector.tsx:81:7 lint/a11y/useKeyWithMouseEvents ━━━━━━━━━━
+
+  ! onMouseOver must be accompanied by onFocus for accessibility.
+  
+     79 │   return (
+     80 │     <div style={style}>
+   > 81 │       <div
+        │       ^^^^
+   > 82 │         role="button"
+         ...
+   > 99 │         }}
+  > 100 │       >
+        │       ^
+    101 │         {icon}
+    102 │       </div>
+  
+  i Actions triggered using mouse events should have corresponding events to account for keyboard-only navigation.
+  
+
+./packages/devtools/src/components/devtools-pin.tsx:21:5 lint/a11y/useKeyWithMouseEvents ━━━━━━━━━━━
+
+  ! onMouseOver must be accompanied by onFocus for accessibility.
+  
+    20 │   return (
+  > 21 │     <div
+       │     ^^^^
+  > 22 │       onMouseOver={() => setHover(true)}
+        ...
+  > 40 │       onClick={onClick}
+  > 41 │     >
+       │     ^
+    42 │       <DevtoolsIcon />
+    43 │       <DevtoolsSelector
+  
+  i Actions triggered using mouse events should have corresponding events to account for keyboard-only navigation.
+  
+
+Checked 6952 file(s) in 510ms

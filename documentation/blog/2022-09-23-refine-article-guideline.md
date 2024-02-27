@@ -79,7 +79,12 @@ Explain the topic contents step by step. Imagine you are reading the article for
 
 ```tsx title="src/App.tsx"
 function App() {
-  return <Refine routerProvider={routerProvider} dataProvider={dataProvider("https://api.fake-rest.refine.dev")} />;
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    />
+  );
 }
 ```
 
@@ -87,7 +92,12 @@ The result will be like this in the blog post when published.
 
 ```tsx title="src/App.tsx"
 function App() {
-  return <Refine routerProvider={routerProvider} dataProvider={dataProvider("https://api.fake-rest.refine.dev")} />;
+  return (
+    <Refine
+      routerProvider={routerProvider}
+      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    />
+  );
 }
 ```
 

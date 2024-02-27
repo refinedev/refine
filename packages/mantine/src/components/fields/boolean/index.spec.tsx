@@ -5,45 +5,41 @@ import { BooleanField } from "./";
 import { fireEvent, render } from "@test";
 
 describe("BooleanField", () => {
-    fieldBooleanTests.bind(this)(BooleanField);
+  fieldBooleanTests.bind(this)(BooleanField);
 
-    describe("BooleanField with default props values", () => {
-        const initialValues = [true, false, "true", "false", "", undefined];
+  describe("BooleanField with default props values", () => {
+    const initialValues = [true, false, "true", "false", "", undefined];
 
-        const iconClass = [
-            "icon-tabler-check",
-            "icon-tabler-x",
-            "icon-tabler-check",
-            "icon-tabler-check",
-            "icon-tabler-x",
-            "icon-tabler-x",
-        ];
+    const iconClass = [
+      "icon-tabler-check",
+      "icon-tabler-x",
+      "icon-tabler-check",
+      "icon-tabler-check",
+      "icon-tabler-x",
+      "icon-tabler-x",
+    ];
 
-        initialValues.forEach((element, index) => {
-            const testName =
-                index === 2 || index === 3 || index === 4
-                    ? `"${initialValues[index]}"`
-                    : initialValues[index];
+    initialValues.forEach((element, index) => {
+      const testName =
+        index === 2 || index === 3 || index === 4
+          ? `"${initialValues[index]}"`
+          : initialValues[index];
 
-            it(`renders boolean field value(${testName}) with correct tooltip text and icon`, async () => {
-                const baseDom = render(
-                    <div data-testid="default-field">
-                        <BooleanField value={element} />
-                    </div>,
-                );
+      it(`renders boolean field value(${testName}) with correct tooltip text and icon`, async () => {
+        const baseDom = render(
+          <div data-testid="default-field">
+            <BooleanField value={element} />
+          </div>,
+        );
 
-                fireEvent.mouseOver(
-                    baseDom.getByTestId("default-field").children[0],
-                );
+        fireEvent.mouseOver(baseDom.getByTestId("default-field").children[0]);
 
-                expect(
-                    baseDom
-                        .getByTestId("default-field")
-                        .children[0].children[0].classList.contains(
-                            iconClass[index],
-                        ),
-                ).toBe(true);
-            });
-        });
+        expect(
+          baseDom
+            .getByTestId("default-field")
+            .children[0].children[0].classList.contains(iconClass[index]),
+        ).toBe(true);
+      });
     });
+  });
 });

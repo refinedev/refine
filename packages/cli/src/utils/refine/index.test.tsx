@@ -2,66 +2,66 @@ import * as utilsPackage from "@utils/package";
 import { hasDefaultScript } from ".";
 
 test("Has default script", () => {
-    const testCases = [
-        {
-            input: {
-                scripts: {
-                    dev: "refine dev",
-                },
-            },
-            output: {
-                dev: true,
-            },
+  const testCases = [
+    {
+      input: {
+        scripts: {
+          dev: "refine dev",
         },
-        {
-            input: {
-                scripts: {
-                    dev: "PORT=5252 refine dev --force",
-                },
-            },
-            output: {
-                dev: true,
-            },
+      },
+      output: {
+        dev: true,
+      },
+    },
+    {
+      input: {
+        scripts: {
+          dev: "PORT=5252 refine dev --force",
         },
-        {
-            input: {
-                scripts: {
-                    dev: "refine dev",
-                },
-            },
-            output: {
-                dev: true,
-            },
+      },
+      output: {
+        dev: true,
+      },
+    },
+    {
+      input: {
+        scripts: {
+          dev: "refine dev",
         },
-        {
-            input: {
-                scripts: {
-                    dev: "refine dev2",
-                },
-            },
-            output: {
-                dev: false,
-            },
+      },
+      output: {
+        dev: true,
+      },
+    },
+    {
+      input: {
+        scripts: {
+          dev: "refine dev2",
         },
-        {
-            input: {
-                scripts: {
-                    dev: "refine dev;echo '1'",
-                },
-            },
-            output: {
-                dev: true,
-            },
+      },
+      output: {
+        dev: false,
+      },
+    },
+    {
+      input: {
+        scripts: {
+          dev: "refine dev;echo '1'",
         },
-    ];
+      },
+      output: {
+        dev: true,
+      },
+    },
+  ];
 
-    testCases.forEach((testCase) => {
-        jest.spyOn(utilsPackage, "getPackageJson").mockReturnValueOnce(
-            testCase.input,
-        );
+  testCases.forEach((testCase) => {
+    jest
+      .spyOn(utilsPackage, "getPackageJson")
+      .mockReturnValueOnce(testCase.input);
 
-        const result = hasDefaultScript();
+    const result = hasDefaultScript();
 
-        expect(result).toEqual(testCase.output);
-    });
+    expect(result).toEqual(testCase.output);
+  });
 });

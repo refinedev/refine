@@ -16,61 +16,61 @@ import { useIsExistAuthentication, useRefineContext } from "..";
 const REFINE_VERSION = "1.0.0";
 
 export const useTelemetryData = (): ITelemetryData => {
-    const auth = useIsExistAuthentication();
-    const auditLogContext = useContext(AuditLogContext);
-    const liveContext = useContext(LiveContext);
-    const routerContext = useContext(RouterContext);
-    const dataContext = useContext(DataContext);
-    const { i18nProvider } = useContext(TranslationContext);
-    const notificationContext = useContext(NotificationContext);
-    const accessControlContext = useContext(AccessControlContext);
-    const { resources } = useResource();
-    const refineOptions = useRefineContext();
+  const auth = useIsExistAuthentication();
+  const auditLogContext = useContext(AuditLogContext);
+  const liveContext = useContext(LiveContext);
+  const routerContext = useContext(RouterContext);
+  const dataContext = useContext(DataContext);
+  const { i18nProvider } = useContext(TranslationContext);
+  const notificationContext = useContext(NotificationContext);
+  const accessControlContext = useContext(AccessControlContext);
+  const { resources } = useResource();
+  const refineOptions = useRefineContext();
 
-    const auditLog =
-        !!auditLogContext.create ||
-        !!auditLogContext.get ||
-        !!auditLogContext.update;
+  const auditLog =
+    !!auditLogContext.create ||
+    !!auditLogContext.get ||
+    !!auditLogContext.update;
 
-    const live =
-        !!liveContext?.publish ||
-        !!liveContext?.subscribe ||
-        !!liveContext?.unsubscribe;
+  const live =
+    !!liveContext?.publish ||
+    !!liveContext?.subscribe ||
+    !!liveContext?.unsubscribe;
 
-    const router =
-        !!routerContext.useHistory ||
-        !!routerContext.Link ||
-        !!routerContext.Prompt ||
-        !!routerContext.useLocation ||
-        !!routerContext.useParams;
+  const router =
+    !!routerContext.useHistory ||
+    !!routerContext.Link ||
+    !!routerContext.Prompt ||
+    !!routerContext.useLocation ||
+    !!routerContext.useParams;
 
-    const data = !!dataContext;
+  const data = !!dataContext;
 
-    const i18n =
-        !!i18nProvider?.changeLocale ||
-        !!i18nProvider?.getLocale ||
-        !!i18nProvider?.translate;
+  const i18n =
+    !!i18nProvider?.changeLocale ||
+    !!i18nProvider?.getLocale ||
+    !!i18nProvider?.translate;
 
-    const notification =
-        !!notificationContext.close || !!notificationContext.open;
+  const notification =
+    !!notificationContext.close || !!notificationContext.open;
 
-    const accessControl = !!accessControlContext.can;
+  const accessControl = !!accessControlContext.can;
 
-    const projectId = refineOptions?.options?.projectId;
+  const projectId = refineOptions?.options?.projectId;
 
-    return {
-        providers: {
-            auth,
-            auditLog,
-            live,
-            router,
-            data,
-            i18n,
-            notification,
-            accessControl,
-        },
-        version: REFINE_VERSION,
-        resourceCount: resources.length,
-        projectId,
-    };
+  return {
+    providers: {
+      auth,
+      auditLog,
+      live,
+      router,
+      data,
+      i18n,
+      notification,
+      accessControl,
+    },
+    version: REFINE_VERSION,
+    resourceCount: resources.length,
+    projectId,
+  };
 };

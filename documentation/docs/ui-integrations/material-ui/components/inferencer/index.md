@@ -17,7 +17,11 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -116,7 +120,11 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -181,7 +189,11 @@ setInitialRoutes(["/samples/show/123"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -246,7 +258,11 @@ setInitialRoutes(["/samples/create"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -311,7 +327,11 @@ setInitialRoutes(["/samples/edit/123"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 
-import { ThemedLayoutV2, RefineThemes, RefineSnackbarProvider } from "@refinedev/mui";
+import {
+  ThemedLayoutV2,
+  RefineThemes,
+  RefineSnackbarProvider,
+} from "@refinedev/mui";
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 

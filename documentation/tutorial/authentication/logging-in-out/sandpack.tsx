@@ -9,15 +9,15 @@ import { finalFiles as initialFiles } from "../protecting-content/sandpack";
 import { removeActiveFromFiles } from "@site/src/utils/remove-active-from-files";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <TutorialSandpack
-            dependencies={dependencies}
-            files={initialFiles}
-            finalFiles={finalFiles}
-        >
-            {children}
-        </TutorialSandpack>
-    );
+  return (
+    <TutorialSandpack
+      dependencies={dependencies}
+      files={initialFiles}
+      finalFiles={finalFiles}
+    >
+      {children}
+    </TutorialSandpack>
+  );
 };
 
 // updates
@@ -271,148 +271,145 @@ export const Header = () => {
 // logging-in-out actions
 
 export const AddLoginMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderTsxWithLoginMethod,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderTsxWithLoginMethod,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 export const CreateLoginComponentFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "src/pages/login.tsx": {
-                        code: LoginComponentBase,
-                    },
-                });
-                sandpack.openFile("/src/pages/login.tsx");
-                sandpack.setActiveFile("/src/pages/login.tsx");
-            }}
-            name="src/pages/login.tsx"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "src/pages/login.tsx": {
+            code: LoginComponentBase,
+          },
+        });
+        sandpack.openFile("/src/pages/login.tsx");
+        sandpack.setActiveFile("/src/pages/login.tsx");
+      }}
+      name="src/pages/login.tsx"
+    />
+  );
 };
 
 export const AddLoginToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithLoginComponent);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithLoginComponent);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddUseLoginToLoginComponent = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/pages/login.tsx",
-                    LoginComponentWithUseLogin,
-                );
-                sandpack.setActiveFile("/src/pages/login.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("src/pages/login.tsx", LoginComponentWithUseLogin);
+        sandpack.setActiveFile("/src/pages/login.tsx");
+      }}
+    />
+  );
 };
 
 export const AddLogoutMethodToAuthProvider = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "/src/providers/auth-provider.ts",
-                    AuthProviderTsxWithLogoutMethod,
-                );
-                sandpack.setActiveFile("/src/providers/auth-provider.ts");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "/src/providers/auth-provider.ts",
+          AuthProviderTsxWithLogoutMethod,
+        );
+        sandpack.setActiveFile("/src/providers/auth-provider.ts");
+      }}
+    />
+  );
 };
 
 export const CreateHeaderComponentFile = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialCreateFileButton
-            onClick={() => {
-                sandpack.addFile({
-                    "src/components/header.tsx": {
-                        code: HeaderComponentBase,
-                    },
-                });
-                sandpack.openFile("/src/components/header.tsx");
-                sandpack.setActiveFile("/src/components/header.tsx");
-            }}
-            name="src/components/header.tsx"
-        />
-    );
+  return (
+    <TutorialCreateFileButton
+      onClick={() => {
+        sandpack.addFile({
+          "src/components/header.tsx": {
+            code: HeaderComponentBase,
+          },
+        });
+        sandpack.openFile("/src/components/header.tsx");
+        sandpack.setActiveFile("/src/components/header.tsx");
+      }}
+      name="src/components/header.tsx"
+    />
+  );
 };
 
 export const AddHeaderToAppTsx = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile("/src/App.tsx", AppTsxWithHeaderComponent);
-                sandpack.setActiveFile("/src/App.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile("/src/App.tsx", AppTsxWithHeaderComponent);
+        sandpack.setActiveFile("/src/App.tsx");
+      }}
+    />
+  );
 };
 
 export const AddUseLogoutToHeaderComponent = () => {
-    const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();
 
-    return (
-        <TutorialUpdateFileButton
-            onClick={() => {
-                sandpack.updateFile(
-                    "src/components/header.tsx",
-                    HeaderComponentWithUseLogout,
-                );
-                sandpack.setActiveFile("/src/components/header.tsx");
-            }}
-        />
-    );
+  return (
+    <TutorialUpdateFileButton
+      onClick={() => {
+        sandpack.updateFile(
+          "src/components/header.tsx",
+          HeaderComponentWithUseLogout,
+        );
+        sandpack.setActiveFile("/src/components/header.tsx");
+      }}
+    />
+  );
 };
 
 // files
 
 export const finalFiles = {
-    ...removeActiveFromFiles(initialFiles),
-    "src/App.tsx": {
-        code: AppTsxWithHeaderComponent,
-    },
-    "src/providers/auth-provider.ts": {
-        code: AuthProviderTsxWithLogoutMethod,
-    },
-    "src/pages/login.tsx": {
-        code: LoginComponentWithUseLogin,
-    },
-    "src/components/header.tsx": {
-        code: HeaderComponentWithUseLogout,
-        active: true,
-    },
+  ...removeActiveFromFiles(initialFiles),
+  "src/App.tsx": {
+    code: AppTsxWithHeaderComponent,
+  },
+  "src/providers/auth-provider.ts": {
+    code: AuthProviderTsxWithLogoutMethod,
+  },
+  "src/pages/login.tsx": {
+    code: LoginComponentWithUseLogin,
+  },
+  "src/components/header.tsx": {
+    code: HeaderComponentWithUseLogout,
+    active: true,
+  },
 };

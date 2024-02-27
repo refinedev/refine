@@ -7,18 +7,18 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export default function CategoryShow() {
-    const t = useTranslate();
-    const { queryResult } = useShow({});
-    const { data, isLoading } = queryResult;
+  const t = useTranslate();
+  const { queryResult } = useShow({});
+  const { data, isLoading } = queryResult;
 
-    const record = data?.data;
+  const record = data?.data;
 
-    return (
-        <Show isLoading={isLoading}>
-            <Title level={5}>{t("ID")}</Title>
-            <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{t("categories.fields.title")}</Title>
-            <TextField value={record?.title} />
-        </Show>
-    );
+  return (
+    <Show isLoading={isLoading}>
+      <Title level={5}>{t("ID")}</Title>
+      <NumberField value={record?.id ?? ""} />
+      <Title level={5}>{t("categories.fields.title")}</Title>
+      <TextField value={record?.title} />
+    </Show>
+  );
 }

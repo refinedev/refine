@@ -2,24 +2,24 @@ import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import {
-    AuthBindingsContextProvider,
-    LegacyAuthContextProvider,
+  AuthBindingsContextProvider,
+  LegacyAuthContextProvider,
 } from "@contexts/auth";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-    ILegacyAuthContext,
-    I18nProvider,
-    IAccessControlContext,
-    ILiveContext,
-    INotificationContext,
-    IDataMultipleContextProvider,
-    IDataContextProvider,
-    IAuditLogContext,
-    RouterBindings,
-    IRouterContext,
-    AuthProvider,
+  ILegacyAuthContext,
+  I18nProvider,
+  IAccessControlContext,
+  ILiveContext,
+  INotificationContext,
+  IDataMultipleContextProvider,
+  IDataContextProvider,
+  IAuditLogContext,
+  RouterBindings,
+  IRouterContext,
+  AuthProvider,
 } from "../src/interfaces";
 import { TranslationContextProvider } from "@contexts/translation";
 import { RefineContextProvider } from "@contexts/refine";
@@ -34,205 +34,199 @@ import { RouterBindingsProvider } from "@contexts/router";
 import { RouterPickerProvider } from "@contexts/router-picker";
 
 export const queryClient = new QueryClient({
-    logger: {
-        log: console.log,
-        warn: console.warn,
-        // ✅ no more errors on the console
-        error: () => {
-            return {};
-        },
+  logger: {
+    log: console.log,
+    warn: console.warn,
+    // ✅ no more errors on the console
+    error: () => {
+      return {};
     },
-    defaultOptions: {
-        queries: {
-            cacheTime: 0,
-            retry: 0,
-        },
+  },
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+      retry: 0,
     },
+  },
 });
 
 beforeEach(() => {
-    queryClient.clear();
+  queryClient.clear();
 });
 
 export interface ITestWrapperProps {
-    legacyAuthProvider?: ILegacyAuthContext;
-    authProvider?: AuthProvider;
-    dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
-    i18nProvider?: I18nProvider;
-    notificationProvider?: INotificationContext;
-    accessControlProvider?: IAccessControlContext;
-    liveProvider?: ILiveContext;
-    resources?: IResourceItem[];
-    children?: React.ReactNode;
-    legacyRouterProvider?: IRouterContext;
-    routerProvider?: RouterBindings;
-    refineProvider?: IRefineContextProvider;
-    auditLogProvider?: IAuditLogContext;
+  legacyAuthProvider?: ILegacyAuthContext;
+  authProvider?: AuthProvider;
+  dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
+  i18nProvider?: I18nProvider;
+  notificationProvider?: INotificationContext;
+  accessControlProvider?: IAccessControlContext;
+  liveProvider?: ILiveContext;
+  resources?: IResourceItem[];
+  children?: React.ReactNode;
+  legacyRouterProvider?: IRouterContext;
+  routerProvider?: RouterBindings;
+  refineProvider?: IRefineContextProvider;
+  auditLogProvider?: IAuditLogContext;
 }
 
 export const TestWrapper: (
-    props: ITestWrapperProps,
+  props: ITestWrapperProps,
 ) => React.FC<{ children: ReactNode }> = ({
-    legacyAuthProvider,
-    authProvider,
-    dataProvider,
-    resources,
-    i18nProvider,
-    notificationProvider,
-    accessControlProvider,
-    legacyRouterProvider,
-    routerProvider,
-    refineProvider,
-    liveProvider,
-    auditLogProvider,
+  legacyAuthProvider,
+  authProvider,
+  dataProvider,
+  resources,
+  i18nProvider,
+  notificationProvider,
+  accessControlProvider,
+  legacyRouterProvider,
+  routerProvider,
+  refineProvider,
+  liveProvider,
+  auditLogProvider,
 }) => {
-    // eslint-disable-next-line react/display-name
-    return ({ children }): React.ReactElement => {
-        const withRouterPicker = (
-            <RouterPickerProvider
-                value={
-                    routerProvider
-                        ? "new"
-                        : legacyRouterProvider
-                        ? "legacy"
-                        : "new"
-                }
-            >
-                {children}
-            </RouterPickerProvider>
-        );
+  // eslint-disable-next-line react/display-name
+  return ({ children }): React.ReactElement => {
+    const withRouterPicker = (
+      <RouterPickerProvider
+        value={routerProvider ? "new" : legacyRouterProvider ? "legacy" : "new"}
+      >
+        {children}
+      </RouterPickerProvider>
+    );
 
-        const withLegacyRouter = legacyRouterProvider ? (
-            <LegacyRouterContextProvider {...legacyRouterProvider}>
-                {withRouterPicker}
-            </LegacyRouterContextProvider>
-        ) : (
-            withRouterPicker
-        );
+    const withLegacyRouter = legacyRouterProvider ? (
+      <LegacyRouterContextProvider {...legacyRouterProvider}>
+        {withRouterPicker}
+      </LegacyRouterContextProvider>
+    ) : (
+      withRouterPicker
+    );
 
-        const withRouterBindings = routerProvider ? (
-            <RouterBindingsProvider router={routerProvider}>
-                {withLegacyRouter}
-            </RouterBindingsProvider>
-        ) : (
-            withLegacyRouter
-        );
+    const withRouterBindings = routerProvider ? (
+      <RouterBindingsProvider router={routerProvider}>
+        {withLegacyRouter}
+      </RouterBindingsProvider>
+    ) : (
+      withLegacyRouter
+    );
 
-        const withResource = resources ? (
-            <ResourceContextProvider
-                resources={resources.map((r) => ({
-                    ...r,
-                    options: {
-                        ...r.options,
-                        route: r.options?.route ?? r.route,
-                    },
-                }))}
-            >
-                {withRouterBindings}
-            </ResourceContextProvider>
-        ) : (
-            withRouterBindings
-        );
-        const withData = dataProvider ? (
-            <DataContextProvider {...dataProvider}>
-                {withResource}
-            </DataContextProvider>
-        ) : (
-            withResource
-        );
+    const withResource = resources ? (
+      <ResourceContextProvider
+        resources={resources.map((r) => ({
+          ...r,
+          options: {
+            ...r.options,
+            route: r.options?.route ?? r.route,
+          },
+        }))}
+      >
+        {withRouterBindings}
+      </ResourceContextProvider>
+    ) : (
+      withRouterBindings
+    );
+    const withData = dataProvider ? (
+      <DataContextProvider {...dataProvider}>
+        {withResource}
+      </DataContextProvider>
+    ) : (
+      withResource
+    );
 
-        const withNotificationProvider = notificationProvider ? (
-            <NotificationContextProvider {...notificationProvider}>
-                {withData}
-            </NotificationContextProvider>
-        ) : (
-            withData
-        );
+    const withNotificationProvider = notificationProvider ? (
+      <NotificationContextProvider {...notificationProvider}>
+        {withData}
+      </NotificationContextProvider>
+    ) : (
+      withData
+    );
 
-        const withAccessControl = accessControlProvider ? (
-            <AccessControlContextProvider {...accessControlProvider}>
-                {withNotificationProvider}
-            </AccessControlContextProvider>
-        ) : (
-            withNotificationProvider
-        );
+    const withAccessControl = accessControlProvider ? (
+      <AccessControlContextProvider {...accessControlProvider}>
+        {withNotificationProvider}
+      </AccessControlContextProvider>
+    ) : (
+      withNotificationProvider
+    );
 
-        const withAuidtLogProvider = auditLogProvider ? (
-            <AuditLogContextProvider {...auditLogProvider}>
-                {withAccessControl}
-            </AuditLogContextProvider>
-        ) : (
-            withAccessControl
-        );
+    const withAuidtLogProvider = auditLogProvider ? (
+      <AuditLogContextProvider {...auditLogProvider}>
+        {withAccessControl}
+      </AuditLogContextProvider>
+    ) : (
+      withAccessControl
+    );
 
-        const withLive = liveProvider ? (
-            <LiveContextProvider liveProvider={liveProvider}>
-                {withAuidtLogProvider}
-            </LiveContextProvider>
-        ) : (
-            withAuidtLogProvider
-        );
+    const withLive = liveProvider ? (
+      <LiveContextProvider liveProvider={liveProvider}>
+        {withAuidtLogProvider}
+      </LiveContextProvider>
+    ) : (
+      withAuidtLogProvider
+    );
 
-        const withTranslation = i18nProvider ? (
-            <TranslationContextProvider i18nProvider={i18nProvider}>
-                {withLive}
-            </TranslationContextProvider>
-        ) : (
-            withLive
-        );
+    const withTranslation = i18nProvider ? (
+      <TranslationContextProvider i18nProvider={i18nProvider}>
+        {withLive}
+      </TranslationContextProvider>
+    ) : (
+      withLive
+    );
 
-        const withNotification = (
-            <UndoableQueueContextProvider>
-                {withTranslation}
-            </UndoableQueueContextProvider>
-        );
+    const withNotification = (
+      <UndoableQueueContextProvider>
+        {withTranslation}
+      </UndoableQueueContextProvider>
+    );
 
-        const withLegacyAuth = legacyAuthProvider ? (
-            <LegacyAuthContextProvider
-                {...legacyAuthProvider}
-                isProvided={Boolean(legacyAuthProvider)}
-            >
-                {withNotification}
-            </LegacyAuthContextProvider>
-        ) : (
-            withNotification
-        );
+    const withLegacyAuth = legacyAuthProvider ? (
+      <LegacyAuthContextProvider
+        {...legacyAuthProvider}
+        isProvided={Boolean(legacyAuthProvider)}
+      >
+        {withNotification}
+      </LegacyAuthContextProvider>
+    ) : (
+      withNotification
+    );
 
-        const withAuth = authProvider ? (
-            <AuthBindingsContextProvider
-                {...authProvider}
-                isProvided={Boolean(authProvider)}
-            >
-                {withLegacyAuth}
-            </AuthBindingsContextProvider>
-        ) : (
-            withLegacyAuth
-        );
+    const withAuth = authProvider ? (
+      <AuthBindingsContextProvider
+        {...authProvider}
+        isProvided={Boolean(authProvider)}
+      >
+        {withLegacyAuth}
+      </AuthBindingsContextProvider>
+    ) : (
+      withLegacyAuth
+    );
 
-        const withRefine = refineProvider ? (
-            <RefineContextProvider {...refineProvider}>
-                {withAuth}
-            </RefineContextProvider>
-        ) : (
-            withAuth
-        );
+    const withRefine = refineProvider ? (
+      <RefineContextProvider {...refineProvider}>
+        {withAuth}
+      </RefineContextProvider>
+    ) : (
+      withAuth
+    );
 
-        return (
-            <QueryClientProvider client={queryClient}>
-                {withRefine}
-            </QueryClientProvider>
-        );
-    };
+    return (
+      <QueryClientProvider client={queryClient}>
+        {withRefine}
+      </QueryClientProvider>
+    );
+  };
 };
 
 export {
-    MockJSONServer,
-    mockLegacyRouterProvider,
-    mockRouterBindings,
-    MockAccessControlProvider,
-    MockLiveProvider,
-    mockLegacyAuthProvider,
-    mockAuthProvider,
+  MockJSONServer,
+  mockLegacyRouterProvider,
+  mockRouterBindings,
+  MockAccessControlProvider,
+  MockLiveProvider,
+  mockLegacyAuthProvider,
+  mockAuthProvider,
 } from "./dataMocks";
 
 // re-export everything

@@ -15,7 +15,11 @@ setRefineProps({
 });
 
 const Wrapper = ({ children }) => {
-  return <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>{children}</ChakraUI.ChakraProvider>;
+  return (
+    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+      {children}
+    </ChakraUI.ChakraProvider>
+  );
 };
 ```
 
@@ -153,7 +157,9 @@ import { Refine } from "@refinedev/core";
 import { RefreshButton } from "@refinedev/chakra-ui";
 
 const MyRefreshComponent = () => {
-  return <RefreshButton colorScheme="black" resource="categories" recordItemId="2" />;
+  return (
+    <RefreshButton colorScheme="black" resource="categories" recordItemId="2" />
+  );
 };
 // visible-block-end
 

@@ -3,12 +3,12 @@ import dedent from "dedent";
 import { getPackagesFromPackageJSON } from "./get-packages-from-package-json";
 
 export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
-    {
-        name: "@refinedev/ably",
-        description: "Ably integration for refine",
-        install: `npm install @refinedev/ably`,
-        usage: dedent(
-            `
+  {
+    name: "@refinedev/ably",
+    description: "Ably integration for refine",
+    install: `npm install @refinedev/ably`,
+    usage: dedent(
+      `
             import { liveProvider, Ably } from "@refinedev/ably";
 
             export const ablyClient = new Ably.Realtime("YOUR_API_TOKEN");
@@ -24,14 +24,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
         `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/airtable",
-        description: "Airtable integration for refine",
-        install: `npm install @refinedev/airtable`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/airtable",
+    description: "Airtable integration for refine",
+    install: `npm install @refinedev/airtable`,
+    usage: dedent(
+      `
             import dataProvider from "@refinedev/airtable";
 
             const App = () => {
@@ -45,14 +45,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/antd",
-        description: "Ant Design integration for refine",
-        install: `npm install @refinedev/antd antd`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/antd",
+    description: "Ant Design integration for refine",
+    install: `npm install @refinedev/antd antd`,
+    usage: dedent(
+      `
             import { ThemedLayoutV2 } from "@refinedev/antd";
 
             import "@refinedev/antd/dist/reset.css";
@@ -69,14 +69,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/appwrite",
-        description: "Appwrite integration for refine",
-        install: `npm install @refinedev/appwrite`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/appwrite",
+    description: "Appwrite integration for refine",
+    install: `npm install @refinedev/appwrite`,
+    usage: dedent(
+      `
             import { dataProvider, liveProvider, Account, Appwrite, Storage } from "@refinedev/appwrite";
 
             const appwriteClient = new Appwrite();
@@ -96,14 +96,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/chakra-ui",
-        description: "Chakra UI integration for refine",
-        install: `npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/chakra-ui",
+    description: "Chakra UI integration for refine",
+    install: `npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion`,
+    usage: dedent(
+      `
             import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
             import { ChakraProvider } from "@chakra-ui/react";
 
@@ -121,14 +121,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/graphql",
-        description: "GraphQL integration for refine",
-        install: `npm install @refinedev/graphql`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/graphql",
+    description: "GraphQL integration for refine",
+    install: `npm install @refinedev/graphql`,
+    usage: dedent(
+      `
             import dataProvider, { GraphQLClient } from "@refinedev/graphql";
 
             const client = new GraphQLClient("YOUR_API_URL");
@@ -144,14 +144,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/hasura",
-        description: "GraphQL integration for refine",
-        install: `npm install @refinedev/hasura`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/hasura",
+    description: "GraphQL integration for refine",
+    install: `npm install @refinedev/hasura`,
+    usage: dedent(
+      `
             import dataProvider, { GraphQLClient } from "@refinedev/hasura";
 
             const client = new GraphQLClient("HASURA_API_URL", {
@@ -171,14 +171,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/inferencer",
-        description: "Auto generate views based on your APIs with refine",
-        install: `npm install @refinedev/inferencer`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/inferencer",
+    description: "Auto generate views based on your APIs with refine",
+    install: `npm install @refinedev/inferencer`,
+    usage: dedent(
+      `
         import { AntdInferencer } from "@refinedev/inferencer/antd";
 
         const App = () => {
@@ -191,14 +191,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
             );
         };
         `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/kbar",
-        description: "Command palette integration with kbar for refine",
-        install: `npm install @refinedev/kbar`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/kbar",
+    description: "Command palette integration with kbar for refine",
+    install: `npm install @refinedev/kbar`,
+    usage: dedent(
+      `
             import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
             const App = () => {
@@ -213,14 +213,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
         `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/mantine",
-        description: "Mantine UI integration for refine",
-        install: `npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/mantine",
+    description: "Mantine UI integration for refine",
+    install: `npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons`,
+    usage: dedent(
+      `
             import { ThemedLayoutV2 } from "@refinedev/mantine";
             import { MantineProvider } from "@mantine/core";
 
@@ -238,14 +238,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/medusa",
-        description: "Medusa store integration for refine",
-        install: `npm install @refinedev/medusa`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/medusa",
+    description: "Medusa store integration for refine",
+    install: `npm install @refinedev/medusa`,
+    usage: dedent(
+      `
             import dataProvider, { authProvider } from "@refinedev/medusa";
 
             const App = () => {
@@ -260,14 +260,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/mui",
-        description: "Material UI integration for refine",
-        install: `npm install @refinedev/mui @refinedev/react-hook-form @mui/material @mui/lab @mui/x-data-grid @emotion/react @emotion/styled react-hook-form`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/mui",
+    description: "Material UI integration for refine",
+    install: `npm install @refinedev/mui @refinedev/react-hook-form @mui/material @mui/lab @mui/x-data-grid @emotion/react @emotion/styled react-hook-form`,
+    usage: dedent(
+      `
             import { ThemedLayoutV2 } from "@refinedev/mui";
 
             import CssBaseline from "@mui/material/CssBaseline";
@@ -290,14 +290,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/nestjs-query",
-        description: "NestJS Query data provider integration for refine",
-        install: `npm install @refinedev/nestjs-query graphql-ws`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/nestjs-query",
+    description: "NestJS Query data provider integration for refine",
+    install: `npm install @refinedev/nestjs-query graphql-ws`,
+    usage: dedent(
+      `
             import dataProvider, {
                 GraphQLClient,
                 liveProvider,
@@ -317,14 +317,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/nestjsx-crud",
-        description: "NestJSX CRUD data provider integration for refine",
-        install: `npm install @refinedev/nestjsx-crud`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/nestjsx-crud",
+    description: "NestJSX CRUD data provider integration for refine",
+    install: `npm install @refinedev/nestjsx-crud`,
+    usage: dedent(
+      `
             import dataProvider from "@refinedev/nestjsx-crud";
 
             const App = () => {
@@ -338,14 +338,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/react-hook-form",
-        description: "React Hook Form integration for refine",
-        install: `npm install @refinedev/react-hook-form react-hook-form`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/react-hook-form",
+    description: "React Hook Form integration for refine",
+    install: `npm install @refinedev/react-hook-form react-hook-form`,
+    usage: dedent(
+      `
             import { useForm } from "@refinedev/react-hook-form";
 
             const EditPost = () => {
@@ -364,14 +364,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 return /* ... */
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/react-table",
-        description: "Tanstack React Table integration for refine",
-        install: `npm install @refinedev/react-table @tanstack/react-table`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/react-table",
+    description: "Tanstack React Table integration for refine",
+    install: `npm install @refinedev/react-table @tanstack/react-table`,
+    usage: dedent(
+      `
             import { useTable } from "@refinedev/react-table";
 
             import { ColumnDef, flexRender } from "@tanstack/react-table";
@@ -404,14 +404,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 return /* ... */
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/simple-rest",
-        description: "Data provider integration for REST APIs with refine",
-        install: `npm install @refinedev/simple-rest`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/simple-rest",
+    description: "Data provider integration for REST APIs with refine",
+    install: `npm install @refinedev/simple-rest`,
+    usage: dedent(
+      `
             import dataProvider from "@refinedev/simple-rest";
 
             const App = () => {
@@ -425,15 +425,15 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/supabase",
-        description:
-            "Data provider and live provider integrations for Supabase with refine",
-        install: `npm install @refinedev/supabase`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/supabase",
+    description:
+      "Data provider and live provider integrations for Supabase with refine",
+    install: `npm install @refinedev/supabase`,
+    usage: dedent(
+      `
             import { dataProvider, liveProvider, createClient } from "@refinedev/supabase";
 
             const supabaseClient = createClient("SUPABASE_URL", "SUPABASE_KEY");
@@ -450,14 +450,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/strapi",
-        description: "Strapi integration of refine",
-        install: `npm install @refinedev/strapi axios`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/strapi",
+    description: "Strapi integration of refine",
+    install: `npm install @refinedev/strapi axios`,
+    usage: dedent(
+      `
             import { DataProvider, AuthHelper } from "@refinedev/strapi";
 
             const axiosInstance = axios.create();
@@ -474,14 +474,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
-    {
-        name: "@refinedev/strapi-v4",
-        description: "StrapiV4 integration of refine",
-        install: `npm install @refinedev/strapi-v4 axios`,
-        usage: dedent(
-            `
+    ),
+  },
+  {
+    name: "@refinedev/strapi-v4",
+    description: "StrapiV4 integration of refine",
+    install: `npm install @refinedev/strapi-v4 axios`,
+    usage: dedent(
+      `
             import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
 
             const axiosInstance = axios.create();
@@ -498,16 +498,14 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
                 );
             };
             `.trim(),
-        ),
-    },
+    ),
+  },
 ];
 
 export const getAvailablePackages = async (projectPath?: string) => {
-    const installedRefinePackages = await getPackagesFromPackageJSON(
-        projectPath,
-    );
+  const installedRefinePackages = await getPackagesFromPackageJSON(projectPath);
 
-    return AVAILABLE_PACKAGES.filter(
-        (p) => !installedRefinePackages.includes(p.name),
-    );
+  return AVAILABLE_PACKAGES.filter(
+    (p) => !installedRefinePackages.includes(p.name),
+  );
 };

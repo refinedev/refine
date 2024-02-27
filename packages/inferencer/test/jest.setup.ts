@@ -6,37 +6,37 @@ jest.setTimeout(30000);
 
 /** Antd mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
-    return {
-        matches: false,
-        media: query,
-        onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-    };
+  return {
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+  };
 });
 
 window.scroll = jest.fn();
 window.alert = jest.fn();
 
 Object.defineProperty(window, "TextEncoder", {
-    writable: true,
-    value: util.TextEncoder,
+  writable: true,
+  value: util.TextEncoder,
 });
 Object.defineProperty(window, "TextDecoder", {
-    writable: true,
-    value: util.TextDecoder,
+  writable: true,
+  value: util.TextDecoder,
 });
 
 class ResizeObserver {
-    observe() {
-        // do nothing
-    }
-    unobserve() {
-        // do nothing
-    }
-    disconnect() {
-        // do nothing
-    }
+  observe() {
+    // do nothing
+  }
+  unobserve() {
+    // do nothing
+  }
+  disconnect() {
+    // do nothing
+  }
 }
 
 window.ResizeObserver = ResizeObserver;

@@ -54,11 +54,20 @@ export function Form() {
     <form onSubmit={handleSubmit(submitHandler)}>
       <p>
         <label htmlFor="username">Username</label>
-        <input type="text" id="username" {...register("username", { required: true, minLength: 4 })} />
+        <input
+          type="text"
+          id="username"
+          {...register("username", { required: true, minLength: 4 })}
+        />
       </p>
       <p>
         <label htmlFor="Password">Password</label>
-        <input type="password" id="password" {...register("password", { required: true, minLength: 10 })} required />
+        <input
+          type="password"
+          id="password"
+          {...register("password", { required: true, minLength: 10 })}
+          required
+        />
       </p>
       <button> Submit </button>
     </form>
@@ -126,7 +135,10 @@ export function LoginForm() {
   return (
     <>
       <h1>Login form</h1>
-      <Formik initialValues={{ userName: "", password: "" }} onSubmit={(values) => console.log("values ", values)}>
+      <Formik
+        initialValues={{ userName: "", password: "" }}
+        onSubmit={(values) => console.log("values ", values)}
+      >
         <Form>
           <p>
             <label htmlFor="username">Username</label>

@@ -1,0 +1,105 @@
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+./packages/chakra-ui/src/hooks/usePagination/index.ts:15:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━
+
+  ! Declare variables separately
+  
+    13 │   const { current, pageCount } = props;
+    14 │ 
+  > 15 │   const prev = current === 1 ? undefined : current - 1,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 16 │     next = current === pageCount ? undefined : current + 1,
+  > 17 │     items: [number | string] = [1];
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    18 │ 
+    19 │   if (current === 1 && pageCount === 1) return { current, prev, next, items };
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    13 13 │     const { current, pageCount } = props;
+    14 14 │   
+    15    │ - ··const·prev·=·current·===·1·?·undefined·:·current·-·1,
+    16    │ - ····next·=·current·===·pageCount·?·undefined·:·current·+·1,
+    17    │ - ····items:·[number·|·string]·=·[1];
+       15 │ + ··const·prev·=·current·===·1·?·undefined·:·current·-·1;
+       16 │ + ··const·next·=·current·===·pageCount·?·undefined·:·current·+·1;
+       17 │ + ··const·items:·[number·|·string]·=·[1];
+    18 18 │   
+    19 19 │     if (current === 1 && pageCount === 1) return { current, prev, next, items };
+  
+
+./packages/chakra-ui/src/hooks/usePagination/index.ts:22:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━
+
+  ! Declare variables separately
+  
+    20 │   if (current > 4) items.push("…");
+    21 │ 
+  > 22 │   const r = 2,
+       │   ^^^^^^^^^^^^
+  > 23 │     r1 = current - r,
+  > 24 │     r2 = current + r;
+       │     ^^^^^^^^^^^^^^^^^
+    25 │ 
+    26 │   for (let i = r1 > 2 ? r1 : 2; i <= Math.min(pageCount, r2); i++)
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    20 20 │     if (current > 4) items.push("…");
+    21 21 │   
+    22    │ - ··const·r·=·2,
+    23    │ - ····r1·=·current·-·r,
+    24    │ - ····r2·=·current·+·r;
+       22 │ + ··const·r·=·2;
+       23 │ + ··const·r1·=·current·-·r;
+       24 │ + ··const·r2·=·current·+·r;
+    25 25 │   
+    26 26 │     for (let i = r1 > 2 ? r1 : 2; i <= Math.min(pageCount, r2); i++)
+  
+
+./packages/nestjs-query/src/dataProvider/index.ts:264:7 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━
+
+  ! Declare variables separately
+  
+    262 │       const operation = camelcase(resource);
+    263 │ 
+  > 264 │       let query, queryVariables;
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    265 │ 
+    266 │       if (meta?.fields) {
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    262 262 │         const operation = camelcase(resource);
+    263 263 │   
+    264     │ - ······let·query,·queryVariables;
+        264 │ + ······let·query;
+        265 │ + ······let·queryVariables;
+    265 266 │   
+    266 267 │         if (meta?.fields) {
+  
+
+./packages/nestjs-query/src/dataProvider/index.ts:451:11 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━
+
+  ! Declare variables separately
+  
+    449 │       if (meta) {
+    450 │         if (meta.operation) {
+  > 451 │           let query, variables;
+        │           ^^^^^^^^^^^^^^^^^^^^^
+    452 │ 
+    453 │           if (method === "get") {
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    449 449 │         if (meta) {
+    450 450 │           if (meta.operation) {
+    451     │ - ··········let·query,·variables;
+        451 │ + ··········let·query;
+        452 │ + ··········let·variables;
+    452 453 │   
+    453 454 │             if (method === "get") {
+  
+
+Checked 6952 file(s) in 481ms

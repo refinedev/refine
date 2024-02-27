@@ -9,13 +9,13 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 
 root.render(
-    <React.StrictMode>
-        <Auth0Provider
-            domain="dev-qg1ftdys736bk5i3.us.auth0.com"
-            clientId="Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO"
-            redirectUri={window.location.origin}
-        >
-            <App />
-        </Auth0Provider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <Auth0Provider
+      domain="dev-qg1ftdys736bk5i3.us.auth0.com"
+      clientId="Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO"
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
+  </React.StrictMode>,
 );

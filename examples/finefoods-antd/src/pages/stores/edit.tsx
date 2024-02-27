@@ -6,17 +6,15 @@ import { StoreForm } from "../../components";
 import _debounce from "lodash/debounce";
 
 export const StoreEdit = () => {
-    const t = useTranslate();
+  const t = useTranslate();
 
-    return (
-        <>
-            <Flex>
-                <ListButton icon={<LeftOutlined />}>
-                    {t("stores.stores")}
-                </ListButton>
-            </Flex>
-            <Divider />
-            <StoreForm action="edit" />
-        </>
-    );
+  return (
+    <>
+      <Flex>
+        <ListButton icon={<LeftOutlined />}>{t("stores.stores")}</ListButton>
+      </Flex>
+      <Divider />
+      <StoreForm action="edit" />
+    </>
+  );
 };

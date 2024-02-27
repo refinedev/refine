@@ -9,13 +9,13 @@ import { FileFieldProps } from "../types";
  * @see {@link https://refine.dev/docs/api-reference/antd/components/fields/file} for more details.
  */
 export const FileField: React.FC<FileFieldProps> = ({
-    title,
-    src,
-    ...rest
+  title,
+  src,
+  ...rest
 }) => {
-    return (
-        <UrlField value={src} title={title} {...rest}>
-            {title ?? src}
-        </UrlField>
-    );
+  return (
+    <UrlField value={src} title={title} {...rest}>
+      {title ?? src}
+    </UrlField>
+  );
 };

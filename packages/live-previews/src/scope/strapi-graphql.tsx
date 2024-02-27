@@ -1,7 +1,7 @@
 import * as RefineStrapiGraphql from "@refinedev/strapi-graphql";
 
 const StrapiGraphqlScope = {
-    RefineStrapiGraphql,
+  RefineStrapiGraphql,
 };
 
 export default StrapiGraphqlScope;

@@ -178,7 +178,9 @@ This prop can be used to skip access control check with its `enabled` property o
 import { ListButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
-  return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+  return (
+    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+  );
 };
 ```
 
