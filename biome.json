@@ -91,7 +91,7 @@
         "useSelfClosingElements": "off",
         "useDefaultParameterLast": "off",
         "useConst": "error",
-        "noCommaOperator": "off"
+        "noCommaOperator": "error"
       },
       "suspicious": {
         "noExplicitAny": "off",
