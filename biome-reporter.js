@@ -32,11 +32,21 @@ const disabledRules = [
   "useSingleVarDeclarator",
 ];
 
+try {
+  fs.mkdirSync("./.biome/reports/a11y", { recursive: true });
+  fs.mkdirSync("./.biome/reports/complexity");
+  fs.mkdirSync("./.biome/reports/correctness");
+  fs.mkdirSync("./.biome/reports/performance");
+  fs.mkdirSync("./.biome/reports/security");
+  fs.mkdirSync("./.biome/reports/style");
+  fs.mkdirSync("./.biome/reports/suspicious");
+} catch (e) {}
+
 for (const [group, rules] of lintGroups) {
   if (group === "recommended") continue;
 
   for (const [rule, value] of Object.entries(rules)) {
-    if (value === "error") continue;
+    if (["error", "off"].includes(value)) continue;
     if (disabledRules.includes(rule)) continue;
 
     const modifiedConfig = JSON.stringify(
@@ -47,7 +57,7 @@ for (const [group, rules] of lintGroups) {
 
     fs.writeFileSync("./biome.json", modifiedConfig);
 
-    execSync(`npm run biome lint . &> .biome/${group}/${rule}`);
+    execSync(`npm run biome lint . &> .biome/reports/${group}/${rule}`);
 
     execSync("git checkout -- biome.json");
   }
