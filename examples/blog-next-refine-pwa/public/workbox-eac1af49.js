@@ -1800,13 +1800,11 @@ define(["exports"], (exports) => {
           request.mode === "navigate" ? undefined : this._strategy.fetchOptions,
         );
 
-        if ("development" !== "production") {
-          logger.debug(
-            `Network request for ` +
-              `'${getFriendlyURL(request.url)}' returned a response with ` +
-              `status '${fetchResponse.status}'.`,
-          );
-        }
+        logger.debug(
+          `Network request for ` +
+            `'${getFriendlyURL(request.url)}' returned a response with ` +
+            `status '${fetchResponse.status}'.`,
+        );
 
         for (const callback of this.iterateCallbacks("fetchDidSucceed")) {
           fetchResponse = await callback({

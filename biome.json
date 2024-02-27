@@ -72,7 +72,7 @@
         "noUnsafeOptionalChaining": "off",
         "noSwitchDeclarations": "off",
         "noUnreachable": "error",
-        "noConstantCondition": "off"
+        "noConstantCondition": "error"
       },
       "performance": {
         "noAccumulatingSpread": "off",
