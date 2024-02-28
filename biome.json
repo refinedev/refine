@@ -61,7 +61,7 @@
         "noUselessSwitchCase": "error",
         "noUselessConstructor": "error",
         "noExtraBooleanCast": "error",
-        "noStaticOnlyClass": "off",
+        "noStaticOnlyClass": "error",
         "noUselessCatch": "error",
         "useArrowFunction": "error",
         "noUselessRename": "error"
