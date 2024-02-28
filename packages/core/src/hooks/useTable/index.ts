@@ -380,7 +380,6 @@ export function useTable<
   const getCurrentQueryParams = (): object => {
     if (routerType === "new") {
       // We get QueryString parameters that are uncontrolled by refine.
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { sorters, filters, pageSize, current, ...rest } =
         parsedParams?.params ?? {};
 
@@ -388,7 +387,6 @@ export function useTable<
     }
 
     // We get QueryString parameters that are uncontrolled by refine.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
       ignoreQueryPrefix: true,
     });

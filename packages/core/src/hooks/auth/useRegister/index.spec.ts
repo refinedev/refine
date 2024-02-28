@@ -516,7 +516,6 @@ describe("useRegister Hook", () => {
         useRegister({
           mutationOptions: {
             // mutationFn is omitted in types. So we need to use @ts-ignore test it.
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             mutationFn: mutationFnMock,
           },

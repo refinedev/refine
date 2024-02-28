@@ -10,7 +10,6 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
   if (error) {
     return (
       <Center style={{ minHeight: 300 }}>
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-ignore chakra-ui and typescript conflict */}
         <Alert
           status="error"

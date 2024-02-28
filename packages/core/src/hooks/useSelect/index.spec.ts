@@ -575,7 +575,6 @@ describe("useSelect Hook", () => {
       },
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await act(() => {});
 
     expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
@@ -800,7 +799,6 @@ describe("useSelect Hook", () => {
       },
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await act(() => {});
 
     expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({

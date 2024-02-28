@@ -11,9 +11,6 @@
 // and https://github.com/reactjs/react-codemod/blob/dd8671c9a470a2c342b221ec903c574cf31e9f57/bin/cli.js
 // @refinedev/codemod name-of-transform optional/path/to/src [...options]
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import chalk from "chalk";
 import execa from "execa";
 import globby from "globby";

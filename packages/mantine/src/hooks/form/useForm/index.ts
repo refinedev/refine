@@ -243,7 +243,6 @@ export const useForm = <
   const saveButtonProps = {
     disabled: formLoading,
     onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error event type is not compatible with pointer event
       onSubmit(onFinish, () => false)(e);
     },

@@ -54,7 +54,6 @@ export const breadcrumbTests = (
         resources: [
           {
             name: "posts",
-            // eslint-disable-next-line react/display-name
             icon: <div data-testid="resource-icon" />,
           },
         ],

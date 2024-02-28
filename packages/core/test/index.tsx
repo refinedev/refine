@@ -86,7 +86,6 @@ export const TestWrapper: (
   liveProvider,
   auditLogProvider,
 }) => {
-  // eslint-disable-next-line react/display-name
   return ({ children }): React.ReactElement => {
     const withRouterPicker = (
       <RouterPickerProvider
