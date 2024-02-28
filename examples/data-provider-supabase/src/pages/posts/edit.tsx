@@ -87,7 +87,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         >
           <Select {...categorySelectProps} />
         </Form.Item>
-         <Form.Item
+        <Form.Item
           label="Status"
           name="status"
           rules={[
