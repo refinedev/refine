@@ -86,7 +86,7 @@
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
         "noNonNullAssertion": "warn",
-        "useSingleVarDeclarator": "off",
+        "useSingleVarDeclarator": "error",
         "noParameterAssign": "warn",
         "useSelfClosingElements": "error",
         "useDefaultParameterLast": "warn",
