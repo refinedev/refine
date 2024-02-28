@@ -10,9 +10,9 @@ import {
 } from "@test";
 import { LoginPageProps } from "@refinedev/core";
 
-export const pageLoginTests = function (
+export const pageLoginTests = (
   LoginPage: FC<LoginPageProps<any, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Login Page", () => {
     it("should render card title", async () => {
       const { getByText } = render(<LoginPage />, {

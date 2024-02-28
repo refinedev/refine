@@ -17,7 +17,7 @@ export const promptForPackageInstallation = async (
   requiredPackages: string[],
 ) => {
   const message =
-    `This component requires following packages to be installed:\n`
+    "This component requires following packages to be installed:\n"
       .concat(requiredPackages.map((pkg) => ` - ${pkg}`).join("\n"))
       .concat("\nDo you want to install them?");
 
@@ -43,6 +43,6 @@ export const displayManualInstallationCommand = async (
   const packages = requiredPackages.join(" ");
   const command = `${pm.name} ${pmCommand} ${packages}`;
 
-  console.log(`\nYou can install them manually by running this command:`);
+  console.log("\nYou can install them manually by running this command:");
   console.log(chalk.bold.blueBright(command));
 };

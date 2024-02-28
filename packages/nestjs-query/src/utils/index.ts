@@ -133,15 +133,15 @@ export const generateFilters = (filters: LogicalFilter[]) => {
         return set(result, filter.operator, [
           generateFilters(filter.value as LogicalFilter[]),
         ]);
-      } else if ("field" in filter) {
+      }
+      if ("field" in filter) {
         return set(
           result,
           filter.field,
           operatorMapper(filter.operator, filter.value),
         );
-      } else {
-        return {};
       }
+      return {};
     });
 
   return result;

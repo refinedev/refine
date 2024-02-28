@@ -3,9 +3,9 @@ import { RefineFieldEmailProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldEmailTests = function (
+export const fieldEmailTests = (
   EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Email Field", () => {
     it("renders email with mailto href", () => {
       const { getByText } = render(<EmailField value="test@test.com" />);

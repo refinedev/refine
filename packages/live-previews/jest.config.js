@@ -7,7 +7,6 @@ const paths = compilerOptions.paths ? compilerOptions.paths : {};
 module.exports = {
   preset: "ts-jest",
   rootDir: "./",
-  testEnvironment: "node",
   moduleNameMapper: {
     ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
     "^.+\\.tsx?$": [

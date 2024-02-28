@@ -27,6 +27,6 @@ export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
           {sorted && <IconChevronDown size={18} />}
         </>
       }
-    ></IconButton>
+    />
   );
 };

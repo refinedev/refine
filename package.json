@@ -19,6 +19,7 @@
     "lerna": "lerna",
     "lint": "biome check .",
     "lint:ci": "biome ci .",
+    "lint:error": "biome check . --diagnostic-level error",
     "lint:fix": "biome check . --apply",
     "lint:staged": "lint-staged",
     "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",

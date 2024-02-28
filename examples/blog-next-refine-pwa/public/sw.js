@@ -20,7 +20,7 @@ if (!self.define) {
   let nextDefineUri;
 
   const singleRequire = (uri, parentUri) => {
-    uri = new URL(uri + ".js", parentUri).href;
+    uri = new URL(`${uri}.js`, parentUri).href;
     return (
       registry[uri] ||
       new Promise((resolve) => {

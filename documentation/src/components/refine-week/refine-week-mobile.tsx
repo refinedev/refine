@@ -76,6 +76,7 @@ export const RefineWeekMobile = ({ variant, data, className }: Props) => {
             "text-gray-800 dark:text-gray-100",
             "mt-10",
           )}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
           dangerouslySetInnerHTML={{ __html: data.description }}
         />
 
@@ -191,6 +192,7 @@ export const RefineWeekMobile = ({ variant, data, className }: Props) => {
                 </div>
                 <div
                   className={clsx("px-4", "text-gray-600 dark:text-gray-400")}
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                   dangerouslySetInnerHTML={{
                     __html: item.description,
                   }}

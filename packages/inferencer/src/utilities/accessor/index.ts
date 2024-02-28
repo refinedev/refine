@@ -19,7 +19,7 @@ function accessorSingle(variableName: string, key?: string, accessor?: string) {
   }
 
   if (accessor) {
-    base += `?.`;
+    base += "?.";
     if (shouldDotAccess(accessor)) {
       base += accessor;
     } else {
@@ -50,12 +50,10 @@ export const accessor = (
   if (Array.isArray(accessor)) {
     if (joiner) {
       return accessorMultiple(variable, key, accessor).join(joiner);
-    } else {
-      return accessorSingle(variable, key, accessor[0]);
     }
-  } else {
-    return accessorSingle(variable, key, accessor);
+    return accessorSingle(variable, key, accessor[0]);
   }
+  return accessorSingle(variable, key, accessor);
 };
 
 export const dotAccessor = (

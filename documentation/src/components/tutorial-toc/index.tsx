@@ -47,6 +47,7 @@ const LinkWithId = ({
           ? "text-gray-800 dark:text-gray-0"
           : " hover:!text-refine-link-light active:!text-refine-link-light dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
       )}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
     />
   );
@@ -144,13 +145,14 @@ const TocLink: React.FC<TocLinkProps> = ({ item, activeId, setActiveId }) => {
   return (
     <a
       href={`#${item.id}`}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
       dangerouslySetInnerHTML={{ __html: item.value }}
       className={clsx(
         "text-gray-800 dark:text-gray-0 hover:!text-refine-link active:!text-refine-link dark:hover:!text-refine-link-dark dark:active:!text-refine-link-dark",
         activeId === item.id &&
           "!text-refine-link-light dark:!text-refine-link-dark",
       )}
-    ></a>
+    />
   );
 };
 
@@ -208,7 +210,7 @@ export const TutorialTOC = () => {
             id={doc.id}
             width="100%"
             height="100%"
-            unitNo={isNaN(Number(unitNo)) ? undefined : unitNo}
+            unitNo={Number.isNaN(Number(unitNo)) ? undefined : unitNo}
             isCurrent={doc.current}
           />
         </div>
@@ -221,6 +223,7 @@ export const TutorialTOC = () => {
               "hover:cursor-default hover:no-underline hover:text-gray-900":
                 doc.current,
             })}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
             dangerouslySetInnerHTML={{ __html: formattedTitle }}
           />
 

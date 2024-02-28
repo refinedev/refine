@@ -58,7 +58,7 @@ export const Notifications: React.FC = () => {
   });
 
   const getDeal = (id: string | number) => {
-    return dealData?.data?.find((deal) => deal.id == id);
+    return dealData?.data?.find((deal) => deal.id === id);
   };
 
   const content = (

@@ -26,7 +26,7 @@ export const LandingHeroVideo = () => {
         style={{
           transform: "translateZ(0)",
         }}
-      ></div>
+      />
       <div
         className={clsx(
           "mt-16",

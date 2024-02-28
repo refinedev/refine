@@ -195,7 +195,7 @@ describe("inferencer-antd", () => {
       cy.get("#status").clear();
       cy.get("#status").type("status");
       cy.setAntdDropdown({ id: "category_id", selectIndex: 0 });
-      cy.get(`#createdAt`)
+      cy.get("#createdAt")
         .click({ force: true })
         .get(".ant-picker-now-btn")
         .eq(0)

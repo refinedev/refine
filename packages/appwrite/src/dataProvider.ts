@@ -25,12 +25,11 @@ export const dataProvider = (
 
       const appwriteSorts = getAppwriteSorting(sorters);
 
-      const { total: total, documents: data } =
-        await database.listDocuments<any>(databaseId, resource, [
-          ...appwriteFilters,
-          ...appwritePagination,
-          ...appwriteSorts,
-        ]);
+      const { total, documents: data } = await database.listDocuments<any>(
+        databaseId,
+        resource,
+        [...appwriteFilters, ...appwritePagination, ...appwriteSorts],
+      );
 
       return {
         data: data.map(({ $id, ...restData }: { $id: string }) => ({

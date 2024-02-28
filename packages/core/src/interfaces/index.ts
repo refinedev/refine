@@ -58,7 +58,6 @@ export * from "./auditLog";
 export type BaseKey = string | number;
 export type BaseRecord = {
   id?: BaseKey;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 export type BaseOption = {
@@ -69,7 +68,6 @@ export type BaseOption = {
 /**
  * @deprecated Use `BaseOption` instead.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Option extends BaseOption {}
 
 /* Backward compatible version of 'TreeMenuItem' */

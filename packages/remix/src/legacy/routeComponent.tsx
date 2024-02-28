@@ -85,9 +85,8 @@ export function RemixRouteComponent(
           </CanAccess>
         </LayoutWrapper>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 
   if (resource) {
@@ -106,11 +105,11 @@ export function RemixRouteComponent(
 
     const stringError = () =>
       console.error(
-        `\`string\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+        "`string` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.",
       );
     const definitionError = () =>
       console.error(
-        `\`Object\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+        "`Object` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.",
       );
 
     const List =

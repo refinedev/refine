@@ -27,11 +27,11 @@ const renderCreate = (
   );
 };
 
-export const crudCreateTests = function (
+export const crudCreateTests = (
   Create: React.ComponentType<
     RefineCrudCreateProps<any, any, any, any, any, any, {}>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());
@@ -44,7 +44,7 @@ export const crudCreateTests = function (
     });
 
     it("should render default save button successfuly", async () => {
-      const { queryByTestId } = renderCreate(<Create></Create>);
+      const { queryByTestId } = renderCreate(<Create />);
 
       expect(queryByTestId(RefineButtonTestIds.SaveButton)).not.toBeNull();
     });
@@ -102,7 +102,7 @@ export const crudCreateTests = function (
     it("should render tags", async () => {
       const { getByText } = render(
         <Routes>
-          <Route path="/:resource/:action/:id" element={<Create />}></Route>
+          <Route path="/:resource/:action/:id" element={<Create />} />
         </Routes>,
         {
           wrapper: TestWrapper({

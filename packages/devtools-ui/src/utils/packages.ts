@@ -35,9 +35,8 @@ export const getLatestInfo = async (name: string) => {
       name: data.data?.name ?? name,
       latestVersion: data?.data?.version,
     } as PackageLatestVersionType;
-  } else {
-    return null;
   }
+  return null;
 };
 
 export const installPackages = async (packages: string[]) => {

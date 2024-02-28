@@ -87,7 +87,7 @@ describe("table-mantine-basic", () => {
 
     cy.url().should(
       "include",
-      `filters[1][field]=title&filters[1][operator]=contains&filters[1][value]=lorem`,
+      "filters[1][field]=title&filters[1][operator]=contains&filters[1][value]=lorem",
     );
 
     cy.wait("@getFilteredPosts");

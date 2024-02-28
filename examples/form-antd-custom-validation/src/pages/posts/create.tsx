@@ -67,7 +67,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
 
                 const { data } = await refetch();
 
-                if (data && data.data.isAvailable) {
+                if (data?.data.isAvailable) {
                   return Promise.resolve();
                 }
 

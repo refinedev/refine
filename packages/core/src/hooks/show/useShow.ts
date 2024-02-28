@@ -140,10 +140,8 @@ export const useShow = <
   });
 
   warnOnce(
-    Boolean(resourceFromProp) && !Boolean(id),
-    `[useShow]: resource: "${identifier}", id: ${id} \n\n` +
-      `If you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\n` +
-      `See https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
+    Boolean(resourceFromProp) && !id,
+    `[useShow]: resource: "${identifier}", id: ${id} \n\nIf you don't use the \`setShowId\` method to set the \`showId\`, you should pass the \`id\` prop to \`useShow\`. Otherwise, \`useShow\` will not be able to infer the \`id\` from the current URL. \n\nSee https://refine.dev/docs/api-reference/core/hooks/show/useShow/#resource`,
   );
 
   const queryResult = useOne<TQueryFnData, TError, TData>({

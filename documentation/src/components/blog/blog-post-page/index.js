@@ -114,12 +114,12 @@ export const BlogPostPageView = ({ children }) => {
           <div
             className={clsx("flex", "justify-between", "sm:flex-row flex-col")}
           >
-            <div className="flex justify-center items-center gap-2"></div>
+            <div className="flex justify-center items-center gap-2" />
             <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
               <Date date={date} formattedDate={formattedDate} />
               {typeof readingTime !== "undefined" && (
                 <>
-                  <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500"></span>
+                  <span className="w-[4px] h-[4px] rounded-full bg-gray-600 dark:bg-gray-500" />
                   <ReadingTime readingTime={readingTime} />
                 </>
               )}

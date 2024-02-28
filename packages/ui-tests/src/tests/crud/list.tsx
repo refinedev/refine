@@ -27,9 +27,9 @@ const renderList = (
   );
 };
 
-export const crudListTests = function (
+export const crudListTests = (
   List: React.ComponentType<RefineCrudListProps<any, any, any, any, any, {}>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());
@@ -46,7 +46,7 @@ export const crudListTests = function (
     });
 
     it("should render optional title with title prop", async () => {
-      const { getByText } = renderList(<List title="New Title"></List>);
+      const { getByText } = renderList(<List title="New Title" />);
 
       getByText("New Title");
     });

@@ -18,19 +18,6 @@ module.exports = {
       boxShadow: {
         "monitor-filters": "0px 16px 32px 16px rgba(0, 0, 0, 0.75)",
       },
-      animation: {
-        "pulse-spin": "pulse-spin 2.5s ease-in-out infinite",
-      },
-      keyframes: {
-        "pulse-spin": {
-          "0%": { transform: "rotate(0deg)" },
-          "10%": { transform: "rotate(0deg)" },
-          "40%": { transform: "rotate(180deg)" },
-          "60%": { transform: "rotate(180deg)" },
-          "90%": { transform: "rotate(360deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-      },
       backgroundImage: {
         "feature-slide-mobile-before": `
                     linear-gradient(
@@ -104,11 +91,20 @@ module.exports = {
       animation: {
         "feature-slide-mobile-items":
           "feature-slide-mobile-items 25s linear infinite",
+        "pulse-spin": "pulse-spin 2.5s ease-in-out infinite",
       },
       keyframes: {
         "feature-slide-mobile-items": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "pulse-spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "10%": { transform: "rotate(0deg)" },
+          "40%": { transform: "rotate(180deg)" },
+          "60%": { transform: "rotate(180deg)" },
+          "90%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
     },

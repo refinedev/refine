@@ -15,3 +15,10 @@ Checked 6952 file(s) in 580ms
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 5291.
 Checked 6952 file(s) in 572ms
+
+> refinejs-repo@0.0.0 biome
+> biome lint .
+
+The number of diagnostics exceeds the number allowed by Biome.
+Diagnostics not shown: 4136.
+Checked 6952 file(s) in 545ms

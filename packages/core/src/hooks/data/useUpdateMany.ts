@@ -226,19 +226,18 @@ export const useUpdateMany = <
             meta: combinedMeta,
             metaData: combinedMeta,
           });
-        } else {
-          return handleMultiple(
-            ids.map((id) =>
-              selectedDataProvider.update<TData, TVariables>({
-                resource: resource.name,
-                id,
-                variables: values,
-                meta: combinedMeta,
-                metaData: combinedMeta,
-              }),
-            ),
-          );
         }
+        return handleMultiple(
+          ids.map((id) =>
+            selectedDataProvider.update<TData, TVariables>({
+              resource: resource.name,
+              id,
+              variables: values,
+              meta: combinedMeta,
+              metaData: combinedMeta,
+            }),
+          ),
+        );
       };
 
       if (!(mutationModePropOrContext === "undoable")) {

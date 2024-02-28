@@ -13,9 +13,8 @@ export const Prompt: React.FC<PromptProps> = ({
       if (window.confirm(message)) {
         setWarnWhen?.(false);
         return false;
-      } else {
-        return true;
       }
+      return true;
     }
     return false;
   }, [when, message, setWarnWhen]);

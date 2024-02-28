@@ -100,7 +100,7 @@ describe("should prompt for package installation and install packages if confirm
     expect(installPackagesMock).toHaveBeenCalledTimes(0);
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      `\nYou can install them manually by running this command:`,
+      "\nYou can install them manually by running this command:",
     );
   });
 });

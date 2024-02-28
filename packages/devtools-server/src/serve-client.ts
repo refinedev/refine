@@ -13,6 +13,6 @@ export const serveClient = (app: Express) => {
     if (req.path.startsWith("/open-in-editor")) {
       return next();
     }
-    res.status(200).sendFile(path.join(__dirname + "/client/index.html"));
+    res.status(200).sendFile(path.join(`${__dirname}/client/index.html`));
   });
 };

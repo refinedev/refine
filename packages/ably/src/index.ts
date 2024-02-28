@@ -10,7 +10,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
     subscribe: ({ channel, types, params, callback }) => {
       const channelInstance = client.channels.get(channel);
 
-      const listener = function (message: MessageType) {
+      const listener = (message: MessageType) => {
         if (types.includes("*") || types.includes(message.data.type)) {
           if (
             message.data.type !== "created" &&

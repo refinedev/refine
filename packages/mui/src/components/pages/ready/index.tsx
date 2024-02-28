@@ -66,7 +66,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
           </Typography>
           <Typography variant="h6" mt={2}>
             Now you can get started by adding your resources to the{" "}
-            {renderCode(`resources`)} property of {renderCode(`Refine`)}
+            {renderCode("resources")} property of {renderCode("Refine")}
           </Typography>
           <Grid item sm={12} mt={12} display="flex" justifyContent="center">
             <Stack spacing={2} direction={{ xs: "column", sm: "row" }}>

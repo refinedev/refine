@@ -122,7 +122,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
     statistic: {
       content: {
         formatter: (datum) => {
-          return (datum?.percent * 100).toFixed(2) + "%";
+          return `${(datum?.percent * 100).toFixed(2)}%`;
         },
         style: {
           color: "rgba(0,0,0,0.85)",

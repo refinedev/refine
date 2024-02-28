@@ -5,9 +5,9 @@ import { NumberFieldProps } from "../types";
 
 function toLocaleStringSupportsOptions() {
   return !!(
-    typeof Intl == "object" &&
+    typeof Intl === "object" &&
     Intl &&
-    typeof Intl.NumberFormat == "function"
+    typeof Intl.NumberFormat === "function"
   );
 }
 

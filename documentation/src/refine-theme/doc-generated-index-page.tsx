@@ -53,6 +53,7 @@ function DocCategoryGeneratedIndexPageContent({ categoryGeneratedIndex }) {
               {categoryGeneratedIndex.description && (
                 <p
                   className="mb-8"
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                   dangerouslySetInnerHTML={{
                     __html: categoryGeneratedIndex.description,
                   }}

@@ -71,7 +71,7 @@ export const CourierShow: React.FC<IResourceComponentsProps> = () => {
               direction="vertical"
               style={{ textAlign: "center", width: "100%" }}
             >
-              <Avatar size={120} src={courier?.avatar?.[0].url}></Avatar>
+              <Avatar size={120} src={courier?.avatar?.[0].url} />
               <Typography.Title level={3}>
                 {courier?.name} {courier?.surname}
               </Typography.Title>

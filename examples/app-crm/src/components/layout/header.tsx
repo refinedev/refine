@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   const headerStyles: React.CSSProperties = {
     backgroundColor: token.colorBgElevated,
     display: "flex",
-    justifyContent: !!searchClient ? "space-between" : "flex-end",
+    justifyContent: searchClient ? "space-between" : "flex-end",
     alignItems: "center",
     padding: "0px 24px",
     height: "64px",
@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
 
   return (
     <Layout.Header style={headerStyles}>
-      {!!searchClient ? <AlgoliaSearch /> : null}
+      {searchClient ? <AlgoliaSearch /> : null}
       <Space align="center" size="middle">
         <Notifications />
         <CurrentUser />

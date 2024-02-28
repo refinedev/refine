@@ -16,7 +16,7 @@ interface MappedDealData {
 }
 
 const filterDeal = (deal?: DealAggregate) =>
-  deal?.groupBy && deal.groupBy?.closeDateMonth && deal.groupBy?.closeDateYear;
+  deal?.groupBy?.closeDateMonth && deal.groupBy.closeDateYear;
 
 const mapDeals = (
   deals: DealAggregate[] = [],

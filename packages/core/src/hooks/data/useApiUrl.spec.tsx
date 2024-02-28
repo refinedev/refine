@@ -5,7 +5,7 @@ import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
 import { useApiUrl } from "./";
 
 describe("useApiUrl Hook", () => {
-  describe.each(["meta", "options"])(`should be called with %s`, (key) => {
+  describe.each(["meta", "options"])("should be called with %s", (key) => {
     describe("when dataProvider is *not* provided", () => {
       describe("when resource is undefined", () => {
         it("returns default data provider", async () => {
