@@ -1,6 +1,7 @@
 import React, {
   createContext,
   PropsWithChildren,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -56,4 +57,14 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
+};
+
+export const useColorModeContext = () => {
+  const context = useContext(ColorModeContext);
+
+  if (context === undefined) {
+    throw new Error("useColorModeContext must be used within a ConfigProvider");
+  }
+
+  return context;
 };

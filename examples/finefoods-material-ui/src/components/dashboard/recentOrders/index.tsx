@@ -1,21 +1,30 @@
-import React from "react";
-import { useNavigation, useTranslate, useUpdate } from "@refinedev/core";
+import React, { useEffect } from "react";
+import {
+  useNavigation,
+  useTranslate,
+  useUpdate,
+  useUpdatePassword,
+} from "@refinedev/core";
 import { NumberField, useDataGrid } from "@refinedev/mui";
 import CheckOutlined from "@mui/icons-material/CheckOutlined";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
-
-import { OrderStatus } from "../../../components/orderStatus";
 import { IOrder } from "../../../interfaces";
+import { getUniqueListWithCount } from "../../../utils";
 
 export const RecentOrders: React.FC = () => {
   const t = useTranslate();
   const { show } = useNavigation();
   const { mutate } = useUpdate();
+  const { mutate: updatePassword } = useUpdatePassword<any>();
+  useEffect(() => {
+    updatePassword({
+      redirectPath: "/custom-url",
+      query: "?foo=bar",
+    });
+  }, []);
 
   const { dataGridProps } = useDataGrid<IOrder>({
     resource: "orders",
@@ -25,7 +34,7 @@ export const RecentOrders: React.FC = () => {
         order: "desc",
       },
     ],
-    initialPageSize: 4,
+    initialPageSize: 10,
     permanentFilter: [
       {
         field: "status.text",
@@ -39,88 +48,68 @@ export const RecentOrders: React.FC = () => {
   const columns = React.useMemo<GridColDef<IOrder>[]>(
     () => [
       {
-        field: "avatar",
+        field: "orderNumber",
         renderCell: function render({ row }) {
-          return (
-            <Avatar
-              sx={{
-                width: { xs: 72, xl: 102 },
-                height: { xs: 72, xl: 102 },
-              }}
-              src={row?.products[0]?.images[0]?.url}
-            />
-          );
+          return <Typography>#{row.orderNumber}</Typography>;
         },
-        align: "center",
-        flex: 1,
-        minWidth: 100,
+        width: 88,
       },
       {
-        field: "summary",
+        field: "user",
+        width: 220,
         renderCell: function render({ row }) {
           return (
-            <Stack spacing={1} sx={{ height: "100%", mt: 2 }}>
-              <Typography sx={{ fontWeight: 800, whiteSpace: "pre-wrap" }}>
-                {row.products[0]?.name}
-              </Typography>
+            <Stack spacing="4px">
+              <Typography>{row.user.fullName}</Typography>
               <Typography
+                variant="caption"
+                color="text.secondary"
                 sx={{
                   whiteSpace: "pre-wrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   display: "-webkit-box",
-                  WebkitLineClamp: "3",
+                  WebkitLineClamp: "2",
                   WebkitBoxOrient: "vertical",
                   minWidth: "100px",
                 }}
               >
-                {row.products[0]?.description}
+                {row.user.addresses[0].text}
               </Typography>
-              <Button
-                variant="text"
-                onClick={() => show("orders", row.id)}
-                size="small"
-                sx={{ width: 80 }}
-              >
-                <Typography
-                  sx={{
-                    color: "text.primary",
-                    fontWeight: 700,
-                  }}
-                >
-                  #{row.orderNumber}
-                </Typography>
-              </Button>
             </Stack>
           );
         },
-        flex: 2,
-        minWidth: 200,
       },
       {
-        field: "summary2",
+        field: "products",
+        flex: 1,
         renderCell: function render({ row }) {
+          const products = getUniqueListWithCount({
+            list: row.products,
+            field: "id",
+          });
           return (
-            <Stack
-              spacing={1}
-              sx={{
-                whiteSpace: "pre-wrap",
-                height: "100%",
-                mt: 2,
-              }}
-            >
-              <Typography
-                sx={{ fontWeight: 800 }}
-              >{`${row.courier.name} ${row.courier.surname}`}</Typography>
-              <Typography>{row.adress.text}</Typography>
+            <Stack spacing={1}>
+              {products.map((product) => (
+                <Typography key={product.id} whiteSpace="nowrap">
+                  {product.name}
+                  <Typography
+                    component="span"
+                    color="GrayText"
+                    sx={{ ml: "4px" }}
+                  >
+                    x{product.count}
+                  </Typography>
+                </Typography>
+              ))}
             </Stack>
           );
         },
-        flex: 1,
-        minWidth: 100,
       },
       {
         field: "amount",
+        align: "right",
+        width: 80,
         renderCell: function render({ row }) {
           return (
             <NumberField
@@ -129,20 +118,9 @@ export const RecentOrders: React.FC = () => {
                 style: "currency",
                 notation: "standard",
               }}
-              sx={{ fontWeight: 800 }}
-              value={row.amount / 100}
+              value={row.amount}
             />
           );
-        },
-        align: "center",
-        flex: 1,
-        width: 80,
-      },
-      {
-        field: "status",
-        align: "center",
-        renderCell: function render({ row }) {
-          return <OrderStatus status={row.status.text} />;
         },
       },
       {
@@ -197,14 +175,24 @@ export const RecentOrders: React.FC = () => {
   return (
     <DataGrid
       {...dataGridProps}
+      onRowClick={(row) => show("orders", row.id)}
       columns={columns}
-      autoHeight
       columnHeaderHeight={0}
-      rowHeight={200}
-      pageSizeOptions={[4, 10, 25, 50, 100]}
+      pageSizeOptions={[10, 25, 50, 100]}
       sx={{
-        paddingX: { xs: 3 },
+        height: "100%",
         border: "none",
+        "& .MuiDataGrid-row": {
+          cursor: "pointer",
+          maxHeight: "max-content !important",
+          minHeight: "max-content !important",
+        },
+        "& .MuiDataGrid-cell": {
+          maxHeight: "max-content !important",
+          minHeight: "max-content !important",
+          padding: "16px",
+          alignItems: "flex-start",
+        },
       }}
     />
   );

@@ -1,76 +1,50 @@
-import { useApiUrl, useCustom, useTranslate } from "@refinedev/core";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import { BarChart, Bar, Tooltip, ResponsiveContainer } from "recharts";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
-
+import {
+  BarChart,
+  Bar,
+  Tooltip,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { ChartTooltip } from "../chartTooltip";
-import { ISalesChart } from "../../../interfaces";
+import dayjs from "dayjs";
 
-export const DailyOrders: React.FC = () => {
-  const t = useTranslate();
+type Props = {
+  data: any[];
+};
 
-  const API_URL = useApiUrl();
-  const url = `${API_URL}/dailyOrders`;
-
-  const { data } = useCustom<{
-    data: ISalesChart[];
-    total: number;
-    trend: number;
-  }>({
-    url,
-    method: "get",
-  });
-
+export const DailyOrders = (props: Props) => {
   return (
-    <Stack
-      justifyContent="space-between"
-      sx={{
-        height: "230px",
-        p: 1,
-        background: "url(images/daily-order.png)",
-        backgroundColor: "#332a4b",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography variant="h5" sx={{ color: "#fff", fontWeight: 700, mb: 0 }}>
-          {t("dashboard.dailyOrders.title")}
-        </Typography>
+    <ResponsiveContainer width="99%">
+      <BarChart
+        data={props.data}
+        barSize={15}
+        margin={{ top: 30, right: 10, left: -15, bottom: 0 }}
+      >
+        <XAxis
+          dataKey="date"
+          tickFormatter={(value) => {
+            if (props.data.length > 7) {
+              return dayjs(value).format("MM/DD");
+            }
 
-        <Stack direction="row" alignItems="center">
-          <Typography sx={{ fontWeight: 700, fontSize: 24, color: "#fff" }}>
-            {data?.data.total ?? 0}
-          </Typography>
-          {(data?.data?.trend ?? 0) > 0 ? (
-            <ArrowDropUp fontSize="large" color="success" />
-          ) : (
-            <ArrowDropDown fontSize="large" color="error" />
-          )}
-        </Stack>
-      </Stack>
-      <Box sx={{ height: "130px" }}>
-        <ResponsiveContainer width="99%">
-          <BarChart data={data?.data.data} barSize={15}>
-            <Bar
-              type="natural"
-              dataKey="value"
-              fill="rgba(255, 255, 255, 0.5)"
-              radius={[4, 4, 0, 0]}
+            return dayjs(value).format("ddd");
+          }}
+        />
+        <YAxis dataKey="value" />
+        <Bar type="natural" dataKey="value" fill="#2196F3" />
+        <Tooltip
+          cursor={{
+            fill: "rgba(255, 255, 255, 0.2)",
+            radius: 4,
+          }}
+          content={
+            <ChartTooltip
+              labelFormatter={(label) => dayjs(label).format("MMM D, YYYY")}
             />
-            <Tooltip
-              cursor={{
-                fill: "rgba(255, 255, 255, 0.2)",
-                radius: 4,
-              }}
-              content={<ChartTooltip />}
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </Box>
-    </Stack>
+          }
+        />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };

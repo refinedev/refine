@@ -1,9 +1,11 @@
 import {
   Children,
   cloneElement,
+  Dispatch,
   FC,
   isValidElement,
   PropsWithChildren,
+  SetStateAction,
   useEffect,
   useRef,
   useState,
@@ -11,27 +13,49 @@ import {
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
+  setMap?: Dispatch<SetStateAction<google.maps.Map | undefined>>;
   center?: google.maps.LatLngLiteral;
+  onDragStart?: Function;
 }
 
 const MapComponent: FC<PropsWithChildren<MapProps>> = ({
   children,
   center,
   zoom = 12,
+  onDragStart,
+  mapId,
+  setMap: setMapFromProps,
   ...options
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
   useEffect(() => {
+    if (map && center) {
+      map?.setCenter({
+        lat: center.lat,
+        lng: center.lng,
+      });
+    }
+  }, [center]);
+
+  useEffect(() => {
     if (map) {
       map.setOptions({ ...options, zoom, center });
+      setMapFromProps?.(map);
+      if (onDragStart) {
+        map.addListener("dragstart", onDragStart);
+      }
     }
   }, [map]);
 
   useEffect(() => {
     if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current, {}));
+      const mapContructor = new window.google.maps.Map(ref.current, {
+        mapId,
+      });
+      setMap(mapContructor);
+      setMapFromProps?.(mapContructor);
     }
   }, [ref, map]);
 
@@ -48,10 +72,23 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
   );
 };
 
-const MapWrapper: FC<PropsWithChildren<MapProps>> = (props) => {
+type MapWrapperProps = {
+  mapProps?: MapProps;
+};
+
+const MapWrapper: FC<PropsWithChildren<MapWrapperProps>> = ({
+  children,
+  mapProps,
+}) => {
   return (
-    <Wrapper apiKey={import.meta.env.VITE_APP_MAP_ID}>
-      <MapComponent {...props} />
+    <Wrapper
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //  @ts-ignore
+      version="beta"
+      libraries={["marker"]}
+      apiKey={"AIzaSyCfS48X6U0TTsJN4xIHSTkXITimmYGSWjk"}
+    >
+      <MapComponent {...mapProps}>{children}</MapComponent>
     </Wrapper>
   );
 };

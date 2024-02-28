@@ -24,6 +24,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@mui/icons-material": "^5.8.3",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
@@ -49,7 +50,8 @@
     "react-i18next": "^11.8.11",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.1",
-    "recharts": "^2.1.9"
+    "recharts": "^2.1.9",
+    "usehooks-ts": "^2.14.0"
   },
   "devDependencies": {
     "@types/google.maps": "^3.50.4",

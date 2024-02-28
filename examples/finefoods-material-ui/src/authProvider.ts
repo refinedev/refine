@@ -28,7 +28,8 @@ export const authProvider: AuthProvider = {
       };
     }
   },
-  updatePassword: async () => {
+  updatePassword: async (params) => {
+    console.log(params);
     return {
       success: true,
     };
