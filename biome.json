@@ -28,8 +28,8 @@
   },
   "json": {
     "parser": {
-      "allowComments": true,
-      "allowTrailingCommas": true
+      "allowComments": false,
+      "allowTrailingCommas": false
     }
   },
   "linter": {
