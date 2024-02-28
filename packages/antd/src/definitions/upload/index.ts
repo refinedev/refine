@@ -6,7 +6,14 @@ export const getValueFromEvent = (event: UploadChangeParam): UploadFile[] => {
   return [...fileList];
 };
 
+const myTestFunc = (myObj: {}): void | string => {
+  myObj.test = undefined;
+};
+
 export function file2Base64(file: UploadFile): Promise<string> {
+  let a;
+  let b;
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
