@@ -88,32 +88,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
           <Select {...categorySelectProps} />
         </Form.Item>
         <Form.Item
-          label="Status"
-          name="status"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Select
-            options={[
-              {
-                label: "Publieeeshed",
-                value: "published",
-              },
-              {
-                label: "Draft",
-                value: "draft",
-              },
-              {
-                label: "Rejected",
-                value: "rejected",
-              },
-            ]}
-          />
-        </Form.Item>
-        <Form.Item
           label="Content"
           name="content"
           rules={[
