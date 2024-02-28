@@ -105,7 +105,7 @@
         "noGlobalIsNan": "error",
         "noArrayIndexKey": "warn",
         "noRedeclare": "error",
-        "noControlCharactersInRegex": "warn",
+        "noControlCharactersInRegex": "error",
         "noDuplicateJsxProps": "error",
         "noShadowRestrictedNames": "warn",
         "useDefaultSwitchClauseLast": "error",
