@@ -4,13 +4,11 @@
     "enabled": false
   },
   "files": {
-    "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
-  },
-  "vcs": {
-    "defaultBranch": "master",
-    "useIgnoreFile": true,
-    "enabled": true,
-    "clientKind": "git"
+    "ignore": [
+      "theme.d.ts",
+      "documentation/plugins",
+      "documentation/static"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -20,10 +18,10 @@
   },
   "javascript": {
     "formatter": {
+      "arrowParentheses": "always",
       "quoteStyle": "double",
       "semicolons": "always",
-      "trailingComma": "all",
-      "arrowParentheses": "always"
+      "trailingComma": "all"
     }
   },
   "json": {
@@ -37,42 +35,42 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "useButtonType": "warn",
-        "useHtmlLang": "warn",
-        "noSvgWithoutTitle": "warn",
-        "useKeyWithClickEvents": "warn",
-        "useAltText": "warn",
-        "noNoninteractiveElementToInteractiveRole": "warn",
-        "useValidAnchor": "warn",
-        "noBlankTarget": "error",
-        "useIframeTitle": "warn",
-        "noAutofocus": "warn",
         "noAriaHiddenOnFocusable": "warn",
+        "noAutofocus": "warn",
+        "noBlankTarget": "error",
+        "noNoninteractiveElementToInteractiveRole": "warn",
         "noNoninteractiveTabindex": "warn",
         "noPositiveTabindex": "warn",
-        "useKeyWithMouseEvents": "warn"
+        "noSvgWithoutTitle": "warn",
+        "useAltText": "warn",
+        "useButtonType": "warn",
+        "useHtmlLang": "warn",
+        "useIframeTitle": "warn",
+        "useKeyWithClickEvents": "warn",
+        "useKeyWithMouseEvents": "warn",
+        "useValidAnchor": "warn"
       },
       "complexity": {
-        "noForEach": "off",
-        "useLiteralKeys": "warn",
-        "useOptionalChain": "error",
         "noBannedTypes": "warn",
-        "noUselessFragments": "off",
-        "noUselessSwitchCase": "error",
-        "noUselessConstructor": "error",
         "noExtraBooleanCast": "error",
+        "noForEach": "off",
         "noStaticOnlyClass": "error",
         "noUselessCatch": "error",
+        "noUselessConstructor": "error",
+        "noUselessFragments": "off",
+        "noUselessRename": "error",
+        "noUselessSwitchCase": "error",
         "useArrowFunction": "error",
-        "noUselessRename": "error"
+        "useLiteralKeys": "warn",
+        "useOptionalChain": "error"
       },
       "correctness": {
-        "useExhaustiveDependencies": "warn",
+        "noConstantCondition": "error",
         "noEmptyPattern": "error",
-        "noUnsafeOptionalChaining": "error",
         "noSwitchDeclarations": "error",
         "noUnreachable": "error",
-        "noConstantCondition": "error"
+        "noUnsafeOptionalChaining": "error",
+        "useExhaustiveDependencies": "warn"
       },
       "performance": {
         "noAccumulatingSpread": "warn",
@@ -82,39 +80,45 @@
         "noDangerouslySetInnerHtml": "error"
       },
       "style": {
-        "useTemplate": "error",
+        "noCommaOperator": "error",
+        "noNonNullAssertion": "warn",
+        "noParameterAssign": "warn",
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
-        "noNonNullAssertion": "warn",
-        "useSingleVarDeclarator": "error",
-        "noParameterAssign": "warn",
-        "useSelfClosingElements": "error",
-        "useDefaultParameterLast": "warn",
         "useConst": "error",
-        "noCommaOperator": "error"
+        "useDefaultParameterLast": "warn",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "useTemplate": "error"
       },
       "suspicious": {
-        "noExplicitAny": "warn",
-        "noRedundantUseStrict": "error",
-        "noAsyncPromiseExecutor": "error",
+        "noArrayIndexKey": "warn",
         "noAssignInExpressions": "error",
+        "noAsyncPromiseExecutor": "error",
+        "noConfusingVoidType": "warn",
+        "noControlCharactersInRegex": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateJsxProps": "error",
+        "noDuplicateObjectKeys": "error",
+        "noEmptyInterface": "error",
+        "noExplicitAny": "warn",
+        "noFallthroughSwitchClause": "error",
+        "noGlobalIsNan": "error",
         "noImplicitAnyLet": "warn",
         "noPrototypeBuiltins": "error",
-        "noDoubleEquals": "error",
-        "noConfusingVoidType": "warn",
-        "noGlobalIsNan": "error",
-        "noArrayIndexKey": "warn",
         "noRedeclare": "error",
-        "noControlCharactersInRegex": "error",
-        "noDuplicateJsxProps": "error",
+        "noRedundantUseStrict": "error",
+        "noSelfCompare": "error",
         "noShadowRestrictedNames": "warn",
         "useDefaultSwitchClauseLast": "error",
-        "noSelfCompare": "error",
-        "noFallthroughSwitchClause": "error",
-        "noEmptyInterface": "error",
-        "noDuplicateObjectKeys": "error",
         "useValidTypeof": "error"
       }
     }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "defaultBranch": "master",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }
