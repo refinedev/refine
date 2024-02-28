@@ -79,7 +79,7 @@
         "noDelete": "warn"
       },
       "security": {
-        "noDangerouslySetInnerHtml": "warn"
+        "noDangerouslySetInnerHtml": "error"
       },
       "style": {
         "useTemplate": "error",

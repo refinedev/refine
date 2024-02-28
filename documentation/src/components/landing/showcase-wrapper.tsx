@@ -179,6 +179,7 @@ const HighlightItem = React.memo(function HighlightBase({
                           {...tokenProps}
                           key={`${token.content}-${key}`}
                           className="whitespace-pre"
+                          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                           dangerouslySetInnerHTML={{
                             __html: content,
                           }}

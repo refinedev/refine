@@ -61,6 +61,7 @@ export const BlogTOCItem = ({
         "leading-6",
         "no-underline hover:no-underline",
       )}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
       dangerouslySetInnerHTML={{
         __html: value,
       }}

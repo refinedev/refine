@@ -29,6 +29,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
               fontSize: "1.5rem",
               fontWeight: "bold",
             }}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
             dangerouslySetInnerHTML={{ __html: error ?? "" }}
           />
         </div>

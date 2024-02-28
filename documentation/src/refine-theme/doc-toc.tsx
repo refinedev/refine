@@ -64,6 +64,7 @@ export const TOCItem = ({
         "no-underline hover:no-underline",
         "transition-colors duration-200 ease-in-out",
       )}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
       dangerouslySetInnerHTML={{
         __html: value,
       }}

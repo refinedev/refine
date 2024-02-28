@@ -444,6 +444,7 @@ const SidebarHtml = ({
           "bg-gray-0",
           "dark:bg-gray-900",
         )}
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
         dangerouslySetInnerHTML={{ __html: item.value }}
       />
     </div>

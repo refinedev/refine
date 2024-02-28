@@ -237,6 +237,7 @@ const ExampleList: React.FC = () => {
           style={{
             marginBottom: "0rem",
           }}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
           dangerouslySetInnerHTML={{ __html: example.description }}
         />
         <div
