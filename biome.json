@@ -4,11 +4,7 @@
     "enabled": false
   },
   "files": {
-    "ignore": [
-      "theme.d.ts",
-      "documentation/plugins",
-      "documentation/static"
-    ]
+    "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
   },
   "formatter": {
     "enabled": true,
