@@ -180,12 +180,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         dashboard,
         items,
         logout,
+        selectedKey,
         collapsed: siderCollapsed,
       });
     }
     return (
       <>
         {dashboard}
+        {selectedKey}
         {items}
         {logout}
       </>
