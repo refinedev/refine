@@ -77,7 +77,7 @@ export const generateFilter = (filters?: CrudFilters) => {
     });
   }
 
-  const parsedQuery = parse(rawQuery, { depth: 7 });
+  const parsedQuery = parse(rawQuery, { depth: 15 });
 
   const queryFilters = stringify(parsedQuery, { encodeValuesOnly: true });
 
