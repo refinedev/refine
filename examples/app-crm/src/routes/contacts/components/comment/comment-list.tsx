@@ -132,7 +132,7 @@ const ContactCommentListItem = ({ item }: { item: ContactNote }) => {
             </Typography.Link>
             <DeleteButton
               recordItemId={item.id}
-              meta={{ operation: "contactNote" }}
+              resource="contactNotes"
               size="small"
               type="link"
               successNotification={() => ({
