@@ -6,9 +6,9 @@ import {
 
 import { act, render, TestWrapper } from "@test";
 
-export const buttonImportTests = function (
+export const buttonImportTests = (
   ImportButton: React.ComponentType<RefineImportButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Import Button", () => {
     const parseMock = jest.fn();
 

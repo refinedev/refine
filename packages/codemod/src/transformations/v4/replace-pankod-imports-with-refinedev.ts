@@ -62,8 +62,7 @@ const renameExports = (j: JSCodeshift, source: Collection) => {
     .find(j.ExportNamedDeclaration)
     .filter(
       (path) =>
-        path.node.source &&
-        path.node.source.value?.toString()?.startsWith(previousScope) &&
+        path.node.source?.value?.toString()?.startsWith(previousScope) &&
         !deprecatedPackages.includes(path.node.source.value?.toString() ?? ""),
     )
     .forEach((path) => {

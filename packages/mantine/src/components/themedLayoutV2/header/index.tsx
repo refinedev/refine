@@ -33,7 +33,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   let stickyStyles: Sx = {};
   if (pickNotDeprecated(sticky, isSticky)) {
     stickyStyles = {
-      position: `sticky`,
+      position: "sticky",
       top: 0,
       zIndex: 1,
     };

@@ -19,10 +19,10 @@ export const SkeletonCartSidebar: React.FC = () => {
       </div>
       <div>
         <div className="flex flex-col">
-          <div className="my-4 w-full border-b border-dashed border-gray-200"></div>
+          <div className="my-4 w-full border-b border-dashed border-gray-200" />
 
           <div className="flex  justify-center">
-            <div className="mb-4 h-12 w-64 bg-gray-100"></div>
+            <div className="mb-4 h-12 w-64 bg-gray-100" />
           </div>
         </div>
       </div>

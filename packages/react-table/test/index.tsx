@@ -17,7 +17,6 @@ export const TestWrapper: (
   resources,
   routerInitialEntries,
 }) => {
-  // eslint-disable-next-line react/display-name
   return ({ children }): React.ReactElement => {
     return (
       <MemoryRouter initialEntries={routerInitialEntries}>

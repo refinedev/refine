@@ -2,7 +2,6 @@ import { IResourceItem } from "@refinedev/core";
 
 export type BaseRecord = {
   id?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 export interface Option {

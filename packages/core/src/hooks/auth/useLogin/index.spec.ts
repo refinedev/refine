@@ -619,7 +619,6 @@ describe("useLogin Hook", () => {
         authProvider: {
           login: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
           check: () => Promise.resolve({ authenticated: false }),
           onError: () => Promise.resolve({}),
@@ -653,7 +652,6 @@ describe("useLogin Hook", () => {
         useLogin({
           mutationOptions: {
             // mutationFn is omitted in types. So we need to use @ts-ignore test it.
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             mutationFn: mutationFnMock,
           },

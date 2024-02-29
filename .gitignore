@@ -30,3 +30,5 @@ examples/**/package-lock.json
 
 # cli tool
 /refine
+
+.biome/reports

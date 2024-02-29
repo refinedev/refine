@@ -58,22 +58,15 @@ const Enterprise: React.FC = () => {
                 "landing-lg:-mt-40",
               )}
             />
+            <div className={clsx("w-full", "overflow-hidden")}>
+              <EnterpriseTable className={clsx(sectionWidth, sectionPadding)} />
+            </div>
             <EnterpriseSecurity
               className={clsx(sectionPadding, sectionWidth)}
-            />
-            <EnterpriseGetInTouchCta
-              className={clsx(
-                sectionPadding,
-                sectionWidth,
-                "w-full landing-lg:max-w-[792px] mx-auto",
-              )}
             />
             <EnterpriseFlexibility
               className={clsx(sectionPadding, sectionWidth)}
             />
-            <EnterpriseDataSource
-              className={clsx(sectionPadding, sectionWidth)}
-            />
             <EnterpriseGetInTouchCta
               className={clsx(
                 sectionPadding,
@@ -81,12 +74,13 @@ const Enterprise: React.FC = () => {
                 "w-full landing-lg:max-w-[792px] mx-auto",
               )}
             />
+            <EnterpriseDataSource
+              className={clsx(sectionPadding, sectionWidth)}
+            />
             <EnterpriseFrequentUpdates
               className={clsx(sectionPadding, sectionWidth)}
             />
-            <div className={clsx("w-full", "overflow-hidden")}>
-              <EnterpriseTable className={clsx(sectionWidth, sectionPadding)} />
-            </div>
+
             <LandingTrustedByDevelopers
               className={clsx(sectionPadding, sectionWidth)}
             />
@@ -98,6 +92,7 @@ const Enterprise: React.FC = () => {
               )}
             />
             <EnterpriseGetInTouchCta
+              label="Need more information?"
               className={clsx(
                 sectionPadding,
                 sectionWidth,

@@ -202,6 +202,7 @@ const HighlightCode = memo(function HighlightCodeBase() {
                     {...tokenProps}
                     key={`${token.content}-${key}`}
                     className="whitespace-pre"
+                    // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                     dangerouslySetInnerHTML={{
                       __html: token.content,
                     }}

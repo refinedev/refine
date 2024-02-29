@@ -36,7 +36,7 @@ import { ConfigProvider, App as AntdApp } from "antd";
 
 const App: React.FC = () => {
   const axiosInstance = axios.create();
-  const strapiAuthHelper = AuthHelper(API_URL + "/api");
+  const strapiAuthHelper = AuthHelper(`${API_URL}/api`);
 
   const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
@@ -137,7 +137,7 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
             routerProvider={routerProvider}
             resources={[
               {

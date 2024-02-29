@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { useMemo } from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
@@ -40,11 +39,11 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
 
     const stringError = () =>
       console.error(
-        `\`string\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+        "`string` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.",
       );
     const definitionError = () =>
       console.error(
-        `\`Object\` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.`,
+        "`Object` resource routes are not supported in legacy router. Please switch to the new router or assign Components to the resource routes.",
       );
 
     const List =
@@ -219,9 +218,8 @@ export const RouteProvider = ({
       }
 
       return authData?.authenticated;
-    } else {
-      return true;
     }
+    return true;
   }, [authData, isError, authProvider?.isLegacy]);
 
   if (isFetching) {

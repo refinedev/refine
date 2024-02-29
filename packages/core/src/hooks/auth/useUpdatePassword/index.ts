@@ -150,9 +150,8 @@ export function useUpdatePassword<
         ignoreQueryPrefix: true,
       });
       return queryStrings ?? {};
-    } else {
-      return parsed.params ?? {};
     }
+    return parsed.params ?? {};
   }, [search, parsed, routerType]);
 
   const mutation = useMutation<AuthActionResponse, Error, TVariables, unknown>({

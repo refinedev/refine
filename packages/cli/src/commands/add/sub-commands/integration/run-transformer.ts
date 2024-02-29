@@ -27,11 +27,11 @@ export const runTransformer = async (params: RunTransformerParams) => {
     "--extensions=ts,tsx,js,jsx",
     "--parser=tsx",
     `--transform=${__dirname}/../src/transformers/integrations/${transformerFileName}.ts`,
-    `--ignore-pattern=.cache`,
-    `--ignore-pattern=node_modules`,
-    `--ignore-pattern=build`,
-    `--ignore-pattern=.next`,
-    `--ignore-pattern=dist`,
+    "--ignore-pattern=.cache",
+    "--ignore-pattern=node_modules",
+    "--ignore-pattern=build",
+    "--ignore-pattern=.next",
+    "--ignore-pattern=dist",
   ]);
 
   if (stderr) {

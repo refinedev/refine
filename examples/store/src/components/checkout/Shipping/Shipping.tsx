@@ -77,7 +77,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                 value={value}
                 onChange={(value: string) => handleChange(value, onChange)}
               >
-                {shippingMethods && shippingMethods.length ? (
+                {shippingMethods?.length ? (
                   shippingMethods.map((option) => {
                     return (
                       <RadioGroup.Option

@@ -8,11 +8,11 @@ describe("with meta.fields", () => {
     "updateOne with %s naming convention",
     (namingConvention) => {
       const client = createClient(namingConvention);
-      let id = `572708c7-840d-430a-befd-1416bdee799a`;
+      let id = "572708c7-840d-430a-befd-1416bdee799a";
       let categoryFieldName = "category_id";
 
       if (namingConvention === "graphql-default") {
-        id = `2a0d531e-ad15-440f-bf0b-7d23e7e21131`;
+        id = "2a0d531e-ad15-440f-bf0b-7d23e7e21131";
         categoryFieldName = "categoryId";
       }
 
@@ -61,7 +61,7 @@ describe("with gql", () => {
   it.each(["gqlQuery", "gqlMutation"] as const)(
     "correct response with hasura-default & %s",
     async (gqlOperation) => {
-      const id = `572708c7-840d-430a-befd-1416bdee799a`;
+      const id = "572708c7-840d-430a-befd-1416bdee799a";
 
       const client = createClient("hasura-default");
       const { data } = await dataProvider(client, {
@@ -110,7 +110,7 @@ describe("with gql", () => {
   it.each(["gqlQuery", "gqlMutation"] as const)(
     "correct response with graphql-default & %s",
     async (gqlOperation) => {
-      const id = `2a0d531e-ad15-440f-bf0b-7d23e7e21131`;
+      const id = "2a0d531e-ad15-440f-bf0b-7d23e7e21131";
 
       const client = createClient("graphql-default");
       const { data } = await dataProvider(client, {

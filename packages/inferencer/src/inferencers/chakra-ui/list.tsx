@@ -158,7 +158,7 @@ export const renderer = ({
 
   const relationVariableNames = relationFields
     ?.map((field) => {
-      if (field && field.resource) {
+      if (field?.resource) {
         return getVariableName(field.key, "Data");
       }
       return undefined;
@@ -785,7 +785,7 @@ export const renderer = ({
 
   noOp(imports);
 
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     import React from "react";

@@ -29,8 +29,7 @@ export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
 
     console.warn("No resource is found to navigate to.");
     return null;
-  } else {
-    console.warn("No resource is found to navigate to.");
-    return null;
   }
+  console.warn("No resource is found to navigate to.");
+  return null;
 };

@@ -19,7 +19,6 @@ export const replaceImports = (
 
   const imports = new Set();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   for (const match of matches) {
     const [, defaultImport, namedImports, namespaceImport, packageName] = match;
@@ -45,7 +44,7 @@ export const replaceImports = (
         imports.add(
           `const${namedImports.replace(
             nameChangeRegex,
-            `$1: $3$4`,
+            "$1: $3$4",
           )} = ${importName};`,
         );
       }

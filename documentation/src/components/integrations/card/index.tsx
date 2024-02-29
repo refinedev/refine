@@ -45,6 +45,7 @@ const Card: React.FC<LargeCardProps> = ({
             "text-gray-600 dark:text-gray-300",
             "text-xs sm:text-sm",
           )}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
           dangerouslySetInnerHTML={{ __html: description }}
         />
         {!!contributors?.length && (

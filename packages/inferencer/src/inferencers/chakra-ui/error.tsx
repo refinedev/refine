@@ -10,7 +10,6 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
   if (error) {
     return (
       <Center style={{ minHeight: 300 }}>
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-ignore chakra-ui and typescript conflict */}
         <Alert
           status="error"
@@ -25,6 +24,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
           <AlertIcon boxSize="40px" mr={0} />
 
           <AlertDescription mt={4} maxWidth="sm">
+            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled */}
             <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
           </AlertDescription>
         </Alert>

@@ -251,7 +251,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           size="large"
           onClick={() => setDrawerOpen(true)}
           icon={<BarsOutlined />}
-        ></Button>
+        />
       </>
     );
   };

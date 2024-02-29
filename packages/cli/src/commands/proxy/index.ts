@@ -51,11 +51,7 @@ const action = async ({
       ? (proxyRes) => {
           if (proxyRes.headers["set-cookie"]) {
             proxyRes.headers["set-cookie"]?.forEach((cookie, i) => {
-              if (
-                proxyRes &&
-                proxyRes.headers &&
-                proxyRes.headers["set-cookie"]
-              ) {
+              if (proxyRes?.headers?.["set-cookie"]) {
                 proxyRes.headers["set-cookie"][i] = cookie.replace(
                   "Secure;",
                   "",

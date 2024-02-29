@@ -10,14 +10,14 @@ export const flattenObjectKeys = (obj: any, prefix = "") => {
 
   return Object.keys(obj).reduce(
     (acc, key) => {
-      const currentPrefix = prefix.length ? prefix + "." : "";
+      const currentPrefix = prefix.length ? `${prefix}.` : "";
 
       if (isNested(obj[key]) && Object.keys(obj[key]).length) {
         if (isArray(obj[key]) && obj[key].length) {
           obj[key].forEach((item: unknown[], index: number) => {
             Object.assign(
               acc,
-              flattenObjectKeys(item, currentPrefix + key + "." + index),
+              flattenObjectKeys(item, `${currentPrefix + key}.${index}`),
             );
           });
         } else {

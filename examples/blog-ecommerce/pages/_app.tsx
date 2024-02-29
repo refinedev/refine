@@ -13,7 +13,7 @@ import { API_URL } from "src/constants";
 import { Layout } from "src/components";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const dataProvider = DataProvider(API_URL + "/api");
+  const dataProvider = DataProvider(`${API_URL}/api`);
 
   return (
     <>

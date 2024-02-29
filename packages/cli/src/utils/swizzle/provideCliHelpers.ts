@@ -2,7 +2,6 @@ import path from "path";
 import * as RefineCLI from "../../index";
 import { getFileContent } from "./getFileContent";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Module = require("module");
 const originalRequire = Module.prototype.require;
 

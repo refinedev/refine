@@ -33,7 +33,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             // eslint-disable-next-line
             onClick: (event: any) => {
               if (event.target.nodeName === "TD") {
-                setEditId && setEditId(record.id);
+                setEditId?.(record.id);
               }
             },
           })}

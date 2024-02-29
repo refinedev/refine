@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
       px="sm"
       sx={{
         borderBottom: `1px solid ${borderColor}`,
-        position: `sticky`,
+        position: "sticky",
         top: 0,
         zIndex: 1,
       }}

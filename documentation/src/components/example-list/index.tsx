@@ -50,9 +50,8 @@ const sortedTags = tags.sort((a, b) => {
 
   if (aIndex === -1) {
     return bIndex === -1 ? 0 : 1;
-  } else {
-    return bIndex === -1 ? -1 : aIndex - bIndex;
   }
+  return bIndex === -1 ? -1 : aIndex - bIndex;
 });
 
 const PREDEFINED_COLORS = {
@@ -238,6 +237,7 @@ const ExampleList: React.FC = () => {
           style={{
             marginBottom: "0rem",
           }}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
           dangerouslySetInnerHTML={{ __html: example.description }}
         />
         <div

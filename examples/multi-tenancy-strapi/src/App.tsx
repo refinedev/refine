@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
+            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
             routerProvider={routerProvider}
             resources={[
               {

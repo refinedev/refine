@@ -22,7 +22,7 @@ export default function useTutorialPagination({ frontMatter }: Props) {
   };
 
   const toPermalink = (id: string) => {
-    return "/docs/" + id;
+    return `/docs/${id}`;
   };
 
   const { tutorial } = frontMatter;

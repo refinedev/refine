@@ -23,7 +23,9 @@ export const LoginPage = () => {
       <label className="text-dark font-medium">Enter your mobile mumber</label>
       <Input
         className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
-        onChange={(e) => (mobileNoRef.current = e.target.value)}
+        onChange={(e) => {
+          mobileNoRef.current = e.target.value;
+        }}
         onFocus={() => setError("")}
         name="mobile"
         type={"tel"}
@@ -40,7 +42,9 @@ export const LoginPage = () => {
       <label className="text-dark font-medium">Enter OTP</label>
       <Input
         className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
-        onChange={(e) => (otpRef.current = e.target.value)}
+        onChange={(e) => {
+          otpRef.current = e.target.value;
+        }}
         onFocus={() => setError("")}
         name="otp"
         value={otpRef.current}

@@ -8,7 +8,11 @@ const PromotionBanner = ({ image, title, description, isDark }) => {
     renderDescription = (
       <div>
         {" "}
-        <a href="https://s.refine.dev/new-blog" target="_blank">
+        <a
+          href="https://s.refine.dev/new-blog"
+          target="_blank"
+          rel="noreferrer"
+        >
           refine.new
         </a>{" "}
         enables you to create React-based, headless UI enterprise applications
@@ -34,7 +38,11 @@ const PromotionBanner = ({ image, title, description, isDark }) => {
         <br />
         <br />
         Try{" "}
-        <a href="https://github.com/refinedev/refine" target="_blank">
+        <a
+          href="https://github.com/refinedev/refine"
+          target="_blank"
+          rel="noreferrer"
+        >
           refine
         </a>{" "}
         to rapidly build your next <b>CRUD</b> project, whether {"it's"} an

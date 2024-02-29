@@ -142,7 +142,7 @@ export const useRefineKbar = (): void => {
       if (canList) {
         tempActions.push(
           createAction({
-            name: t(`actions.list`, capitalize(RefineKbarActionType.List)),
+            name: t("actions.list", capitalize(RefineKbarActionType.List)),
             section,
             icon,
             perform: () => {
@@ -179,7 +179,7 @@ export const useRefineKbar = (): void => {
       if (canAccessCreate) {
         tempActions.push(
           createAction({
-            name: t(`actions.create`, capitalize(RefineKbarActionType.Create)),
+            name: t("actions.create", capitalize(RefineKbarActionType.Create)),
             section,
             icon,
             keywords: "new",
@@ -218,7 +218,7 @@ export const useRefineKbar = (): void => {
         if (canAccessShow) {
           tempActions.push(
             createAction({
-              name: t(`actions.show`, capitalize(RefineKbarActionType.Show)),
+              name: t("actions.show", capitalize(RefineKbarActionType.Show)),
               section,
               icon,
               perform: () => {
@@ -256,7 +256,7 @@ export const useRefineKbar = (): void => {
         if (canAccessEdit) {
           tempActions.push(
             createAction({
-              name: t(`actions.edit`, capitalize(RefineKbarActionType.Edit)),
+              name: t("actions.edit", capitalize(RefineKbarActionType.Edit)),
               section,
               icon,
               perform: () => {
@@ -292,7 +292,7 @@ export const useRefineKbar = (): void => {
             {
               id: "delete",
               name: t(
-                `actions.delete`,
+                "actions.delete",
                 capitalize(RefineKbarActionType.Delete),
               ),
               section,
@@ -300,10 +300,10 @@ export const useRefineKbar = (): void => {
             },
             createAction({
               name: t(
-                `buttons.delete`,
+                "buttons.delete",
                 capitalize(RefineKbarActionType.Delete),
               ),
-              section: t(`buttons.confirm`, "Are you sure?"),
+              section: t("buttons.confirm", "Are you sure?"),
               parent: "delete",
               perform: () => {
                 mutate(
@@ -332,7 +332,7 @@ export const useRefineKbar = (): void => {
               },
             }),
             createAction({
-              name: t(`buttons.cancel`, "Cancel"),
+              name: t("buttons.cancel", "Cancel"),
               parent: "delete",
               perform: () => null,
             }),

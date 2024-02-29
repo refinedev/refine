@@ -6,9 +6,9 @@ import {
 
 import { act, fireEvent, render, TestWrapper } from "@test";
 
-export const buttonSaveTests = function (
+export const buttonSaveTests = (
   SaveButton: React.ComponentType<RefineSaveButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Save Button", () => {
     const save = jest.fn();
 

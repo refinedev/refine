@@ -3,9 +3,9 @@ import { RefineFieldFileProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldFileTests = function (
+export const fieldFileTests = (
   FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / File Field", () => {
     it("renders an anchor with file link", () => {
       const value = {

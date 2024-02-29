@@ -96,7 +96,6 @@ export const AddPackageDrawer = ({
       case "error":
         return <InfoIcon className="re-text-gray-0 re-rotate-180" />;
       case "idle":
-      default:
         return <PlusCircleIcon className="re-text-gray-0" />;
     }
   }, [status]);
@@ -110,7 +109,6 @@ export const AddPackageDrawer = ({
       case "error":
         return "Error";
       case "idle":
-      default:
         return "Install";
     }
   }, [status]);

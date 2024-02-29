@@ -136,13 +136,13 @@ export const serveApi = (app: Express, db: Data) => {
     if (projectId) {
       res.status(200).json({ projectId });
       return;
-    } else if (projectId === false) {
+    }
+    if (projectId === false) {
       res.status(404).json({ projectId: null });
       return;
-    } else {
-      res.status(500).json({ projectId: null });
-      return;
     }
+    res.status(500).json({ projectId: null });
+    return;
   });
 
   app.post("/api/project-id/update", async (req, res) => {
@@ -158,12 +158,11 @@ export const serveApi = (app: Express, db: Data) => {
     if (success) {
       res.status(200).json({ success: true });
       return;
-    } else {
-      res.status(500).json({
-        success: false,
-        error: "Failed to update project ID",
-      });
-      return;
     }
+    res.status(500).json({
+      success: false,
+      error: "Failed to update project ID",
+    });
+    return;
   });
 };

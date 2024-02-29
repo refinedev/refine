@@ -27,7 +27,7 @@ export const Searchbar: React.FC<SearchbarProps> = ({
 
       router.push(
         {
-          pathname: `/search`,
+          pathname: "/search",
           query: q ? { q } : {},
         },
         undefined,

@@ -93,7 +93,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -122,7 +122,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
 
         {
@@ -150,7 +150,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -177,7 +177,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -206,7 +206,6 @@ describe("Edit", () => {
             switch (action) {
               case "list":
                 return Promise.resolve({ can: true });
-              case "delete":
               default:
                 return Promise.resolve({ can: false });
             }
@@ -377,7 +376,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<EditPageWithAutoSave />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -435,7 +434,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<EditPageWithAutoSave />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({

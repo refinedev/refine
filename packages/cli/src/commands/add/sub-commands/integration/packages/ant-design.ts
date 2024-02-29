@@ -18,7 +18,8 @@ export const AntDesignIntegration: Integration = {
     let disabled;
 
     if ([ProjectTypes.NEXTJS, ProjectTypes.REMIX].includes(projectType)) {
-      disabled = `Automatic setup only available Vite for now. See the documentation for manual installation: https://refine.dev/docs/ui-integrations/ant-design/introduction/#installation`;
+      disabled =
+        "Automatic setup only available Vite for now. See the documentation for manual installation: https://refine.dev/docs/ui-integrations/ant-design/introduction/#installation";
     }
 
     return prettifyChoice({

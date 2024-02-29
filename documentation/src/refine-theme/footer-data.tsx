@@ -88,7 +88,8 @@ export const secondaryMenuItems = [
   },
 ];
 
-export const footerDescription = `Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.`;
+export const footerDescription =
+  "Refine is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry standard solutions.";
 
 export const socialLinks = [
   {

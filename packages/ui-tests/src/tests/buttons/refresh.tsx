@@ -17,9 +17,9 @@ jest.mock("@refinedev/core", () => ({
   },
 }));
 
-export const buttonRefreshTests = function (
+export const buttonRefreshTests = (
   RefreshButton: React.ComponentType<RefineRefreshButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Refresh Button", () => {
     const refresh = jest.fn();
 

@@ -53,7 +53,7 @@ describe("useEditableTable Hook", () => {
   });
 
   it.each(["success", "fail"] as const)(
-    `should set ot not set ID to undefined after submit is %p`,
+    "should set ot not set ID to undefined after submit is %p",
     async (scenario) => {
       const { result } = renderHook(() => useEditableTable(), {
         wrapper: TestWrapper({
