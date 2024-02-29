@@ -21,7 +21,7 @@ export const DailyRevenue = (props: Props) => {
     <ResponsiveContainer width="99%">
       <AreaChart
         data={data}
-        margin={{ top: 30, right: 10, left: 0, bottom: 0 }}
+        margin={{ top: 20, right: 10, left: 0, bottom: 0 }}
       >
         <XAxis
           dataKey="date"
