@@ -47,7 +47,7 @@ export const OrderStatus = ({ status }: OrderStatusProps) => {
       icon = (
         <MopedIcon
           sx={{
-            fill: isDarkMode ? cyan[200] : cyan[600],
+            fill: isDarkMode ? blue[200] : blue[600],
           }}
         />
       );
