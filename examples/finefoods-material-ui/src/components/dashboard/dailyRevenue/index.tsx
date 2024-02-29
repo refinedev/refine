@@ -1,10 +1,10 @@
 import {
-  LineChart,
-  Line,
   Tooltip,
   ResponsiveContainer,
   XAxis,
   YAxis,
+  AreaChart,
+  Area,
 } from "recharts";
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
@@ -19,7 +19,7 @@ export const DailyRevenue = (props: Props) => {
 
   return (
     <ResponsiveContainer width="99%">
-      <LineChart
+      <AreaChart
         data={data}
         margin={{ top: 30, right: 10, left: 0, bottom: 0 }}
       >
@@ -41,12 +41,17 @@ export const DailyRevenue = (props: Props) => {
             return `$${Number(value) / 1000}k`;
           }}
         />
-        <Line
-          type="natural"
+        <defs>
+          <linearGradient id="area-color" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#2196F3" stopOpacity={0.5} />
+            <stop offset="95%" stopColor="#2196F3" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <Area
+          type="monotone"
           dataKey="value"
           stroke="#2196F3"
-          dot={false}
-          strokeWidth={2}
+          fill="url(#area-color)"
         />
         <Tooltip
           content={
@@ -61,7 +66,7 @@ export const DailyRevenue = (props: Props) => {
             />
           }
         />
-      </LineChart>
+      </AreaChart>
     </ResponsiveContainer>
   );
 };
