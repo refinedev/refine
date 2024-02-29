@@ -40,13 +40,10 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
             }
           }
 
-          return (
-            formProps.onFinish &&
-            formProps.onFinish({
-              ...values,
-              avatar: base64Files,
-            })
-          );
+          return formProps.onFinish?.({
+            ...values,
+            avatar: base64Files,
+          });
         }}
       >
         <Form.Item

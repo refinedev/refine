@@ -77,7 +77,7 @@ export default function KpiCard({
           <Typography
             variant="h5"
             sx={{ fontSize: 40, fontWeight: 700, mb: 0 }}
-            color={color == "success" ? "green" : color}
+            color={color === "success" ? "green" : color}
           >
             {formatTotal(total)}
           </Typography>

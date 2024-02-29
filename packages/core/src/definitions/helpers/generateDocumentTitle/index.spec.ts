@@ -91,12 +91,13 @@ describe("generateDocumentTitle", () => {
   });
 
   it("should pass `id` to `translate` function", () => {
-    generateDefaultDocumentTitle(translateMock, { name: "posts" }, "show", "1"),
-      expect(translateMock).toHaveBeenCalledWith(
-        "documentTitle.posts.show",
-        { id: "1" },
-        "#1 Show Post | refine",
-      );
+    generateDefaultDocumentTitle(translateMock, { name: "posts" }, "show", "1");
+
+    expect(translateMock).toHaveBeenCalledWith(
+      "documentTitle.posts.show",
+      { id: "1" },
+      "#1 Show Post | refine",
+    );
   });
 
   it("should use the fallback value when `translate` returns the key", () => {

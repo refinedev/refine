@@ -124,7 +124,7 @@ export const generateKeyFromPackages = async () => {
   if (!packages) {
     console.error(
       chalk.red(
-        `Something went wrong when trying to get installed \`refine\` packages.`,
+        "Something went wrong when trying to get installed `refine` packages.",
       ),
     );
 

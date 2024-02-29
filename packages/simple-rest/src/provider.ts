@@ -43,7 +43,7 @@ export const dataProvider = (
     }
 
     const combinedQuery = { ...query, ...queryFilters };
-    const urlWithQuery = !!Object.keys(combinedQuery).length
+    const urlWithQuery = Object.keys(combinedQuery).length
       ? `${url}?${stringify(combinedQuery)}`
       : url;
 

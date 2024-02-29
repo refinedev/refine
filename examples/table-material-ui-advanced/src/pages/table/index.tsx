@@ -421,36 +421,36 @@ export const PostList: React.FC = () => {
               {getRowModel().rows.map((row) => {
                 if (id === row.original.id) {
                   return renderEditRow(row);
-                } else
-                  return (
-                    <React.Fragment key={row.id}>
-                      <TableRow>
-                        {row.getAllCells().map((cell) => {
-                          return (
-                            <TableCell key={cell.id}>
-                              {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext(),
-                              )}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-
-                      {row.getIsExpanded() ? (
-                        <TableRow>
-                          <TableCell
-                            id="expanded-row"
-                            colSpan={row.getVisibleCells().length}
-                          >
-                            {renderRowSubComponent({
-                              row,
-                            })}
+                }
+                return (
+                  <React.Fragment key={row.id}>
+                    <TableRow>
+                      {row.getAllCells().map((cell) => {
+                        return (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
                           </TableCell>
-                        </TableRow>
-                      ) : null}
-                    </React.Fragment>
-                  );
+                        );
+                      })}
+                    </TableRow>
+
+                    {row.getIsExpanded() ? (
+                      <TableRow>
+                        <TableCell
+                          id="expanded-row"
+                          colSpan={row.getVisibleCells().length}
+                        >
+                          {renderRowSubComponent({
+                            row,
+                          })}
+                        </TableCell>
+                      </TableRow>
+                    ) : null}
+                  </React.Fragment>
+                );
               })}
             </TableBody>
           </Table>

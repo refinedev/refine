@@ -199,7 +199,7 @@ export const ResizablePane = ({ placement, visible, children }: Props) => {
             top: "50%",
             width: "10px",
             height: "26px",
-            transform: `translateY(-13px) translateX(5px)`,
+            transform: "translateY(-13px) translateX(5px)",
             cursor: "col-resize",
             transition: "opacity ease-in-out 0.2s",
             pointerEvents: hover || resizing ? "auto" : "none",

@@ -56,7 +56,7 @@ export const getMetaProps = (
   }
 
   const metaValues = metaByActions.join(",");
-  if (!!metaValues.length) {
+  if (metaValues.length) {
     return `meta:{${metaValues}}`;
   }
 

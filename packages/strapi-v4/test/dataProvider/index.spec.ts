@@ -9,7 +9,7 @@ describe("dataProvider", () => {
 
   beforeAll(() => {
     axiosInstance.defaults.headers.common["Authorization"] =
-      `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA`;
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1Mjc0MTIzLCJleHAiOjE2NTc4NjYxMjN9.Au8NsqnS2mjtKBHf1oRl-juEQ_l9JZrPk4Fsv4GsvVA";
   });
 
   // create

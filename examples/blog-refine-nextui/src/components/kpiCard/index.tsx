@@ -46,7 +46,7 @@ export const KpiCard = ({
             <p>{title}</p>
             <h1 className="text-lg font-bold">{formattedTotal}</h1>
           </div>
-          {Number.isNaN(percent) ? (
+          {Number.isNaN(Number(percent)) ? (
             <Spinner />
           ) : (
             <Chip

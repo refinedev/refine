@@ -227,7 +227,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
           size="large"
           onClick={() => setDrawerOpen(true)}
           icon={<BarsOutlined />}
-        ></Button>
+        />
       </>
     );
   };

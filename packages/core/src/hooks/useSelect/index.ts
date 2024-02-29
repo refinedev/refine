@@ -206,9 +206,9 @@ export const useSelect = <
     (item: TData) => {
       if (typeof optionLabel === "string") {
         return get(item, optionLabel);
-      } else {
-        return optionLabel(item);
       }
+
+      return optionLabel(item);
     },
     [optionLabel],
   );
@@ -217,9 +217,9 @@ export const useSelect = <
     (item: TData) => {
       if (typeof optionValue === "string") {
         return get(item, optionValue);
-      } else {
-        return optionValue(item);
       }
+
+      return optionValue(item);
     },
     [optionValue],
   );
@@ -326,15 +326,15 @@ export const useSelect = <
     if (!value) {
       setSearch([]);
       return;
-    } else {
-      setSearch([
-        {
-          field: optionLabel as string,
-          operator: "contains",
-          value,
-        },
-      ]);
     }
+
+    setSearch([
+      {
+        field: optionLabel as string,
+        operator: "contains",
+        value,
+      },
+    ]);
   };
 
   const { elapsedTime } = useLoadingOvertime({

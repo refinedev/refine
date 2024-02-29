@@ -672,10 +672,9 @@ const LoaderProgress = () => {
       setIndex((p) => {
         if (p + 1 < texts.length) {
           return p + 1;
-        } else {
-          clearInterval(interval);
-          return p;
         }
+        clearInterval(interval);
+        return p;
       });
     }, tick);
 

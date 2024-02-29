@@ -46,7 +46,7 @@ export const CanvasShow: React.FC = () => {
         return push(`/login?to=${encodeURIComponent(pathname)}`);
       }
 
-      return push(`/login`);
+      return push("/login");
     }
 
     if (typeof x === "number" && typeof y === "number" && canvas?.id) {

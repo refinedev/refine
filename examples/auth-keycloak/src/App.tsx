@@ -84,17 +84,16 @@ const App: React.FC = () => {
           return {
             authenticated: true,
           };
-        } else {
-          return {
-            authenticated: false,
-            logout: true,
-            redirectTo: "/login",
-            error: {
-              message: "Check failed",
-              name: "Token not found",
-            },
-          };
         }
+        return {
+          authenticated: false,
+          logout: true,
+          redirectTo: "/login",
+          error: {
+            message: "Check failed",
+            name: "Token not found",
+          },
+        };
       } catch (error) {
         return {
           authenticated: false,

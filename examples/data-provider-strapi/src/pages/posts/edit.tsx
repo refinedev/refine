@@ -31,9 +31,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         {...formProps}
         layout="vertical"
         onFinish={(values) => {
-          return (
-            formProps.onFinish && formProps.onFinish(mediaUploadMapper(values))
-          );
+          return formProps.onFinish?.(mediaUploadMapper(values));
         }}
       >
         <Form.Item

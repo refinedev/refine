@@ -17,13 +17,13 @@ const hashtags = "opensource";
 const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
   "https://refine.dev/week-of-refine-supabase/",
 )}&text=${encodeURIComponent(
-  `📚 RefineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n`,
+  "📚 RefineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n",
 )}&hashtags=${hashtags}`;
 
 const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
   "https://refine.dev/week-of-refine-strapi/",
 )}&text=${encodeURIComponent(
-  `📚 RefineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n`,
+  "📚 RefineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n",
 )}&hashtags=${hashtags}`;
 
 export const data = {
@@ -149,7 +149,8 @@ export const data = {
       {
         date: "April 13, Thursday",
         title: "Creating Mission and Invoices Pages",
-        description: `We add more CRUD views to the PDF Invoice Generator app we have been building using Refine and Strapi last few days.`,
+        description:
+          "We add more CRUD views to the PDF Invoice Generator app we have been building using Refine and Strapi last few days.",
         link: "https://refine.dev/blog/refine-react-invoice-generator-4/",
         image: "/week-of-refine/strapi-timeline-4.png",
         image2x: "/week-of-refine/strapi-timeline-4-2x.png",
@@ -157,7 +158,8 @@ export const data = {
       {
         date: "April 14, Friday",
         title: "Adding PDF Renderer",
-        description: `We come past the Refine features and add a pdf renderer to display our invoices in a PDF screen.`,
+        description:
+          "We come past the Refine features and add a pdf renderer to display our invoices in a PDF screen.",
         link: "https://refine.dev/blog/refine-react-invoice-generator-5/",
         image: "/week-of-refine/strapi-timeline-5.png",
         image2x: "/week-of-refine/strapi-timeline-5-2x.png",

@@ -156,7 +156,8 @@ const action = async (_options: OptionValues) => {
       )}`,
     );
     return;
-  } else if (items.length === 1) {
+  }
+  if (items.length === 1) {
     selectedComponent = items[0];
   } else if (items.length > 1) {
     const response = await inquirer.prompt<{

@@ -72,7 +72,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
                 const { data } = await refetch();
 
-                if (data && data.data.isAvailable) {
+                if (data?.data.isAvailable) {
                   return Promise.resolve();
                 }
 

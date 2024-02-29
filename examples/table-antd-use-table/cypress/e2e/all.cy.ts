@@ -89,7 +89,7 @@ describe("table-antd-use-table", () => {
 
     cy.url().should(
       "include",
-      `filters[2][field]=title&filters[2][operator]=contains&filters[2][value]=lorem`,
+      "filters[2][field]=title&filters[2][operator]=contains&filters[2][value]=lorem",
     );
 
     cy.wait("@getFilteredPosts");

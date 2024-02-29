@@ -3,9 +3,9 @@ import { RefineFieldBooleanProps } from "@refinedev/ui-types";
 
 import { act, fireEvent, render } from "@test";
 
-export const fieldBooleanTests = function (
+export const fieldBooleanTests = (
   BooleanField: React.ComponentType<RefineFieldBooleanProps<unknown, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Boolean Field", () => {
     xit("should use prop for custom text", async () => {
       const baseDom = render(

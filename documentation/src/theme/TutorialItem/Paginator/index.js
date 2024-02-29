@@ -1,1 +1,1 @@
-export { default as default } from "../../../refine-theme/tutorial-paginator";
+export { default } from "../../../refine-theme/tutorial-paginator";

@@ -144,7 +144,7 @@ export const renderer = ({
       const variableIsLoading = getVariableName(field.key, "IsLoading");
 
       if (field.multiple) {
-        const variableDataLength = accessor(recordName, field.key) + "?.length";
+        const variableDataLength = `${accessor(recordName, field.key)}?.length`;
         imports.push(
           ["TagField", "@refinedev/chakra-ui"],
           ["HStack", "@chakra-ui/react"],
@@ -175,38 +175,34 @@ export const renderer = ({
                             //     `${variableName}?.data`,
                             //     field.relationInfer.accessor,
                             // ).join(' + " " + ')}}`;
-                          } else {
-                            // return `Not Handled.`;
-                            const mapItemName = getVariableName(field.key);
-                            const val = accessor(
-                              mapItemName,
-                              undefined,
-                              field.relationInfer.accessor,
-                            );
-                            return `{record?.${field.key}?.length ? <HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack> : <></>}`;
                           }
-                        } else {
-                          console.log(
-                            "@refinedev/inferencer: Inferencer failed to render this field",
-                            {
-                              key: field.key,
-                              relation: field.relationInfer,
-                            },
+                          // return `Not Handled.`;
+                          const mapItemName = getVariableName(field.key);
+                          const val = accessor(
+                            mapItemName,
+                            undefined,
+                            field.relationInfer.accessor,
                           );
-
-                          return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
-                          // return `{${variableName}?.data}`;
+                          return `{record?.${field.key}?.length ? <HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack> : <></>}`;
                         }
-                      } else {
                         console.log(
                           "@refinedev/inferencer: Inferencer failed to render this field",
                           {
                             key: field.key,
+                            relation: field.relationInfer,
                           },
                         );
 
-                        return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
+                        return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                       }
+                      console.log(
+                        "@refinedev/inferencer: Inferencer failed to render this field",
+                        {
+                          key: field.key,
+                        },
+                      );
+
+                      return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                     })()}
                     </>
                 )}
@@ -258,31 +254,28 @@ export const renderer = ({
                               field.relationInfer.accessor,
                               ' + " " + ',
                             )}}`;
-                          } else {
-                            return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                           }
-                        } else {
-                          const cannotRender =
-                            field?.relationInfer?.type === "object" &&
-                            !field?.relationInfer?.accessor;
-
-                          if (cannotRender) {
-                            console.log(
-                              "@refinedev/inferencer: Inferencer failed to render this field",
-                              {
-                                key: field.key,
-                                relation: field.relationInfer,
-                              },
-                            );
-                          }
-
-                          return cannotRender
-                            ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
-                            : `{${variableName}?.data}`;
+                          return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                         }
-                      } else {
-                        return `{${variableName}?.data?.id}`;
+                        const cannotRender =
+                          field?.relationInfer?.type === "object" &&
+                          !field?.relationInfer?.accessor;
+
+                        if (cannotRender) {
+                          console.log(
+                            "@refinedev/inferencer: Inferencer failed to render this field",
+                            {
+                              key: field.key,
+                              relation: field.relationInfer,
+                            },
+                          );
+                        }
+
+                        return cannotRender
+                          ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
+                          : `{${variableName}?.data}`;
                       }
+                      return `{${variableName}?.data?.id}`;
                     })()}
                     </>
                 )}
@@ -623,7 +616,7 @@ export const renderer = ({
   });
 
   noOp(imports);
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     ${printImports(imports)}

@@ -76,7 +76,7 @@ function App() {
               },
             ]}
             authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
             notificationProvider={useNotificationProvider}
             routerProvider={routerBindings}
             options={{

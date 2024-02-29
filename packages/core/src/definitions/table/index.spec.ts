@@ -619,7 +619,7 @@ describe("definitions/table", () => {
   });
 
   it("parseTableParams default sorter and filters", () => {
-    expect(parseTableParams(`?current=1&pageSize=10`)).toStrictEqual({
+    expect(parseTableParams("?current=1&pageSize=10")).toStrictEqual({
       parsedCurrent: 1,
       parsedFilters: [],
       parsedPageSize: 10,

@@ -11,9 +11,6 @@
 // and https://github.com/reactjs/react-codemod/blob/dd8671c9a470a2c342b221ec903c574cf31e9f57/bin/cli.js
 // @refinedev/codemod name-of-transform optional/path/to/src [...options]
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import chalk from "chalk";
 import execa from "execa";
 import globby from "globby";
@@ -43,7 +40,7 @@ export function checkGitStatus(force) {
     clean = isGitClean.sync(process.cwd());
     errorMessage = "Git directory is not clean";
   } catch (err) {
-    if (err && err.stderr && err.stderr.indexOf("Not a git repository") >= 0) {
+    if (err?.stderr && err.stderr.indexOf("Not a git repository") >= 0) {
       clean = true;
     }
   }
@@ -175,7 +172,7 @@ export async function run(): Promise<void> {
   ) {
     console.error("Invalid transform choice, pick one of:");
     console.error(
-      TRANSFORMER_INQUIRER_CHOICES.map((x) => "- " + x.value).join("\n"),
+      TRANSFORMER_INQUIRER_CHOICES.map((x) => `- ${x.value}`).join("\n"),
     );
     process.exit(1);
   }
@@ -211,10 +208,10 @@ export async function run(): Promise<void> {
       console.log();
 
       console.log(
-        `Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4`,
+        "Uppss!, we encountered an issue that prevents us from upgrading your project to refine@4",
       );
       console.log(
-        `You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.`,
+        "You are using version 4 of Ant Design. refine@4 uses version 5 of Ant Design.",
       );
       console.log(
         `Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.`,

@@ -111,6 +111,7 @@ export const FeedItem = ({ item }: Props) => {
             "prose-a:re-text-alt-blue",
             "prose-a:re-underline",
           )}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
           dangerouslySetInnerHTML={{ __html: item.content }}
         />
       </div>

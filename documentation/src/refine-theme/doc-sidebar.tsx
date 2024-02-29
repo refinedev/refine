@@ -188,7 +188,7 @@ const SidebarCategory = ({
             width:
               variant === "desktop"
                 ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-                : `calc(100% + 16px)`,
+                : "calc(100% + 16px)",
           }}
         />
       </Comp>
@@ -387,7 +387,7 @@ const SidebarLink = ({
           width:
             variant === "desktop"
               ? `calc(${SIDEBAR_WIDTH}px - 32px)`
-              : `calc(100% + 16px)`,
+              : "calc(100% + 16px)",
         }}
       />
       {line && (
@@ -444,6 +444,7 @@ const SidebarHtml = ({
           "bg-gray-0",
           "dark:bg-gray-900",
         )}
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
         dangerouslySetInnerHTML={{ __html: item.value }}
       />
     </div>

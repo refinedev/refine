@@ -77,6 +77,7 @@ const WalkthroughCodeWindow = ({ code }: { code: string }) => {
                       <span
                         {...tokenProps}
                         key={`${token.content}-${key}`}
+                        // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                         dangerouslySetInnerHTML={{
                           __html: content,
                         }}
@@ -387,14 +388,14 @@ ___edit: "/orders/edit:id",
     code: `
 <Route path="/orders" element={<OrdersPage />} />
 <Route path="/products" element={<ProductsPage />} />
-<Route path="/customers" element={<CustomersPage />} />        
+<Route path="/customers" element={<CustomersPage />} />
 `,
     text: "Secure your App",
   },
   restart: {
     code: `
 import { AuthPage } from "@refinedev/antd";
-import { Auth0Provider } from "@auth0/auth0-react";        
+import { Auth0Provider } from "@auth0/auth0-react";
 `,
     end: true,
   },

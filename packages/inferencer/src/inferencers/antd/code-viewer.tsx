@@ -58,7 +58,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               </Button>
             </Space>
           </div>
-          <div style={{ height: "50px" }}></div>
+          <div style={{ height: "50px" }} />
           <Modal
             width={800}
             open={open}

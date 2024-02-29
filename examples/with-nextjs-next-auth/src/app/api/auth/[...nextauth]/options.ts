@@ -9,24 +9,26 @@ const authOptions = {
   providers: [
     // !!! Should be stored in .env file.
     GoogleProvider({
-      clientId: `1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com`,
-      clientSecret: `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`,
+      clientId:
+        "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com",
+      clientSecret: "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",
     }),
     Auth0Provider({
-      clientId: `Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO`,
-      clientSecret: `08F9X84FvzpsimV16CQvlQuwJOlqk-GqQgEdcq_3xzrn1K3UHnTCcRgMCwBW7api`,
-      issuer: `https://dev-qg1ftdys736bk5i3.us.auth0.com`,
+      clientId: "Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO",
+      clientSecret:
+        "08F9X84FvzpsimV16CQvlQuwJOlqk-GqQgEdcq_3xzrn1K3UHnTCcRgMCwBW7api",
+      issuer: "https://dev-qg1ftdys736bk5i3.us.auth0.com",
     }),
     KeycloakProvider({
-      clientId: `refine-demo`,
-      clientSecret: `refine`,
-      issuer: `https://lemur-0.cloud-iam.com/auth/realms/refine`,
+      clientId: "refine-demo",
+      clientSecret: "refine",
+      issuer: "https://lemur-0.cloud-iam.com/auth/realms/refine",
       profile(profile) {
         return {
           id: profile.sub,
           name: profile.name ?? profile.preferred_username,
           email: profile.email,
-          image: `https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg`,
+          image: "https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg",
         };
       },
     }),
@@ -70,7 +72,7 @@ const authOptions = {
       },
     }),
   ],
-  secret: `UItTuD1HcGXIj8ZfHUswhYdNd40Lc325R8VlxQPUoR0=`,
+  secret: "UItTuD1HcGXIj8ZfHUswhYdNd40Lc325R8VlxQPUoR0=",
 };
 
 export default authOptions;

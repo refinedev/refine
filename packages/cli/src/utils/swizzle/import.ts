@@ -198,7 +198,7 @@ export const reorderImports = (content: string): string => {
       // but we can use default import and named imports together
       // so we need to merge them
       if (namespaceImport) {
-        importLine += namespaceImport.statement + "\n";
+        importLine += `${namespaceImport.statement}\n`;
       }
       if (defaultImport || namedImports) {
         if (defaultImport && namedImports) {

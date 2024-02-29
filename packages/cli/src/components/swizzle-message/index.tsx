@@ -111,7 +111,7 @@ export const printSwizzleMessage = ({
 
   const printSwizzleMessage = () => {
     if (message && status !== "error") {
-      console.log(markedTerminalRenderer(dedent("\n" + message)));
+      console.log(markedTerminalRenderer(dedent(`\n${message}`)));
     }
   };
 

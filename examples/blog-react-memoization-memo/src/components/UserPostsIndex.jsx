@@ -27,7 +27,7 @@ const UserPostsIndex = ({ signedIn }) => {
     <div className="my-1 p-2 box">
       <div className="m-1 py-1">
         <h2 className="heading-md">Your Posts</h2>
-        <p className="m-1 p-1">{signedIn ? `Signed in` : `Signed out `}</p>
+        <p className="m-1 p-1">{signedIn ? "Signed in" : "Signed out "}</p>
         {userPosts && (
           <div className="px-1">
             {<UserPostsList userPosts={userPosts} deletePost={deletePost} />}

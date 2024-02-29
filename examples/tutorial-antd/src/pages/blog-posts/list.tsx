@@ -43,7 +43,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
           dataIndex="content"
           title="Content"
           render={(value: any) => (
-            <MarkdownField value={value.slice(0, 80) + "..."} />
+            <MarkdownField value={`${value.slice(0, 80)}...`} />
           )}
         />
         <Table.Column

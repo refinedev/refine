@@ -26,18 +26,17 @@ export const authProvider: AuthProvider = {
         success: true,
         redirectTo: "/",
       };
-    } else {
-      return {
-        success: false,
-        error: new Error(
-          "Not set ethereum wallet or invalid. You need to install Metamask",
-        ),
-      };
     }
+    return {
+      success: false,
+      error: new Error(
+        "Not set ethereum wallet or invalid. You need to install Metamask",
+      ),
+    };
   },
   logout: async () => {
     localStorage.removeItem(TOKEN_KEY);
-    if (provider && provider.close) {
+    if (provider?.close) {
       await provider.close;
 
       provider = null;

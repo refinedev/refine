@@ -171,7 +171,6 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             ...mockLegacyAuthProvider,
             updatePassword: () => {
               throw new Error("Unhandled error");
-              return Promise.resolve();
             },
           },
         }),
@@ -496,7 +495,6 @@ describe("useUpdatePassword Hook", () => {
           ...mockAuthProvider,
           updatePassword: () => {
             throw new Error("Unhandled error");
-            return Promise.resolve({ success: true });
           },
         },
       }),
@@ -586,7 +584,6 @@ describe("useUpdatePassword Hook", () => {
         useUpdatePassword({
           mutationOptions: {
             // mutationFn is omitted in types. So we need to use @ts-ignore test it.
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             mutationFn: mutationFnMock,
           },

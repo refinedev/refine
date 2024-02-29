@@ -150,7 +150,7 @@ const run = async (
 
   if (gitStatus === "git-not-found") {
     gitSpinner.warn(
-      `Git was not found in your PATH. Skipping Git initialization.`,
+      "Git was not found in your PATH. Skipping Git initialization.",
     );
   }
 

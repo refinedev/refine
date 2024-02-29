@@ -21,7 +21,7 @@ export const Card = ({ title, status }: { title: string; status: string }) => {
                 : "limegreen"
           }`,
         }}
-      ></div>
+      />
       <h3 className={styles.title}>{title}</h3>
     </motion.div>
   );

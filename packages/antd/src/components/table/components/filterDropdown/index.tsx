@@ -54,7 +54,6 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
   const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChange = (e: any) => {
     if (typeof e === "object") {
       if (Array.isArray(e)) {
