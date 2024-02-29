@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   HttpError,
   IResourceComponentsProps,
@@ -18,7 +18,7 @@ import {
 } from "../../components";
 import { ICategory, IProduct } from "../../interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const t = useTranslate();
 
   const { dataGridProps } = useDataGrid<ICategory, HttpError>({
@@ -38,7 +38,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
   });
   const products = productsData?.data || [];
 
-  const columns = React.useMemo<GridColDef<ICategory>[]>(
+  const columns = useMemo<GridColDef<ICategory>[]>(
     () => [
       {
         field: "title",
@@ -59,6 +59,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
                 Array.from({ length: 10 }).map((_, index) => {
                   return (
                     <Skeleton
+                      // biome-ignore lint/suspicious/noArrayIndexKey: <Skeleton /> not important to have unique key
                       key={index}
                       sx={{
                         width: "32px",
@@ -100,7 +101,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         },
       },
     ],
-    [t, products],
+    [t, products, productsIsLoading],
   );
 
   return (

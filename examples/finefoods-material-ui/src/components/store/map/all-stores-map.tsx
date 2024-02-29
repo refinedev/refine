@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Map, AdvancedMarker } from "../../map";
+import { GoogleMap, AdvancedMarker } from "../../map";
 import { StoreStatus } from "../status";
 import { IStore } from "../../../interfaces";
 
@@ -27,7 +27,7 @@ export const AllStoresMap = () => {
   });
   const stores = storeData?.data || [];
 
-  const handleMarkerClick = (e: any, store: IStore) => {
+  const handleMarkerClick = (store: IStore) => {
     setSelectedStore(store);
   };
 
@@ -42,7 +42,7 @@ export const AllStoresMap = () => {
         overflow: "hidden",
       }}
     >
-      <Map
+      <GoogleMap
         mapProps={{
           setMap,
           mapId: "all-stores-map",
@@ -69,8 +69,8 @@ export const AllStoresMap = () => {
                 lat,
                 lng,
               }}
-              onClick={(e: any) => {
-                handleMarkerClick(e, store);
+              onClick={() => {
+                handleMarkerClick(store);
               }}
             >
               {(selectedStore?.id !== store.id || !selectedStore) && (
@@ -128,7 +128,7 @@ export const AllStoresMap = () => {
             </AdvancedMarker>
           );
         })}
-      </Map>
+      </GoogleMap>
     </Box>
   );
 };

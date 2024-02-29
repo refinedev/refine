@@ -5,26 +5,29 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
+  BarProps,
 } from "recharts";
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
 
 type Props = {
-  data: any[];
+  data: BarProps["data"];
 };
 
 export const DailyOrders = (props: Props) => {
+  const data = props.data || [];
+
   return (
     <ResponsiveContainer width="99%">
       <BarChart
-        data={props.data}
+        data={data}
         barSize={15}
         margin={{ top: 30, right: 10, left: -15, bottom: 0 }}
       >
         <XAxis
           dataKey="date"
           tickFormatter={(value) => {
-            if (props.data.length > 7) {
+            if (data.length > 7) {
               return dayjs(value).format("MM/DD");
             }
 

@@ -34,6 +34,7 @@ export const ProductImageUpload = (props: Props) => {
       {props.previewURL ? (
         <img
           src={props.previewURL}
+          alt="product"
           style={{
             width: "100%",
             height: "100%",
@@ -51,7 +52,6 @@ export const ProductImageUpload = (props: Props) => {
       )}
       <Button
         component="label"
-        role={undefined}
         variant="contained"
         color="inherit"
         tabIndex={-1}

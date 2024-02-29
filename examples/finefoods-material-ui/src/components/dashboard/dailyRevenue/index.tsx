@@ -5,26 +5,29 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
+  LineProps,
 } from "recharts";
 
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
 
 type Props = {
-  data: any[];
+  data: LineProps["data"];
 };
 
 export const DailyRevenue = (props: Props) => {
+  const data = props.data || [];
+
   return (
     <ResponsiveContainer width="99%">
       <LineChart
-        data={props.data}
+        data={data}
         margin={{ top: 30, right: 10, left: 10, bottom: 0 }}
       >
         <XAxis
           dataKey="date"
           tickFormatter={(value) => {
-            if (props.data.length > 7) {
+            if (data.length > 7) {
               return dayjs(value).format("MM/DD");
             }
 

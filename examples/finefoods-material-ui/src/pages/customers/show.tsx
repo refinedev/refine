@@ -209,7 +209,7 @@ export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
                   <ArrowCircleRightOutlinedIcon color="action" />
                 );
                 return (
-                  <Stack key={index} direction="row" spacing="8px">
+                  <Stack direction="row" spacing="8px">
                     {icon}
                     <Typography>{address.text}</Typography>
                   </Stack>

@@ -1,4 +1,4 @@
-import { Map, MapMarker } from "../../map";
+import { GoogleMap, MapMarker } from "../../map";
 import { IOrder } from "../../../interfaces";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 export const OrderDeliveryMap = ({ order }: Props) => {
   return (
-    <Map
+    <GoogleMap
       mapProps={{
         center: {
           lat: 40.73061,
@@ -36,6 +36,6 @@ export const OrderDeliveryMap = ({ order }: Props) => {
           lng: Number(order?.store.address.coordinate[1]),
         }}
       />
-    </Map>
+    </GoogleMap>
   );
 };

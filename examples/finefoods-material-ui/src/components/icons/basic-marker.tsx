@@ -10,6 +10,7 @@ export const BasicMarker = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
+    <title>Marker</title>
     <path
       fill="currentColor"
       d="M0 15.14C0 6.778 7.163 0 16 0s16 6.778 16 15.14C32 23.5 24.657 29.274 16 40 6.984 29.274 0 23.501 0 15.14Z"

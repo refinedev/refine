@@ -7,6 +7,7 @@ export const BikeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
+    <title>Bike</title>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

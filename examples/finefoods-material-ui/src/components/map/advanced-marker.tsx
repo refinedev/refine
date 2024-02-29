@@ -2,7 +2,7 @@ import { useState, useEffect, memo, useRef, PropsWithChildren } from "react";
 import { Root, createRoot } from "react-dom/client";
 
 type AdvancedMarkerProps = {
-  onClick?: Function;
+  onClick?: (event: google.maps.FeatureMouseEvent) => void;
   map?: google.maps.Map;
 } & google.maps.marker.AdvancedMarkerElementOptions;
 
@@ -33,7 +33,7 @@ const AdvancedMarker: React.FC<PropsWithChildren<AdvancedMarkerProps>> = ({
         }),
       );
     }
-  }, [marker, map]);
+  }, [marker, map, options, onClick]);
 
   useEffect(() => {
     if (marker) {

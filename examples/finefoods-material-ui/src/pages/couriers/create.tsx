@@ -369,8 +369,7 @@ const useStepsFormList = ({ stepsForm }: UseStepsFormList) => {
           rules={{
             required: "Store required",
           }}
-          // eslint-disable-next-line
-          defaultValue={null as any}
+          defaultValue={null}
           render={({ field }) => (
             <Autocomplete
               {...storesAutoCompleteProps}
@@ -413,7 +412,6 @@ const useStepsFormList = ({ stepsForm }: UseStepsFormList) => {
             }),
           }}
           render={({ field }) => {
-            console.log("accountNumber", field);
             return (
               <TextField
                 {...field}
@@ -441,8 +439,7 @@ const useStepsFormList = ({ stepsForm }: UseStepsFormList) => {
           rules={{
             required: "vehicle required",
           }}
-          // eslint-disable-next-line
-          defaultValue={null as any}
+          defaultValue={null}
           render={({ field }) => (
             <Autocomplete
               {...vehiclesAutoCompleteProps}
@@ -484,7 +481,6 @@ const useStepsFormList = ({ stepsForm }: UseStepsFormList) => {
             }),
           }}
           render={({ field }) => {
-            console.log("licensePlate", field);
             return (
               <TextField
                 {...field}

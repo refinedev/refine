@@ -65,7 +65,10 @@ export const getLatLngWithAddress = async (address: string) => {
   }
 };
 
-export const convertLatLng = (latLng: { lat: string; lng: string }) => {
+export const convertLatLng = (latLng: {
+  lat: string | number;
+  lng: string | number;
+}) => {
   const formatter = new Intl.NumberFormat("en", {
     maximumFractionDigits: 5,
   });

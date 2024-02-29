@@ -7,6 +7,7 @@ export const CourierIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
+    <title>courier</title>
     <path
       d="M16.9706 16.9706C26.3432 7.59798 41.5391 7.59798 50.9117 16.9706C60.2843 26.3431 60.2843 41.5391 50.9117 50.9117L33.9412 67.8822L16.9706 50.9117C7.59802 41.5391 7.59802 26.3431 16.9706 16.9706Z"
       fill="#FA8C16"

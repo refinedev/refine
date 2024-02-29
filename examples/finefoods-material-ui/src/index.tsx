@@ -11,6 +11,7 @@ dayjs.extend(relativeTime);
 
 const container = document.getElementById("root");
 // eslint-disable-next-line
+// biome-ignore lint/style/noNonNullAssertion: <root> is not null
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>

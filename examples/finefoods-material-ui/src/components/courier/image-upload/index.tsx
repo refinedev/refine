@@ -35,6 +35,7 @@ export const CourierImageUpload = ({
       {previewURL ? (
         <img
           src={previewURL}
+          alt="Courier avatar"
           style={{
             width: "100%",
             height: "100%",
@@ -69,7 +70,6 @@ export const CourierImageUpload = ({
       )}
       <Box
         component="label"
-        role={undefined}
         sx={{
           position: "absolute",
           top: 0,

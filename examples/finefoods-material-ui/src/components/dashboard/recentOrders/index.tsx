@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
+  UpdatePasswordFormTypes,
   useNavigation,
   useTranslate,
   useUpdate,
@@ -18,13 +19,15 @@ export const RecentOrders: React.FC = () => {
   const t = useTranslate();
   const { show } = useNavigation();
   const { mutate } = useUpdate();
-  const { mutate: updatePassword } = useUpdatePassword<any>();
+  const { mutate: updatePassword } =
+    useUpdatePassword<Record<string, string>>();
+
   useEffect(() => {
     updatePassword({
       redirectPath: "/custom-url",
       query: "?foo=bar",
     });
-  }, []);
+  }, [updatePassword]);
 
   const { dataGridProps } = useDataGrid<IOrder>({
     resource: "orders",
@@ -45,7 +48,7 @@ export const RecentOrders: React.FC = () => {
     syncWithLocation: false,
   });
 
-  const columns = React.useMemo<GridColDef<IOrder>[]>(
+  const columns = useMemo<GridColDef<IOrder>[]>(
     () => [
       {
         field: "orderNumber",
@@ -169,7 +172,7 @@ export const RecentOrders: React.FC = () => {
         ],
       },
     ],
-    [t],
+    [t, mutate],
   );
 
   return (

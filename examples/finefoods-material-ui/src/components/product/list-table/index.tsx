@@ -1,4 +1,4 @@
-import React from "react";
+import { useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { NumberField, UseDataGridReturnType } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
@@ -20,7 +20,7 @@ export const ProductListTable = (props: Props) => {
   const { editUrl } = useNavigation();
   const t = useTranslate();
 
-  const columns = React.useMemo<GridColDef<IProduct>[]>(
+  const columns = useMemo<GridColDef<IProduct>[]>(
     () => [
       {
         field: "id",
@@ -137,7 +137,7 @@ export const ProductListTable = (props: Props) => {
         },
       },
     ],
-    [t, props.categories],
+    [t, props.categories, editUrl, go, pathname],
   );
 
   return (

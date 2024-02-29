@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import _debounce from "lodash/debounce";
 import Box from "@mui/material/Box";
-import { Map, MapMarker } from "../../map";
+import { GoogleMap, MapMarker } from "../../map";
 import { IStore } from "../../../interfaces";
 import { convertLatLng } from "../../../utils";
 
@@ -24,13 +24,18 @@ export const StoreMap = (props: Props) => {
     [],
   );
 
-  const handleDragEnd = (e: any) => {
+  const handleDragEnd = (e: google.maps.FeatureMouseEvent) => {
     if (!props.onDragEnd) return;
 
+    const googleLat = e.latLng?.lat();
+    const googleLng = e.latLng?.lng();
+    if (!googleLat || !googleLng) return;
+
     const { lat, lng } = convertLatLng({
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
+      lat: googleLat,
+      lng: googleLng,
     });
+
     onDragEndDebounced.cancel();
     onDragEndDebounced(lat, lng);
   };
@@ -48,7 +53,7 @@ export const StoreMap = (props: Props) => {
         position: "relative",
       }}
     >
-      <Map
+      <GoogleMap
         mapProps={{
           mapId: "store-map",
           center: {
@@ -72,7 +77,7 @@ export const StoreMap = (props: Props) => {
             onDragEnd={props.isDisabled ? undefined : handleDragEnd}
           />
         )}
-      </Map>
+      </GoogleMap>
     </Box>
   );
 };

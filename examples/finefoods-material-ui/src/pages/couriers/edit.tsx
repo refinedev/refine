@@ -326,8 +326,7 @@ export const CourierEdit = () => {
                     rules={{
                       required: "vehicle required",
                     }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
+                    defaultValue={null}
                     render={({ field }) => (
                       <Autocomplete
                         {...vehiclesAutoCompleteProps}
@@ -368,8 +367,7 @@ export const CourierEdit = () => {
                     rules={{
                       required: "Store required",
                     }}
-                    // eslint-disable-next-line
-                    defaultValue={null as any}
+                    defaultValue={null}
                     render={({ field }) => (
                       <Autocomplete
                         {...storesAutoCompleteProps}

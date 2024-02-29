@@ -1,6 +1,6 @@
 import { useList, useNavigation } from "@refinedev/core";
 
-import { Map, MapMarker } from "../../../components";
+import { GoogleMap, MapMarker } from "../../../components";
 import { IOrder } from "../../../interfaces";
 
 export const DeliveryMap: React.FC = () => {
@@ -31,7 +31,7 @@ export const DeliveryMap: React.FC = () => {
   const { show } = useNavigation();
 
   return (
-    <Map mapProps={{ ...defaultProps }}>
+    <GoogleMap mapProps={{ ...defaultProps }}>
       {orderData?.data.map((order) => {
         return (
           <MapMarker
@@ -62,6 +62,6 @@ export const DeliveryMap: React.FC = () => {
           />
         );
       })}
-    </Map>
+    </GoogleMap>
   );
 };

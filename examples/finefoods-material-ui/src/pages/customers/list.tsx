@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useMemo } from "react";
 import {
   HttpError,
   useExport,
@@ -32,7 +32,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
     initialPageSize: 10,
   });
 
-  const columns = React.useMemo<GridColDef<IUser>[]>(
+  const columns = useMemo<GridColDef<IUser>[]>(
     () => [
       {
         field: "orderNumber",
@@ -146,7 +146,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         },
       },
     ],
-    [t],
+    [t, go, pathname, showUrl],
   );
 
   const { isLoading, triggerExport } = useExport<IUser>({

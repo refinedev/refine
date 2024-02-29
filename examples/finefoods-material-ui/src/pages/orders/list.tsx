@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   HttpError,
   IResourceComponentsProps,
@@ -34,7 +34,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     initialPageSize: 10,
   });
 
-  const columns = React.useMemo<GridColDef<IOrder>[]>(
+  const columns = useMemo<GridColDef<IOrder>[]>(
     () => [
       {
         field: "orderNumber",
@@ -151,7 +151,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         ],
       },
     ],
-    [t],
+    [t, mutate],
   );
 
   const { show } = useNavigation();

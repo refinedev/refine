@@ -29,7 +29,6 @@ export const authProvider: AuthProvider = {
     }
   },
   updatePassword: async (params) => {
-    console.log(params);
     return {
       success: true,
     };

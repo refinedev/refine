@@ -15,7 +15,7 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 interface MapProps extends Exclude<google.maps.MapOptions, "center"> {
   setMap?: Dispatch<SetStateAction<google.maps.Map | undefined>>;
   center?: google.maps.LatLngLiteral;
-  onDragStart?: Function;
+  onDragStart?: (event: google.maps.FeatureMouseEvent) => void;
 }
 
 const MapComponent: FC<PropsWithChildren<MapProps>> = ({
@@ -37,7 +37,7 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
         lng: center.lng,
       });
     }
-  }, [center]);
+  }, [center, map]);
 
   useEffect(() => {
     if (map) {
@@ -47,7 +47,7 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
         map.addListener("dragstart", onDragStart);
       }
     }
-  }, [map]);
+  }, [map, center, onDragStart, options, setMapFromProps, zoom]);
 
   useEffect(() => {
     if (ref.current && !map) {
@@ -57,14 +57,14 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
       setMap(mapContructor);
       setMapFromProps?.(mapContructor);
     }
-  }, [ref, map]);
+  }, [map, mapId, setMapFromProps]);
 
   return (
     <>
       <div ref={ref} style={{ flexGrow: "1", height: "100%" }} />
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
-          // eslint-disable-next-line
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
           return cloneElement<any>(child, { map });
         }
       })}

@@ -115,12 +115,13 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     },
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: should run when `value` changed
   useEffect(() => {
     setOptions([]);
     refetchOrders();
     refetchCouriers();
     refetchStores();
-  }, [value]);
+  }, [value, refetchOrders, refetchCouriers, refetchStores]);
 
   return (
     <AppBar color="default" position="sticky" elevation={1}>

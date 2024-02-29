@@ -10,6 +10,7 @@ export const Rank3Icon = (props: SVGProps<SVGSVGElement>) => {
       fill="none"
       {...props}
     >
+      <title>3</title>
       <g filter="url(#rank-3-a)">
         <rect
           width={40}

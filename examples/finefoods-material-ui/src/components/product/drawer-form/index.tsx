@@ -250,8 +250,7 @@ export const ProductDrawerForm = (props: Props) => {
                 disabled={formLoading}
                 control={control}
                 name="category"
-                // eslint-disable-next-line
-                defaultValue={null as any}
+                defaultValue={null}
                 rules={{
                   required: t("errors.required.field", {
                     field: "category",
