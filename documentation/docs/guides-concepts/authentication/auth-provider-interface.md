@@ -110,6 +110,13 @@ const authProvider: AuthProvider = {
       },
     };
   },
-  getPermissions: async () => ["admin"],
+  getPermissions: async (params) => {
+    if (params) {
+      // do some logic like for example you can get roles for specific tenant
+      return ["admin"];
+    }
+
+    return ["admin"];
+  },
 };
 ```

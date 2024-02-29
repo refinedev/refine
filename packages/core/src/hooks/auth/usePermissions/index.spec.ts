@@ -4,11 +4,6 @@ import { MockJSONServer, TestWrapper } from "@test";
 
 import { usePermissions } from "./";
 
-type PermissionsProps = {
-  params: Record<string, any>;
-  v3LegacyAuthProviderCompatible: boolean;
-};
-
 describe("usePermissions Hook", () => {
   it("returns authenticated userPermissions", async () => {
     const { result } = renderHook(() => usePermissions(), {
@@ -74,26 +69,23 @@ describe("usePermissions Hook", () => {
 
   it("should accept params", async () => {
     const mockGetPermissions = jest.fn(() => Promise.resolve(["admin"]));
-    const { result } = renderHook(
-      (props: PermissionsProps) => usePermissions({ ...props }),
-      {
-        initialProps: {
-          params: { currentRole: "admin" },
-          v3LegacyAuthProviderCompatible: false,
-        },
-        wrapper: TestWrapper({
-          authProvider: {
-            login: () => Promise.resolve({ success: true }),
-            check: () => Promise.resolve({ authenticated: true }),
-            onError: () => Promise.resolve({}),
-            logout: () => Promise.resolve({ success: true }),
-            getPermissions: mockGetPermissions,
-          },
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
+    const { result } = renderHook((props) => usePermissions({ ...props }), {
+      initialProps: {
+        params: { currentRole: "admin" },
+        v3LegacyAuthProviderCompatible: false,
       },
-    );
+      wrapper: TestWrapper({
+        authProvider: {
+          login: () => Promise.resolve({ success: true }),
+          check: () => Promise.resolve({ authenticated: true }),
+          onError: () => Promise.resolve({}),
+          logout: () => Promise.resolve({ success: true }),
+          getPermissions: mockGetPermissions,
+        },
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+      }),
+    });
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy();
@@ -185,23 +177,20 @@ describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
 
   it("should accept params with v3LegacyAuthProviderCompatible", async () => {
     const legacyGetPermissionMock = jest.fn(() => Promise.resolve(["admin"]));
-    const { result } = renderHook(
-      (props: PermissionsProps) => usePermissions({ ...props }),
-      {
-        initialProps: {
-          params: { currentRole: "admin" },
-          v3LegacyAuthProviderCompatible: true,
-        },
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: () => Promise.resolve(),
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: legacyGetPermissionMock,
-          },
-        }),
+    const { result } = renderHook((props) => usePermissions({ ...props }), {
+      initialProps: {
+        params: { currentRole: "admin" },
+        v3LegacyAuthProviderCompatible: true,
       },
-    );
+      wrapper: TestWrapper({
+        legacyAuthProvider: {
+          login: () => Promise.resolve(),
+          checkAuth: () => Promise.resolve(),
+          checkError: () => Promise.resolve(),
+          getPermissions: legacyGetPermissionMock,
+        },
+      }),
+    });
 
     await waitFor(() => {
       expect(result.current.isLoading).toBeFalsy();
