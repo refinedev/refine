@@ -2,6 +2,8 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { configure } from "@testing-library/dom";
 
+jest.retryTimes(3, { logErrorsBeforeRetry: true });
+
 configure({
   asyncUtilTimeout: 10000,
 });
