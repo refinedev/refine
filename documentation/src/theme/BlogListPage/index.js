@@ -79,7 +79,7 @@ function BlogListPageContent(props) {
           "blog-md:block hidden",
         )}
       >
-        <div className="border-b border-gray-100 dark:border-gray-700"></div>
+        <div className="border-b border-gray-100 dark:border-gray-700" />
       </div>
       <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
       <div

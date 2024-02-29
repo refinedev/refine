@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Breadcrumb = () => {
   const { breadcrumbs } = useBreadcrumb();
 
-  if (breadcrumbs.length == 1) return null;
+  if (breadcrumbs.length === 1) return null;
 
   return (
     <div className="text-sm breadcrumbs">

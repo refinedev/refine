@@ -29,7 +29,7 @@ export const Filter = ({
                 : "limegreen"
           }`,
         }}
-      ></div>
+      />
       <h3 className={styles.title}>{capitalize(title)}</h3>
     </div>
   );

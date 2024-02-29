@@ -37,7 +37,7 @@ const ClickOutside: FC<PropsWithChildren<ClickOutsideProps>> = forwardRef(
       throw new Error("A valid non Fragment React Children should be provided");
     }
 
-    if (typeof onClick != "function") {
+    if (typeof onClick !== "function") {
       throw new Error("onClick must be a valid function");
     }
 

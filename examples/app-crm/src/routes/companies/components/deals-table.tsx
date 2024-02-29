@@ -89,7 +89,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
 
   const hasData = tableProps.loading
     ? true
-    : tableProps?.dataSource?.length || 0 > 0;
+    : (tableProps?.dataSource?.length || 0) > 0;
 
   const showResetFilters = useMemo(() => {
     return filters?.filter((filter) => {

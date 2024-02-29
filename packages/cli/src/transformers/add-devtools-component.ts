@@ -19,11 +19,11 @@ export const addDevtoolsComponent = async () => {
     "--extensions=ts,tsx,js,jsx",
     "--parser=tsx",
     `--transform=${__dirname}/../src/transformers/add-devtools-component.ts`,
-    `--ignore-pattern=.cache`,
-    `--ignore-pattern=node_modules`,
-    `--ignore-pattern=build`,
-    `--ignore-pattern=.next`,
-    `--ignore-pattern=dist`,
+    "--ignore-pattern=.cache",
+    "--ignore-pattern=node_modules",
+    "--ignore-pattern=build",
+    "--ignore-pattern=.next",
+    "--ignore-pattern=dist",
   ]);
 
   if (stderr) {

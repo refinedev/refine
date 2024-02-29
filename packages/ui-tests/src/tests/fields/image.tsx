@@ -3,7 +3,7 @@ import { RefineFieldImageProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldImageTests = function (
+export const fieldImageTests = (
   ImageField: React.ComponentType<
     RefineFieldImageProps<
       string | undefined,
@@ -13,7 +13,7 @@ export const fieldImageTests = function (
       }
     >
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Image Field", () => {
     it("renders image with correct title", () => {
       const imageUrl = "http://placeimg.com/640/480/animals";

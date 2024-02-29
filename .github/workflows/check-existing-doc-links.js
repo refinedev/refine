@@ -45,8 +45,8 @@ const checkExistingLinks = async (sitemapUrl, deploymentUrl) => {
     return loc.replace("<loc>", "").replace("</loc>", "");
   });
 
-  let success = [];
-  let fail = [];
+  const success = [];
+  const fail = [];
 
   console.log("Checking for existing urls in:", sitemapUrl);
   console.log("Deployment url:", deploymentUrl);

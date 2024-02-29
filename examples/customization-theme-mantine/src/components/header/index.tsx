@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
       height={50}
       p="xs"
       sx={{
-        position: `sticky`,
+        position: "sticky",
         top: 0,
         zIndex: 1,
       }}

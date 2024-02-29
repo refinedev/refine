@@ -42,9 +42,8 @@ export const UnsavedChangesNotifier: React.FC<UnsavedChangesNotifierProps> = ({
       if (window.confirm(warnMessage)) {
         setWarnWhen?.(false);
         return false;
-      } else {
-        return true;
       }
+      return true;
     }
     return false;
   }, [warnWhen, warnMessage, setWarnWhen]);

@@ -36,7 +36,7 @@ export function DocumentTitleHandler({ handler }: Props) {
       translate,
       resource!,
       action,
-      id + "",
+      `${id}`,
       resourceName,
     );
     if (handler) {

@@ -17,7 +17,7 @@ export const ShippingDetails: React.FC<ShippingDetailsProps> = ({
         <div className="flex flex-col">
           <span>{`${address.first_name} ${address.last_name}`}</span>
           <span>{`${address.address_1}${
-            address.address_2 && ", " + address.address_2
+            address.address_2 && `, ${address.address_2}`
           }`}</span>
           <span>{`${address.city}, ${address.province} ${address.postal_code}`}</span>
           <span>{address.country_code?.toUpperCase()}</span>

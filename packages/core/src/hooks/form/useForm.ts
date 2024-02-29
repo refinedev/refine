@@ -324,9 +324,9 @@ export const useForm = <
 
   const getAction = () => {
     if (actionFromProps) return actionFromProps;
-    else if (actionFromRoute === "edit" || actionFromRoute === "clone")
+    if (actionFromRoute === "edit" || actionFromRoute === "clone")
       return actionFromRoute;
-    else return "create";
+    return "create";
   };
   const action = getAction();
 
@@ -345,11 +345,9 @@ export const useForm = <
   warnOnce(
     (isClone || isEdit) &&
       Boolean(resourceFromProps) &&
-      !Boolean(idFromProps) &&
+      !idFromProps &&
       queryOptions?.enabled !== false,
-    `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\n` +
-      `If you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\n` +
-      `See https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
+    `[useForm]: action: "${action}", resource: "${identifier}", id: ${id} \n\nIf you don't use the \`setId\` method to set the \`id\`, you should pass the \`id\` prop to \`useForm\`. Otherwise, \`useForm\` will not be able to infer the \`id\` from the current URL. \n\nSee https://refine.dev/docs/api-reference/core/hooks/useForm/#resource`,
   );
 
   /**

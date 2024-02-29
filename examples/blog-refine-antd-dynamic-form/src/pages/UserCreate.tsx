@@ -94,7 +94,7 @@ export default function UserCreate() {
                         onClick={() => remove(field.name)}
                         style={{ marginTop: "5px" }}
                         icon={<DeleteOutlined />}
-                      ></Button>
+                      />
                     </Space>
                   );
                 })}

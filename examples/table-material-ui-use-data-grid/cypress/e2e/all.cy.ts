@@ -72,7 +72,7 @@ describe("table-material-ui-use-data-grid", () => {
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.getMaterialUIColumnHeader(2).within(() =>
-      cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
+      cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
 
     cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click();
@@ -93,7 +93,7 @@ describe("table-material-ui-use-data-grid", () => {
 
     cy.url().should(
       "include",
-      `filters[0][field]=title&filters[0][value]=lorem&filters[0][operator]=contains`,
+      "filters[0][field]=title&filters[0][value]=lorem&filters[0][operator]=contains",
     );
 
     cy.wait("@getFilteredPosts");
@@ -142,12 +142,27 @@ describe("table-material-ui-use-data-grid", () => {
   });
 
   it("should set current `1` when filter changed", () => {
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          _start: "10",
+          _end: "20",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getSecondPagePosts");
+
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.get("[title='Go to next page']").click();
 
+    cy.wait("@getSecondPagePosts");
+
     cy.getMaterialUIColumnHeader(2).within(() =>
-      cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
+      cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
 
     cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click();

@@ -210,19 +210,18 @@ export const useDeleteMany = <
             metaData: combinedMeta,
             variables: values,
           });
-        } else {
-          return handleMultiple(
-            ids.map((id) =>
-              selectedDataProvider.deleteOne<TData, TVariables>({
-                resource: resource.name,
-                id,
-                meta: combinedMeta,
-                metaData: combinedMeta,
-                variables: values,
-              }),
-            ),
-          );
         }
+        return handleMultiple(
+          ids.map((id) =>
+            selectedDataProvider.deleteOne<TData, TVariables>({
+              resource: resource.name,
+              id,
+              meta: combinedMeta,
+              metaData: combinedMeta,
+              variables: values,
+            }),
+          ),
+        );
       };
 
       if (!(mutationModePropOrContext === "undoable")) {
@@ -352,7 +351,7 @@ export const useDeleteMany = <
               .params(preferredMeta)
               .get(preferLegacyKeys),
             (previous?: any | null) => {
-              if (!previous || previous.data.id == id) {
+              if (!previous || previous.data.id === id) {
                 return null;
               }
               return {

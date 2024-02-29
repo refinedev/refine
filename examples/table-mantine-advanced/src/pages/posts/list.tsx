@@ -309,36 +309,36 @@ export const PostList: React.FC = () => {
             {getRowModel().rows.map((row) => {
               if (id === (row.original as IPost).id) {
                 return renderEditRow(row);
-              } else
-                return (
-                  <React.Fragment key={row.id}>
-                    <tr key={row.id}>
-                      {row.getVisibleCells().map((cell) => {
-                        return (
-                          <td key={cell.id}>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-
-                    {row.getIsExpanded() && (
-                      <tr id="expanded-row">
-                        <td colSpan={row.getVisibleCells().length}>
-                          <MDEditor
-                            data-color-mode="light"
-                            contentEditable={false}
-                            preview="preview"
-                            value={row.original.content}
-                          />
+              }
+              return (
+                <React.Fragment key={row.id}>
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                );
+                      );
+                    })}
+                  </tr>
+
+                  {row.getIsExpanded() && (
+                    <tr id="expanded-row">
+                      <td colSpan={row.getVisibleCells().length}>
+                        <MDEditor
+                          data-color-mode="light"
+                          contentEditable={false}
+                          preview="preview"
+                          value={row.original.content}
+                        />
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
             })}
           </tbody>
         </Table>

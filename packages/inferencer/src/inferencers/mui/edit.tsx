@@ -231,9 +231,12 @@ export const renderer = ({
 
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
-        const errorVal =
-          accessor("(errors as any)", field.key, undefined, false) +
-          "?.[index]";
+        const errorVal = `${accessor(
+          "(errors as any)",
+          field.key,
+          undefined,
+          false,
+        )}?.[index]`;
 
         return `
                     <Box sx={{display: "flex", gap: 1}}>
@@ -428,7 +431,7 @@ export const renderer = ({
   });
 
   noOp(imports);
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     ${printImports(imports)}

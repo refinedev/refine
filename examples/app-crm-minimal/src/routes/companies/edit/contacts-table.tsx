@@ -141,7 +141,7 @@ export const CompanyContactsTable = () => {
                 mode="multiple"
                 placeholder="Select Stage"
                 options={statusOptions}
-              ></Select>
+              />
             </FilterDropdown>
           )}
         />

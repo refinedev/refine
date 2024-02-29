@@ -35,7 +35,7 @@ function App() {
             notificationProvider={useNotificationProvider}
             routerProvider={routerProvider}
             authProvider={authProvider}
-            dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
             resources={[
               {
                 name: "posts",

@@ -11,7 +11,7 @@ export interface IPost {
   category: { id: number };
 }
 
-export const PostList: React.FC = ({}) => {
+export const PostList: React.FC = () => {
   const { edit, create } = useNavigation();
 
   const columns = React.useMemo<ColumnDef<IPost>[]>(

@@ -58,7 +58,7 @@ const convertAxiosToFetchResponse = (response: AxiosResponse) => {
   // @ts-ignore
   response.headers["forEach"] = function (callback: any) {
     for (const header in this) {
-      if (this.hasOwnProperty(header)) {
+      if (Object.hasOwn(this, header)) {
         callback(this[header], header, this);
       }
     }

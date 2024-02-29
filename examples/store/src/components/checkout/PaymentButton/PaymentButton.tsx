@@ -102,10 +102,7 @@ const StripePaymentButton = ({
         payment_method: {
           card: card,
           billing_details: {
-            name:
-              cart.billing_address.first_name +
-              " " +
-              cart.billing_address.last_name,
+            name: `${cart.billing_address.first_name} ${cart.billing_address.last_name}`,
             address: {
               city: cart.billing_address.city ?? undefined,
               country: cart.billing_address.country_code ?? undefined,

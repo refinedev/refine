@@ -38,7 +38,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   let stickyStyles: Sx = {};
   if (sticky) {
     stickyStyles = {
-      position: `sticky`,
+      position: "sticky",
       top: 0,
       zIndex: 1,
     };

@@ -306,22 +306,22 @@ const Integrations = (props: {
   return (
     <div className={clsx(className)}>
       <IntegrationBadge
-        svgId={props.svgId + "-react"}
+        svgId={`${props.svgId}-react`}
         label="React Platform"
         integration={reactPlatform}
       />
       <IntegrationBadge
-        svgId={props.svgId + "-ui"}
+        svgId={`${props.svgId}-ui`}
         label="UI Framework"
         integration={uiFramework}
       />
       <IntegrationBadge
-        svgId={props.svgId + "-data"}
+        svgId={`${props.svgId}-data`}
         label="Data Provider"
         integration={dataProvider}
       />
       <IntegrationBadge
-        svgId={props.svgId + "-auth"}
+        svgId={`${props.svgId}-auth`}
         label="Auth Provider"
         integration={authProvider}
       />

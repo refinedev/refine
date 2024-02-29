@@ -80,9 +80,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                     .getPublicUrl(`public/${rcFile.name}`);
 
                   const xhr = new XMLHttpRequest();
-                  onSuccess && onSuccess({ url: data?.publicUrl }, xhr);
+                  onSuccess?.({ url: data?.publicUrl }, xhr);
                 } catch (error) {
-                  onError && onError(new Error("Upload Error"));
+                  onError?.(new Error("Upload Error"));
                 }
               }}
             >

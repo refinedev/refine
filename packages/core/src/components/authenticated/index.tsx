@@ -143,62 +143,60 @@ export function Authenticated({
     return <>{children ?? null}</>;
   }
   // when user is not authenticated redirect or render fallbackContent
-  else {
-    // render fallbackContent if it is exist
-    if (typeof fallbackContent !== "undefined") {
-      return <>{fallbackContent ?? null}</>;
-    }
-    // if there is no fallbackContent, redirect page
 
-    // Redirect url to use. use redirectOnFail if it is set.
-    // Otherwise use redirectTo property of the check function's response.
-    // If both are not set, use `/login` as the default redirect url. (only for legacy auth providers)
-    const appliedRedirect = isLegacyAuth
-      ? typeof redirectOnFail === "string"
-        ? redirectOnFail
-        : "/login"
-      : typeof redirectOnFail === "string"
-        ? redirectOnFail
-        : (authenticatedRedirect as string | undefined);
-
-    // Current pathname to append to the redirect url.
-    // User will be redirected to this url after successful mutation. (like login)
-    const pathname = `${
-      isLegacyRouter ? legacyLocation?.pathname : parsed.pathname
-    }`.replace(/(\?.*|#.*)$/, "");
-    // Redirect if appliedRedirect is set, otherwise return null.
-    //  Uses `replace` for legacy router and `go` for new router.
-    if (appliedRedirect) {
-      if (isLegacyRouter) {
-        const toQuery = appendCurrentPathToQuery
-          ? `?to=${encodeURIComponent(pathname)}`
-          : "";
-        return <RedirectLegacy to={`${appliedRedirect}${toQuery}`} />;
-      } else {
-        return (
-          <Redirect
-            config={{
-              to: appliedRedirect,
-              query: appendCurrentPathToQuery
-                ? {
-                    to: parsed.params?.to
-                      ? parsed.params.to
-                      : go({
-                          to: pathname,
-                          options: { keepQuery: true },
-                          type: "path",
-                        }),
-                  }
-                : undefined,
-              type: "replace",
-            }}
-          />
-        );
-      }
-    }
-
-    return null;
+  // render fallbackContent if it is exist
+  if (typeof fallbackContent !== "undefined") {
+    return <>{fallbackContent ?? null}</>;
   }
+  // if there is no fallbackContent, redirect page
+
+  // Redirect url to use. use redirectOnFail if it is set.
+  // Otherwise use redirectTo property of the check function's response.
+  // If both are not set, use `/login` as the default redirect url. (only for legacy auth providers)
+  const appliedRedirect = isLegacyAuth
+    ? typeof redirectOnFail === "string"
+      ? redirectOnFail
+      : "/login"
+    : typeof redirectOnFail === "string"
+      ? redirectOnFail
+      : (authenticatedRedirect as string | undefined);
+
+  // Current pathname to append to the redirect url.
+  // User will be redirected to this url after successful mutation. (like login)
+  const pathname = `${
+    isLegacyRouter ? legacyLocation?.pathname : parsed.pathname
+  }`.replace(/(\?.*|#.*)$/, "");
+  // Redirect if appliedRedirect is set, otherwise return null.
+  //  Uses `replace` for legacy router and `go` for new router.
+  if (appliedRedirect) {
+    if (isLegacyRouter) {
+      const toQuery = appendCurrentPathToQuery
+        ? `?to=${encodeURIComponent(pathname)}`
+        : "";
+      return <RedirectLegacy to={`${appliedRedirect}${toQuery}`} />;
+    }
+    return (
+      <Redirect
+        config={{
+          to: appliedRedirect,
+          query: appendCurrentPathToQuery
+            ? {
+                to: parsed.params?.to
+                  ? parsed.params.to
+                  : go({
+                      to: pathname,
+                      options: { keepQuery: true },
+                      type: "path",
+                    }),
+              }
+            : undefined,
+          type: "replace",
+        }}
+      />
+    );
+  }
+
+  return null;
 }
 
 const Redirect = ({ config }: { config: GoConfig }) => {

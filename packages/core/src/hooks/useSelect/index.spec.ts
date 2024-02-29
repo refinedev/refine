@@ -482,7 +482,7 @@ describe("useSelect Hook", () => {
   // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
   // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
   it.each([true, false, undefined])(
-    `should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)`,
+    "should use defaultValueQueryOptions as default queryOptions in useMany (case: %p)",
     async (enabled) => {
       const mockDataProvider = {
         default: {
@@ -575,7 +575,6 @@ describe("useSelect Hook", () => {
       },
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await act(() => {});
 
     expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
@@ -800,7 +799,6 @@ describe("useSelect Hook", () => {
       },
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await act(() => {});
 
     expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({

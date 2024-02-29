@@ -3,9 +3,9 @@ import { RefineReadyPageProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 
-export const pageReadyTests = function (
+export const pageReadyTests = (
   ReadyPage: React.ComponentType<RefineReadyPageProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Ready Page", () => {
     it("should render successfully", async () => {
       const { container } = render(<ReadyPage />, {

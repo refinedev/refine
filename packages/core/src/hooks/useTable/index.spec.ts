@@ -1445,7 +1445,7 @@ describe("useTable Filters", () => {
     async (testCase) => {
       const goMock = jest.fn(() => "go mock");
       const useLocationMock = jest.fn(() => ({
-        search: ``,
+        search: "",
         pathname: "/posts",
       }));
 

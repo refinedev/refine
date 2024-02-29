@@ -53,7 +53,7 @@ describe("Edit", () => {
   it("should render optional resource with resource prop", async () => {
     const { getByText } = render(
       <Routes>
-        <Route path="/:resource" element={<Edit resource="posts" />}></Route>
+        <Route path="/:resource" element={<Edit resource="posts" />} />
       </Routes>,
       {
         wrapper: TestWrapper({
@@ -97,7 +97,7 @@ describe("Edit", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -118,7 +118,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<Edit canDelete={false} />}
-          ></Route>
+          />
         </Routes>,
 
         {
@@ -138,7 +138,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<Edit canDelete={true} />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -157,7 +157,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<Edit deleteButtonProps={{ size: "lg" }} />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -178,7 +178,6 @@ describe("Edit", () => {
           switch (action) {
             case "list":
               return Promise.resolve({ can: true });
-            case "delete":
             default:
               return Promise.resolve({ can: false });
           }
@@ -374,7 +373,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<EditPageWithAutoSave />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
@@ -432,7 +431,7 @@ describe("Edit", () => {
           <Route
             path="/:resource/edit/:id"
             element={<EditPageWithAutoSave />}
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({

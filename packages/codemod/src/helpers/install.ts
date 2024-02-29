@@ -50,7 +50,7 @@ export function install(
     let args: string[];
     const command: string = useYarn ? "yarnpkg" : "npm";
 
-    if (dependencies && dependencies.length) {
+    if (dependencies?.length) {
       /**
        * If there are dependencies, run a variation of `{displayCommand} add`.
        */
@@ -141,7 +141,7 @@ export function remove(
     let args: string[];
     const command: string = useYarn ? "yarnpkg" : "npm";
 
-    if (dependencies && dependencies.length) {
+    if (dependencies?.length) {
       /**
        * If there are dependencies, run a variation of `{displayCommand} remove`.
        */

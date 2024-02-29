@@ -28,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   noNameTag = false,
   variant = "default",
 }) => {
-  const { amount, currency_code } = product?.variants?.[0].prices?.[0];
+  const { amount, currency_code } = product?.variants?.[0].prices?.[0] ?? {};
 
   const rootClassName = cn(
     s.root,

@@ -116,7 +116,7 @@ export const SEO: React.FC<SeoProps> = ({
         key="og:url"
         property="og:url"
         content={openGraph?.url ?? config.openGraph.url}
-      ></meta>
+      />
       {openGraph?.locale && (
         <meta key="og:locale" property="og:locale" content={openGraph.locale} />
       )}
@@ -149,7 +149,7 @@ export const SEO: React.FC<SeoProps> = ({
         key="googlebot"
         name="googlebot"
         content={robots ?? "index,follow"}
-      ></meta>
+      />
       {children}
     </Head>
   );

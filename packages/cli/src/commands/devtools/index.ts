@@ -83,7 +83,7 @@ const devtoolsInstaller = async () => {
     semver.lt(corePackage.version, minRefineCoreVersionForDevtools)
   ) {
     packagesToInstall.push("@refinedev/core@latest");
-    console.log(`🌱 refine core package is being updated for devtools...`);
+    console.log("🌱 refine core package is being updated for devtools...");
   }
   await installPackagesSync(packagesToInstall);
 

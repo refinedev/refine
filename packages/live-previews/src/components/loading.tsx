@@ -9,7 +9,7 @@ export const Loading: React.FC<{ loading?: boolean }> = ({ loading }) => {
         left: 0,
         top: 0,
         animationIterationCount: loading ? 0 : 1,
-        animationDuration: `200ms`,
+        animationDuration: "200ms",
       }}
     >
       <img src="/loader.gif" className="refine-loading__gif" />

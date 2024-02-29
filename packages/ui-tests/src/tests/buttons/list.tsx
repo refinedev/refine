@@ -7,9 +7,9 @@ import {
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router-dom";
 
-export const buttonListTests = function (
+export const buttonListTests = (
   ListButton: React.ComponentType<RefineListButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / List Button", () => {
     const list = jest.fn();
 
@@ -44,7 +44,7 @@ export const buttonListTests = function (
     it("should render label as children if specified", async () => {
       const { container, getByText } = render(
         <Routes>
-          <Route path="/:resource" element={<ListButton />}></Route>
+          <Route path="/:resource" element={<ListButton />} />
         </Routes>,
         {
           wrapper: TestWrapper({
