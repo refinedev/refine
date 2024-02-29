@@ -26,18 +26,14 @@ const generateLogicalFilter = (filter: LogicalFilter, parent = ""): string => {
 
   if (Array.isArray(value)) {
     value.map((val, index) => {
-      rawQuery +=
-        "&filters" +
-        parent +
-        `${generateNestedFilterField(
-          field,
-        )}[$${mappedOperator}][${index}]=${val}`;
+      rawQuery += `&filters${parent}${generateNestedFilterField(
+        field,
+      )}[$${mappedOperator}][${index}]=${val}`;
     });
   } else {
-    rawQuery +=
-      "&filters" +
-      parent +
-      `${generateNestedFilterField(field)}[$${mappedOperator}]=${value}`;
+    rawQuery += `&filters${parent}${generateNestedFilterField(
+      field,
+    )}[$${mappedOperator}]=${value}`;
   }
   return rawQuery;
 };
@@ -52,12 +48,12 @@ const generateConditionalFilter = (
     if (item.operator !== "or" && item.operator !== "and" && "field" in item) {
       rawQuery += generateLogicalFilter(
         item,
-        parent + `[$${filter.operator}][${index}]`,
+        `${parent}[$${filter.operator}][${index}]`,
       );
     } else {
       rawQuery += generateConditionalFilter(
         item,
-        parent + `[$${filter.operator}][${index}]`,
+        `${parent}[$${filter.operator}][${index}]`,
       );
     }
   });
