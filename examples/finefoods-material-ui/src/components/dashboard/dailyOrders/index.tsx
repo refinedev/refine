@@ -5,13 +5,13 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
-  BarProps,
 } from "recharts";
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
+import { IOrderChart } from "../../../interfaces";
 
 type Props = {
-  data: BarProps["data"];
+  data: IOrderChart[];
 };
 
 export const DailyOrders = (props: Props) => {

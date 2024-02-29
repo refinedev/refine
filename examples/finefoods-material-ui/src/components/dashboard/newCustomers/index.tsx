@@ -1,7 +1,6 @@
 import {
   BarChart,
   Bar,
-  BarProps,
   Tooltip,
   ResponsiveContainer,
   XAxis,
@@ -9,9 +8,10 @@ import {
 } from "recharts";
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
+import { ISalesChart } from "../../../interfaces";
 
 type Props = {
-  data: BarProps["data"];
+  data: ISalesChart[];
 };
 
 export const NewCustomers = (props: Props) => {

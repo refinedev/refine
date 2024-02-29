@@ -5,14 +5,13 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
-  LineProps,
 } from "recharts";
-
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
+import { ISalesChart } from "../../../interfaces";
 
 type Props = {
-  data: LineProps["data"];
+  data: ISalesChart[];
 };
 
 export const DailyRevenue = (props: Props) => {
