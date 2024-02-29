@@ -63,6 +63,14 @@ export const ProductDrawerForm = (props: Props) => {
     refineCore: { onFinish, id, formLoading },
     saveButtonProps,
   } = useForm<IProduct, HttpError, Nullable<IProduct>>({
+    defaultValues: {
+      name: "",
+      description: "",
+      price: 0,
+      category: null,
+      isActive: true,
+      images: [],
+    },
     refineCoreProps: {
       redirect: false,
       onMutationSuccess: () => {
@@ -117,8 +125,7 @@ export const ProductDrawerForm = (props: Props) => {
           <Controller
             control={control}
             name="images"
-            shouldUnregister
-            defaultValue={null}
+            defaultValue={[]}
             rules={{
               required: t("errors.required.field", {
                 field: "images",
@@ -156,7 +163,6 @@ export const ProductDrawerForm = (props: Props) => {
               <Controller
                 control={control}
                 name="name"
-                shouldUnregister
                 defaultValue=""
                 rules={{
                   required: t("errors.required.field", {
@@ -183,7 +189,6 @@ export const ProductDrawerForm = (props: Props) => {
               <Controller
                 control={control}
                 name="description"
-                shouldUnregister
                 defaultValue=""
                 rules={{
                   required: t("errors.required.field", {
@@ -212,7 +217,6 @@ export const ProductDrawerForm = (props: Props) => {
               <Controller
                 control={control}
                 name="price"
-                shouldUnregister
                 defaultValue={0}
                 rules={{
                   required: t("errors.required.field", {
@@ -248,7 +252,6 @@ export const ProductDrawerForm = (props: Props) => {
                 name="category"
                 // eslint-disable-next-line
                 defaultValue={null as any}
-                shouldUnregister
                 rules={{
                   required: t("errors.required.field", {
                     field: "category",
@@ -298,7 +301,6 @@ export const ProductDrawerForm = (props: Props) => {
               <Controller
                 control={control}
                 name="isActive"
-                shouldUnregister
                 rules={{
                   validate: (value) => {
                     if (value === undefined) {
