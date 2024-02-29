@@ -388,4 +388,5 @@ export type DocSurveyResponse = {
 
 export type SurveyMetaData = Record<string, any>;
 
-const DOC_SURVEY_URL = `https://cloud2.refine.dev/.refine/surveys/documentation-pages-survey`;
+const DOC_SURVEY_URL =
+  "https://cloud2.refine.dev/.refine/surveys/documentation-pages-survey";

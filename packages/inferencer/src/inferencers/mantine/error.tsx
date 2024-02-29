@@ -12,6 +12,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
     return (
       <Center style={{ minHeight: 300 }}>
         <Alert title="Error" color="red" icon={<IconAlertCircle />}>
+          {/* biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled */}
           <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
         </Alert>
       </Center>

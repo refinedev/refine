@@ -33,13 +33,12 @@ export const dataProvider = (
         data,
         total: data.length,
       };
-    } else {
-      // with pagination
-      return {
-        data: data.data,
-        total: data.total,
-      };
     }
+    // with pagination
+    return {
+      data: data.data,
+      total: data.total,
+    };
   },
 
   getMany: async ({ resource, ids, meta }) => {

@@ -27,11 +27,11 @@ const renderShow = (
   );
 };
 
-export const crudShowTests = function (
+export const crudShowTests = (
   Show: React.ComponentType<
     RefineCrudShowProps<any, any, any, any, any, {}, any, any, any, any>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());
@@ -102,7 +102,7 @@ export const crudShowTests = function (
     it("should render optional resource with resource prop", async () => {
       const { getByText } = render(
         <Routes>
-          <Route path="/:resource" element={<Show resource="posts" />}></Route>
+          <Route path="/:resource" element={<Show resource="posts" />} />
         </Routes>,
         {
           wrapper: TestWrapper({

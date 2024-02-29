@@ -33,7 +33,7 @@ export const queryKeys = (
       [
         ...keys.resourceAll,
         "getMany",
-        (ids && ids.map(String)) as QueryKey,
+        ids?.map(String) as QueryKey,
         { ...(pickNotDeprecated(meta, metaData) || {}) } as QueryKey,
       ].filter((item) => item !== undefined),
     detail: (id) => [

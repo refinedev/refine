@@ -53,7 +53,9 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`absolute right-4 top-3 rounded border border-orange-400 p-1 text-slate-500 hover:bg-orange-200 hover:text-slate-300 md:hidden`}
+        className={
+          "absolute right-4 top-3 rounded border border-orange-400 p-1 text-slate-500 hover:bg-orange-200 hover:text-slate-300 md:hidden"
+        }
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">

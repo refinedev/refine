@@ -10,9 +10,9 @@ import {
 } from "@test";
 import { RegisterPageProps } from "@refinedev/core";
 
-export const pageRegisterTests = function (
+export const pageRegisterTests = (
   RegisterPage: FC<RegisterPageProps<any, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Register Page", () => {
     it("should render card title", async () => {
       const { getByText } = render(<RegisterPage />, {

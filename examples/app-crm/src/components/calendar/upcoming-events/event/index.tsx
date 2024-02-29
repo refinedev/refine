@@ -30,11 +30,11 @@ export const CalendarUpcomingEvent: React.FC<CalendarUpcomingEventProps> = ({
 
   const renderDate = () => {
     if (isToday) {
-      return `Today`;
+      return "Today";
     }
 
     if (isTomorrow) {
-      return `Tomorrow`;
+      return "Tomorrow";
     }
 
     return dayjs(startDate).format("MMM DD");

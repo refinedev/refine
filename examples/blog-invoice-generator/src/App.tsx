@@ -34,7 +34,7 @@ import { API_URL } from "./constants";
 import { ConfigProvider, App as AntdApp } from "antd";
 
 function App() {
-  const dataProvider = DataProvider(API_URL + "/api", axiosInstance);
+  const dataProvider = DataProvider(`${API_URL}/api`, axiosInstance);
 
   return (
     <BrowserRouter>

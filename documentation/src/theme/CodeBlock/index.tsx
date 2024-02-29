@@ -13,9 +13,11 @@ export default function CodeBlockWrapper(
 ): JSX.Element {
   if (props.live && props.live && props.className?.includes("language-css")) {
     return <LivePreviewSharedCss {...props} />;
-  } else if (props.shared && props.live) {
+  }
+  if (props.shared && props.live) {
     return <LivePreviewShared {...props} />;
-  } else if (props.live) {
+  }
+  if (props.live) {
     return <LivePreview {...props} />;
   }
 

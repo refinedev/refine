@@ -134,7 +134,7 @@ export const renderer = ({
       const variableIsLoading = getVariableName(field.key, "IsLoading");
 
       if (field.multiple) {
-        const variableDataLength = accessor(recordName, field.key) + "?.length";
+        const variableDataLength = `${accessor(recordName, field.key)}?.length`;
         return jsx`
                 <div style={{ marginTop: "6px" }}>
                     <h5>${translatePrettyString({
@@ -159,29 +159,17 @@ export const renderer = ({
                                 );
 
                                 return `<span title="Inferencer failed to render this field. (Unsupported nesting)">Cannot Render</span>`;
-                              } else {
-                                const mapItemName = getVariableName(field.key);
-                                const val = accessor(
-                                  mapItemName,
-                                  undefined,
-                                  field.relationInfer.accessor,
-                                );
-                                return jsx`
+                              }
+                              const mapItemName = getVariableName(field.key);
+                              const val = accessor(
+                                mapItemName,
+                                undefined,
+                                field.relationInfer.accessor,
+                              );
+                              return jsx`
                                             {record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <li key={${val}}>{${val}}</li>) : <></>}
                                         `;
-                              }
-                            } else {
-                              console.log(
-                                "@refinedev/inferencer: Inferencer failed to render this field",
-                                {
-                                  key: field.key,
-                                  relation: field.relationInfer,
-                                },
-                              );
-
-                              return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                             }
-                          } else {
                             console.log(
                               "@refinedev/inferencer: Inferencer failed to render this field",
                               {
@@ -190,8 +178,17 @@ export const renderer = ({
                               },
                             );
 
-                            return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
+                            return `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`;
                           }
+                          console.log(
+                            "@refinedev/inferencer: Inferencer failed to render this field",
+                            {
+                              key: field.key,
+                              relation: field.relationInfer,
+                            },
+                          );
+
+                          return `<span title="Inferencer failed to render this field (Cannot find relation)">Cannot Render</span>`;
                         })()}
                         </>
                     )}
@@ -235,31 +232,28 @@ export const renderer = ({
                                   field.relationInfer.accessor,
                                   ' + " " + ',
                                 )}}`;
-                              } else {
-                                return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                               }
-                            } else {
-                              const cannotRender =
-                                field?.relationInfer?.type === "object" &&
-                                !field?.relationInfer?.accessor;
-
-                              if (cannotRender) {
-                                console.log(
-                                  "@refinedev/inferencer: Inferencer failed to render this field",
-                                  {
-                                    key: field.key,
-                                    relation: field.relationInfer,
-                                  },
-                                );
-                              }
-
-                              return cannotRender
-                                ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
-                                : `{${variableName}?.data}`;
+                              return `{${variableName}?.data?.${field.relationInfer.accessor}}`;
                             }
-                          } else {
-                            return `{${variableName}?.data?.id}`;
+                            const cannotRender =
+                              field?.relationInfer?.type === "object" &&
+                              !field?.relationInfer?.accessor;
+
+                            if (cannotRender) {
+                              console.log(
+                                "@refinedev/inferencer: Inferencer failed to render this field",
+                                {
+                                  key: field.key,
+                                  relation: field.relationInfer,
+                                },
+                              );
+                            }
+
+                            return cannotRender
+                              ? `<span title="Inferencer failed to render this field. (Cannot find key)">Cannot Render</span>`
+                              : `{${variableName}?.data}`;
                           }
+                          return `{${variableName}?.data?.id}`;
                         })()}
                         </>
                     )}
@@ -638,7 +632,7 @@ export const renderer = ({
   const canList = !!list;
 
   noOp(imports);
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     ${printImports(imports)}
@@ -646,7 +640,7 @@ export const renderer = ({
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
         ${useTranslateHook}
         const { edit, list } = useNavigation();
-        ${isCustomPage ? "" : `const { id } = useResource();`}
+        ${isCustomPage ? "" : "const { id } = useResource();"}
         const { queryResult } = useShow(${
           isCustomPage
             ? `{ 

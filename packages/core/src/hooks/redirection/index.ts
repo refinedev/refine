@@ -45,9 +45,8 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
           }
 
           return list(resource, "push", meta);
-        } else {
-          return;
         }
+        return;
       },
       [],
     );

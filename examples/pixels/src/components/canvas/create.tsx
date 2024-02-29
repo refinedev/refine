@@ -48,13 +48,10 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 12 }}
         onFinish={() => {
-          return (
-            formProps.onFinish &&
-            formProps.onFinish({
-              ...values,
-              user_id: user?.id,
-            })
-          );
+          return formProps.onFinish?.({
+            ...values,
+            user_id: user?.id,
+          });
         }}
       >
         <Form.Item label="ID:">

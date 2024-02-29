@@ -172,7 +172,7 @@ export const Video = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-          ></iframe>
+          />
           <div className={clsx("flex", "items-center", "gap-4", "ml-auto")}>
             <span className="text-gray-900 text-sm">Share on</span>
             <TwitterShareButton

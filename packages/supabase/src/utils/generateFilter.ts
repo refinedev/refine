@@ -27,7 +27,7 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
       return query.ilike(filter.field, `${filter.value}%`);
     case "endswith":
       return query.ilike(filter.field, `%${filter.value}`);
-    case "or":
+    case "or": {
       const orSyntax = filter.value
         .map((item) => {
           if (
@@ -41,6 +41,7 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
         })
         .join(",");
       return query.or(orSyntax);
+    }
 
     case "and":
       throw Error("Operator 'and' is not supported");

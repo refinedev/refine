@@ -15,11 +15,11 @@ const initialState: IUndoableQueue[] = [];
 
 export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
   switch (action.type) {
-    case ActionTypes.ADD:
+    case ActionTypes.ADD: {
       const newState = state.filter((notificationItem: IUndoableQueue) => {
         return !(
           isEqual(notificationItem.id, action.payload.id) &&
-          notificationItem.resource == action.payload.resource
+          notificationItem.resource === action.payload.resource
         );
       });
 
@@ -30,19 +30,20 @@ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
           isRunning: true,
         },
       ];
+    }
     case ActionTypes.REMOVE:
       return state.filter(
         (notificationItem: IUndoableQueue) =>
           !(
             isEqual(notificationItem.id, action.payload.id) &&
-            notificationItem.resource == action.payload.resource
+            notificationItem.resource === action.payload.resource
           ),
       );
     case ActionTypes.DECREASE_NOTIFICATION_SECOND:
       return state.map((notificationItem: IUndoableQueue) => {
         if (
           isEqual(notificationItem.id, action.payload.id) &&
-          notificationItem.resource == action.payload.resource
+          notificationItem.resource === action.payload.resource
         ) {
           return {
             ...notificationItem,

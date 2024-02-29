@@ -183,7 +183,7 @@ export const PostList = () => {
             }}
             options={pageSizeOptions}
             defaultValue={10}
-          ></Select>
+          />
           <span style={{ marginLeft: 8 }}>
             Page{" "}
             <strong>

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { LandingArrowRightIcon } from "./icons/landing-arrow-right";
 import { ShowcaseWrapper } from "../components/landing/showcase-wrapper";
 
-export const LandingHeroShowcaseSection = ({}) => {
+export const LandingHeroShowcaseSection = () => {
   const [activeApp, setActiveApp] = React.useState(apps[0]);
 
   const ShowcaseComponent = React.useMemo(() => {
@@ -66,7 +66,7 @@ export const LandingHeroShowcaseSection = ({}) => {
                 "ease-out",
               )}
               style={{
-                width: `calc((100% - (3 * 8px)) / 4)`,
+                width: "calc((100% - (3 * 8px)) / 4)",
                 minWidth: "244px",
                 transform: `translateX(calc((100% + 8px) * ${apps.findIndex(
                   (f) => f.name === activeApp.name,
@@ -351,7 +351,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
           code: `
                     import { useList } from "@refinedev/core";
 
-                    const { data } = useList({    
+                    const { data } = useList({
                         resource: "events",
                         sorters: [
                             { field: "start_date", order: "asc" },
@@ -435,7 +435,7 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
                                         {
                                             field: "is_read",
                                             operator: "eq",
-                                            value: false 
+                                            value: false
                                         },
                                     ]
                                 });
@@ -551,7 +551,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                             const { data } = useShow({
                                 liveMode: "auto"
                             });
-                            
+
                             return <Map {...data} />;
                             `,
         },
@@ -587,7 +587,7 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/menu-2.png",
           codePosition: "right",
           code: `
-                    
+
                     import { Refine } from "@refinedev/core";
 
                     <Refine
@@ -598,17 +598,17 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
                             }
                             {
                                 name: "products",
-                                meta: { parent: "stores", },  
+                                meta: { parent: "stores" },
                             },
                             {
                                 name: "categories",
-                                meta: { parent: "stores", },  
+                                meta: { parent: "stores" },
                             }
                         ]}
-                    >   
+                    >
                         ...
                     </Refine>
-                    
+
                     `,
         },
       ]}

@@ -211,13 +211,13 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
           {Array.from({ length: getPageCount() }, (_, index) => index + 1)?.map(
             (pageNumber) => {
               const btnActive =
-                pageNumber - 1 == getState()?.pagination?.pageIndex
+                pageNumber - 1 === getState()?.pagination?.pageIndex
                   ? " btn-active"
                   : "";
               return (
                 <button
                   key={pageNumber}
-                  className={"join-item btn btn-sm" + btnActive}
+                  className={`join-item btn btn-sm${btnActive}`}
                   onClick={() => setPageIndex(pageNumber - 1)}
                 >
                   {pageNumber}

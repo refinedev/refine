@@ -72,7 +72,7 @@ describe("table-material-ui-data-grid-pro", () => {
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.getMaterialUIColumnHeader(2).within(() =>
-      cy.get(`.MuiDataGrid-menuIcon > button`).click({ force: true }),
+      cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
 
     cy.get(".MuiList-root").children().eq(7).click();
@@ -95,7 +95,7 @@ describe("table-material-ui-data-grid-pro", () => {
 
     cy.url().should(
       "include",
-      `filters[1][field]=title&filters[1][value]=lorem&filters[1][operator]=contains`,
+      "filters[1][field]=title&filters[1][value]=lorem&filters[1][operator]=contains",
     );
 
     cy.wait("@getFilteredPosts");

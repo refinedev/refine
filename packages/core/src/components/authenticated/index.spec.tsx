@@ -413,9 +413,8 @@ describe("Authenticated", () => {
                 if (config.type === "path") {
                   const params = new URLSearchParams(currentQuery as any);
                   return `/${config.to}?${params.toString()}`;
-                } else {
-                  return mockGo(config);
                 }
+                return mockGo(config);
               };
             },
             parse: () => {
@@ -482,9 +481,8 @@ describe("Authenticated", () => {
                 if (config.type === "path") {
                   const params = new URLSearchParams(currentQuery as any);
                   return `/${config.to}?${params.toString()}`;
-                } else {
-                  return mockGo(config);
                 }
+                return mockGo(config);
               };
             },
             parse: () => {

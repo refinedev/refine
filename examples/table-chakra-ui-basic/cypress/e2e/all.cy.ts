@@ -87,7 +87,7 @@ describe("table-chakra-ui-basic", () => {
 
     cy.url().should(
       "include",
-      `filters[0][field]=title&filters[0][operator]=contains&filters[0][value]=lorem`,
+      "filters[0][field]=title&filters[0][operator]=contains&filters[0][value]=lorem",
     );
 
     cy.wait("@getFilteredPosts");

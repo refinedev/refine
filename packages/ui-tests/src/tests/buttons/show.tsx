@@ -7,9 +7,9 @@ import {
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router-dom";
 
-export const buttonShowTests = function (
+export const buttonShowTests = (
   ShowButton: React.ComponentType<RefineShowButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Show Button", () => {
     const show = jest.fn();
 

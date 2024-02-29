@@ -27,11 +27,11 @@ const renderEdit = (
   );
 };
 
-export const crudEditTests = function (
+export const crudEditTests = (
   Edit: React.ComponentType<
     RefineCrudEditProps<any, any, any, any, any, any, any, {}, any, any>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Edit", () => {
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());

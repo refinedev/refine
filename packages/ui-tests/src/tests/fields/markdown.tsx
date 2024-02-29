@@ -3,16 +3,16 @@ import { RefineFieldMarkdownProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldMarkdownTests = function (
+export const fieldMarkdownTests = (
   MarkdownField: React.ComponentType<
     RefineFieldMarkdownProps<string | undefined>
   >,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Markdown Field", () => {
     it("renders markDown text with correct value", () => {
       const { getByText, container } = render(
         <div data-testid="custom-field">
-          <MarkdownField value={`**MarkdownField Test**`} />
+          <MarkdownField value={"**MarkdownField Test**"} />
         </div>,
       );
 

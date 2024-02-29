@@ -370,33 +370,33 @@ export const PostList: React.FC = () => {
             {getRowModel().rows.map((row) => {
               if (id === (row.original as IPost).id) {
                 return renderEditRow(row);
-              } else
-                return (
-                  <React.Fragment key={row.id}>
-                    <tr>
-                      {row.getAllCells().map((cell) => {
-                        return (
-                          <td key={cell.id}>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-
-                    {row.getIsExpanded() ? (
-                      <tr id="expanded-row">
-                        <td colSpan={row.getVisibleCells().length}>
-                          {renderRowSubComponent({
-                            row,
-                          })}
+              }
+              return (
+                <React.Fragment key={row.id}>
+                  <tr>
+                    {row.getAllCells().map((cell) => {
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </td>
-                      </tr>
-                    ) : null}
-                  </React.Fragment>
-                );
+                      );
+                    })}
+                  </tr>
+
+                  {row.getIsExpanded() ? (
+                    <tr id="expanded-row">
+                      <td colSpan={row.getVisibleCells().length}>
+                        {renderRowSubComponent({
+                          row,
+                        })}
+                      </td>
+                    </tr>
+                  ) : null}
+                </React.Fragment>
+              );
             })}
           </tbody>
         </table>

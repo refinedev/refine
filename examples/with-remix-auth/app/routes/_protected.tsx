@@ -17,7 +17,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   const session = await authenticator.isAuthenticated(request);
   const pathname = new URL(request.url).pathname;
 
-  let to = ``;
+  let to = "";
   // ignore only `/` routes
   if (pathname !== "/") {
     to = `?to=${pathname}`;

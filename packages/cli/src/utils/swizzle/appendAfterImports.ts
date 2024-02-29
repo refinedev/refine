@@ -8,11 +8,10 @@ export const appendAfterImports = (content: string, append: string): string => {
     ? content.indexOf(lastImport.statement)
     : content.length - 1;
 
-  return (
-    content.slice(0, lastImportIndex + lastImport?.statement.length) +
-    "\n" +
-    append +
-    "\n" +
-    content.slice(lastImportIndex + lastImport?.statement.length)
-  );
+  return `${content.slice(
+    0,
+    lastImportIndex + lastImport?.statement.length,
+  )}\n${append}\n${content.slice(
+    lastImportIndex + lastImport?.statement.length,
+  )}`;
 };

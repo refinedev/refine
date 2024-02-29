@@ -93,7 +93,7 @@ export const CompanyContactsTable: FC = () => {
 
   const hasData = tableProps.loading
     ? true
-    : tableProps?.dataSource?.length || 0 > 0;
+    : (tableProps?.dataSource?.length || 0) > 0;
 
   const showResetFilters = useMemo(() => {
     return filters?.filter((filter) => {

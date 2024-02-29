@@ -141,6 +141,8 @@ module.exports = {
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
         "landing-sweet-spot-code-light":
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.02), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.04), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.04), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.05), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.06), 0px 82px 80px 0px rgba(0, 0, 0, 0.09)",
+        "landing-wai-shadow-light": "0px -1.5px 0px rgba(237,242,247,0.5)",
+        "landing-wai-shadow-dark": "0px -1.5px 0px rgba(20,20,31,0.5)",
       },
       backgroundColor: {
         "landing-header-bg": "rgba(10, 10, 41, 0.70)",
@@ -327,27 +329,27 @@ module.exports = {
           "linear-gradient(207deg, rgba(62, 207, 142, 0.15) 0%, rgba(62, 207, 142, 0.00) 100%)",
         "banner-examples-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(70.09% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(294.84% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-modal-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-modal-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(152.26% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-sider-gray": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)`,
+          "radial-gradient(75.69% 100% at 50% 0%, #474E6B 0%, #303450 100%)",
         ],
         "banner-examples-sider-purple": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          `radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)`,
+          "radial-gradient(191.28% 141.42% at 100% 100%, #33F 0%, #8000FF 50%, #303450 100%)",
         ],
         "banner-examples-text":
           "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
@@ -427,7 +429,8 @@ module.exports = {
         ],
         "enterprise-frequent-updates-light-md":
           "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
-        "new-badge-border-dark": `conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)`,
+        "new-badge-border-dark":
+          "conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)",
         "new-badge-border-light": `conic-gradient(
                     from 45deg at 50% 50%,
                     #b7dbff,
@@ -464,6 +467,20 @@ module.exports = {
                     #E6CCFF,
                     #E6CCFF
                 )`,
+        "enterprise-cta-button-bg-light":
+          "radial-gradient(100% 375% at 100% 50%, #8000FF 0%, #3333FF 100%)",
+        "enterprise-cta-button-bg-dark":
+          "radial-gradient(100% 375% at 100% 50%, #26D97F 0%, #47EBEB 100%)",
+        "landing-wai-sunshine-light":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-light.png)",
+        "landing-wai-sunshine-dark":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-normal.webp)",
+        "landing-wai-grid-light":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal-light.png)",
+        "landing-wai-grid-dark":
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal.png)",
+        "landing-wai-bg-dark":
+          "radial-gradient(57.03% 100% at 50% 0%, rgba(71, 235, 235, 0.25) 0%, rgba(71, 235, 235, 0) 100%)",
       },
       backgroundPosition: {
         "landing-wizard-option-right": "top -350px right -350px, center",

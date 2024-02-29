@@ -122,7 +122,7 @@ export const TableView: React.FC<Props> = ({
               defaultValue={null}
               mode="multiple"
               options={statusOptions}
-            ></Select>
+            />
           </FilterDropdown>
         )}
         render={(value: ContactStatusEnum) => (

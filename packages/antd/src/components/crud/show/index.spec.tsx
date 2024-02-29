@@ -54,7 +54,6 @@ describe("Show", () => {
             case "edit":
             case "list":
               return Promise.resolve({ can: true });
-            case "delete":
             default:
               return Promise.resolve({ can: false });
           }
@@ -104,7 +103,7 @@ describe("Show", () => {
                 }}
               />
             }
-          ></Route>
+          />
         </Routes>,
         {
           wrapper: TestWrapper({
