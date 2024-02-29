@@ -67,6 +67,7 @@ export const ProductListCard = (props: Props) => {
         value: newFilters,
       },
     ]);
+    props.setCurrent(1);
   };
 
   return (
@@ -76,7 +77,7 @@ export const ProductListCard = (props: Props) => {
         <Chip
           color={hasCategoryFilter ? undefined : "primary"}
           sx={{
-            color: hasCategoryFilter ? undefined : "primary",
+            color: hasCategoryFilter ? "undefined" : "white",
           }}
           label={`🏷️ ${t("products.filter.allCategories.label")}`}
           onClick={() => {
@@ -87,6 +88,7 @@ export const ProductListCard = (props: Props) => {
                 value: [],
               },
             ]);
+            props.setCurrent(1);
           }}
         />
         {props.categories.map((category) => {
@@ -124,8 +126,20 @@ export const ProductListCard = (props: Props) => {
 
           return (
             <Grid key={product.id} item sm={3} md={4} lg={3}>
-              <Card>
-                <CardActionArea>
+              <Card
+                sx={{
+                  height: "100%",
+                }}
+              >
+                <CardActionArea
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    alignItems: "normal",
+                    height: "100%",
+                  }}
+                >
                   <Box
                     sx={{
                       position: "relative",
@@ -199,11 +213,13 @@ export const ProductListCard = (props: Props) => {
                       {product.description}
                     </Typography>
                   </CardContent>
-                  <Divider />
                   <CardActions
                     sx={{
                       justifyContent: "space-between",
                       padding: "12px 16px",
+                      marginTop: "auto",
+                      borderTop: "1px solid",
+                      borderColor: (theme) => theme.palette.divider,
                     }}
                   >
                     <Chip
@@ -230,14 +246,14 @@ export const ProductListCard = (props: Props) => {
       <TablePagination
         component="div"
         count={props.dataGridProps.rowCount}
-        page={props.current}
-        onPageChange={(_e, page) => {
-          props.setCurrent(page);
-        }}
-        rowsPerPage={props.pageSize}
+        page={props.dataGridProps.paginationModel?.page || 0}
+        rowsPerPage={props.dataGridProps.paginationModel?.pageSize || 12}
         rowsPerPageOptions={[12, 24, 48, 96]}
         onRowsPerPageChange={(e) => {
           props.setPageSize(+e.target.value);
+        }}
+        onPageChange={(_e, page) => {
+          props.setCurrent(page + 1);
         }}
       />
     </>

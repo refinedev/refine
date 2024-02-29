@@ -30,7 +30,9 @@ export const ProductList = ({ children }: PropsWithChildren) => {
 
   const dataGrid = useDataGrid<IProduct>({
     resource: "products",
-    initialPageSize: 12,
+    pagination: {
+      pageSize: 12,
+    },
   });
 
   const { data: categoriesData } = useList<ICategory>({

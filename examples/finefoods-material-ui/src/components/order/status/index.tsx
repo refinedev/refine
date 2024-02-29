@@ -6,6 +6,8 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MopedIcon from "@mui/icons-material/Moped";
+import { useTheme } from "@mui/material/styles";
+import { red, orange, cyan, blue, green } from "@mui/material/colors";
 
 type OrderStatusProps = {
   status?: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
@@ -13,30 +15,62 @@ type OrderStatusProps = {
 
 export const OrderStatus = ({ status }: OrderStatusProps) => {
   const t = useTranslate();
+  const { palette } = useTheme();
+  const isDarkMode = palette.mode === "dark";
 
-  let color: ChipProps["color"];
+  let color = "";
   let icon: ChipProps["icon"];
 
   switch (status) {
     case "Pending":
-      color = "warning";
-      icon = <WatchLaterIcon />;
+      color = isDarkMode ? orange[200] : orange[800];
+      icon = (
+        <WatchLaterIcon
+          sx={{
+            fill: isDarkMode ? orange[200] : orange[600],
+          }}
+        />
+      );
       break;
     case "Ready":
-      color = "default";
-      icon = <NotificationsIcon />;
+      color = isDarkMode ? cyan[200] : cyan[800];
+      icon = (
+        <NotificationsIcon
+          sx={{
+            fill: isDarkMode ? cyan[200] : cyan[600],
+          }}
+        />
+      );
       break;
     case "On The Way":
-      color = "info";
-      icon = <MopedIcon />;
+      color = isDarkMode ? blue[200] : blue[800];
+      icon = (
+        <MopedIcon
+          sx={{
+            fill: isDarkMode ? cyan[200] : cyan[600],
+          }}
+        />
+      );
       break;
     case "Delivered":
-      color = "success";
-      icon = <CheckCircleIcon />;
+      color = isDarkMode ? green[200] : green[800];
+      icon = (
+        <CheckCircleIcon
+          sx={{
+            fill: isDarkMode ? green[200] : green[600],
+          }}
+        />
+      );
       break;
     case "Cancelled":
-      color = "error";
-      icon = <CancelIcon />;
+      color = isDarkMode ? red[200] : red[800];
+      icon = (
+        <CancelIcon
+          sx={{
+            fill: isDarkMode ? red[200] : red[600],
+          }}
+        />
+      );
       break;
   }
 
@@ -45,7 +79,10 @@ export const OrderStatus = ({ status }: OrderStatusProps) => {
       variant="outlined"
       size="small"
       icon={icon}
-      color={color}
+      sx={{
+        borderColor: color,
+        color: color,
+      }}
       label={t(`enum.orderStatuses.${status}`)}
     />
   );

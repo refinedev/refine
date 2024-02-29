@@ -17,13 +17,13 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import AddShoppingCartOutlined from "@mui/icons-material/AddShoppingCartOutlined";
-import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
-import StoreOutlined from "@mui/icons-material/StoreOutlined";
-import LocalPizzaOutlined from "@mui/icons-material/LocalPizzaOutlined";
-import PeopleOutlineOutlined from "@mui/icons-material/PeopleOutlineOutlined";
 import MopedOutlined from "@mui/icons-material/MopedOutlined";
 import Dashboard from "@mui/icons-material/Dashboard";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
+import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
+import StoreOutlinedIcon from "@mui/icons-material/StoreOutlined";
 import Box from "@mui/material/Box";
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -89,7 +89,7 @@ const App: React.FC = () => {
                   list: "/orders",
                   show: "/orders/show/:id",
                   meta: {
-                    icon: <AddShoppingCartOutlined />,
+                    icon: <ShoppingBagOutlinedIcon />,
                   },
                 },
                 {
@@ -97,7 +97,7 @@ const App: React.FC = () => {
                   list: "/customers",
                   show: "/customers/show/:id",
                   meta: {
-                    icon: <PeopleOutlineOutlined />,
+                    icon: <AccountCircleOutlinedIcon />,
                   },
                 },
                 {
@@ -106,14 +106,14 @@ const App: React.FC = () => {
                   create: "/products/create",
                   edit: "/products/edit/:id",
                   meta: {
-                    icon: <LocalPizzaOutlined />,
+                    icon: <FastfoodOutlinedIcon />,
                   },
                 },
                 {
                   name: "categories",
                   list: "/categories",
                   meta: {
-                    icon: <CategoryOutlined />,
+                    icon: <LabelOutlinedIcon />,
                   },
                 },
                 {
@@ -122,7 +122,7 @@ const App: React.FC = () => {
                   create: "/stores/create",
                   edit: "/stores/edit/:id",
                   meta: {
-                    icon: <StoreOutlined />,
+                    icon: <StoreOutlinedIcon />,
                   },
                 },
                 {

@@ -40,11 +40,21 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          bgcolor="gray"
           width="32px"
           height="32px"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "dark" ? "#757575" : "#D9D9D9",
+          }}
         >
-          <Typography color="revert">+{unvisibleProducts.length}</Typography>
+          <Typography
+            sx={{
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#121212" : "#FFFFFF",
+            }}
+          >
+            +{unvisibleProducts.length}
+          </Typography>
         </Box>
       )}
     </Box>

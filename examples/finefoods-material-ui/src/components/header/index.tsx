@@ -7,7 +7,6 @@ import {
   useSetLocale,
 } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps, HamburgerMenu } from "@refinedev/mui";
-
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
@@ -21,18 +20,16 @@ import Stack from "@mui/material/Stack";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
-import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
-
+import BrightnessHighIcon from "@mui/icons-material/BrightnessHigh";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
 import i18n from "../../i18n";
 import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
 import { ColorModeContext } from "../../contexts";
 
 interface IOptions {
   label: string;
-  url: string;
+  url?: string;
   link: string;
   category: string;
 }
@@ -61,7 +58,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
         const orderOptionGroup = data.data.map((item) => {
           return {
             label: `${item.store.title} / #${item.orderNumber}`,
-            url: "/images/default-order-img.png",
+            url: item.products?.[0]?.images?.[0]?.url,
             link: `/orders/show/${item.id}`,
             category: t("orders.orders"),
           };
@@ -83,8 +80,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       onSuccess: (data) => {
         const storeOptionGroup = data.data.map((item) => {
           return {
-            label: item.title,
-            url: "images/default-store-img.png",
+            label: `${item.title} - ${item.address.text}`,
             link: `/stores/edit/${item.id}`,
             category: t("stores.stores"),
           };
@@ -104,8 +100,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       onSuccess: (data) => {
         const courierOptionGroup = data.data.map((item) => {
           return {
-            label: `${item.name} ${item.surname}`,
-            url: item.avatar[0].url,
+            label: `${item.name}`,
+            url: item.avatar?.[0]?.url,
             link: `/couriers/edit/${item.id}`,
             category: t("couriers.couriers"),
           };
@@ -124,7 +120,16 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   }, [value, refetchOrders, refetchCouriers, refetchStores]);
 
   return (
-    <AppBar color="default" position="sticky" elevation={1}>
+    <AppBar
+      color="default"
+      position="sticky"
+      elevation={0}
+      sx={{
+        height: "64px",
+        borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        backgroundColor: (theme) => theme.palette.background.paper,
+      }}
+    >
       <Toolbar
         sx={{
           paddingLeft: {
@@ -172,21 +177,15 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                         gap: "10px",
                       }}
                     >
-                      <Avatar
-                        sx={{
-                          width: {
-                            sm: "48px",
-                            md: "54px",
-                            lg: "64px",
-                          },
-                          height: {
-                            sm: "48px",
-                            md: "54px",
-                            lg: "64px",
-                          },
-                        }}
-                        src={option.url}
-                      />
+                      {option?.url && (
+                        <Avatar
+                          sx={{
+                            width: "32px",
+                            height: "32px",
+                          }}
+                          src={option.url}
+                        />
+                      )}
                       <Typography
                         sx={{
                           fontSize: {
@@ -236,53 +235,57 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               }}
             />
           </Stack>
-          <Stack direction="row" alignItems="center">
+          <Stack direction="row" alignItems="center" spacing="24px">
+            <Select
+              size="small"
+              disableUnderline
+              defaultValue={currentLocale}
+              inputProps={{ "aria-label": "Without label" }}
+              variant="outlined"
+              sx={{
+                width: "160px",
+              }}
+            >
+              {[...(i18n.languages ?? [])].sort().map((lang: string) => (
+                <MenuItem
+                  selected={currentLocale === lang}
+                  key={lang}
+                  defaultValue={lang}
+                  onClick={() => {
+                    changeLanguage(lang);
+                  }}
+                  value={lang}
+                >
+                  <Typography color="text.secondary">
+                    {lang === "en" ? "English" : "German"}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Select>
+
             <IconButton
               onClick={() => {
                 setMode();
               }}
+              sx={{
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "dark" ? "transparent" : "#00000014",
+              }}
             >
-              {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+              {mode === "dark" ? (
+                <BrightnessHighIcon />
+              ) : (
+                <Brightness4Icon
+                  sx={{
+                    fill: "#000000DE",
+                  }}
+                />
+              )}
             </IconButton>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <Select
-                disableUnderline
-                defaultValue={currentLocale}
-                inputProps={{ "aria-label": "Without label" }}
-                variant="standard"
-              >
-                {[...(i18n.languages ?? [])].sort().map((lang: string) => (
-                  <MenuItem
-                    selected={currentLocale === lang}
-                    key={lang}
-                    defaultValue={lang}
-                    onClick={() => {
-                      changeLanguage(lang);
-                    }}
-                    value={lang}
-                  >
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Avatar
-                        sx={{
-                          width: "16px",
-                          height: "16px",
-                          marginRight: "5px",
-                        }}
-                        src={`/images/flags/${lang}.svg`}
-                      />
-                      {lang === "en" ? "English" : "German"}
-                    </Stack>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+
             <Stack
               direction="row"
-              gap="4px"
+              gap="16px"
               alignItems="center"
               justifyContent="center"
             >

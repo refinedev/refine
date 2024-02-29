@@ -11,6 +11,7 @@ import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 import {
   DailyOrders,
   DailyRevenue,
@@ -118,11 +119,17 @@ export const DashboardPage: React.FC = () => {
           size="small"
           value={selecetedDateFilter}
           onChange={(e) => setSelectedDateFilter(e.target.value as DateFilter)}
+          sx={{
+            width: "160px",
+            backgroundColor: (theme) => theme.palette.background.paper,
+          }}
         >
           {Object.values(DATE_FILTERS).map((filter) => {
             return (
               <MenuItem key={filter.value} value={filter.value}>
-                {t(`dashboard.filter.date.${filter.text}`)}
+                <Typography color="text.secondary" lineHeight="24px">
+                  {t(`dashboard.filter.date.${filter.text}`)}
+                </Typography>
               </MenuItem>
             );
           })}
