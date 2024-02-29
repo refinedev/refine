@@ -216,7 +216,7 @@ export const renderer = ({
                       i18n,
                     })}
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {
@@ -326,7 +326,7 @@ export const renderer = ({
                     })}
                     valuePropName="checked"
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {
@@ -379,7 +379,7 @@ export const renderer = ({
                       i18n,
                     })}
                     name={["${field.key}"${
-                      field.accessor ? ', "' + field.accessor + '"' : ""
+                      field.accessor ? `, "${field.accessor}"` : ""
                     }]}
                     rules={[
                         {
@@ -443,7 +443,7 @@ export const renderer = ({
 
   noOp(imports);
 
-  const useTranslateHook = i18n && `const translate = useTranslate();`;
+  const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
     ${printImports(imports)}

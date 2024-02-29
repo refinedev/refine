@@ -139,18 +139,17 @@ export const useCreateMany = <
           meta: combinedMeta,
           metaData: combinedMeta,
         });
-      } else {
-        return handleMultiple(
-          values.map((val) =>
-            selectedDataProvider.create<TData, TVariables>({
-              resource: resource.name,
-              variables: val,
-              meta: combinedMeta,
-              metaData: combinedMeta,
-            }),
-          ),
-        );
       }
+      return handleMultiple(
+        values.map((val) =>
+          selectedDataProvider.create<TData, TVariables>({
+            resource: resource.name,
+            variables: val,
+            meta: combinedMeta,
+            metaData: combinedMeta,
+          }),
+        ),
+      );
     },
     onSuccess: (
       response,

@@ -39,7 +39,9 @@ export const EnterpriseFlexibility = ({
         )}
       >
         <LandingPureReactCode
-          description={`Clean, well-architectured React application as output. Full control over your styling, business logic and integrations.`}
+          description={
+            "Clean, well-architectured React application as output. Full control over your styling, business logic and integrations."
+          }
           cta={false}
         />
         <div

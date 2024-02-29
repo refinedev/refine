@@ -49,6 +49,7 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
               "text-gray-800 dark:text-gray-100",
               "mt-10",
             )}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
 
@@ -155,6 +156,7 @@ export const RefineWeekDesktop = ({ variant, data, className }: Props) => {
                   </div>
                   <div
                     className={clsx("text-gray-600 dark:text-gray-400", "mt-2")}
+                    // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                     dangerouslySetInnerHTML={{
                       __html: item.description,
                     }}

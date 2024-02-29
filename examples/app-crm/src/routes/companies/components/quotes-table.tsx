@@ -84,7 +84,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
     });
   }, [filters]);
 
-  const hasData = tableProps?.dataSource?.length || 0 > 0;
+  const hasData = (tableProps?.dataSource?.length || 0) > 0;
 
   return (
     <Card
@@ -168,7 +168,7 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
                   mode="multiple"
                   placeholder="Select Stage"
                   options={statusOptions}
-                ></Select>
+                />
               </FilterDropdown>
             )}
           />

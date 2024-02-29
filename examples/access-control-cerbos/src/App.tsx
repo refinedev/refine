@@ -63,7 +63,7 @@ const App: React.FC = () => {
                   resource: {
                     kind: resource ?? "",
                     policyVersion: "default",
-                    id: params?.id + "" || "new",
+                    id: `${params?.id}` || "new",
                     attributes: params,
                   },
                   // the list of actions on the resource to check authorization for

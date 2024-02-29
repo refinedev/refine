@@ -24,7 +24,7 @@ export const CreateRefineAppCommand = ({ args }: { args?: string }) => {
       </TabItem>
       <TabItem value="yarn" label="yarn">
         <CodeBlock className="language-bash">{commands.yarn}</CodeBlock>
-        <ReactMarkdown>{`> Only supports yarn@1 version.`}</ReactMarkdown>
+        <ReactMarkdown>{"> Only supports yarn@1 version."}</ReactMarkdown>
       </TabItem>
     </Tabs>
   );

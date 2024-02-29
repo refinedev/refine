@@ -11,9 +11,9 @@ import {
   waitFor,
 } from "@test";
 
-export const pageForgotPasswordTests = function (
+export const pageForgotPasswordTests = (
   ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Forgot Password Page", () => {
     it("should render card title", async () => {
       const { getByText } = render(<ForgotPasswordPage />, {

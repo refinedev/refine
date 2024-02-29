@@ -66,8 +66,12 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               </Button>
             </Group>
           </Affix>
-          <div style={{ height: "50px" }}></div>
-          <Modal size={800} opened={visible} onClose={() => setVisible(false)}>
+          <div style={{ height: "50px" }} />
+          <Modal
+            size={800}
+            opened={visible}
+            onClose={() => setVisible(false)}
+          >
             <ActionIcon
               onClick={() => setVisible(false)}
               variant="transparent"

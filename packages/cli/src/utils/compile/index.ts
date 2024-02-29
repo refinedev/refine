@@ -10,14 +10,14 @@ import {
 export const compile = (filePath: string, params: any): string => {
   const content = readFileSync(filePath);
 
-  Handlebars.registerHelper("ifIn", function (elem, list, options) {
+  Handlebars.registerHelper("ifIn", (elem, list, options) => {
     if (elem.includes(list)) {
       return options.fn(Handlebars);
     }
     return options.inverse(Handlebars);
   });
 
-  Handlebars.registerHelper("formatInferencerComponent", function (string) {
+  Handlebars.registerHelper("formatInferencerComponent", (string) => {
     if (!string) {
       return;
     }
@@ -31,7 +31,7 @@ export const compile = (filePath: string, params: any): string => {
     }
   });
 
-  Handlebars.registerHelper("capitalize", function (string) {
+  Handlebars.registerHelper("capitalize", (string) => {
     if (!string) {
       return;
     }

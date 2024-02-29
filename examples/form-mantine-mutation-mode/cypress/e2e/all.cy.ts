@@ -5,7 +5,8 @@ describe("form-mantine-mutation-mode", () => {
   const BASE_URL = "http://localhost:5173";
 
   const mockPost = {
-    title: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
     content: `Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
     status: "draft",
   };
@@ -37,7 +38,7 @@ describe("form-mantine-mutation-mode", () => {
     // uppercase first letter
     const uppercaseMode = mode.charAt(0).toUpperCase() + mode.slice(1);
 
-    return cy.get(`.mantine-Radio-label`).contains(uppercaseMode).click({
+    return cy.get(".mantine-Radio-label").contains(uppercaseMode).click({
       force: true,
     });
   };

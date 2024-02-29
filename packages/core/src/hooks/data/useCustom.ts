@@ -226,7 +226,6 @@ export const useCustom = <
     });
 
     return { ...queryResponse, overtime: { elapsedTime } };
-  } else {
-    throw Error("Not implemented custom on data provider.");
   }
+  throw Error("Not implemented custom on data provider.");
 };

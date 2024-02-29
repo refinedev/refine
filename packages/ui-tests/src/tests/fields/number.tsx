@@ -3,9 +3,9 @@ import { RefineFieldNumberProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-export const fieldNumberTests = function (
+export const fieldNumberTests = (
   NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
     it("renders numbers with given formatting", () => {
       const testPrice = 12345.6789;

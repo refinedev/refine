@@ -300,15 +300,14 @@ export const useSelect = <
     if (!value) {
       setSearch([]);
       return;
-    } else {
-      setSearch([
-        {
-          field: optionLabel,
-          operator: "contains",
-          value,
-        },
-      ]);
     }
+    setSearch([
+      {
+        field: optionLabel,
+        operator: "contains",
+        value,
+      },
+    ]);
   };
 
   const { elapsedTime } = useLoadingOvertime({

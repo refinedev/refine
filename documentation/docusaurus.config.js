@@ -49,7 +49,7 @@ const siteConfig = {
     [
       "@docusaurus/preset-classic",
       {
-        docs: Boolean(process.env.DISABLE_DOCS)
+        docs: process.env.DISABLE_DOCS
           ? false
           : {
               path: "./docs",

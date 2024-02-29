@@ -73,7 +73,6 @@ export const TestWrapper: (
     });
   }
 
-  // eslint-disable-next-line react/display-name
   return ({ children }): React.ReactElement => {
     return (
       <MantineProvider theme={defaultTheme}>

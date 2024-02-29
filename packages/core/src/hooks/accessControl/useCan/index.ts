@@ -48,10 +48,8 @@ export const useCan = ({
    */
   const { resource: _resource, ...paramsRest } = params ?? {};
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const sanitizedResource = sanitizeResource(_resource);
 
-  /* eslint-enable @typescript-eslint/no-unused-vars */
   const queryResponse = useQuery<CanReturnType>({
     queryKey: keys()
       .access()

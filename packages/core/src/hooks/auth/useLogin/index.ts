@@ -131,9 +131,8 @@ export function useLogin<TVariables = {}>({
         ignoreQueryPrefix: true,
       });
       return legacySearch.to;
-    } else {
-      return parsed.params?.to;
     }
+    return parsed.params?.to;
   }, [routerType, parsed.params, search]);
 
   const mutation = useMutation<

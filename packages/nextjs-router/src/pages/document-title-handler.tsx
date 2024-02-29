@@ -35,7 +35,7 @@ export const DocumentTitleHandler = ({ handler }: Props) => {
     translate,
     resource,
     action,
-    id + "",
+    `${id}`,
     resourceName,
   );
 

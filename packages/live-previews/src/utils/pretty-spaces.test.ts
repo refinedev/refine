@@ -2,7 +2,7 @@ import { prettySpaces } from "./pretty-spaces";
 
 describe("Pretty Spaces Helper", () => {
   it("should remove extra spaces", () => {
-    const content = `const a = 1;  const b = 2;`;
+    const content = "const a = 1;  const b = 2;";
     const result = prettySpaces(content);
     expect(result).toBe("const a = 1; const b = 2;");
   });

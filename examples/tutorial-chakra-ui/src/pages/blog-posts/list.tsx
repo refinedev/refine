@@ -59,7 +59,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
         },
         cell: function render({ getValue }) {
           return (
-            <MarkdownField value={getValue<string>()?.slice(0, 80) + "..."} />
+            <MarkdownField value={`${getValue<string>()?.slice(0, 80)}...`} />
           );
         },
       },

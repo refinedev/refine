@@ -188,32 +188,31 @@ export const useMany = <
             },
           },
         });
-      } else {
-        return handleMultiple(
-          ids.map((id) =>
-            getOne<TQueryFnData>({
-              resource: resource?.name,
-              id,
-              meta: {
-                ...combinedMeta,
-                queryContext: {
-                  queryKey,
-                  pageParam,
-                  signal,
-                },
-              },
-              metaData: {
-                ...combinedMeta,
-                queryContext: {
-                  queryKey,
-                  pageParam,
-                  signal,
-                },
-              },
-            }),
-          ),
-        );
       }
+      return handleMultiple(
+        ids.map((id) =>
+          getOne<TQueryFnData>({
+            resource: resource?.name,
+            id,
+            meta: {
+              ...combinedMeta,
+              queryContext: {
+                queryKey,
+                pageParam,
+                signal,
+              },
+            },
+            metaData: {
+              ...combinedMeta,
+              queryContext: {
+                queryKey,
+                pageParam,
+                signal,
+              },
+            },
+          }),
+        ),
+      );
     },
     ...queryOptions,
     onSuccess: (data) => {

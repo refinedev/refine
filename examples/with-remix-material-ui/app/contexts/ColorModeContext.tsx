@@ -28,7 +28,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     setIsMounted(true);
   }, []);
 
-  const systemTheme = useMediaQuery(`(prefers-color-scheme: dark)`);
+  const systemTheme = useMediaQuery("(prefers-color-scheme: dark)");
 
   useEffect(() => {
     if (isMounted) {

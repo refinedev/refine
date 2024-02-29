@@ -215,7 +215,7 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                   mode="multiple"
                   placeholder="Select Stage"
                   options={statusOptions}
-                ></Select>
+                />
               </FilterDropdown>
             )}
             render={(value) => {

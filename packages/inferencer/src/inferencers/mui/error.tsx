@@ -21,6 +21,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
       >
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
+          {/* biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled */}
           <div dangerouslySetInnerHTML={{ __html: error ?? "" }} />
         </Alert>
       </Box>

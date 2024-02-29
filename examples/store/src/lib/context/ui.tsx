@@ -149,7 +149,7 @@ export const UIProvider: FC<PropsWithChildren> = (props) => {
 export const useUI = (): ContextType => {
   const context = React.useContext(UIContext);
   if (context === undefined) {
-    throw new Error(`useUI must be used within a UIProvider`);
+    throw new Error("useUI must be used within a UIProvider");
   }
   return context as ContextType;
 };

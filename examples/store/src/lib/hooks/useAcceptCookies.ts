@@ -13,7 +13,7 @@ export const useAcceptCookies = (): ReturnUseAcceptCookies => {
 
   useEffect(() => {
     const cookies = parseCookies();
-    if (!cookies.hasOwnProperty(COOKIE_NAME)) {
+    if (!Object.hasOwn(cookies, COOKIE_NAME)) {
       setAcceptedCookies(false);
     }
   }, []);

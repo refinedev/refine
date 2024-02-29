@@ -29,7 +29,7 @@ export const createTreeView = (
   }
 
   for (const name in resourcesRouteObject) {
-    if (resourcesRouteObject.hasOwnProperty(name)) {
+    if (Object.hasOwn(resourcesRouteObject, name)) {
       child = resourcesRouteObject[name];
 
       if (child.parentName && resourcesNameObject[child.parentName]) {

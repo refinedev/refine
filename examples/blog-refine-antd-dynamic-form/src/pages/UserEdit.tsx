@@ -100,7 +100,7 @@ export default function UserEdit() {
                           top: "47px",
                         }}
                         icon={<DeleteOutlined />}
-                      ></Button>
+                      />
                     </Space>
                   );
                 })}

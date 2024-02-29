@@ -61,9 +61,8 @@ export const objectInfer: FieldInferencer = (
                     ? innerFieldType.accessor[0]
                     : innerFieldType.accessor
                 }`;
-              } else {
-                return el;
               }
+              return el;
             })
           : innerFieldType.accessor
             ? Array.isArray(innerFieldType.accessor)

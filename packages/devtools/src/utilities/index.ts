@@ -1,7 +1,7 @@
 import { Placement } from "src/interfaces/placement";
 
 export const getPanelToggleTransforms = (visible: boolean) => {
-  return visible ? "scaleX(1) translateY(0)" : `scaleX(0) translateY(25vw)`;
+  return visible ? "scaleX(1) translateY(0)" : "scaleX(0) translateY(25vw)";
 };
 
 export const SIZE = 50;
@@ -39,7 +39,6 @@ export const getPanelPosition = (placement: Placement) => {
         top: `calc(${SIZE}px + ${BUFFER}px)`,
         transform: "translateX(-50%)",
       };
-    default:
     case "bottom":
       return {
         left: "50%",

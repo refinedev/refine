@@ -58,7 +58,7 @@ export const LandingHeroGridSvg = (props: React.SVGProps<SVGSVGElement>) => (
         maskType: "alpha",
       }}
     >
-      <path fill="url(#maskGradient)" d="M0 0h704v536H0z"></path>
+      <path fill="url(#maskGradient)" d="M0 0h704v536H0z" />
     </mask>
     <defs>
       <g className="defBase">
@@ -70,8 +70,8 @@ export const LandingHeroGridSvg = (props: React.SVGProps<SVGSVGElement>) => (
           gradientTransform="matrix(0 -268 352 0 352 268)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".475" stopColor="#303450"></stop>
-          <stop offset="1" stopColor="#303450" stopOpacity="0"></stop>
+          <stop offset=".475" stopColor="#303450" />
+          <stop offset="1" stopColor="#303450" stopOpacity="0" />
         </radialGradient>
       </g>
     </defs>

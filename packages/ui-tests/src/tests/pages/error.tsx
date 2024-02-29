@@ -10,9 +10,9 @@ import {
   waitFor,
 } from "@test";
 
-export const pageErrorTests = function (
+export const pageErrorTests = (
   ErrorPage: React.ComponentType<RefineErrorPageProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Error Page", () => {
     it("should render successfully", async () => {
       const { container } = render(<ErrorPage />, {

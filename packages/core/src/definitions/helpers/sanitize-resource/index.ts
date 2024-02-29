@@ -13,7 +13,6 @@ export const sanitizeResource = (
     return undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
     icon,
     list,

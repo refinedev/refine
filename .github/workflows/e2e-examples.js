@@ -52,7 +52,7 @@ const getProjectInfo = async (path) => {
   const devDependencies = Object.keys(packageJson.devDependencies || {});
 
   let port = 3000;
-  let command = `npm run dev`;
+  let command = "npm run dev";
   let additionalParams = "";
 
   // check for vite
@@ -114,25 +114,24 @@ const getProjectsWithE2E = async () => {
   ).filter(Boolean);
 };
 
-const waitOnFor = (resource) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await waitOn({
-        resources: [resource],
-        log: true,
-      });
+const waitOnFor = async (resource) => {
+  try {
+    await waitOn({
+      resources: [resource],
+      log: true,
+    });
 
-      resolve(resource);
-    } catch (error) {
-      if (error) console.log(error);
+    return resource;
+  } catch (error) {
+    if (error) console.log(error);
 
-      resolve(false);
-    }
-  });
+    return false;
+  }
 };
 
 const waitForServer = async (port) => {
-  return new Promise(async (resolve, reject) => {
+  // biome-ignore lint/suspicious/noAsyncPromiseExecutor: We have a valid use-case here.
+  return new Promise(async (resolve) => {
     setTimeout(() => {
       resolve(false);
     }, 120000);
@@ -154,7 +153,8 @@ const waitForServer = async (port) => {
 };
 
 const waitForClose = (resource) => {
-  return new Promise(async (resolve, reject) => {
+  // biome-ignore lint/suspicious/noAsyncPromiseExecutor: We have a valid use-case here.
+  return new Promise(async (resolve) => {
     setTimeout(() => {
       resolve(false);
     }, 120000);
@@ -200,7 +200,7 @@ const runTests = async () => {
 
     prettyLog("blue", `Running for ${path} at port ${port}`);
 
-    prettyLog("blue", `Starting the dev server`);
+    prettyLog("blue", "Starting the dev server");
 
     let start;
 
@@ -215,7 +215,7 @@ const runTests = async () => {
       start.stdout.on("data", console.log);
       start.stderr.on("data", console.error);
     } catch (error) {
-      prettyLog("red", `Error occured on starting the dev server`);
+      prettyLog("red", "Error occured on starting the dev server");
       failed = true;
     }
 
@@ -226,14 +226,14 @@ const runTests = async () => {
 
       const status = await waitForServer(port);
       if (!status) {
-        prettyLog("red", `Error occured on waiting for the server to start`);
+        prettyLog("red", "Error occured on waiting for the server to start");
         failed = true;
       } else {
         respondedUrl = status;
         prettyLog("green", `Server started at ${status}`);
       }
     } catch (error) {
-      prettyLog("red", `Error occured on waiting for the server to start`);
+      prettyLog("red", "Error occured on waiting for the server to start");
       if (error) console.log(error);
 
       failed = true;
@@ -258,7 +258,7 @@ const runTests = async () => {
 
       failed = true;
     } finally {
-      prettyLog("blue", `Killing the dev server`);
+      prettyLog("blue", "Killing the dev server");
 
       try {
         if (start.pid) {
@@ -272,12 +272,12 @@ const runTests = async () => {
 
           await waitForClose(respondedUrl);
 
-          prettyLog("green", `Killed the dev server`);
+          prettyLog("green", "Killed the dev server");
         } else {
           failed = true;
         }
       } catch (error) {
-        prettyLog("red", `Error occured on killing the dev server`);
+        prettyLog("red", "Error occured on killing the dev server");
         if (error) console.log(error);
         failed = true;
       }
@@ -290,7 +290,7 @@ const runTests = async () => {
       prettyLog("red", `Tests for ${path} failed.`);
     }
 
-    console.log(`::endgroup::`);
+    console.log("::endgroup::");
   }
 
   if (failedExamples.length > 0) {

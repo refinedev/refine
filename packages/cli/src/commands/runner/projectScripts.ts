@@ -36,7 +36,7 @@ export const projectScripts = {
       // otherwise print a warning and use `./build/index.js` as default
       console.log();
       console.warn(
-        `🚨 Remix requires a path to the entry file. Please provide it as an argument to \`refine start\` command in package.json scripts`,
+        "🚨 Remix requires a path to the entry file. Please provide it as an argument to `refine start` command in package.json scripts",
       );
       console.warn("Refine will use `./build/index.js` as default");
       console.warn("Example: `refine start ./build/index.js`");

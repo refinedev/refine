@@ -33,7 +33,7 @@ export const CommunityStatsProvider: FC = ({ children }) => {
       setLoading(true);
 
       const response = await fetch(
-        `https://stargate.refine.dev/community-numbers`,
+        "https://stargate.refine.dev/community-numbers",
         {
           method: "GET",
           headers: {
@@ -97,7 +97,7 @@ export const useCommunityStatsContext = () => {
 
 export const convertStatToText = (num: number) => {
   const hasIntlSupport =
-    typeof Intl == "object" && Intl && typeof Intl.NumberFormat == "function";
+    typeof Intl === "object" && Intl && typeof Intl.NumberFormat === "function";
 
   if (!hasIntlSupport) {
     return `${(num / 1000).toFixed(1)}k`;

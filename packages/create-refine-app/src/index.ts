@@ -61,21 +61,21 @@ const bootstrap = () => {
           [
             ...command.args,
             command.getOptionValue("project")
-              ? "--project=" + command.getOptionValue("project")
+              ? `--project=${command.getOptionValue("project")}`
               : "--project=refine",
             "--download=zip",
             command.getOptionValue("source")
-              ? "--source=" + command.getOptionValue("source")
+              ? `--source=${command.getOptionValue("source")}`
               : "",
             command.getOptionValue("branch")
-              ? "--branch=" + command.getOptionValue("branch")
+              ? `--branch=${command.getOptionValue("branch")}`
               : "",
             command.getOptionValue("preset")
-              ? "--preset=" + command.getOptionValue("preset")
+              ? `--preset=${command.getOptionValue("preset")}`
               : "",
             command.getOptionValue("lucky") ? "--lucky" : "",
             command.getOptionValue("download")
-              ? "--download=" + command.getOptionValue("download")
+              ? `--download=${command.getOptionValue("download")}`
               : "",
             command.getOptionValue("disableTelemetry")
               ? "--disable-telemetry"

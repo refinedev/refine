@@ -100,7 +100,9 @@ export const ConfigErrorPage = () => {
                   borderRadius: "4px",
                   color: "#FFFFFF",
                 }}
-              >{`<Refine />`}</code>{" "}
+              >
+                {"<Refine />"}
+              </code>{" "}
               is not initialized. Please make sure you have it mounted in your
               app and placed your components inside it.
             </p>

@@ -7,9 +7,9 @@ import { render } from "@test";
 
 import "dayjs/locale/tr";
 
-export const fieldDateTests = function (
+export const fieldDateTests = (
   DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Date Field", () => {
     it("renders date with default format", () => {
       const { getByText } = render(

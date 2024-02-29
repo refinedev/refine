@@ -43,7 +43,7 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
           <div className="text-xl font-bold">
             {record?.name ?? "Loading..."}
           </div>
-          <div className="divider p-0 m-0"></div>
+          <div className="divider p-0 m-0" />
           <div className="mb-2">
             <h5 className="mb-1 font-bold">Price</h5>
             <div>{record?.price ? `$ ${record?.price}` : "Loading..."}</div>

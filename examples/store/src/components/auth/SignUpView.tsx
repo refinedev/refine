@@ -127,8 +127,7 @@ const SignUpView: React.FC = () => {
         </div>
 
         <span className="pt-1 text-center text-sm">
-          <span className="text-accent-7">Do you have an account?</span>
-          {` `}
+          <span className="text-accent-7">Do you have an account?</span>{" "}
           <a
             className="text-accent-9 cursor-pointer font-bold hover:underline"
             onClick={() => setModalView("LOGIN_VIEW")}

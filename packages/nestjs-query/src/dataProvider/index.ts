@@ -261,7 +261,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       const operation = camelcase(resource);
 
-      let query, queryVariables;
+      let query;
+      let queryVariables;
 
       if (meta?.fields) {
         const gqlQuery = gql.query({
@@ -448,7 +449,8 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       if (meta) {
         if (meta.operation) {
-          let query, variables;
+          let query;
+          let variables;
 
           if (method === "get") {
             const gqlQuery = gql.query({
@@ -475,14 +477,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
           return {
             data: response[meta.operation],
           };
-        } else {
-          throw Error("GraphQL operation name required.");
         }
-      } else {
-        throw Error(
-          "GraphQL needs operation, fields and variables values in meta object.",
-        );
+        throw Error("GraphQL operation name required.");
       }
+      throw Error(
+        "GraphQL needs operation, fields and variables values in meta object.",
+      );
     },
   };
 };

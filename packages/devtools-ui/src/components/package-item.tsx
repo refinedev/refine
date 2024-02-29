@@ -56,7 +56,6 @@ export const PackageItem = ({ item, blocked, onUpdate, onOutdated }: Props) => {
       case "error":
         return <InfoIcon className="re-rotate-180" />;
       case "idle":
-      default:
         return <UpdateIcon />;
     }
   }, [status]);
@@ -70,7 +69,6 @@ export const PackageItem = ({ item, blocked, onUpdate, onOutdated }: Props) => {
       case "error":
         return "Error";
       case "idle":
-      default:
         return "Update";
     }
   }, [status]);
@@ -226,7 +224,7 @@ export const PackageItem = ({ item, blocked, onUpdate, onOutdated }: Props) => {
                   "re-leading-4",
                 )}
               >
-                {latestData && latestData.latestVersion
+                {latestData?.latestVersion
                   ? `v${latestData.latestVersion}`
                   : ""}
               </span>
