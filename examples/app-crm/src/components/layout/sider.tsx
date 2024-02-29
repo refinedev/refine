@@ -183,7 +183,7 @@ export const Sider: React.FC = () => {
           size="large"
           onClick={() => setMobileSiderOpen(true)}
           icon={<BarsOutlined />}
-        ></Button>
+        />
       </>
     );
   };

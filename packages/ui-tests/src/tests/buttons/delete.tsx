@@ -14,9 +14,9 @@ import {
 } from "@test";
 import { Route, Routes } from "react-router-dom";
 
-export const buttonDeleteTests = function (
+export const buttonDeleteTests = (
   DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
     beforeAll(() => {
       jest.spyOn(console, "error").mockImplementation(jest.fn());

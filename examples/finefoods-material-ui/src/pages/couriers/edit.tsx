@@ -140,7 +140,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                           md: "200px",
                         },
                       }}
-                      src={imageInput && imageInput[0].url}
+                      src={imageInput?.[0].url}
                       alt="User Picture"
                     />
                   </label>

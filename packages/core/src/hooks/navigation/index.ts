@@ -65,26 +65,25 @@ export const useNavigation = () => {
         parsed,
         meta,
       );
-    } else {
-      const resourceItem =
-        typeof resource === "string"
-          ? pickResource(resource, resources) ?? { name: resource }
-          : resource;
-
-      const createActionRoute = getActionRoutesFromResource(
-        resourceItem,
-        resources,
-      ).find((r) => r.action === "create")?.route;
-
-      if (!createActionRoute) {
-        return "";
-      }
-
-      return go({
-        to: composeRoute(createActionRoute, resourceItem?.meta, parsed, meta),
-        type: "path",
-      }) as string;
     }
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const createActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "create")?.route;
+
+    if (!createActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(createActionRoute, resourceItem?.meta, parsed, meta),
+      type: "path",
+    }) as string;
   };
 
   const editUrl = (
@@ -116,29 +115,28 @@ export const useNavigation = () => {
         ...meta,
         id: encodedId,
       });
-    } else {
-      const resourceItem =
-        typeof resource === "string"
-          ? pickResource(resource, resources) ?? { name: resource }
-          : resource;
-
-      const editActionRoute = getActionRoutesFromResource(
-        resourceItem,
-        resources,
-      ).find((r) => r.action === "edit")?.route;
-
-      if (!editActionRoute) {
-        return "";
-      }
-
-      return go({
-        to: composeRoute(editActionRoute, resourceItem?.meta, parsed, {
-          ...meta,
-          id: encodedId,
-        }),
-        type: "path",
-      }) as string;
     }
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const editActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "edit")?.route;
+
+    if (!editActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(editActionRoute, resourceItem?.meta, parsed, {
+        ...meta,
+        id: encodedId,
+      }),
+      type: "path",
+    }) as string;
   };
 
   const cloneUrl = (
@@ -171,29 +169,28 @@ export const useNavigation = () => {
         ...meta,
         id: encodedId,
       });
-    } else {
-      const resourceItem =
-        typeof resource === "string"
-          ? pickResource(resource, resources) ?? { name: resource }
-          : resource;
-
-      const cloneActionRoute = getActionRoutesFromResource(
-        resourceItem,
-        resources,
-      ).find((r) => r.action === "clone")?.route;
-
-      if (!cloneActionRoute) {
-        return "";
-      }
-
-      return go({
-        to: composeRoute(cloneActionRoute, resourceItem?.meta, parsed, {
-          ...meta,
-          id: encodedId,
-        }),
-        type: "path",
-      }) as string;
     }
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const cloneActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "clone")?.route;
+
+    if (!cloneActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(cloneActionRoute, resourceItem?.meta, parsed, {
+        ...meta,
+        id: encodedId,
+      }),
+      type: "path",
+    }) as string;
   };
 
   const showUrl = (
@@ -225,29 +222,28 @@ export const useNavigation = () => {
         ...meta,
         id: encodedId,
       });
-    } else {
-      const resourceItem =
-        typeof resource === "string"
-          ? pickResource(resource, resources) ?? { name: resource }
-          : resource;
-
-      const showActionRoute = getActionRoutesFromResource(
-        resourceItem,
-        resources,
-      ).find((r) => r.action === "show")?.route;
-
-      if (!showActionRoute) {
-        return "";
-      }
-
-      return go({
-        to: composeRoute(showActionRoute, resourceItem?.meta, parsed, {
-          ...meta,
-          id: encodedId,
-        }),
-        type: "path",
-      }) as string;
     }
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const showActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "show")?.route;
+
+    if (!showActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(showActionRoute, resourceItem?.meta, parsed, {
+        ...meta,
+        id: encodedId,
+      }),
+      type: "path",
+    }) as string;
   };
 
   const listUrl = (
@@ -279,26 +275,25 @@ export const useNavigation = () => {
         parsed,
         meta,
       );
-    } else {
-      const resourceItem =
-        typeof resource === "string"
-          ? pickResource(resource, resources) ?? { name: resource }
-          : resource;
-
-      const listActionRoute = getActionRoutesFromResource(
-        resourceItem,
-        resources,
-      ).find((r) => r.action === "list")?.route;
-
-      if (!listActionRoute) {
-        return "";
-      }
-
-      return go({
-        to: composeRoute(listActionRoute, resourceItem?.meta, parsed, meta),
-        type: "path",
-      }) as string;
     }
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const listActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "list")?.route;
+
+    if (!listActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(listActionRoute, resourceItem?.meta, parsed, meta),
+      type: "path",
+    }) as string;
   };
 
   const create = (

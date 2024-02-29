@@ -44,7 +44,7 @@ export const PostList: React.FC = () => {
               <td>
                 {isLoading
                   ? "Loading"
-                  : data?.data.find((item) => item.id == post.category.id)
+                  : data?.data.find((item) => item.id === post.category.id)
                       ?.title}
               </td>
               <td>{post.status}</td>

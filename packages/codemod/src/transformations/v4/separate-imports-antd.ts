@@ -92,7 +92,8 @@ export const separateImportsAntD = (j: JSCodeshift, source: Collection) => {
         path.node.comments = [
           {
             type: "CommentLine",
-            value: ` It is recommended to use explicit import as seen below to reduce bundle size.`,
+            value:
+              " It is recommended to use explicit import as seen below to reduce bundle size.",
           },
           {
             type: "CommentLine",

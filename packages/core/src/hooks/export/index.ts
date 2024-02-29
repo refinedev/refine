@@ -212,8 +212,7 @@ export const useExport = <
       hasUnparseConfig &&
         typeof exportOptions !== "undefined" &&
         exportOptions !== null,
-      `[useExport]: resource: "${identifier}" \n\n` +
-        `Both \`unparseConfig\` and \`exportOptions\` are set, \`unparseConfig\` will take precedence`,
+      `[useExport]: resource: "${identifier}" \n\nBoth \`unparseConfig\` and \`exportOptions\` are set, \`unparseConfig\` will take precedence`,
     );
 
     const options: ExportOptions = {
@@ -227,9 +226,7 @@ export const useExport = <
 
     warnOnce(
       exportOptions?.decimalSeparator !== undefined,
-      `[useExport]: resource: "${identifier}" \n\n` +
-        `Use of \`decimalSeparator\` no longer supported, please use \`mapData\` instead.\n\n` +
-        `See https://refine.dev/docs/api-reference/core/hooks/import-export/useExport/`,
+      `[useExport]: resource: "${identifier}" \n\nUse of \`decimalSeparator\` no longer supported, please use \`mapData\` instead.\n\nSee https://refine.dev/docs/api-reference/core/hooks/import-export/useExport/`,
     );
 
     if (!hasUnparseConfig) {
@@ -251,7 +248,7 @@ export const useExport = <
 
     let csv = unparse(rawData.map(mapData as any), unparseConfig);
     if (options.showTitle) {
-      csv = options.title + "\r\n\n" + csv;
+      csv = `${options.title}\r\n\n${csv}`;
     }
 
     // Backward compatibility support for downloadInBrowser of the exported file, only works for browsers.

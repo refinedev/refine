@@ -25,9 +25,9 @@ const mockAuthProvider: AuthProvider = {
     Promise.resolve({ name: "username", avatar: "localhost:3000" }),
 };
 
-export const layoutHeaderTests = function (
+export const layoutHeaderTests = (
   HeaderElement: React.ComponentType<RefineLayoutHeaderProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Header Element", () => {
     // NOTE : Will be removed in v5
     it("should render successfull user name and avatar in header with legacy authProvider", async () => {

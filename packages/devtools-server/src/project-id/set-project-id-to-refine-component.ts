@@ -17,11 +17,11 @@ export const setProjectIdToRefineComponent = async (
         `--transform=${path.resolve(
           path.join(__dirname, "..", "src", "project-id", "transform.ts"),
         )}`,
-        `--ignore-pattern=**/.cache/**`,
-        `--ignore-pattern=**/node_modules/**`,
-        `--ignore-pattern=**/build/**`,
-        `--ignore-pattern=**/dist/**`,
-        `--ignore-pattern=**/.next/**`,
+        "--ignore-pattern=**/.cache/**",
+        "--ignore-pattern=**/node_modules/**",
+        "--ignore-pattern=**/build/**",
+        "--ignore-pattern=**/dist/**",
+        "--ignore-pattern=**/.next/**",
         `--__projectId=${projectId}`,
       ],
       {

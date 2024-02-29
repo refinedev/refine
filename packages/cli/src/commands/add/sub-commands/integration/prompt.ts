@@ -18,9 +18,8 @@ export const buildIntegrationChoices = () => {
       },
       ...integrationChoices,
     ];
-  } else {
-    return integrationChoices;
   }
+  return integrationChoices;
 };
 
 export const addIntegrationPrompt = async () => {

@@ -29,7 +29,7 @@ export const assertDocumentTitle = (resource: string, action?: IAction) => {
         .should("match", new RegExp(`^#\\d+ Clone ${resource} | refine$`, "i"));
       break;
     default:
-      cy.document().its("title").should("eq", `refine`);
+      cy.document().its("title").should("eq", "refine");
       break;
   }
 };

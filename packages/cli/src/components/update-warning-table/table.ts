@@ -142,7 +142,7 @@ const getColorsByVersionDiffrence = (
 };
 
 export const getInstallCommand = async () => {
-  const fallbackCommand = `npx @refinedev/cli update`;
+  const fallbackCommand = "npx @refinedev/cli update";
 
   const dependencies = getDependencies();
   const scriptKeys = Object.keys(getScripts());
@@ -161,7 +161,7 @@ export const getInstallCommand = async () => {
   }
 
   if (hasCli) {
-    return `npx refine update`;
+    return "npx refine update";
   }
 
   return fallbackCommand;

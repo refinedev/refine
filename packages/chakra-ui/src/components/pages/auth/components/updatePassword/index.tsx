@@ -124,7 +124,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             {...register("confirmPassword", {
               required: true,
               validate: (val: any) => {
-                if (watch("password") != val) {
+                if (watch("password") !== val) {
                   return translate(
                     "pages.updatePassword.errors.confirmPasswordNotMatch",
                     "Passwords do not match",

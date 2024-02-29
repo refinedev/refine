@@ -46,7 +46,7 @@ export const getAntdFormItemError = ({ id }: IGetAntdFormItemErrorParams) => {
 };
 
 export const getAntdLoadingOverlay = () => {
-  return cy.get(`.ant-spin`);
+  return cy.get(".ant-spin");
 };
 
 export const getAntdPopoverDeleteButton = () => {

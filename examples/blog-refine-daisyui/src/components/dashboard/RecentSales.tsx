@@ -70,7 +70,7 @@ export const RecentSales = () => {
 
           const status = getValue() as string;
           const daisyBadgeClasses = () =>
-            "badge badge-" + saleStatusStyleMap[status];
+            `badge badge-${saleStatusStyleMap[status]}`;
 
           return <div className={daisyBadgeClasses()}>{status}</div>;
         },

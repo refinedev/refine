@@ -87,12 +87,11 @@ export const useSelector = (active: boolean) => {
           stateNode: fiberWithStateNode,
           nameFiber: firstParentOfNodeWithName,
         };
-      } else {
-        return {
-          stateNode: null,
-          nameFiber: null,
-        };
       }
+      return {
+        stateNode: null,
+        nameFiber: null,
+      };
     },
     [traceItems],
   );
@@ -239,9 +238,8 @@ export const useSelector = (active: boolean) => {
       document.addEventListener("mousemove", listener);
 
       return () => document.removeEventListener("mousemove", listener);
-    } else {
-      return () => 0;
     }
+    return () => 0;
   }, [active, pickFiber]);
 
   return {

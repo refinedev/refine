@@ -150,7 +150,7 @@ const MockDataProvider = (): DataProvider => {
       Promise.resolve({ data: data[resource] }),
     deleteOne: ({ resource = "posts" }) =>
       Promise.resolve({ data: data[resource][0] }),
-    deleteMany: ({}) => Promise.resolve({ data: [] }),
+    deleteMany: () => Promise.resolve({ data: [] }),
     getList: ({ resource = "posts" }) =>
       Promise.resolve({
         data: data[resource],

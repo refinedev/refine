@@ -24,7 +24,7 @@ export const OrdersModal: React.FC = () => {
 
   return (
     <>
-      <div className="fixed inset-0 z-50 bg-black opacity-40"></div>
+      <div className="fixed inset-0 z-50 bg-black opacity-40" />
       <div className="fixed inset-0 z-50 flex items-center">
         <div
           ref={ref}

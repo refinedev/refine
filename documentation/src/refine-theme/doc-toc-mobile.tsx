@@ -91,6 +91,7 @@ export const DocTOCMobile = () => {
                               !isActive,
                           },
                         )}
+                        // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
                         dangerouslySetInnerHTML={{
                           __html: value,
                         }}

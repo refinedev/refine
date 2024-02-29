@@ -23,9 +23,9 @@ const mockAuthProvider: AuthProvider = {
   onError: () => Promise.resolve({}),
 };
 
-export const layoutSiderTests = function (
+export const layoutSiderTests = (
   SiderElement: React.ComponentType<RefineThemedLayoutV2SiderProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
     it("should render successful", async () => {
       const { container } = render(<SiderElement />, {

@@ -11,7 +11,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   const session = await authenticator.isAuthenticated(request);
 
   if (session) {
-    return redirect(`/`);
+    return redirect("/");
   }
 
   return {};

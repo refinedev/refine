@@ -48,7 +48,7 @@ describe("useDataProvider Hook without default data provider property", () => {
     } catch (error) {
       expect(error).toEqual(
         new Error(
-          `If you have multiple data providers, you must provide default data provider property`,
+          "If you have multiple data providers, you must provide default data provider property",
         ),
       );
     }

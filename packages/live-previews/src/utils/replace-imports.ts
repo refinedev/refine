@@ -34,7 +34,7 @@ export const replaceImports = (content: string): string => {
         imports.add(
           `const${namedImports.replace(
             nameChangeRegex,
-            `$1: $3$4`,
+            "$1: $3$4",
           )} = ${importName};`,
         );
       }
@@ -51,7 +51,7 @@ export const replaceImports = (content: string): string => {
         imports.add(
           `const${namedImports.replace(
             nameChangeRegex,
-            `$1: $3$4`,
+            "$1: $3$4",
           )} = ${importName};`,
         );
       }

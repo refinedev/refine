@@ -105,7 +105,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             width: 200,
 
             renderer: (_instance, td, _row, _col, _prop, value) => {
-              const category = options.find((option) => option.value == value);
+              const category = options.find((option) => option.value === value);
 
               td.innerText = category?.label ?? "";
               return td;
@@ -117,9 +117,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
               compareFunctionFactory(sortOrder) {
                 return (a, b) => {
                   const optionA =
-                    options.find((option) => option.value == a)?.label ?? "";
+                    options.find((option) => option.value === a)?.label ?? "";
                   const optionB =
-                    options.find((option) => option.value == b)?.label ?? "";
+                    options.find((option) => option.value === b)?.label ?? "";
                   return sortOrder === "asc"
                     ? (optionA.localeCompare(optionB) as localCompareResult)
                     : (optionB.localeCompare(optionA) as localCompareResult);

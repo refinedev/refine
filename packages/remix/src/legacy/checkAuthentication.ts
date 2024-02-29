@@ -13,7 +13,7 @@ export const checkAuthentication = async (
     if (redirectTo !== "/login") {
       const { pathname } = new URL(request.url);
       if (pathname === "/") {
-        throw redirect(`/login`);
+        throw redirect("/login");
       }
       const searchParams = new URLSearchParams([["to", redirectTo]]);
       throw redirect(`/login?${searchParams}`);

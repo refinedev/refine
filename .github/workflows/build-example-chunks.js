@@ -88,14 +88,15 @@ const examples = getExamples().filter((dir) =>
 );
 
 console.log(
-  `Changed packages (${changedPackages.length}):\n- ` +
-    changedPackages.join("\n- "),
+  `Changed packages (${changedPackages.length}):\n- ${changedPackages.join(
+    "\n- ",
+  )}`,
 );
 
 console.log("");
 
 console.log(
-  `Affected examples (${examples.length}):\n- ` + examples.join("\n- "),
+  `Affected examples (${examples.length}):\n- ${examples.join("\n- ")}`,
 );
 
 //
@@ -148,5 +149,5 @@ for (let i = 0; i < examples.length; i += chunkSize) {
 // Set outputs
 //
 chunks.forEach((chunk, i) => {
-  console.log("::set-output name=CHUNK_" + (i + 1) + "::" + chunk.join(","));
+  console.log(`::set-output name=CHUNK_${i + 1}::${chunk.join(",")}`);
 });

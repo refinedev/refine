@@ -3,9 +3,9 @@ import { RefineLayoutTitleProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 
-export const layoutTitleTests = function (
+export const layoutTitleTests = (
   TitleElement: React.ComponentType<RefineLayoutTitleProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / Title Element", () => {
     it("should render successfully", async () => {
       const { container } = render(<TitleElement collapsed={false} />, {

@@ -266,9 +266,8 @@ export const createInferencer: CreateInferencer = ({
               return (
                 currentFieldHasResource && fieldHasResource && isSameResource
               );
-            } else {
-              return false;
             }
+            return false;
           });
           if (duplicates.length > 0) {
             if (type === "create" || type === "edit") {

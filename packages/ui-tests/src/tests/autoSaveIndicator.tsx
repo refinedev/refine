@@ -2,9 +2,9 @@ import React from "react";
 import { AutoSaveIndicatorProps } from "@refinedev/core";
 import { render } from "@test";
 
-export const autoSaveIndicatorTests = function (
+export const autoSaveIndicatorTests = (
   AutoSaveIndicator: React.ComponentType<AutoSaveIndicatorProps>,
-): void {
+): void => {
   describe("[@refinedev/ui-tests] Common Tests / AutoSaveIndicator", () => {
     it("should render success", async () => {
       const { findByText, getByText } = render(

@@ -70,7 +70,6 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     });
   }
 
-  // eslint-disable-next-line react/display-name
   return ({ children }: React.PropsWithChildren<{}>): React.ReactElement => {
     return (
       <BrowserRouter>

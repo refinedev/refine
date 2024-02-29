@@ -332,7 +332,7 @@ const SandpackBase = ({
                             flexBasis: 0,
                             width: previewOnly
                               ? "100%"
-                              : 100 - horizontalSize + "%",
+                              : `${100 - horizontalSize}%`,
                           }),
                       gap: 0,
                       height: options.editorHeight ?? height, // use the original editor height
@@ -391,7 +391,7 @@ const SandpackBase = ({
         <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
           (k) => `${k}@${dependencies[k]}`,
         )}`}</p>
-        <h3>{`Code Files`}</h3>
+        <h3>{"Code Files"}</h3>
         {Object.keys(files ?? {}).map((f) => (
           <div key={f}>
             <div>{`File: ${f}`}</div>

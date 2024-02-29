@@ -33,8 +33,9 @@ const googleStrategy = new GoogleStrategy(
   {
     // !!! Should be stored in .env file.
     callbackURL: "http://localhost:3000/auth/google/callback",
-    clientID: `1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com`,
-    clientSecret: `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`,
+    clientID:
+      "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com",
+    clientSecret: "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",
   },
   async ({ accessToken, extraParams, profile, refreshToken, context }) => {
     const { id, displayName, photos } = profile;
@@ -61,7 +62,7 @@ const keycloakStrategy = new KeycloakStrategy(
     return Promise.resolve({
       id,
       name: displayName,
-      avatar: `https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg`,
+      avatar: "https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg",
     });
   },
 );
@@ -72,7 +73,7 @@ const formStrategy = new FormStrategy(async ({ form }) => {
   return Promise.resolve({
     id: 1,
     name: "John Doe",
-    avatar: `https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg`,
+    avatar: "https://faces-img.xcdn.link/thumb-lorem-face-6312_thumb.jpg",
   });
 });
 
