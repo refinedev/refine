@@ -64,7 +64,16 @@ export const StoreTable = () => {
         align: "center",
         headerAlign: "center",
         renderCell: function render({ row }) {
-          return <EditButton hideText size="small" recordItemId={row.id} />;
+          return (
+            <EditButton
+              svgIconProps={{
+                color: "action",
+              }}
+              hideText
+              size="small"
+              recordItemId={row.id}
+            />
+          );
         },
       },
     ],

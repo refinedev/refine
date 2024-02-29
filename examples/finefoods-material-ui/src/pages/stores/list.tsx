@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mui";
+import { useLocation } from "react-router-dom";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Box from "@mui/material/Box";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import { RefineListView, StoreTable, AllStoresMap } from "../../components";
-import { useLocation } from "react-router-dom";
 
 type View = "table" | "map";
 
@@ -77,7 +77,6 @@ export const StoreList = () => {
       {view === "map" && (
         <Box sx={{ height: "calc(100dvh - 232px)", marginTop: "32px" }}>
           <AllStoresMap />
-          <h1>hello</h1>
         </Box>
       )}
     </RefineListView>

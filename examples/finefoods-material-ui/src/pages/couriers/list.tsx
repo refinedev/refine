@@ -91,7 +91,15 @@ export const CourierList = ({ children }: PropsWithChildren) => {
         headerName: t("table.actions"),
         type: "actions",
         renderCell: function render({ row }) {
-          return <EditButton hideText recordItemId={row.id} />;
+          return (
+            <EditButton
+              hideText
+              recordItemId={row.id}
+              svgIconProps={{
+                color: "action",
+              }}
+            />
+          );
         },
       },
     ],

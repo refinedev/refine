@@ -122,9 +122,7 @@ export const DashboardPage: React.FC = () => {
           {Object.values(DATE_FILTERS).map((filter) => {
             return (
               <MenuItem key={filter.value} value={filter.value}>
-                {t(
-                  `dashboard.filter.date.${DATE_FILTERS[selecetedDateFilter].text}`,
-                )}
+                {t(`dashboard.filter.date.${filter.text}`)}
               </MenuItem>
             );
           })}

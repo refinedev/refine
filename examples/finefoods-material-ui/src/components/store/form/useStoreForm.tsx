@@ -12,13 +12,29 @@ import { HttpError } from "@refinedev/core";
 
 type Props = {
   action: "create" | "edit";
+  onMutationSuccess?: () => void;
 };
 
 export const useStoreForm = (props: Props) => {
   const form = useForm<IStore, HttpError, IStore>({
+    defaultValues: {
+      title: "",
+      isActive: true,
+      address: {
+        text: "",
+        coordinate: [],
+      },
+      products: [],
+      email: "",
+      createdAt: "",
+      gsm: "",
+    },
     refineCoreProps: {
       action: props.action,
       redirect: false,
+      onMutationSuccess: () => {
+        props.onMutationSuccess?.();
+      },
     },
   });
   const store = form.refineCore.queryResult?.data?.data;

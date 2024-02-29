@@ -249,6 +249,7 @@ export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
           <DataGrid
             {...dataGridProps}
             columns={columns}
+            sx={{}}
             autoHeight
             hideFooterPagination
           />
