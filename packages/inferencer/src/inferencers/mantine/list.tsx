@@ -61,6 +61,7 @@ export const renderer = ({
   const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
+    ["React", "react", true],
     ["IResourceComponentsProps", "@refinedev/core"],
     ["useTable", "@refinedev/react-table"],
     ["ColumnDef", "@tanstack/react-table"],
@@ -764,7 +765,6 @@ export const renderer = ({
   const useTranslateHook = i18n && "const translate = useTranslate();";
 
   return jsx`
-    import React from "react";
     ${printImports(imports)}
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {

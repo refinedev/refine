@@ -51,6 +51,7 @@ export const renderer = ({
   const imports: Array<
     [element: string, module: string, isDefaultImport?: boolean]
   > = [
+    ["React", "react", true],
     ["IResourceComponentsProps", "@refinedev/core"],
     ["Create", "@refinedev/mantine"],
     ["useForm", "@refinedev/mantine"],

@@ -52,6 +52,7 @@ export const renderer = ({
   const COMPONENT_NAME = componentName(resource.label ?? resource.name, "show");
   const recordName = "record";
   const imports: Array<ImportElement> = [
+    ["React", "react", true],
     ["IResourceComponentsProps", "@refinedev/core"],
     ["useShow", "@refinedev/core"],
     ["Show", "@refinedev/mantine"],

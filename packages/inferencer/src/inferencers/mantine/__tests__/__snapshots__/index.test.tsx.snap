@@ -12132,15 +12132,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               type="button"
             >
               <span
-                aria-hidden="true"
-                class="mantine-ActionIcon-loader"
-              >
-                <span
-                  class="mantine-Loader-root"
-                  style="--loader-size: calc(var(--ai-size) * 0.55); --loader-color: var(--ai-color);"
-                />
-              </span>
-              <span
                 class="mantine-ActionIcon-icon"
               >
                 <svg
@@ -12691,15 +12682,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           type="button"
         >
           <span
-            aria-hidden="true"
-            class="mantine-Button-loader"
-          >
-            <span
-              class="mantine-Loader-root"
-              style="--loader-size: calc(var(--button-height) / 1.8); --loader-color: var(--button-color);"
-            />
-          </span>
-          <span
             class="mantine-Button-inner"
           >
             <span
@@ -12871,6 +12853,61 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               class="token-line"
               style="color: rgb(156, 220, 254);"
             >
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "react"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -17807,15 +17844,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               type="button"
             >
               <span
-                aria-hidden="true"
-                class="mantine-ActionIcon-loader"
-              >
-                <span
-                  class="mantine-Loader-root"
-                  style="--loader-size: calc(var(--ai-size) * 0.55); --loader-color: var(--ai-color);"
-                />
-              </span>
-              <span
                 class="mantine-ActionIcon-icon"
               >
                 <svg
@@ -17876,15 +17904,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
             type="button"
           >
-            <span
-              aria-hidden="true"
-              class="mantine-Button-loader"
-            >
-              <span
-                class="mantine-Loader-root"
-                style="--loader-size: calc(var(--button-height) / 1.8); --loader-color: var(--button-color);"
-              />
-            </span>
             <span
               class="mantine-Button-inner"
             >
@@ -18561,15 +18580,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           type="button"
         >
           <span
-            aria-hidden="true"
-            class="mantine-Button-loader"
-          >
-            <span
-              class="mantine-Loader-root"
-              style="--loader-size: calc(var(--button-height) / 1.8); --loader-color: var(--button-color);"
-            />
-          </span>
-          <span
             class="mantine-Button-inner"
           >
             <span
@@ -18741,6 +18751,61 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               class="token-line"
               style="color: rgb(156, 220, 254);"
             >
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "react"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -24102,15 +24167,6 @@ exports[`MantineInferencer should match the snapshot 4`] = `
               type="button"
             >
               <span
-                aria-hidden="true"
-                class="mantine-ActionIcon-loader"
-              >
-                <span
-                  class="mantine-Loader-root"
-                  style="--loader-size: calc(var(--ai-size) * 0.55); --loader-color: var(--ai-color);"
-                />
-              </span>
-              <span
                 class="mantine-ActionIcon-icon"
               >
                 <svg
@@ -24171,15 +24227,6 @@ exports[`MantineInferencer should match the snapshot 4`] = `
             style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
             type="button"
           >
-            <span
-              aria-hidden="true"
-              class="mantine-Button-loader"
-            >
-              <span
-                class="mantine-Loader-root"
-                style="--loader-size: calc(var(--button-height) / 1.8); --loader-color: var(--button-color);"
-              />
-            </span>
             <span
               class="mantine-Button-inner"
             >
@@ -24555,6 +24602,61 @@ exports[`MantineInferencer should match the snapshot 4`] = `
               class="token-line"
               style="color: rgb(156, 220, 254);"
             >
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                React
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "react"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
