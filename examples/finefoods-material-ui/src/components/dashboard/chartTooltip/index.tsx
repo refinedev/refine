@@ -1,5 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material";
 import { TooltipProps } from "recharts";
 
 type ChartTooltipProps = TooltipProps<number, string> & {
@@ -28,9 +29,10 @@ export const ChartTooltip: React.FC<ChartTooltipProps> = ({
         sx={{
           color: "#fff",
           fontWeight: 600,
-          background: "rgba(255, 255, 255, 0.3)",
           padding: "4px 8px",
           borderRadius: "4px",
+          backgroundColor: ({ palette }) =>
+            palette.mode === "dark" ? palette.grey[800] : palette.grey[600],
         }}
       >
         <Typography>{value}</Typography>

@@ -21,10 +21,11 @@ export const DailyRevenue = (props: Props) => {
     <ResponsiveContainer width="99%">
       <LineChart
         data={data}
-        margin={{ top: 30, right: 10, left: 10, bottom: 0 }}
+        margin={{ top: 30, right: 10, left: 0, bottom: 0 }}
       >
         <XAxis
           dataKey="date"
+          fontSize={12}
           tickFormatter={(value) => {
             if (data.length > 7) {
               return dayjs(value).format("MM/DD");
@@ -35,6 +36,7 @@ export const DailyRevenue = (props: Props) => {
         />
         <YAxis
           dataKey="value"
+          fontSize={12}
           tickFormatter={(value) => {
             return `$${Number(value) / 1000}k`;
           }}

@@ -22,10 +22,11 @@ export const NewCustomers = (props: Props) => {
       <BarChart
         data={data}
         barSize={15}
-        margin={{ top: 30, right: 10, left: -15, bottom: 0 }}
+        margin={{ top: 30, right: 10, left: -25, bottom: 0 }}
       >
         <XAxis
           dataKey="date"
+          fontSize={12}
           tickFormatter={(value) => {
             if (data.length > 7) {
               return dayjs(value).format("MM/DD");
@@ -34,7 +35,7 @@ export const NewCustomers = (props: Props) => {
             return dayjs(value).format("ddd");
           }}
         />
-        <YAxis dataKey="value" />
+        <YAxis dataKey="value" fontSize={12} />
         <Bar type="natural" dataKey="value" fill="#2196F3" />
         <Tooltip
           cursor={{
