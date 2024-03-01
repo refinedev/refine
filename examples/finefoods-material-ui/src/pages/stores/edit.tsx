@@ -118,6 +118,7 @@ export const StoreEdit = () => {
               lng={form.latLng.lng}
               store={form.store}
               onDragEnd={form.handleMapOnDragEnd}
+              isDisabled={isFormIsDisabled}
             />
           </Box>
           <Box mt="24px">
