@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import { ICategory, IProduct } from "../../../interfaces";
 import { useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { ProductStatus } from "../status";
 
 type Props = {
@@ -131,7 +131,7 @@ export const ProductListTable = (props: Props) => {
                 });
               }}
             >
-              <VisibilityOutlinedIcon />
+              <EditOutlinedIcon />
             </IconButton>
           );
         },

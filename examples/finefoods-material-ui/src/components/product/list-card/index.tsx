@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { NumberField, UseDataGridReturnType } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
@@ -16,8 +17,7 @@ import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TablePagination from "@mui/material/TablePagination";
-import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
-import { useMemo } from "react";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 type Props = {
   categories: ICategory[];
@@ -164,7 +164,7 @@ export const ProductListCard = (props: Props) => {
                       variant="contained"
                       color="inherit"
                       size="small"
-                      startIcon={<VisibilityOutlined />}
+                      startIcon={<EditOutlinedIcon />}
                       onClick={() => {
                         return go({
                           to: `${editUrl("products", product.id)}`,
@@ -186,7 +186,7 @@ export const ProductListCard = (props: Props) => {
                         zIndex: 1,
                       }}
                     >
-                      View
+                      {t("buttons.edit")}
                     </Button>
                   </Box>
 

@@ -1,14 +1,22 @@
 import { useMemo } from "react";
-import { useTranslate } from "@refinedev/core";
+import { useNavigation, useTranslate } from "@refinedev/core";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { EditButton, TextFieldComponent, useDataGrid } from "@refinedev/mui";
+import {
+  EditButton,
+  ShowButton,
+  TextFieldComponent,
+  useDataGrid,
+} from "@refinedev/mui";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { IconButton } from "@mui/material";
+import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 import { StoreStatus } from "../../../components";
 import { IStore } from "../../../interfaces";
 
 export const StoreTable = () => {
   const t = useTranslate();
+  const { edit } = useNavigation();
 
   const { dataGridProps } = useDataGrid<IStore>({
     initialPageSize: 10,
@@ -65,14 +73,14 @@ export const StoreTable = () => {
         headerAlign: "center",
         renderCell: function render({ row }) {
           return (
-            <EditButton
-              svgIconProps={{
-                color: "action",
+            <IconButton
+              sx={{
+                cursor: "pointer",
               }}
-              hideText
-              size="small"
-              recordItemId={row.id}
-            />
+              onClick={() => edit("stores", row.id)}
+            >
+              <VisibilityOutlined color="action" />
+            </IconButton>
           );
         },
       },
@@ -84,6 +92,7 @@ export const StoreTable = () => {
     <Paper>
       <DataGrid
         {...dataGridProps}
+        disableColumnSelector
         sx={{}}
         columns={columns}
         autoHeight
