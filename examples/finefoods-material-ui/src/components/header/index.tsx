@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, ReactNode } from "react";
 import {
   useList,
   useTranslate,
@@ -29,7 +29,7 @@ import { ColorModeContext } from "../../contexts";
 
 interface IOptions {
   label: string;
-  url?: string;
+  avatar?: ReactNode;
   link: string;
   category: string;
 }
@@ -55,12 +55,21 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     queryOptions: {
       enabled: false,
       onSuccess: (data) => {
-        const orderOptionGroup = data.data.map((item) => {
+        const orderOptionGroup: IOptions[] = data.data.map((item) => {
           return {
             label: `${item.store.title} / #${item.orderNumber}`,
-            url: item.products?.[0]?.images?.[0]?.url,
             link: `/orders/show/${item.id}`,
             category: t("orders.orders"),
+            avatar: (
+              <Avatar
+                variant="rounded"
+                sx={{
+                  width: "32px",
+                  height: "32px",
+                }}
+                src={item.products?.[0]?.images?.[0]?.url}
+              />
+            ),
           };
         });
         if (orderOptionGroup.length > 0) {
@@ -101,7 +110,15 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
         const courierOptionGroup = data.data.map((item) => {
           return {
             label: `${item.name}`,
-            url: item.avatar?.[0]?.url,
+            avatar: (
+              <Avatar
+                sx={{
+                  width: "32px",
+                  height: "32px",
+                }}
+                src={item.avatar?.[0]?.url}
+              />
+            ),
             link: `/couriers/edit/${item.id}`,
             category: t("couriers.couriers"),
           };
@@ -177,15 +194,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                         gap: "10px",
                       }}
                     >
-                      {option?.url && (
-                        <Avatar
-                          sx={{
-                            width: "32px",
-                            height: "32px",
-                          }}
-                          src={option.url}
-                        />
-                      )}
+                      {option?.avatar && option.avatar}
                       <Typography
                         sx={{
                           fontSize: {

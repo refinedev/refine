@@ -24,7 +24,7 @@ export const OrderTableColumnProducts = ({ order }: Props) => {
         return (
           <CustomTooltip key={product.id} title={product.name}>
             <Avatar
-              variant="square"
+              variant="rounded"
               sx={{
                 width: 32,
                 height: 32,

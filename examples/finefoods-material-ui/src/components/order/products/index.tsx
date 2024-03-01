@@ -30,7 +30,7 @@ export const OrderProducts = ({ order }: Props) => {
         renderCell: function render({ row }) {
           return (
             <Avatar
-              variant="square"
+              variant="rounded"
               sx={{
                 width: 32,
                 height: 32,

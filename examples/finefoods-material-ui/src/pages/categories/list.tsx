@@ -81,7 +81,7 @@ export const CategoryList = () => {
                           width: "32px",
                           height: "32px",
                         }}
-                        variant="square"
+                        variant="rounded"
                         alt={product.name}
                         src={thumbnailUrl}
                       />

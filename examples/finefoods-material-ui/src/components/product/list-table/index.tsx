@@ -37,7 +37,7 @@ export const ProductListTable = (props: Props) => {
         renderCell: function render({ row }) {
           return (
             <Avatar
-              variant="square"
+              variant="rounded"
               sx={{
                 width: 32,
                 height: 32,
