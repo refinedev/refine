@@ -18,6 +18,8 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -150,7 +152,7 @@ export const Show: React.FC<ShowProps> = ({
     );
 
     return (
-        <Card {...(wrapperProps ?? {})}>
+        <Card {...(wrapperProps ?? {})} sx={{ position: "relative" }}>
             {breadcrumbComponent}
             <CardHeader
                 sx={{
@@ -219,7 +221,19 @@ export const Show: React.FC<ShowProps> = ({
                 }
                 {...(headerProps ?? {})}
             />
-            <CardContent {...(contentProps ?? {})}>{children}</CardContent>
+            <CardContent {...(contentProps ?? {})}>
+                {children}
+                <Backdrop
+                    sx={{
+                        position: "absolute",
+                        zIndex: (theme) => theme.zIndex.drawer - 1,
+                        bgcolor: "rgba(0, 0, 0, 0.0)",
+                    }}
+                    open={isLoading}
+                >
+                    <CircularProgress color="primary" />
+                </Backdrop>
+            </CardContent>
             <CardActions
                 sx={{ padding: "16px" }}
                 {...(footerButtonProps ?? {})}
