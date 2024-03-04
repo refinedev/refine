@@ -243,8 +243,11 @@ export const useForm = <
   const saveButtonProps = {
     disabled: formLoading,
     onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-      // @ts-expect-error event type is not compatible with pointer event
-      onSubmit(onFinish, () => false)(e);
+      onSubmit(
+        (v) => onFinish(v).catch(() => {}),
+        () => false,
+        // @ts-expect-error event type is not compatible with pointer event
+      )(e);
     },
   };
 
