@@ -241,10 +241,10 @@ export const useForm = <
       const onFinishProps = refineCoreProps.autoSave?.onFinish;
 
       if (onFinishProps) {
-        return onFinishAutoSave(onFinishProps(changeValues));
+        return onFinishAutoSave(onFinishProps(changeValues)).catch(() => {});
       }
 
-      return onFinishAutoSave(changeValues);
+      return onFinishAutoSave(changeValues).catch(() => {});
     }
 
     return changeValues;

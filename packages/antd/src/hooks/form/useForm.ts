@@ -279,7 +279,7 @@ export const useForm = <
 
       const onFinishFromProps = autoSave?.onFinish ?? ((values) => values);
 
-      return onFinishAutoSave(onFinishFromProps(allValues));
+      return onFinishAutoSave(onFinishFromProps(allValues)).catch(() => {});
     }
 
     return changeValues;

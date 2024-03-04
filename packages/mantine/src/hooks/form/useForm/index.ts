@@ -230,7 +230,7 @@ export const useForm = <
         ? rest.transformValues(values)
         : (values as unknown as TTransformed);
 
-      onFinishAutoSave(transformedValues);
+      onFinishAutoSave(transformedValues).catch(() => {});
     }
   }, [values]);
 
