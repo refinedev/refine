@@ -51,7 +51,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
           ...wrapperStyles,
         }}
       >
-        <Text lh={0} fz="inherit">
+        <Text lh={0} fz="inherit" c="primary">
           {icon}
         </Text>
         {!collapsed && <Text fz="inherit">{text}</Text>}
