@@ -6,6 +6,13 @@ const LightTheme = createTheme({
   ...RefineThemes.Orange,
   components: {
     ...RefineThemes.OrangeDark.components,
+    MuiChip: {
+      styleOverrides: {
+        labelSmall: {
+          lineHeight: "18px",
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         "main.MuiBox-root": {
@@ -28,6 +35,13 @@ const DarkTheme = createTheme({
   ...RefineThemes.OrangeDark,
   components: {
     ...RefineThemes.OrangeDark.components,
+    MuiChip: {
+      styleOverrides: {
+        labelSmall: {
+          lineHeight: "18px",
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         "main.MuiBox-root": {
