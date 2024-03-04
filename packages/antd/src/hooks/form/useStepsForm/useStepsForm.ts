@@ -36,13 +36,16 @@ export type UseStepsFormReturnType<
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
   TResponseError extends HttpError = TError,
-> = UseFormReturnType<
-  TQueryFnData,
-  TError,
-  TVariables,
-  TData,
-  TResponse,
-  TResponseError
+> = Omit<
+  UseFormReturnType<
+    TQueryFnData,
+    TError,
+    TVariables,
+    TData,
+    TResponse,
+    TResponseError
+  >,
+  "submit"
 > &
   UseStepsFormFromSFReturnType<TResponse, TVariables>;
 
