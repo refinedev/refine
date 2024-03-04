@@ -423,7 +423,9 @@ describe("useForm Hook", () => {
       }),
     });
 
-    await act(() => result.current.submit({}));
+    await act(async () => {
+      await result.current.submit({});
+    });
 
     await waitFor(() => {
       expect(updateMock).toBeCalled();
@@ -591,11 +593,11 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() =>
-        result.current.submit({
+      await act(async () => {
+        await result.current.submit({
           title: "foo",
-        }),
-      );
+        });
+      });
 
       await waitFor(() => {
         expect(createMock).toBeCalled();
@@ -636,7 +638,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() => result.current.submit({}));
+      await act(async () => {
+        await result.current.submit({});
+      });
 
       await waitFor(() => {
         expect(createMock).toBeCalled();
@@ -670,13 +674,13 @@ describe("useForm Hook", () => {
         }),
       });
 
-      await act(() =>
-        result.current
+      await act(async () => {
+        await result.current
           .submit({
             title: "foo",
           })
-          .catch((err) => {}),
-      );
+          .catch((err) => {});
+      });
 
       await waitFor(() => {
         expect(createMock).not.toBeCalled();
@@ -701,7 +705,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() => result.current.submit({ title: "foo" }));
+      await act(async () => {
+        await result.current.submit({ title: "foo" });
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isSuccess).toBeTruthy();
@@ -741,9 +747,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() =>
-        result.current.submit({ title: "foo" }).catch((err) => {}),
-      );
+      await act(async () => {
+        result.current.submit({ title: "foo" }).catch((err) => {});
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isError).toBeTruthy();
@@ -834,11 +840,11 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() =>
-        result.current.submit({
+      await act(async () => {
+        await result.current.submit({
           title: "foo",
-        }),
-      );
+        });
+      });
 
       await waitFor(() => {
         expect(updateMock).toBeCalled();
@@ -881,7 +887,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() => result.current.submit({}));
+      await act(async () => {
+        await result.current.submit({});
+      });
 
       await waitFor(() => {
         expect(updateMock).toBeCalled();
@@ -915,13 +923,13 @@ describe("useForm Hook", () => {
         }),
       });
 
-      await act(() =>
-        result.current
+      await act(async () => {
+        await result.current
           .submit({
             title: "foo",
           })
-          .catch((err) => {}),
-      );
+          .catch((err) => {});
+      });
 
       await waitFor(() => {
         expect(updateMock).not.toBeCalled();
@@ -947,7 +955,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() => result.current.submit({ title: "foo" }));
+      await act(async () => {
+        await result.current.submit({ title: "foo" });
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isSuccess).toBeTruthy();
@@ -988,7 +998,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      await act(() => result.current.submit({ title: "foo" }).catch(() => {}));
+      await act(async () => {
+        await result.current.submit({ title: "foo" }).catch(() => {});
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isError).toBeTruthy();
@@ -1098,7 +1110,9 @@ describe("useForm Hook", () => {
 
       await assertList(useManyResult, "title", initialTitle);
 
-      await act(() => result.current.submit({ title: updatedTitle }));
+      await act(async () => {
+        await result.current.submit({ title: updatedTitle });
+      });
 
       await assertOne(useOneResult, "title", updatedTitle);
 
