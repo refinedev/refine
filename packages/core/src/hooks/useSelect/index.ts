@@ -39,15 +39,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * @default `"title"`
    */
   optionLabel?: keyof TData extends string
-    ? keyof TData
-    : (item: TData) => string;
+    ? keyof TData | ((item: TData) => string)
+    : never;
   /**
    * Set the option's label value
    * @default `"id"`
    */
   optionValue?: keyof TData extends string
-    ? keyof TData
-    : (item: TData) => string;
+    ? keyof TData | ((item: TData) => string)
+    : never;
   /**
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
