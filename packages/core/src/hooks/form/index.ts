@@ -107,9 +107,9 @@ export const useForm = <
     meta: pickedMeta,
   });
 
-  const idRequired = (isEdit || isClone) && Boolean(props.resource);
-  const idHandled = typeof props.id !== "undefined";
-  const idDismissed = props.queryOptions?.enabled === false;
+  const isIdRequired = (isEdit || isClone) && Boolean(props.resource);
+  const isIdDefined = typeof props.id !== "undefined";
+  const isQueryDisabled = props.queryOptions?.enabled === false;
 
   /**
    * When a custom resource is provided through props, `id` will not be inferred from the URL to avoid any potential faulty requests.
@@ -117,7 +117,7 @@ export const useForm = <
    * If `id` is not handled, a warning will be thrown in development mode.
    */
   warnOnce(
-    idRequired && !idHandled && !idDismissed,
+    isIdRequired && !isIdDefined && !isQueryDisabled,
     idWarningMessage(action, identifier, id),
   );
 
@@ -184,7 +184,12 @@ export const useForm = <
     // After `autosaved` is set to `true`, it won't be set to `false` again.
     // Therefore, the `invalidate` function will be called only once at the end of the hooks lifecycle.
     return () => {
-      if (props.autoSave?.invalidateOnUnmount && autosaved) {
+      if (
+        props.autoSave?.invalidateOnUnmount &&
+        autosaved &&
+        identifier &&
+        typeof id !== "undefined"
+      ) {
         invalidate({
           id,
           invalidates: props.invalidates || ["list", "many", "detail"],
@@ -211,7 +216,10 @@ export const useForm = <
       // Reject the mutation if the resource is not defined
       if (!resource) return reject(missingResourceError);
       // Reject the mutation if the `id` is not defined in edit action
-      if (isEdit && !id) return reject(missingIdError);
+      // This line is commented out because the `id` might not be set for some cases and edit is done on a resource.
+      // if (isEdit && !id) return reject(missingIdError);
+      // Reject the mutation if the `id` is not defined in clone action
+      if (isClone && !id) return reject(missingIdError);
       // Reject the mutation if there's no `values` passed
       if (!values) return reject(missingValuesError);
 
@@ -326,7 +334,7 @@ const missingResourceError = new Error(
 );
 
 const missingIdError = new Error(
-  "[useForm]: `id` is not defined in edit action but is required",
+  "[useForm]: `id` is not defined but is required in edit and clone actions",
 );
 
 const missingValuesError = new Error(
