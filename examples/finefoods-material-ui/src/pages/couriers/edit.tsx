@@ -42,8 +42,6 @@ export const CourierEdit = () => {
   } = useForm<ICourier, HttpError, Nullable<ICourier>>();
   const courier = queryResult?.data?.data;
   const avatarInput: IFile[] | null = watch("avatar");
-  const watched = watch();
-  console.log(watched);
 
   const { autocompleteProps: storesAutoCompleteProps } =
     useAutocomplete<IStore>({
@@ -73,8 +71,6 @@ export const CourierEdit = () => {
 
     setValue("avatar", image, { shouldValidate: true });
   };
-
-  console.log(errors);
 
   return (
     <>
