@@ -287,7 +287,7 @@ export const useForm = <
   };
 
   const submitAutoSave = debounce(
-    (values: TVariables) => submit(values, true),
+    (values: TVariables) => submit(values, true).catch(() => {}),
     props.autoSave?.debounce || 1000,
   ) as typeof submit;
 
