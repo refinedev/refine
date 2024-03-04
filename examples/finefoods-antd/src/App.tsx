@@ -30,12 +30,7 @@ import { DashboardPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { AuthPage } from "./pages/auth";
 import { CustomerShow, CustomerList } from "./pages/customers";
-import {
-  CourierList,
-  CourierShow,
-  CourierCreate,
-  CourierEdit,
-} from "./pages/couriers";
+import { CourierList, CourierCreate, CourierEdit } from "./pages/couriers";
 import {
   ProductList,
   ProductCreate,
@@ -222,7 +217,6 @@ const App: React.FC = () => {
                   </Route>
 
                   <Route path=":id/edit" element={<CourierEdit />} />
-                  <Route path=":id" element={<CourierShow />} />
                 </Route>
               </Route>
 
