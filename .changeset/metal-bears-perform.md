@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": minor
 ---
 
 feat: ability to pass an argument to usePermissions #5607
