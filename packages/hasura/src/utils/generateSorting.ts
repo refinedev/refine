@@ -1,4 +1,4 @@
-import { CrudSorting } from "@refinedev/core";
+import { CrudSort, CrudSorting } from "@refinedev/core";
 import setWith from "lodash/setWith";
 
 export type HasuraSortOrder = "asc" | "desc";
@@ -6,10 +6,7 @@ export type HasuraSorting = HasuraSortOrder | { [key: string]: HasuraSorting };
 
 export type HasuraSortingType = Record<string, HasuraSorting>;
 
-const generateNestedSorting = (sorter: {
-  field: string;
-  order: HasuraSortOrder;
-}): HasuraSortingType => {
+const generateNestedSorting = (sorter: CrudSort): HasuraSortingType => {
   const { field, order } = sorter;
   const fieldsArray = field.split(".");
 
