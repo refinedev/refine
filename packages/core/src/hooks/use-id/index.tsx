@@ -21,8 +21,8 @@ export function useId({
   id: idFromProps,
   resource: resourceFromProps,
 }: UseIdProps = {}): UseIdResponse {
-  const { id: idFromRoute, identifier } = useResource(resourceFromProps);
-  const { identifier: inferredIdentifier } = useResource();
+  const { identifier } = useResource(resourceFromProps);
+  const { id: idFromRoute, identifier: inferredIdentifier } = useResource();
 
   /** We only accept `id` from URL params if `resource` is not explicitly passed. */
   /** This is done to avoid sending wrong requests for custom `resource` and an async `id` */
