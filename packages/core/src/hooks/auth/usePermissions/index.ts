@@ -28,9 +28,13 @@ export type UsePermissionsProps<
   params?: TParams;
 };
 
-export type UsePermissionsCombinedProps<TData = any> = {
+export type UsePermissionsCombinedProps<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+> = {
   v3LegacyAuthProviderCompatible: boolean;
   options?: UseQueryOptions<TData> | UseQueryOptions<PermissionResponse>;
+  params?: TParams;
 };
 
 export type UsePermissionsLegacyReturnType<TData = any> = UseQueryResult<
@@ -45,16 +49,23 @@ export type UsePermissionsCombinedReturnType<TData = any> =
   | UseQueryResult<TData, unknown>
   | UseQueryResult<PermissionResponse, unknown>;
 
-export function usePermissions<TData = any>(
-  props: UsePermissionsLegacyProps<TData>,
+export function usePermissions<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+>(
+  props: UsePermissionsLegacyProps<TData, TParams>,
 ): UsePermissionsLegacyReturnType<TData>;
 
-export function usePermissions<TData = PermissionResponse>(
-  props?: UsePermissionsProps<TData>,
-): UsePermissionsReturnType<TData>;
+export function usePermissions<
+  TData = PermissionResponse,
+  TParams extends Record<string, any> = Record<string, any>,
+>(props?: UsePermissionsProps<TData, TParams>): UsePermissionsReturnType<TData>;
 
-export function usePermissions<TData = any>(
-  props?: UsePermissionsCombinedProps<TData>,
+export function usePermissions<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+>(
+  props?: UsePermissionsCombinedProps<TData, TParams>,
 ): UsePermissionsCombinedReturnType<TData>;
 
 /**
@@ -63,6 +74,8 @@ export function usePermissions<TData = any>(
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/auth/usePermissions} for more details.
  *
  * @typeParam TData - Result data of the query
+ *
+ * @typeParam TParams - Params will be passed to the `getPermissions` method of {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`}.
  *
  */
 export function usePermissions<
