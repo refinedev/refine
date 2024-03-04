@@ -87,7 +87,7 @@ const App: React.FC = () => {
                 {
                   name: "orders",
                   list: "/orders",
-                  show: "/orders/show/:id",
+                  show: "/orders/:id",
                   meta: {
                     icon: <ShoppingBagOutlinedIcon />,
                   },
@@ -95,7 +95,7 @@ const App: React.FC = () => {
                 {
                   name: "users",
                   list: "/customers",
-                  show: "/customers/show/:id",
+                  show: "/customers/:id",
                   meta: {
                     icon: <AccountCircleOutlinedIcon />,
                   },
@@ -103,8 +103,9 @@ const App: React.FC = () => {
                 {
                   name: "products",
                   list: "/products",
-                  create: "/products/create",
+                  create: "/products/new",
                   edit: "/products/edit/:id",
+                  show: "/products/:id",
                   meta: {
                     icon: <FastfoodOutlinedIcon />,
                   },
@@ -119,8 +120,8 @@ const App: React.FC = () => {
                 {
                   name: "stores",
                   list: "/stores",
-                  create: "/stores/create",
-                  edit: "/stores/edit/:id",
+                  create: "/stores/new",
+                  edit: "/stores/:id/edit",
                   meta: {
                     icon: <StoreOutlinedIcon />,
                   },
@@ -128,8 +129,8 @@ const App: React.FC = () => {
                 {
                   name: "couriers",
                   list: "/couriers",
-                  create: "/couriers/create",
-                  edit: "/couriers/edit/:id",
+                  create: "/couriers/new",
+                  edit: "/couriers/:id/edit",
                   meta: {
                     icon: <MopedOutlined />,
                   },
@@ -161,7 +162,7 @@ const App: React.FC = () => {
 
                   <Route path="/orders">
                     <Route index element={<OrderList />} />
-                    <Route path="show/:id" element={<OrderShow />} />
+                    <Route path=":id" element={<OrderShow />} />
                   </Route>
                   <Route
                     path="/customers"
@@ -172,7 +173,7 @@ const App: React.FC = () => {
                     }
                   >
                     <Route index element={null} />
-                    <Route path="show/:id" element={<CustomerShow />} />
+                    <Route path=":id" element={<CustomerShow />} />
                   </Route>
 
                   <Route
@@ -184,14 +185,14 @@ const App: React.FC = () => {
                     }
                   >
                     <Route index element={null} />
-                    <Route path="edit/:id" element={<ProductEdit />} />
-                    <Route path="create" element={<ProductCreate />} />
+                    <Route path=":id/edit" element={<ProductEdit />} />
+                    <Route path="new" element={<ProductCreate />} />
                   </Route>
 
                   <Route path="/stores">
                     <Route index element={<StoreList />} />
-                    <Route path="create" element={<StoreCreate />} />
-                    <Route path="edit/:id" element={<StoreEdit />} />
+                    <Route path="new" element={<StoreCreate />} />
+                    <Route path=":id/edit" element={<StoreEdit />} />
                   </Route>
 
                   <Route path="/categories" element={<CategoryList />} />
@@ -205,10 +206,10 @@ const App: React.FC = () => {
                         </CourierList>
                       }
                     >
-                      <Route path="create" element={<CourierCreate />} />
+                      <Route path="new" element={<CourierCreate />} />
                     </Route>
 
-                    <Route path="edit/:id" element={<CourierEdit />} />
+                    <Route path=":id/edit" element={<CourierEdit />} />
                   </Route>
                 </Route>
 
