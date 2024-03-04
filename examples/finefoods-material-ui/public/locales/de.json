@@ -595,6 +595,8 @@
     }
   },
   "errors": {
+    "minLength": "Mindestens {{min}} Zeichen",
+    "maxLength": "Maximal {{max}} Zeichen",
     "required": {
       "field": "Dieses Feld ist erforderlich."
     }

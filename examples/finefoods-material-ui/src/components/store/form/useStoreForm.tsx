@@ -31,7 +31,7 @@ export const useStoreForm = (props: Props) => {
     },
     refineCoreProps: {
       action: props.action,
-      redirect: false,
+      redirect: props.action === "create" ? "list" : false,
       onMutationSuccess: () => {
         props.onMutationSuccess?.();
       },

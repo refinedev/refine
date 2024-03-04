@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useGo, useNavigation, useTranslate } from "@refinedev/core";
+import { useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton } from "@refinedev/mui";
-import { useLocation } from "react-router-dom";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Box from "@mui/material/Box";
@@ -17,10 +16,7 @@ export const StoreList = () => {
     return view || "table";
   });
 
-  const go = useGo();
   const { replace } = useNavigation();
-  const { pathname } = useLocation();
-  const { createUrl } = useNavigation();
   const t = useTranslate();
 
   const handleViewChange = (
@@ -56,18 +52,6 @@ export const StoreList = () => {
           key="create"
           size="medium"
           sx={{ height: "40px" }}
-          onClick={() => {
-            return go({
-              to: `${createUrl("stores")}`,
-              query: {
-                to: pathname,
-              },
-              options: {
-                keepQuery: true,
-              },
-              type: "replace",
-            });
-          }}
         >
           {t("stores.addNewStore")}
         </CreateButton>,
