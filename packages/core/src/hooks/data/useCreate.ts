@@ -37,7 +37,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
-type useCreateParams<TData, TError, TVariables> = {
+export type UseCreateParams<TData, TError, TVariables> = {
   /**
    * Resource name for API data interactions
    */
@@ -72,7 +72,7 @@ export type UseCreateReturnType<
 > = UseMutationResult<
   CreateResponse<TData>,
   TError,
-  useCreateParams<TData, TError, TVariables>,
+  UseCreateParams<TData, TError, TVariables>,
   unknown
 >;
 
@@ -85,7 +85,7 @@ export type UseCreateProps<
     UseMutationOptions<
       CreateResponse<TData>,
       TError,
-      useCreateParams<TData, TError, TVariables>,
+      UseCreateParams<TData, TError, TVariables>,
       unknown
     >,
     "mutationFn" | "onError" | "onSuccess"
@@ -138,7 +138,7 @@ export const useCreate = <
   const mutation = useMutation<
     CreateResponse<TData>,
     TError,
-    useCreateParams<TData, TError, TVariables>,
+    UseCreateParams<TData, TError, TVariables>,
     unknown
   >({
     mutationFn: ({
@@ -147,7 +147,7 @@ export const useCreate = <
       meta,
       metaData,
       dataProviderName,
-    }: useCreateParams<TData, TError, TVariables>) => {
+    }: UseCreateParams<TData, TError, TVariables>) => {
       const { resource, identifier } = select(resourceName);
 
       const combinedMeta = getMeta({
