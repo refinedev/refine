@@ -151,7 +151,7 @@ const App: React.FC = () => {
             logout: true,
             redirectTo: "/login",
           },
-    getPermissions: async () => ["admin"],
+    getPermissions: async (params) => params?.permissions,
     getIdentity: async () => ({
       id: 1,
       name: "Jane Doe",
