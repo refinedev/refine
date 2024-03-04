@@ -241,10 +241,10 @@ export const useForm = <
       const onFinishProps = refineCoreProps.autoSave?.onFinish;
 
       if (onFinishProps) {
-        return onFinishAutoSave(onFinishProps(changeValues)).catch(() => {});
+        return onFinishAutoSave(onFinishProps(changeValues));
       }
 
-      return onFinishAutoSave(changeValues).catch(() => {});
+      return onFinishAutoSave(changeValues);
     }
 
     return changeValues;
@@ -259,7 +259,10 @@ export const useForm = <
   const saveButtonProps = {
     disabled: formLoading,
     onClick: (e: React.BaseSyntheticEvent) => {
-      handleSubmit(onFinish, () => false)(e);
+      handleSubmit(
+        (v) => onFinish(v).catch(() => {}),
+        () => false,
+      )(e);
     },
   };
 
