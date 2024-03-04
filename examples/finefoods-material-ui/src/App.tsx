@@ -172,7 +172,6 @@ const App: React.FC = () => {
                       </CustomerList>
                     }
                   >
-                    <Route index element={null} />
                     <Route path=":id" element={<CustomerShow />} />
                   </Route>
 
@@ -184,7 +183,6 @@ const App: React.FC = () => {
                       </ProductList>
                     }
                   >
-                    <Route index element={null} />
                     <Route path=":id/edit" element={<ProductEdit />} />
                     <Route path="new" element={<ProductCreate />} />
                   </Route>
