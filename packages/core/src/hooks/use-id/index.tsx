@@ -21,7 +21,7 @@ export function useId({
   id: idFromProps,
   resource: resourceFromProps,
 }: UseIdProps = {}): UseIdResponse {
-  const { id: idFromRoute } = useResource(resourceFromProps);
+  const { id: idFromRoute, identifier } = useResource(resourceFromProps);
   const { identifier: inferredIdentifier } = useResource();
 
   /** We only accept `id` from URL params if `resource` is not explicitly passed. */
@@ -29,12 +29,12 @@ export function useId({
   const getDefaultId = React.useCallback(() => {
     const idFromPropsOrRoute = idFromProps ?? idFromRoute;
 
-    if (resourceFromProps && resourceFromProps !== inferredIdentifier) {
+    if (identifier !== inferredIdentifier) {
       return idFromProps;
     }
 
     return idFromPropsOrRoute;
-  }, [idFromProps, idFromRoute, inferredIdentifier, resourceFromProps]);
+  }, [idFromProps, idFromRoute, inferredIdentifier, identifier]);
 
   const defaultId = getDefaultId();
 
