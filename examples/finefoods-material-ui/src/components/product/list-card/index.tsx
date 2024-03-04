@@ -153,10 +153,7 @@ export const ProductListCard = (props: Props) => {
                     <CardMedia
                       component="img"
                       height="160"
-                      image={
-                        product.images[0]?.thumbnailUrl ||
-                        product.images[0]?.url
-                      }
+                      image={product.images[0]?.url}
                       alt={product.name}
                     />
                     <Button
