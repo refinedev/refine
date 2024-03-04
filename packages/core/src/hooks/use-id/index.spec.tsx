@@ -1,60 +1,32 @@
-import React from "react";
 import { renderHook, waitFor } from "@testing-library/react";
 
-import {
-  MockJSONServer,
-  TestWrapper,
-  act,
-  mockLegacyRouterProvider,
-} from "@test";
-
-import {
-  assertList,
-  assertOne,
-  renderUseList,
-  renderUseMany,
-  renderUseOne,
-} from "@test/mutation-helpers";
+import { TestWrapper, act } from "@test";
 
 import { useId } from ".";
 
-import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
-
-const EditWrapper = TestWrapper({
-  dataProvider: MockJSONServer,
-  routerProvider: mockRouterBindings({
-    resource: {
-      name: "posts",
-    },
-    action: "edit",
-    id: "1",
-  }),
-});
-
-const CloneWrapper = TestWrapper({
-  dataProvider: MockJSONServer,
-  routerProvider: mockRouterBindings({
-    resource: {
-      name: "posts",
-    },
-    action: "clone",
-    id: "1",
-  }),
-});
-
-const EditWrapperWithRoute: React.FC<{
-  children?: React.ReactNode;
-}> = ({ children }) => <EditWrapper>{children}</EditWrapper>;
-
-const CloneWrapperWithRoute: React.FC<{
-  children?: React.ReactNode;
-}> = ({ children }) => <CloneWrapper>{children}</CloneWrapper>;
 
 describe("useId Hook", () => {
   it("returns id from props", () => {
     const { result } = renderHook(() => useId({ id: "123" }), {
       wrapper: TestWrapper({}),
+    });
+
+    const [id, _setId] = result.current;
+
+    expect(id).toBe("123");
+  });
+
+  it("id from props precedes id from route", () => {
+    const { result } = renderHook(() => useId({ id: "123" }), {
+      wrapper: TestWrapper({
+        routerProvider: mockRouterBindings({
+          resource: {
+            name: "posts",
+          },
+          id: "456",
+        }),
+      }),
     });
 
     const [id, _setId] = result.current;
