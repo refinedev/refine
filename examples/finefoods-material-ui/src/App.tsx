@@ -104,7 +104,7 @@ const App: React.FC = () => {
                   name: "products",
                   list: "/products",
                   create: "/products/new",
-                  edit: "/products/edit/:id",
+                  edit: "/products/:id/edit",
                   show: "/products/:id",
                   meta: {
                     icon: <FastfoodOutlinedIcon />,
