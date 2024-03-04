@@ -30,18 +30,6 @@ type UseRadioGroupProps<TQueryFnData, TError, TData> = Omit<
    * Sets the default value
    */
   defaultValue?: BaseKey;
-  /**
-   * Set the option's value
-   */
-  optionValue?: keyof TData extends string
-    ? keyof TData
-    : (item: TData) => string;
-  /**
-   * Set the option's label value
-   */
-  optionLabel?: keyof TData extends string
-    ? keyof TData
-    : (item: TData) => string;
 };
 
 /**
