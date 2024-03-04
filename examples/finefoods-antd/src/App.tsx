@@ -185,7 +185,6 @@ const App: React.FC = () => {
                     </CustomerList>
                   }
                 >
-                  <Route index element={null} />
                   <Route path=":id" element={<CustomerShow />} />
                 </Route>
 
@@ -197,7 +196,6 @@ const App: React.FC = () => {
                     </ProductList>
                   }
                 >
-                  <Route index element={null} />
                   <Route path="new" element={<ProductCreate />} />
                   <Route path=":id" element={<ProductShow />} />
                   <Route path=":id/edit" element={<ProductEdit />} />
@@ -219,7 +217,6 @@ const App: React.FC = () => {
                       </CourierList>
                     }
                   >
-                    <Route index element={null} />
                     <Route path="new" element={<CourierCreate />} />
                   </Route>
 
