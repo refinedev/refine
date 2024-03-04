@@ -130,7 +130,7 @@ export const renderer = ({
                     })} {...getInputProps("${dotAccessor(
                       field.key,
                       undefined,
-                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                    )}")} {...${variableName}} />
                 `;
       }
 
