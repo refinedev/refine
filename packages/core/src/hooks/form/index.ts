@@ -208,6 +208,13 @@ export const useForm = <
       // biome-ignore lint/suspicious/noConfusingVoidType: Void is an expected case for this promise.
       CreateResponse<TResponse> | UpdateResponse<TResponse> | void
     >((resolve, reject) => {
+      // Reject the mutation if the resource is not defined
+      if (!resource) return reject(missingResourceError);
+      // Reject the mutation if the `id` is not defined in edit action
+      if (isEdit && !id) return reject(missingIdError);
+      // Reject the mutation if there's no `values` passed
+      if (!values) return reject(missingValuesError);
+
       if (!isPessimistic && !isAutosave) {
         // If the mutation mode is not pessimistic, handle the redirect immediately in an async manner
         // `setWarnWhen` blocks the redirects until set to `false`
@@ -217,13 +224,6 @@ export const useForm = <
         // Resolve the promise immediately
         resolve();
       }
-
-      // Reject the mutation if the resource is not defined
-      if (!resource) return reject(missingResourceError);
-      // Reject the mutation if the `id` is not defined in edit action
-      if (isEdit && !id) return reject(missingIdError);
-      // Reject the mutation if there's no `values` passed
-      if (!values) return reject(missingValuesError);
 
       const variables:
         | UpdateParams<TResponse, TResponseError, TVariables>
