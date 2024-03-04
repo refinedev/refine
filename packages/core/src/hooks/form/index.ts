@@ -258,12 +258,16 @@ export const useForm = <
       mutateAsync(variables as any, {
         // Call user-defined `onMutationSuccess` and `onMutationError` callbacks if provided
         // These callbacks will not have an effect on the submission promise
-        onSuccess: (data, _, context) => {
-          props.onMutationSuccess?.(data, values, context, isAutosave);
-        },
-        onError: (error: TResponseError, _, context) => {
-          props.onMutationError?.(error, values, context, isAutosave);
-        },
+        onSuccess: props.onMutationSuccess
+          ? (data, _, context) => {
+              props.onMutationSuccess?.(data, values, context, isAutosave);
+            }
+          : undefined,
+        onError: props.onMutationError
+          ? (error: TResponseError, _, context) => {
+              props.onMutationError?.(error, values, context, isAutosave);
+            }
+          : undefined,
       })
         // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded
         .then((data) => {
