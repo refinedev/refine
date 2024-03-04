@@ -142,9 +142,24 @@ describe("table-material-ui-use-data-grid", () => {
   });
 
   it("should set current `1` when filter changed", () => {
+    cy.intercept(
+      {
+        url: "/posts*",
+        query: {
+          _start: "10",
+          _end: "20",
+        },
+      },
+      {
+        fixture: "posts.json",
+      },
+    ).as("getSecondPagePosts");
+
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.get("[title='Go to next page']").click();
+
+    cy.wait("@getSecondPagePosts");
 
     cy.getMaterialUIColumnHeader(2).within(() =>
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
