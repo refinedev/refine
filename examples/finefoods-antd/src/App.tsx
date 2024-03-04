@@ -211,6 +211,7 @@ const App: React.FC = () => {
 
                 <Route path="/couriers">
                   <Route
+                    path=""
                     element={
                       <CourierList>
                         <Outlet />
