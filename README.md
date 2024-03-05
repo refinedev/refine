@@ -16,6 +16,14 @@
 </div>
 
 <br/>
+<div align="center">
+  <a href="#key-features">Key Features</a> |
+  <a href="#quick-start">Quick Start</a> |
+  <a href="#next-steps">Next Steps</a> |
+  <a href="#contribution">Contribution</a> |
+  <a href="#contributors">Contributors</a> |
+  <a href="#license">License</a> |
+</div>
 <br/>
 
 <div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
@@ -99,7 +107,7 @@ You can take a look at some live examples that can be built using **Refine** fro
 
 [👉 More **Refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples#other-examples)
 
-## Key Features
+## <a id="key-features"></a>Key Features
 
 ⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
@@ -129,7 +137,7 @@ You can take a look at some live examples that can be built using **Refine** fro
 
 ✅ Full **test coverage**
 
-## Quick Start
+## <a id="quick-start"></a> Quick Start
 
 There are two ways to create a Refine app: either by using the `create refine-app` CLI tool or the [browser-based app scaffolder](https://refine.dev/#playground).
 
@@ -242,7 +250,7 @@ Now, you should see the output as a table populated with `blog_posts` & `categor
 
 You can get the auto-generated page codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing them with the Inferencer components.
 
-## Next Steps
+##<a id="next-steps"></a> Next Steps
 
 👉 Jump to [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) to continue your work and turn the example into a full-blown CRUD application.
 
@@ -255,18 +263,18 @@ You can get the auto-generated page codes by clicking the `Show Code` button on 
 
 👉 Play with interactive [examples](https://refine.dev/docs/examples/).
 
-## Contribution
+## <a id="contribution"></a> Contribution
 
 [👉 Refer to the contribution docs for more information.](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord server](https://discord.gg/refine).
 
-## Contributors ♥️
+## <a id="contributors"></a> Contributors ♥️
 
 <a href="https://github.com/refinedev/refine/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=refinedev/refine&max=400&columns=20" />
 </a>
 
-## License
+## <a id="license"></a> License
 
 Licensed under the MIT License, Copyright © 2021-present Refinedev
