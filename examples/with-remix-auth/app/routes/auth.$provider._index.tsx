@@ -1,7 +1,7 @@
-import { LoaderFunctionArgs, ActionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 
-export const action = async ({ request }: ActionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   await authenticator.authenticate("user-pass", request, {
     failureRedirect: "/login",
     successRedirect: "http://localhost:3000/",
