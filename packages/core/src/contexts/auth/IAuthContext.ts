@@ -15,7 +15,7 @@ export interface LegacyAuthProvider {
   logout: (params: any) => Promise<TLogoutData>;
   checkAuth: (params?: any) => Promise<any>;
   checkError: (error: any) => Promise<void>;
-  getPermissions?: (params?: any) => Promise<any>;
+  getPermissions?: (params?: Record<string, any>) => Promise<any>;
   getUserIdentity?: (params?: any) => Promise<any>;
 }
 
