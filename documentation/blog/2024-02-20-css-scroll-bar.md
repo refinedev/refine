@@ -45,7 +45,7 @@ In this example, we used the `::-webkit-scrollbar` pseudo-selector to hide the s
 }
 ```
 
-<iframe height="300" style={{ width: "100%" }} scrolling="no" title="CSS HIDE SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT" src="https://codepen.io/Necati-zmen/embed/VwRNmWO?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style={{ width: "100%" }} scrolling="no" title="CSS HIDE SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT" src="https://codepen.io/Necati-zmen/embed/VwRNmWO?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/Necati-zmen/pen/VwRNmWO">
   CSS HIDE SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT</a> by Necati Özmen (<a href="https://codepen.io/Necati-zmen">@Necati-zmen</a>)
   on <a href="https://codepen.io">CodePen</a>.
@@ -67,7 +67,7 @@ The `overflow: hidden` property is applied on the element with class `scroll-con
 }
 ```
 
-<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE SCROLLBAR USING OVERFLOW:HIDDEN PROPERTY" src="https://codepen.io/Necati-zmen/embed/abMxBpj?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE SCROLLBAR USING OVERFLOW:HIDDEN PROPERTY" src="https://codepen.io/Necati-zmen/embed/abMxBpj?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/Necati-zmen/pen/abMxBpj">
   CSS HIDE SCROLLBAR USING OVERFLOW:HIDDEN PROPERTY</a> by Necati Özmen (<a href="https://codepen.io/Necati-zmen">@Necati-zmen</a>)
   on <a href="https://codepen.io">CodePen</a>.
@@ -93,7 +93,7 @@ body::-webkit-scrollbar {
 }
 ```
 
-<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE BROWSER SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT" src="https://codepen.io/Necati-zmen/embed/oNVOYpO?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE BROWSER SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT" src="https://codepen.io/Necati-zmen/embed/oNVOYpO?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/Necati-zmen/pen/oNVOYpO">
   CSS HIDE BROWSER SCROLLBAR USING WEBKIT-SCROLLBAR PSEUDO ELEMENT</a> by Necati Özmen (<a href="https://codepen.io/Necati-zmen">@Necati-zmen</a>)
   on <a href="https://codepen.io">CodePen</a>.
@@ -120,7 +120,7 @@ body {
 }
 ```
 
-<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE BROWSER SCROLLBAR USING OVERFLOW ATTRIBUTES" src="https://codepen.io/Necati-zmen/embed/rNRbWwd?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style={{ width: "100%" }}  scrolling="no" title="CSS HIDE BROWSER SCROLLBAR USING OVERFLOW ATTRIBUTES" src="https://codepen.io/Necati-zmen/embed/rNRbWwd?default-tab=css%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/Necati-zmen/pen/rNRbWwd">
   CSS HIDE BROWSER SCROLLBAR USING OVERFLOW ATTRIBUTES</a> by Necati Özmen (<a href="https://codepen.io/Necati-zmen">@Necati-zmen</a>)
   on <a href="https://codepen.io">CodePen</a>.
