@@ -1,4 +1,4 @@
-import { LoaderArgs, ActionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, ActionArgs } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 
 export const action = async ({ request }: ActionArgs) => {
@@ -8,7 +8,7 @@ export const action = async ({ request }: ActionArgs) => {
   });
 };
 
-export const loader = async ({ request, params }: LoaderArgs) => {
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const { provider } = params;
   await authenticator.authenticate(provider || "google", request, {
     failureRedirect: "/login",
