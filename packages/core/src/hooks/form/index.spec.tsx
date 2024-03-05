@@ -1211,12 +1211,12 @@ describe("useForm Hook", () => {
       });
     });
 
-    it("should reject immediately if id is not defined in edit mode", async () => {
+    it("should reject immediately if id is not defined in clone mode", async () => {
       const { result } = renderHook(
         () =>
           useForm({
             resource: "posts",
-            action: "edit",
+            action: "clone",
           }),
         {
           wrapper: TestWrapper({
@@ -1230,7 +1230,7 @@ describe("useForm Hook", () => {
         return await expect(
           result.current.submit({ foo: "bar" }),
         ).rejects.toThrow(
-          "[useForm]: `id` is not defined in edit action but is required",
+          "[useForm]: `id` is not defined but is required in edit and clone actions",
         );
       });
     });
