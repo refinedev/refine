@@ -118,7 +118,7 @@ const { options } = useRadioGroup({
 });
 ```
 
-It's also possible to pass function to these props. Function will accept `item` prop.
+It's also possible to pass function to these props. These functions will receive `item` argument.
 
 ```tsx
 const { options } = useRadioGroup({
