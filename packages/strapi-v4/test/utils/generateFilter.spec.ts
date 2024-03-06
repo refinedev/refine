@@ -129,6 +129,43 @@ describe("generateFilter", () => {
 
     expect(filterQueryString).toEqual(expectedQueryString);
   });
+
+  it("should generate more complex queries", () => {
+    const filters: CrudFilters = [
+      {
+        operator: "or",
+        value: [
+          {
+            field: "affect_global",
+            operator: "eq",
+            value: true,
+          },
+          {
+            operator: "and",
+            value: [
+              {
+                field: "studio.id",
+                operator: "eq",
+                value: 2,
+              },
+              {
+                field: "is_primary",
+                operator: "eq",
+                value: true,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    const filterQueryString = generateFilter(filters);
+
+    const expectedQueryString =
+      "filters[$or][0][affect_global][$eq]=true&filters[$or][1][$and][0][studio][id][$eq]=2&filters[$or][1][$and][1][is_primary][$eq]=true";
+
+    expect(filterQueryString).toEqual(expectedQueryString);
+  });
 });
 
 describe("generateNestedFilterField", () => {
