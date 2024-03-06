@@ -230,7 +230,7 @@ export const useForm = <
         ? rest.transformValues(values)
         : (values as unknown as TTransformed);
 
-      onFinishAutoSave(transformedValues);
+      onFinishAutoSave(transformedValues).catch((error) => error);
     }
   }, [values]);
 
@@ -244,7 +244,7 @@ export const useForm = <
     disabled: formLoading,
     onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
       onSubmit(
-        (v) => onFinish(v).catch(() => {}),
+        (v) => onFinish(v).catch((error) => error),
         () => false,
         // @ts-expect-error event type is not compatible with pointer event
       )(e);
