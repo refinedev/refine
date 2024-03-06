@@ -33,6 +33,7 @@
     "@docusaurus/core": "2.4.0",
     "@docusaurus/plugin-client-redirects": "2.4.0",
     "@docusaurus/preset-classic": "2.4.0",
+    "@floating-ui/react": "^0.26.9",
     "@headlessui/react": "^1.7.15",
     "@mdx-js/react": "^1.6.22",
     "@swc/core": "^1.3.64",
