@@ -788,25 +788,25 @@ describe("useSelect Hook", () => {
     });
   });
 
-  describe("searchLabel", () => {
+  describe("searchField", () => {
     const cases = [
       {
         name: "when optionLabel is string",
         optionLabel: "name",
         expectedField: "name",
-        searchLabel: undefined,
+        searchField: undefined,
       },
       {
         name: "when optionLabel is function",
         optionLabel: (_item: any) => "no",
         expectedField: "title",
-        searchLabel: undefined,
+        searchField: undefined,
       },
       {
-        name: "when searchLabel is provided",
+        name: "when searchField is provided",
         optionLabel: "no",
         expectedField: "my-field",
-        searchLabel: "my-field",
+        searchField: "my-field",
       },
     ];
 
@@ -818,7 +818,7 @@ describe("useSelect Hook", () => {
           useSelect({
             resource: "posts",
             optionLabel: params.optionLabel,
-            searchLabel: params.searchLabel,
+            searchField: params.searchField,
           }),
         {
           wrapper: TestWrapper({

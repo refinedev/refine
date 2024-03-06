@@ -49,10 +49,19 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
     ? keyof TData
     : never | ((item: TData) => string);
   /**
-   * Set search label
-   * @default `"title"``
+   * Field name to search for.
+   * @description If provided `optionLabel` is a string, uses `optionLabel`'s value.
+   * @default `"title"`
+   * @example
+   * // when optionLabel is string.
+   * useSelect({ optionLabel: "name" })
+   * // uses `name` field.
+   * @example
+   * // when optionLabel is function.
+   * useSelect({ optionLabel: (field) => field.description })
+   * // uses `title`, since `optionLabel` is a function.
    */
-  searchLabel?: keyof TData extends string ? keyof TData : never;
+  searchField?: keyof TData extends string ? keyof TData : never;
   /**
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
@@ -188,7 +197,7 @@ export const useSelect = <
     filters = [],
     optionLabel = "title",
     optionValue = "id",
-    searchLabel = typeof optionLabel === "string" ? optionLabel : "title",
+    searchField = typeof optionLabel === "string" ? optionLabel : "title",
     debounce: debounceValue = 300,
     successNotification,
     errorNotification,
@@ -336,7 +345,7 @@ export const useSelect = <
 
     setSearch([
       {
-        field: searchLabel,
+        field: searchField,
         operator: "contains",
         value,
       },
