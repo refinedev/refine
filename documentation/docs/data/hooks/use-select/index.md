@@ -78,6 +78,15 @@ const { options } = useSelect({
 });
 ```
 
+It's also possible to pass function to these props. Function will accept `item` prop.
+
+```tsx
+const { options } = useSelect({
+  optionLabel: (item) => `${item.firstName} ${item.lastName}`,
+  optionValue: (item) => item.id,
+});
+```
+
 ### searchField
 
 Can be used to specify which field will be searched with value given to `onSearch` function.

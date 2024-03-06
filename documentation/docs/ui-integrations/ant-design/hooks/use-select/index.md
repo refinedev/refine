@@ -69,6 +69,41 @@ const { options } = useSelect({
 });
 ```
 
+It's also possible to pass function to these props. Function will accept `item` prop.
+
+```tsx
+const { options } = useSelect({
+  optionLabel: (item) => `${item.firstName} ${item.lastName}`,
+  optionValue: (item) => item.id,
+});
+```
+
+### searchField
+
+Can be used to specify which field will be searched with value given to `onSearch` function.
+
+```tsx
+const { onSearch } = useSelect({ searchField: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+```
+
+By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
+
+```tsx
+// When `optionLabel` is string.
+const { onSearch } = useSelect({ optionLabel: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+
+// When `optionLabel` is function.
+const { onSearch } = useSelect({
+  optionLabel: (item) => `${item.id} - ${item.name}`,
+});
+
+onSearch("John"); // Searchs by `title` field with value John.
+```
+
 ### sorters
 
 `sorters` prop allows you to show the options in the desired order. It will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook and used to send sort query parameters to the API.
