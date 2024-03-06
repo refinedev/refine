@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/node";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 import { authenticator } from "~/utils/auth.server";
@@ -13,7 +13,7 @@ export default function AuthenticatedLayout() {
   );
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const session = await authenticator.isAuthenticated(request);
   const pathname = new URL(request.url).pathname;
 

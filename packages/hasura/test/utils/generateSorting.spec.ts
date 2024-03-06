@@ -36,4 +36,27 @@ describe("generateSorting", () => {
     };
     expect(generateSorting(sorters)).toEqual(expectedSorting);
   });
+
+  it("should handle multiple nested fields correctly", () => {
+    const sorters: CrudSorting = [
+      { field: "patient_status.title", order: "asc" },
+      { field: "insurance_status.title", order: "asc" },
+      { field: "patient.name_and_dob", order: "asc" },
+      { field: "rx_received_date", order: "desc" },
+    ];
+    const result = generateSorting(sorters);
+    const expectedSorting = {
+      patient_status: {
+        title: "asc",
+      },
+      insurance_status: {
+        title: "asc",
+      },
+      patient: {
+        name_and_dob: "asc",
+      },
+      rx_received_date: "desc",
+    };
+    expect(result).toEqual(expectedSorting);
+  });
 });

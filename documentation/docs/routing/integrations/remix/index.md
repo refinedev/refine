@@ -792,7 +792,7 @@ Then, let's create our posts route.
 
 ```tsx title="app/routes/_protected.posts._index.tsx"
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 
 import { IPost } from "../interfaces";
@@ -807,7 +807,7 @@ const PostList: React.FC = () => {
 
 export default PostList;
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const can = accessControlProvider.can({
     resource: "posts",
     action: "list",
