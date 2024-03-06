@@ -306,6 +306,3 @@ const surveyOptions: {
     img: "/icons/emoji/emoji-star-struct-face.png",
   },
 ];
-
-const DOC_SURVEY_URL =
-  "https://cloud2.refine.dev/.refine/surveys/documentation-pages-survey";
