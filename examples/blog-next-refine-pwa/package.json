@@ -9,10 +9,10 @@
     "start:prod": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.26",
-    "@refinedev/core": "^4.47.2",
-    "@refinedev/nextjs-router": "^6.0.0",
-    "@refinedev/simple-rest": "^5.0.2",
+    "@refinedev/cli": "^2.16.27",
+    "@refinedev/core": "^4.48.0",
+    "@refinedev/nextjs-router": "^6.0.1",
+    "@refinedev/simple-rest": "^5.0.3",
     "cross-env": "^7.0.3",
     "next": "^14.1.0",
     "react": "^18.0.0",
