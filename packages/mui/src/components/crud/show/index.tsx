@@ -152,7 +152,7 @@ export const Show: React.FC<ShowProps> = ({
     );
 
     return (
-        <Card {...(wrapperProps ?? {})} sx={{ position: "relative" }}>
+        <Card {...(wrapperProps ?? {})}>
             {breadcrumbComponent}
             <CardHeader
                 sx={{
@@ -221,13 +221,16 @@ export const Show: React.FC<ShowProps> = ({
                 }
                 {...(headerProps ?? {})}
             />
-            <CardContent {...(contentProps ?? {})}>
+            <CardContent
+                sx={{ position: "relative" }}
+                {...(contentProps ?? {})}
+            >
                 {children}
                 <Backdrop
                     sx={{
                         position: "absolute",
-                        zIndex: (theme) => theme.zIndex.drawer - 1,
-                        bgcolor: "rgba(0, 0, 0, 0.0)",
+                        zIndex: (theme) => theme.zIndex.drawer + 1,
+                        bgcolor: "rgba(255, 255, 255, 0.38)",
                     }}
                     open={isLoading}
                 >
