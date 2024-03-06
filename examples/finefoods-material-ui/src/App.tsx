@@ -17,32 +17,25 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import AddShoppingCartOutlined from "@mui/icons-material/AddShoppingCartOutlined";
-import StarBorderOutlined from "@mui/icons-material/StarBorderOutlined";
-import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
-import StoreOutlined from "@mui/icons-material/StoreOutlined";
-import LocalPizzaOutlined from "@mui/icons-material/LocalPizzaOutlined";
-import PeopleOutlineOutlined from "@mui/icons-material/PeopleOutlineOutlined";
+import MopedOutlined from "@mui/icons-material/MopedOutlined";
 import Dashboard from "@mui/icons-material/Dashboard";
-
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import FastfoodOutlinedIcon from "@mui/icons-material/FastfoodOutlined";
+import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
+import StoreOutlinedIcon from "@mui/icons-material/StoreOutlined";
+import Box from "@mui/material/Box";
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
-import { UserList, UserShow } from "./pages/users";
-import { ReviewsList } from "./pages/reviews";
-import {
-  CourierList,
-  CourierShow,
-  CourierCreate,
-  CourierEdit,
-} from "./pages/couriers";
+import { CustomerShow, CustomerList } from "./pages/customers";
+import { CourierList, CourierCreate, CourierEdit } from "./pages/couriers";
 import { AuthPage } from "./pages/auth";
 import { StoreList, StoreEdit, StoreCreate } from "./pages/stores";
-import { ProductList } from "./pages/products";
+import { ProductEdit, ProductList, ProductCreate } from "./pages/products";
 import { CategoryList } from "./pages/categories";
 import { ColorModeContextProvider } from "./contexts";
-import { Header, Title, OffLayoutArea } from "./components";
-import { BikeWhiteIcon } from "./components/icons/bike-white";
+import { Header, Title } from "./components";
 import { useAutoLoginForDemo } from "./hooks";
 
 const API_URL = "https://api.finefoods.refine.dev";
@@ -65,7 +58,6 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <KBarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -79,6 +71,8 @@ const App: React.FC = () => {
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
+                breadcrumb: false,
+                useNewQueryKeys: true,
               }}
               notificationProvider={useNotificationProvider}
               resources={[
@@ -93,57 +87,52 @@ const App: React.FC = () => {
                 {
                   name: "orders",
                   list: "/orders",
-                  show: "/orders/show/:id",
+                  show: "/orders/:id",
                   meta: {
-                    icon: <AddShoppingCartOutlined />,
+                    icon: <ShoppingBagOutlinedIcon />,
                   },
                 },
                 {
                   name: "users",
-                  list: "/users",
-                  show: "/users/show/:id",
+                  list: "/customers",
+                  show: "/customers/:id",
                   meta: {
-                    icon: <PeopleOutlineOutlined />,
+                    icon: <AccountCircleOutlinedIcon />,
                   },
                 },
                 {
                   name: "products",
                   list: "/products",
+                  create: "/products/new",
+                  edit: "/products/:id/edit",
+                  show: "/products/:id",
                   meta: {
-                    icon: <LocalPizzaOutlined />,
-                  },
-                },
-                {
-                  name: "stores",
-                  list: "/stores",
-                  create: "/stores/create",
-                  edit: "/stores/edit/:id",
-                  meta: {
-                    icon: <StoreOutlined />,
+                    icon: <FastfoodOutlinedIcon />,
                   },
                 },
                 {
                   name: "categories",
                   list: "/categories",
                   meta: {
-                    icon: <CategoryOutlined />,
+                    icon: <LabelOutlinedIcon />,
+                  },
+                },
+                {
+                  name: "stores",
+                  list: "/stores",
+                  create: "/stores/new",
+                  edit: "/stores/:id/edit",
+                  meta: {
+                    icon: <StoreOutlinedIcon />,
                   },
                 },
                 {
                   name: "couriers",
                   list: "/couriers",
-                  create: "/couriers/create",
-                  edit: "/couriers/edit/:id",
-                  show: "/couriers/show/:id",
+                  create: "/couriers/new",
+                  edit: "/couriers/:id/edit",
                   meta: {
-                    icon: <BikeWhiteIcon />,
-                  },
-                },
-                {
-                  name: "reviews",
-                  list: "/reviews",
-                  meta: {
-                    icon: <StarBorderOutlined />,
+                    icon: <MopedOutlined />,
                   },
                 },
               ]}
@@ -155,12 +144,16 @@ const App: React.FC = () => {
                       key="authenticated-routes"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayoutV2
-                        Header={Header}
-                        Title={Title}
-                        OffLayoutArea={OffLayoutArea}
-                      >
-                        <Outlet />
+                      <ThemedLayoutV2 Header={Header} Title={Title}>
+                        <Box
+                          sx={{
+                            maxWidth: "1200px",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                          }}
+                        >
+                          <Outlet />
+                        </Box>
                       </ThemedLayoutV2>
                     </Authenticated>
                   }
@@ -169,32 +162,53 @@ const App: React.FC = () => {
 
                   <Route path="/orders">
                     <Route index element={<OrderList />} />
-                    <Route path="show/:id" element={<OrderShow />} />
+                    <Route path=":id" element={<OrderShow />} />
+                  </Route>
+                  <Route
+                    path="/customers"
+                    element={
+                      <CustomerList>
+                        <Outlet />
+                      </CustomerList>
+                    }
+                  >
+                    <Route path=":id" element={<CustomerShow />} />
                   </Route>
 
-                  <Route path="/users">
-                    <Route index element={<UserList />} />
-                    <Route path="show/:id" element={<UserShow />} />
+                  <Route
+                    path="/products"
+                    element={
+                      <ProductList>
+                        <Outlet />
+                      </ProductList>
+                    }
+                  >
+                    <Route path=":id/edit" element={<ProductEdit />} />
+                    <Route path="new" element={<ProductCreate />} />
                   </Route>
-
-                  <Route path="/products" element={<ProductList />} />
 
                   <Route path="/stores">
                     <Route index element={<StoreList />} />
-                    <Route path="create" element={<StoreCreate />} />
-                    <Route path="edit/:id" element={<StoreEdit />} />
+                    <Route path="new" element={<StoreCreate />} />
+                    <Route path=":id/edit" element={<StoreEdit />} />
                   </Route>
 
                   <Route path="/categories" element={<CategoryList />} />
 
                   <Route path="/couriers">
-                    <Route index element={<CourierList />} />
-                    <Route path="create" element={<CourierCreate />} />
-                    <Route path="edit/:id" element={<CourierEdit />} />
-                    <Route path="show/:id" element={<CourierShow />} />
-                  </Route>
+                    <Route
+                      path=""
+                      element={
+                        <CourierList>
+                          <Outlet />
+                        </CourierList>
+                      }
+                    >
+                      <Route path="new" element={<CourierCreate />} />
+                    </Route>
 
-                  <Route path="/reviews" element={<ReviewsList />} />
+                    <Route path=":id/edit" element={<CourierEdit />} />
+                  </Route>
                 </Route>
 
                 <Route
@@ -254,11 +268,7 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="catch-all">
-                      <ThemedLayoutV2
-                        Header={Header}
-                        Title={Title}
-                        OffLayoutArea={OffLayoutArea}
-                      >
+                      <ThemedLayoutV2 Header={Header} Title={Title}>
                         <Outlet />
                       </ThemedLayoutV2>
                     </Authenticated>

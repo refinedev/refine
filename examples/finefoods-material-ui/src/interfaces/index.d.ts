@@ -45,16 +45,17 @@ export interface IIdentity {
 
 export interface IAddress {
   text: string;
-  coordinate: [string, string];
+  coordinate: [string | number, string | number];
 }
 
 export interface IFile {
+  lastModified?: number;
   name: string;
-  percent: number;
+  percent?: number;
   size: number;
-  status: "error" | "success" | "done" | "uploading" | "removed";
+  status?: "error" | "success" | "done" | "uploading" | "removed";
   type: string;
-  uid: string;
+  uid?: string;
   url: string;
 }
 
@@ -74,20 +75,6 @@ export interface IStore {
   products: IProduct[];
 }
 
-export interface ICourier {
-  id: number;
-  name: string;
-  surname: string;
-  email: string;
-  gender: string;
-  gsm: string;
-  createdAt: string;
-  accountNumber: string;
-  licensePlate: string;
-  address: string;
-  avatar: IFile[];
-  store: IStore;
-}
 export interface IOrder {
   id: number;
   user: IUser;
@@ -107,7 +94,7 @@ export interface IProduct {
   name: string;
   isActive: boolean;
   description: string;
-  images: IFile[];
+  images: (IFile & { thumbnailUrl?: string })[];
   createdAt: string;
   price: number;
   category: ICategory;
@@ -134,15 +121,26 @@ export interface IUserFilterVariables {
   isActive: boolean | string;
 }
 
+export interface ICourierStatus {
+  id: number;
+  text: "Available" | "Offline" | "On delivery";
+}
+
 export interface ICourier {
   id: number;
   name: string;
   surname: string;
+  email: string;
   gender: string;
   gsm: string;
   createdAt: string;
-  isActive: boolean;
+  accountNumber: string;
+  licensePlate: string;
+  address: string;
   avatar: IFile[];
+  store: IStore;
+  status: ICourierStatus;
+  vehicle: IVehicle;
 }
 
 export interface IReview {
@@ -154,6 +152,21 @@ export interface IReview {
   status: "pending" | "approved" | "rejected";
   comment: string[];
 }
+
+export interface ITrendingProducts {
+  id: number;
+  product: IProduct;
+  orderCount: number;
+}
+
+export type IVehicle = {
+  model: string;
+  vehicleType: string;
+  engineSize: number;
+  color: string;
+  year: number;
+  id: number;
+};
 
 export type Nullable<T> = {
   [P in keyof T]: T[P] | null;

@@ -22,10 +22,8 @@ export const AllStoresMap = () => {
 
   const { data: storeData } = useList<IStore>({
     resource: "stores",
-    config: {
-      pagination: {
-        mode: "off",
-      },
+    pagination: {
+      mode: "off",
     },
   });
   const stores = storeData?.data || [];

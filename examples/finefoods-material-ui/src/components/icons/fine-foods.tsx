@@ -10,6 +10,7 @@ export const FineFoodsIcon = (props: SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Fine Foods</title>
       <path
         fill="currentColor"
         fillRule="evenodd"
