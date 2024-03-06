@@ -222,8 +222,8 @@ export const Show: React.FC<ShowProps> = ({
                 {...(headerProps ?? {})}
             />
             <CardContent
-                sx={{ position: "relative" }}
                 {...(contentProps ?? {})}
+                sx={{ position: "relative", ...contentProps?.sx }}
             >
                 {children}
                 <Backdrop
