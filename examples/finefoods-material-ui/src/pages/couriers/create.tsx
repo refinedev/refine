@@ -76,7 +76,7 @@ export const CourierCreate = () => {
       open
       sx={{
         "& .MuiDialog-paper": {
-          minWidth: "640px",
+          maxWidth: "640px",
           width: "100%",
         },
       }}

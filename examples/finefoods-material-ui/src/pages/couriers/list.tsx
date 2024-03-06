@@ -1,12 +1,11 @@
 import { PropsWithChildren, useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
-import { EditButton, useDataGrid } from "@refinedev/mui";
+import { CreateButton, EditButton, useDataGrid } from "@refinedev/mui";
 import { useLocation } from "react-router-dom";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import { CourierRating, CourierStatus, RefineListView } from "../../components";
 import { ICourier } from "../../interfaces";
 
@@ -110,7 +109,7 @@ export const CourierList = ({ children }: PropsWithChildren) => {
     <>
       <RefineListView
         headerButtons={() => [
-          <Button
+          <CreateButton
             key="create"
             variant="contained"
             size="medium"
@@ -129,7 +128,7 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             }}
           >
             {t("couriers.actions.add")}
-          </Button>,
+          </CreateButton>,
         ]}
       >
         <Paper>

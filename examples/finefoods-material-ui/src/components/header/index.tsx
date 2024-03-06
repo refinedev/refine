@@ -142,6 +142,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       position="sticky"
       elevation={0}
       sx={{
+        "& .MuiToolbar-root": {
+          minHeight: "64px",
+        },
         height: "64px",
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
         backgroundColor: (theme) => theme.palette.background.paper,
@@ -150,18 +153,38 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       <Toolbar
         sx={{
           paddingLeft: {
-            sm: "24px",
+            xs: "0",
+            sm: "16px",
             md: "24px",
           },
         }}
       >
-        <HamburgerMenu />
+        <Box
+          minWidth="40px"
+          minHeight="40px"
+          marginRight={{
+            xs: "0",
+            sm: "16px",
+          }}
+          sx={{
+            "& .MuiButtonBase-root": {
+              marginLeft: 0,
+              marginRight: 0,
+            },
+          }}
+        >
+          <HamburgerMenu />
+        </Box>
 
         <Stack
           direction="row"
           width="100%"
           justifyContent="space-between"
           alignItems="center"
+          gap={{
+            xs: "8px",
+            sm: "24px",
+          }}
         >
           <Stack direction="row" flex={1}>
             <Autocomplete
@@ -214,6 +237,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                   <Box
                     position="relative"
                     sx={{
+                      "& .MuiFormLabel-root": {
+                        paddingRight: "24px",
+                      },
                       display: {
                         xs: "none",
                         sm: "block",
@@ -244,7 +270,14 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               }}
             />
           </Stack>
-          <Stack direction="row" alignItems="center" spacing="24px">
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={{
+              xs: "8px",
+              sm: "24px",
+            }}
+          >
             <Select
               size="small"
               disableUnderline
@@ -252,7 +285,10 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               inputProps={{ "aria-label": "Without label" }}
               variant="outlined"
               sx={{
-                width: "160px",
+                width: {
+                  xs: "120px",
+                  sm: "160px",
+                },
               }}
             >
               {[...(i18n.languages ?? [])].sort().map((lang: string) => (
@@ -294,11 +330,22 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
 
             <Stack
               direction="row"
-              gap="16px"
+              gap={{
+                xs: "8px",
+                sm: "16px",
+              }}
               alignItems="center"
               justifyContent="center"
             >
-              <Typography variant="subtitle2">{user?.name}</Typography>
+              <Typography
+                fontSize={{
+                  xs: "12px",
+                  sm: "14px",
+                }}
+                variant="subtitle2"
+              >
+                {user?.name}
+              </Typography>
               <Avatar src={user?.avatar} alt={user?.name} />
             </Stack>
           </Stack>
