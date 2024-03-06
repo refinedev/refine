@@ -1,4 +1,5 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
 import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
@@ -479,6 +480,37 @@ describe("useSelect Hook", () => {
     expect(mockFunc).toBeCalled();
   });
 
+  it("should generate options with custom optionLabel and optionValue functions", async () => {
+    const { result } = renderHook(
+      () =>
+        useSelect({
+          resource: "posts",
+          optionLabel: (item) => `${item.title} - ${item.userId}`,
+          optionValue: (item) => `${item.id}`,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    });
+    const { options } = result.current;
+    expect(options).toHaveLength(2);
+    expect(options).toEqual([
+      {
+        label:
+          "Necessitatibus necessitatibus id et cupiditate provident est qui amet. - 5",
+        value: "1",
+      },
+      { label: "Recusandae consectetur aut atque est. - 36", value: "2" },
+    ]);
+  });
+
   // case: undefined means defaultValueQueryOptions should not provided, queryOptions.enabled should be false
   // case: true, false are inverted in queryOptions.enabled and defaultValueQueryOptions.enabled to test not override each other
   it.each([true, false, undefined])(
@@ -753,6 +785,70 @@ describe("useSelect Hook", () => {
           pageSize: 10,
         },
       });
+    });
+  });
+
+  describe("searchField", () => {
+    const cases = [
+      {
+        name: "when optionLabel is string",
+        optionLabel: "name",
+        expectedField: "name",
+        searchField: undefined,
+      },
+      {
+        name: "when optionLabel is function",
+        optionLabel: (_item: any) => "no",
+        expectedField: "title",
+        searchField: undefined,
+      },
+      {
+        name: "when searchField is provided",
+        optionLabel: "no",
+        expectedField: "my-field",
+        searchField: "my-field",
+      },
+    ];
+
+    it.each(cases)("$name", async (params: any) => {
+      const getListMock = jest.fn(async () => ({ data: [], total: 0 }));
+
+      const { result, waitForNextUpdate } = renderHook(
+        () =>
+          useSelect({
+            resource: "posts",
+            optionLabel: params.optionLabel,
+            searchField: params.searchField,
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getList: getListMock,
+              },
+            },
+          }),
+        },
+      );
+
+      result.current.onSearch("John");
+
+      await waitForNextUpdate();
+      await waitForNextUpdate();
+
+      expect(getListMock).toHaveBeenCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          filters: [
+            {
+              field: params.expectedField,
+              operator: "contains",
+              value: "John",
+            },
+          ],
+        }),
+      );
     });
   });
 
