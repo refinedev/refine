@@ -1,6 +1,13 @@
 import React, { PropsWithChildren, SVGProps, useState } from "react";
 import clsx from "clsx";
-import { autoUpdate, useFloating, offset, flip } from "@floating-ui/react";
+import {
+  autoUpdate,
+  useFloating,
+  useDismiss,
+  useInteractions,
+  offset,
+  flip,
+} from "@floating-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useColorMode } from "@docusaurus/theme-common";
 import { ThumbsUpIcon } from "./icons/thumbs-up";
@@ -23,9 +30,9 @@ export const DocThumbsUpDownFeedbackWidget = (
 
   const [feedbackText, setFeedbackText] = useState("");
   const [selectedThumb, setSelectedThumb] = useState<SurveyOption | null>(null);
+  const [isFeedbackTextIsVisible, setIsFeedbackTextIsVisible] = useState(false);
   const [resultViewVisible, setResultViewVisible] = useState(false);
 
-  const isFeedbackTextIsVisible = selectedThumb !== null;
   const isPopoverVisible = isFeedbackTextIsVisible || resultViewVisible;
 
   const { survey, setSurvey, createSurvey, updateSurvey } =
@@ -34,7 +41,8 @@ export const DocThumbsUpDownFeedbackWidget = (
     });
 
   const onThumbsUpDownClick = async (value: SurveyOption) => {
-    setSelectedThumb((prev) => (prev === value ? null : value));
+    setSelectedThumb(value);
+    setIsFeedbackTextIsVisible(true);
 
     if (survey) {
       await updateSurvey({
@@ -71,6 +79,7 @@ export const DocThumbsUpDownFeedbackWidget = (
       setSelectedThumb(null);
       setFeedbackText("");
       setResultViewVisible(false);
+      setIsFeedbackTextIsVisible(false);
     }, 2000);
   };
 
@@ -88,7 +97,7 @@ export const DocThumbsUpDownFeedbackWidget = (
           "pt-1 pr-1 pb-1 pl-4",
           "bg-[#99A1B31A] dark:bg-[#2F333C]",
           "rounded-[28px]",
-          "transition-all duration-[600ms] ease-in-out",
+          "transition-all duration-300 ease-in-out",
           !isPopoverVisible && "opacity-0",
           "group-hover:opacity-100",
         )}
@@ -134,7 +143,17 @@ export const DocThumbsUpDownFeedbackWidget = (
             <ThumbsDownIcon />
           </button>
         </div>
-        <FeedbackTextPopover isOpen={isPopoverVisible}>
+        <FeedbackTextPopover
+          isOpen={isPopoverVisible}
+          onOpenChange={(isOpen) => {
+            if (resultViewVisible) return;
+
+            if (!isOpen) {
+              setIsFeedbackTextIsVisible(false);
+              setResultViewVisible(false);
+            }
+          }}
+        >
           <PopoverPointer
             style={{
               position: "absolute",
@@ -206,11 +225,13 @@ export const DocThumbsUpDownFeedbackWidget = (
 const FeedbackTextPopover = (
   props: PropsWithChildren<{
     isOpen: boolean;
+    onOpenChange?: (isOpen: boolean) => void;
   }>,
 ) => {
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom-start",
     open: props.isOpen,
+    onOpenChange: props.onOpenChange,
     whileElementsMounted: autoUpdate,
     middleware: [
       offset(52),
@@ -219,11 +240,14 @@ const FeedbackTextPopover = (
       }),
     ],
   });
+  const dismiss = useDismiss(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
   return (
     <>
       <div
         ref={refs.setReference}
+        {...getReferenceProps()}
         style={{
           position: "absolute",
           top: "0",
@@ -238,6 +262,7 @@ const FeedbackTextPopover = (
             exit={{ opacity: 0 }}
             ref={refs.setFloating}
             style={floatingStyles}
+            {...getFloatingProps()}
             className={clsx(
               "w-[320px]",
               "bg-[#EAEBEF] dark:bg-refine-react-dark-code",
