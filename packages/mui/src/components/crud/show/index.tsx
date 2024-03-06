@@ -20,6 +20,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import { alpha } from "@mui/material/styles";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -230,7 +231,11 @@ export const Show: React.FC<ShowProps> = ({
                     sx={{
                         position: "absolute",
                         zIndex: (theme) => theme.zIndex.drawer + 1,
-                        bgcolor: "rgba(255, 255, 255, 0.38)",
+                        bgcolor: (theme) =>
+                            alpha(
+                                theme.palette.background.paper,
+                                theme.palette.action.disabledOpacity,
+                            ),
                     }}
                     open={isLoading}
                 >
