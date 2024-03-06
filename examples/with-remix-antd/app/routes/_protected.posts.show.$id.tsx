@@ -3,7 +3,7 @@ import { Show } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 
 import { ICategory, IPost } from "../interfaces";
 import { API_URL } from "~/constants";
@@ -47,7 +47,7 @@ const PostShow: React.FC = () => {
 
 export default PostShow;
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const data = await dataProvider(API_URL).getOne<IPost>({
     resource: "posts",
     id: params?.id as string,

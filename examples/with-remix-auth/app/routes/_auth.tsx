@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import { LoaderArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 import { authenticator } from "~/utils/auth.server";
 
 export default function AuthLayout() {
@@ -7,7 +7,7 @@ export default function AuthLayout() {
   return <Outlet />;
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const session = await authenticator.isAuthenticated(request);
 
   if (session) {
