@@ -28,7 +28,11 @@ import { useSelect } from "@refinedev/core";
 // highlight-next-line
 import { List, useDataGrid, EditButton, ShowButton } from "@refinedev/mui";
 
-import { DataGrid, GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridValueFormatterParams,
+} from "@mui/x-data-grid";
 
 export const ListProducts = () => {
   const { dataGridProps } = useDataGrid<IProduct>({
@@ -36,20 +40,26 @@ export const ListProducts = () => {
     syncWithLocation: true,
   });
 
-  const { options: categories, queryResult: { isLoading } } = useSelect<ICategory>({
+  const {
+    options: categories,
+    queryResult: { isLoading },
+  } = useSelect<ICategory>({
     resource: "categories",
     pagination: false,
   });
 
-  const columns = React.useMemo<GridColDef<IProduct>[]>(() => [
-    /* ... */
-  ], [categories, isLoading]);
+  const columns = React.useMemo<GridColDef<IProduct>[]>(
+    () => [
+      /* ... */
+    ],
+    [categories, isLoading],
+  );
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <List>
       <DataGrid {...dataGridProps} columns={columns} autoHeight />
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </List>
   );
 };
@@ -79,7 +89,7 @@ export const CreateProduct = () => {
     register,
     control,
     saveButtonProps,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
@@ -87,7 +97,7 @@ export const CreateProduct = () => {
   });
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <Create saveButtonProps={saveButtonProps}>
       <Box
         component="form"
@@ -95,7 +105,7 @@ export const CreateProduct = () => {
       >
         {/* ... */}
       </Box>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </Create>
   );
 };
@@ -126,7 +136,7 @@ export const EditProduct = () => {
     control,
     saveButtonProps,
     refineCore: { queryResult },
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
@@ -135,7 +145,7 @@ export const EditProduct = () => {
   });
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <Edit saveButtonProps={saveButtonProps}>
       <Box
         component="form"
@@ -144,7 +154,7 @@ export const EditProduct = () => {
       >
         {/* ... */}
       </Box>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </Edit>
   );
 };
@@ -167,7 +177,7 @@ Update your `src/pages/products/show.tsx` file by adding the following lines:
 ```tsx title="src/pages/products/show.tsx"
 import { useShow, useOne } from "@refinedev/core";
 import {
-// highlight-next-line
+  // highlight-next-line
   Show,
   TextFieldComponent as TextField,
   NumberField,
@@ -195,42 +205,42 @@ export const ShowProduct = () => {
   }
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <Show>
       <Stack gap={1}>
         <Typography variant="body1" fontWeight="bold">
-            Id
+          Id
         </Typography>
         <TextField value={data?.data?.id} />
 
         <Typography variant="body1" fontWeight="bold">
-            Name
+          Name
         </Typography>
         <TextField value={data?.data?.name} />
 
         <Typography variant="body1" fontWeight="bold">
-            Description
+          Description
         </Typography>
         <MarkdownField value={data?.data?.description} />
 
         <Typography variant="body1" fontWeight="bold">
-            Material
+          Material
         </Typography>
         <TextField value={data?.data?.material} />
 
         <Typography variant="body1" fontWeight="bold">
-            Category
+          Category
         </Typography>
         <TextField
-            value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
+          value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
         />
 
         <Typography variant="body1" fontWeight="bold">
-            Price
+          Price
         </Typography>
         <NumberField value={data?.data?.price} />
       </Stack>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </Show>
   );
 };
