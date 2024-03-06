@@ -6,21 +6,29 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import { IOrder } from "../../../interfaces";
+import { ITrendingProducts } from "../../../interfaces";
+import { Rank1Icon } from "../../icons/rank-1";
+import { Rank2Icon } from "../../icons/rank-2";
+import { Rank3Icon } from "../../icons/rank-3";
+import { Rank4Icon } from "../../icons/rank-4";
+import { Rank5Icon } from "../../icons/rank-5";
+import { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
-  const { data } = useList<IOrder>({
-    resource: "orders",
+  const { data } = useList<ITrendingProducts>({
+    resource: "trendingProducts",
     config: {
       pagination: { pageSize: 5 },
     },
   });
 
+  const trending = data?.data || [];
+
   return (
-    <Stack spacing={3} sx={{ p: 3 }}>
-      {data?.data.map((order, index) => (
+    <Stack spacing={2} sx={{ p: 2 }}>
+      {trending.map((item, index) => (
         <Stack
-          key={order.id}
+          key={item.id}
           direction="row"
           alignItems="center"
           spacing={3}
@@ -29,54 +37,55 @@ export const TrendingMenu: React.FC = () => {
           <Box sx={{ position: "relative" }}>
             <Avatar
               sx={{
-                width: {
-                  xs: 64,
-                  md: 108,
-                },
-                height: {
-                  xs: 64,
-                  md: 108,
-                },
+                width: 72,
+                height: 72,
               }}
-              src={order?.products[0]?.images[0].url}
+              src={item.product.images[0]?.url}
             />
             <Box
               sx={{
                 position: "absolute",
-                bgcolor: "primary.main",
-                color: "primary.contrastText",
-                fontWeight: 800,
-                transform: "translate(-50%, -50%)",
-                top: "100%",
-                left: "50%",
-                border: "4px solid #ffffff",
-                borderRadius: "50%",
-                width: "44px",
-                height: "44px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                top: -16,
+                right: -16,
               }}
             >
-              #{index + 1}
+              {RankIcons[index + 1]}
             </Box>
           </Box>
-          <Stack spacing={1}>
-            <Typography sx={{ fontWeight: 700 }}>
-              {order.products[0]?.name}
-            </Typography>
+          <Stack spacing={"4px"}>
+            <Typography variant="h6">{item.product.name}</Typography>
             <NumberField
-              sx={{ fontWeight: 700 }}
+              color="text.secondary"
               options={{
                 currency: "USD",
                 style: "currency",
                 notation: "standard",
               }}
-              value={order.amount / 100}
+              value={item.orderCount * item.product.price}
             />
+            <Typography color="text.secondary" whiteSpace="nowrap">
+              Ordered
+              <Typography
+                component="span"
+                color="text.primary"
+                whiteSpace="nowrap"
+              >
+                {" "}
+                {item.orderCount}{" "}
+              </Typography>
+              times
+            </Typography>
           </Stack>
         </Stack>
       ))}
     </Stack>
   );
+};
+
+const RankIcons: Record<number, ReactNode> = {
+  1: <Rank1Icon />,
+  2: <Rank2Icon />,
+  3: <Rank3Icon />,
+  4: <Rank4Icon />,
+  5: <Rank5Icon />,
 };

@@ -1,46 +1,61 @@
-import {
-  DarkTheme as DefaultDarkTheme,
-  LightTheme as DefaultLightTheme,
-} from "@refinedev/mui";
-
+import { RefineThemes } from "@refinedev/mui";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import gray from "@mui/material/colors/grey";
 
 const LightTheme = createTheme({
-  ...DefaultLightTheme,
-  timeLine: {
-    color: {
-      pending: "#fff7e6",
-      ready: "#e6fffb",
-      delivered: "#e6f7ff",
-      cancelled: "#fff1f0",
-      onTheWay: "#f6ffed",
+  ...RefineThemes.Orange,
+  components: {
+    ...RefineThemes.OrangeDark.components,
+    MuiChip: {
+      styleOverrides: {
+        labelSmall: {
+          lineHeight: "18px",
+        },
+      },
     },
-    dotColor: {
-      pending: "#ffa940",
-      ready: "#36cfc9",
-      delivered: "#40a9ff",
-      cancelled: "#ff4d4f",
-      onTheWay: "#73d13d",
+    MuiCssBaseline: {
+      styleOverrides: {
+        "main.MuiBox-root": {
+          backgroundColor: gray[100],
+        },
+        body: {
+          backgroundColor: gray[100],
+        },
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variant: "body2",
+      },
     },
   },
 });
 
 const DarkTheme = createTheme({
-  ...DefaultDarkTheme,
-  timeLine: {
-    color: {
-      pending: "#f2a400",
-      ready: "#00c2a2",
-      delivered: "#0083c2",
-      cancelled: "#c60d00",
-      onTheWay: "#62c400",
+  ...RefineThemes.OrangeDark,
+  components: {
+    ...RefineThemes.OrangeDark.components,
+    MuiChip: {
+      styleOverrides: {
+        labelSmall: {
+          lineHeight: "18px",
+        },
+      },
     },
-    dotColor: {
-      pending: "#9f5700",
-      ready: "#196966",
-      delivered: "#00579f",
-      cancelled: "#a60001",
-      onTheWay: "#386d19",
+    MuiCssBaseline: {
+      styleOverrides: {
+        "main.MuiBox-root": {
+          backgroundColor: "#121212",
+        },
+        body: {
+          backgroundColor: "#121212",
+        },
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variant: "body2",
+      },
     },
   },
 });

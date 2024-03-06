@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslate, useUpdate } from "@refinedev/core";
 import {
   Action,
@@ -22,22 +22,21 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
   const [actions, setActions] = useState<Action[]>([]);
   const { mutate } = useUpdate();
 
-  const handleMutate = (status: { id: number; text: string }) => {
-    if (order) {
-      mutate(
-        {
-          resource: "orders",
-          id: order.id.toString(),
-          values: {
-            status,
-          },
+  const handleMutate = useCallback(
+    (status: { id: number; text: string }) => {
+      if (!order?.id) return;
+
+      mutate({
+        resource: "orders",
+        id: order?.id,
+        values: {
+          status,
         },
-        {
-          onSuccess: () => setActions([]),
-        },
-      );
-    }
-  };
+      });
+    },
+    [mutate, order?.id],
+  );
+
   useEffect(() => {
     const preActions: Action[] = [];
     if (canAcceptOrder) {
@@ -73,6 +72,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
       );
     }
     setActions(preActions);
-  }, [order]);
+  }, [t, canAcceptOrder, canRejectOrder, handleMutate]);
+
   useRegisterActions(actions, [actions]);
 };

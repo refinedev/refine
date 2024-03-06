@@ -69,7 +69,9 @@
     "list": "Aufführen",
     "create": "Erstellen",
     "edit": "Bearbeiten",
-    "show": "Zeigen"
+    "show": "Zeigen",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
   },
   "buttons": {
     "create": "Erstellen",
@@ -99,7 +101,8 @@
     "clone": "Klonen"
   },
   "table": {
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "inTotal": "Insgesamt"
   },
   "search": {
     "placeholder": "Suchen mit Geschäfts-ID, E-mail oder Stichwort",
@@ -129,7 +132,12 @@
     "fields": {
       "id": "ID",
       "title": "Titel",
-      "isActive": "Aktiv"
+      "products": "Produkte",
+      "isActive": {
+        "label": "Aktiv",
+        "true": "Aktiv",
+        "false": "Passiv"
+      }
     }
   },
   "couriers": {
@@ -143,40 +151,123 @@
       "id": "ID",
       "avatar": {
         "label": "Avatar",
-        "description": "Ein Foto hochladen."
+        "description": "Klicken oder ziehen Sie das Avatarbild in diesen Bereich, um es hochzuladen."
       },
-      "name": "Vorname",
-      "surname": "Nachname",
+      "name": {
+        "label": "Name",
+        "placeholder": "Bitte Kuriername eingeben"
+      },
+      "surname": {
+        "label": "Nachname",
+        "placeholder": "Bitte Kurier-Nachname eingeben"
+      },
       "gender": {
         "label": "Geschlecht",
-        "male": "Mann",
-        "female": "Frau"
+        "male": "Männlich",
+        "female": "Weiblich"
       },
-      "gsm": "Gsm",
+      "gsm": {
+        "label": "GSM",
+        "placeholder": "Bitte Kurier-GSM eingeben"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "Bitte Kurier-E-Mail eingeben"
+      },
+      "address": {
+        "label": "Adresse",
+        "placeholder": "Bitte Kurieradresse eingeben"
+      },
       "createdAt": "Erstellt am",
-      "isActive": "Aktiv",
-      "images": {
-        "label": "Foto",
-        "description": "Ein Foto hochladen.",
-        "validation": "Fotoauflösung: 480x480px"
+      "isActive": {
+        "label": "Status",
+        "Available": "Verfügbar",
+        "Offline": "Offline",
+        "On delivery": "Bei Zustellung"
       },
-      "store": "Geschäft",
-      "vehicle": "Fahrzeug",
-      "accountNumber": "Kontonummer",
-      "address": "Adresse"
+      "vehicleType": {
+        "label": "Fahrzeugtyp",
+        "placeholder": "Fahrzeugtyp auswählen"
+      },
+      "licensePlate": {
+        "label": "Kennzeichen",
+        "placeholder": "Bitte Kennzeichen eingeben",
+        "patternMessage": "Bitte geben Sie eine gültige Fahrzeug-ID ein. Beispiel: ABC 123"
+      },
+      "rating": {
+        "label": "Bewertung",
+        "placeholder": "Bitte Bewertung eingeben"
+      },
+      "images": {
+        "label": "Bilder",
+        "description": "Benutzerbild hinzufügen",
+        "validation": "muss 480x480 px sein"
+      },
+      "store": {
+        "label": "Geschäft",
+        "placeholder": "Geschäft auswählen"
+      },
+      "vehicle": {
+        "label": "Fahrzeug",
+        "placeholder": "Fahrzeug auswählen"
+      },
+      "accountNumber": {
+        "label": "Kontonummer",
+        "placeholder": "Bitte Kontonummer eingeben"
+      }
+    },
+    "filter": {
+      "title": "Filter",
+      "name": {
+        "label": "Name",
+        "placeholder": "Name suchen"
+      },
+      "licensePlate": {
+        "label": "Kennzeichen",
+        "placeholder": "Kennzeichen suchen"
+      },
+      "gsm": {
+        "label": "GSM",
+        "placeholder": "GSM suchen"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail suchen"
+      },
+      "submit": "Filtern"
     },
     "steps": {
-      "content": "Inhalt",
-      "relations": "Beziehungen"
+      "personal": "Persönlich",
+      "company": "Unternehmen",
+      "vehicle": "Fahrzeug"
+    },
+    "actions": {
+      "add": "Neuen Kurier hinzufügen",
+      "edit": "Kurier bearbeiten"
     }
   },
+
   "dashboard": {
     "title": "Panel",
+    "overview": {
+      "title": "Übersicht"
+    },
+    "filter": {
+      "title": "Filter",
+      "date": {
+        "lastWeek": "Letzte Woche",
+        "lastMonth": "Letzter Monat",
+        "lastYear": "Letztes Jahr"
+      }
+    },
     "deliveryMap": {
       "title": "Lieferkarte"
     },
     "orders": {
       "title": "Bestellungen"
+    },
+    "revenue": {
+      "title": "Umsatz"
     },
     "totalSales": {
       "title": "Gesamtumsatz"
@@ -205,6 +296,9 @@
     },
     "trendingMenus": {
       "title": "Täglich beliebte Menüs"
+    },
+    "trendingProducts": {
+      "title": "Täglich Produkte"
     }
   },
   "enum": {
@@ -218,9 +312,13 @@
   },
   "orders": {
     "orders": "Bestellungen",
+    "order": "Bestellung",
     "titles": {
+      "deliveryMap": "Lieferkarte",
+      "deliveryDetails": "Lieferdetails",
+      "products": "Produkte",
       "list": "Bestellungen",
-      "show": "Bestellung Info"
+      "show": "Bestellung"
     },
     "fields": {
       "orderNumber": "Bestellungsnummer",
@@ -231,7 +329,12 @@
       "products": "Produkte",
       "createdAt": "Erstellt am",
       "amount": "Betrag",
-      "itemsAmount": "{{amount}} Produkt"
+      "itemsAmount": "{{amount}} Produkt",
+      "order": "Bestellung",
+      "customer": "Kunde",
+      "courier": "Kurier",
+      "phone": "Telefon",
+      "deliveryTime": "Lieferzeit"
     },
     "filter": {
       "title": "Filter",
@@ -251,8 +354,16 @@
         "label": "Benutzer",
         "placeholder": "Benutzer Suchen"
       },
+      "customer": {
+        "label": "Kunde",
+        "placeholder": "Kunde Suchen"
+      },
       "createdAt": {
         "label": "Erstellt am"
+      },
+      "orderNumber": {
+        "label": "Bestellungsnummer",
+        "placeholder": "Bestellungsnummer"
       },
       "submit": "Filter"
     },
@@ -273,7 +384,6 @@
   },
   "products": {
     "products": "Produkte",
-    "noProducts": "Keine Produkte",
     "titles": {
       "list": "Produkte",
       "create": "Produkt erstellen",
@@ -283,7 +393,11 @@
       "id": "ID",
       "name": "Titel",
       "description": "Bezeichnung",
-      "isActive": "Aktiv",
+      "isActive": {
+        "label": "Aktiv",
+        "true": "Aktiv",
+        "false": "Passiv"
+      },
       "price": "Price",
       "category": "Kategorie",
       "images": {
@@ -292,6 +406,42 @@
         "validation": "Fotoauflösung: 1080x1080px."
       },
       "createdAt": "Erstellt am"
+    },
+    "filter": {
+      "title": "Filter",
+      "allCategories": {
+        "label": "Alle Kategorien",
+        "placeholder": "Alle Kategorien"
+      },
+      "id": {
+        "label": "ID",
+        "placeholder": "ID suchen"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Name suchen"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "placeholder": "Beschreibung suchen"
+      },
+      "category": {
+        "label": "Kategorie",
+        "placeholder": "Kategorie suchen"
+      },
+      "createdAt": {
+        "label": "Erstellt am"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Verfügbar",
+        "false": "Nicht verfügbar"
+      }
+    },
+    "actions": {
+      "add": "Neues Produkt hinzufügen",
+      "edit": "Produkt bearbeiten"
     }
   },
   "reviews": {
@@ -317,11 +467,48 @@
     "fields": {
       "id": "Geschäfts-ID",
       "title": "Titel",
-      "isActive": "Aktiv",
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Aktiv",
+        "false": "Passiv"
+      },
       "createdAt": "Erstellt am",
       "address": "Adresse",
       "email": "Email",
       "gsm": "Telefon"
+    },
+    "filter": {
+      "id": {
+        "label": "ID",
+        "placeholder": "ID suchen"
+      },
+      "title": {
+        "label": "Titel",
+        "placeholder": "Titel suchen"
+      },
+      "email": {
+        "label": "E-Mail",
+        "placeholder": "E-Mail suchen"
+      },
+      "gsm": {
+        "label": "Gsm",
+        "placeholder": "Gsm suchen"
+      },
+      "search": {
+        "label": "Suche",
+        "placeholder": "Vorname, Nachname, Gsm, usw."
+      },
+      "createdAt": {
+        "label": "Erstellt am"
+      },
+      "isActive": {
+        "label": "Status",
+        "placeholder": "Status auswählen",
+        "true": "Offen",
+        "false": "Geschlossen"
+      },
+      "submit": "Filtern"
     },
     "buttons": {
       "editProducts": "Produkte bearbeiten",
@@ -333,14 +520,16 @@
     "storeProducts": "Produkte des Geschäftes",
     "tagFilterDescription": "Filter mit Etiketten",
     "all": "Alles",
-    "productSearch": "Produkt suchen"
+    "productSearch": "Produkt suchen",
+    "addNewStore": "Neues Geschäft hinzufügen"
   },
   "users": {
-    "users": "Benutzern",
+    "users": "Kunden",
+    "resourceLabel": "Kunden",
     "titles": {
-      "edit": "Benutzer bearbeiten",
-      "list": "Benutzern",
-      "show": "Benutzer Information"
+      "edit": "Kunden bearbeiten",
+      "list": "Kunden",
+      "show": "Kunden Information"
     },
     "fields": {
       "id": "ID",
@@ -350,21 +539,35 @@
       },
       "firstName": "Vorname",
       "lastName": "Nachname",
+      "name": "Name",
       "gender": {
         "label": "Geschlecht",
         "Male": "Mann",
         "Female": "Frau"
       },
-      "gsm": "GSM",
-      "createdAt": "Erstellt",
+      "gsm": "GSM Num",
+      "createdAt": "Erstellt am",
+      "addresses": "Adressen",
       "isActive": {
-        "label": "Aktiv",
-        "true": "Ja",
-        "false": "Nein"
+        "label": "Status",
+        "true": "Aktiv",
+        "false": "Passiv"
       }
     },
     "filter": {
       "title": "Filter",
+      "id": {
+        "label": "ID",
+        "placeholder": "ID"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Name"
+      },
+      "gsm": {
+        "label": "GSM",
+        "placeholder": "GSM"
+      },
       "search": {
         "label": "Suche",
         "placeholder": "Vorname, Nachname, GSM..."
@@ -392,12 +595,10 @@
     }
   },
   "errors": {
+    "minLength": "Mindestens {{min}} Zeichen",
+    "maxLength": "Maximal {{max}} Zeichen",
     "required": {
-      "field": "'{{ field }}' ist erforderlich",
-      "common": "Dieses Feld wird benötigt",
-      "min": "Dieses Feld muss mindestens {{ min }} Zeichen lang sein",
-      "max": "Dieses Feld darf höchstens {{ max }} Zeichen lang sein",
-      "invalidMail": "Dieses Feld muss eine gültige E-Mail-Adresse sein"
+      "field": "Dieses Feld ist erforderlich."
     }
   }
 }
