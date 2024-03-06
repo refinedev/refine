@@ -46,7 +46,7 @@ Notice that we have the `refine` command defined in `"scripts"`. This command is
 
 ## Using the `add` Command
 
-The `add` command creates new resources and providers with a single command.
+The `add` command can be used to create a new resource or provider.
 
 Try to run the following command to create a new resource called `categories`:
 
@@ -58,7 +58,7 @@ This command will create files to an appropriate location in your project, popul
 
 <VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/add-resource.webm" playsInline loop autoPlay muted />
 
-We can use the `add` command to create a new provider, with available provider options including:
+We can use the `add provider` command to create new providers, with available provider options including:
 
 - Auth Provider to handle authentication,
 - Data Provider to handle data fetching and mutations,
@@ -71,7 +71,7 @@ We can use the `add` command to create a new provider, with available provider o
 Try to run the following command to create a new i18n Provider:
 
 ```sh
-npm run refine add i18n
+npm run refine add provider i18n
 ```
 
 By running this command, you'll be provided with the necessary files for the i18n provider and the provider definition will be added to your `<Refine />` component.

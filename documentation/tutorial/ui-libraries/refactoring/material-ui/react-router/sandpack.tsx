@@ -41,59 +41,62 @@ export const ListProducts = () => {
     ids: dataGridProps?.rows?.map((product) => product.category?.id) ?? [],
   });
 
-  const columns = React.useMemo<GridColDef<IProduct>[]>(() => [
-    {
+  const columns = React.useMemo<GridColDef<IProduct>[]>(
+    () => [
+      {
         field: "id",
         headerName: "ID",
         type: "number",
         width: 50,
-    },
-    {
+      },
+      {
         field: "name",
         headerName: "Name",
         minWidth: 400,
         flex: 1,
-    },
-    {
+      },
+      {
         field: "category.id",
         headerName: "Category",
         minWidth: 250,
         flex: 0.5,
         renderCell: function render({ row }) {
-            if (isLoading) {
-                return "Loading...";
-            }
+          if (isLoading) {
+            return "Loading...";
+          }
 
-            return categories?.data?.find(
-                (category) => category.id == row.category.id
-            )?.title;
+          return categories?.data?.find(
+            (category) => category.id == row.category.id,
+          )?.title;
         },
-    },
-    {
+      },
+      {
         field: "material",
         headerName: "Material",
         minWidth: 120,
         flex: 0.3,
-    },
-    {
+      },
+      {
         field: "price",
         headerName: "Price",
         minWidth: 120,
         flex: 0.3,
-    },
-    {
+      },
+      {
         field: "actions",
         headerName: "Actions",
         renderCell: function render({ row }) {
-            return (
-                <div>
-                    <EditButton hideText recordItemId={row.id} />
-                    <ShowButton hideText recordItemId={row.id} />
-                </div>
-            );
+          return (
+            <div>
+              <EditButton hideText recordItemId={row.id} />
+              <ShowButton hideText recordItemId={row.id} />
+            </div>
+          );
         },
-    },
-  ], [categories, isLoading]);
+      },
+    ],
+    [categories, isLoading],
+  );
 
   return (
     <div>
@@ -104,16 +107,16 @@ export const ListProducts = () => {
 };
 
 interface IProduct {
-    id: number;
-    name: string;
-    material: string;
-    price: string;
-    category: ICategory;
+  id: number;
+  name: string;
+  material: string;
+  price: string;
+  category: ICategory;
 }
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 `.trim();
 
@@ -122,7 +125,11 @@ import React from "react";
 import { useSelect } from "@refinedev/core";
 import { useDataGrid, EditButton, ShowButton } from "@refinedev/mui";
 
-import { DataGrid, GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridValueFormatterParams,
+} from "@mui/x-data-grid";
 
 export const ListProducts = () => {
   const { dataGridProps } = useDataGrid<IProduct>({
@@ -130,25 +137,29 @@ export const ListProducts = () => {
     syncWithLocation: true,
   });
 
-  const { options: categories, queryResult: { isLoading } } = useSelect<ICategory>({
+  const {
+    options: categories,
+    queryResult: { isLoading },
+  } = useSelect<ICategory>({
     resource: "categories",
     pagination: false,
   });
 
-  const columns = React.useMemo<GridColDef<IProduct>[]>(() => [
-    {
+  const columns = React.useMemo<GridColDef<IProduct>[]>(
+    () => [
+      {
         field: "id",
         headerName: "ID",
         type: "number",
         width: 50,
-    },
-    {
+      },
+      {
         field: "name",
         headerName: "Name",
         minWidth: 400,
         flex: 1,
-    },
-    {
+      },
+      {
         field: "category.id",
         headerName: "Category",
         minWidth: 250,
@@ -157,40 +168,42 @@ export const ListProducts = () => {
         valueOptions: categories,
         valueFormatter: (params) => params.value,
         renderCell: function render({ row }) {
-            if (isLoading) {
-                return "Loading...";
-            }
+          if (isLoading) {
+            return "Loading...";
+          }
 
-            return categories?.find(
-                (category) => category.value == row.category.id
-            )?.label;
+          return categories?.find(
+            (category) => category.value == row.category.id,
+          )?.label;
         },
-    },
-    {
+      },
+      {
         field: "material",
         headerName: "Material",
         minWidth: 120,
         flex: 0.3,
-    },
-    {
+      },
+      {
         field: "price",
         headerName: "Price",
         minWidth: 120,
         flex: 0.3,
-    },
-    {
+      },
+      {
         field: "actions",
         headerName: "Actions",
         renderCell: function render({ row }) {
-            return (
-                <div>
-                    <EditButton hideText recordItemId={row.id} />
-                    <ShowButton hideText recordItemId={row.id} />
-                </div>
-            );
+          return (
+            <div>
+              <EditButton hideText recordItemId={row.id} />
+              <ShowButton hideText recordItemId={row.id} />
+            </div>
+          );
         },
-    },
-  ], [categories, isLoading]);
+      },
+    ],
+    [categories, isLoading],
+  );
 
   return (
     <div>
@@ -201,16 +214,16 @@ export const ListProducts = () => {
 };
 
 interface IProduct {
-    id: number;
-    name: string;
-    material: string;
-    price: string;
-    category: ICategory;
+  id: number;
+  name: string;
+  material: string;
+  price: string;
+  category: ICategory;
 }
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 `.trim();
 
@@ -295,7 +308,7 @@ export const CreateProduct = () => {
     register,
     control,
     saveButtonProps,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
@@ -304,64 +317,68 @@ export const CreateProduct = () => {
 
   return (
     <Box
-        component="form"
-        sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
+      component="form"
+      sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
     >
-        <TextField
-            {...register("name")}
-            label="Name"
-            error={!!errors.name}
-            helperText={errors.name?.message}
-        />
-        <TextField
-            {...register("description")}
-            multiline
-            label="Description"
-            error={!!errors.description}
-            helperText={errors.description?.message}
-        />
-        <TextField
-            {...register("material")}
-            label="Material"
-            error={!!errors.material}
-            helperText={errors.material?.message}
-        />
-        <Controller
-            control={control}
-            name="category"
-            defaultValue={null}
-            render={({ field }) => (
-                <Autocomplete
-                    id="category"
-                    {...autocompleteProps}
-                    {...field}
-                    onChange={(_, value) => field.onChange(value)}
-                    getOptionLabel={(item) => {
-                        return autocompleteProps?.options?.find((option) => option?.id == item?.id)?.title ?? "";
-                    }}
-                    isOptionEqualToValue={(option, value) => {
-                        return value === undefined || option?.id == (value?.id ?? value)
-                    }}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Category"
-                            variant="outlined"
-                            margin="normal"
-                            error={!!errors.category}
-                            helperText={errors.category?.message}
-                        />
-                    )}
-                />
+      <TextField
+        {...register("name")}
+        label="Name"
+        error={!!errors.name}
+        helperText={errors.name?.message}
+      />
+      <TextField
+        {...register("description")}
+        multiline
+        label="Description"
+        error={!!errors.description}
+        helperText={errors.description?.message}
+      />
+      <TextField
+        {...register("material")}
+        label="Material"
+        error={!!errors.material}
+        helperText={errors.material?.message}
+      />
+      <Controller
+        control={control}
+        name="category"
+        defaultValue={null}
+        render={({ field }) => (
+          <Autocomplete
+            id="category"
+            {...autocompleteProps}
+            {...field}
+            onChange={(_, value) => field.onChange(value)}
+            getOptionLabel={(item) => {
+              return (
+                autocompleteProps?.options?.find(
+                  (option) => option?.id == item?.id,
+                )?.title ?? ""
+              );
+            }}
+            isOptionEqualToValue={(option, value) => {
+              return value === undefined || option?.id == (value?.id ?? value);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Category"
+                variant="outlined"
+                margin="normal"
+                error={!!errors.category}
+                helperText={errors.category?.message}
+              />
             )}
-        />
-        <TextField
-            {...register("price")}
-            label="Price"
-            error={!!errors.price}
-            helperText={errors.price?.message}
-        />
-        <SaveButton {...saveButtonProps} />
+          />
+        )}
+      />
+      <TextField
+        {...register("price")}
+        label="Price"
+        error={!!errors.price}
+        helperText={errors.price?.message}
+      />
+      <SaveButton {...saveButtonProps} />
     </Box>
   );
 };
@@ -383,7 +400,7 @@ export const EditProduct = () => {
     control,
     saveButtonProps,
     refineCore: { queryResult },
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
@@ -393,65 +410,69 @@ export const EditProduct = () => {
 
   return (
     <Box
-        component="form"
-        sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
-        autoComplete="off"
+      component="form"
+      sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
+      autoComplete="off"
     >
-        <TextField
-            {...register("name")}
-            label="Name"
-            error={!!errors.name}
-            helperText={errors.name?.message}
-        />
-        <TextField
-            {...register("description")}
-            multiline
-            label="Description"
-            error={!!errors.description}
-            helperText={errors.description?.message}
-        />
-        <TextField
-            {...register("material")}
-            label="Material"
-            error={!!errors.material}
-            helperText={errors.material?.message}
-        />
-        <Controller
-            control={control}
-            name="category"
-            defaultValue={null}
-            render={({ field }) => (
-                <Autocomplete
-                    id="category"
-                    {...autocompleteProps}
-                    {...field}
-                    onChange={(_, value) => field.onChange(value)}
-                    getOptionLabel={(item) => {
-                        return autocompleteProps?.options?.find((option) => option?.id == item?.id)?.title ?? "";
-                    }}
-                    isOptionEqualToValue={(option, value) => {
-                        return value === undefined || option?.id == (value?.id ?? value)
-                    }}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Category"
-                            variant="outlined"
-                            margin="normal"
-                            error={!!errors.category}
-                            helperText={errors.category?.message}
-                        />
-                    )}
-                />
+      <TextField
+        {...register("name")}
+        label="Name"
+        error={!!errors.name}
+        helperText={errors.name?.message}
+      />
+      <TextField
+        {...register("description")}
+        multiline
+        label="Description"
+        error={!!errors.description}
+        helperText={errors.description?.message}
+      />
+      <TextField
+        {...register("material")}
+        label="Material"
+        error={!!errors.material}
+        helperText={errors.material?.message}
+      />
+      <Controller
+        control={control}
+        name="category"
+        defaultValue={null}
+        render={({ field }) => (
+          <Autocomplete
+            id="category"
+            {...autocompleteProps}
+            {...field}
+            onChange={(_, value) => field.onChange(value)}
+            getOptionLabel={(item) => {
+              return (
+                autocompleteProps?.options?.find(
+                  (option) => option?.id == item?.id,
+                )?.title ?? ""
+              );
+            }}
+            isOptionEqualToValue={(option, value) => {
+              return value === undefined || option?.id == (value?.id ?? value);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Category"
+                variant="outlined"
+                margin="normal"
+                error={!!errors.category}
+                helperText={errors.category?.message}
+              />
             )}
-        />
-        <TextField
-            {...register("price")}
-            label="Price"
-            error={!!errors.price}
-            helperText={errors.price?.message}
-        />
-        <SaveButton {...saveButtonProps} />
+          />
+        )}
+      />
+      <TextField
+        {...register("price")}
+        label="Price"
+        error={!!errors.price}
+        helperText={errors.price?.message}
+      />
+      <SaveButton {...saveButtonProps} />
     </Box>
   );
 };

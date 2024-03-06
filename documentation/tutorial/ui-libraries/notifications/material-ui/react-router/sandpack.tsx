@@ -30,11 +30,11 @@ import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import {
-    RefineThemes,
-    ThemedLayoutV2,
-    ThemedTitleV2,
-    RefineSnackbarProvider,
-    useNotificationProvider
+  RefineThemes,
+  ThemedLayoutV2,
+  ThemedTitleV2,
+  RefineSnackbarProvider,
+  useNotificationProvider,
 } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -58,64 +58,61 @@ export default function App(): JSX.Element {
         <CssBaseline />
         <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
         <RefineSnackbarProvider>
-            <Refine
+          <Refine
             dataProvider={dataProvider}
             authProvider={authProvider}
             routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
             resources={[
-                {
+              {
                 name: "protected-products",
                 list: "/products",
                 show: "/products/:id",
                 edit: "/products/:id/edit",
                 create: "/products/create",
                 meta: { label: "Products" },
-                },
+              },
             ]}
-            >
+          >
             <Routes>
-                <Route
+              <Route
                 element={
-                    <Authenticated
+                  <Authenticated
                     key="authenticated-routes"
                     redirectOnFail="/login"
-                    >
+                  >
                     <ThemedLayoutV2
-                        Title={(props) => (
-                        <ThemedTitleV2
-                            {...props}
-                            text="Awesome Project"
-                        />
-                        )}
+                      Title={(props) => (
+                        <ThemedTitleV2 {...props} text="Awesome Project" />
+                      )}
                     >
-                        <Outlet />
+                      <Outlet />
                     </ThemedLayoutV2>
-                    </Authenticated>
+                  </Authenticated>
                 }
-                >
+              >
                 <Route
-                    index
-                    element={<NavigateToResource resource="protected-products" />}
+                  index
+                  element={<NavigateToResource resource="protected-products" />}
                 />
                 <Route path="/products">
-                    <Route index element={<ListProducts />} />
-                    <Route path=":id" element={<ShowProduct />} />
-                    <Route path=":id/edit" element={<EditProduct />} />
-                    <Route path="create" element={<CreateProduct />} />
+                  <Route index element={<ListProducts />} />
+                  <Route path=":id" element={<ShowProduct />} />
+                  <Route path=":id/edit" element={<EditProduct />} />
+                  <Route path="create" element={<CreateProduct />} />
                 </Route>
-                </Route>
-                <Route
+              </Route>
+              <Route
                 element={
-                    <Authenticated key="auth-pages" fallback={<Outlet />}>
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
                     <NavigateToResource resource="protected-products" />
-                    </Authenticated>
+                  </Authenticated>
                 }
-                >
+              >
                 <Route path="/login" element={<Login />} />
-                </Route>
+              </Route>
             </Routes>
-            </Refine>
+          </Refine>
         </RefineSnackbarProvider>
       </ThemeProvider>
     </BrowserRouter>

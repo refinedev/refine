@@ -75,10 +75,7 @@ export default function App(): JSX.Element {
                   >
                     <ThemedLayoutV2
                       Title={(props) => (
-                        <ThemedTitleV2
-                          {...props}
-                          text="Awesome Project"
-                        />
+                        <ThemedTitleV2 {...props} text="Awesome Project" />
                       )}
                     >
                       <Outlet />

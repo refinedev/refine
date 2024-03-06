@@ -35,7 +35,7 @@ body {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
 }
-  
+
 h1 {
   font-size: 1.5rem;
 }
