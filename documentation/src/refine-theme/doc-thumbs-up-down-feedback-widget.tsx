@@ -5,8 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useColorMode } from "@docusaurus/theme-common";
 import { ThumbsUpIcon } from "./icons/thumbs-up";
 import { ThumbsDownIcon } from "./icons/thumbs-down";
-
-type ThumbValue = 1 | 2;
+import {
+  SurveyOption,
+  SurveyTypeEnum,
+  useRefineCloudSurveyAPI,
+} from "../hooks/use-refine-cloud-survey-api";
+import { useLocation } from "@docusaurus/router";
 
 type Props = {
   id: string;
@@ -15,30 +19,59 @@ type Props = {
 export const DocThumbsUpDownFeedbackWidget = (
   props: PropsWithChildren<Props>,
 ) => {
+  const location = useLocation();
+
   const [feedbackText, setFeedbackText] = useState("");
-  const [selectedThumb, setSelectedThumb] = useState<ThumbValue | null>(null);
+  const [selectedThumb, setSelectedThumb] = useState<SurveyOption | null>(null);
   const [resultViewVisible, setResultViewVisible] = useState(false);
 
   const isFeedbackTextIsVisible = selectedThumb !== null;
   const isPopoverVisible = isFeedbackTextIsVisible || resultViewVisible;
 
-  const onThumbsUpDownClick = (value: ThumbValue) => {
+  const { survey, setSurvey, createSurvey, updateSurvey } =
+    useRefineCloudSurveyAPI({
+      type: SurveyTypeEnum.THUMBS,
+    });
+
+  const onThumbsUpDownClick = async (value: SurveyOption) => {
     setSelectedThumb((prev) => (prev === value ? null : value));
+
+    if (survey) {
+      await updateSurvey({
+        surveyId: survey.id,
+        body: {
+          response: value,
+        },
+      });
+    } else {
+      await createSurvey({
+        body: {
+          response: value,
+          entityId: location.pathname,
+          metaData: {
+            sectionId: props.id,
+          },
+        },
+      });
+    }
   };
 
-  const onFeedbackTextSubmit = () => {
-    const value = feedbackText.trim();
-    if (!value) return;
+  const onFeedbackTextSubmit = async () => {
+    const text = feedbackText.trim();
+    if (!text) return;
 
-    // Send feedback to the server
-    alert(props.id);
+    await updateSurvey({
+      surveyId: survey.id,
+      body: { response: selectedThumb, responseText: text },
+    });
 
     setResultViewVisible(true);
     setTimeout(() => {
+      setSurvey(null);
       setSelectedThumb(null);
       setFeedbackText("");
       setResultViewVisible(false);
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -72,7 +105,7 @@ export const DocThumbsUpDownFeedbackWidget = (
         <div className={clsx("flex", "items-center", "gap-1")}>
           <button
             type="button"
-            onClick={() => onThumbsUpDownClick(1)}
+            onClick={() => onThumbsUpDownClick(THUMBS_VALUES.UP)}
             className={clsx(
               "w-8 h-8",
               "flex items-center justify-center",
@@ -87,7 +120,7 @@ export const DocThumbsUpDownFeedbackWidget = (
           </button>
           <button
             type="button"
-            onClick={() => onThumbsUpDownClick(2)}
+            onClick={() => onThumbsUpDownClick(THUMBS_VALUES.DOWN)}
             className={clsx(
               "w-8 h-8",
               "flex items-center justify-center",
@@ -259,4 +292,9 @@ const PopoverPointer = (props: SVGProps<SVGSVGElement>) => {
       </defs>
     </svg>
   );
+};
+
+const THUMBS_VALUES: Record<"UP" | "DOWN", SurveyOption> = {
+  UP: 1,
+  DOWN: 2,
 };
