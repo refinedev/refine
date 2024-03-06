@@ -1,6 +1,6 @@
 import { ThemedLayoutV2 } from "@refinedev/antd";
 import { Outlet } from "@remix-run/react";
-import { LoaderArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
 import { authProvider } from "~/authProvider";
 
@@ -18,7 +18,7 @@ export default function AuthenticatedLayout() {
  * If not, we're redirecting the user to the login page.
  * This is applied for all routes that are nested under this layout (_protected).
  */
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const { authenticated, redirectTo } = await authProvider.check(request);
 
   if (!authenticated) {

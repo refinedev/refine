@@ -1,6 +1,6 @@
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import { json, LoaderArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Form, Input, Select } from "antd";
 
@@ -79,7 +79,7 @@ const PostEdit: React.FC = () => {
 
 export default PostEdit;
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const data = await dataProvider(API_URL).getOne<IPost>({
     resource: "posts",
     id: params?.id as string,
