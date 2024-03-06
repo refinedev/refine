@@ -10,7 +10,9 @@ export const DashboardPage: React.FC = () => {
     name: string;
     avatar: string;
   }>();
-  const permissions = usePermissions<string[]>();
+  const permissions = usePermissions<string[], { permissions: string[] }>({
+    params: { permissions: ["admin"] },
+  });
 
   return (
     <Row gutter={20}>

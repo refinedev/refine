@@ -576,14 +576,18 @@ const mockUsers = [
 ];
 
 const authProvider: AuthProvider = {
-  // ---
-  getPermissions: () => {
-    const user = localStorage.getItem("auth");
+  // You can also pass a parameter but it is optional
+  getPermissions: (params) => {
+    if (params) {
+      // do some logic or make a request to server
+    } else {
+      const user = localStorage.getItem("auth");
 
-    if (user) {
-      const { roles } = JSON.parse(user);
+      if (user) {
+        const { roles } = JSON.parse(user);
 
-      return roles;
+        return roles;
+      }
     }
 
     return null;
