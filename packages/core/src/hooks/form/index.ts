@@ -19,6 +19,7 @@ import {
 
 import {
   redirectPage,
+  asyncDebounce,
   deferExecution,
   pickNotDeprecated,
 } from "@definitions/helpers";
@@ -294,10 +295,11 @@ export const useForm = <
     return submissionPromise;
   };
 
-  const submitAutoSave = debounce(
-    (values: TVariables) => submit(values, true).catch(() => {}),
+  const submitAutoSave = asyncDebounce(
+    (values: TVariables) => submit(values, true),
     props.autoSave?.debounce || 1000,
-  ) as typeof submit;
+    "Cancelled by debounce",
+  );
 
   const overtime = {
     elapsedTime,
