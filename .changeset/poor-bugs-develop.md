@@ -2,7 +2,7 @@
 "@refinedev/antd": minor
 ---
 
-feat: allow passing function to `useCheckBoxGroup`, `useRadioGroup` and `useSelect` hooks.
+feat: allow passing function to `useCheckboxGroup`, `useRadioGroup` and `useSelect` hooks.
 
 ```tsx
 const { options } = useSelect({
@@ -12,7 +12,7 @@ const { options } = useSelect({
 ```
 
 ```tsx
-const { options } = useCheckBoxGroup({
+const { options } = useCheckboxGroup({
   optionLabel: (item) => `${item.firstName} ${item.lastName}`,
   optionValue: (item) => item.id,
 });
