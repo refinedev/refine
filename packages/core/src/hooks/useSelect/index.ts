@@ -35,19 +35,24 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    */
   resource: string;
   /**
-   * Set the option's value
+   * Set the option's label value
    * @default `"title"`
    */
   optionLabel?: keyof TData extends string
     ? keyof TData
     : never | ((item: TData) => string);
   /**
-   * Set the option's label value
+   * Set the option's value
    * @default `"id"`
    */
   optionValue?: keyof TData extends string
     ? keyof TData
     : never | ((item: TData) => string);
+  /**
+   * Set search label
+   * @default `"title"``
+   */
+  searchLabel?: keyof TData extends string ? keyof TData : never;
   /**
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
@@ -183,6 +188,7 @@ export const useSelect = <
     filters = [],
     optionLabel = "title",
     optionValue = "id",
+    searchLabel = typeof optionLabel === "string" ? optionLabel : "title",
     debounce: debounceValue = 300,
     successNotification,
     errorNotification,
@@ -330,7 +336,7 @@ export const useSelect = <
 
     setSearch([
       {
-        field: optionLabel as string,
+        field: searchLabel,
         operator: "contains",
         value,
       },

@@ -1,4 +1,5 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
 import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
@@ -784,6 +785,70 @@ describe("useSelect Hook", () => {
           pageSize: 10,
         },
       });
+    });
+  });
+
+  describe("searchLabel", () => {
+    const cases = [
+      {
+        name: "when optionLabel is string",
+        optionLabel: "name",
+        expectedField: "name",
+        searchLabel: undefined,
+      },
+      {
+        name: "when optionLabel is function",
+        optionLabel: (_item: any) => "no",
+        expectedField: "title",
+        searchLabel: undefined,
+      },
+      {
+        name: "when searchLabel is provided",
+        optionLabel: "no",
+        expectedField: "my-field",
+        searchLabel: "my-field",
+      },
+    ];
+
+    it.each(cases)("$name", async (params: any) => {
+      const getListMock = jest.fn(async () => ({ data: [], total: 0 }));
+
+      const { result, waitForNextUpdate } = renderHook(
+        () =>
+          useSelect({
+            resource: "posts",
+            optionLabel: params.optionLabel,
+            searchLabel: params.searchLabel,
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getList: getListMock,
+              },
+            },
+          }),
+        },
+      );
+
+      result.current.onSearch("John");
+
+      await waitForNextUpdate();
+      await waitForNextUpdate();
+
+      expect(getListMock).toHaveBeenCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          filters: [
+            {
+              field: params.expectedField,
+              operator: "contains",
+              value: "John",
+            },
+          ],
+        }),
+      );
     });
   });
 
