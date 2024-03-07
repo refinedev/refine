@@ -56,7 +56,7 @@ export type UseModalFormReturnType<
     TResponse,
     TResponseError
   >,
-  "saveButtonProps" | "deleteButtonProps" | "submit"
+  "saveButtonProps" | "deleteButtonProps"
 > &
   useModalFormFromSFReturnType<TResponse, TVariables>;
 
