@@ -1,4 +1,4 @@
-import { json, LoaderArgs, MetaFunction } from "@remix-run/node";
+import { json, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -126,7 +126,7 @@ export function links() {
   return [{ rel: "stylesheet", href: resetStyle }];
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const profile = await authenticator.isAuthenticated(request);
   const to = new URL(request.url).searchParams.get("to");
   return json({ profile, to });

@@ -1,6 +1,6 @@
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
-import { LoaderArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
 const PostCreate: React.FC = () => {
   const {
@@ -60,6 +60,6 @@ const PostCreate: React.FC = () => {
 
 export default PostCreate;
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   return {};
 }

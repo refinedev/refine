@@ -3,7 +3,7 @@ import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { useNavigation } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 import { parseTableParams } from "@refinedev/remix-router";
 
@@ -190,7 +190,7 @@ const PostList: React.FC = () => {
 
 export default PostList;
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   const { pagination, filters, sorters } = parseTableParams(url.search);

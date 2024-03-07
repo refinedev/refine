@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-table",
-  "version": "5.6.6",
+  "version": "5.6.7",
   "private": false,
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
   "repository": {
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.47.1",
+    "@refinedev/core": "^4.48.0",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",

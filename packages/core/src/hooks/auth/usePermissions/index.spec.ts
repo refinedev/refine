@@ -66,6 +66,34 @@ describe("usePermissions Hook", () => {
     result.current.refetch();
     expect(result.current.data).toBeUndefined();
   });
+
+  it("should accept params", async () => {
+    const mockGetPermissions = jest.fn(() => Promise.resolve(["admin"]));
+    const { result } = renderHook((props) => usePermissions({ ...props }), {
+      initialProps: {
+        params: { currentRole: "admin" },
+        v3LegacyAuthProviderCompatible: false,
+      },
+      wrapper: TestWrapper({
+        authProvider: {
+          login: () => Promise.resolve({ success: true }),
+          check: () => Promise.resolve({ authenticated: true }),
+          onError: () => Promise.resolve({}),
+          logout: () => Promise.resolve({ success: true }),
+          getPermissions: mockGetPermissions,
+        },
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
+    });
+
+    expect(mockGetPermissions).toHaveBeenCalledWith({ currentRole: "admin" });
+    expect(result.current.data).toEqual(["admin"]);
+  });
 });
 
 // NOTE : Will be removed in v5
@@ -145,6 +173,33 @@ describe("v3LegacyAuthProviderCompatible usePermissions Hook", () => {
 
     result.current.refetch();
     expect(result.current.data).toBeUndefined();
+  });
+
+  it("should accept params with v3LegacyAuthProviderCompatible", async () => {
+    const legacyGetPermissionMock = jest.fn(() => Promise.resolve(["admin"]));
+    const { result } = renderHook((props) => usePermissions({ ...props }), {
+      initialProps: {
+        params: { currentRole: "admin" },
+        v3LegacyAuthProviderCompatible: true,
+      },
+      wrapper: TestWrapper({
+        legacyAuthProvider: {
+          login: () => Promise.resolve(),
+          checkAuth: () => Promise.resolve(),
+          checkError: () => Promise.resolve(),
+          getPermissions: legacyGetPermissionMock,
+        },
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.isLoading).toBeFalsy();
+    });
+
+    expect(legacyGetPermissionMock).toHaveBeenCalledWith({
+      currentRole: "admin",
+    });
+    expect(result.current.data).toEqual(["admin"]);
   });
 });
 

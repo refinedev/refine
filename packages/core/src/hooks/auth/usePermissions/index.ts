@@ -10,19 +10,31 @@ import { useKeys } from "@hooks/useKeys";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { PermissionResponse } from "../../../interfaces";
 
-export type UsePermissionsLegacyProps<TData = any> = {
+export type UsePermissionsLegacyProps<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+> = {
   v3LegacyAuthProviderCompatible: true;
   options?: UseQueryOptions<TData>;
+  params?: TParams;
 };
 
-export type UsePermissionsProps<TData = PermissionResponse> = {
+export type UsePermissionsProps<
+  TData = PermissionResponse,
+  TParams extends Record<string, any> = Record<string, any>,
+> = {
   v3LegacyAuthProviderCompatible?: false;
   options?: UseQueryOptions<TData>;
+  params?: TParams;
 };
 
-export type UsePermissionsCombinedProps<TData = any> = {
+export type UsePermissionsCombinedProps<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+> = {
   v3LegacyAuthProviderCompatible: boolean;
   options?: UseQueryOptions<TData> | UseQueryOptions<PermissionResponse>;
+  params?: TParams;
 };
 
 export type UsePermissionsLegacyReturnType<TData = any> = UseQueryResult<
@@ -37,16 +49,23 @@ export type UsePermissionsCombinedReturnType<TData = any> =
   | UseQueryResult<TData, unknown>
   | UseQueryResult<PermissionResponse, unknown>;
 
-export function usePermissions<TData = any>(
-  props: UsePermissionsLegacyProps<TData>,
+export function usePermissions<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+>(
+  props: UsePermissionsLegacyProps<TData, TParams>,
 ): UsePermissionsLegacyReturnType<TData>;
 
-export function usePermissions<TData = PermissionResponse>(
-  props?: UsePermissionsProps<TData>,
-): UsePermissionsReturnType<TData>;
+export function usePermissions<
+  TData = PermissionResponse,
+  TParams extends Record<string, any> = Record<string, any>,
+>(props?: UsePermissionsProps<TData, TParams>): UsePermissionsReturnType<TData>;
 
-export function usePermissions<TData = any>(
-  props?: UsePermissionsCombinedProps<TData>,
+export function usePermissions<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+>(
+  props?: UsePermissionsCombinedProps<TData, TParams>,
 ): UsePermissionsCombinedReturnType<TData>;
 
 /**
@@ -56,11 +75,19 @@ export function usePermissions<TData = any>(
  *
  * @typeParam TData - Result data of the query
  *
+ * @typeParam TParams - Params will be passed to the `getPermissions` method of {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`}.
+ *
  */
-export function usePermissions<TData = any>({
+export function usePermissions<
+  TData = any,
+  TParams extends Record<string, any> = Record<string, any>,
+>({
   v3LegacyAuthProviderCompatible = false,
   options,
-}: UsePermissionsProps<TData> | UsePermissionsLegacyProps<TData> = {}):
+  params,
+}:
+  | UsePermissionsProps<TData, TParams>
+  | UsePermissionsLegacyProps<TData, TParams> = {}):
   | UsePermissionsReturnType
   | UsePermissionsLegacyReturnType<TData> {
   const { getPermissions: legacyGetPermission } = useLegacyAuthContext();
@@ -70,9 +97,11 @@ export function usePermissions<TData = any>({
   const queryResponse = useQuery<TData>({
     queryKey: keys().auth().action("permissions").get(preferLegacyKeys),
     // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-    queryFn:
-      (getPermissions as (params?: unknown) => Promise<TData>) ??
-      (() => Promise.resolve(undefined)),
+    queryFn: (getPermissions
+      ? () => getPermissions(params)
+      : () => Promise.resolve(undefined)) as (
+      params?: unknown,
+    ) => Promise<TData>,
     enabled: !v3LegacyAuthProviderCompatible && !!getPermissions,
     ...(v3LegacyAuthProviderCompatible ? {} : options),
     meta: {
@@ -87,7 +116,11 @@ export function usePermissions<TData = any>({
       "v3LegacyAuthProviderCompatible",
     ],
     // Enabled check for `getPermissions` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-    queryFn: legacyGetPermission ?? (() => Promise.resolve(undefined)),
+    queryFn: (legacyGetPermission
+      ? () => legacyGetPermission(params)
+      : () => Promise.resolve(undefined)) as (
+      params?: unknown,
+    ) => Promise<TData>,
     enabled: v3LegacyAuthProviderCompatible && !!legacyGetPermission,
     ...(v3LegacyAuthProviderCompatible ? options : {}),
     meta: {
