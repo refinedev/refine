@@ -1,4 +1,9 @@
-import React, { PropsWithChildren, SVGProps, useState } from "react";
+import React, {
+  CSSProperties,
+  PropsWithChildren,
+  SVGProps,
+  useState,
+} from "react";
 import clsx from "clsx";
 import {
   autoUpdate,
@@ -35,10 +40,9 @@ export const DocThumbsUpDownFeedbackWidget = (
 
   const isPopoverVisible = isFeedbackTextIsVisible || resultViewVisible;
 
-  const { survey, setSurvey, createSurvey, updateSurvey } =
-    useRefineCloudSurveyAPI({
-      type: SurveyTypeEnum.THUMBS,
-    });
+  const { survey, createSurvey, updateSurvey } = useRefineCloudSurveyAPI({
+    type: SurveyTypeEnum.THUMBS,
+  });
 
   const onThumbsUpDownClick = async (value: SurveyOption) => {
     setSelectedThumb(value);
@@ -75,11 +79,8 @@ export const DocThumbsUpDownFeedbackWidget = (
 
     setResultViewVisible(true);
     setTimeout(() => {
-      setSurvey(null);
-      setSelectedThumb(null);
-      setFeedbackText("");
-      setResultViewVisible(false);
       setIsFeedbackTextIsVisible(false);
+      setResultViewVisible(false);
     }, 2000);
   };
 
@@ -90,7 +91,7 @@ export const DocThumbsUpDownFeedbackWidget = (
         className={clsx(
           "relative",
           "z-popover",
-          "flex",
+          "hidden md:flex",
           "items-center",
           "gap-5",
           "w-max h-[40px]",
@@ -111,7 +112,9 @@ export const DocThumbsUpDownFeedbackWidget = (
         >
           Was this helpful?
         </div>
-        <div className={clsx("flex", "items-center", "gap-1")}>
+        <div
+          className={clsx("flex", "items-center", "gap-1", "widget-actions")}
+        >
           <button
             type="button"
             onClick={() => onThumbsUpDownClick(THUMBS_VALUES.UP)}
@@ -153,16 +156,10 @@ export const DocThumbsUpDownFeedbackWidget = (
               setResultViewVisible(false);
             }
           }}
+          arrowStyle={{
+            right: selectedThumb === 1 ? "150px" : "115px",
+          }}
         >
-          <PopoverPointer
-            style={{
-              position: "absolute",
-              top: "-10px",
-              right: selectedThumb === 1 ? "150px" : "115px",
-              transition: "right 0.2s ease-in-out",
-              willChange: "right",
-            }}
-          />
           {!resultViewVisible && (
             <form
               className={clsx("flex flex-col", "p-2")}
@@ -225,22 +222,45 @@ export const DocThumbsUpDownFeedbackWidget = (
 const FeedbackTextPopover = (
   props: PropsWithChildren<{
     isOpen: boolean;
+    arrowStyle?: CSSProperties;
     onOpenChange?: (isOpen: boolean) => void;
   }>,
 ) => {
+  const [flipped, setFlipped] = useState(false);
+
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom-start",
     open: props.isOpen,
     onOpenChange: props.onOpenChange,
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(52),
-      flip({
-        fallbackAxisSideDirection: "start",
+      offset(({ middlewareData }) => {
+        if (middlewareData?.flip) {
+          return {
+            mainAxis: 12,
+          };
+        }
+        return {
+          mainAxis: 52,
+        };
+      }),
+      flip(({ placement }) => {
+        if (placement.includes("bottom")) {
+          setFlipped(false);
+        }
+
+        if (placement.includes("top")) {
+          setFlipped(true);
+        }
+
+        return {};
       }),
     ],
   });
-  const dismiss = useDismiss(context);
+  const dismiss = useDismiss(context, {
+    outsidePress: (event) =>
+      !(event.target as HTMLElement)?.closest?.(".widget-actions"),
+  });
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
   return (
@@ -272,6 +292,17 @@ const FeedbackTextPopover = (
             )}
           >
             {props.children}
+            <PopoverPointer
+              style={{
+                position: "absolute",
+                top: flipped ? "unset" : "-10px",
+                bottom: flipped ? "-10px" : "unset",
+                transform: flipped ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "right 0.2s ease-in-out",
+                willChange: "right",
+                ...props.arrowStyle,
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
