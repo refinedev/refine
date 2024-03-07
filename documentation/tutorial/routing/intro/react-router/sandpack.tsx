@@ -43,14 +43,11 @@ export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Refine
-          dataProvider={dataProvider}
-          authProvider={authProvider}
-          routerProvider={routerProvider}
+        dataProvider={dataProvider}
+        authProvider={authProvider}
+        routerProvider={routerProvider}
       >
-        <Authenticated
-          key="protected"
-          fallback={<Login />}
-        >
+        <Authenticated key="protected" fallback={<Login />}>
           <Header />
           {/* <ShowProduct /> */}
           {/* <EditProduct /> */}

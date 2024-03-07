@@ -3,7 +3,7 @@ import { Fireworks } from "fireworks-js";
 
 import { TutorialSandpack } from "@site/src/refine-theme/tutorial-sandpack";
 
-import { finalFiles as initialFiles } from "@site/tutorial/next-steps/devtools/react-router/sandpack";
+import { finalFiles as initialFiles } from "@site/tutorial/next-steps/devtools/react-router/ant-design/sandpack";
 import { dependencies } from "@site/tutorial/next-steps/intro/ant-design/sandpack";
 
 export const Sandpack = ({ children }: { children: React.ReactNode }) => {
