@@ -201,7 +201,7 @@ export const useForm = <
     };
   }, [props.autoSave?.invalidateOnUnmount, autosaved]);
 
-  const submit = async (values: TVariables, isAutosave = false) => {
+  const onFinish = async (values: TVariables, isAutosave = false) => {
     const isPessimistic = mutationMode === "pessimistic";
 
     // Disable warning trigger when the form is being submitted
@@ -295,8 +295,8 @@ export const useForm = <
     return submissionPromise;
   };
 
-  const submitAutoSave = asyncDebounce(
-    (values: TVariables) => submit(values, true),
+  const onFinishAutoSave = asyncDebounce(
+    (values: TVariables) => onFinish(values, true),
     props.autoSave?.debounce || 1000,
     "Cancelled by debounce",
   );
@@ -311,14 +311,9 @@ export const useForm = <
     error: updateMutation.error,
   };
 
-  const deprecatedValues = {
-    onFinish: submit,
-    onFinishAutoSave: submitAutoSave,
-  };
-
   return {
-    submit,
-    submitAutoSave,
+    onFinish,
+    onFinishAutoSave,
     formLoading,
     mutationResult,
     queryResult,
@@ -327,7 +322,6 @@ export const useForm = <
     setId,
     redirect,
     overtime,
-    ...deprecatedValues,
   };
 };
 

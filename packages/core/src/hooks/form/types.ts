@@ -189,20 +189,9 @@ export type UseFormReturnType<
     | UseUpdateReturnType<TResponse, TResponseError, TVariables>
     | UseCreateReturnType<TResponse, TResponseError, TVariables>;
   formLoading: boolean;
-  submit: (
+  onFinish: (
     values: TVariables,
   ) => Promise<CreateResponse<TResponse> | UpdateResponse<TResponse> | void>;
-  /**
-   * @deprecated Use `submit` instead.
-   */
-  onFinish: UseFormReturnType<
-    TQueryFnData,
-    TError,
-    TVariables,
-    TData,
-    TResponse,
-    TResponseError
-  >["submit"];
   redirect: (
     redirect: RedirectAction,
     idFromFunction?: BaseKey | undefined,

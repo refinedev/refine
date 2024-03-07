@@ -21,15 +21,9 @@ export type AutoSaveReturnType<
     UseUpdateReturnType<TData, TError, TVariables>,
     "data" | "error" | "status"
   >;
-  submitAutoSave: (values: TVariables) => Promise<UpdateResponse<TData> | void>;
-  /**
-   * @deprecated Use `submitAutoSave` instead.
-   */
-  onFinishAutoSave: AutoSaveReturnType<
-    TData,
-    TError,
-    TVariables
-  >["submitAutoSave"];
+  onFinishAutoSave: (
+    values: TVariables,
+  ) => Promise<UpdateResponse<TData> | void>;
 };
 
 export type AutoSaveIndicatorElements = Partial<

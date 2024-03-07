@@ -424,7 +424,7 @@ describe("useForm Hook", () => {
     });
 
     await act(async () => {
-      await result.current.submit({});
+      await result.current.onFinish({});
     });
 
     await waitFor(() => {
@@ -574,7 +574,7 @@ describe("useForm Hook", () => {
   });
 
   describe("action 'create'", () => {
-    it("submit should trigger create dataProvider method", async () => {
+    it("onFinish should trigger create dataProvider method", async () => {
       const createMock = jest.fn();
 
       const { result } = renderHook(
@@ -594,7 +594,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({
+        await result.current.onFinish({
           title: "foo",
         });
       });
@@ -639,7 +639,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({});
+        await result.current.onFinish({});
       });
 
       await waitFor(() => {
@@ -658,7 +658,7 @@ describe("useForm Hook", () => {
       );
     });
 
-    it("submit should not trigger create dataProvider method if resource not found", async () => {
+    it("onFinish should not trigger create dataProvider method if resource not found", async () => {
       const createMock = jest.fn();
 
       const { result } = renderHook(() => useForm({ action: "create" }), {
@@ -676,7 +676,7 @@ describe("useForm Hook", () => {
 
       await act(async () => {
         await result.current
-          .submit({
+          .onFinish({
             title: "foo",
           })
           .catch((err) => {});
@@ -706,7 +706,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({ title: "foo" });
+        await result.current.onFinish({ title: "foo" });
       });
 
       await waitFor(() => {
@@ -748,7 +748,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        result.current.submit({ title: "foo" }).catch((err) => {});
+        result.current.onFinish({ title: "foo" }).catch((err) => {});
       });
 
       await waitFor(() => {
@@ -801,7 +801,7 @@ describe("useForm Hook", () => {
         },
       );
 
-      const promise = result.current.submit({
+      const promise = result.current.onFinish({
         title: "foo",
       });
 
@@ -821,7 +821,7 @@ describe("useForm Hook", () => {
   });
 
   describe("action 'edit'", () => {
-    it("submit should trigger edit dataProvider method", async () => {
+    it("onFinish should trigger edit dataProvider method", async () => {
       const updateMock = jest.fn();
 
       const { result } = renderHook(
@@ -841,7 +841,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({
+        await result.current.onFinish({
           title: "foo",
         });
       });
@@ -888,7 +888,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({});
+        await result.current.onFinish({});
       });
 
       await waitFor(() => {
@@ -907,7 +907,7 @@ describe("useForm Hook", () => {
       );
     });
 
-    it("submit should not trigger edit dataProvider method if resource not found", async () => {
+    it("onFinish should not trigger edit dataProvider method if resource not found", async () => {
       const updateMock = jest.fn();
 
       const { result } = renderHook(() => useForm({ action: "edit" }), {
@@ -925,7 +925,7 @@ describe("useForm Hook", () => {
 
       await act(async () => {
         await result.current
-          .submit({
+          .onFinish({
             title: "foo",
           })
           .catch((err) => {});
@@ -956,7 +956,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({ title: "foo" });
+        await result.current.onFinish({ title: "foo" });
       });
 
       await waitFor(() => {
@@ -999,7 +999,7 @@ describe("useForm Hook", () => {
       );
 
       await act(async () => {
-        await result.current.submit({ title: "foo" }).catch(() => {});
+        await result.current.onFinish({ title: "foo" }).catch(() => {});
       });
 
       await waitFor(() => {
@@ -1053,7 +1053,7 @@ describe("useForm Hook", () => {
         },
       );
 
-      const promise = result.current.submit({
+      const promise = result.current.onFinish({
         title: "foo",
       });
 
@@ -1111,7 +1111,7 @@ describe("useForm Hook", () => {
       await assertList(useManyResult, "title", initialTitle);
 
       await act(async () => {
-        await result.current.submit({ title: updatedTitle });
+        await result.current.onFinish({ title: updatedTitle });
       });
 
       await assertOne(useOneResult, "title", updatedTitle);
@@ -1186,7 +1186,7 @@ describe("useForm Hook", () => {
     });
   });
 
-  describe("submit rejections", () => {
+  describe("onFinish rejections", () => {
     it("should reject immediately if resource is not defined", async () => {
       const { result } = renderHook(
         () =>
@@ -1204,7 +1204,7 @@ describe("useForm Hook", () => {
 
       await act(async () => {
         return await expect(
-          result.current.submit({ foo: "bar" }),
+          result.current.onFinish({ foo: "bar" }),
         ).rejects.toThrow(
           "[useForm]: `resource` is not defined or not matched but is required",
         );
@@ -1228,7 +1228,7 @@ describe("useForm Hook", () => {
 
       await act(async () => {
         return await expect(
-          result.current.submit({ foo: "bar" }),
+          result.current.onFinish({ foo: "bar" }),
         ).rejects.toThrow(
           "[useForm]: `id` is not defined but is required in edit and clone actions",
         );
@@ -1253,7 +1253,7 @@ describe("useForm Hook", () => {
 
       await act(async () => {
         return await expect(
-          result.current.submit(undefined as any),
+          result.current.onFinish(undefined as any),
         ).rejects.toThrow(
           "[useForm]: `values` is not provided but is required",
         );
