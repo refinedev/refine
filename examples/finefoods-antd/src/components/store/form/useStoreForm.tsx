@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { UseFormProps, useForm } from "@refinedev/antd";
 import { useDebounceValue } from "usehooks-ts";
 import {
@@ -7,7 +8,6 @@ import {
   getLatLngWithAddress,
 } from "../../../utils";
 import { IStore } from "../../../interfaces";
-import { useEffect, useState } from "react";
 
 type Props = {
   action: UseFormProps["action"];
@@ -39,7 +39,7 @@ export const useStoreForm = (props: Props) => {
         lng: store.address.coordinate?.[1],
       });
     }
-  }, [store]);
+  }, [store?.address.coordinate?.[0], store?.address.coordinate?.[1]]);
 
   // we are using these debounced values to get lang and lat from the address text
   // to minimize the number of requests, we are using debounced values
@@ -47,6 +47,7 @@ export const useStoreForm = (props: Props) => {
     form.formProps.form?.getFieldValue(["address", "text"]),
     500,
   );
+
   // get lat and lng with address
   useEffect(() => {
     if (debouncedAdressValue) {
@@ -70,7 +71,7 @@ export const useStoreForm = (props: Props) => {
         }
       });
     }
-  }, [debouncedAdressValue]);
+  }, [debouncedAdressValue, form.formProps.form?.setFieldValue]);
 
   const handleMapOnDragEnd = async ({
     lat,

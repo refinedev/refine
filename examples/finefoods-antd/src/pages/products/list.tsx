@@ -6,7 +6,7 @@ import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Segmented } from "antd";
 import { useLocation } from "react-router-dom";
 
-type View = "list" | "card";
+type View = "table" | "card";
 
 export const ProductList = ({ children }: PropsWithChildren) => {
   const go = useGo();
@@ -15,7 +15,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
   const { createUrl } = useNavigation();
 
   const [view, setView] = useState<View>(
-    (localStorage.getItem("product-view") as View) || "list",
+    (localStorage.getItem("product-view") as View) || "table",
   );
 
   const handleViewChange = (value: View) => {
@@ -40,7 +40,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
           options={[
             {
               label: "",
-              value: "list",
+              value: "table",
               icon: <UnorderedListOutlined />,
             },
             {
@@ -72,7 +72,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
         </CreateButton>,
       ]}
     >
-      {view === "list" && <ProductListTable />}
+      {view === "table" && <ProductListTable />}
       {view === "card" && <ProductListCard />}
       {children}
     </List>
