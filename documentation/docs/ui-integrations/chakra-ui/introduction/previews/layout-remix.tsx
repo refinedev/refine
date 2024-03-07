@@ -90,7 +90,7 @@ export default function App() {
 const ProtectedTsxCode = /* jsx */ `
 import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
 import { Outlet } from "@remix-run/react";
-import { LoaderArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
 /**
  * Routes starting with \`_layout\` will have their children rendered inside the layout.

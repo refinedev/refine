@@ -17380,51 +17380,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                
-              </span>
-              <span
-                class="token tag attr-name"
-                style="color: rgb(156, 220, 254);"
-              >
-                filterDataOnExactSearchMatch
-              </span>
-              <span
-                class="token tag script language-javascript script-punctuation punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token tag script language-javascript keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                undefined
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
                             
               </span>
               <span
@@ -23686,51 +23641,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               </span>
               <span
                 class="token tag spread punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                                
-              </span>
-              <span
-                class="token tag attr-name"
-                style="color: rgb(156, 220, 254);"
-              >
-                filterDataOnExactSearchMatch
-              </span>
-              <span
-                class="token tag script language-javascript script-punctuation punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token tag script language-javascript keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                undefined
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }

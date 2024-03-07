@@ -6,11 +6,11 @@ import { useState } from "react";
 import { useTranslate } from "@refinedev/core";
 import { EnvironmentOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
-type View = "list" | "map";
+type View = "table" | "map";
 
 export const StoreList = () => {
   const [view, setView] = useState<View>(
-    (localStorage.getItem("store-view") as View) || "list",
+    (localStorage.getItem("store-view") as View) || "table",
   );
 
   const handleViewChange = (value: View) => {
@@ -33,7 +33,7 @@ export const StoreList = () => {
             options={[
               {
                 label: "",
-                value: "list",
+                value: "table",
                 icon: <UnorderedListOutlined />,
               },
               {
@@ -49,7 +49,7 @@ export const StoreList = () => {
           </CreateButton>,
         ]}
       >
-        {view === "list" && <StoreListTable />}
+        {view === "table" && <StoreListTable />}
         {view === "map" && (
           <Flex
             style={{

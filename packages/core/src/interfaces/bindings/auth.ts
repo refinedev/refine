@@ -71,7 +71,9 @@ export type AuthBindings = {
   register?: (params: any) => Promise<AuthActionResponse>;
   forgotPassword?: (params: any) => Promise<AuthActionResponse>;
   updatePassword?: (params: any) => Promise<AuthActionResponse>;
-  getPermissions?: (params?: any) => Promise<PermissionResponse>;
+  getPermissions?: (
+    params?: Record<string, any>,
+  ) => Promise<PermissionResponse>;
   getIdentity?: (params?: any) => Promise<IdentityResponse>;
 };
 

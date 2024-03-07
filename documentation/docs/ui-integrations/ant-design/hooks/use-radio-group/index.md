@@ -92,7 +92,7 @@ const { selectProps } = useRadioGroup({
 
 The easiest way to selecting a default value for an radio button field is by passing in `defaultValue`.
 
-### optionLabel and `optionValue`
+### optionLabel and optionValue
 
 ```tsx
 const { radioGroupProps } = useRadioGroup({
@@ -109,13 +109,48 @@ const { radioGroupProps } = useRadioGroup({
 These properties also support nested property access with [Object path](https://lodash.com/docs/4.17.15#get) syntax.
 
 ```tsx
-const { options } = useSelect({
+const { options } = useRadioGroup({
   resource: "categories",
   // highlight-start
   optionLabel: "nested.title",
   optionValue: "nested.id",
   // highlight-end
 });
+```
+
+It's also possible to pass function to these props. These functions will receive `item` argument.
+
+```tsx
+const { options } = useRadioGroup({
+  optionLabel: (item) => `${item.firstName} ${item.lastName}`,
+  optionValue: (item) => item.id,
+});
+```
+
+### searchField
+
+Can be used to specify which field will be searched with value given to `onSearch` function.
+
+```tsx
+const { onSearch } = useRadioGroup({ searchField: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+```
+
+By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
+
+```tsx
+// When `optionLabel` is string.
+const { onSearch } = useRadioGroup({ optionLabel: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+
+// When `optionLabel` is function.
+const { onSearch } = useRadioGroup({
+  optionLabel: (item) => `${item.id} - ${item.name}`,
+});
+
+onSearch("John"); // Searchs by `title` field with value John.
 ```
 
 ### filters
@@ -191,7 +226,7 @@ const { radioGroupProps } = useRadioGroup({
 For example, lets say that we have 1000 post records:
 
 ```ts
-const { selectProps } = useSelect({
+const { selectProps } = useRadioGroup({
   resource: "categories",
   // highlight-next-line
   pagination: { current: 3, pageSize: 8 },

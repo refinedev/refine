@@ -30,12 +30,7 @@ import { DashboardPage } from "./pages/dashboard";
 import { OrderList, OrderShow } from "./pages/orders";
 import { AuthPage } from "./pages/auth";
 import { CustomerShow, CustomerList } from "./pages/customers";
-import {
-  CourierList,
-  CourierShow,
-  CourierCreate,
-  CourierEdit,
-} from "./pages/couriers";
+import { CourierList, CourierCreate, CourierEdit } from "./pages/couriers";
 import {
   ProductList,
   ProductCreate,
@@ -98,7 +93,7 @@ const App: React.FC = () => {
               {
                 name: "orders",
                 list: "/orders",
-                show: "/orders/show/:id",
+                show: "/orders/:id",
                 meta: {
                   icon: <ShoppingOutlined />,
                 },
@@ -106,7 +101,7 @@ const App: React.FC = () => {
               {
                 name: "users",
                 list: "/customers",
-                show: "/customers/show/:id",
+                show: "/customers/:id",
                 meta: {
                   icon: <UserOutlined />,
                 },
@@ -114,9 +109,9 @@ const App: React.FC = () => {
               {
                 name: "products",
                 list: "/products",
-                create: "/products/create",
-                edit: "/products/edit/:id",
-                show: "/products/show/:id",
+                create: "/products/new",
+                edit: "/products/:id/edit",
+                show: "/products/:id",
                 meta: {
                   icon: <UnorderedListOutlined />,
                 },
@@ -131,8 +126,8 @@ const App: React.FC = () => {
               {
                 name: "stores",
                 list: "/stores",
-                create: "/stores/create",
-                edit: "/stores/edit/:id",
+                create: "/stores/new",
+                edit: "/stores/:id/edit",
                 meta: {
                   icon: <ShopOutlined />,
                 },
@@ -140,9 +135,9 @@ const App: React.FC = () => {
               {
                 name: "couriers",
                 list: "/couriers",
-                create: "/couriers/create",
-                edit: "/couriers/edit/:id",
-                show: "/couriers/show/:id",
+                create: "/couriers/new",
+                edit: "/couriers/:id/edit",
+                show: "/couriers/:id",
                 meta: {
                   icon: <BikeWhiteIcon />,
                 },
@@ -174,7 +169,7 @@ const App: React.FC = () => {
 
                 <Route path="/orders">
                   <Route index element={<OrderList />} />
-                  <Route path="show/:id" element={<OrderShow />} />
+                  <Route path=":id" element={<OrderShow />} />
                 </Route>
 
                 <Route
@@ -185,8 +180,7 @@ const App: React.FC = () => {
                     </CustomerList>
                   }
                 >
-                  <Route index element={null} />
-                  <Route path="show/:id" element={<CustomerShow />} />
+                  <Route path=":id" element={<CustomerShow />} />
                 </Route>
 
                 <Route
@@ -197,34 +191,32 @@ const App: React.FC = () => {
                     </ProductList>
                   }
                 >
-                  <Route index element={null} />
-                  <Route path="create" element={<ProductCreate />} />
-                  <Route path="show/:id" element={<ProductShow />} />
-                  <Route path="edit/:id" element={<ProductEdit />} />
+                  <Route path="new" element={<ProductCreate />} />
+                  <Route path=":id" element={<ProductShow />} />
+                  <Route path=":id/edit" element={<ProductEdit />} />
                 </Route>
 
                 <Route path="/stores">
                   <Route index element={<StoreList />} />
-                  <Route path="create" element={<StoreCreate />} />
-                  <Route path="edit/:id" element={<StoreEdit />} />
+                  <Route path="new" element={<StoreCreate />} />
+                  <Route path=":id/edit" element={<StoreEdit />} />
                 </Route>
 
                 <Route path="/categories" element={<CategoryList />} />
 
                 <Route path="/couriers">
                   <Route
+                    path=""
                     element={
                       <CourierList>
                         <Outlet />
                       </CourierList>
                     }
                   >
-                    <Route index element={null} />
-                    <Route path="create" element={<CourierCreate />} />
+                    <Route path="new" element={<CourierCreate />} />
                   </Route>
 
-                  <Route path="edit/:id" element={<CourierEdit />} />
-                  <Route path="show/:id" element={<CourierShow />} />
+                  <Route path=":id/edit" element={<CourierEdit />} />
                 </Route>
               </Route>
 

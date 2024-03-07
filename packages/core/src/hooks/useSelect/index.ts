@@ -35,15 +35,33 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    */
   resource: string;
   /**
-   * Set the option's value
+   * Set the option's label value
    * @default `"title"`
    */
-  optionLabel?: keyof TData extends string ? keyof TData : never;
+  optionLabel?: keyof TData extends string
+    ? keyof TData
+    : never | ((item: TData) => string);
   /**
-   * Set the option's label value
+   * Set the option's value
    * @default `"id"`
    */
-  optionValue?: keyof TData extends string ? keyof TData : never;
+  optionValue?: keyof TData extends string
+    ? keyof TData
+    : never | ((item: TData) => string);
+  /**
+   * Field name to search for.
+   * @description If provided `optionLabel` is a string, uses `optionLabel`'s value.
+   * @default `"title"`
+   * @example
+   * // when optionLabel is string.
+   * useSelect({ optionLabel: "name" })
+   * // uses `name` field.
+   * @example
+   * // when optionLabel is function.
+   * useSelect({ optionLabel: (field) => field.description })
+   * // uses `title`, since `optionLabel` is a function.
+   */
+  searchField?: keyof TData extends string ? keyof TData : never;
   /**
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
@@ -179,6 +197,7 @@ export const useSelect = <
     filters = [],
     optionLabel = "title",
     optionValue = "id",
+    searchField = typeof optionLabel === "string" ? optionLabel : "title",
     debounce: debounceValue = 300,
     successNotification,
     errorNotification,
@@ -197,6 +216,28 @@ export const useSelect = <
     dataProviderName,
     overtimeOptions,
   } = props;
+
+  const getOptionLabel = useCallback(
+    (item: TData) => {
+      if (typeof optionLabel === "string") {
+        return get(item, optionLabel);
+      }
+
+      return optionLabel(item);
+    },
+    [optionLabel],
+  );
+
+  const getOptionValue = useCallback(
+    (item: TData) => {
+      if (typeof optionValue === "string") {
+        return get(item, optionValue);
+      }
+
+      return optionValue(item);
+    },
+    [optionValue],
+  );
 
   const { resource, identifier } = useResource(resourceFromProps);
 
@@ -217,8 +258,8 @@ export const useSelect = <
         data.data.map(
           (item) =>
             ({
-              label: get(item, optionLabel),
-              value: get(item, optionValue),
+              label: getOptionLabel(item),
+              value: getOptionValue(item),
             }) as TOption,
         ),
       );
@@ -254,8 +295,8 @@ export const useSelect = <
           data.data.map(
             (item) =>
               ({
-                label: get(item, optionLabel),
-                value: get(item, optionValue),
+                label: getOptionLabel(item),
+                value: getOptionValue(item),
               }) as TOption,
           ),
         );
@@ -301,9 +342,10 @@ export const useSelect = <
       setSearch([]);
       return;
     }
+
     setSearch([
       {
-        field: optionLabel,
+        field: searchField,
         operator: "contains",
         value,
       },

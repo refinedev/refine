@@ -46,7 +46,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### optionLabel and `optionValue`
+### optionLabel and optionValue
 
 Allows you to change the `value` and `label` of your options.
 Default values are `optionLabel = "title"` and `optionValue = "id"`
@@ -67,6 +67,41 @@ const { options } = useSelect({
   optionLabel: "nested.title",
   optionValue: "nested.id",
 });
+```
+
+It's also possible to pass function to these props. These functions will receive `item` argument.
+
+```tsx
+const { options } = useSelect({
+  optionLabel: (item) => `${item.firstName} ${item.lastName}`,
+  optionValue: (item) => item.id,
+});
+```
+
+### searchField
+
+Can be used to specify which field will be searched with value given to `onSearch` function.
+
+```tsx
+const { onSearch } = useSelect({ searchField: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+```
+
+By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
+
+```tsx
+// When `optionLabel` is string.
+const { onSearch } = useSelect({ optionLabel: "name" });
+
+onSearch("John"); // Searchs by `name` field with value John.
+
+// When `optionLabel` is function.
+const { onSearch } = useSelect({
+  optionLabel: (item) => `${item.id} - ${item.name}`,
+});
+
+onSearch("John"); // Searchs by `title` field with value John.
 ```
 
 ### sorters
