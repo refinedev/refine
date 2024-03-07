@@ -82,7 +82,7 @@ const siteConfig = {
                 ],
               },
               exclude: ["**/**/_*.md"],
-              remarkPlugins: [thumbsUpDownFeedbackWidget],
+              remarkPlugins: [thumbsUpDownFeedbackWidget.plugin],
             },
         blog: false,
         theme: {
