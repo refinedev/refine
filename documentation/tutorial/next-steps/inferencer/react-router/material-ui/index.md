@@ -6,13 +6,9 @@ import { Sandpack, CreateListCategoriesTsx, AddListCategoriesToApp, AddInference
 
 <Sandpack>
 
-Refine's [`@refinedev/inferencer`](/docs/packages/inferencer) package is a powerful tool that generates views for resources based on their data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. Just by simply mounting the Inferencer component, you can get a fully functional view for your resource, the generated component will try to handle all the fields and relations for the target resource.
+Refine's [`@refinedev/inferencer`](/docs/packages/inferencer) package can be used to scaffold initial code for your resource pages based on API responses.
 
-:::note
-
-Inferencer package is a development tool and should not be used in production. Generated components are meant to be customized and extended to fit your application's needs. Generated views are not guaranteed to be perfectly handle all the fields and relations for the target resource. The target use case for Inferencer is to speed up the development process by generating the initial code for the views.
-
-:::
+Generated code aren't guaranteed to work perfectly. This tool meant to be used locally to speed up the development process by generating the initial code and shouldn't be used on production.
 
 ## Installation
 
