@@ -201,7 +201,10 @@ export const useForm = <
     };
   }, [props.autoSave?.invalidateOnUnmount, autosaved]);
 
-  const onFinish = async (values: TVariables, isAutosave = false) => {
+  const onFinish = async (
+    values: TVariables,
+    { isAutosave = false }: { isAutosave?: boolean } = {},
+  ) => {
     const isPessimistic = mutationMode === "pessimistic";
 
     // Disable warning trigger when the form is being submitted
@@ -296,7 +299,7 @@ export const useForm = <
   };
 
   const onFinishAutoSave = asyncDebounce(
-    (values: TVariables) => onFinish(values, true),
+    (values: TVariables) => onFinish(values, { isAutosave: true }),
     props.autoSave?.debounce || 1000,
     "Cancelled by debounce",
   );
