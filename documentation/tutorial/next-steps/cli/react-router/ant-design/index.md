@@ -76,7 +76,7 @@ npm run refine add provider i18n
 
 By running this command, you'll be provided with the necessary files for the i18n provider and the provider definition will be added to your `<Refine />` component.
 
-<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/add-provider-i18n.webm" playsInline loop autoPlay muted />
+<VideoInView src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/tutorial/webm/add-provider-i18n-2.webm" playsInline loop autoPlay muted />
 
 ## Using the `update` Command
 
