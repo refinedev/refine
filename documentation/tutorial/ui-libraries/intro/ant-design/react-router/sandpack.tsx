@@ -104,7 +104,7 @@ export default function App(): JSX.Element {
     </BrowserRouter>
   );
 }
-`.trim();
+// `.trim();
 
 const AppTsxWithLayout = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";

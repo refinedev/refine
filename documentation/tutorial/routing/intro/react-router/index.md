@@ -61,7 +61,7 @@ import { Header } from "./components/header";
 
 export default function App(): JSX.Element {
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <BrowserRouter>
       <Refine
         dataProvider={dataProvider}
@@ -69,10 +69,7 @@ export default function App(): JSX.Element {
         // highlight-next-line
         routerProvider={routerProvider}
       >
-        <Authenticated
-          key="protected"
-          fallback={<Login />}
-        >
+        <Authenticated key="protected" fallback={<Login />}>
           <Header />
           {/* <ShowProduct /> */}
           {/* <EditProduct /> */}
@@ -80,7 +77,7 @@ export default function App(): JSX.Element {
           {/* <CreateProduct /> */}
         </Authenticated>
       </Refine>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </BrowserRouter>
   );
 }

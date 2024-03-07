@@ -21,7 +21,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// updatxes
+// updates
 
 const ListProductsTsx = /* tsx */ `
 import { useMany, getDefaultFilter } from "@refinedev/core";
@@ -41,9 +41,7 @@ export const ListProducts = () => {
   const { tableProps, filters, sorters } = useTable({
     sorters: { initial: [{ field: "id", order: "asc" }] },
     filters: {
-      initial: [
-        { field: "category.id", operator: "eq", value: 2 },
-      ],
+      initial: [{ field: "category.id", operator: "eq", value: 2 }],
     },
     syncWithLocation: true,
   });
@@ -74,7 +72,7 @@ export const ListProducts = () => {
           defaultSortOrder={getDefaultSortOrder("name", sorters)}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
-                <Input />
+              <Input />
             </FilterDropdown>
           )}
         />
@@ -86,24 +84,18 @@ export const ListProducts = () => {
               return "Loading...";
             }
 
-            return categories?.data?.find((category) => category.id == value)?.title;
+            return categories?.data?.find((category) => category.id == value)
+              ?.title;
           }}
           filterDropdown={(props) => (
             <FilterDropdown
               {...props}
               mapValue={(selectedKey) => Number(selectedKey)}
             >
-              <Select
-                  style={{ minWidth: 200 }}
-                  {...selectProps}
-              />
+              <Select style={{ minWidth: 200 }} {...selectProps} />
             </FilterDropdown>
           )}
-          defaultFilteredValue={getDefaultFilter(
-            "category.id",
-            filters,
-            "eq",
-          )}
+          defaultFilteredValue={getDefaultFilter("category.id", filters, "eq")}
         />
         <Table.Column dataIndex="material" title="Material" />
         <Table.Column dataIndex="price" title="Price" />
@@ -129,40 +121,41 @@ import { TextField, NumberField, MarkdownField, Show } from "@refinedev/antd";
 import { Typography } from "antd";
 
 export const ShowProduct = () => {
-    const { queryResult: { data, isLoading } } = useShow();
+  const {
+    queryResult: { data, isLoading },
+  } = useShow();
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-    useOne({
-        resource: "categories",
-        id: data?.data?.category.id || "",
-        queryOptions: {
-            enabled: !!data?.data,
-        },
-    });
+  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+    resource: "categories",
+    id: data?.data?.category.id || "",
+    queryOptions: {
+      enabled: !!data?.data,
+    },
+  });
 
-    return (
-      <Show isLoading={isLoading}>
-        <Typography.Title level={5}>Id</Typography.Title>
-        <TextField value={data?.data?.id} />
+  return (
+    <Show isLoading={isLoading}>
+      <Typography.Title level={5}>Id</Typography.Title>
+      <TextField value={data?.data?.id} />
 
-        <Typography.Title level={5}>Name</Typography.Title>
-        <TextField value={data?.data?.name} />
+      <Typography.Title level={5}>Name</Typography.Title>
+      <TextField value={data?.data?.name} />
 
-        <Typography.Title level={5}>Description</Typography.Title>
-        <MarkdownField value={data?.data?.description} />
+      <Typography.Title level={5}>Description</Typography.Title>
+      <MarkdownField value={data?.data?.description} />
 
-        <Typography.Title level={5}>Material</Typography.Title>
-        <TextField value={data?.data?.material} />
+      <Typography.Title level={5}>Material</Typography.Title>
+      <TextField value={data?.data?.material} />
 
-        <Typography.Title level={5}>Category</Typography.Title>
-        <TextField
-          value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
-        />
+      <Typography.Title level={5}>Category</Typography.Title>
+      <TextField
+        value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
+      />
 
-        <Typography.Title level={5}>Price</Typography.Title>
-        <NumberField value={data?.data?.price} />
-      </Show>
-    );
+      <Typography.Title level={5}>Price</Typography.Title>
+      <NumberField value={data?.data?.price} />
+    </Show>
+  );
 };
 `.trim();
 

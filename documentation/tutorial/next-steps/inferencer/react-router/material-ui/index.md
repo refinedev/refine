@@ -12,13 +12,13 @@ Generated code aren't guaranteed to work perfectly. This tool meant to be used l
 
 ## Installation
 
-Let's start by installing the `@refinedev/inferencer` package. Inferencer package can generate views with multiple UI libraries that Refine provides a built-in support for. To generate a view with a UI library, you need to install their dependencies as well (e.g. `@refinedev/antd` and `antd` packages for Ant Design).
+Let's start by installing the `@refinedev/inferencer` package. Inferencer package can generate views with multiple UI libraries that Refine provides a built-in support for. To generate a view with a UI library, you need to install their dependencies as well (e.g. `@refinedev/mui` and Material UI packages for Material UI).
 
 Supported UI libraries for Inferencer are:
 
+- [Material UI](/docs/ui-integrations/material-ui/components/inferencer)
 - [Ant Design](/docs/ui-integrations/ant-design/components/inferencer)
 - [Chakra UI](/docs/ui-integrations/chakra-ui/components/inferencer)
-- [Material UI](/docs/ui-integrations/material-ui/components/inferencer)
 - [Mantine](/docs/ui-integrations/mantine/components/inferencer)
 - [Headless (Unstyled)](/docs/packages/inferencer)
 
@@ -26,17 +26,17 @@ Supported UI libraries for Inferencer are:
 
 ## Usage
 
-Inferencer package exports UI specific inferencer components with sub-paths for each UI library. For example, to use Inferencer with Ant Design, you need to import `AntdInferencer` from `@refinedev/inferencer/antd`.
+Inferencer package exports UI specific inferencer components with sub-paths for each UI library. For example, to use Inferencer with Material UI, you need to import `MuiInferencer` from `@refinedev/inferencer/mui`.
 
 ```tsx
-import { AntdInferencer } from "@refinedev/inferencer/antd";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 export const MyPage = () => {
-  return <AntdInferencer resource="products" action="list" />;
+  return <MuiInferencer resource="products" action="list" />;
 };
 ```
 
-In the example above, we are using `AntdInferencer` to generate a list view for the `products` resource. The `action` prop is used to specify the type of view to be generated. The available actions are `list`, `show`, `edit`, and `create`.
+In the example above, we are using `MuiInferencer` to generate a list view for the `products` resource. The `action` prop is used to specify the type of view to be generated. The available actions are `list`, `show`, `edit`, and `create`.
 
 After you have mounted the Inferencer component, you will get a preview of the generated view for the specified action of the resource and provided with the source code of the generated component. You can copy & paste the generated code and customize it to fit your application's needs.
 
@@ -55,15 +55,20 @@ Update your `src/App.tsx` file by adding the following lines:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import {
-  ThemedLayoutV2,
-  ThemedTitleV2,
-  useNotificationProvider,
-} from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { ConfigProvider, App as AntdApp } from "antd";
+import {
+  RefineThemes,
+  ThemedLayoutV2,
+  ThemedTitleV2,
+  RefineSnackbarProvider,
+  useNotificationProvider,
+} from "@refinedev/mui";
+
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import { ThemeProvider } from "@mui/material/styles";
 
 import { dataProvider } from "./providers/data-provider";
 import { authProvider } from "./providers/auth-provider";
@@ -78,13 +83,13 @@ import { ListCategories } from "./pages/categories/list";
 
 import { Login } from "./pages/login";
 
-import "antd/dist/reset.css";
-
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <ConfigProvider>
-        <AntdApp>
+      <ThemeProvider theme={RefineThemes.Blue}>
+        <CssBaseline />
+        <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+        <RefineSnackbarProvider>
           <Refine
             dataProvider={dataProvider}
             authProvider={authProvider}
@@ -154,8 +159,8 @@ export default function App(): JSX.Element {
               </Route>
             </Routes>
           </Refine>
-        </AntdApp>
-      </ConfigProvider>
+        </RefineSnackbarProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
@@ -170,11 +175,11 @@ Now let's add Inferencer to the `ListCategories` component.
 Update your `src/pages/categories/list.tsx` file by adding the following lines:
 
 ```tsx title="src/pages/categories/list.tsx"
-import { AntdInferencer } from "@refinedev/inferencer/antd";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 export const ListCategories = () => {
   return (
-    <AntdInferencer
+    <MuiInferencer
     // resource="categories" // We're omitting this prop because it's inferred from the route
     // action="list" // We're omitting this prop because it's inferred from the route
     />
@@ -184,7 +189,7 @@ export const ListCategories = () => {
 
 <AddInferencerToListCategories />
 
-Notice that we've not provided the `resource` and `action` props to the `AntdInferencer` component because they are inferred from the route.
+Notice that we've not provided the `resource` and `action` props to the `MuiInferencer` component because they are inferred from the route.
 
 Now, if you navigate to the `/categories` route, you will see the generated list view for the `categories` resource. Then you can copy & paste the generated code and customize it to fit your application's needs.
 

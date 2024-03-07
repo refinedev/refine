@@ -2196,6 +2196,18 @@
     {
       "from": "/blog/e-mail-subscription-panel-with-refine/",
       "to": "/blog"
+    },
+    {
+      "from": "/tutorial/next-steps/cli/react-router",
+      "to": "/tutorial/next-steps/cli/react-router/ant-design"
+    },
+    {
+      "from": "/tutorial/next-steps/devtools/react-router",
+      "to": "/tutorial/next-steps/devtools/react-router/ant-design"
+    },
+    {
+      "from": "/tutorial/next-steps/summary",
+      "to": "/tutorial/next-steps/summary/react-router/ant-design"
     }
   ]
 }
