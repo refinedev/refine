@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     extend: {
       zIndex: {
-        popover: 99,
+        popover: 9,
         modal: 100,
         mobileNavbar: 1000,
         "top-announcement": 1000,

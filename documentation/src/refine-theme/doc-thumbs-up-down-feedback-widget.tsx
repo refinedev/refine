@@ -253,7 +253,9 @@ const FeedbackTextPopover = (
           setFlipped(true);
         }
 
-        return {};
+        return {
+          fallbackPlacements: ["top-start"],
+        };
       }),
     ],
   });
