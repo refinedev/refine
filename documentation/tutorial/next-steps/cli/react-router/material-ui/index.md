@@ -17,7 +17,7 @@ Refine offers a `@refinedev/cli` package that provides a set of commands and bui
 
 ## Installation
 
-At the beginning of the tutorial, we've already installed the `@refinedev/cli` but if you've missed this step, you can use the below command to install it easily:
+At the beginning of the tutorial, we've already installed the `@refinedev/cli` but if you've missed this step, use the below command to install it easily:
 
 <InstallPackagesCommand args="@refinedev/cli" />
 
@@ -40,7 +40,7 @@ These commands will use the same runners as your bundler, and using them is opti
 
 :::note
 
-Notice that we have the `refine` command defined in `"scripts"`. This command is used to run the CLI commands. You can use the `refine` command to run the CLI commands with the `npx` command as well.
+Notice that we have the `refine` command defined in `"scripts"`, used to run the CLI commands. You can use the `refine` command with the `npx` command as well.
 
 :::
 

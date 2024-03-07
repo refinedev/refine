@@ -18,7 +18,7 @@ In this step, we'll explore Refine's powerful Devtools package, which offers mon
 
 ## Installation
 
-Installation of the package is straightforward but the `@refinedev/cli` package also provides a command to install and setup the Devtools package. We'll use the below command to install the Devtools package:
+Installation of the package is straightforward but the `@refinedev/cli` package also provides a command to install and setup the Devtools package. We'll use the command below to install the Devtools package:
 
 <Tabs>
 
@@ -70,11 +70,11 @@ Then we can start using the Devtools in our application.
 
 ## Using the Monitoring Feature
 
-After you've installed and setup the Devtools package, you'll be able to see the small devtools panel on the bottom of your application. Clicking on the panel will open the devtools. Then you can click on the `"Monitor"` on the sidebar to open the monitoring screen.
+After installing and setting up the Devtools package, a small devtools panel will appear at the bottom of your application. Clicking on it will open the devtools, allowing you to access the monitoring screen by clicking on "Monitor" in the sidebar.
 
 This screen will include all the queries and mutations triggered in your application for the current session. You can see their details such as the response, target data provider, target resource, the time it took to execute the query/mutation, and lots more.
 
-You'll be able to filter the queries and mutations by their type, resource, status and the component/hook that triggered them. Also, you can pick the component you want to filter on your UI by using the selector.
+You can filter the queries and mutations by their type, resource, status and the component/hook that triggered them. Also, you can select the component to filter on your UI by using the selector.
 
 To use the selector, click on the <SelectorButtonIcon /> icon and when you hover over a component on your page that triggered a query or a mutation, there will be a highlight around the component. Clicking on the component will filter the queries and mutations by that component.
 
