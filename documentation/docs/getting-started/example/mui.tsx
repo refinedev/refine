@@ -23,17 +23,7 @@ export const MUIExample = () => (
         "mx-auto",
         "min-h-max",
         "h-[656px]",
-        // "h-[656px]",
       )}
-      // className={clsx(
-      //   "relative",
-      //   "z-[1]",
-      //   "border-0",
-      //   "rounded-xl",
-      //   "landing-xl:rounded-2xl",
-      //   "w-full",
-      //   "h-[656px]",
-      // )}
       src={PREVIEW_URL}
     />
   </div>
