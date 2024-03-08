@@ -314,7 +314,7 @@ li a:has(> code) code {
 }
 
 .max-w-screen-content {
-    @apply max-w-screen-content-sm md:max-w-screen-content-md content-xl-safe:max-w-screen-content-xl;
+    @apply max-w-screen-content-sm md:max-w-screen-content-md content-xl-safe:max-w-screen-content-xl 2xl:max-w-screen-content-2xl;
 }
 
 html .no-underline {
