@@ -861,6 +861,8 @@ module.exports = {
       "content-sm": "480px",
       "widening-start": "544px",
       "content-md": "656px",
+      "content-xl": "792px",
+      "content-xl-safe": "1376px",
       "content-2xl": "864px",
       "content-4xl": "1536px",
       "header-sm": "640px",
