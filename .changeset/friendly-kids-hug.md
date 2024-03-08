@@ -32,3 +32,24 @@ export const MyComponent = () => {
   );
 };
 ```
+
+Example of combining `useTranslation` with `useTranslate`, `useSetLocale` and `useGetLocale` hooks.
+
+```diff
+import {
+-  useGetLocale,
+-  useSetLocale,
+-  useTranslate,
++  useTranslation,
+} from "@refinedev/core";
+
+export const MyComponent = () => {
+-  const changeLocale = useSetLocale();
+-  const getLocale = useGetLocale();
+-  const translate = useTranslate();
+
++  const { translate, getLocale, changeLocale } = useTranslation();
+
+  return <div>{/* ... */}</div>;
+};
+```
