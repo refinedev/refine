@@ -22,6 +22,7 @@ import CommonSummary from "@site/src/refine-theme/common-summary";
 import CommonTabItem from "@site/src/refine-theme/common-tab-item";
 import CommonTabs from "@site/src/refine-theme/common-tabs";
 import { Blockquote } from "@site/src/refine-theme/common-blockquote";
+import { DocThumbsUpDownFeedbackWidget } from "@site/src/refine-theme/doc-thumbs-up-down-feedback-widget";
 import { Image } from "@site/src/components/image";
 import { Table, FullTable } from "@site/src/refine-theme/common-table";
 import { CreateRefineAppCommand } from "@site/src/partials/npm-scripts/create-refine-app-command.tsx";
@@ -60,4 +61,5 @@ export default {
   FullTable: FullTable,
   TutorialConditional,
   VideoInView: VideoInView,
+  DocThumbsUpDownFeedbackWidget,
 };
