@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { IResourceComponentsProps, useTranslation } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
@@ -6,7 +6,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
-  const translate = useTranslate();
+  const { translate } = useTranslation();
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
   const postData = queryResult?.data?.data;

@@ -2,7 +2,7 @@ import {
   useShow,
   IResourceComponentsProps,
   useOne,
-  useTranslate,
+  useTranslation,
 } from "@refinedev/core";
 import { Show, MarkdownField } from "@refinedev/antd";
 import { Typography } from "antd";
@@ -12,7 +12,7 @@ import { IPost, ICategory } from "../../interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-  const translate = useTranslate();
+  const { translate } = useTranslation();
   const { queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

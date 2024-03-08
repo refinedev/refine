@@ -1,11 +1,11 @@
 "use client";
 
 import { Create, useForm } from "@refinedev/antd";
-import { useTranslate } from "@refinedev/core";
+import { useTranslation } from "@refinedev/core";
 import { Form, Input } from "antd";
 
 export default function CategoryCreate() {
-  const t = useTranslate();
+  const { translate: t } = useTranslation();
   const { formProps, saveButtonProps } = useForm({});
 
   return (
