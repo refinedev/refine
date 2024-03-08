@@ -1,11 +1,7 @@
 import React from "react";
-
 import clsx from "clsx";
-import Buffer from "buffer";
 
 import { PREVIEW_URL } from "./preview-url";
-
-global.Buffer = global.Buffer || Buffer.Buffer;
 
 export const MUIExample = () => (
   <div className={clsx("pb-6", "h-[656px]")}>
