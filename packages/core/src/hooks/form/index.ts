@@ -226,6 +226,8 @@ export const useForm = <
       if (isClone && !id) return reject(missingIdError);
       // Reject the mutation if there's no `values` passed
       if (!values) return reject(missingValuesError);
+      // Auto Save is only allowed in edit action
+      if (isAutosave && !isEdit) return reject(autosaveOnNonEditError);
 
       if (!isPessimistic && !isAutosave) {
         // If the mutation mode is not pessimistic, handle the redirect immediately in an async manner
@@ -338,6 +340,10 @@ const missingIdError = new Error(
 
 const missingValuesError = new Error(
   "[useForm]: `values` is not provided but is required",
+);
+
+const autosaveOnNonEditError = new Error(
+  "[useForm]: `autoSave` is only allowed in edit action",
 );
 
 const idWarningMessage = (action?: string, identifier?: string, id?: BaseKey) =>
