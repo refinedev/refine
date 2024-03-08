@@ -2208,6 +2208,14 @@
     {
       "from": "/tutorial/next-steps/summary",
       "to": "/tutorial/next-steps/summary/react-router/ant-design"
+    },
+    {
+      "to": "/docs/i18n/hooks/use-translation",
+      "from": [
+        "/docs/i18n/hooks/use-get-locale",
+        "/docs/i18n/hooks/use-set-locale",
+        "/docs/i18n/hooks/use-translate"
+      ]
     }
   ]
 }
