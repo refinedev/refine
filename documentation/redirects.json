@@ -2210,6 +2210,10 @@
       "to": "/tutorial/next-steps/summary/react-router/ant-design"
     },
     {
+      "from": "/blog/2024/01/26/git-stash/",
+      "to": "/blog/git-stash"
+    },
+    {
       "to": "/docs/i18n/hooks/use-translation",
       "from": [
         "/docs/i18n/hooks/use-get-locale",
