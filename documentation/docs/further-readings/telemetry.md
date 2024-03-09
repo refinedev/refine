@@ -33,7 +33,7 @@ The tracking happens when a Refine application is loaded on the user's browser. 
 
 There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 
-## What is collected?
+<h2>What is collected?</h2>
 
 The HTTP call has a JSON payload having the following application-specific attributes:
 
@@ -67,7 +67,7 @@ Projects created with refine.new still can opt-out from telemetry by simply addi
 
 :::
 
-## How to opt-out?
+<h2>How to opt-out?</h2>
 
 You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<Refine>` component's `options` prop.
 
@@ -77,7 +77,7 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
 After running a command with the `Refine` CLI, a single HTTP request is sent to "https://telemetry.refine.dev/cli".
 
-## What is collected?
+<h2>What is collected?</h2>
 
 | Value            | Type                                          | Description                                                   |
 | ---------------- | --------------------------------------------- | ------------------------------------------------------------- |
@@ -104,7 +104,7 @@ Projects created with refine.new still can opt-out from telemetry by simply addi
 
 :::
 
-## How to opt-out?
+<h2>How to opt-out?</h2>
 
 You can opt out of telemetry by simply adding `REFINE_NO_TELEMETRY=true` to environment variables.
 

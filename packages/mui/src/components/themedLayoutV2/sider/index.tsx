@@ -138,7 +138,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   sx={{
                     pl: isNested ? 4 : 2,
                     justifyContent: "center",
-                    marginTop: "8px",
                   }}
                 >
                   <ListItemIcon

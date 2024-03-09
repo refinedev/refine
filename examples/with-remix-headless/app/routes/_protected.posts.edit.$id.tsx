@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderArgs } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 
 import { API_URL } from "~/constants";
@@ -80,7 +80,7 @@ const PostEdit: React.FC = () => {
 
 export default PostEdit;
 
-export async function loader({ params }: LoaderArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const data = await dataProvider(API_URL).getOne<IPost>({
     resource: "posts",
     id: params?.id as string,
