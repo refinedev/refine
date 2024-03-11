@@ -25,7 +25,7 @@
 
 <br/>
 
-<div align="center">refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
+<div align="center">Refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
 
 <br/>
 
@@ -33,13 +33,13 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-# Material UI integration for refine
+## Material UI integration for Refine
 
 [Material UI](https://mui.com/material-ui/getting-started/) is a library of React UI components that implements Google's Material Design.
 
-[refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+[Refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, Refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
-refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
+Refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
 
 ## Installation
 
@@ -164,6 +164,6 @@ The result will look like this:
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Material UI documentation](https://refine.dev/docs/api-reference/mui/).
-- [Refer to complete refine tutorial with Material UI](https://refine.dev/docs/tutorial/introduction/select-framework/).
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
+- For more detailed information and usage, refer to the [Refine Material UI documentation](https://refine.dev/docs/ui-integrations/material-ui/introduction).
+- [Refer to complete Refine tutorial with Material UI](https://refine.dev/tutorial).
+- [Refer to documentation for more info about Refine](https://refine.dev/docs).

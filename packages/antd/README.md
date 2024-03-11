@@ -25,7 +25,7 @@
 
 <br/>
 
-<div align="center">refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
+<div align="center">Refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
 
 <br/>
 
@@ -33,13 +33,13 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-# Ant Design integration for refine
+## Ant Design integration for Refine
 
 [Ant Design](https://ant.design/) is a React.js UI library that contains easy-to-use components that are useful for building interactive user interfaces.
 
-[refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+[Refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, Refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
-refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
+Refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
 
 ## Installation
 
@@ -158,7 +158,6 @@ The result will look like this:
 
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Ant Design documentation](https://refine.dev/docs/api-reference/antd/).
-- [Refer to complete refine tutorial with Ant Design](https://refine.dev/docs/tutorial/introduction/select-framework/)
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [Refine Ant Design documentation](https://refine.dev/docs/ui-integrations/ant-design/introduction).
+- [Refer to complete Refine tutorial with Ant Design](https://refine.dev/tutorial)
+- [Refer to documentation for more info about Refine](https://refine.dev/docs).
