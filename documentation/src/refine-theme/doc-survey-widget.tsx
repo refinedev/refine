@@ -2,6 +2,11 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  SurveyOption,
+  SurveyTypeEnum,
+  useRefineCloudSurveyAPI,
+} from "../hooks/use-refine-cloud-survey-api";
 
 type Props = {
   className?: string;
@@ -13,8 +18,6 @@ type Props = {
 export const DocSurveyWidget = ({ className }: Props) => {
   const refWidget = React.useRef<HTMLDivElement>(null);
   const location = useLocation();
-  // users can change their rating feedback, so we need to keep track of the survey response
-  const [survey, setSurvey] = useState<DocSurveyResponse | null>(null);
   // if the user submits rating feedback, we show the text feedback input
   const [isSurveyTextVisible, setIsSurveyTextVisible] = useState(false);
   // if the user submits text feedback, we show a thank you message
@@ -23,6 +26,11 @@ export const DocSurveyWidget = ({ className }: Props) => {
   const [selectedOption, setSelectedOption] = useState<SurveyOption | null>(
     null,
   );
+
+  const { survey, setSurvey, createSurvey, updateSurvey } =
+    useRefineCloudSurveyAPI({
+      type: SurveyTypeEnum.EMOJI,
+    });
 
   const handleSurveyOptionClick = async (option: SurveyOption) => {
     setSelectedOption(option);
@@ -36,21 +44,17 @@ export const DocSurveyWidget = ({ className }: Props) => {
     }, 150);
 
     if (survey) {
-      const data = await updateSurvey({
+      await updateSurvey({
         surveyId: survey.id,
         body: { response: option },
       });
-      if (!data) return;
-      setSurvey(data);
     } else {
-      const data = await createSurvey({
+      await createSurvey({
         body: {
           response: option,
           entityId: location.pathname,
         },
       });
-      if (!data) return;
-      setSurvey(data);
     }
   };
 
@@ -59,13 +63,11 @@ export const DocSurveyWidget = ({ className }: Props) => {
       return;
     }
 
-    const data = await updateSurvey({
+    await updateSurvey({
       surveyId: survey.id,
       body: { response: selectedOption, responseText: text },
     });
-    if (!data) return;
 
-    setSurvey(data);
     // when the user submits text feedback, we show a thank you message
     setIsFinished(true);
 
@@ -156,6 +158,7 @@ const SurveyOptions = (props: {
           return (
             <button
               key={value}
+              type="button"
               onClick={() => props.onOptionClick(value)}
               className="p-1.5 sm:p-1"
             >
@@ -278,46 +281,6 @@ const SurveyFinished = (props: {
   );
 };
 
-const createSurvey = async ({ body }: { body: DocSurveyCreateDto }) => {
-  const response = await fetch(`${DOC_SURVEY_URL}/responses`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!response.ok) {
-    return null;
-  }
-
-  const data: DocSurveyResponse = await response.json();
-  return data;
-};
-
-const updateSurvey = async ({
-  surveyId,
-  body,
-}: {
-  surveyId?: string;
-  body: DocSurveyUpdateDto;
-}) => {
-  const response = await fetch(`${DOC_SURVEY_URL}/responses/${surveyId}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!response.ok) {
-    return null;
-  }
-
-  const data: DocSurveyResponse = await response.json();
-  return data;
-};
-
 const surveyOptions: {
   value: SurveyOption;
   img: string;
@@ -343,50 +306,3 @@ const surveyOptions: {
     img: "/icons/emoji/emoji-star-struct-face.png",
   },
 ];
-
-export type SurveyOption = 1 | 2 | 3 | 4 | 5;
-
-export type Survey = {
-  id: string;
-  name: string;
-  slug: string;
-  options: SurveyOption[];
-  source: string;
-  entityType: string;
-  surveyType: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type IDocSurveyContext = {
-  survey: Survey;
-};
-
-export type DocSurveyCreateDto = {
-  response: number;
-  entityId: string;
-  responseText?: string;
-  metaData?: SurveyMetaData;
-};
-
-export type DocSurveyUpdateDto = {
-  response: number;
-  responseText?: string;
-  metaData?: SurveyMetaData;
-};
-
-export type DocSurveyResponse = {
-  response: number;
-  entityId: string;
-  survey: Survey;
-  responseText?: string | null;
-  metaData: SurveyMetaData;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type SurveyMetaData = Record<string, any>;
-
-const DOC_SURVEY_URL =
-  "https://cloud2.refine.dev/.refine/surveys/documentation-pages-survey";

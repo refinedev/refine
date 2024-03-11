@@ -59,12 +59,12 @@ export const ListProducts = () => {
   });
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <List>
       <Table {...tableProps} rowKey="id">
         {/* ... */}
       </Table>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </List>
   );
 };
@@ -94,7 +94,7 @@ export const CreateProduct = () => {
   });
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Name" name="name">
@@ -113,7 +113,7 @@ export const CreateProduct = () => {
           <InputNumber step="0.01" stringMode />
         </Form.Item>
       </Form>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </Create>
   );
 };
@@ -144,7 +144,7 @@ export const EditProduct = () => {
   });
 
   return (
-    {/* highlight-next-line */}
+    // highlight-next-line
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Name" name="name">
@@ -163,7 +163,7 @@ export const EditProduct = () => {
           <InputNumber step="0.01" stringMode />
         </Form.Item>
       </Form>
-    {/* highlight-next-line */}
+      {/* highlight-next-line */}
     </Edit>
   );
 };
