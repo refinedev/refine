@@ -177,7 +177,7 @@ You can take a look at some live examples that can be built using **Refine** fro
 - [Medium Clone - Real World Example](https://refine.dev/templates/react-crud-app/)
 - [Multitenancy Example](https://refine.dev/templates/multitenancy-strapi/)
 - [Storefront](https://refine.dev/templates/next-js-ecommerce-store/)
-- [Refer to templates page for more examples](https://refine.dev/templates//)
+- [Refer to templates page for more examples](https://refine.dev/templates/)
 - [More **Refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples#other-examples)
 
 ## Key Features
