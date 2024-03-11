@@ -5,7 +5,6 @@ displayed_sidebar: mainSidebar
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { MUIExample } from './example/mui';
 
 **Refine** works on any environment that can run **React** (incl. _Vite, Next.js, Remix, and CRA(Legacy)_ etc.)
 
@@ -83,7 +82,9 @@ You will see the output as a table populated with `blog_posts` and `category` da
 
 <br/>
 
-<MUIExample />
+<div >
+   <img style={{width: "100%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/quick-start-example.png" alt="Example result" />
+</div>
 
 <br />
 

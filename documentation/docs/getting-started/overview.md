@@ -40,32 +40,9 @@ Offering the best from both worlds, Refine mitigates all risks of “from scratc
 
 ## Overview of the Refine structure
 
-/// Need to be updated
+import { MUIExample } from './example/mui';
 
-Here's an overview of the Refine structure:
-
-```tsx title="App.tsx"
-const App = () => (
-  <Refine
-    dataProvider={dataProvider}
-    resources={[
-      {
-        name: "blog_posts",
-        list: "/blog-posts",
-        show: "/blog-posts/show/:id",
-        create: "/blog-posts/create",
-        edit: "/blog-posts/edit/:id",
-      },
-    ]}
-  >
-    /* ... */
-  </Refine>
-);
-```
-
- <div  >
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/tutorial/tutorial-generic-app.png" alt="tutorial antd" />
-</div>
+<MUIExample />
 
 <br/>
 
