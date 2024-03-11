@@ -41,33 +41,126 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
 
-## Installation & Usage
+## Installation
 
+To use Refine with Material UI, you need to install the following package `@refinedev/mui` along with the Material UI packages:
+
+```sh
+npm install @refinedev/mui @mui/material @mui/lab @mui/x-data-grid @emotion/react @emotion/styled
 ```
-npm install @refinedev/mui @refinedev/react-hook-form @mui/material @mui/lab @mui/x-data-grid @emotion/react @emotion/styled react-hook-form
+
+## ⚡ Try Refine
+
+Start a new project with Refine in seconds using the following command:
+
+```sh
+npm create refine-app@latest my-refine-app
 ```
+
+Or you can create a new project on your browser:
+
+<a href="https://refine.dev/?playground=true" target="_blank">
+  <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-it-in-your-browser.png" />
+</a>
+
+## Quick Start
+
+Here's Refine in action, the below code is an example of a simple CRUD application using Refine + React Router + Material UI:
 
 ```tsx
+import React from "react";
+import { Refine, useMany } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/mui";
+import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { ThemeProvider } from "@mui/material/styles";
 
-const App = () => {
+export default function App() {
   return (
-    <ThemeProvider>
+    <BrowserRouter>
       <CssBaseline />
-      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <Refine
-      /* ... */
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerBindings}
+        resources={[
+          {
+            name: "products",
+            list: "/products",
+          },
+        ]}
       >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        <Routes>
+          <Route
+            element={
+              <ThemedLayoutV2>
+                <Outlet />
+              </ThemedLayoutV2>
+            }
+          >
+            <Route path="/products">
+              <Route index element={<ProductList />} />
+            </Route>
+          </Route>
+        </Routes>
       </Refine>
-    </ThemeProvider>
+    </BrowserRouter>
+  );
+}
+
+// src/pages/products/list.tsx
+
+import { List, useDataGrid, DateField } from "@refinedev/mui";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
+export const ProductList = () => {
+  const { dataGridProps } = useDataGrid();
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids:
+      dataGridProps?.rows?.map((item) => item?.category?.id).filter(Boolean) ??
+      [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
+
+  const columns = React.useMemo<GridColDef[]>(
+    () => [
+      { field: "id", headerName: "ID", type: "number" },
+      { field: "name", flex: 1, headerName: "Name" },
+      {
+        field: "category",
+        flex: 1,
+        headerName: "Category",
+        renderCell: ({ value }) =>
+          isLoading
+            ? "Loading..."
+            : categories?.data?.find((item) => item.id === value?.id)?.title,
+      },
+      {
+        field: "createdAt",
+        flex: 1,
+        headerName: "Created at",
+        renderCell: ({ value }) => <DateField value={value} />,
+      },
+    ],
+    [categories?.data, isLoading],
+  );
+
+  return (
+    <List>
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+    </List>
   );
 };
 ```
+
+The result will look like this:
+
+[![Refine + Material UI Example](https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-mui-simple-example-screenshot-rounded.webp)](https://refine.new/preview/c85442a8-8df1-4101-a09a-47d3ca641798)
 
 ## Documentation
 
