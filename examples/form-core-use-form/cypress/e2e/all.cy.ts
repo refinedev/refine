@@ -33,7 +33,7 @@ describe("form-core-use-form", () => {
     cy.get("textarea[name='content']")
       .first()
       .should(
-        "have.have.value",
+        "have.value",
         "Repellendus temporibus provident nobis. Non adipisci quod et est dolorem sed qui. A ut omnis. Et perspiciatis quibusdam maiores aliquid est fugit nam odit. Aut aliquam consectetur deleniti commodi velit. Eum eum aperiam voluptate quos quo. Ut quia doloribus a. Molestiae non est fugit enim fugiat non ea quas accusamus. Consequuntur voluptatem nesciunt dolorum expedita optio deserunt. Illo dolorem et similique.",
       );
     cy.get("button[type='submit']").first().should("not.be.disabled");
@@ -80,7 +80,7 @@ describe("form-core-use-form", () => {
     cy.get("textarea[name='content']")
       .first()
       .should(
-        "have.have.value",
+        "have.value",
         "Repellendus temporibus provident nobis. Non adipisci quod et est dolorem sed qui. A ut omnis. Et perspiciatis quibusdam maiores aliquid est fugit nam odit. Aut aliquam consectetur deleniti commodi velit. Eum eum aperiam voluptate quos quo. Ut quia doloribus a. Molestiae non est fugit enim fugiat non ea quas accusamus. Consequuntur voluptatem nesciunt dolorum expedita optio deserunt. Illo dolorem et similique.",
       );
     cy.get("button[type='submit']").first().should("not.be.disabled");
@@ -123,7 +123,7 @@ describe("form-core-use-form", () => {
     cy.get("textarea[name='content']")
       .first()
       .should(
-        "have.have.value",
+        "have.value",
         "Repellendus temporibus provident nobis. Non adipisci quod et est dolorem sed qui. A ut omnis. Et perspiciatis quibusdam maiores aliquid est fugit nam odit. Aut aliquam consectetur deleniti commodi velit. Eum eum aperiam voluptate quos quo. Ut quia doloribus a. Molestiae non est fugit enim fugiat non ea quas accusamus. Consequuntur voluptatem nesciunt dolorum expedita optio deserunt. Illo dolorem et similique.",
       );
     cy.get("button[type='submit']").first().should("not.be.disabled");
@@ -132,9 +132,11 @@ describe("form-core-use-form", () => {
       cy.get("input[name='title']").type(`{selectAll}${mockPost.title}`);
       cy.get("textarea[name='content']").type(`{selectAll}${mockPost.content}`);
 
-      cy.get("button[type='submit']").first().click();
-
       cy.interceptPATCHPost();
+
+      cy.wait(1100);
+
+      cy.get("button[type='submit']").first().click();
 
       cy.wait("@patchPost").then((interception) => {
         const response = interception?.response;
