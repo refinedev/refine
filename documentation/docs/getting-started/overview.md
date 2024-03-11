@@ -8,7 +8,7 @@ displayed_sidebar: mainSidebar
 
 **Refine** is a React meta-framework for CRUD-heavy web applications. It addresses a wide range of enterprise use cases including internal tools, admin panels, dashboards and B2B apps.
 
-Refine's core hooks and components streamline the development process by offering industry-standard solutions for crucial aspects of a project, including**authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+Refine's core hooks and components streamline the development process by offering industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 Refine's headless architecture enables the building of highly customizable applications by decoupling business logic from UI and routing. This allows integration with:
 
