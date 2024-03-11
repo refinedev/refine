@@ -96,7 +96,6 @@ export default function App() {
           {
             name: "products",
             list: "/products",
-            show: "/products/:id",
           },
         ]}
       >
@@ -110,7 +109,6 @@ export default function App() {
           >
             <Route path="/products">
               <Route index element={<ProductList />} />
-              <Route path=":id" element={<ProductShow />} />
             </Route>
           </Route>
         </Routes>
@@ -121,7 +119,7 @@ export default function App() {
 
 // src/pages/products/list.tsx
 
-import { List, useDataGrid, DateField, ShowButton } from "@refinedev/mui";
+import { List, useDataGrid, DateField } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 export const ProductList = () => {
@@ -156,13 +154,6 @@ export const ProductList = () => {
         headerName: "Created at",
         renderCell: ({ value }) => <DateField value={value} />,
       },
-      {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-          return <ShowButton hideText recordItemId={row.id} />;
-        },
-      },
     ],
     [categories?.data, isLoading],
   );
@@ -171,50 +162,6 @@ export const ProductList = () => {
     <List>
       <DataGrid {...dataGridProps} columns={columns} autoHeight />
     </List>
-  );
-};
-
-// src/pages/products/show.tsx
-
-import { Stack, Typography } from "@mui/material";
-import { useShow, useOne } from "@refinedev/core";
-import {
-  Show,
-  MarkdownField,
-  NumberField,
-  TextFieldComponent,
-} from "@refinedev/mui";
-
-export const ProductShow = () => {
-  const {
-    queryResult: { data, isLoading },
-  } = useShow({});
-
-  const record = data?.data;
-
-  const { data: category, isLoading: categoryLoading } = useOne({
-    resource: "categories",
-    id: record?.category?.id || "",
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
-
-  return (
-    <Show isLoading={isLoading}>
-      <Stack gap={1}>
-        <Typography children="ID" fontWeight="bold" />
-        <NumberField value={record?.id ?? ""} />
-        <Typography children="Name" fontWeight="bold" />
-        <TextFieldComponent value={record?.name} />
-        <Typography children="Description" fontWeight="bold" />
-        <MarkdownField value={record?.description} />
-        <Typography children="Category" fontWeight="bold" />
-        {categoryLoading ? "Loading..." : category?.data?.title}
-        <Typography children="Created At" fontWeight="bold" />
-        <DateField value={record?.createdAt} />
-      </Stack>
-    </Show>
   );
 };
 ```
