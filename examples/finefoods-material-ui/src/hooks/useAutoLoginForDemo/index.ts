@@ -18,7 +18,7 @@ export const useAutoLoginForDemo = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading]);
+  }, []);
 
   useEffect(() => {
     const shouldLogin = localStorage.getItem("auto_login") !== "false";
@@ -28,7 +28,7 @@ export const useAutoLoginForDemo = () => {
     }
 
     login();
-  }, []);
+  }, [login]);
 
   return { loading: isLoading };
 };

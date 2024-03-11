@@ -37,7 +37,11 @@ export const ListCategories = () => {
 const AppWithCategories = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { ThemedLayoutV2, ThemedTitleV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  ThemedLayoutV2,
+  ThemedTitleV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -80,7 +84,7 @@ export default function App(): JSX.Element {
                 name: "categories",
                 list: "/categories",
                 meta: { label: "Categories" },
-              }
+              },
             ]}
           >
             <Routes>
@@ -92,10 +96,7 @@ export default function App(): JSX.Element {
                   >
                     <ThemedLayoutV2
                       Title={(props) => (
-                        <ThemedTitleV2
-                          {...props}
-                          text="Awesome Project"
-                        />
+                        <ThemedTitleV2 {...props} text="Awesome Project" />
                       )}
                     >
                       <Outlet />
@@ -141,8 +142,8 @@ import { AntdInferencer } from "@refinedev/inferencer/antd";
 export const ListCategories = () => {
   return (
     <AntdInferencer
-      // resource="categories" // We're omitting this prop because it's inferred from the route
-      // action="list" // We're omitting this prop because it's inferred from the route
+    // resource="categories" // We're omitting this prop because it's inferred from the route
+    // action="list" // We're omitting this prop because it's inferred from the route
     />
   );
 };
