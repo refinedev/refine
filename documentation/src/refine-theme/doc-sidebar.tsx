@@ -68,6 +68,7 @@ const SidebarCategory = ({
   onLinkClick?: () => void;
   deferred?: boolean;
 }) => {
+  const location = useLocation();
   const isHeader = item.className?.includes("category-as-header");
   const isActive = isActiveSidebarItem(item, path);
 
@@ -99,6 +100,25 @@ const SidebarCategory = ({
       setSettled(false);
     }
   };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we don't want to re-run this effect when the location changes
+  React.useEffect(() => {
+    // find <a> elements with href attribute value equal to the current path
+    const activeLink = document.querySelector(
+      `#refine-docs-sidebar a[href="${location.pathname}"]`,
+    );
+    if (!activeLink) return;
+
+    // get sidebar
+    const sidebar = document.querySelector("#refine-docs-sidebar");
+    if (!sidebar) return;
+
+    // scroll to active link in the sidebar
+    sidebar.scrollTo({
+      top: activeLink.getBoundingClientRect().top - 200,
+      behavior: "smooth",
+    });
+  }, []);
 
   const Comp = !isHeader && item.href && !isSame ? Link : "button";
 
