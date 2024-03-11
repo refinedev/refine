@@ -1,5 +1,3 @@
-## New README draft
-
 <div align="center">
 <a href="https://refine.dev/">
     <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
@@ -20,10 +18,7 @@
 <br/>
 <br/>
 
-### [Need a new sentence]
-
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open-source, headless web application framework developed with flexibility in mind.
-
+<div align="center"><strong>The sweet spot between the low/no code and “starting from scratch” for CRUD-heavy applications.</strong><br> Refine is as an open source, React meta-framework for enterprise. It provides a headless solution for everything from admin panels to dashboards and internal tools.
 <br />
 <br />
 
