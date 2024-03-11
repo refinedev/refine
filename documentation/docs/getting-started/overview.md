@@ -46,6 +46,10 @@ import { MUIExample } from './example/mui';
 
 <br/>
 
+import { MUISandpack } from './example/sandpack';
+
+<MUISandpack />
+
 ## Use cases
 
 /// Need to be updated
