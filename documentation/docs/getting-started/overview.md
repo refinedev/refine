@@ -52,12 +52,6 @@ import { MUISandpack } from './example/sandpack';
 
 ## Use cases
 
-/// Need to be updated
-
-- More images-screenshots?
-- redesiging the diagram?
-- Highlight the types of apps that can be build(internal tools etc.)
-
 **Refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="Refine diagram" />
