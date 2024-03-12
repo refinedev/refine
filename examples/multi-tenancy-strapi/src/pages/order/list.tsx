@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useParsed } from "@refinedev/core";
+import { useParsed } from "@refinedev/core";
 import {
   List,
   useTable,
@@ -13,7 +13,7 @@ import { Table, Space } from "antd";
 import { IOrder } from "../../interfaces";
 import { API_URL } from "../../constants";
 
-export const OrderList: React.FC<IResourceComponentsProps> = () => {
+export const OrderList = () => {
   const { params } = useParsed<{ tenant: string }>();
   const { tableProps } = useTable<IOrder>({
     permanentFilter: [

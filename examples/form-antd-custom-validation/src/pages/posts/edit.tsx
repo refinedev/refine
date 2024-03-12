@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  HttpError,
-  IResourceComponentsProps,
-  useApiUrl,
-  useCustom,
-} from "@refinedev/core";
+import { HttpError, useApiUrl, useCustom } from "@refinedev/core";
 
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 
@@ -23,7 +18,7 @@ interface PostUniqueCheckRequestQuery {
   id?: number;
 }
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
   const postData = queryResult?.data?.data;

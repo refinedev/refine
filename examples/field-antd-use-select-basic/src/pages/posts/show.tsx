@@ -1,9 +1,4 @@
-import {
-  useShow,
-  IResourceComponentsProps,
-  useOne,
-  useMany,
-} from "@refinedev/core";
+import { useShow, useOne, useMany } from "@refinedev/core";
 
 import { Show, MarkdownField } from "@refinedev/antd";
 
@@ -13,7 +8,7 @@ import { IPost, ICategory, ITag } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow = () => {
   const { queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

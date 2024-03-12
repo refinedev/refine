@@ -1,10 +1,5 @@
 import React, { useRef } from "react";
-import {
-  IResourceComponentsProps,
-  getDefaultFilter,
-  useDelete,
-  useNavigation,
-} from "@refinedev/core";
+import { getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -17,7 +12,7 @@ import {
   BarsArrowUpIcon,
 } from "@heroicons/react/24/outline";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const filterForm: any = useRef(null);
 
   const { mutate: deleteProduct } = useDelete();

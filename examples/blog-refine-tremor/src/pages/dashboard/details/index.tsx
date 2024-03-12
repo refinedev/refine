@@ -1,5 +1,4 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
@@ -53,7 +52,7 @@ const getDeltaType = (status: number): DeltaType => {
   return "decrease";
 };
 
-export const Details: React.FC<IResourceComponentsProps> = () => {
+export const Details = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
       {

@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
 
@@ -10,7 +10,7 @@ import { POST_QUERY } from "./queries";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow = () => {
   const { queryResult } = useShow<GetFields<GetPostQuery>>({
     metaData: {
       gqlQuery: POST_QUERY,

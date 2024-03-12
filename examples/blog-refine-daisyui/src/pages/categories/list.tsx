@@ -1,10 +1,5 @@
 import React, { useRef } from "react";
-import {
-  IResourceComponentsProps,
-  getDefaultFilter,
-  useDelete,
-  useNavigation,
-} from "@refinedev/core";
+import { getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -18,7 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const filterForm: any = useRef(null);
 
   const { mutate: deleteCategory } = useDelete<ICategory>();

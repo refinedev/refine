@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import {
   List,
   useDrawerForm,
@@ -13,7 +13,7 @@ import { Space, Table } from "antd";
 import { IClient, IContact } from "../../interfaces";
 import { CreateClient, EditClient } from "../../components/client";
 
-export const ClientList: React.FC<IResourceComponentsProps> = () => {
+export const ClientList = () => {
   const { tableProps } = useTable<IClient>({
     sorters: { initial: [{ field: "id", order: "desc" }] },
     meta: { populate: ["contacts"] },

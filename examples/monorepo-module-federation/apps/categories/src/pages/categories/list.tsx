@@ -1,5 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
   BooleanField,
   EditButton,
@@ -12,7 +10,7 @@ import { Space, Table } from "antd";
 
 import { ICategory } from "../../interfaces";
 
-const CategoryList: React.FC<IResourceComponentsProps> = () => {
+const CategoryList = () => {
   const { tableProps } = useTable<ICategory>();
 
   return (

@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
   List,
   useTable,
@@ -16,7 +15,7 @@ import { CategoriesListQuery } from "graphql/types";
 
 type ICategory = GetFieldsFromList<CategoriesListQuery>;
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const { tableProps, sorters } = useTable<ICategory>({
     initialSorter: [
       {

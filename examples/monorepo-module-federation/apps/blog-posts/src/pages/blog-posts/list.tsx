@@ -1,8 +1,4 @@
-import {
-  getDefaultFilter,
-  IResourceComponentsProps,
-  useMany,
-} from "@refinedev/core";
+import { getDefaultFilter, useMany } from "@refinedev/core";
 
 import {
   EditButton,
@@ -19,7 +15,7 @@ import { Radio, Select, Space, Table } from "antd";
 
 import { ICategory, IPost } from "../../interfaces";
 
-const PostList: React.FC<IResourceComponentsProps> = () => {
+const PostList = () => {
   const { tableProps, filters } = useTable<IPost>({
     syncWithLocation: true,
   });

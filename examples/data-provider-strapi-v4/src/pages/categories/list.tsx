@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
   List,
@@ -13,7 +12,7 @@ import { Table, Space, Form, Radio } from "antd";
 
 import { ICategory } from "../../interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const [locale, setLocale] = useState("en");
 
   const { tableProps } = useTable<ICategory>({

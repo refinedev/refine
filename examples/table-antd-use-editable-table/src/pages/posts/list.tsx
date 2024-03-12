@@ -1,5 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
   List,
   SaveButton,
@@ -12,7 +10,7 @@ import { Table, Form, Space, Button, Input } from "antd";
 
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const {
     tableProps,
     formProps,
