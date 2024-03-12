@@ -1,9 +1,4 @@
-import {
-  useBack,
-  useOne,
-  useShow,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useBack, useOne, useShow } from "@refinedev/core";
 import { ICategory, IProduct } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
@@ -14,7 +9,7 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const goBack = useBack();
 
   const { queryResult } = useShow<IProduct>();

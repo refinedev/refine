@@ -1,10 +1,10 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 import { IPost, IPostVariables } from "../../interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const { formProps, saveButtonProps } = useForm<
     IPost,
     HttpError,

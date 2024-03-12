@@ -1,6 +1,5 @@
 import {
   useTranslate,
-  IResourceComponentsProps,
   useExport,
   useNavigation,
   HttpError,
@@ -28,7 +27,7 @@ import {
 } from "../../components";
 import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
 
-export const OrderList: React.FC<IResourceComponentsProps> = () => {
+export const OrderList = () => {
   const { token } = theme.useToken();
 
   const { tableProps, sorters, filters } = useTable<

@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
   useSimpleList,
@@ -12,7 +12,7 @@ import { List as AntdList } from "antd";
 import { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "@/components/client";
 
-export const ClientList: React.FC<IResourceComponentsProps> = () => {
+export const ClientList = () => {
   const { listProps } = useSimpleList<IClient>({
     metaData: { populate: ["contacts"] },
   });

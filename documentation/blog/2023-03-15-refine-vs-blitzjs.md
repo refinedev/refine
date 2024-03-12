@@ -462,12 +462,10 @@ Navigate back to your project file tree and you will notice that a new folder `p
 Open up the `list.tsx` file and you will notice Refine has even designed the `Inferencer` component that will automatically help you to design the views for resources based on the data structure:
 
 ```typescript
-import { IResourceComponentsProps, GetListResponse } from "@pankod/refine-core";
+import { GetListResponse } from "@pankod/refine-core";
 import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
-export const ProductsList: React.FC<
-  IResourceComponentsProps<GetListResponse<{}>>
-> = () => {
+export const ProductsList = () => {
   return <AntdInferencer />;
 };
 ```

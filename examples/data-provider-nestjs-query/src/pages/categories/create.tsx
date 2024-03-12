@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
 import { GetFields } from "@refinedev/nestjs-query";
 
@@ -7,7 +6,7 @@ import { Form, Input } from "antd";
 import { CategoryCreateMutation } from "graphql/types";
 import { CATEGORY_CREATE_MUTATION } from "./queries";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate = () => {
   const { formProps, saveButtonProps } = useForm<
     GetFields<CategoryCreateMutation>
   >({ meta: { gqlMutation: CATEGORY_CREATE_MUTATION } });

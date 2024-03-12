@@ -1,4 +1,4 @@
-import { useMany, useExport, IResourceComponentsProps } from "@refinedev/core";
+import { useMany, useExport } from "@refinedev/core";
 import {
   useTable,
   useImport,
@@ -13,7 +13,7 @@ import { Space, Table } from "antd";
 
 import { IPost, ICategory, IPostFile } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   const categoryIds =

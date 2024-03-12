@@ -1,10 +1,9 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-export const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
   const blogPostsData = queryResult?.data?.data;

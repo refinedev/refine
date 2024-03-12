@@ -323,14 +323,13 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
 Let's place the `CompanyItem` component that we created above in the [refine-antd List](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and display company information.
 
 ```tsx title="src/pages/company/CompanyList.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 //highlight-next-line
 import { useSimpleList, AntdList, List } from "@refinedev/antd";
 
 //highlight-next-line
 import { CompanyItem } from "components/company";
 
-export const CompanyList: React.FC<IResourceComponentsProps> = () => {
+export const CompanyList = () => {
   const { listProps } = useSimpleList<ICompany>({
     meta: { populate: ["logo"] },
   });
@@ -779,7 +778,7 @@ export const EditClient: React.FC<EditClientProps> = ({
 Above, we created Card, Create and Edit components. Let's define and use these components we have created in our `ClientList`.
 
 ```tsx title="src/pages/client/ClientList.tsx"
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
   useSimpleList,
@@ -793,7 +792,7 @@ import { IClient } from "interfaces";
 //highlight-next-line
 import { ClientItem, CreateClient, EditClient } from "components/client";
 
-export const ClientList: React.FC<IResourceComponentsProps> = () => {
+export const ClientList = () => {
   const { listProps } = useSimpleList<IClient>({
     meta: { populate: ["contacts"] },
   });

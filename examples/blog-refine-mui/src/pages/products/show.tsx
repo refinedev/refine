@@ -1,9 +1,4 @@
-import {
-  useShow,
-  IResourceComponentsProps,
-  useTranslate,
-  useOne,
-} from "@refinedev/core";
+import { useShow, useTranslate, useOne } from "@refinedev/core";
 import {
   Show,
   NumberField,
@@ -16,7 +11,7 @@ import {
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const translate = useTranslate();
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;

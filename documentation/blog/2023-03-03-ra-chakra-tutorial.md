@@ -330,7 +330,6 @@ Next, we create a new folder named `pages` under the `src` folder. Under that fo
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { List, ShowButton, EditButton, DateField } from "@refinedev/chakra-ui";
 import {
@@ -346,7 +345,7 @@ import {
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(
     () => [
       {
@@ -635,7 +634,7 @@ We'll update the `<PostList/>` component with the code below:
 ```tsx title="src/pages/posts/list.tsx"
 import { Pagination } from "../../components/pagination";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   //...
   const {
     getHeaderGroups,
@@ -1185,7 +1184,7 @@ import {
     DeleteButton,
 } from "@refinedev/chakra-ui";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
     //...
     const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [

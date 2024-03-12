@@ -1,11 +1,11 @@
 import React from "react";
-import { IResourceComponentsProps, useShow } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 import { Show, NumberField, TextField } from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title } = Typography;
 
-export const CompanyShow: React.FC<IResourceComponentsProps> = () => {
+export const CompanyShow = () => {
   const { queryResult } = useShow({
     meta: {
       fields: [

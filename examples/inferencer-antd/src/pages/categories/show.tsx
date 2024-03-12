@@ -1,6 +1,5 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { AntdShowInferencer } from "@refinedev/inferencer/antd";
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
+export const CategoryShow = () => {
   return <AntdShowInferencer />;
 };

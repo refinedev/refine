@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useList } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import { Show } from "@refinedev/antd";
 import { Badge, BadgeProps, Calendar } from "antd";
@@ -9,7 +9,7 @@ import { IEvent } from "../../interfaces";
 
 import "./index.css";
 
-export const CalendarPage: React.FC<IResourceComponentsProps> = () => {
+export const CalendarPage = () => {
   const { data } = useList<IEvent>({
     resource: "events",
     config: {

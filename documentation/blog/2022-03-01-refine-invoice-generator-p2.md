@@ -413,8 +413,6 @@ Then, we fill our Refine [Create](https://refine.dev/docs/ui-frameworks/antd/com
 <p>
 
 ```tsx title="src/pages/invoice/CreateInvoice"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
   Create,
   Form,
@@ -427,7 +425,7 @@ import {
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
-export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
+export const CreateInvoice = () => {
   const { formProps, saveButtonProps } = useForm<IInvoice>();
 
   const { selectProps: companySelectProps } = useSelect<ICompany>({

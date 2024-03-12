@@ -1775,10 +1775,9 @@ Now when we navigate along the `/products` paths, we can see some clumsy looking
 To begin with, the scaffolded `<ProductList />` component looks like this:
 
 ```tsx title="src/pages/products/list.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   return <HeadlessInferencer />;
 };
 ```
@@ -1793,11 +1792,11 @@ We'll grab the generated code from the page modal by clicking on the `Show the a
 
 ```tsx
 import React from "react";
-import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
       {
@@ -2034,12 +2033,7 @@ So, we'll build on top of it and make necessary logic, markup and style modifica
 
 ```tsx title="src/pages/products/list.tsx
 import React, { useRef } from "react";
-import {
-  IResourceComponentsProps,
-  getDefaultFilter,
-  useDelete,
-  useNavigation,
-} from "@refinedev/core";
+import { getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2052,7 +2046,7 @@ import {
   BarsArrowUpIcon,
 } from "@heroicons/react/24/outline";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const filterForm: any = useRef(null);
 
   const { mutate: deleteProduct } = useDelete();
@@ -2422,15 +2416,11 @@ The modified `<ProductCreate />` component looks like below, so replace the code
 
 ```tsx title="src/pages/products/create.tsx"
 import React from "react";
-import {
-  useNavigation,
-  IResourceComponentsProps,
-  useSelect,
-} from "@refinedev/core";
+import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const ProductCreate = () => {
   const { list } = useNavigation();
 
   const {
@@ -2584,15 +2574,11 @@ The product edit page will have the same form functionality as the create page. 
 
 ```tsx title="src/pages/products/edit.tsx"
 import React from "react";
-import {
-  useNavigation,
-  IResourceComponentsProps,
-  useSelect,
-} from "@refinedev/core";
+import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {
@@ -2735,15 +2721,11 @@ The `<ProductShow />` component is more straight forward and the final adopted v
 
 ```tsx title="src/pages/products/show.tsx"
 import React from "react";
-import {
-  useShow,
-  useNavigation,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useShow, useNavigation } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const { edit, list } = useNavigation();
   const {
     queryResult: { data },
@@ -2961,12 +2943,7 @@ For the final version of `<CategoryList />`, adopt the following code.
 
 ```tsx title="src/pages/categories/list.tsx"
 import React, { useRef } from "react";
-import {
-  IResourceComponentsProps,
-  getDefaultFilter,
-  useDelete,
-  useNavigation,
-} from "@refinedev/core";
+import { getDefaultFilter, useDelete, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { PlusIcon } from "@heroicons/react/20/solid";
@@ -2980,7 +2957,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const filterForm: any = useRef(null);
 
   const { mutate: deleteCategory } = useDelete<ICategory>();
@@ -3233,11 +3210,11 @@ For the final version of the `<CategoryCreate />` component, adopt this code:
 
 ```tsx title="src/pages/categories/create.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate = () => {
   const { list } = useNavigation();
 
   const {
@@ -3301,11 +3278,11 @@ For the final version of the `<CategoryEdit />` component, adopt this code:
 
 ```tsx title="src/pages/categories/edit.tsx"
 import React from "react";
-import { useNavigation, IResourceComponentsProps } from "@refinedev/core";
+import { useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
+export const CategoryEdit = () => {
   const { list } = useNavigation();
 
   const {
@@ -3378,15 +3355,11 @@ For the final version of the `<CategoryShow />` page, adopt this code:
 
 ```tsx title="src/pages/categories/show.tsx"
 import React from "react";
-import {
-  useShow,
-  useNavigation,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useShow, useNavigation } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ICategory } from "../../interfaces";
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
+export const CategoryShow = () => {
   const { edit, list } = useNavigation();
   const {
     queryResult: { data },

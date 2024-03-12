@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  useMany,
-  IResourceComponentsProps,
-  HttpError,
-  CrudFilters,
-} from "@refinedev/core";
+import { useMany, HttpError, CrudFilters } from "@refinedev/core";
 
 import {
   useTable,
@@ -30,7 +25,7 @@ import {
 
 import { Filter } from "../task";
 
-export const TaskList: React.FC<IResourceComponentsProps> = () => {
+export const TaskList = () => {
   const { tableProps, searchFormProps } = useTable<
     ITask,
     HttpError,

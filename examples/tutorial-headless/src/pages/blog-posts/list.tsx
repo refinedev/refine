@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  IResourceComponentsProps,
   useNavigation,
   GetManyResponse,
   useMany,
@@ -9,7 +8,7 @@ import {
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList = () => {
   const { mutate: deleteBlogPost } = useDelete();
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [

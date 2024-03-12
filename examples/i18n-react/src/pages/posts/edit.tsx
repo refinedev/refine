@@ -1,11 +1,11 @@
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
+export const PostEdit = () => {
   const translate = useTranslate();
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
@@ -16,7 +16,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
   });
 
   return (
-    <Edit {...props} saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label={translate("posts.fields.title")}

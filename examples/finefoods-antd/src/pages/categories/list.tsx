@@ -1,8 +1,4 @@
-import {
-  useTranslate,
-  IResourceComponentsProps,
-  HttpError,
-} from "@refinedev/core";
+import { useTranslate, HttpError } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 import { ICategory } from "../../interfaces";
@@ -12,7 +8,7 @@ import {
   TableCategoryProductColumn,
 } from "../../components";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const { tableProps } = useTable<ICategory, HttpError>();
 
   const t = useTranslate();

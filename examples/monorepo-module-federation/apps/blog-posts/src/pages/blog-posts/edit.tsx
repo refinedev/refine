@@ -1,5 +1,4 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { IResourceComponentsProps } from "@refinedev/core";
 import React from "react";
 
 import { Form, Input, Select } from "antd";
@@ -8,7 +7,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { ICategory, IPost } from "../../interfaces";
 
-const PostEdit: React.FC<IResourceComponentsProps> = () => {
+const PostEdit = () => {
   const { formProps, saveButtonProps, queryResult, autoSaveProps } =
     useForm<IPost>({
       warnWhenUnsavedChanges: true,

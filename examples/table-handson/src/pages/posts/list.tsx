@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  IResourceComponentsProps,
-  useTable,
-  useUpdate,
-  useSelect,
-} from "@refinedev/core";
+import { useTable, useUpdate, useSelect } from "@refinedev/core";
 import { isEqual } from "lodash";
 import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
@@ -19,7 +14,7 @@ type Config = {
 
 type localCompareResult = -1 | 0 | 1;
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   registerAllModules();
 
   const hotTableRef = React.useRef<HotTable>(null);

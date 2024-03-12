@@ -647,7 +647,6 @@ export const ProductCreate: React.FC = () => {
 const ProductEditCode = `
 import {
   type HttpError,
-  type IResourceComponentsProps,
   useTranslate,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -657,7 +656,7 @@ import { Autocomplete, Box, TextField } from "@mui/material";
 import { Edit, useAutocomplete } from "@refinedev/mui";
 import type { Product } from "./types";
 
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const ProductEdit = () => {
   const translate = useTranslate();
   const {
     saveButtonProps,
@@ -788,7 +787,6 @@ const ProductListCode = `
 import { useMemo } from "react";
 
 import {
-  type IResourceComponentsProps,
   useGetLocale,
   useList,
   useTranslate,
@@ -804,7 +802,7 @@ import {
   useDataGrid,
 } from "@refinedev/mui";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { dataGridProps } = useDataGrid();
 
   const locale = useGetLocale()();
@@ -1148,7 +1146,6 @@ export const CategoryList: React.FC = () => {
 
 const CategoryShowCode = `
 import {
-  type IResourceComponentsProps,
   useShow,
   useTranslate,
 } from "@refinedev/core";
@@ -1164,7 +1161,7 @@ import {
 } from "@refinedev/mui";
 import type { Category } from "./types";
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
+export const CategoryShow = () => {
   const translate = useTranslate();
   const {
     queryResult: { data: categoryResult, isLoading },
