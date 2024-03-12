@@ -9,6 +9,7 @@ require("dotenv").config();
 
 const redirectJson = require("./redirects.json");
 const tutorialData = require("./tutorial-units");
+const thumbsUpDownFeedbackWidget = require("./plugins/thumbs-up-down-feedback-widget");
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
@@ -81,6 +82,7 @@ const siteConfig = {
                 ],
               },
               exclude: ["**/**/_*.md"],
+              remarkPlugins: [thumbsUpDownFeedbackWidget.plugin],
             },
         blog: false,
         theme: {

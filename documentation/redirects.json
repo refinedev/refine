@@ -2208,6 +2208,10 @@
     {
       "from": "/tutorial/next-steps/summary",
       "to": "/tutorial/next-steps/summary/react-router/ant-design"
+    },
+    {
+      "from": "/blog/2024/01/26/git-stash/",
+      "to": "/blog/git-stash"
     }
   ]
 }
