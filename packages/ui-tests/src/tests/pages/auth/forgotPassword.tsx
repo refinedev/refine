@@ -173,7 +173,7 @@ export const pageForgotPasswordTests = (
       expect(queryByTestId("custom-content")).toBeInTheDocument();
     });
 
-    xit("should run forgotPassword mutation when form is submitted", async () => {
+    it("should run forgotPassword mutation when form is submitted", async () => {
       const forgotPasswordMock = jest.fn().mockResolvedValue({ success: true });
 
       const { getByLabelText, getByText } = render(<ForgotPasswordPage />, {
