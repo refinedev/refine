@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
   Edit,
@@ -17,7 +16,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IPost, ICategory } from "../../interfaces";
 import { supabaseClient, normalizeFile } from "../../utility";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
     liveMode: "manual",

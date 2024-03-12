@@ -1,5 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { HttpError, useBack, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -19,7 +17,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 import { IProduct, IProductCategory } from "../../interfaces";
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const ProductCreate = () => {
   const goBack = useBack();
 
   const {

@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  useMany,
-  getDefaultFilter,
-} from "@refinedev/core";
+import { useMany, getDefaultFilter } from "@refinedev/core";
 import {
   List,
   TextField,
@@ -16,7 +12,7 @@ import { useTable, useSelect } from "@refinedev/antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, filters } = useTable<IPost>();
 
   const categoryIds =

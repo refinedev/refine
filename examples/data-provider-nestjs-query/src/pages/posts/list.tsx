@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
+import { getDefaultFilter } from "@refinedev/core";
 import {
   List,
   useTable,
@@ -19,7 +19,7 @@ import { BlogPostsListQuery, CategoriesSelectQuery } from "graphql/types";
 
 type IPost = GetFieldsFromList<BlogPostsListQuery>;
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, filters, sorters } = useTable<IPost>({
     initialSorter: [
       {

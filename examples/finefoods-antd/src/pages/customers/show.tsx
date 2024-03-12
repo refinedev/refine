@@ -1,8 +1,4 @@
-import {
-  useShow,
-  IResourceComponentsProps,
-  useNavigation,
-} from "@refinedev/core";
+import { useShow, useNavigation } from "@refinedev/core";
 import { Flex, Grid } from "antd";
 import { IUser } from "../../interfaces";
 import {
@@ -12,7 +8,7 @@ import {
   Drawer,
 } from "../../components";
 
-export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
+export const CustomerShow = () => {
   const { list } = useNavigation();
   const breakpoint = Grid.useBreakpoint();
   const { queryResult } = useShow<IUser>();

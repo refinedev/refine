@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useList } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 
 import {
   List,
@@ -12,7 +12,7 @@ import { Table, Space } from "antd";
 
 import { IPost, ILanguage } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   const { data, isLoading } = useList<ILanguage>({ resource: "languages" });

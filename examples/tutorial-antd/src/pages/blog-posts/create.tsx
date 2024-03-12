@@ -1,10 +1,9 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-export const BlogPostCreate: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostCreate = () => {
   const { formProps, saveButtonProps } = useForm();
 
   const { selectProps: categorySelectProps } = useSelect({

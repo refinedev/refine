@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  HttpError,
-  useParsed,
-} from "@refinedev/core";
+import { HttpError, useParsed } from "@refinedev/core";
 
 import {
   useSimpleList,
@@ -20,7 +16,7 @@ import {
 import { IProduct } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { params } = useParsed<{ tenant?: string }>();
   const { listProps } = useSimpleList<IProduct>({
     filters: {

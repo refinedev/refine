@@ -1,5 +1,5 @@
 import { MarkdownField, Show } from "@refinedev/antd";
-import { IResourceComponentsProps, useOne, useShow } from "@refinedev/core";
+import { useOne, useShow } from "@refinedev/core";
 
 import { Typography } from "antd";
 
@@ -7,7 +7,7 @@ import { ICategory, IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow = () => {
   const { queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

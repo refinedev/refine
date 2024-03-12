@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
+import { getDefaultFilter } from "@refinedev/core";
 
 import {
   List,
@@ -15,7 +15,7 @@ import { Table, Space, Select, Radio } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, sorters, filters } = useTable<IPost>({
     initialSorter: [
       {

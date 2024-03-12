@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 import { Show } from "@refinedev/antd";
 
@@ -8,7 +8,7 @@ import { ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
+export const CategoryShow = () => {
   const { queryResult } = useShow<ICategory>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

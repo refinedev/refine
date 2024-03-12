@@ -1,12 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select, DatePicker } from "antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
-export const InvoiceCreate: React.FC<IResourceComponentsProps> = () => {
+export const InvoiceCreate = () => {
   const { formProps, saveButtonProps } = useForm<IInvoice>();
 
   const { selectProps: companySelectProps } = useSelect<ICompany>({
