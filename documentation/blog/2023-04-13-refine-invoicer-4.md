@@ -623,13 +623,12 @@ The `<CreateInvoice />` view looks like this:
 <p>
 
 ```tsx title="src/pages/invoices/create.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 
 import { ICompany, IContact, IMission, IInvoice } from "interfaces";
 
-export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
+export const CreateInvoice = () => {
   const { formProps, saveButtonProps } = useForm<IInvoice>();
 
   const { selectProps: companySelectProps } = useSelect<ICompany>({
@@ -737,13 +736,12 @@ The `<EditInvoice />` page is more or less the same as the `create` view. Its co
 <p>
 
 ```tsx title="src/pages/invoices/edit.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 import { IInvoice } from "interfaces";
 
-export const EditInvoice: React.FC<IResourceComponentsProps> = () => {
+export const EditInvoice = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
     meta: { populate: ["company", "contact", "missions"] },
   });

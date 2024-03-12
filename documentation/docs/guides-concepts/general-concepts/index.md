@@ -930,11 +930,11 @@ An example of **List Page** scaffolded by inferencer looks like this;
 
 ```tsx title="generated-list.tsx"
 import { List, ShowButton, useTable } from "@refinedev/antd";
-import { BaseRecord, IResourceComponentsProps } from "@refinedev/core";
+import { BaseRecord } from "@refinedev/core";
 import { Space, Table } from "antd";
 import React from "react";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
   });

@@ -676,7 +676,6 @@ Now using the **Refine** [`useCan`](https://refine.dev/docs/core/hooks/accessCon
 
 ```tsx title="src/pages/PostList.tsx"
 import {
-  IResourceComponentsProps,
   useMany,
   useTranslate,
   //highlight-next-line
@@ -701,7 +700,7 @@ import {
 
 import { IPost, ICategory } from "interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const translate = useTranslate();
   const { tableProps } = useTable<IPost>();
 

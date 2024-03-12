@@ -505,14 +505,14 @@ The `list` view is the page where a collection of resource item is displayed. It
 The component rendered at the `list` view at `/companies` is `<CompanyList />`. It looks like this:
 
 ```tsx title="src/pages/companies/list.tsx"
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import { useSimpleList, List, useModalForm } from "@refinedev/antd";
 import { List as AntdList } from "antd";
 
 import { ICompany } from "interfaces";
 import { CompanyItem, CreateCompany, EditCompany } from "components/company";
 
-export const CompanyList: React.FC<IResourceComponentsProps> = () => {
+export const CompanyList = () => {
   const { listProps } = useSimpleList<ICompany>({
     meta: { populate: ["logo"] },
   });
@@ -909,7 +909,7 @@ We already completed the `resource` object and route definitions for `clients` p
 In a similar vein to the `<CompanyList />` component, the `<ClientList />` page looks like this:
 
 ```tsx title="src/pages/clients/list.tsx"
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import {
   useSimpleList,
   List,
@@ -921,7 +921,7 @@ import { List as AntdList } from "antd";
 import { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "components/client";
 
-export const ClientList: React.FC<IResourceComponentsProps> = () => {
+export const ClientList = () => {
   const { listProps } = useSimpleList<IClient>({
     meta: { populate: ["contacts"] },
   });
@@ -1530,13 +1530,12 @@ Again, the `<CreateContact />` component is derived from a `<Modal />` which is 
 The component `/contacts/:id/edit` looks like this:
 
 ```tsx title="src/pages/contacts/edit.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Select, Input } from "antd";
 
 import { IContact } from "interfaces";
 
-export const EditContact: React.FC<IResourceComponentsProps> = () => {
+export const EditContact = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IContact>({
     meta: { populate: ["client"] },
   });
