@@ -5,7 +5,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostEdit = (props) => {
+export const PostEdit = () => {
   const translate = useTranslate();
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
@@ -16,7 +16,7 @@ export const PostEdit = (props) => {
   });
 
   return (
-    <Edit {...props} saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label={translate("posts.fields.title")}

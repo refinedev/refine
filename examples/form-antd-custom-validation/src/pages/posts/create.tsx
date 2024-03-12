@@ -17,7 +17,7 @@ interface PostUniqueCheckRequestQuery {
   title: string;
 }
 
-export const PostCreate = (props) => {
+export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -47,7 +47,7 @@ export const PostCreate = (props) => {
   });
 
   return (
-    <Create {...props} saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Title"
