@@ -173,11 +173,31 @@
       "show": "Show Category"
     }
   },
+  "products": {
+    "fields": {
+      "category": "Category",
+      "description": "Description",
+      "id": "Id",
+      "material": "Material",
+      "name": "Name",
+      "price": "Price"
+    },
+    "products": "Products",
+    "titles": {
+      "create": "Create Product",
+      "edit": "Edit Product",
+      "list": "Products",
+      "show": "Show Product"
+    }
+  },
   "table": {
     "actions": "Actions"
   },
   "pagination": {
     "go": "Go to Page",
     "show": "Show"
+  },
+  "form": {
+    "required": "This field is required"
   }
 }
