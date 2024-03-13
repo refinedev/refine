@@ -1,4 +1,3 @@
-export { AccessControlBindings } from "./access-control";
 export {
   AuthBindings,
   IAuthBindingsContext,

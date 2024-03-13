@@ -1,21 +1,15 @@
 import React from "react";
 
-import {
-  IAccessControlContext,
-  IAccessControlContextReturnType,
-} from "./IAccessControlContext";
+import { IAccessControlContext } from "./types";
 
 /** @deprecated default value for access control context has no use and is an empty object. */
 export const defaultAccessControlContext: IAccessControlContext = {};
 
-export const AccessControlContext =
-  React.createContext<IAccessControlContextReturnType>({
-    options: {
-      buttons: { enableAccessControl: true, hideIfUnauthorized: false },
-    },
-  });
-
-export { IAccessControlContext };
+export const AccessControlContext = React.createContext<IAccessControlContext>({
+  options: {
+    buttons: { enableAccessControl: true, hideIfUnauthorized: false },
+  },
+});
 
 export const AccessControlContextProvider: React.FC<
   IAccessControlContext & {

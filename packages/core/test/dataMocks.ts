@@ -2,7 +2,6 @@ import { Action } from "../src/interfaces/actions";
 
 import {
   IRouterContext,
-  IAccessControlContext,
   ILiveContext,
   IDataMultipleContextProvider,
   RouterBindings,
@@ -11,6 +10,7 @@ import {
   LegacyAuthProvider,
   AuthProvider,
 } from "../src/interfaces";
+import { AccessControlProvider } from "../src/contexts/accessControl/types";
 
 export const posts = [
   {
@@ -84,7 +84,7 @@ const MockDataProvider = () => {
 export const MockJSONServer =
   MockDataProvider() as IDataMultipleContextProvider;
 
-export const MockAccessControlProvider: IAccessControlContext = {
+export const MockAccessControlProvider: AccessControlProvider = {
   can: () => Promise.resolve({ can: true }),
 };
 

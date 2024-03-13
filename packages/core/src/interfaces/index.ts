@@ -10,7 +10,6 @@ export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/legacy-router/IRouterContext";
-export * from "../contexts/accessControl/IAccessControlContext";
 export * from "../contexts/notification/INotificationContext";
 export * from "../contexts/auditLog/IAuditLogContext";
 

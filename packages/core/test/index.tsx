@@ -11,7 +11,6 @@ import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
   ILegacyAuthContext,
   I18nProvider,
-  IAccessControlContext,
   ILiveContext,
   INotificationContext,
   IDataMultipleContextProvider,
@@ -32,6 +31,8 @@ import { AuditLogContextProvider } from "@contexts/auditLog";
 
 import { RouterBindingsProvider } from "@contexts/router";
 import { RouterPickerProvider } from "@contexts/router-picker";
+
+import { AccessControlProvider } from "../src/contexts/accessControl/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -60,7 +61,7 @@ export interface ITestWrapperProps {
   dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
   i18nProvider?: I18nProvider;
   notificationProvider?: INotificationContext;
-  accessControlProvider?: IAccessControlContext;
+  accessControlProvider?: AccessControlProvider;
   liveProvider?: ILiveContext;
   resources?: IResourceItem[];
   children?: React.ReactNode;

@@ -4,15 +4,12 @@ export * from "./hooks";
 export {
   Action,
   ActionWithPage,
-  AccessControlProvider,
   AuditLogProvider,
   LegacyAuthProvider,
   AuthBindings,
   AuthProvider,
   BaseKey,
   BaseRecord,
-  CanParams,
-  CanReturnType,
   ConditionalFilter,
   CreateManyResponse,
   CreateResponse,
@@ -57,7 +54,6 @@ export {
   UpdateManyResponse,
   UpdateResponse,
   I18nProvider,
-  IAccessControlContext,
   ILegacyAuthContext,
   IDataContextProvider as DataProvider,
   ILiveContext as LiveProvider,
@@ -73,7 +69,6 @@ export {
   IRouterProvider,
   ITreeMenu,
   IQueryKeys,
-  AccessControlBindings,
   DataBindings,
   i18nBindings,
   LiveBindings,
@@ -142,3 +137,10 @@ export { generateDefaultDocumentTitle } from "./definitions";
 export { ResourceContext } from "./contexts/resource/index";
 export { TranslationContext } from "./contexts/translation/index";
 export { AccessControlContext } from "./contexts/accessControl/index";
+
+export {
+  AccessControlProvider,
+  CanParams,
+  CanReturnType,
+  IAccessControlContext,
+} from "./contexts/accessControl/types";

@@ -27,7 +27,6 @@ import { RouterPickerProvider } from "@contexts/router-picker";
 import { RouterBindingsProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
-  AccessControlProvider,
   AuditLogProvider,
   AuthProvider,
   DashboardPageProps,
@@ -45,6 +44,7 @@ import {
   TitleProps,
 } from "../../../interfaces";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
+import { AccessControlProvider } from "../../../contexts/accessControl/types";
 
 export interface RefineProps {
   children?: React.ReactNode;

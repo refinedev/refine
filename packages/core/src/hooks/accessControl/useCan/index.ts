@@ -7,7 +7,10 @@ import { useContext } from "react";
 
 import { AccessControlContext } from "@contexts/accessControl";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
-import { CanParams, CanReturnType } from "../../../interfaces";
+import {
+  CanParams,
+  CanReturnType,
+} from "../../../contexts/accessControl/types";
 import { useKeys } from "@hooks/useKeys";
 import { getXRay } from "@refinedev/devtools-internal";
 
