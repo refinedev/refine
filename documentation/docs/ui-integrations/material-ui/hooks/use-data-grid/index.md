@@ -844,6 +844,25 @@ useDataGrid({
 });
 ```
 
+### How can I make Data Grid editable?
+
+You can make any column editable by setting `editable: "true"` in its column definition. `useDataGrid` will utilize `processRowUpdate` from [`Material UI <DataGrid> component`](https://mui.com/x/react-data-grid/editing/) to attempt updating the row with the new value.
+
+```tsx
+const columns = React.useMemo<GridColDef<IPost>[]>(
+  () => [
+    {
+      field: "title",
+      headerName: "Title",
+      minWidth: 400,
+      flex: 1,
+      editable: true,
+    },
+  ],
+  [],
+);
+```
+
 ## API
 
 ### Properties
@@ -893,6 +912,8 @@ useDataGrid({
 > | page                    | `0`        | filterMode          | `"server"` |
 > | onPageChange            |            | filterModel         |            |
 > | onStateChange           |            | onFilterModelChange |            |
+> | processRowUpdate        |            | onCellEditStart     |            |
+> | onRowEditStart          |            |                     |            |
 
 ## Example
 

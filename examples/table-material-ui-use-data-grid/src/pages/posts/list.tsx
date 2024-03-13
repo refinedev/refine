@@ -45,7 +45,13 @@ export const PostList: React.FC = () => {
         type: "number",
         width: 50,
       },
-      { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 400,
+        flex: 1,
+        editable: true,
+      },
       {
         field: "category.id",
         headerName: "Category",

@@ -5,6 +5,7 @@ import {
   Pagination,
   pickNotDeprecated,
   Prettify,
+  useForm,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -45,6 +46,9 @@ type DataGridPropsType = Required<
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
+    | "processRowUpdate"
+    | "onCellEditStart"
+    | "onRowEditStart"
   >
 > &
   Pick<
@@ -263,6 +267,13 @@ export function useDataGrid<
     };
   };
 
+  const edit = useForm<TQueryFnData, TError, TData>({
+    action: "edit",
+    redirect: false,
+  });
+
+  const { setId, onFinish: onFinishEdit } = edit;
+
   return {
     tableQueryResult,
     dataGridProps: {
@@ -310,6 +321,16 @@ export function useDataGrid<
           )}`,
         },
       },
+      processRowUpdate: async (newRow, oldRow) => {
+        try {
+          await onFinishEdit(newRow);
+          return newRow;
+        } catch {
+          return oldRow;
+        }
+      },
+      onCellEditStart: (params) => setId(params?.id),
+      onRowEditStart: (params) => setId(params?.id),
     },
     current,
     setCurrent,
