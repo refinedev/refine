@@ -879,7 +879,7 @@ Make sure to add as much `<Steps.Step>` components as the number of steps in the
 
 <br />
 
-To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the the `useStepsForm` hook.
+To help users navigate between steps in the form, you can use action buttons. Your navigation buttons should use the `gotoStep` function that was previously returned from the `useStepsForm` hook.
 
 ```tsx title="pages/posts/create.tsx"
 import React from "react";

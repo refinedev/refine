@@ -20,7 +20,7 @@ You need to have [**Node.js**]() in order to have a React App initialized.
 
 Follow these steps in order to get started:
 
-1. From your terminal, go the the folder of your choice. Create a React App with CRA and open it in your code editor:
+1. From your terminal, go the folder of your choice. Create a React App with CRA and open it in your code editor:
 
 ```bash
 npx create-react-app flex-navbar
