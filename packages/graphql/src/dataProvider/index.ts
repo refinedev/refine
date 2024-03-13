@@ -312,9 +312,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       if (gqlOperation) {
         let query = gqlOperation;
-        const variables = {
-          id,
-        };
 
         if (isMutation(gqlOperation)) {
           const stringFields = getOperationFields(gqlOperation);
