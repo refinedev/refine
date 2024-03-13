@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Checkbox, Select } from "antd";
@@ -7,7 +6,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { ICompany } from "interfaces";
 
-export const JobEdit: React.FC<IResourceComponentsProps> = () => {
+export const JobEdit = () => {
   const { formProps, saveButtonProps } = useForm<ICompany>();
 
   const { selectProps: companySelectProps } = useSelect<ICompany>({

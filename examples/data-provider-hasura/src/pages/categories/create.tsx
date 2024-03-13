@@ -1,4 +1,4 @@
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import { Create, useForm } from "@refinedev/antd";
 
@@ -11,7 +11,7 @@ import {
 import { GetFields, GetVariables } from "@refinedev/hasura";
 import { CATEGORY_CREATE_MUTATION } from "./queries";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate = () => {
   const { formProps, saveButtonProps } = useForm<
     GetFields<CreateCategoryMutation>,
     HttpError,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 import {
   List,
@@ -19,7 +19,7 @@ import { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   // Create Drawer

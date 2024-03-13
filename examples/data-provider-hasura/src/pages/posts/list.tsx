@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, getDefaultFilter } from "@refinedev/core";
+import { getDefaultFilter } from "@refinedev/core";
 
 import {
   List,
@@ -25,7 +25,7 @@ import {
   POST_DELETE_MUTATION,
 } from "./queries";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, filters, sorters } = useTable<
     GetFieldsFromList<GetPostsQuery>
   >({

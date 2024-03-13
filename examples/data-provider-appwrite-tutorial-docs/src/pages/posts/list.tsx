@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
   List,
   useTable,
@@ -11,7 +10,7 @@ import { Table, Space } from "antd";
 
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, sorters } = useTable<IPost>({
     initialSorter: [
       {

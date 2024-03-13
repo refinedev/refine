@@ -9,13 +9,9 @@ import {
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-import {
-  IResourceComponentsProps,
-  useTranslate,
-  useMany,
-} from "@refinedev/core";
+import { useTranslate, useMany } from "@refinedev/core";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const translate = useTranslate();
   const { dataGridProps } = useDataGrid();
 

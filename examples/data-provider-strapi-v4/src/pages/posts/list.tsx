@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import {
   List,
@@ -20,7 +19,7 @@ import { IPost } from "../../interfaces";
 
 import { API_URL } from "../../constants";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const [locale, setLocale] = useState("en");
   const [publicationState, setPublicationState] = useState("live");
 

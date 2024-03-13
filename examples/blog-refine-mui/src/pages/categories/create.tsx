@@ -6,10 +6,10 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { useForm } from "@refinedev/react-hook-form";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { useTranslate } from "@refinedev/core";
 import { Controller } from "react-hook-form";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate = () => {
   const translate = useTranslate();
   const {
     saveButtonProps,

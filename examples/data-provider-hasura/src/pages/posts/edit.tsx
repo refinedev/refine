@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import {
   Edit,
@@ -21,7 +21,7 @@ import {
 import { GetFields, GetFieldsFromList, GetVariables } from "@refinedev/hasura";
 import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
     GetFields<UpdatePostMutation>,
     HttpError,

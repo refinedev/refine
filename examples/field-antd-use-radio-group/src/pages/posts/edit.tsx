@@ -1,5 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { Edit, useForm, useRadioGroup } from "@refinedev/antd";
 
 import { Form, Input, Radio } from "antd";
@@ -8,7 +6,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ILanguage } from "../../interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();
 
   const { radioGroupProps: languageRadioGroupProps } = useRadioGroup<ILanguage>(

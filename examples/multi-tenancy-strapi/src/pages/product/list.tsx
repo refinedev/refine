@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  HttpError,
-  useParsed,
-} from "@refinedev/core";
+import { HttpError, useParsed } from "@refinedev/core";
 import {
   useSimpleList,
   useModalForm,
@@ -18,7 +14,7 @@ import {
 } from "../../components/product";
 import { IProduct } from "../../interfaces";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { params } = useParsed<{ tenant: string }>();
   const { listProps } = useSimpleList<IProduct>({
     permanentFilter: [

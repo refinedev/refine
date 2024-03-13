@@ -861,6 +861,7 @@ module.exports = {
       "content-sm": "480px",
       "widening-start": "544px",
       "content-md": "656px",
+      "content-xm": "768px",
       "content-xl": "792px",
       "content-xl-safe": "1376px",
       "content-2xl": "864px",
@@ -884,6 +885,8 @@ module.exports = {
       "blog-xl": "1440px",
       "blog-2xl": "1584px",
       walkthrough: "976px",
+      "doc-form-lg": "824px",
+      "doc-form-md": "688px",
     },
   },
   plugins: [

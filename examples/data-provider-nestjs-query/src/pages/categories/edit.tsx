@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
 import { GetFields } from "@refinedev/nestjs-query";
 
@@ -7,7 +6,7 @@ import { Form, Input } from "antd";
 import { CATEGORY_EDIT_MUTATION } from "./queries";
 import { CategoryEditMutation } from "graphql/types";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
+export const CategoryEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<
     GetFields<CategoryEditMutation>
   >({

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
+import { useShow, useOne } from "@refinedev/core";
 import {
   Show,
   MarkdownField,
@@ -14,7 +14,7 @@ import { IPost, ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow = () => {
   const [deprecated, setDeprecated] = useState<
     "deleted" | "updated" | undefined
   >();

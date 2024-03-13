@@ -1,4 +1,4 @@
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import {
   Edit,
   ListButton,
@@ -14,7 +14,7 @@ import { Form, Input, Select } from "antd";
 import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
 import { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<
     GetFields<PostEditMutation>,
     HttpError

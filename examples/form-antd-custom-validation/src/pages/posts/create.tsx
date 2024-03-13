@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  HttpError,
-  IResourceComponentsProps,
-  useApiUrl,
-  useCustom,
-} from "@refinedev/core";
+import { HttpError, useApiUrl, useCustom } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
@@ -22,7 +17,7 @@ interface PostUniqueCheckRequestQuery {
   title: string;
 }
 
-export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
+export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -52,7 +47,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
   });
 
   return (
-    <Create {...props} saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Title"

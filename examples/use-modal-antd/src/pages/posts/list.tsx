@@ -1,12 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { List, useTable, useModal } from "@refinedev/antd";
 
 import { Table, Modal, Button } from "antd";
 
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
   const { modalProps, show, close } = useModal();
 

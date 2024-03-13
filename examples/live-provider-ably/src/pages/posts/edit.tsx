@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
   Edit,
   ListButton,
@@ -12,7 +11,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const [deprecated, setDeprecated] = useState<
     "deleted" | "updated" | undefined
   >();

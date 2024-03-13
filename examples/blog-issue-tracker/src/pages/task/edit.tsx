@@ -1,12 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, Edit, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const TaskEdit: React.FC<IResourceComponentsProps> = () => {
+export const TaskEdit = () => {
   const { formProps, saveButtonProps } = useForm<ITask>();
 
   const { selectProps: labelSelectProps } = useSelect<ITask>({

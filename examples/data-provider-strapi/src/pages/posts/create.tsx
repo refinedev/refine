@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
+import { useApiUrl } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
@@ -15,7 +15,7 @@ import {
 
 import { TOKEN_KEY } from "../../constants";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate = () => {
   const API_URL = useApiUrl();
 
   const { formProps, saveButtonProps, queryResult } = useForm();

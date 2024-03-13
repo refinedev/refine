@@ -102,11 +102,10 @@ export default function App() {
 
 const ListTsxCode = `
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { List, ShowButton, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { dataGridProps } = useDataGrid();
 
   const columns = React.useMemo<GridColDef[]>(
@@ -158,7 +157,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
 
 const ShowTsxCode = `
 import { Stack, Typography } from "@mui/material";
-import { IResourceComponentsProps, useShow } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 import {
   MarkdownField,
   NumberField,
@@ -166,7 +165,7 @@ import {
   TextFieldComponent as TextField,
 } from "@refinedev/mui";
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
