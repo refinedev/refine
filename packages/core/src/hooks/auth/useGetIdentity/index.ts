@@ -6,7 +6,7 @@ import {
 import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { IdentityResponse } from "../../../interfaces";
+import { IdentityResponse } from "../../../contexts/auth/types";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseGetIdentityLegacyProps<TData> = {

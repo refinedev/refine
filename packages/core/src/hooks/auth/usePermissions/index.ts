@@ -8,7 +8,7 @@ import { getXRay } from "@refinedev/devtools-internal";
 import { useKeys } from "@hooks/useKeys";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { PermissionResponse } from "../../../interfaces";
+import { PermissionResponse } from "../../../contexts/auth/types";
 
 export type UsePermissionsLegacyProps<
   TData = any,

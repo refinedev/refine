@@ -7,15 +7,14 @@ import { getXRay } from "@refinedev/devtools-internal";
 
 import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 
+import { RefineError, OpenNotificationParams } from "../../../interfaces";
 import {
   AuthActionResponse,
-  RefineError,
-  OpenNotificationParams,
+  SuccessNotificationResponse,
   TLoginData,
   TRegisterData,
-} from "../../../interfaces";
+} from "../../../contexts/auth/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 

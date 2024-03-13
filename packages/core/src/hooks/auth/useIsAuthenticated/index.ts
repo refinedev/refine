@@ -2,7 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { CheckResponse } from "../../../interfaces";
+import { CheckResponse } from "../../../contexts/auth/types";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseIsAuthenticatedLegacyProps = {

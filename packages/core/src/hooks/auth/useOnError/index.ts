@@ -2,7 +2,7 @@ import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { OnErrorResponse } from "../../../interfaces";
+import { OnErrorResponse } from "../../../contexts/auth/types";
 import { useGo, useLogout, useNavigation, useRouterType } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
 

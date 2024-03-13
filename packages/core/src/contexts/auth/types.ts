@@ -31,7 +31,7 @@
  * Same goes for `onError` function, it should always resolve.
  */
 
-import { RefineError } from "../errors";
+import { RefineError } from "../../interfaces";
 
 export type CheckResponse = {
   authenticated: boolean;
@@ -63,7 +63,7 @@ export type PermissionResponse = unknown;
 
 export type IdentityResponse = unknown;
 
-export type AuthBindings = {
+export type AuthProvider = {
   login: (params: any) => Promise<AuthActionResponse>;
   logout: (params: any) => Promise<AuthActionResponse>;
   check: (params?: any) => Promise<CheckResponse>;
@@ -77,8 +77,39 @@ export type AuthBindings = {
   getIdentity?: (params?: any) => Promise<IdentityResponse>;
 };
 
-export interface IAuthBindingsContext extends Partial<AuthProvider> {
+/**
+ * @deprecated use `AuthProvider` instead.
+ */
+export type AuthBindings = AuthProvider;
+
+export interface IAuthContext extends Partial<AuthProvider> {
   isProvided: boolean;
 }
 
-export type AuthProvider = AuthBindings;
+export type TLogoutData = void | false | string;
+export type TLoginData = void | false | string | object;
+export type TRegisterData = void | false | string;
+export type TForgotPasswordData = void | false | string;
+export type TUpdatePasswordData = void | false | string;
+
+/**
+ * @deprecated `LegacyAuthProvider` is deprecated with refine@4, use `AuthProvider` instead, however, we still support `LegacyAuthProvider` for backward compatibility.
+ */
+export interface LegacyAuthProvider {
+  login: (params: any) => Promise<TLoginData>;
+  register?: (params: any) => Promise<TRegisterData>;
+  forgotPassword?: (params: any) => Promise<TForgotPasswordData>;
+  updatePassword?: (params: any) => Promise<TUpdatePasswordData>;
+  logout: (params: any) => Promise<TLogoutData>;
+  checkAuth: (params?: any) => Promise<any>;
+  checkError: (error: any) => Promise<void>;
+  getPermissions?: (params?: Record<string, any>) => Promise<any>;
+  getUserIdentity?: (params?: any) => Promise<any>;
+}
+
+/**
+ * @deprecated `ILegacyAuthContext` is deprecated with refine@4, use `IAuthContext` instead, however, we still support `ILegacyAuthContext` for backward compatibility.
+ */
+export interface ILegacyAuthContext extends Partial<LegacyAuthProvider> {
+  isProvided?: boolean;
+}

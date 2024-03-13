@@ -4,9 +4,6 @@ export * from "./hooks";
 export {
   Action,
   ActionWithPage,
-  LegacyAuthProvider,
-  AuthBindings,
-  AuthProvider,
   BaseKey,
   BaseRecord,
   ConditionalFilter,
@@ -52,7 +49,6 @@ export {
   UpdateManyResponse,
   UpdateResponse,
   I18nProvider,
-  ILegacyAuthContext,
   IDataContextProvider as DataProvider,
   ILiveContext as LiveProvider,
   ILog,
@@ -144,3 +140,10 @@ export {
 } from "./contexts/accessControl/types";
 
 export { AuditLogProvider, LogParams } from "./contexts/auditLog/types";
+
+export {
+  AuthBindings,
+  AuthProvider,
+  ILegacyAuthContext,
+  LegacyAuthProvider,
+} from "./contexts/auth/types";

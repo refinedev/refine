@@ -16,14 +16,16 @@ import {
   useRouterContext,
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
 import {
-  AuthActionResponse,
   RefineError,
   OpenNotificationParams,
-  TUpdatePasswordData,
   UpdatePasswordFormTypes,
 } from "../../../interfaces";
+import {
+  AuthActionResponse,
+  SuccessNotificationResponse,
+  TUpdatePasswordData,
+} from "../../../contexts/auth/types";
 import { useKeys } from "@hooks/useKeys";
 
 export type UseUpdatePasswordLegacyProps<

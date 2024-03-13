@@ -17,13 +17,12 @@ import {
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
+import { RefineError, OpenNotificationParams } from "../../../interfaces";
 import {
-  RefineError,
-  OpenNotificationParams,
+  AuthActionResponse,
+  SuccessNotificationResponse,
   TLoginData,
-} from "../../../interfaces";
-import { AuthActionResponse } from "src/interfaces/bindings/auth";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
+} from "../../../contexts/auth/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
 
