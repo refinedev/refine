@@ -1,16 +1,16 @@
 ---
-"@refinedev/nestjs-query": minor
+"@refinedev/graphql": minor
 ---
 
 feat: add `gqlQuery` and `gqlMutation` support.
 
-Previously, `@refinedev/nestjs-query` package only supported GraphQL operations through `meta.fields`.
+Previously, `@refinedev/graphql` package only supported GraphQL operations through `meta.fields`.
 
 Now we've added `gqlQuery` and `gqlMutation` fields in `meta` object.
 
 You can utilize these fields along with `graphql-tag` package to build your queries/mutations.
 
-See the updated documentation for more information: https://refine.dev/docs/packages/data-providers/nestjs-query
+See the updated documentation for more information: https://refine.dev/docs/packages/data-providers/graphql
 
 Query Example:
 
