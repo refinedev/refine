@@ -31,8 +31,6 @@ import { useKeys } from "@hooks/useKeys";
 import {
   BaseKey,
   BaseRecord,
-  DeleteOneResponse,
-  GetListResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
@@ -46,6 +44,7 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { DeleteOneResponse, GetListResponse } from "../../contexts/data/types";
 
 export type DeleteParams<TData, TError, TVariables> = {
   /**

@@ -1,9 +1,5 @@
-import {
-  BaseRecord,
-  GetListResponse,
-  GetOneResponse,
-  IQueryKeys,
-} from "../interfaces";
+import { GetListResponse, GetOneResponse } from "../contexts/data/types";
+import { BaseRecord, IQueryKeys } from "../interfaces";
 import { QueryKey } from "@tanstack/react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";

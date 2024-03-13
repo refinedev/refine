@@ -1,7 +1,8 @@
 import { QueryKey } from "@tanstack/react-query";
 
 import { UseListConfig } from "@hooks/data/useList";
-import { BaseKey, CrudFilters, CrudSorting, Pagination } from "src/interfaces";
+import { BaseKey } from "src/interfaces";
+import { Pagination, CrudSorting, CrudFilters } from "../contexts/data/types";
 
 export interface IQueryKeys {
   all: QueryKey;

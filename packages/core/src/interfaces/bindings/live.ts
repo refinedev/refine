@@ -9,14 +9,12 @@
  * A small but kinda important change for the consistency of the codebase.
  */
 
+import { BaseKey, LiveEvent, MetaQuery } from "src";
 import {
-  BaseKey,
-  CrudFilters,
-  CrudSorting,
-  LiveEvent,
-  MetaQuery,
   Pagination,
-} from "src";
+  CrudSorting,
+  CrudFilters,
+} from "../../contexts/data/types";
 
 export type LiveListParams = {
   resource?: string;

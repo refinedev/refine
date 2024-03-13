@@ -10,7 +10,7 @@ import {
   AuthBindingsContextProvider,
   LegacyAuthContextProvider,
 } from "@contexts/auth";
-import { DataContextProvider } from "@contexts/data";
+import { DataContextProvider } from "../../../contexts/data";
 import { LegacyRouterContextProvider } from "@contexts/legacy-router";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
@@ -29,8 +29,6 @@ import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-
 import {
   DashboardPageProps,
   I18nProvider,
-  IDataContextProvider,
-  IDataMultipleContextProvider,
   ILiveContext,
   INotificationContext,
   IRefineOptions,
@@ -44,6 +42,7 @@ import { ResourceProps } from "../../../interfaces/bindings/resource";
 import { AccessControlProvider } from "../../../contexts/accessControl/types";
 import { AuditLogProvider } from "../../../contexts/auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../../../contexts/auth/types";
+import { DataProvider, DataProviders } from "../../../contexts/data/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -68,7 +67,7 @@ export interface RefineProps {
    * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
    * @type [`IDataContextProvider` | `IDataMultipleContextProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/)
    */
-  dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
+  dataProvider?: DataProvider | DataProviders;
   /**
    * `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
    * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
@@ -292,7 +291,7 @@ export const Refine: React.FC<RefineProps> = ({
             {...(authProvider ?? {})}
             isProvided={Boolean(authProvider)}
           >
-            <DataContextProvider {...dataProvider}>
+            <DataContextProvider dataProvider={dataProvider}>
               <LiveContextProvider liveProvider={liveProvider}>
                 <RouterPickerProvider
                   value={

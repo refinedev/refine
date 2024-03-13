@@ -1,3 +1,11 @@
+/**
+ * @author aliemir
+ *
+ * There's no change between `DataBindings` and `DataProvider` interfaces.
+ *
+ * But we should probably throw a soft error to the console if there's no `default` key in `MultipleDataBinding`.
+ */
+
 import { BaseRecord, BaseKey, MetaQuery } from "../../interfaces";
 
 export interface Pagination {
@@ -260,7 +268,7 @@ export interface CustomParams<TQuery = unknown, TPayload = unknown> {
   metaData?: MetaQuery;
 }
 
-export interface IDataContextProvider {
+export type DataProvider = {
   getList: <TData extends BaseRecord = BaseRecord>(
     params: GetListParams,
   ) => Promise<GetListResponse<TData>>;
@@ -306,11 +314,11 @@ export interface IDataContextProvider {
   >(
     params: CustomParams<TQuery, TPayload>,
   ) => Promise<CustomResponse<TData>>;
-}
+};
 
-export type IDataContext = IDataContextProvider;
+export type DataProviders = {
+  default: DataProvider;
+  [key: string]: DataProvider;
+};
 
-export interface IDataMultipleContextProvider {
-  default: IDataContextProvider;
-  [key: string]: IDataContextProvider | any;
-}
+export type IDataContext = DataProviders;

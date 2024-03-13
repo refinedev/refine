@@ -23,7 +23,6 @@ import { useKeys } from "@hooks/useKeys";
 import {
   BaseKey,
   BaseRecord,
-  GetOneResponse,
   HttpError,
   LiveModeProps,
   MetaQuery,
@@ -35,6 +34,7 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { GetOneResponse } from "../../contexts/data/types";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
   /**

@@ -26,7 +26,7 @@
  * `useGo`, `useBack` and `useParsed`
  */
 
-import { CrudFilters, CrudSorting } from "@contexts/data/IDataContext";
+import { CrudFilters, CrudSorting } from "@contexts/data/types";
 import { IResourceItem } from "./resource";
 import { Action, BaseKey } from "..";
 

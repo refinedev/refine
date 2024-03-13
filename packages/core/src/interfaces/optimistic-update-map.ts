@@ -1,4 +1,9 @@
-import { BaseKey, GetListResponse, GetManyResponse, GetOneResponse } from ".";
+import { BaseKey } from ".";
+import {
+  GetListResponse,
+  GetManyResponse,
+  GetOneResponse,
+} from "../contexts/data/types";
 
 export type OptimisticUpdateMapType<TData, TVariables> = {
   list?:

@@ -4,13 +4,13 @@ import differenceWith from "lodash/differenceWith";
 import warnOnce from "warn-once";
 
 import {
-  CrudFilters,
-  CrudSorting,
   CrudFilter,
-  CrudSort,
+  CrudFilters,
   CrudOperators,
+  CrudSort,
+  CrudSorting,
   SortOrder,
-} from "../../interfaces";
+} from "../../contexts/data/types";
 import { pickNotDeprecated } from "@definitions/helpers";
 
 export const parseTableParams = (url: string) => {

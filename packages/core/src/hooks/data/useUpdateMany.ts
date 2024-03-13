@@ -32,9 +32,6 @@ import { useKeys } from "@hooks/useKeys";
 import {
   BaseKey,
   BaseRecord,
-  GetListResponse,
-  GetManyResponse,
-  GetOneResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
@@ -43,13 +40,18 @@ import {
   PrevContext as UpdateContext,
   QueryResponse,
   SuccessErrorNotification,
-  UpdateManyResponse,
 } from "../../interfaces";
 import {
   useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  UpdateManyResponse,
+  GetListResponse,
+  GetManyResponse,
+  GetOneResponse,
+} from "../../contexts/data/types";
 
 type UpdateManyParams<TData, TError, TVariables> = {
   /**

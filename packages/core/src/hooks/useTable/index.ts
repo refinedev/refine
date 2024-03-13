@@ -28,14 +28,10 @@ import { pickNotDeprecated } from "@definitions/helpers";
 
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
-  GetListResponse,
   SuccessErrorNotification,
   HttpError,
   MetaQuery,
   LiveModeProps,
-  Pagination,
   Prettify,
 } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
@@ -45,6 +41,12 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  Pagination,
+  CrudSorting,
+  CrudFilters,
+  GetListResponse,
+} from "../../contexts/data/types";
 
 type SetFilterBehavior = "merge" | "replace";
 

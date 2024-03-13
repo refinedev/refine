@@ -13,7 +13,6 @@ import {
   useMeta,
 } from "@hooks";
 import {
-  CreateResponse,
   BaseRecord,
   HttpError,
   SuccessErrorNotification,
@@ -27,6 +26,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { useKeys } from "@hooks/useKeys";
+import { CreateResponse } from "../../contexts/data/types";
 
 interface UseCustomMutationConfig {
   headers?: {};

@@ -6,17 +6,12 @@ import get from "lodash/get";
 
 import { useList, useMany, useMeta } from "@hooks";
 import {
-  CrudSorting,
   BaseOption,
   BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  CrudFilters,
   SuccessErrorNotification,
   HttpError,
   LiveModeProps,
   BaseKey,
-  Pagination,
   MetaQuery,
   Prettify,
 } from "../../interfaces";
@@ -28,6 +23,13 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  CrudSorting,
+  CrudFilters,
+  GetListResponse,
+  Pagination,
+  GetManyResponse,
+} from "../../contexts/data/types";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**

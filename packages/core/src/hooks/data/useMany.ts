@@ -24,7 +24,6 @@ import { useKeys } from "@hooks/useKeys";
 import {
   BaseKey,
   BaseRecord,
-  GetManyResponse,
   HttpError,
   LiveModeProps,
   MetaQuery,
@@ -35,6 +34,7 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { GetManyResponse } from "../../contexts/data/types";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**

@@ -15,9 +15,6 @@ import {
 } from "@hooks";
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
-  CustomResponse,
   HttpError,
   MetaQuery,
   Prettify,
@@ -29,6 +26,11 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { useKeys } from "@hooks/useKeys";
+import {
+  CrudSorting,
+  CrudFilters,
+  CustomResponse,
+} from "../../contexts/data/types";
 
 interface UseCustomConfig<TQuery, TPayload> {
   /**

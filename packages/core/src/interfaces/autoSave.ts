@@ -1,6 +1,7 @@
 import React from "react";
-import { BaseRecord, HttpError, UpdateResponse } from ".";
+import { BaseRecord, HttpError } from ".";
 import { UseUpdateReturnType } from "../hooks/data/useUpdate";
+import { UpdateResponse } from "../contexts/data/types";
 
 export type AutoSaveProps<TVariables> = {
   autoSave?: {

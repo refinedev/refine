@@ -5,15 +5,17 @@ import { useResource } from "@hooks/resource";
 import { useContext, useEffect } from "react";
 import {
   BaseKey,
-  CrudFilters,
-  CrudSorting,
   ILiveContext,
   IRefineContext,
   LiveEvent,
   LiveModeProps,
   MetaQuery,
-  Pagination,
 } from "../../../interfaces";
+import {
+  Pagination,
+  CrudSorting,
+  CrudFilters,
+} from "../../../contexts/data/types";
 
 export type UseResourceSubscriptionProps = {
   channel: string;

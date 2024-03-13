@@ -25,7 +25,6 @@ import {
 import { useKeys } from "@hooks/useKeys";
 import {
   BaseRecord,
-  CreateResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
@@ -36,6 +35,7 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import { CreateResponse } from "../../contexts/data/types";
 
 type useCreateParams<TData, TError, TVariables> = {
   /**

@@ -1,11 +1,5 @@
-import {
-  BaseKey,
-  CrudFilters,
-  CrudSorting,
-  LiveEvent,
-  MetaQuery,
-  Pagination,
-} from "../../interfaces";
+import { BaseKey, LiveEvent, MetaQuery } from "../../interfaces";
+import { CrudFilters, CrudSorting, Pagination } from "../data/types";
 
 export type ILiveContext =
   | {

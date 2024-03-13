@@ -25,13 +25,9 @@ import {
 } from "@hooks";
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
-  GetListResponse,
   HttpError,
   LiveModeProps,
   MetaQuery,
-  Pagination,
   Prettify,
   SuccessErrorNotification,
 } from "../../interfaces";
@@ -42,6 +38,12 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  Pagination,
+  CrudSorting,
+  CrudFilters,
+  GetListResponse,
+} from "../../contexts/data/types";
 
 export interface UseInfiniteListConfig {
   pagination?: Pagination;

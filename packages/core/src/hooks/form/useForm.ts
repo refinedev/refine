@@ -17,13 +17,10 @@ import {
 
 import {
   BaseRecord,
-  CreateResponse,
-  GetOneResponse,
   HttpError,
   LiveModeProps,
   RedirectAction,
   SuccessErrorNotification,
-  UpdateResponse,
   MutationMode,
   BaseKey,
   IQueryKeys,
@@ -47,6 +44,11 @@ import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  CreateResponse,
+  UpdateResponse,
+  GetOneResponse,
+} from "../../contexts/data/types";
 
 export type ActionParams = {
   /**
