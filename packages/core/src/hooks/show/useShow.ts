@@ -8,7 +8,6 @@ import {
   BaseRecord,
   SuccessErrorNotification,
   MetaQuery,
-  LiveModeProps,
   BaseKey,
   HttpError,
   Prettify,
@@ -21,6 +20,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { GetOneResponse } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export type useShowReturnType<
   TData extends BaseRecord = BaseRecord,

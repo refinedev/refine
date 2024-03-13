@@ -2,7 +2,6 @@ import { Action } from "../src/interfaces/actions";
 
 import {
   IRouterContext,
-  ILiveContext,
   RouterBindings,
   ParsedParams,
   IResourceItem,
@@ -10,6 +9,7 @@ import {
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
 import { DataProviders } from "../src/contexts/data/types";
+import { LiveProvider } from "../src/contexts/live/types";
 
 export const posts = [
   {
@@ -86,7 +86,7 @@ export const MockAccessControlProvider: AccessControlProvider = {
   can: () => Promise.resolve({ can: true }),
 };
 
-export const MockLiveProvider: ILiveContext = {
+export const MockLiveProvider: LiveProvider = {
   subscribe: () => ({}),
   unsubscribe: () => ({}),
   publish: () => ({}),

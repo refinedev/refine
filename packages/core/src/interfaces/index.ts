@@ -1,7 +1,6 @@
 import { IResourceItem } from "./bindings/resource";
 
 // contexts
-export * from "../contexts/live/ILiveContext";
 export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
@@ -43,9 +42,6 @@ export * from "./metaData";
 
 //queryKeys
 export * from "./queryKey";
-
-//metaData
-export * from "./live";
 
 //auditLog
 export * from "./auditLog";

@@ -24,7 +24,6 @@ import {
   BaseKey,
   BaseRecord,
   HttpError,
-  LiveModeProps,
   MetaQuery,
   Prettify,
   SuccessErrorNotification,
@@ -35,6 +34,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { GetOneResponse } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
   /**

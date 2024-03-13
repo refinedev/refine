@@ -18,7 +18,6 @@ import {
 import {
   BaseRecord,
   HttpError,
-  LiveModeProps,
   RedirectAction,
   SuccessErrorNotification,
   MutationMode,
@@ -49,6 +48,7 @@ import {
   UpdateResponse,
   GetOneResponse,
 } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export type ActionParams = {
   /**

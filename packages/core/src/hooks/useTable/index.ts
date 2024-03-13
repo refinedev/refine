@@ -31,7 +31,6 @@ import {
   SuccessErrorNotification,
   HttpError,
   MetaQuery,
-  LiveModeProps,
   Prettify,
 } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
@@ -47,6 +46,7 @@ import {
   CrudFilters,
   GetListResponse,
 } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 type SetFilterBehavior = "merge" | "replace";
 

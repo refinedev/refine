@@ -4,9 +4,9 @@ import { defaultRefineOptions } from "@contexts/refine";
 import {
   IRefineContextOptions,
   IRefineOptions,
-  LiveModeProps,
   MutationMode,
 } from "src/interfaces";
+import { LiveModeProps } from "../../../contexts/live/types";
 
 type HandleRefineOptionsProps = {
   options?: IRefineOptions;

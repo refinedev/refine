@@ -28,12 +28,10 @@ import { RouterBindingsProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
   DashboardPageProps,
-  ILiveContext,
   INotificationContext,
   IRefineOptions,
   IRouterProvider,
   LayoutProps,
-  LiveModeProps,
   NotificationProvider,
   TitleProps,
 } from "../../../interfaces";
@@ -43,6 +41,7 @@ import { AuditLogProvider } from "../../../contexts/auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../../../contexts/auth/types";
 import { DataProvider, DataProviders } from "../../../contexts/data/types";
 import { I18nProvider } from "../../../contexts/i18n/types";
+import { LiveModeProps, LiveProvider } from "../../../contexts/live/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -81,9 +80,9 @@ export interface RefineProps {
   legacyAuthProvider?: LegacyAuthProvider;
   /**
    * **refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
-   * @type [`ILiveContext`](https://refine.dev/docs/api-reference/core/providers/live-provider/)
+   * @type [`LiveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/)
    */
-  liveProvider?: ILiveContext;
+  liveProvider?: LiveProvider;
   /**
    * `notificationProvider` handles notification logics. It is an object with methods that refine uses when necessary.
    * @type [`NotificationProvider` | `(() => NotificationProvider)`](https://refine.dev/docs/api-reference/core/providers/notification-provider/)

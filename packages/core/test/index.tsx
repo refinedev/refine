@@ -9,7 +9,6 @@ import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-  ILiveContext,
   INotificationContext,
   RouterBindings,
   IRouterContext,
@@ -31,6 +30,7 @@ import { AuditLogProvider } from "../src/contexts/auditLog/types";
 import { AuthProvider, ILegacyAuthContext } from "../src/contexts/auth/types";
 import { DataProvider, DataProviders } from "../src/contexts/data/types";
 import { I18nProvider } from "../src/contexts/i18n/types";
+import { LiveProvider } from "../src/contexts/live/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -60,7 +60,7 @@ export interface ITestWrapperProps {
   i18nProvider?: I18nProvider;
   notificationProvider?: INotificationContext;
   accessControlProvider?: Partial<AccessControlProvider>;
-  liveProvider?: ILiveContext;
+  liveProvider?: LiveProvider;
   resources?: IResourceItem[];
   children?: React.ReactNode;
   legacyRouterProvider?: IRouterContext;

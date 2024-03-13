@@ -1,4 +1,3 @@
-export { LiveBindings } from "./live";
 export { NotificationsBindings } from "./notifications";
 export { ResourceBindings } from "./resource";
 export {

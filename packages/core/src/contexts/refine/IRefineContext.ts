@@ -6,11 +6,11 @@ import {
   MutationMode,
   TitleProps,
   LayoutProps,
-  LiveModeProps,
   RedirectAction,
   TextTransformers,
 } from "../../interfaces";
 import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
+import { LiveModeProps } from "../live/types";
 
 export interface IRefineOptions {
   breadcrumb?: ReactNode;

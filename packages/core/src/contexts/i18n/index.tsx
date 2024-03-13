@@ -15,7 +15,7 @@ export const I18nContextProvider: React.FC<
   return (
     <I18nContext.Provider
       value={{
-        i18nProvider: i18nProvider,
+        i18nProvider,
       }}
     >
       {children}

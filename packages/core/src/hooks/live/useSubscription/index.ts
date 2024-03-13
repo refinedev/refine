@@ -1,17 +1,13 @@
 import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
-import {
-  BaseKey,
-  ILiveContext,
-  LiveEvent,
-  MetaQuery,
-} from "../../../interfaces";
+import { BaseKey, MetaQuery } from "../../../interfaces";
 import {
   Pagination,
   CrudSorting,
   CrudFilters,
 } from "../../../contexts/data/types";
+import { LiveEvent, LiveProvider } from "../../../contexts/live/types";
 
 export type UseSubscriptionProps = {
   /**
@@ -74,13 +70,13 @@ export const useSubscription = ({
   dataProviderName = "default",
   meta,
 }: UseSubscriptionProps): void => {
-  const liveDataContext = useContext<ILiveContext>(LiveContext);
+  const { liveProvider } = useContext(LiveContext);
 
   useEffect(() => {
     let subscription: any;
 
     if (enabled) {
-      subscription = liveDataContext?.subscribe({
+      subscription = liveProvider?.subscribe({
         channel,
         params,
         types,
@@ -95,7 +91,7 @@ export const useSubscription = ({
 
     return () => {
       if (subscription) {
-        liveDataContext?.unsubscribe(subscription);
+        liveProvider?.unsubscribe(subscription);
       }
     };
   }, [enabled]);

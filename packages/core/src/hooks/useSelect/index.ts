@@ -10,7 +10,6 @@ import {
   BaseRecord,
   SuccessErrorNotification,
   HttpError,
-  LiveModeProps,
   BaseKey,
   MetaQuery,
   Prettify,
@@ -30,6 +29,7 @@ import {
   Pagination,
   GetManyResponse,
 } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**

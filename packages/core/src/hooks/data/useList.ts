@@ -24,7 +24,6 @@ import { useKeys } from "@hooks/useKeys";
 import {
   BaseRecord,
   HttpError,
-  LiveModeProps,
   MetaQuery,
   Prettify,
   SuccessErrorNotification,
@@ -40,6 +39,7 @@ import {
   CrudFilters,
   GetListResponse,
 } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export interface UseListConfig {
   pagination?: Pagination;

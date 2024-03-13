@@ -25,7 +25,6 @@ import {
   BaseKey,
   BaseRecord,
   HttpError,
-  LiveModeProps,
   MetaQuery,
   SuccessErrorNotification,
 } from "../../interfaces";
@@ -35,6 +34,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { GetManyResponse } from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**

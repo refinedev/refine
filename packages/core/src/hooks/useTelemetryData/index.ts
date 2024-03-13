@@ -18,7 +18,7 @@ const REFINE_VERSION = "1.0.0";
 export const useTelemetryData = (): ITelemetryData => {
   const auth = useIsExistAuthentication();
   const auditLogContext = useContext(AuditLogContext);
-  const liveContext = useContext(LiveContext);
+  const { liveProvider } = useContext(LiveContext);
   const routerContext = useContext(RouterContext);
   const dataContext = useContext(DataContext);
   const { i18nProvider } = useContext(I18nContext);
@@ -33,9 +33,9 @@ export const useTelemetryData = (): ITelemetryData => {
     !!auditLogContext.update;
 
   const live =
-    !!liveContext?.publish ||
-    !!liveContext?.subscribe ||
-    !!liveContext?.unsubscribe;
+    !!liveProvider?.publish ||
+    !!liveProvider?.subscribe ||
+    !!liveProvider?.unsubscribe;
 
   const router =
     !!routerContext.useHistory ||
