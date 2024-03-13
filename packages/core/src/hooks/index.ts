@@ -3,7 +3,7 @@ export * from "./data";
 export * from "./live";
 export * from "./resource";
 export * from "./notification";
-export * from "./translate";
+export * from "./i18n";
 export * from "./refine";
 export * from "./export";
 export * from "./form";

@@ -16,7 +16,7 @@ import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
 import { ResourceContextProvider } from "@contexts/resource";
-import { TranslationContextProvider } from "@contexts/translation";
+import { I18nContextProvider } from "../../../contexts/i18n";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { handleRefineOptions } from "@definitions";
@@ -28,7 +28,6 @@ import { RouterBindingsProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
   DashboardPageProps,
-  I18nProvider,
   ILiveContext,
   INotificationContext,
   IRefineOptions,
@@ -43,6 +42,7 @@ import { AccessControlProvider } from "../../../contexts/accessControl/types";
 import { AuditLogProvider } from "../../../contexts/auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../../../contexts/auth/types";
 import { DataProvider, DataProviders } from "../../../contexts/data/types";
+import { I18nProvider } from "../../../contexts/i18n/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -301,7 +301,7 @@ export const Refine: React.FC<RefineProps> = ({
                   <RouterBindingsProvider router={routerProvider}>
                     <LegacyRouterContextProvider {...legacyRouterProvider}>
                       <ResourceContextProvider resources={resources ?? []}>
-                        <TranslationContextProvider i18nProvider={i18nProvider}>
+                        <I18nContextProvider i18nProvider={i18nProvider}>
                           <AccessControlContextProvider
                             {...(accessControlProvider ?? {})}
                           >
@@ -349,7 +349,7 @@ export const Refine: React.FC<RefineProps> = ({
                               </UndoableQueueContextProvider>
                             </AuditLogContextProvider>
                           </AccessControlContextProvider>
-                        </TranslationContextProvider>
+                        </I18nContextProvider>
                       </ResourceContextProvider>
                     </LegacyRouterContextProvider>
                   </RouterBindingsProvider>

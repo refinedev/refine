@@ -9,13 +9,12 @@ import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import {
-  I18nProvider,
   ILiveContext,
   INotificationContext,
   RouterBindings,
   IRouterContext,
 } from "../src/interfaces";
-import { TranslationContextProvider } from "@contexts/translation";
+import { I18nContextProvider } from "@contexts/i18n";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
 import { LegacyRouterContextProvider } from "@contexts/legacy-router";
@@ -31,6 +30,7 @@ import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuditLogProvider } from "../src/contexts/auditLog/types";
 import { AuthProvider, ILegacyAuthContext } from "../src/contexts/auth/types";
 import { DataProvider, DataProviders } from "../src/contexts/data/types";
+import { I18nProvider } from "../src/contexts/i18n/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -166,9 +166,9 @@ export const TestWrapper: (
     );
 
     const withTranslation = i18nProvider ? (
-      <TranslationContextProvider i18nProvider={i18nProvider}>
+      <I18nContextProvider i18nProvider={i18nProvider}>
         {withLive}
-      </TranslationContextProvider>
+      </I18nContextProvider>
     ) : (
       withLive
     );

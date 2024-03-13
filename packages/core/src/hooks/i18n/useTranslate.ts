@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { TranslationContext } from "@contexts/translation";
+import { I18nContext } from "@contexts/i18n";
 
 /**
  * If you need to translate the texts in your own components, refine provides the `useTranslate` hook.
@@ -8,7 +8,7 @@ import { TranslationContext } from "@contexts/translation";
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/translate/useTranslate} for more details.
  */
 export const useTranslate = () => {
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
 
   const fn = useMemo(() => {
     function translate(

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LoginPageProps, LoginFormTypes } from "../../../../../interfaces";
 
 import { useRouterContext, useLink, useRouterType, useLogin } from "@hooks";
-import { useTranslate } from "@hooks/translate";
+import { useTranslate } from "@hooks/i18n";
 
 import { DivPropsType, FormPropsType } from "../..";
 import { useActiveAuthProvider } from "@definitions/helpers";

@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import { render } from "@test";
-import { TranslationContextProvider } from "@contexts/translation";
+import { I18nContextProvider } from "./";
 import { useGetLocale, useTranslate } from "@hooks";
 
-describe("TranslationContext", () => {
+describe("I18nContext", () => {
   const TestComponent = () => {
     const locale = useGetLocale();
     const translate = useTranslate();
@@ -21,14 +21,12 @@ describe("TranslationContext", () => {
 
   const customRender = (ui: any, providerProps?: any) => {
     return render(
-      <TranslationContextProvider {...providerProps}>
-        {ui}
-      </TranslationContextProvider>,
+      <I18nContextProvider {...providerProps}>{ui}</I18nContextProvider>,
       providerProps,
     );
   };
 
-  it("should get value from TranslationContext ", () => {
+  it("should get value from I18nContext ", () => {
     const providerProps = {
       i18nProvider: {
         translate: () => "hello",
@@ -42,7 +40,7 @@ describe("TranslationContext", () => {
     expect(getByText("Current language: tr"));
   });
 
-  it("should get options value from TranslationContext ", () => {
+  it("should get options value from I18nContext ", () => {
     const providerProps = {
       i18nProvider: {
         translate: (key: string, options: any) => `hello ${options.name}`,

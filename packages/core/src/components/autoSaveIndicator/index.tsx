@@ -1,6 +1,6 @@
 import React from "react";
 import { AutoSaveIndicatorProps } from "../../interfaces";
-import { useTranslate } from "@hooks/translate";
+import { useTranslate } from "@hooks/i18n";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   status,

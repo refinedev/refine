@@ -3,7 +3,6 @@ import { IResourceItem } from "./bindings/resource";
 // contexts
 export * from "../contexts/live/ILiveContext";
 export * from "../contexts/refine/IRefineContext";
-export * from "../contexts/translation/ITranslationContext";
 export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";

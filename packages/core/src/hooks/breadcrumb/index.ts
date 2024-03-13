@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import warnOnce from "warn-once";
 
 import { useRefineContext, useResource, useTranslate } from "@hooks";
-import { TranslationContext } from "@contexts/translation";
+import { I18nContext } from "@contexts/i18n";
 import { pickNotDeprecated } from "@definitions";
 
 import { IResourceItem } from "../../interfaces";
@@ -33,7 +33,7 @@ export const useBreadcrumb = ({
   meta: metaFromProps = {},
 }: UseBreadcrumbProps = {}): UseBreadcrumbReturnType => {
   const routerType = useRouterType();
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
   const parsed = useParsed();
   const translate = useTranslate();
   const { resources, resource, action } = useResource();

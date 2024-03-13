@@ -1,5 +1,5 @@
 import { useContext, useCallback } from "react";
-import { TranslationContext } from "@contexts/translation";
+import { I18nContext } from "@contexts/i18n";
 
 export type UseGetLocaleType = () => () => string | undefined;
 
@@ -10,7 +10,7 @@ export type UseGetLocaleType = () => () => string | undefined;
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/translate/useGetLocale} for more details.
  */
 export const useGetLocale: UseGetLocaleType = () => {
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
 
   return useCallback(() => i18nProvider?.getLocale(), []);
 };

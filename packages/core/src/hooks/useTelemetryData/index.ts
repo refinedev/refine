@@ -4,7 +4,7 @@ import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
 import { RouterContext } from "@contexts/legacy-router";
 import { DataContext } from "@contexts/data";
-import { TranslationContext } from "@contexts/translation";
+import { I18nContext } from "@contexts/i18n";
 import { NotificationContext } from "@contexts/notification";
 import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
@@ -21,7 +21,7 @@ export const useTelemetryData = (): ITelemetryData => {
   const liveContext = useContext(LiveContext);
   const routerContext = useContext(RouterContext);
   const dataContext = useContext(DataContext);
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
   const notificationContext = useContext(NotificationContext);
   const accessControlContext = useContext(AccessControlContext);
   const { resources } = useResource();

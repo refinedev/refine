@@ -28,8 +28,6 @@ export {
   RouteAction,
   SuccessErrorNotification,
   TitleProps,
-  TranslationProvider,
-  I18nProvider,
   ILiveContext as LiveProvider,
   ILog,
   ILogData,
@@ -38,12 +36,10 @@ export {
   IResourceComponents,
   IResourceComponentsProps,
   IResourceContext as ResourceProvider,
-  ITranslationContext,
   IResourceItem,
   IRouterProvider,
   ITreeMenu,
   IQueryKeys,
-  i18nBindings,
   LiveBindings,
   NotificationsBindings,
   ResourceBindings,
@@ -98,7 +94,10 @@ export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";
 
 export { ResourceContext } from "./contexts/resource/index";
-export { TranslationContext } from "./contexts/translation/index";
+export {
+  I18nContext,
+  I18nContext as TranslationContext,
+} from "./contexts/i18n/index";
 export { AccessControlContext } from "./contexts/accessControl/index";
 
 export {
@@ -151,3 +150,10 @@ export {
   CustomParams,
   DataProvider,
 } from "./contexts/data/types";
+
+export {
+  I18nProvider,
+  I18nProvider as TranslationProvider,
+  I18nProvider as i18nBindings,
+  II18nContext as ITranslationContext,
+} from "./contexts/i18n/types";
