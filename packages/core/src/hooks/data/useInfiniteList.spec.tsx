@@ -3,10 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import {
-  IDataMultipleContextProvider,
-  IRefineContextProvider,
-} from "../../interfaces";
+import { DataProviders, IRefineContextProvider } from "../../interfaces";
 import { useInfiniteList } from "./useInfiniteList";
 
 const mockRefineProvider: IRefineContextProvider = {
@@ -81,7 +78,7 @@ describe("useInfiniteList Hook", () => {
           };
         },
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>

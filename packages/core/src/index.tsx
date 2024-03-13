@@ -103,6 +103,7 @@ export { AccessControlContext } from "./contexts/accessControl/index";
 
 export {
   AccessControlProvider,
+  AccessControlProvider as AccessControlBindings,
   CanParams,
   CanReturnType,
   IAccessControlContext,
@@ -127,6 +128,7 @@ export {
   CrudSort,
   CrudSorting,
   CustomResponse,
+  DataBindings,
   DeleteManyResponse,
   DeleteOneResponse,
   GetListResponse,

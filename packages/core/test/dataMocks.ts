@@ -3,14 +3,13 @@ import { Action } from "../src/interfaces/actions";
 import {
   IRouterContext,
   ILiveContext,
-  IDataMultipleContextProvider,
   RouterBindings,
   ParsedParams,
   IResourceItem,
-  LegacyAuthProvider,
-  AuthProvider,
 } from "../src/interfaces";
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
+import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
+import { DataProviders } from "../src/contexts/data/types";
 
 export const posts = [
   {
@@ -81,8 +80,7 @@ const MockDataProvider = () => {
   };
 };
 
-export const MockJSONServer =
-  MockDataProvider() as IDataMultipleContextProvider;
+export const MockJSONServer = MockDataProvider() as DataProviders;
 
 export const MockAccessControlProvider: AccessControlProvider = {
   can: () => Promise.resolve({ can: true }),

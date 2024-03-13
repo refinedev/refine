@@ -4,12 +4,12 @@ import { renderHook } from "@testing-library/react-hooks";
 import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
 
 import * as pickResource from "../../definitions/helpers/pick-resource";
+import { useSelect } from "./";
 import {
   CrudFilters,
+  DataProviders,
   IDataContext,
-  IDataMultipleContextProvider,
-} from "../../interfaces";
-import { useSelect } from "./";
+} from "../../contexts/data/types";
 
 describe("useSelect Hook", () => {
   it("default", async () => {
@@ -522,7 +522,7 @@ describe("useSelect Hook", () => {
           getList: jest.fn(() => Promise.resolve({ data: [], total: 0 })),
           getMany: jest.fn(() => Promise.resolve({ data: [] })),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       renderHook(
         () =>
@@ -589,7 +589,7 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     renderHook(
       () =>
@@ -675,7 +675,7 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const filters: CrudFilters = [
       {
@@ -694,8 +694,7 @@ describe("useSelect Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          dataProvider:
-            mockDataProvider as unknown as IDataMultipleContextProvider,
+          dataProvider: mockDataProvider as unknown as DataProviders,
           resources: [{ name: "posts" }],
         }),
       },
@@ -874,7 +873,7 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 3 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     renderHook(
       () =>

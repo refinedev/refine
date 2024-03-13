@@ -322,3 +322,5 @@ export type DataProviders = {
 };
 
 export type IDataContext = DataProviders;
+
+export type DataBindings = DataProvider | DataProviders;

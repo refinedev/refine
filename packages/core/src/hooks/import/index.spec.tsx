@@ -4,7 +4,8 @@ import * as papaparse from "papaparse";
 
 import { useImport } from ".";
 import { act } from "react-dom/test-utils";
-import { HttpError, IDataMultipleContextProvider } from "../../interfaces";
+import { HttpError } from "../../interfaces";
+import { DataProviders } from "../../contexts/data/types";
 
 jest.mock("papaparse", () => {
   return {
@@ -121,7 +122,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -172,7 +173,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -218,7 +219,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -264,7 +265,7 @@ describe("useImport hook", () => {
           ...MockJSONServer.default,
           createMany: jest.fn(),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -296,7 +297,7 @@ describe("useImport hook", () => {
             };
           }),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -334,7 +335,7 @@ describe("useImport hook", () => {
             return Promise.reject(customError);
           },
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -370,7 +371,7 @@ describe("useImport hook", () => {
           ...MockJSONServer.default,
           create: jest.fn(),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -444,7 +445,7 @@ describe("useImport hook", () => {
             };
           },
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
