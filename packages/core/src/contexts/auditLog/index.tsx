@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IAuditLogContext } from "./IAuditLogContext";
+import { IAuditLogContext } from "./types";
 
 export const AuditLogContext = React.createContext<IAuditLogContext>({});
 

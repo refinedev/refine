@@ -11,7 +11,6 @@ export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/legacy-router/IRouterContext";
 export * from "../contexts/notification/INotificationContext";
-export * from "../contexts/auditLog/IAuditLogContext";
 
 export * from "../components/pages/login";
 

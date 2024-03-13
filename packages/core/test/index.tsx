@@ -15,7 +15,6 @@ import {
   INotificationContext,
   IDataMultipleContextProvider,
   IDataContextProvider,
-  IAuditLogContext,
   RouterBindings,
   IRouterContext,
   AuthProvider,
@@ -33,6 +32,7 @@ import { RouterBindingsProvider } from "@contexts/router";
 import { RouterPickerProvider } from "@contexts/router-picker";
 
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
+import { AuditLogProvider } from "../src/contexts/auditLog/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -68,7 +68,7 @@ export interface ITestWrapperProps {
   legacyRouterProvider?: IRouterContext;
   routerProvider?: RouterBindings;
   refineProvider?: IRefineContextProvider;
-  auditLogProvider?: IAuditLogContext;
+  auditLogProvider?: AuditLogProvider;
 }
 
 export const TestWrapper: (

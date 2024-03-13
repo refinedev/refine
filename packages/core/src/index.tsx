@@ -4,7 +4,6 @@ export * from "./hooks";
 export {
   Action,
   ActionWithPage,
-  AuditLogProvider,
   LegacyAuthProvider,
   AuthBindings,
   AuthProvider,
@@ -30,7 +29,6 @@ export {
   LiveEvent,
   LiveModeProps,
   LogicalFilter,
-  LogParams,
   MapDataFn,
   MetaQuery,
   MetaDataQuery,
@@ -144,3 +142,5 @@ export {
   CanReturnType,
   IAccessControlContext,
 } from "./contexts/accessControl/types";
+
+export { AuditLogProvider, LogParams } from "./contexts/auditLog/types";
