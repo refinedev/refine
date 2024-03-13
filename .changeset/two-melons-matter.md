@@ -2,7 +2,7 @@
 "@refinedev/graphql": minor
 ---
 
-feat: add `gqlQuery` and `gqlMutation` support.
+feat: add `gqlQuery` and `gqlMutation` support. #5743
 
 Previously, `@refinedev/graphql` package only supported GraphQL operations through `meta.fields`.
 
