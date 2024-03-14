@@ -1,5 +1,5 @@
 import React from "react";
-import { AutoSaveIndicatorProps } from "../../interfaces";
+import { AutoSaveIndicatorProps } from "./types";
 import { useTranslate } from "@hooks/i18n";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({

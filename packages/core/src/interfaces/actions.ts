@@ -11,6 +11,4 @@ export type RedirectAction =
  */
 export type RedirectionTypes = RedirectAction;
 
-export type FormAction = Extract<Action, "create" | "edit" | "clone">;
-
 export type ActionWithPage = Extract<Action, "show" | "create" | "edit">;

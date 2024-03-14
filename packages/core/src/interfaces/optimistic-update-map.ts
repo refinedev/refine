@@ -5,6 +5,7 @@ import {
   GetOneResponse,
 } from "../contexts/data/types";
 
+// TODO: to useUpdate
 export type OptimisticUpdateMapType<TData, TVariables> = {
   list?:
     | ((
@@ -29,6 +30,7 @@ export type OptimisticUpdateMapType<TData, TVariables> = {
     | boolean;
 };
 
+// TODO: useUpdateMany
 export type OptimisticUpdateManyMapType<TData, TVariables> = {
   list?:
     | ((
