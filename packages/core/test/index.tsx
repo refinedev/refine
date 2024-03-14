@@ -18,7 +18,7 @@ import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 
 import { RouterContextProvider } from "@contexts/router";
-import { RouterPickerProvider } from "@contexts/router-picker";
+import { RouterPickerProvider } from "@contexts/router/picker";
 
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuditLogProvider } from "../src/contexts/auditLog/types";

@@ -4,7 +4,7 @@ import { render, TestWrapper, waitFor } from "@test";
 import { CanAccess } from ".";
 import { act } from "react-dom/test-utils";
 
-import * as RouterPicker from "../../contexts/router-picker";
+import * as RouterPicker from "../../contexts/router/picker";
 import * as LegacyRouterContext from "../../hooks/legacy-router/useRouterContext";
 import * as UseCanHook from "../../hooks/accessControl/useCan";
 import * as UseParsedHook from "../../hooks/router/use-parsed";

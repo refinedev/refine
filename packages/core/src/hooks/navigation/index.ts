@@ -2,7 +2,7 @@ import { useRouterContext, useResource } from "@hooks";
 import { BaseKey, IResourceItem, MetaDataQuery } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
 import { useParsed } from "@hooks/router/use-parsed";
-import { useRouterType } from "@contexts/router-picker";
+import { useRouterType } from "@contexts/router/picker";
 import { getActionRoutesFromResource } from "@definitions/helpers/router";
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { composeRoute } from "@definitions/helpers/router/compose-route";

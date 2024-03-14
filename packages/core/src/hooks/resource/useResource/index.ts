@@ -8,7 +8,7 @@ import {
   ResourceRouterParams,
 } from "../../../interfaces";
 import { useRouterContext, useResourceWithRoute } from "@hooks";
-import { useRouterType } from "../../../contexts/router-picker";
+import { useRouterType } from "../../../contexts/router/picker";
 import { useParsed } from "../../router/use-parsed";
 import { pickResource } from "../../../definitions/helpers/pick-resource";
 

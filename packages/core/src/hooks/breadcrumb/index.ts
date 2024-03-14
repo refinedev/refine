@@ -6,7 +6,7 @@ import { I18nContext } from "@contexts/i18n";
 import { pickNotDeprecated } from "@definitions";
 
 import { IResourceItem } from "../../interfaces";
-import { useRouterType } from "@contexts/router-picker";
+import { useRouterType } from "@contexts/router/picker";
 import { getActionRoutesFromResource } from "@definitions/helpers/router";
 import { pickResource } from "../../definitions/helpers/pick-resource/index";
 import { composeRoute } from "@definitions/helpers/router/compose-route";

@@ -9,7 +9,7 @@ import {
 } from "@test";
 
 import { useTable } from ".";
-import * as useRouterType from "../../contexts/router-picker";
+import * as useRouterType from "../../contexts/router/picker";
 import {
   CrudSorting,
   CrudFilters,

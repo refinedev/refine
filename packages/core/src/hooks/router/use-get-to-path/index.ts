@@ -4,7 +4,7 @@ import { Action, IResourceItem } from "../../../interfaces";
 import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
 import { useParsed } from "../use-parsed";
 import { composeRoute } from "../../../definitions/helpers/router/compose-route";
-import { useRouterType } from "./../../../contexts/router-picker";
+import { useRouterType } from "../../../contexts/router/picker";
 
 type UseToPathParams = {
   resource?: IResourceItem;
