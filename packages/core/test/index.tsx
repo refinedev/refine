@@ -8,7 +8,6 @@ import {
 import { NotificationQueueContextProvider } from "@contexts/notification/queue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { RouterBindings } from "../src/interfaces";
 import { I18nContextProvider } from "@contexts/i18n";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
@@ -18,7 +17,7 @@ import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 
-import { RouterBindingsProvider } from "@contexts/router";
+import { RouterContextProvider } from "@contexts/router";
 import { RouterPickerProvider } from "@contexts/router-picker";
 
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
@@ -29,6 +28,7 @@ import { I18nProvider } from "../src/contexts/i18n/types";
 import { LiveProvider } from "../src/contexts/live/types";
 import { NotificationProvider } from "../src/contexts/notification/types";
 import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
+import { RouterProvider } from "../src/contexts/router/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -62,7 +62,7 @@ export interface ITestWrapperProps {
   resources?: IResourceItem[];
   children?: React.ReactNode;
   legacyRouterProvider?: LegacyRouterProvider;
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   refineProvider?: IRefineContextProvider;
   auditLogProvider?: Partial<AuditLogProvider>;
 }
@@ -100,10 +100,10 @@ export const TestWrapper: (
       withRouterPicker
     );
 
-    const withRouterBindings = routerProvider ? (
-      <RouterBindingsProvider router={routerProvider}>
+    const withRouter = routerProvider ? (
+      <RouterContextProvider router={routerProvider}>
         {withLegacyRouter}
-      </RouterBindingsProvider>
+      </RouterContextProvider>
     ) : (
       withLegacyRouter
     );
@@ -118,10 +118,10 @@ export const TestWrapper: (
           },
         }))}
       >
-        {withRouterBindings}
+        {withRouter}
       </ResourceContextProvider>
     ) : (
-      withRouterBindings
+      withRouter
     );
     const withData = dataProvider ? (
       <DataContextProvider {...dataProvider}>
@@ -218,7 +218,7 @@ export const TestWrapper: (
 export {
   MockJSONServer,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   MockAccessControlProvider,
   MockLiveProvider,
   mockLegacyAuthProvider,

@@ -1,13 +1,9 @@
-import { RouterBindingsContext } from "@contexts/router";
+import { RouterContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
 import React, { useCallback, useContext } from "react";
-import type {
-  Action,
-  BaseKey,
-  GoConfig as GoConfigBase,
-  IResourceItem,
-} from "../../../interfaces";
+import type { Action, BaseKey, IResourceItem } from "../../../interfaces";
 import { useGetToPath } from "../use-get-to-path";
+import { GoConfig as GoConfigBase } from "../../../contexts/router/types";
 
 type ResourceWithoutId = {
   /**
@@ -36,13 +32,13 @@ export type GoConfigWithResource = Omit<GoConfigBase, "to"> & {
 };
 
 export const useGo = () => {
-  const bindings = useContext(RouterBindingsContext);
+  const routerContext = useContext(RouterContext);
   const { select: resourceSelect } = useResource();
   const getToPath = useGetToPath();
 
   const useGo = React.useMemo(
-    () => bindings?.go ?? (() => () => undefined),
-    [bindings?.go],
+    () => routerContext?.go ?? (() => () => undefined),
+    [routerContext?.go],
   );
 
   const goFromRouter = useGo();

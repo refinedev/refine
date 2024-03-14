@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
   TestWrapper,
 } from "@test";
@@ -197,7 +197,7 @@ describe("useUpdateMany Hook", () => {
             updateMany: updateManyMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],

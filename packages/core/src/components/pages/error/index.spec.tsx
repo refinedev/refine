@@ -3,7 +3,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import { ErrorComponent } from ".";
 import {
-  mockRouterBindings,
+  mockRouterProvider,
   TestWrapper,
   mockLegacyRouterProvider,
 } from "@test";
@@ -29,7 +29,7 @@ describe("ErrorComponent", () => {
   it("render error message according to the resource and action", () => {
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "create",
           resource: { name: "posts" },
           pathname: "/posts/create",
@@ -70,7 +70,7 @@ describe("ErrorComponent", () => {
 
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => goMock,
           },

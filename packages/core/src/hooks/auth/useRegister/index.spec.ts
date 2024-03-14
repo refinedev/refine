@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import {
   act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
   TestWrapper,
 } from "@test";
@@ -12,7 +12,7 @@ import { useRegister } from ".";
 
 const mockGo = jest.fn();
 
-const mockRouterProvider = mockRouterBindings({
+const mockRouterProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },
@@ -785,7 +785,7 @@ describe("useRegister Hook use v3LegacyAuthProviderCompatible", () => {
             logout: () => Promise.resolve(),
             register: () => Promise.resolve("redirectTo"),
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => mockGo,
             },

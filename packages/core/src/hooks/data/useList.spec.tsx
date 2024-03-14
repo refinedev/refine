@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
   TestWrapper,
 } from "@test";
@@ -245,7 +245,7 @@ describe("useList Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -1172,7 +1172,7 @@ describe("useList Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "list",
           params: {},
           pathname: "/posts",

@@ -1,13 +1,13 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, mockRouterBindings, queryClient, TestWrapper } from "@test";
+import { act, mockRouterProvider, queryClient, TestWrapper } from "@test";
 
 import { useCheckError, useOnError } from "../useOnError";
 import { useLogout } from "./";
 
 const mockGo = jest.fn();
 
-const mockRouterProvider = mockRouterBindings({
+const mockRouterProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },

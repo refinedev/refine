@@ -4,7 +4,7 @@ import {
   MockJSONServer,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useNavigation } from ".";
@@ -28,7 +28,7 @@ const legacyRouterProvider: LegacyRouterProvider = {
 const goMock = jest.fn();
 const backMock = jest.fn();
 
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   fns: {
     go: () => {
       return ({ to, type, ...rest }) => {

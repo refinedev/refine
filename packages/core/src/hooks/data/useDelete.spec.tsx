@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
   TestWrapper,
 } from "@test";
@@ -167,7 +167,7 @@ describe("useDelete Hook", () => {
             deleteOne: deleteMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],

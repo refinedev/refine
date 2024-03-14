@@ -1,6 +1,7 @@
-import { MetaQuery, ParseResponse } from "src/interfaces";
+import { MetaQuery } from "src/interfaces";
 import { pickRouteParams } from "./pick-route-params";
 import { prepareRouteParams } from "./prepare-route-params";
+import { ParseResponse } from "../../../contexts/router/types";
 
 /**
  * This function will compose a route with the given params and meta.

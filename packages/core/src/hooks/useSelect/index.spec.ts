@@ -1,7 +1,7 @@
 import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import { act, MockJSONServer, mockRouterProvider, TestWrapper } from "@test";
 
 import * as pickResource from "../../definitions/helpers/pick-resource";
 import { useSelect } from "./";
@@ -953,7 +953,7 @@ describe("useSelect Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
           params: { baz: "qux" },
         }),
@@ -987,7 +987,7 @@ describe("useSelect Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
         }),
         resources: [

@@ -1,11 +1,12 @@
 import { Action } from "../src/interfaces/actions";
 
-import { RouterBindings, ParsedParams, IResourceItem } from "../src/interfaces";
+import { IResourceItem } from "../src/interfaces";
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
 import { DataProviders } from "../src/contexts/data/types";
 import { LiveProvider } from "../src/contexts/live/types";
 import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
+import { ParsedParams, RouterProvider } from "../src/contexts/router/types";
 
 export const posts = [
   {
@@ -88,7 +89,7 @@ export const MockLiveProvider: LiveProvider = {
   publish: () => ({}),
 };
 
-export const mockRouterBindings = ({
+export const mockRouterProvider = ({
   pathname,
   params,
   resource,
@@ -101,9 +102,9 @@ export const mockRouterBindings = ({
   resource?: IResourceItem;
   action?: Action;
   id?: string;
-  fns?: Partial<RouterBindings>;
-} = {}): RouterBindings => {
-  const bindings: RouterBindings = {
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const routerProvider: RouterProvider = {
     go: () => {
       return ({ type }) => {
         if (type === "path") return "";
@@ -130,7 +131,7 @@ export const mockRouterBindings = ({
     ...fns,
   };
 
-  return bindings;
+  return routerProvider;
 };
 
 export const mockLegacyRouterProvider = () => {

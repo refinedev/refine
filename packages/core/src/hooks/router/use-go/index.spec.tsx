@@ -1,7 +1,7 @@
 import React from "react";
 import { act, renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { Resource, handleResourceErrors, useGo } from "./";
 
@@ -13,7 +13,7 @@ describe("useGo Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -48,7 +48,7 @@ describe("useGo Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: undefined,
           },
@@ -87,7 +87,7 @@ describe("useGo Hook", () => {
           },
         ],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -166,7 +166,7 @@ describe("useGo Hook", () => {
           },
         ],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -230,7 +230,7 @@ describe("useGo Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => () => undefined,
           },
@@ -264,7 +264,7 @@ describe("useGo Hook", () => {
           },
         ],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGoFn,
           },
@@ -317,7 +317,7 @@ describe("useGo Hook", () => {
           },
         ],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGoFn,
             parse: () => () => ({
@@ -375,7 +375,7 @@ describe("useGo Hook", () => {
           },
         ],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGoFn,
           },

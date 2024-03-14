@@ -1,4 +1,4 @@
-import { TestWrapper, MockJSONServer, mockRouterBindings } from "@test";
+import { TestWrapper, MockJSONServer, mockRouterProvider } from "@test";
 import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
 
@@ -73,7 +73,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -152,7 +152,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: mockDataProvider,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -198,7 +198,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: mockDataProvider,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -402,7 +402,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: mockDataProvider,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),
@@ -462,7 +462,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: mockDataProvider,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),
@@ -490,7 +490,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),

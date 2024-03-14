@@ -4,7 +4,7 @@ import {
   act,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useOnError } from ".";
@@ -198,7 +198,7 @@ describe("useOnError Hook", () => {
           getPermissions: () => Promise.resolve(),
           logout: () => Promise.resolve({ success: true }),
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },

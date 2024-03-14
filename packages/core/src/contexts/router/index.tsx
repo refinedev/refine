@@ -1,17 +1,18 @@
 import React, { createContext, PropsWithChildren } from "react";
-import { RouterBindings } from "src/interfaces";
+import { IRouterContext } from "./types";
 
-const defaultBindings = {};
+const defaultRouterProvider = {};
 
-export const RouterBindingsContext =
-  createContext<RouterBindings>(defaultBindings);
+export const RouterContext = createContext<IRouterContext>(
+  defaultRouterProvider,
+);
 
-export const RouterBindingsProvider: React.FC<
-  PropsWithChildren<{ router?: RouterBindings }>
+export const RouterContextProvider: React.FC<
+  PropsWithChildren<{ router?: IRouterContext }>
 > = ({ children, router }) => {
   return (
-    <RouterBindingsContext.Provider value={router ?? defaultBindings}>
+    <RouterContext.Provider value={router ?? defaultRouterProvider}>
       {children}
-    </RouterBindingsContext.Provider>
+    </RouterContext.Provider>
   );
 };

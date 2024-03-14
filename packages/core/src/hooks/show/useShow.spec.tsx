@@ -4,7 +4,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, act } from "@test";
 import {
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   posts,
 } from "@test/dataMocks";
 import * as useResourceWithRoute from "../resource/useResourceWithRoute";
@@ -13,7 +13,7 @@ import * as pickResource from "../../definitions/helpers/pick-resource";
 import { useShow } from "./useShow";
 import { IResourceItem } from "@contexts/resource";
 
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   action: "show",
   resource: { name: "posts" },
   id: "1",
@@ -176,7 +176,7 @@ describe("useShow Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: { name: "posts" },
           id: "1",
@@ -213,7 +213,7 @@ describe("useShow Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: { name: "posts" },
           id: "1",
@@ -300,7 +300,7 @@ describe("useShow Hook", () => {
           },
         },
         resources: [{ name: "posts" }],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: "posts" as unknown as IResourceItem,
           id: "1",

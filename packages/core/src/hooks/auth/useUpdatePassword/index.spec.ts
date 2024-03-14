@@ -4,7 +4,7 @@ import {
   act,
   mockLegacyAuthProvider,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
   TestWrapper,
 } from "@test";
@@ -256,7 +256,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -832,7 +832,7 @@ describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
           routerProvider: {
-            ...mockRouterBindings({
+            ...mockRouterProvider({
               fns: {
                 go: () => mockFn,
               },

@@ -32,13 +32,6 @@ export {
   ITreeMenu,
   IQueryKeys,
   ResourceBindings,
-  RouterBindings,
-  ParseResponse,
-  ParsedParams,
-  GoConfig,
-  BackFunction,
-  GoFunction,
-  ParseFunction,
   Prettify,
   FormWithSyncWithLocationParams,
   AutoSaveIndicatorProps,
@@ -161,3 +154,14 @@ export {
   LegacyRouterProvider as IRouterProvider,
   PromptProps,
 } from "./contexts/router/legacy/types";
+
+export {
+  RouterProvider,
+  RouterProvider as RouterBindings,
+  ParseResponse,
+  ParsedParams,
+  GoConfig,
+  BackFunction,
+  GoFunction,
+  ParseFunction,
+} from "./contexts/router/types";

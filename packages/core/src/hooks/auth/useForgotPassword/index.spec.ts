@@ -4,7 +4,7 @@ import {
   TestWrapper,
   act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
 } from "@test";
 
@@ -104,7 +104,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
       () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
       {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => mockFn,
             },

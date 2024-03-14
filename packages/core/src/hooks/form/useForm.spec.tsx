@@ -19,7 +19,7 @@ import {
 import { useForm } from "./useForm";
 
 import { posts } from "@test/dataMocks";
-import { mockRouterBindings } from "@test";
+import { mockRouterProvider } from "@test";
 
 const SimpleWrapper = TestWrapper({
   dataProvider: MockJSONServer,
@@ -27,7 +27,7 @@ const SimpleWrapper = TestWrapper({
 
 const EditWrapper = TestWrapper({
   dataProvider: MockJSONServer,
-  routerProvider: mockRouterBindings({
+  routerProvider: mockRouterProvider({
     resource: {
       name: "posts",
     },
@@ -38,7 +38,7 @@ const EditWrapper = TestWrapper({
 
 const CloneWrapper = TestWrapper({
   dataProvider: MockJSONServer,
-  routerProvider: mockRouterBindings({
+  routerProvider: mockRouterProvider({
     resource: {
       name: "posts",
     },
@@ -153,7 +153,7 @@ describe("useForm Hook", () => {
               getOne: getOneMock,
             },
           },
-          routerProvider: mockRouterBindings(),
+          routerProvider: mockRouterProvider(),
           resources: [{ name: "posts" }],
         }),
       },
@@ -338,7 +338,7 @@ describe("useForm Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "edit",
           resource: { name: "posts" },
           id: "1",
@@ -375,7 +375,7 @@ describe("useForm Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "edit",
           resource: { name: "posts" },
           id: "1",
@@ -502,7 +502,7 @@ describe("useForm Hook", () => {
       {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => {
                 return ({ to, type, ...rest }) => {
@@ -545,7 +545,7 @@ describe("useForm Hook", () => {
       {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => {
                 return ({ to, type, ...rest }) => {
@@ -638,7 +638,7 @@ describe("useForm Hook", () => {
                 create: createMock,
               },
             },
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
             resources: [{ name: "posts" }],
           }),
         },
@@ -681,7 +681,7 @@ describe("useForm Hook", () => {
                 create: createMock,
               },
             },
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
             resources: [{ name: "posts" }],
           }),
         },
@@ -716,7 +716,7 @@ describe("useForm Hook", () => {
               create: createMock,
             },
           },
-          routerProvider: mockRouterBindings(),
+          routerProvider: mockRouterProvider(),
           resources: [{ name: "posts" }],
         }),
       });
@@ -869,7 +869,7 @@ describe("useForm Hook", () => {
                 update: updateMock,
               },
             },
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
             resources: [{ name: "posts" }],
           }),
         },
@@ -913,7 +913,7 @@ describe("useForm Hook", () => {
                 update: updateMock,
               },
             },
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
             resources: [{ name: "posts" }],
           }),
         },
@@ -948,7 +948,7 @@ describe("useForm Hook", () => {
               update: updateMock,
             },
           },
-          routerProvider: mockRouterBindings(),
+          routerProvider: mockRouterProvider(),
           resources: [{ name: "posts" }],
         }),
       });
@@ -1110,7 +1110,7 @@ describe("useForm Hook", () => {
                 });
               },
             },
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
             resources: [{ name: "posts" }],
           }),
         },

@@ -21,10 +21,9 @@ import { NotificationQueueContextProvider } from "../../../contexts/notification
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { handleRefineOptions } from "@definitions";
 import { useDeepMemo } from "@hooks/deepMemo";
-import { RouterBindings } from "src/interfaces/bindings";
 
 import { RouterPickerProvider } from "@contexts/router-picker";
-import { RouterBindingsProvider } from "../../../contexts/router";
+import { RouterContextProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
   DashboardPageProps,
@@ -41,6 +40,7 @@ import { I18nProvider } from "../../../contexts/i18n/types";
 import { LiveModeProps, LiveProvider } from "../../../contexts/live/types";
 import { NotificationProvider } from "../../../contexts/notification/types";
 import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import { RouterProvider } from "../../../contexts/router/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -58,9 +58,9 @@ export interface RefineProps {
   legacyRouterProvider?: LegacyRouterProvider;
   /**
    * Router bindings for **refine**. A simple interface for **refine** to interact with your router in a flexible way.
-   * @type [`RouterBindings`](https://refine.dev/docs/api-reference/core/bindings/router/)
+   * @type [`RouterProvider`](https://refine.dev/docs/routing/router-provider/)
    */
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   /**
    * A `dataProvider` is the place where a refine app communicates with an API. Data providers also act as adapters for refine, making it possible for it to consume different API's and data services.
    * @type [`DataProvider` | `DataProviders`](https://refine.dev/docs/api-reference/core/providers/data-provider/)
@@ -264,10 +264,10 @@ export const Refine: React.FC<RefineProps> = ({
 
   /** Router
    *
-   * Handle routing from `RouterBindingsProvider` and `router` prop for the brand new way
+   * Handle routing from `RouterContextProvider` and `router` prop for the brand new way
    * If `router` is not provided, then we'r checking for `routerProvider` prop
    * If `routerProvider` is provided, then `RouterContextProvider` is used
-   * If none of them is provided, then `RouterBindingsProvider` is used because it supports undefined router
+   * If none of them is provided, then `RouterContextProvider` is used because it supports undefined router
    *
    * `RouterContextProvider` is skipped whenever possible and by this way,
    * we can achieve backward compability only when its provided by user
@@ -296,7 +296,7 @@ export const Refine: React.FC<RefineProps> = ({
                     legacyRouterProvider && !routerProvider ? "legacy" : "new"
                   }
                 >
-                  <RouterBindingsProvider router={routerProvider}>
+                  <RouterContextProvider router={routerProvider}>
                     <LegacyRouterContextProvider {...legacyRouterProvider}>
                       <ResourceContextProvider resources={resources ?? []}>
                         <I18nContextProvider i18nProvider={i18nProvider}>
@@ -350,7 +350,7 @@ export const Refine: React.FC<RefineProps> = ({
                         </I18nContextProvider>
                       </ResourceContextProvider>
                     </LegacyRouterContextProvider>
-                  </RouterBindingsProvider>
+                  </RouterContextProvider>
                 </RouterPickerProvider>
               </LiveContextProvider>
             </DataContextProvider>

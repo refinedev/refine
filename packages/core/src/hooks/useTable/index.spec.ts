@@ -5,7 +5,7 @@ import {
   MockJSONServer,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useTable } from ".";
@@ -28,7 +28,7 @@ const customPagination = {
   pageSize: 1,
 };
 
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   resource: {
     name: "posts",
   },
@@ -1366,7 +1366,7 @@ describe("useTable Filters", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
           params: { baz: "qux" },
         }),
@@ -1400,7 +1400,7 @@ describe("useTable Filters", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
         }),
         resources: [

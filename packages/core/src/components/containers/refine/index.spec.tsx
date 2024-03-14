@@ -4,7 +4,7 @@ import {
   render,
   MockJSONServer,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   TestWrapper,
 } from "@test";
 
@@ -102,7 +102,7 @@ describe("Refine Container", () => {
       <Refine
         legacyAuthProvider={mockAuthProvider}
         dataProvider={MockJSONServer}
-        routerProvider={mockRouterBindings()}
+        routerProvider={mockRouterProvider()}
       >
         <div data-testid="children">Children</div>
       </Refine>,

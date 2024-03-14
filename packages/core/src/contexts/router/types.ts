@@ -26,9 +26,9 @@
  * `useGo`, `useBack` and `useParsed`
  */
 
-import { CrudFilters, CrudSorting } from "@contexts/data/types";
-import { IResourceItem } from "./resource";
-import { Action, BaseKey } from "..";
+import { CrudFilters, CrudSorting } from "../data/types";
+import { IResourceItem } from "../../interfaces/bindings/resource";
+import { Action, BaseKey, Prettify } from "../../interfaces";
 
 export type GoConfig = {
   to?: string;
@@ -68,7 +68,7 @@ export type ParseFunction<
   TParams extends Record<string, any> = Record<string, any>,
 > = () => ParseResponse<TParams>;
 
-export type RouterBindings = {
+export type RouterProvider = {
   go?: () => GoFunction;
   back?: () => BackFunction;
   parse?: () => ParseFunction;
@@ -76,3 +76,5 @@ export type RouterBindings = {
     React.PropsWithChildren<{ to: string; [prop: string]: any }>
   >;
 };
+
+export type IRouterContext = RouterProvider;

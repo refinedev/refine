@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 import {
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useMenu } from ".";
@@ -94,7 +94,7 @@ describe("useMenu Hook", () => {
   it("should have the selectedKey = `posts`", async () => {
     const { result } = renderHook(() => useMenu(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
           },
@@ -110,7 +110,7 @@ describe("useMenu Hook", () => {
   it("should have the defaultOpenKeys = [/CMS]", async () => {
     const { result } = renderHook(() => useMenu(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           pathname: "/CMS/posts",
           resource: {
             name: "posts",
@@ -156,7 +156,7 @@ describe("useMenu Hook", () => {
   it("should have the defaultOpenKeys = [/CMS]", async () => {
     const { result } = renderHook(() => useMenu(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           pathname: "/CMS/categories/else-new",
           resource: {
             name: "posts",
@@ -364,7 +364,7 @@ describe("useMenu Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             params: {
               orgId: "1",
             },

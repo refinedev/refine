@@ -1,7 +1,7 @@
 import React from "react";
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useParse } from "./";
 
@@ -13,7 +13,7 @@ describe("useParse Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             parse: () => mockParse,
           },
@@ -31,7 +31,7 @@ describe("useParse Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             parse: undefined,
           },

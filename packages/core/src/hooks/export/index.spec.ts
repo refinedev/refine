@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { mockRouterBindings, posts } from "@test/dataMocks";
+import { mockRouterProvider, posts } from "@test/dataMocks";
 
 import { ExportOptions, useExport } from "./";
 import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
@@ -81,7 +81,7 @@ describe("useExport Hook", () => {
 
     const { result } = renderHook(() => useExport(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
             list: "/posts",
@@ -219,7 +219,7 @@ describe("useExport Hook", () => {
       const { result } = renderHook(() => useExport(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "postsName",
               identifier: isIdentifier ? "postsIdentifier" : undefined,

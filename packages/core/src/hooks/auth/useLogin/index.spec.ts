@@ -5,7 +5,7 @@ import {
   act,
   mockLegacyRouterProvider as baseMockLegacyRouterProvider,
   mockAuthProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
 } from "@test";
 
@@ -14,7 +14,7 @@ import { useLogin } from "./";
 const mockGo = jest.fn();
 const mockReplace = jest.fn();
 
-const mockRouterProvider = mockRouterBindings({
+const mockRouterProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },
@@ -251,7 +251,7 @@ describe("v3LegacyAuthProviderCompatible useLogin Hook", () => {
             logout: () => Promise.resolve(),
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => mockGo,
             },
@@ -477,7 +477,7 @@ describe("useLogin Hook", () => {
           onError: () => Promise.resolve({}),
           logout: () => Promise.resolve({ success: true }),
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -892,7 +892,7 @@ describe("useLogin Hook redirect support", () => {
           onError: () => Promise.resolve({}),
           logout: () => Promise.resolve({ success: true }),
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
             parse: () => () => ({

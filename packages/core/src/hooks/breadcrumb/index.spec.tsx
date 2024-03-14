@@ -1,7 +1,7 @@
 import React from "react";
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper, ITestWrapperProps, mockRouterBindings } from "@test";
+import { TestWrapper, ITestWrapperProps, mockRouterProvider } from "@test";
 import { useBreadcrumb } from ".";
 
 const renderWrapper = (wrapperProps: ITestWrapperProps = {}) => {
@@ -22,7 +22,7 @@ describe("useBreadcrumb Hook", () => {
     const { result } = renderHook(() => useBreadcrumb(), {
       wrapper: renderWrapper({
         resources: [{ name: "posts" }],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
         }),
       }),
@@ -40,7 +40,7 @@ describe("useBreadcrumb Hook", () => {
             icon: DummyIcon,
           },
         ],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
             icon: DummyIcon,
@@ -64,7 +64,7 @@ describe("useBreadcrumb Hook", () => {
             list: DummyResourcePage,
           },
         ],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
             route: "posts",
@@ -90,7 +90,7 @@ describe("useBreadcrumb Hook", () => {
             create: DummyResourcePage,
           },
         ],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "create",
           resource: {
             name: "posts",
@@ -122,7 +122,7 @@ describe("useBreadcrumb Hook", () => {
             create: DummyResourcePage,
           },
         ],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "create",
           resource: {
             name: "posts",
@@ -145,7 +145,7 @@ describe("useBreadcrumb Hook", () => {
     const { result } = renderHook(() => useBreadcrumb(), {
       wrapper: renderWrapper({
         resources: [],
-        routerProvider: mockRouterBindings(),
+        routerProvider: mockRouterProvider(),
       }),
     });
 
@@ -158,7 +158,7 @@ describe("useBreadcrumb Hook", () => {
     const { result } = renderHook(() => useBreadcrumb(), {
       wrapper: renderWrapper({
         resources: [{ name: "posts" }],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: { name: "posts" },
         }),
