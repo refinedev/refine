@@ -8,13 +8,13 @@ import {
 } from "@test";
 
 import { useNavigation } from ".";
-import { IRouterContext } from "src/interfaces";
+import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();
 const legacyBackMock = jest.fn();
 
-const legacyRouterProvider: IRouterContext = {
+const legacyRouterProvider: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => {
     return {

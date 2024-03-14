@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface IRouterProvider {
+export interface LegacyRouterProvider {
   useHistory: () => {
     push: (...args: any) => any;
     replace: (...args: any) => any;
@@ -17,7 +17,7 @@ export interface IRouterProvider {
   routes?: any;
 }
 
-export interface IRouterContext {
+export interface ILegacyRouterContext {
   useHistory: () => any;
   useLocation: () => any;
   useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params;

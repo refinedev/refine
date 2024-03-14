@@ -8,11 +8,11 @@ import {
 import { NotificationQueueContextProvider } from "@contexts/notification/queue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { RouterBindings, IRouterContext } from "../src/interfaces";
+import { RouterBindings } from "../src/interfaces";
 import { I18nContextProvider } from "@contexts/i18n";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
-import { LegacyRouterContextProvider } from "@contexts/legacy-router";
+import { LegacyRouterContextProvider } from "@contexts/router/legacy";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
@@ -28,6 +28,7 @@ import { DataProvider, DataProviders } from "../src/contexts/data/types";
 import { I18nProvider } from "../src/contexts/i18n/types";
 import { LiveProvider } from "../src/contexts/live/types";
 import { NotificationProvider } from "../src/contexts/notification/types";
+import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -60,7 +61,7 @@ export interface ITestWrapperProps {
   liveProvider?: LiveProvider;
   resources?: IResourceItem[];
   children?: React.ReactNode;
-  legacyRouterProvider?: IRouterContext;
+  legacyRouterProvider?: LegacyRouterProvider;
   routerProvider?: RouterBindings;
   refineProvider?: IRefineContextProvider;
   auditLogProvider?: Partial<AuditLogProvider>;

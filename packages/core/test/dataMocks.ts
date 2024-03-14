@@ -1,15 +1,11 @@
 import { Action } from "../src/interfaces/actions";
 
-import {
-  IRouterContext,
-  RouterBindings,
-  ParsedParams,
-  IResourceItem,
-} from "../src/interfaces";
+import { RouterBindings, ParsedParams, IResourceItem } from "../src/interfaces";
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
 import { DataProviders } from "../src/contexts/data/types";
 import { LiveProvider } from "../src/contexts/live/types";
+import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
 
 export const posts = [
   {
@@ -138,7 +134,7 @@ export const mockRouterBindings = ({
 };
 
 export const mockLegacyRouterProvider = () => {
-  const provider: IRouterContext = {
+  const provider: LegacyRouterProvider = {
     useHistory: () => {
       return {
         push: () => undefined,
@@ -146,7 +142,12 @@ export const mockLegacyRouterProvider = () => {
         goBack: () => undefined,
       };
     },
-    useLocation: () => undefined,
+    useLocation: () => {
+      return {
+        pathname: "",
+        search: "",
+      };
+    },
     useParams: () => ({}) as any,
     Link: () => null,
     Prompt: () => null,

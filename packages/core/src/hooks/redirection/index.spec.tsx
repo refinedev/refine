@@ -3,12 +3,12 @@ import { renderHook } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 
 import { useRedirectionAfterSubmission } from "../redirection";
-import { IRouterContext } from "src/interfaces";
+import { ILegacyRouterContext } from "src/interfaces";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();
 
-const legacyRouterProvider: IRouterContext = {
+const legacyRouterProvider: ILegacyRouterContext = {
   ...mockLegacyRouterProvider(),
   useHistory: () => {
     return {

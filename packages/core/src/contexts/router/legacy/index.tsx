@@ -1,8 +1,8 @@
 import React from "react";
 
-import { IRouterContext } from "../../interfaces";
+import { ILegacyRouterContext } from "./types";
 
-export const defaultProvider: IRouterContext = {
+export const defaultProvider: ILegacyRouterContext = {
   useHistory: () => false,
   useLocation: () => false,
   useParams: () => ({}) as any,
@@ -11,12 +11,10 @@ export const defaultProvider: IRouterContext = {
 };
 
 export const LegacyRouterContext =
-  React.createContext<IRouterContext>(defaultProvider);
-
-export const RouterContext = LegacyRouterContext;
+  React.createContext<ILegacyRouterContext>(defaultProvider);
 
 export const LegacyRouterContextProvider: React.FC<
-  Partial<IRouterContext> & {
+  Partial<ILegacyRouterContext> & {
     children?: React.ReactNode;
   }
 > = ({
@@ -29,7 +27,7 @@ export const LegacyRouterContextProvider: React.FC<
   routes,
 }) => {
   return (
-    <RouterContext.Provider
+    <LegacyRouterContext.Provider
       value={{
         useHistory: useHistory ?? defaultProvider.useHistory,
         useLocation: useLocation ?? defaultProvider.useLocation,
@@ -40,6 +38,6 @@ export const LegacyRouterContextProvider: React.FC<
       }}
     >
       {children}
-    </RouterContext.Provider>
+    </LegacyRouterContext.Provider>
   );
 };

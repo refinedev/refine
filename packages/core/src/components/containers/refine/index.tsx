@@ -11,7 +11,7 @@ import {
   LegacyAuthContextProvider,
 } from "@contexts/auth";
 import { DataContextProvider } from "../../../contexts/data";
-import { LegacyRouterContextProvider } from "@contexts/legacy-router";
+import { LegacyRouterContextProvider } from "@contexts/router/legacy";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
@@ -29,7 +29,6 @@ import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-
 import {
   DashboardPageProps,
   IRefineOptions,
-  IRouterProvider,
   LayoutProps,
   TitleProps,
 } from "../../../interfaces";
@@ -41,6 +40,7 @@ import { DataProvider, DataProviders } from "../../../contexts/data/types";
 import { I18nProvider } from "../../../contexts/i18n/types";
 import { LiveModeProps, LiveProvider } from "../../../contexts/live/types";
 import { NotificationProvider } from "../../../contexts/notification/types";
+import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -55,7 +55,7 @@ export interface RefineProps {
    * @type [`IRouterProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/)
    * @deprecated This property is deprecated and was the legacy way of routing. Please use `routerProvider` with new router bindings instead.
    */
-  legacyRouterProvider?: IRouterProvider;
+  legacyRouterProvider?: LegacyRouterProvider;
   /**
    * Router bindings for **refine**. A simple interface for **refine** to interact with your router in a flexible way.
    * @type [`RouterBindings`](https://refine.dev/docs/api-reference/core/bindings/router/)

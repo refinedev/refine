@@ -15,7 +15,6 @@ export {
   MutationMode,
   Option,
   BaseOption,
-  PromptProps,
   RedirectionTypes,
   RedirectAction,
   ResourceErrorRouterParams,
@@ -30,7 +29,6 @@ export {
   IResourceComponentsProps,
   IResourceContext as ResourceProvider,
   IResourceItem,
-  IRouterProvider,
   ITreeMenu,
   IQueryKeys,
   ResourceBindings,
@@ -158,3 +156,8 @@ export {
   OpenNotificationParams,
   SuccessErrorNotification,
 } from "./contexts/notification/types";
+
+export {
+  LegacyRouterProvider as IRouterProvider,
+  PromptProps,
+} from "./contexts/router/legacy/types";

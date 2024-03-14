@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { LiveContext } from "@contexts/live";
-import { RouterContext } from "@contexts/legacy-router";
+import { LegacyRouterContext } from "@contexts/router/legacy";
 import { DataContext } from "@contexts/data";
 import { I18nContext } from "@contexts/i18n";
 import { NotificationContext } from "@contexts/notification";
@@ -19,7 +19,7 @@ export const useTelemetryData = (): ITelemetryData => {
   const auth = useIsExistAuthentication();
   const auditLogContext = useContext(AuditLogContext);
   const { liveProvider } = useContext(LiveContext);
-  const routerContext = useContext(RouterContext);
+  const routerContext = useContext(LegacyRouterContext);
   const dataContext = useContext(DataContext);
   const { i18nProvider } = useContext(I18nContext);
   const notificationContext = useContext(NotificationContext);

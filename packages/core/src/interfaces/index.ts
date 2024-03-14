@@ -4,7 +4,6 @@ import { IResourceItem } from "./bindings/resource";
 export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
-export * from "../contexts/legacy-router/IRouterContext";
 
 export * from "../components/pages/login";
 
