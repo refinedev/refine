@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 
-import { IUnsavedWarnContext } from "./IUnsavedWarnContext";
+import { IUnsavedWarnContext } from "./types";
 
 export const UnsavedWarnContext = React.createContext<IUnsavedWarnContext>({});
 
