@@ -5,7 +5,7 @@ import {
   AuthBindingsContextProvider,
   LegacyAuthContextProvider,
 } from "@contexts/auth";
-import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
+import { NotificationQueueContextProvider } from "@contexts/notification/queue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { RouterBindings, IRouterContext } from "../src/interfaces";
@@ -171,9 +171,9 @@ export const TestWrapper: (
     );
 
     const withNotification = (
-      <UndoableQueueContextProvider>
+      <NotificationQueueContextProvider>
         {withTranslation}
-      </UndoableQueueContextProvider>
+      </NotificationQueueContextProvider>
     );
 
     const withLegacyAuth = legacyAuthProvider ? (

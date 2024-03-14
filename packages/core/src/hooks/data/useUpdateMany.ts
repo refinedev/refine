@@ -6,7 +6,6 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { ActionTypes } from "@contexts/undoableQueue";
 import {
   handleMultiple,
   pickDataProvider,
@@ -52,6 +51,7 @@ import {
   GetOneResponse,
 } from "../../contexts/data/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { ActionTypes } from "../../contexts/notification/queue/types";
 
 type UpdateManyParams<TData, TError, TVariables> = {
   /**

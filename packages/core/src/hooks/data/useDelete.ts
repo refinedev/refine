@@ -6,7 +6,6 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { ActionTypes } from "@contexts/undoableQueue";
 import {
   pickDataProvider,
   pickNotDeprecated,
@@ -45,6 +44,7 @@ import {
 } from "../useLoadingOvertime";
 import { DeleteOneResponse, GetListResponse } from "../../contexts/data/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { ActionTypes } from "../../contexts/notification/queue/types";
 
 export type DeleteParams<TData, TError, TVariables> = {
   /**

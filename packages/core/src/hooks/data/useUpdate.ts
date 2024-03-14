@@ -6,7 +6,6 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { ActionTypes } from "@contexts/undoableQueue";
 import {
   pickDataProvider,
   pickNotDeprecated,
@@ -51,6 +50,7 @@ import {
   GetOneResponse,
 } from "../../contexts/data/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { ActionTypes } from "../../contexts/notification/queue/types";
 
 export type UpdateParams<TData, TError, TVariables> = {
   /**

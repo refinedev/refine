@@ -17,7 +17,7 @@ import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
 import { ResourceContextProvider } from "@contexts/resource";
 import { I18nContextProvider } from "../../../contexts/i18n";
-import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
+import { NotificationQueueContextProvider } from "../../../contexts/notification/queue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { handleRefineOptions } from "@definitions";
 import { useDeepMemo } from "@hooks/deepMemo";
@@ -306,7 +306,7 @@ export const Refine: React.FC<RefineProps> = ({
                             <AuditLogContextProvider
                               {...(auditLogProvider ?? {})}
                             >
-                              <UndoableQueueContextProvider>
+                              <NotificationQueueContextProvider>
                                 <RefineContextProvider
                                   mutationMode={
                                     optionsWithDefaults.mutationMode
@@ -344,7 +344,7 @@ export const Refine: React.FC<RefineProps> = ({
                                     </RouterComponent>
                                   </UnsavedWarnContextProvider>
                                 </RefineContextProvider>
-                              </UndoableQueueContextProvider>
+                              </NotificationQueueContextProvider>
                             </AuditLogContextProvider>
                           </AccessControlContextProvider>
                         </I18nContextProvider>
