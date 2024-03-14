@@ -8,11 +8,7 @@ import {
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import {
-  INotificationContext,
-  RouterBindings,
-  IRouterContext,
-} from "../src/interfaces";
+import { RouterBindings, IRouterContext } from "../src/interfaces";
 import { I18nContextProvider } from "@contexts/i18n";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
@@ -31,6 +27,7 @@ import { AuthProvider, ILegacyAuthContext } from "../src/contexts/auth/types";
 import { DataProvider, DataProviders } from "../src/contexts/data/types";
 import { I18nProvider } from "../src/contexts/i18n/types";
 import { LiveProvider } from "../src/contexts/live/types";
+import { NotificationProvider } from "../src/contexts/notification/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -58,7 +55,7 @@ export interface ITestWrapperProps {
   authProvider?: AuthProvider;
   dataProvider?: DataProvider | DataProviders;
   i18nProvider?: I18nProvider;
-  notificationProvider?: INotificationContext;
+  notificationProvider?: NotificationProvider;
   accessControlProvider?: Partial<AccessControlProvider>;
   liveProvider?: LiveProvider;
   resources?: IResourceItem[];

@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 
-import { INotificationContext } from "./INotificationContext";
+import { INotificationContext } from "./types";
 
 /** @deprecated default value for notification context has no use and is an empty object.  */
 export const defaultNotificationProvider: INotificationContext = {};

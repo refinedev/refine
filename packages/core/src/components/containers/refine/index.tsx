@@ -28,11 +28,9 @@ import { RouterBindingsProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
   DashboardPageProps,
-  INotificationContext,
   IRefineOptions,
   IRouterProvider,
   LayoutProps,
-  NotificationProvider,
   TitleProps,
 } from "../../../interfaces";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
@@ -42,6 +40,7 @@ import { AuthProvider, LegacyAuthProvider } from "../../../contexts/auth/types";
 import { DataProvider, DataProviders } from "../../../contexts/data/types";
 import { I18nProvider } from "../../../contexts/i18n/types";
 import { LiveModeProps, LiveProvider } from "../../../contexts/live/types";
+import { NotificationProvider } from "../../../contexts/notification/types";
 
 export interface RefineProps {
   children?: React.ReactNode;
@@ -239,7 +238,7 @@ export const Refine: React.FC<RefineProps> = ({
   const useNotificationProviderValues = React.useMemo(() => {
     return typeof notificationProvider === "function"
       ? notificationProvider
-      : () => notificationProvider ?? ({} as INotificationContext);
+      : () => notificationProvider;
   }, [notificationProvider]);
 
   const notificationProviderContextValues = useNotificationProviderValues();

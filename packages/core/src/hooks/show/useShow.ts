@@ -6,7 +6,6 @@ import { useMeta, useOne } from "@hooks";
 
 import {
   BaseRecord,
-  SuccessErrorNotification,
   MetaQuery,
   BaseKey,
   HttpError,
@@ -21,6 +20,7 @@ import {
 } from "../useLoadingOvertime";
 import { GetOneResponse } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type useShowReturnType<
   TData extends BaseRecord = BaseRecord,

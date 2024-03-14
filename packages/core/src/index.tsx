@@ -13,8 +13,6 @@ export {
   MetaQuery,
   MetaDataQuery,
   MutationMode,
-  NotificationProvider,
-  OpenNotificationParams,
   Option,
   BaseOption,
   PromptProps,
@@ -24,12 +22,10 @@ export {
   ResourceProps,
   ResourceRouterParams,
   RouteAction,
-  SuccessErrorNotification,
   TitleProps,
   ILog,
   ILogData,
   ILoginForm,
-  INotificationContext,
   IResourceComponents,
   IResourceComponentsProps,
   IResourceContext as ResourceProvider,
@@ -37,7 +33,6 @@ export {
   IRouterProvider,
   ITreeMenu,
   IQueryKeys,
-  NotificationsBindings,
   ResourceBindings,
   RouterBindings,
   ParseResponse,
@@ -155,3 +150,11 @@ export {
 } from "./contexts/i18n/types";
 
 export { ILiveContext, LiveEvent, LiveProvider } from "./contexts/live/types";
+
+export {
+  INotificationContext,
+  NotificationProvider,
+  NotificationProvider as NotificationsBindings,
+  OpenNotificationParams,
+  SuccessErrorNotification,
+} from "./contexts/notification/types";

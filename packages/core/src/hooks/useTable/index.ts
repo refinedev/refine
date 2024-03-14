@@ -26,13 +26,7 @@ import {
 } from "@definitions/table";
 import { pickNotDeprecated } from "@definitions/helpers";
 
-import {
-  BaseRecord,
-  SuccessErrorNotification,
-  HttpError,
-  MetaQuery,
-  Prettify,
-} from "../../interfaces";
+import { BaseRecord, HttpError, MetaQuery, Prettify } from "../../interfaces";
 import { useGo } from "@hooks/router/use-go";
 import { BaseListProps } from "../data/useList";
 import {
@@ -47,6 +41,7 @@ import {
   GetListResponse,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 type SetFilterBehavior = "merge" | "replace";
 

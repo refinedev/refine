@@ -7,13 +7,14 @@ import { getXRay } from "@refinedev/devtools-internal";
 
 import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { RefineError, OpenNotificationParams } from "../../../interfaces";
+import { RefineError } from "../../../interfaces";
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
   TForgotPasswordData,
 } from "../../../contexts/auth/types";
 import { useKeys } from "@hooks/useKeys";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 
 export type UseForgotPasswordLegacyProps<TVariables> = {
   v3LegacyAuthProviderCompatible: true;

@@ -1,4 +1,3 @@
-export { NotificationsBindings } from "./notifications";
 export { ResourceBindings } from "./resource";
 export {
   RouterBindings,

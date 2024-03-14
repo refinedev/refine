@@ -8,7 +8,7 @@ import { getXRay } from "@refinedev/devtools-internal";
 import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
-import { RefineError, OpenNotificationParams } from "../../../interfaces";
+import { RefineError } from "../../../interfaces";
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
@@ -17,6 +17,7 @@ import {
 } from "../../../contexts/auth/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 
 export type UseRegisterLegacyProps<TVariables> = {
   v3LegacyAuthProviderCompatible: true;

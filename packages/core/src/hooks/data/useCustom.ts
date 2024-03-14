@@ -13,13 +13,7 @@ import {
   useOnError,
   useTranslate,
 } from "@hooks";
-import {
-  BaseRecord,
-  HttpError,
-  MetaQuery,
-  Prettify,
-  SuccessErrorNotification,
-} from "../../interfaces";
+import { BaseRecord, HttpError, MetaQuery, Prettify } from "../../interfaces";
 import {
   useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
@@ -31,6 +25,7 @@ import {
   CrudFilters,
   CustomResponse,
 } from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 interface UseCustomConfig<TQuery, TPayload> {
   /**

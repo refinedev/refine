@@ -6,7 +6,6 @@ export * from "../contexts/undoableQueue/IUndoableQueueContext";
 export * from "../contexts/resource/IResourceContext";
 export * from "../contexts/unsavedWarn/IUnsavedWarnContext";
 export * from "../contexts/legacy-router/IRouterContext";
-export * from "../contexts/notification/INotificationContext";
 
 export * from "../components/pages/login";
 
@@ -33,9 +32,6 @@ export * from "./resourceErrorRouterParams";
 
 // mapData
 export * from "./mapDataFn";
-
-// successErrorNotification
-export * from "./successErrorNotification";
 
 //metaData
 export * from "./metaData";

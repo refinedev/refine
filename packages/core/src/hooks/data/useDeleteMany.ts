@@ -38,7 +38,6 @@ import {
   MutationMode,
   PrevContext as DeleteContext,
   PreviousQuery,
-  SuccessErrorNotification,
 } from "../../interfaces";
 import {
   useLoadingOvertime,
@@ -46,6 +45,7 @@ import {
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { DeleteManyResponse, GetListResponse } from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
   /**

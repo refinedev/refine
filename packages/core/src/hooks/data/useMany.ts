@@ -21,13 +21,7 @@ import {
   useTranslate,
 } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
-import {
-  BaseKey,
-  BaseRecord,
-  HttpError,
-  MetaQuery,
-  SuccessErrorNotification,
-} from "../../interfaces";
+import { BaseKey, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
 import {
   useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
@@ -35,6 +29,7 @@ import {
 } from "../useLoadingOvertime";
 import { GetManyResponse } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**

@@ -17,7 +17,7 @@ import {
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 
-import { RefineError, OpenNotificationParams } from "../../../interfaces";
+import { RefineError } from "../../../interfaces";
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
@@ -25,6 +25,7 @@ import {
 } from "../../../contexts/auth/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 import { useKeys } from "@hooks/useKeys";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 
 export type UseLoginLegacyProps<TVariables> = {
   v3LegacyAuthProviderCompatible: true;

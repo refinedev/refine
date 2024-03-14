@@ -19,7 +19,6 @@ import {
   BaseRecord,
   HttpError,
   RedirectAction,
-  SuccessErrorNotification,
   MutationMode,
   BaseKey,
   IQueryKeys,
@@ -49,6 +48,7 @@ import {
   GetOneResponse,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type ActionParams = {
   /**

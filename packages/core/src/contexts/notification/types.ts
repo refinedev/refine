@@ -1,5 +1,3 @@
-import { OpenNotificationParams } from ".";
-
 export type SuccessErrorNotification<
   TData = unknown,
   TError = unknown,
@@ -7,7 +5,7 @@ export type SuccessErrorNotification<
 > = {
   /**
      * Success notification configuration to be displayed when the mutation is successful.
-     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"' 
+     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"'
 
      */
   successNotification?:
@@ -31,3 +29,19 @@ export type SuccessErrorNotification<
         resource?: string,
       ) => OpenNotificationParams | false);
 };
+
+export type OpenNotificationParams = {
+  key?: string;
+  message: string;
+  type: "success" | "error" | "progress";
+  description?: string;
+  cancelMutation?: () => void;
+  undoableTimeout?: number;
+};
+
+export interface INotificationContext {
+  open?: (params: OpenNotificationParams) => void;
+  close?: (key: string) => void;
+}
+
+export type NotificationProvider = Required<INotificationContext>;

@@ -22,19 +22,14 @@ import {
   useTranslate,
 } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
-import {
-  BaseRecord,
-  HttpError,
-  IQueryKeys,
-  MetaQuery,
-  SuccessErrorNotification,
-} from "../../interfaces";
+import { BaseRecord, HttpError, IQueryKeys, MetaQuery } from "../../interfaces";
 import {
   useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 import { CreateManyResponse } from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 type useCreateManyParams<TData, TError, TVariables> = {
   resource: string;

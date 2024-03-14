@@ -23,13 +23,7 @@ import {
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
-import {
-  BaseRecord,
-  HttpError,
-  MetaQuery,
-  Prettify,
-  SuccessErrorNotification,
-} from "../../interfaces";
+import { BaseRecord, HttpError, MetaQuery, Prettify } from "../../interfaces";
 
 import { useKeys } from "@hooks/useKeys";
 import {
@@ -44,6 +38,7 @@ import {
   GetListResponse,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export interface UseInfiniteListConfig {
   pagination?: Pagination;

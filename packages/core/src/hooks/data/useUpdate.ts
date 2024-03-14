@@ -38,7 +38,6 @@ import {
   OptimisticUpdateMapType,
   PrevContext as UpdateContext,
   PreviousQuery,
-  SuccessErrorNotification,
 } from "../../interfaces";
 import {
   useLoadingOvertime,
@@ -51,6 +50,7 @@ import {
   GetManyResponse,
   GetOneResponse,
 } from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UpdateParams<TData, TError, TVariables> = {
   /**

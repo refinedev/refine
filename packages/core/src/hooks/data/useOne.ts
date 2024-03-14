@@ -26,7 +26,6 @@ import {
   HttpError,
   MetaQuery,
   Prettify,
-  SuccessErrorNotification,
 } from "../../interfaces";
 import {
   useLoadingOvertime,
@@ -35,6 +34,7 @@ import {
 } from "../useLoadingOvertime";
 import { GetOneResponse } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
   /**

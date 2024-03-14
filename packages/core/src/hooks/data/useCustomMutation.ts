@@ -12,13 +12,7 @@ import {
   useOnError,
   useMeta,
 } from "@hooks";
-import {
-  BaseRecord,
-  HttpError,
-  SuccessErrorNotification,
-  MetaQuery,
-  Prettify,
-} from "../../interfaces";
+import { BaseRecord, HttpError, MetaQuery, Prettify } from "../../interfaces";
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
   useLoadingOvertime,
@@ -27,6 +21,7 @@ import {
 } from "../useLoadingOvertime";
 import { useKeys } from "@hooks/useKeys";
 import { CreateResponse } from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 interface UseCustomMutationConfig {
   headers?: {};

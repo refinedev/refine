@@ -8,7 +8,6 @@ import { useList, useMany, useMeta } from "@hooks";
 import {
   BaseOption,
   BaseRecord,
-  SuccessErrorNotification,
   HttpError,
   BaseKey,
   MetaQuery,
@@ -30,6 +29,7 @@ import {
   GetManyResponse,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**

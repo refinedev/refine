@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { OpenNotificationParams } from "../../../interfaces";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useNotification } from "@hooks";
 
 export const useHandleNotification = (): typeof handleNotification => {
