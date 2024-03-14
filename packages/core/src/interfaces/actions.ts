@@ -3,7 +3,7 @@ export type Action = "create" | "edit" | "list" | "show" | "clone";
 export type RouteAction = Exclude<Action, "list"> | undefined;
 
 export type RedirectAction =
-  | Extract<Action, "list" | "show" | "edit" | "create">
+  | Extract<Action, "create" | "edit" | "list" | "show">
   | false;
 
 /**

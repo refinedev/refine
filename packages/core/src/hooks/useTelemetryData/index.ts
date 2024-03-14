@@ -9,7 +9,7 @@ import { NotificationContext } from "@contexts/notification";
 import { AccessControlContext } from "@contexts/accessControl";
 import { useResource } from "@hooks/resource";
 
-import { ITelemetryData } from "../../interfaces/telemetry";
+import { ITelemetryData } from "../../components/telemetry/types";
 import { useIsExistAuthentication, useRefineContext } from "..";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
