@@ -34,9 +34,6 @@ export * from "./metaData";
 //queryKeys
 export * from "./queryKey";
 
-//auditLog
-export * from "./auditLog";
-
 export type BaseKey = string | number;
 export type BaseRecord = {
   id?: BaseKey;

@@ -22,8 +22,6 @@ export {
   ResourceRouterParams,
   RouteAction,
   TitleProps,
-  ILog,
-  ILogData,
   ILoginForm,
   IResourceComponents,
   IResourceComponentsProps,
@@ -90,7 +88,12 @@ export {
   IAccessControlContext,
 } from "./contexts/accessControl/types";
 
-export { AuditLogProvider, LogParams } from "./contexts/auditLog/types";
+export {
+  AuditLogProvider,
+  ILog,
+  ILogData,
+  LogParams,
+} from "./contexts/auditLog/types";
 
 export {
   AuthBindings,

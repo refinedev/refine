@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
 import { UseQueryResult } from "@tanstack/react-query";
-import { ILogData } from "../../interfaces";
+import { ILogData } from "../auditLog/types";
 import {
   IResourceItem,
   ResourceMeta,
