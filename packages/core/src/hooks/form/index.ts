@@ -1,14 +1,12 @@
 import React from "react";
 import warnOnce from "warn-once";
-import debounce from "lodash/debounce";
 
 import {
-  useId,
   useMeta,
   useOne,
   useCreate,
   useUpdate,
-  useResource,
+  useResourceParams,
   useInvalidate,
   useMutationMode,
   useRefineOptions,
@@ -81,23 +79,18 @@ export const useForm = <
   const mutationMode = props.mutationMode ?? defaultMutationMode;
 
   const {
+    id,
+    setId,
     resource,
-    action: routeAction,
     identifier,
-  } = useResource(props.resource);
+    formAction: action,
+  } = useResourceParams({
+    resource: props.resource,
+    id: props.id,
+    action: props.action,
+  });
 
   const [autosaved, setAutosaved] = React.useState(false);
-
-  const [id, setId] = useId({ id: props.id, resource: props.resource });
-
-  const action = (() => {
-    // if action is provided from props, use it
-    if (props.action) return props.action;
-    // fallback to create if action is not edit or clone
-    if (routeAction !== "edit" && routeAction !== "clone") return "create";
-    // otherwise use the route action
-    return routeAction;
-  })();
 
   const isEdit = action === "edit";
   const isClone = action === "clone";
