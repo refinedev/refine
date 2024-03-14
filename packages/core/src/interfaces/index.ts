@@ -61,8 +61,6 @@ export type IMenuItem = IResourceItem & {
 
 export * from "./form-url-params";
 
-export * from "./auth";
-
 export * from "./bindings";
 
 export * from "./prettify";

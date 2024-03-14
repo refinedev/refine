@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LoginPageProps, LoginFormTypes } from "../../../../../interfaces";
+import { LoginFormTypes, LoginPageProps } from "../../types";
 
 import { useRouterContext, useLink, useRouterType, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/i18n";

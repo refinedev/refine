@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  UpdatePasswordFormTypes,
-  UpdatePasswordPageProps,
-} from "../../../../../interfaces";
+import { UpdatePasswordFormTypes, UpdatePasswordPageProps } from "../../types";
 
 import { useTranslate, useUpdatePassword } from "@hooks";
 

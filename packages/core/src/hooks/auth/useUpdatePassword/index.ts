@@ -16,7 +16,7 @@ import {
   useRouterContext,
 } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { RefineError, UpdatePasswordFormTypes } from "../../../interfaces";
+import { RefineError } from "../../../interfaces";
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
@@ -24,6 +24,7 @@ import {
 } from "../../../contexts/auth/types";
 import { useKeys } from "@hooks/useKeys";
 import { OpenNotificationParams } from "../../../contexts/notification/types";
+import { UpdatePasswordFormTypes } from "../../../components/pages/auth/types";
 
 export type UseUpdatePasswordLegacyProps<
   TVariables extends UpdatePasswordFormTypes,

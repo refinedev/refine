@@ -9,10 +9,7 @@ import {
 } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
-import {
-  ForgotPasswordFormTypes,
-  ForgotPasswordPageProps,
-} from "../../../../../interfaces";
+import { ForgotPasswordFormTypes, ForgotPasswordPageProps } from "../../types";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
   DivPropsType,

@@ -37,7 +37,7 @@ export {
 } from "./interfaces";
 
 // all auth types
-export * from "./interfaces/auth";
+export * from "./components/pages/auth/types";
 
 export {
   getDefaultFilter,

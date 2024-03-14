@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RegisterPageProps } from "../../../../../interfaces";
+import { RegisterPageProps } from "../../types";
 
 import {
   useTranslate,

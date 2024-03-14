@@ -11,7 +11,7 @@ import {
   UpdatePasswordPage,
 } from "./components";
 
-import { AuthPageProps } from "../../../interfaces";
+import { AuthPageProps } from "./types";
 
 export type DivPropsType = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
