@@ -24,5 +24,5 @@ export * from "./breadcrumb";
 export * from "./menu";
 export * from "./useMeta";
 export * from "./useLoadingOvertime";
-export * from "./use-id";
 export * from "./use-refine-options";
+export * from "./use-resource-params";
