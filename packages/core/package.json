@@ -18,7 +18,8 @@
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "jest --passWithNoTests --runInBand",
+    "test:silent": "jest --silent --noStackTrace"
   },
   "dependencies": {
     "@refinedev/devtools-internal": "1.1.6",

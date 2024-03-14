@@ -500,6 +500,7 @@ describe("legacy roter provider", () => {
           ...mockLegacyRouterProvider(),
           useLocation: () => ({
             pathname: "/posts",
+            search: "",
           }),
         },
       }),

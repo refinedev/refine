@@ -154,6 +154,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -191,6 +192,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -223,6 +225,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -261,6 +264,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

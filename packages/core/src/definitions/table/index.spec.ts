@@ -9,7 +9,7 @@ import {
   getDefaultSortOrder,
   getDefaultFilter,
 } from "./";
-import { CrudSorting, CrudFilters } from "../../interfaces";
+import { CrudFilters, CrudSorting } from "../../contexts/data/types";
 
 describe("definitions/table", () => {
   it("getDefaultSortOrder", () => {

@@ -353,6 +353,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -390,6 +391,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -422,6 +424,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -460,6 +463,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

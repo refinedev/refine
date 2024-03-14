@@ -5,10 +5,12 @@ import * as authContext from "../../../contexts/auth";
 
 const mockFn = jest.fn();
 
-const mockRouterProvider = {
+const legacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => ({
+    goBack: jest.fn(),
     replace: mockFn,
+    push: jest.fn(),
   }),
 };
 
@@ -83,7 +85,7 @@ describe("useIsAuthenticated Hook", () => {
           onError: checkErrorMock,
           logout: () => Promise.resolve({ success: false }),
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 

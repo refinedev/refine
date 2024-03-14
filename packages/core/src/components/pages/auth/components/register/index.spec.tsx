@@ -180,7 +180,7 @@ describe("Auth Page Register", () => {
       wrapper: TestWrapper({
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
-          useLocation: () => jest.fn(),
+          useLocation: jest.fn(),
           Link: LinkComponentMock,
         },
       }),

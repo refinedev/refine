@@ -337,6 +337,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -373,6 +374,7 @@ describe("useDelete Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -403,6 +405,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -437,6 +440,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -469,6 +473,7 @@ describe("useDelete Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),

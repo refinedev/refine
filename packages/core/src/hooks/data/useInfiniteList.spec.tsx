@@ -3,8 +3,9 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import { DataProviders, IRefineContextProvider } from "../../interfaces";
+import { IRefineContextProvider } from "../../interfaces";
 import { useInfiniteList } from "./useInfiniteList";
+import { DataProviders } from "../../contexts/data/types";
 
 const mockRefineProvider: IRefineContextProvider = {
   hasDashboard: false,
@@ -61,7 +62,7 @@ describe("useInfiniteList Hook", () => {
   });
 
   it("cursor has next", async () => {
-    const mockDataProvider = {
+    const dataProvider = {
       default: {
         ...MockJSONServer.default,
         getList: async () => {
@@ -90,7 +91,7 @@ describe("useInfiniteList Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          dataProvider: mockDataProvider,
+          dataProvider,
           resources: [{ name: "posts" }],
         }),
       },
@@ -305,6 +306,7 @@ describe("useInfiniteList Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -341,6 +343,7 @@ describe("useInfiniteList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -372,6 +375,7 @@ describe("useInfiniteList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -409,6 +413,7 @@ describe("useInfiniteList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

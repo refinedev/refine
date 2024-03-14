@@ -3,15 +3,16 @@ import { renderHook } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 
 import { useRedirectionAfterSubmission } from "../redirection";
-import { ILegacyRouterContext } from "src/interfaces";
+import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();
 
-const legacyRouterProvider: ILegacyRouterContext = {
+const legacyRouterProvider: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => {
     return {
+      goBack: jest.fn(),
       push: legacyPushMock,
       replace: legacyReplaceMock,
     };
@@ -28,7 +29,7 @@ describe("redirectionAfterSubmission Hook", () => {
     wrapper: TestWrapper({
       dataProvider: MockJSONServer,
       resources: [{ name: "posts", route: "posts" }],
-      legacyRouterProvider: legacyRouterProvider,
+      legacyRouterProvider,
     }),
   });
 

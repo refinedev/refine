@@ -87,6 +87,7 @@ describe("useCustomMutation Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -118,6 +119,7 @@ describe("useCustomMutation Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -153,6 +155,7 @@ describe("useCustomMutation Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -186,6 +189,7 @@ describe("useCustomMutation Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),

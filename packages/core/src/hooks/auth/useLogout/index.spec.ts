@@ -7,7 +7,7 @@ import { useLogout } from "./";
 
 const mockGo = jest.fn();
 
-const mockRouterProvider = mockRouterProvider({
+const routerProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },
@@ -45,7 +45,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
             getUserIdentity: () => Promise.resolve(),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider,
         }),
       },
     );
@@ -81,7 +81,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
             getUserIdentity: () => Promise.resolve(),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider,
         }),
       },
     );
@@ -120,7 +120,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             },
             getUserIdentity: () => Promise.resolve(),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider,
         }),
       },
     );
@@ -240,7 +240,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
           logout: () => Promise.resolve(false),
           getUserIdentity: () => Promise.resolve(),
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -273,7 +273,7 @@ describe("v3LegacyAuthProviderCompatible useLogout Hook", () => {
             logout: () => Promise.resolve("/custom-path"),
             getUserIdentity: () => Promise.resolve(),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider,
         }),
       },
     );
@@ -326,7 +326,7 @@ describe("useLogout Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -385,7 +385,7 @@ describe("useLogout Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -414,7 +414,7 @@ describe("useLogout Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -524,6 +524,7 @@ describe("useLogout Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -559,6 +560,7 @@ describe("useLogout Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -590,6 +592,7 @@ describe("useLogout Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -694,6 +697,7 @@ describe("useLogout Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,

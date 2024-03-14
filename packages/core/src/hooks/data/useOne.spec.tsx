@@ -267,6 +267,7 @@ describe("useOne Hook", () => {
               },
               notificationProvider: {
                 open: notificationMock,
+                close: jest.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -304,6 +305,7 @@ describe("useOne Hook", () => {
               dataProvider: MockJSONServer,
               notificationProvider: {
                 open: openNotificationMock,
+                close: jest.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -336,6 +338,7 @@ describe("useOne Hook", () => {
               dataProvider: MockJSONServer,
               notificationProvider: {
                 open: openNotificationMock,
+                close: jest.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -374,6 +377,7 @@ describe("useOne Hook", () => {
               },
               notificationProvider: {
                 open: openNotificationMock,
+                close: jest.fn(),
               },
               resources: [{ name: "posts" }],
             }),

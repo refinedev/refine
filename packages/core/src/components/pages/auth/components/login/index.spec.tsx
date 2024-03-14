@@ -231,7 +231,6 @@ describe("Auth Page Login", () => {
       wrapper: TestWrapper({
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
-          useLocation: () => jest.fn(),
           Link: LinkComponentMock,
         },
       }),
