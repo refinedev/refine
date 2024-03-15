@@ -4,25 +4,26 @@ import { useQuerySubscription } from "@refinedev/devtools-internal";
 
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { Telemetry } from "@components/telemetry";
-import { AccessControlContextProvider } from "@contexts/accessControl";
-import { AuditLogContextProvider } from "@contexts/auditLog";
+import { AccessControlContextProvider } from "../../../contexts/accessControl";
+import { AuditLogContextProvider } from "../../../contexts/auditLog";
 import {
   AuthBindingsContextProvider,
   LegacyAuthContextProvider,
-} from "@contexts/auth";
+} from "../../../contexts/auth";
 import { DataContextProvider } from "../../../contexts/data";
-import { LegacyRouterContextProvider } from "@contexts/router/legacy";
-import { LiveContextProvider } from "@contexts/live";
-import { NotificationContextProvider } from "@contexts/notification";
-import { RefineContextProvider } from "@contexts/refine";
-import { ResourceContextProvider } from "@contexts/resource";
+import { LegacyRouterContextProvider } from "../../../contexts/router/legacy";
+import { LiveContextProvider } from "../../../contexts/live";
+import { NotificationContextProvider } from "../../../contexts/notification";
+import { RefineContextProvider } from "../../../contexts/refine";
+import { ResourceContextProvider } from "../../../contexts/resource";
 import { I18nContextProvider } from "../../../contexts/i18n";
 import { NotificationQueueContextProvider } from "../../../contexts/notification/queue";
-import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
+import { UnsavedWarnContextProvider } from "../../../contexts/unsavedWarn";
+
 import { handleRefineOptions } from "@definitions";
 import { useDeepMemo } from "@hooks/deepMemo";
 
-import { RouterPickerProvider } from "@contexts/router/picker";
+import { RouterPickerProvider } from "../../../contexts/router/picker";
 import { RouterContextProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
