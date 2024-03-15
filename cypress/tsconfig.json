@@ -1,0 +1,10 @@
+{
+    "include": [
+        "../**/cypress/**/*.ts",
+        "../**/cypress.config.ts"
+      ],
+    "compilerOptions": {
+      "sourceMap": false,
+      "types": ["cypress", "chai"]
+    }
+  }
