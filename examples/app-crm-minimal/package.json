@@ -45,7 +45,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
@@ -56,7 +56,7 @@
     "postcss-nesting": "^12.0.1",
     "prettier": "^2.7.1",
     "typescript": "^5.4.2",
-    "vite": "^4.3.1",
+    "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.1"
   }
 }

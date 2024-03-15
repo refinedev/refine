@@ -313,7 +313,7 @@ The command above will bootstrap a Next.js app with TypeScript. Select the follo
       "noEmit": true,
       "esModuleInterop": true,
       "module": "esnext",
-      "moduleResolution": "node",
+      "moduleResolution": "bundler",
       "resolveJsonModule": true,
       "isolatedModules": true,
       "jsx": "preserve",

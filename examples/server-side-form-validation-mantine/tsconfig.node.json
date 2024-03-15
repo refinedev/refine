@@ -2,7 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "bundler"
   },
   "include": ["vite.config.ts"]
 }
