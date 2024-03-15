@@ -42,7 +42,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.1",
-    "tslib": "^2.3.1",
+    "tslib": "^2.6.2",
     "usehooks-ts": "^2.14.0"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-input-mask": "^3.0.1",
     "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^4.7.4",
+    "typescript": "^5.4.2",
     "vite": "^4.3.1"
   }
 }

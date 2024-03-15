@@ -95,4 +95,4 @@ describe("with-nextjs-next-auth", () => {
   });
 });
 
-export {};
+export type {};
