@@ -62,6 +62,4 @@ export * from "./bindings";
 
 export * from "./prettify";
 
-export * from "./textTransformers";
-
 export * from "./optimistic-update-map";

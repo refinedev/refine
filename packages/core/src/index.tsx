@@ -165,6 +165,8 @@ export {
   IRefineContextOptions,
   IRefineContextProvider,
   IRefineOptions,
+  RefineProps,
+  TextTransformers,
 } from "./contexts/refine/types";
 
 export {
