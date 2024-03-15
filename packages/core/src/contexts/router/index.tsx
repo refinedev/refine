@@ -1,14 +1,14 @@
 import React, { createContext, PropsWithChildren } from "react";
-import { IRouterContext } from "./types";
+import { RouterProvider } from "./types";
 
 const defaultRouterProvider = {};
 
-export const RouterContext = createContext<IRouterContext>(
+export const RouterContext = createContext<RouterProvider>(
   defaultRouterProvider,
 );
 
 export const RouterContextProvider: React.FC<
-  PropsWithChildren<{ router?: IRouterContext }>
+  PropsWithChildren<{ router?: RouterProvider }>
 > = ({ children, router }) => {
   return (
     <RouterContext.Provider value={router ?? defaultRouterProvider}>

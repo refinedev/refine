@@ -170,6 +170,7 @@ export {
 } from "./contexts/refine/types";
 
 export {
+  LegacyRouterProvider as IRouterContext,
   LegacyRouterProvider as IRouterProvider,
   PromptProps,
 } from "./contexts/router/legacy/types";

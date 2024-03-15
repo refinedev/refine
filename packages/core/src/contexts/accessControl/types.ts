@@ -56,16 +56,37 @@ export type CanReturnType = {
   reason?: string;
 };
 
+export type CanFunction = ({
+  resource,
+  action,
+  params,
+}: CanParams) => Promise<CanReturnType>;
+
+type AccessControlOptions = {
+  buttons?: {
+    enableAccessControl?: boolean;
+    hideIfUnauthorized?: boolean;
+  };
+  queryOptions?: UseQueryOptions<CanReturnType>;
+};
+
 export interface IAccessControlContext {
-  can?: ({ resource, action, params }: CanParams) => Promise<CanReturnType>;
-  options?: {
-    buttons?: {
-      enableAccessControl?: boolean;
-      hideIfUnauthorized?: boolean;
+  can?: CanFunction;
+  options?: AccessControlOptions;
+}
+
+export type IAccessControlContextReturnType = {
+  can?: CanFunction;
+  options: {
+    buttons: {
+      enableAccessControl: boolean;
+      hideIfUnauthorized: boolean;
     };
     queryOptions?: UseQueryOptions<CanReturnType>;
   };
-}
+};
 
-export type AccessControlProvider = Partial<IAccessControlContext> &
-  Required<Pick<IAccessControlContext, "can">>;
+export type AccessControlProvider = {
+  can: CanFunction;
+  options?: AccessControlOptions;
+};

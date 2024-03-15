@@ -76,5 +76,3 @@ export type RouterProvider = {
     React.PropsWithChildren<{ to: string; [prop: string]: any }>
   >;
 };
-
-export type IRouterContext = RouterProvider;

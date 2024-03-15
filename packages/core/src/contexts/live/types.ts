@@ -44,7 +44,7 @@ export type LiveListParams = {
   resource?: string;
   pagination?: Pagination;
   hasPagination?: boolean;
-  sort?: CrudSorting;
+  sorters?: CrudSorting;
   filters?: CrudFilters;
   meta?: MetaQuery;
   metaData?: MetaQuery;
@@ -65,36 +65,42 @@ export type LiveCommonParams = {
   [key: string]: unknown;
 };
 
+type LiveSubscribeOptions = {
+  channel: string;
+  types: Array<LiveEvent["type"]>;
+  callback: (event: LiveEvent) => void;
+  params?: LiveCommonParams & LiveListParams & LiveOneParams & LiveManyParams;
+};
+
+type LiveDeprecatedSubscribeOptions = {
+  /**
+   * @deprecated use `meta.dataProviderName` instead.
+   */
+  dataProviderName?: string;
+  /**
+   * @deprecated `params.meta` is depcerated. Use `meta` directly from the root level instead.
+   */
+  meta?: MetaQuery;
+  /**
+   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
+   */
+  metaData?: MetaQuery;
+  /**
+   * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
+   */
+  hasPagination?: boolean;
+  /**
+   * @deprecated `sort` is deprecated, use `sorters` instead.
+   */
+  sort?: CrudSorting;
+};
+
 export type LiveProvider = {
   publish?: (event: LiveEvent) => void;
-  subscribe: (options: {
-    channel: string;
-    types: Array<LiveEvent["type"]>;
-    callback: (event: LiveEvent) => void;
-    params?: LiveCommonParams &
-      (LiveListParams | LiveOneParams | LiveManyParams);
-    /**
-     * @deprecated use `meta.dataProviderName` instead.
-     */
-    dataProviderName?: string;
-    /**
-     * @deprecated `params.meta` is depcerated. Use `meta` directly from the root level instead.
-     */
-    meta?: MetaQuery;
-    /**
-     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    /**
-     * @deprecated `hasPagination` is deprecated, use `pagination.mode` instead.
-     */
-    hasPagination?: boolean;
-    /**
-     * @deprecated `sort` is deprecated, use `sorters` instead.
-     */
-    sort?: CrudSorting;
-  }) => unknown;
-  unsubscribe: (subscription: unknown) => void;
+  subscribe: (
+    options: LiveSubscribeOptions & LiveDeprecatedSubscribeOptions,
+  ) => any;
+  unsubscribe: (subscription: any) => void;
 };
 
 export type ILiveContext = {
