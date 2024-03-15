@@ -5,6 +5,7 @@ import TutorialItemContent from "./tutorial-item-content";
 import { FULL_WIDTH_TABLE_VARIABLE_NAME } from "./common-table";
 import { TutorialParameterDropdown } from "./tutorial-parameter-dropdown";
 import { TutorialPaginator } from "./tutorial-paginator";
+import { DocSurveyWidget } from "./doc-survey-widget";
 
 export const TutorialDocumentLayout = ({ children }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -74,6 +75,7 @@ export const TutorialDocumentLayout = ({ children }) => {
           </div>
           <div className={clsx("refine-prose")}>
             <TutorialItemContent>{children}</TutorialItemContent>
+            <DocSurveyWidget className={clsx("not-prose", "mx-auto", "mt-4")} />
           </div>
         </div>
         <div className={clsx("max-w-screen-content-2xl", "w-full")}>

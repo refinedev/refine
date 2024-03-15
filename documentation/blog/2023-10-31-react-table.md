@@ -175,7 +175,7 @@ Under the hood, the `@refinedev/react-table` package uses Refine's `useList` hoo
 
 The `@refinedev/react-table` package exports the `useTable` hook. The `useTable` hook reads the resource from the URL and returns the data from the API endpoint in its basic usage.
 
-The code below illustrates how to use React Table with refine. If you have a running Refine project already, use the example code below to display data from the the [categories](https://api.fake-rest.refine.dev/categories)resource of the [fake REST API](https://api.fake-rest.refine.dev/) in tabular form using the `@refinedev/react-table` package.
+The code below illustrates how to use React Table with refine. If you have a running Refine project already, use the example code below to display data from the [categories](https://api.fake-rest.refine.dev/categories)resource of the [fake REST API](https://api.fake-rest.refine.dev/) in tabular form using the `@refinedev/react-table` package.
 
 The fake REST API was created by the Refine team to try out the examples in refine.
 
