@@ -6,4 +6,5 @@ Added `useResourceParams` hook. This hook initially works similarly to `useResou
 
 - `id` and `action` values returned from `useResource` is deprecated in favor of `useResourceParams`.
 - `useForm` hook is updated to use `useResourceParams` under the hood.
-- // TODO: add rest of the changes when done
+- `useShow` hook is updated to use `useResourceParams` under the hood.
+- `<CanAccess />` component is updated to use `useResourceParams` under the hood.
