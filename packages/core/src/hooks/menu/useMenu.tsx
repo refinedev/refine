@@ -1,14 +1,16 @@
 import React from "react";
-import { useTranslate, useResource, useParsed, useRouterContext } from "..";
-import { useUserFriendlyName, pickNotDeprecated } from "@definitions";
+
+import { pickNotDeprecated, useUserFriendlyName } from "@definitions";
+import { getParentResource } from "@definitions/helpers/router";
+
+import { useParsed, useResource, useRouterContext, useTranslate } from "..";
 import { useRouterType } from "../../contexts/router/picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
-import { useGetToPath } from "../router/use-get-to-path/index";
-import { getParentResource } from "@definitions/helpers/router";
 import {
   FlatTreeItem,
   createTree,
 } from "../../definitions/helpers/menu/create-tree";
+import { useGetToPath } from "../router/use-get-to-path/index";
 
 type UseMenuReturnType = {
   defaultOpenKeys: string[];

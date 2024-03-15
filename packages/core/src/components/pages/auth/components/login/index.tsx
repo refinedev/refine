@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { LoginFormTypes, LoginPageProps } from "../../types";
 
-import { useRouterContext, useLink, useRouterType, useLogin } from "@hooks";
+import { useActiveAuthProvider } from "@definitions/helpers";
+import { useLink, useLogin, useRouterContext, useRouterType } from "@hooks";
 import { useTranslate } from "@hooks/i18n";
 
 import { DivPropsType, FormPropsType } from "../..";
-import { useActiveAuthProvider } from "@definitions/helpers";
+import { LoginFormTypes, LoginPageProps } from "../../types";
 
 type LoginProps = LoginPageProps<DivPropsType, DivPropsType, FormPropsType>;
 

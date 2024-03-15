@@ -1,6 +1,6 @@
-import { RedirectAction } from "../../../interfaces";
-import { IRefineContextOptions } from "../../../contexts/refine/types";
 import { redirectPage } from ".";
+import { IRefineContextOptions } from "../../../contexts/refine/types";
+import { RedirectAction } from "../../../interfaces";
 
 describe("redirectPath", () => {
   it.each(["edit", "list", "show", false] as RedirectAction[])(

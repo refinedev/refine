@@ -1,12 +1,13 @@
 import React, { createContext, useReducer } from "react";
+
 import isEqual from "lodash/isEqual";
 
+import { NotificationQueue } from "../../../components";
 import {
-  INotificationQueueContext,
   ActionTypes,
   INotificationQueue,
+  INotificationQueueContext,
 } from "./types";
-import { NotificationQueue } from "../../../components";
 
 export const NotificationQueueContext =
   createContext<INotificationQueueContext>({

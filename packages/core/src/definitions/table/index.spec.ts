@@ -1,15 +1,15 @@
+import { CrudFilters, CrudSorting } from "../../contexts/data/types";
 import {
-  stringifyTableParams,
-  parseTableParams,
-  parseTableParamsFromQuery,
-  unionFilters,
   compareFilters,
   compareSorters,
-  unionSorters,
-  getDefaultSortOrder,
   getDefaultFilter,
+  getDefaultSortOrder,
+  parseTableParams,
+  parseTableParamsFromQuery,
+  stringifyTableParams,
+  unionFilters,
+  unionSorters,
 } from "./";
-import { CrudFilters, CrudSorting } from "../../contexts/data/types";
 
 describe("definitions/table", () => {
   it("getDefaultSortOrder", () => {

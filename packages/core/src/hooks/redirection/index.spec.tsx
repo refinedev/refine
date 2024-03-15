@@ -2,8 +2,8 @@ import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 
-import { useRedirectionAfterSubmission } from "../redirection";
 import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
+import { useRedirectionAfterSubmission } from "../redirection";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();

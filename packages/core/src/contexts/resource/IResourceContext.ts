@@ -1,12 +1,12 @@
 import { ComponentType } from "react";
+
 import { UseQueryResult } from "@tanstack/react-query";
-import { ILogData } from "../auditLog/types";
 import {
   IResourceItem,
   ResourceMeta,
   ResourceProps,
 } from "../../interfaces/bindings/resource";
-const auditLogPermissions = ["create", "update", "delete"] as const;
+import { ILogData } from "../auditLog/types";
 
 export type ResourceRouteComponent = ComponentType<
   IResourceComponentsProps<any, any>

@@ -1,14 +1,15 @@
 import React from "react";
-import { render, TestWrapper, waitFor } from "@test";
 
-import { CanAccess } from ".";
 import { act } from "react-dom/test-utils";
 
+import { TestWrapper, render, waitFor } from "@test";
+
+import { CanAccess } from ".";
 import * as RouterPicker from "../../contexts/router/picker";
-import * as LegacyRouterContext from "../../hooks/legacy-router/useRouterContext";
-import * as UseCanHook from "../../hooks/accessControl/useCan";
-import * as UseParsedHook from "../../hooks/router/use-parsed";
 import * as PickResource from "../../definitions/helpers/pick-resource";
+import * as UseCanHook from "../../hooks/accessControl/useCan";
+import * as LegacyRouterContext from "../../hooks/legacy-router/useRouterContext";
+import * as UseParsedHook from "../../hooks/router/use-parsed";
 
 describe("CanAccess Component", () => {
   it("should render children", async () => {

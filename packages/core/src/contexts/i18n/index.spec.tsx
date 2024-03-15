@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { render } from "@test";
-import { I18nContextProvider } from "./";
 import { useGetLocale, useTranslate } from "@hooks";
+import { render } from "@test";
+
+import { I18nContextProvider } from "./";
 
 describe("I18nContext", () => {
   const TestComponent = () => {

@@ -1,9 +1,13 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { useQuerySubscription } from "@refinedev/devtools-internal";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { Telemetry } from "@components/telemetry";
+import { handleRefineOptions } from "@definitions";
+import { useDeepMemo } from "@hooks/deepMemo";
+
 import { AccessControlContextProvider } from "../../../contexts/accessControl";
 import { AuditLogContextProvider } from "../../../contexts/auditLog";
 import {
@@ -11,20 +15,17 @@ import {
   LegacyAuthContextProvider,
 } from "../../../contexts/auth";
 import { DataContextProvider } from "../../../contexts/data";
-import { LegacyRouterContextProvider } from "../../../contexts/router/legacy";
+import { I18nContextProvider } from "../../../contexts/i18n";
 import { LiveContextProvider } from "../../../contexts/live";
 import { NotificationContextProvider } from "../../../contexts/notification";
+import { NotificationQueueContextProvider } from "../../../contexts/notification/queue";
 import { RefineContextProvider } from "../../../contexts/refine";
 import { ResourceContextProvider } from "../../../contexts/resource";
-import { I18nContextProvider } from "../../../contexts/i18n";
-import { NotificationQueueContextProvider } from "../../../contexts/notification/queue";
+import { LegacyRouterContextProvider } from "../../../contexts/router/legacy";
 import { UnsavedWarnContextProvider } from "../../../contexts/unsavedWarn";
 
-import { handleRefineOptions } from "@definitions";
-import { useDeepMemo } from "@hooks/deepMemo";
-
-import { RouterPickerProvider } from "../../../contexts/router/picker";
 import { RouterContextProvider } from "../../../contexts/router";
+import { RouterPickerProvider } from "../../../contexts/router/picker";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
 import { RefineProps } from "../../../contexts/refine/types";

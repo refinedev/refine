@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
-  act,
   TestWrapper,
+  act,
   mockLegacyRouterProvider,
   mockRouterProvider,
 } from "@test";

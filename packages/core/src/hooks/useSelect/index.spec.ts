@@ -1,15 +1,15 @@
 import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { act, MockJSONServer, mockRouterProvider, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 
-import * as pickResource from "../../definitions/helpers/pick-resource";
-import { useSelect } from "./";
 import {
   CrudFilters,
   DataProviders,
   IDataContext,
 } from "../../contexts/data/types";
+import * as pickResource from "../../definitions/helpers/pick-resource";
+import { useSelect } from "./";
 
 describe("useSelect Hook", () => {
   it("default", async () => {

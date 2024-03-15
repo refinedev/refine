@@ -1,10 +1,11 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
+import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   MockJSONServer,
+  TestWrapper,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 import {
   assertList,
@@ -17,7 +18,6 @@ import {
 
 import * as UseInvalidate from "../invalidate/index";
 import { useUpdateMany } from "./useUpdateMany";
-import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useUpdateMany Hook", () => {
   it("with rest json server", async () => {

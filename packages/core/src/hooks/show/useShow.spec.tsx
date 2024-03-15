@@ -1,17 +1,19 @@
 import React from "react";
+
 import { renderHook, waitFor } from "@testing-library/react";
 
+import { IResourceItem } from "@contexts/resource";
 import { MockJSONServer, TestWrapper, act } from "@test";
 import {
   mockLegacyRouterProvider,
   mockRouterProvider,
   posts,
 } from "@test/dataMocks";
-import * as useResourceWithRoute from "../resource/useResourceWithRoute";
+
 import * as pickResource from "../../definitions/helpers/pick-resource";
+import * as useResourceWithRoute from "../resource/useResourceWithRoute";
 
 import { useShow } from "./useShow";
-import { IResourceItem } from "@contexts/resource";
 
 const routerProvider = mockRouterProvider({
   action: "show",

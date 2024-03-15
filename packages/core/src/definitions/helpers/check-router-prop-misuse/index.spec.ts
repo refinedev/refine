@@ -1,4 +1,5 @@
-import { mockRouterProvider, mockLegacyRouterProvider } from "@test/index";
+import { mockLegacyRouterProvider, mockRouterProvider } from "@test/index";
+
 import { checkRouterPropMisuse } from ".";
 
 describe("checkRouterPropMisuse", () => {

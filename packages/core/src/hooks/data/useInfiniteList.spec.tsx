@@ -1,11 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
+import { defaultRefineOptions } from "@contexts/refine";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
-import { defaultRefineOptions } from "@contexts/refine";
+import { DataProviders } from "../../contexts/data/types";
 import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useInfiniteList } from "./useInfiniteList";
-import { DataProviders } from "../../contexts/data/types";
 
 const mockRefineProvider: IRefineContextProvider = {
   hasDashboard: false,

@@ -1,16 +1,16 @@
 import { useContext } from "react";
 
+import { AccessControlContext } from "@contexts/accessControl";
 import { AuditLogContext } from "@contexts/auditLog";
-import { LiveContext } from "@contexts/live";
-import { LegacyRouterContext } from "@contexts/router/legacy";
 import { DataContext } from "@contexts/data";
 import { I18nContext } from "@contexts/i18n";
+import { LiveContext } from "@contexts/live";
 import { NotificationContext } from "@contexts/notification";
-import { AccessControlContext } from "@contexts/accessControl";
+import { LegacyRouterContext } from "@contexts/router/legacy";
 import { useResource } from "@hooks/resource";
 
-import { ITelemetryData } from "../../components/telemetry/types";
 import { useIsExistAuthentication, useRefineContext } from "..";
+import { ITelemetryData } from "../../components/telemetry/types";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";

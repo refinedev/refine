@@ -1,16 +1,17 @@
 import React from "react";
+
 import { act, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
+  TestWrapper,
   mockLegacyRouterProvider,
   render,
-  TestWrapper,
 } from "@test";
 
-import { Authenticated } from "./";
 import { AuthProvider } from "../../contexts/auth/types";
 import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
+import { Authenticated } from "./";
 
 const legacyMockAuthProvider = {
   login: () => Promise.resolve(),

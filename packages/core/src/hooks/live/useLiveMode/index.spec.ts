@@ -1,10 +1,10 @@
 import { renderHook } from "@testing-library/react";
 
+import { defaultRefineOptions } from "@contexts/refine";
 import { TestWrapper } from "@test";
 
-import { useLiveMode } from "./";
-import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../contexts/refine/types";
+import { useLiveMode } from "./";
 
 const mockRefineProvider: IRefineContextProvider = {
   hasDashboard: false,

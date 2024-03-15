@@ -2,11 +2,12 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
+  TestWrapper,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
+import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   assertList,
   assertListLength,
@@ -14,9 +15,9 @@ import {
   renderUseList,
   renderUseMany,
 } from "@test/mutation-helpers";
+
 import * as UseInvalidate from "../invalidate/index";
 import { useDelete } from "./useDelete";
-import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDelete Hook", () => {
   it("should work with pessimistic update", async () => {

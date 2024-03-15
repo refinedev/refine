@@ -1,5 +1,5 @@
-import { act } from "react-dom/test-utils";
 import { renderHook, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 import {
   MockJSONServer,
@@ -9,12 +9,12 @@ import {
 } from "@test";
 
 import { useTable } from ".";
-import * as useRouterType from "../../contexts/router/picker";
 import {
-  CrudSorting,
   CrudFilters,
+  CrudSorting,
   Pagination,
 } from "../../contexts/data/types";
+import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {
   pageSize: 10,

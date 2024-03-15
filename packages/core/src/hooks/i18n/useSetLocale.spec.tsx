@@ -1,6 +1,7 @@
 import * as React from "react";
-import { fireEvent, render, TestWrapper } from "@test";
+
 import { useSetLocale } from "@hooks";
+import { TestWrapper, fireEvent, render } from "@test";
 
 describe("useSetLocale", () => {
   const TestComponent = () => {

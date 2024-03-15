@@ -1,4 +1,5 @@
-import { useContext, useCallback } from "react";
+import { useCallback, useContext } from "react";
+
 import { I18nContext } from "@contexts/i18n";
 
 export type UseGetLocaleType = () => () => string | undefined;

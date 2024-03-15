@@ -1,12 +1,14 @@
 import React from "react";
+
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { ErrorComponent } from ".";
 import {
-  mockRouterProvider,
   TestWrapper,
   mockLegacyRouterProvider,
+  mockRouterProvider,
 } from "@test";
+
+import { ErrorComponent } from ".";
 
 describe("ErrorComponent", () => {
   it("renders subtitle successfully", () => {

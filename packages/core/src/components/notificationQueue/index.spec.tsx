@@ -1,9 +1,9 @@
 import React from "react";
 
-import { render, TestWrapper } from "@test";
+import { NotificationQueueContext } from "@contexts/notification/queue";
+import { TestWrapper, render } from "@test";
 
 import { NotificationQueue } from "./";
-import { NotificationQueueContext } from "@contexts/notification/queue";
 
 const doMutation = jest.fn();
 const cancelMutation = jest.fn();

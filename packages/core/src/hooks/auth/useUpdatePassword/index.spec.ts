@@ -1,16 +1,16 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
+  TestWrapper,
   act,
   mockLegacyAuthProvider,
   mockLegacyRouterProvider,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
-import { useUpdatePassword } from "./";
 import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import { useUpdatePassword } from "./";
 
 const mockFn = jest.fn();
 

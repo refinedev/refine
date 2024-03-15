@@ -1,7 +1,9 @@
 import React from "react";
+
 import { renderHook } from "@testing-library/react";
 
 import { TestWrapper, mockRouterProvider } from "@test";
+
 import { useMeta } from "./";
 
 describe("useMeta Hook", () => {

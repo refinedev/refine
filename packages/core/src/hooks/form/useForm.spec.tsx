@@ -1,4 +1,5 @@
 import React from "react";
+
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
@@ -6,8 +7,9 @@ import {
   TestWrapper,
   act,
   mockLegacyRouterProvider,
+  mockRouterProvider,
 } from "@test";
-
+import { posts } from "@test/dataMocks";
 import {
   assertList,
   assertOne,
@@ -17,9 +19,6 @@ import {
 } from "@test/mutation-helpers";
 
 import { useForm } from "./useForm";
-
-import { posts } from "@test/dataMocks";
-import { mockRouterProvider } from "@test";
 
 const SimpleWrapper = TestWrapper({
   dataProvider: MockJSONServer,

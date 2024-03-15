@@ -2,9 +2,9 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
+  TestWrapper,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
 import * as UseInvalidate from "../invalidate/index";

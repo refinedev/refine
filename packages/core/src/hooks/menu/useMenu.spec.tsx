@@ -1,5 +1,8 @@
+import React from "react";
+
 import { renderHook } from "@testing-library/react";
 
+import { legacyResourceTransform } from "@definitions/helpers";
 import {
   TestWrapper,
   mockLegacyRouterProvider,
@@ -7,8 +10,6 @@ import {
 } from "@test";
 
 import { useMenu } from ".";
-import { legacyResourceTransform } from "@definitions/helpers";
-import React from "react";
 
 describe("useMenu Hook", () => {
   it("should be empty by default", async () => {

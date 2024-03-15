@@ -1,7 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
+import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
+
 import { useTelemetryData } from ".";
 import { IRefineContextProvider } from "../../contexts/refine/types";
 

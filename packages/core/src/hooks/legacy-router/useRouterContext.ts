@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { LegacyRouterContext, defaultProvider } from "@contexts/router/legacy";
 
 export const useRouterContext = () => {

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { render, TestWrapper } from "@test";
+
 import { useTranslate } from "@hooks";
+import { TestWrapper, render } from "@test";
 
 describe("useTranslate", () => {
   const TestComponent = () => {

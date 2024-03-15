@@ -1,6 +1,8 @@
 import * as React from "react";
-import { act } from "@test";
+
 import { renderHook } from "@testing-library/react";
+
+import { act } from "@test";
 
 import { notificationQueueReducer } from ".";
 

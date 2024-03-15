@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useTranslate } from "@hooks/i18n";
 
 import { BaseRecord, HttpError } from "../../contexts/data/types";

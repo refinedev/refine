@@ -1,12 +1,12 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
+import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   MockJSONServer,
+  TestWrapper,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
-
 import {
   assertList,
   assertMutationSuccess,
@@ -15,9 +15,9 @@ import {
   renderUseMany,
   renderUseOne,
 } from "@test/mutation-helpers";
+
 import * as UseInvalidate from "../invalidate/index";
 import { useUpdate } from "./useUpdate";
-import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useUpdate Hook", () => {
   it("should work with pessimistic update", async () => {

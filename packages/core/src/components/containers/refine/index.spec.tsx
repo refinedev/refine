@@ -1,11 +1,11 @@
 import React from "react";
 
 import {
-  render,
   MockJSONServer,
+  TestWrapper,
   mockLegacyRouterProvider,
   mockRouterProvider,
-  TestWrapper,
+  render,
 } from "@test";
 
 import { Refine } from "./index";

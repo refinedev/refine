@@ -1,5 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
+
 import { TestWrapper, mockLegacyRouterProvider } from "@test";
+
 import { useIsAuthenticated } from ".";
 import * as authContext from "../../../contexts/auth";
 

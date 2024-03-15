@@ -1,18 +1,19 @@
+import { useContext } from "react";
+
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useQuery,
   UseQueryOptions,
   UseQueryResult,
+  useQuery,
 } from "@tanstack/react-query";
-import { useContext } from "react";
 
 import { AccessControlContext } from "@contexts/accessControl";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
+import { useKeys } from "@hooks/useKeys";
 import {
   CanParams,
   CanReturnType,
 } from "../../../contexts/accessControl/types";
-import { useKeys } from "@hooks/useKeys";
-import { getXRay } from "@refinedev/devtools-internal";
 
 export type UseCanProps = CanParams & {
   /**

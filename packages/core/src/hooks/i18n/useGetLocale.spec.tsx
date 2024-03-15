@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
-import { TestWrapper } from "@test";
+
 import { useGetLocale } from "@hooks";
+import { TestWrapper } from "@test";
 
 describe("useGetLocale", () => {
   it("should get undefined value if i18n provider not defined", () => {

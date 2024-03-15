@@ -1,11 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
+  TestWrapper,
   act,
   mockLegacyRouterProvider,
   mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
 import { useRegister } from ".";

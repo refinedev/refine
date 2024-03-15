@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { act, mockRouterProvider, queryClient, TestWrapper } from "@test";
+import { TestWrapper, act, mockRouterProvider, queryClient } from "@test";
 
 import { useCheckError, useOnError } from "../useOnError";
 import { useLogout } from "./";

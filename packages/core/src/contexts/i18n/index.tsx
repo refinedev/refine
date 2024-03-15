@@ -1,6 +1,6 @@
 import React from "react";
 
-import { II18nContext, I18nProvider } from "./types";
+import { I18nProvider, II18nContext } from "./types";
 
 /** @deprecated default value for translation context has no use and is an empty object.  */
 export const defaultProvider: Partial<I18nProvider> = {};

@@ -1,7 +1,8 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { handleRefineOptions } from ".";
 import { defaultRefineOptions } from "@contexts/refine";
+
+import { handleRefineOptions } from ".";
 import { IRefineOptions } from "../../../contexts/refine/types";
 
 describe("handleRefineOptions", () => {

@@ -1,5 +1,7 @@
-import { ReactNode, ComponentType } from "react";
+import { ComponentType, ReactNode } from "react";
+
 import { UseQueryResult } from "@tanstack/react-query";
+
 import { ILogData } from "../../contexts/auditLog/types";
 
 /**

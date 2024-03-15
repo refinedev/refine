@@ -1,10 +1,11 @@
 import React from "react";
-import { useResource } from "../../resource";
-import { Action, IResourceItem } from "../../../interfaces";
-import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
-import { useParsed } from "../use-parsed";
-import { composeRoute } from "../../../definitions/helpers/router/compose-route";
+
 import { useRouterType } from "../../../contexts/router/picker";
+import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
+import { composeRoute } from "../../../definitions/helpers/router/compose-route";
+import { Action, IResourceItem } from "../../../interfaces";
+import { useResource } from "../../resource";
+import { useParsed } from "../use-parsed";
 
 type UseToPathParams = {
   resource?: IResourceItem;

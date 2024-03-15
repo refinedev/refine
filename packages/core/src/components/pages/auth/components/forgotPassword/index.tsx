@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import {
-  useTranslate,
-  useRouterContext,
-  useLink,
-  useRouterType,
   useForgotPassword,
+  useLink,
+  useRouterContext,
+  useRouterType,
+  useTranslate,
 } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";

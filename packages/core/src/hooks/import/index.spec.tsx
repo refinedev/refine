@@ -1,11 +1,11 @@
-import { TestWrapper, MockJSONServer, mockRouterProvider } from "@test";
 import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
+import { act } from "react-dom/test-utils";
+
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useImport } from ".";
-import { act } from "react-dom/test-utils";
-import { HttpError } from "../../interfaces";
-import { DataProviders } from "../../contexts/data/types";
+import { DataProviders, HttpError } from "../../contexts/data/types";
 
 jest.mock("papaparse", () => {
   return {

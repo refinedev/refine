@@ -1,8 +1,10 @@
 import React from "react";
+
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { RegisterPage } from ".";
 import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
+
+import { RegisterPage } from ".";
 import { AuthProvider } from "../../../../../contexts/auth/types";
 
 const mockAuthProvider: AuthProvider = {

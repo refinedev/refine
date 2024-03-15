@@ -1,13 +1,15 @@
 import React from "react";
-import pluralize from "pluralize";
-import { humanizeString } from "../../definitions/helpers/humanizeString";
 
+import pluralize from "pluralize";
+
+import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
+
+import { humanizeString } from "../../definitions/helpers/humanizeString";
 import {
-  IRefineContextOptions,
   IRefineContext,
+  IRefineContextOptions,
   IRefineContextProvider,
 } from "./types";
-import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";
 
