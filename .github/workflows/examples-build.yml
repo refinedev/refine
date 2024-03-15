@@ -3,8 +3,8 @@ name: Build All Examples
 on:
   pull_request:
     paths:
-      - "packages"
-      - "examples"
+      - "packages/**"
+      - "examples/**"
     types:
       - labeled
       - synchronize
