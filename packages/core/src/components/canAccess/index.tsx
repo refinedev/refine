@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 
-import { useCan, useResource } from "@hooks";
-import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 import { UseQueryOptions } from "@tanstack/react-query";
 
+import { useCan, useResource } from "@hooks";
+
 import { CanReturnType } from "../../contexts/accessControl/types";
+import { BaseKey } from "../../contexts/data/types";
+import { IResourceItem, ITreeMenu } from "../../interfaces";
 
 type CanParams = {
   resource?: IResourceItem & { children?: ITreeMenu[] };

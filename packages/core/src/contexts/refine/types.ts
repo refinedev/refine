@@ -1,10 +1,10 @@
-import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 import React, { ReactNode } from "react";
+
+import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
 import {
   DashboardPageProps,
   LayoutProps,
-  MutationMode,
   RedirectAction,
   TitleProps,
 } from "../../interfaces";
@@ -12,7 +12,7 @@ import { ResourceProps } from "../../interfaces/bindings/resource";
 import { AccessControlProvider } from "../accessControl/types";
 import { AuditLogProvider } from "../auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../auth/types";
-import { DataProvider, DataProviders } from "../data/types";
+import { DataProvider, DataProviders, MutationMode } from "../data/types";
 import { I18nProvider } from "../i18n/types";
 import { LiveModeProps, LiveProvider } from "../live/types";
 import { NotificationProvider } from "../notification/types";

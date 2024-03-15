@@ -1,5 +1,10 @@
-import { MetaQuery, BaseKey } from "../../interfaces";
-import { Pagination, CrudSorting, CrudFilters } from "../data/types";
+import {
+  BaseKey,
+  CrudFilters,
+  CrudSorting,
+  MetaQuery,
+  Pagination,
+} from "../data/types";
 
 export type LiveEvent = {
   channel: string;

@@ -1,8 +1,8 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 
@@ -18,6 +18,7 @@ import {
   useDataProvider,
   useHandleNotification,
   useInvalidate,
+  useKeys,
   useLog,
   useMeta,
   useMutationMode,
@@ -27,25 +28,26 @@ import {
   useResource,
   useTranslate,
 } from "@hooks";
-import { useKeys } from "@hooks/useKeys";
+
 import {
   BaseKey,
   BaseRecord,
+  DeleteManyResponse,
+  GetListResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
   MutationMode,
   PrevContext as DeleteContext,
   PreviousQuery,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import { ActionTypes } from "../../contexts/notification/queue/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
-import { DeleteManyResponse, GetListResponse } from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { ActionTypes } from "../../contexts/notification/queue/types";
 
 export type DeleteManyParams<TData, TError, TVariables> = {
   /**

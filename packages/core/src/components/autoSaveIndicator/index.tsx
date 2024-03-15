@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslate } from "@hooks/i18n";
+
+import { BaseRecord, HttpError } from "../../contexts/data/types";
 import { AutoSaveIndicatorElements } from "../../hooks";
 import { UseUpdateReturnType } from "../../hooks/data/useUpdate";
-import { BaseRecord, HttpError } from "../../interfaces";
 
 export type AutoSaveIndicatorProps<
   TData extends BaseRecord = BaseRecord,

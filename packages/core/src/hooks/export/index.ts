@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { unparse, UnparseConfig } from "papaparse";
+
+import { UnparseConfig, unparse } from "papaparse";
 import warnOnce from "warn-once";
-import { useResource, useDataProvider, useMeta } from "@hooks";
-import { BaseRecord, MapDataFn, MetaQuery } from "../../interfaces";
+
 import {
-  useUserFriendlyName,
+  downloadInBrowser,
   pickDataProvider,
   pickNotDeprecated,
-  downloadInBrowser,
+  useUserFriendlyName,
 } from "@definitions";
-import { CrudSorting, CrudFilters } from "../../contexts/data/types";
+import { useDataProvider, useMeta, useResource } from "@hooks";
+
+import {
+  BaseRecord,
+  CrudFilters,
+  CrudSorting,
+  MetaQuery,
+} from "../../contexts/data/types";
+import { MapDataFn } from "../../interfaces";
 
 // Old options interface taken from export-to-csv-fix-source-map@0.2.1
 // Kept here to ensure backward compatibility

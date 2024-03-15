@@ -18,9 +18,10 @@
  * This may also apply to `resource.icon` property.
  *
  */
-
-import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 import { UseQueryOptions } from "@tanstack/react-query";
+
+import { IResourceItem, ITreeMenu } from "../../interfaces";
+import { BaseKey } from "../data/types";
 
 export type CanResponse = {
   can: boolean;

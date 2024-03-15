@@ -4,16 +4,8 @@ export * from "./hooks";
 export {
   Action,
   ActionWithPage,
-  BaseKey,
-  BaseRecord,
-  HttpError,
   LayoutProps,
   MapDataFn,
-  MetaQuery,
-  MetaDataQuery,
-  MutationMode,
-  Option,
-  BaseOption,
   RedirectionTypes,
   RedirectAction,
   ResourceErrorRouterParams,
@@ -21,19 +13,18 @@ export {
   ResourceRouterParams,
   RouteAction,
   TitleProps,
-  ILoginForm,
   IResourceComponents,
   IResourceComponentsProps,
   IResourceContext as ResourceProvider,
   IResourceItem,
   ITreeMenu,
-  IQueryKeys,
   ResourceBindings,
   Prettify,
 } from "./interfaces";
 
 // all auth types
 export * from "./components/pages/auth/types";
+export { ILoginForm } from "./components/pages/login";
 
 export {
   getDefaultFilter,
@@ -127,6 +118,15 @@ export {
   DeleteManyParams,
   CustomParams,
   DataProvider,
+  BaseKey,
+  BaseRecord,
+  HttpError,
+  MetaQuery,
+  MetaDataQuery,
+  MutationMode,
+  Option,
+  BaseOption,
+  IQueryKeys,
 } from "./contexts/data/types";
 
 export {

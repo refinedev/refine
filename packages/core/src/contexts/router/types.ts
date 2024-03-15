@@ -26,9 +26,9 @@
  * `useGo`, `useBack` and `useParsed`
  */
 
-import { CrudFilters, CrudSorting } from "../data/types";
+import { Action } from "../../interfaces";
 import { IResourceItem } from "../../interfaces/bindings/resource";
-import { Action, BaseKey, Prettify } from "../../interfaces";
+import { BaseKey, CrudFilters, CrudSorting } from "../data/types";
 
 export type GoConfig = {
   to?: string;

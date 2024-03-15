@@ -1,16 +1,17 @@
 import { useContext } from "react";
 
 import { ResourceContext } from "@contexts/resource";
+import { useResourceWithRoute, useRouterContext } from "@hooks";
+
+import { BaseKey } from "../../../contexts/data/types";
+import { useRouterType } from "../../../contexts/router/picker";
+import { pickResource } from "../../../definitions/helpers/pick-resource";
 import {
   Action,
-  BaseKey,
   IResourceItem,
   ResourceRouterParams,
 } from "../../../interfaces";
-import { useRouterContext, useResourceWithRoute } from "@hooks";
-import { useRouterType } from "../../../contexts/router/picker";
 import { useParsed } from "../../router/use-parsed";
-import { pickResource } from "../../../definitions/helpers/pick-resource";
 
 export type UseResourceLegacyProps = {
   /**

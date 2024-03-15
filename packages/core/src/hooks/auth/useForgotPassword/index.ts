@@ -1,19 +1,25 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
-import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { RefineError } from "../../../interfaces";
+import {
+  useGo,
+  useKeys,
+  useNavigation,
+  useNotification,
+  useRouterType,
+} from "@hooks";
+
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
   TForgotPasswordData,
 } from "../../../contexts/auth/types";
-import { useKeys } from "@hooks/useKeys";
+import { RefineError } from "../../../contexts/data/types";
 import { OpenNotificationParams } from "../../../contexts/notification/types";
 
 export type UseForgotPasswordLegacyProps<TVariables> = {

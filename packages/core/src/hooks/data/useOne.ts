@@ -1,8 +1,8 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   QueryObserverResult,
-  useQuery,
   UseQueryOptions,
+  useQuery,
 } from "@tanstack/react-query";
 
 import {
@@ -13,28 +13,29 @@ import {
 import {
   useDataProvider,
   useHandleNotification,
+  useKeys,
   useMeta,
   useOnError,
   useResource,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
-import { useKeys } from "@hooks/useKeys";
+
 import {
   BaseKey,
   BaseRecord,
+  GetOneResponse,
   HttpError,
   MetaQuery,
-  Prettify,
-} from "../../interfaces";
-import {
-  useLoadingOvertime,
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
-} from "../useLoadingOvertime";
-import { GetOneResponse } from "../../contexts/data/types";
+} from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { Prettify } from "../../interfaces";
+import {
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
+} from "../useLoadingOvertime";
 
 export type UseOneProps<TQueryFnData, TError, TData> = {
   /**

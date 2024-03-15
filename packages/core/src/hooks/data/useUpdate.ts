@@ -1,8 +1,8 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 
@@ -17,6 +17,7 @@ import {
   useDataProvider,
   useHandleNotification,
   useInvalidate,
+  useKeys,
   useLog,
   useMeta,
   useMutationMode,
@@ -26,31 +27,52 @@ import {
   useResource,
   useTranslate,
 } from "@hooks";
-import { useKeys } from "@hooks/useKeys";
+
 import {
   BaseKey,
   BaseRecord,
+  GetListResponse,
+  GetManyResponse,
+  GetOneResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
   MutationMode,
-  OptimisticUpdateMapType,
   PrevContext as UpdateContext,
   PreviousQuery,
-} from "../../interfaces";
+  UpdateResponse,
+} from "../../contexts/data/types";
+import { ActionTypes } from "../../contexts/notification/queue/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
-import {
-  UpdateResponse,
-  GetListResponse,
-  GetManyResponse,
-  GetOneResponse,
-} from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { ActionTypes } from "../../contexts/notification/queue/types";
+
+export type OptimisticUpdateMapType<TData, TVariables> = {
+  list?:
+    | ((
+        previous: GetListResponse<TData> | null | undefined,
+        values: TVariables,
+        id: BaseKey,
+      ) => GetListResponse<TData> | null)
+    | boolean;
+  many?:
+    | ((
+        previous: GetManyResponse<TData> | null | undefined,
+        values: TVariables,
+        id: BaseKey,
+      ) => GetManyResponse<TData> | null)
+    | boolean;
+  detail?:
+    | ((
+        previous: GetOneResponse<TData> | null | undefined,
+        values: TVariables,
+        id: BaseKey,
+      ) => GetOneResponse<TData> | null)
+    | boolean;
+};
 
 export type UpdateParams<TData, TError, TVariables> = {
   /**

@@ -1,12 +1,104 @@
-/**
- * @author aliemir
- *
- * There's no change between `DataBindings` and `DataProvider` interfaces.
- *
- * But we should probably throw a soft error to the console if there's no `default` key in `MultipleDataBinding`.
- */
+import { QueryFunctionContext, QueryKey } from "@tanstack/react-query";
+import { DocumentNode } from "graphql";
 
-import { BaseRecord, BaseKey, MetaQuery } from "../../interfaces";
+import { UseListConfig } from "../../hooks/data/useList";
+
+export type BaseKey = string | number;
+export type BaseRecord = {
+  id?: BaseKey;
+  [key: string]: any;
+};
+export type BaseOption = {
+  label: any;
+  value: any;
+};
+
+/**
+ * @deprecated Use `BaseOption` instead.
+ */
+export interface Option extends BaseOption {}
+
+export type NestedField = {
+  operation: string;
+  variables: QueryBuilderOptions[];
+  fields: Fields;
+};
+
+export type Fields = Array<string | object | NestedField>;
+
+export type VariableOptions =
+  | {
+      type?: string;
+      name?: string;
+      value: any;
+      list?: boolean;
+      required?: boolean;
+    }
+  | { [k: string]: any };
+
+export interface QueryBuilderOptions {
+  operation?: string;
+  fields?: Fields;
+  variables?: VariableOptions;
+}
+
+export type GraphQLQueryOptions = {
+  /**
+   * @description GraphQL query to be used by data providers.
+   * @optional
+   * @example
+   * ```tsx
+   * import gql from 'graphql-tag'
+   * import { useOne } from '@refinedev/core'
+   *
+   * const PRODUCT_QUERY = gql`
+   *   query GetProduct($id: ID!) {
+   *     product(id: $id) {
+   *       id
+   *       name
+   *     }
+   *   }
+   * `
+   *
+   * useOne({
+   *   id: 1,
+   *   meta: { gqlQuery: PRODUCT_QUERY }
+   * })
+   * ```
+   */
+  gqlQuery?: DocumentNode;
+  /**
+   * @description GraphQL mutation to be used by data providers.
+   * @optional
+   * @example
+   * ```tsx
+   * import gql from 'graphql-tag'
+   * import { useCreate } from '@refinedev/core'
+   *
+   * const PRODUCT_CREATE_MUTATION = gql`
+   *   mutation CreateProduct($input: CreateOneProductInput!) {
+   *     createProduct(input: $input) {
+   *       id
+   *       name
+   *     }
+   *   }
+   * `
+   * const { mutate } = useCreate()
+   *
+   * mutate({
+   *   values: { name: "My Product" },
+   *   meta: { gqlQuery: PRODUCT_QUERY }
+   * })
+   * ```
+   */
+  gqlMutation?: DocumentNode;
+};
+
+export type MetaQuery = {
+  [k: string]: any;
+  queryContext?: Omit<QueryFunctionContext, "meta">;
+} & QueryBuilderOptions &
+  GraphQLQueryOptions;
 
 export interface Pagination {
   /**
@@ -25,6 +117,74 @@ export interface Pagination {
    */
   mode?: "client" | "server" | "off";
 }
+
+/**
+ * @deprecated `MetaDataQuery` is deprecated with refine@4, use `MetaQuery` instead, however, we still support `MetaDataQuery` for backward compatibility.
+ */
+export type MetaDataQuery = {
+  [k: string]: any;
+  queryContext?: Omit<QueryFunctionContext, "meta">;
+} & QueryBuilderOptions;
+
+export interface IQueryKeys {
+  all: QueryKey;
+  resourceAll: QueryKey;
+  list: (
+    config?:
+      | UseListConfig
+      | {
+          pagination?: Required<Pagination>;
+          hasPagination?: boolean;
+          sorters?: CrudSorting;
+          filters?: CrudFilters;
+        }
+      | undefined,
+  ) => QueryKey;
+  many: (ids?: BaseKey[]) => QueryKey;
+  detail: (id?: BaseKey) => QueryKey;
+  logList: (meta?: Record<number | string, any>) => QueryKey;
+}
+
+export interface ValidationErrors {
+  [field: string]:
+    | string
+    | string[]
+    | boolean
+    | { key: string; message: string };
+}
+
+export interface HttpError extends Record<string, any> {
+  message: string;
+  statusCode: number;
+  errors?: ValidationErrors;
+}
+
+export type RefineError = HttpError;
+
+export type MutationMode = "pessimistic" | "optimistic" | "undoable";
+
+export type QueryResponse<T = BaseRecord> =
+  | GetListResponse<T>
+  | GetOneResponse<T>;
+
+export type PreviousQuery<TData> = [QueryKey, TData | unknown];
+
+export type PrevContext<TData> = {
+  previousQueries: PreviousQuery<TData>[];
+  /**
+   * @deprecated `QueryKeys` is deprecated in favor of `keys`. Please use `keys` instead to construct query keys for queries and mutations.
+   */
+  queryKey: IQueryKeys;
+};
+
+export type Context = {
+  previousQueries: ContextQuery[];
+};
+
+export type ContextQuery<T = BaseRecord> = {
+  query: QueryResponse<T>;
+  queryKey: QueryKey;
+};
 
 // Filters are used as a suffix of a field name:
 

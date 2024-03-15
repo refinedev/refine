@@ -1,16 +1,19 @@
+import { useContext, useEffect } from "react";
+
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
 import { useInvalidate } from "@hooks/invalidate";
 import { useResource } from "@hooks/resource";
-import { useContext, useEffect } from "react";
-import { BaseKey, MetaQuery } from "../../../interfaces";
-import { IRefineContext } from "../../../contexts/refine/types";
+
 import {
-  Pagination,
-  CrudSorting,
+  BaseKey,
   CrudFilters,
+  CrudSorting,
+  MetaQuery,
+  Pagination,
 } from "../../../contexts/data/types";
 import { LiveEvent, LiveModeProps } from "../../../contexts/live/types";
+import { IRefineContext } from "../../../contexts/refine/types";
 
 export type UseResourceSubscriptionProps = {
   channel: string;

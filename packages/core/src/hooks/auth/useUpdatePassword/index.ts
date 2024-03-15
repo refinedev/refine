@@ -1,30 +1,32 @@
 import React from "react";
+
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 import qs from "qs";
 
-import {
-  useNavigation,
-  useRouterType,
-  useGo,
-  useParsed,
-  useNotification,
-  useRouterContext,
-} from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { RefineError } from "../../../interfaces";
+import {
+  useGo,
+  useKeys,
+  useNavigation,
+  useNotification,
+  useParsed,
+  useRouterContext,
+  useRouterType,
+} from "@hooks";
+
+import { UpdatePasswordFormTypes } from "../../../components/pages/auth/types";
 import {
   AuthActionResponse,
   SuccessNotificationResponse,
   TUpdatePasswordData,
 } from "../../../contexts/auth/types";
-import { useKeys } from "@hooks/useKeys";
+import { RefineError } from "../../../contexts/data/types";
 import { OpenNotificationParams } from "../../../contexts/notification/types";
-import { UpdatePasswordFormTypes } from "../../../components/pages/auth/types";
 
 export type UseUpdatePasswordLegacyProps<
   TVariables extends UpdatePasswordFormTypes,

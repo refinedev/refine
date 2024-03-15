@@ -1,9 +1,12 @@
+import React, { useCallback, useContext } from "react";
+
 import { RouterContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
-import React, { useCallback, useContext } from "react";
-import type { Action, BaseKey, IResourceItem } from "../../../interfaces";
-import { useGetToPath } from "../use-get-to-path";
+
+import { BaseKey } from "../../../contexts/data/types";
 import { GoConfig as GoConfigBase } from "../../../contexts/router/types";
+import type { Action, IResourceItem } from "../../../interfaces";
+import { useGetToPath } from "../use-get-to-path";
 
 type ResourceWithoutId = {
   /**
