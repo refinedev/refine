@@ -1,11 +1,11 @@
 import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
 import { defaultRefineOptions } from "@contexts/refine";
+import { MutationMode } from "src/interfaces";
 import {
   IRefineContextOptions,
   IRefineOptions,
-  MutationMode,
-} from "src/interfaces";
+} from "../../../contexts/refine/types";
 import { LiveModeProps } from "../../../contexts/live/types";
 
 type HandleRefineOptionsProps = {

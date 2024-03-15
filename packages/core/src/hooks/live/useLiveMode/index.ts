@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { IRefineContext } from "../../../interfaces";
+import { IRefineContext } from "../../../contexts/refine/types";
 import { RefineContext } from "@contexts/refine";
 import { LiveModeProps } from "../../../contexts/live/types";
 

@@ -1,7 +1,7 @@
-import { RefineProps } from "@components/containers";
 import React, { ReactNode } from "react";
 import { QueryClientConfig, QueryClient } from "@tanstack/react-query";
 
+import { RefineProps } from "@components/containers";
 import {
   MutationMode,
   TitleProps,

@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../interfaces";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useInfiniteList } from "./useInfiniteList";
 import { DataProviders } from "../../contexts/data/types";
 

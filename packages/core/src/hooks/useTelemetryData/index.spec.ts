@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
 import { useTelemetryData } from ".";
-import { IRefineContextProvider } from "src/interfaces";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 
 describe("useTelemetryData Hook", () => {
   describe("authProvider", () => {

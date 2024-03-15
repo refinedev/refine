@@ -6,7 +6,7 @@ import {
   IRefineContextOptions,
   IRefineContext,
   IRefineContextProvider,
-} from "./IRefineContext";
+} from "./types";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";

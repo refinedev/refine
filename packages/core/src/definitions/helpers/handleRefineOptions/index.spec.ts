@@ -1,7 +1,8 @@
+import { QueryClient } from "@tanstack/react-query";
+
 import { handleRefineOptions } from ".";
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineOptions } from "src/interfaces";
-import { QueryClient } from "@tanstack/react-query";
+import { IRefineOptions } from "../../../contexts/refine/types";
 
 describe("handleRefineOptions", () => {
   it("should return the default options if no options are provided", () => {

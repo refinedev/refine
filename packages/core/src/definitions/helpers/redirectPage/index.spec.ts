@@ -1,7 +1,5 @@
-import {
-  IRefineContextOptions,
-  RedirectAction,
-} from "../../../../src/interfaces";
+import { RedirectAction } from "../../../interfaces";
+import { IRefineContextOptions } from "../../../contexts/refine/types";
 import { redirectPage } from ".";
 
 describe("redirectPath", () => {

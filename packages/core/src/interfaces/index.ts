@@ -1,7 +1,6 @@
 import { IResourceItem } from "./bindings/resource";
 
 // contexts
-export * from "../contexts/refine/IRefineContext";
 export * from "../contexts/resource/IResourceContext";
 
 export * from "../components/pages/login";

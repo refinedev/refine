@@ -8,7 +8,7 @@ import {
 } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../interfaces";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useMany } from "./useMany";
 
 const mockRefineProvider: IRefineContextProvider = {

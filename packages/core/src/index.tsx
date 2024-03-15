@@ -69,12 +69,9 @@ export {
 export { file2Base64 } from "./definitions/upload";
 export { generateDefaultDocumentTitle } from "./definitions";
 
-export { ResourceContext } from "./contexts/resource/index";
-export {
-  I18nContext,
-  I18nContext as TranslationContext,
-} from "./contexts/i18n/index";
-export { AccessControlContext } from "./contexts/accessControl/index";
+export { ResourceContext } from "./contexts/resource";
+
+export { AccessControlContext } from "./contexts/accessControl";
 
 export {
   AccessControlProvider,
@@ -133,6 +130,11 @@ export {
 } from "./contexts/data/types";
 
 export {
+  I18nContext,
+  I18nContext as TranslationContext,
+} from "./contexts/i18n";
+
+export {
   I18nProvider,
   I18nProvider as TranslationProvider,
   I18nProvider as i18nBindings,
@@ -157,6 +159,13 @@ export {
   OpenNotificationParams,
   SuccessErrorNotification,
 } from "./contexts/notification/types";
+
+export {
+  IRefineContext,
+  IRefineContextOptions,
+  IRefineContextProvider,
+  IRefineOptions,
+} from "./contexts/refine/types";
 
 export {
   LegacyRouterProvider as IRouterProvider,

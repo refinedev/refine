@@ -3,17 +3,14 @@ import { RefineContext } from "@contexts/refine";
 import { useInvalidate } from "@hooks/invalidate";
 import { useResource } from "@hooks/resource";
 import { useContext, useEffect } from "react";
-import { BaseKey, IRefineContext, MetaQuery } from "../../../interfaces";
+import { BaseKey, MetaQuery } from "../../../interfaces";
+import { IRefineContext } from "../../../contexts/refine/types";
 import {
   Pagination,
   CrudSorting,
   CrudFilters,
 } from "../../../contexts/data/types";
-import {
-  LiveEvent,
-  LiveModeProps,
-  LiveProvider,
-} from "../../../contexts/live/types";
+import { LiveEvent, LiveModeProps } from "../../../contexts/live/types";
 
 export type UseResourceSubscriptionProps = {
   channel: string;

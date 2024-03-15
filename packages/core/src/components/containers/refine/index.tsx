@@ -27,10 +27,10 @@ import { RouterContextProvider } from "../../../contexts/router";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 import {
   DashboardPageProps,
-  IRefineOptions,
   LayoutProps,
   TitleProps,
 } from "../../../interfaces";
+import { IRefineOptions } from "../../../contexts/refine/types";
 import { ResourceProps } from "../../../interfaces/bindings/resource";
 import { AccessControlProvider } from "../../../contexts/accessControl/types";
 import { AuditLogProvider } from "../../../contexts/auditLog/types";

@@ -4,7 +4,7 @@ import { TestWrapper } from "@test";
 
 import { useLiveMode } from "./";
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../../interfaces";
+import { IRefineContextProvider } from "../../../contexts/refine/types";
 
 const mockRefineProvider: IRefineContextProvider = {
   hasDashboard: false,

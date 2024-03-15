@@ -1,4 +1,5 @@
-import { Action, IRefineContextOptions, RedirectAction } from "src/interfaces";
+import { Action, RedirectAction } from "src/interfaces";
+import { IRefineContextOptions } from "../../../contexts/refine/types";
 
 type RedirectPageProps = {
   redirectFromProps?: RedirectAction;

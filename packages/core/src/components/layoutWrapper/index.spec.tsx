@@ -9,7 +9,7 @@ import {
   mockLegacyRouterProvider,
 } from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { LayoutProps } from "../../interfaces";
 
 const renderWithRefineContext = (

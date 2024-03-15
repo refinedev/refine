@@ -10,7 +10,7 @@ import { DataContextProvider } from "@contexts/data";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { I18nContextProvider } from "@contexts/i18n";
 import { RefineContextProvider } from "@contexts/refine";
-import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
+import { IRefineContextProvider } from "@contexts/refine/types";
 import { LegacyRouterContextProvider } from "@contexts/router/legacy";
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
