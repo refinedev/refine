@@ -17,7 +17,7 @@ import {
 
 import {
   BaseRecord,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   CustomResponse,
   HttpError,
@@ -37,7 +37,7 @@ interface UseCustomConfig<TQuery, TPayload> {
    */
   sort?: CrudSort[];
   sorters?: CrudSort[];
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   query?: TQuery;
   payload?: TPayload;
   headers?: {};

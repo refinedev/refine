@@ -4,7 +4,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 
 import {
-  CrudFilters,
+  CrudFilter,
   DataProviders,
   IDataContext,
 } from "../../contexts/data/types";
@@ -677,7 +677,7 @@ describe("useSelect Hook", () => {
       },
     } as DataProviders;
 
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "field",
         operator: "lt",

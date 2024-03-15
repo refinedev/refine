@@ -4,7 +4,7 @@ import { LiveContext } from "@contexts/live";
 
 import {
   BaseKey,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   MetaQuery,
   Pagination,
@@ -51,7 +51,7 @@ export type UseSubscriptionProps = {
      */
     sort?: CrudSort[];
     sorters?: CrudSort[];
-    filters?: CrudFilters;
+    filters?: CrudFilter[];
     subscriptionType?: "useList" | "useOne" | "useMany";
     resource?: string;
     [key: string]: any;

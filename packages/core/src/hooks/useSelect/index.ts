@@ -12,7 +12,7 @@ import {
   BaseKey,
   BaseOption,
   BaseRecord,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   GetListResponse,
   GetManyResponse,
@@ -76,7 +76,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   /**
    * Adds extra `options`
    */
@@ -126,7 +126,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * If defined, this callback allows us to override all filters for every search request.
    * @default `undefined`
    */
-  onSearch?: (value: string) => CrudFilters;
+  onSearch?: (value: string) => CrudFilter[];
   /**
    * Additional meta data to pass to the `useMany` from the data provider
    */
@@ -188,7 +188,7 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TError, TOption> => {
-  const [search, setSearch] = useState<CrudFilters>([]);
+  const [search, setSearch] = useState<CrudFilter[]>([]);
   const [options, setOptions] = useState<TOption[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<TOption[]>([]);
 

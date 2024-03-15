@@ -28,7 +28,7 @@
 
 import { Action } from "../../interfaces";
 import { IResourceItem } from "../../interfaces/bindings/resource";
-import { BaseKey, CrudFilters, CrudSort } from "../data/types";
+import { BaseKey, CrudFilter, CrudSort } from "../data/types";
 
 export type GoConfig = {
   to?: string;
@@ -44,7 +44,7 @@ export type GoConfig = {
 export type ParsedParams<
   TParams extends Record<string, any> = Record<string, any>,
 > = {
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   sorters?: CrudSort[];
   current?: number;
   pageSize?: number;

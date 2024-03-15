@@ -1,6 +1,6 @@
 import {
   BaseKey,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   MetaQuery,
   Pagination,
@@ -50,7 +50,7 @@ export type LiveListParams = {
   pagination?: Pagination;
   hasPagination?: boolean;
   sorters?: CrudSort[];
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   meta?: MetaQuery;
   metaData?: MetaQuery;
 };

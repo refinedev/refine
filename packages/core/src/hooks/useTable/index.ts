@@ -30,7 +30,7 @@ import {
 
 import {
   BaseRecord,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   GetListResponse,
   HttpError,
@@ -108,12 +108,12 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Initial filter state
      */
-    initial?: CrudFilters;
+    initial?: CrudFilter[];
     /**
      * Default and unchangeable filter state
      *  @default `[]`
      */
-    permanent?: CrudFilters;
+    permanent?: CrudFilter[];
     /**
      * Default behavior of the `setFilters` function
      * @default `"merge"`
@@ -129,13 +129,13 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    * Initial filter state
    * @deprecated `initialFilter` property is deprecated. Use `filters.initial` instead.
    */
-  initialFilter?: CrudFilters;
+  initialFilter?: CrudFilter[];
   /**
    * Default and unchangeable filter state
    * @default `[]`
    * @deprecated `permanentFilter` property is deprecated. Use `filters.permanent` instead.
    */
-  permanentFilter?: CrudFilters;
+  permanentFilter?: CrudFilter[];
   /**
    * Default behavior of the `setFilters` function
    * @default `"merge"`
@@ -191,7 +191,7 @@ type SyncWithLocationParams = {
    */
   sorter?: CrudSort[];
   sorters: CrudSort[];
-  filters: CrudFilters;
+  filters: CrudFilter[];
 };
 
 export type useTableReturnType<
@@ -209,9 +209,9 @@ export type useTableReturnType<
    */
   setSorter: (sorter: CrudSort[]) => void;
   setSorters: (sorter: CrudSort[]) => void;
-  filters: CrudFilters;
-  setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
-    ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
+  filters: CrudFilter[];
+  setFilters: ((filters: CrudFilter[], behavior?: SetFilterBehavior) => void) &
+    ((setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => void);
   createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
   current: number;
   setCurrent: ReactSetState<useTableReturnType["current"]>;
@@ -233,7 +233,7 @@ export type useTableReturnType<
  *
  */
 
-const defaultPermanentFilter: CrudFilters = [];
+const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSorter: CrudSort[] = [];
 
 export function useTable<
@@ -328,7 +328,7 @@ export function useTable<
   let defaultCurrent: number;
   let defaultPageSize: number;
   let defaultSorter: CrudSort[] | undefined;
-  let defaultFilter: CrudFilters | undefined;
+  let defaultFilter: CrudFilter[] | undefined;
 
   if (syncWithLocation) {
     defaultCurrent =
@@ -372,7 +372,7 @@ export function useTable<
   const [sorters, setSorters] = useState<CrudSort[]>(
     setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
   );
-  const [filters, setFilters] = useState<CrudFilters>(
+  const [filters, setFilters] = useState<CrudFilter[]>(
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
   const [current, setCurrent] = useState<number>(defaultCurrent);
@@ -513,18 +513,18 @@ export function useTable<
     dataProviderName,
   });
 
-  const setFiltersAsMerge = (newFilters: CrudFilters) => {
+  const setFiltersAsMerge = (newFilters: CrudFilter[]) => {
     setFilters((prevFilters) =>
       unionFilters(preferredPermanentFilters, newFilters, prevFilters),
     );
   };
 
-  const setFiltersAsReplace = (newFilters: CrudFilters) => {
+  const setFiltersAsReplace = (newFilters: CrudFilter[]) => {
     setFilters(unionFilters(preferredPermanentFilters, newFilters));
   };
 
   const setFiltersWithSetter = (
-    setter: (prevFilters: CrudFilters) => CrudFilters,
+    setter: (prevFilters: CrudFilter[]) => CrudFilter[],
   ) => {
     setFilters((prev) => unionFilters(preferredPermanentFilters, setter(prev)));
   };

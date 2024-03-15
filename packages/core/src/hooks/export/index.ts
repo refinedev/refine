@@ -13,7 +13,7 @@ import { useDataProvider, useMeta, useResource } from "@hooks";
 
 import {
   BaseRecord,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   MetaQuery,
 } from "../../contexts/data/types";
@@ -66,7 +66,7 @@ type UseExportOptionsType<
   /**
    *  Filters records
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   maxItemCount?: number;
   /**
    *  Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider`

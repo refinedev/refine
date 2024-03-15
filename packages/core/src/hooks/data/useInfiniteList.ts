@@ -27,7 +27,7 @@ import {
 
 import {
   BaseRecord,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   GetListResponse,
   HttpError,
@@ -47,7 +47,7 @@ export interface UseInfiniteListConfig {
   pagination?: Pagination;
   hasPagination?: boolean;
   sort?: CrudSort[];
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
 }
 
 type BaseInfiniteListProps = {
@@ -82,7 +82,7 @@ type BaseInfiniteListProps = {
   /**
    * Filter parameters
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   /**
    * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
    */

@@ -9,11 +9,7 @@ import {
 } from "@test";
 
 import { useTable } from ".";
-import {
-  CrudFilters,
-  CrudSorting,
-  Pagination,
-} from "../../contexts/data/types";
+import { CrudFilter, CrudSort, Pagination } from "../../contexts/data/types";
 import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {
@@ -282,7 +278,7 @@ describe("useTable Hook", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -290,7 +286,7 @@ describe("useTable Hook", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -501,7 +497,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -529,7 +525,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -559,14 +555,14 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
     const permanentFilter = [
       {
         field: "id",
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -606,14 +602,14 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
     const permanentFilter = [
       {
         field: "name",
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -644,7 +640,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -652,7 +648,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -696,7 +692,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -704,7 +700,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -712,7 +708,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -763,7 +759,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -771,7 +767,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -779,7 +775,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -833,7 +829,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -841,7 +837,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: undefined,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -890,7 +886,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -898,7 +894,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -940,7 +936,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -948,7 +944,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -956,7 +952,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1009,7 +1005,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1027,7 +1023,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1081,7 +1077,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1089,7 +1085,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1133,7 +1129,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1141,7 +1137,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1184,7 +1180,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1192,7 +1188,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1234,7 +1230,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1242,7 +1238,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1265,7 +1261,7 @@ describe("useTable Filters", () => {
     expect(result.current.filters).toHaveLength(1);
 
     const setterFunction = jest.fn(
-      (prevFilters) => [...prevFilters, ...newFilters] as CrudFilters,
+      (prevFilters) => [...prevFilters, ...newFilters] as CrudFilter[],
     );
 
     act(() => {
@@ -1293,7 +1289,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1301,7 +1297,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -1309,7 +1305,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1518,7 +1514,7 @@ describe("legacy Router Provider", () => {
         initial: CrudSort[];
       };
       filters: {
-        initial: CrudFilters;
+        initial: CrudFilter[];
       };
     } = {
       pagination: {

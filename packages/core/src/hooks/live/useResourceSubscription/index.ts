@@ -7,7 +7,7 @@ import { useResource } from "@hooks/resource";
 
 import {
   BaseKey,
-  CrudFilters,
+  CrudFilter,
   CrudSort,
   MetaQuery,
   Pagination,
@@ -38,7 +38,7 @@ export type UseResourceSubscriptionProps = {
      */
     sort?: CrudSort[];
     sorters?: CrudSort[];
-    filters?: CrudFilters;
+    filters?: CrudFilter[];
     subscriptionType: "useList" | "useOne" | "useMany";
     [key: string]: any;
   };

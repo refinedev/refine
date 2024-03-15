@@ -136,7 +136,7 @@ export interface IQueryKeys {
           pagination?: Required<Pagination>;
           hasPagination?: boolean;
           sorters?: CrudSort[];
-          filters?: CrudFilters;
+          filters?: CrudFilter[];
         }
       | undefined,
   ) => QueryKey;
@@ -315,7 +315,7 @@ export interface GetListParams {
    */
   sort?: CrudSort[];
   sorters?: CrudSort[];
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   meta?: MetaQuery;
   /**
    * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.

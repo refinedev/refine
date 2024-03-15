@@ -7,10 +7,8 @@ import { pickNotDeprecated } from "@definitions/helpers";
 
 import {
   CrudFilter,
-  CrudFilters,
   CrudOperators,
   CrudSort,
-  CrudSorting,
   SortOrder,
 } from "../../contexts/data/types";
 
@@ -22,8 +20,8 @@ export const parseTableParams = (url: string) => {
   return {
     parsedCurrent: current && Number(current),
     parsedPageSize: pageSize && Number(pageSize),
-    parsedSorter: (pickNotDeprecated(sorters, sorter) as CrudSorting) ?? [],
-    parsedFilters: (filters as CrudFilters) ?? [],
+    parsedSorter: (pickNotDeprecated(sorters, sorter) as CrudSort[]) ?? [],
+    parsedFilters: (filters as CrudFilter[]) ?? [],
   };
 };
 
@@ -38,7 +36,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 export const stringifyTableParams = (params: {
   pagination?: { current?: number; pageSize?: number };
   sorters: CrudSort[];
-  filters: CrudFilters;
+  filters: CrudFilter[];
   [key: string]: any;
 }): string => {
   const options: IStringifyOptions = {
@@ -93,10 +91,10 @@ export const compareSorters = (left: CrudSort, right: CrudSort): boolean =>
 // After union, don't keep CrudFilter items with undefined value in the result
 // Items in the arrays with higher priority are put at the end.
 export const unionFilters = (
-  permanentFilter: CrudFilters,
-  newFilters: CrudFilters,
-  prevFilters: CrudFilters = [],
-): CrudFilters => {
+  permanentFilter: CrudFilter[],
+  newFilters: CrudFilter[],
+  prevFilters: CrudFilter[] = [],
+): CrudFilter[] => {
   const isKeyRequired = newFilters.filter(
     (f) => (f.operator === "or" || f.operator === "and") && !f.key,
   );
@@ -133,9 +131,9 @@ export const unionSorters = (
   );
 // Prioritize filters in the permanentFilter and put it at the end of result array
 export const setInitialFilters = (
-  permanentFilter: CrudFilters,
-  defaultFilter: CrudFilters,
-): CrudFilters => [
+  permanentFilter: CrudFilter[],
+  defaultFilter: CrudFilter[],
+): CrudFilter[] => [
   ...differenceWith(defaultFilter, permanentFilter, compareFilters),
   ...permanentFilter,
 ];
@@ -167,7 +165,7 @@ export const getDefaultSortOrder = (
 
 export const getDefaultFilter = (
   columnName: string,
-  filters?: CrudFilters,
+  filters?: CrudFilter[],
   operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
   const filter = filters?.find((filter) => {
