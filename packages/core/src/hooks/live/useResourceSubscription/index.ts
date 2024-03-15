@@ -8,7 +8,7 @@ import { useResource } from "@hooks/resource";
 import {
   BaseKey,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   MetaQuery,
   Pagination,
 } from "../../../contexts/data/types";
@@ -36,8 +36,8 @@ export type UseResourceSubscriptionProps = {
     /**
      * @deprecated `sort` is deprecated. Use `sorters` instead.
      */
-    sort?: CrudSorting;
-    sorters?: CrudSorting;
+    sort?: CrudSort[];
+    sorters?: CrudSort[];
     filters?: CrudFilters;
     subscriptionType: "useList" | "useOne" | "useMany";
     [key: string]: any;

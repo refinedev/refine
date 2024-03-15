@@ -13,7 +13,7 @@ import {
 
 describe("definitions/table", () => {
   it("getDefaultSortOrder", () => {
-    const sorter: CrudSorting = [
+    const sorter: CrudSort[] = [
       {
         field: "title",
         order: "asc",
@@ -82,7 +82,7 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [
+    const sorters: CrudSort[] = [
       {
         field: "id",
         order: "desc",
@@ -120,7 +120,7 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [{ field: "id", order: "desc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "desc" }];
     const filters: CrudFilters = [
       {
         field: "categoryId",
@@ -154,8 +154,8 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [{ field: "id", order: "desc" }];
-    const sorter: CrudSorting = [{ field: "id2", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "desc" }];
+    const sorter: CrudSort[] = [{ field: "id2", order: "asc" }];
     const filters: CrudFilters = [];
 
     const url = stringifyTableParams({

@@ -1,7 +1,7 @@
 import {
   BaseKey,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   MetaQuery,
   Pagination,
 } from "../data/types";
@@ -49,7 +49,7 @@ export type LiveListParams = {
   resource?: string;
   pagination?: Pagination;
   hasPagination?: boolean;
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   filters?: CrudFilters;
   meta?: MetaQuery;
   metaData?: MetaQuery;
@@ -97,7 +97,7 @@ type LiveDeprecatedSubscribeOptions = {
   /**
    * @deprecated `sort` is deprecated, use `sorters` instead.
    */
-  sort?: CrudSorting;
+  sort?: CrudSort[];
 };
 
 export type LiveProvider = {

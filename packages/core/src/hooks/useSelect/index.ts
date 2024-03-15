@@ -13,7 +13,7 @@ import {
   BaseOption,
   BaseRecord,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   GetListResponse,
   GetManyResponse,
   HttpError,
@@ -68,11 +68,11 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
    */
-  sort?: CrudSorting;
+  sort?: CrudSort[];
   /**
    * Allow us to sort the options
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    * Resource name for API data interactions
    */

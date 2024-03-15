@@ -31,7 +31,7 @@ import {
 import {
   BaseRecord,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   GetListResponse,
   HttpError,
   MetaQuery,
@@ -78,12 +78,12 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Initial sorter state
      */
-    initial?: CrudSorting;
+    initial?: CrudSort[];
     /**
      * Default and unchangeable sorter state
      *  @default `[]`
      */
-    permanent?: CrudSorting;
+    permanent?: CrudSort[];
     /**
      * Whether to use server side sorting or not.
      * @default "server"
@@ -94,13 +94,13 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    * Initial sorter state
    * @deprecated `initialSorter` property is deprecated. Use `sorters.initial` instead.
    */
-  initialSorter?: CrudSorting;
+  initialSorter?: CrudSort[];
   /**
    * Default and unchangeable sorter state
    *  @default `[]`
    *  @deprecated `permanentSorter` property is deprecated. Use `sorters.permanent` instead.
    */
-  permanentSorter?: CrudSorting;
+  permanentSorter?: CrudSort[];
   /**
    * Filter configs
    */
@@ -189,8 +189,8 @@ type SyncWithLocationParams = {
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter?: CrudSorting;
-  sorters: CrudSorting;
+  sorter?: CrudSort[];
+  sorters: CrudSort[];
   filters: CrudFilters;
 };
 
@@ -202,13 +202,13 @@ export type useTableReturnType<
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter: CrudSorting;
-  sorters: CrudSorting;
+  sorter: CrudSort[];
+  sorters: CrudSort[];
   /**
    * @deprecated `setSorter` is deprecated. Use `setSorters` instead.
    */
-  setSorter: (sorter: CrudSorting) => void;
-  setSorters: (sorter: CrudSorting) => void;
+  setSorter: (sorter: CrudSort[]) => void;
+  setSorters: (sorter: CrudSort[]) => void;
   filters: CrudFilters;
   setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
     ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
@@ -234,7 +234,7 @@ export type useTableReturnType<
  */
 
 const defaultPermanentFilter: CrudFilters = [];
-const defaultPermanentSorter: CrudSorting = [];
+const defaultPermanentSorter: CrudSort[] = [];
 
 export function useTable<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -327,7 +327,7 @@ export function useTable<
 
   let defaultCurrent: number;
   let defaultPageSize: number;
-  let defaultSorter: CrudSorting | undefined;
+  let defaultSorter: CrudSort[] | undefined;
   let defaultFilter: CrudFilters | undefined;
 
   if (syncWithLocation) {
@@ -369,7 +369,7 @@ export function useTable<
     );
   }, [identifier]);
 
-  const [sorters, setSorters] = useState<CrudSorting>(
+  const [sorters, setSorters] = useState<CrudSort[]>(
     setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
   );
   const [filters, setFilters] = useState<CrudFilters>(
@@ -544,7 +544,7 @@ export function useTable<
     }
   };
 
-  const setSortWithUnion = (newSorter: CrudSorting) => {
+  const setSortWithUnion = (newSorter: CrudSort[]) => {
     setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
   };
 

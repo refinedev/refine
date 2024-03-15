@@ -37,7 +37,7 @@ export const parseTableParamsFromQuery = (params: any) => {
  */
 export const stringifyTableParams = (params: {
   pagination?: { current?: number; pageSize?: number };
-  sorters: CrudSorting;
+  sorters: CrudSort[];
   filters: CrudFilters;
   [key: string]: any;
 }): string => {
@@ -125,9 +125,9 @@ export const unionFilters = (
 };
 
 export const unionSorters = (
-  permanentSorter: CrudSorting,
-  newSorters: CrudSorting,
-): CrudSorting =>
+  permanentSorter: CrudSort[],
+  newSorters: CrudSort[],
+): CrudSort[] =>
   unionWith(permanentSorter, newSorters, compareSorters).filter(
     (crudSorter) => crudSorter.order !== undefined && crudSorter.order !== null,
   );
@@ -141,16 +141,16 @@ export const setInitialFilters = (
 ];
 
 export const setInitialSorters = (
-  permanentSorter: CrudSorting,
-  defaultSorter: CrudSorting,
-): CrudSorting => [
+  permanentSorter: CrudSort[],
+  defaultSorter: CrudSort[],
+): CrudSort[] => [
   ...differenceWith(defaultSorter, permanentSorter, compareSorters),
   ...permanentSorter,
 ];
 
 export const getDefaultSortOrder = (
   columnName: string,
-  sorter?: CrudSorting,
+  sorter?: CrudSort[],
 ): SortOrder | undefined => {
   if (!sorter) {
     return undefined;

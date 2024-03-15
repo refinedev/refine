@@ -203,7 +203,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorter(sorters);
@@ -221,7 +221,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorters(sorters);
@@ -405,7 +405,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorter(sorters);
@@ -423,7 +423,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorters(sorters);
@@ -1515,7 +1515,7 @@ describe("legacy Router Provider", () => {
     const defaultValues: {
       pagination: Pagination;
       sorters: {
-        initial: CrudSorting;
+        initial: CrudSort[];
       };
       filters: {
         initial: CrudFilters;

@@ -135,7 +135,7 @@ export interface IQueryKeys {
       | {
           pagination?: Required<Pagination>;
           hasPagination?: boolean;
-          sorters?: CrudSorting;
+          sorters?: CrudSort[];
           filters?: CrudFilters;
         }
       | undefined,
@@ -313,8 +313,8 @@ export interface GetListParams {
   /**
    * @deprecated `sort` is deprecated, use `sorters` instead.
    */
-  sort?: CrudSorting;
-  sorters?: CrudSorting;
+  sort?: CrudSort[];
+  sorters?: CrudSort[];
   filters?: CrudFilters;
   meta?: MetaQuery;
   /**
@@ -415,8 +415,8 @@ export interface CustomParams<TQuery = unknown, TPayload = unknown> {
   /**
    * @deprecated `sort` is deprecated, use `sorters` instead.
    */
-  sort?: CrudSorting;
-  sorters?: CrudSorting;
+  sort?: CrudSort[];
+  sorters?: CrudSort[];
   filters?: CrudFilter[];
   payload?: TPayload;
   query?: TQuery;

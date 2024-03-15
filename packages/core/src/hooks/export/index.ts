@@ -14,7 +14,7 @@ import { useDataProvider, useMeta, useResource } from "@hooks";
 import {
   BaseRecord,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   MetaQuery,
 } from "../../contexts/data/types";
 import { MapDataFn } from "../../interfaces";
@@ -58,11 +58,11 @@ type UseExportOptionsType<
    *  Sorts records
    *  @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter?: CrudSorting;
+  sorter?: CrudSort[];
   /**
    *  Sorts records
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    *  Filters records
    */

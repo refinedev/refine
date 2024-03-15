@@ -25,7 +25,7 @@ import {
 import {
   BaseRecord,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   GetListResponse,
   HttpError,
   MetaQuery,
@@ -43,7 +43,7 @@ import {
 export interface UseListConfig {
   pagination?: Pagination;
   hasPagination?: boolean;
-  sort?: CrudSorting;
+  sort?: CrudSort[];
   filters?: CrudFilters;
 }
 
@@ -66,7 +66,7 @@ export type BaseListProps = {
   /**
    * Sorter parameters
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    * Filter parameters
    */

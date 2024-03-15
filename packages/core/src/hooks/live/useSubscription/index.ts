@@ -5,7 +5,7 @@ import { LiveContext } from "@contexts/live";
 import {
   BaseKey,
   CrudFilters,
-  CrudSorting,
+  CrudSort,
   MetaQuery,
   Pagination,
 } from "../../../contexts/data/types";
@@ -49,8 +49,8 @@ export type UseSubscriptionProps = {
     /**
      * @deprecated `sort` is deprecated, use `sorters` instead.
      */
-    sort?: CrudSorting;
-    sorters?: CrudSorting;
+    sort?: CrudSort[];
+    sorters?: CrudSort[];
     filters?: CrudFilters;
     subscriptionType?: "useList" | "useOne" | "useMany";
     resource?: string;
