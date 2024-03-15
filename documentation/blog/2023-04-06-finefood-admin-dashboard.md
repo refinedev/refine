@@ -430,7 +430,7 @@ export default App;
 </p>
 </details>
 
-In the code above, we created routes for login, register using the the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/docs/api-reference/core/components/auth/authenticated/docs/api-reference/core/hooks/auth/useIsAuthenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
+In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/docs/api-reference/core/components/auth/authenticated/docs/api-reference/core/hooks/auth/useIsAuthenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="react crud app airtable" />
 
