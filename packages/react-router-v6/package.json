@@ -18,7 +18,7 @@
       "require": "./dist/index.js"
     },
     "./legacy": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/legacy/index.d.ts",
       "import": "./dist/esm/legacy.js",
       "require": "./dist/legacy.js"
     }
