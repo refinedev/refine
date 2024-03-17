@@ -15,7 +15,7 @@ import {
 import { useSelect, file2Base64 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import Upload from "rc-upload";
-import { IconFileUpload } from "@tabler/icons";
+import { IconFileUpload } from "@tabler/icons-react";
 
 import { IPost } from "../../interfaces";
 

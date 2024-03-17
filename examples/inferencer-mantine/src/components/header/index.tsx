@@ -15,7 +15,7 @@ import {
   HamburgerMenu,
   RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mantine";
-import { IconLanguage, IconMoonStars, IconSun } from "@tabler/icons";
+import { IconLanguage, IconMoonStars, IconSun } from "@tabler/icons-react";
 import i18n from "i18next";
 import React from "react";
 
