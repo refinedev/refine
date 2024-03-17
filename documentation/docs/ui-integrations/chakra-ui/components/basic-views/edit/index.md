@@ -618,7 +618,7 @@ import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { Edit } from "@refinedev/chakra-ui";
 /* highlight-next-line */
-import { IconMoodSmile } from "@tabler/icons";
+import { IconMoodSmile } from "@tabler/icons-react";
 
 const PostEdit: React.FC = () => {
   return (
