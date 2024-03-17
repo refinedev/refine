@@ -1,6 +1,7 @@
 {
   "name": "blog-ra-chakra-tutorial",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",

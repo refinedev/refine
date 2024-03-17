@@ -2,6 +2,7 @@
   "name": "app-crm",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "codegen": "graphql-codegen",

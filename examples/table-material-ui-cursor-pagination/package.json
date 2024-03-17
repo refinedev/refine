@@ -2,6 +2,7 @@
   "name": "table-material-ui-cursor-pagination",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && refine build",
     "cypress": "cypress open -C ./cypress.config.ts",
