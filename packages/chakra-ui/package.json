@@ -21,7 +21,7 @@
     "@emotion/styled": "^11.8.1",
     "@refinedev/react-hook-form": "^4.8.15",
     "@refinedev/ui-types": "^1.22.4",
-    "@tabler/icons": "^1.119.0",
+    "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^7.5.3",
     "react-hook-form": "^7.30.0",
