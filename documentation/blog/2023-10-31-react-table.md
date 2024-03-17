@@ -436,7 +436,7 @@ export const CategoryList = () => {
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="react slick" />
 </div>
 
-After adding the changes above, you can now navigate to any page of the data. By default, pagination is handled on the server side. If you want pagination to be handled on the client side, set the value of the `pagination.mode` property to `"client` like so:
+After adding the changes above, you can now navigate to any page of the data. By default, pagination is handled on the server side. If you want pagination to be handled on the client side, set the value of the `pagination.mode` property to `"client"` like so:
 
 ```tsx
 useTable({
