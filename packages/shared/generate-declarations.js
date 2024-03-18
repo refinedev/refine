@@ -39,6 +39,8 @@ const main = () => {
   getAllDtsFiles("dist").forEach((dtsFile) => {
     organizeExtensionsForDts(dtsFile);
   });
+
+  console.log("✓ Declarations are generated.");
 };
 
 main();
