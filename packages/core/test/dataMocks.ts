@@ -1,12 +1,14 @@
-import { Action } from "../src/interfaces/actions";
-
-import { IResourceItem } from "../src/interfaces";
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
 import { DataProviders } from "../src/contexts/data/types";
 import { LiveProvider } from "../src/contexts/live/types";
+import { IResourceItem } from "../src/contexts/resource/types";
 import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
-import { ParsedParams, RouterProvider } from "../src/contexts/router/types";
+import {
+  Action,
+  ParsedParams,
+  RouterProvider,
+} from "../src/contexts/router/types";
 
 export const posts = [
   {

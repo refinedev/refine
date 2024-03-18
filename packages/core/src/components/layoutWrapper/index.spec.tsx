@@ -10,8 +10,11 @@ import {
   mockLegacyRouterProvider,
   render,
 } from "@test";
-import { IRefineContextProvider } from "../../contexts/refine/types";
-import { LayoutProps } from "../../interfaces";
+
+import {
+  IRefineContextProvider,
+  LayoutProps,
+} from "../../contexts/refine/types";
 
 const renderWithRefineContext = (
   children: React.ReactNode,

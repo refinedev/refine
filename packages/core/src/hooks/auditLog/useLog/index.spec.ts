@@ -4,8 +4,8 @@ import { TestWrapper, mockAuthProvider, mockLegacyAuthProvider } from "@test";
 
 import { useLog } from ".";
 import { LogParams } from "../../../contexts/auditLog/types";
+import { ResourceProps } from "../../../contexts/resource/types";
 import * as hasPermission from "../../../definitions/helpers/hasPermission";
-import { ResourceProps } from "../../../interfaces";
 
 const auditLogProviderCreateMock = jest.fn();
 const auditLogProviderUpdateMock = jest.fn();
