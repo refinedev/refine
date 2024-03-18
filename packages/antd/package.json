@@ -23,6 +23,10 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./dist/reset.css": {
+      "import": "./dist/reset.css",
+      "require": "./dist/reset.css"
     }
   },
   "main": "dist/index.cjs",
