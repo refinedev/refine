@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "Node16",
     "moduleResolution": "Node16",
     "resolveJsonModule": true,
     "isolatedModules": true,

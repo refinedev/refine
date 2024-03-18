@@ -26,117 +26,117 @@ const Preview: NextPage = () => {
       const callbacks: (() => Promise<{}>)[] = [
         async () =>
           usedPackages.has("antd")
-            ? (await import("../src/scope/antd")).default
+            ? (await import(`${"../src/scope/antd"}`)).default
             : {},
         async () =>
           usedPackages.has("mui")
-            ? (await import("../src/scope/mui")).default
+            ? (await import(`${"../src/scope/mui"}`)).default
             : {},
         async () =>
           usedPackages.has("mantine")
-            ? (await import("../src/scope/mantine")).default
+            ? (await import(`${"../src/scope/mantine"}`)).default
             : {},
         async () =>
           usedPackages.has("chakra")
-            ? (await import("../src/scope/chakra")).default
+            ? (await import(`${"../src/scope/chakra"}`)).default
             : {},
         async () =>
           usedPackages.has("antd-inferencer")
-            ? (await import("../src/scope/antd-inferencer")).default
+            ? (await import(`${"../src/scope/antd-inferencer"}`)).default
             : {},
         async () =>
           usedPackages.has("mui-inferencer")
-            ? (await import("../src/scope/mui-inferencer")).default
+            ? (await import(`${"../src/scope/mui-inferencer"}`)).default
             : {},
         async () =>
           usedPackages.has("mantine-inferencer")
-            ? (await import("../src/scope/mantine-inferencer")).default
+            ? (await import(`${"../src/scope/mantine-inferencer"}`)).default
             : {},
         async () =>
           usedPackages.has("chakra-inferencer")
-            ? (await import("../src/scope/chakra-inferencer")).default
+            ? (await import(`${"../src/scope/chakra-inferencer"}`)).default
             : {},
         async () =>
           usedPackages.has("headless-inferencer")
-            ? (await import("../src/scope/headless-inferencer")).default
+            ? (await import(`${"../src/scope/headless-inferencer"}`)).default
             : {},
         async () =>
           usedPackages.has("react-dom")
-            ? (await import("../src/scope/react-dom")).default
+            ? (await import(`${"../src/scope/react-dom"}`)).default
             : {},
         async () =>
           usedPackages.has("web-vitals")
-            ? (await import("../src/scope/web-vitals")).default
+            ? (await import(`${"../src/scope/web-vitals"}`)).default
             : {},
         async () =>
           usedPackages.has("i18n")
-            ? (await import("../src/scope/i18n")).default
+            ? (await import(`${"../src/scope/i18n"}`)).default
             : {},
         async () =>
           usedPackages.has("tabler-icons")
-            ? (await import("../src/scope/tabler-icons")).default
+            ? (await import(`${"../src/scope/tabler-icons"}`)).default
             : {},
         async () =>
           usedPackages.has("kbar")
-            ? (await import("../src/scope/kbar")).default
+            ? (await import(`${"../src/scope/kbar"}`)).default
             : {},
         async () =>
           usedPackages.has("airtable")
-            ? (await import("../src/scope/airtable")).default
+            ? (await import(`${"../src/scope/airtable"}`)).default
             : {},
         async () =>
           usedPackages.has("appwrite")
-            ? (await import("../src/scope/appwrite")).default
+            ? (await import(`${"../src/scope/appwrite"}`)).default
             : {},
         async () =>
           usedPackages.has("hasura")
-            ? (await import("../src/scope/hasura")).default
+            ? (await import(`${"../src/scope/hasura"}`)).default
             : {},
         async () =>
           usedPackages.has("nestjsx-crud")
-            ? (await import("../src/scope/nestjsx")).default
+            ? (await import(`${"../src/scope/nestjsx"}`)).default
             : {},
         async () =>
           usedPackages.has("nestjs-query")
-            ? (await import("../src/scope/nestjs-query")).default
+            ? (await import(`${"../src/scope/nestjs-query"}`)).default
             : {},
         async () =>
           usedPackages.has("strapi-v4")
-            ? (await import("../src/scope/strapi-v4")).default
+            ? (await import(`${"../src/scope/strapi-v4"}`)).default
             : {},
         async () =>
           usedPackages.has("strapi-graphql")
-            ? (await import("../src/scope/strapi-graphql")).default
+            ? (await import(`${"../src/scope/strapi-graphql"}`)).default
             : {},
         async () =>
           usedPackages.has("supabase")
-            ? (await import("../src/scope/supabase")).default
+            ? (await import(`${"../src/scope/supabase"}`)).default
             : {},
         async () =>
           usedPackages.has("devtools")
-            ? (await import("../src/scope/devtools")).default
+            ? (await import(`${"../src/scope/devtools"}`)).default
             : {},
         async () =>
           usedPackages.has("axios")
-            ? (await import("../src/scope/axios")).default
+            ? (await import(`${"../src/scope/axios"}`)).default
             : {},
         async () =>
           usedPackages.has("auth0")
-            ? (await import("../src/scope/auth0")).default
+            ? (await import(`${"../src/scope/auth0"}`)).default
             : {},
         async () =>
           usedPackages.has("keycloak")
-            ? (await import("../src/scope/keycloak")).default
+            ? (await import(`${"../src/scope/keycloak"}`)).default
             : {},
         async () =>
           usedPackages.has("casbin")
-            ? (await import("../src/scope/casbin")).default
+            ? (await import(`${"../src/scope/casbin"}`)).default
             : {},
       ];
 
       if (code.includes("React.createElement(GoogleButton,")) {
         callbacks.push(
-          async () => (await import("../src/scope/google")).default,
+          async () => (await import(`${"../src/scope/google"}`)).default,
         );
       }
 
