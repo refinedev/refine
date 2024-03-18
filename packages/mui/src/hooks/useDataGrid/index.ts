@@ -277,7 +277,7 @@ export function useDataGrid<
     };
   };
 
-  const edit = useForm<TQueryFnData, TError, TData>({
+  const { onFinish, setId } = useForm<TQueryFnData, TError, TData>({
     ...formProps,
   });
 
@@ -330,14 +330,14 @@ export function useDataGrid<
       },
       processRowUpdate: async (newRow, oldRow) => {
         try {
-          await edit.onFinish(newRow);
+          await onFinish(newRow);
           return newRow;
         } catch {
           return oldRow;
         }
       },
-      onCellEditStart: (params) => edit.setId(params?.id),
-      onRowEditStart: (params) => edit.setId(params?.id),
+      onCellEditStart: (params) => setId(params?.id),
+      onRowEditStart: (params) => setId(params?.id),
     },
     current,
     setCurrent,
