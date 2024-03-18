@@ -2,7 +2,7 @@ import React from "react";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineMui from "@refinedev/mui";
+import type * as RefineMuiTypes from "@refinedev/mui";
 import * as MuiMaterialStyles from "@mui/material/styles";
 
 import * as EmotionReact from "@emotion/react";
@@ -11,6 +11,8 @@ import * as MuiLab from "@mui/lab";
 import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
 import * as ReactHookForm from "react-hook-form";
+
+const RefineMui = require("@refinedev/mui");
 
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import {
@@ -72,12 +74,12 @@ const RefineMuiDemo: React.FC<
   );
 };
 
-const ThemedTitleV2: typeof RefineMui.ThemedTitleV2 = ({
+const ThemedTitleV2 = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
   icon: iconFromProps,
-}) => {
+}: RefineMuiTypes.RefineLayoutThemedTitleProps) => {
   const [svgContent, setSvgContent] = React.useState<string | undefined>(
     window.__refineIconSVGContent || undefined,
   );
