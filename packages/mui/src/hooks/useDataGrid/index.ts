@@ -7,6 +7,7 @@ import {
   Prettify,
   useForm,
   UseFormProps,
+  UseFormReturnType,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -92,12 +93,17 @@ export type UseDataGridProps<
 };
 
 export type UseDataGridReturnType<
-  TData extends BaseRecord = BaseRecord,
+  TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TSearchVariables = unknown,
+  TData extends BaseRecord = TQueryFnData,
 > = useTableReturnTypeCore<TData, TError> & {
   dataGridProps: DataGridPropsType;
   search: (value: TSearchVariables) => Promise<void>;
+  formProps: Pick<
+    UseFormReturnType<TQueryFnData, TError, TData>,
+    "onFinish" | "setId" | "id" | "formLoading"
+  >;
 };
 
 /**
@@ -153,7 +159,7 @@ export function useDataGrid<
   TError,
   TSearchVariables,
   TData
-> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
+> = {}): UseDataGridReturnType<TQueryFnData, TError, TSearchVariables, TData> {
   const theme = useTheme();
   const liveMode = useLiveMode(liveModeFromProp);
 
@@ -277,7 +283,11 @@ export function useDataGrid<
     };
   };
 
-  const { onFinish, setId } = useForm<TQueryFnData, TError, TData>({
+  const { setId, onFinish, id, formLoading } = useForm<
+    TQueryFnData,
+    TError,
+    TData
+  >({
     ...formProps,
   });
 
@@ -353,5 +363,11 @@ export function useDataGrid<
     search,
     createLinkForSyncWithLocation,
     overtime,
+    formProps: {
+      onFinish,
+      setId,
+      id,
+      formLoading,
+    },
   };
 }
