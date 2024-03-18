@@ -102,6 +102,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
+    "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
