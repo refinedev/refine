@@ -106,6 +106,7 @@ export {
   Option,
   BaseOption,
   IQueryKeys,
+  Prettify,
 } from "./contexts/data/types";
 
 export {
