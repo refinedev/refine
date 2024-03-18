@@ -163,6 +163,7 @@ export {
 
 export {
   ActionWithPage,
+  LegacyRouterProvider,
   LegacyRouterProvider as IRouterContext,
   LegacyRouterProvider as IRouterProvider,
   PromptProps,
