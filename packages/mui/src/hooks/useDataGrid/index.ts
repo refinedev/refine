@@ -6,6 +6,7 @@ import {
   pickNotDeprecated,
   Prettify,
   useForm,
+  UseFormProps,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -56,34 +57,39 @@ type DataGridPropsType = Required<
     "paginationModel" | "onPaginationModelChange" | "filterModel"
   >;
 
-export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
-  Omit<
-    useTablePropsCore<TQueryFnData, TError, TData>,
-    "pagination" | "filters"
-  > & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-      Omit<Pagination, "pageSize"> & {
-        /**
-         * Initial number of items per page
-         * @default 25
-         */
-        pageSize?: number;
-      }
-    >;
-    filters?: Prettify<
-      Omit<
-        NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
-        "defaultBehavior"
-      > & {
-        /**
-         * Default behavior of the `setFilters` function
-         * @default "replace"
-         */
-        defaultBehavior?: "replace" | "merge";
-      }
-    >;
-  };
+export type UseDataGridProps<
+  TQueryFnData extends BaseRecord,
+  TError extends HttpError,
+  TSearchVariables,
+  TData,
+> = Omit<
+  useTablePropsCore<TQueryFnData, TError, TData>,
+  "pagination" | "filters"
+> & {
+  onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+  pagination?: Prettify<
+    Omit<Pagination, "pageSize"> & {
+      /**
+       * Initial number of items per page
+       * @default 25
+       */
+      pageSize?: number;
+    }
+  >;
+  filters?: Prettify<
+    Omit<
+      NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
+      "defaultBehavior"
+    > & {
+      /**
+       * Default behavior of the `setFilters` function
+       * @default "replace"
+       */
+      defaultBehavior?: "replace" | "merge";
+    }
+  >;
+  formProps?: UseFormProps<TQueryFnData, TError, TData>;
+};
 
 export type UseDataGridReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -138,6 +144,10 @@ export function useDataGrid<
   metaData,
   dataProviderName,
   overtimeOptions,
+  formProps = {
+    action: "edit",
+    redirect: false,
+  },
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -268,11 +278,8 @@ export function useDataGrid<
   };
 
   const edit = useForm<TQueryFnData, TError, TData>({
-    action: "edit",
-    redirect: false,
+    ...formProps,
   });
-
-  const { setId, onFinish: onFinishEdit } = edit;
 
   return {
     tableQueryResult,
@@ -323,14 +330,14 @@ export function useDataGrid<
       },
       processRowUpdate: async (newRow, oldRow) => {
         try {
-          await onFinishEdit(newRow);
+          await edit.onFinish(newRow);
           return newRow;
         } catch {
           return oldRow;
         }
       },
-      onCellEditStart: (params) => setId(params?.id),
-      onRowEditStart: (params) => setId(params?.id),
+      onCellEditStart: (params) => edit.setId(params?.id),
+      onRowEditStart: (params) => edit.setId(params?.id),
     },
     current,
     setCurrent,
