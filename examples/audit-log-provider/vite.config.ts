@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+// @ts-ignore - no types available
 import importToCDN from "vite-plugin-cdn-import";
 
 // https://vitejs.dev/config/
