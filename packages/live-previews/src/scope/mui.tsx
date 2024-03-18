@@ -3,19 +3,28 @@ import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import type * as RefineMuiTypes from "@refinedev/mui";
-import * as MuiMaterialStyles from "@mui/material/styles";
+// import * as MuiMaterialStyles from "@mui/material/styles";
 
-import * as EmotionReact from "@emotion/react";
-import * as EmotionStyled from "@emotion/styled";
-import * as MuiLab from "@mui/lab";
-import * as MuiMaterial from "@mui/material";
-import * as MuiXDataGrid from "@mui/x-data-grid";
-import * as ReactHookForm from "react-hook-form";
+// import * as EmotionReact from "@emotion/react";
+// import * as EmotionStyled from "@emotion/styled";
+// import * as MuiLab from "@mui/lab";
+// import * as MuiMaterial from "@mui/material";
+// import * as MuiXDataGrid from "@mui/x-data-grid";
+// import * as ReactHookForm from "react-hook-form";
+
+const MuiMaterialStyles = require("@mui/material/styles");
+const EmotionReact = require("@emotion/react");
+const EmotionStyled = require("@emotion/styled");
+const MuiLab = require("@mui/lab");
+const MuiMaterial = require("@mui/material");
+const MuiXDataGrid = require("@mui/x-data-grid");
+const ReactHookForm = require("react-hook-form");
 
 const RefineMui = require("@refinedev/mui");
 
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import {
+const { CssBaseline, GlobalStyles } = MuiMaterial;
+
+const {
   LightModeOutlined,
   DarkModeOutlined,
   ArrowRight,
@@ -31,7 +40,7 @@ import {
   Dashboard,
   Check,
   Close,
-} from "@mui/icons-material";
+} = require("@mui/icons-material");
 import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";

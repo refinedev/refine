@@ -1,7 +1,12 @@
-import * as ReactI18Next from "react-i18next";
-import * as I18Next from "i18next";
-import * as I18NextBrowserLanguageDetector from "i18next-browser-languagedetector";
-import * as I18NextXhrBackend from "i18next-xhr-backend";
+// import * as ReactI18Next from "react-i18next";
+// import * as I18Next from "i18next";
+// import * as I18NextBrowserLanguageDetector from "i18next-browser-languagedetector";
+// import * as I18NextXhrBackend from "i18next-xhr-backend";
+
+const ReactI18Next = require("react-i18next");
+const I18Next = require("i18next");
+const I18NextBrowserLanguageDetector = require("i18next-browser-languagedetector");
+const I18NextXhrBackend = require("i18next-xhr-backend");
 
 const I18nScope = {
   ReactI18Next,

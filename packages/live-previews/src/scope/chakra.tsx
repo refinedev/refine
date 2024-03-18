@@ -3,10 +3,12 @@ import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import type RefineChakraTypes from "@refinedev/chakra-ui";
-import * as ChakraUI from "@chakra-ui/react";
-import * as ReactHookForm from "react-hook-form";
+// import * as ChakraUI from "@chakra-ui/react";
+// import * as ReactHookForm from "react-hook-form";
 import axios from "axios";
 
+const ChakraUI = require("@chakra-ui/react");
+const ReactHookForm = require("react-hook-form");
 const RefineChakra = require("@refinedev/chakra-ui");
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
