@@ -11,10 +11,10 @@ import {
   DataProvider,
   IResourceItem,
   RouterBindings,
+  IRefineOptions,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const List = () => {
   return <div>hede</div>;
