@@ -2,8 +2,9 @@ name: Build All Examples
 
 on:
   pull_request:
-    branches:
-      - master
+    paths:
+      - "packages/**"
+      - "examples/**"
     types:
       - labeled
       - synchronize
