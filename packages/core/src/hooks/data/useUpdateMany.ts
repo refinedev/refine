@@ -49,8 +49,8 @@ import {
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
-import { ActionTypes } from "../../contexts/notification/queue/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { ActionTypes } from "../../contexts/undoableQueue/types";
 
 export type OptimisticUpdateManyMapType<TData, TVariables> = {
   list?:

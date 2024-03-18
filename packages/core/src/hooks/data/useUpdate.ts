@@ -42,8 +42,8 @@ import {
   PreviousQuery,
   UpdateResponse,
 } from "../../contexts/data/types";
-import { ActionTypes } from "../../contexts/notification/queue/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { ActionTypes } from "../../contexts/undoableQueue/types";
 import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,

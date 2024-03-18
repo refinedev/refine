@@ -4,7 +4,7 @@ import { renderHook } from "@testing-library/react";
 
 import { act } from "@test";
 
-import { notificationQueueReducer } from ".";
+import { undoableQueueReducer } from ".";
 
 describe("Notification Reducer", () => {
   const notificationDispatch = jest.fn();
@@ -23,7 +23,7 @@ describe("Notification Reducer", () => {
 
   it("should render notification item with ADD action", () => {
     const { result } = renderHook(() =>
-      React.useReducer(notificationQueueReducer, []),
+      React.useReducer(undoableQueueReducer, []),
     );
 
     const [, dispatch] = result.current;
@@ -46,7 +46,7 @@ describe("Notification Reducer", () => {
 
   it("remove notification item with DELETE action", async () => {
     const { result } = renderHook(() =>
-      React.useReducer(notificationQueueReducer, providerProps.notifications),
+      React.useReducer(undoableQueueReducer, providerProps.notifications),
     );
     const [, dispatch] = result.current;
 
@@ -64,7 +64,7 @@ describe("Notification Reducer", () => {
 
   it("decrease notification item by 1 second with DECREASE_NOTIFICATION_SECOND action", async () => {
     const { result } = renderHook(() =>
-      React.useReducer(notificationQueueReducer, providerProps.notifications),
+      React.useReducer(undoableQueueReducer, providerProps.notifications),
     );
     const [, dispatch] = result.current;
 

@@ -18,17 +18,16 @@ import { DataContextProvider } from "../../../contexts/data";
 import { I18nContextProvider } from "../../../contexts/i18n";
 import { LiveContextProvider } from "../../../contexts/live";
 import { NotificationContextProvider } from "../../../contexts/notification";
-import { NotificationQueueContextProvider } from "../../../contexts/notification/queue";
 import { RefineContextProvider } from "../../../contexts/refine";
 import { ResourceContextProvider } from "../../../contexts/resource";
+import { RouterContextProvider } from "../../../contexts/router";
 import { LegacyRouterContextProvider } from "../../../contexts/router/legacy";
+import { RouterPickerProvider } from "../../../contexts/router/picker";
+import { UndoableQueueContextProvider } from "../../../contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "../../../contexts/unsavedWarn";
 
-import { RouterContextProvider } from "../../../contexts/router";
-import { RouterPickerProvider } from "../../../contexts/router/picker";
-import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
-
 import { RefineProps } from "../../../contexts/refine/types";
+import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
 /**
  * {@link https://refine.dev/docs/api-reference/core/components/refine-config `<Refine> component`} is the entry point of a refine app.
@@ -162,7 +161,7 @@ export const Refine: React.FC<RefineProps> = ({
                             <AuditLogContextProvider
                               {...(auditLogProvider ?? {})}
                             >
-                              <NotificationQueueContextProvider>
+                              <UndoableQueueContextProvider>
                                 <RefineContextProvider
                                   mutationMode={
                                     optionsWithDefaults.mutationMode
@@ -200,7 +199,7 @@ export const Refine: React.FC<RefineProps> = ({
                                     </RouterComponent>
                                   </UnsavedWarnContextProvider>
                                 </RefineContextProvider>
-                              </NotificationQueueContextProvider>
+                              </UndoableQueueContextProvider>
                             </AuditLogContextProvider>
                           </AccessControlContextProvider>
                         </I18nContextProvider>

@@ -5,11 +5,11 @@ import { useCancelNotification, useNotification, useTranslate } from "@hooks";
 import { userFriendlySecond } from "@definitions/helpers";
 import {
   ActionTypes,
-  INotificationQueue,
-} from "../../contexts/notification/queue/types";
+  IUndoableQueue,
+} from "../../contexts/undoableQueue/types";
 
-export const NotificationQueue: React.FC<{
-  notification: INotificationQueue;
+export const UndoableQueue: React.FC<{
+  notification: IUndoableQueue;
 }> = ({ notification }) => {
   const translate = useTranslate();
 

@@ -1,4 +1,4 @@
-import { BaseKey } from "../../data/types";
+import { BaseKey } from "../data/types";
 
 export enum ActionTypes {
   ADD = "ADD",
@@ -6,7 +6,7 @@ export enum ActionTypes {
   DECREASE_NOTIFICATION_SECOND = "DECREASE_NOTIFICATION_SECOND",
 }
 
-export interface INotificationQueue {
+export interface IUndoableQueue {
   id: BaseKey;
   resource: string;
   cancelMutation: () => void;
@@ -16,7 +16,7 @@ export interface INotificationQueue {
   isSilent: boolean;
 }
 
-export interface INotificationQueueContext {
-  notifications: INotificationQueue[];
+export interface IUndoableQueueContext {
+  notifications: IUndoableQueue[];
   notificationDispatch: React.Dispatch<any>;
 }

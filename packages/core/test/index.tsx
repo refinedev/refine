@@ -1,21 +1,21 @@
-import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { ReactNode } from "react";
 
+import { AccessControlContextProvider } from "@contexts/accessControl";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 import {
   AuthBindingsContextProvider,
   LegacyAuthContextProvider,
 } from "@contexts/auth";
-import { NotificationQueueContextProvider } from "@contexts/notification/queue";
 import { DataContextProvider } from "@contexts/data";
-import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
 import { I18nContextProvider } from "@contexts/i18n";
-import { RefineContextProvider } from "@contexts/refine";
-import { IRefineContextProvider } from "@contexts/refine/types";
-import { LegacyRouterContextProvider } from "@contexts/router/legacy";
-import { AccessControlContextProvider } from "@contexts/accessControl";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
-import { AuditLogContextProvider } from "@contexts/auditLog";
+import { RefineContextProvider } from "@contexts/refine";
+import { IRefineContextProvider } from "@contexts/refine/types";
+import { IResourceItem, ResourceContextProvider } from "@contexts/resource";
+import { LegacyRouterContextProvider } from "@contexts/router/legacy";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 
 import { RouterContextProvider } from "@contexts/router";
 import { RouterPickerProvider } from "@contexts/router/picker";
@@ -172,9 +172,9 @@ export const TestWrapper: (
     );
 
     const withNotification = (
-      <NotificationQueueContextProvider>
+      <UndoableQueueContextProvider>
         {withTranslation}
-      </NotificationQueueContextProvider>
+      </UndoableQueueContextProvider>
     );
 
     const withLegacyAuth = legacyAuthProvider ? (
