@@ -5,6 +5,7 @@
     "dist",
     "test",
     "../test/**/*",
+    "**/__tests__/**/*",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",

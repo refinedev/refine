@@ -11,18 +11,31 @@
   "license": "MIT",
   "author": "refine",
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "lodash": "^4.17.21",

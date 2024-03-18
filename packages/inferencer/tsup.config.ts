@@ -17,6 +17,9 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: false,
+  minify: true,
+  format: ["cjs", "esm"],
+  outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [
     removeTestIdsPlugin,
@@ -32,5 +35,5 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "tsc --project tsconfig.declarations.json",
+  onSuccess: "npm run types",
 });

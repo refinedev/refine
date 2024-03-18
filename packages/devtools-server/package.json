@@ -11,24 +11,37 @@
   "license": "MIT",
   "author": "refine",
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "bin": {
-    "refine-devtools": "./dist/cli.js"
+    "refine-devtools": "./dist/cli.cjs"
   },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
+    "build": "npm run build:client && tsup",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
-    "dev": "npm run dev:client & tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "npm run dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "prepare": "npm run build",
     "start:server": "node dist/cli.js",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@ory/client": "^1.5.2",
