@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Action } from "../types";
+
 export interface LegacyRouterProvider {
   useHistory: () => {
     push: (...args: any) => any;
@@ -30,4 +32,19 @@ export type PromptProps = {
   message: string;
   when?: boolean;
   setWarnWhen?: (warnWhen: boolean) => void;
+};
+
+export type RouteAction = Exclude<Action, "list"> | undefined;
+
+export type ActionWithPage = Extract<Action, "show" | "create" | "edit">;
+
+export type ResourceRouterParams = {
+  resource: string;
+  id?: string;
+  action: RouteAction;
+};
+
+export type ResourceErrorRouterParams = {
+  resource: string;
+  action: ActionWithPage | undefined;
 };

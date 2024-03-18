@@ -2,16 +2,9 @@ export * from "./components";
 export * from "./hooks";
 
 export {
-  Action,
-  ActionWithPage,
   LayoutProps,
   MapDataFn,
-  RedirectionTypes,
-  RedirectAction,
-  ResourceErrorRouterParams,
   ResourceProps,
-  ResourceRouterParams,
-  RouteAction,
   TitleProps,
   IResourceComponents,
   IResourceComponentsProps,
@@ -170,20 +163,25 @@ export {
 } from "./contexts/refine/types";
 
 export {
+  ActionWithPage,
   LegacyRouterProvider as IRouterContext,
   LegacyRouterProvider as IRouterProvider,
   PromptProps,
+  ResourceErrorRouterParams,
+  ResourceRouterParams,
+  RouteAction,
 } from "./contexts/router/legacy/types";
 
 export {
-  RouterProvider,
-  RouterProvider as RouterBindings,
+  Action,
+  BackFunction,
+  GoConfig,
+  GoFunction,
   ParseResponse,
   ParsedParams,
-  GoConfig,
-  BackFunction,
-  GoFunction,
   ParseFunction,
+  RouterProvider,
+  RouterProvider as RouterBindings,
 } from "./contexts/router/types";
 
 export { IUnsavedWarnContext } from "./contexts/unsavedWarn/types";

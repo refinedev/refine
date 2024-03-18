@@ -4,13 +4,11 @@ import { ResourceContext } from "@contexts/resource";
 import { useResourceWithRoute, useRouterContext } from "@hooks";
 
 import { BaseKey } from "../../../contexts/data/types";
+import { ResourceRouterParams } from "../../../contexts/router/legacy/types";
 import { useRouterType } from "../../../contexts/router/picker";
+import { Action } from "../../../contexts/router/types";
 import { pickResource } from "../../../definitions/helpers/pick-resource";
-import {
-  Action,
-  IResourceItem,
-  ResourceRouterParams,
-} from "../../../interfaces";
+import { IResourceItem } from "../../../interfaces";
 import { useParsed } from "../../router/use-parsed";
 
 export type UseResourceLegacyProps = {

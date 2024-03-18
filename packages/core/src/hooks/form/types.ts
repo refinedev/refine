@@ -15,7 +15,7 @@ import {
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { Action, RedirectAction } from "../../interfaces";
+import { Action } from "../../contexts/router/types";
 import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import {
   OptimisticUpdateMapType,
@@ -28,6 +28,15 @@ import {
 } from "../useLoadingOvertime";
 
 export type FormAction = Extract<Action, "create" | "edit" | "clone">;
+
+export type RedirectAction =
+  | Extract<Action, "create" | "edit" | "list" | "show">
+  | false;
+
+/**
+ * @deprecated use RedirectAction type instead
+ */
+export type RedirectionTypes = RedirectAction;
 
 export type AutoSaveProps<TVariables> = {
   autoSave?: {

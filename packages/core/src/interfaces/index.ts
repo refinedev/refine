@@ -3,17 +3,8 @@ import { IResourceItem } from "./bindings/resource";
 // contexts
 export * from "../contexts/resource/IResourceContext";
 
-// actions
-export * from "./actions";
-
 // custom components
 export * from "./customComponents";
-
-// resourceRouterParams
-export * from "./resourceRouterParams";
-
-// resourceErrorRouterParams
-export * from "./resourceErrorRouterParams";
 
 // mapData
 export * from "./mapDataFn";

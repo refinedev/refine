@@ -1,9 +1,10 @@
 import React from "react";
 
 import { useRouterType } from "../../../contexts/router/picker";
+import { Action } from "../../../contexts/router/types";
 import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
 import { composeRoute } from "../../../definitions/helpers/router/compose-route";
-import { Action, IResourceItem } from "../../../interfaces";
+import { IResourceItem } from "../../../interfaces";
 import { useResource } from "../../resource";
 import { useParsed } from "../use-parsed";
 

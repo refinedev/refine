@@ -26,9 +26,10 @@
  * `useGo`, `useBack` and `useParsed`
  */
 
-import { Action } from "../../interfaces";
 import { IResourceItem } from "../../interfaces/bindings/resource";
 import { BaseKey, CrudFilter, CrudSort } from "../data/types";
+
+export type Action = "create" | "edit" | "list" | "show" | "clone";
 
 export type GoConfig = {
   to?: string;

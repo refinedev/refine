@@ -3,7 +3,8 @@ import { useCallback } from "react";
 import { useNavigation } from "@hooks";
 
 import { BaseKey, MetaDataQuery } from "../../contexts/data/types";
-import { IResourceItem, RedirectAction } from "../../interfaces";
+import { IResourceItem } from "../../interfaces";
+import { RedirectAction } from "../form/types";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
   redirect: RedirectAction;
