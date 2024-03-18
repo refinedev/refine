@@ -3,6 +3,10 @@ import { DocumentNode } from "graphql";
 
 import { UseListConfig } from "../../hooks/data/useList";
 
+export type Prettify<T> = {
+  [K in keyof T]: T[K];
+} & {};
+
 export type BaseKey = string | number;
 export type BaseRecord = {
   id?: BaseKey;

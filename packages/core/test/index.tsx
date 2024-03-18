@@ -14,11 +14,11 @@ import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
 import { IRefineContextProvider } from "@contexts/refine/types";
-import { IResourceItem, ResourceContextProvider } from "@contexts/resource";
-import { LegacyRouterContextProvider } from "@contexts/router/legacy";
-import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
+import { ResourceContextProvider } from "@contexts/resource";
 import { RouterContextProvider } from "@contexts/router";
+import { LegacyRouterContextProvider } from "@contexts/router/legacy";
 import { RouterPickerProvider } from "@contexts/router/picker";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 
 import { AccessControlProvider } from "../src/contexts/accessControl/types";
 import { AuditLogProvider } from "../src/contexts/auditLog/types";
@@ -27,6 +27,7 @@ import { DataProvider, DataProviders } from "../src/contexts/data/types";
 import { I18nProvider } from "../src/contexts/i18n/types";
 import { LiveProvider } from "../src/contexts/live/types";
 import { NotificationProvider } from "../src/contexts/notification/types";
+import { IResourceItem } from "../src/contexts/resource/types";
 import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
 import { RouterProvider } from "../src/contexts/router/types";
 

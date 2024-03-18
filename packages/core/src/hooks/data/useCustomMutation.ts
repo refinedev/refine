@@ -20,9 +20,9 @@ import {
   CreateResponse,
   HttpError,
   MetaQuery,
+  Prettify,
 } from "../../contexts/data/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { Prettify } from "../../interfaces";
 import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,

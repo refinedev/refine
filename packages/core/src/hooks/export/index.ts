@@ -17,7 +17,7 @@ import {
   CrudSort,
   MetaQuery,
 } from "../../contexts/data/types";
-import { MapDataFn } from "../../interfaces";
+import { MapDataFn } from "./types";
 
 // Old options interface taken from export-to-csv-fix-source-map@0.2.1
 // Kept here to ensure backward compatibility

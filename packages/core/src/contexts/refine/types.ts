@@ -4,7 +4,6 @@ import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
 import { RedirectAction } from "../../hooks/form/types";
 import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
-import { DashboardPageProps, LayoutProps, TitleProps } from "../../interfaces";
 import { AccessControlProvider } from "../accessControl/types";
 import { AuditLogProvider } from "../auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../auth/types";
@@ -15,6 +14,33 @@ import { NotificationProvider } from "../notification/types";
 import { ResourceProps } from "../resource/types";
 import { LegacyRouterProvider } from "../router/legacy/types";
 import { RouterProvider } from "../router/types";
+
+export type TitleProps = {
+  collapsed: boolean;
+};
+
+export type LayoutProps = {
+  Sider?: React.FC<{
+    Title?: React.FC<TitleProps>;
+    render?: (props: {
+      items: JSX.Element[];
+      logout: React.ReactNode;
+      dashboard: React.ReactNode;
+      collapsed: boolean;
+    }) => React.ReactNode;
+    meta?: Record<string, unknown>;
+  }>;
+  Header?: React.FC;
+  Title?: React.FC<TitleProps>;
+  Footer?: React.FC;
+  OffLayoutArea?: React.FC;
+  dashboard?: boolean;
+  children?: ReactNode;
+};
+
+export type DashboardPageProps<TCrudData = any> = {
+  initialData?: TCrudData;
+} & Record<any, any>;
 
 export type TextTransformers = {
   /**

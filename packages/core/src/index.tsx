@@ -1,8 +1,6 @@
 export * from "./components";
 export * from "./hooks";
 
-export { LayoutProps, MapDataFn, TitleProps, Prettify } from "./interfaces";
-
 // all auth types
 export * from "./components/pages/auth/types";
 export { ILoginForm } from "./components/pages/login";
@@ -146,8 +144,10 @@ export {
   IRefineContextOptions,
   IRefineContextProvider,
   IRefineOptions,
+  LayoutProps,
   RefineProps,
   TextTransformers,
+  TitleProps,
 } from "./contexts/refine/types";
 
 export {

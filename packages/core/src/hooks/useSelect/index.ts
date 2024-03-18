@@ -19,10 +19,10 @@ import {
   HttpError,
   MetaQuery,
   Pagination,
+  Prettify,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { Prettify } from "../../interfaces";
 import { BaseListProps } from "../data/useList";
 import { useResource } from "../resource/useResource/index";
 import {

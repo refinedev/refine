@@ -12,10 +12,10 @@ import {
   GetOneResponse,
   HttpError,
   MetaQuery,
+  Prettify,
 } from "../../contexts/data/types";
 import { LiveModeProps } from "../../contexts/live/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { Prettify } from "../../interfaces";
 import { useResource } from "../resource/useResource";
 import {
   UseLoadingOvertimeOptionsProps,
