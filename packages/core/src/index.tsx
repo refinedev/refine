@@ -154,7 +154,7 @@ export {
   ResourceProps,
   IResourceComponents,
   IResourceComponentsProps,
-  IResourceContext as ResourceProvider,
+  IResourceContext,
   IResourceItem,
   ITreeMenu,
   ResourceBindings,
