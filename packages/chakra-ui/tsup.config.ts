@@ -2,6 +2,7 @@ import { defineConfig } from "tsup";
 
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 import { removeTestIdsPlugin } from "../shared/remove-test-ids-plugin";
+import { tablerCjsReplacePlugin } from "../shared/tabler-cjs-replace-plugin";
 
 export default defineConfig({
   entry: ["src/index.tsx"],
@@ -12,7 +13,11 @@ export default defineConfig({
   format: ["cjs", "esm"],
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
-  esbuildPlugins: [removeTestIdsPlugin, markAsExternalPlugin],
+  esbuildPlugins: [
+    markAsExternalPlugin,
+    tablerCjsReplacePlugin,
+    removeTestIdsPlugin,
+  ],
   loader: {
     ".svg": "dataurl",
   },
