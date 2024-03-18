@@ -20,12 +20,15 @@ export const DataContextProvider: React.FC<Props> = ({
   let providerValue = defaultDataProvider;
 
   if (dataProvider) {
-    if ("default" in dataProvider) {
-      providerValue = dataProvider;
-    } else {
+    if (
+      !("default" in dataProvider) &&
+      ("getList" in dataProvider || "getOne" in dataProvider)
+    ) {
       providerValue = {
         default: dataProvider,
       };
+    } else {
+      providerValue = dataProvider;
     }
   }
 

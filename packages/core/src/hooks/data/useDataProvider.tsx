@@ -17,11 +17,20 @@ export const useDataProvider = (): ((
         if (!dataProvider) {
           throw new Error(`"${dataProviderName}" Data provider not found`);
         }
+
+        if (dataProvider && !context?.default) {
+          throw new Error(
+            "If you have multiple data providers, you must provide default data provider property",
+          );
+        }
+
         return context[dataProviderName];
       }
+
       if (context.default) {
         return context.default;
       }
+
       throw new Error(
         `There is no "default" data provider. Please pass dataProviderName.`,
       );
