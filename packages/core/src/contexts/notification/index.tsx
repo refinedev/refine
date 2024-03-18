@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, PropsWithChildren } from "react";
 
 import { INotificationContext } from "./types";
 
@@ -8,9 +8,7 @@ export const defaultNotificationProvider: INotificationContext = {};
 export const NotificationContext = createContext<INotificationContext>({});
 
 export const NotificationContextProvider: React.FC<
-  INotificationContext & {
-    children?: React.ReactNode;
-  }
+  PropsWithChildren<INotificationContext>
 > = ({ open, close, children }) => {
   return (
     <NotificationContext.Provider value={{ open, close }}>

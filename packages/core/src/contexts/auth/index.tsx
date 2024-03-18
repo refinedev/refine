@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 import { useNavigation } from "@hooks";
+
 import { IAuthContext, ILegacyAuthContext } from "./types";
 
 /**
@@ -12,9 +13,7 @@ export const LegacyAuthContext = React.createContext<ILegacyAuthContext>({});
  * @deprecated `LegacyAuthContextProvider` is deprecated with refine@4, use `AuthBindingsContextProvider` instead, however, we still support `LegacyAuthContextProvider` for backward compatibility.
  */
 export const LegacyAuthContextProvider: React.FC<
-  ILegacyAuthContext & {
-    children?: React.ReactNode;
-  }
+  PropsWithChildren<ILegacyAuthContext>
 > = ({ children, isProvided, ...authOperations }) => {
   const { replace } = useNavigation();
 

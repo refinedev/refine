@@ -1,4 +1,5 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
+
 import { DataProvider, DataProviders, IDataContext } from "./types";
 
 export const defaultDataProvider: DataProviders = {
@@ -8,7 +9,7 @@ export const defaultDataProvider: DataProviders = {
 export const DataContext =
   React.createContext<IDataContext>(defaultDataProvider);
 
-type Props = React.PropsWithChildren<{
+type Props = PropsWithChildren<{
   dataProvider?: DataProvider | DataProviders;
 }>;
 

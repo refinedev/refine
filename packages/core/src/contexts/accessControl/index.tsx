@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import {
   IAccessControlContext,
@@ -16,7 +16,7 @@ export const AccessControlContext =
   });
 
 export const AccessControlContextProvider: React.FC<
-  IAccessControlContext & { children?: React.ReactNode }
+  PropsWithChildren<IAccessControlContext>
 > = ({ can, children, options }) => {
   return (
     <AccessControlContext.Provider

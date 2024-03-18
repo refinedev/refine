@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import { ILegacyRouterContext } from "./types";
 
@@ -14,9 +14,7 @@ export const LegacyRouterContext =
   React.createContext<ILegacyRouterContext>(defaultProvider);
 
 export const LegacyRouterContextProvider: React.FC<
-  Partial<ILegacyRouterContext> & {
-    children?: React.ReactNode;
-  }
+  PropsWithChildren<Partial<ILegacyRouterContext>>
 > = ({
   children,
   useHistory,
