@@ -147,7 +147,7 @@ export const TestWrapper: (
       withNotificationProvider
     );
 
-    const withAuidtLogProvider = auditLogProvider ? (
+    const withAuditLogProvider = auditLogProvider ? (
       <AuditLogContextProvider {...auditLogProvider}>
         {withAccessControl}
       </AuditLogContextProvider>
@@ -157,10 +157,10 @@ export const TestWrapper: (
 
     const withLive = liveProvider ? (
       <LiveContextProvider liveProvider={liveProvider}>
-        {withAuidtLogProvider}
+        {withAuditLogProvider}
       </LiveContextProvider>
     ) : (
-      withAuidtLogProvider
+      withAuditLogProvider
     );
 
     const withTranslation = i18nProvider ? (
