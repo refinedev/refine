@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box/index.js";
+import CircularProgress from "@mui/material/CircularProgress/index.js";
+import Typography from "@mui/material/Typography/index.js";
 
 type CircularDeterminateProps = {
   undoableTimeout: number;

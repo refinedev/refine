@@ -3,13 +3,13 @@ import { useGo, useResource, useRouterType } from "@refinedev/core";
 import { RefineErrorPageProps } from "@refinedev/ui-types";
 import { useNavigation, useTranslate } from "@refinedev/core";
 
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack/index.js";
+import Button from "@mui/material/Button/index.js";
+import Tooltip from "@mui/material/Tooltip/index.js";
+import Typography from "@mui/material/Typography/index.js";
+import Grid from "@mui/material/Grid/index.js";
 
-import Info from "@mui/icons-material/Info";
+import Info from "@mui/icons-material/Info.js";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
   const [errorMessage, setErrorMessage] = useState<string>();

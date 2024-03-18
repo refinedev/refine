@@ -1,6 +1,6 @@
 import React from "react";
-import type { BoxProps } from "@mui/material/Box";
-import type { CardProps } from "@mui/material/Card";
+import type { BoxProps } from "@mui/material/Box/index.js";
+import type { CardProps } from "@mui/material/Card/index.js";
 
 import { AuthPageProps, RegisterFormTypes } from "@refinedev/core";
 

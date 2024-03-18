@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link/index.js";
+import Typography from "@mui/material/Typography/index.js";
 
 import { UrlFieldProps } from "../types";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
+import Box from "@mui/material/Box/index.js";
 
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";

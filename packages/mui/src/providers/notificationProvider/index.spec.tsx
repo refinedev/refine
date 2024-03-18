@@ -6,8 +6,8 @@ import { OpenNotificationParams } from "@refinedev/core";
 import { CircularDeterminate } from "@components/circularDeterminate";
 
 import { notificationProvider } from ".";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box/index.js";
+import Typography from "@mui/material/Typography/index.js";
 
 const cancelMutationMock = jest.fn();
 

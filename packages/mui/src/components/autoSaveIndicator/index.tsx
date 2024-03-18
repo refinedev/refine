@@ -4,11 +4,11 @@ import {
   useTranslate,
   AutoSaveIndicator as AutoSaveIndicatorCore,
 } from "@refinedev/core";
-import Typography from "@mui/material/Typography";
-import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
-import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
-import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import Typography from "@mui/material/Typography/index.js";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined.js";
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined.js";
+import TaskAltOutlinedIcon from "@mui/icons-material/TaskAltOutlined.js";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined.js";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   status,

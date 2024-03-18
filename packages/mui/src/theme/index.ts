@@ -1,5 +1,5 @@
-import type { Theme, ThemeOptions } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
+import type { Theme, ThemeOptions } from "@mui/material/styles/index.js";
+import { createTheme } from "@mui/material/styles/index.js";
 
 import { lightPalette } from "./palette/lightPalette";
 import { darkPalette } from "./palette/darkPalette";

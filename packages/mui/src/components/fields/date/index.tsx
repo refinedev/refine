@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat.js";
 
-import Typography from "@mui/material/Typography";
+import Typography from "@mui/material/Typography/index.js";
 
 import { DateFieldProps } from "../types";
 

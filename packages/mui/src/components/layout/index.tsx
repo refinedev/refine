@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import Box from "@mui/material/Box/index.js";
 
 import { RefineLayoutLayoutProps } from "./types";
 import { Sider as DefaultSider } from "./sider";

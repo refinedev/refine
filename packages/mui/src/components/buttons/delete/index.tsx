@@ -14,14 +14,14 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button/index.js";
+import Dialog from "@mui/material/Dialog/index.js";
+import DialogActions from "@mui/material/DialogActions/index.js";
+import DialogTitle from "@mui/material/DialogTitle/index.js";
 
-import LoadingButton from "@mui/lab/LoadingButton";
+import LoadingButton from "@mui/lab/LoadingButton/index.js";
 
-import DeleteOutline from "@mui/icons-material/DeleteOutline";
+import DeleteOutline from "@mui/icons-material/DeleteOutline.js";
 
 import { DeleteButtonProps } from "../types";
 

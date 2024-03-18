@@ -8,11 +8,11 @@ import {
   useResource,
 } from "@refinedev/core";
 
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Card from "@mui/material/Card/index.js";
+import CardHeader from "@mui/material/CardHeader/index.js";
+import CardContent from "@mui/material/CardContent/index.js";
+import Typography from "@mui/material/Typography/index.js";
+import Box from "@mui/material/Box/index.js";
 
 import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
 

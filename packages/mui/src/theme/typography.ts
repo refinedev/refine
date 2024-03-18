@@ -1,4 +1,4 @@
-import type { TypographyVariantsOptions } from "@mui/material/styles";
+import type { TypographyVariantsOptions } from "@mui/material/styles/index.js";
 
 export const typography: TypographyVariantsOptions = {
   fontFamily: [

@@ -6,7 +6,7 @@ import {
   BaseRecord,
 } from "@refinedev/core";
 
-import type { AutocompleteProps } from "@mui/material/Autocomplete";
+import type { AutocompleteProps } from "@mui/material/Autocomplete/index.js";
 
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
