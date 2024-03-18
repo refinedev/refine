@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { Typography } from "antd";
 
-import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import LocalizedFormat from "dayjs/plugin/localizedFormat.js";
 
 import { DateFieldProps } from "../types";
 
