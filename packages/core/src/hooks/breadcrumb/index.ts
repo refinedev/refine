@@ -10,8 +10,8 @@ import { composeRoute } from "@definitions/helpers/router/compose-route";
 import { useRefineContext, useResource, useTranslate } from "@hooks";
 import { useParsed } from "@hooks/router/use-parsed";
 
+import { IResourceItem } from "../../contexts/resource/types";
 import { pickResource } from "../../definitions/helpers/pick-resource/index";
-import { IResourceItem } from "../../interfaces";
 
 export type BreadcrumbsType = {
   label: string;

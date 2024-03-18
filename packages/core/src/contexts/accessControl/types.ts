@@ -20,8 +20,8 @@
  */
 import { UseQueryOptions } from "@tanstack/react-query";
 
-import { IResourceItem, ITreeMenu } from "../../interfaces";
 import { BaseKey } from "../data/types";
+import { IResourceItem, ITreeMenu } from "../resource/types";
 
 export type CanResponse = {
   can: boolean;

@@ -1,19 +1,7 @@
 export * from "./components";
 export * from "./hooks";
 
-export {
-  LayoutProps,
-  MapDataFn,
-  ResourceProps,
-  TitleProps,
-  IResourceComponents,
-  IResourceComponentsProps,
-  IResourceContext as ResourceProvider,
-  IResourceItem,
-  ITreeMenu,
-  ResourceBindings,
-  Prettify,
-} from "./interfaces";
+export { LayoutProps, MapDataFn, TitleProps, Prettify } from "./interfaces";
 
 // all auth types
 export * from "./components/pages/auth/types";
@@ -161,6 +149,16 @@ export {
   RefineProps,
   TextTransformers,
 } from "./contexts/refine/types";
+
+export {
+  ResourceProps,
+  IResourceComponents,
+  IResourceComponentsProps,
+  IResourceContext as ResourceProvider,
+  IResourceItem,
+  ITreeMenu,
+  ResourceBindings,
+} from "./contexts/resource/types";
 
 export {
   ActionWithPage,

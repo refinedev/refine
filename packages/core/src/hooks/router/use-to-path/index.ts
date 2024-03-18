@@ -1,5 +1,5 @@
+import { IResourceItem } from "../../../contexts/resource/types";
 import { Action } from "../../../contexts/router/types";
-import { IResourceItem } from "../../../interfaces";
 import { useGetToPath } from "../use-get-to-path";
 
 type UseToPathParams = {

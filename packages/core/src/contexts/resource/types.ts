@@ -2,7 +2,7 @@ import { ComponentType, ReactNode } from "react";
 
 import { UseQueryResult } from "@tanstack/react-query";
 
-import { ILogData } from "../../contexts/auditLog/types";
+import { ILogData } from "../auditLog/types";
 
 /**
  * Resource route components
@@ -178,3 +178,28 @@ export interface IResourceContext {
 }
 
 export type ResourceBindings = ResourceProps[];
+
+type MetaProps<TExtends = { [key: string]: any }> = ResourceMeta & TExtends;
+
+export interface RouteableProperties {
+  canCreate?: boolean;
+  canEdit?: boolean;
+  canShow?: boolean;
+  canDelete?: boolean;
+  canList?: boolean;
+}
+
+export interface IResourceContext {
+  resources: IResourceItem[];
+}
+
+/* Backward compatible version of 'TreeMenuItem' */
+export type ITreeMenu = IResourceItem & {
+  key?: string;
+  children: ITreeMenu[];
+};
+
+export type IMenuItem = IResourceItem & {
+  key: string;
+  route: string;
+};

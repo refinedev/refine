@@ -6,7 +6,7 @@ import { useCan, useResource } from "@hooks";
 
 import { CanReturnType } from "../../contexts/accessControl/types";
 import { BaseKey } from "../../contexts/data/types";
-import { IResourceItem, ITreeMenu } from "../../interfaces";
+import { IResourceItem, ITreeMenu } from "../../contexts/resource/types";
 
 type CanParams = {
   resource?: IResourceItem & { children?: ITreeMenu[] };

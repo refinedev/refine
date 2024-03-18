@@ -1,1 +1,0 @@
-export { ResourceBindings } from "./resource";

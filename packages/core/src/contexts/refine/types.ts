@@ -5,7 +5,6 @@ import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 import { RedirectAction } from "../../hooks/form/types";
 import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
 import { DashboardPageProps, LayoutProps, TitleProps } from "../../interfaces";
-import { ResourceProps } from "../../interfaces/bindings/resource";
 import { AccessControlProvider } from "../accessControl/types";
 import { AuditLogProvider } from "../auditLog/types";
 import { AuthProvider, LegacyAuthProvider } from "../auth/types";
@@ -13,6 +12,7 @@ import { DataProvider, DataProviders, MutationMode } from "../data/types";
 import { I18nProvider } from "../i18n/types";
 import { LiveModeProps, LiveProvider } from "../live/types";
 import { NotificationProvider } from "../notification/types";
+import { ResourceProps } from "../resource/types";
 import { LegacyRouterProvider } from "../router/legacy/types";
 import { RouterProvider } from "../router/types";
 

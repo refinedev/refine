@@ -1,4 +1,4 @@
-import { IResourceItem } from "src/interfaces";
+import { IResourceItem } from "../../../contexts/resource/types";
 import { Action } from "../../../contexts/router/types";
 import { getDefaultActionPath } from "./get-default-action-path";
 import { getParentPrefixForResource } from "./get-parent-prefix-for-resource";

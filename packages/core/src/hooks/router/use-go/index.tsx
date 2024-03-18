@@ -4,11 +4,11 @@ import { RouterContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
 
 import { BaseKey } from "../../../contexts/data/types";
+import { IResourceItem } from "../../../contexts/resource/types";
 import {
   Action,
   GoConfig as GoConfigBase,
 } from "../../../contexts/router/types";
-import type { IResourceItem } from "../../../interfaces";
 import { useGetToPath } from "../use-get-to-path";
 
 type ResourceWithoutId = {
