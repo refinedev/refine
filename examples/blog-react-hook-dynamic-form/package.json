@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
-    "dev": "react-scripts start",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
+    "dev": "refine dev",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
+    "start": "refine start",
+    "test": "craco test"
   },
   "browserslist": {
     "production": [
@@ -22,12 +22,14 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.3",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
+    "@refinedev/cli": "^2.16.27",
     "@refinedev/core": "^4.48.0",
     "@refinedev/mui": "^5.14.5",
     "@refinedev/react-hook-form": "^4.8.15",
