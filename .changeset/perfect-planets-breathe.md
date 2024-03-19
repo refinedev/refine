@@ -23,7 +23,6 @@
 "@refinedev/devtools-server": patch
 "@refinedev/devtools-shared": patch
 "@refinedev/devtools": patch
-"@refinedev/demo-sidebar": patch
 "@refinedev/core": patch
 "@refinedev/codemod": patch
 "@refinedev/cli": patch
