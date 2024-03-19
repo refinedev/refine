@@ -13,9 +13,9 @@ import {
   RefineShowButtonProps,
 } from "@refinedev/ui-types";
 
-import type { LoadingButtonProps } from "@mui/lab/LoadingButton/index.js";
-import type { ButtonProps } from "@mui/material/Button/index.js";
-import type { SvgIconProps } from "@mui/material/SvgIcon/index.js";
+import type { LoadingButtonProps } from "@mui/lab/LoadingButton";
+import type { ButtonProps } from "@mui/material/Button";
+import type { SvgIconProps } from "@mui/material/SvgIcon";
 
 export type CloneButtonProps = RefineCloneButtonProps<
   ButtonProps,

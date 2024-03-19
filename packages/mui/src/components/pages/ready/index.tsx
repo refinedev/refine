@@ -1,11 +1,11 @@
 import * as React from "react";
 import { RefineReadyPageProps } from "@refinedev/ui-types";
 
-import Stack from "@mui/material/Stack/index.js";
-import Grid from "@mui/material/Grid/index.js";
-import Typography from "@mui/material/Typography/index.js";
-import Button from "@mui/material/Button/index.js";
-import Link from "@mui/material/Link/index.js";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 /**
  * @deprecated `ReadyPage` is deprecated and will be removed in the next major release.

@@ -1,22 +1,22 @@
 import React, { CSSProperties, useState } from "react";
 
-import Box from "@mui/material/Box/index.js";
-import Drawer from "@mui/material/Drawer/index.js";
-import List from "@mui/material/List/index.js";
-import ListItemButton from "@mui/material/ListItemButton/index.js";
-import ListItemIcon from "@mui/material/ListItemIcon/index.js";
-import ListItemText from "@mui/material/ListItemText/index.js";
-import Collapse from "@mui/material/Collapse/index.js";
-import Tooltip from "@mui/material/Tooltip/index.js";
-import IconButton from "@mui/material/IconButton/index.js";
-import Paper from "@mui/material/Paper/index.js";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 
-import ListOutlined from "@mui/icons-material/ListOutlined.js";
-import Logout from "@mui/icons-material/Logout.js";
-import ExpandLess from "@mui/icons-material/ExpandLess.js";
-import ExpandMore from "@mui/icons-material/ExpandMore.js";
-import ChevronLeft from "@mui/icons-material/ChevronLeft.js";
-import Dashboard from "@mui/icons-material/Dashboard.js";
+import ListOutlined from "@mui/icons-material/ListOutlined";
+import Logout from "@mui/icons-material/Logout";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import Dashboard from "@mui/icons-material/Dashboard";
 
 import {
   CanAccess,

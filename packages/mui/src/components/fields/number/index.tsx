@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography/index.js";
+import Typography from "@mui/material/Typography";
 
 import { NumberFieldProps } from "../types";
 

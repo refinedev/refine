@@ -1,6 +1,6 @@
 import React from "react";
 
-import Box from "@mui/material/Box/index.js";
+import Box from "@mui/material/Box";
 
 import { ThemedLayoutContextProvider } from "@contexts";
 import { ThemedSiderV2 as DefaultSider } from "./sider";

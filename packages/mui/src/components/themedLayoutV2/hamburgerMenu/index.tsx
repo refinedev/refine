@@ -1,9 +1,9 @@
 import React from "react";
 
-import IconButton from "@mui/material/IconButton/index.js";
-import Menu from "@mui/icons-material/Menu.js";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/icons-material/Menu";
 
-import type { IconButtonProps } from "@mui/material/IconButton/index.js";
+import type { IconButtonProps } from "@mui/material/IconButton";
 
 import { useThemedLayoutContext } from "@hooks";
 

@@ -14,8 +14,8 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import Button from "@mui/material/Button/index.js";
-import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined.js";
+import Button from "@mui/material/Button";
+import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 
 import { ShowButtonProps } from "../types";
 

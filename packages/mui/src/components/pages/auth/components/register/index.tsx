@@ -6,19 +6,19 @@ import {
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-import Button from "@mui/material/Button/index.js";
-import TextField from "@mui/material/TextField/index.js";
-import Box from "@mui/material/Box/index.js";
-import Typography from "@mui/material/Typography/index.js";
-import Container from "@mui/material/Container/index.js";
-import Card from "@mui/material/Card/index.js";
-import CardContent from "@mui/material/CardContent/index.js";
-import Divider from "@mui/material/Divider/index.js";
-import Stack from "@mui/material/Stack/index.js";
-import MuiLink from "@mui/material/Link/index.js";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import MuiLink from "@mui/material/Link";
 
-import type { BoxProps } from "@mui/material/Box/index.js";
-import type { CardContentProps } from "@mui/material/CardContent/index.js";
+import type { BoxProps } from "@mui/material/Box";
+import type { CardContentProps } from "@mui/material/CardContent";
 
 import {
   BaseRecord,

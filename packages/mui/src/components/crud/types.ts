@@ -7,11 +7,11 @@ import {
   SaveButtonProps,
 } from "../buttons/types";
 
-import type { BoxProps } from "@mui/material/Box/index.js";
-import type { CardActionsProps } from "@mui/material/CardActions/index.js";
-import type { CardContentProps } from "@mui/material/CardContent/index.js";
-import type { CardHeaderProps } from "@mui/material/CardHeader/index.js";
-import type { CardProps } from "@mui/material/Card/index.js";
+import type { BoxProps } from "@mui/material/Box";
+import type { CardActionsProps } from "@mui/material/CardActions";
+import type { CardContentProps } from "@mui/material/CardContent";
+import type { CardHeaderProps } from "@mui/material/CardHeader";
+import type { CardProps } from "@mui/material/Card";
 
 import {
   RefineCrudCreateProps,

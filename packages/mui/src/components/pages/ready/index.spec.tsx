@@ -1,7 +1,7 @@
 import React from "react";
 import { pageReadyTests } from "@refinedev/ui-tests";
 
-import Button from "@mui/material/Button/index.js";
+import Button from "@mui/material/Button";
 
 import { render } from "@test";
 

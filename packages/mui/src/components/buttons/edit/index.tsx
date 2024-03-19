@@ -14,8 +14,8 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import Button from "@mui/material/Button/index.js";
-import EditOutlined from "@mui/icons-material/EditOutlined.js";
+import Button from "@mui/material/Button";
+import EditOutlined from "@mui/icons-material/EditOutlined";
 
 import { EditButtonProps } from "../types";
 

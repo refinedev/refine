@@ -1,10 +1,10 @@
 import { ReactChild, ReactNode } from "react";
 
-import type { ChipProps } from "@mui/material/Chip/index.js";
-import type { LinkProps } from "@mui/material/Link/index.js";
-import type { SvgIconProps } from "@mui/material/SvgIcon/index.js";
-import type { TooltipProps } from "@mui/material/Tooltip/index.js";
-import type { TypographyProps } from "@mui/material/Typography/index.js";
+import type { ChipProps } from "@mui/material/Chip";
+import type { LinkProps } from "@mui/material/Link";
+import type { SvgIconProps } from "@mui/material/SvgIcon";
+import type { TooltipProps } from "@mui/material/Tooltip";
+import type { TypographyProps } from "@mui/material/Typography";
 
 import {
   RefineFieldBooleanProps,

@@ -6,7 +6,7 @@ import {
   useRouterType,
 } from "@refinedev/core";
 
-import Button from "@mui/material/Button/index.js";
+import Button from "@mui/material/Button";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
   const routerType = useRouterType();

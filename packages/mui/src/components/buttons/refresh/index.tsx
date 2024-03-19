@@ -11,8 +11,8 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import LoadingButton from "@mui/lab/LoadingButton/index.js";
-import RefreshOutlined from "@mui/icons-material/RefreshOutlined.js";
+import LoadingButton from "@mui/lab/LoadingButton";
+import RefreshOutlined from "@mui/icons-material/RefreshOutlined";
 
 import { RefreshButtonProps } from "../types";
 

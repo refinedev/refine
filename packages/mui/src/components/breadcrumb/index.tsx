@@ -10,15 +10,15 @@ import {
 } from "@refinedev/core";
 import { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
-import Breadcrumbs from "@mui/material/Breadcrumbs/index.js";
-import Typography from "@mui/material/Typography/index.js";
-import Link from "@mui/material/Link/index.js";
-import Grid from "@mui/material/Grid/index.js";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
 
-import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs/index.js";
-import type { LinkProps } from "@mui/material/Link/index.js";
+import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
+import type { LinkProps } from "@mui/material/Link";
 
-import HomeOutlined from "@mui/icons-material/HomeOutlined.js";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<MuiBreadcrumbProps>;
 

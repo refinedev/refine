@@ -1,11 +1,11 @@
 import React from "react";
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 
-import AppBar from "@mui/material/AppBar/index.js";
-import Stack from "@mui/material/Stack/index.js";
-import Toolbar from "@mui/material/Toolbar/index.js";
-import Typography from "@mui/material/Typography/index.js";
-import Avatar from "@mui/material/Avatar/index.js";
+import AppBar from "@mui/material/AppBar";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 
 import { RefineLayoutHeaderProps } from "../types";
 

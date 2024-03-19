@@ -1,8 +1,8 @@
 import React from "react";
 
-import Tooltip from "@mui/material/Tooltip/index.js";
-import CheckOutlined from "@mui/icons-material/CheckOutlined.js";
-import CloseOutlined from "@mui/icons-material/CloseOutlined.js";
+import Tooltip from "@mui/material/Tooltip";
+import CheckOutlined from "@mui/icons-material/CheckOutlined";
+import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
 import { BooleanFieldProps } from "../types";
 

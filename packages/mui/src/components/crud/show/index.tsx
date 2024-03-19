@@ -11,15 +11,15 @@ import {
   useToPath,
 } from "@refinedev/core";
 
-import Card from "@mui/material/Card/index.js";
-import CardActions from "@mui/material/CardActions/index.js";
-import CardContent from "@mui/material/CardContent/index.js";
-import CardHeader from "@mui/material/CardHeader/index.js";
-import IconButton from "@mui/material/IconButton/index.js";
-import Box from "@mui/material/Box/index.js";
-import Typography from "@mui/material/Typography/index.js";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-import ArrowBackIcon from "@mui/icons-material/ArrowBack.js";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import {
   DeleteButton,

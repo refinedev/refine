@@ -5,8 +5,8 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import LoadingButton from "@mui/lab/LoadingButton/index.js";
-import SaveOutlined from "@mui/icons-material/SaveOutlined.js";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveOutlined from "@mui/icons-material/SaveOutlined";
 
 import { SaveButtonProps } from "../types";
 

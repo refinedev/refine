@@ -16,8 +16,8 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import Button from "@mui/material/Button/index.js";
-import ListOutlined from "@mui/icons-material/ListOutlined.js";
+import Button from "@mui/material/Button";
+import ListOutlined from "@mui/icons-material/ListOutlined";
 
 import { ListButtonProps } from "../types";
 

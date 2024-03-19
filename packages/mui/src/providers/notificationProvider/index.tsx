@@ -5,10 +5,10 @@ import { useSnackbar } from "notistack";
 
 import { CircularDeterminate } from "@components";
 
-import Box from "@mui/material/Box/index.js";
-import IconButton from "@mui/material/IconButton/index.js";
-import Typography from "@mui/material/Typography/index.js";
-import UndoOutlined from "@mui/icons-material/UndoOutlined.js";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import UndoOutlined from "@mui/icons-material/UndoOutlined";
 
 export const useNotificationProvider = (): NotificationProvider => {
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();

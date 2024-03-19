@@ -1,5 +1,5 @@
 import React from "react";
-import Chip from "@mui/material/Chip/index.js";
+import Chip from "@mui/material/Chip";
 
 import { TagFieldProps } from "../types";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { useRouterContext, useLink, useRouterType } from "@refinedev/core";
 
-import MuiLink from "@mui/material/Link/index.js";
-import SvgIcon from "@mui/material/SvgIcon/index.js";
-import Typography from "@mui/material/Typography/index.js";
+import MuiLink from "@mui/material/Link";
+import SvgIcon from "@mui/material/SvgIcon";
+import Typography from "@mui/material/Typography";
 
 import { RefineLayoutThemedTitleProps } from "../types";
 

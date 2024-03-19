@@ -18,7 +18,7 @@ import type {
   GridSortModel,
 } from "@mui/x-data-grid";
 
-import { darken, useTheme } from "@mui/material/styles/index.js";
+import { darken, useTheme } from "@mui/material/styles";
 
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
