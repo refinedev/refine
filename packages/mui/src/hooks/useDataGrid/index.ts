@@ -150,10 +150,7 @@ export function useDataGrid<
   metaData,
   dataProviderName,
   overtimeOptions,
-  formProps = {
-    action: "edit",
-    redirect: false,
-  },
+  formProps,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -289,6 +286,8 @@ export function useDataGrid<
     TData
   >({
     ...formProps,
+    action: "edit",
+    redirect: false,
   });
 
   return {
