@@ -1,7 +1,7 @@
 import React from "react";
 
 import dayjs from "dayjs";
-import LocalizedFormat from "dayjs/plugin/localizedFormat.js";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 import { Text } from "@chakra-ui/react";
 

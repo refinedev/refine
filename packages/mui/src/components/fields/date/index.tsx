@@ -2,7 +2,7 @@ import React from "react";
 
 import dayjs from "dayjs";
 
-import LocalizedFormat from "dayjs/plugin/localizedFormat.js";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 import Typography from "@mui/material/Typography";
 
