@@ -4,12 +4,9 @@ import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import type RefineAntdTypes from "@refinedev/antd";
 import * as MDEditorNamespace from "@uiw/react-md-editor";
-// import * as AntdCore from "antd";
+import * as AntdCore from "antd";
+import * as RefineAntd from "@refinedev/antd";
 import axios from "axios";
-
-// const MDEditorNamespace = require("@uiw/react-md-editor");
-const AntdCore = require("antd");
-const RefineAntd = require("@refinedev/antd");
 
 import Icon, {
   UnorderedListOutlined,

@@ -1,7 +1,5 @@
-// import * as RefineAppwrite from "@refinedev/appwrite";
-// import * as UUID from "uuid";
-const RefineAppwrite = require("@refinedev/appwrite");
-const UUID = require("uuid");
+import * as RefineAppwrite from "@refinedev/appwrite";
+import * as UUID from "uuid";
 
 const AppwriteScope = {
   RefineAppwrite,

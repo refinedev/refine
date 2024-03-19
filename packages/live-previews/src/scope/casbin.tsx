@@ -1,5 +1,4 @@
-// import * as Casbin from "casbin";
-const Casbin = require("casbin");
+import * as Casbin from "casbin";
 
 const CasbinScope = {
   Casbin,

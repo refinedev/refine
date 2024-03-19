@@ -1,6 +1,4 @@
-// import * as RefineStrapiGraphql from "@refinedev/strapi-graphql";
-
-const RefineStrapiGraphql = require("@refinedev/strapi-graphql");
+import * as RefineStrapiGraphql from "@refinedev/strapi-graphql";
 
 const StrapiGraphqlScope = {
   RefineStrapiGraphql,

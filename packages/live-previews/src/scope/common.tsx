@@ -1,25 +1,15 @@
 import React from "react";
-// import * as ReactRouterDom from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
 import type * as RefineCoreTypes from "@refinedev/core";
-// import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
-// import * as LegacyRefineReactRouterV6Base from "@refinedev/react-router-v6/legacy";
-// import * as RefineReactRouterV6Base from "@refinedev/react-router-v6";
-// import * as RefineSimpleRest from "@refinedev/simple-rest";
-// import * as RefineReactHookForm from "@refinedev/react-hook-form";
-// import * as RefineReactTable from "@refinedev/react-table";
-// import * as ReactHookForm from "react-hook-form";
-// import * as TanstackReactTable from "@tanstack/react-table";
-
-const ReactRouterDom = require("react-router-dom");
-const RefineCore = require("@refinedev/core");
-const { MemoryRouterComponent } = require("@refinedev/react-router-v6/legacy");
-const LegacyRefineReactRouterV6Base = require("@refinedev/react-router-v6/legacy");
-const RefineReactRouterV6Base = require("@refinedev/react-router-v6");
-const RefineSimpleRest = require("@refinedev/simple-rest");
-const RefineReactHookForm = require("@refinedev/react-hook-form");
-const RefineReactTable = require("@refinedev/react-table");
-const ReactHookForm = require("react-hook-form");
-const TanstackReactTable = require("@tanstack/react-table");
+import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
+import * as LegacyRefineReactRouterV6Base from "@refinedev/react-router-v6/legacy";
+import * as RefineReactRouterV6Base from "@refinedev/react-router-v6";
+import * as RefineSimpleRest from "@refinedev/simple-rest";
+import * as RefineReactHookForm from "@refinedev/react-hook-form";
+import * as RefineReactTable from "@refinedev/react-table";
+import * as ReactHookForm from "react-hook-form";
+import * as TanstackReactTable from "@tanstack/react-table";
+import * as RefineCore from "@refinedev/core";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 

@@ -1,5 +1,4 @@
-// import * as RefineMantineInferencer from "@refinedev/inferencer/mantine";
-const RefineMantineInferencer = require("@refinedev/inferencer/mantine");
+import * as RefineMantineInferencer from "@refinedev/inferencer/mantine";
 
 const MantineInferencerScope = {
   RefineMantineInferencer,

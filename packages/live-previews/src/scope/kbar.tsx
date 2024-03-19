@@ -1,6 +1,4 @@
-// import * as RefineKBar from "@refinedev/kbar";
-
-const RefineKBar = require("@refinedev/kbar");
+import * as RefineKBar from "@refinedev/kbar";
 
 const KBarScope = {
   RefineKBar,

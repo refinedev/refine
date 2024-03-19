@@ -1,5 +1,4 @@
-// import * as AxiosScope from "axios";
-const AxiosScope = require("axios");
+import * as AxiosScope from "axios";
 
 const AxiosImports = {
   AxiosScope,

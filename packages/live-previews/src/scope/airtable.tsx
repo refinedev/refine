@@ -1,5 +1,4 @@
-// import * as RefineAirtable from "@refinedev/airtable";
-const RefineAirtable = require("@refinedev/airtable");
+import * as RefineAirtable from "@refinedev/airtable";
 
 const AirtableScope = {
   RefineAirtable,

@@ -3,18 +3,12 @@ import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
 import type RefineMantineTypes from "@refinedev/mantine";
-// import * as RefineMantine from "@refinedev/mantine";
-// import * as MantineCore from "@mantine/core";
-// import * as MantineHooks from "@mantine/hooks";
-// import * as MantineForm from "@mantine/form";
-// import * as MantineNotifications from "@mantine/notifications";
+import * as RefineMantine from "@refinedev/mantine";
+import * as MantineCore from "@mantine/core";
+import * as MantineHooks from "@mantine/hooks";
+import * as MantineForm from "@mantine/form";
+import * as MantineNotifications from "@mantine/notifications";
 import axios from "axios";
-
-const RefineMantine = require("@refinedev/mantine");
-const MantineCore = require("@mantine/core");
-const MantineHooks = require("@mantine/hooks");
-const MantineForm = require("@mantine/form");
-const MantineNotifications = require("@mantine/notifications");
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 

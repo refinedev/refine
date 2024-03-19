@@ -1,5 +1,4 @@
-// import * as RefineHeadlessInferencer from "@refinedev/inferencer/headless";
-const RefineHeadlessInferencer = require("@refinedev/inferencer/headless");
+import * as RefineHeadlessInferencer from "@refinedev/inferencer/headless";
 
 const HeadlessInferencerScope = {
   RefineHeadlessInferencer,

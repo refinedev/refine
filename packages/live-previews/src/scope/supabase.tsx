@@ -1,6 +1,4 @@
-// import * as RefineSupabase from "@refinedev/supabase";
-
-const RefineSupabase = require("@refinedev/supabase");
+import * as RefineSupabase from "@refinedev/supabase";
 
 const SupabaseScope = {
   RefineSupabase,
