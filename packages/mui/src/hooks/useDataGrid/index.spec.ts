@@ -216,9 +216,8 @@ describe("useDataGrid Hook", () => {
           dataProvider: {
             ...MockJSONServer,
             update: async (data) => {
-              Promise.resolve({ data }).then(
-                (data) => (postToUpdate = data.data.variables),
-              );
+              const resolvedData = await Promise.resolve({ data });
+              postToUpdate = resolvedData.data.variables;
             },
           },
         }),
