@@ -89,7 +89,10 @@ export type UseDataGridProps<
       defaultBehavior?: "replace" | "merge";
     }
   >;
-  formProps?: UseFormProps<TQueryFnData, TError, TData>;
+  formProps?: Omit<
+    UseFormProps<TQueryFnData, TError, TData>,
+    "autoSave" | "action" | "redirect"
+  >;
 };
 
 export type UseDataGridReturnType<
