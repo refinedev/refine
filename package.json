@@ -18,7 +18,7 @@
     "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
     "lint": "biome check .",
-    "lint:ci": "biome ci . --changed",
+    "lint:ci": "biome ci .",
     "lint:error": "biome check . --diagnostic-level error",
     "lint:fix": "biome check . --apply",
     "lint:staged": "lint-staged",

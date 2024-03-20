@@ -19,7 +19,7 @@ jobs:
       - name: lint
         run: |
           npm ci
-          npm run lint:ci
+          npm run lint:ci -- --changed
   build:
     runs-on: ubuntu-latest
     concurrency:
