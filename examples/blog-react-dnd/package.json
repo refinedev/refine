@@ -8,7 +8,7 @@
     "eject": "react-scripts eject",
     "refine": "refine",
     "start": "refine start",
-    "test": "react-scripts test"
+    "test": "craco test"
   },
   "browserslist": {
     "production": [
@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@refinedev/antd": "^5.37.5",
     "@refinedev/cli": "^2.16.27",
     "@refinedev/core": "^4.48.0",

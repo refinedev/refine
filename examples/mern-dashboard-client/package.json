@@ -7,7 +7,7 @@
     "dev": "cross-env DISABLE_ESLINT_PLUGIN=true refine start",
     "eject": "react-scripts eject",
     "refine": "refine",
-    "test": "react-scripts test"
+    "test": "craco test"
   },
   "browserslist": {
     "production": [
@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.3",

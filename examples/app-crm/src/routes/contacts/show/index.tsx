@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query/dist/interfaces";
+import { GetFields } from "@refinedev/nestjs-query";
 
 import {
   CloseOutlined,
