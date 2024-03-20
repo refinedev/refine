@@ -2,8 +2,10 @@ import { defineConfig } from "tsup";
 import * as fs from "fs";
 import path from "path";
 import copyStaticFiles from "esbuild-copy-static-files";
-import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+
+import { removeTestIdsPlugin } from "../shared/remove-test-ids-plugin";
 import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
+import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
@@ -17,26 +19,7 @@ export default defineConfig({
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [
-    {
-      name: "react-remove-testids",
-      setup(build) {
-        build.onEnd(async (args) => {
-          // data-testid regexp
-          const regexp = /("data-testid":)(.*?)(?:(,)|(}))/gi;
-
-          // output files with `*.js`
-          const jsOutputFiles =
-            args.outputFiles?.filter((el) => el.path.endsWith(".js")) ?? [];
-
-          // replace data-testid in output files
-          for (const jsOutputFile of jsOutputFiles) {
-            const str = new TextDecoder("utf-8").decode(jsOutputFile.contents);
-            const newStr = str.replace(regexp, "$4");
-            jsOutputFile.contents = new TextEncoder().encode(newStr);
-          }
-        });
-      },
-    },
+    removeTestIdsPlugin,
     {
       name: "antd-lib-2-es-module-replacement",
       setup: (build) => {
@@ -82,17 +65,7 @@ export default defineConfig({
       src: "./src/assets/styles/reset.css",
       dest: "./dist/reset.css",
     }),
-    NodeResolvePlugin({
-      extensions: [".js", "ts", "tsx", "jsx"],
-      onResolved: (resolved) => {
-        if (resolved.includes("node_modules")) {
-          return {
-            external: true,
-          };
-        }
-        return resolved;
-      },
-    }),
+    markAsExternalPlugin,
   ],
   loader: {
     ".svg": "dataurl",
