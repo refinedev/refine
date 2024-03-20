@@ -77,7 +77,7 @@
   "dependencies": {
     "@aliemir/react-live": "^4.0.0",
     "@refinedev/core": "^4.48.0",
-    "@tabler/icons": "^1.119.0",
+    "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",

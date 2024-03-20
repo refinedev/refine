@@ -34,7 +34,7 @@
     "@refinedev/react-router-v6": "^4.5.6",
     "@refinedev/react-table": "^5.6.7",
     "@refinedev/simple-rest": "^5.0.3",
-    "@tabler/icons": "^1.119.0",
+    "@tabler/icons-react": "^3.1.0",
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",

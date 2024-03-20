@@ -27,7 +27,7 @@
     "@mantine/hooks": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
     "@refinedev/ui-types": "^1.22.4",
-    "@tabler/icons": "^1.119.0",
+    "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

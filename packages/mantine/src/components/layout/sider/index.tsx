@@ -36,7 +36,7 @@ import {
   IconChevronLeft,
   IconPower,
   IconDashboard,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 import { RefineLayoutSiderProps } from "../types";
 
 import { RefineTitle as DefaultTitle } from "@components";

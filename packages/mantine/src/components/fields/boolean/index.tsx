@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip } from "@mantine/core";
-import { IconX, IconCheck } from "@tabler/icons";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 import { BooleanFieldProps } from "../types";
 

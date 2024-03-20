@@ -559,7 +559,7 @@ Create a new file called `pagination.tsx` under the `components` folder. This fi
 ```tsx title="src/components/pagination/index.tsx"
 import { FC } from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { usePagination } from "@refinedev/chakra-ui";
 
 import { IconButton } from "@chakra-ui/react";
@@ -1254,7 +1254,11 @@ we create a new folder named `components` under the `src` folder. Under that fol
 
 ```tsx title="src/components/ColumnSorter.tsx"
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
+import {
+  IconChevronDown,
+  IconSelector,
+  IconChevronUp,
+} from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
@@ -1371,7 +1375,7 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
-import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({

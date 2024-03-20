@@ -29,7 +29,7 @@ import {
   useMantineTheme,
   Flex,
 } from "@mantine/core";
-import { IconList, IconPower, IconDashboard } from "@tabler/icons";
+import { IconList, IconPower, IconDashboard } from "@tabler/icons-react";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
