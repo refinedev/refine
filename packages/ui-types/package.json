@@ -24,6 +24,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
+    "publint": "publint --strict=true --level=suggestion",
     "test": "echo \"no tests\"",
     "types": "node ../shared/generate-declarations.js"
   },

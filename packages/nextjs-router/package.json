@@ -44,11 +44,11 @@
     },
     "./parse-table-params": {
       "import": {
-        "types": "./dist/parse-table-params/index.d.mts",
+        "types": "./dist/common/parse-table-params.d.mts",
         "default": "./dist/parse-table-params.mjs"
       },
       "require": {
-        "types": "./dist/parse-table-params/index.d.cts",
+        "types": "./dist/common/parse-table-params.d.cts",
         "default": "./dist/parse-table-params.cjs"
       }
     }
@@ -80,6 +80,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
+    "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
