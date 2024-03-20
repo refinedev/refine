@@ -5,9 +5,9 @@ title: Tables
 import BaseAntdTableExample from "./example/antd.tsx";
 import BaseTanStackTable from "./example/tanstack-table";
 import BaseCoreExample from "./example/core";
-import BaseMaterialUiTable from "./example/material-ui";
+import BaseMaterialUITable from "./example/material-ui";
 import BaseMantineTable from "./example/mantine";
-import BaseChakraUi from "./example/chakra-ui";
+import BaseChakraUITable from "./example/chakra-ui";
 import SearchAntdTableExample from "./example/search-antd.tsx";
 import SearchMaterialUI from "./example/search-material-ui.tsx";
 import Relationship from "./example/relationship";
@@ -57,7 +57,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <TabItem value="material-ui" label="Material UI">
 
-<BaseMaterialUiTable />
+<BaseMaterialUITable />
 
 [Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/material-ui/hooks/use-data-grid)
 
@@ -73,7 +73,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">TanStack Table</small></span>)}>
 
-<BaseChakraUi />
+<BaseChakraUITable />
 
 [Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages#installation)
 
