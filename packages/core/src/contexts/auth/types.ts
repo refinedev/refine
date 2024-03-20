@@ -71,9 +71,7 @@ export type AuthProvider = {
   register?: (params: any) => Promise<AuthActionResponse>;
   forgotPassword?: (params: any) => Promise<AuthActionResponse>;
   updatePassword?: (params: any) => Promise<AuthActionResponse>;
-  getPermissions?: (
-    params?: Record<string, any>,
-  ) => Promise<PermissionResponse>;
+  getPermissions?: (params?: Record<string, any>) => Promise<any>;
   getIdentity?: (params?: any) => Promise<IdentityResponse>;
 };
 

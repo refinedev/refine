@@ -160,13 +160,12 @@ export const mockLegacyRouterProvider = () => {
 };
 
 export const mockLegacyAuthProvider: LegacyAuthProvider = {
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-  checkError: () => Promise.resolve(),
-  checkAuth: () => Promise.resolve(),
-  getPermissions: () => Promise.resolve(["admin"]),
-  getUserIdentity: () =>
-    Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
+  login: async () => {},
+  logout: async () => {},
+  checkError: async () => {},
+  checkAuth: async () => {},
+  getPermissions: async () => ["admin"],
+  getUserIdentity: async () => ({ name: "John Doe", avatar: "localhost:3000" }),
 };
 
 export const mockAuthProvider: AuthProvider = {
