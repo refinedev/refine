@@ -19,7 +19,7 @@ jobs:
       - name: lint
         run: |
           npm ci
-          npm run lint:ci -- --changed --no-errors-on-unmatched
+          npm run lint:ci
   build:
     runs-on: ubuntu-latest
     concurrency:
