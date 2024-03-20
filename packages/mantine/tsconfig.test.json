@@ -4,6 +4,6 @@
   "compilerOptions": {
     "rootDir": ".",
     "types": ["jest"],
-    "typeRoots": ["../../node_modules/@types"]
+    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"]
   }
 }

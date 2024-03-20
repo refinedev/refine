@@ -1,6 +1,6 @@
-import { DataProvider } from "@refinedev/core";
+import type { DataProvider } from "@refinedev/core";
 import Airtable from "airtable";
-import { AirtableBase } from "airtable/lib/airtable_base";
+import type { AirtableBase } from "airtable/lib/airtable_base";
 import { generateSort, generateFilter } from "./utils";
 
 export const dataProvider = (
@@ -58,7 +58,7 @@ export const dataProvider = (
     },
 
     create: async ({ resource, variables }) => {
-      const { id, fields } = await base(resource).create(variables);
+      const { id, fields } = await (base(resource) as any).create(variables);
 
       return {
         data: {
@@ -69,7 +69,7 @@ export const dataProvider = (
     },
 
     createMany: async ({ resource, variables }) => {
-      const data = await base(resource).create(variables);
+      const data = await base(resource).create(variables as any);
 
       return {
         data: data.map((p) => ({
@@ -80,7 +80,10 @@ export const dataProvider = (
     },
 
     update: async ({ resource, id, variables }) => {
-      const { fields } = await base(resource).update(id.toString(), variables);
+      const { fields } = await (base(resource) as any).update(
+        id.toString(),
+        variables,
+      );
 
       return {
         data: {
@@ -95,7 +98,7 @@ export const dataProvider = (
         id: id.toString(),
         fields: { ...variables },
       }));
-      const data = await base(resource).update(requestParams);
+      const data = await base(resource).update(requestParams as any);
 
       return {
         data: data.map((p) => ({
