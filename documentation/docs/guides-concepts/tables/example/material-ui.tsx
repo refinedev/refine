@@ -10,6 +10,7 @@ export default function BaseMaterialUI() {
         "@refinedev/mui": "latest",
         "@mui/x-data-grid": "latest",
         "@mui/material": "latest",
+        "@mui/system": "latest",
       }}
       startRoute="/"
       files={{
