@@ -4,6 +4,7 @@ import { removeTestIdsPlugin } from "../shared/remove-test-ids-plugin";
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 import { tablerCjsReplacePlugin } from "../shared/tabler-cjs-replace-plugin";
+import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
 
 export default defineConfig({
   entry: ["src/index.tsx"],
@@ -16,6 +17,7 @@ export default defineConfig({
   platform: "browser",
   esbuildPlugins: [
     tablerCjsReplacePlugin,
+    dayJsEsmReplacePlugin,
     removeTestIdsPlugin,
     lodashReplacePlugin,
     markAsExternalPlugin,

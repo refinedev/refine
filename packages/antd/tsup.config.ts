@@ -3,6 +3,7 @@ import * as fs from "fs";
 import path from "path";
 import copyStaticFiles from "esbuild-copy-static-files";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
 
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
@@ -76,6 +77,7 @@ export default defineConfig({
         }
       },
     },
+    dayJsEsmReplacePlugin,
     copyStaticFiles({
       src: "./src/assets/styles/reset.css",
       dest: "./dist/reset.css",

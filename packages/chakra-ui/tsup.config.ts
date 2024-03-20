@@ -3,6 +3,7 @@ import { defineConfig } from "tsup";
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 import { removeTestIdsPlugin } from "../shared/remove-test-ids-plugin";
 import { tablerCjsReplacePlugin } from "../shared/tabler-cjs-replace-plugin";
+import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
 
 export default defineConfig({
   entry: ["src/index.tsx"],
@@ -16,6 +17,7 @@ export default defineConfig({
   esbuildPlugins: [
     markAsExternalPlugin,
     tablerCjsReplacePlugin,
+    dayJsEsmReplacePlugin,
     removeTestIdsPlugin,
   ],
   loader: {
