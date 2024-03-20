@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function NotificationMui() {
+export default function NotificationMantine() {
   return (
     <Sandpack
       height={460}
