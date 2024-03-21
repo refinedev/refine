@@ -238,6 +238,40 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
+## Editing
+
+The hook can further extend editing provided in [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component. To enable column editing, set `editable: "true"` on specific column definition.
+
+`useDataGrid` will utilize `processRowUpdate` from `<DataGrid>` component, which in turn will call [`useForm`](https://refine.dev/docs/data/hooks/use-form/) to attempt updating the row with the new value.
+
+```tsx
+const columns = React.useMemo<GridColDef<IPost>[]>(
+  () => [
+    {
+      field: "title",
+      headerName: "Title",
+      minWidth: 400,
+      flex: 1,
+      editable: true,
+    },
+  ],
+  [],
+);
+```
+
+Properties from [`useForm`](https://refine.dev/docs/data/hooks/use-form/), with exception of `autoSave`, `action` and `redirect`, are available in `useDataGrid`.
+
+The hook returns `onFinish`, `setId`, `id` and `formLoading` from `useForm`, which can be used to extend functionality.
+
+```tsx
+const {
+  dataGridProps,
+  formProps: { onFinish, setId, id, formLoading },
+} = useDataGrid<IPost>();
+```
+
+By default, the `onCellEditStart` and `onRowEditStart` callbacks from `<DataGrid>` will set the `id` on the form, and `processRowUpdate` will call `onFinish`.
+
 ## Properties
 
 ### resource
@@ -606,6 +640,18 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
+### formProps
+
+All properties from [`useForm`](https://refine.dev/docs/data/hooks/use-form/) are available in `useDataGrid` with exception of `autoSave`, `redirect` and `action`.
+
+```tsx
+useDataGrid({
+  formProps: {
+    resource: "posts",
+  },
+});
+```
+
 ### ~~initialCurrent~~ <PropTag deprecated />
 
 Use `pagination.current` instead.
@@ -804,6 +850,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
 
+### formProps
+
+`onFinish`, `setId`, `id` and `formLoading` from [`useForm`](https://refine.dev/docs/data/hooks/use-form/) are returned by `useDataGrid`.
+
 ### ~~sorter~~ <PropTag deprecated />
 
 Use `sorters` instead.
@@ -844,25 +894,6 @@ useDataGrid({
 });
 ```
 
-### How can I make Data Grid editable?
-
-You can make any column editable by setting `editable: "true"` in its column definition. `useDataGrid` will utilize `processRowUpdate` from [`Material UI <DataGrid> component`](https://mui.com/x/react-data-grid/editing/) to attempt updating the row with the new value.
-
-```tsx
-const columns = React.useMemo<GridColDef<IPost>[]>(
-  () => [
-    {
-      field: "title",
-      headerName: "Title",
-      minWidth: 400,
-      flex: 1,
-      editable: true,
-    },
-  ],
-  [],
-);
-```
-
 ## API
 
 ### Properties
@@ -899,6 +930,7 @@ const columns = React.useMemo<GridColDef<IPost>[]>(
 | setFilters                    | A function that accepts a new filter state                                                         | `(filters: CrudFilters) => void`                                                     |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                            | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
 | overtime                      | Overtime loading props                                                                             | `{ elapsedTime?: number }`                                                           |
+| formProps                     | Values returned by useForm, used for editing                                                       | [`Pick<UseFormReturnType, "onFinish"`\|`"setId"`\|`"id"`\|`"formLoading">`][useform] |
 
 > **DataGridProps**
 >
@@ -929,3 +961,4 @@ const columns = React.useMemo<GridColDef<IPost>[]>(
 [Refine swl]: /docs/core/refine-component#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
 [notification-provider]: /docs/notification/notification-provider
+[useform]: /docs/data/hooks/use-form/
