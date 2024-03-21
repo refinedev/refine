@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parse, ParseConfig } from "papaparse";
+import papaparse from "papaparse";
 import chunk from "lodash/chunk";
 
 import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
@@ -58,7 +58,7 @@ export type ImportOptions<
    * Custom Papa Parse options.
    * @type [`ParseConfig`](https://www.papaparse.com/docs)
    */
-  paparseOptions?: ParseConfig;
+  paparseOptions?: papaparse.ParseConfig;
   /**
    * Requests batch size. If it is 1, all records are sent one by one. By default, it is [`Number.MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) to send all records in one batch. If it is more than 1, `createMany` should be implemented on DataProvider.
    */
@@ -205,7 +205,7 @@ export const useImport = <
     handleCleanup();
     return new Promise<CreatedValuesType<TVariables, TData>[]>((resolve) => {
       setIsLoading(true);
-      parse(file as any, {
+      papaparse.parse(file as any, {
         complete: async ({ data }: { data: unknown[][] }) => {
           const values = importCSVMapper(data, mapData);
 

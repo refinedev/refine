@@ -1,31 +1,31 @@
 <script>
-	import Button from '@smui/button';
-	/** @type {import('./$types').PageData} */
-	export let data;
-	import Textfield from '@smui/textfield';
-	import HelperText from '@smui/textfield/helper-text';
-	import Card, { Content } from '@smui/card';
-	import CharacterCounter from '@smui/textfield/character-counter';
-	import { goto } from '$app/navigation';
-	let valueA = data.title;
-	let value = data.content;
+import Button from "@smui/button";
+/** @type {import('./$types').PageData} */
+export let data;
+import Textfield from "@smui/textfield";
+import HelperText from "@smui/textfield/helper-text";
+import Card, { Content } from "@smui/card";
+import CharacterCounter from "@smui/textfield/character-counter";
+import { goto } from "$app/navigation";
+const valueA = data.title;
+const value = data.content;
 
-	async function editPost() {
-		const res = await fetch(`https://api.fake-rest.refine.dev/posts/${data.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				title: valueA,
-				content: value
-			})
-		}).then((res) => {
-			res.json();
+async function editPost() {
+  const res = await fetch(`https://api.fake-rest.refine.dev/posts/${data.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: valueA,
+      content: value,
+    }),
+  }).then((res) => {
+    res.json();
 
-			goto('/');
-		});
-	}
+    goto("/");
+  });
+}
 </script>
 
 <div class="card-display">

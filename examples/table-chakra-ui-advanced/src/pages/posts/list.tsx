@@ -34,7 +34,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useForm } from "@refinedev/react-hook-form";
-import { IconChevronDown, IconChevronRight } from "@tabler/icons";
+import { IconChevronDown, IconChevronRight } from "@tabler/icons-react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";

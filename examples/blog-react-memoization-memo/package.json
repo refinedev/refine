@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cross-env DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build": "cross-env DISABLE_ESLINT_PLUGIN=true craco build",
     "eject": "react-scripts eject",
-    "refine": "refine",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
+    "start": "craco start",
+    "test": "craco test"
   },
   "browserslist": {
     "production": [
@@ -22,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
