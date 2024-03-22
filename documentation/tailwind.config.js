@@ -80,6 +80,7 @@ module.exports = {
           "react-3": "#E3E4E5",
           "react-4": "#99A1B3",
           "react-5": "#667084",
+          "react-6": "#444955",
           "react-7": "#343A46",
           "react-8": "#23272F",
         },

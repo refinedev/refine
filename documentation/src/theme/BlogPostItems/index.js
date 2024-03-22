@@ -32,8 +32,12 @@ export default function BlogPostItems({
           <>
             <div
               className={clsx(
-                "flex flex-col blog-md:flex-row items-start lg:items-center justify-between",
+                "flex flex-row blog-lg:flex-col justify-between",
+                "items-center blog-lg:items-start",
                 "not-prose",
+                "px-6",
+                "mb-6 blog-lg:mb-12",
+                "gap-6",
               )}
             >
               <h2
@@ -43,12 +47,13 @@ export default function BlogPostItems({
                   "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
                   "text-refine-react-8 dark:text-refine-react-3",
                   "font-semibold",
+                  "whitespace-nowrap",
                 )}
               >
                 All Posts
               </h2>
+              <TagsList tags={tags} />
             </div>
-            <TagsList tags={tags} className={clsx("mt-6 mb-12")} />
           </>
         )}
 

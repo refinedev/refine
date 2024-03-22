@@ -28,6 +28,7 @@ export const FeaturedBlogPostItems = ({ items }) => {
         <h2
           className={clsx(
             "m-0 p-0",
+            "px-6",
             "mb-6 blog-lg:mb-12",
             "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
             "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",

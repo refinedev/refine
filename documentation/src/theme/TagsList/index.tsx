@@ -4,6 +4,8 @@ import { titleCase } from "title-case";
 import clsx from "clsx";
 import { Disclosure, Transition } from "@headlessui/react";
 import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
+import { FilterIcon } from "@site/src/refine-theme/icons/filter";
+import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
 
 export default function TagsList({ tags, className }) {
   const [collapsed, setCollapsed] = React.useState(true);
@@ -34,10 +36,13 @@ export default function TagsList({ tags, className }) {
       <Desktop
         collapsed={collapsed}
         tags={sortedTags}
-        className={className}
+        className={clsx("hidden blog-lg:flex", className)}
         onShowMoreClick={(collapsed) => setCollapsed(collapsed)}
       />
-      <Mobile tags={sortedTags} className={className} />
+      <Mobile
+        tags={sortedTags}
+        className={clsx("block blog-lg:hidden", className)}
+      />
     </>
   );
 }
@@ -56,7 +61,6 @@ const Desktop = ({
   return (
     <div
       className={clsx(
-        "hidden blog-lg:flex",
         "bg-refine-react-1 dark:bg-refine-react-dark-code",
         "justify-between",
         "items-start",
@@ -125,73 +129,55 @@ const Desktop = ({
 };
 
 const Mobile = ({ tags, className }: { tags: any; className?: string }) => {
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = React.useState(false);
+
   return (
-    <div className={clsx("mb-10 block w-full  blog-lg:hidden", className)}>
-      <Disclosure>
-        {({ open }) => (
-          <div
-            className={clsx(
-              "rounded-3xl",
-              "bg-refine-react-1 dark:bg-refine-react-dark-code",
-            )}
-          >
-            <Disclosure.Button
-              className={clsx(
-                "bg-refine-react-1 dark:bg-refine-react-dark-code",
-                "rounded-full",
-                "w-full",
-                "flex items-center gap-3",
-                "px-2 py-2",
-              )}
-            >
-              <TriangleDownIcon
-                className={clsx(
-                  "h-5 w-5",
-                  "text-gray-400 dark:text-gray-500",
-                  "transition-transform duration-200 ease-in-out",
-                  {
-                    "-rotate-90 transform": !open,
-                  },
-                )}
+    <>
+      <div className={clsx(className)}>
+        <button
+          type="button"
+          onClick={() => setIsFilterDrawerOpen(true)}
+          className={clsx(
+            "flex",
+            "items-center",
+            "justify-center",
+            "gap-2",
+            "rounded-full",
+            "px-6 py-3",
+            "bg-refine-react-3 dark:bg-refine-react-6",
+            "text-refine-react-8 dark:text-white",
+          )}
+        >
+          <FilterIcon />
+          <div>Filter Tags</div>
+        </button>
+      </div>
+      <CommonDrawer
+        onClose={() => setIsFilterDrawerOpen(false)}
+        open={isFilterDrawerOpen}
+        title="Filter Tags"
+        variant="blog"
+      >
+        <ul
+          className={clsx("overflow-hidden", "flex", "flex-col", "gap-6")}
+          style={{
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {tags.map((tag) => (
+            <li className={clsx("flex")} key={tag.permalink}>
+              <Tag
+                {...tag}
+                label={mapLabel(tag.label)}
+                variant="inverted"
+                size="medium"
               />
-              <span
-                className={clsx("text-sm", "dark:text-gray-0 text-gray-900")}
-              >
-                Blog Post Tags
-              </span>
-            </Disclosure.Button>
-            <Transition
-              show={open}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Disclosure.Panel className="h-[200px] overflow-auto p-2 sm:h-[232px] sm:p-6">
-                <ul
-                  className={clsx("overflow-hidden", "flex-1")}
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                  }}
-                >
-                  {tags.map((tag) => (
-                    <li
-                      className={clsx("inline-flex", "m-1")}
-                      key={tag.permalink}
-                    >
-                      <Tag {...tag} label={mapLabel(tag.label)} />
-                    </li>
-                  ))}
-                </ul>
-              </Disclosure.Panel>
-            </Transition>
-          </div>
-        )}
-      </Disclosure>
-    </div>
+            </li>
+          ))}
+        </ul>
+      </CommonDrawer>
+    </>
   );
 };
 
