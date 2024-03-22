@@ -99,7 +99,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     [],
   );
 
-  const { edit, show, create } = useNavigation();
+  const { create } = useNavigation();
 
   const tableProps = useTable({
     columns,
