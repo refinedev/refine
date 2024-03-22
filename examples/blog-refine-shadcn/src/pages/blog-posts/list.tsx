@@ -29,6 +29,8 @@ interface IBlogPost {
 }
 
 export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+  const { create, edit, show } = useNavigation();
+
   const columns = React.useMemo<ColumnDef<IBlogPost>[]>(
     () => [
       {
@@ -98,8 +100,6 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     ],
     [],
   );
-
-  const { create } = useNavigation();
 
   const tableProps = useTable({
     columns,
