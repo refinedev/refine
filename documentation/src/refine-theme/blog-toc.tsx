@@ -30,10 +30,11 @@ export const BlogTOC = (props) => {
         "pt-4 blog-lg:pt-8",
         "border-l dark:border-l-gray-700 border-l-gray-100",
         !hasTOC && "invisible",
+        "not-prose",
       )}
     >
       <Tags />
-      <ul className="list-none m-0 p-0 pt-10 mt-1">
+      <ul className="list-none m-0 p-0 pt-10 mt-1 not-prose">
         {toc.map((item) => {
           return (
             <li key={item.id}>
@@ -103,6 +104,10 @@ export const BlogTOCItem = ({
         activeId === id &&
           "text-refine-react-light-link dark:text-refine-react-dark-link",
         activeId !== id && "text-refine-react-8 dark:text-refine-react-3",
+        activeId !== id &&
+          "hover:bg-refine-blue-2-light/40 hover:dark:bg-refine-blue-2/5",
+        activeId !== id &&
+          "hover:text-refine-react-light-link hover:dark:text-refine-react-dark-link",
         "rounded-full",
         "transition-colors duration-200 ease-in-out",
         "block",
