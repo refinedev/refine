@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { ChevronLeft, ListIcon } from "lucide-react";
+import { Category } from "../../interfaces";
 
 export const CategoryCreate: React.FC = () => {
   const { list } = useNavigation();
@@ -14,7 +15,7 @@ export const CategoryCreate: React.FC = () => {
   const {
     refineCore: { onFinish },
     ...form
-  } = useForm({});
+  } = useForm<Category>({});
 
   const {
     register,
@@ -55,7 +56,7 @@ export const CategoryCreate: React.FC = () => {
                 })}
               />
               <FormMessage className="text-destructive">
-                {(errors as any)?.title?.message as string}
+                {errors?.title?.message as string}
               </FormMessage>
             </FormItem>
             <div className="mt-4">
