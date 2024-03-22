@@ -14,7 +14,7 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
   const {
     refineCore: { onFinish },
     ...form
-  } = useForm({});
+  } = useForm();
 
   const {
     formState: { errors },
