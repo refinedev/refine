@@ -20,16 +20,13 @@ export const dataProvider = (
     defaultWritePermissions: [],
   },
 ): Required<DataProvider> => {
-  const { databaseId } = options;
+  const {
+    databaseId,
+    defaultReadPermissions = [],
+    defaultWritePermissions = [],
+  } = options;
 
   const database = new Databases(appwriteClient);
-
-  const defaultReadPermissions = options.defaultReadPermissions ?? [
-    Permission.read(Role.any()),
-  ];
-  const defaultWritePermissions = options.defaultWritePermissions ?? [
-    Permission.write(Role.any()),
-  ];
 
   return {
     getList: async ({ resource, pagination, filters, sorters }) => {
