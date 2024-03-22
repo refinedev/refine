@@ -6,51 +6,63 @@ import clsx from "clsx";
 import { BannerSidebar } from "../components/banner/banner-sidebar";
 import { BannerModal } from "../components/banner/banner-modal";
 import useScrollTracker from "../hooks/use-scroll-tracker";
+import { BlogHero } from "./blog-hero";
 
 type Props = {
   showSidebarBanner?: boolean;
+  showHero?: boolean;
 } & Record<string, any>;
 
 export const RefineBlogLayout = (props: Props) => {
-  const [shouldShowBanner, setShouldShowBanner] = useState(false);
+  const [shouldShowBanner, setShouldShowBanner] = useState(true);
   const { children, toc, showSidebarBanner = true, ...layoutProps } = props;
 
   const tracker = useScrollTracker();
 
-  useEffect(() => {
-    if (!showSidebarBanner) return;
+  // useEffect(() => {
+  //   if (!showSidebarBanner) return;
 
-    if (tracker.scrollY > 20) {
-      setShouldShowBanner(true);
-    }
+  //   if (tracker.scrollY > 20) {
+  //     setShouldShowBanner(true);
+  //   }
 
-    if (tracker.scrollY < 20) {
-      setShouldShowBanner(false);
-    }
-  }, [tracker.scrollY, showSidebarBanner]);
+  //   if (tracker.scrollY < 20) {
+  //     setShouldShowBanner(false);
+  //   }
+  // }, [tracker.scrollY, showSidebarBanner]);
 
   return (
-    <CommonLayout {...layoutProps}>
+    <CommonLayout
+      {...layoutProps}
+      className={clsx("bg-white dark:bg-refine-react-8")}
+    >
       {/* If there's TOC, then we can say that this is a blog post page. */}
       {/* Then we can pass `trackProgress` prop to the header. */}
-      <CommonHeader hasSticky={true} trackProgress={!!toc} />
+      <CommonHeader
+        hasSticky={true}
+        trackProgress={!!toc}
+        className={clsx(
+          "!bg-white dark:!bg-refine-react-8",
+          "!bg-opacity-100 dark:!bg-opacity-100",
+        )}
+      />
+      {props.showHero && <BlogHero />}
       <div
         className={clsx(
           "flex",
+          "gap-12",
           "justify-center",
           "mx-auto",
-          "max-w-screen-blog-max",
           "w-full",
+          "relative",
         )}
       >
         {showSidebarBanner && (
           <div
             className={clsx(
               "relative",
-              "w-[264px]",
-              "pl-4",
               "py-10 blog-sm:py-12 blog-md:py-16",
-              "hidden xl:block",
+              "hidden blog-2xl:block",
               shouldShowBanner && "opacity-100",
               !shouldShowBanner && "opacity-0",
               "transition-opacity duration-300 ease-in-out",
@@ -62,21 +74,19 @@ export const RefineBlogLayout = (props: Props) => {
                 "w-[264px]",
                 "z-[1]",
                 "top-32",
-                "left-0",
+                "ml-auto",
               )}
             >
               <BannerSidebar shouldShowBanner={shouldShowBanner} />
             </div>
           </div>
         )}
-        <div className={clsx("refine-prose", "flex-1", "min-w-0", "xl:px-8")}>
-          {children}
-        </div>
+        <div className={clsx("refine-prose")}>{children}</div>
         {toc && (
           <div
             className={clsx(
               "w-[280px]",
-              "hidden blog-md:block",
+              "hidden blog-max:block",
               "flex-shrink-0",
             )}
           >
@@ -84,7 +94,7 @@ export const RefineBlogLayout = (props: Props) => {
           </div>
         )}
       </div>
-      <BlogFooter />
+      <BlogFooter variant="blog" />
       <BannerModal />
     </CommonLayout>
   );

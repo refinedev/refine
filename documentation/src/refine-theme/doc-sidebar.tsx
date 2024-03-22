@@ -153,7 +153,6 @@ const SidebarCategory = ({
           !isHeader && "text-gray-400 dark:text-gray-300",
           isHeader && "text-gray-500 dark:text-gray-400",
           isHeader && "font-semibold",
-
           !isHeader && "hover:text-gray-600 dark:hover:text-gray-300",
           "font-normal",
           "flex items-center",

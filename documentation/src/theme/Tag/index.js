@@ -9,13 +9,13 @@ export default function Tag({ permalink, label, isActive }) {
       className={clsx(
         "no-underline hover:no-underline",
         "text-xs",
+        "rounded-full",
+        "py-1",
+        "px-3",
         !isActive && "bg-gray-100 dark:bg-gray-700",
         !isActive && "text-gray-600 dark:text-gray-400",
-        "rounded",
-        "py-1",
-        "px-2",
-        isActive && "bg-gray-200 text-gray-500",
-        isActive && "dark-bg-gray-700 text-gray-300",
+        "text-refine-react-8 dark:text-refine-react-3",
+        "bg-refine-react-3 dark:bg-refine-react-7",
       )}
     >
       {label}

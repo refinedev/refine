@@ -17,9 +17,10 @@ import { LandingGithubStarButton } from "./landing-github-star-button";
 type Props = {
   hasSticky?: boolean;
   trackProgress?: boolean;
+  className?: string;
 };
 
-export const CommonHeader = ({ trackProgress }: Props) => {
+export const CommonHeader = ({ trackProgress, className }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
@@ -43,6 +44,7 @@ export const CommonHeader = ({ trackProgress }: Props) => {
             "bg-gray-0 dark:bg-gray-900",
             "bg-opacity-80 dark:bg-opacity-80",
             "pointer-events-none",
+            className,
           )}
           style={{
             top: "-20px",
@@ -117,9 +119,19 @@ export const CommonHeader = ({ trackProgress }: Props) => {
           </div>
         </div>
         {trackProgress && (
-          <div className={clsx("w-full", "h-0.5", "translate")}>
+          <div
+            className={clsx(
+              "w-full",
+              "h-[1px]",
+              "translate",
+              "bg-refine-react-3 dark:bg-refine-react-7",
+            )}
+          >
             <motion.div
-              className={clsx("h-full", "bg-refine-blue")}
+              className={clsx(
+                "h-full",
+                "bg-refine-react-light-link dark:bg-refine-react-dark-link",
+              )}
               style={{ width: progressPercentage }}
             />
           </div>

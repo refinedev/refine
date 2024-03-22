@@ -75,6 +75,13 @@ module.exports = {
           "walkthrough-button-alt-bg": "#474E6B",
           "enterprise-table-alt-dark": "#1D1E30",
           "enterprise-table-alt": "#F4F8FB",
+          "react-1": "#F6F7F9",
+          "react-2": "#EAEBEF",
+          "react-3": "#E3E4E5",
+          "react-4": "#99A1B3",
+          "react-5": "#667084",
+          "react-7": "#343A46",
+          "react-8": "#23272F",
         },
         gray: {
           0: "rgb(var(--color-gray-0) / <alpha-value>)",
@@ -389,8 +396,14 @@ module.exports = {
         ],
         "landing-hero-beam-bg":
           "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
-        "footer-dark-bg": [
+        "footer-landing-dark-bg": [
           "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
+        ],
+        "footer-blog-dark-bg": [
+          "linear-gradient(180deg, rgba(52, 58, 70, 0) 0%, rgba(52, 58, 70, 0.5) 100%)",
+        ],
+        "footer-blog-light-bg": [
+          "linear-gradient(180deg, #F6F7F9 0%, rgba(246, 247, 249, 0) 100%)",
         ],
         "landing-wizard-side-bg": [
           "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.38) 50%, rgba(48, 52, 80, 0.00) 100%)",
@@ -878,12 +891,12 @@ module.exports = {
       "tutorial-md": "960px",
       "tutorial-lg": "1440px",
       "landing-footer": "1264px",
-      "blog-sm": "688px",
-      "blog-md": "1000px",
-      "blog-lg": "1280px",
-      "blog-max": "1408px",
+      "blog-sm": "592px",
+      "blog-md": "720px",
+      "blog-lg": "960px",
+      "blog-max": "1296px",
       "blog-xl": "1440px",
-      "blog-2xl": "1584px",
+      "blog-2xl": "1600px",
       walkthrough: "976px",
       "doc-form-lg": "824px",
       "doc-form-md": "688px",

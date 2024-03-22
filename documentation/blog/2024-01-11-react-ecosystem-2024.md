@@ -6,6 +6,7 @@ authors: chidume_nnamdi
 tags: [comparison, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-11-react-ecosystem-2024/social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 ### Introduction

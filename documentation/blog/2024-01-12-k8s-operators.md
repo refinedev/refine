@@ -6,6 +6,7 @@ authors: muhammad_khabbab
 tags: [kubernetes, docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 ## Introduction
@@ -256,6 +257,28 @@ See the below screenshot when I executed this command on my Ubuntu.
 <div className="centered-image">
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/image5.png" alt="Running operator" />
 </div>
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+
+export const App = () => {
+  return (
+    <Refine
+      resources={[
+        {
+          name: "products",
+          list: "/my-products",
+          show: "/my-products/:id",
+          edit: "/my-products/:id/edit",
+          create: "/my-products/new",
+        },
+      ]}
+    >
+      {/* ... */}
+    </Refine>
+  );
+};
+```
 
 3- The last step is to apply a custom resource (CR) YAML file to the cluster using `kubectl apply -f`, It creates an instance of a custom resource defined by your operator. In other words, you are telling Kubernetes to create a specific type of resource that your operator is designed to manage. This is how you request your operator to perform a certain task or provide a specific service.
 
