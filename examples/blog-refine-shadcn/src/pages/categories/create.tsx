@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 import { ChevronLeft, ListIcon } from "lucide-react";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate: React.FC = () => {
   const { list } = useNavigation();
 
   const {
