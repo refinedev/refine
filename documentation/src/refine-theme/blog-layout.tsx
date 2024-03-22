@@ -14,22 +14,22 @@ type Props = {
 } & Record<string, any>;
 
 export const RefineBlogLayout = (props: Props) => {
-  const [shouldShowBanner, setShouldShowBanner] = useState(true);
+  const [shouldShowBanner, setShouldShowBanner] = useState(false);
   const { children, toc, showSidebarBanner = true, ...layoutProps } = props;
 
   const tracker = useScrollTracker();
 
-  // useEffect(() => {
-  //   if (!showSidebarBanner) return;
+  useEffect(() => {
+    if (!showSidebarBanner) return;
 
-  //   if (tracker.scrollY > 20) {
-  //     setShouldShowBanner(true);
-  //   }
+    if (tracker.scrollY > 20) {
+      setShouldShowBanner(true);
+    }
 
-  //   if (tracker.scrollY < 20) {
-  //     setShouldShowBanner(false);
-  //   }
-  // }, [tracker.scrollY, showSidebarBanner]);
+    if (tracker.scrollY < 20) {
+      setShouldShowBanner(false);
+    }
+  }, [tracker.scrollY, showSidebarBanner]);
 
   return (
     <CommonLayout
