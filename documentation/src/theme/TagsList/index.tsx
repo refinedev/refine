@@ -75,7 +75,7 @@ const Desktop = ({
         className={clsx(
           "overflow-hidden",
           "flex-1",
-          !collapsed && "h-28",
+          !collapsed && "h-24",
           collapsed && "h-8",
           "m-0 p-0",
           "mr-16",

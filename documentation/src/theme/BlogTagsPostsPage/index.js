@@ -94,7 +94,12 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
           <h1 className="!mb-0">{tag.label}</h1>
         </div>
         <BlogPostItems items={items} showTitle={false} isTagsPage={true} />
-        <div className="blog-md:border-t border-t-gray-200 dark:border-t-gray-700">
+        <div
+          className={clsx(
+            listMetadata.totalPages > 1 &&
+              "blog-md:border-t border-t-gray-200 dark:border-t-gray-700",
+          )}
+        >
           <BlogListPaginator
             metadata={listMetadata}
             basePath={`/blog/tags/${tag.label}`}
