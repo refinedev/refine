@@ -12,13 +12,13 @@ import {
   RefineSaveButtonProps,
   RefineShowButtonProps,
 } from "@refinedev/ui-types";
-import { TablerIconProps } from "@tabler/icons";
+import { IconProps } from "@tabler/icons-react";
 
 export type ShowButtonProps = Omit<
   RefineShowButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"
@@ -27,14 +27,14 @@ export type ShowButtonProps = Omit<
 export type SaveButtonProps = RefineSaveButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
@@ -42,7 +42,7 @@ export type ListButtonProps = Omit<
   RefineListButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"
@@ -52,14 +52,14 @@ export type ImportButtonProps = RefineImportButtonProps<
   ButtonProps,
   {
     inputProps: UseImportInputPropsType;
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
@@ -67,7 +67,7 @@ export type EditButtonProps = Omit<
   RefineEditButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"
@@ -77,7 +77,7 @@ export type DeleteButtonProps = Omit<
   RefineDeleteButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"
@@ -87,7 +87,7 @@ export type CloneButtonProps = Omit<
   RefineCloneButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"
@@ -97,7 +97,7 @@ export type CreateButtonProps = Omit<
   RefineCreateButtonProps<
     ButtonProps,
     {
-      svgIconProps?: TablerIconProps;
+      svgIconProps?: Omit<IconProps, "ref">;
     }
   >,
   "ignoreAccessControlProvider"

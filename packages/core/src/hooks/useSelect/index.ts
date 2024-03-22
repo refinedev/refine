@@ -292,17 +292,15 @@ export const useSelect = <
 
   const defaultQueryOnSuccess = useCallback(
     (data: GetListResponse<TData>) => {
-      {
-        setOptions(
-          data.data.map(
-            (item) =>
-              ({
-                label: getOptionLabel(item),
-                value: getOptionValue(item),
-              }) as TOption,
-          ),
-        );
-      }
+      setOptions(
+        data.data.map(
+          (item) =>
+            ({
+              label: getOptionLabel(item),
+              value: getOptionValue(item),
+            }) as TOption,
+        ),
+      );
     },
     [optionLabel, optionValue],
   );

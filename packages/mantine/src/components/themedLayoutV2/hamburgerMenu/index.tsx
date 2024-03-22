@@ -4,7 +4,7 @@ import {
   IconMenu2,
   IconIndentDecrease,
   IconIndentIncrease,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 import { useThemedLayoutContext } from "@hooks";
 

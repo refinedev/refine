@@ -52,9 +52,7 @@ export type UseResourceSubscriptionProps = {
   meta?: MetaQuery & { dataProviderName?: string };
 } & LiveModeProps;
 
-export type PublishType = {
-  (event: LiveEvent): void;
-};
+export type PublishType = (event: LiveEvent) => void;
 
 export const useResourceSubscription = ({
   resource: resourceFromProp,

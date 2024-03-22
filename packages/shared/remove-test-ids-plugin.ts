@@ -5,11 +5,16 @@ export const removeTestIdsPlugin: Plugin = {
   setup(build) {
     build.onEnd(async (args) => {
       // data-testid regexp
-      const regexp = /("data-testid":)(.*?)(?:(,)|(}))/gi;
+      const regexp = /("data-testid":)(.*?)(?:(,)|(})|(\n))/gi;
 
       // output files with `*.js`
       const jsOutputFiles =
-        args.outputFiles?.filter((el) => el.path.endsWith(".js")) ?? [];
+        args.outputFiles?.filter(
+          (el) =>
+            el.path.endsWith(".cjs") ||
+            el.path.endsWith(".mjs") ||
+            el.path.endsWith(".js"),
+        ) ?? [];
 
       // replace data-testid in output files
       for (const jsOutputFile of jsOutputFiles) {

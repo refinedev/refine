@@ -15,7 +15,7 @@
     "noEmit": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client"]
   },

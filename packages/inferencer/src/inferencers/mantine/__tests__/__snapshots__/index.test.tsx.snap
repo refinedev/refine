@@ -11968,7 +11968,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               type="button"
             >
               <svg
-                class="icon icon-tabler icon-tabler-arrow-left"
+                class="tabler-icon tabler-icon-arrow-left "
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -11980,27 +11980,13 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
+                  d="M5 12l14 0"
                 />
-                <line
-                  x1="5"
-                  x2="19"
-                  y1="12"
-                  y2="12"
+                <path
+                  d="M5 12l6 6"
                 />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="18"
-                />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="6"
+                <path
+                  d="M5 12l6 -6"
                 />
               </svg>
             </button>
@@ -12518,7 +12504,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
             >
               <svg
-                class="icon icon-tabler icon-tabler-device-floppy"
+                class="tabler-icon tabler-icon-device-floppy "
                 fill="none"
                 height="18"
                 stroke="currentColor"
@@ -12530,20 +12516,13 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
-                />
-                <path
                   d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
                 />
-                <circle
-                  cx="12"
-                  cy="14"
-                  r="2"
+                <path
+                  d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"
                 />
-                <polyline
-                  points="14 4 14 8 8 8 8 4"
+                <path
+                  d="M14 4l0 4l-6 0l0 -4"
                 />
               </svg>
             </span>
@@ -17582,7 +17561,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               type="button"
             >
               <svg
-                class="icon icon-tabler icon-tabler-arrow-left"
+                class="tabler-icon tabler-icon-arrow-left "
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -17594,27 +17573,13 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
+                  d="M5 12l14 0"
                 />
-                <line
-                  x1="5"
-                  x2="19"
-                  y1="12"
-                  y2="12"
+                <path
+                  d="M5 12l6 6"
                 />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="18"
-                />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="6"
+                <path
+                  d="M5 12l6 -6"
                 />
               </svg>
             </button>
@@ -17640,7 +17605,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
               >
                 <svg
-                  class="icon icon-tabler icon-tabler-refresh"
+                  class="tabler-icon tabler-icon-refresh "
                   fill="none"
                   height="18"
                   stroke="currentColor"
@@ -17651,11 +17616,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                   width="18"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                    stroke="none"
-                  />
                   <path
                     d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
                   />
@@ -18246,7 +18206,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
             >
               <svg
-                class="icon icon-tabler icon-tabler-device-floppy"
+                class="tabler-icon tabler-icon-device-floppy "
                 fill="none"
                 height="18"
                 stroke="currentColor"
@@ -18258,20 +18218,13 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
-                />
-                <path
                   d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
                 />
-                <circle
-                  cx="12"
-                  cy="14"
-                  r="2"
+                <path
+                  d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"
                 />
-                <polyline
-                  points="14 4 14 8 8 8 8 4"
+                <path
+                  d="M14 4l0 4l-6 0l0 -4"
                 />
               </svg>
             </span>
@@ -23735,7 +23688,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
               type="button"
             >
               <svg
-                class="icon icon-tabler icon-tabler-arrow-left"
+                class="tabler-icon tabler-icon-arrow-left "
                 fill="none"
                 height="24"
                 stroke="currentColor"
@@ -23747,27 +23700,13 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
+                  d="M5 12l14 0"
                 />
-                <line
-                  x1="5"
-                  x2="19"
-                  y1="12"
-                  y2="12"
+                <path
+                  d="M5 12l6 6"
                 />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="18"
-                />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="6"
+                <path
+                  d="M5 12l6 -6"
                 />
               </svg>
             </button>
@@ -23793,7 +23732,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                 class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
               >
                 <svg
-                  class="icon icon-tabler icon-tabler-refresh"
+                  class="tabler-icon tabler-icon-refresh "
                   fill="none"
                   height="18"
                   stroke="currentColor"
@@ -23804,11 +23743,6 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                   width="18"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                    stroke="none"
-                  />
                   <path
                     d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
                   />
