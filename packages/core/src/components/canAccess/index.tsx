@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { useCan, useResource } from "@hooks";
+import { useCan, useResourceParams } from "@hooks";
 import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 import { UseQueryOptions } from "@tanstack/react-query";
 
@@ -67,32 +67,23 @@ export const CanAccess: React.FC<CanAccessProps> = ({
   ...rest
 }) => {
   const {
+    id,
     resource,
-    id: idFromRoute,
-    action: actionFromRoute,
-  } = useResource(resourceFromProp);
-  const { identifier } = useResource();
+    action: fallbackAction = "",
+  } = useResourceParams({
+    resource: resourceFromProp,
+    id: paramsFromProp?.id,
+  });
 
-  const getDefaultId = () => {
-    const idFromPropsOrRoute = paramsFromProp?.id ?? idFromRoute;
+  const action = actionFromProp ?? fallbackAction;
 
-    if (resourceFromProp && resourceFromProp !== identifier) {
-      return paramsFromProp?.id;
-    }
-
-    return idFromPropsOrRoute;
-  };
-  const defaultId = getDefaultId();
-
-  const resourceName = resourceFromProp ?? resource?.name;
-  const action = actionFromProp ?? actionFromRoute ?? "";
   const params = paramsFromProp ?? {
-    id: defaultId,
-    resource: resource,
+    id,
+    resource,
   };
 
   const { data } = useCan({
-    resource: resourceName,
+    resource: resource?.name,
     action,
     params,
     queryOptions: componentQueryOptions,
@@ -101,7 +92,7 @@ export const CanAccess: React.FC<CanAccessProps> = ({
   useEffect(() => {
     if (onUnauthorized && data?.can === false) {
       onUnauthorized({
-        resource: resourceName,
+        resource: resource?.name,
         action,
         reason: data?.reason,
         params,

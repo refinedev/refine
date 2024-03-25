@@ -238,13 +238,12 @@ export const useForm = <
     if (refineCoreProps?.autoSave) {
       setWarnWhen(false);
 
-      const onFinishProps = refineCoreProps.autoSave?.onFinish;
+      const onFinishProps =
+        refineCoreProps.autoSave?.onFinish ?? ((values: TVariables) => values);
 
-      if (onFinishProps) {
-        return onFinishAutoSave(onFinishProps(changeValues));
-      }
-
-      return onFinishAutoSave(changeValues);
+      return onFinishAutoSave(onFinishProps(changeValues)).catch(
+        (error) => error,
+      );
     }
 
     return changeValues;
@@ -259,7 +258,10 @@ export const useForm = <
   const saveButtonProps = {
     disabled: formLoading,
     onClick: (e: React.BaseSyntheticEvent) => {
-      handleSubmit(onFinish, () => false)(e);
+      handleSubmit(
+        (v) => onFinish(v).catch(() => {}),
+        () => false,
+      )(e);
     },
   };
 

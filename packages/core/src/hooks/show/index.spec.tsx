@@ -10,8 +10,9 @@ import {
 import * as useResourceWithRoute from "../resource/useResourceWithRoute";
 import * as pickResource from "../../definitions/helpers/pick-resource";
 
-import { useShow } from "./useShow";
 import { IResourceItem } from "@contexts/resource";
+
+import { useShow } from ".";
 
 const routerProvider = mockRouterBindings({
   action: "show",

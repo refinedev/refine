@@ -16,7 +16,7 @@ import {
   renderUseOne,
 } from "@test/mutation-helpers";
 
-import { useForm } from "./useForm";
+import { useForm } from ".";
 
 import { posts } from "@test/dataMocks";
 import { mockRouterBindings } from "@test";
@@ -56,60 +56,7 @@ const CloneWrapperWithRoute: React.FC<{
 }> = ({ children }) => <CloneWrapper>{children}</CloneWrapper>;
 
 describe("useForm Hook", () => {
-  describe("warn messages", () => {
-    const warnMock = jest.fn();
-    beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(warnMock);
-    });
-    beforeEach(() => {
-      warnMock.mockClear();
-    });
-
-    it("should warn when `resource` is passed and `id` is not", async () => {
-      renderHook(
-        () =>
-          useForm({
-            resource: "posts",
-            action: "edit",
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(warnMock).toBeCalled();
-      });
-    });
-
-    it("should not warn when `resource` is passed and `id` is not, if `queryOption.enabled` is false", async () => {
-      renderHook(
-        () =>
-          useForm({
-            resource: "posts",
-            action: "edit",
-            queryOptions: {
-              enabled: false,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: MockJSONServer,
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(warnMock).not.toBeCalled();
-      });
-    });
-  });
-
-  it("renders with form", async () => {
+  it("mounts without throwing", async () => {
     const { result } = renderHook(() => useForm({ resource: "posts" }), {
       wrapper: SimpleWrapper,
     });
@@ -119,7 +66,7 @@ describe("useForm Hook", () => {
     });
   });
 
-  it("fetches data and puts in the form", async () => {
+  it("fetches data when in edit mode", async () => {
     const { result } = renderHook(() => useForm({ resource: "posts" }), {
       wrapper: EditWrapperWithRoute,
     });
@@ -133,7 +80,7 @@ describe("useForm Hook", () => {
     );
   });
 
-  it("should use the correct meta values when fetching data", async () => {
+  it("uses the correct meta values when fetching data", async () => {
     const getOneMock = jest.fn();
 
     const { result } = renderHook(
@@ -179,7 +126,7 @@ describe("useForm Hook", () => {
     );
   });
 
-  it("correctly render edit form from route", async () => {
+  it("correctly picks up edit props from route", async () => {
     const { result } = renderHook(() => useForm(), {
       wrapper: EditWrapperWithRoute,
     });
@@ -191,7 +138,7 @@ describe("useForm Hook", () => {
     expect(result.current.id).toEqual("1");
   });
 
-  it("correctly return id value from route", async () => {
+  it("correctly reads id value from route", async () => {
     const { result } = renderHook(
       () =>
         useForm({
@@ -209,7 +156,7 @@ describe("useForm Hook", () => {
     expect(result.current.id).toEqual("1");
   });
 
-  it("correctly return id value from props", async () => {
+  it("correctly picks up value from props", async () => {
     const { result } = renderHook(
       () =>
         useForm({
@@ -377,7 +324,7 @@ describe("useForm Hook", () => {
         },
         routerProvider: mockRouterBindings({
           action: "edit",
-          resource: { name: "posts" },
+          resource: { name: "posts", identifier: "recentPosts" },
           id: "1",
           pathname: "/posts/edit/1",
         }),
@@ -476,7 +423,9 @@ describe("useForm Hook", () => {
       }),
     });
 
-    result.current.onFinish({});
+    await act(async () => {
+      await result.current.onFinish({});
+    });
 
     await waitFor(() => {
       expect(updateMock).toBeCalled();
@@ -644,8 +593,10 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({
-        title: "foo",
+      await act(async () => {
+        await result.current.onFinish({
+          title: "foo",
+        });
       });
 
       await waitFor(() => {
@@ -687,7 +638,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({});
+      await act(async () => {
+        await result.current.onFinish({});
+      });
 
       await waitFor(() => {
         expect(createMock).toBeCalled();
@@ -721,8 +674,12 @@ describe("useForm Hook", () => {
         }),
       });
 
-      result.current.onFinish({
-        title: "foo",
+      await act(async () => {
+        await result.current
+          .onFinish({
+            title: "foo",
+          })
+          .catch((err) => {});
       });
 
       await waitFor(() => {
@@ -748,7 +705,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({ title: "foo" });
+      await act(async () => {
+        await result.current.onFinish({ title: "foo" });
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isSuccess).toBeTruthy();
@@ -760,6 +719,7 @@ describe("useForm Hook", () => {
           title: "foo",
         },
         undefined,
+        false,
       );
     });
 
@@ -787,7 +747,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({ title: "foo" });
+      await act(async () => {
+        result.current.onFinish({ title: "foo" }).catch((err) => {});
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isError).toBeTruthy();
@@ -799,6 +761,7 @@ describe("useForm Hook", () => {
           title: "foo",
         },
         undefined,
+        false,
       );
     });
 
@@ -838,7 +801,7 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({
+      const promise = result.current.onFinish({
         title: "foo",
       });
 
@@ -847,6 +810,8 @@ describe("useForm Hook", () => {
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
+
+      await promise;
 
       await waitFor(() => {
         expect(!result.current.mutationResult?.isLoading).toBeTruthy();
@@ -860,7 +825,7 @@ describe("useForm Hook", () => {
       const updateMock = jest.fn();
 
       const { result } = renderHook(
-        () => useForm({ resource: "posts", action: "edit" }),
+        () => useForm({ resource: "posts", action: "edit", id: "123" }),
         {
           wrapper: TestWrapper({
             dataProvider: {
@@ -875,8 +840,10 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({
-        title: "foo",
+      await act(async () => {
+        await result.current.onFinish({
+          title: "foo",
+        });
       });
 
       await waitFor(() => {
@@ -901,6 +868,7 @@ describe("useForm Hook", () => {
           useForm({
             resource: "posts",
             action: "edit",
+            id: "123",
             meta: { method: "POST", foo: "bar" },
             queryMeta: { method: "GET" },
             mutationMeta: { method: "PATCH", baz: "qux" },
@@ -919,7 +887,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({});
+      await act(async () => {
+        await result.current.onFinish({});
+      });
 
       await waitFor(() => {
         expect(updateMock).toBeCalled();
@@ -953,8 +923,12 @@ describe("useForm Hook", () => {
         }),
       });
 
-      result.current.onFinish({
-        title: "foo",
+      await act(async () => {
+        await result.current
+          .onFinish({
+            title: "foo",
+          })
+          .catch((err) => {});
       });
 
       await waitFor(() => {
@@ -970,6 +944,7 @@ describe("useForm Hook", () => {
           useForm({
             resource: "posts",
             action: "edit",
+            id: "123",
             onMutationSuccess: onMutationSuccessMock,
           }),
         {
@@ -980,7 +955,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({ title: "foo" });
+      await act(async () => {
+        await result.current.onFinish({ title: "foo" });
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isSuccess).toBeTruthy();
@@ -992,6 +969,7 @@ describe("useForm Hook", () => {
           title: "foo",
         },
         expect.anything(),
+        false,
       );
     });
 
@@ -1004,6 +982,7 @@ describe("useForm Hook", () => {
           useForm({
             resource: "posts",
             action: "edit",
+            id: "123",
             onMutationError: onMutationErrorMock,
           }),
         {
@@ -1019,7 +998,9 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({ title: "foo" });
+      await act(async () => {
+        await result.current.onFinish({ title: "foo" }).catch(() => {});
+      });
 
       await waitFor(() => {
         expect(result.current.mutationResult.isError).toBeTruthy();
@@ -1031,17 +1012,18 @@ describe("useForm Hook", () => {
           title: "foo",
         },
         expect.anything(),
+        false,
       );
     });
 
     it("works correctly with `interval` and `onInterval` params for edit mutation", async () => {
       const onInterval = jest.fn();
-      const { result } = renderHook(
+      const { result, rerender } = renderHook(
         () =>
           useForm({
             resource: "posts",
             action: "edit",
-            id: 1,
+            id: "123",
             overtimeOptions: {
               interval: 100,
               onInterval,
@@ -1071,7 +1053,7 @@ describe("useForm Hook", () => {
         },
       );
 
-      result.current.onFinish({
+      const promise = result.current.onFinish({
         title: "foo",
       });
 
@@ -1080,6 +1062,8 @@ describe("useForm Hook", () => {
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
+
+      await promise;
 
       await waitFor(() => {
         expect(!result.current.mutationResult?.isLoading).toBeTruthy();
@@ -1126,8 +1110,8 @@ describe("useForm Hook", () => {
 
       await assertList(useManyResult, "title", initialTitle);
 
-      act(() => {
-        result.current.onFinish({ title: updatedTitle });
+      await act(async () => {
+        await result.current.onFinish({ title: updatedTitle });
       });
 
       await assertOne(useOneResult, "title", updatedTitle);
@@ -1145,6 +1129,135 @@ describe("useForm Hook", () => {
       await assertList(useListResult, "title", initialTitle);
 
       await assertList(useManyResult, "title", initialTitle);
+    });
+  });
+
+  describe("warn messages", () => {
+    const warnMock = jest.fn();
+
+    beforeAll(() => {
+      jest.spyOn(console, "warn").mockImplementation(warnMock);
+    });
+    beforeEach(() => {
+      warnMock.mockClear();
+    });
+
+    it("should warn when `resource` is passed and `id` is not", async () => {
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(warnMock).toBeCalled();
+      });
+    });
+
+    it("should not warn when `resource` is passed and `id` is not, if `queryOption.enabled` is false", async () => {
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            queryOptions: {
+              enabled: false,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(warnMock).not.toBeCalled();
+      });
+    });
+  });
+
+  describe("onFinish rejections", () => {
+    it("should reject immediately if resource is not defined", async () => {
+      const { result } = renderHook(
+        () =>
+          useForm({
+            action: "edit",
+            id: "123",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await act(async () => {
+        return await expect(
+          result.current.onFinish({ foo: "bar" }),
+        ).rejects.toThrow(
+          "[useForm]: `resource` is not defined or not matched but is required",
+        );
+      });
+    });
+
+    it("should reject immediately if id is not defined in clone mode", async () => {
+      const { result } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "clone",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await act(async () => {
+        return await expect(
+          result.current.onFinish({ foo: "bar" }),
+        ).rejects.toThrow(
+          "[useForm]: `id` is not defined but is required in edit and clone actions",
+        );
+      });
+    });
+
+    it("should reject immediately if values is not provided", async () => {
+      const { result } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "123",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await act(async () => {
+        return await expect(
+          result.current.onFinish(undefined as any),
+        ).rejects.toThrow(
+          "[useForm]: `values` is not provided but is required",
+        );
+      });
     });
   });
 });
