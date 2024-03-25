@@ -9,19 +9,8 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-next-documentation-live-preview
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
-      - name: Workflow run cleanup action
-        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v4
       - name: live previews docker build
         uses: docker/build-push-action@v1
         with:
@@ -31,14 +20,15 @@ jobs:
           repository: refinedev/refine/refine-live-preview
           dockerfile: packages/live-previews/Dockerfile
           tag_with_sha: true
-      - name: Set up kubectl
-        uses: matootie/dokube@v1.3.4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          clusterName: pankod-k8s
-          expirationTime: 1200
-      - name: Get nodes
-        run: kubectl get nodes
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: AWS EKS kubeconfig
+        run: |
+          aws eks --region eu-west-1 update-kubeconfig --name refine
       - name: Deploy refine-live-previews-documentation to k8s
         run: |
           cd packages/live-previews
