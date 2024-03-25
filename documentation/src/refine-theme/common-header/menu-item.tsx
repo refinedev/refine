@@ -6,9 +6,13 @@ import { NavbarPopoverItemType } from "./constants";
 
 type MenuItemProps = {
   item: NavbarPopoverItemType["items"][0];
+  variant?: "landing" | "blog";
 };
 
-export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({
+  item,
+  variant = "landing",
+}) => {
   const Icon = item.icon;
 
   return (
@@ -19,7 +23,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
           "p-4",
           "transition duration-150 ease-in-out",
           "rounded-lg",
-          "hover:bg-gray-50 dark:hover:bg-gray-800",
+          "hover:bg-gray-50",
+          variant === "landing" && "dark:hover:bg-gray-800",
+          variant === "blog" && "dark:hover:bg-gray-700",
         )}
       >
         <div className="shrink-0">

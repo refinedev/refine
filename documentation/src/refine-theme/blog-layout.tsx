@@ -41,6 +41,7 @@ export const RefineBlogLayout = (props: Props) => {
       <CommonHeader
         hasSticky={true}
         trackProgress={!!toc}
+        variant="blog"
         className={clsx(
           "!bg-white dark:!bg-refine-react-8",
           "!bg-opacity-100 dark:!bg-opacity-100",

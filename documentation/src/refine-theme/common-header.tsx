@@ -18,9 +18,14 @@ type Props = {
   hasSticky?: boolean;
   trackProgress?: boolean;
   className?: string;
+  variant?: "landing" | "blog";
 };
 
-export const CommonHeader = ({ trackProgress, className }: Props) => {
+export const CommonHeader = ({
+  trackProgress,
+  variant = "landing",
+  className,
+}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
@@ -97,7 +102,7 @@ export const CommonHeader = ({ trackProgress, className }: Props) => {
                 "gap-8",
               )}
             >
-              <Menu />
+              <Menu variant={variant} />
             </div>
             <div
               className={clsx(

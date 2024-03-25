@@ -13,7 +13,11 @@ import { MenuItem } from "./menu-item";
 import { NavbarItem } from "./navbar-item";
 import { NavbarPopoverItem } from "./navbar-popover-item";
 
-export const Menu: React.FC = () => {
+type Props = {
+  variant?: "landing" | "blog";
+};
+
+export const Menu: React.FC<Props> = ({ variant = "landing" }) => {
   return (
     <>
       {MENU_ITEMS.map((item) => {
@@ -31,7 +35,11 @@ export const Menu: React.FC = () => {
                     )}
                   >
                     {item.items.map((subItem) => (
-                      <MenuItem key={subItem.label} item={subItem} />
+                      <MenuItem
+                        key={subItem.label}
+                        item={subItem}
+                        variant={variant}
+                      />
                     ))}
                   </div>
                   <Link
@@ -71,7 +79,11 @@ export const Menu: React.FC = () => {
                     )}
                   >
                     {item.items.map((subItem) => (
-                      <MenuItem key={subItem.label} item={subItem} />
+                      <MenuItem
+                        key={subItem.label}
+                        item={subItem}
+                        variant={variant}
+                      />
                     ))}
                   </div>
                   <div
@@ -113,7 +125,11 @@ export const Menu: React.FC = () => {
                   )}
                 >
                   {item.items.map((subItem) => (
-                    <MenuItem key={subItem.label} item={subItem} />
+                    <MenuItem
+                      key={subItem.label}
+                      item={subItem}
+                      variant={variant}
+                    />
                   ))}
                 </div>
               )}
