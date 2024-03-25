@@ -12,7 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-<InstallPackagesCommand args="@refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons@1 @tanstack/react-table"/>
+<InstallPackagesCommand args="@refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons-react @tanstack/react-table"/>
 
 :::info Version Support
 Refine's Mantine integration currently uses Mantine v5.
@@ -257,7 +257,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/ui-integrations/mantine/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/ui-integrations/mantine/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/mantine/components/breadcrumb) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
 

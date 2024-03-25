@@ -2,7 +2,7 @@ import React from "react";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineMui from "@refinedev/mui";
+import type * as RefineMuiTypes from "@refinedev/mui";
 import * as MuiMaterialStyles from "@mui/material/styles";
 
 import * as EmotionReact from "@emotion/react";
@@ -12,24 +12,26 @@ import * as MuiMaterial from "@mui/material";
 import * as MuiXDataGrid from "@mui/x-data-grid";
 import * as ReactHookForm from "react-hook-form";
 
-import { CssBaseline, GlobalStyles } from "@mui/material";
-import {
-  LightModeOutlined,
-  DarkModeOutlined,
-  ArrowRight,
-  Camera,
-  ListOutlined,
-  Logout,
-  ExpandLess,
-  ExpandMore,
-  ChevronLeft,
-  ChevronRight,
-  MenuRounded,
-  Menu,
-  Dashboard,
-  Check,
-  Close,
-} from "@mui/icons-material";
+import * as RefineMui from "@refinedev/mui";
+
+const { CssBaseline, GlobalStyles } = MuiMaterial;
+
+import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
+import ArrowRight from "@mui/icons-material/ArrowRight";
+import Camera from "@mui/icons-material/Camera";
+import ListOutlined from "@mui/icons-material/ListOutlined";
+import Logout from "@mui/icons-material/Logout";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
+import MenuRounded from "@mui/icons-material/MenuRounded";
+import Menu from "@mui/icons-material/Menu";
+import Dashboard from "@mui/icons-material/Dashboard";
+import Check from "@mui/icons-material/Check";
+import Close from "@mui/icons-material/Close";
+
 import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
@@ -72,12 +74,12 @@ const RefineMuiDemo: React.FC<
   );
 };
 
-const ThemedTitleV2: typeof RefineMui.ThemedTitleV2 = ({
+const ThemedTitleV2 = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
   icon: iconFromProps,
-}) => {
+}: RefineMuiTypes.RefineLayoutThemedTitleProps) => {
   const [svgContent, setSvgContent] = React.useState<string | undefined>(
     window.__refineIconSVGContent || undefined,
   );

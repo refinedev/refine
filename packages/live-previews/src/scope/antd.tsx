@@ -2,9 +2,10 @@ import React from "react";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineAntd from "@refinedev/antd";
+import type RefineAntdTypes from "@refinedev/antd";
 import * as MDEditorNamespace from "@uiw/react-md-editor";
 import * as AntdCore from "antd";
+import * as RefineAntd from "@refinedev/antd";
 import axios from "axios";
 
 import Icon, {
@@ -49,12 +50,12 @@ const RefineAntdDemo: React.FC<
   );
 };
 
-const ThemedTitleV2: typeof RefineAntd.ThemedTitleV2 = ({
+const ThemedTitleV2 = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
   icon: iconFromProps,
-}) => {
+}: RefineAntdTypes.RefineLayoutThemedTitleProps) => {
   const [svgContent, setSvgContent] = React.useState<string | undefined>(
     window.__refineIconSVGContent || undefined,
   );

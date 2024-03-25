@@ -12,7 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-<InstallPackagesCommand args="@refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refinedev/react-hook-form @tanstack/react-table react-hook-form @tabler/icons@1"/>
+<InstallPackagesCommand args="@refinedev/chakra-ui @chakra-ui/react @refinedev/react-table @refinedev/react-hook-form @tanstack/react-table react-hook-form @tabler/icons-react"/>
 
 ## Usage
 
@@ -185,7 +185,7 @@ interface IProduct {
 ```tsx title="components/pagination.tsx"
 import React from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { usePagination } from "@refinedev/chakra-ui";
 
 import { IconButton } from "@chakra-ui/react";
@@ -379,7 +379,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/ui-integrations/chakra-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout buttun. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayoutV2 />`](/docs/ui-integrations/chakra-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/chakra-ui/components/breadcrumb) component that uses the Chakra UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Chakra UI package automatically.
 

@@ -1,19 +1,19 @@
 <script lang="ts">
-	import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
-	import LinearProgress from '@smui/linear-progress';
-	import Button from '@smui/button';
+import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
+import LinearProgress from "@smui/linear-progress";
+import Button from "@smui/button";
 
-	export let items: any[] = [];
-	export let loaded = false;
+export const items: any[] = [];
+export const loaded = false;
 
-	async function deletePost(id: number) {
-		const res = await fetch(`https://api.fake-rest.refine.dev/posts/${id}`, {
-			method: 'DELETE'
-		}).then((res) => {
-			res.json();
-			location.reload();
-		});
-	}
+async function deletePost(id: number) {
+  const res = await fetch(`https://api.fake-rest.refine.dev/posts/${id}`, {
+    method: "DELETE",
+  }).then((res) => {
+    res.json();
+    location.reload();
+  });
+}
 </script>
 
 <DataTable table$aria-label="User list" style="width: 100%;">
