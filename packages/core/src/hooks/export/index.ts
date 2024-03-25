@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UnparseConfig, unparse } from "papaparse";
+import papaparse from "papaparse";
 import warnOnce from "warn-once";
 
 import {
@@ -82,7 +82,7 @@ type UseExportOptionsType<
    *  Used for exporting options
    *  @type [UnparseConfig](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/papaparse)
    */
-  unparseConfig?: UnparseConfig;
+  unparseConfig?: papaparse.UnparseConfig;
   /**
    *  Metadata query for `dataProvider`
    */
@@ -249,7 +249,7 @@ export const useExport = <
       };
     }
 
-    let csv = unparse(rawData.map(mapData as any), unparseConfig);
+    let csv = papaparse.unparse(rawData.map(mapData as any), unparseConfig);
     if (options.showTitle) {
       csv = `${options.title}\r\n\n${csv}`;
     }

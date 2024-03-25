@@ -293,7 +293,7 @@ import {
   extendTheme,
   // highlight-end
 } from "@chakra-ui/react";
-import { IconSun, IconMoonStars } from "@tabler/icons";
+import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 

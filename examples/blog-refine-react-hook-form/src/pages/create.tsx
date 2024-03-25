@@ -30,7 +30,7 @@ const defaultValues = {
   role: "",
 };
 
-const schema = Yup.object().shape({
+const schema: Yup.SchemaOf<IFormValue> = Yup.object().shape({
   firstname: Yup.string().label("First Name").trim().required().min(3).max(64),
   lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
   address: Yup.string().label("Address").trim().required().min(3),

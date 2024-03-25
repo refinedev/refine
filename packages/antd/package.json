@@ -13,15 +13,32 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./dist/reset.css": {
+      "import": "./dist/reset.css",
+      "require": "./dist/reset.css"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
-    "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "publint": "publint --strict=true --level=suggestion",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@ant-design/icons": "5.0.1",
@@ -33,7 +50,7 @@
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
     "sunflower-antd": "1.0.0-beta.3",
-    "tslib": "^2.3.1"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
@@ -55,9 +72,9 @@
     "jest-environment-jsdom": "^29.3.1",
     "postcss": "^8.1.4",
     "react-router-dom": "^6.8.1",
-    "ts-jest": "^29.0.3",
+    "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^4.7.4"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
