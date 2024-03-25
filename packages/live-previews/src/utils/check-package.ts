@@ -48,7 +48,8 @@ export const checkPackage = (code = "") => {
 
   const hasCasbin = code.includes("casbin");
   const hasI18n = code.includes("react-i18next") || code.includes("i18next");
-  const hasTablerIcons = code.includes("@tabler/icons");
+  const hasTablerIcons =
+    code.includes("@tabler/icons") || code.includes("@tabler/icons-react");
   const hasKbar = code.includes("@refinedev/kbar");
   const hasAirtable = code.includes("@refinedev/airtable");
   const hasAppwrite = code.includes("@refinedev/appwrite");

@@ -8,7 +8,7 @@ export default function BasicViews() {
       initialPercentage={40}
       dependencies={{
         "@refinedev/chakra-ui": "^2.26.17",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
         "@refinedev/core": "^4.45.1",
         "@refinedev/react-router-v6": "^4.5.4",
         "@refinedev/simple-rest": "^4.5.4",
@@ -62,7 +62,7 @@ export * from "./create";
 const PaginationTsxCode = /* jsx */ `
 import React from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { usePagination } from "@refinedev/chakra-ui";
 
 import { IconButton } from "@chakra-ui/react";
