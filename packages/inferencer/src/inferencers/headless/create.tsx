@@ -48,7 +48,6 @@ export const renderer = ({
   const imports: Array<ImportElement> = [
     ["React", "react", true],
     ["useNavigation", "@refinedev/core"],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useForm", "@refinedev/react-hook-form"],
   ];
 
@@ -270,7 +269,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         ${
           canList

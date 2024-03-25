@@ -53,7 +53,6 @@ export const renderer = ({
   const recordName = "tableProps?.dataSource";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["BaseRecord", "@refinedev/core"],
     ["useTable", "@refinedev/antd"],
     ["List", "@refinedev/antd"],
@@ -588,7 +587,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { tableProps } = useTable({
             syncWithLocation: true,

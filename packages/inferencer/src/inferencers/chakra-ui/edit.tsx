@@ -54,7 +54,6 @@ export const renderer = ({
   const recordName = getVariableName(resource.label ?? resource.name, "Data");
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["Edit", "@refinedev/chakra-ui"],
     ["FormControl", "@chakra-ui/react"],
     ["FormLabel", "@chakra-ui/react"],
@@ -381,7 +380,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const {
             refineCore: { formLoading, queryResult },

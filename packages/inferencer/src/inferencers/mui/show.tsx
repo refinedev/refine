@@ -57,7 +57,6 @@ export const renderer = ({
     ["Show", "@refinedev/mui"],
     ["Typography", "@mui/material"],
     ["Stack", "@mui/material"],
-    ["IResourceComponentsProps", "@refinedev/core"],
   ];
 
   if (i18n) {
@@ -659,7 +658,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
 
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage

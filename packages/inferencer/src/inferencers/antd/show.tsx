@@ -54,7 +54,6 @@ export const renderer = ({
   const recordName = "record";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useShow", "@refinedev/core"],
     ["Show", "@refinedev/antd"],
     ["Typography", "antd"],
@@ -578,7 +577,7 @@ export const renderer = ({
     
     const { Title } = Typography;
 
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage

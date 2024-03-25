@@ -47,7 +47,6 @@ export const renderer = ({
   );
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["Create", "@refinedev/antd"],
     ["Form", "antd"],
     ["useForm", "@refinedev/antd"],
@@ -362,7 +361,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { formProps, saveButtonProps, queryResult } = useForm(${
           isCustomPage
