@@ -324,7 +324,7 @@ describe("useForm Hook", () => {
         },
         routerProvider: mockRouterBindings({
           action: "edit",
-          resource: { name: "posts" },
+          resource: { name: "posts", identifier: "recentPosts" },
           id: "1",
           pathname: "/posts/edit/1",
         }),
