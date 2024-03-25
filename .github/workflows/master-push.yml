@@ -60,7 +60,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   documentation-live-preview:
     needs: publish
-    if: ${{ needs.publish.outputs.published == 'true' }}
+    if: ${{ needs.publish.outputs.published == 'true' || contains(github.event.head_commit.message, 'deploy_preview_pls') }}
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-next-documentation-live-preview
