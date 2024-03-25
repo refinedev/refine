@@ -383,7 +383,7 @@ import { useLocalStorage } from "@mantine/hooks";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { IconSun, IconMoonStars } from "@tabler/icons";
+import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 

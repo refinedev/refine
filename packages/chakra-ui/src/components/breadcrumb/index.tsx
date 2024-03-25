@@ -15,7 +15,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/react";
-import { IconHome } from "@tabler/icons";
+import { IconHome } from "@tabler/icons-react";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<ChakraBreadcrumbProps>;
 

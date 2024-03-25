@@ -4,7 +4,7 @@ import {
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
   IconMenu2,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 import { useThemedLayoutContext } from "@hooks";
 

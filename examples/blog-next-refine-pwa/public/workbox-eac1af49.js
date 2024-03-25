@@ -541,25 +541,21 @@ define(["exports"], (exports) => {
 
   const normalizeHandler = (handler) => {
     if (handler && typeof handler === "object") {
-      {
-        finalAssertExports.hasMethod(handler, "handle", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "handler",
-        });
-      }
-
-      return handler;
-    }
-    {
-      finalAssertExports.isType(handler, "function", {
+      finalAssertExports.hasMethod(handler, "handle", {
         moduleName: "workbox-routing",
         className: "Route",
         funcName: "constructor",
         paramName: "handler",
       });
+
+      return handler;
     }
+    finalAssertExports.isType(handler, "function", {
+      moduleName: "workbox-routing",
+      className: "Route",
+      funcName: "constructor",
+      paramName: "handler",
+    });
 
     return {
       handle: handler,
@@ -596,20 +592,18 @@ define(["exports"], (exports) => {
      * against.
      */
     constructor(match, handler, method = defaultMethod) {
-      {
-        finalAssertExports.isType(match, "function", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "match",
-        });
+      finalAssertExports.isType(match, "function", {
+        moduleName: "workbox-routing",
+        className: "Route",
+        funcName: "constructor",
+        paramName: "match",
+      });
 
-        if (method) {
-          finalAssertExports.isOneOf(method, validMethods, {
-            paramName: "method",
-          });
-        }
-      } // These values are referenced directly by Router so cannot be
+      if (method) {
+        finalAssertExports.isOneOf(method, validMethods, {
+          paramName: "method",
+        });
+      }
       // altered by minificaton.
 
       this.handler = normalizeHandler(handler);
@@ -661,14 +655,12 @@ define(["exports"], (exports) => {
      * against.
      */
     constructor(regExp, handler, method) {
-      {
-        finalAssertExports.isInstance(regExp, RegExp, {
-          moduleName: "workbox-routing",
-          className: "RegExpRoute",
-          funcName: "constructor",
-          paramName: "pattern",
-        });
-      }
+      finalAssertExports.isInstance(regExp, RegExp, {
+        moduleName: "workbox-routing",
+        className: "RegExpRoute",
+        funcName: "constructor",
+        paramName: "pattern",
+      });
 
       const match = ({ url }) => {
         const result = regExp.exec(url.href); // Return immediately if there's no match.
@@ -681,11 +673,9 @@ define(["exports"], (exports) => {
         // behind this behavior.
 
         if (url.origin !== location.origin && result.index !== 0) {
-          {
-            logger.debug(
-              `The regular expression '${regExp.toString()}' only partially matched against the cross-origin URL '${url.toString()}'. RegExpRoute's will only handle cross-origin requests if they match the entire URL.`,
-            );
-          }
+          logger.debug(
+            `The regular expression '${regExp.toString()}' only partially matched against the cross-origin URL '${url.toString()}'. RegExpRoute's will only handle cross-origin requests if they match the entire URL.`,
+          );
 
           return;
         } // If the route matches, but there aren't any capture groups defined, then
@@ -807,10 +797,7 @@ define(["exports"], (exports) => {
         if (event.data && event.data.type === "CACHE_URLS") {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const { payload } = event.data;
-
-          {
-            logger.debug("Caching URLs from the window", payload.urlsToCache);
-          }
+          logger.debug("Caching URLs from the window", payload.urlsToCache);
 
           const requestPromises = Promise.all(
             payload.urlsToCache.map((entry) => {
@@ -850,23 +837,19 @@ define(["exports"], (exports) => {
      */
 
     handleRequest({ request, event }) {
-      {
-        finalAssertExports.isInstance(request, Request, {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "handleRequest",
-          paramName: "options.request",
-        });
-      }
+      finalAssertExports.isInstance(request, Request, {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "handleRequest",
+        paramName: "options.request",
+      });
 
       const url = new URL(request.url, location.href);
 
       if (!url.protocol.startsWith("http")) {
-        {
-          logger.debug(
-            `Workbox Router only supports URLs that start with 'http'.`,
-          );
-        }
+        logger.debug(
+          `Workbox Router only supports URLs that start with 'http'.`,
+        );
 
         return;
       }
@@ -880,58 +863,46 @@ define(["exports"], (exports) => {
       });
       let handler = route?.handler;
       const debugMessages = [];
+      if (handler) {
+        debugMessages.push(["Found a route to handle this request:", route]);
 
-      {
-        if (handler) {
-          debugMessages.push(["Found a route to handle this request:", route]);
-
-          if (params) {
-            debugMessages.push([
-              `Passing the following params to the route's handler:`,
-              params,
-            ]);
-          }
+        if (params) {
+          debugMessages.push([
+            `Passing the following params to the route's handler:`,
+            params,
+          ]);
         }
-      } // If we don't have a handler because there was no matching route, then
+      }
       // fall back to defaultHandler if that's defined.
 
       const method = request.method;
 
       if (!handler && this._defaultHandlerMap.has(method)) {
-        {
-          debugMessages.push(
-            `Failed to find a matching route. Falling back to the default handler for ${method}.`,
-          );
-        }
+        debugMessages.push(
+          `Failed to find a matching route. Falling back to the default handler for ${method}.`,
+        );
 
         handler = this._defaultHandlerMap.get(method);
       }
 
       if (!handler) {
-        {
-          // No handler so Workbox will do nothing. If logs is set of debug
-          // i.e. verbose, we should print out this information.
-          logger.debug(`No route found for: ${getFriendlyURL(url)}`);
-        }
+        // No handler so Workbox will do nothing. If logs is set of debug
+        // i.e. verbose, we should print out this information.
+        logger.debug(`No route found for: ${getFriendlyURL(url)}`);
 
         return;
       }
-
-      {
-        // We have a handler, meaning Workbox is going to handle the route.
-        // print the routing details to the console.
-        logger.groupCollapsed(
-          `Router is responding to: ${getFriendlyURL(url)}`,
-        );
-        debugMessages.forEach((msg) => {
-          if (Array.isArray(msg)) {
-            logger.log(...msg);
-          } else {
-            logger.log(msg);
-          }
-        });
-        logger.groupEnd();
-      } // Wrap in try and catch in case the handle method throws a synchronous
+      // We have a handler, meaning Workbox is going to handle the route.
+      // print the routing details to the console.
+      logger.groupCollapsed(`Router is responding to: ${getFriendlyURL(url)}`);
+      debugMessages.forEach((msg) => {
+        if (Array.isArray(msg)) {
+          logger.log(...msg);
+        } else {
+          logger.log(msg);
+        }
+      });
+      logger.groupEnd();
       // error. It should still callback to the catch handler.
 
       let responsePromise;
@@ -956,18 +927,16 @@ define(["exports"], (exports) => {
         responsePromise = responsePromise.catch(async (err) => {
           // If there's a route catch handler, process that first
           if (catchHandler) {
-            {
-              // Still include URL here as it will be async from the console group
-              // and may not make sense without the URL
-              logger.groupCollapsed(
-                `Error thrown when responding to:  ${getFriendlyURL(
-                  url,
-                )}. Falling back to route's Catch Handler.`,
-              );
-              logger.error("Error thrown by:", route);
-              logger.error(err);
-              logger.groupEnd();
-            }
+            // Still include URL here as it will be async from the console group
+            // and may not make sense without the URL
+            logger.groupCollapsed(
+              `Error thrown when responding to:  ${getFriendlyURL(
+                url,
+              )}. Falling back to route's Catch Handler.`,
+            );
+            logger.error("Error thrown by:", route);
+            logger.error(err);
+            logger.groupEnd();
 
             try {
               return await catchHandler.handle({
@@ -984,18 +953,16 @@ define(["exports"], (exports) => {
           }
 
           if (this._catchHandler) {
-            {
-              // Still include URL here as it will be async from the console group
-              // and may not make sense without the URL
-              logger.groupCollapsed(
-                `Error thrown when responding to:  ${getFriendlyURL(
-                  url,
-                )}. Falling back to global Catch Handler.`,
-              );
-              logger.error("Error thrown by:", route);
-              logger.error(err);
-              logger.groupEnd();
-            }
+            // Still include URL here as it will be async from the console group
+            // and may not make sense without the URL
+            logger.groupCollapsed(
+              `Error thrown when responding to:  ${getFriendlyURL(
+                url,
+              )}. Falling back to global Catch Handler.`,
+            );
+            logger.error("Error thrown by:", route);
+            logger.error(err);
+            logger.groupEnd();
 
             return this._catchHandler.handle({
               url,
@@ -1041,18 +1008,16 @@ define(["exports"], (exports) => {
         });
 
         if (matchResult) {
-          {
-            // Warn developers that using an async matchCallback is almost always
-            // not the right thing to do.
-            if (matchResult instanceof Promise) {
-              logger.warn(
-                `While routing ${getFriendlyURL(
-                  url,
-                )}, an async matchCallback function was used. Please convert the following route to use a synchronous matchCallback function:`,
-                route,
-              );
-            }
-          } // See https://github.com/GoogleChrome/workbox/issues/2079
+          // Warn developers that using an async matchCallback is almost always
+          // not the right thing to do.
+          if (matchResult instanceof Promise) {
+            logger.warn(
+              `While routing ${getFriendlyURL(
+                url,
+              )}, an async matchCallback function was used. Please convert the following route to use a synchronous matchCallback function:`,
+              route,
+            );
+          }
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 
           params = matchResult;
@@ -1118,38 +1083,36 @@ define(["exports"], (exports) => {
      */
 
     registerRoute(route) {
-      {
-        finalAssertExports.isType(route, "object", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route",
-        });
-        finalAssertExports.hasMethod(route, "match", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route",
-        });
-        finalAssertExports.isType(route.handler, "object", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route",
-        });
-        finalAssertExports.hasMethod(route.handler, "handle", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route.handler",
-        });
-        finalAssertExports.isType(route.method, "string", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route.method",
-        });
-      }
+      finalAssertExports.isType(route, "object", {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "registerRoute",
+        paramName: "route",
+      });
+      finalAssertExports.hasMethod(route, "match", {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "registerRoute",
+        paramName: "route",
+      });
+      finalAssertExports.isType(route.handler, "object", {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "registerRoute",
+        paramName: "route",
+      });
+      finalAssertExports.hasMethod(route.handler, "handle", {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "registerRoute",
+        paramName: "route.handler",
+      });
+      finalAssertExports.isType(route.method, "string", {
+        moduleName: "workbox-routing",
+        className: "Router",
+        funcName: "registerRoute",
+        paramName: "route.method",
+      });
 
       if (!this._routes.has(route.method)) {
         this._routes.set(route.method, []);
@@ -1264,15 +1227,13 @@ define(["exports"], (exports) => {
       }
 
       const matchCallback = ({ url }) => {
-        {
-          if (
-            url.pathname === captureUrl.pathname &&
-            url.origin !== captureUrl.origin
-          ) {
-            logger.debug(
-              `${capture} only partially matches the cross-origin URL ${url.toString()}. This route will only handle cross-origin requests if they match the entire URL.`,
-            );
-          }
+        if (
+          url.pathname === captureUrl.pathname &&
+          url.origin !== captureUrl.origin
+        ) {
+          logger.debug(
+            `${capture} only partially matches the cross-origin URL ${url.toString()}. This route will only handle cross-origin requests if they match the entire URL.`,
+          );
         }
 
         return url.href === captureUrl.href;
@@ -1498,23 +1459,15 @@ define(["exports"], (exports) => {
    */
 
   async function executeQuotaErrorCallbacks() {
-    {
-      logger.log(
-        `About to run ${quotaErrorCallbacks.size} callbacks to clean up caches.`,
-      );
-    }
+    logger.log(
+      `About to run ${quotaErrorCallbacks.size} callbacks to clean up caches.`,
+    );
 
     for (const callback of quotaErrorCallbacks) {
       await callback();
-
-      {
-        logger.log(callback, "is complete.");
-      }
+      logger.log(callback, "is complete.");
     }
-
-    {
-      logger.log("Finished running callbacks.");
-    }
+    logger.log("Finished running callbacks.");
   }
 
   /*
@@ -1576,55 +1529,12 @@ define(["exports"], (exports) => {
      */
     constructor(strategy, options) {
       this._cacheKeys = {};
-      /**
-       * The request the strategy is performing (passed to the strategy's
-       * `handle()` or `handleAll()` method).
-       * @name request
-       * @instance
-       * @type {Request}
-       * @memberof workbox-strategies.StrategyHandler
-       */
-
-      /**
-       * The event associated with this request.
-       * @name event
-       * @instance
-       * @type {ExtendableEvent}
-       * @memberof workbox-strategies.StrategyHandler
-       */
-
-      /**
-       * A `URL` instance of `request.url` (if passed to the strategy's
-       * `handle()` or `handleAll()` method).
-       * Note: the `url` param will be present if the strategy was invoked
-       * from a workbox `Route` object.
-       * @name url
-       * @instance
-       * @type {URL|undefined}
-       * @memberof workbox-strategies.StrategyHandler
-       */
-
-      /**
-       * A `param` value (if passed to the strategy's
-       * `handle()` or `handleAll()` method).
-       * Note: the `param` param will be present if the strategy was invoked
-       * from a workbox `Route` object and the
-       * {@link workbox-routing~matchCallback} returned
-       * a truthy value (it will be that value).
-       * @name params
-       * @instance
-       * @type {*|undefined}
-       * @memberof workbox-strategies.StrategyHandler
-       */
-
-      {
-        finalAssertExports.isInstance(options.event, ExtendableEvent, {
-          moduleName: "workbox-strategies",
-          className: "StrategyHandler",
-          funcName: "constructor",
-          paramName: "options.event",
-        });
-      }
+      finalAssertExports.isInstance(options.event, ExtendableEvent, {
+        moduleName: "workbox-strategies",
+        className: "StrategyHandler",
+        funcName: "constructor",
+        paramName: "options.event",
+      });
 
       Object.assign(this, options);
       this.event = options.event;
@@ -1668,13 +1578,11 @@ define(["exports"], (exports) => {
         const possiblePreloadResponse = await event.preloadResponse;
 
         if (possiblePreloadResponse) {
-          {
-            logger.log(
-              `Using a preloaded navigation response for '${getFriendlyURL(
-                request.url,
-              )}'`,
-            );
-          }
+          logger.log(
+            `Using a preloaded navigation response for '${getFriendlyURL(
+              request.url,
+            )}'`,
+          );
 
           return possiblePreloadResponse;
         }
@@ -1729,14 +1637,12 @@ define(["exports"], (exports) => {
 
         return fetchResponse;
       } catch (error) {
-        {
-          logger.log(
-            `Network request for '${getFriendlyURL(
-              request.url,
-            )}' threw an error.`,
-            error,
-          );
-        } // `originalRequest` will only exist if a `fetchDidFail` callback
+        logger.log(
+          `Network request for '${getFriendlyURL(
+            request.url,
+          )}' threw an error.`,
+          error,
+        );
         // is being used (see above).
 
         if (originalRequest) {
@@ -1790,13 +1696,10 @@ define(["exports"], (exports) => {
         cacheName,
       });
       cachedResponse = await caches.match(effectiveRequest, multiMatchOptions);
-
-      {
-        if (cachedResponse) {
-          logger.debug(`Found a cached response in '${cacheName}'.`);
-        } else {
-          logger.debug(`No cached response found in '${cacheName}'.`);
-        }
+      if (cachedResponse) {
+        logger.debug(`Found a cached response in '${cacheName}'.`);
+      } else {
+        logger.debug(`No cached response found in '${cacheName}'.`);
       }
 
       for (const callback of this.iterateCallbacks(
@@ -1857,13 +1760,11 @@ define(["exports"], (exports) => {
       }
 
       if (!response) {
-        {
-          logger.error(
-            `Cannot cache non-existent response for '${getFriendlyURL(
-              effectiveRequest.url,
-            )}'.`,
-          );
-        }
+        logger.error(
+          `Cannot cache non-existent response for '${getFriendlyURL(
+            effectiveRequest.url,
+          )}'.`,
+        );
 
         throw new WorkboxError("cache-put-with-no-response", {
           url: getFriendlyURL(effectiveRequest.url),
@@ -1873,14 +1774,12 @@ define(["exports"], (exports) => {
       const responseToCache = await this._ensureResponseSafeToCache(response);
 
       if (!responseToCache) {
-        {
-          logger.debug(
-            `Response '${getFriendlyURL(
-              effectiveRequest.url,
-            )}' will not be cached.`,
-            responseToCache,
-          );
-        }
+        logger.debug(
+          `Response '${getFriendlyURL(
+            effectiveRequest.url,
+          )}' will not be cached.`,
+          responseToCache,
+        );
 
         return false;
       }
@@ -1899,13 +1798,10 @@ define(["exports"], (exports) => {
             matchOptions,
           )
         : null;
-
-      {
-        logger.debug(
-          `Updating the '${cacheName}' cache with a new Response ` +
-            `for ${getFriendlyURL(effectiveRequest.url)}.`,
-        );
-      }
+      logger.debug(
+        `Updating the '${cacheName}' cache with a new Response ` +
+          `for ${getFriendlyURL(effectiveRequest.url)}.`,
+      );
 
       try {
         await cache.put(
@@ -2118,19 +2014,16 @@ define(["exports"], (exports) => {
         if (responseToCache && responseToCache.status !== 200) {
           responseToCache = undefined;
         }
-
-        {
-          if (responseToCache) {
-            if (responseToCache.status !== 200) {
-              if (responseToCache.status === 0) {
-                logger.warn(
-                  `The response for '${this.request.url}' is an opaque response. The caching strategy that you're using will not cache opaque responses by default.`,
-                );
-              } else {
-                logger.debug(
-                  `The response for '${this.request.url}' returned a status code of '${response.status}' and won't be cached as a result.`,
-                );
-              }
+        if (responseToCache) {
+          if (responseToCache.status !== 200) {
+            if (responseToCache.status === 0) {
+              logger.warn(
+                `The response for '${this.request.url}' is an opaque response. The caching strategy that you're using will not cache opaque responses by default.`,
+              );
+            } else {
+              logger.debug(
+                `The response for '${this.request.url}' returned a status code of '${response.status}' and won't be cached as a result.`,
+              );
             }
           }
         }
@@ -2474,16 +2367,13 @@ define(["exports"], (exports) => {
       }
 
       this._networkTimeoutSeconds = options.networkTimeoutSeconds || 0;
-
-      {
-        if (this._networkTimeoutSeconds) {
-          finalAssertExports.isType(this._networkTimeoutSeconds, "number", {
-            moduleName: "workbox-strategies",
-            className: this.constructor.name,
-            funcName: "constructor",
-            paramName: "networkTimeoutSeconds",
-          });
-        }
+      if (this._networkTimeoutSeconds) {
+        finalAssertExports.isType(this._networkTimeoutSeconds, "number", {
+          moduleName: "workbox-strategies",
+          className: this.constructor.name,
+          funcName: "constructor",
+          paramName: "networkTimeoutSeconds",
+        });
       }
     }
     /**
@@ -2496,15 +2386,12 @@ define(["exports"], (exports) => {
 
     async _handle(request, handler) {
       const logs = [];
-
-      {
-        finalAssertExports.isInstance(request, Request, {
-          moduleName: "workbox-strategies",
-          className: this.constructor.name,
-          funcName: "handle",
-          paramName: "makeRequest",
-        });
-      }
+      finalAssertExports.isInstance(request, Request, {
+        moduleName: "workbox-strategies",
+        className: this.constructor.name,
+        funcName: "handle",
+        paramName: "makeRequest",
+      });
 
       const promises = [];
       let timeoutId;
@@ -2541,19 +2428,16 @@ define(["exports"], (exports) => {
           );
         })(),
       );
+      logger.groupCollapsed(
+        messages.strategyStart(this.constructor.name, request),
+      );
 
-      {
-        logger.groupCollapsed(
-          messages.strategyStart(this.constructor.name, request),
-        );
-
-        for (const log of logs) {
-          logger.log(log);
-        }
-
-        messages.printFinalResponse(response);
-        logger.groupEnd();
+      for (const log of logs) {
+        logger.log(log);
       }
+
+      messages.printFinalResponse(response);
+      logger.groupEnd();
 
       if (!response) {
         throw new WorkboxError("no-response", {
@@ -2577,11 +2461,9 @@ define(["exports"], (exports) => {
       let timeoutId;
       const timeoutPromise = new Promise((resolve) => {
         const onNetworkTimeout = async () => {
-          {
-            logs.push(
-              `Timing out the network response at ${this._networkTimeoutSeconds} seconds.`,
-            );
-          }
+          logs.push(
+            `Timing out the network response at ${this._networkTimeoutSeconds} seconds.`,
+          );
 
           resolve(await handler.cacheMatch(request));
         };
@@ -2622,29 +2504,23 @@ define(["exports"], (exports) => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-
-      {
-        if (response) {
-          logs.push("Got response from network.");
-        } else {
-          logs.push(
-            "Unable to get a response from the network. Will respond " +
-              "with a cached response.",
-          );
-        }
+      if (response) {
+        logs.push("Got response from network.");
+      } else {
+        logs.push(
+          "Unable to get a response from the network. Will respond " +
+            "with a cached response.",
+        );
       }
 
       if (error || !response) {
         response = await handler.cacheMatch(request);
-
-        {
-          if (response) {
-            logs.push(
-              `Found a cached response in the '${this.cacheName}' cache.`,
-            );
-          } else {
-            logs.push(`No response found in the '${this.cacheName}' cache.`);
-          }
+        if (response) {
+          logs.push(
+            `Found a cached response in the '${this.cacheName}' cache.`,
+          );
+        } else {
+          logs.push(`No response found in the '${this.cacheName}' cache.`);
         }
       }
 
@@ -2698,14 +2574,12 @@ define(["exports"], (exports) => {
      */
 
     async _handle(request, handler) {
-      {
-        finalAssertExports.isInstance(request, Request, {
-          moduleName: "workbox-strategies",
-          className: this.constructor.name,
-          funcName: "_handle",
-          paramName: "request",
-        });
-      }
+      finalAssertExports.isInstance(request, Request, {
+        moduleName: "workbox-strategies",
+        className: this.constructor.name,
+        funcName: "_handle",
+        paramName: "request",
+      });
 
       let error = undefined;
       let response;
@@ -2730,21 +2604,18 @@ define(["exports"], (exports) => {
           error = err;
         }
       }
+      logger.groupCollapsed(
+        messages.strategyStart(this.constructor.name, request),
+      );
 
-      {
-        logger.groupCollapsed(
-          messages.strategyStart(this.constructor.name, request),
-        );
-
-        if (response) {
-          logger.log("Got response from network.");
-        } else {
-          logger.log("Unable to get a response from the network.");
-        }
-
-        messages.printFinalResponse(response);
-        logger.groupEnd();
+      if (response) {
+        logger.log("Got response from network.");
+      } else {
+        logger.log("Unable to get a response from the network.");
       }
+
+      messages.printFinalResponse(response);
+      logger.groupEnd();
 
       if (!response) {
         throw new WorkboxError("no-response", {

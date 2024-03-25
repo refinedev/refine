@@ -17,7 +17,7 @@ const Confirmed: React.FC = () => {
     id,
     queryOptions: {
       enabled: !!id,
-      staleTime: Infinity,
+      staleTime: Number.POSITIVE_INFINITY,
     },
   });
 
