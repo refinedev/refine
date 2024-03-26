@@ -404,7 +404,7 @@ When working with Refine in development environment you may receive network erro
 
 Still, there two common errors that you may encounter when working with Refine in development environment but you can safely ignore them:
 
-- `401 (Unauthorized) from :5001/api/.auth/sessions/whoami` - This error is related with the Refine's Devtools and logged if there are no active authentication sessions in Devtools. You can get rid of this error by logging in to the Devtools or if you're currently not using Devtools in your project, you can remove `<DevtoolsPanel />` component from your app.
+- `401 (Unauthorized) from :5001/api/.auth/sessions/whoami` - This error is related with the Refine's Devtools and logged if there are no active authentication sessions in Devtools. You can get rid of this error by logging in to the Devtools.
 
 - Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behing Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/docs/packages/inferencer/#how-the-fields-are-inferred).
 
