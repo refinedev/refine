@@ -289,7 +289,7 @@ We have it shaping into a better website layout:
 
 ## Reorder Regions
 
-We can change the order of a region by altering the the value of `n` in `row-start-{n}` and `col-start-{n}`. The second `div` could be an ad section which we want to display at the bottom on smaller screens and at the top on larger screens. Let's set its order at smaller screens first and then change it at `md`:
+We can change the order of a region by altering the value of `n` in `row-start-{n}` and `col-start-{n}`. The second `div` could be an ad section which we want to display at the bottom on smaller screens and at the top on larger screens. Let's set its order at smaller screens first and then change it at `md`:
 
 ```html
 <div

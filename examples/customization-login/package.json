@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@refinedev/antd": "^5.37.5",
     "@refinedev/cli": "^2.16.27",
     "@refinedev/core": "^4.48.0",
@@ -36,6 +37,6 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^5.4.2"
   }
 }

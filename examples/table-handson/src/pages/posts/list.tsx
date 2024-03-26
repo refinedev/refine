@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  IResourceComponentsProps,
-  useTable,
-  useUpdate,
-  useSelect,
-} from "@refinedev/core";
+import { useTable, useUpdate, useSelect } from "@refinedev/core";
 import { isEqual } from "lodash";
 import { HotTable } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
@@ -19,10 +14,10 @@ type Config = {
 
 type localCompareResult = -1 | 0 | 1;
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   registerAllModules();
 
-  const hotTableRef = React.useRef<HotTable>(null);
+  const hotTableRef = React.useRef<any>(null);
 
   const [initialConfig, setInitialConfig] = React.useState<Config | Config[]>({
     column: 0,
@@ -104,7 +99,14 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             editor: "select",
             width: 200,
 
-            renderer: (_instance, td, _row, _col, _prop, value) => {
+            renderer: (
+              _instance: any,
+              td: any,
+              _row: any,
+              _col: any,
+              _prop: any,
+              value: any,
+            ) => {
               const category = options.find((option) => option.value === value);
 
               td.innerText = category?.label ?? "";
@@ -114,8 +116,8 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
               options.map((option) => [option.value, option.label]),
             ),
             columnSorting: {
-              compareFunctionFactory(sortOrder) {
-                return (a, b) => {
+              compareFunctionFactory(sortOrder: any) {
+                return (a: any, b: any) => {
                   const optionA =
                     options.find((option) => option.value === a)?.label ?? "";
                   const optionB =
@@ -135,9 +137,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             width: 200,
           },
         ]}
-        afterChange={(changes, source) => {
+        afterChange={(changes: any, source: any) => {
           if (changes && source !== "loadData") {
-            changes.forEach(([row, field, prev, next]) => {
+            changes.forEach(([row, field, prev, next]: any) => {
               if (prev.toString() !== next.toString()) {
                 updateRow(row, field as string, next);
               }
@@ -145,7 +147,10 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
           }
         }}
         fillHandle="vertical"
-        afterColumnSort={(_currentSortConfig, destinationSortConfigs) => {
+        afterColumnSort={(
+          _currentSortConfig: any,
+          destinationSortConfigs: any,
+        ) => {
           if (!isEqual(destinationSortConfigs, initialConfig))
             setInitialConfig(destinationSortConfigs);
         }}

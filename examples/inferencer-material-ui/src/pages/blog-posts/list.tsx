@@ -1,6 +1,5 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { MuiListInferencer } from "@refinedev/inferencer/mui";
 
-export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList = () => {
   return <MuiListInferencer />;
 };

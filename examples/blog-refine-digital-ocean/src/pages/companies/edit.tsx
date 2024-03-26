@@ -1,9 +1,8 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-export const CompanyEdit: React.FC<IResourceComponentsProps> = () => {
+export const CompanyEdit = () => {
   const { formProps, saveButtonProps } = useForm({
     meta: {
       fields: [

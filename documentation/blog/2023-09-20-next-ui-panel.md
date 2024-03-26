@@ -1290,7 +1290,6 @@ Create the `src/pages/products/list.tsx` file. Copy and paste the code below int
 
 ```tsx title="src/pages/products/list.tsx"
 import {
-  IResourceComponentsProps,
   useTable,
   getDefaultFilter,
   useNavigation,
@@ -1339,7 +1338,7 @@ const columns = [
   { header: "Actions", key: "actions", sortable: false },
 ];
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const {
     tableQueryResult,
     pageCount,
@@ -1758,8 +1757,6 @@ After successfully installing `react-hook-form`, create the `src/pages/products/
 <summary>Show ProductCreate code</summary>
 
 ```tsx title="src/pages/products/create.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { HttpError, useBack, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -1779,7 +1776,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 import { IProduct, IProductCategory } from "../../interfaces";
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const ProductCreate = () => {
   const goBack = useBack();
 
   const {
@@ -1989,8 +1986,6 @@ Let's create a component for editing an existing record in the products table. C
 <summary>Show ProductEdit code</summary>
 
 ```tsx title="src/pages/products/edit.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { HttpError, useBack, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -2010,7 +2005,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 import { IProduct, IProductCategory } from "../../interfaces";
 
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const ProductEdit = () => {
   const goBack = useBack();
 
   const {
@@ -2225,12 +2220,7 @@ Let's create a component that shows the details of a specific product. Create th
 <summary>Show ProductShow code</summary>
 
 ```tsx title="src/pages/products/show.tsx"
-import {
-  useBack,
-  useOne,
-  useShow,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useBack, useOne, useShow } from "@refinedev/core";
 import { ICategory, IProduct } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
@@ -2241,7 +2231,7 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const goBack = useBack();
 
   const { queryResult } = useShow<IProduct>();
@@ -2380,7 +2370,6 @@ Copy and paste the code below into the `src/pages/categories/list.tsx` file.
 
 ```tsx title="src/pages/categories/list.tsx"
 import {
-  IResourceComponentsProps,
   useTable,
   getDefaultFilter,
   useNavigation,
@@ -2424,7 +2413,7 @@ const columns = [
   { header: "Actions", key: "actions", sortable: false },
 ];
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const {
     tableQueryResult,
     pageCount,
@@ -2680,8 +2669,6 @@ Copy and paste the code below into the `src/pages/categories/create.tsx` file.
 <summary>Show CategoryCreate code</summary>
 
 ```tsx
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { HttpError, useBack } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -2692,7 +2679,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 import { ICategory } from "../../interfaces";
 
-export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
+export const CategoryCreate = () => {
   const goBack = useBack();
 
   const {
@@ -2784,8 +2771,6 @@ Copy and paste the code below into the `pages/categories/edit.tsx` file.
 <summary>Show CategoryEdit code</summary>
 
 ```tsx title="src/pages/categories/edit.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { HttpError, useBack } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -2796,7 +2781,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 import { ICategory } from "../../interfaces";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
+export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
@@ -2886,13 +2871,13 @@ Let's create a component that displays the contents of a specific category. Copy
 <summary>Show CategoryShow code</summary>
 
 ```tsx title="src/pages/categories/show.tsx"
-import { useBack, useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useBack, useShow } from "@refinedev/core";
 import { ICategory } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
-export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
+export const CategoryShow = () => {
   const goBack = useBack();
 
   const { queryResult } = useShow<ICategory>();

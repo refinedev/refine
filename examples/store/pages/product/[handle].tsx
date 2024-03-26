@@ -1,8 +1,4 @@
-import {
-  useList,
-  IResourceComponentsProps,
-  GetListResponse,
-} from "@refinedev/core";
+import { useList, GetListResponse } from "@refinedev/core";
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@refinedev/medusa";
 import { Product } from "@medusajs/medusa";
@@ -12,11 +8,10 @@ import { API_URL } from "@lib/constants";
 import { getSearchStaticProps } from "@lib/search-props";
 import { MedusaProduct } from "@components/product/helpers";
 
-const ProductShow: React.FC<
-  IResourceComponentsProps<GetListResponse<MedusaProduct>> & {
-    handle: string;
-  }
-> = ({ initialData, handle }) => {
+const ProductShow: React.FC<{
+  initialData?: GetListResponse<MedusaProduct>;
+  handle: string;
+}> = ({ initialData, handle }) => {
   const { data } = useList<MedusaProduct>({
     resource: "products",
     queryOptions: {

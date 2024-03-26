@@ -15,7 +15,7 @@ export function ChakraUILayout() {
         "@refinedev/react-table": "latest",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
         "@chakra-ui/react": "^2.5.1",
       }}
       startRoute="/my-products"
@@ -114,12 +114,11 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { List, ShowButton, usePagination } from "@refinedev/chakra-ui";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
       {
@@ -269,9 +268,9 @@ import {
   Show,
   TextField,
 } from "@refinedev/chakra-ui";
-import { IResourceComponentsProps, useShow } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 

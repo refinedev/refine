@@ -1,5 +1,4 @@
 import {
-  IResourceComponentsProps,
   useTable,
   getDefaultFilter,
   useNavigation,
@@ -48,7 +47,7 @@ const columns = [
   { header: "Actions", key: "actions", sortable: false },
 ];
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const {
     tableQueryResult,
     pageCount,

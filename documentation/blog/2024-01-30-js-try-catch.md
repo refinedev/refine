@@ -88,7 +88,7 @@ console.log("This is safe avenue.");
 // 'This is safe avenue.'
 ```
 
-Here, the control makes it to the safe zone and logs both statements. But if we introduce an error, the program crashes entirely - not reaching the the safe avenue:
+Here, the control makes it to the safe zone and logs both statements. But if we introduce an error, the program crashes entirely - not reaching the safe avenue:
 
 ```tsx
 console.logd("We are exploring error handling with try/catch/finally");

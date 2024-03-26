@@ -1,9 +1,4 @@
-import {
-  IResourceComponentsProps,
-  useMany,
-  CrudFilters,
-  HttpError,
-} from "@refinedev/core";
+import { useMany, CrudFilters, HttpError } from "@refinedev/core";
 
 import {
   List,
@@ -36,7 +31,7 @@ import { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
 
 const { RangePicker } = DatePicker;
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, searchFormProps } = useTable<
     IPost,
     HttpError,

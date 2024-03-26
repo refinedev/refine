@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  useMany,
-  getDefaultFilter,
-} from "@refinedev/core";
+import { useMany, getDefaultFilter } from "@refinedev/core";
 
 import {
   List,
@@ -18,7 +14,7 @@ import { Table, Radio, Select, Input } from "antd";
 
 import { ICategory, IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, sorter, filters } = useTable<IPost>({
     initialSorter: [
       {
@@ -101,7 +97,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             <FilterDropdown
               {...props}
               mapValue={(selectedKeys) =>
-                selectedKeys.map((i) => parseInt(i.toString()))
+                selectedKeys.map((i) => Number.parseInt(i.toString()))
               }
             >
               <Select

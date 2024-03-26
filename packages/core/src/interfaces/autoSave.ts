@@ -23,7 +23,7 @@ export type AutoSaveReturnType<
   >;
   onFinishAutoSave: (
     values: TVariables,
-  ) => Promise<UpdateResponse<TData> | void> | void;
+  ) => Promise<UpdateResponse<TData> | void>;
 };
 
 export type AutoSaveIndicatorElements = Partial<

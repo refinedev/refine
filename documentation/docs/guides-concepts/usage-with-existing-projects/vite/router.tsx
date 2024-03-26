@@ -126,7 +126,7 @@ export default function App() {
 const ListTsxCode = `
 import { useList } from "@refinedev/core";
 
-export const ProductList: React.FC<IResourceComponentsProps> = () => {
+export const ProductList = () => {
   const { data: products } = useList();
 
   return (

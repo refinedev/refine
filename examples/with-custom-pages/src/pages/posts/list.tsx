@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  useMany,
-  useNavigation,
-} from "@refinedev/core";
+import { useMany, useNavigation } from "@refinedev/core";
 
 import {
   List,
@@ -17,7 +13,7 @@ import { Table, Space, Button } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
   const { push } = useNavigation();
 

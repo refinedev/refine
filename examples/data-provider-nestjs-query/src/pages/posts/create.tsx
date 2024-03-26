@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
@@ -8,7 +7,7 @@ import { Form, Input, Select } from "antd";
 import { CategoriesSelectQuery, PostCreateMutation } from "graphql/types";
 import { CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<GetFields<PostCreateMutation>>(
     { meta: { gqlMutation: POST_CREATE_MUTATION } },
   );

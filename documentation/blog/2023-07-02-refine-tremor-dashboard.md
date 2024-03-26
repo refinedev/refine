@@ -1119,7 +1119,6 @@ We will create a separate component for our Details section. Create the `src/pag
 
 ```tsx title="src/pages/dashboard/details/index.tsx"
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
@@ -1173,7 +1172,7 @@ const getDeltaType = (status: number): DeltaType => {
   return "decrease";
 };
 
-export const Details: React.FC<IResourceComponentsProps> = () => {
+export const Details = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
       {

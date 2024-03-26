@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 
 import { Show, EmailField, ImageField } from "@refinedev/antd";
 
@@ -8,7 +8,7 @@ import { IUser } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
-export const UserShow: React.FC<IResourceComponentsProps> = () => {
+export const UserShow = () => {
   const { queryResult } = useShow<IUser>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

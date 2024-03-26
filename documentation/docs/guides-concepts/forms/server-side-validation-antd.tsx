@@ -122,7 +122,7 @@ import { Create, useForm } from "@refinedev/antd";
 const { Title } = Typography;
 const { TextArea } = Input;
 
-export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
+export const ProductCreate = () => {
   const { formProps, saveButtonProps } = useForm({ redirect: "show" });
 
   return (

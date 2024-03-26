@@ -24,7 +24,7 @@ const About: React.FC = () => {
   return (
     <>
       <Head title="About | Refine">
-        <html data-page="about" data-customized="true" />
+        <html lang="en" data-page="about" data-customized="true" />
       </Head>
       <div className="refine-prose">
         <CommonHeader hasSticky={true} />
@@ -71,6 +71,7 @@ const About: React.FC = () => {
               <img
                 className="rounded-[12px]"
                 src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about.jpg"
+                alt="Refine Office"
               />
             </div>
             <div
@@ -569,6 +570,7 @@ const About: React.FC = () => {
                   className="m-0 p-0"
                   src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map.png"
                   srcSet="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/map2x.png 1500w"
+                  alt="Refine Office"
                 />
               </Link>
             </div>

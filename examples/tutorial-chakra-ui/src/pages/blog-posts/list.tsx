@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  IResourceComponentsProps,
-  GetManyResponse,
-  useMany,
-} from "@refinedev/core";
+import { GetManyResponse, useMany } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import {
@@ -29,11 +25,11 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { ColumnSorter } from "../../components/table/ColumnSorter";
 import { ColumnFilter } from "../../components/table/ColumnFilter";
 
-export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList = () => {
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
       {

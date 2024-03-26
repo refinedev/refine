@@ -1,8 +1,4 @@
-import {
-  IResourceComponentsProps,
-  useMany,
-  getDefaultFilter,
-} from "@refinedev/core";
+import { useMany, getDefaultFilter } from "@refinedev/core";
 
 import {
   List,
@@ -20,7 +16,7 @@ import { Table, Space, Select, Radio, Collapse, List as AntdList } from "antd";
 
 import { IPost, ICategory, IProducts } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { Panel } = Collapse;
 
   const { tableProps, filters } = useTable<IPost>({

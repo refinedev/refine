@@ -330,7 +330,6 @@ Next, we create a new folder named `pages` under the `src` folder. Under that fo
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { List, ShowButton, EditButton, DateField } from "@refinedev/chakra-ui";
 import {
@@ -346,7 +345,7 @@ import {
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(
     () => [
       {
@@ -560,7 +559,7 @@ Create a new file called `pagination.tsx` under the `components` folder. This fi
 ```tsx title="src/components/pagination/index.tsx"
 import { FC } from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { usePagination } from "@refinedev/chakra-ui";
 
 import { IconButton } from "@chakra-ui/react";
@@ -635,7 +634,7 @@ We'll update the `<PostList/>` component with the code below:
 ```tsx title="src/pages/posts/list.tsx"
 import { Pagination } from "../../components/pagination";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   //...
   const {
     getHeaderGroups,
@@ -1185,7 +1184,7 @@ import {
     DeleteButton,
 } from "@refinedev/chakra-ui";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
     //...
     const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
@@ -1255,7 +1254,11 @@ we create a new folder named `components` under the `src` folder. Under that fol
 
 ```tsx title="src/components/ColumnSorter.tsx"
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
+import {
+  IconChevronDown,
+  IconSelector,
+  IconChevronUp,
+} from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
@@ -1372,7 +1375,7 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
-import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({

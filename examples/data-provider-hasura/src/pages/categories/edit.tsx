@@ -1,4 +1,4 @@
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
 
@@ -11,7 +11,7 @@ import {
 } from "graphql/types";
 import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
-export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
+export const CategoryEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<
     GetFields<UpdateCategoryMutation>,
     HttpError,

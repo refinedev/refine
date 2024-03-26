@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError, IResourceComponentsProps } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
@@ -19,7 +19,7 @@ import type {
 } from "@refinedev/hasura";
 import { POST_CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<
     GetFields<CreatePostMutation>,
     HttpError,

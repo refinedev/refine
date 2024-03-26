@@ -1,19 +1,15 @@
 import { useRouter } from "next/router";
 import { Product } from "@medusajs/medusa";
 import { useEffect } from "react";
-import {
-  IResourceComponentsProps,
-  GetListResponse,
-  useTable,
-} from "@refinedev/core";
+import { GetListResponse, useTable } from "@refinedev/core";
 
 import { ProductCard } from "@components/product";
 import { Grid, Marquee, Hero } from "@components/ui";
 import { useCartContext } from "@lib/context";
 
-export const Dashboard: React.FC<
-  IResourceComponentsProps<GetListResponse<Product>>
-> = ({ initialData }) => {
+export const Dashboard: React.FC<{
+  initialData?: GetListResponse<Product>;
+}> = ({ initialData }) => {
   const router = useRouter();
   const { q } = router.query;
   const { cartId } = useCartContext();

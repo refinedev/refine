@@ -476,7 +476,7 @@ values={[
 <TabItem value="usage">
 
 ```tsx
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps, sorter } = useTable<IPost>({
     sorters: {
       initial: [

@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import {
   HttpError,
-  IResourceComponentsProps,
   useExport,
   useNavigation,
   useTranslate,
@@ -22,7 +21,7 @@ import { OrderStatus, OrderTableColumnProducts } from "../../components/order";
 import { IOrder, IOrderFilterVariables } from "../../interfaces";
 import { RefineListView } from "../../components";
 
-export const OrderList: React.FC<IResourceComponentsProps> = () => {
+export const OrderList = () => {
   const t = useTranslate();
   const { mutate } = useUpdate();
 

@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  useShow,
-  useNavigation,
-  IResourceComponentsProps,
-} from "@refinedev/core";
+import { useShow, useNavigation } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { IProduct } from "../../interfaces";
 
-export const ProductShow: React.FC<IResourceComponentsProps> = () => {
+export const ProductShow = () => {
   const { edit, list } = useNavigation();
   const {
     queryResult: { data },

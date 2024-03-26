@@ -1,7 +1,6 @@
 import React from "react";
 import {
   HttpError,
-  IResourceComponentsProps,
   useGetToPath,
   useGo,
   useShow,
@@ -28,7 +27,7 @@ import {
   OrderTableColumnProducts,
 } from "../../components";
 
-export const CustomerShow: React.FC<IResourceComponentsProps> = () => {
+export const CustomerShow = () => {
   const getToPath = useGetToPath();
   const [searchParams] = useSearchParams();
   const go = useGo();

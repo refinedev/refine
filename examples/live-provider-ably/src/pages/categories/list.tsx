@@ -1,4 +1,3 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
   List,
   useTable,
@@ -10,7 +9,7 @@ import { Table, Space } from "antd";
 
 import { ICategory } from "../../interfaces";
 
-export const CategoryList: React.FC<IResourceComponentsProps> = () => {
+export const CategoryList = () => {
   const { tableProps } = useTable<ICategory>();
 
   return (

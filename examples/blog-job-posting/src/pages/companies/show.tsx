@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 import { Show } from "@refinedev/antd";
 
 import { Typography } from "antd";
@@ -7,7 +7,7 @@ import { ICompany } from "interfaces";
 
 const { Title, Text, Paragraph } = Typography;
 
-export const CompanyShow: React.FC<IResourceComponentsProps> = () => {
+export const CompanyShow = () => {
   const { queryResult } = useShow<ICompany>();
   const { data, isLoading } = queryResult;
   const record = data?.data;

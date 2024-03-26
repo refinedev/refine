@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function BaseCoreTable() {
+export default function BaseMantineTable() {
   return (
     <Sandpack
       dependencies={{
@@ -11,7 +11,7 @@ export default function BaseCoreTable() {
         "@refinedev/react-table": "latest",
         "@tanstack/react-table": "latest",
         "@mantine/core": "^5.10.4",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
       }}
       startRoute="/"
       files={{
@@ -188,7 +188,7 @@ interface IProduct {
 
 export const ColumnSorterTsxCode = `
 import { ActionIcon } from "@mantine/core";
-import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
+import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons-react";
 
 export interface ColumnButtonProps {
     column: Column<any, any>; // eslint-disable-line
@@ -224,7 +224,7 @@ export const ColumnFilterTsxCode = `
 import React, { useState } from "react";
 import { Column } from "@tanstack/react-table";
 import { TextInput, Menu, ActionIcon, Stack, Group } from "@mantine/core";
-import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
 
 interface ColumnButtonProps {
     column: Column<any, any>; // eslint-disable-line

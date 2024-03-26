@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       zIndex: {
+        popover: 9,
         modal: 100,
         mobileNavbar: 1000,
         "top-announcement": 1000,
@@ -860,6 +861,9 @@ module.exports = {
       "content-sm": "480px",
       "widening-start": "544px",
       "content-md": "656px",
+      "content-xm": "768px",
+      "content-xl": "792px",
+      "content-xl-safe": "1376px",
       "content-2xl": "864px",
       "content-4xl": "1536px",
       "header-sm": "640px",
@@ -881,6 +885,8 @@ module.exports = {
       "blog-xl": "1440px",
       "blog-2xl": "1584px",
       walkthrough: "976px",
+      "doc-form-lg": "824px",
+      "doc-form-md": "688px",
     },
   },
   plugins: [

@@ -25,7 +25,7 @@
 
 <br/>
 
-<div align="center">refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
+<div align="center">Refine is an open-source, headless React framework for developers building enterprise internal tools, admin panels, dashboards, B2B applications.
 
 <br/>
 
@@ -33,39 +33,131 @@ It eliminates repetitive tasks in CRUD operations and provides industry-standard
 
 </div>
 
-# Ant Design integration for refine
+## Ant Design integration for Refine
 
 [Ant Design](https://ant.design/) is a React.js UI library that contains easy-to-use components that are useful for building interactive user interfaces.
 
-[refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
+[Refine](https://refine.dev/) is **headless by design**, offering unlimited styling and customization options. Moreover, Refine ships with ready-made integrations for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) for convenience.
 
-refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
+Refine has connectors for 15+ backend services, including REST API, [GraphQL](https://graphql.org/), and popular services like [Airtable](https://www.airtable.com/), [Strapi](https://strapi.io/), [Supabase](https://supabase.com/), [Firebase](https://firebase.google.com/), and [NestJS](https://nestjs.com/).
 
-## Installation & Usage
+## Installation
 
-```
+To use Refine with Ant Design, you need to install the following package `@refinedev/antd` along with the Ant Design packages:
+
+```sh
 npm install @refinedev/antd antd
 ```
 
+## ⚡ Try Refine
+
+Start a new project with Refine in seconds using the following command:
+
+```sh
+npm create refine-app@latest my-refine-app
+```
+
+Or you can create a new project on your browser:
+
+<a href="https://refine.dev/?playground=true" target="_blank">
+  <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-it-in-your-browser.png" />
+</a>
+
+## Quick Start
+
+Here's Refine in action, the below code is an example of a simple CRUD application using Refine + React Router + Ant Design:
+
 ```tsx
+import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/antd";
+import dataProvider from "@refinedev/simple-rest";
+import routerBindings from "@refinedev/react-router-v6";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import "@refinedev/antd/dist/reset.css";
+import "antd/dist/reset.css";
 
-const App = () => {
+export default function App() {
   return (
-    <Refine
-    /* ... */
-    >
-      <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
-    </Refine>
+    <BrowserRouter>
+      <Refine
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        routerProvider={routerBindings}
+        resources={[
+          {
+            name: "products",
+            list: "/products",
+          },
+        ]}
+      >
+        <Routes>
+          <Route
+            element={
+              <ThemedLayoutV2>
+                <Outlet />
+              </ThemedLayoutV2>
+            }
+          >
+            <Route path="/products">
+              <Route index element={<ProductList />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Refine>
+    </BrowserRouter>
+  );
+}
+
+// src/pages/products/list.tsx
+
+import { useMany } from "@refinedev/core";
+import { List, useTable, DateField } from "@refinedev/antd";
+import { Table } from "antd";
+
+const ProductList = () => {
+  const { tableProps } = useTable();
+
+  const { data: categories, isLoading } = useMany({
+    resource: "categories",
+    ids:
+      tableProps?.dataSource
+        ?.map((item) => item?.category?.id)
+        .filter(Boolean) ?? [],
+    queryOptions: {
+      enabled: !!tableProps?.dataSource,
+    },
+  });
+
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column
+          dataIndex="category"
+          title={"Category"}
+          render={(value) =>
+            isLoading
+              ? "Loading..."
+              : categories?.data?.find((item) => item.id === value?.id)?.title
+          }
+        />
+        <Table.Column
+          dataIndex="createdAt"
+          title="Created At"
+          render={(value) => <DateField value={value} />}
+        />
+      </Table>
+    </List>
   );
 };
 ```
 
+The result will look like this:
+
+[![Refine + Ant Design Example](https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-antd-simple-example-screenshot.webp)](https://refine.new/preview/260c1e42-56a2-4ddf-a173-a561487cec28)
+
 ## Documentation
 
-- For more detailed information and usage, refer to the [refine Ant Design documentation](https://refine.dev/docs/api-reference/antd/).
-- [Refer to complete refine tutorial with Ant Design](https://refine.dev/docs/tutorial/introduction/select-framework/)
-- [Refer to documentation for more info about refine](https://refine.dev/docs/).
-- [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
+- For more detailed information and usage, refer to the [Refine Ant Design documentation](https://refine.dev/docs/ui-integrations/ant-design/introduction).
+- [Refer to complete Refine tutorial with Ant Design](https://refine.dev/tutorial)
+- [Refer to documentation for more info about Refine](https://refine.dev/docs).

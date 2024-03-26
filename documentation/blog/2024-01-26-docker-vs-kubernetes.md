@@ -178,7 +178,7 @@ While Docker is a must-have element for all the new applications being developed
 
 ## Challenges of Using Kubernetes:
 
-Kubernetes is a giant platform which is not easy to manage. Some of the the challenges when adopting it are:
+Kubernetes is a giant platform which is not easy to manage. Some of the challenges when adopting it are:
 
 - **Steep learning curve**: Kubernetes is complex, requiring significant time and effort to learn and understand.
 - **Resource intensive**: It can be overkill for small applications or teams, demanding substantial infrastructure and expertise.

@@ -13,6 +13,7 @@ export default function NotificationMui() {
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.14.2",
+        "@mui/system": "latest",
         "@refinedev/mui": "latest",
       }}
       startRoute="/"
