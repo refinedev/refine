@@ -11,10 +11,9 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 :::simple Good to know
 
-- GraphQL data provider doesn't support `meta.gqlQuery` and `meta.gqlMutation` fields yet. We'll add support in the future.
-
 - This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
 - To build queries and mutations, [`gql-query-builder`](https://github.com/atulmy/gql-query-builder) is used.
+- You can also use [`graphql-tag`](https://www.npmjs.com/package/graphql-tag) to write your queries and mutations.
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
 
 :::
@@ -44,7 +43,7 @@ const App = () => (
 );
 ```
 
-### Realtime
+## Realtime
 
 `@refinedev/graphql` also provides a `liveProvider` to enable realtime features of Refine. These features are powered by GraphQL subscriptions and uses [`graphql-ws`](https://the-guild.dev/graphql/ws) to handle the connections.
 
@@ -73,6 +72,82 @@ const App = () => (
     {/* ... */}
   </Refine>
 );
+```
+
+## Queries and Mutations
+
+You can use [`graphql-tag`](https://www.npmjs.com/package/graphql-tag) to write your queries and mutations.
+
+Refine hooks' `meta` object has optional `gqlQuery` and `gqlMutation` properties, you can use them to write your queries and mutations.
+
+As a best-practice, we suggest writing your queries/mutations in a separate file, next to the component that uses it.
+
+```tsx title="src/pages/posts/queries.ts"
+import gql from "graphql-tag";
+
+const POSTS_LIST_QUERY = gql`
+  query PostList($where: JSON, $sort: String) {
+    posts(where: $where, sort: $sort) {
+      id
+      title
+      content
+      category {
+        id
+      }
+    }
+  }
+`;
+
+const POST_CREATE_MUTATION = gql`
+  mutation createPost($input: createPostInput!) {
+    createPost(input: $input) {
+      id
+      title
+      content
+      category {
+        id
+      }
+    }
+  }
+`;
+```
+
+```tsx title="src/pages/posts/list.tsx"
+import { useList } from "@refinedev/core";
+import { POSTS_LIST_QUERY } from "./queries";
+
+export const PostListPage () => {
+  const { data } = useList({
+    resource: "posts",
+    // highlight-next-line
+    meta: { gqlQuery: POSTS_LIST_QUERY },
+  });
+
+  return (
+    <div>
+      {/* ... */}
+    </div>
+  );
+}
+```
+
+```tsx title="src/pages/posts/create.tsx"
+import { useForm } from "@refinedev/core";
+import { POST_CREATE_MUTATION } from "./queries";
+
+export const PostCreatePage () => {
+  const { formProps } = useForm({
+    resource: "posts",
+    // highlight-next-line
+    meta: { gqlMutation: POST_CREATE_MUTATION },
+  });
+
+  return (
+    <div>
+      {/* ... */}
+    </div>
+  );
+}
 ```
 
 ## Authentication

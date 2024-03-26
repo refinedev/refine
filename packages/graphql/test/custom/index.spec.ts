@@ -1,3 +1,4 @@
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
@@ -48,5 +49,53 @@ describe("custom", () => {
 
     expect(response?.data.post.id).toBe("32");
     expect(response?.data.post.title).toBe("custom-foo");
+  });
+});
+
+describe.only("custom gql", () => {
+  it.only("correct get query response", async () => {
+    const response = await dataProvider(client).custom({
+      url: "",
+      method: "get",
+      meta: {
+        gqlQuery: gql`
+          query ($where: JSON, $sort: String) {
+            posts(where: $where, sort: $sort) {
+              id
+              title
+            }
+          }
+        `,
+        variables: {
+          sort: "id:asc",
+          where: { title_contains: "foo" },
+        },
+      },
+    });
+
+    expect(response?.data.posts[0].id).toBe("1090");
+    expect(response?.data.posts[0].title).toBe("foo");
+  });
+
+  it("correct get mutation response", async () => {
+    const response = await dataProvider(client).custom({
+      url: "",
+      method: "post",
+      meta: {
+        gqlMutation: gql`
+          mutation ($input: updatePostInput) {
+              updatePost (input: $input) {
+                  post  { id, title }
+              }
+            }
+        `,
+        variables: {
+          input: { where: { id: "2121" }, data: { title: "custom-foo" } },
+        },
+      },
+    });
+
+    expect(response?.data.updatePost.post.id).toBe("2121");
+    expect(response?.data.updatePost.post.title).toBe("custom-foo");
   });
 });

@@ -1,8 +1,9 @@
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
 
-describe("create", () => {
+describe("update", () => {
   it("correct response with meta", async () => {
     const { data } = await dataProvider(client).update({
       resource: "posts",
@@ -23,9 +24,9 @@ describe("create", () => {
       },
     });
 
-    expect(data["title"]).toEqual("updated-foo");
-    expect(data["content"]).toEqual("updated-bar");
-    expect(data["category"].id).toEqual("2");
+    expect(data.title).toEqual("updated-foo");
+    expect(data.content).toEqual("updated-bar");
+    expect(data.category.id).toEqual("2");
   });
 
   it("correct response without meta", async () => {
@@ -39,6 +40,41 @@ describe("create", () => {
       },
     });
 
-    expect(data["id"]).toEqual("21");
+    expect(data.id).toEqual("21");
+  });
+});
+
+describe("update gql", () => {
+  it("correct response", async () => {
+    const { data } = await dataProvider(client).update({
+      resource: "posts",
+      id: "2121",
+      variables: {
+        title: "updated-test",
+        content: "updated-test",
+        category: "19",
+      },
+      meta: {
+        gqlQuery: gql`
+          mutation ($id: ID!, $data: editPostInput!) {
+            updatePost (input: { where: { id: $id }, data: $data }) {
+              post {
+                id
+                title
+                content
+                category {
+                  id
+                }
+              }
+            }
+          }
+        `,
+      },
+    });
+
+    expect(data.id).toEqual("2121");
+    expect(data.title).toEqual("updated-test");
+    expect(data.content).toEqual("updated-test");
+    expect(data.category.id).toEqual("19");
   });
 });

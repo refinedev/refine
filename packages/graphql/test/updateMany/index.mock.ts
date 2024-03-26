@@ -181,3 +181,111 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     "X-Response-Time",
     "442ms",
   ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id }\n  }\n    }",
+    variables: {
+      input: {
+        where: { id: "2121" },
+        data: {
+          title: "updated-test",
+          content: "updated-test",
+          category: "19",
+        },
+      },
+    },
+  })
+  .reply(200, { data: { updatePost: { post: { id: "2121" } } } }, [
+    "Date",
+    "Mon, 11 Mar 2024 14:43:30 GMT",
+    "Content-Type",
+    "application/json",
+    "Content-Length",
+    "47",
+    "Connection",
+    "close",
+    "Vary",
+    "Origin",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains",
+    "X-Frame-Options",
+    "SAMEORIGIN",
+    "X-Powered-By",
+    "Strapi <strapi.io>",
+    "X-Response-Time",
+    "112ms",
+  ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id }\n  }\n    }",
+    variables: {
+      input: {
+        where: { id: "6223" },
+        data: {
+          title: "updated-test",
+          content: "updated-test",
+          category: "19",
+        },
+      },
+    },
+  })
+  .reply(200, { data: { updatePost: { post: { id: "6223" } } } }, [
+    "Date",
+    "Mon, 11 Mar 2024 15:15:13 GMT",
+    "Content-Type",
+    "application/json",
+    "Content-Length",
+    "47",
+    "Connection",
+    "close",
+    "Vary",
+    "Origin",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains",
+    "X-Frame-Options",
+    "SAMEORIGIN",
+    "X-Powered-By",
+    "Strapi <strapi.io>",
+    "X-Response-Time",
+    "78ms",
+  ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id }\n  }\n    }",
+    variables: {
+      input: {
+        where: { id: "2121" },
+        data: {
+          title: "updated-test",
+          content: "updated-test",
+          category: "19",
+        },
+      },
+    },
+  })
+  .reply(200, { data: { updatePost: { post: { id: "2121" } } } }, [
+    "Date",
+    "Mon, 11 Mar 2024 15:15:13 GMT",
+    "Content-Type",
+    "application/json",
+    "Content-Length",
+    "47",
+    "Connection",
+    "close",
+    "Vary",
+    "Origin",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains",
+    "X-Frame-Options",
+    "SAMEORIGIN",
+    "X-Powered-By",
+    "Strapi <strapi.io>",
+    "X-Response-Time",
+    "75ms",
+  ]);
