@@ -16,7 +16,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import {
+  BlogPostList,
+  BlogPostCreate,
+  BlogPostEdit,
+  BlogPostShow,
+} from "./pages/blog-posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 
 const API_TOKEN =
@@ -70,10 +75,10 @@ const App: React.FC = () => {
                 />
 
                 <Route path="/blog-posts">
-                  <Route index element={<PostList />} />
-                  <Route path="new" element={<PostCreate />} />
-                  <Route path=":id/edit" element={<PostEdit />} />
-                  <Route path=":id" element={<PostShow />} />
+                  <Route index element={<BlogPostList />} />
+                  <Route path="new" element={<BlogPostCreate />} />
+                  <Route path=":id/edit" element={<BlogPostEdit />} />
+                  <Route path=":id" element={<BlogPostShow />} />
                 </Route>
 
                 <Route path="/categories">

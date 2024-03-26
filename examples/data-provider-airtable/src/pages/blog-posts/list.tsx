@@ -13,7 +13,7 @@ import { Table, Space } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList = () => {
+export const BlogPostList = () => {
   const { tableProps } = useTable<IPost>();
 
   const categoryIds = tableProps?.dataSource?.flatMap((p) => p.category);
