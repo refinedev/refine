@@ -5,6 +5,9 @@ import {
   Pagination,
   pickNotDeprecated,
   Prettify,
+  useForm,
+  UseFormProps,
+  UseFormReturnType,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -45,6 +48,9 @@ type DataGridPropsType = Required<
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
+    | "processRowUpdate"
+    | "onCellEditStart"
+    | "onRowEditStart"
   >
 > &
   Pick<
@@ -52,42 +58,55 @@ type DataGridPropsType = Required<
     "paginationModel" | "onPaginationModelChange" | "filterModel"
   >;
 
-export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
-  Omit<
-    useTablePropsCore<TQueryFnData, TError, TData>,
-    "pagination" | "filters"
-  > & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-      Omit<Pagination, "pageSize"> & {
-        /**
-         * Initial number of items per page
-         * @default 25
-         */
-        pageSize?: number;
-      }
-    >;
-    filters?: Prettify<
-      Omit<
-        NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
-        "defaultBehavior"
-      > & {
-        /**
-         * Default behavior of the `setFilters` function
-         * @default "replace"
-         */
-        defaultBehavior?: "replace" | "merge";
-      }
-    >;
-  };
+export type UseDataGridProps<
+  TQueryFnData extends BaseRecord,
+  TError extends HttpError,
+  TSearchVariables,
+  TData,
+> = Omit<
+  useTablePropsCore<TQueryFnData, TError, TData>,
+  "pagination" | "filters"
+> & {
+  onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+  pagination?: Prettify<
+    Omit<Pagination, "pageSize"> & {
+      /**
+       * Initial number of items per page
+       * @default 25
+       */
+      pageSize?: number;
+    }
+  >;
+  filters?: Prettify<
+    Omit<
+      NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
+      "defaultBehavior"
+    > & {
+      /**
+       * Default behavior of the `setFilters` function
+       * @default "replace"
+       */
+      defaultBehavior?: "replace" | "merge";
+    }
+  >;
+  formProps?: Omit<
+    UseFormProps<TQueryFnData, TError, TData>,
+    "autoSave" | "action" | "redirect"
+  >;
+};
 
 export type UseDataGridReturnType<
-  TData extends BaseRecord = BaseRecord,
+  TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TSearchVariables = unknown,
+  TData extends BaseRecord = TQueryFnData,
 > = useTableReturnTypeCore<TData, TError> & {
   dataGridProps: DataGridPropsType;
   search: (value: TSearchVariables) => Promise<void>;
+  formProps: Pick<
+    UseFormReturnType<TQueryFnData, TError, TData>,
+    "onFinish" | "setId" | "id" | "formLoading"
+  >;
 };
 
 /**
@@ -134,12 +153,13 @@ export function useDataGrid<
   metaData,
   dataProviderName,
   overtimeOptions,
+  formProps,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
   TSearchVariables,
   TData
-> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
+> = {}): UseDataGridReturnType<TQueryFnData, TError, TSearchVariables, TData> {
   const theme = useTheme();
   const liveMode = useLiveMode(liveModeFromProp);
 
@@ -263,6 +283,16 @@ export function useDataGrid<
     };
   };
 
+  const { setId, onFinish, id, formLoading } = useForm<
+    TQueryFnData,
+    TError,
+    TData
+  >({
+    ...formProps,
+    action: "edit",
+    redirect: false,
+  });
+
   return {
     tableQueryResult,
     dataGridProps: {
@@ -310,6 +340,16 @@ export function useDataGrid<
           )}`,
         },
       },
+      processRowUpdate: async (newRow, oldRow) => {
+        try {
+          await onFinish(newRow);
+          return newRow;
+        } catch {
+          return oldRow;
+        }
+      },
+      onCellEditStart: (params) => setId(params?.id),
+      onRowEditStart: (params) => setId(params?.id),
     },
     current,
     setCurrent,
@@ -325,5 +365,11 @@ export function useDataGrid<
     search,
     createLinkForSyncWithLocation,
     overtime,
+    formProps: {
+      onFinish,
+      setId,
+      id,
+      formLoading,
+    },
   };
 }
