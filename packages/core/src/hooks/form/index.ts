@@ -43,6 +43,7 @@ export type {
   FormAction,
   RedirectAction,
   RedirectionTypes,
+  FormWithSyncWithLocationParams,
 } from "./types";
 
 /**
