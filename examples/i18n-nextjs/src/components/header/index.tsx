@@ -3,7 +3,7 @@
 import { DownOutlined } from "@ant-design/icons";
 import { ColorModeContext } from "@contexts/color-mode";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
+import { useGetIdentity, useTranslation } from "@refinedev/core";
 import {
   Layout as AntdLayout,
   Avatar,
@@ -27,9 +27,8 @@ type IUser = {
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky,
 }) => {
-  const locale = useGetLocale();
-  const currentLocale = locale();
-  const changeLanguage = useSetLocale();
+  const { getLocale, changeLocale } = useTranslation();
+  const currentLocale = getLocale();
   const { token } = theme.useToken();
   const { data: user } = useGetIdentity<IUser>();
   const { mode, setMode } = useContext(ColorModeContext);
@@ -39,7 +38,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     .map((lang: string) => ({
       key: lang,
       onClick: () => {
-        changeLanguage(lang);
+        changeLocale(lang);
         Cookies.set("NEXT_LOCALE", lang);
       },
       label: lang === "en" ? "English" : "German",

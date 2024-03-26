@@ -381,11 +381,7 @@ module.exports = {
           type: "category",
           collapsed: false,
           label: "Hooks",
-          items: [
-            "i18n/hooks/use-get-locale/index",
-            "i18n/hooks/use-set-locale/index",
-            "i18n/hooks/use-translate/index",
-          ],
+          items: ["i18n/hooks/use-translation/index"],
         },
         {
           type: "category",

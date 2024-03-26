@@ -1,11 +1,11 @@
 "use client";
 
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { useTranslate } from "@refinedev/core";
+import { useTranslation } from "@refinedev/core";
 import { Form, Input, Select } from "antd";
 
 export default function BlogPostEdit() {
-  const t = useTranslate();
+  const { translate: t } = useTranslation();
   const { formProps, saveButtonProps, queryResult } = useForm({});
 
   const blogPostsData = queryResult?.data?.data;

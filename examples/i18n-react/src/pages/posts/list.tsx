@@ -1,4 +1,4 @@
-import { useMany, useTranslate } from "@refinedev/core";
+import { useMany, useTranslation } from "@refinedev/core";
 import {
   List,
   TextField,
@@ -11,7 +11,7 @@ import { Table, Space } from "antd";
 import { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
-  const translate = useTranslate();
+  const { translate } = useTranslation();
   const { tableProps } = useTable<IPost>();
 
   const categoryIds =

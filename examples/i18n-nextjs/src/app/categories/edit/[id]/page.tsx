@@ -1,11 +1,11 @@
 "use client";
 
 import { Edit, useForm } from "@refinedev/antd";
-import { useTranslate } from "@refinedev/core";
+import { useTranslation } from "@refinedev/core";
 import { Form, Input } from "antd";
 
 export default function CategoryEdit() {
-  const t = useTranslate();
+  const { translate: t } = useTranslation();
   const { formProps, saveButtonProps } = useForm({});
 
   return (

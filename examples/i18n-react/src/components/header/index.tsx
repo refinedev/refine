@@ -1,4 +1,4 @@
-import { useGetLocale, useSetLocale } from "@refinedev/core";
+import { useGetLocale, useSetLocale, useTranslation } from "@refinedev/core";
 import { DownOutlined } from "@ant-design/icons";
 import {
   Layout as AntdLayout,
@@ -8,20 +8,18 @@ import {
   Avatar,
   MenuProps,
 } from "antd";
-import { useTranslation } from "react-i18next";
+import { useTranslation as usei18nextTranslation } from "react-i18next";
 
 export const Header: React.FC = () => {
-  const { i18n } = useTranslation();
-  const locale = useGetLocale();
-  const changeLanguage = useSetLocale();
-
-  const currentLocale = locale();
+  const { i18n } = usei18nextTranslation();
+  const { getLocale, changeLocale } = useTranslation();
+  const currentLocale = getLocale();
 
   const menuItems: MenuProps["items"] = [...(i18n.languages || [])]
     .sort()
     .map((lang: string) => ({
       key: lang,
-      onClick: () => changeLanguage(lang),
+      onClick: () => changeLocale(lang),
       icon: (
         <span style={{ marginRight: 8 }}>
           <Avatar size={16} src={`/images/flags/${lang}.svg`} />
