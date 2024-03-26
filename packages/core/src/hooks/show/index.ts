@@ -2,9 +2,8 @@ import warnOnce from "warn-once";
 import { useMeta, useOne, useResourceParams, useLoadingOvertime } from "@hooks";
 import { pickNotDeprecated } from "@definitions/helpers";
 
-import type { BaseRecord, BaseKey, HttpError } from "../../interfaces";
-
 import type { UseShowProps, UseShowReturnType } from "./types";
+import { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
 
 export type {
   UseShowProps,

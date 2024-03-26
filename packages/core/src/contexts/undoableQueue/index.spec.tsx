@@ -1,8 +1,10 @@
 import * as React from "react";
-import { act, waitFor } from "@test";
+
 import { renderHook } from "@testing-library/react";
 
-import { undoableQueueReducer } from "./undoableQueueContext";
+import { act } from "@test";
+
+import { undoableQueueReducer } from ".";
 
 describe("Notification Reducer", () => {
   const notificationDispatch = jest.fn();

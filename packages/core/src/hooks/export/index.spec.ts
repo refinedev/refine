@@ -1,12 +1,12 @@
 import { renderHook } from "@testing-library/react";
+import papaparse from "papaparse";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { mockRouterBindings, posts } from "@test/dataMocks";
+import { mockRouterProvider, posts } from "@test/dataMocks";
 
-import { ExportOptions, useExport } from "./";
-import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
 import { downloadInBrowser } from "../../definitions/helpers/downloadInBrowser";
-import papaparse from "papaparse";
+import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
+import { ExportOptions, useExport } from "./";
 
 const testCsv = "col1,col2\r\ncell1,cell2";
 jest.mock("papaparse", () => ({
@@ -81,7 +81,7 @@ describe("useExport Hook", () => {
 
     const { result } = renderHook(() => useExport(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
             list: "/posts",
@@ -219,7 +219,7 @@ describe("useExport Hook", () => {
       const { result } = renderHook(() => useExport(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "postsName",
               identifier: isIdentifier ? "postsIdentifier" : undefined,

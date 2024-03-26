@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 
 import {
-  useTranslate,
-  useRouterContext,
-  useLink,
-  useRouterType,
   useForgotPassword,
+  useLink,
+  useRouterContext,
+  useRouterType,
+  useTranslate,
 } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
-import {
-  ForgotPasswordFormTypes,
-  ForgotPasswordPageProps,
-} from "../../../../../interfaces";
+import { ForgotPasswordFormTypes, ForgotPasswordPageProps } from "../../types";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
   DivPropsType,

@@ -1,20 +1,23 @@
 import React from "react";
+
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, act } from "@test";
 import {
+  MockJSONServer,
+  TestWrapper,
+  act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
-  posts,
-} from "@test/dataMocks";
-import * as useResourceWithRoute from "../resource/useResourceWithRoute";
+  mockRouterProvider,
+} from "@test";
+import { posts } from "@test/dataMocks";
+
+import { IResourceItem } from "../../contexts/resource/types";
 import * as pickResource from "../../definitions/helpers/pick-resource";
+import * as useResourceWithRoute from "../resource/useResourceWithRoute";
 
-import { IResourceItem } from "@contexts/resource";
+import { useShow } from "./useShow";
 
-import { useShow } from ".";
-
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   action: "show",
   resource: { name: "posts" },
   id: "1",
@@ -177,7 +180,7 @@ describe("useShow Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: { name: "posts" },
           id: "1",
@@ -214,7 +217,7 @@ describe("useShow Hook", () => {
             getOne: getOneMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: { name: "posts" },
           id: "1",
@@ -301,7 +304,7 @@ describe("useShow Hook", () => {
           },
         },
         resources: [{ name: "posts" }],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "show",
           resource: "posts" as unknown as IResourceItem,
           id: "1",

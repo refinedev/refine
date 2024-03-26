@@ -2,29 +2,68 @@ import { Dispatch, SetStateAction } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 
 import {
-  BaseRecord,
-  CreateResponse,
-  GetOneResponse,
-  HttpError,
-  LiveModeProps,
-  RedirectAction,
-  SuccessErrorNotification,
-  UpdateResponse,
-  MutationMode,
-  BaseKey,
-  IQueryKeys,
-  FormAction,
-  MetaQuery,
-  AutoSaveProps,
-  AutoSaveReturnType,
   OptimisticUpdateMapType,
-} from "../../interfaces";
-import { UseUpdateProps, UseUpdateReturnType } from "../data/useUpdate";
+  UseUpdateProps,
+  UseUpdateReturnType,
+} from "../data/useUpdate";
 import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
 import {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
+import {
+  BaseKey,
+  BaseRecord,
+  CreateResponse,
+  GetOneResponse,
+  HttpError,
+  IQueryKeys,
+  MetaQuery,
+  MutationMode,
+  UpdateResponse,
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
+import { Action } from "../../contexts/router/types";
+
+export type FormAction = Extract<Action, "create" | "edit" | "clone">;
+
+export type RedirectAction =
+  | Extract<Action, "create" | "edit" | "list" | "show">
+  | false;
+
+/**
+ * @deprecated use RedirectAction type instead
+ */
+export type RedirectionTypes = RedirectAction;
+
+export type AutoSaveProps<TVariables> = {
+  autoSave?: {
+    enabled: boolean;
+    debounce?: number;
+    onFinish?: (values: TVariables) => TVariables;
+    invalidateOnUnmount?: boolean;
+    invalidateOnClose?: boolean;
+  };
+};
+
+export type AutoSaveReturnType<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = {
+  autoSaveProps: Pick<
+    UseUpdateReturnType<TData, TError, TVariables>,
+    "data" | "error" | "status"
+  >;
+  onFinishAutoSave: (
+    values: TVariables,
+  ) => Promise<UpdateResponse<TData> | void>;
+};
+
+export type AutoSaveIndicatorElements = Partial<
+  Record<"success" | "error" | "loading" | "idle", React.ReactNode>
+>;
 
 export type ActionParams = {
   /**
@@ -199,3 +238,12 @@ export type UseFormReturnType<
   ) => void;
 } & UseLoadingOvertimeReturnType &
   AutoSaveReturnType<TResponse, TResponseError, TVariables>;
+
+export type FormWithSyncWithLocationParams = {
+  /**
+   * If true, the form will be synced with the location.
+   * If an object is passed, the key property will be used as the key for the query params.
+   * By default, query params are placed under the key, `${resource.name}-${action}`.
+   */
+  syncWithLocation?: boolean | { key?: string; syncId?: boolean };
+};

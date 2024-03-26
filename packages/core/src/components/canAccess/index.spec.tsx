@@ -1,16 +1,17 @@
 import React from "react";
+
+import { act } from "react-dom/test-utils";
+
 import {
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
 } from "@test";
 
-import { CanAccess } from ".";
-import { act } from "react-dom/test-utils";
-
 import * as UseCanHook from "../../hooks/accessControl/useCan";
+import { CanAccess } from ".";
 
 describe("CanAccess Component", () => {
   beforeEach(() => {
@@ -151,7 +152,7 @@ describe("CanAccess Component", () => {
         {
           wrapper: TestWrapper({
             resources: [{ name: "posts", list: "/posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: { name: "posts", list: "/posts" },
               action: "list",
               id: undefined,
@@ -218,7 +219,7 @@ describe("CanAccess Component", () => {
               {
                 wrapper: TestWrapper({
                   resources: [{ name: "posts", list: "/posts" }],
-                  routerProvider: mockRouterBindings({
+                  routerProvider: mockRouterProvider({
                     resource: { name: "posts", list: "/posts" },
                     action: "list",
                     id: undefined,
@@ -268,7 +269,7 @@ describe("CanAccess Component", () => {
                     resources: [
                       { name: "posts", list: "/posts", identifier: "posts" },
                     ],
-                    routerProvider: mockRouterBindings({
+                    routerProvider: mockRouterProvider({
                       action: "list",
                       id: undefined,
                       resource: {
@@ -317,7 +318,7 @@ describe("CanAccess Component", () => {
                 </CanAccess>,
                 {
                   wrapper: TestWrapper({
-                    routerProvider: mockRouterBindings({
+                    routerProvider: mockRouterProvider({
                       id: undefined,
                       action: "list",
                       resource: undefined,

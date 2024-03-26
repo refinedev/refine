@@ -1,5 +1,6 @@
-import { asyncDebounce } from ".";
 import { waitFor } from "@testing-library/react";
+
+import { asyncDebounce } from ".";
 
 describe("asyncDebounce", () => {
   it("should debounce the function", async () => {

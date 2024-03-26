@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import * as ReactQuery from "@tanstack/react-query";
 
@@ -111,7 +111,7 @@ describe("useCustom Hook", () => {
               custom: customMock,
             },
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             params: { baz: "qux" },
           }),
           resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -154,6 +154,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -191,6 +192,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -223,6 +225,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -261,6 +264,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

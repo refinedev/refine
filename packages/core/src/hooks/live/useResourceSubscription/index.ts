@@ -1,19 +1,19 @@
+import { useContext, useEffect } from "react";
+
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
 import { useInvalidate } from "@hooks/invalidate";
 import { useResource } from "@hooks/resource";
-import { useContext, useEffect } from "react";
+
 import {
   BaseKey,
-  CrudFilters,
-  CrudSorting,
-  ILiveContext,
-  IRefineContext,
-  LiveEvent,
-  LiveModeProps,
+  CrudFilter,
+  CrudSort,
   MetaQuery,
   Pagination,
-} from "../../../interfaces";
+} from "../../../contexts/data/types";
+import { LiveEvent, LiveModeProps } from "../../../contexts/live/types";
+import { IRefineContext } from "../../../contexts/refine/types";
 
 export type UseResourceSubscriptionProps = {
   channel: string;
@@ -36,9 +36,9 @@ export type UseResourceSubscriptionProps = {
     /**
      * @deprecated `sort` is deprecated. Use `sorters` instead.
      */
-    sort?: CrudSorting;
-    sorters?: CrudSorting;
-    filters?: CrudFilters;
+    sort?: CrudSort[];
+    sorters?: CrudSort[];
+    filters?: CrudFilter[];
     subscriptionType: "useList" | "useOne" | "useMany";
     [key: string]: any;
   };
@@ -67,7 +67,7 @@ export const useResourceSubscription = ({
 }: UseResourceSubscriptionProps): void => {
   const { resource, identifier } = useResource(resourceFromProp);
 
-  const liveDataContext = useContext<ILiveContext>(LiveContext);
+  const { liveProvider } = useContext(LiveContext);
   const {
     liveMode: liveModeFromContext,
     onLiveEvent: onLiveEventContextCallback,
@@ -104,7 +104,7 @@ export const useResourceSubscription = ({
     };
 
     if (liveMode && liveMode !== "off" && enabled) {
-      subscription = liveDataContext?.subscribe({
+      subscription = liveProvider?.subscribe({
         channel,
         params: {
           resource: resource?.name,
@@ -122,7 +122,7 @@ export const useResourceSubscription = ({
 
     return () => {
       if (subscription) {
-        liveDataContext?.unsubscribe(subscription);
+        liveProvider?.unsubscribe(subscription);
       }
     };
   }, [enabled]);
