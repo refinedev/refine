@@ -1,7 +1,16 @@
 import { Dispatch, SetStateAction } from "react";
-
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 
+import {
+  OptimisticUpdateMapType,
+  UseUpdateProps,
+  UseUpdateReturnType,
+} from "../data/useUpdate";
+import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
+import {
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
+} from "../useLoadingOvertime";
 import {
   BaseKey,
   BaseRecord,
@@ -16,16 +25,6 @@ import {
 import { LiveModeProps } from "../../contexts/live/types";
 import { SuccessErrorNotification } from "../../contexts/notification/types";
 import { Action } from "../../contexts/router/types";
-import { UseCreateProps, UseCreateReturnType } from "../data/useCreate";
-import {
-  OptimisticUpdateMapType,
-  UseUpdateProps,
-  UseUpdateReturnType,
-} from "../data/useUpdate";
-import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
-} from "../useLoadingOvertime";
 
 export type FormAction = Extract<Action, "create" | "edit" | "clone">;
 
@@ -239,12 +238,3 @@ export type UseFormReturnType<
   ) => void;
 } & UseLoadingOvertimeReturnType &
   AutoSaveReturnType<TResponse, TResponseError, TVariables>;
-
-export type FormWithSyncWithLocationParams = {
-  /**
-   * If true, the form will be synced with the location.
-   * If an object is passed, the key property will be used as the key for the query params.
-   * By default, query params are placed under the key, `${resource.name}-${action}`.
-   */
-  syncWithLocation?: boolean | { key?: string; syncId?: boolean };
-};

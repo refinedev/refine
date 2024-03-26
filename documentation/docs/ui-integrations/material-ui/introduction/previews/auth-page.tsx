@@ -17,6 +17,7 @@ export default function AuthPage() {
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.14.2",
+        "@mui/system": "latest",
         "@mui/x-data-grid": "^6.6.0",
         "react-router-dom": "latest",
         "react-router": "latest",

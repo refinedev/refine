@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslate } from "@hooks/i18n";
 
 import { BaseRecord, HttpError } from "../../contexts/data/types";
-import { AutoSaveIndicatorElements } from "../../hooks";
+import { AutoSaveIndicatorElements } from "../../hooks/form/types";
 import { UseUpdateReturnType } from "../../hooks/data/useUpdate";
 
 export type AutoSaveIndicatorProps<

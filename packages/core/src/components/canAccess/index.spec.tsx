@@ -2,16 +2,22 @@ import React from "react";
 
 import { act } from "react-dom/test-utils";
 
-import { TestWrapper, render, waitFor } from "@test";
+import {
+  mockLegacyRouterProvider,
+  mockRouterProvider,
+  render,
+  TestWrapper,
+  waitFor,
+} from "@test";
 
-import { CanAccess } from ".";
-import * as RouterPicker from "../../contexts/router/picker";
-import * as PickResource from "../../definitions/helpers/pick-resource";
 import * as UseCanHook from "../../hooks/accessControl/useCan";
-import * as LegacyRouterContext from "../../hooks/legacy-router/useRouterContext";
-import * as UseParsedHook from "../../hooks/router/use-parsed";
+import { CanAccess } from ".";
 
 describe("CanAccess Component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should render children", async () => {
     const onUnauthorized = jest.fn();
 
@@ -84,9 +90,9 @@ describe("CanAccess Component", () => {
         reason: "test",
         params: {
           id: undefined,
-          resource: {
+          resource: expect.objectContaining({
             name: "posts",
-          },
+          }),
         },
       });
     });
@@ -137,20 +143,6 @@ describe("CanAccess Component", () => {
 
   describe("when no prop is passed", () => {
     it("should work", async () => {
-      const useParsedSpy = jest.spyOn(UseParsedHook, "useParsed");
-
-      useParsedSpy.mockImplementation(() => ({
-        action: "list",
-        id: undefined,
-        resource: { name: "posts", list: "/posts" },
-      }));
-
-      const pickResourceSpy = jest.spyOn(PickResource, "pickResource");
-
-      pickResourceSpy.mockImplementation(() => ({
-        name: "posts",
-      }));
-
       const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
       const { container, queryByText, findByText } = render(
@@ -159,6 +151,12 @@ describe("CanAccess Component", () => {
         </CanAccess>,
         {
           wrapper: TestWrapper({
+            resources: [{ name: "posts", list: "/posts" }],
+            routerProvider: mockRouterProvider({
+              resource: { name: "posts", list: "/posts" },
+              action: "list",
+              id: undefined,
+            }),
             accessControlProvider: {
               can: async () => {
                 return { can: false };
@@ -170,17 +168,19 @@ describe("CanAccess Component", () => {
 
       expect(container).toBeTruthy();
 
-      expect(useCanSpy).toHaveBeenCalledWith({
-        resource: "posts",
-        action: "list",
-        params: {
-          id: undefined,
-          resource: {
-            list: "/posts",
-            name: "posts",
+      expect(useCanSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          resource: "posts",
+          action: "list",
+          params: {
+            id: undefined,
+            resource: expect.objectContaining({
+              list: "/posts",
+              name: "posts",
+            }),
           },
-        },
-      });
+        }),
+      );
 
       expect(queryByText("Accessible")).not.toBeInTheDocument();
 
@@ -208,28 +208,8 @@ describe("CanAccess Component", () => {
 
     describe("When props not passed", () => {
       describe("When new router", () => {
-        let routerPickerSpy: jest.SpyInstance<"legacy" | "new">;
-
-        beforeAll(() => {
-          routerPickerSpy = jest.spyOn(RouterPicker, "useRouterType");
-
-          routerPickerSpy.mockImplementation(() => "new");
-        });
-
-        afterAll(() => {
-          routerPickerSpy.mockReset();
-        });
-
         describe("when resource is an object", () => {
           it("should deny access", async () => {
-            const useParsedSpy = jest.spyOn(UseParsedHook, "useParsed");
-
-            useParsedSpy.mockImplementation(() => ({
-              action: "list",
-              id: undefined,
-              resource: { name: "posts", list: "/posts" },
-            }));
-
             const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
             const { container, queryByText, findByText } = render(
@@ -238,6 +218,12 @@ describe("CanAccess Component", () => {
               </CanAccess>,
               {
                 wrapper: TestWrapper({
+                  resources: [{ name: "posts", list: "/posts" }],
+                  routerProvider: mockRouterProvider({
+                    resource: { name: "posts", list: "/posts" },
+                    action: "list",
+                    id: undefined,
+                  }),
                   accessControlProvider: {
                     can: async () => {
                       return { can: false };
@@ -249,17 +235,19 @@ describe("CanAccess Component", () => {
 
             expect(container).toBeTruthy();
 
-            expect(useCanSpy).toHaveBeenCalledWith({
-              resource: "posts",
-              action: "list",
-              params: {
-                id: undefined,
-                resource: {
-                  name: "posts",
-                  list: "/posts",
-                },
-              },
-            });
+            expect(useCanSpy).toHaveBeenCalledWith(
+              expect.objectContaining({
+                resource: "posts",
+                action: "list",
+                params: expect.objectContaining({
+                  id: undefined,
+                  resource: expect.objectContaining({
+                    name: "posts",
+                    list: "/posts",
+                  }),
+                }),
+              }),
+            );
 
             expect(queryByText("Accessible")).not.toBeInTheDocument();
 
@@ -270,17 +258,6 @@ describe("CanAccess Component", () => {
         describe("when resource is a string", () => {
           describe("when pick resource is object", () => {
             it("should deny access", async () => {
-              const useParsedSpy = jest.spyOn<any, any>(
-                UseParsedHook,
-                "useParsed",
-              );
-
-              useParsedSpy.mockImplementation(() => ({
-                action: "list",
-                id: undefined,
-                resource: "posts",
-              }));
-
               const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
               const { container, queryByText, findByText } = render(
@@ -289,6 +266,18 @@ describe("CanAccess Component", () => {
                 </CanAccess>,
                 {
                   wrapper: TestWrapper({
+                    resources: [
+                      { name: "posts", list: "/posts", identifier: "posts" },
+                    ],
+                    routerProvider: mockRouterProvider({
+                      action: "list",
+                      id: undefined,
+                      resource: {
+                        name: "posts",
+                        list: "/posts",
+                        identifier: "posts",
+                      },
+                    }),
                     accessControlProvider: {
                       can: async () => {
                         return { can: false };
@@ -303,13 +292,14 @@ describe("CanAccess Component", () => {
               expect(useCanSpy).toHaveBeenCalledWith({
                 resource: "posts",
                 action: "list",
-                params: {
+                params: expect.objectContaining({
                   id: undefined,
-                  resource: {
+                  resource: expect.objectContaining({
                     name: "posts",
                     list: "/posts",
-                  },
-                },
+                  }),
+                }),
+                queryOptions: undefined,
               });
 
               expect(queryByText("Accessible")).not.toBeInTheDocument();
@@ -319,23 +309,8 @@ describe("CanAccess Component", () => {
           });
 
           describe("when pick resource is undefined", () => {
-            it("should work", async () => {
-              const useParsedSpy = jest.spyOn<any, any>(
-                UseParsedHook,
-                "useParsed",
-              );
-
-              useParsedSpy.mockImplementation(() => ({
-                action: "list",
-                id: undefined,
-                resource: "posts",
-              }));
-
+            it("should work without resource", async () => {
               const useCanSpy = jest.spyOn(UseCanHook, "useCan");
-
-              const pickSpy = jest.spyOn(PickResource, "pickResource");
-
-              pickSpy.mockImplementation(() => undefined);
 
               const { container, queryByText, findByText } = render(
                 <CanAccess fallback={<p>Access Denied</p>}>
@@ -343,6 +318,11 @@ describe("CanAccess Component", () => {
                 </CanAccess>,
                 {
                   wrapper: TestWrapper({
+                    routerProvider: mockRouterProvider({
+                      id: undefined,
+                      action: "list",
+                      resource: undefined,
+                    }),
                     accessControlProvider: {
                       can: async () => {
                         return { can: false };
@@ -355,15 +335,13 @@ describe("CanAccess Component", () => {
               expect(container).toBeTruthy();
 
               expect(useCanSpy).toHaveBeenCalledWith({
-                resource: "posts",
+                resource: undefined,
                 action: "list",
-                params: {
+                params: expect.objectContaining({
                   id: undefined,
-                  resource: {
-                    name: "posts",
-                    list: "/posts",
-                  },
-                },
+                  resource: undefined,
+                }),
+                queryOptions: undefined,
               });
 
               expect(queryByText("Accessible")).not.toBeInTheDocument();
@@ -375,32 +353,7 @@ describe("CanAccess Component", () => {
       });
 
       describe("when legacy router", () => {
-        let routerPickerSpy: jest.SpyInstance<"legacy" | "new">;
-
-        beforeAll(() => {
-          routerPickerSpy = jest.spyOn(RouterPicker, "useRouterType");
-
-          routerPickerSpy.mockImplementation(() => "legacy");
-        });
-
-        afterAll(() => {
-          routerPickerSpy.mockReset();
-        });
-
         it("should deny access", async () => {
-          const useRouterContextSpy = jest.spyOn<any, any>(
-            LegacyRouterContext,
-            "useRouterContext",
-          );
-
-          useRouterContextSpy.mockImplementation(() => ({
-            useParams: () => ({
-              resource: "posts",
-              id: undefined,
-              action: "list",
-            }),
-          }));
-
           const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
           const { container, queryByText, findByText } = render(
@@ -409,6 +362,15 @@ describe("CanAccess Component", () => {
             </CanAccess>,
             {
               wrapper: TestWrapper({
+                legacyRouterProvider: {
+                  ...mockLegacyRouterProvider(),
+                  useParams: () =>
+                    ({
+                      resource: "posts",
+                      id: undefined,
+                      action: "list",
+                    }) as any,
+                },
                 accessControlProvider: {
                   can: async () => {
                     return { can: false };
@@ -423,13 +385,13 @@ describe("CanAccess Component", () => {
           expect(useCanSpy).toHaveBeenCalledWith({
             resource: "posts",
             action: "list",
-            params: {
+            params: expect.objectContaining({
               id: undefined,
-              resource: {
+              resource: expect.objectContaining({
                 name: "posts",
-                list: "/posts",
-              },
-            },
+              }),
+            }),
+            queryOptions: undefined,
           });
 
           expect(queryByText("Accessible")).not.toBeInTheDocument();
