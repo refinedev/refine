@@ -17,7 +17,7 @@ export const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   const categoryIds = tableProps?.dataSource?.flatMap((p) => p.category);
-  const { data, isLoading } = useMany<ICategory>({
+  const { data, isFetching } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds || [],
     queryOptions: {
@@ -34,8 +34,9 @@ export const PostList = () => {
         <Table.Column<IPost>
           dataIndex={"category"}
           title="Category"
+          width="220px"
           render={(_, record) => {
-            if (isLoading) {
+            if (isFetching) {
               return <TextField value="Loading..." />;
             }
 

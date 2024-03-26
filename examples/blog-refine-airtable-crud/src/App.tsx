@@ -17,8 +17,8 @@ import { PostCreate } from "./pages/post/create";
 import { PostEdit } from "./pages/post/edit";
 
 function App() {
-  const API_TOKEN = "key0uWArSH56JHNJV";
-  const BASE_ID = "appez0LgaOVA6SdCO";
+  const API_TOKEN = "your-airtable-api-token";
+  const BASE_ID = "your-airtable-base-id";
 
   return (
     <BrowserRouter>
