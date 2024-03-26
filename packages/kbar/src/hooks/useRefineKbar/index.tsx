@@ -128,6 +128,15 @@ export const useRefineKbar = (): void => {
       );
     const tempActions: Action[] = [];
 
+    const shortcuts = {
+      list: [resource?.name[0]],
+      create: ["c"],
+      show: ["s"],
+      edit: ["e"],
+      delete: ["d"],
+      ...resource?.meta?.shortcuts,
+    };
+
     if (
       list &&
       ((resourceFromParams !== undefined &&
@@ -145,6 +154,7 @@ export const useRefineKbar = (): void => {
             name: t("actions.list", capitalize(RefineKbarActionType.List)),
             section,
             icon,
+            shortcut: shortcuts?.list,
             perform: () => {
               const p = getToPath({
                 resource,
@@ -176,6 +186,12 @@ export const useRefineKbar = (): void => {
         params: { resource },
       })) || { can: true };
 
+      const shortcut =
+        actionFromParams === RefineKbarActionType.List &&
+        resourceFromParams?.name === name
+          ? shortcuts?.create
+          : undefined;
+
       if (canAccessCreate) {
         tempActions.push(
           createAction({
@@ -183,6 +199,7 @@ export const useRefineKbar = (): void => {
             section,
             icon,
             keywords: "new",
+            shortcut,
             perform: () => {
               const p = getToPath({
                 resource,
@@ -221,6 +238,7 @@ export const useRefineKbar = (): void => {
               name: t("actions.show", capitalize(RefineKbarActionType.Show)),
               section,
               icon,
+              shortcut: shortcuts?.show,
               perform: () => {
                 const p = getToPath({
                   resource,
@@ -259,6 +277,7 @@ export const useRefineKbar = (): void => {
               name: t("actions.edit", capitalize(RefineKbarActionType.Edit)),
               section,
               icon,
+              shortcut: shortcuts?.edit,
               perform: () => {
                 const p = getToPath({
                   resource,
@@ -295,6 +314,7 @@ export const useRefineKbar = (): void => {
                 "actions.delete",
                 capitalize(RefineKbarActionType.Delete),
               ),
+              shortcut: shortcuts?.delete,
               section,
               icon,
             },
