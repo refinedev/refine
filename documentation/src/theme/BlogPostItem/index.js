@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-import { Date } from "@site/src/components/blog/common";
+import { Date as DateComponent } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
 export default function BlogPostItem({ className }) {
@@ -23,35 +23,41 @@ export default function BlogPostItem({ className }) {
   return (
     <BlogPostItemContainer className={className}>
       <div>
-        <Link itemProp="url" to={permalink}>
-          <div className="not-prose relative m-0 h-40 hover:brightness-90">
+        <Link
+          itemProp="url"
+          to={permalink}
+          className={clsx("block", "w-full h-auto", "aspect-[592/334]")}
+        >
+          <div
+            className={clsx(
+              "not-prose relative m-0 hover:brightness-90",
+              "h-full w-full",
+            )}
+          >
             <img
               src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                 "https://refine.ams3.cdn.digitaloceanspaces.com",
                 "",
-              )}?h=160`}
+              )}?h=432`}
               alt={title}
-              className="absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover transition duration-150"
+              className={clsx(
+                "absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover",
+              )}
               loading="lazy"
             />
           </div>
         </Link>
       </div>
-      <div className="p-4">
-        <div
-          className={clsx(
-            "mb-2 flex gap-1 md:mb-4",
-            "flex flex-wrap items-center",
-          )}
-        >
+      <div className="px-4 py-4 md:px-6  md:py-6">
+        <div className={clsx("flex flex-wrap items-center", "mb-6", "gap-3")}>
           {tags.map((tag) => (
             <Link
               className={clsx(
                 "text-xs",
-                "bg-gray-100 dark:bg-gray-700",
-                "text-gray-600 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-400",
+                "bg-refine-react-3 dark:bg-refine-react-7",
+                "text-refine-react-8 dark:text-refine-react-3",
                 "no-underline",
-                "rounded",
+                "rounded-full",
                 "px-2 py-1",
               )}
               href={tag.permalink}
@@ -70,11 +76,11 @@ export default function BlogPostItem({ className }) {
           >
             <div
               className={clsx(
-                "text-xs sm:text-sm md:text-2xl lg:text-base 2xl:text-xl",
-                "text-gray-700 dark:text-gray-200",
+                "mb-4",
+                "text-gray-700 dark:text-refine-react-3",
+                "text-xl",
                 "font-lg",
                 "font-bold",
-                "leading-6",
               )}
             >
               {title}
@@ -82,9 +88,9 @@ export default function BlogPostItem({ className }) {
           </Link>
           <div
             className={clsx(
-              "text-xs md:text-base lg:text-sm 2xl:text-lg",
-              "mt-2 md:mt-4",
-              "line-clamp-3 text-gray-700 dark:text-gray-300",
+              "line-clamp-3",
+              "text-gray-700 dark:text-refine-react-4",
+              "text-sm",
             )}
           >
             {description}
@@ -94,13 +100,13 @@ export default function BlogPostItem({ className }) {
         <div className="flex items-center gap-2">
           <span
             className={clsx(
-              "text-gray-600 hover:text-gray-600",
-              "dark:text-gray-400 hover:dark:text-gray-400",
+              "text-gray-600 dark:text-refine-react-5",
               "text-xs",
+              "leading-6",
               "no-underline",
             )}
           >
-            <Date date={date} formattedDate={formattedDate} />
+            <DateComponent date={date} formattedDate={formattedDate} />
           </span>
         </div>
       </div>

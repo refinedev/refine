@@ -1,7 +1,7 @@
 import React from "react";
 
-import { LandingFooter } from "./landing-footer";
+import { LandingFooter, Props } from "./landing-footer";
 
-export const BlogFooter = () => {
-  return <LandingFooter />;
+export const BlogFooter = (props: Props) => {
+  return <LandingFooter {...props} />;
 };

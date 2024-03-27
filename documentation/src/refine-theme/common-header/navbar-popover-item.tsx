@@ -9,10 +9,12 @@ import { PointIcon } from "../icons/popover";
 
 type NavbarPopoverItemProps = {
   item: NavbarPopoverItemType;
+  variant?: "landing" | "blog";
 };
 
 export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
   item,
+  variant = "landing",
   children,
 }) => {
   const [isShowing, setIsShowing] = useState(false);
@@ -49,7 +51,9 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
           >
             <span
               className={clsx(
-                "text-gray-900 dark:text-gray-300",
+                variant === "landing" && "text-gray-900 dark:text-gray-300",
+                variant === "blog" &&
+                  "text-refine-react-8 dark:text-refine-react-3",
                 "transition-colors duration-150 ease-in-out inline-block",
                 // isPermanentDark && "!text-gray-300",
               )}
@@ -61,7 +65,8 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
               className={clsx(
                 "transition duration-150 ease-out",
                 "-mr-2",
-                "text-gray-500 dark:text-gray-400",
+                variant === "landing" && "text-gray-500 dark:text-gray-400",
+                variant === "blog" && "text-refine-react-4",
                 isShowing ? "translate-y-0.5" : "",
               )}
             />
@@ -85,6 +90,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
             >
               <PointIcon
                 id={item.label}
+                variant={variant}
                 className={clsx("absolute", "top-[-9px]", {
                   "left-1/2": item.label !== "Open-source",
                   "left-12": item.label === "Open-source",
@@ -95,8 +101,14 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
                 className={clsx(
                   "overflow-hidden",
                   "rounded-xl",
-                  "border dark:border-gray-700 border-gray-200",
-                  "dark:shadow-menu-dark shadow-menu-light",
+                  variant === "landing" &&
+                    "border dark:border-gray-700 border-gray-200",
+                  variant === "landing" &&
+                    "dark:shadow-menu-dark shadow-menu-light",
+                  variant === "blog" &&
+                    "border border-refine-react-3 dark:border-refine-react-6",
+                  variant === "blog" &&
+                    "dark:shadow-menu-blog-dark shadow-menu-blog-light",
                 )}
               >
                 {children}

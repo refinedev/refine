@@ -8,40 +8,52 @@ export const FeaturedBlogPostItems = ({ items }) => {
   return (
     <div
       className={clsx(
-        "py-10",
-        "px-4",
-        "max-w-[512px]",
-        "blog-md:px-7",
-        "blog-md:max-w-screen-blog-md",
-        "blog-2xl:px-0",
-        "blog-2xl:max-w-screen-blog-md",
-        "w-full",
-        "mx-auto",
-        "not-prose",
+        "w-screen",
+        "bg-refine-react-1 dark:bg-refine-react-dark-code",
       )}
     >
-      <h2
+      <div
         className={clsx(
-          "m-0 p-0",
-          "blog-lg:mb-12 blog-md:mb-8 mb-10",
-          "text-xl blog-sm:text-4xl blog-lg:text-5xl",
-          "text-gray-900 dark:text-gray-0",
-          "px-0 blog-sm:px-6",
-          "font-semibold",
+          "blog-sm:max-w-[592px]",
+          "blog-md:max-w-[656px]",
+          "blog-lg:max-w-[896px]",
+          "blog-max:max-w-[1200px]",
+          "w-full",
+          "mx-auto",
+          "px-6 blog-sm:px-0",
+          "py-6 blog-md:py-12",
+          "not-prose",
         )}
       >
-        Featured Posts
-      </h2>
+        <h2
+          className={clsx(
+            "m-0 p-0",
+            "px-6",
+            "mb-6 blog-lg:mb-12",
+            "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
+            "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
+            "text-refine-blue drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
+            "font-semibold",
+          )}
+        >
+          Featured Posts
+        </h2>
 
-      <div className="grid grid-cols-1 blog-md:grid-cols-2 blog-lg:gap-12 gap-8">
-        {items.map(({ content: BlogPostContent }) => (
-          <BlogPostProvider
-            key={BlogPostContent.metadata.permalink}
-            content={BlogPostContent}
-          >
-            <FeaturedBlogPostItem />
-          </BlogPostProvider>
-        ))}
+        <div
+          className={clsx(
+            "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
+            "gap-6",
+          )}
+        >
+          {items.map(({ content: BlogPostContent }) => (
+            <BlogPostProvider
+              key={BlogPostContent.metadata.permalink}
+              content={BlogPostContent}
+            >
+              <FeaturedBlogPostItem />
+            </BlogPostProvider>
+          ))}
+        </div>
       </div>
     </div>
   );

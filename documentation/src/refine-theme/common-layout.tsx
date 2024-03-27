@@ -17,8 +17,12 @@ declare global {
   }
 }
 
-export const CommonLayout = (props: any) => {
-  const { children, title, description } = props;
+type Props = {
+  className?: string;
+} & Record<string, any>;
+
+export const CommonLayout = (props: Props) => {
+  const { children, title, description, className } = props;
 
   useKeyboardNavigation();
 
@@ -70,6 +74,7 @@ export const CommonLayout = (props: any) => {
           "min-h-[100dvh]",
           "flex flex-col",
           "dark:bg-gray-900 bg-gray-0",
+          className,
         )}
       >
         <ErrorBoundary fallback={(params) => <ErrorPageContent {...params} />}>

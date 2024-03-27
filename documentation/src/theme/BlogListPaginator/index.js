@@ -20,19 +20,17 @@ export default function BlogListPaginator(props) {
 
   return (
     <nav
-      className={clsx("blog-md:justify-end flex items-center justify-center")}
+      className={clsx(
+        "blog-md:justify-end flex items-center justify-center",
+        "not-prose",
+      )}
       aria-label={translate({
         id: "theme.blog.paginator.navAriaLabel",
         message: "Blog list page navigation",
         description: "The ARIA label for the blog pagination",
       })}
     >
-      <ul
-        className="flex list-none items-center gap-1"
-        style={{
-          padding: 0,
-        }}
-      >
+      <ul className="flex list-none items-center gap-3 py-6">
         <li>
           <Link
             to={
@@ -43,13 +41,11 @@ export default function BlogListPaginator(props) {
                   : `${basePath}/page/${currentPage - 1}`
             }
             className={clsx(
-              "text-gray-500 dark:text-gray-400",
-              "rounded",
+              "rounded-full",
               "hover:no-underline",
-              "hover:no-underline",
-              {
-                "pointer-events-none opacity-20": currentPage === 1,
-              },
+              "text-refine-react-5 dark:text-refine-react-4",
+              currentPage !== 1 && "opacity-70",
+              currentPage === 1 && "pointer-events-none opacity-20",
             )}
           >
             <ChevronLeft />
@@ -64,7 +60,7 @@ export default function BlogListPaginator(props) {
                 className={clsx(
                   "flex items-center justify-center",
                   "text-gray-500 dark:text-gray-400",
-                  "rounded",
+                  "rounded-full",
                   "hover:no-underline",
                   "no-underline",
                   "h-[32px] w-[32px]",
@@ -84,12 +80,16 @@ export default function BlogListPaginator(props) {
                 className={clsx(
                   "text-sm",
                   "flex items-center justify-center",
-                  "text-gray-500 dark:text-gray-400",
-                  "rounded",
+                  "rounded-full",
                   "hover:no-underline",
                   "h-[32px] w-[32px]",
                   "no-underline",
-                  pageNumber === currentPage && "bg-gray-100 dark:bg-gray-700",
+                  pageNumber !== currentPage &&
+                    "text-refine-react-5 dark:text-refine-react-4",
+                  pageNumber === currentPage &&
+                    "text-refine-react-8 dark:text-refine-react-3",
+                  pageNumber === currentPage &&
+                    "bg-refine-react-3 dark:bg-refine-react-7",
                 )}
               >
                 {pageNumber}
@@ -106,12 +106,11 @@ export default function BlogListPaginator(props) {
                 : `${basePath}/page/${currentPage + 1}`
             }
             className={clsx(
-              "text-gray-500 dark:text-gray-400",
-              "rounded",
+              "rounded-full",
               "hover:no-underline",
-              {
-                "pointer-events-none opacity-20": currentPage === lastPage,
-              },
+              "text-refine-react-5 dark:text-refine-react-4",
+              currentPage !== lastPage && "opacity-70",
+              currentPage === lastPage && "pointer-events-none opacity-20",
             )}
           >
             <ChevronRight />

@@ -13,8 +13,9 @@ export const ChevronLeft = (
     {...props}
   >
     <path
+      fill="currentColor"
       fillRule="evenodd"
-      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+      d="M10 18.75a8.75 8.75 0 1 1 0-17.5 8.75 8.75 0 0 1 0 17.5ZM10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10Zm1.692-12.683a.625.625 0 1 0-.884-.884L7.683 9.558a.625.625 0 0 0 0 .884l3.125 3.125a.625.625 0 1 0 .884-.884L9.009 10l2.683-2.683Z"
       clipRule="evenodd"
     />
   </svg>
@@ -32,8 +33,9 @@ export const ChevronRight = (
     {...props}
   >
     <path
+      fill="currentColor"
       fillRule="evenodd"
-      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+      d="M10 18.75a8.75 8.75 0 1 0 0-17.5 8.75 8.75 0 0 0 0 17.5ZM10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10ZM8.308 7.317a.625.625 0 1 1 .884-.884l3.125 3.125a.625.625 0 0 1 0 .884l-3.125 3.125a.625.625 0 1 1-.884-.884L10.99 10 8.308 7.317Z"
       clipRule="evenodd"
     />
   </svg>
@@ -47,6 +49,7 @@ export const Github = (props: React.SVGProps<SVGSVGElement>): JSX.Element => (
     fill="none"
     {...props}
   >
+    <title>GitHub</title>
     <path
       fill="#fff"
       fillRule="evenodd"
@@ -61,15 +64,23 @@ export const Twitter = (props: React.SVGProps<SVGSVGElement>): JSX.Element => (
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
-    viewBox="0 0 50 50"
+    fill="none"
     {...props}
-    className={clsx("dark:text-[#e7e9ea] text-[#0f1419]")}
+    className={clsx("text-black dark:text-white", props.className)}
   >
-    <path
-      fillRule="evenodd"
-      d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"
-      clipRule="evenodd"
+    <title>Twitter</title>
+    <rect
+      width={24}
+      height={24}
       fill="currentColor"
+      rx={12}
+      className={clsx("text-refine-react-1 dark:text-black", props.className)}
+    />
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="m6 6 4.62 6.75L6.098 18H7.1l3.963-4.604L14.214 18H18l-4.827-7.052L17.433 6h-1l-3.703 4.3L9.786 6H6Zm1.196.632h2.258l7.35 10.736h-2.258L7.196 6.632Z"
+      clipRule="evenodd"
     />
   </svg>
 );
@@ -82,6 +93,7 @@ export const Linkedin = (props: React.SVGProps<SVGSVGElement>): JSX.Element => (
     fill="none"
     {...props}
   >
+    <title>LinkedIn</title>
     <rect width={24} height={24} fill="#0A66C2" rx={12} />
     <path
       fill="#fff"

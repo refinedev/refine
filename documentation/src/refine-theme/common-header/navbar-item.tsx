@@ -7,6 +7,7 @@ import { TwoTonedCloudIcon } from "../icons/popover";
 
 type NavbarItemProps = {
   item: NavbarItemType;
+  variant?: "landing" | "blog";
 };
 
 export const NavbarItem: React.FC<NavbarItemProps> = ({ item }) => {
