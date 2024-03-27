@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
 import { LiveContext } from "@contexts/live";
-import { ILiveContext } from "../../../interfaces";
+import { LiveProvider } from "../../../contexts/live/types";
 
-export const usePublish: () => NonNullable<ILiveContext>["publish"] = () => {
-  const liveContext = useContext<ILiveContext>(LiveContext);
+export const usePublish: () => NonNullable<LiveProvider>["publish"] = () => {
+  const { liveProvider } = useContext(LiveContext);
 
-  return liveContext?.publish;
+  return liveProvider?.publish;
 };

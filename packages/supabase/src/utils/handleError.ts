@@ -5,7 +5,7 @@ export const handleError = (error: PostgrestError) => {
   const customError: HttpError = {
     ...error,
     message: error.message,
-    statusCode: parseInt(error.code),
+    statusCode: Number.parseInt(error.code),
   };
   return Promise.reject(customError);
 };

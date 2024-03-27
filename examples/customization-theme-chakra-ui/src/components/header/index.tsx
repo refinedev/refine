@@ -1,6 +1,6 @@
 import { HamburgerMenu } from "@refinedev/chakra-ui";
 import { Box, IconButton, Icon, useColorMode } from "@chakra-ui/react";
-import { IconMoon, IconSun } from "@tabler/icons";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();

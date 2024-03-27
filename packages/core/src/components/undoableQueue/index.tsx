@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { ActionTypes } from "@contexts/undoableQueue";
 import { useCancelNotification, useNotification, useTranslate } from "@hooks";
-import { IUndoableQueue } from "../../interfaces";
 
 import { userFriendlySecond } from "@definitions/helpers";
+import {
+  ActionTypes,
+  IUndoableQueue,
+} from "../../contexts/undoableQueue/types";
 
 export const UndoableQueue: React.FC<{
   notification: IUndoableQueue;

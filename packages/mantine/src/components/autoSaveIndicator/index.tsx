@@ -10,7 +10,7 @@ import {
   IconRefresh,
   IconCircleCheck,
   IconExclamationCircle,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   status,

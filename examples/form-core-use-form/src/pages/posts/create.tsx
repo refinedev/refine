@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { HttpError, useForm } from "@refinedev/core";
 
 import { IPost } from "../../interfaces";
@@ -11,37 +10,26 @@ export const PostCreate: React.FC = () => {
     HttpError,
     FormValues
   >();
+
+  // if action is "clone", we'll have defaultValues
   const defaultValues = queryResult?.data?.data;
 
-  const [formValues, seFormValues] = useState<FormValues>({
-    title: defaultValues?.title || "",
-    content: defaultValues?.content || "",
-  });
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    seFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
+    const formData = new FormData(event.currentTarget);
+
+    const values = {
+      title: formData.get("title") as string,
+      content: formData.get("content") as string,
+    };
+
+    onFinish(values).catch(() => {});
   };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onFinish(formValues);
-  };
-
-  useEffect(() => {
-    seFormValues({
-      title: defaultValues?.title || "",
-      content: defaultValues?.content || "",
-    });
-  }, [defaultValues]);
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(event) => submit(event)}>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -49,8 +37,7 @@ export const PostCreate: React.FC = () => {
             id="title"
             name="title"
             placeholder="Title"
-            value={formValues.title}
-            onChange={handleOnChange}
+            defaultValue={defaultValues?.title || ""}
           />
         </div>
 
@@ -60,8 +47,8 @@ export const PostCreate: React.FC = () => {
             id="content"
             name="content"
             placeholder="Content"
-            value={formValues.content}
-            onChange={handleOnChange}
+            rows={10}
+            defaultValue={defaultValues?.content || ""}
           />
         </div>
         <button type="submit" disabled={formLoading}>

@@ -57,7 +57,7 @@ import {
 } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { IconX, IconCheck } from "@tabler/icons";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 const PostList: React.FC = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(

@@ -1,4 +1,5 @@
-import { Action, IResourceItem } from "../../../interfaces";
+import { IResourceItem } from "../../../contexts/resource/types";
+import { Action } from "../../../contexts/router/types";
 import { checkBySegments } from "./check-by-segments";
 import { getActionRoutesFromResource } from "./get-action-routes-from-resource";
 import { pickMatchedRoute } from "./pick-matched-route";

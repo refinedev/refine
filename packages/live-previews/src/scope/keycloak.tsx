@@ -1,6 +1,7 @@
+import React from "react";
 import * as KeycloakScope from "keycloak-js";
 import * as ReactKeycloakWebScope from "@react-keycloak/web";
-import React from "react";
+
 import { ExternalNavigationContext } from "./common";
 
 const ReactKeycloakContext = React.createContext<{

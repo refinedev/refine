@@ -1,5 +1,9 @@
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconSelector, IconChevronUp } from "@tabler/icons";
+import {
+  IconChevronDown,
+  IconSelector,
+  IconChevronUp,
+} from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({

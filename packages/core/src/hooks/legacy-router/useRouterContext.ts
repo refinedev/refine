@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { RouterContext, defaultProvider } from "@contexts/legacy-router";
+
+import { LegacyRouterContext, defaultProvider } from "@contexts/router/legacy";
 
 export const useRouterContext = () => {
-  const routerContextValues = useContext(RouterContext);
+  const routerContextValues = useContext(LegacyRouterContext);
 
   const { useHistory, useLocation, useParams, Prompt, Link, routes } =
     routerContextValues ?? defaultProvider;

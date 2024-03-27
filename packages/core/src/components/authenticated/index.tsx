@@ -1,15 +1,15 @@
 import React from "react";
 
+import { useActiveAuthProvider } from "@definitions/index";
 import {
   useGo,
+  useIsAuthenticated,
   useNavigation,
   useParsed,
   useRouterContext,
   useRouterType,
-  useIsAuthenticated,
 } from "@hooks";
-import { useActiveAuthProvider } from "@definitions/index";
-import { GoConfig } from "src/interfaces";
+import { GoConfig } from "../../contexts/router/types";
 
 export type AuthenticatedCommonProps = {
   /**

@@ -11,24 +11,38 @@
   "license": "MIT",
   "author": "refine",
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "bin": {
-    "refine-devtools": "./dist/cli.js"
+    "refine-devtools": "./dist/cli.cjs"
   },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "npm run build:client && tsup --format esm,cjs,iife --minify --legacy-output",
+    "build": "npm run build:client && tsup",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
-    "dev": "npm run dev:client & tsup --watch --format esm,cjs,iife --legacy-output",
+    "dev": "npm run dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "prepare": "npm run build",
+    "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.js",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@ory/client": "^1.5.2",
@@ -65,16 +79,16 @@
     "@types/marked": "^5.0.1",
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "esbuild-copy-static-files": "^0.1.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "react-router-dom": "^6.8.1",
-    "ts-jest": "^29.0.3",
-    "tslib": "^2.3.1",
+    "ts-jest": "^29.1.2",
+    "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^4.7.4",
-    "vite": "^4.3.1"
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip } from "@chakra-ui/react";
-import { IconMinus, IconCheck } from "@tabler/icons";
+import { IconMinus, IconCheck } from "@tabler/icons-react";
 
 import { BooleanFieldProps } from "../types";
 

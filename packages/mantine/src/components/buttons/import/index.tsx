@@ -5,7 +5,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
-import { IconFileImport } from "@tabler/icons";
+import { IconFileImport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ImportButtonProps } from "../types";

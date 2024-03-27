@@ -102,7 +102,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
     name: "@refinedev/chakra-ui",
     description: "Chakra UI integration for refine",
     install:
-      "npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+      "npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion @tabler/icons-react",
     usage: dedent(
       `
             import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
@@ -220,7 +220,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
     name: "@refinedev/mantine",
     description: "Mantine UI integration for refine",
     install:
-      "npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons",
+      "npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons-react",
     usage: dedent(
       `
             import { ThemedLayoutV2 } from "@refinedev/mantine";

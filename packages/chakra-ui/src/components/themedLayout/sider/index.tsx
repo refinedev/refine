@@ -31,7 +31,12 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { IconList, IconDashboard, IconPower, IconMenu2 } from "@tabler/icons";
+import {
+  IconList,
+  IconDashboard,
+  IconPower,
+  IconMenu2,
+} from "@tabler/icons-react";
 
 import { ThemedTitle as DefaultTitle } from "@components";
 import { RefineThemedLayoutSiderProps } from "../types";

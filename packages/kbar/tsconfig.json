@@ -13,7 +13,6 @@
       "@test": ["test"],
       "@definitions/*": ["src/definitions/*"],
       "@definitions": ["src/definitions"]
-    },
-    "typeRoots": ["./types", "../../node_modules/@types"]
+    }
   }
 }

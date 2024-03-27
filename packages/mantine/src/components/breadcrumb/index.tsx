@@ -17,7 +17,7 @@ import {
   Anchor,
   Group,
 } from "@mantine/core";
-import { IconHome } from "@tabler/icons";
+import { IconHome } from "@tabler/icons-react";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<MantineBreadcrumbProps>;
 

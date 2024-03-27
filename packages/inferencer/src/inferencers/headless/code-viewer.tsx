@@ -4,7 +4,7 @@ import {
   IconMessageCircle,
   IconCopy,
   IconCheck,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 import { prettierFormat } from "../../utilities";
 import { CreateInferencerConfig } from "../../types";

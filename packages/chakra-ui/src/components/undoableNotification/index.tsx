@@ -8,7 +8,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { IconRotate2 } from "@tabler/icons";
+import { IconRotate2 } from "@tabler/icons-react";
 
 export type UndoableNotificationProps = {
   notificationKey: OpenNotificationParams["key"];

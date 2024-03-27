@@ -1,5 +1,5 @@
 import { routeGenerator } from ".";
-import { ResourceProps } from "src/interfaces/bindings/resource";
+import { ResourceProps } from "../../../contexts/resource/types";
 
 const mockResources: ResourceProps[] = [
   { name: "posts" },

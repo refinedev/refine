@@ -1,9 +1,7 @@
 import { CrudSorting } from "@refinedev/core";
 import { Query } from "appwrite";
 
-type GetAppwriteSortingType = {
-  (sorts?: CrudSorting): string[];
-};
+type GetAppwriteSortingType = (sorts?: CrudSorting) => string[];
 
 export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
   const sorts: string[] = [];

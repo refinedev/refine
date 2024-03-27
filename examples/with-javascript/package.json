@@ -2,6 +2,7 @@
   "name": "with-javascript",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "refine build",
     "dev": "refine dev",
@@ -33,7 +34,7 @@
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.3.1"
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.1.6"
   }
 }

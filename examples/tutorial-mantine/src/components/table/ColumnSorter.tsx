@@ -1,5 +1,9 @@
 import { ActionIcon } from "@mantine/core";
-import { IconChevronDown, IconChevronUp, IconSelector } from "@tabler/icons";
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconSelector,
+} from "@tabler/icons-react";
 import { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({

@@ -10,7 +10,6 @@
       "@": ["src"],
       "@test/*": ["test/*"],
       "@test": ["test"]
-    },
-    "typeRoots": ["../../node_modules/@types"]
+    }
   }
 }

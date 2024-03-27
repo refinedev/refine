@@ -2,11 +2,12 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
-  queryClient,
   TestWrapper,
+  mockRouterProvider,
+  queryClient,
 } from "@test";
 
+import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   assertList,
   assertListLength,
@@ -14,9 +15,9 @@ import {
   renderUseList,
   renderUseMany,
 } from "@test/mutation-helpers";
+
 import * as UseInvalidate from "../invalidate/index";
 import { useDelete } from "./useDelete";
-import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useDelete Hook", () => {
   it("should work with pessimistic update", async () => {
@@ -167,7 +168,7 @@ describe("useDelete Hook", () => {
             deleteOne: deleteMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -337,6 +338,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -373,6 +375,7 @@ describe("useDelete Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -403,6 +406,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -437,6 +441,7 @@ describe("useDelete Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -469,6 +474,7 @@ describe("useDelete Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),

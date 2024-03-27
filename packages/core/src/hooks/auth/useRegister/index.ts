@@ -1,23 +1,28 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
-import { useNavigation, useRouterType, useGo, useNotification } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
+import {
+  useGo,
+  useKeys,
+  useNavigation,
+  useNotification,
+  useRouterType,
+} from "@hooks";
 
 import {
   AuthActionResponse,
-  RefineError,
-  OpenNotificationParams,
+  SuccessNotificationResponse,
   TLoginData,
   TRegisterData,
-} from "../../../interfaces";
+} from "../../../contexts/auth/types";
+import { RefineError } from "../../../contexts/data/types";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
-import { useKeys } from "@hooks/useKeys";
 
 export type UseRegisterLegacyProps<TVariables> = {
   v3LegacyAuthProviderCompatible: true;

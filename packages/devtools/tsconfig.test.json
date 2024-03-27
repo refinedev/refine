@@ -3,7 +3,6 @@
   "include": ["test", "src"],
   "compilerOptions": {
     "rootDir": ".",
-    "types": ["node", "jest", "@testing-library/jest-dom"],
-    "typeRoots": ["../../node_modules/@types", "src"]
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   }
 }

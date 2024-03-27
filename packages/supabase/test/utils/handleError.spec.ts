@@ -14,7 +14,7 @@ describe("handleError", () => {
     const expectedHttpError: HttpError = {
       ...postgrestError,
       message: postgrestError.message,
-      statusCode: parseInt(postgrestError.code),
+      statusCode: Number.parseInt(postgrestError.code),
     };
 
     try {

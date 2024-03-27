@@ -1,4 +1,4 @@
-import { IResourceItem } from "src/interfaces/bindings/resource";
+import { IResourceItem } from "../../../contexts/resource/types";
 import { pickResource } from "../pick-resource";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 

@@ -1,6 +1,6 @@
-import { ResourceProps } from "src/interfaces/bindings/resource";
-import { getParentPrefixForResource } from "../router";
+import { ResourceProps } from "../../../contexts/resource/types";
 import { pickNotDeprecated } from "../pickNotDeprecated";
+import { getParentPrefixForResource } from "../router";
 
 /**
  * generates route for the resource based on parents and custom routes

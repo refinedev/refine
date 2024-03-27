@@ -13,38 +13,68 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./headless": {
-      "types": "./dist/inferencers/headless/index.d.ts",
-      "import": "./dist/esm/headless.js",
-      "require": "./dist/headless.js"
+      "import": {
+        "types": "./dist/inferencers/headless/index.d.mts",
+        "default": "./dist/headless.mjs"
+      },
+      "require": {
+        "types": "./dist/inferencers/headless/index.d.cts",
+        "default": "./dist/headless.cjs"
+      }
     },
     "./mantine": {
-      "types": "./dist/inferencers/mantine/index.d.ts",
-      "import": "./dist/esm/mantine.js",
-      "require": "./dist/mantine.js"
+      "import": {
+        "types": "./dist/inferencers/mantine/index.d.mts",
+        "default": "./dist/mantine.mjs"
+      },
+      "require": {
+        "types": "./dist/inferencers/mantine/index.d.cts",
+        "default": "./dist/mantine.cjs"
+      }
     },
     "./antd": {
-      "types": "./dist/inferencers/antd/index.d.ts",
-      "import": "./dist/esm/antd.js",
-      "require": "./dist/antd.js"
+      "import": {
+        "types": "./dist/inferencers/antd/index.d.mts",
+        "default": "./dist/antd.mjs"
+      },
+      "require": {
+        "types": "./dist/inferencers/antd/index.d.cts",
+        "default": "./dist/antd.cjs"
+      }
     },
     "./mui": {
-      "types": "./dist/inferencers/mui/index.d.ts",
-      "import": "./dist/esm/mui.js",
-      "require": "./dist/mui.js"
+      "import": {
+        "types": "./dist/inferencers/mui/index.d.mts",
+        "default": "./dist/mui.mjs"
+      },
+      "require": {
+        "types": "./dist/inferencers/mui/index.d.cts",
+        "default": "./dist/mui.cjs"
+      }
     },
     "./chakra-ui": {
-      "types": "./dist/inferencers/chakra-ui/index.d.ts",
-      "import": "./dist/esm/chakra-ui.js",
-      "require": "./dist/chakra-ui.js"
+      "import": {
+        "types": "./dist/inferencers/chakra-ui/index.d.mts",
+        "default": "./dist/chakra-ui.mjs"
+      },
+      "require": {
+        "types": "./dist/inferencers/chakra-ui/index.d.cts",
+        "default": "./dist/chakra-ui.cjs"
+      }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typesVersions": {
     "*": {
       ".": [
@@ -69,15 +99,17 @@
   },
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "publint": "publint --strict=true --level=suggestion",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@aliemir/react-live": "^4.0.0",
     "@refinedev/core": "^4.48.0",
-    "@tabler/icons": "^1.119.0",
+    "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",
@@ -88,7 +120,7 @@
     "prism-react-renderer": "^1.3.5",
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
-    "tslib": "^2.3.1"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
@@ -118,9 +150,9 @@
     "jest-environment-jsdom": "^29.3.1",
     "react-router-dom": "^6.8.1",
     "react-test-renderer": "^18.2.0",
-    "ts-jest": "^29.0.3",
+    "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^4.7.4"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@ant-design/icons": "5.0.1",

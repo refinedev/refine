@@ -2,9 +2,10 @@ import React from "react";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
-import * as RefineChakra from "@refinedev/chakra-ui";
+import type RefineChakraTypes from "@refinedev/chakra-ui";
 import * as ChakraUI from "@chakra-ui/react";
 import * as ReactHookForm from "react-hook-form";
+import * as RefineChakra from "@refinedev/chakra-ui";
 import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
@@ -43,12 +44,12 @@ const RefineChakraDemo: React.FC<
   );
 };
 
-const ThemedTitleV2: typeof RefineChakra.ThemedTitleV2 = ({
+const ThemedTitleV2 = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
   icon: iconFromProps,
-}) => {
+}: RefineChakraTypes.RefineLayoutThemedTitleProps) => {
   const [svgContent, setSvgContent] = React.useState<string | undefined>(
     window.__refineIconSVGContent || undefined,
   );

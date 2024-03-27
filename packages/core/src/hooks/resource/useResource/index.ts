@@ -1,16 +1,15 @@
 import { useContext } from "react";
 
 import { ResourceContext } from "@contexts/resource";
-import {
-  Action,
-  BaseKey,
-  IResourceItem,
-  ResourceRouterParams,
-} from "../../../interfaces";
-import { useRouterContext, useResourceWithRoute } from "@hooks";
-import { useRouterType } from "../../../contexts/router-picker";
-import { useParsed } from "../../router/use-parsed";
+import { useResourceWithRoute, useRouterContext } from "@hooks";
+
+import { BaseKey } from "../../../contexts/data/types";
+import { IResourceItem } from "../../../contexts/resource/types";
+import { ResourceRouterParams } from "../../../contexts/router/legacy/types";
+import { useRouterType } from "../../../contexts/router/picker";
+import { Action } from "../../../contexts/router/types";
 import { pickResource } from "../../../definitions/helpers/pick-resource";
+import { useParsed } from "../../router/use-parsed";
 
 export type UseResourceLegacyProps = {
   /**
@@ -48,7 +47,13 @@ export type UseResourceReturnType = {
    * @deprecated Use `resource.name` instead when you need to get the resource name.
    */
   resourceName?: string;
+  /**
+   * @deprecated This value may not always reflect the correct "id" value. Use `useResourceParams` to obtain the calculated "id"` or `useParsed` to obtain the id from the route instead.
+   */
   id?: BaseKey;
+  /**
+   * @deprecated This value may not always reflect the correct "action" value. Use `useResourceParams` to obtain the calculated "action" or `useParsed` to obtain the action from the route instead.
+   */
   action?: Action;
   select: <T extends boolean = true>(
     resourceName: string,

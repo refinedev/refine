@@ -33,8 +33,10 @@ export default defineConfig({
   entry: ["src/index.ts", "src/cli.ts"],
   splitting: false,
   sourcemap: true,
-  dts: false,
   clean: false,
+  minify: true,
+  format: ["cjs", "esm"],
+  outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "node",
   external: [
     ".bin/next",
@@ -93,5 +95,5 @@ export default defineConfig({
       },
     }),
   ],
-  onSuccess: "tsc --project tsconfig.declarations.json",
+  onSuccess: "npm run types",
 });

@@ -37,7 +37,7 @@ import {
   IconDashboard,
   IconLogout,
   IconMenu2,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 import { Title as DefaultTitle } from "@components";
 import { RefineLayoutSiderProps } from "../types";

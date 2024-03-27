@@ -1,12 +1,14 @@
 import React from "react";
+
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { ErrorComponent } from ".";
 import {
-  mockRouterBindings,
   TestWrapper,
   mockLegacyRouterProvider,
+  mockRouterProvider,
 } from "@test";
+
+import { ErrorComponent } from ".";
 
 describe("ErrorComponent", () => {
   it("renders subtitle successfully", () => {
@@ -29,7 +31,7 @@ describe("ErrorComponent", () => {
   it("render error message according to the resource and action", () => {
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "create",
           resource: { name: "posts" },
           pathname: "/posts/create",
@@ -50,7 +52,9 @@ describe("ErrorComponent", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useHistory: () => ({
+            goBack: jest.fn(),
             push: pushMock,
+            replace: jest.fn(),
           }),
         },
       }),
@@ -70,7 +74,7 @@ describe("ErrorComponent", () => {
 
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => goMock,
           },

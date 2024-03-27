@@ -46,6 +46,8 @@ jobs:
         run: npm run lint:ci
       - name: Test
         run: npm run test:all
+      - name: Publint
+        run: npm run publint:all
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1

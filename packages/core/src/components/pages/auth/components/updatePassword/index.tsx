@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import {
-  UpdatePasswordFormTypes,
-  UpdatePasswordPageProps,
-} from "../../../../../interfaces";
 
+import { useActiveAuthProvider } from "@definitions/helpers";
 import { useTranslate, useUpdatePassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
-import { useActiveAuthProvider } from "@definitions/helpers";
+import { UpdatePasswordFormTypes, UpdatePasswordPageProps } from "../../types";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
   DivPropsType,

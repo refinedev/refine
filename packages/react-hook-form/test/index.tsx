@@ -5,11 +5,11 @@ import {
   DataProvider,
   IResourceItem,
   I18nProvider,
+  IRefineOptions,
 } from "@refinedev/core";
 
 import { MockJSONServer, mockRouterBindings } from "./dataMocks";
 import "@testing-library/jest-dom/extend-expect";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 interface ITestWrapperProps {
   dataProvider?: DataProvider;

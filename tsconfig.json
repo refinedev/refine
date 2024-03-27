@@ -3,7 +3,6 @@
   "include": ["packages", "example"],
   "compilerOptions": {
     "allowJs": false,
-    "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "baseUrl": "."
   }
 }

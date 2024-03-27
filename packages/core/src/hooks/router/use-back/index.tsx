@@ -1,12 +1,12 @@
-import { RouterBindingsContext } from "@contexts/router";
+import { RouterContext } from "@contexts/router";
 import React, { useContext } from "react";
 
 export const useBack = () => {
-  const bindings = useContext(RouterBindingsContext);
+  const routerContext = useContext(RouterContext);
 
   const useBack = React.useMemo(
-    () => bindings?.back ?? (() => () => undefined),
-    [bindings?.back],
+    () => routerContext?.back ?? (() => () => undefined),
+    [routerContext?.back],
   );
 
   const back = useBack();

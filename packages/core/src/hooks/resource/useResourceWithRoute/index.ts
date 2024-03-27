@@ -1,7 +1,9 @@
-import { useContext, useCallback } from "react";
+import { useCallback, useContext } from "react";
+
 import { ResourceContext } from "@contexts/resource";
-import { IResourceItem } from "../../../interfaces";
 import { pickResource } from "@definitions/helpers/pick-resource";
+
+import { IResourceItem } from "../../../contexts/resource/types";
 
 export type UseResourceWithRouteReturnType = (route: string) => IResourceItem;
 

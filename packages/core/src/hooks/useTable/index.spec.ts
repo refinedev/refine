@@ -1,16 +1,16 @@
-import { act } from "react-dom/test-utils";
 import { renderHook, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 import {
   MockJSONServer,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useTable } from ".";
-import { CrudFilters, CrudSorting, Pagination } from "src/interfaces";
-import * as useRouterType from "../../contexts/router-picker";
+import { CrudFilter, CrudSort, Pagination } from "../../contexts/data/types";
+import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {
   pageSize: 10,
@@ -24,7 +24,7 @@ const customPagination = {
   pageSize: 1,
 };
 
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   resource: {
     name: "posts",
   },
@@ -199,7 +199,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorter(sorters);
@@ -217,7 +217,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorters(sorters);
@@ -278,7 +278,7 @@ describe("useTable Hook", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -286,7 +286,7 @@ describe("useTable Hook", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -401,7 +401,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorter(sorters);
@@ -419,7 +419,7 @@ describe("useTable Hook", () => {
       }),
     });
 
-    const sorters: CrudSorting = [{ field: "id", order: "asc" }];
+    const sorters: CrudSort[] = [{ field: "id", order: "asc" }];
 
     await act(async () => {
       result.current.setSorters(sorters);
@@ -497,7 +497,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -525,7 +525,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -555,14 +555,14 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
     const permanentFilter = [
       {
         field: "id",
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -602,14 +602,14 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
     const permanentFilter = [
       {
         field: "name",
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -640,7 +640,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -648,7 +648,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -692,7 +692,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -700,7 +700,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -708,7 +708,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -759,7 +759,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -767,7 +767,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -775,7 +775,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -829,7 +829,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -837,7 +837,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: undefined,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -886,7 +886,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -894,7 +894,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -936,7 +936,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -944,7 +944,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -952,7 +952,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1005,7 +1005,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1023,7 +1023,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "foo",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1077,7 +1077,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1085,7 +1085,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1129,7 +1129,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1137,7 +1137,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1180,7 +1180,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1188,7 +1188,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1230,7 +1230,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1238,7 +1238,7 @@ describe("useTable Filters", () => {
         operator: "ne",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1261,7 +1261,7 @@ describe("useTable Filters", () => {
     expect(result.current.filters).toHaveLength(1);
 
     const setterFunction = jest.fn(
-      (prevFilters) => [...prevFilters, ...newFilters] as CrudFilters,
+      (prevFilters) => [...prevFilters, ...newFilters] as CrudFilter[],
     );
 
     act(() => {
@@ -1289,7 +1289,7 @@ describe("useTable Filters", () => {
         operator: "contains",
         value: "test",
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const newFilters = [
       {
@@ -1297,7 +1297,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 3,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const permanentFilter = [
       {
@@ -1305,7 +1305,7 @@ describe("useTable Filters", () => {
         operator: "gte",
         value: 5,
       },
-    ] as CrudFilters;
+    ] as CrudFilter[];
 
     const { result } = renderHook(
       () =>
@@ -1362,7 +1362,7 @@ describe("useTable Filters", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
           params: { baz: "qux" },
         }),
@@ -1396,7 +1396,7 @@ describe("useTable Filters", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
         }),
         resources: [
@@ -1511,10 +1511,10 @@ describe("legacy Router Provider", () => {
     const defaultValues: {
       pagination: Pagination;
       sorters: {
-        initial: CrudSorting;
+        initial: CrudSort[];
       };
       filters: {
-        initial: CrudFilters;
+        initial: CrudFilter[];
       };
     } = {
       pagination: {

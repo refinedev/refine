@@ -1,10 +1,9 @@
 import React from "react";
 
 import { useForm } from ".";
-import { HttpError } from "@refinedev/core";
+import { IRefineOptions, HttpError } from "@refinedev/core";
 import { MockJSONServer, TestWrapper, act, render, waitFor } from "../../test";
 import { Route, Routes } from "react-router-dom";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 interface IPost {
   title: string;

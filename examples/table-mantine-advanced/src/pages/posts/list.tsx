@@ -27,7 +27,7 @@ import {
 } from "@mantine/core";
 
 import MDEditor from "@uiw/react-md-editor";
-import { IconChevronDown, IconChevronRight } from "@tabler/icons";
+import { IconChevronDown, IconChevronRight } from "@tabler/icons-react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { IPost, ICategory } from "../../interfaces";

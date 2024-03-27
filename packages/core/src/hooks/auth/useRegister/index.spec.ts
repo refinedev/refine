@@ -1,18 +1,18 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
+  TestWrapper,
   act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
 import { useRegister } from ".";
 
 const mockGo = jest.fn();
 
-const mockRouterProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },
@@ -48,7 +48,7 @@ describe("v3LegacyAuthProviderCompatible useRegister Hook", () => {
             logout: () => Promise.resolve(),
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider,
         }),
       },
     );
@@ -205,7 +205,7 @@ describe("useRegister Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -241,7 +241,7 @@ describe("useRegister Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterProvider,
+        routerProvider,
       }),
     });
 
@@ -280,7 +280,9 @@ describe("useRegister Hook", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useHistory: () => ({
+            goBack: jest.fn(),
             replace: mockReplace,
+            push: jest.fn(),
           }),
         },
       }),
@@ -320,7 +322,9 @@ describe("useRegister Hook", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useHistory: () => ({
+            goBack: jest.fn(),
             replace: mockReplace,
+            push: jest.fn(),
           }),
         },
       }),
@@ -414,6 +418,7 @@ describe("useRegister Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -450,6 +455,7 @@ describe("useRegister Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -481,6 +487,7 @@ describe("useRegister Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -585,6 +592,7 @@ describe("useRegister Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -710,7 +718,9 @@ describe("useRegister Hook use v3LegacyAuthProviderCompatible", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
+              goBack: jest.fn(),
               replace: mockReplace,
+              push: jest.fn(),
             }),
           },
         }),
@@ -749,7 +759,9 @@ describe("useRegister Hook use v3LegacyAuthProviderCompatible", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
+              goBack: jest.fn(),
               replace: mockReplace,
+              push: jest.fn(),
             }),
           },
         }),
@@ -785,7 +797,7 @@ describe("useRegister Hook use v3LegacyAuthProviderCompatible", () => {
             logout: () => Promise.resolve(),
             register: () => Promise.resolve("redirectTo"),
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => mockGo,
             },

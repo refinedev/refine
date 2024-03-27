@@ -8,7 +8,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useGetIdentity } from "@refinedev/core";
-import { IconMoonStars, IconSun } from "@tabler/icons";
+import { IconMoonStars, IconSun } from "@tabler/icons-react";
 
 type IUser = {
   id: number;

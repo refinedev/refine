@@ -1,43 +1,47 @@
-import { useEffect, useState } from "react";
-import { useForm } from "@refinedev/core";
+import { AutoSaveIndicator, useForm } from "@refinedev/core";
 
 import { IPost } from "../../interfaces";
 
 type FormValues = Omit<IPost, "id">;
 
 export const PostEdit: React.FC = () => {
-  const { formLoading, onFinish, queryResult } = useForm<FormValues>();
-  const defaultValues = queryResult?.data?.data;
-
-  const [formValues, seFormValues] = useState<FormValues>({
-    title: defaultValues?.title || "",
-    content: defaultValues?.content || "",
+  const {
+    formLoading,
+    onFinish,
+    queryResult,
+    autoSaveProps,
+    onFinishAutoSave,
+  } = useForm<FormValues>({
+    autoSave: {
+      enabled: true,
+    },
   });
 
-  const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  const defaultValues = queryResult?.data?.data;
+
+  const submit = (
+    event: React.FormEvent<HTMLFormElement>,
+    isAutosave?: boolean,
   ) => {
-    seFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
+    event.preventDefault();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onFinish(formValues);
-  };
+    const formData = new FormData(event.currentTarget);
 
-  useEffect(() => {
-    seFormValues({
-      title: defaultValues?.title || "",
-      content: defaultValues?.content || "",
-    });
-  }, [defaultValues]);
+    const values = {
+      title: formData.get("title") as string,
+      content: formData.get("content") as string,
+    };
+
+    (isAutosave ? onFinishAutoSave : onFinish)(values).catch(() => {});
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <AutoSaveIndicator {...autoSaveProps} />
+      <form
+        onSubmit={(event) => submit(event)}
+        onChange={(event) => submit(event, true)}
+      >
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -45,8 +49,7 @@ export const PostEdit: React.FC = () => {
             id="title"
             name="title"
             placeholder="Title"
-            value={formValues.title}
-            onChange={handleOnChange}
+            defaultValue={defaultValues?.title || ""}
           />
         </div>
         <div>
@@ -56,8 +59,7 @@ export const PostEdit: React.FC = () => {
             name="content"
             placeholder="Content"
             rows={10}
-            value={formValues.content}
-            onChange={handleOnChange}
+            defaultValue={defaultValues?.content || ""}
           />
         </div>
         <button type="submit" disabled={formLoading}>

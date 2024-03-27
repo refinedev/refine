@@ -1,4 +1,4 @@
-import { ResourceProps } from "src/interfaces/bindings/resource";
+import { ResourceProps } from "../../../contexts/resource/types";
 import { getParentResource } from "./get-parent-resource";
 import { removeLeadingTrailingSlashes } from "./remove-leading-trailing-slashes";
 

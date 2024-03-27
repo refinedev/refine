@@ -40,10 +40,10 @@
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "dns": "^0.2.2",
-    "typescript": "^4.7.4",
-    "vite": "^4.3.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.0"
   }
 }

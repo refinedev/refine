@@ -14,7 +14,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
-import { IconTrash } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { DeleteButtonProps } from "../types";

@@ -34,7 +34,7 @@ function hexToRgb(hex = "") {
       .join("");
   }
 
-  const integer = parseInt(colorString, 16);
+  const integer = Number.parseInt(colorString, 16);
   const r = (integer >> 16) & 0xff;
   const g = (integer >> 8) & 0xff;
   const b = integer & 0xff;

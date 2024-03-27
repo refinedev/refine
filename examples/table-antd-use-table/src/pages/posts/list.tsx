@@ -97,7 +97,7 @@ export const PostList = () => {
             <FilterDropdown
               {...props}
               mapValue={(selectedKeys) =>
-                selectedKeys.map((i) => parseInt(i.toString()))
+                selectedKeys.map((i) => Number.parseInt(i.toString()))
               }
             >
               <Select

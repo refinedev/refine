@@ -20,7 +20,7 @@ import routerProvider, {
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
+import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons-react";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 

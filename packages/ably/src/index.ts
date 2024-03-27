@@ -1,6 +1,6 @@
 import { LiveProvider, LiveEvent } from "@refinedev/core";
 import Ably from "ably/promises";
-import { Types } from "ably";
+import type { Types } from "ably";
 interface MessageType extends Types.Message {
   data: LiveEvent;
 }

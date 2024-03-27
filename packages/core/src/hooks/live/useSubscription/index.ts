@@ -1,15 +1,15 @@
 import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
+
 import {
   BaseKey,
-  CrudFilters,
-  CrudSorting,
-  ILiveContext,
-  LiveEvent,
+  CrudFilter,
+  CrudSort,
   MetaQuery,
   Pagination,
-} from "../../../interfaces";
+} from "../../../contexts/data/types";
+import { LiveEvent } from "../../../contexts/live/types";
 
 export type UseSubscriptionProps = {
   /**
@@ -49,9 +49,9 @@ export type UseSubscriptionProps = {
     /**
      * @deprecated `sort` is deprecated, use `sorters` instead.
      */
-    sort?: CrudSorting;
-    sorters?: CrudSorting;
-    filters?: CrudFilters;
+    sort?: CrudSort[];
+    sorters?: CrudSort[];
+    filters?: CrudFilter[];
     subscriptionType?: "useList" | "useOne" | "useMany";
     resource?: string;
     [key: string]: any;
@@ -72,13 +72,13 @@ export const useSubscription = ({
   dataProviderName = "default",
   meta,
 }: UseSubscriptionProps): void => {
-  const liveDataContext = useContext<ILiveContext>(LiveContext);
+  const { liveProvider } = useContext(LiveContext);
 
   useEffect(() => {
     let subscription: any;
 
     if (enabled) {
-      subscription = liveDataContext?.subscribe({
+      subscription = liveProvider?.subscribe({
         channel,
         params,
         types,
@@ -93,7 +93,7 @@ export const useSubscription = ({
 
     return () => {
       if (subscription) {
-        liveDataContext?.unsubscribe(subscription);
+        liveProvider?.unsubscribe(subscription);
       }
     };
   }, [enabled]);

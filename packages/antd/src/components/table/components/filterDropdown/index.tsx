@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { type ReactNode, useState } from "react";
 import { Button, Space } from "antd";
 import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import dayjs from "dayjs";
@@ -79,7 +79,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+      return React.cloneElement(child as React.ReactElement, {
         onChange,
         value: mappedValue(value),
       });

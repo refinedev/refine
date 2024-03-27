@@ -7,7 +7,7 @@ export default function ServerSideValidationReactHookForm() {
       height={460}
       showOpenInCodeSandbox={false}
       dependencies={{
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
         "@refinedev/core": "^4.45.1",
         "@refinedev/react-router-v6": "^4.5.4",
         "@refinedev/simple-rest": "^4.5.4",

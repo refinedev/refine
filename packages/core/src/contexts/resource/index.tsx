@@ -1,19 +1,9 @@
 import React from "react";
 
-import { IResourceContext } from "./IResourceContext";
-import {
-  IResourceItem,
-  ResourceProps,
-} from "../../interfaces/bindings/resource";
-import { useDeepMemo } from "@hooks/deepMemo";
 import { legacyResourceTransform } from "@definitions/helpers";
+import { useDeepMemo } from "@hooks/deepMemo";
 
-export {
-  IResourceItem,
-  IResourceComponents,
-  IResourceComponentsProps,
-  IResourceContext,
-} from "../../interfaces/bindings/resource";
+import { IResourceContext, IResourceItem, ResourceProps } from "./types";
 
 export const ResourceContext = React.createContext<IResourceContext>({
   resources: [],

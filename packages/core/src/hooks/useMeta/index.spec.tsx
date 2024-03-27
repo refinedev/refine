@@ -1,7 +1,9 @@
 import React from "react";
+
 import { renderHook } from "@testing-library/react";
 
-import { TestWrapper, mockRouterBindings } from "@test";
+import { TestWrapper, mockRouterProvider } from "@test";
+
 import { useMeta } from "./";
 
 describe("useMeta Hook", () => {
@@ -51,7 +53,7 @@ describe("useMeta Hook", () => {
   it("should return the params from the router in the meta", () => {
     const { result } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { id: "123", authorId: "456" },
         }),
       }),
@@ -86,7 +88,7 @@ describe("useMeta Hook", () => {
   it("should return the combined meta from the resource, router and props", () => {
     const { result } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { authorId: "123" },
         }),
       }),
@@ -114,7 +116,7 @@ describe("useMeta Hook", () => {
   it("should be prioritized in the order: props, router, resource", () => {
     const { result } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { foo: "qux" },
         }),
       }),
@@ -135,7 +137,7 @@ describe("useMeta Hook", () => {
 
     const { result: result2 } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { foo: "qux" },
         }),
       }),
@@ -160,7 +162,7 @@ describe("useMeta Hook", () => {
   it("if the resource is not found, it should return query params and hook meta", () => {
     const { result } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { id: "123", authorId: "456" },
         }),
       }),
@@ -182,7 +184,7 @@ describe("useMeta Hook", () => {
   it("should not return filters, sorters, current, pageSize, pagination", () => {
     const { result } = renderHook(() => useMeta(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: {
             id: "123",
             filters: [

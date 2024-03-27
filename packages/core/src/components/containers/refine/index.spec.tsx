@@ -1,11 +1,11 @@
 import React from "react";
 
 import {
-  render,
   MockJSONServer,
-  mockLegacyRouterProvider,
-  mockRouterBindings,
   TestWrapper,
+  mockLegacyRouterProvider,
+  mockRouterProvider,
+  render,
 } from "@test";
 
 import { Refine } from "./index";
@@ -102,7 +102,7 @@ describe("Refine Container", () => {
       <Refine
         legacyAuthProvider={mockAuthProvider}
         dataProvider={MockJSONServer}
-        routerProvider={mockRouterBindings()}
+        routerProvider={mockRouterProvider()}
       >
         <div data-testid="children">Children</div>
       </Refine>,

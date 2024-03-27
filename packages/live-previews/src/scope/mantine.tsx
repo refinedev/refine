@@ -2,6 +2,7 @@ import React from "react";
 import parseHtml from "html-react-parser";
 import type { RefineProps } from "@refinedev/core";
 import { RefineCommonScope } from "./common";
+import type RefineMantineTypes from "@refinedev/mantine";
 import * as RefineMantine from "@refinedev/mantine";
 import * as MantineCore from "@mantine/core";
 import * as MantineHooks from "@mantine/hooks";
@@ -50,12 +51,12 @@ const RefineMantineDemo: React.FC<
   );
 };
 
-const ThemedTitleV2: typeof RefineMantine.ThemedTitleV2 = ({
+const ThemedTitleV2 = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
   icon: iconFromProps,
-}) => {
+}: RefineMantineTypes.RefineLayoutThemedTitleProps) => {
   const [svgContent, setSvgContent] = React.useState<string | undefined>(
     window.__refineIconSVGContent || undefined,
   );

@@ -1,5 +1,10 @@
 import { pickNotDeprecated } from "@definitions/helpers/pickNotDeprecated";
-import { IResourceItem, ITreeMenu, IMenuItem } from "src/interfaces";
+
+import {
+  IMenuItem,
+  IResourceItem,
+  ITreeMenu,
+} from "../../../../contexts/resource/types";
 
 /**
  * @deprecated This helper is deprecated. Please use `createTree` instead.

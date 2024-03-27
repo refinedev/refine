@@ -470,7 +470,7 @@ import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { Show } from "@refinedev/chakra-ui";
 /* highlight-next-line */
-import { IconMoodSmile } from "@tabler/icons";
+import { IconMoodSmile } from "@tabler/icons-react";
 
 const PostShow: React.FC = () => {
   return (

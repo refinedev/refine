@@ -1,14 +1,13 @@
 import React from "react";
 
 import { Route, Routes } from "react-router-dom";
-import { HttpError } from "@refinedev/core";
+import { IRefineOptions, HttpError } from "@refinedev/core";
 
 import { Form, Input, Select } from "antd";
 import { useForm, useSelect } from "..";
 import { MockJSONServer, TestWrapper, render, waitFor, fireEvent } from "@test";
 import { mockRouterBindings } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 interface IPost {
   title: string;

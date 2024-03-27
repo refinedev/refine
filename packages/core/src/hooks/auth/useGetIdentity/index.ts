@@ -1,13 +1,14 @@
-import {
-  useQuery,
-  UseQueryResult,
-  UseQueryOptions,
-} from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
+import {
+  UseQueryOptions,
+  UseQueryResult,
+  useQuery,
+} from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { IdentityResponse } from "../../../interfaces";
 import { useKeys } from "@hooks/useKeys";
+
+import { IdentityResponse } from "../../../contexts/auth/types";
 
 export type UseGetIdentityLegacyProps<TData> = {
   v3LegacyAuthProviderCompatible: true;

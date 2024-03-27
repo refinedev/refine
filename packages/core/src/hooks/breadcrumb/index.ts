@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
+
 import warnOnce from "warn-once";
 
-import { useRefineContext, useResource, useTranslate } from "@hooks";
-import { TranslationContext } from "@contexts/translation";
+import { I18nContext } from "@contexts/i18n";
+import { useRouterType } from "@contexts/router/picker";
 import { pickNotDeprecated } from "@definitions";
-
-import { IResourceItem } from "../../interfaces";
-import { useRouterType } from "@contexts/router-picker";
 import { getActionRoutesFromResource } from "@definitions/helpers/router";
-import { pickResource } from "../../definitions/helpers/pick-resource/index";
 import { composeRoute } from "@definitions/helpers/router/compose-route";
+import { useRefineContext, useResource, useTranslate } from "@hooks";
 import { useParsed } from "@hooks/router/use-parsed";
+
+import { IResourceItem } from "../../contexts/resource/types";
+import { pickResource } from "../../definitions/helpers/pick-resource/index";
 
 export type BreadcrumbsType = {
   label: string;
@@ -33,7 +34,7 @@ export const useBreadcrumb = ({
   meta: metaFromProps = {},
 }: UseBreadcrumbProps = {}): UseBreadcrumbReturnType => {
   const routerType = useRouterType();
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
   const parsed = useParsed();
   const translate = useTranslate();
   const { resources, resource, action } = useResource();

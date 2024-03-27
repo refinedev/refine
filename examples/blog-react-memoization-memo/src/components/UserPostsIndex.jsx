@@ -9,7 +9,7 @@ const UserPostsIndex = ({ signedIn }) => {
     // const deletePost = useCallback(e => {
     const { postId } = e.currentTarget.dataset;
     const remainingPosts = userPosts.filter(
-      (post) => post.id !== parseInt(postId),
+      (post) => post.id !== Number.parseInt(postId),
     );
     setUserPosts(remainingPosts);
   };

@@ -13,26 +13,34 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./style.css": {
-      "import": "./dist/esm/style.css",
+      "import": "./dist/style.css",
       "require": "./dist/style.css"
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "publint": "publint --strict=true --level=suggestion",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@fireworks-js/react": "^2.10.7",
@@ -63,8 +71,8 @@
     "postcss": "^8.1.4",
     "react-router-dom": "^6.8.1",
     "tailwindcss": "^3.0.11",
-    "ts-jest": "^29.0.3",
-    "tslib": "^2.3.1",
+    "ts-jest": "^29.1.2",
+    "tslib": "^2.6.2",
     "tsup": "^6.7.0"
   },
   "peerDependencies": {

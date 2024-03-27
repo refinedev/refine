@@ -1,9 +1,10 @@
-import { TestWrapper } from "@test";
-import { renderHook } from "@testing-library/react";
-import { useInvalidate } from ".";
-
 import * as ReactQuery from "@tanstack/react-query";
-import { IQueryKeys } from "src/interfaces";
+import { renderHook } from "@testing-library/react";
+
+import { TestWrapper } from "@test";
+
+import { useInvalidate } from ".";
+import { IQueryKeys } from "../../contexts/data/types";
 
 describe("useInvalidate", () => {
   it("with empty invalidations array", async () => {

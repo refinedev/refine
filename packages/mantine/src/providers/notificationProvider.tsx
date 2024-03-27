@@ -6,7 +6,7 @@ import {
   hideNotification,
 } from "@mantine/notifications";
 import { ActionIcon, Box, Group, Text } from "@mantine/core";
-import { IconCheck, IconRotate2, IconX } from "@tabler/icons";
+import { IconCheck, IconRotate2, IconX } from "@tabler/icons-react";
 
 import { RingCountdown } from "@components";
 

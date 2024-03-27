@@ -5,9 +5,8 @@ import { useForm } from ".";
 import { Select, TextInput } from "@mantine/core";
 import { useSelect } from "@hooks/useSelect";
 import { Edit } from "@components/crud";
-import { HttpError } from "@refinedev/core";
+import { IRefineOptions, HttpError } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const renderForm = ({
   refineCoreProps,

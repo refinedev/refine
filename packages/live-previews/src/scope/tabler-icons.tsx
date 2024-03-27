@@ -20,7 +20,7 @@ import {
   IconMoon,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 const TablerScope = {
   TablerIcons: {

@@ -1,5 +1,5 @@
 import { ActionIcon } from "@mantine/core";
-import { IconChevronDown, IconSelector } from "@tabler/icons";
+import { IconChevronDown, IconSelector } from "@tabler/icons-react";
 
 import { ColumnButtonProps } from "../../interfaces";
 

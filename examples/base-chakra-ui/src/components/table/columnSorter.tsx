@@ -1,5 +1,9 @@
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconChevronUp, IconSelector } from "@tabler/icons";
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconSelector,
+} from "@tabler/icons-react";
 
 import { ColumnButtonProps } from "../../interfaces";
 import type { SortDirection } from "@tanstack/react-table";

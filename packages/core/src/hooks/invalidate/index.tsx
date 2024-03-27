@@ -1,14 +1,15 @@
 import { useCallback } from "react";
+
 import {
   InvalidateOptions,
   InvalidateQueryFilters,
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { useResource } from "@hooks/resource";
 import { pickDataProvider } from "@definitions";
-import { BaseKey, IQueryKeys } from "../../interfaces";
-import { useKeys } from "@hooks/useKeys";
+import { useKeys, useResource } from "@hooks";
+
+import { BaseKey, IQueryKeys } from "../../contexts/data/types";
 
 export type UseInvalidateProp = {
   resource?: string;

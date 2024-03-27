@@ -2,9 +2,9 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
-  queryClient,
   TestWrapper,
+  mockRouterProvider,
+  queryClient,
 } from "@test";
 
 import * as UseInvalidate from "../invalidate/index";
@@ -45,7 +45,7 @@ describe("useCreateMany Hook", () => {
             createMany: createManyMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -222,6 +222,7 @@ describe("useCreateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -258,6 +259,7 @@ describe("useCreateMany Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -288,6 +290,7 @@ describe("useCreateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -322,6 +325,7 @@ describe("useCreateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -354,6 +358,7 @@ describe("useCreateMany Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),

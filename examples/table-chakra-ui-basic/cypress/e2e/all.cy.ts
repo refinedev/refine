@@ -24,7 +24,7 @@ describe("table-chakra-ui-basic", () => {
       },
     ).as("getAscPosts");
 
-    cy.get(".icon-tabler-chevron-down").first().click();
+    cy.get(".tabler-icon-chevron-down").first().click();
 
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
@@ -32,7 +32,7 @@ describe("table-chakra-ui-basic", () => {
 
     cy.interceptGETPosts();
 
-    cy.get(".icon-tabler-chevron-down").first().click();
+    cy.get(".tabler-icon-chevron-down").first().click();
 
     cy.url().should(
       "not.include",
@@ -59,7 +59,7 @@ describe("table-chakra-ui-basic", () => {
       },
     ).as("getDescPosts");
 
-    cy.get(".icon-tabler-selector").first().click();
+    cy.get(".tabler-icon-selector").first().click();
 
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
 
@@ -81,9 +81,9 @@ describe("table-chakra-ui-basic", () => {
       },
     ).as("getFilteredPosts");
 
-    cy.get(".icon-tabler-filter").eq(0).click();
+    cy.get(".tabler-icon-filter").eq(0).click();
     cy.get("#title").type("lorem");
-    cy.get(".icon-tabler-check").click();
+    cy.get(".tabler-icon-check").click();
 
     cy.url().should(
       "include",
@@ -139,9 +139,9 @@ describe("table-chakra-ui-basic", () => {
 
     cy.get("#next-page").click();
 
-    cy.get(".icon-tabler-filter").eq(0).click();
+    cy.get(".tabler-icon-filter").eq(0).click();
     cy.get("#title").type("lorem");
-    cy.get(".icon-tabler-check").click();
+    cy.get(".tabler-icon-check").click();
 
     cy.url().should("include", "current=1");
   });

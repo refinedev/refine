@@ -38,7 +38,7 @@ import {
   IconIndentIncrease,
   IconPower,
   IconDashboard,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 import { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";

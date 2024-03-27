@@ -1,37 +1,35 @@
 import React, { ReactNode } from "react";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { AccessControlContextProvider } from "@contexts/accessControl";
+import { AuditLogContextProvider } from "@contexts/auditLog";
 import {
   AuthBindingsContextProvider,
   LegacyAuthContextProvider,
 } from "@contexts/auth";
-import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { DataContextProvider } from "@contexts/data";
-import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import {
-  ILegacyAuthContext,
-  I18nProvider,
-  IAccessControlContext,
-  ILiveContext,
-  INotificationContext,
-  IDataMultipleContextProvider,
-  IDataContextProvider,
-  IAuditLogContext,
-  RouterBindings,
-  IRouterContext,
-  AuthProvider,
-} from "../src/interfaces";
-import { TranslationContextProvider } from "@contexts/translation";
-import { RefineContextProvider } from "@contexts/refine";
-import { IRefineContextProvider } from "@contexts/refine/IRefineContext";
-import { LegacyRouterContextProvider } from "@contexts/legacy-router";
-import { AccessControlContextProvider } from "@contexts/accessControl";
+import { I18nContextProvider } from "@contexts/i18n";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
-import { AuditLogContextProvider } from "@contexts/auditLog";
+import { RefineContextProvider } from "@contexts/refine";
+import { IRefineContextProvider } from "@contexts/refine/types";
+import { ResourceContextProvider } from "@contexts/resource";
+import { RouterContextProvider } from "@contexts/router";
+import { LegacyRouterContextProvider } from "@contexts/router/legacy";
+import { RouterPickerProvider } from "@contexts/router/picker";
+import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 
-import { RouterBindingsProvider } from "@contexts/router";
-import { RouterPickerProvider } from "@contexts/router-picker";
+import { AccessControlProvider } from "../src/contexts/accessControl/types";
+import { AuditLogProvider } from "../src/contexts/auditLog/types";
+import { AuthProvider, ILegacyAuthContext } from "../src/contexts/auth/types";
+import { DataProvider, DataProviders } from "../src/contexts/data/types";
+import { I18nProvider } from "../src/contexts/i18n/types";
+import { LiveProvider } from "../src/contexts/live/types";
+import { NotificationProvider } from "../src/contexts/notification/types";
+import { IResourceItem } from "../src/contexts/resource/types";
+import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
+import { RouterProvider } from "../src/contexts/router/types";
 
 export const queryClient = new QueryClient({
   logger: {
@@ -57,17 +55,17 @@ beforeEach(() => {
 export interface ITestWrapperProps {
   legacyAuthProvider?: ILegacyAuthContext;
   authProvider?: AuthProvider;
-  dataProvider?: IDataContextProvider | IDataMultipleContextProvider;
+  dataProvider?: DataProvider | DataProviders;
   i18nProvider?: I18nProvider;
-  notificationProvider?: INotificationContext;
-  accessControlProvider?: IAccessControlContext;
-  liveProvider?: ILiveContext;
+  notificationProvider?: NotificationProvider;
+  accessControlProvider?: Partial<AccessControlProvider>;
+  liveProvider?: LiveProvider;
   resources?: IResourceItem[];
   children?: React.ReactNode;
-  legacyRouterProvider?: IRouterContext;
-  routerProvider?: RouterBindings;
+  legacyRouterProvider?: LegacyRouterProvider;
+  routerProvider?: RouterProvider;
   refineProvider?: IRefineContextProvider;
-  auditLogProvider?: IAuditLogContext;
+  auditLogProvider?: Partial<AuditLogProvider>;
 }
 
 export const TestWrapper: (
@@ -103,10 +101,10 @@ export const TestWrapper: (
       withRouterPicker
     );
 
-    const withRouterBindings = routerProvider ? (
-      <RouterBindingsProvider router={routerProvider}>
+    const withRouter = routerProvider ? (
+      <RouterContextProvider router={routerProvider}>
         {withLegacyRouter}
-      </RouterBindingsProvider>
+      </RouterContextProvider>
     ) : (
       withLegacyRouter
     );
@@ -121,13 +119,13 @@ export const TestWrapper: (
           },
         }))}
       >
-        {withRouterBindings}
+        {withRouter}
       </ResourceContextProvider>
     ) : (
-      withRouterBindings
+      withRouter
     );
     const withData = dataProvider ? (
-      <DataContextProvider {...dataProvider}>
+      <DataContextProvider dataProvider={dataProvider}>
         {withResource}
       </DataContextProvider>
     ) : (
@@ -150,7 +148,7 @@ export const TestWrapper: (
       withNotificationProvider
     );
 
-    const withAuidtLogProvider = auditLogProvider ? (
+    const withAuditLogProvider = auditLogProvider ? (
       <AuditLogContextProvider {...auditLogProvider}>
         {withAccessControl}
       </AuditLogContextProvider>
@@ -160,16 +158,16 @@ export const TestWrapper: (
 
     const withLive = liveProvider ? (
       <LiveContextProvider liveProvider={liveProvider}>
-        {withAuidtLogProvider}
+        {withAuditLogProvider}
       </LiveContextProvider>
     ) : (
-      withAuidtLogProvider
+      withAuditLogProvider
     );
 
     const withTranslation = i18nProvider ? (
-      <TranslationContextProvider i18nProvider={i18nProvider}>
+      <I18nContextProvider i18nProvider={i18nProvider}>
         {withLive}
-      </TranslationContextProvider>
+      </I18nContextProvider>
     ) : (
       withLive
     );
@@ -221,7 +219,7 @@ export const TestWrapper: (
 export {
   MockJSONServer,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   MockAccessControlProvider,
   MockLiveProvider,
   mockLegacyAuthProvider,

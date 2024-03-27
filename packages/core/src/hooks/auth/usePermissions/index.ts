@@ -1,14 +1,14 @@
-import {
-  useQuery,
-  UseQueryResult,
-  UseQueryOptions,
-} from "@tanstack/react-query";
 import { getXRay } from "@refinedev/devtools-internal";
-
-import { useKeys } from "@hooks/useKeys";
+import {
+  UseQueryOptions,
+  UseQueryResult,
+  useQuery,
+} from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
-import { PermissionResponse } from "../../../interfaces";
+import { useKeys } from "@hooks/useKeys";
+
+import { PermissionResponse } from "../../../contexts/auth/types";
 
 export type UsePermissionsLegacyProps<
   TData = any,

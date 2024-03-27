@@ -13,7 +13,7 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { IconPencil } from "@tabler/icons";
+import { IconPencil } from "@tabler/icons-react";
 import { Button, IconButton } from "@chakra-ui/react";
 
 import { EditButtonProps } from "../types";

@@ -13,28 +13,48 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./app": {
-      "types": "./dist/app/index.d.ts",
-      "import": "./dist/esm/app.js",
-      "require": "./dist/app.js"
+      "import": {
+        "types": "./dist/app/index.d.mts",
+        "default": "./dist/app.mjs"
+      },
+      "require": {
+        "types": "./dist/app/index.d.cts",
+        "default": "./dist/app.cjs"
+      }
     },
     "./pages": {
-      "types": "./dist/pages/index.d.ts",
-      "import": "./dist/esm/pages.js",
-      "require": "./dist/pages.js"
+      "import": {
+        "types": "./dist/pages/index.d.mts",
+        "default": "./dist/pages.mjs"
+      },
+      "require": {
+        "types": "./dist/pages/index.d.cts",
+        "default": "./dist/pages.cjs"
+      }
     },
     "./parse-table-params": {
-      "types": "./dist/common/parse-table-params.d.ts",
-      "import": "./dist/esm/parse-table-params.js",
-      "require": "./dist/parse-table-params.js"
+      "import": {
+        "types": "./dist/common/parse-table-params.d.mts",
+        "default": "./dist/parse-table-params.mjs"
+      },
+      "require": {
+        "types": "./dist/common/parse-table-params.d.cts",
+        "default": "./dist/parse-table-params.cjs"
+      }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "typesVersions": {
     "*": {
       ".": [
@@ -47,7 +67,7 @@
         "dist/pages/index.d.ts"
       ],
       "parse-table-params": [
-        "dist/common/parse-table-params.d.ts"
+        "dist/parse-table-params/index.d.ts"
       ]
     }
   },
@@ -57,10 +77,12 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup --format esm,cjs,iife  --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "publint": "publint --strict=true --level=suggestion",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "qs": "^6.10.1",
@@ -73,8 +95,8 @@
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "next": "^14.1.0",
-    "ts-jest": "^29.0.3",
-    "tslib": "^2.3.1",
+    "ts-jest": "^29.1.2",
+    "tslib": "^2.6.2",
     "tsup": "^6.7.0"
   },
   "peerDependencies": {

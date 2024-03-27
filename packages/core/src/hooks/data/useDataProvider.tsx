@@ -1,19 +1,14 @@
 import { useCallback, useContext } from "react";
 
 import { DataContext } from "@contexts/data";
-import {
-  IDataContextProvider,
-  IDataMultipleContextProvider,
-} from "../../interfaces";
-
+import { DataProvider, IDataContext } from "../../contexts/data/types";
 export const useDataProvider = (): ((
   /**
    * The name of the `data provider` you want to access
    */
   dataProviderName?: string,
-) => IDataContextProvider) => {
-  const context =
-    useContext<Partial<IDataMultipleContextProvider>>(DataContext);
+) => DataProvider) => {
+  const context = useContext(DataContext);
 
   const handleDataProvider = useCallback(
     (dataProviderName?: string) => {
@@ -22,11 +17,20 @@ export const useDataProvider = (): ((
         if (!dataProvider) {
           throw new Error(`"${dataProviderName}" Data provider not found`);
         }
+
+        if (dataProvider && !context?.default) {
+          throw new Error(
+            "If you have multiple data providers, you must provide default data provider property",
+          );
+        }
+
         return context[dataProviderName];
       }
+
       if (context.default) {
         return context.default;
       }
+
       throw new Error(
         `There is no "default" data provider. Please pass dataProviderName.`,
       );

@@ -19,7 +19,7 @@ import {
   useToPath,
   useTranslate,
 } from "@refinedev/core";
-import { IconArrowLeft } from "@tabler/icons";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 import {
   DeleteButton,

@@ -7,4 +7,4 @@ export { Authenticated } from "./authenticated";
 export { RouteChangeHandler } from "./routeChangeHandler";
 export { CanAccess, CanAccessProps } from "./canAccess";
 export { GitHubBanner } from "./gh-banner";
-export { AutoSaveIndicator } from "./autoSaveIndicator";
+export { AutoSaveIndicator, AutoSaveIndicatorProps } from "./autoSaveIndicator";

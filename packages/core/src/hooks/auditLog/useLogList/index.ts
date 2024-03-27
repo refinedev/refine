@@ -1,14 +1,16 @@
 import { useContext } from "react";
+
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useQuery,
-  UseQueryResult,
   UseQueryOptions,
+  UseQueryResult,
+  useQuery,
 } from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
-import { HttpError, MetaQuery } from "../../../interfaces";
 import { useKeys } from "@hooks/useKeys";
-import { getXRay } from "@refinedev/devtools-internal";
+
+import { HttpError, MetaQuery } from "../../../contexts/data/types";
 
 export type UseLogProps<TQueryFnData, TError, TData> = {
   resource: string;

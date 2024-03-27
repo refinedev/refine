@@ -90,9 +90,7 @@ module.exports = {
 
       imports.map((importItem) => {
         if (
-          importItem.importPath === "../../../../../interfaces" ||
-          importItem.importPath === "../../../interfaces" ||
-          importItem.importPath === "../../interfaces" ||
+          importItem.importPath.includes("/types") ||
           importItem.importPath === "@hooks" ||
           importItem.importPath === "@hooks/translate" ||
           importItem.importPath === "@definitions/index" ||

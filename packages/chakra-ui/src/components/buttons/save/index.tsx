@@ -5,7 +5,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
-import { IconDeviceFloppy } from "@tabler/icons";
+import { IconDeviceFloppy } from "@tabler/icons-react";
 
 import { SaveButtonProps } from "../types";
 

@@ -17,7 +17,7 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
-import { IconInfoCircle } from "@tabler/icons";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
   const [errorMessage, setErrorMessage] = useState<string>();

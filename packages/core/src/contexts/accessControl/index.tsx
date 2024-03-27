@@ -1,12 +1,12 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 import {
   IAccessControlContext,
   IAccessControlContextReturnType,
-} from "./IAccessControlContext";
+} from "./types";
 
 /** @deprecated default value for access control context has no use and is an empty object. */
-export const defaultAccessControlContext: IAccessControlContext = {};
+export const defaultAccessControlContext = {} as IAccessControlContext;
 
 export const AccessControlContext =
   React.createContext<IAccessControlContextReturnType>({
@@ -15,12 +15,8 @@ export const AccessControlContext =
     },
   });
 
-export { IAccessControlContext };
-
 export const AccessControlContextProvider: React.FC<
-  IAccessControlContext & {
-    children?: React.ReactNode;
-  }
+  PropsWithChildren<IAccessControlContext>
 > = ({ can, children, options }) => {
   return (
     <AccessControlContext.Provider

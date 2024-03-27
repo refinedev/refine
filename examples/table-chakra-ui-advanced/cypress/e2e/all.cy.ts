@@ -15,7 +15,7 @@ describe("table-chakra-ui-advanced", () => {
 
     cy.get("#expanded-row").should("not.exist");
 
-    cy.get(".icon-tabler-chevron-right").first().click();
+    cy.get(".tabler-icon-chevron-right").first().click();
 
     cy.get("#expanded-row").should("exist");
   });

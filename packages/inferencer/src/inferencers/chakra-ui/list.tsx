@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { flexRender } from "@tanstack/react-table";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 
 import { createInferencer } from "../../create-inferencer";
 import {
@@ -93,8 +93,8 @@ export const renderer = ({
     ["IconButton", "@chakra-ui/react"],
     ["usePagination", "@refinedev/chakra-ui"],
     ["Box", "@chakra-ui/react"],
-    ["IconChevronRight", "@tabler/icons"],
-    ["IconChevronLeft", "@tabler/icons"],
+    ["IconChevronRight", "@tabler/icons-react"],
+    ["IconChevronLeft", "@tabler/icons-react"],
   ];
 
   if (i18n) {
@@ -972,7 +972,11 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
       },
     ],
     ["@refinedev/react-table", "RefineReactTable", { useTable }],
-    ["@tabler/icons", "TablerIcons", { IconChevronRight, IconChevronLeft }],
+    [
+      "@tabler/icons-react",
+      "TablerIcons",
+      { IconChevronRight, IconChevronLeft },
+    ],
     [
       "@chakra-ui/react",
       "ChakraUI",

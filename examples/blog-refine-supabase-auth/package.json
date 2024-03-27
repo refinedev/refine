@@ -2,6 +2,7 @@
   "name": "blog-refine-supabase-auth",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
@@ -42,9 +43,9 @@
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
-    "typescript": "^4.7.4",
-    "vite": "^4.3.1"
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6"
   }
 }

@@ -11,14 +11,14 @@ import {
   RefineFieldTextProps,
   RefineFieldUrlProps,
 } from "@refinedev/ui-types";
-import { TablerIconProps } from "@tabler/icons";
+import { IconProps } from "@tabler/icons-react";
 import { ConfigType } from "dayjs";
 import { ReactMarkdownOptions } from "react-markdown";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
   unknown,
   Omit<TooltipProps, "label" | "children">,
-  { svgIconProps?: TablerIconProps }
+  { svgIconProps?: Omit<IconProps, "ref"> }
 >;
 
 export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;

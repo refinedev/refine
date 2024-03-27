@@ -33,7 +33,9 @@ describe("definitions/upload", () => {
 
   it("file2Base64 success", async () => {
     const fileReader = new FileReaderMock();
-    jest.spyOn(window, "FileReader").mockImplementation(() => fileReader);
+    jest
+      .spyOn(window, "FileReader")
+      .mockImplementation(() => fileReader as FileReader);
 
     fileReader.result = "file content";
     fileReader.addEventListener.mockImplementation((_, fn) => fn());

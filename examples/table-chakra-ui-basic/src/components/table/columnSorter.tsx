@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconSelector } from "@tabler/icons";
+import { IconChevronDown, IconSelector } from "@tabler/icons-react";
 
 import { ColumnButtonProps } from "../../interfaces";
 

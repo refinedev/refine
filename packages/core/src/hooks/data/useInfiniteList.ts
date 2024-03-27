@@ -2,8 +2,8 @@ import { getXRay } from "@refinedev/devtools-internal";
 import {
   InfiniteData,
   InfiniteQueryObserverResult,
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
+  useInfiniteQuery,
 } from "@tanstack/react-query";
 
 import {
@@ -17,37 +17,37 @@ import {
 import {
   useDataProvider,
   useHandleNotification,
+  useKeys,
   useMeta,
   useOnError,
   useResource,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
+
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
+  CrudFilter,
+  CrudSort,
   GetListResponse,
   HttpError,
-  LiveModeProps,
   MetaQuery,
   Pagination,
   Prettify,
-  SuccessErrorNotification,
-} from "../../interfaces";
-
-import { useKeys } from "@hooks/useKeys";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
 
 export interface UseInfiniteListConfig {
   pagination?: Pagination;
   hasPagination?: boolean;
-  sort?: CrudSorting;
-  filters?: CrudFilters;
+  sort?: CrudSort[];
+  filters?: CrudFilter[];
 }
 
 type BaseInfiniteListProps = {
@@ -78,11 +78,11 @@ type BaseInfiniteListProps = {
   /**
    * Sorter parameters
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    * Filter parameters
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   /**
    * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use
    */

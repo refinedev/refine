@@ -1,8 +1,8 @@
 import { checkRouterPropMisuse } from "@definitions/helpers/check-router-prop-misuse";
 import React from "react";
-import { RouterBindings } from "src/interfaces";
+import { RouterProvider } from "../../../contexts/router/types";
 
-export const useRouterMisuseWarning = (value?: RouterBindings) => {
+export const useRouterMisuseWarning = (value?: RouterProvider) => {
   const warned = React.useRef(false);
 
   React.useEffect(() => {

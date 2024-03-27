@@ -12,33 +12,33 @@ import {
   RefineSaveButtonProps,
   RefineShowButtonProps,
 } from "@refinedev/ui-types";
-import { TablerIconProps } from "@tabler/icons";
+import { IconProps } from "@tabler/icons-react";
 
 export type ShowButtonProps = RefineShowButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
@@ -46,41 +46,41 @@ export type ImportButtonProps = RefineImportButtonProps<
   ButtonProps,
   {
     inputProps: UseImportInputPropsType;
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
   ButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;

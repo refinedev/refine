@@ -12,10 +12,10 @@ import {
   AuthProvider,
   IRouterProvider,
   RouterBindings,
+  IRefineOptions,
 } from "@refinedev/core";
 
 import { mockRouterBindings, MockJSONServer } from "@test";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
 const List = () => {
   return <div>hede</div>;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Alert, Center } from "@mantine/core";
-import { IconAlertCircle } from "@tabler/icons";
+import { IconAlertCircle } from "@tabler/icons-react";
 
 import { CreateInferencerConfig } from "../../types";
 

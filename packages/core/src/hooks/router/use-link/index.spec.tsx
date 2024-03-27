@@ -1,7 +1,8 @@
 import React from "react";
+
 import { render, renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useLink } from "./";
 
@@ -13,7 +14,7 @@ describe("useLink Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             Link: mockLink,
           },
@@ -29,7 +30,7 @@ describe("useLink Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             Link: undefined,
           },

@@ -1428,7 +1428,7 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
                 class="token string"
                 style="color: rgb(206, 145, 120);"
               >
-                "@tabler/icons"
+                "@tabler/icons-react"
               </span>
               <span
                 class="token punctuation"

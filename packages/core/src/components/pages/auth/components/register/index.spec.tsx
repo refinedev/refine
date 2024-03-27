@@ -1,9 +1,11 @@
 import React from "react";
+
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { RegisterPage } from ".";
 import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
-import { AuthProvider } from "src/interfaces";
+
+import { RegisterPage } from ".";
+import { AuthProvider } from "../../../../../contexts/auth/types";
 
 const mockAuthProvider: AuthProvider = {
   login: async () => ({ success: true }),
@@ -180,7 +182,7 @@ describe("Auth Page Register", () => {
       wrapper: TestWrapper({
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
-          useLocation: () => jest.fn(),
+          useLocation: jest.fn(),
           Link: LinkComponentMock,
         },
       }),

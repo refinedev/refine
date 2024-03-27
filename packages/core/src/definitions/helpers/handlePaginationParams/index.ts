@@ -1,4 +1,4 @@
-import { Pagination } from "../../../interfaces";
+import { Pagination } from "../../../contexts/data/types";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 
 type HandlePaginationParamsProps = {

@@ -7,7 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "importHelpers": false,
     "strict": true,
-    "paths": {},
-    "typeRoots": ["./src/types", "../../node_modules/@types"]
+    "paths": {}
   }
 }

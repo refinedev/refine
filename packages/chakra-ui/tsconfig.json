@@ -19,6 +19,10 @@
       "@contexts/*": ["src/contexts/*"],
       "@contexts": ["src/contexts"]
     },
-    "typeRoots": ["./src/types", "../../node_modules/@types"]
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ]
   }
 }

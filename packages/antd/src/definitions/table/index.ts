@@ -8,7 +8,16 @@ import {
   ConditionalFilter,
   LogicalFilter,
 } from "@refinedev/core";
-import { SortOrder, SorterResult } from "antd/lib/table/interface";
+import { TableProps } from "antd";
+
+export type FilterValue = Parameters<
+  NonNullable<TableProps["onChange"]>
+>[1][string];
+export type SortOrder = NonNullable<TableProps["sortDirections"]>[number];
+export type SorterResult = Exclude<
+  Parameters<NonNullable<TableProps["onChange"]>>[2],
+  any[]
+>;
 
 export const getDefaultSortOrder = (
   columnName: string,
@@ -35,7 +44,7 @@ export const getDefaultFilter = (
 };
 
 export const mapAntdSorterToCrudSorting = (
-  sorter: SorterResult<any> | SorterResult<any>[],
+  sorter: SorterResult | SorterResult[],
 ): CrudSorting => {
   const crudSorting: CrudSorting = [];
   if (Array.isArray(sorter)) {
@@ -77,7 +86,10 @@ export const mapAntdSorterToCrudSorting = (
 export const mapAntdFilterToCrudFilter = (
   tableFilters: Record<
     string,
-    (string | number | boolean) | (string | number | boolean)[] | null
+    | FilterValue
+    | (string | number | boolean)
+    | (string | number | boolean)[]
+    | null
   >,
   prevFilters: CrudFilters,
   initialFilters?: CrudFilters,

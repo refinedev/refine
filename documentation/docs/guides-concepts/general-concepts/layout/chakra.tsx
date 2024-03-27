@@ -15,7 +15,7 @@ export function ChakraUILayout() {
         "@refinedev/react-table": "latest",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
         "@chakra-ui/react": "^2.5.1",
       }}
       startRoute="/my-products"
@@ -115,7 +115,7 @@ import {
 } from "@chakra-ui/react";
 import { List, ShowButton, usePagination } from "@refinedev/chakra-ui";
 import { useTable } from "@refinedev/react-table";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
 export const ProductList = () => {
