@@ -70,7 +70,6 @@ Of course, it is also possible to install different versions of Node.js without 
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
 ```
 
 Or you use `wget`:
@@ -117,7 +116,6 @@ You can install the latest version of Node.js using NVM without knowing the exac
 
 ```bash
 nvm install node
-
 ```
 
 <div className="centered-image">
@@ -132,7 +130,6 @@ To install a specific version of Node.js, use the `nvm install` command followed
 
 ```bash
 nvm install 14.15.1
-
 ```
 
 The `nvm install` command downloads the specified version of Node.js and npm, allowing you to use them immediately.
@@ -143,7 +140,6 @@ NVM provides a straightforward way to view all installed Node.js versions. The `
 
 ```bash
 nvm ls
-
 ```
 
 After installing the latest version of Node.js (which is `21.7.1` as of writing this), this is what the above command shows:
@@ -170,7 +166,6 @@ To view all available versions for installation, use the `nvm ls-remote` command
 
 ```bash
 nvm ls-remote
-
 ```
 
 This command fetches and displays a list of all Node.js versions available for installation.
@@ -181,7 +176,6 @@ Changing Node.js versions is as simple as using the `nvm use` command followed b
 
 ```bash
 nvm use 21.7.1
-
 ```
 
 <div className="centered-image">
@@ -206,7 +200,6 @@ In above screenshots, you noticed that the current version of Node.js is shown b
 
 ```bash
 nvm current
-
 ```
 
 This command will output the version of Node.js that is currently active. For example, it might output `v14.15.1` if that’s the version you’re currently using. If no version is active, it will output `system`, indicating that the system’s default Node.js installation is currently in use.
