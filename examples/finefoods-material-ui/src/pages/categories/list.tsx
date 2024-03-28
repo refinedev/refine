@@ -1,10 +1,5 @@
 import React, { useMemo } from "react";
-import {
-  HttpError,
-  IResourceComponentsProps,
-  useList,
-  useTranslate,
-} from "@refinedev/core";
+import { HttpError, useList, useTranslate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";

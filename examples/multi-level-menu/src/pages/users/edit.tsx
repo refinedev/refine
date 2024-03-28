@@ -1,11 +1,10 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 import { IUser } from "../../interfaces";
 
-export const UserEdit: React.FC<IResourceComponentsProps> = () => {
+export const UserEdit = () => {
   const { formProps, saveButtonProps } = useForm<IUser>();
 
   return (

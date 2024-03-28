@@ -71,7 +71,7 @@ To get started, run the command below to install the components we need.
 npm i -D @smui/button @smui/data-table @smui/dialog @smui/textfield @smui/linear-progress @smui/card
 ```
 
-The above command will install the the **button**, **textfield**, and **data-table** components.
+The above command will install the **button**, **textfield**, and **data-table** components.
 
 Next, add the **Sveltematerial** UI CDN to the `app.html` file to use the default theme.
 

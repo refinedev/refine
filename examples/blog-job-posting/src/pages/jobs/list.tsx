@@ -1,5 +1,4 @@
 import Select from "rc-select";
-import { IResourceComponentsProps } from "@refinedev/core";
 import {
   List,
   TextField,
@@ -17,7 +16,7 @@ import { Table, Space } from "antd";
 
 import { ICompany, IJob } from "interfaces";
 
-export const JobList: React.FC<IResourceComponentsProps> = () => {
+export const JobList = () => {
   const { tableProps, sorter } = useTable<IJob>({
     initialSorter: [
       {

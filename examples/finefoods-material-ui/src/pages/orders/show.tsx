@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  IResourceComponentsProps,
-  useShow,
-  useTranslate,
-  useUpdate,
-} from "@refinedev/core";
+import { useShow, useTranslate, useUpdate } from "@refinedev/core";
 import { ListButton } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -25,7 +20,7 @@ import {
 import { RefineListView } from "../../components";
 import { IOrder } from "../../interfaces";
 
-export const OrderShow: React.FC<IResourceComponentsProps> = () => {
+export const OrderShow = () => {
   const t = useTranslate();
 
   const { queryResult } = useShow<IOrder>();

@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, BaseRecord, useMany } from "@refinedev/core";
+import { BaseRecord, useMany } from "@refinedev/core";
 import {
   useTable,
   List,
@@ -13,7 +13,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
 
-export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostList = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
   });

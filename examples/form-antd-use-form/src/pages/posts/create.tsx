@@ -1,5 +1,4 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
@@ -9,7 +8,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostCreate: React.FC<IResourceComponentsProps> = () => {
+export const PostCreate = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
   const postData = queryResult?.data?.data;

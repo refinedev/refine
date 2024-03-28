@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, BaseRecord } from "@refinedev/core";
+import { BaseRecord } from "@refinedev/core";
 import {
   useTable,
   List,
@@ -11,7 +11,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space, Avatar, Input, Form } from "antd";
 
-export const CompanyList: React.FC<IResourceComponentsProps> = () => {
+export const CompanyList = () => {
   const { tableProps, searchFormProps } = useTable({
     meta: {
       fields: [

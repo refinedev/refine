@@ -2,8 +2,9 @@ name: Build All Examples
 
 on:
   pull_request:
-    branches:
-      - master
+    paths:
+      - "packages/**"
+      - "examples/**"
     types:
       - labeled
       - synchronize
@@ -13,6 +14,7 @@ on:
   push:
     branches:
       - master
+      - releases/*
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:

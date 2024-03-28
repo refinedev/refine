@@ -1,5 +1,4 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 
 import { useTable, List } from "@refinedev/antd";
 
@@ -7,7 +6,7 @@ import { Table } from "antd";
 
 import { IAuthUser } from "interfaces";
 
-export const UserList: React.FC<IResourceComponentsProps> = () => {
+export const UserList = () => {
   const { tableProps } = useTable<IAuthUser>();
 
   return (

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "types": ["reflect-metadata", "jest"],
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["test", "types", "./src/**/*.tsx", "./src/**/*.ts"]
+}

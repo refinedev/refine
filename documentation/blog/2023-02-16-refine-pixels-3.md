@@ -30,7 +30,7 @@ In the last episode, we explored **Refine**'s auth and data providers in signifi
 
 We mentioned that `dataProvider` methods allow us to communicate with API endpoints and `authProvider` methods help us with authentication and authorization. We are able to access and invoke these methods from consumer components via their corresponding hooks.
 
-In this post, we will be leveraging **Supabase** `dataProvider` methods to implement CRUD operations for a `canvases` resource. We are going to start by adding `canvases` as a resource on which we will be able to perform `create`, `show` and `list` actions. We will first work on a public gallery that lists all canvases and a dashboard page that shows a selection of featured canvases by implementing the the `list` action. We will allow users to perform the canvas `create` action from a modal. Then we will also implement the `show` action for a canvas.
+In this post, we will be leveraging **Supabase** `dataProvider` methods to implement CRUD operations for a `canvases` resource. We are going to start by adding `canvases` as a resource on which we will be able to perform `create`, `show` and `list` actions. We will first work on a public gallery that lists all canvases and a dashboard page that shows a selection of featured canvases by implementing the `list` action. We will allow users to perform the canvas `create` action from a modal. Then we will also implement the `show` action for a canvas.
 
 We will then apply **Supabase** auth provider to allow only logged in users to carry out `create` actions on `canvases` and `pixels`. On the way, we will explore how **Refine** does the heavylifting under the hood for us with [**React Query**](https://react-query-v3.tanstack.com/), and its own set of providers and hooks - making CRUD operations implementation a breeze.
 
@@ -542,7 +542,7 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 **2. `useSimpleList()` Hook**
 
-The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
+The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
 
 In our `<CanvasList />` component, we are passing the `listProps` props to `<List />` in order to show a list of canvases.
 

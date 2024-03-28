@@ -555,12 +555,7 @@ We can now create lists of tasks and make changes to them.
 
 ```tsx title="src/pages/task/list.tsx"
 import React from "react";
-import {
-  useMany,
-  IResourceComponentsProps,
-  HttpError,
-  CrudFilters,
-} from "@refinedev/core";
+import { useMany, HttpError, CrudFilters } from "@refinedev/core";
 
 import {
   useTable,
@@ -589,7 +584,7 @@ import {
 
 import { Filter } from "../task";
 
-export const TaskList: React.FC<IResourceComponentsProps> = () => {
+export const TaskList = () => {
   const { tableProps, searchFormProps } = useTable<
     ITask,
     HttpError,
@@ -924,8 +919,6 @@ Now how do we create task? Let's examine how we can edit them and see their deta
 ## Create Task
 
 ```tsx title="src/pages/task/create.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import {
   useForm,
   Create,
@@ -938,7 +931,7 @@ import {
 
 import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
+export const TaskCreate = () => {
   const { formProps, saveButtonProps } = useForm<ITask>();
 
   const { selectProps: labelSelectProps } = useSelect<ILabel>({
@@ -1006,13 +999,11 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
 ## Edit Task
 
 ```tsx title="src/pages/task/edit.tsx"
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, Form, Input, Select, Edit, useSelect } from "@refinedev/antd";
 
 import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
-export const EditTask: React.FC<IResourceComponentsProps> = () => {
+export const EditTask = () => {
   const { formProps, saveButtonProps } = useForm<ITask>();
 
   const { selectProps: labelSelectProps } = useSelect<ITask>({

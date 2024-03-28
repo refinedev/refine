@@ -1,9 +1,8 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-export const CompanyCreate: React.FC<IResourceComponentsProps> = () => {
+export const CompanyCreate = () => {
   const { formProps, saveButtonProps } = useForm();
 
   const { selectProps } = useSelect({

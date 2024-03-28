@@ -1,4 +1,4 @@
-import { useShow, IResourceComponentsProps, useOne } from "@refinedev/core";
+import { useShow, useOne } from "@refinedev/core";
 
 import {
   Show,
@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const { Title, Text } = Typography;
 
-export const PostShow: React.FC<IResourceComponentsProps> = () => {
+export const PostShow = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
 
   const { queryResult } = useShow<IPost>({

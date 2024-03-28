@@ -6,10 +6,11 @@ description: useCheckError data hook from refine is a modified version of react-
 ---
 
 `useCheckError` calls the `checkError` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
-If the `checkError` returns a rejected promise, `useCheckError` calls the the `logout` method of the `authProvider` and the app is unauthenticated.
+If the `checkError` returns a rejected promise, `useCheckError` calls the `logout` method of the `authProvider` and the app is unauthenticated.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation). 
+It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 Data that is resolved from the `checkError` will be returned as the `data` in the query result.
+
 ## Usage
 
 Imagine that we make a payment request which is declined by the API. If error status code is `418`, user will be logged out for security reasons.
@@ -20,10 +21,10 @@ import { useCheckError } from "@pankod/refine-core";
 // highlight-next-line
 const { mutate: checkError } = useCheckError();
 
-fetch('http://example.com/payment')
-    .then(() => console.log("Success"))
-    // highlight-next-line
-    .catch((error) => checkError(error));
+fetch("http://example.com/payment")
+  .then(() => console.log("Success"))
+  // highlight-next-line
+  .catch((error) => checkError(error));
 ```
 
 > Any error passed to `mutate` function will be available in the `checkError` in the `authProvider`.
@@ -58,7 +59,7 @@ const authProvider: AuthProvider = {
 
 We have 2 options to manage redirection after logout process.
 
-- If promise returned from `checkError` is rejected with nothing, app will be redirected to `/login` route by default. 
+- If promise returned from `checkError` is rejected with nothing, app will be redirected to `/login` route by default.
 
 - The promise returned from `checkError` method of [`authProvider`](/api-reference/core/providers/auth-provider.md) can reject with a custom url instead.
 
@@ -71,6 +72,7 @@ const authProvider: AuthProvider = {
     }
 }
 ```
+
 <br/>
 
 :::caution

@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  useNavigation,
-  IResourceComponentsProps,
-  useSelect,
-} from "@refinedev/core";
+import { useNavigation, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
-export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
+export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {

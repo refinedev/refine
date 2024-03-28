@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, useShow, useOne } from "@refinedev/core";
+import { useShow, useOne } from "@refinedev/core";
 import {
   Show,
   NumberField,
@@ -11,7 +11,7 @@ import { Typography } from "antd";
 
 const { Title } = Typography;
 
-export const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
+export const BlogPostShow = () => {
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 

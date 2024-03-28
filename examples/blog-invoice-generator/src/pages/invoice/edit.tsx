@@ -1,12 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
-
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
 import { IInvoice } from "interfaces";
 
-export const InvoiceEdit: React.FC<IResourceComponentsProps> = () => {
+export const InvoiceEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
     metaData: { populate: ["company", "contact", "missions"] },
   });

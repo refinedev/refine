@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  IResourceComponentsProps,
-  useMany,
-  useDeleteMany,
-} from "@refinedev/core";
+import { useMany, useDeleteMany } from "@refinedev/core";
 
 import {
   List,
@@ -21,7 +17,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
   const {

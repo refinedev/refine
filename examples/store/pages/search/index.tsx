@@ -1,8 +1,4 @@
-import {
-  GetListResponse,
-  IResourceComponentsProps,
-  useTable,
-} from "@refinedev/core";
+import { GetListResponse, useTable } from "@refinedev/core";
 import { dataProvider } from "@refinedev/medusa";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
@@ -14,36 +10,37 @@ import { getSearchStaticProps } from "@lib/search-props";
 import { CART_KEY, useCartContext } from "@lib/context";
 import { API_URL } from "@lib/constants";
 
-const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
-  ({ initialData }) => {
-    const router = useRouter();
-    const { q } = router.query;
-    const { cartId } = useCartContext();
+const SearchPage: React.FC<{
+  initialData?: GetListResponse<Product>;
+}> = ({ initialData }) => {
+  const router = useRouter();
+  const { q } = router.query;
+  const { cartId } = useCartContext();
 
-    const { tableQueryResult } = useTable<Product>({
-      resource: "products",
-      queryOptions: {
-        initialData,
+  const { tableQueryResult } = useTable<Product>({
+    resource: "products",
+    queryOptions: {
+      initialData,
+    },
+    initialFilter: [
+      {
+        field: "cart_id",
+        value: cartId,
+        operator: "eq",
       },
-      initialFilter: [
-        {
-          field: "cart_id",
-          value: cartId,
-          operator: "eq",
-        },
-      ],
-      permanentFilter: [
-        {
-          field: "q",
-          operator: "eq",
-          value: q,
-        },
-      ],
-      hasPagination: false,
-    });
+    ],
+    permanentFilter: [
+      {
+        field: "q",
+        operator: "eq",
+        value: q,
+      },
+    ],
+    hasPagination: false,
+  });
 
-    return <Search products={tableQueryResult?.data?.data} />;
-  };
+  return <Search products={tableQueryResult?.data?.data} />;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = nookies.get(context);

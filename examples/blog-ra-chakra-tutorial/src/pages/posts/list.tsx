@@ -1,5 +1,4 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import {
   List,
@@ -24,7 +23,7 @@ import { ColumnSorter } from "../../components/column-sorter";
 import { ColumnFilter } from "../../components/column-filter";
 import { IPost } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(
     () => [
       {

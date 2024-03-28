@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, HttpError } from "@refinedev/core";
+import { HttpError } from "@refinedev/core";
 import {
   List,
   useModalForm,
@@ -12,7 +12,7 @@ import { ICompany } from "../../interfaces";
 import { CreateCompany, EditCompany } from "../../components/company";
 import { API_URL } from "../../constants";
 
-export const CompanyList: React.FC<IResourceComponentsProps> = () => {
+export const CompanyList = () => {
   const { tableProps } = useTable<ICompany>({
     sorters: { initial: [{ field: "id", order: "desc" }] },
     meta: { populate: ["logo"] },

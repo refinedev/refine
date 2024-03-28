@@ -47,7 +47,7 @@ export const authProvider: AuthProvider = {
     },
     check: async () => {
       const token = localStorage.getItem("my_access_token");
-  
+
       return { authenticated: Boolean(token) };
     },
     logout: async () => { throw new Error("Not implemented"); },

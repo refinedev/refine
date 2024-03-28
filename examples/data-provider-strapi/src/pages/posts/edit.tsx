@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
+import { useApiUrl } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import {
@@ -12,7 +12,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 import { TOKEN_KEY } from "../../constants";
 
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+export const PostEdit = () => {
   const API_URL = useApiUrl();
 
   const { formProps, saveButtonProps } = useForm();

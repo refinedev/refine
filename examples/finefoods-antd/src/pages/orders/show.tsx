@@ -1,9 +1,4 @@
-import {
-  useShow,
-  IResourceComponentsProps,
-  useTranslate,
-  useUpdate,
-} from "@refinedev/core";
+import { useShow, useTranslate, useUpdate } from "@refinedev/core";
 import { IOrder } from "../../interfaces";
 import { List, ListButton } from "@refinedev/antd";
 import { Button, Col, Divider, Flex, Row, Skeleton } from "antd";
@@ -16,7 +11,7 @@ import {
   OrderDeliveryDetails,
 } from "../../components";
 
-export const OrderShow: React.FC<IResourceComponentsProps> = () => {
+export const OrderShow = () => {
   const t = useTranslate();
   const { queryResult } = useShow<IOrder>();
   const { data, isLoading } = queryResult;

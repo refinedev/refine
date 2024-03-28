@@ -1,11 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
 
 import { Form, Input, Row, Col, Checkbox, Typography } from "antd";
 
 import { ICompany } from "interfaces";
 
-export const CompanyEdit: React.FC<IResourceComponentsProps> = () => {
+export const CompanyEdit = () => {
   const { Title } = Typography;
   const { formProps, saveButtonProps } = useForm<ICompany>();
 

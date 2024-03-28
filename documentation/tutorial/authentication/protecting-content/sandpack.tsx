@@ -73,7 +73,7 @@ export const authProvider: AuthProvider = {
       // Now let's check if the token exists in the local storage.
       // In the later steps, we'll be implementing the login and logout methods.
       const token = localStorage.getItem("my_access_token");
-  
+
       return { authenticated: Boolean(token) };
     },
     login: async ({ email, password }) => { throw new Error("Not implemented"); },

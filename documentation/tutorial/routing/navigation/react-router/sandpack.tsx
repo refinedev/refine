@@ -42,10 +42,8 @@ export const Header = () => {
         <span>Welcome, </span>
         <span>{identity?.name ?? ""}</span>
       </h2>
-      <Link to={listUrl("protected-products")}>List Products</Link>
-      {" "}
-      <Link to={createUrl("protected-products")}>Create Product</Link>
-      {" "}
+      <Link to={listUrl("protected-products")}>List Products</Link>{" "}
+      <Link to={createUrl("protected-products")}>Create Product</Link>{" "}
       <button type="button" disabled={isLoading} onClick={mutate}>
         Logout
       </button>
@@ -108,19 +106,21 @@ export const ListProducts = () => {
     if (sorter) {
       return sorter.order;
     }
-  }
+  };
 
   const onSort = (field: string) => {
     const sorter = getSorter(field);
     setSorters(
-        sorter === "desc" ? [] : [
-        {
-            field,
-            order: sorter === "asc" ? "desc" : "asc",
-        },
-        ]
+      sorter === "desc"
+        ? []
+        : [
+            {
+              field,
+              order: sorter === "asc" ? "desc" : "asc",
+            },
+          ],
     );
-  }
+  };
 
   const indicator = { asc: "⬆️", desc: "⬇️" };
 
@@ -136,18 +136,14 @@ export const ListProducts = () => {
             <th onClick={() => onSort("name")}>
               Name {indicator[getSorter("name")]}
             </th>
-            <th>
-              Category
-            </th>
+            <th>Category</th>
             <th onClick={() => onSort("material")}>
               Material {indicator[getSorter("material")]}
             </th>
             <th onClick={() => onSort("price")}>
               Price {indicator[getSorter("price")]}
             </th>
-            <th>
-              Actions
-            </th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -165,12 +161,8 @@ export const ListProducts = () => {
               <td>{product.material}</td>
               <td>{product.price}</td>
               <td>
-                <Link to={showUrl("protected-products", product.id)}>
-                  Show
-                </Link>
-                <Link to={editUrl("protected-products", product.id)}>
-                  Edit
-                </Link>
+                <Link to={showUrl("protected-products", product.id)}>Show</Link>
+                <Link to={editUrl("protected-products", product.id)}>Edit</Link>
               </td>
             </tr>
           ))}
@@ -181,9 +173,13 @@ export const ListProducts = () => {
           {"<"}
         </button>
         <div>
-          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
+          {current - 1 > 0 && (
+            <span onClick={() => onPage(current - 1)}>{current - 1}</span>
+          )}
           <span className="current">{current}</span>
-          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+          {current + 1 < pageCount && (
+            <span onClick={() => onPage(current + 1)}>{current + 1}</span>
+          )}
         </div>
         <button type="button" onClick={onNext}>
           {">"}

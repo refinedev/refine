@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { IResourceComponentsProps, useMany } from "@refinedev/core";
+import { useMany } from "@refinedev/core";
 import {
   List,
   TextField,
@@ -13,7 +13,7 @@ import { Table, Space, Select, SelectProps } from "antd";
 
 import { IPost, ICategory } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
+export const PostList = () => {
   const { tableProps } = useTable<IPost>();
   const [page, setPage] = useState<number>(1);
   const [options, setOptions] = useState<SelectProps["options"]>([]);

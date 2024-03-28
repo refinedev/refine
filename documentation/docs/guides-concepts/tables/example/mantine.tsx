@@ -1,7 +1,7 @@
 import { Sandpack } from "@site/src/components/sandpack";
 import React from "react";
 
-export default function BaseCoreTable() {
+export default function BaseMantineTable() {
   return (
     <Sandpack
       dependencies={{

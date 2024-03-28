@@ -304,7 +304,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
 const list = [
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
         state management. Let Refine automatically transform
         your UI elements to enterprise-grade:`,
@@ -329,7 +329,7 @@ const list = [
   },
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
       state management. Let Refine automatically transform
       your UI elements to enterprise-grade:`,
@@ -354,7 +354,7 @@ const list = [
   },
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
 state management. Let Refine automatically transform
 your UI elements to enterprise-grade:`,
@@ -379,7 +379,7 @@ your UI elements to enterprise-grade:`,
   },
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
   state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
@@ -404,7 +404,7 @@ your UI elements to enterprise-grade:`,
   },
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
   state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,
@@ -429,7 +429,7 @@ your UI elements to enterprise-grade:`,
   },
   {
     title:
-      "Business applications not only share fundemental UI elements, but also the underlying logic.",
+      "Business applications not only share fundamental UI elements, but also the underlying logic.",
     description: `Stop writing repetitive code for CRUD, security and
   state management. Let Refine automatically transform
   your UI elements to enterprise-grade:`,

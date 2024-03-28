@@ -1,14 +1,10 @@
-import {
-  IResourceComponentsProps,
-  HttpError,
-  useParsed,
-} from "@refinedev/core";
+import { HttpError, useParsed } from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 import { IOrder, IProduct } from "../../interfaces";
 
-export const OrderEdit: React.FC<IResourceComponentsProps> = () => {
+export const OrderEdit = () => {
   const { params } = useParsed<{ tenant: string }>();
   const { formProps, saveButtonProps, queryResult } = useForm<
     IOrder,
