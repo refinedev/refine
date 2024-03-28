@@ -1,4 +1,4 @@
-import { ButtonProps } from "@mantine/core";
+import { ButtonProps, ButtonVariant } from "@mantine/core";
 import { UseImportInputPropsType } from "@refinedev/core";
 import {
   RefineCloneButtonProps,
@@ -14,36 +14,41 @@ import {
 } from "@refinedev/ui-types";
 import { TablerIconProps } from "@tabler/icons";
 
+export type MantineButtonProps = Omit<ButtonProps, "classNames"> & {
+  size?: string;
+  variant?: ButtonVariant;
+};
+
 export type ShowButtonProps = RefineShowButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type ImportButtonProps = RefineImportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     inputProps: UseImportInputPropsType;
     svgIconProps?: TablerIconProps;
@@ -51,35 +56,35 @@ export type ImportButtonProps = RefineImportButtonProps<
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: TablerIconProps;
   }

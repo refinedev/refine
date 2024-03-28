@@ -4,54 +4,54 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root"
     >
       <div
-        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
+        class="MuiCardHeader-root"
       >
         <div
-          class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          class="MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title"
           >
             Posts
           </h5>
         </div>
         <div
-          class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+          class="MuiCardHeader-action"
         >
           <div
-            class="MuiBox-root css-10egq61"
+            class="MuiBox-root"
           />
         </div>
       </div>
       <div
-        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        class="MuiCardContent-root"
       >
         <div
           aria-colcount="14"
           aria-multiselectable="false"
           aria-rowcount="3"
-          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor css-1uzb79t-MuiDataGrid-root"
+          class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-withBorderColor"
           role="grid"
         >
           <div
-            class="MuiDataGrid-main css-204u17-MuiDataGrid-main"
+            class="MuiDataGrid-main"
           >
             <div
-              class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor css-1iyq7zh-MuiDataGrid-columnHeaders"
+              class="MuiDataGrid-columnHeaders MuiDataGrid-withBorderColor"
               role="presentation"
               style="min-height: 56px; max-height: 56px; line-height: 56px;"
             >
               <div
-                class="MuiDataGrid-columnHeadersInner MuiDataGrid-columnHeadersInner--scrollable css-gl260s-MuiDataGrid-columnHeadersInner"
+                class="MuiDataGrid-columnHeadersInner MuiDataGrid-columnHeadersInner--scrollable"
                 role="rowgroup"
                 style="transform: translate3d(0px, 0px, 0px);"
               >
                 <div
                   aria-rowindex="1"
-                  class="css-yrdy0g-MuiDataGrid-columnHeaderRow"
+                  class=""
                   role="row"
                 >
                   <div
@@ -78,25 +78,25 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Id
                           </div>
                         </div>
                         <div
-                          class="MuiDataGrid-iconButtonContainer css-ltf0zy-MuiDataGrid-iconButtonContainer"
+                          class="MuiDataGrid-iconButtonContainer"
                         >
                           <button
                             aria-label="Sort"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall"
                             tabindex="-1"
                             title="Sort"
                             type="button"
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon css-ptiqhd-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon"
                               data-testid="ArrowUpwardIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -106,7 +106,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                               />
                             </svg>
                             <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                              class="MuiTouchRipple-root"
                             />
                           </button>
                         </div>
@@ -118,7 +118,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-expanded="false"
                           aria-haspopup="menu"
                           aria-label="Menu"
-                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton"
                           data-mui-internal-clone-element="true"
                           id=":r4:"
                           tabindex="-1"
@@ -126,7 +126,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
                             data-testid="TripleDotsVerticalIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
@@ -136,7 +136,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                             />
                           </svg>
                           <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                            class="MuiTouchRipple-root"
                           />
                         </button>
                       </div>
@@ -147,7 +147,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator css-i4bv87-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator"
                         data-testid="SeparatorIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -182,25 +182,25 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Title
                           </div>
                         </div>
                         <div
-                          class="MuiDataGrid-iconButtonContainer css-ltf0zy-MuiDataGrid-iconButtonContainer"
+                          class="MuiDataGrid-iconButtonContainer"
                         >
                           <button
                             aria-label="Sort"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall"
                             tabindex="-1"
                             title="Sort"
                             type="button"
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon css-ptiqhd-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon"
                               data-testid="ArrowUpwardIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -210,7 +210,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                               />
                             </svg>
                             <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                              class="MuiTouchRipple-root"
                             />
                           </button>
                         </div>
@@ -222,7 +222,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-expanded="false"
                           aria-haspopup="menu"
                           aria-label="Menu"
-                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton"
                           data-mui-internal-clone-element="true"
                           id=":ra:"
                           tabindex="-1"
@@ -230,7 +230,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
                             data-testid="TripleDotsVerticalIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
@@ -240,7 +240,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                             />
                           </svg>
                           <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                            class="MuiTouchRipple-root"
                           />
                         </button>
                       </div>
@@ -251,7 +251,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator css-i4bv87-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator"
                         data-testid="SeparatorIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -286,25 +286,25 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <div
                             aria-label=""
-                            class="MuiDataGrid-columnHeaderTitle css-t89xny-MuiDataGrid-columnHeaderTitle"
+                            class="MuiDataGrid-columnHeaderTitle"
                             data-mui-internal-clone-element="true"
                           >
                             Slug
                           </div>
                         </div>
                         <div
-                          class="MuiDataGrid-iconButtonContainer css-ltf0zy-MuiDataGrid-iconButtonContainer"
+                          class="MuiDataGrid-iconButtonContainer"
                         >
                           <button
                             aria-label="Sort"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall"
                             tabindex="-1"
                             title="Sort"
                             type="button"
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon css-ptiqhd-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiDataGrid-sortIcon"
                               data-testid="ArrowUpwardIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -314,7 +314,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                               />
                             </svg>
                             <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                              class="MuiTouchRipple-root"
                             />
                           </button>
                         </div>
@@ -326,7 +326,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                           aria-expanded="false"
                           aria-haspopup="menu"
                           aria-label="Menu"
-                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root"
+                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton"
                           data-mui-internal-clone-element="true"
                           id=":rg:"
                           tabindex="-1"
@@ -334,7 +334,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-ptiqhd-MuiSvgIcon-root"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
                             data-testid="TripleDotsVerticalIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
@@ -344,7 +344,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                             />
                           </svg>
                           <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                            class="MuiTouchRipple-root"
                           />
                         </button>
                       </div>
@@ -355,7 +355,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator css-i4bv87-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator"
                         data-testid="SeparatorIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -370,17 +370,17 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
               </div>
             </div>
             <div
-              class="MuiDataGrid-virtualScroller css-qvtrhg-MuiDataGrid-virtualScroller"
+              class="MuiDataGrid-virtualScroller"
               role="presentation"
               style="overflow-x: hidden; overflow-y: hidden;"
             >
               <div
-                class="MuiDataGrid-virtualScrollerContent css-1kwdphh-MuiDataGrid-virtualScrollerContent"
+                class="MuiDataGrid-virtualScrollerContent"
                 role="presentation"
                 style="width: auto; min-height: auto; height: 104px;"
               >
                 <div
-                  class="MuiDataGrid-virtualScrollerRenderZone css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone"
+                  class="MuiDataGrid-virtualScrollerRenderZone"
                   role="rowgroup"
                   style="transform: translate3d(0px, 0px, 0px);"
                 >
@@ -517,33 +517,33 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiDataGrid-footerContainer MuiDataGrid-withBorderColor css-wop1k0-MuiDataGrid-footerContainer"
+            class="MuiDataGrid-footerContainer MuiDataGrid-withBorderColor"
           >
             <div />
             <div
-              class="MuiTablePagination-root css-rtrcn9-MuiTablePagination-root"
+              class="MuiTablePagination-root"
             >
               <div
-                class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar"
+                class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar"
               >
                 <div
-                  class="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
+                  class="MuiTablePagination-spacer"
                 />
                 <p
-                  class="MuiTablePagination-selectLabel css-pdct74-MuiTablePagination-selectLabel"
+                  class="MuiTablePagination-selectLabel"
                   id=":r1:"
                 >
                   Rows per page:
                 </p>
                 <div
-                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input css-16c50h-MuiInputBase-root-MuiTablePagination-select"
+                  class="MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input"
                 >
                   <div
                     aria-controls=":r2:"
                     aria-expanded="false"
                     aria-haspopup="listbox"
                     aria-labelledby=":r1: :r0:"
-                    class="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input css-194a1fa-MuiSelect-select-MuiInputBase-input"
+                    class="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input"
                     id=":r0:"
                     role="combobox"
                     tabindex="0"
@@ -553,13 +553,13 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   <input
                     aria-hidden="true"
                     aria-invalid="false"
-                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                    class="MuiSelect-nativeInput"
                     tabindex="-1"
                     value="25"
                   />
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiTablePagination-selectIcon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiTablePagination-selectIcon MuiSelect-iconStandard"
                     data-testid="ArrowDropDownIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -570,7 +570,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   </svg>
                 </div>
                 <p
-                  class="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
+                  class="MuiTablePagination-displayedRows"
                 >
                   1–2 of 2
                 </p>
@@ -579,7 +579,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                 >
                   <button
                     aria-label="Go to previous page"
-                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium"
                     disabled=""
                     tabindex="-1"
                     title="Go to previous page"
@@ -587,7 +587,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium"
                       data-testid="KeyboardArrowLeftIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -599,7 +599,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   </button>
                   <button
                     aria-label="Go to next page"
-                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+                    class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium"
                     disabled=""
                     tabindex="-1"
                     title="Go to next page"
@@ -607,7 +607,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium"
                       data-testid="KeyboardArrowRightIcon"
                       focusable="false"
                       viewBox="0 0 24 24"

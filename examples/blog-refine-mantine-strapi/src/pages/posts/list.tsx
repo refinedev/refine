@@ -77,7 +77,7 @@ export const PostList: React.FC = () => {
 
   return (
     <List>
-      <Table highlightOnHover striped withBorder withColumnBorders>
+      <Table highlightOnHover striped withTableBorder withColumnBorders>
         <thead>
           {getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -114,13 +114,10 @@ export const PostList: React.FC = () => {
           })}
         </tbody>
       </Table>
-      <br />
-      <Pagination
-        position="right"
-        total={pageCount}
-        page={current}
-        onChange={setCurrent}
-      />
+
+      <Group mt="md" justify="right">
+        <Pagination total={pageCount} value={current} onChange={setCurrent} />
+      </Group>
     </List>
   );
 };

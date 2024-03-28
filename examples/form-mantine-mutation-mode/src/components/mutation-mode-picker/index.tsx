@@ -17,7 +17,7 @@ const MutationModePicker: React.FC<Props> = ({
       p={"md"}
       radius="md"
       withBorder
-      sx={{
+      style={{
         position: "fixed",
         bottom: "16px",
         left: "50%",
@@ -28,7 +28,7 @@ const MutationModePicker: React.FC<Props> = ({
         mt={0}
         pt={0}
         mb={8}
-        sx={{
+        style={{
           alignItems: "center",
           justifyContent: "center",
           pt: 0,

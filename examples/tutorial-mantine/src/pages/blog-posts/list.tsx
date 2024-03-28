@@ -82,7 +82,7 @@ export const BlogPostList = () => {
         enableSorting: false,
         cell: function render({ getValue }) {
           return (
-            <Group spacing="xs" noWrap>
+            <Group gap="xs" wrap="nowrap">
               <ShowButton hideText recordItemId={getValue() as string} />
               <EditButton hideText recordItemId={getValue() as string} />
               <DeleteButton hideText recordItemId={getValue() as string} />
@@ -134,7 +134,7 @@ export const BlogPostList = () => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <th key={header.id}>
-                      <Group spacing="xs">
+                      <Group gap="xs">
                         {!header.isPlaceholder &&
                           flexRender(
                             header.column.columnDef.header,
@@ -169,13 +169,10 @@ export const BlogPostList = () => {
           </tbody>
         </Table>
       </ScrollArea>
-      <br />
-      <Pagination
-        position="right"
-        total={pageCount}
-        page={current}
-        onChange={setCurrent}
-      />
+
+      <Group mt="md" justify="right">
+        <Pagination total={pageCount} value={current} onChange={setCurrent} />
+      </Group>
     </List>
   );
 };

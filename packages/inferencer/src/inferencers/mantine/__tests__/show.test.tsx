@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
 import { ShowInferencer, renderer } from "../show";
+import { MantineProvider } from "@mantine/core";
 
 describe("MantineShowInferencer", () => {
   it("should match the snapshot", async () => {
@@ -25,14 +26,16 @@ describe("MantineShowInferencer", () => {
     });
 
     const rendering = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/:resource/show/:id"
-            element={<ShowInferencer resource="posts" />}
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/:resource/show/:id"
+              element={<ShowInferencer resource="posts" />}
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     await act(async () => {

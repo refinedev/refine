@@ -56,7 +56,6 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
       opened={!!state}
       position="bottom"
       withArrow
-      transition="scale-y"
       shadow="xl"
       onClose={close}
       width="256px"
@@ -74,9 +73,9 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
       </Menu.Target>
       <Menu.Dropdown>
         {!!state && (
-          <Stack p="xs" spacing="xs">
+          <Stack p="xs" gap="xs">
             {renderFilterElement()}
-            <Group position="right" spacing={6} noWrap>
+            <Group align="right" gap={6} wrap="nowrap">
               <ActionIcon
                 size="md"
                 color="gray"

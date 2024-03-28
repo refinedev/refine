@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
-    "@mantine/core": "^5.10.4",
-    "@mantine/form": "^5.10.4",
-    "@mantine/hooks": "^5.10.4",
-    "@mantine/notifications": "^5.10.4",
+    "@mantine/code-highlight": "^7.5.1",
+    "@mantine/core": "^7.5.1",
+    "@mantine/form": "^7.5.1",
+    "@mantine/hooks": "^7.5.1",
+    "@mantine/notifications": "^7.5.1",
     "@refinedev/cli": "^2.16.27",
     "@refinedev/core": "^4.48.0",
     "@refinedev/mantine": "^2.29.5",
@@ -31,6 +32,9 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.0.0",
+    "postcss": "^8.1.4",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
     "typescript": "^4.7.4",
     "vite": "^4.3.1"
   }

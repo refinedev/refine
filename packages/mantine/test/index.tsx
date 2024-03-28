@@ -17,6 +17,15 @@ import {
 import { mockRouterBindings, MockJSONServer } from "@test";
 import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 
+import { MantineProvider } from "@mantine/core";
+
+// @ts-ignore
+window.MantineProvider = MantineProvider;
+
+import { defaultTheme } from "@theme";
+
+import { MockRouterProvider } from "@refinedev/ui-tests";
+
 const List = () => {
   return <div>hede</div>;
 };
@@ -38,7 +47,7 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
   props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
-  routerProvider = mockRouterBindings(),
+  routerProvider,
   legacyRouterProvider,
   dataProvider,
   authProvider,
@@ -57,6 +66,7 @@ export const TestWrapper: (
   // is essentially to use the same router as your actual application. Besides
   // that, it's impossible to check for location changes with MemoryRouter if
   // needed.
+
   if (routerInitialEntries) {
     routerInitialEntries.forEach((route) => {
       window.history.replaceState({}, "", route);
@@ -65,48 +75,57 @@ export const TestWrapper: (
 
   return ({ children }): React.ReactElement => {
     return (
-      <BrowserRouter>
-        <Refine
-          dataProvider={dataProvider ?? MockJSONServer}
-          i18nProvider={i18nProvider}
-          routerProvider={legacyRouterProvider ? undefined : routerProvider}
-          legacyRouterProvider={legacyRouterProvider}
-          authProvider={authProvider}
-          legacyAuthProvider={legacyAuthProvider}
-          notificationProvider={notificationProvider}
-          resources={resources ?? [{ name: "posts", list: List }]}
-          accessControlProvider={accessControlProvider}
-          DashboardPage={DashboardPage ?? undefined}
-          options={{
-            ...options,
-            disableTelemetry: true,
-            reactQuery: {
-              clientConfig: {
-                defaultOptions: {
-                  queries: {
-                    cacheTime: 0,
-                    staleTime: 0,
-                    networkMode: "always",
+      <MantineProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <Refine
+            dataProvider={dataProvider ?? MockJSONServer}
+            i18nProvider={i18nProvider}
+            routerProvider={routerProvider}
+            legacyRouterProvider={legacyRouterProvider ?? MockRouterProvider}
+            authProvider={authProvider}
+            legacyAuthProvider={legacyAuthProvider}
+            notificationProvider={notificationProvider}
+            resources={resources ?? [{ name: "posts", list: List }]}
+            accessControlProvider={accessControlProvider}
+            DashboardPage={DashboardPage ?? undefined}
+            options={{
+              ...options,
+              disableTelemetry: true,
+              reactQuery: {
+                clientConfig: {
+                  defaultOptions: {
+                    queries: {
+                      cacheTime: 0,
+                      staleTime: 0,
+                      networkMode: "always",
+                    },
                   },
                 },
               },
-            },
-          }}
-        >
-          {children}
-        </Refine>
-      </BrowserRouter>
+            }}
+          >
+            {children}
+          </Refine>
+        </BrowserRouter>
+      </MantineProvider>
     );
   };
 };
 export {
-  mockRouterBindings,
   MockJSONServer,
-  MockLegacyRouterProvider,
+  mockRouterBindings,
   MockAccessControlProvider,
+  MockLegacyRouterProvider,
   MockLiveProvider,
   MockAuthProvider,
 } from "./dataMocks";
+
+export {
+  mockLegacyRouterProvider,
+  MockRouterProvider,
+  mockLegacyAuthProvider,
+  render,
+} from "@refinedev/ui-tests";
 
 // re-export everything
 export * from "@testing-library/react";

@@ -4,313 +4,313 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1kekcgk"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <h3
-            class="chakra-heading refine-pageHeader-title css-0"
+            class="chakra-heading refine-pageHeader-title"
           >
             Posts
           </h3>
         </div>
         <div
-          class="css-i08qke"
+          class=""
         />
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <div
-          class="chakra-table__container css-1rcznqn"
+          class="chakra-table__container"
         >
           <table
-            class="chakra-table css-0"
+            class="chakra-table"
           >
             <thead
-              class="css-0"
+              class=""
             >
               <tr
-                class="css-0"
+                class=""
               >
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Id
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Title
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Slug
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Content
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Hit
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Category
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   User
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Status
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Status Color
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Created At
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Published At
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Image
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Tags
                 </th>
                 <th
-                  class="css-0"
+                  class=""
                 >
                   Language
                 </th>
               </tr>
             </thead>
             <tbody
-              class="css-0"
+              class=""
             >
               <tr
-                class="css-0"
+                class=""
               >
                 <td
-                  class="css-0"
+                  class=""
                 >
                   11
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Nobis exercitationem officia quia est.
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   provident-culpa-facere
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p>
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   920557
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Numquam Saepe Illo
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Eriberto Leannon
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   draft
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   orange
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     04/02/2022
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     08/10/2021
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <img
-                      class="chakra-image css-1cooswl"
+                      class="chakra-image"
                       src="http://loremflickr.com/640/480/abstract"
                     />
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Nobis Et Ut
                     </span>
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   2
                 </td>
               </tr>
               <tr
-                class="css-0"
+                class=""
               >
                 <td
-                  class="css-0"
+                  class=""
                 >
                   21
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Eaque in nesciunt.
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   quod-quos-commodi
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p>
                     Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   175149
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Sit Natus Voluptatibus
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   Tressie Reichel
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   published
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   lime
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     09/24/2022
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <p
-                    class="chakra-text css-0"
+                    class="chakra-text"
                   >
                     09/01/2021
                   </p>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <img
-                      class="chakra-image css-1cooswl"
+                      class="chakra-image"
                       src="http://loremflickr.com/640/480/abstract"
                     />
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   <div
-                    class="chakra-stack css-1igwmid"
+                    class="chakra-stack"
                   >
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Error Eos Et
                     </span>
                     <span
-                      class="css-1qm7lvz"
+                      class=""
                     >
                       Nobis Et Ut
                     </span>
                   </div>
                 </td>
                 <td
-                  class="css-0"
+                  class=""
                 >
                   2
                 </td>
@@ -319,13 +319,13 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
           </table>
         </div>
         <div
-          class="css-1bvc4cc"
+          class=""
         >
           <div
-            class="chakra-stack css-cfcsvg"
+            class="chakra-stack"
           >
             <button
-              class="chakra-button css-4xx2wk"
+              class="chakra-button"
               type="button"
             >
               1

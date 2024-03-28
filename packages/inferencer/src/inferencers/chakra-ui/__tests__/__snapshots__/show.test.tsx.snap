@@ -4,20 +4,20 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-1mdbftt"
+      class=""
     >
       <div
-        class="css-15izviv"
+        class=""
       >
         <div
-          class="css-gqssyb"
+          class=""
         >
           <div
-            class="chakra-stack css-1igwmid"
+            class="chakra-stack"
           >
             <button
               aria-label="back"
-              class="chakra-button css-p7mkev"
+              class="chakra-button"
               type="button"
             >
               <svg
@@ -60,25 +60,25 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title css-0"
+              class="chakra-heading refine-pageHeader-title"
             >
               Show Post
             </h3>
           </div>
         </div>
         <div
-          class="css-i08qke"
+          class=""
         >
           <a
             href="/posts"
           >
             <button
-              class="chakra-button refine-list-button css-4xx2wk"
+              class="chakra-button refine-list-button"
               title=""
               type="button"
             >
               <span
-                class="chakra-button__icon css-1wh2kri"
+                class="chakra-button__icon"
               >
                 <svg
                   aria-hidden="true"
@@ -141,11 +141,11 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
             </button>
           </a>
           <button
-            class="chakra-button refine-refresh-button css-4xx2wk"
+            class="chakra-button refine-refresh-button"
             type="button"
           >
             <span
-              class="chakra-button__icon css-1wh2kri"
+              class="chakra-button__icon"
             >
               <svg
                 aria-hidden="true"
@@ -179,40 +179,40 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="css-0"
+        class=""
       >
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Id
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           11
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Title
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           Nobis exercitationem officia quia est.
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Slug
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           provident-culpa-facere
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Content
         </h5>
@@ -220,108 +220,108 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
           Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Hit
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           920,557
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Category
         </h5>
         Numquam Saepe Illo
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           User
         </h5>
         Eriberto Leannon
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Status
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           draft
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Status Color
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           orange
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Created At
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           04/02/2022
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Published At
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           08/10/2021
         </p>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Image
         </h5>
         <img
-          class="chakra-image css-tn9ygg"
+          class="chakra-image"
           src="http://loremflickr.com/640/480/abstract"
         />
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Tags
         </h5>
         <div
-          class="chakra-stack css-qlxuh7"
+          class="chakra-stack"
         >
           <span
-            class="css-1qm7lvz"
+            class=""
           >
             Error Eos Et
           </span>
           <span
-            class="css-1qm7lvz"
+            class=""
           >
             Nobis Et Ut
           </span>
         </div>
         <h5
-          class="chakra-heading css-1fhgjcy"
+          class="chakra-heading"
         >
           Language
         </h5>
         <p
-          class="chakra-text css-0"
+          class="chakra-text"
         >
           2
         </p>
       </div>
       <div
-        class="css-e6thd7"
+        class=""
       />
     </div>
   </div>

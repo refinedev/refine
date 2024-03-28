@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
 import { MantineInferencer } from "../index";
+import { MantineProvider } from "@mantine/core";
 
 describe("MantineInferencer", () => {
   it("should match the snapshot", async () => {
@@ -11,51 +12,59 @@ describe("MantineInferencer", () => {
     });
 
     const renderingList = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/custom-page"
-            element={<MantineInferencer resource="posts" action="list" />}
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/custom-page"
+              element={<MantineInferencer resource="posts" action="list" />}
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     const renderingCreate = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/custom-page"
-            element={<MantineInferencer resource="posts" action="create" />}
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/custom-page"
+              element={<MantineInferencer resource="posts" action="create" />}
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     const renderingEdit = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/custom-page"
-            element={
-              <MantineInferencer resource="posts" action="edit" id="11" />
-            }
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/custom-page"
+              element={
+                <MantineInferencer resource="posts" action="edit" id="11" />
+              }
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     const renderingShow = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/custom-page"
-            element={
-              <MantineInferencer resource="posts" action="show" id="21" />
-            }
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/custom-page"
+              element={
+                <MantineInferencer resource="posts" action="show" id="21" />
+              }
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     await act(async () => {

@@ -59,7 +59,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       )}
       {breadcrumbs.map(({ label, icon, href }) => {
         return (
-          <Group key={label} spacing={4} align="center" noWrap>
+          <Group key={label} gap={4} align="center" wrap="nowrap">
             {!hideIcons && icon}
             {href ? (
               <Anchor

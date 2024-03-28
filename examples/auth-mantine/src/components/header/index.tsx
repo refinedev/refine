@@ -2,7 +2,6 @@ import {
   ActionIcon,
   Avatar,
   Group,
-  Header as MantineHeader,
   Title,
   useMantineColorScheme,
   useMantineTheme,
@@ -27,22 +26,10 @@ export const Header: React.FC = () => {
   const borderColor = dark ? theme.colors.dark[6] : theme.colors.gray[2];
 
   return (
-    <MantineHeader
-      zIndex={199}
-      height={64}
-      py={6}
-      px="sm"
-      sx={{
-        borderBottom: `1px solid ${borderColor}`,
-        position: "sticky",
-        top: 0,
-        zIndex: 1,
-      }}
-    >
+    <Group py={6} px="sm">
       <Group
-        position="right"
-        align="center"
-        sx={{
+        align="right"
+        style={{
           height: "100%",
         }}
       >
@@ -55,12 +42,12 @@ export const Header: React.FC = () => {
           {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
         </ActionIcon>
         {(user?.name || user?.avatar) && (
-          <Group spacing="xs">
+          <Group gap="xs">
             {user?.name && <Title order={6}>{user?.name}</Title>}
             <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
           </Group>
         )}
       </Group>
-    </MantineHeader>
+    </Group>
   );
 };

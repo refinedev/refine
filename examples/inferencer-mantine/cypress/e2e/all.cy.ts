@@ -128,7 +128,9 @@ describe("inferencer-mantine", () => {
       cy.get("input").eq(3).type("status");
       cy.get("input").eq(4).type(todayString);
       cy.get(".mantine-Select-input").click();
-      cy.get(".mantine-Select-item").eq(0).click();
+      cy.get(".mantine-Popover-dropdown:visible .mantine-Select-option")
+        .eq(0)
+        .click();
 
       cy.getSaveButton().click();
 
@@ -185,7 +187,9 @@ describe("inferencer-mantine", () => {
       cy.get("input").eq(4).clear().type("status");
       cy.get("input").eq(5).clear().type(todayString);
       cy.get(".mantine-Select-input").clear();
-      cy.get(".mantine-Select-item").eq(1).click();
+      cy.get(".mantine-Popover-dropdown:visible .mantine-Select-option")
+        .eq(1)
+        .click();
 
       cy.getSaveButton().click();
 
@@ -238,7 +242,8 @@ describe("inferencer-mantine", () => {
 
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls[BASE_URL]["mantine-color-scheme"]?.toString();
+      const initialTheme =
+        ls[BASE_URL]["mantine-color-scheme-value"]?.toString();
 
       console.log(initialTheme);
 
@@ -255,10 +260,14 @@ describe("inferencer-mantine", () => {
         // assert the theme is changed, it should be reversed from initial theme
         if (initialTheme === "dark") {
           expect(cy.get(".icon-tabler-moon-stars").should("exist"));
-          expect(ls[BASE_URL]["mantine-color-scheme"]).to.contains("light");
+          expect(ls[BASE_URL]["mantine-color-scheme-value"]).to.contains(
+            "light",
+          );
         } else {
           expect(cy.get(".icon-tabler-sun").should("exist"));
-          expect(ls[BASE_URL]["mantine-color-scheme"]).to.contains("dark");
+          expect(ls[BASE_URL]["mantine-color-scheme-value"]).to.contains(
+            "dark",
+          );
         }
       });
 
@@ -282,7 +291,7 @@ describe("inferencer-mantine", () => {
     cy.wait("@getCategories");
     cy.getMantineLoadingOverlay().should("not.exist");
 
-    cy.get(".mantine-Pagination-item").contains("2").click();
+    cy.get(".mantine-Pagination-control").contains("2").click();
     cy.url().should("include", "current=2");
     cy.getMantineLoadingOverlay().should("not.exist");
     cy.wait("@getBlogPosts");
@@ -295,7 +304,7 @@ describe("inferencer-mantine", () => {
       expect(_end).to.equal("20");
     });
 
-    cy.get(".mantine-Pagination-item").contains("1").click();
+    cy.get(".mantine-Pagination-control").contains("1").click();
 
     cy.url().should("include", "current=1");
 
