@@ -1,12 +1,7 @@
-import {
-  CrudFilters,
-  CrudSorting,
-  MetaQuery,
-  Pagination,
-} from "@refinedev/core";
+import { CrudSorting, MetaQuery, Pagination } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
-import { generateFilters } from "./generateFilters";
+import { HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
 
@@ -15,7 +10,7 @@ type GenerateUseListSubscriptionParams = {
   meta: MetaQuery;
   pagination?: Pagination;
   sorters?: CrudSorting;
-  filters?: CrudFilters;
+  filters?: HasuraCrudFilters;
 };
 
 type GenerateUseListSubscriptionReturnValues = {

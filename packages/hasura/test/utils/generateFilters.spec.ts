@@ -1,11 +1,15 @@
-import { CrudFilters, CrudOperators } from "@refinedev/core";
-import { generateFilters, handleFilterValue } from "../../src/utils";
+import {
+  HasuraCrudFilters,
+  HasuraCrudOperators,
+  generateFilters,
+  handleFilterValue,
+} from "../../src/utils";
 
 describe.each(["hasura-default", "graphql-default"] as const)(
   "generateFilters with %s naming convention",
   (namingConvention) => {
     it("should generate nested filter query for given filters", () => {
-      const filters: CrudFilters = [
+      const filters: HasuraCrudFilters = [
         { field: "title", operator: "contains", value: "test" },
         { field: "published", operator: "eq", value: true },
       ];
@@ -24,7 +28,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
     });
 
     it("should generate nested filter query for nested filters", () => {
-      const filters: CrudFilters = [
+      const filters: HasuraCrudFilters = [
         {
           operator: "or",
           value: [
@@ -54,8 +58,31 @@ describe.each(["hasura-default", "graphql-default"] as const)(
       });
     });
 
+    it("should generate nested filter query using the not operator", () => {
+      const filters: HasuraCrudFilters = [
+        {
+          operator: "not",
+          value: [{ field: "title", operator: "eq", value: "test" }],
+        },
+        {
+          field: "published",
+          operator: "eq",
+          value: true,
+        },
+      ];
+
+      const result = generateFilters(filters, namingConvention);
+
+      expect(result).toEqual({
+        _and: [
+          { _not: [{ title: { _eq: "test" } }] },
+          { published: { _eq: true } },
+        ],
+      });
+    });
+
     it("should generate correct hasura operator for filter converted to snake_case operator", () => {
-      const filters: CrudFilters = [
+      const filters: HasuraCrudFilters = [
         {
           field: "title",
           operator: "null",
@@ -90,7 +117,7 @@ describe.each(["hasura-default", "graphql-default"] as const)(
 );
 
 describe("handleFilterValue", () => {
-  const testCases: Array<[CrudOperators, any, any]> = [
+  const testCases: Array<[HasuraCrudOperators, any, any]> = [
     ["startswiths", "test", "test%"],
     ["nstartswiths", "test", "test%"],
     ["endswiths", "test", "%test"],
