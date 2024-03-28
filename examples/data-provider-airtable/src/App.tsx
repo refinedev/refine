@@ -16,10 +16,16 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import {
+  BlogPostList,
+  BlogPostCreate,
+  BlogPostEdit,
+  BlogPostShow,
+} from "./pages/blog-posts";
 import { CategoryList, CategoryCreate, CategoryEdit } from "./pages/categories";
 
-const API_TOKEN = "keyI18pnBeEMfPAIb";
+const API_TOKEN =
+  "patI3quNRP17TNsjK.d59600d5955939ed02110fb1107036ff4482496004f020f5bf031f55789cd321";
 const BASE_ID = "appKYl1H4k9g73sBT";
 
 const App: React.FC = () => {
@@ -33,17 +39,17 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             resources={[
               {
-                name: "posts",
-                list: "/posts",
-                create: "/posts/create",
-                edit: "/posts/edit/:id",
-                show: "/posts/show/:id",
+                name: "blog_posts",
+                list: "/blog-posts",
+                create: "/blog-posts/new",
+                edit: "/blog-posts/:id/edit",
+                show: "/blog-posts/:id",
               },
               {
                 name: "categories",
                 list: "/categories",
-                create: "/categories/create",
-                edit: "/categories/edit/:id",
+                create: "/categories/new",
+                edit: "/categories/:id/edit",
                 meta: {
                   canDelete: true,
                 },
@@ -65,20 +71,20 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={<NavigateToResource resource="posts" />}
+                  element={<NavigateToResource resource="blog_posts" />}
                 />
 
-                <Route path="/posts">
-                  <Route index element={<PostList />} />
-                  <Route path="create" element={<PostCreate />} />
-                  <Route path="edit/:id" element={<PostEdit />} />
-                  <Route path="show/:id" element={<PostShow />} />
+                <Route path="/blog-posts">
+                  <Route index element={<BlogPostList />} />
+                  <Route path="new" element={<BlogPostCreate />} />
+                  <Route path=":id/edit" element={<BlogPostEdit />} />
+                  <Route path=":id" element={<BlogPostShow />} />
                 </Route>
 
                 <Route path="/categories">
                   <Route index element={<CategoryList />} />
-                  <Route path="create" element={<CategoryCreate />} />
-                  <Route path="edit/:id" element={<CategoryEdit />} />
+                  <Route path="new" element={<CategoryCreate />} />
+                  <Route path=":id/edit" element={<CategoryEdit />} />
                 </Route>
 
                 <Route path="*" element={<ErrorComponent />} />
