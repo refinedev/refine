@@ -38,7 +38,7 @@ export const fillMantineStatus = (status = "Published") => {
       .invoke("val")
       .then((text) => {
         if (status) {
-          if (text == status) {
+          if (text === status) {
           } else {
             cy.get("#status").click();
             cy.get(".mantine-Popover-dropdown:visible .mantine-Select-option")
