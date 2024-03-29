@@ -1,30 +1,14 @@
 import React from "react";
 
-import { ThemedLayoutContext } from "@contexts";
-
-import {
-  useGetIdentity,
-  useActiveAuthProvider,
-  pickNotDeprecated,
-} from "@refinedev/core";
-import {
-  Avatar,
-  Flex,
-  AppShell,
-  Burger,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
+import { Avatar, Flex, Burger, Title } from "@mantine/core";
 
 import { RefineLayoutHeaderProps } from "../types";
 
 import { useThemedLayoutContext } from "@hooks";
 
-export const Header: React.FC<RefineLayoutHeaderProps> = ({}) => {
-  const theme = useMantineTheme();
-
-  const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
-    useThemedLayoutContext();
+export const Header: React.FC<RefineLayoutHeaderProps> = () => {
+  const { mobileSiderOpen, setMobileSiderOpen } = useThemedLayoutContext();
 
   const authProvider = useActiveAuthProvider();
   const { data: user } = useGetIdentity({

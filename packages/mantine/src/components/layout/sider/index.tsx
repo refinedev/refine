@@ -38,8 +38,6 @@ import { RefineLayoutSiderProps } from "../types";
 import { RefineTitle as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
-import { RefineLayoutSiderProps } from "../types";
-
 const defaultNavIcon = <IconList size={20} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({

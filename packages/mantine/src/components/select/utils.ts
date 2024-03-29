@@ -31,13 +31,13 @@ export const getValue = (data: ComboboxData, val: string): ComboboxItem => {
   let found;
   data.some((opt) => {
     if (isString(opt)) {
-      if (opt == val) {
+      if (opt === val) {
         found = opt;
         return true;
       }
     } else {
       const so = opt as ComboboxItem;
-      if (so.value == val) {
+      if (so.value === val) {
         found = opt;
         return true;
       }
@@ -47,7 +47,7 @@ export const getValue = (data: ComboboxData, val: string): ComboboxItem => {
 
   if (found) {
     return found;
-  } else {
-    return { label: val, value: val };
   }
+
+  return { label: val, value: val };
 };

@@ -1,13 +1,12 @@
 import {
   ActionIcon,
   Avatar,
-  Flex,
   Group,
   Menu,
   Title,
   useMantineColorScheme,
-  useMantineTheme,
 } from "@mantine/core";
+
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   HamburgerMenu,
@@ -23,19 +22,15 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({}) => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { data: user } = useGetIdentity<IUser>();
 
   const changeLanguage = useSetLocale();
   const locale = useGetLocale();
   const currentLocale = locale();
 
-  const theme = useMantineTheme();
-
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
-
-  const borderColor = dark ? theme.colors.dark[6] : theme.colors.gray[2];
 
   return (
     <Group align="center" justify="normal" wrap="nowrap" py={6} px="sm">
