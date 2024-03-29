@@ -10,7 +10,7 @@ export default function BaseMantineTable() {
         "@refinedev/mantine": "latest",
         "@refinedev/react-table": "latest",
         "@tanstack/react-table": "latest",
-        "@mantine/core": "^5.10.4",
+        "@mantine/core": "^7.5.1",
         "@tabler/icons-react": "^3.1.0",
       }}
       startRoute="/"

@@ -15,10 +15,10 @@ export default function UsageRemix() {
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.5.1",
+        "@mantine/hooks": "^7.5.1",
+        "@mantine/form": "^7.5.1",
+        "@mantine/notifications": "^7.5.1",
         "@refinedev/remix-router": "latest",
       }}
       startRoute="/products"

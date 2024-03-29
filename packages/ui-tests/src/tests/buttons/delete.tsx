@@ -377,7 +377,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
       getAllByText("Delete");
     });
@@ -400,7 +402,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -434,7 +438,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -474,7 +480,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -520,7 +528,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("confirmTitle");
+      await waitFor(() => {
+        getByText("confirmTitle");
+      });
       getByText("confirmOkText");
       getByText("confirmCancelText");
 
