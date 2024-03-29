@@ -3,3 +3,4 @@ export * from "./generateUseManySubscription";
 export * from "./generateUseOneSubscription";
 export * from "./generateSort";
 export * from "./generateFilter";
+export * from "./graphql";

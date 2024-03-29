@@ -6,7 +6,9 @@ const client = new GraphQLClient(API_URL);
 
 client.setHeader(
   "Authorization",
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ2MzkzNDY2LCJleHAiOjE2NDg5ODU0NjZ9.5TjmTOLL7x7kcNKpq9MFwI_w1fReF4f-wlir2rocvi8",
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEwMjU0NjcwLCJleHAiOjE3MTI4NDY2NzB9.Ivs2gsrKrZjNf-4dewSxocIlaQo2RLWAXx7AkdMZYvQ",
 );
+
+client.setHeader("Accept-Encoding", "identity");
 
 export default client;
