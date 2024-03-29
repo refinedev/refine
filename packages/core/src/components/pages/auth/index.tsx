@@ -5,13 +5,13 @@ import React, {
 } from "react";
 
 import {
+  ForgotPasswordPage,
   LoginPage,
   RegisterPage,
-  ForgotPasswordPage,
   UpdatePasswordPage,
 } from "./components";
 
-import { AuthPageProps } from "../../../interfaces";
+import { AuthPageProps } from "./types";
 
 export type DivPropsType = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

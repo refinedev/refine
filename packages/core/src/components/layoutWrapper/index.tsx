@@ -6,7 +6,8 @@ import {
   useTranslate,
   useWarnAboutChange,
 } from "@hooks";
-import { LayoutProps, TitleProps } from "../../interfaces";
+
+import { LayoutProps, TitleProps } from "../../contexts/refine/types";
 
 export interface LayoutWrapperProps {
   /**

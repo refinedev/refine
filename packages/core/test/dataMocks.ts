@@ -1,16 +1,14 @@
-import { Action } from "../src/interfaces/actions";
-
+import { AccessControlProvider } from "../src/contexts/accessControl/types";
+import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
+import { DataProviders } from "../src/contexts/data/types";
+import { LiveProvider } from "../src/contexts/live/types";
+import { IResourceItem } from "../src/contexts/resource/types";
+import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
 import {
-  IRouterContext,
-  IAccessControlContext,
-  ILiveContext,
-  IDataMultipleContextProvider,
-  RouterBindings,
+  Action,
   ParsedParams,
-  IResourceItem,
-  LegacyAuthProvider,
-  AuthProvider,
-} from "../src/interfaces";
+  RouterProvider,
+} from "../src/contexts/router/types";
 
 export const posts = [
   {
@@ -81,20 +79,19 @@ const MockDataProvider = () => {
   };
 };
 
-export const MockJSONServer =
-  MockDataProvider() as IDataMultipleContextProvider;
+export const MockJSONServer = MockDataProvider() as DataProviders;
 
-export const MockAccessControlProvider: IAccessControlContext = {
+export const MockAccessControlProvider: AccessControlProvider = {
   can: () => Promise.resolve({ can: true }),
 };
 
-export const MockLiveProvider: ILiveContext = {
+export const MockLiveProvider: LiveProvider = {
   subscribe: () => ({}),
   unsubscribe: () => ({}),
   publish: () => ({}),
 };
 
-export const mockRouterBindings = ({
+export const mockRouterProvider = ({
   pathname,
   params,
   resource,
@@ -107,9 +104,9 @@ export const mockRouterBindings = ({
   resource?: IResourceItem;
   action?: Action;
   id?: string;
-  fns?: Partial<RouterBindings>;
-} = {}): RouterBindings => {
-  const bindings: RouterBindings = {
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const routerProvider: RouterProvider = {
     go: () => {
       return ({ type }) => {
         if (type === "path") return "";
@@ -136,11 +133,11 @@ export const mockRouterBindings = ({
     ...fns,
   };
 
-  return bindings;
+  return routerProvider;
 };
 
 export const mockLegacyRouterProvider = () => {
-  const provider: IRouterContext = {
+  const provider: LegacyRouterProvider = {
     useHistory: () => {
       return {
         push: () => undefined,
@@ -148,7 +145,12 @@ export const mockLegacyRouterProvider = () => {
         goBack: () => undefined,
       };
     },
-    useLocation: () => undefined,
+    useLocation: () => {
+      return {
+        pathname: "",
+        search: "",
+      };
+    },
     useParams: () => ({}) as any,
     Link: () => null,
     Prompt: () => null,

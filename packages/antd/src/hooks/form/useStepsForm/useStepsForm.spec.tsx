@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route, Routes } from "react-router-dom";
-import { HttpError } from "@refinedev/core";
+import { IRefineOptions, HttpError } from "@refinedev/core";
 
 import { Button, Form, Input, Select, Steps } from "antd";
 import { useStepsForm } from "..";
@@ -9,7 +9,6 @@ import { useSelect } from "../..";
 import { MockJSONServer, TestWrapper, fireEvent, render, waitFor } from "@test";
 import { mockRouterBindings } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
-import { IRefineOptions } from "@refinedev/core/dist/interfaces";
 import { act } from "react-dom/test-utils";
 
 interface IPost {

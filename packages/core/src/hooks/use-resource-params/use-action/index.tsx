@@ -1,8 +1,8 @@
 import { useParsed } from "../../router/use-parsed";
-import { useRouterType } from "../../../contexts/router-picker";
 import { useRouterContext } from "../../legacy-router/useRouterContext";
-
-import type { Action, ResourceRouterParams } from "../../../interfaces";
+import { Action } from "../../../contexts/router/types";
+import { useRouterType } from "../../../contexts/router/picker";
+import { ResourceRouterParams } from "../../../contexts/router/legacy/types";
 
 /**
  * Returns the action from the router regardless of the router type.

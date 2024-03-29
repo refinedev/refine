@@ -1,12 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
+import { defaultRefineOptions } from "@contexts/refine";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
 
-import { defaultRefineOptions } from "@contexts/refine";
-import {
-  IDataMultipleContextProvider,
-  IRefineContextProvider,
-} from "../../interfaces";
+import { DataProviders } from "../../contexts/data/types";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useInfiniteList } from "./useInfiniteList";
 
 const mockRefineProvider: IRefineContextProvider = {
@@ -64,7 +62,7 @@ describe("useInfiniteList Hook", () => {
   });
 
   it("cursor has next", async () => {
-    const mockDataProvider = {
+    const dataProvider = {
       default: {
         ...MockJSONServer.default,
         getList: async () => {
@@ -81,7 +79,7 @@ describe("useInfiniteList Hook", () => {
           };
         },
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -93,7 +91,7 @@ describe("useInfiniteList Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          dataProvider: mockDataProvider,
+          dataProvider,
           resources: [{ name: "posts" }],
         }),
       },
@@ -308,6 +306,7 @@ describe("useInfiniteList Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -344,6 +343,7 @@ describe("useInfiniteList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -375,6 +375,7 @@ describe("useInfiniteList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -412,6 +413,7 @@ describe("useInfiniteList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

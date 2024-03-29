@@ -32,6 +32,7 @@
     "prepare": "npm run build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
+    "test:dev": "jest --silent --noStackTrace",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {

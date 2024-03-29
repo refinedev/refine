@@ -3,7 +3,7 @@ import {
   TestWrapper,
   act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useResourceParams } from ".";
@@ -29,7 +29,7 @@ describe("useResourceParams Hook", () => {
     it("returns params from routerProvider", () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -53,7 +53,7 @@ describe("useResourceParams Hook", () => {
     it("returns formAction create when action is not defined", () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -75,7 +75,7 @@ describe("useResourceParams Hook", () => {
     it("returns formAction create when action from route is list", () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -143,7 +143,7 @@ describe("useResourceParams Hook", () => {
     it("should return id from props", () => {
       const { result } = renderHook(() => useResourceParams({ id: "123" }), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -166,7 +166,7 @@ describe("useResourceParams Hook", () => {
     it("should return id from routes", () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -191,7 +191,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "posts" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
               },
@@ -217,7 +217,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "foo" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
                 identifier: "foo",
@@ -248,7 +248,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "categories", id: "3" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
               },
@@ -274,7 +274,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "categories" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
               },
@@ -300,7 +300,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "categories" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
               },
@@ -327,7 +327,7 @@ describe("useResourceParams Hook", () => {
         () => useResourceParams({ resource: "posts" }),
         {
           wrapper: TestWrapper({
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
               },
@@ -352,7 +352,7 @@ describe("useResourceParams Hook", () => {
     it("should return formAction from route if no custom resource is passed", () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },
@@ -376,7 +376,7 @@ describe("useResourceParams Hook", () => {
     it("should set id by setId", async () => {
       const { result } = renderHook(() => useResourceParams(), {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },

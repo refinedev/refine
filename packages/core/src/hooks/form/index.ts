@@ -22,13 +22,29 @@ import {
   pickNotDeprecated,
 } from "@definitions/helpers";
 
-import type { BaseRecord, HttpError, BaseKey } from "../../interfaces";
-import type { UpdateResponse, CreateResponse } from "../../interfaces";
 import type { UpdateParams } from "../data/useUpdate";
 import type { UseCreateParams } from "../data/useCreate";
 import type { UseFormProps, UseFormReturnType } from "./types";
+import {
+  BaseKey,
+  BaseRecord,
+  CreateResponse,
+  HttpError,
+  UpdateResponse,
+} from "../../contexts/data/types";
 
-export type { ActionParams, UseFormProps, UseFormReturnType } from "./types";
+export type {
+  ActionParams,
+  UseFormProps,
+  UseFormReturnType,
+  AutoSaveIndicatorElements,
+  AutoSaveProps,
+  AutoSaveReturnType,
+  FormAction,
+  RedirectAction,
+  RedirectionTypes,
+  FormWithSyncWithLocationParams,
+} from "./types";
 
 /**
  * This hook orchestrates Refine's data hooks to create, edit, and clone data. It also provides a set of features to make it easier for users to implement their real world needs and handle edge cases such as redirects, invalidation, auto-save and more.

@@ -1,7 +1,8 @@
-import { IRouterProvider, RouterBindings } from "src/interfaces";
+import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import { RouterProvider } from "../../../contexts/router/types";
 
 export const checkRouterPropMisuse = (
-  value: IRouterProvider | RouterBindings,
+  value: LegacyRouterProvider | RouterProvider,
 ) => {
   // check if `routerProvider` prop is passed with legacy properties.
   // If yes, console.warn the user to use `legacyRuterProvider` prop instead.

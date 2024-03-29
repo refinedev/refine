@@ -1,19 +1,19 @@
+import { CrudFilter, CrudSort } from "../../contexts/data/types";
 import {
-  stringifyTableParams,
-  parseTableParams,
-  parseTableParamsFromQuery,
-  unionFilters,
   compareFilters,
   compareSorters,
-  unionSorters,
-  getDefaultSortOrder,
   getDefaultFilter,
+  getDefaultSortOrder,
+  parseTableParams,
+  parseTableParamsFromQuery,
+  stringifyTableParams,
+  unionFilters,
+  unionSorters,
 } from "./";
-import { CrudSorting, CrudFilters } from "../../interfaces";
 
 describe("definitions/table", () => {
   it("getDefaultSortOrder", () => {
-    const sorter: CrudSorting = [
+    const sorter: CrudSort[] = [
       {
         field: "title",
         order: "asc",
@@ -44,7 +44,7 @@ describe("definitions/table", () => {
   });
 
   it("getDefaultFilter", () => {
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "title",
         operator: "contains",
@@ -55,7 +55,7 @@ describe("definitions/table", () => {
   });
 
   it("getDefaultFilter empty array", () => {
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "title",
         operator: "contains",
@@ -66,7 +66,7 @@ describe("definitions/table", () => {
   });
 
   it("getDefaultFilter default operator", () => {
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "title",
         operator: "eq",
@@ -82,7 +82,7 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [
+    const sorters: CrudSort[] = [
       {
         field: "id",
         order: "desc",
@@ -93,7 +93,7 @@ describe("definitions/table", () => {
       },
     ];
 
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "categoryId",
         operator: "in",
@@ -120,8 +120,8 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [{ field: "id", order: "desc" }];
-    const filters: CrudFilters = [
+    const sorters: CrudSort[] = [{ field: "id", order: "desc" }];
+    const filters: CrudFilter[] = [
       {
         field: "categoryId",
         operator: "in",
@@ -154,9 +154,9 @@ describe("definitions/table", () => {
       pageSize: 10,
     };
 
-    const sorters: CrudSorting = [{ field: "id", order: "desc" }];
-    const sorter: CrudSorting = [{ field: "id2", order: "asc" }];
-    const filters: CrudFilters = [];
+    const sorters: CrudSort[] = [{ field: "id", order: "desc" }];
+    const sorter: CrudSort[] = [{ field: "id2", order: "asc" }];
+    const filters: CrudFilter[] = [];
 
     const url = stringifyTableParams({
       pagination,

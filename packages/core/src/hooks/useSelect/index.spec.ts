@@ -1,14 +1,14 @@
 import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { act, MockJSONServer, mockRouterBindings, TestWrapper } from "@test";
+import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 
-import * as pickResource from "../../definitions/helpers/pick-resource";
 import {
-  CrudFilters,
+  CrudFilter,
+  DataProviders,
   IDataContext,
-  IDataMultipleContextProvider,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import * as pickResource from "../../definitions/helpers/pick-resource";
 import { useSelect } from "./";
 
 describe("useSelect Hook", () => {
@@ -522,7 +522,7 @@ describe("useSelect Hook", () => {
           getList: jest.fn(() => Promise.resolve({ data: [], total: 0 })),
           getMany: jest.fn(() => Promise.resolve({ data: [] })),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       renderHook(
         () =>
@@ -589,7 +589,7 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     renderHook(
       () =>
@@ -675,9 +675,9 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
-    const filters: CrudFilters = [
+    const filters: CrudFilter[] = [
       {
         field: "field",
         operator: "lt",
@@ -694,8 +694,7 @@ describe("useSelect Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          dataProvider:
-            mockDataProvider as unknown as IDataMultipleContextProvider,
+          dataProvider: mockDataProvider as unknown as DataProviders,
           resources: [{ name: "posts" }],
         }),
       },
@@ -874,7 +873,7 @@ describe("useSelect Hook", () => {
         getList: jest.fn(() => Promise.resolve({ data: posts, total: 3 })),
         getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     renderHook(
       () =>
@@ -954,7 +953,7 @@ describe("useSelect Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
           params: { baz: "qux" },
         }),
@@ -988,7 +987,7 @@ describe("useSelect Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: { name: "posts" },
         }),
         resources: [

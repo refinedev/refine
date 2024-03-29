@@ -1,7 +1,8 @@
 import React from "react";
+
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useBack } from "./";
 
@@ -13,7 +14,7 @@ describe("useBack Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             back: () => mockBack,
           },
@@ -31,7 +32,7 @@ describe("useBack Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             back: undefined,
           },

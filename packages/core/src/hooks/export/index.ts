@@ -1,20 +1,23 @@
 import { useState } from "react";
+
 import papaparse from "papaparse";
 import warnOnce from "warn-once";
-import { useResource, useDataProvider, useMeta } from "@hooks";
+
 import {
-  BaseRecord,
-  MapDataFn,
-  CrudSorting,
-  CrudFilters,
-  MetaQuery,
-} from "../../interfaces";
-import {
-  useUserFriendlyName,
+  downloadInBrowser,
   pickDataProvider,
   pickNotDeprecated,
-  downloadInBrowser,
+  useUserFriendlyName,
 } from "@definitions";
+import { useDataProvider, useMeta, useResource } from "@hooks";
+
+import {
+  BaseRecord,
+  CrudFilter,
+  CrudSort,
+  MetaQuery,
+} from "../../contexts/data/types";
+import { MapDataFn } from "./types";
 
 // Old options interface taken from export-to-csv-fix-source-map@0.2.1
 // Kept here to ensure backward compatibility
@@ -55,15 +58,15 @@ type UseExportOptionsType<
    *  Sorts records
    *  @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter?: CrudSorting;
+  sorter?: CrudSort[];
   /**
    *  Sorts records
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    *  Filters records
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   maxItemCount?: number;
   /**
    *  Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider`
