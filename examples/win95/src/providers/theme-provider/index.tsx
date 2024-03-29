@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import styled, {
+import {
   createGlobalStyle,
   ThemeProvider as BaseThemeProvider,
 } from "styled-components";
@@ -49,3 +49,5 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     </>
   );
 };
+
+export const theme = themeOriginal;

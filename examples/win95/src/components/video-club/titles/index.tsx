@@ -70,8 +70,6 @@ export const VideoClubPageBrowseTitles = () => {
         </Table>
         <Pagination
           pageCount={pageCount}
-          total={titleCount}
-          pageSize={pageSize}
           current={current}
           setCurrent={setCurrent}
         />

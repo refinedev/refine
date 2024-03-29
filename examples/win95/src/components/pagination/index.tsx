@@ -1,22 +1,19 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Button, Frame, TextInput } from "react95";
 import styled from "styled-components";
+import { IconPaginationGoToFirst } from "../icons/pagination-go-to-first";
+import { IconPaginationPrev } from "../icons/pagination-prev";
+import { IconPaginationNext } from "../icons/pagination-next";
+import { IconPaginationGoToLast } from "../icons/pagination-go-to-last";
+import { theme } from "../../providers/theme-provider";
 
 type Props = {
-  total: number;
-  pageSize: number;
   pageCount: number;
   current: number;
   setCurrent: Dispatch<SetStateAction<number>>;
 };
 
-export const Pagination = ({
-  current,
-  pageSize,
-  pageCount,
-  total,
-  setCurrent,
-}: Props) => {
+export const Pagination = ({ current, pageCount, setCurrent }: Props) => {
   const handleCurrentValueChange = (value: string) => {
     // is number
     if (!value.trim() || Number.isNaN(Number(value))) {
@@ -26,23 +23,30 @@ export const Pagination = ({
     setCurrent(Number(value));
   };
 
+  const isPrevDisabled = current === 1;
+  const isGoToFirstDisabled = isPrevDisabled;
+  const isNextDisabled = current === pageCount;
+  const isGoToLastDisabled = isNextDisabled;
+
   return (
     <Container>
       Page:
       <div>
         <StyledButton
+          disabled={isGoToFirstDisabled}
           onClick={() => {
             setCurrent(1);
           }}
         >
-          First
+          <IconPaginationGoToFirst />
         </StyledButton>
         <StyledButton
+          disabled={isPrevDisabled}
           onClick={() => {
             setCurrent((prev) => prev - 1);
           }}
         >
-          Prev
+          <IconPaginationPrev />
         </StyledButton>
       </div>
       <TextInput
@@ -55,18 +59,20 @@ export const Pagination = ({
       />
       <div>
         <StyledButton
+          disabled={isNextDisabled}
           onClick={() => {
             setCurrent((prev) => prev + 1);
           }}
         >
-          Next
+          <IconPaginationNext />
         </StyledButton>
         <StyledButton
+          disabled={isGoToLastDisabled}
           onClick={() => {
-            setCurrent(total);
+            setCurrent(pageCount);
           }}
         >
-          Last
+          <IconPaginationGoToLast />
         </StyledButton>
       </div>
       <div>
