@@ -1,4 +1,4 @@
-import { ProductVariant } from "@medusajs/medusa";
+import { ProductOptionValue, ProductVariant } from "@medusajs/medusa";
 
 interface LineItemOptionsProps {
   variant: ProductVariant;
@@ -11,8 +11,9 @@ export const LineItemOptions: React.FC<LineItemOptionsProps> = ({
     <div className="text-small-regular text-primary">
       {variant.options.map((option) => {
         const optionName =
-          variant.product.options.find((opt) => opt.id === option.option_id)
-            ?.title || "Option";
+          variant.product.options.find(
+            (opt: ProductOptionValue) => opt.id === option.option_id,
+          )?.title || "Option";
         return (
           <div key={option.id}>
             <span>
