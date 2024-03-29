@@ -1,16 +1,16 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 
-import { TestWrapper, act } from "@test";
+import { TestWrapper } from "@test";
 
 import { useId } from ".";
 
-import { mockRouterBindings, mockLegacyRouterProvider } from "@test";
+import { mockRouterProvider, mockLegacyRouterProvider } from "@test";
 
 describe("useId Hook", () => {
   it("returns id from props", () => {
     const { result } = renderHook(() => useId(123), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: {
             id: 456,
           },
@@ -24,7 +24,7 @@ describe("useId Hook", () => {
   it("returns id from router", () => {
     const { result } = renderHook(() => useId(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           id: "123",
         }),
       }),
@@ -54,7 +54,7 @@ describe("useId Hook", () => {
   it("returns id from props and ignores router", () => {
     const { result } = renderHook(() => useId(123), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           id: "456",
         }),
       }),

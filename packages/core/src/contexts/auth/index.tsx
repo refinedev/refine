@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from "react";
 
 import { useNavigation } from "@hooks";
-import { ILegacyAuthContext, IAuthBindingsContext } from "../../interfaces";
+
+import { IAuthContext, ILegacyAuthContext } from "./types";
 
 /**
  * @deprecated `LegacyAuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `LegacyAuthContext` for backward compatibility.
@@ -12,9 +13,7 @@ export const LegacyAuthContext = React.createContext<ILegacyAuthContext>({});
  * @deprecated `LegacyAuthContextProvider` is deprecated with refine@4, use `AuthBindingsContextProvider` instead, however, we still support `LegacyAuthContextProvider` for backward compatibility.
  */
 export const LegacyAuthContextProvider: React.FC<
-  ILegacyAuthContext & {
-    children?: React.ReactNode;
-  }
+  PropsWithChildren<ILegacyAuthContext>
 > = ({ children, isProvided, ...authOperations }) => {
   const { replace } = useNavigation();
 
@@ -77,12 +76,12 @@ export const LegacyAuthContextProvider: React.FC<
   );
 };
 
-export const AuthBindingsContext = React.createContext<
-  Partial<IAuthBindingsContext>
->({});
+export const AuthBindingsContext = React.createContext<Partial<IAuthContext>>(
+  {},
+);
 
 export const AuthBindingsContextProvider: React.FC<
-  PropsWithChildren<IAuthBindingsContext>
+  PropsWithChildren<IAuthContext>
 > = ({ children, isProvided, ...authBindings }) => {
   const handleLogin = async (params: unknown) => {
     try {
@@ -171,14 +170,12 @@ export const AuthBindingsContextProvider: React.FC<
     <AuthBindingsContext.Provider
       value={{
         ...authBindings,
-        login: handleLogin as IAuthBindingsContext["login"],
-        logout: handleLogout as IAuthBindingsContext["logout"],
-        check: handleCheck as IAuthBindingsContext["check"],
-        register: handleRegister as IAuthBindingsContext["register"],
-        forgotPassword:
-          handleForgotPassword as IAuthBindingsContext["forgotPassword"],
-        updatePassword:
-          handleUpdatePassword as IAuthBindingsContext["updatePassword"],
+        login: handleLogin as IAuthContext["login"],
+        logout: handleLogout as IAuthContext["logout"],
+        check: handleCheck as IAuthContext["check"],
+        register: handleRegister as IAuthContext["register"],
+        forgotPassword: handleForgotPassword as IAuthContext["forgotPassword"],
+        updatePassword: handleUpdatePassword as IAuthContext["updatePassword"],
         isProvided,
       }}
     >

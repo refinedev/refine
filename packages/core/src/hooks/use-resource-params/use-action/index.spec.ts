@@ -4,13 +4,13 @@ import { TestWrapper } from "@test";
 
 import { useAction } from ".";
 
-import { mockRouterBindings, mockLegacyRouterProvider } from "@test";
+import { mockRouterProvider, mockLegacyRouterProvider } from "@test";
 
 describe("useAction Hook", () => {
   it("returns action from props", () => {
     const { result } = renderHook(() => useAction("clone"), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "edit",
         }),
       }),
@@ -22,7 +22,7 @@ describe("useAction Hook", () => {
   it("returns action from router", () => {
     const { result } = renderHook(() => useAction(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "clone",
         }),
       }),
@@ -52,7 +52,7 @@ describe("useAction Hook", () => {
   it("returns action from props and ignores router", () => {
     const { result } = renderHook(() => useAction("list"), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "create",
         }),
       }),

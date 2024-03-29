@@ -12,9 +12,8 @@ import {
   NotificationProvider,
   IResourceItem,
   RouterBindings,
-  IRouterProvider,
+  IRouterContext,
 } from "@refinedev/core";
-import { IRouterContext } from "@refinedev/core/dist/interfaces";
 
 /* interface ITestWrapperProps {
     authProvider?: IAuthContext;

@@ -51,7 +51,6 @@ export const renderer = ({
   const imports: Array<
     [element: string, module: string, isDefaultImport?: boolean]
   > = [
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["Create", "@refinedev/mantine"],
     ["useForm", "@refinedev/mantine"],
   ];
@@ -342,7 +341,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},

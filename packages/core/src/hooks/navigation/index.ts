@@ -1,12 +1,14 @@
-import { useRouterContext, useResource } from "@hooks";
-import { BaseKey, IResourceItem, MetaDataQuery } from "../../interfaces";
+import { useRouterType } from "@contexts/router/picker";
+import { pickResource } from "@definitions/helpers/pick-resource";
+import { getActionRoutesFromResource } from "@definitions/helpers/router";
+import { composeRoute } from "@definitions/helpers/router/compose-route";
+import { useResource, useRouterContext } from "@hooks";
+import { useBack } from "@hooks/router/use-back";
 import { useGo } from "@hooks/router/use-go";
 import { useParsed } from "@hooks/router/use-parsed";
-import { useRouterType } from "@contexts/router-picker";
-import { getActionRoutesFromResource } from "@definitions/helpers/router";
-import { pickResource } from "@definitions/helpers/pick-resource";
-import { composeRoute } from "@definitions/helpers/router/compose-route";
-import { useBack } from "@hooks/router/use-back";
+
+import { BaseKey, MetaDataQuery } from "../../contexts/data/types";
+import { IResourceItem } from "../../contexts/resource/types";
 
 export type HistoryType = "push" | "replace";
 

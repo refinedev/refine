@@ -9,17 +9,16 @@ import type {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-
-import type {
+import {
+  BaseKey,
   BaseRecord,
   GetOneResponse,
-  SuccessErrorNotification,
-  MetaQuery,
-  LiveModeProps,
-  BaseKey,
   HttpError,
+  MetaQuery,
   Prettify,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UseShowReturnType<
   TData extends BaseRecord = BaseRecord,

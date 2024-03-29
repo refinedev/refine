@@ -1,16 +1,16 @@
 import { useContext } from "react";
 
-import { AuditLogContext } from "@contexts/auditLog";
-import { LiveContext } from "@contexts/live";
-import { RouterContext } from "@contexts/legacy-router";
-import { DataContext } from "@contexts/data";
-import { TranslationContext } from "@contexts/translation";
-import { NotificationContext } from "@contexts/notification";
 import { AccessControlContext } from "@contexts/accessControl";
+import { AuditLogContext } from "@contexts/auditLog";
+import { DataContext } from "@contexts/data";
+import { I18nContext } from "@contexts/i18n";
+import { LiveContext } from "@contexts/live";
+import { NotificationContext } from "@contexts/notification";
+import { LegacyRouterContext } from "@contexts/router/legacy";
 import { useResource } from "@hooks/resource";
 
-import { ITelemetryData } from "../../interfaces/telemetry";
 import { useIsExistAuthentication, useRefineContext } from "..";
+import { ITelemetryData } from "../../components/telemetry/types";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";
@@ -18,10 +18,10 @@ const REFINE_VERSION = "1.0.0";
 export const useTelemetryData = (): ITelemetryData => {
   const auth = useIsExistAuthentication();
   const auditLogContext = useContext(AuditLogContext);
-  const liveContext = useContext(LiveContext);
-  const routerContext = useContext(RouterContext);
+  const { liveProvider } = useContext(LiveContext);
+  const routerContext = useContext(LegacyRouterContext);
   const dataContext = useContext(DataContext);
-  const { i18nProvider } = useContext(TranslationContext);
+  const { i18nProvider } = useContext(I18nContext);
   const notificationContext = useContext(NotificationContext);
   const accessControlContext = useContext(AccessControlContext);
   const { resources } = useResource();
@@ -33,9 +33,9 @@ export const useTelemetryData = (): ITelemetryData => {
     !!auditLogContext.update;
 
   const live =
-    !!liveContext?.publish ||
-    !!liveContext?.subscribe ||
-    !!liveContext?.unsubscribe;
+    !!liveProvider?.publish ||
+    !!liveProvider?.subscribe ||
+    !!liveProvider?.unsubscribe;
 
   const router =
     !!routerContext.useHistory ||

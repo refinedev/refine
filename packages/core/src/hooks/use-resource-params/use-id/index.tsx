@@ -1,8 +1,8 @@
 import { useParsed } from "../../router/use-parsed";
-import { useRouterType } from "../../../contexts/router-picker";
 import { useRouterContext } from "../../legacy-router/useRouterContext";
-
-import type { BaseKey, ResourceRouterParams } from "../../../interfaces";
+import { BaseKey } from "../../../contexts/data/types";
+import { useRouterType } from "../../../contexts/router/picker";
+import { ResourceRouterParams } from "../../../contexts/router/legacy/types";
 
 /**
  * Returns the id from the router regardless of the router type.

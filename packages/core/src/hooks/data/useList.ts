@@ -1,8 +1,8 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   QueryObserverResult,
-  useQuery,
   UseQueryOptions,
+  useQuery,
 } from "@tanstack/react-query";
 
 import {
@@ -14,36 +14,37 @@ import {
 import {
   useDataProvider,
   useHandleNotification,
+  useKeys,
   useMeta,
   useOnError,
   useResource,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
-import { useKeys } from "@hooks/useKeys";
+
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
+  CrudFilter,
+  CrudSort,
   GetListResponse,
   HttpError,
-  LiveModeProps,
   MetaQuery,
   Pagination,
   Prettify,
-  SuccessErrorNotification,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
 
 export interface UseListConfig {
   pagination?: Pagination;
   hasPagination?: boolean;
-  sort?: CrudSorting;
-  filters?: CrudFilters;
+  sort?: CrudSort[];
+  filters?: CrudFilter[];
 }
 
 export type BaseListProps = {
@@ -65,11 +66,11 @@ export type BaseListProps = {
   /**
    * Sorter parameters
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    * Filter parameters
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   /**
    * Meta data query for `dataProvider`
    */

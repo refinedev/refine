@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import papaparse from "papaparse";
-import chunk from "lodash/chunk";
 
-import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
-import { MapDataFn, BaseRecord, HttpError, MetaQuery } from "../../interfaces";
+import chunk from "lodash/chunk";
+import papaparse from "papaparse";
+
 import {
   importCSVMapper,
-  sequentialPromises,
   pickNotDeprecated,
+  sequentialPromises,
 } from "@definitions";
+import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
+
+import { BaseRecord, HttpError, MetaQuery } from "../../contexts/data/types";
 import { UseCreateReturnType } from "../../hooks/data/useCreate";
 import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
+import { MapDataFn } from "../export/types";
 
 export type ImportSuccessResult<TVariables, TData> = {
   request: TVariables[];

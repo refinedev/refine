@@ -1,9 +1,9 @@
 import React from "react";
 
-import { render, TestWrapper } from "@test";
-
-import { UndoableQueue } from "./index";
 import { UndoableQueueContext } from "@contexts/undoableQueue";
+import { TestWrapper, render } from "@test";
+
+import { UndoableQueue } from ".";
 
 const doMutation = jest.fn();
 const cancelMutation = jest.fn();

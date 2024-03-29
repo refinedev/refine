@@ -22,7 +22,7 @@ export const TestWrapper: (
       <MemoryRouter initialEntries={routerInitialEntries}>
         <Refine
           dataProvider={dataProvider ?? MockJSONServer}
-          routerProvider={MockRouterProvider}
+          legacyRouterProvider={MockRouterProvider}
           resources={resources ?? [{ name: "posts" }]}
           options={{ disableTelemetry: true }}
         >

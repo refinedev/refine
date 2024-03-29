@@ -6,7 +6,7 @@ import {
   MockJSONServer,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useResource } from "./";
@@ -55,7 +55,7 @@ describe("useResource Hook", () => {
 
 describe("useResource Hook without prop", () => {
   const Wrapper = TestWrapper({
-    routerProvider: mockRouterBindings({
+    routerProvider: mockRouterProvider({
       pathname: "/posts/edit/1",
       resource: {
         name: "posts",
@@ -86,7 +86,7 @@ describe("useResource Hook without prop", () => {
           meta: { route: "custom-route-posts" },
         },
       ],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         pathname: "/custom-route-posts",
         resource: {
           name: "posts",
@@ -111,7 +111,7 @@ describe("useResource Hook without prop", () => {
   it("should return resource which route is custom route and with identifier", async () => {
     const { result } = renderHook(() => useResource("posts"), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "list",
         }),
       }),
@@ -125,7 +125,7 @@ describe("useResource Hook without prop", () => {
 describe("useResource Hook with resourceName:propResourceName prop", () => {
   it("should return propResourceName as resourceName", async () => {
     const Wrapper = TestWrapper({
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         pathname: "/posts",
         resource: {
           name: "posts",
@@ -152,7 +152,7 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
   it("should return propResourceName as resourceName", async () => {
     const Wrapper = TestWrapper({
       resources: [{ name: "refine-makes" }],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         pathname: "/refine-makes",
         resource: {
           name: "refine-makes",
@@ -353,7 +353,7 @@ describe("legacy router provider", () => {
         const { result } = renderHook(() => useResource(), {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 
@@ -370,7 +370,7 @@ describe("legacy router provider", () => {
         const { result } = renderHook(() => useResource(), {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 
@@ -390,7 +390,7 @@ describe("legacy router provider", () => {
                 meta: { label: "Featured Posts" },
               },
             ],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 
@@ -419,7 +419,7 @@ describe("legacy router provider", () => {
         const { result } = renderHook(() => useResource(), {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 
@@ -430,7 +430,7 @@ describe("legacy router provider", () => {
         const { result } = renderHook(() => useResource("posts"), {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 
@@ -444,7 +444,7 @@ describe("legacy router provider", () => {
               { name: "posts" },
               { name: "posts", identifier: "awesome-posts" },
             ],
-            routerProvider: mockRouterBindings(),
+            routerProvider: mockRouterProvider(),
           }),
         });
 

@@ -62,7 +62,6 @@ export const renderer = ({
     ["ShowButton", "@refinedev/mui"],
     ["DeleteButton", "@refinedev/mui"],
     ["List", "@refinedev/mui"],
-    ["IResourceComponentsProps", "@refinedev/core"],
   ];
 
   if (i18n) {
@@ -802,7 +801,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { dataGridProps } = useDataGrid(
             ${

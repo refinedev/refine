@@ -1,8 +1,9 @@
-import { act } from "react-dom/test-utils";
 import { renderHook } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
-import { TestWrapper, mockRouterBindings } from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
+import { TestWrapper, mockRouterProvider } from "@test";
+
 import { useLoadingOvertime } from "./";
 
 describe("useLoadingOvertime Hook", () => {
@@ -128,7 +129,7 @@ describe("useLoadingOvertime Hook", () => {
               },
             },
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "posts",
             },

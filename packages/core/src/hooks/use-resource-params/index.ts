@@ -3,10 +3,10 @@ import React from "react";
 import { useId } from "./use-id";
 import { useAction } from "./use-action";
 import { useResource } from "../resource";
-
-import type { Action, FormAction } from "../../interfaces/actions";
-import type { BaseKey } from "../../interfaces";
-import type { IResourceItem } from "../../interfaces/bindings/resource";
+import { BaseKey } from "../../contexts/data/types";
+import { IResourceItem } from "../../contexts/resource/types";
+import { Action } from "../../contexts/router/types";
+import { FormAction } from "../form/types";
 
 type Props = {
   id?: BaseKey;
