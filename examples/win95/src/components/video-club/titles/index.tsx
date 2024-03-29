@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useList, useTable } from "@refinedev/core";
 import {
-  Anchor,
   Hourglass,
   Table,
   TableBody,
@@ -18,13 +17,26 @@ import { Pagination } from "../../pagination";
 
 export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();
-  const { tableQueryResult, pageCount, pageSize, current, setCurrent } =
-    useTable<IVideoTitle>({
-      resource: "titles",
-    });
-  const titles = tableQueryResult?.data?.data || [];
-  const titleCount = tableQueryResult?.data?.total || 0;
-  const isLoading = tableQueryResult?.isLoading || false;
+  const {
+    tableQueryResult: titlesQueryResult,
+    pageCount,
+    current,
+    setCurrent,
+  } = useTable<IVideoTitle>({
+    resource: "titles",
+  });
+
+  const { data: dataTapes, isLoading: tapesIsLoading } = useList({
+    resource: "tapes",
+    pagination: {
+      mode: "off",
+    },
+  });
+
+  const titles = titlesQueryResult?.data?.data || [];
+  const titlesIsLoading = titlesQueryResult?.isLoading || false;
+  const tapes = dataTapes?.data || [];
+  const isLoading = titlesIsLoading || tapesIsLoading;
 
   return (
     <VideoClubLayoutSubPage
@@ -50,15 +62,32 @@ export const VideoClubPageBrowseTitles = () => {
           <TableBody>
             {!isLoading &&
               titles.map((title) => {
+                const copies = tapes.filter(
+                  (tape) => tape.title_id === title.id,
+                );
+                const atleastOneCopyAvailable = copies.some(
+                  (copy) => copy.available,
+                );
+
                 return (
                   <TableRow key={title.id}>
-                    <TableDataCell>{}</TableDataCell>
+                    <TableDataCell>
+                      {atleastOneCopyAvailable ? (
+                        ""
+                      ) : (
+                        <OutOfStockIcon
+                          src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/danger-icon.png"
+                          alt="Out of Stock"
+                          aria-label="out of stock"
+                        />
+                      )}
+                    </TableDataCell>
                     <TableDataCell>{title.id}</TableDataCell>
                     <TableDataCell>{title.title}</TableDataCell>
                     <TableDataCell>{title.genres.join(", ")}</TableDataCell>
                     <TableDataCell>{title.year}</TableDataCell>
-                    <TableDataCell>5</TableDataCell>
-                    <TableDataCell>$100</TableDataCell>
+                    <TableDataCell>{copies.length}</TableDataCell>
+                    <TableDataCell>$-1</TableDataCell>
                     <TableDataCell>
                       <Link to={`/video-club/titles/${title.id}`}>View</Link>
                     </TableDataCell>
@@ -80,4 +109,10 @@ export const VideoClubPageBrowseTitles = () => {
 
 const Container = styled.div`
   padding: 16px 24px;
+`;
+
+const OutOfStockIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  vertical-align: sub;
 `;
