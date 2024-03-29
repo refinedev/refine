@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-import { Date } from "@site/src/components/blog/common";
+import { Date as DateComponent } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
 export const FeaturedBlogPostItem = () => {
@@ -18,38 +18,42 @@ export const FeaturedBlogPostItem = () => {
     tags,
   } = metadata;
 
-  const author = metadata.authors[0];
-
   return (
     <BlogPostItemContainer>
-      <Link itemProp="url" to={permalink}>
-        <div className="not-prose relative m-0 h-40 hover:brightness-90 md:h-64">
+      <Link
+        itemProp="url"
+        to={permalink}
+        className={clsx("block", "w-full h-auto", "aspect-[592/334]")}
+      >
+        <div
+          className={clsx(
+            "not-prose relative m-0 hover:brightness-90",
+            "h-full w-full",
+          )}
+        >
           <img
             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
               "https://refine.ams3.cdn.digitaloceanspaces.com",
               "",
             )}?h=256`}
             alt={title}
-            className="absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover"
+            className={clsx(
+              "absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover",
+            )}
             loading="lazy"
           />
         </div>
       </Link>
       <div className="px-4 py-4 md:px-6  md:py-6">
-        <div
-          className={clsx(
-            "mb-2 gap-1 md:mb-4 2xl:mb-6",
-            "flex flex-wrap items-center",
-          )}
-        >
+        <div className={clsx("flex flex-wrap items-center", "mb-6", "gap-3")}>
           {tags.map((tag) => (
             <Link
               className={clsx(
                 "text-xs",
-                "bg-gray-100 dark:bg-gray-700",
-                "text-gray-600 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-400",
+                "bg-refine-react-3 dark:bg-refine-react-7",
+                "text-refine-react-8 dark:text-refine-react-3",
                 "no-underline",
-                "rounded",
+                "rounded-full",
                 "px-2 py-1",
               )}
               href={tag.permalink}
@@ -59,7 +63,7 @@ export const FeaturedBlogPostItem = () => {
             </Link>
           ))}
         </div>
-        <div className="mb-2 md:mb-4 2xl:mb-6">
+        <div className="mb-4">
           <Link
             itemProp="url"
             to={permalink}
@@ -68,9 +72,9 @@ export const FeaturedBlogPostItem = () => {
           >
             <div
               className={clsx(
-                "mb-2 md:mb-4 2xl:mb-6",
-                "text-gray-700 dark:text-gray-200",
-                "text-sm sm:text-2xl 2xl:text-[32px] 2xl:leading-10",
+                "mb-4",
+                "text-gray-700 dark:text-refine-react-3",
+                "text-xl",
                 "font-lg",
                 "font-bold",
               )}
@@ -81,8 +85,8 @@ export const FeaturedBlogPostItem = () => {
           <div
             className={clsx(
               "line-clamp-3",
-              "text-gray-700 dark:text-gray-300",
-              "text-xs md:text-base 2xl:text-xl",
+              "text-gray-700 dark:text-refine-react-4",
+              "text-sm",
             )}
           >
             {description}
@@ -92,14 +96,13 @@ export const FeaturedBlogPostItem = () => {
         <div className="flex items-center gap-2">
           <span
             className={clsx(
-              "text-gray-600 hover:text-gray-600",
-              "dark:text-gray-400 hover:dark:text-gray-400",
-              "text-xs 2xl:text-base",
+              "text-gray-600 dark:text-refine-react-5",
+              "text-xs",
               "leading-6",
               "no-underline",
             )}
           >
-            <Date date={date} formattedDate={formattedDate} />
+            <DateComponent date={date} formattedDate={formattedDate} />
           </span>
         </div>
       </div>

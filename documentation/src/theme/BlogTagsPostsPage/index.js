@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
+import Link from "@docusaurus/Link";
 import {
   PageMetadata,
   HtmlClassNameProvider,
@@ -12,6 +13,7 @@ import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import TagsList from "@theme/TagsList";
+import { ChevronLeft } from "../../components/blog/icons";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -56,29 +58,48 @@ function BlogTagsPostsPageMetadata({ tag }) {
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
   return (
     <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
-      <div
-        className={clsx(
-          "py-8",
-          "blog-md:py-16",
-          "px-4",
-          "max-w-[512px]",
-          "blog-md:px-7",
-          "blog-md:max-w-screen-blog-md",
-          "blog-2xl:px-0",
-          "blog-2xl:max-w-screen-blog-md",
-          "w-full",
-          "mx-auto",
-        )}
-      >
-        <TagsList tags={tags} />
-        <div className={clsx("pt-0 blog-md:pt-16")}>
+      <div className={clsx("py-8", "blog-md:py-16", "w-full", "mx-auto")}>
+        <div
+          className={clsx(
+            "flex",
+            "px-4",
+            "gap-6",
+            "flex-row blog-lg:flex-col",
+            "justify-between",
+            "blog-sm:max-w-[592px]",
+            "blog-md:max-w-[656px]",
+            "blog-lg:max-w-[896px]",
+            "blog-max:max-w-[1200px]",
+            "w-full",
+          )}
+        >
+          <Link
+            to="/blog"
+            className={clsx(
+              "text-refine-react-5 dark:text-refine-react-4",
+              "text-sm no-underline",
+              "flex",
+              "items-center",
+              "gap-2",
+            )}
+          >
+            <ChevronLeft /> Back to blog
+          </Link>
+          <TagsList tags={tags} />
+        </div>
+        <div className={clsx("pt-8 blog-md:pt-16", "px-4")}>
           <div className="text-gray-500 dark:text-gray-400">
             Posts tagged with
           </div>
           <h1 className="!mb-0">{tag.label}</h1>
         </div>
         <BlogPostItems items={items} showTitle={false} isTagsPage={true} />
-        <div className="blog-md:border-t border-t-gray-200 dark:border-t-gray-700">
+        <div
+          className={clsx(
+            listMetadata.totalPages > 1 &&
+              "blog-md:border-t border-t-gray-200 dark:border-t-gray-700",
+          )}
+        >
           <BlogListPaginator
             metadata={listMetadata}
             basePath={`/blog/tags/${tag.label}`}

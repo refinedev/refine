@@ -161,6 +161,7 @@ const Templates: React.FC = () => {
           onClose={() => setIsFilterDrawerOpen(false)}
           open={isFilterDrawerOpen}
           title="Filter Templates"
+          variant="templates"
         >
           <div className={clsx("flex", "flex-col", "not-prose")}>
             <TemplatesFilters
