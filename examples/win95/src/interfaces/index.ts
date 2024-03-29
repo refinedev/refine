@@ -12,3 +12,10 @@ export type IVideoTitle = {
   cast: Array<string>;
   overview: string;
 };
+
+export type ITape = {
+  id: number;
+  created_at: string;
+  title_id: number;
+  available: boolean;
+};

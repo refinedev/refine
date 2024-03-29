@@ -2,31 +2,47 @@ import { useNavigate } from "react-router-dom";
 import { useList, useTable } from "@refinedev/core";
 import {
   Hourglass,
+  Select,
   Table,
   TableBody,
   TableDataCell,
   TableHead,
   TableHeadCell,
   TableRow,
+  TextInput,
 } from "react95";
 import { styled } from "styled-components";
 import { VideoClubLayoutSubPage } from "../layout-subpage";
-import { IVideoTitle } from "../../../interfaces";
+import { ITape, IVideoTitle } from "../../../interfaces";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../pagination";
+import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
+import { supabaseClient } from "../../../supabase-client";
+
+// fill with years from 1980 to current year
+const OPTIONS_YEAR = Array.from(
+  { length: new Date().getFullYear() - 1980 + 1 },
+  (_, i) => 1980 + i,
+).map((year) => ({
+  label: year.toString(),
+  value: year.toString(),
+}));
 
 export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();
+
   const {
     tableQueryResult: titlesQueryResult,
     pageCount,
     current,
     setCurrent,
+    filters,
+    setFilters,
   } = useTable<IVideoTitle>({
     resource: "titles",
   });
 
-  const { data: dataTapes, isLoading: tapesIsLoading } = useList({
+  const { data: dataTapes, isLoading: tapesIsLoading } = useList<ITape>({
     resource: "tapes",
     pagination: {
       mode: "off",
@@ -46,6 +62,72 @@ export const VideoClubPageBrowseTitles = () => {
       onClose={() => navigate("/video-club")}
     >
       <Container>
+        <FilterContainer>
+          <FilterInputContainer>
+            <FilterInputLabel>Title:</FilterInputLabel>
+            <FilterInputText
+              defaultValue={
+                findFilterFromCrudFilters({
+                  field: "title",
+                  filters,
+                })?.value
+              }
+              onChange={(e) => {
+                setFilters([
+                  {
+                    field: "title",
+                    value: e.target.value,
+                    operator: "contains",
+                  },
+                ]);
+              }}
+            />
+          </FilterInputContainer>
+          <FilterInputContainer>
+            <FilterInputLabel>Movie ID:</FilterInputLabel>
+            <FilterInputText
+              defaultValue={
+                findFilterFromCrudFilters({
+                  field: "id",
+                  filters,
+                })?.value
+              }
+              onChange={(e) => {
+                const value = e.target?.value?.trim();
+
+                setFilters([
+                  {
+                    field: "id",
+                    value: value ? Number(value) : null,
+                    operator: "eq",
+                  },
+                ]);
+              }}
+            />
+          </FilterInputContainer>
+          <FilterInputContainer>
+            <FilterInputLabel>Category:</FilterInputLabel>
+            <FilterInputText />
+          </FilterInputContainer>
+          <FilterInputContainer>
+            <FilterInputLabel>Year:</FilterInputLabel>
+            <FilterInputSelect
+              menuMaxHeight={160}
+              defaultValue={
+                findFilterFromCrudFilters({
+                  field: "year",
+                  filters,
+                })?.value
+              }
+              onChange={(option) => {
+                setFilters([
+                  { field: "year", value: option?.value, operator: "eq" },
+                ]);
+              }}
+              options={[{ label: "All", value: null }, ...OPTIONS_YEAR]}
+            />
+          </FilterInputContainer>
+        </FilterContainer>
         <Table>
           <TableHead>
             <TableRow>
@@ -115,4 +197,29 @@ const OutOfStockIcon = styled.img`
   width: 24px;
   height: 24px;
   vertical-align: sub;
+`;
+
+const FilterContainer = styled.div`
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: 372px 200px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px 32px;
+`;
+
+const FilterInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const FilterInputLabel = styled.div`
+  width: 104px;
+`;
+
+const FilterInputText = styled(TextInput)`
+    flex: 1;
+`;
+
+const FilterInputSelect = styled(Select)`
+  flex: 1;
 `;
