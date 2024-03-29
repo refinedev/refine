@@ -1,10 +1,6 @@
+import { MetaQuery, Pagination, CrudSorting } from "@refinedev/core";
 import {
-  MetaQuery,
-  Pagination,
-  CrudSorting,
-  CrudFilters,
-} from "@refinedev/core";
-import {
+  HasuraCrudFilters,
   generateUseListSubscription,
   genereteUseListSubscription,
 } from "../../src/utils";
@@ -21,7 +17,7 @@ describe("generateUseListSubscription", () => {
     mode: "server",
   };
   const sorters: CrudSorting = [{ field: "title", order: "asc" }];
-  const filters: CrudFilters = [
+  const filters: HasuraCrudFilters = [
     { field: "published", operator: "eq", value: true },
   ];
 
