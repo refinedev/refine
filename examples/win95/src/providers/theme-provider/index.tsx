@@ -39,6 +39,24 @@ const GlobalStyles = createGlobalStyle`
         color: #80FBFE !important;
      }  
   }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const ThemeProvider = ({ children }: PropsWithChildren) => {

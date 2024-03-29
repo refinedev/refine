@@ -76,7 +76,7 @@ export const VideoClubPageBrowseTitles = () => {
                         ""
                       ) : (
                         <OutOfStockIcon
-                          src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/danger-icon.png"
+                          src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/error-icon.png"
                           alt="Out of Stock"
                           aria-label="out of stock"
                         />

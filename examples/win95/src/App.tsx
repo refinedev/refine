@@ -12,15 +12,15 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-
+import { Toaster } from "react-hot-toast";
 import { CommonLayout } from "./components/layout";
 import { VideoClubLayout } from "./components/video-club/layout";
 import { VideoClubPageBrowseTitles } from "./components/video-club/titles";
 import { HomePage } from "./components/home-page";
 import { LoginPage } from "./components/login-page";
-
 import { ThemeProvider } from "./providers/theme-provider";
 import { authProvider } from "./providers/auth-provider";
+import { notificationProvider } from "./providers/notification-provider";
 import { supabaseClient } from "./supabase-client";
 
 const App = () => {
@@ -32,6 +32,7 @@ const App = () => {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           routerProvider={routerProvider}
+          notificationProvider={notificationProvider}
           resources={[
             {
               name: "titles",
@@ -92,6 +93,7 @@ const App = () => {
           </Routes>
           <UnsavedChangesNotifier />
           <DocumentTitleHandler />
+          <Toaster />
         </Refine>
       </ThemeProvider>
     </BrowserRouter>

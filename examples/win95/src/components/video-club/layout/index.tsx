@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { Frame } from "react95";
 import { AppLayout } from "../../layout";
 import { VideoClubTodayDate } from "../today-date";
+import { useNotification } from "@refinedev/core";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
+  const { open } = useNotification();
 
   return (
     <StyledAppLayout
