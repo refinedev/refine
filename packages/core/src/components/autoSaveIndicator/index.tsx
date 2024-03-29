@@ -1,6 +1,33 @@
 import React from "react";
-import { AutoSaveIndicatorProps } from "../../interfaces";
-import { useTranslate } from "@hooks/translate";
+
+import { useTranslate } from "@hooks/i18n";
+
+import { BaseRecord, HttpError } from "../../contexts/data/types";
+import { AutoSaveIndicatorElements } from "../../hooks/form/types";
+import { UseUpdateReturnType } from "../../hooks/data/useUpdate";
+
+export type AutoSaveIndicatorProps<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = {
+  /**
+   * The data returned by the update request.
+   */
+  data?: UseUpdateReturnType<TData, TError, TVariables>["data"];
+  /**
+   * The error returned by the update request.
+   */
+  error?: UseUpdateReturnType<TData, TError, TVariables>["error"];
+  /**
+   * The status of the update request.
+   */
+  status: UseUpdateReturnType<TData, TError, TVariables>["status"];
+  /**
+   * The elements to display for each status.
+   */
+  elements?: AutoSaveIndicatorElements;
+};
 
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   status,

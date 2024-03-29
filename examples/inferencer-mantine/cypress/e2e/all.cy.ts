@@ -249,9 +249,9 @@ describe("inferencer-mantine", () => {
 
       // assert default theme is working
       if (initialTheme === "dark") {
-        expect(cy.get(".icon-tabler-sun").should("exist"));
+        expect(cy.get(".tabler-icon-sun").should("exist"));
       } else {
-        expect(cy.get(".icon-tabler-moon-stars").should("exist"));
+        expect(cy.get(".tabler-icon-moon-stars").should("exist"));
       }
 
       // click the theme switch
@@ -259,12 +259,12 @@ describe("inferencer-mantine", () => {
       cy.getAllLocalStorage().then((ls) => {
         // assert the theme is changed, it should be reversed from initial theme
         if (initialTheme === "dark") {
-          expect(cy.get(".icon-tabler-moon-stars").should("exist"));
+          expect(cy.get(".tabler-icon-moon-stars").should("exist"));
           expect(ls[BASE_URL]["mantine-color-scheme-value"]).to.contains(
             "light",
           );
         } else {
-          expect(cy.get(".icon-tabler-sun").should("exist"));
+          expect(cy.get(".tabler-icon-sun").should("exist"));
           expect(ls[BASE_URL]["mantine-color-scheme-value"]).to.contains(
             "dark",
           );
@@ -278,9 +278,9 @@ describe("inferencer-mantine", () => {
       cy.getMantineLoadingOverlay().should("not.exist");
       // should be reversed from initial theme
       if (initialTheme?.includes("dark") || initialTheme === undefined) {
-        expect(cy.get(".icon-tabler-sun").should("exist"));
+        expect(cy.get(".tabler-icon-sun").should("exist"));
       } else {
-        expect(cy.get(".icon-tabler-moon-stars").should("exist"));
+        expect(cy.get(".tabler-icon-moon-stars").should("exist"));
       }
     });
   });

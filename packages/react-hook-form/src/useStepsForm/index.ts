@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FieldValues, Path } from "react-hook-form";
 import { BaseRecord, HttpError } from "@refinedev/core";
+import get from "lodash/get";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
@@ -117,11 +118,18 @@ export const useStepsForm = <
     if (!data) return;
 
     const registeredFields = Object.keys(getValues());
+
+    console.log({
+      dirtyFields,
+      registeredFields,
+      data,
+    });
+
     Object.entries(data).forEach(([key, value]) => {
       const name = key as Path<TVariables>;
 
       if (registeredFields.includes(name)) {
-        if (!dirtyFields[name]) {
+        if (!get(dirtyFields, name)) {
           setValue(name, value);
         }
       }

@@ -22,7 +22,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="icon icon-tabler icon-tabler-arrow-left"
+                class="tabler-icon tabler-icon-arrow-left "
                 fill="none"
                 focusable="false"
                 height="24"
@@ -35,27 +35,13 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
+                  d="M5 12l14 0"
                 />
-                <line
-                  x1="5"
-                  x2="19"
-                  y1="12"
-                  y2="12"
+                <path
+                  d="M5 12l6 6"
                 />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="18"
-                />
-                <line
-                  x1="5"
-                  x2="11"
-                  y1="12"
-                  y2="6"
+                <path
+                  d="M5 12l6 -6"
                 />
               </svg>
             </button>
@@ -82,7 +68,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="icon icon-tabler icon-tabler-list"
+                  class="tabler-icon tabler-icon-list "
                   fill="none"
                   focusable="false"
                   height="20"
@@ -95,45 +81,22 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                    stroke="none"
+                    d="M9 6l11 0"
                   />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="6"
-                    y2="6"
+                  <path
+                    d="M9 12l11 0"
                   />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="12"
-                    y2="12"
+                  <path
+                    d="M9 18l11 0"
                   />
-                  <line
-                    x1="9"
-                    x2="20"
-                    y1="18"
-                    y2="18"
+                  <path
+                    d="M5 6l0 .01"
                   />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="6"
-                    y2="6.01"
+                  <path
+                    d="M5 12l0 .01"
                   />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="12"
-                    y2="12.01"
-                  />
-                  <line
-                    x1="5"
-                    x2="5"
-                    y1="18"
-                    y2="18.01"
+                  <path
+                    d="M5 18l0 .01"
                   />
                 </svg>
               </span>
@@ -149,7 +112,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="icon icon-tabler icon-tabler-refresh"
+                class="tabler-icon tabler-icon-refresh "
                 fill="none"
                 focusable="false"
                 height="20"
@@ -161,11 +124,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 width="20"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                  stroke="none"
-                />
                 <path
                   d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
                 />
@@ -469,16 +427,8 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    useShow
+                 useShow
               </span>
               <span
                 class="token imports punctuation"
@@ -488,21 +438,8 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    
-              </span>
-              <span
-                class="token imports maybe-class-name"
-              >
-                IResourceComponentsProps
+                 useOne
               </span>
               <span
                 class="token imports punctuation"
@@ -512,53 +449,9 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    useOne
+                 useMany 
               </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
-              >
-                    useMany
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
-              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -965,54 +858,10 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token maybe-class-name"
+                class="token function-variable function"
+                style="color: rgb(220, 220, 170);"
               >
                 PostShow
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                React
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                .
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                FC
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                IResourceComponentsProps
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
               </span>
               <span
                 class="token plain"

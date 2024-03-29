@@ -1,10 +1,11 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
+import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   MockJSONServer,
-  mockRouterBindings,
-  queryClient,
   TestWrapper,
+  mockRouterProvider,
+  queryClient,
 } from "@test";
 import {
   assertList,
@@ -17,7 +18,6 @@ import {
 
 import * as UseInvalidate from "../invalidate/index";
 import { useUpdateMany } from "./useUpdateMany";
-import * as queryKeys from "@definitions/helpers/queryKeys";
 
 describe("useUpdateMany Hook", () => {
   it("with rest json server", async () => {
@@ -197,7 +197,7 @@ describe("useUpdateMany Hook", () => {
             updateMany: updateManyMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -431,6 +431,7 @@ describe("useUpdateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -468,6 +469,7 @@ describe("useUpdateMany Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -499,6 +501,7 @@ describe("useUpdateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -534,6 +537,7 @@ describe("useUpdateMany Hook", () => {
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -567,6 +571,7 @@ describe("useUpdateMany Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
           resources: [{ name: "posts" }],
         }),

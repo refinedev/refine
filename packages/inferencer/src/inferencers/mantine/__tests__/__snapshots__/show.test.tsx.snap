@@ -2,108 +2,74 @@
 
 exports[`MantineShowInferencer should match the snapshot 1`] = `
 <DocumentFragment>
-  <style
-    data-mantine-styles="classes"
-  >
-    @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
-  </style>
   <div>
     <div
-      class="mantine-Card-root mantine-Paper-root"
+      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
     >
       <div
-        class="mantine-Group-root"
-        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
+        class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          class="mantine-Stack-root"
-          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
+          class="mantine-Stack-root mantine-zyu68o"
         >
           <div
-            class="mantine-Group-root"
-            style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+            class="mantine-Group-root mantine-1g4q40w"
           >
             <button
-              class="mantine-focus-auto mantine-active mantine-ActionIcon-root mantine-UnstyledButton-root"
-              style="--ai-color: var(--mantine-color-white);"
+              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
               type="button"
             >
-              <span
-                class="mantine-ActionIcon-icon"
+              <svg
+                class="tabler-icon tabler-icon-arrow-left "
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="icon icon-tabler icon-tabler-arrow-left"
-                  fill="none"
-                  height="24"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                    stroke="none"
-                  />
-                  <line
-                    x1="5"
-                    x2="19"
-                    y1="12"
-                    y2="12"
-                  />
-                  <line
-                    x1="5"
-                    x2="11"
-                    y1="12"
-                    y2="18"
-                  />
-                  <line
-                    x1="5"
-                    x2="11"
-                    y1="12"
-                    y2="6"
-                  />
-                </svg>
-              </span>
+                <path
+                  d="M5 12l14 0"
+                />
+                <path
+                  d="M5 12l6 6"
+                />
+                <path
+                  d="M5 12l6 -6"
+                />
+              </svg>
             </button>
             <h3
-              class="refine-pageHeader-title mantine-Title-root"
-              data-order="3"
-              style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
+              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
             >
               Show Post
             </h3>
           </div>
         </div>
         <div
-          class="mantine-Group-root"
-          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+          class="mantine-Group-root mantine-1g4q40w"
         >
           <a
-            class="mantine-focus-auto mantine-Text-root mantine-Anchor-root"
-            data-underline="hover"
+            class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
             href="/posts"
           >
             <button
-              class="mantine-focus-auto mantine-active refine-list-button mantine-Button-root mantine-UnstyledButton-root"
-              data-variant="default"
-              data-with-left-section="true"
-              style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
+              class="mantine-UnstyledButton-root mantine-Button-root refine-list-button mantine-1gzbrws"
+              data-button="true"
               title=""
               type="button"
             >
-              <span
-                class="mantine-Button-inner"
+              <div
+                class="mantine-3xbgk5 mantine-Button-inner"
               >
                 <span
-                  class="mantine-Button-section"
-                  data-position="left"
+                  class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
                 >
                   <svg
-                    class="icon icon-tabler icon-tabler-list"
+                    class="tabler-icon tabler-icon-list "
                     fill="none"
                     height="18"
                     stroke="currentColor"
@@ -115,72 +81,46 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M0 0h24v24H0z"
-                      fill="none"
-                      stroke="none"
+                      d="M9 6l11 0"
                     />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="6"
-                      y2="6"
+                    <path
+                      d="M9 12l11 0"
                     />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="12"
-                      y2="12"
+                    <path
+                      d="M9 18l11 0"
                     />
-                    <line
-                      x1="9"
-                      x2="20"
-                      y1="18"
-                      y2="18"
+                    <path
+                      d="M5 6l0 .01"
                     />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="6"
-                      y2="6.01"
+                    <path
+                      d="M5 12l0 .01"
                     />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="12"
-                      y2="12.01"
-                    />
-                    <line
-                      x1="5"
-                      x2="5"
-                      y1="18"
-                      y2="18.01"
+                    <path
+                      d="M5 18l0 .01"
                     />
                   </svg>
                 </span>
                 <span
-                  class="mantine-Button-label"
+                  class="mantine-qo1k2 mantine-Button-label"
                 >
                   Posts
                 </span>
-              </span>
+              </div>
             </button>
           </a>
           <button
-            class="mantine-focus-auto mantine-active refine-refresh-button mantine-Button-root mantine-UnstyledButton-root"
-            data-variant="default"
-            data-with-left-section="true"
-            style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
+            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
+            data-button="true"
             type="button"
           >
-            <span
-              class="mantine-Button-inner"
+            <div
+              class="mantine-3xbgk5 mantine-Button-inner"
             >
               <span
-                class="mantine-Button-section"
-                data-position="left"
+                class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
               >
                 <svg
-                  class="icon icon-tabler icon-tabler-refresh"
+                  class="tabler-icon tabler-icon-refresh "
                   fill="none"
                   height="18"
                   stroke="currentColor"
@@ -192,11 +132,6 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                    stroke="none"
-                  />
-                  <path
                     d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
                   />
                   <path
@@ -205,57 +140,49 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                 </svg>
               </span>
               <span
-                class="mantine-Button-label"
+                class="mantine-qo1k2 mantine-Button-label"
               >
                 Refresh
               </span>
-            </span>
+            </div>
           </button>
         </div>
       </div>
       <div
-        class=""
+        class="mantine-1r0zdw0"
       >
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Id
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           11
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Title
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           Nobis exercitationem officia quia est.
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Slug
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           provident-culpa-facere
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
+          class="mantine-Text-root mantine-Title-root mantine-1lbhkzp"
         >
           Content
         </h5>
@@ -263,162 +190,150 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
           Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
         </p>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Hit
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           920,557
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Category
         </h5>
         Numquam Saepe Illo
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           User
         </h5>
         Eriberto Leannon
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Status
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           draft
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Status Color
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           orange
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Created At
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           04/02/2022
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Published At
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           08/10/2021
-        </p>
+        </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Image
         </h5>
         <div
-          class="mantine-Group-root"
-          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+          class="mantine-Group-root mantine-1g4q40w"
         >
-          <img
-            class="mantine-Image-root"
-            src="http://loremflickr.com/640/480/abstract"
-            sx="[object Object]"
-          />
+          <div
+            class="mantine-Image-root mantine-1sqfmsp"
+            style="width: 100%;"
+          >
+            <figure
+              class="mantine-11nhzn5 mantine-Image-figure"
+            >
+              <div
+                class="mantine-qqmv3w mantine-Image-imageWrapper"
+              >
+                <img
+                  class="mantine-3y8yz3 mantine-Image-image"
+                  src="http://loremflickr.com/640/480/abstract"
+                  style="object-fit: cover; width: 100%; height: auto;"
+                />
+              </div>
+            </figure>
+          </div>
         </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Tags
         </h5>
         <div
-          class="mantine-Group-root"
-          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+          class="mantine-Group-root mantine-1g4q40w"
         >
           <div
-            class="mantine-Chip-root"
+            class="mantine-Chip-root mantine-15po0m8"
           >
             <input
-              class="mantine-Chip-input"
-              id=""
+              class="mantine-106387w mantine-Chip-input"
+              id="mantine-r0"
               type="checkbox"
               value=""
             />
             <label
-              class="mantine-Chip-label"
-              for=""
+              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+              data-variant="outline"
+              for="mantine-r0"
             >
-              <span>
-                Error Eos Et
-              </span>
+              Error Eos Et
             </label>
           </div>
           <div
-            class="mantine-Chip-root"
+            class="mantine-Chip-root mantine-15po0m8"
           >
             <input
-              class="mantine-Chip-input"
-              id=""
+              class="mantine-106387w mantine-Chip-input"
+              id="mantine-r1"
               type="checkbox"
               value=""
             />
             <label
-              class="mantine-Chip-label"
-              for=""
+              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+              data-variant="outline"
+              for="mantine-r1"
             >
-              <span>
-                Nobis Et Ut
-              </span>
+              Nobis Et Ut
             </label>
           </div>
         </div>
         <h5
-          class="mantine-Title-root"
-          data-order="5"
-          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
         >
           Language
         </h5>
-        <p
-          class="mantine-focus-auto mantine-Text-root"
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
         >
           2
-        </p>
+        </div>
       </div>
       <div
-        class="mantine-Group-root"
-        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        class="mantine-Group-root mantine-n0y6vz"
       />
     </div>
   </div>
@@ -559,61 +474,6 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token imports maybe-class-name"
-              >
-                React
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                from
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "react"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              />
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                import
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -621,21 +481,8 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    
-              </span>
-              <span
-                class="token imports maybe-class-name"
-              >
-                IResourceComponentsProps
+                 useShow
               </span>
               <span
                 class="token imports punctuation"
@@ -645,16 +492,8 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    useShow
+                 useOne
               </span>
               <span
                 class="token imports punctuation"
@@ -664,53 +503,9 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
               >
-                    useOne
+                 useMany 
               </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
-              >
-                    useMany
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token imports"
-              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -1117,54 +912,10 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token maybe-class-name"
+                class="token function-variable function"
+                style="color: rgb(220, 220, 170);"
               >
                 PostShow
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                React
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                .
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                FC
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                IResourceComponentsProps
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
               </span>
               <span
                 class="token plain"
@@ -5758,7 +5509,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                gap
+                spacing
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
@@ -6626,7 +6377,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                gap
+                spacing
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"

@@ -12,6 +12,7 @@ type Props = {
   title?: string;
   onClose: () => void;
   open: boolean;
+  variant: "templates" | "blog";
 };
 
 export const CommonDrawer: FC<PropsWithChildren<Props>> = (props) => {
@@ -41,6 +42,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
   title,
   open,
   onClose,
+  variant,
 }) => {
   const [topOffset, setTopOffset] = React.useState(DEFAULT_TOP_OFFSET);
   const { scrollY } = useScroll();
@@ -88,7 +90,8 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
           "w-[240px] h-full",
           "ml-auto",
           "p-4",
-          "dark:bg-gray-900 bg-gray-0",
+          variant === "templates" && "bg-gray-0 dark:bg-gray-900 ",
+          variant === "blog" && "bg-white dark:bg-refine-react-7",
           "border-l dark:border-gray-800",
           "dark:shadow-[0_0_72px_24px_#14141F]",
           "shadow-[0_0_72px_24px_rgba(20, 20, 31, 0.50)]",
@@ -110,10 +113,12 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
             "dark:text-gray-300 text-gray-900",
           )}
         >
-          <h3 className={clsx("text-base", "font-semibold", "pl-4")}>
-            {title}
-          </h3>
-          <button className={clsx("appearance-none")} onClick={onClose}>
+          <h3 className={clsx("text-base", "font-semibold")}>{title}</h3>
+          <button
+            type="button"
+            className={clsx("appearance-none")}
+            onClick={onClose}
+          >
             <CloseIcon />
           </button>
         </div>

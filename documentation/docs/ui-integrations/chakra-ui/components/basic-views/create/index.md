@@ -304,7 +304,7 @@ import { CreateButton } from "@refinedev/chakra-ui";
 // visible-block-start
 import { Create } from "@refinedev/chakra-ui";
 /* highlight-next-line */
-import { IconMoodSmile } from "@tabler/icons";
+import { IconMoodSmile } from "@tabler/icons-react";
 
 const PostCreate: React.FC = () => {
   return (

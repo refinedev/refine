@@ -62,7 +62,6 @@ export const renderer = ({
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useTable", "@refinedev/react-table"],
     ["ColumnDef", "@tanstack/react-table"],
     ["flexRender", "@tanstack/react-table"],
@@ -766,8 +765,13 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
+<<<<<<< HEAD
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+=======
+
+    export const ${COMPONENT_NAME} = () => {
+>>>>>>> upstream/releases/april
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}

@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useApiUrl } from "./";
 
@@ -38,7 +38,7 @@ describe("useApiUrl Hook", () => {
                   [key]: { dataProviderName: "categories" },
                 },
               ],
-              routerProvider: mockRouterBindings({
+              routerProvider: mockRouterProvider({
                 resource: {
                   name: "categories",
                   [key]: { dataProviderName: "categories" },
@@ -66,7 +66,7 @@ describe("useApiUrl Hook", () => {
                   name: "categories",
                 },
               ],
-              routerProvider: mockRouterBindings({
+              routerProvider: mockRouterProvider({
                 resource: {
                   name: "categories",
                 },
@@ -85,7 +85,7 @@ describe("useApiUrl Hook", () => {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               resource: {
                 name: "posts",
                 [key]: { dataProviderName: "posts" },

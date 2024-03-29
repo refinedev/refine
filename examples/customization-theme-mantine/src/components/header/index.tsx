@@ -1,4 +1,5 @@
 import { ActionIcon, Burger, Flex, Group } from "@mantine/core";
+
 import { ColorSchemeControl } from "./ColorSchemeControl";
 
 import { useThemedLayoutContext } from "@refinedev/mantine";

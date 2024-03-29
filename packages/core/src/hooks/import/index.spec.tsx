@@ -1,10 +1,11 @@
-import { TestWrapper, MockJSONServer, mockRouterBindings } from "@test";
 import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
+import { act } from "react-dom/test-utils";
+
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useImport } from ".";
-import { act } from "react-dom/test-utils";
-import { HttpError, IDataMultipleContextProvider } from "../../interfaces";
+import { DataProviders, HttpError } from "../../contexts/data/types";
 
 jest.mock("papaparse", () => {
   return {
@@ -72,7 +73,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -121,7 +122,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -151,7 +152,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: mockDataProvider,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -172,7 +173,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -197,7 +198,7 @@ describe("useImport hook", () => {
         wrapper: TestWrapper({
           dataProvider: mockDataProvider,
           resources: [{ name: "posts" }],
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             pathname: "/posts",
             resource: { name: "posts" },
           }),
@@ -218,7 +219,7 @@ describe("useImport hook", () => {
         ...MockJSONServer.default,
         createMany: jest.fn(),
       },
-    } as IDataMultipleContextProvider;
+    } as DataProviders;
 
     const { result } = renderHook(
       () =>
@@ -264,7 +265,7 @@ describe("useImport hook", () => {
           ...MockJSONServer.default,
           createMany: jest.fn(),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -296,7 +297,7 @@ describe("useImport hook", () => {
             };
           }),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -334,7 +335,7 @@ describe("useImport hook", () => {
             return Promise.reject(customError);
           },
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -370,7 +371,7 @@ describe("useImport hook", () => {
           ...MockJSONServer.default,
           create: jest.fn(),
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -401,7 +402,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: mockDataProvider,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),
@@ -444,7 +445,7 @@ describe("useImport hook", () => {
             };
           },
         },
-      } as IDataMultipleContextProvider;
+      } as DataProviders;
 
       const { result } = renderHook(
         () =>
@@ -461,7 +462,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: mockDataProvider,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),
@@ -489,7 +490,7 @@ describe("useImport hook", () => {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               resource: { name: "posts" },
             }),

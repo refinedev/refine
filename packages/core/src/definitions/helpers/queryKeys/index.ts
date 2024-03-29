@@ -1,9 +1,8 @@
-import { IQueryKeys } from "src/interfaces";
 import { QueryKey } from "@tanstack/react-query";
 
-import { MetaQuery } from "src/interfaces";
-import { pickNotDeprecated } from "../pickNotDeprecated";
+import { IQueryKeys, MetaQuery } from "../../../contexts/data/types";
 import { keys as newKeys } from "../keys";
+import { pickNotDeprecated } from "../pickNotDeprecated";
 
 /**
  * @deprecated `queryKeys` is deprecated. Please use `keys` instead.

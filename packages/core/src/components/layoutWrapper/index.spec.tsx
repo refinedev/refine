@@ -1,16 +1,20 @@
 import React from "react";
+
 import "@testing-library/jest-dom/extend-expect";
 
 import { LayoutWrapper } from "@components/layoutWrapper";
-import {
-  render,
-  TestWrapper,
-  MockJSONServer,
-  mockLegacyRouterProvider,
-} from "@test";
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
-import { LayoutProps } from "../../interfaces";
+import {
+  MockJSONServer,
+  TestWrapper,
+  mockLegacyRouterProvider,
+  render,
+} from "@test";
+
+import {
+  IRefineContextProvider,
+  LayoutProps,
+} from "../../contexts/refine/types";
 
 const renderWithRefineContext = (
   children: React.ReactNode,

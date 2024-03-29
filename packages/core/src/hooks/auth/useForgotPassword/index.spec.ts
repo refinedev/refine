@@ -4,7 +4,7 @@ import {
   TestWrapper,
   act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
 } from "@test";
 
@@ -55,11 +55,13 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
   });
 
   it("succeed and redirect forgot password", async () => {
-    const mockFn = jest.fn();
+    const replaceMock = jest.fn();
     const legacyRouterProvider = {
       ...mockLegacyRouterProvider(),
       useHistory: () => ({
-        replace: mockFn,
+        goBack: jest.fn(),
+        replace: replaceMock,
+        push: jest.fn(),
       }),
     };
     const { result } = renderHook(
@@ -94,7 +96,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy();
       expect(result.current.data).toBe("/redirect-path");
-      expect(mockFn).toBeCalledWith("/redirect-path");
+      expect(replaceMock).toBeCalledWith("/redirect-path");
     });
   });
 
@@ -104,7 +106,7 @@ describe("v3LegacyAuthProviderCompatible useForgotPassword Hook", () => {
       () => useForgotPassword({ v3LegacyAuthProviderCompatible: true }),
       {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => mockFn,
             },
@@ -262,7 +264,6 @@ describe("useForgotPassword Hook", () => {
     };
     const { result } = renderHook(() => useForgotPassword(), {
       wrapper: TestWrapper({
-        legacyRouterProvider,
         authProvider: {
           ...mockAuthProvider,
           forgotPassword: (params: any) => {
@@ -325,6 +326,7 @@ describe("useForgotPassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -360,6 +362,7 @@ describe("useForgotPassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -394,6 +397,7 @@ describe("useForgotPassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -493,6 +497,7 @@ describe("useForgotPassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,

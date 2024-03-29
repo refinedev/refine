@@ -17,7 +17,7 @@ import {
   Button,
   Space,
 } from "@mantine/core";
-import { IconInfoCircle } from "@tabler/icons";
+import { IconInfoCircle } from "@tabler/icons-react";
 import { useColorScheme } from "@mantine/hooks";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {

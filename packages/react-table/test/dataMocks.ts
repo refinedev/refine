@@ -1,3 +1,4 @@
+import { LegacyRouterProvider } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 export const posts = [
@@ -54,7 +55,7 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
-export const MockRouterProvider = {
+export const MockRouterProvider: LegacyRouterProvider = {
   useHistory: () => {
     const navigate = useNavigate();
 

@@ -17,7 +17,7 @@ import {
   useRouterType,
   useTranslate,
 } from "@refinedev/core";
-import { IconArrowLeft } from "@tabler/icons";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { SaveButton, Breadcrumb, SaveButtonProps } from "@components";
 import { CreateProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";

@@ -53,7 +53,6 @@ export const renderer = ({
   const recordName = "record";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useShow", "@refinedev/core"],
     ["Show", "@refinedev/mantine"],
     ["Title", "@mantine/core"],
@@ -639,8 +638,13 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
+<<<<<<< HEAD
 
     export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+=======
+
+    export const ${COMPONENT_NAME} = () => {
+>>>>>>> upstream/releases/april
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage

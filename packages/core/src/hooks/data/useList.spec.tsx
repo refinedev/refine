@@ -2,13 +2,14 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
-  mockRouterBindings,
-  queryClient,
   TestWrapper,
+  mockRouterProvider,
+  queryClient,
 } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../interfaces";
+
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useList } from "./useList";
 
 const mockRefineProvider: IRefineContextProvider = {
@@ -245,7 +246,7 @@ describe("useList Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: { baz: "qux" },
         }),
         resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -469,6 +470,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -505,6 +507,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -536,6 +539,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -573,6 +577,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1172,7 +1177,7 @@ describe("useList Hook", () => {
             getList: getListMock,
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "list",
           params: {},
           pathname: "/posts",

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "react-scripts build",
+    "build": "craco build",
     "compile": "npx tailwindcss -i ./src/styles/styles.css -o ./public/styles/styles.css --watch",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
+    "start": "craco start",
+    "test": "craco test"
   },
   "browserslist": {
     "production": [
@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",

@@ -14,7 +14,7 @@ export function ChakraUIAuth() {
         "@refinedev/react-table": "latest",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
         "@chakra-ui/react": "^2.5.1",
       }}
       startRoute="/login"

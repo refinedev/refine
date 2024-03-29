@@ -24,7 +24,7 @@ describe("table-mantine-basic", () => {
       },
     ).as("getDescPosts");
 
-    cy.get(".icon-tabler-selector").first().click();
+    cy.get(".tabler-icon-selector").first().click();
 
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
 
@@ -43,7 +43,7 @@ describe("table-mantine-basic", () => {
       },
     ).as("getAscPosts");
 
-    cy.get(".icon-tabler-chevron-down").first().click();
+    cy.get(".tabler-icon-chevron-down").first().click();
 
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
@@ -51,7 +51,7 @@ describe("table-mantine-basic", () => {
 
     cy.interceptGETPosts();
 
-    cy.get(".icon-tabler-chevron-down").first().click();
+    cy.get(".tabler-icon-chevron-down").first().click();
 
     cy.url().should(
       "not.include",
@@ -81,9 +81,9 @@ describe("table-mantine-basic", () => {
       },
     ).as("getFilteredPosts");
 
-    cy.get(".icon-tabler-filter").eq(1).click();
+    cy.get(".tabler-icon-filter").eq(1).click();
     cy.get("#title").type("lorem");
-    cy.get(".icon-tabler-check").click();
+    cy.get(".tabler-icon-check").click();
 
     cy.url().should(
       "include",
@@ -126,9 +126,9 @@ describe("table-mantine-basic", () => {
 
     cy.get(".mantine-Pagination-control").contains("2").click();
 
-    cy.get(".icon-tabler-filter").eq(1).click();
+    cy.get(".tabler-icon-filter").eq(1).click();
     cy.get("#title").type("lorem");
-    cy.get(".icon-tabler-check").click();
+    cy.get(".tabler-icon-check").click();
 
     cy.url().should("include", "current=1");
   });

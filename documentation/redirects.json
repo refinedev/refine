@@ -165,18 +165,6 @@
       "to": "/docs/data/hooks/use-show"
     },
     {
-      "from": "/docs/core/hooks/translate/useGetLocale/",
-      "to": "/docs/i18n/hooks/use-get-locale"
-    },
-    {
-      "from": "/docs/core/hooks/translate/useSetLocale/",
-      "to": "/docs/i18n/hooks/use-set-locale"
-    },
-    {
-      "from": "/docs/core/hooks/translate/useTranslate/",
-      "to": "/docs/i18n/hooks/use-translate"
-    },
-    {
       "from": "/docs/core/hooks/ui/useMenu/",
       "to": "/docs/core/hooks/utilities/use-menu"
     },
@@ -1098,18 +1086,6 @@
       "to": "/docs/data/hooks/use-table"
     },
     {
-      "from": "/docs/api-reference/core/hooks/translate/useGetLocale",
-      "to": "/docs/i18n/hooks/use-get-locale"
-    },
-    {
-      "from": "/docs/api-reference/core/hooks/translate/useSetLocale",
-      "to": "/docs/i18n/hooks/use-set-locale"
-    },
-    {
-      "from": "/docs/api-reference/core/hooks/translate/useTranslate",
-      "to": "/docs/i18n/hooks/use-translate"
-    },
-    {
       "from": "/docs/api-reference/core/hooks/ui/useModal",
       "to": "/docs/core/hooks/utilities/use-modal"
     },
@@ -1974,18 +1950,6 @@
       "to": "/docs/routing/hooks/use-navigation"
     },
     {
-      "from": "/docs/core/hooks/translate/use-get-locale",
-      "to": "/docs/i18n/hooks/use-get-locale"
-    },
-    {
-      "from": "/docs/core/hooks/translate/use-set-locale",
-      "to": "/docs/i18n/hooks/use-set-locale"
-    },
-    {
-      "from": "/docs/core/hooks/translate/use-translate",
-      "to": "/docs/i18n/hooks/use-translate"
-    },
-    {
       "from": "/docs/core/hooks/utilities/use-notification",
       "to": "/docs/notification/hooks/use-notification"
     },
@@ -2212,6 +2176,23 @@
     {
       "from": "/blog/2024/01/26/git-stash/",
       "to": "/blog/git-stash"
+    },
+    {
+      "to": "/docs/i18n/hooks/use-translation",
+      "from": [
+        "/docs/i18n/hooks/use-get-locale",
+        "/docs/i18n/hooks/use-set-locale",
+        "/docs/i18n/hooks/use-translate",
+        "/docs/core/hooks/translate/use-get-locale",
+        "/docs/core/hooks/translate/use-set-locale",
+        "/docs/core/hooks/translate/use-translate",
+        "/docs/api-reference/core/hooks/translate/useGetLocale",
+        "/docs/api-reference/core/hooks/translate/useSetLocale",
+        "/docs/api-reference/core/hooks/translate/useTranslate",
+        "/docs/core/hooks/translate/useGetLocale/",
+        "/docs/core/hooks/translate/useSetLocale/",
+        "/docs/core/hooks/translate/useTranslate/"
+      ]
     }
   ]
 }

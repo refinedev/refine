@@ -6,7 +6,7 @@ import {
   IconX,
   IconCopy,
   IconCheck,
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 
 import { prettierFormat } from "../../utilities";
 import { CreateInferencerConfig } from "../../types";
@@ -67,11 +67,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             </Group>
           </Affix>
           <div style={{ height: "50px" }} />
-          <Modal
-            size={800}
-            opened={visible}
-            onClose={() => setVisible(false)}
-          >
+          <Modal size={800} opened={visible} onClose={() => setVisible(false)}>
             <ActionIcon
               onClick={() => setVisible(false)}
               variant="transparent"

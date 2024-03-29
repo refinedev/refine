@@ -1,42 +1,43 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
   QueryObserverResult,
-  useQuery,
   UseQueryOptions,
+  useQuery,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
 import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
 import {
   useDataProvider,
   useHandleNotification,
+  useKeys,
   useMeta,
   useOnError,
   useTranslate,
 } from "@hooks";
+
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
+  CrudFilter,
+  CrudSort,
   CustomResponse,
   HttpError,
   MetaQuery,
   Prettify,
-  SuccessErrorNotification,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
-import { useKeys } from "@hooks/useKeys";
 
 interface UseCustomConfig<TQuery, TPayload> {
   /**
    * @deprecated `sort` is deprecated, use `sorters` instead.
    */
-  sort?: CrudSorting;
-  sorters?: CrudSorting;
-  filters?: CrudFilters;
+  sort?: CrudSort[];
+  sorters?: CrudSort[];
+  filters?: CrudFilter[];
   query?: TQuery;
   payload?: TPayload;
   headers?: {};

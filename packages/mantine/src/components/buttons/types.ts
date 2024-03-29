@@ -12,7 +12,7 @@ import {
   RefineSaveButtonProps,
   RefineShowButtonProps,
 } from "@refinedev/ui-types";
-import { TablerIconProps } from "@tabler/icons";
+import { IconProps } from "@tabler/icons-react";
 
 export type MantineButtonProps = Omit<ButtonProps, "classNames"> & {
   size?: string;
@@ -22,28 +22,28 @@ export type MantineButtonProps = Omit<ButtonProps, "classNames"> & {
 export type ShowButtonProps = RefineShowButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
@@ -51,41 +51,41 @@ export type ImportButtonProps = RefineImportButtonProps<
   MantineButtonProps,
   {
     inputProps: UseImportInputPropsType;
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
   MantineButtonProps,
   {
-    svgIconProps?: TablerIconProps;
+    svgIconProps?: Omit<IconProps, "ref">;
   }
 >;

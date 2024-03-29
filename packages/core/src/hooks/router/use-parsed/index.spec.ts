@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterBindings } from "@test";
+import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useParsed } from "./";
 
@@ -10,7 +10,7 @@ describe("useParsed Hook", () => {
       wrapper: TestWrapper({
         resources: [{ name: "posts" }],
         dataProvider: MockJSONServer,
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           params: {
             id: "1",
             current: 1,

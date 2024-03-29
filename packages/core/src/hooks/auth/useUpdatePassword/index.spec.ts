@@ -1,24 +1,26 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
+  TestWrapper,
   act,
   mockLegacyAuthProvider,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   queryClient,
-  TestWrapper,
 } from "@test";
 
+import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
 import { useUpdatePassword } from "./";
 
 const mockFn = jest.fn();
 
-const mockRouterProvider = {
+const legacyRouterProvider: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => ({
+    goBack: jest.fn(),
+    push: jest.fn(),
     replace: mockFn,
   }),
-  useLocation: () => ({}),
 };
 
 const mockAuthProvider = {
@@ -58,7 +60,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             logout: () => Promise.resolve(),
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
-          legacyRouterProvider: mockRouterProvider,
+          legacyRouterProvider,
         }),
       },
     );
@@ -90,7 +92,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             logout: () => Promise.resolve(),
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
-          legacyRouterProvider: mockRouterProvider,
+          legacyRouterProvider,
         }),
       },
     );
@@ -127,7 +129,7 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
             ...mockLegacyAuthProvider,
             updatePassword: updatePasswordMock,
           },
-          routerProvider: mockRouterProvider,
+          routerProvider: legacyRouterProvider,
         }),
       },
     );
@@ -165,8 +167,9 @@ describe("v3LegacyAuthProviderCompatible useUpdatePassword Hook", () => {
         wrapper: TestWrapper({
           notificationProvider: {
             open: openNotificationMock,
+            close: jest.fn(),
           },
-          routerProvider: mockRouterProvider,
+          routerProvider: legacyRouterProvider,
           legacyAuthProvider: {
             ...mockLegacyAuthProvider,
             updatePassword: () => {
@@ -219,7 +222,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -239,6 +242,7 @@ describe("useUpdatePassword Hook", () => {
 
   it("succeed update password", async () => {
     const mockGo = jest.fn();
+
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
         authProvider: {
@@ -256,7 +260,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },
@@ -295,7 +299,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -335,7 +339,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -376,7 +380,7 @@ describe("useUpdatePassword Hook", () => {
             });
           },
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -405,6 +409,7 @@ describe("useUpdatePassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -414,7 +419,7 @@ describe("useUpdatePassword Hook", () => {
               error: new Error("Error"),
             }),
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -449,7 +454,7 @@ describe("useUpdatePassword Hook", () => {
           ...mockAuthProvider,
           updatePassword: updatePasswordMock,
         },
-        routerProvider: mockRouterProvider,
+        routerProvider: legacyRouterProvider,
       }),
     });
 
@@ -489,8 +494,8 @@ describe("useUpdatePassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
-        routerProvider: mockRouterProvider,
         authProvider: {
           ...mockAuthProvider,
           updatePassword: () => {
@@ -531,11 +536,6 @@ describe("useUpdatePassword Hook", () => {
         }),
       {
         wrapper: TestWrapper({
-          routerProvider: mockRouterProvider,
-          notificationProvider: {
-            open: undefined,
-            close: undefined,
-          },
           authProvider: {
             ...mockAuthProvider,
             updatePassword: updatePasswordMock,
@@ -653,6 +653,7 @@ describe("useUpdatePassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
+          close: jest.fn(),
         },
         authProvider: {
           ...mockAuthProvider,
@@ -700,7 +701,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
           logout: () => Promise.resolve({ success: true }),
           updatePassword: () => updatePassword(),
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -740,7 +741,7 @@ describe("useUpdatePassword Hook authProvider selection", () => {
             logout: () => Promise.resolve({ success: true }),
             updatePassword: () => updatePassword(),
           },
-          legacyRouterProvider: mockRouterProvider,
+          legacyRouterProvider,
         }),
       },
     );
@@ -786,10 +787,9 @@ describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
+              goBack: jest.fn(),
               replace: mockFn,
-            }),
-            useLocation: () => ({
-              search: undefined,
+              push: jest.fn(),
             }),
           },
         }),
@@ -832,7 +832,7 @@ describe("useUpdatePassword Hook with v3LegacyAuthProviderCompatible", () => {
             getUserIdentity: () => Promise.resolve({ id: 1 }),
           },
           routerProvider: {
-            ...mockRouterBindings({
+            ...mockRouterProvider({
               fns: {
                 go: () => mockFn,
               },

@@ -25,7 +25,15 @@ import {
   Flex,
 } from "@mantine/core";
 
-import { IconList, IconPower, IconDashboard } from "@tabler/icons";
+import {
+  IconList,
+  IconMenu2,
+  IconChevronRight,
+  IconChevronLeft,
+  IconPower,
+  IconDashboard,
+} from "@tabler/icons-react";
+import { RefineLayoutSiderProps } from "../types";
 
 import { RefineTitle as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";

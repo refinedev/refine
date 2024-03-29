@@ -13,13 +13,8 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import {
-  ActionIcon,
-  ActionIconCssVariables,
-  Anchor,
-  Button,
-} from "@mantine/core";
-import { IconSquarePlus } from "@tabler/icons";
+import { ActionIcon, Anchor, Button } from "@mantine/core";
+import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { CloneButtonProps } from "../types";
