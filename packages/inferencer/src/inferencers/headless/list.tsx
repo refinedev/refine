@@ -51,7 +51,6 @@ export const renderer = ({
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useNavigation", "@refinedev/core"],
     ["useTable", "@refinedev/react-table"],
     ["ColumnDef", "@tanstack/react-table"],
@@ -718,7 +717,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}

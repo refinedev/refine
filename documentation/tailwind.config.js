@@ -75,6 +75,14 @@ module.exports = {
           "walkthrough-button-alt-bg": "#474E6B",
           "enterprise-table-alt-dark": "#1D1E30",
           "enterprise-table-alt": "#F4F8FB",
+          "react-1": "#F6F7F9",
+          "react-2": "#EAEBEF",
+          "react-3": "#E3E4E5",
+          "react-4": "#99A1B3",
+          "react-5": "#667084",
+          "react-6": "#444955",
+          "react-7": "#343A46",
+          "react-8": "#23272F",
         },
         gray: {
           0: "rgb(var(--color-gray-0) / <alpha-value>)",
@@ -138,6 +146,8 @@ module.exports = {
         menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
         "menu-dark": "0px 0px 0px 4px rgba(48, 52, 80, 0.25)",
         "menu-light": "0px 0px 0px 4px rgba(222, 229, 237, 0.25)",
+        "menu-blog-dark": "0px 0px 0px 4px #4449551A",
+        "menu-blog-light": "0px 0px 0px 4px #99A1B31A",
         "landing-sweet-spot-code-dark":
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
         "landing-sweet-spot-code-light":
@@ -389,8 +399,14 @@ module.exports = {
         ],
         "landing-hero-beam-bg":
           "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
-        "footer-dark-bg": [
+        "footer-landing-dark-bg": [
           "linear-gradient(180deg, rgba(29, 30, 48, 0.5) 0%, #14141F 100%)",
+        ],
+        "footer-blog-dark-bg": [
+          "linear-gradient(180deg, rgba(52, 58, 70, 0) 0%, rgba(52, 58, 70, 0.5) 100%)",
+        ],
+        "footer-blog-light-bg": [
+          "linear-gradient(180deg, #F6F7F9 0%, rgba(246, 247, 249, 0) 100%)",
         ],
         "landing-wizard-side-bg": [
           "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.38) 50%, rgba(48, 52, 80, 0.00) 100%)",
@@ -878,12 +894,12 @@ module.exports = {
       "tutorial-md": "960px",
       "tutorial-lg": "1440px",
       "landing-footer": "1264px",
-      "blog-sm": "688px",
-      "blog-md": "1000px",
-      "blog-lg": "1280px",
-      "blog-max": "1408px",
+      "blog-sm": "592px",
+      "blog-md": "720px",
+      "blog-lg": "960px",
+      "blog-max": "1296px",
       "blog-xl": "1440px",
-      "blog-2xl": "1584px",
+      "blog-2xl": "1600px",
       walkthrough: "976px",
       "doc-form-lg": "824px",
       "doc-form-md": "688px",

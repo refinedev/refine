@@ -1,4 +1,8 @@
-import { CrudFilter, CrudFilters, CrudOperators } from "@refinedev/core";
+import {
+  ConditionalFilter,
+  CrudOperators,
+  LogicalFilter,
+} from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
 import { NamingConvention } from "src/dataProvider";
@@ -25,37 +29,61 @@ export type HasuraFilterCondition =
   | "_regex"
   | "_iregex";
 
-const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
-  {
-    eq: "_eq",
-    ne: "_neq",
-    lt: "_lt",
-    gt: "_gt",
-    lte: "_lte",
-    gte: "_gte",
-    in: "_in",
-    nin: "_nin",
-    contains: "_ilike",
-    ncontains: "_nilike",
-    containss: "_like",
-    ncontainss: "_nlike",
-    null: "_is_null",
-    or: "_or",
-    and: "_and",
-    between: undefined,
-    nbetween: undefined,
-    nnull: "_is_null",
-    startswith: "_iregex",
-    nstartswith: "_iregex",
-    endswith: "_iregex",
-    nendswith: "_iregex",
-    startswiths: "_similar",
-    nstartswiths: "_nsimilar",
-    endswiths: "_similar",
-    nendswiths: "_nsimilar",
-  };
+export type HasuraCrudOperators = CrudOperators | "not";
 
-export const handleFilterValue = (operator: CrudOperators, value: any) => {
+export type HasuraLogicalFilter = Omit<LogicalFilter, "operator"> & {
+  operator: Exclude<HasuraCrudOperators, "or" | "and" | "not">;
+};
+
+export type HasuraConditionalFilter = Omit<
+  ConditionalFilter,
+  "operator" | "value"
+> & {
+  operator: Extract<HasuraCrudOperators, "or" | "and" | "not">;
+  value: HasuraCrudFilters;
+};
+
+export type HasuraCrudFilter = HasuraLogicalFilter | HasuraConditionalFilter;
+
+export type HasuraCrudFilters = HasuraCrudFilter[];
+
+const hasuraFilters: Record<
+  HasuraCrudOperators,
+  HasuraFilterCondition | undefined
+> = {
+  eq: "_eq",
+  ne: "_neq",
+  lt: "_lt",
+  gt: "_gt",
+  lte: "_lte",
+  gte: "_gte",
+  in: "_in",
+  nin: "_nin",
+  contains: "_ilike",
+  ncontains: "_nilike",
+  containss: "_like",
+  ncontainss: "_nlike",
+  null: "_is_null",
+  or: "_or",
+  and: "_and",
+  not: "_not",
+  between: undefined,
+  nbetween: undefined,
+  nnull: "_is_null",
+  startswith: "_iregex",
+  nstartswith: "_iregex",
+  endswith: "_iregex",
+  nendswith: "_iregex",
+  startswiths: "_similar",
+  nstartswiths: "_nsimilar",
+  endswiths: "_similar",
+  nendswiths: "_nsimilar",
+};
+
+export const handleFilterValue = (
+  operator: HasuraCrudOperators,
+  value: any,
+) => {
   switch (operator) {
     case "startswiths":
     case "nstartswiths":
@@ -90,12 +118,17 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
 };
 
 export const generateNestedFilterQuery = (
-  filter: CrudFilter,
+  filter: HasuraCrudFilter,
   namingConvention: NamingConvention = "hasura-default",
 ): any => {
   const { operator } = filter;
 
-  if (operator !== "or" && operator !== "and" && "field" in filter) {
+  if (
+    operator !== "or" &&
+    operator !== "and" &&
+    operator !== "not" &&
+    "field" in filter
+  ) {
     const { field, value } = filter;
 
     const defaultNamingConvention = namingConvention === "hasura-default";
@@ -125,7 +158,7 @@ export const generateNestedFilterQuery = (
 };
 
 export const generateFilters: any = (
-  filters?: CrudFilters,
+  filters?: HasuraCrudFilters,
   namingConvention: NamingConvention = "hasura-default",
 ) => {
   if (!filters) {

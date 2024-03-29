@@ -30,9 +30,6 @@ module.exports = {
       },
     ],
   },
-  coveragePathIgnorePatterns: [
-    "<rootDir>/src/index.ts",
-    "<rootDir>/src/interfaces/",
-  ],
+  coveragePathIgnorePatterns: ["<rootDir>/src/index.ts"],
   testEnvironment: "jsdom",
 };

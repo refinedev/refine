@@ -1,12 +1,12 @@
 import { renderHook } from "@testing-library/react";
+import papaparse from "papaparse";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
-import { mockRouterBindings, posts } from "@test/dataMocks";
+import { mockRouterProvider, posts } from "@test/dataMocks";
 
-import { ExportOptions, useExport } from "./";
-import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
 import { downloadInBrowser } from "../../definitions/helpers/downloadInBrowser";
-import { unparse, UnparseConfig } from "papaparse";
+import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
+import { ExportOptions, useExport } from "./";
 
 const testCsv = "col1,col2\r\ncell1,cell2";
 jest.mock("papaparse", () => ({
@@ -43,7 +43,7 @@ describe("useExport Hook", () => {
       resultingCSV = await result.current.triggerExport();
     });
 
-    expect(unparse).toBeCalledWith(posts, expect.anything());
+    expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
     expect(resultingCSV).toEqual(testCsv);
   });
 
@@ -81,7 +81,7 @@ describe("useExport Hook", () => {
 
     const { result } = renderHook(() => useExport(), {
       wrapper: TestWrapper({
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
             list: "/posts",
@@ -120,7 +120,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(unparse).toBeCalledWith([posts[0]], expect.anything());
+    expect(papaparse.unparse).toBeCalledWith([posts[0]], expect.anything());
   });
 
   it("should work with custom pageSize", async () => {
@@ -141,7 +141,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(unparse).toBeCalledWith(posts, expect.anything());
+    expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
   });
 
   it("should work with custom mapData", async () => {
@@ -165,7 +165,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(unparse).toBeCalledWith(
+    expect(papaparse.unparse).toBeCalledWith(
       posts.map((post) => ({
         id: post.id,
         title: post.title,
@@ -203,7 +203,7 @@ describe("useExport Hook", () => {
     expect(result.current.isLoading).toEqual(false);
     expect(onError).toBeCalledWith(Error("Error"));
 
-    expect(unparse).not.toBeCalled();
+    expect(papaparse.unparse).not.toBeCalled();
   });
 
   it.each(["identifier", "name"])(
@@ -219,7 +219,7 @@ describe("useExport Hook", () => {
       const { result } = renderHook(() => useExport(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             resource: {
               name: "postsName",
               identifier: isIdentifier ? "postsIdentifier" : undefined,
@@ -232,7 +232,7 @@ describe("useExport Hook", () => {
         await result.current.triggerExport();
       });
 
-      expect(unparse).toBeCalledWith(posts, expect.anything());
+      expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
 
       if (isIdentifier) {
         expect(pickDataProviderSpy).toBeCalledWith(
@@ -251,13 +251,13 @@ describe("useExport Hook", () => {
     type TestCase = {
       exportOptions?: ExportOptions;
       expectations?: {
-        unparseConfig: UnparseConfig;
+        unparseConfig: papaparse.UnparseConfig;
         filename: string | RegExp;
         useBom: boolean;
         csvToSave: string;
       };
     };
-    const defaultUnparseConfig: UnparseConfig = {
+    const defaultUnparseConfig: papaparse.UnparseConfig = {
       quoteChar: '"',
       header: true,
       delimiter: undefined,
@@ -428,7 +428,10 @@ describe("useExport Hook", () => {
 
         expectations = expectations ?? defaultExpect;
         expect(resultCSV).toEqual(expectations.csvToSave);
-        expect(unparse).toBeCalledWith(posts, expectations.unparseConfig);
+        expect(papaparse.unparse).toBeCalledWith(
+          posts,
+          expectations.unparseConfig,
+        );
         expect(downloadInBrowser).toBeCalledWith(
           expect.stringMatching(expectations.filename),
           `${expectations.useBom ? "\ufeff" : ""}${expectations.csvToSave}`,

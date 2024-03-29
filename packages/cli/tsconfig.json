@@ -21,7 +21,6 @@
       "@telemetry": ["src/telemetry"],
       "@transformers/*": ["src/transformers/*"],
       "@transformers": ["src/transformers/"]
-    },
-    "typeRoots": ["./src/types", "../../node_modules/@types"]
+    }
   }
 }

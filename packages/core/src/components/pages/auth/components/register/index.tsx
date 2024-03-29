@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { RegisterPageProps } from "../../../../../interfaces";
 
 import {
-  useTranslate,
-  useRouterContext,
   useLink,
-  useRouterType,
   useRegister,
+  useRouterContext,
+  useRouterType,
+  useTranslate,
 } from "@hooks";
 
-import { DivPropsType, FormPropsType } from "../..";
 import { useActiveAuthProvider } from "@definitions/helpers";
+
+import { DivPropsType, FormPropsType } from "../..";
+import { RegisterPageProps } from "../../types";
 
 type RegisterProps = RegisterPageProps<
   DivPropsType,

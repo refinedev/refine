@@ -4,17 +4,17 @@ import {
   MockJSONServer,
   TestWrapper,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useNavigation } from ".";
-import { IRouterContext } from "src/interfaces";
+import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();
 const legacyBackMock = jest.fn();
 
-const legacyRouterProvider: IRouterContext = {
+const legacyRouterProvider: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => {
     return {
@@ -28,7 +28,7 @@ const legacyRouterProvider: IRouterContext = {
 const goMock = jest.fn();
 const backMock = jest.fn();
 
-const routerProvider = mockRouterBindings({
+const routerProvider = mockRouterProvider({
   fns: {
     go: () => {
       return ({ to, type, ...rest }) => {

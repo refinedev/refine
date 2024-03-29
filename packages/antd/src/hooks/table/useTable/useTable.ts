@@ -2,8 +2,6 @@ import React, { Children, createElement, Fragment } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
-import { SorterResult } from "antd/lib/table/interface";
-
 import {
   useLiveMode,
   BaseRecord,
@@ -20,6 +18,7 @@ import {
   mapAntdFilterToCrudFilter,
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
+import { FilterValue, SorterResult } from "../../../definitions/table";
 
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
@@ -143,11 +142,8 @@ export const useTable = <
 
   const onChange = (
     paginationState: TablePaginationConfig,
-    tableFilters: Record<
-      string,
-      (string | number | boolean) | (string | number | boolean)[] | null
-    >,
-    sorter: SorterResult<any> | SorterResult<any>[],
+    tableFilters: Record<string, FilterValue | null>,
+    sorter: SorterResult | SorterResult[],
   ) => {
     if (tableFilters && Object.keys(tableFilters).length > 0) {
       // Map Antd:Filter -> refine:CrudFilter

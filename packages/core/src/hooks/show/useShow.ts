@@ -1,25 +1,26 @@
 import React, { useState } from "react";
+
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import warnOnce from "warn-once";
 
+import { pickNotDeprecated } from "@definitions/helpers";
 import { useMeta, useOne } from "@hooks";
 
 import {
+  BaseKey,
   BaseRecord,
   GetOneResponse,
-  SuccessErrorNotification,
-  MetaQuery,
-  LiveModeProps,
-  BaseKey,
   HttpError,
+  MetaQuery,
   Prettify,
-} from "../../interfaces";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import { useResource } from "../resource/useResource";
-import { pickNotDeprecated } from "@definitions/helpers";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
 
 export type useShowReturnType<

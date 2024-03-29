@@ -6,6 +6,9 @@ const sharedConfig: Partial<Options> = {
   splitting: false,
   sourcemap: true,
   clean: false,
+  minify: true,
+  format: ["cjs", "esm"],
+  outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [
     NodeResolvePlugin({
@@ -20,7 +23,7 @@ const sharedConfig: Partial<Options> = {
       },
     }),
   ],
-  onSuccess: "tsc --project tsconfig.declarations.json",
+  onSuccess: "npm run types",
 };
 
 export default defineConfig([

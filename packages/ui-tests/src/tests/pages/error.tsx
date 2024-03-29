@@ -30,7 +30,9 @@ export const pageErrorTests = (
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useHistory: () => ({
+              goBack: jest.fn(),
               push: pushMock,
+              replace: jest.fn(),
             }),
           },
         }),

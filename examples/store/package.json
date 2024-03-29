@@ -58,6 +58,6 @@
     "postcss-preset-env": "^7.2.3",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
-    "typescript": "^4.7.4"
+    "typescript": "^5.4.2"
   }
 }

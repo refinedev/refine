@@ -11,7 +11,7 @@ export default function BaseCoreTable() {
         "@tanstack/react-table": "latest",
         "@refinedev/chakra-ui": "latest",
         "@chakra-ui/react": "^2.5.1",
-        "@tabler/icons": "^1.119.0",
+        "@tabler/icons-react": "^3.1.0",
       }}
       startRoute="/"
       files={{
@@ -257,7 +257,7 @@ type PaginationProps = {
 export const ColumnSorterTsxCode = `
 import React, { useState } from "react";
 import { IconButton } from "@chakra-ui/react";
-import { IconChevronDown, IconChevronUp, IconSelector } from "@tabler/icons";
+import { IconChevronDown, IconChevronUp, IconSelector } from "@tabler/icons-react";
 
 import type { SortDirection } from "@tanstack/react-table";
 
@@ -304,7 +304,7 @@ import {
     VStack,
     HStack,
 } from "@chakra-ui/react";
-import { IconFilter, IconX, IconCheck } from "@tabler/icons";
+import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
 
 
 interface ColumnButtonProps {

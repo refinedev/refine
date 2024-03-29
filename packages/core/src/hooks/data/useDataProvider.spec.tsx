@@ -43,15 +43,9 @@ describe("useDataProvider Hook without default data provider property", () => {
   });
 
   it("should get the correct data provider methods", async () => {
-    try {
-      result.current("someDataProvider");
-    } catch (error) {
-      expect(error).toEqual(
-        new Error(
-          "If you have multiple data providers, you must provide default data provider property",
-        ),
-      );
-    }
+    expect(() => result.current("someDataProvider")).toThrowError(
+      "If you have multiple data providers, you must provide default data provider property",
+    );
   });
 
   it("should throw error if don't pass dataProviderName if there is no default data provider", async () => {

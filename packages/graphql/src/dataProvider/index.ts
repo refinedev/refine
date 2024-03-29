@@ -3,7 +3,13 @@ import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
-import { generateFilter, generateSort } from "../utils";
+import gqlTag from "graphql-tag";
+import {
+  generateFilter,
+  generateSort,
+  getOperationFields,
+  isMutation,
+} from "../utils";
 
 const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
   return {
@@ -16,6 +22,25 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const camelResource = camelCase(resource);
 
       const operation = meta?.operation ?? camelResource;
+
+      if (meta?.gqlQuery) {
+        const response = await client.request<BaseRecord>(meta.gqlQuery, {
+          ...meta?.variables,
+          sort: sortBy,
+          where: filterBy,
+          ...(mode === "server"
+            ? {
+                start: (current - 1) * pageSize,
+                limit: pageSize,
+              }
+            : {}),
+        });
+
+        return {
+          data: response[operation],
+          total: response[operation].count,
+        };
+      }
 
       const { query, variables } = gql.query({
         operation,
@@ -46,6 +71,17 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       const operation = meta?.operation ?? camelResource;
 
+      if (meta?.gqlQuery) {
+        const response = await client.request<BaseRecord>(meta.gqlQuery, {
+          where: {
+            id_in: ids,
+          },
+        });
+        return {
+          data: response[operation],
+        };
+      }
+
       const { query, variables } = gql.query({
         operation,
         variables: {
@@ -68,8 +104,22 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const singularResource = pluralize.singular(resource);
       const camelCreateName = camelCase(`create-${singularResource}`);
 
-      const operation = meta?.operation ?? camelCreateName;
       const inputType = meta?.inputType ?? `${camelCreateName}Input`;
+
+      const operation = meta?.operation ?? camelCreateName;
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (gqlOperation) {
+        const response = await client.request<BaseRecord>(gqlOperation, {
+          input: {
+            data: variables || {},
+          },
+        });
+
+        return {
+          data: response[operation][singularResource],
+        };
+      }
 
       const { query, variables: gqlVariables } = gql.mutation({
         operation,
@@ -98,8 +148,28 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const singularResource = pluralize.singular(resource);
       const camelCreateName = camelCase(`create-${singularResource}`);
 
-      const operation = meta?.operation ?? camelCreateName;
       const inputType = meta?.operation ?? `${camelCreateName}Input`;
+
+      const operation = meta?.operation ?? camelCreateName;
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (gqlOperation) {
+        const response = await Promise.all(
+          variables.map(async (param) => {
+            const result = await client.request<BaseRecord>(gqlOperation, {
+              input: {
+                data: param || {},
+              },
+            });
+
+            return result[operation][singularResource];
+          }),
+        );
+
+        return {
+          data: response,
+        };
+      }
 
       const response = await Promise.all(
         variables.map(async (param) => {
@@ -133,8 +203,23 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const singularResource = pluralize.singular(resource);
       const camelUpdateName = camelCase(`update-${singularResource}`);
 
-      const operation = meta?.operation ?? camelUpdateName;
       const inputType = meta?.operation ?? `${camelUpdateName}Input`;
+
+      const operation = meta?.operation ?? camelUpdateName;
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (gqlOperation) {
+        const response = await client.request<BaseRecord>(gqlOperation, {
+          id,
+          data: {
+            ...variables,
+          },
+        });
+
+        return {
+          data: response[operation][singularResource],
+        };
+      }
 
       const { query, variables: gqlVariables } = gql.mutation({
         operation,
@@ -165,6 +250,27 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       const operation = meta?.operation ?? camelUpdateName;
       const inputType = meta?.operation ?? `${camelUpdateName}Input`;
+
+      if (meta?.gqlMutation) {
+        const response = await Promise.all(
+          ids.map(async (id) => {
+            if (!meta?.gqlMutation) return null;
+
+            const result = await client.request<BaseRecord>(meta.gqlMutation, {
+              input: {
+                value: { where: { id }, data: variables },
+                type: inputType,
+              },
+            });
+
+            return result[operation][singularResource];
+          }),
+        );
+
+        return {
+          data: response,
+        };
+      }
 
       const response = await Promise.all(
         ids.map(async (id) => {
@@ -199,6 +305,34 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const camelResource = camelCase(singularResource);
 
       const operation = meta?.operation ?? camelResource;
+      const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
+      const pascalOperation = camelCase(operation, {
+        pascalCase: true,
+      });
+
+      if (gqlOperation) {
+        let query = gqlOperation;
+
+        if (isMutation(gqlOperation)) {
+          const stringFields = getOperationFields(gqlOperation);
+
+          query = gqlTag`
+                        query Get${pascalOperation}($id: $uuid!) {
+                            ${operation}(id: $id) {
+                            ${stringFields}
+                            }
+                        }
+                    `;
+        }
+
+        const response = await client.request<BaseRecord>(query, {
+          id,
+        });
+
+        return {
+          data: response[operation],
+        };
+      }
 
       const { query, variables } = gql.query({
         operation,
@@ -221,6 +355,18 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       const operation = meta?.operation ?? camelDeleteName;
       const inputType = meta?.operation ?? `${camelDeleteName}Input`;
+
+      if (meta?.gqlMutation) {
+        const response = await client.request<BaseRecord>(meta.gqlMutation, {
+          input: {
+            where: { id },
+          },
+        });
+
+        return {
+          data: response[operation][singularResource],
+        };
+      }
 
       const { query, variables } = gql.mutation({
         operation,
@@ -252,6 +398,26 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       const operation = meta?.operation ?? camelDeleteName;
       const inputType = meta?.operation ?? `${camelDeleteName}Input`;
+
+      if (meta?.gqlMutation) {
+        const response = await Promise.all(
+          ids.map(async (id) => {
+            if (!meta?.gqlMutation) return null;
+
+            const result = await client.request<BaseRecord>(meta.gqlMutation, {
+              input: {
+                where: { id },
+              },
+            });
+
+            return result[operation][singularResource];
+          }),
+        );
+
+        return {
+          data: response,
+        };
+      }
 
       const response = await Promise.all(
         ids.map(async (id) => {
@@ -290,6 +456,17 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
 
       if (url) {
         gqlClient = new GraphQLClient(url, { headers });
+      }
+
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (gqlOperation) {
+        const response: any = await client.request(
+          gqlOperation,
+          meta?.variables ?? {},
+        );
+
+        return { data: response };
       }
 
       if (meta) {

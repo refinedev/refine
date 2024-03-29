@@ -1,32 +1,34 @@
 import { useCallback, useMemo, useState } from "react";
+
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
-import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
 import get from "lodash/get";
+import uniqBy from "lodash/uniqBy";
 
+import { pickNotDeprecated } from "@definitions/helpers";
 import { useList, useMany, useMeta } from "@hooks";
+
 import {
-  CrudSorting,
+  BaseKey,
   BaseOption,
   BaseRecord,
-  GetManyResponse,
+  CrudFilter,
+  CrudSort,
   GetListResponse,
-  CrudFilters,
-  SuccessErrorNotification,
+  GetManyResponse,
   HttpError,
-  LiveModeProps,
-  BaseKey,
-  Pagination,
   MetaQuery,
+  Pagination,
   Prettify,
-} from "../../interfaces";
-import { pickNotDeprecated } from "@definitions/helpers";
-import { useResource } from "../resource/useResource/index";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import { BaseListProps } from "../data/useList";
+import { useResource } from "../resource/useResource/index";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
@@ -66,15 +68,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Allow us to sort the options
    * @deprecated Use `sorters` instead
    */
-  sort?: CrudSorting;
+  sort?: CrudSort[];
   /**
    * Allow us to sort the options
    */
-  sorters?: CrudSorting;
+  sorters?: CrudSort[];
   /**
    * Resource name for API data interactions
    */
-  filters?: CrudFilters;
+  filters?: CrudFilter[];
   /**
    * Adds extra `options`
    */
@@ -124,7 +126,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * If defined, this callback allows us to override all filters for every search request.
    * @default `undefined`
    */
-  onSearch?: (value: string) => CrudFilters;
+  onSearch?: (value: string) => CrudFilter[];
   /**
    * Additional meta data to pass to the `useMany` from the data provider
    */
@@ -186,7 +188,7 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TError, TOption> => {
-  const [search, setSearch] = useState<CrudFilters>([]);
+  const [search, setSearch] = useState<CrudFilter[]>([]);
   const [options, setOptions] = useState<TOption[]>([]);
   const [selectedOptions, setSelectedOptions] = useState<TOption[]>([]);
 
@@ -290,17 +292,15 @@ export const useSelect = <
 
   const defaultQueryOnSuccess = useCallback(
     (data: GetListResponse<TData>) => {
-      {
-        setOptions(
-          data.data.map(
-            (item) =>
-              ({
-                label: getOptionLabel(item),
-                value: getOptionValue(item),
-              }) as TOption,
-          ),
-        );
-      }
+      setOptions(
+        data.data.map(
+          (item) =>
+            ({
+              label: getOptionLabel(item),
+              value: getOptionValue(item),
+            }) as TOption,
+        ),
+      );
     },
     [optionLabel, optionValue],
   );

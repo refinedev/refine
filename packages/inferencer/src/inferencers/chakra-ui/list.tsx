@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useTable } from "@refinedev/react-table";
 import { flexRender } from "@tanstack/react-table";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 
 import { createInferencer } from "../../create-inferencer";
 import {
@@ -76,7 +76,6 @@ export const renderer = ({
   const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useTable", "@refinedev/react-table"],
     ["ColumnDef", "@tanstack/react-table"],
     ["flexRender", "@tanstack/react-table"],
@@ -93,8 +92,8 @@ export const renderer = ({
     ["IconButton", "@chakra-ui/react"],
     ["usePagination", "@refinedev/chakra-ui"],
     ["Box", "@chakra-ui/react"],
-    ["IconChevronRight", "@tabler/icons"],
-    ["IconChevronLeft", "@tabler/icons"],
+    ["IconChevronRight", "@tabler/icons-react"],
+    ["IconChevronLeft", "@tabler/icons-react"],
   ];
 
   if (i18n) {
@@ -791,7 +790,7 @@ export const renderer = ({
     import React from "react";
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const columns = React.useMemo<ColumnDef<any>[]>(() => [
             ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
@@ -972,7 +971,11 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
       },
     ],
     ["@refinedev/react-table", "RefineReactTable", { useTable }],
-    ["@tabler/icons", "TablerIcons", { IconChevronRight, IconChevronLeft }],
+    [
+      "@tabler/icons-react",
+      "TablerIcons",
+      { IconChevronRight, IconChevronLeft },
+    ],
     [
       "@chakra-ui/react",
       "ChakraUI",

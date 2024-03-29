@@ -1,9 +1,11 @@
 import React from "react";
+
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { ForgotPasswordPage } from ".";
 import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
-import { AuthProvider } from "src/interfaces";
+
+import { ForgotPasswordPage } from ".";
+import { AuthProvider } from "../../../../../contexts/auth/types";
 
 const mockAuthProvider: AuthProvider = {
   login: async () => ({ success: true }),

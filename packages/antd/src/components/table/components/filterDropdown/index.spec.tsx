@@ -103,7 +103,7 @@ describe("FilterDropdown", () => {
           !selectedKeys
             ? ""
             : Array.isArray(selectedKeys)
-              ? dayjs(selectedKeys[0])
+              ? dayjs(selectedKeys[0] as string)
               : dayjs(selectedKeys)
         }
       >
@@ -122,7 +122,7 @@ describe("FilterDropdown", () => {
           !selectedKeys
             ? ""
             : Array.isArray(selectedKeys)
-              ? dayjs(selectedKeys[0])
+              ? dayjs(selectedKeys[0] as string)
               : dayjs(selectedKeys)
         }
       >
@@ -144,7 +144,7 @@ describe("FilterDropdown", () => {
           !selectedKeys
             ? ""
             : Array.isArray(selectedKeys)
-              ? dayjs(selectedKeys[0])
+              ? dayjs(selectedKeys[0] as string)
               : dayjs(selectedKeys)
         }
       >

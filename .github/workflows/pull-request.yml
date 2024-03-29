@@ -54,6 +54,9 @@ jobs:
       - name: Test
         run: |
           npm run test:all -- --skip-nx-cache
+      - name: Publint
+        run: |
+          npm run publint:all
 
   tsdoc-check:
     runs-on: ubuntu-latest
