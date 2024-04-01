@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -20,7 +20,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   return (
     <Button
@@ -30,7 +30,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       className={RefineButtonClassNames.SaveButton}
       {...rest}
     >
-      {!hideText && (children ?? translate("buttons.save", "Save"))}
+      {!hideText && (children ?? label)}
     </Button>
   );
 };

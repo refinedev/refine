@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Upload } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useImportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -21,8 +21,9 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
   buttonProps,
   hideText = false,
   children,
+  loading,
 }) => {
-  const translate = useTranslate();
+  const { label } = useImportButton();
 
   return (
     <Upload {...uploadProps}>
@@ -30,9 +31,10 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         icon={<ImportOutlined />}
         data-testid={RefineButtonTestIds.ImportButton}
         className={RefineButtonClassNames.ImportButton}
+        loading={loading}
         {...buttonProps}
       >
-        {!hideText && (children ?? translate("buttons.import", "Import"))}
+        {!hideText && (children ?? label)}
       </Button>
     </Upload>
   );
