@@ -54,7 +54,7 @@
     "http-proxy-middleware": "^2.0.6",
     "inquirer": "^8.2.5",
     "inquirer-autocomplete-prompt": "^2.0.0",
-    "jscodeshift": "0.13.1",
+    "jscodeshift": "0.15.2",
     "marked": "^4.3.0",
     "marked-terminal": "^6.0.0",
     "node-emoji": "^2.1.3",
@@ -64,7 +64,7 @@
     "pluralize": "^8.0.0",
     "preferred-pm": "^3.0.3",
     "prettier": "^2.7.1",
-    "semver": "7.3.8",
+    "semver": "7.5.2",
     "semver-diff": "^3.1.1",
     "temp": "^0.9.4",
     "tslib": "^2.6.2"

@@ -398,6 +398,18 @@ Don't worry; according to the `@tanstack/query` [documentation](https://tanstack
 />
 ```
 
+## Why are there network errors showing in the console?
+
+When working with Refine in development environment you may receive network errors in the console. Browsers will log network errors regardless of the status of the Promise. This is a common behavior in development environments and does not affect the functionality of the application.
+
+Still, there two common errors that you may encounter when working with Refine in development environment but you can safely ignore them:
+
+- `401 (Unauthorized) from :5001/api/.auth/sessions/whoami` - This error is related with the Refine's Devtools and logged if there are no active authentication sessions in Devtools. You can get rid of this error by logging in to the Devtools.
+
+- Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behing Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/docs/packages/inferencer/#how-the-fields-are-inferred).
+
+If you have any other network errors thrown by Refine and have no relation with the above mentioned errors or not caused by your project's logic, please reach out to us via [GitHub Issues](https://github.com/refinedev/refine/issues) or our [Discord Community](https://discord.gg/refine).
+
 [use-form-core]: /docs/core/hooks/use-form/
 [use-form-react-hook-form]: /docs/packages/list-of-packages
 [use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form

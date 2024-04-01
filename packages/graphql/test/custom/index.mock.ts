@@ -74,3 +74,83 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
       "85ms",
     ],
   );
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: updatePostInput) {\n  updatePost(input: $input) {\n    post {\n      id\n      title\n    }\n  }\n}\n",
+    variables: {
+      input: { where: { id: "2121" }, data: { title: "custom-foo" } },
+    },
+  })
+  .reply(
+    200,
+    { data: { updatePost: { post: { id: "2121", title: "custom-foo" } } } },
+    [
+      "Date",
+      "Tue, 12 Mar 2024 21:55:14 GMT",
+      "Content-Type",
+      "application/json",
+      "Content-Length",
+      "68",
+      "Connection",
+      "close",
+      "Vary",
+      "Origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-Powered-By",
+      "Strapi <strapi.io>",
+      "X-Response-Time",
+      "57ms",
+    ],
+  );
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "query ($where: JSON, $sort: String) {\n  posts(where: $where, sort: $sort) {\n    id\n    title\n  }\n}\n",
+    variables: { sort: "id:asc", where: { title_contains: "foo" } },
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          { id: "1090", title: "foo" },
+          { id: "1091", title: "foo" },
+          { id: "1092", title: "foo" },
+          { id: "1093", title: "foo" },
+          { id: "2121", title: "custom-foo" },
+          { id: "10047", title: "foo-2" },
+          { id: "10048", title: "foo" },
+          { id: "10049", title: "foo-2" },
+          { id: "10050", title: "foo" },
+        ],
+      },
+    },
+    [
+      "Date",
+      "Tue, 12 Mar 2024 22:02:22 GMT",
+      "Content-Type",
+      "application/json",
+      "Content-Length",
+      "288",
+      "Connection",
+      "close",
+      "Vary",
+      "Accept-Encoding",
+      "Vary",
+      "Origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-Powered-By",
+      "Strapi <strapi.io>",
+      "X-Response-Time",
+      "49ms",
+    ],
+  );

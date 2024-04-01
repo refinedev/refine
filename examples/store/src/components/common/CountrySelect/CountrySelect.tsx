@@ -1,6 +1,6 @@
 import { useOne } from "@refinedev/core";
 import { useFormContext } from "react-hook-form";
-import { Cart } from "@medusajs/medusa";
+import { Cart, Country } from "@medusajs/medusa";
 
 import { useCartContext } from "@lib/context";
 import { NativeSelect } from "@components";
@@ -26,7 +26,8 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
       enabled: !!cart?.id,
     },
   });
-  const countries = cartData?.data.cart.region.countries;
+
+  const countries: Country[] = cartData?.data.cart?.region.countries;
 
   return (
     <NativeSelect

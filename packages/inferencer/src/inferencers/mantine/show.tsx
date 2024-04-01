@@ -52,7 +52,6 @@ export const renderer = ({
   const COMPONENT_NAME = componentName(resource.label ?? resource.name, "show");
   const recordName = "record";
   const imports: Array<ImportElement> = [
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["useShow", "@refinedev/core"],
     ["Show", "@refinedev/mantine"],
     ["Title", "@mantine/core"],
@@ -639,7 +638,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage
