@@ -59,7 +59,7 @@
     "globby": "^11.1.0",
     "gray-matter": "^4.0.3",
     "http-proxy-middleware": "^2.0.6",
-    "jscodeshift": "0.13.1",
+    "jscodeshift": "0.15.2",
     "lodash": "^4.17.21",
     "marked": "^4.3.0",
     "node-fetch": "^2.6.7",

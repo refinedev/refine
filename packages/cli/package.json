@@ -54,7 +54,7 @@
     "http-proxy-middleware": "^2.0.6",
     "inquirer": "^8.2.5",
     "inquirer-autocomplete-prompt": "^2.0.0",
-    "jscodeshift": "0.13.1",
+    "jscodeshift": "0.15.2",
     "marked": "^4.3.0",
     "marked-terminal": "^6.0.0",
     "node-emoji": "^2.1.3",
