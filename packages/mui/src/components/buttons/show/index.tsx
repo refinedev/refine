@@ -1,14 +1,5 @@
-import React, { useContext } from "react";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useShowButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -38,64 +29,23 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const { showUrl: generateShowUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { id, resource } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "show",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useShowButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
 
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const showUrl =
-    resource && (recordItemId || id)
-      ? generateShowUrl(resource, recordItemId! ?? id!, meta)
-      : "";
+  if (hidden) return null;
 
   const { sx, ...restProps } = rest;
 
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
-
   return (
-    <ActiveLink
-      to={showUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -107,9 +57,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={data?.can === false}
+        disabled={disabled}
         startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
-        title={disabledTitle()}
+        title={title}
         sx={{ minWidth: 0, ...sx }}
         data-testid={RefineButtonTestIds.ShowButton}
         className={RefineButtonClassNames.ShowButton}
@@ -118,9 +68,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         {hideText ? (
           <VisibilityOutlined fontSize="small" {...svgIconProps} />
         ) : (
-          children ?? translate("buttons.show", "Show")
+          children ?? label
         )}
       </Button>
-    </ActiveLink>
+    </LinkComponent>
   );
 };
