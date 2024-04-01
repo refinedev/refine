@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -22,7 +22,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   const { variant, styles, ...commonProps } = rest;
 
@@ -33,6 +33,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             variant: mapButtonVariantToActionIconVariant(variant),
           }
         : { variant: "filled", color: "primary" })}
+      aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...commonProps}
@@ -47,7 +48,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       className={RefineButtonClassNames.SaveButton}
       {...rest}
     >
-      {children ?? translate("buttons.save", "Save")}
+      {children ?? label}
     </Button>
   );
 };

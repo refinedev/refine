@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useImportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -24,7 +24,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useImportButton();
 
   const { variant, styles, ...commonProps } = rest;
 
@@ -38,6 +38,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 variant: mapButtonVariantToActionIconVariant(variant),
               }
             : { variant: "default" })}
+          aria-label={label}
           component="span"
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
@@ -56,7 +57,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
           className={RefineButtonClassNames.ImportButton}
           {...rest}
         >
-          {children ?? translate("buttons.import", "Import")}
+          {children ?? label}
         </Button>
       )}
     </label>
