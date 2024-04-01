@@ -6,4 +6,4 @@
 "@refinedev/mui": patch
 ---
 
-Updated content of `README.md` to include installation, usage and scaffolding instructions.
+chore: updated content of `README.md` to include installation, usage and scaffolding instructions.
