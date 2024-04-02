@@ -8,13 +8,14 @@ import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input, Select, Space, Table, TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Company } from "@/graphql/schema.types";
 import { CompaniesTableQuery } from "@/graphql/types";
 import { useContactsSelect } from "@/hooks/useContactsSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "./avatar-group";
+
+type Company = GetFieldsFromList<CompaniesTableQuery>;
 
 type Props = {
   tableProps: TableProps<GetFieldsFromList<CompaniesTableQuery>>;

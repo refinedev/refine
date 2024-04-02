@@ -6,9 +6,11 @@ import { HttpError, useInvalidate, useNavigation } from "@refinedev/core";
 import { DatePicker, Form, Input, Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Deal } from "@/graphql/schema.types";
-
 import { SALES_FINALIZE_DEAL_MUTATION } from "./queries";
+import { GetFields } from "@refinedev/nestjs-query";
+import { SalesFinalizeDealMutation } from "../../../graphql/types";
+
+type Deal = GetFields<SalesFinalizeDealMutation>;
 
 type FormValues = {
   notes?: string;

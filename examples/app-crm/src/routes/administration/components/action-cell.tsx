@@ -5,12 +5,12 @@ import { Button, Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 import { Text } from "@/components";
-import { Audit, AuditChange } from "@/graphql/schema.types";
+import { Audit } from "..";
 
 export const ActionCell = ({ record }: { record: Audit }) => {
   const [opened, setOpened] = useState(false);
 
-  const columns: ColumnsType<AuditChange> = [
+  const columns: ColumnsType<Audit["changes"][0]> = [
     {
       title: "Field",
       dataIndex: "field",

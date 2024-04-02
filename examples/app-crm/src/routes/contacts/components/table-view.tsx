@@ -17,12 +17,13 @@ import {
   Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { Contact } from "@/graphql/schema.types";
 import { ContactsListQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
+type Contact = GetFieldsFromList<ContactsListQuery>;
+
 type Props = {
-  tableProps: TableProps<GetFieldsFromList<ContactsListQuery>>;
+  tableProps: TableProps<Contact>;
   filters: CrudFilters;
   sorters: CrudSorting;
 };

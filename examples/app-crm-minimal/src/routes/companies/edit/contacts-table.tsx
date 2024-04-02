@@ -12,57 +12,56 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { Contact } from "@/graphql/schema.types";
 import { CompanyContactsTableQuery } from "@/graphql/types";
 
 import { COMPANY_CONTACTS_TABLE_QUERY } from "./queries";
 
+type Contact = GetFieldsFromList<CompanyContactsTableQuery>;
+
 export const CompanyContactsTable = () => {
   const params = useParams();
 
-  const { tableProps } = useTable<GetFieldsFromList<CompanyContactsTableQuery>>(
-    {
-      resource: "contacts",
-      syncWithLocation: false,
-      sorters: {
-        initial: [
-          {
-            field: "createdAt",
-            order: "desc",
-          },
-        ],
-      },
-      filters: {
-        initial: [
-          {
-            field: "jobTitle",
-            value: "",
-            operator: "contains",
-          },
-          {
-            field: "name",
-            value: "",
-            operator: "contains",
-          },
-          {
-            field: "status",
-            value: undefined,
-            operator: "in",
-          },
-        ],
-        permanent: [
-          {
-            field: "company.id",
-            operator: "eq",
-            value: params?.id as string,
-          },
-        ],
-      },
-      meta: {
-        gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
-      },
+  const { tableProps } = useTable<Contact>({
+    resource: "contacts",
+    syncWithLocation: false,
+    sorters: {
+      initial: [
+        {
+          field: "createdAt",
+          order: "desc",
+        },
+      ],
     },
-  );
+    filters: {
+      initial: [
+        {
+          field: "jobTitle",
+          value: "",
+          operator: "contains",
+        },
+        {
+          field: "name",
+          value: "",
+          operator: "contains",
+        },
+        {
+          field: "status",
+          value: undefined,
+          operator: "in",
+        },
+      ],
+      permanent: [
+        {
+          field: "company.id",
+          operator: "eq",
+          value: params?.id as string,
+        },
+      ],
+    },
+    meta: {
+      gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
+    },
+  });
 
   return (
     <Card

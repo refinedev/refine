@@ -9,13 +9,14 @@ import { Button, Card, Grid, Radio } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { Event } from "@/graphql/schema.types";
 import { CalendarEventsQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { CALENDAR_EVENTS_QUERY } from "./queries";
 
 const FullCalendarWrapper = lazy(() => import("./full-calendar"));
+
+type Event = GetFieldsFromList<CalendarEventsQuery>;
 
 type View =
   | "dayGridMonth"
@@ -51,7 +52,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   }, [md]);
 
-  const { data } = useList<GetFieldsFromList<CalendarEventsQuery>>({
+  const { data } = useList<Event>({
     pagination: {
       mode: "off",
     },

@@ -30,7 +30,6 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company } from "@/graphql/schema.types";
 import {
   CreateCompanyMutation,
   CreateCompanyMutationVariables,
@@ -38,6 +37,8 @@ import {
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { COMPANY_CREATE_MUTATION } from "./queries";
+
+type Company = GetFields<CreateCompanyMutation>;
 
 type Props = {
   isOverModal?: boolean;
@@ -57,7 +58,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
   const go = useGo();
 
   const { formProps, modalProps, close, onFinish } = useModalForm<
-    GetFields<CreateCompanyMutation>,
+    Company,
     HttpError,
     FormValues
   >({

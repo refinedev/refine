@@ -15,12 +15,13 @@ import { Card, Col, Input, Row, Select, Space, Table } from "antd";
 import cn from "classnames";
 
 import { CustomAvatar, Logo, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
 import { AdministrationUsersQuery } from "@/graphql/types";
 
 import { RoleTag } from "./components";
 import { ADMINISTRATION_USERS_QUERY } from "./queries";
 import styles from "./settings.module.css";
+
+type User = GetFieldsFromList<AdministrationUsersQuery>;
 
 export const SettingsPage = () => {
   return (
@@ -88,9 +89,7 @@ const roleOptions: {
 ];
 
 const UsersTable = () => {
-  const { tableProps, filters } = useTable<
-    GetFieldsFromList<AdministrationUsersQuery>
-  >({
+  const { tableProps, filters } = useTable<User>({
     resource: "users",
     sorters: {
       initial: [
