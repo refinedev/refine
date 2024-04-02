@@ -75,7 +75,7 @@
     "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^29.2.4",
-    "@types/jscodeshift": "^0.11.5",
+    "@types/jscodeshift": "^0.11.11",
     "@types/marked": "^5.0.1",
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
