@@ -1,18 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button } from "antd";
 import { BarsOutlined } from "@ant-design/icons";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useUserFriendlyName,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  pickNotDeprecated,
-  AccessControlContext,
-} from "@refinedev/core";
+import { useListButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -37,63 +26,20 @@ export const ListButton: React.FC<ListButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-
-  const { listUrl: generateListUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const getUserFriendlyName = useUserFriendlyName();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { resource, identifier } = useResource(
-    resourceNameFromProps ?? propResourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "list",
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
-    params: {
-      resource,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useListButton({
+    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    accessControl,
+    meta,
   });
 
-  const createButtonDisabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const listUrl = resource ? generateListUrl(resource, meta) : "";
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
-    <ActiveLink
-      to={listUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -105,32 +51,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
     >
       <Button
         icon={<BarsOutlined />}
-        disabled={data?.can === false}
-        title={createButtonDisabledTitle()}
+        disabled={disabled}
+        title={title}
         data-testid={RefineButtonTestIds.ListButton}
         className={RefineButtonClassNames.ListButton}
         {...rest}
       >
-        {!hideText &&
-          (children ??
-            translate(
-              `${
-                identifier ??
-                resourceNameFromProps ??
-                propResourceNameOrRouteName
-              }.titles.list`,
-              getUserFriendlyName(
-                resource?.meta?.label ??
-                  resource?.label ??
-                  identifier ??
-                  pickNotDeprecated(
-                    resourceNameFromProps,
-                    propResourceNameOrRouteName,
-                  ),
-                "plural",
-              ),
-            ))}
+        {!hideText && (children ?? label)}
       </Button>
-    </ActiveLink>
+    </LinkComponent>
   );
 };

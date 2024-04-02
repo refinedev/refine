@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -22,12 +22,12 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   return hideText ? (
     <IconButton
       variant="outline"
-      aria-label={translate("buttons.export", "Export")}
+      aria-label={label}
       isLoading={loading}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
@@ -44,7 +44,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
-      {children ?? translate("buttons.export", "Export")}
+      {children ?? label}
     </Button>
   );
 };

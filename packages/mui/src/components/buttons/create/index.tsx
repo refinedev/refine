@@ -1,14 +1,5 @@
-import React, { useContext } from "react";
-import {
-  useNavigation,
-  useTranslate,
-  useCan,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useCreateButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -37,63 +28,24 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const translate = useTranslate();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const { createUrl: generateCreateUrl } = useNavigation();
-
-  const { resource } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
+  const { to, label, title, disabled, hidden, LinkComponent } = useCreateButton(
+    {
+      resource: resourceNameFromProps ?? resourceNameOrRouteName,
+      meta,
+      accessControl,
+    },
   );
 
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "create",
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
-    params: {
-      resource,
-    },
-  });
-
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const createUrl = resource ? generateCreateUrl(resource, meta) : "";
+  if (hidden) return null;
 
   const { sx, ...restProps } = rest;
 
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
-
   return (
-    <ActiveLink
-      to={createUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -105,9 +57,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={data?.can === false}
+        disabled={disabled}
         startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
-        title={disabledTitle()}
+        title={title}
         variant="contained"
         sx={{ minWidth: 0, ...sx }}
         data-testid={RefineButtonTestIds.CreateButton}
@@ -117,9 +69,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         {hideText ? (
           <AddBoxOutlined fontSize="small" {...svgIconProps} />
         ) : (
-          children ?? translate("buttons.create", "Create")
+          children ?? label
         )}
       </Button>
-    </ActiveLink>
+    </LinkComponent>
   );
 };
