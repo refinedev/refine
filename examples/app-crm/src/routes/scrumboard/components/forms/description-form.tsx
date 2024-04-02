@@ -5,11 +5,13 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Space } from "antd";
 
-import { Task } from "@/graphql/schema.types";
-
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+import { GetFields } from "@refinedev/nestjs-query";
+import { KanbanUpdateTaskMutation } from "../../../../graphql/types";
 
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
+
+type Task = GetFields<KanbanUpdateTaskMutation>;
 
 type Props = {
   initialValues: {

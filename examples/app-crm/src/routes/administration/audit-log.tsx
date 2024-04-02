@@ -12,11 +12,12 @@ import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Audit } from "@/graphql/schema.types";
 import { AdministrationAuditLogsQuery } from "@/graphql/types";
 
 import { ActionCell } from "./components";
 import { ADMINISTRATION_AUDIT_LOGS_QUERY } from "./queries";
+
+export type Audit = GetFieldsFromList<AdministrationAuditLogsQuery>;
 
 const getActionColor = (action: string): TagProps["color"] => {
   switch (action) {
@@ -32,9 +33,7 @@ const getActionColor = (action: string): TagProps["color"] => {
 };
 
 export const AuditLogPage = () => {
-  const { tableProps, filters, sorters } = useTable<
-    GetFieldsFromList<AdministrationAuditLogsQuery>
-  >({
+  const { tableProps, filters, sorters } = useTable<Audit>({
     meta: {
       gqlQuery: ADMINISTRATION_AUDIT_LOGS_QUERY,
     },
@@ -131,10 +130,10 @@ export const AuditLogPage = () => {
           />
           <Table.Column dataIndex="targetEntity" title="Entity" />
           <Table.Column dataIndex="targetId" title="Entity ID" />
-          <Table.Column
+          <Table.Column<Audit>
             dataIndex="changes"
             title="Changes"
-            render={(_, record: Audit) => <ActionCell record={record} />}
+            render={(_, record) => <ActionCell record={record} />}
           />
           <Table.Column
             dataIndex="createdAt"
