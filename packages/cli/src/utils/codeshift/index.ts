@@ -26,7 +26,13 @@ export const wrapElement = (
   const wrapperElement = j.jsxElement(
     j.jsxOpeningElement(j.jsxIdentifier(wrapper), wrapperAttributes),
     j.jsxClosingElement(j.jsxIdentifier(wrapper)),
-    [element.value],
+    [
+      j.jsxElement(
+        element.node.openingElement,
+        element.node.closingElement,
+        element.node.children,
+      ),
+    ],
   );
 
   j(element).replaceWith(wrapperElement);
