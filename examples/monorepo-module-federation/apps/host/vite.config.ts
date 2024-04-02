@@ -37,7 +37,7 @@ export default defineConfig({
         "antd",
       ],
     }),
-    tsconfigPaths(),
+    tsconfigPaths({ root: __dirname }),
   ],
 
   preview: {
