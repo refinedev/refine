@@ -64,7 +64,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const { variant, styles, ...commonProps } = rest;
 
-  if (disabled) return null;
+  if (hidden) return null;
 
   return (
     <Popover
