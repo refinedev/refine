@@ -227,6 +227,7 @@ module.exports = {
           collapsed: false,
           label: "Hooks",
           items: [
+            "routing/hooks/use-resource-params/index",
             "routing/hooks/use-resource/index",
             "routing/hooks/use-go/index",
             "routing/hooks/use-back/index",
@@ -441,6 +442,7 @@ module.exports = {
             "core/hooks/utilities/use-breadcrumb/index",
             "core/hooks/utilities/use-import/index",
             "core/hooks/utilities/use-export/index",
+            "core/hooks/utilities/buttons/index",
           ],
         },
       ],
