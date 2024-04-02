@@ -59,7 +59,7 @@ export const ShowDescription = () => {
               bottom: "32px",
               right: "32px",
             }}
-            spinning={autoSaveProps?.status === "loading" ?? true}
+            spinning={autoSaveProps?.status === "loading"}
           />
         </div>
       </div>
