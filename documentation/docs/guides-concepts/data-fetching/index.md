@@ -376,7 +376,7 @@ const { data: categories } = useMany({
 
 Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-In Refine we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/authentication/components/authenticated) component to to render the appropriate components.
+In Refine we handle [authentication](/docs/guides-concepts/authentication/) with [Auth Provider](/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/docs/authentication/components/authenticated) component to render the appropriate components.
 
 After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
