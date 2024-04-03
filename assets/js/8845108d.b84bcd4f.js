@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[94269],{79914:s=>{s.exports=JSON.parse('{"label":"nestjs","permalink":"/blog/tags/nestjs","allTagsPath":"/blog/tags","count":1}')}}]);

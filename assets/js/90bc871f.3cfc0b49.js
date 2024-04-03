@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[65791],{28471:a=>{a.exports=JSON.parse('{"label":"chakra-ui","permalink":"/blog/tags/chakra-ui","allTagsPath":"/blog/tags","count":2}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[52152],{10852:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/comparison","page":1,"postsPerPage":12,"totalPages":3,"totalCount":26,"nextPage":"/blog/tags/comparison/page/2","blogDescription":"A resource for Refine, front-end ecosystem, and web development","blogTitle":"Blog"}')}}]);

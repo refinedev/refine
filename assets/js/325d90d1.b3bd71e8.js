@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[54093],{41458:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/mantine","page":1,"postsPerPage":12,"totalPages":1,"totalCount":2,"blogDescription":"A resource for Refine, front-end ecosystem, and web development","blogTitle":"Blog"}')}}]);

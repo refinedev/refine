@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[21734],{77588:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/community","page":1,"postsPerPage":12,"totalPages":2,"totalCount":13,"nextPage":"/blog/tags/community/page/2","blogDescription":"A resource for Refine, front-end ecosystem, and web development","blogTitle":"Blog"}')}}]);
