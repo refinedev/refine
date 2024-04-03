@@ -76,41 +76,11 @@ Apart from the `action` value, `formAction` can only be `create`, `edit` or `clo
 
 ### Return value
 
-| Description  | Type                                                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| resources    | [`IResourceItem[]`](#interfaces)                                                                                          |
-| resource     | [`IResourceItem` \| `undefined`](#interfaces)                                                                             |
-| resourceName | `string` \| `undefined`                                                                                                   |
-| id           | [`BaseKey`](/docs/core/interface-references#basekey)                                                                      |
-| action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"`                                                |
-| select       | `(resourceName: string, force?: boolean) => { resource: IResourceItem` \| `undefined, identifier: string` \| `undefined}` |
-| identifier   | `string` \| `undefined`                                                                                                   |
-
-#### Interfaces
-
-```ts
-interface IResourceComponents {
-  list?:
-    | string
-    | React.ComponentType<any>
-    | { component: React.ComponentType<any>; path: string };
-  create?:
-    | string
-    | React.ComponentType<any>
-    | { component: React.ComponentType<any>; path: string };
-  edit?:
-    | string
-    | React.ComponentType<any>
-    | { component: React.ComponentType<any>; path: string };
-  show?:
-    | string
-    | React.ComponentType<any>
-    | { component: React.ComponentType<any>; path: string };
-}
-
-interface IResourceItem extends IResourceComponents {
-  name: string;
-  identifier?: string;
-  meta?: MetaProps;
-}
-```
+| Description | Type                                                                       |
+| ----------- | -------------------------------------------------------------------------- |
+| resource    | `IResourceItem` \| `undefined`                                             |
+| identifier  | `string` \| `undefined`                                                    |
+| id          | [`BaseKey` \| `undefined`](/docs/core/interface-references#basekey)        |
+| setId       | `(id: BaseKey) => void`                                                    |
+| action      | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
+| formAction  | `"create"` \| `"edit"` \| `"clone"`                                        |
