@@ -1,5 +1,13 @@
 # create-refine-app
 
+## 1.12.5
+
+### Patch Changes
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+  fixed: Some type errors are fixed due to the TypeScript upgrade.
+
 ## 1.12.4
 
 ### Patch Changes
