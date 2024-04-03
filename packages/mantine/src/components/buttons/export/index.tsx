@@ -1,11 +1,11 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Button } from "@mantine/core";
-import { IconFileExport } from "@tabler/icons";
+import { IconFileExport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { ExportButtonProps } from "../types";
@@ -23,7 +23,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   const { variant, styles, ...commonProps } = rest;
 
@@ -35,6 +35,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
           }
         : { variant: "default" })}
       loading={loading}
+      aria-label={label}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
       {...commonProps}
@@ -50,7 +51,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
-      {children ?? translate("buttons.export", "Export")}
+      {children ?? label}
     </Button>
   );
 };

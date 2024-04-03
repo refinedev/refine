@@ -15,20 +15,17 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Input, Space, Table } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { Company } from "@/graphql/schema.types";
 import { CompaniesListQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { COMPANIES_LIST_QUERY } from "./queries";
 
+type Company = GetFieldsFromList<CompaniesListQuery>;
+
 export const CompanyListPage = ({ children }: React.PropsWithChildren) => {
   const go = useGo();
 
-  const { tableProps, filters } = useTable<
-    GetFieldsFromList<CompaniesListQuery>,
-    HttpError,
-    GetFieldsFromList<CompaniesListQuery>
-  >({
+  const { tableProps, filters } = useTable<Company, HttpError, Company>({
     resource: "companies",
     onSearch: (values) => {
       return [

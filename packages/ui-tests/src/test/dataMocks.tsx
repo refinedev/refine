@@ -6,8 +6,8 @@ import {
   RouterBindings,
   AuthProvider,
   LegacyAuthProvider,
+  IRouterContext,
 } from "@refinedev/core";
-import { IRouterContext } from "@refinedev/core/dist/interfaces";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 /* import {

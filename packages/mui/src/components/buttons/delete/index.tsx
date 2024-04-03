@@ -1,14 +1,5 @@
-import React, { useContext } from "react";
-import {
-  useDelete,
-  useTranslate,
-  useMutationMode,
-  useCan,
-  useResource,
-  pickNotDeprecated,
-  useWarnAboutChange,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useDeleteButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -36,7 +27,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   resourceNameOrRouteName,
   recordItemId,
   onSuccess,
-  mutationMode: mutationModeProp,
+  mutationMode,
   children,
   successNotification,
   errorNotification,
@@ -52,98 +43,44 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   invalidates,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const translate = useTranslate();
-
-  const { id, resource, identifier } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { mutationMode: mutationModeContext } = useMutationMode();
-
-  const mutationMode = mutationModeProp ?? mutationModeContext;
-
-  const { mutate, isLoading, variables } = useDelete();
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "delete",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const {
+    onConfirm,
+    title,
+    label,
+    hidden,
+    disabled,
+    loading,
+    confirmTitle: defaultConfirmTitle,
+    confirmOkLabel,
+    cancelLabel,
+  } = useDeleteButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    dataProviderName,
+    mutationMode,
+    accessControl,
+    invalidates,
+    onSuccess,
+    meta,
+    successNotification,
+    errorNotification,
   });
-
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleCloseOnConfirm = () => {
-    if ((recordItemId ?? id) && identifier) {
-      setWarnWhen(false);
-      setOpen(false);
-      mutate(
-        {
-          id: recordItemId ?? id ?? "",
-          resource: identifier,
-          mutationMode,
-          successNotification,
-          errorNotification,
-          meta: pickNotDeprecated(meta, metaData),
-          metaData: pickNotDeprecated(meta, metaData),
-          dataProviderName,
-          invalidates,
-        },
-        {
-          onSuccess: (value) => {
-            onSuccess?.(value);
-          },
-        },
-      );
-    }
-  };
-
   const { sx, ...restProps } = rest;
 
-  const { setWarnWhen } = useWarnAboutChange();
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
     <div>
       <LoadingButton
         color="error"
-        onClick={handleClickOpen}
-        disabled={data?.can === false}
-        loading={(recordItemId ?? id) === variables?.id && isLoading}
+        onClick={() => setOpen(true)}
+        disabled={disabled}
+        loading={loading}
         startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
-        title={disabledTitle()}
+        title={title}
         sx={{ minWidth: 0, ...sx }}
         loadingPosition={hideText ? "center" : "start"}
         data-testid={RefineButtonTestIds.DeleteButton}
@@ -153,24 +90,31 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         {hideText ? (
           <DeleteOutline fontSize="small" {...svgIconProps} />
         ) : (
-          children ?? translate("buttons.delete", "Delete")
+          children ?? label
         )}
       </LoadingButton>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {confirmTitle ?? translate("buttons.confirm", "Are you sure?")}
+          {confirmTitle ?? defaultConfirmTitle}
         </DialogTitle>
         <DialogActions sx={{ justifyContent: "center" }}>
-          <Button onClick={handleClose}>
-            {confirmCancelText ?? translate("buttons.cancel", "Cancel")}
+          <Button onClick={() => setOpen(false)}>
+            {confirmCancelText ?? cancelLabel}
           </Button>
-          <Button color="error" onClick={handleCloseOnConfirm} autoFocus>
-            {confirmOkText ?? translate("buttons.delete", "Delete")}
+          <Button
+            color="error"
+            onClick={() => {
+              onConfirm();
+              setOpen(false);
+            }}
+            autoFocus
+          >
+            {confirmOkText ?? confirmOkLabel}
           </Button>
         </DialogActions>
       </Dialog>

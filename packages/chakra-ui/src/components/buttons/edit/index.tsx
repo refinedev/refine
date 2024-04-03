@@ -1,19 +1,10 @@
-import React, { useContext } from "react";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useEditButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { IconPencil } from "@tabler/icons";
+import { IconPencil } from "@tabler/icons-react";
 import { Button, IconButton } from "@chakra-ui/react";
 
 import { EditButtonProps } from "../types";
@@ -37,63 +28,24 @@ export const EditButton: React.FC<EditButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-
-  const translate = useTranslate();
-
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const { editUrl: generateEditUrl } = useNavigation();
-
-  const { id, resource } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "edit",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useEditButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
 
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const editUrl =
-    resource && (recordItemId ?? id)
-      ? generateEditUrl(resource, recordItemId! ?? id!, meta)
-      : "";
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
-    <ActiveLink
-      to={editUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          e.preventDefault();
+          return;
+        }
         if (onClick) {
           e.preventDefault();
           onClick(e);
@@ -103,9 +55,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
       {hideText ? (
         <IconButton
           variant="outline"
-          aria-label={translate("buttons.edit", "Edit")}
-          title={disabledTitle()}
-          isDisabled={data?.can === false}
+          aria-label={label}
+          title={title}
+          isDisabled={disabled}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
           {...rest}
@@ -115,16 +67,16 @@ export const EditButton: React.FC<EditButtonProps> = ({
       ) : (
         <Button
           variant="outline"
-          isDisabled={data?.can === false}
+          isDisabled={disabled}
           leftIcon={<IconPencil size={20} {...svgIconProps} />}
-          title={disabledTitle()}
+          title={title}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
           {...rest}
         >
-          {children ?? translate("buttons.edit", "Edit")}
+          {children ?? label}
         </Button>
       )}
-    </ActiveLink>
+    </LinkComponent>
   );
 };

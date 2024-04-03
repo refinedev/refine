@@ -1,20 +1,11 @@
-import React, { useContext } from "react";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useShowButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
-import { IconEye } from "@tabler/icons";
+import { IconEye } from "@tabler/icons-react";
 
 import { ShowButtonProps } from "../types";
 
@@ -37,61 +28,24 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const { showUrl: generateShowUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { id, resource } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "show",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useShowButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
 
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const showUrl =
-    resource && (recordItemId || id)
-      ? generateShowUrl(resource, recordItemId! ?? id!, meta)
-      : "";
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
-    <ActiveLink
-      to={showUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+        if (disabled) {
+          e.preventDefault();
+          return;
+        }
         if (onClick) {
           e.preventDefault();
           onClick(e);
@@ -101,9 +55,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       {hideText ? (
         <IconButton
           variant="outline"
-          aria-label={translate("buttons.show", "Show")}
-          isDisabled={data?.can === false}
-          title={disabledTitle()}
+          aria-label={label}
+          isDisabled={disabled}
+          title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
           {...rest}
@@ -113,16 +67,16 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       ) : (
         <Button
           variant="outline"
-          isDisabled={data?.can === false}
+          isDisabled={disabled}
           leftIcon={<IconEye size={20} {...svgIconProps} />}
-          title={disabledTitle()}
+          title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
           {...rest}
         >
-          {children ?? translate("buttons.show", "Show")}
+          {children ?? label}
         </Button>
       )}
-    </ActiveLink>
+    </LinkComponent>
   );
 };

@@ -12,7 +12,7 @@ import Example from "./previews/example.tsx";
 
 Installing the package is as simple as just by running the following command without any additional configuration:
 
-<InstallPackagesCommand args="@refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons@1 @tanstack/react-table"/>
+<InstallPackagesCommand args="@refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react@11 @tabler/icons-react @tanstack/react-table"/>
 
 :::info Version Support
 Refine's Mantine integration currently uses Mantine v5.

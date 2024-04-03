@@ -25,7 +25,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import { ColumnSorter } from "../../components/table/ColumnSorter";
 import { ColumnFilter } from "../../components/table/ColumnFilter";
 

@@ -122,6 +122,7 @@ export interface IProduct {
   price: number;
   category: {
     id: number;
+    title: string;
   };
   stock: number;
 }

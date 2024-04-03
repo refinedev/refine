@@ -2,6 +2,7 @@
   "name": "app-crm-minimal",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "codegen": "graphql-codegen",
@@ -45,7 +46,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
@@ -55,8 +56,8 @@
     "postcss": "^8.1.4",
     "postcss-nesting": "^12.0.1",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4",
-    "vite": "^4.3.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.1"
   }
 }

@@ -1,20 +1,11 @@
-import React, { useContext, useState } from "react";
-import {
-  useDelete,
-  useTranslate,
-  useMutationMode,
-  useCan,
-  useResource,
-  pickNotDeprecated,
-  useWarnAboutChange,
-  AccessControlContext,
-} from "@refinedev/core";
+import React, { useState } from "react";
+import { useDeleteButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
-import { IconTrash } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { DeleteButtonProps } from "../types";
@@ -30,7 +21,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   resourceNameOrRouteName,
   recordItemId,
   onSuccess,
-  mutationMode: mutationModeProp,
+  mutationMode,
+  invalidates,
   children,
   successNotification,
   errorNotification,
@@ -45,79 +37,34 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const translate = useTranslate();
-
-  const { id, resource, identifier } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { mutationMode: mutationModeContext } = useMutationMode();
-
-  const mutationMode = mutationModeProp ?? mutationModeContext;
-
-  const { mutate, isLoading, variables } = useDelete();
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "delete",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const {
+    title,
+    label,
+    hidden,
+    disabled,
+    loading,
+    confirmTitle: defaultConfirmTitle,
+    confirmOkLabel: defaultConfirmOkLabel,
+    cancelLabel: defaultCancelLabel,
+    onConfirm,
+  } = useDeleteButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    dataProviderName,
+    errorNotification,
+    successNotification,
+    invalidates,
+    mutationMode,
+    accessControl,
+    meta,
+    onSuccess,
   });
-
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
 
   const [opened, setOpened] = useState(false);
 
-  const onConfirm = () => {
-    if ((recordItemId ?? id) && identifier) {
-      setWarnWhen(false);
-      setOpened(false);
-      mutate(
-        {
-          id: recordItemId ?? id ?? "",
-          resource: identifier,
-          mutationMode,
-          successNotification,
-          errorNotification,
-          meta: pickNotDeprecated(meta, metaData),
-          metaData: pickNotDeprecated(meta, metaData),
-          dataProviderName,
-        },
-        {
-          onSuccess: (value) => {
-            onSuccess?.(value);
-          },
-        },
-      );
-    }
-  };
-
   const { variant, styles, ...commonProps } = rest;
 
-  const { setWarnWhen } = useWarnAboutChange();
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
     <Popover
@@ -126,9 +73,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
       withArrow
       withinPortal
       disabled={
-        typeof rest?.disabled !== "undefined"
-          ? rest.disabled
-          : data?.can === false
+        typeof rest?.disabled !== "undefined" ? rest.disabled : disabled
       }
     >
       <Popover.Target>
@@ -136,8 +81,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
           <ActionIcon
             color="red"
             onClick={() => setOpened((o) => !o)}
-            disabled={isLoading || data?.can === false}
-            loading={(recordItemId ?? id) === variables?.id && isLoading}
+            disabled={loading || disabled}
+            loading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
             {...(variant
@@ -154,28 +99,36 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             color="red"
             variant="outline"
             onClick={() => setOpened((o) => !o)}
-            disabled={isLoading || data?.can === false}
-            loading={(recordItemId ?? id) === variables?.id && isLoading}
-            title={disabledTitle()}
+            disabled={loading || disabled}
+            loading={loading}
+            title={title}
             leftIcon={<IconTrash size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
             {...rest}
           >
-            {children ?? translate("buttons.delete", "Delete")}
+            {children ?? label}
           </Button>
         )}
       </Popover.Target>
       <Popover.Dropdown py="xs">
         <Text size="sm" weight="bold">
-          {confirmTitle ?? translate("buttons.confirm", "Are you sure?")}
+          {confirmTitle ?? defaultConfirmTitle}
         </Text>
         <Group position="center" noWrap spacing="xs" mt="xs">
           <Button onClick={() => setOpened(false)} variant="default" size="xs">
-            {confirmCancelText ?? translate("buttons.cancel", "Cancel")}
+            {confirmCancelText ?? defaultCancelLabel}
           </Button>
-          <Button color="red" onClick={onConfirm} autoFocus size="xs">
-            {confirmOkText ?? translate("buttons.delete", "Delete")}
+          <Button
+            color="red"
+            onClick={() => {
+              onConfirm();
+              setOpened(false);
+            }}
+            autoFocus
+            size="xs"
+          >
+            {confirmOkText ?? defaultConfirmOkLabel}
           </Button>
         </Group>
       </Popover.Dropdown>

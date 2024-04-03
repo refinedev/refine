@@ -1,11 +1,11 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useImportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { IconButton, Button } from "@chakra-ui/react";
-import { IconFileImport } from "@tabler/icons";
+import { IconFileImport } from "@tabler/icons-react";
 
 import { ImportButtonProps } from "../types";
 
@@ -23,7 +23,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useImportButton();
 
   return (
     <label htmlFor="contained-button-file">
@@ -32,7 +32,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         <IconButton
           variant="outline"
           as="span"
-          aria-label={translate("buttons.import", "Import")}
+          aria-label={label}
           isLoading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
           className={RefineButtonClassNames.ImportButton}
@@ -50,7 +50,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
           className={RefineButtonClassNames.ImportButton}
           {...rest}
         >
-          {children ?? translate("buttons.import", "Import")}
+          {children ?? label}
         </Button>
       )}
     </label>

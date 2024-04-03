@@ -30,19 +30,19 @@
     "globby": "^11.1.0",
     "inquirer": "^8.2.5",
     "is-git-clean": "1.1.0",
-    "jscodeshift": "0.13.1",
+    "jscodeshift": "0.15.2",
     "meow": "7.0.1",
-    "semver": "7.3.8"
+    "semver": "7.5.2"
   },
   "devDependencies": {
     "@types/eslint": "^7.28.2",
     "@types/inquirer": "^8.2.5",
     "@types/jest": "^29.2.4",
-    "@types/jscodeshift": "^0.11.5",
+    "@types/jscodeshift": "^0.11.11",
     "jest": "^29.3.1",
-    "ts-jest": "^29.0.3",
-    "tslib": "^2.3.1",
-    "typescript": "^4.7.4"
+    "ts-jest": "^29.1.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.2"
   },
   "engines": {
     "node": ">=10"

@@ -1,14 +1,14 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
+import { defaultRefineOptions } from "@contexts/refine";
 import {
   MockJSONServer,
-  mockRouterBindings,
-  queryClient,
   TestWrapper,
+  mockRouterProvider,
+  queryClient,
 } from "@test";
 
-import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../interfaces";
+import { IRefineContextProvider } from "../../contexts/refine/types";
 import { useMany } from "./useMany";
 
 const mockRefineProvider: IRefineContextProvider = {
@@ -52,7 +52,7 @@ describe("useMany Hook", () => {
               getMany: getManyMock,
             },
           },
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             params: { baz: "qux" },
           }),
           resources: [{ name: "posts", meta: { dip: "dop" } }],
@@ -353,6 +353,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -390,6 +391,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -422,6 +424,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -460,6 +463,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
+              close: jest.fn(),
             },
             resources: [{ name: "posts" }],
           }),

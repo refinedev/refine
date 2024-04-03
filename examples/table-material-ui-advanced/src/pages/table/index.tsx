@@ -473,7 +473,7 @@ export const PostList: React.FC = () => {
           page={pagination?.pageIndex || 0}
           onPageChange={(_, newPage: number) => setPageIndex(newPage)}
           onRowsPerPageChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPageSize(parseInt(event.target.value, 10));
+            setPageSize(Number.parseInt(event.target.value, 10));
             setPageIndex(0);
           }}
         />

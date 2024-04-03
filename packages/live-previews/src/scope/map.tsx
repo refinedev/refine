@@ -44,7 +44,9 @@ export const packageMap: Record<string, string> = {
   "@mui/material/styles": "MuiMaterialStyles",
   "@mui/icons-material": "MuiIconsMaterial",
   "@mui/x-data-grid": "MuiXDataGrid",
+  // To make sure we're still able to use the old package name, we're also mapping the old package name to the related scope
   "@tabler/icons": "TablerIcons",
+  "@tabler/icons-react": "TablerIcons",
   "@chakra-ui/react": "ChakraUI",
   "react-hook-form": "ReactHookForm",
   "@tanstack/react-table": "TanstackReactTable",

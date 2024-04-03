@@ -1,14 +1,5 @@
-import React, { useContext, useState } from "react";
-import {
-  useDelete,
-  useTranslate,
-  useMutationMode,
-  useCan,
-  useResource,
-  pickNotDeprecated,
-  useWarnAboutChange,
-  AccessControlContext,
-} from "@refinedev/core";
+import React, { useState } from "react";
+import { useDeleteButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -25,7 +16,7 @@ import {
   PopoverHeader,
   PopoverTrigger,
 } from "@chakra-ui/react";
-import { IconTrash } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons-react";
 
 import { DeleteButtonProps } from "../types";
 
@@ -48,6 +39,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   accessControl,
   meta,
   metaData,
+  invalidates,
   dataProviderName,
   confirmTitle,
   confirmOkText,
@@ -55,78 +47,32 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-
-  const translate = useTranslate();
-
-  const { id, resource, identifier } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { mutationMode: mutationModeContext } = useMutationMode();
-
-  const mutationMode = mutationModeProp ?? mutationModeContext;
-
-  const { mutate, isLoading, variables } = useDelete();
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "delete",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const {
+    onConfirm,
+    label,
+    title,
+    disabled,
+    hidden,
+    loading,
+    confirmTitle: defaultConfirmTitle,
+    confirmOkLabel: defaultConfirmOkLabel,
+    cancelLabel: defaultCancelLabel,
+  } = useDeleteButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    onSuccess,
+    mutationMode: mutationModeProp,
+    successNotification,
+    errorNotification,
+    accessControl,
+    meta,
+    dataProviderName,
+    invalidates,
   });
-
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
 
   const [opened, setOpened] = useState(false);
 
-  const onConfirm = () => {
-    if (identifier && (recordItemId ?? id)) {
-      setWarnWhen(false);
-      setOpened(false);
-      mutate(
-        {
-          id: recordItemId ?? id ?? "",
-          resource: identifier,
-          mutationMode,
-          successNotification,
-          errorNotification,
-          meta: pickNotDeprecated(meta, metaData),
-          metaData: pickNotDeprecated(meta, metaData),
-          dataProviderName,
-        },
-        {
-          onSuccess: (value) => {
-            onSuccess?.(value);
-          },
-        },
-      );
-    }
-  };
-
-  const { setWarnWhen } = useWarnAboutChange();
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
     <Popover isOpen={opened} isLazy>
@@ -135,10 +81,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
           <IconButton
             colorScheme="red"
             variant="outline"
-            aria-label={translate("buttons.edit", "Edit")}
+            aria-label={title}
             onClick={() => setOpened((o) => !o)}
-            isDisabled={isLoading || data?.can === false}
-            isLoading={(recordItemId ?? id) === variables?.id && isLoading}
+            isDisabled={loading || disabled}
+            isLoading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
             {...rest}
@@ -150,30 +96,38 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             colorScheme="red"
             variant="outline"
             onClick={() => setOpened((o) => !o)}
-            isDisabled={isLoading || data?.can === false}
-            isLoading={id === variables?.id && isLoading}
+            isDisabled={loading || disabled}
+            isLoading={loading}
             leftIcon={<IconTrash size={20} {...svgIconProps} />}
-            title={disabledTitle()}
+            title={title}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
             {...rest}
           >
-            {children ?? translate("buttons.delete", "Delete")}
+            {children ?? label}
           </Button>
         )}
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
         <PopoverHeader textAlign="center">
-          {confirmTitle ?? translate("buttons.confirm", "Are you sure?")}
+          {confirmTitle ?? defaultConfirmTitle}
         </PopoverHeader>
         <PopoverBody display="flex" justifyContent="center">
           <HStack>
             <Button onClick={() => setOpened(false)} size="sm">
-              {confirmCancelText ?? translate("buttons.cancel", "Cancel")}
+              {confirmCancelText ?? defaultCancelLabel}
             </Button>
-            <Button colorScheme="red" onClick={onConfirm} autoFocus size="sm">
-              {confirmOkText ?? translate("buttons.delete", "Delete")}
+            <Button
+              colorScheme="red"
+              onClick={() => {
+                onConfirm();
+                setOpened(false);
+              }}
+              autoFocus
+              size="sm"
+            >
+              {confirmOkText ?? defaultConfirmOkLabel}
             </Button>
           </HStack>
         </PopoverBody>

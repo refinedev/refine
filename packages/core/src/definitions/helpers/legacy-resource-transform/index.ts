@@ -1,8 +1,4 @@
-import {
-  IResourceItem,
-  ResourceProps,
-} from "../../../interfaces/bindings/resource";
-
+import { IResourceItem, ResourceProps } from "../../../contexts/resource/types";
 import { routeGenerator } from "../routeGenerator";
 
 /**

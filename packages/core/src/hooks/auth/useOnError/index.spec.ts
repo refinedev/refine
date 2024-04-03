@@ -1,20 +1,22 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
-  act,
   TestWrapper,
+  act,
   mockLegacyRouterProvider,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 import { useOnError } from ".";
+import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
 
 const mockReplace = jest.fn();
 const mockPush = jest.fn();
 
-const mockRouterProvider = {
+const legacyRouterProvider: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => ({
+    goBack: jest.fn(),
     replace: mockReplace,
     push: mockPush,
   }),
@@ -47,7 +49,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             logout: onErrorMock,
             getUserIdentity: () => Promise.resolve(),
           },
-          legacyRouterProvider: mockRouterProvider,
+          legacyRouterProvider,
         }),
       },
     );
@@ -82,7 +84,7 @@ describe("v3LegacyAuthProviderCompatible useOnError Hook", () => {
             },
             getUserIdentity: () => Promise.resolve(),
           },
-          legacyRouterProvider: mockRouterProvider,
+          legacyRouterProvider,
         }),
       },
     );
@@ -129,7 +131,7 @@ describe("useOnError Hook", () => {
           getPermissions: () => Promise.resolve(),
           logout: () => Promise.resolve({ success: true }),
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -163,7 +165,7 @@ describe("useOnError Hook", () => {
           getPermissions: () => Promise.resolve(),
           logout: () => Promise.resolve({ success: true }),
         },
-        legacyRouterProvider: mockRouterProvider,
+        legacyRouterProvider,
       }),
     });
 
@@ -198,7 +200,7 @@ describe("useOnError Hook", () => {
           getPermissions: () => Promise.resolve(),
           logout: () => Promise.resolve({ success: true }),
         },
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           fns: {
             go: () => mockGo,
           },

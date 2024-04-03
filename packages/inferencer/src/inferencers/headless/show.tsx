@@ -44,7 +44,6 @@ export const renderer = ({
     ["useShow", "@refinedev/core"],
     ["useResource", "@refinedev/core"],
     ["useNavigation", "@refinedev/core"],
-    ["IResourceComponentsProps", "@refinedev/core"],
   ];
 
   if (i18n) {
@@ -637,7 +636,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { edit, list } = useNavigation();
         ${isCustomPage ? "" : "const { id } = useResource();"}

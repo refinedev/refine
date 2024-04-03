@@ -1,6 +1,8 @@
 import { useContext } from "react";
+
 import { RefineContext } from "@contexts/refine";
-import { TitleProps } from "../../interfaces";
+
+import { TitleProps } from "../../contexts/refine/types";
 
 /**
  * `useTitle` returns a component that calls the `<Title>` passed to the `<Refine>`.

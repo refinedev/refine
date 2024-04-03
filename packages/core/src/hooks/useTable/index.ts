@@ -1,49 +1,50 @@
 import React, { useState, useEffect } from "react";
+
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
-import qs from "qs";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
+import qs from "qs";
 import warnOnce from "warn-once";
 
+import { pickNotDeprecated } from "@definitions/helpers";
 import {
-  useRouterContext,
-  useSyncWithLocation,
-  useNavigation,
-  useList,
-  useLiveMode,
-  useRouterType,
-  useResource,
-  useParsed,
-  useMeta,
-} from "@hooks";
-import {
-  stringifyTableParams,
   parseTableParams,
-  unionFilters,
   setInitialFilters,
   setInitialSorters,
+  stringifyTableParams,
+  unionFilters,
   unionSorters,
 } from "@definitions/table";
-import { pickNotDeprecated } from "@definitions/helpers";
+import {
+  useGo,
+  useList,
+  useLiveMode,
+  useMeta,
+  useNavigation,
+  useParsed,
+  useResource,
+  useRouterContext,
+  useRouterType,
+  useSyncWithLocation,
+} from "@hooks";
 
 import {
   BaseRecord,
-  CrudFilters,
-  CrudSorting,
+  CrudFilter,
+  CrudSort,
   GetListResponse,
-  SuccessErrorNotification,
   HttpError,
   MetaQuery,
-  LiveModeProps,
   Pagination,
   Prettify,
-} from "../../interfaces";
-import { useGo } from "@hooks/router/use-go";
+} from "../../contexts/data/types";
+import { LiveModeProps } from "../../contexts/live/types";
+import { SuccessErrorNotification } from "../../contexts/notification/types";
 import { BaseListProps } from "../data/useList";
 import {
-  useLoadingOvertime,
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
+  useLoadingOvertime,
 } from "../useLoadingOvertime";
 
 type SetFilterBehavior = "merge" | "replace";
@@ -77,12 +78,12 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Initial sorter state
      */
-    initial?: CrudSorting;
+    initial?: CrudSort[];
     /**
      * Default and unchangeable sorter state
      *  @default `[]`
      */
-    permanent?: CrudSorting;
+    permanent?: CrudSort[];
     /**
      * Whether to use server side sorting or not.
      * @default "server"
@@ -93,13 +94,13 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    * Initial sorter state
    * @deprecated `initialSorter` property is deprecated. Use `sorters.initial` instead.
    */
-  initialSorter?: CrudSorting;
+  initialSorter?: CrudSort[];
   /**
    * Default and unchangeable sorter state
    *  @default `[]`
    *  @deprecated `permanentSorter` property is deprecated. Use `sorters.permanent` instead.
    */
-  permanentSorter?: CrudSorting;
+  permanentSorter?: CrudSort[];
   /**
    * Filter configs
    */
@@ -107,12 +108,12 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     /**
      * Initial filter state
      */
-    initial?: CrudFilters;
+    initial?: CrudFilter[];
     /**
      * Default and unchangeable filter state
      *  @default `[]`
      */
-    permanent?: CrudFilters;
+    permanent?: CrudFilter[];
     /**
      * Default behavior of the `setFilters` function
      * @default `"merge"`
@@ -128,13 +129,13 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    * Initial filter state
    * @deprecated `initialFilter` property is deprecated. Use `filters.initial` instead.
    */
-  initialFilter?: CrudFilters;
+  initialFilter?: CrudFilter[];
   /**
    * Default and unchangeable filter state
    * @default `[]`
    * @deprecated `permanentFilter` property is deprecated. Use `filters.permanent` instead.
    */
-  permanentFilter?: CrudFilters;
+  permanentFilter?: CrudFilter[];
   /**
    * Default behavior of the `setFilters` function
    * @default `"merge"`
@@ -188,9 +189,9 @@ type SyncWithLocationParams = {
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter?: CrudSorting;
-  sorters: CrudSorting;
-  filters: CrudFilters;
+  sorter?: CrudSort[];
+  sorters: CrudSort[];
+  filters: CrudFilter[];
 };
 
 export type useTableReturnType<
@@ -201,16 +202,16 @@ export type useTableReturnType<
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
-  sorter: CrudSorting;
-  sorters: CrudSorting;
+  sorter: CrudSort[];
+  sorters: CrudSort[];
   /**
    * @deprecated `setSorter` is deprecated. Use `setSorters` instead.
    */
-  setSorter: (sorter: CrudSorting) => void;
-  setSorters: (sorter: CrudSorting) => void;
-  filters: CrudFilters;
-  setFilters: ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) &
-    ((setter: (prevFilters: CrudFilters) => CrudFilters) => void);
+  setSorter: (sorter: CrudSort[]) => void;
+  setSorters: (sorter: CrudSort[]) => void;
+  filters: CrudFilter[];
+  setFilters: ((filters: CrudFilter[], behavior?: SetFilterBehavior) => void) &
+    ((setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => void);
   createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
   current: number;
   setCurrent: ReactSetState<useTableReturnType["current"]>;
@@ -232,8 +233,8 @@ export type useTableReturnType<
  *
  */
 
-const defaultPermanentFilter: CrudFilters = [];
-const defaultPermanentSorter: CrudSorting = [];
+const defaultPermanentFilter: CrudFilter[] = [];
+const defaultPermanentSorter: CrudSort[] = [];
 
 export function useTable<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -326,8 +327,8 @@ export function useTable<
 
   let defaultCurrent: number;
   let defaultPageSize: number;
-  let defaultSorter: CrudSorting | undefined;
-  let defaultFilter: CrudFilters | undefined;
+  let defaultSorter: CrudSort[] | undefined;
+  let defaultFilter: CrudFilter[] | undefined;
 
   if (syncWithLocation) {
     defaultCurrent =
@@ -368,10 +369,10 @@ export function useTable<
     );
   }, [identifier]);
 
-  const [sorters, setSorters] = useState<CrudSorting>(
+  const [sorters, setSorters] = useState<CrudSort[]>(
     setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
   );
-  const [filters, setFilters] = useState<CrudFilters>(
+  const [filters, setFilters] = useState<CrudFilter[]>(
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
   const [current, setCurrent] = useState<number>(defaultCurrent);
@@ -512,18 +513,18 @@ export function useTable<
     dataProviderName,
   });
 
-  const setFiltersAsMerge = (newFilters: CrudFilters) => {
+  const setFiltersAsMerge = (newFilters: CrudFilter[]) => {
     setFilters((prevFilters) =>
       unionFilters(preferredPermanentFilters, newFilters, prevFilters),
     );
   };
 
-  const setFiltersAsReplace = (newFilters: CrudFilters) => {
+  const setFiltersAsReplace = (newFilters: CrudFilter[]) => {
     setFilters(unionFilters(preferredPermanentFilters, newFilters));
   };
 
   const setFiltersWithSetter = (
-    setter: (prevFilters: CrudFilters) => CrudFilters,
+    setter: (prevFilters: CrudFilter[]) => CrudFilter[],
   ) => {
     setFilters((prev) => unionFilters(preferredPermanentFilters, setter(prev)));
   };
@@ -543,7 +544,7 @@ export function useTable<
     }
   };
 
-  const setSortWithUnion = (newSorter: CrudSorting) => {
+  const setSortWithUnion = (newSorter: CrudSort[]) => {
     setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
   };
 

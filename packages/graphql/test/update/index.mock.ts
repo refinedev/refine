@@ -90,3 +90,48 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     "X-Response-Time",
     "454ms",
   ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($id: ID!, $data: editPostInput!) {\n  updatePost(input: {where: {id: $id}, data: $data}) {\n    post {\n      id\n      title\n      content\n      category {\n        id\n      }\n    }\n  }\n}\n",
+    variables: {
+      id: "2121",
+      data: { title: "updated-test", content: "updated-test", category: "19" },
+    },
+  })
+  .reply(
+    200,
+    {
+      data: {
+        updatePost: {
+          post: {
+            id: "2121",
+            title: "updated-test",
+            content: "updated-test",
+            category: { id: "19" },
+          },
+        },
+      },
+    },
+    [
+      "Date",
+      "Mon, 11 Mar 2024 15:06:19 GMT",
+      "Content-Type",
+      "application/json",
+      "Content-Length",
+      "118",
+      "Connection",
+      "close",
+      "Vary",
+      "Origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-Powered-By",
+      "Strapi <strapi.io>",
+      "X-Response-Time",
+      "63ms",
+    ],
+  );

@@ -52,7 +52,6 @@ export const renderer = ({
   const recordName = "record";
   const imports: Array<ImportElement> = [
     ["useShow", "@refinedev/core"],
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["Show", "@refinedev/chakra-ui"],
     ["Heading", "@chakra-ui/react"],
   ];
@@ -621,7 +620,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { queryResult } = useShow(${
           isCustomPage

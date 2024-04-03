@@ -1,7 +1,8 @@
-import { IResourceItem } from "@contexts/resource";
-import { userFriendlyResourceName } from "../userFriendlyResourceName";
-import type { useTranslate } from "@hooks/translate";
+import type { useTranslate } from "@hooks/i18n";
+
+import { IResourceItem } from "../../../contexts/resource/types";
 import { safeTranslate } from "../safe-translate";
+import { userFriendlyResourceName } from "../userFriendlyResourceName";
 
 /**
  * Generates document title for the given resource and action.

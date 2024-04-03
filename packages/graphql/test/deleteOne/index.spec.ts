@@ -1,3 +1,4 @@
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
@@ -29,5 +30,25 @@ describe("deleteOne", () => {
     });
 
     expect(data.id).toEqual("48");
+  });
+});
+
+describe("deleteOne gql", () => {
+  it("correct response with meta", async () => {
+    const { data } = await dataProvider(client).deleteOne({
+      resource: "posts",
+      id: "10045",
+      meta: {
+        gqlMutation: gql`
+          mutation ($input: deletePostInput!) {
+              deletePost (input: $input) {
+                  post { id }
+              }
+            }
+        `,
+      },
+    });
+
+    expect(data.id).toEqual("10045");
   });
 });

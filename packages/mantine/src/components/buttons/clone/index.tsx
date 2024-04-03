@@ -1,20 +1,11 @@
-import React, { useContext } from "react";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useCloneButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 import { ActionIcon, Anchor, Button } from "@mantine/core";
-import { IconSquarePlus } from "@tabler/icons";
+import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import { CloneButtonProps } from "../types";
@@ -39,66 +30,24 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-
-  const { cloneUrl: generateCloneUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { id, resource } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "create",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useCloneButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
 
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const cloneUrl =
-    resource && (recordItemId || id)
-      ? generateCloneUrl(resource, recordItemId! ?? id!, meta)
-      : "";
+  if (hidden) return null;
 
   const { variant, styles, ...commonProps } = rest;
 
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
-
   return (
     <Anchor
-      component={ActiveLink as any}
-      to={cloneUrl}
+      component={LinkComponent as any}
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -110,8 +59,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          disabled={data?.can === false}
-          title={disabledTitle()}
+          disabled={disabled}
+          title={title}
+          aria-label={label}
           {...(variant
             ? {
                 variant: mapButtonVariantToActionIconVariant(variant),
@@ -125,15 +75,15 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          disabled={data?.can === false}
+          disabled={disabled}
           variant="default"
           leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
-          title={disabledTitle()}
+          title={title}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
           {...rest}
         >
-          {children ?? translate("buttons.clone", "Clone")}
+          {children ?? label}
         </Button>
       )}
     </Anchor>

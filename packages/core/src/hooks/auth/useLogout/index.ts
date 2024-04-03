@@ -1,21 +1,27 @@
+import { getXRay } from "@refinedev/devtools-internal";
 import {
-  useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useMutation,
 } from "@tanstack/react-query";
-import { getXRay } from "@refinedev/devtools-internal";
 
-import { useGo, useNavigation, useNotification, useRouterType } from "@hooks";
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import {
-  RefineError,
-  OpenNotificationParams,
+  useGo,
+  useKeys,
+  useNavigation,
+  useNotification,
+  useRouterType,
+} from "@hooks";
+
+import {
+  AuthActionResponse,
+  SuccessNotificationResponse,
   TLogoutData,
-} from "../../../interfaces";
-import { AuthActionResponse } from "src/interfaces/bindings/auth";
-import { SuccessNotificationResponse } from "src/interfaces/bindings/auth";
+} from "../../../contexts/auth/types";
+import { RefineError } from "../../../contexts/data/types";
+import { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
-import { useKeys } from "@hooks/useKeys";
 
 type Variables = {
   redirectPath?: string | false;

@@ -1,4 +1,4 @@
-import { IResourceItem } from "src/interfaces/bindings/resource";
+import { IResourceItem } from "../../../contexts/resource/types";
 import { removeLeadingTrailingSlashes } from "../router/remove-leading-trailing-slashes";
 
 /**

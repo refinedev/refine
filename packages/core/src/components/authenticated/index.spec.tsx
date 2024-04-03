@@ -1,15 +1,17 @@
 import React from "react";
+
 import { act, waitFor } from "@testing-library/react";
 
 import {
   MockJSONServer,
+  TestWrapper,
   mockLegacyRouterProvider,
   render,
-  TestWrapper,
 } from "@test";
 
+import { AuthProvider } from "../../contexts/auth/types";
+import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 import { Authenticated } from "./";
-import { AuthProvider } from "src/interfaces";
 
 const legacyMockAuthProvider = {
   login: () => Promise.resolve(),
@@ -22,9 +24,11 @@ const legacyMockAuthProvider = {
 
 const mockReplace = jest.fn();
 
-const mockLegacyRouter = {
+const mockLegacyRouter: LegacyRouterProvider = {
   ...mockLegacyRouterProvider(),
   useHistory: () => ({
+    goBack: jest.fn(),
+    push: jest.fn(),
     replace: mockReplace,
   }),
   useLocation: () => ({

@@ -1,11 +1,10 @@
-import { IResourceComponentsProps } from "@refinedev/core";
 {{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}Inferencer } from "@refinedev/inferencer/{{uiFramework}}";
 {{else}}
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 {{/if}}
 
-export const {{capitalize resource}}Edit: React.FC<IResourceComponentsProps> = () => {
+export const {{capitalize resource}}Edit = () => {
     {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}Inferencer />;
     {{else}}
