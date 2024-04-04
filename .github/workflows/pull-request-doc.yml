@@ -22,12 +22,8 @@ jobs:
     name: Deploy Documentation Preview
 
     steps:
-      - name: Workflow run cleanup action
-        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - uses: actions/checkout@v4
@@ -47,7 +43,6 @@ jobs:
       - name: Install Package Dependencies
         run: |
           npm ci
-          npm run bootstrap:all
       - name: Install Doc Dependencies
         run: |
           cd documentation
