@@ -40,8 +40,6 @@ jobs:
       - name: Install Dependencies & Build
         run: |
           npm ci
-          npm run bootstrap:all
-          npm run build:all
       - name: Lint
         run: npm run lint:ci
       - name: Test
@@ -134,8 +132,6 @@ jobs:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           npm ci
-          npm run bootstrap:all
-          npm run build:all
           cd documentation
           npm ci
       - name: Release to GitHub Pages
