@@ -61,7 +61,7 @@ background-position: bottom right, bottom 4px right 0, bottom 4px right -4px, bo
 
 const LoaderContainer = styled.div<{ isLoading?: boolean }>`
   background: ${({ theme }) => theme.material};
-  user-select: ${({ isLoading }) => (isLoading ? "auto" : "none")};
+  pointer-events: ${({ isLoading }) => (isLoading ? "auto" : "none")};
   opacity: ${({ isLoading }) => (isLoading ? 1 : 0)};
   transition: opacity 0.2s linear;
   z-index: 3;
@@ -76,7 +76,6 @@ const Container = styled(Window)`
   padding: 2px 2px;
   z-index: 3;
   max-width: 960px;
-  width: 100%;
   height: auto;
   max-height: 100%;
   display: flex;
