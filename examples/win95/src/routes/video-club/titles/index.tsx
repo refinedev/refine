@@ -5,9 +5,9 @@ import {
   Select,
   Table,
   TableBody,
-  TableDataCell,
+  TableDataCell as DefaultTableDataCell,
   TableHead,
-  TableHeadCell,
+  TableHeadCell as DefaultTableHeadCell,
   TableRow,
   TextInput,
 } from "react95";
@@ -130,14 +130,16 @@ export const VideoClubPageBrowseTitles = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableHeadCell>{""}</TableHeadCell>
-              <TableHeadCell>ID</TableHeadCell>
-              <TableHeadCell>Title</TableHeadCell>
-              <TableHeadCell>Category</TableHeadCell>
-              <TableHeadCell>Year</TableHeadCell>
-              <TableHeadCell>Copies</TableHeadCell>
-              <TableHeadCell>Earnings</TableHeadCell>
-              <TableHeadCell>{}</TableHeadCell>
+              <TableHeadCell width={24} px={5}>
+                {""}
+              </TableHeadCell>
+              <TableHeadCell width={32}>ID</TableHeadCell>
+              <TableHeadCell width={240}>Title</TableHeadCell>
+              <TableHeadCell width={120}>Category</TableHeadCell>
+              <TableHeadCell width={64}>Year</TableHeadCell>
+              <TableHeadCell width={64}>Copies</TableHeadCell>
+              <TableHeadCell width={82}>Earnings</TableHeadCell>
+              <TableHeadCell width={48}>{}</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -152,7 +154,7 @@ export const VideoClubPageBrowseTitles = () => {
 
                 return (
                   <TableRow key={title.id}>
-                    <TableDataCell>
+                    <TableDataCell px={5} width={24}>
                       {atleastOneCopyAvailable ? (
                         ""
                       ) : (
@@ -163,13 +165,15 @@ export const VideoClubPageBrowseTitles = () => {
                         />
                       )}
                     </TableDataCell>
-                    <TableDataCell>{title.id}</TableDataCell>
-                    <TableDataCell>{title.title}</TableDataCell>
-                    <TableDataCell>{title.genres.join(", ")}</TableDataCell>
-                    <TableDataCell>{title.year}</TableDataCell>
-                    <TableDataCell>{copies.length}</TableDataCell>
-                    <TableDataCell>$-1</TableDataCell>
-                    <TableDataCell>
+                    <TableDataCell width={64}>{title.id}</TableDataCell>
+                    <TableDataCell width={240}>{title.title}</TableDataCell>
+                    <TableDataCell width={120} title={title.genres.join(", ")}>
+                      {title.genres.join(", ")}
+                    </TableDataCell>
+                    <TableDataCell width={64}>{title.year}</TableDataCell>
+                    <TableDataCell width={64}>{copies.length}</TableDataCell>
+                    <TableDataCell width={82}>$-1</TableDataCell>
+                    <TableDataCell width={48} style={{ textAlign: "right" }}>
                       <Link to={`/video-club/titles/${title.id}`}>View</Link>
                     </TableDataCell>
                   </TableRow>
@@ -221,4 +225,31 @@ const FilterInputText = styled(TextInput)`
 
 const FilterInputSelect = styled(Select)`
   flex: 1;
+`;
+
+const TableDataCell = styled(DefaultTableDataCell)<{
+  width?: number;
+  px?: number;
+}>`
+  max-width: ${({ width }) => `${width}px`};
+  min-width: ${({ width }) => `${width}px`};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  ${({ px }) =>
+    typeof px !== "undefined" &&
+    `padding-left: ${px}px; padding-right: ${px}px;`}
+`;
+
+const TableHeadCell = styled(DefaultTableHeadCell)<{
+  width?: number;
+  px?: number;
+}>`
+  text-align: left;
+  max-width: ${({ width }) => `${width}px`};
+  min-width: ${({ width }) => `${width}px`};
+  width: ${({ width }) => `${width}px`};
+  ${({ px }) =>
+    typeof px !== "undefined" &&
+    `padding-left: ${px}px; padding-right: ${px}px;`}
 `;
