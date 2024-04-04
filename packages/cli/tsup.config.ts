@@ -5,7 +5,7 @@ import path from "path";
 
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
-const getRefinePackageNames = async () => {
+const getRefinePackageNames = () => {
   try {
     const ignored = [
       "live-previews",
@@ -17,7 +17,7 @@ const getRefinePackageNames = async () => {
       "ui-tests",
     ];
 
-    const dirs = await fs.promises.readdir("../");
+    const dirs = fs.readdirSync("../");
 
     const packages = dirs.filter(
       (el) => !el.startsWith(".") && el !== "cli" && !ignored.includes(el),
@@ -51,8 +51,8 @@ export default defineConfig({
     {
       name: "textReplace",
       setup: (build) => {
-        build.onLoad({ filter: /\.ts$/ }, async (args) => {
-          const contents = await fs.promises.readFile(args.path, "utf8");
+        build.onLoad({ filter: /\.ts$/ }, (args) => {
+          const contents = fs.readFileSync(args.path, "utf8");
 
           const extension = path.extname(args.path).replace(".", "");
           const loader = JS_EXTENSIONS.has(extension)
@@ -69,7 +69,7 @@ export default defineConfig({
             };
           }
 
-          const packageList = await getRefinePackageNames();
+          const packageList = getRefinePackageNames();
 
           return {
             loader,
