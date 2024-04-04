@@ -9,11 +9,11 @@ ENV NODE_ENV development
 COPY package*.json ./
 COPY .npmrc ./
 
-RUN npm install
+RUN npm ci --workspaces false
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope finefoods-material-ui -- --force
+RUN npm install -w finefoods-material-ui
 RUN npm run build -- --scope finefoods-material-ui
 
 FROM node:18-alpine

@@ -9,11 +9,11 @@ ENV NODE_ENV development
 COPY package*.json ./
 COPY .npmrc ./
 
-RUN npm install
+RUN npm ci --workspaces false
 
 COPY . /opt/app
 
-RUN npm run bootstrap -- --scope finefoods-antd -- --force
+RUN npm install -w finefoods-antd
 RUN npm run build -- --scope finefoods-antd
 
 FROM node:18-alpine

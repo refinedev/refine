@@ -9,12 +9,11 @@ ENV NODE_ENV development
 COPY package*.json ./
 COPY .npmrc ./
 
-RUN npm ci
+RUN npm ci --workspaces false
 
 COPY . /opt/app
 
-RUN npm run bootstrap:all
-RUN npm run build:all
+RUN npm install
 
 WORKDIR /opt/app/documentation
 
