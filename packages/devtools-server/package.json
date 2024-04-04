@@ -61,6 +61,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jscodeshift": "0.15.2",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "marked": "^4.3.0",
     "node-fetch": "^2.6.7",
     "preferred-pm": "^3.0.3",
