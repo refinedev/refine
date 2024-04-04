@@ -23,6 +23,7 @@ import { authProvider } from "./providers/auth-provider";
 import { notificationProvider } from "./providers/notification-provider";
 import { supabaseClient } from "./supabase-client";
 import { AboutWindow } from "./components/about-window";
+import { VideoClubPageTitleDetails } from "./routes/video-club/titles/detail";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             {
               name: "titles",
               list: "/video-club/titles",
+              show: "/video-club/titles/:id",
             },
           ]}
           options={{
@@ -69,7 +71,18 @@ const App = () => {
                   </VideoClubLayout>
                 }
               >
-                <Route path="titles" element={<VideoClubPageBrowseTitles />} />
+                <Route
+                  path="titles"
+                  element={
+                    <>
+                      <VideoClubPageBrowseTitles />
+                      <Outlet />
+                    </>
+                  }
+                >
+                  <Route index />
+                  <Route path=":id" element={<VideoClubPageTitleDetails />} />
+                </Route>
               </Route>
             </Route>
 
