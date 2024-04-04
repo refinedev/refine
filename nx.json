@@ -1,21 +1,42 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test"],
-        "accessToken": "NGI2NjNiYWItMWNhYi00MDA4LWI1OTMtM2IwYmFmYzRkMjEzfHJlYWQtd3JpdGU="
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": [
-        "{projectRoot}/dist",
+        "{projectRoot}/.next",
         "{projectRoot}/build",
-        "{projectRoot}/.next"
-      ]
+        "{projectRoot}/dist"
+      ],
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "test": {
+      "cache": true,
+      "outputs": ["{projectRoot}/coverage"]
+    },
+    "types": {
+      "dependsOn": ["^build", "build"],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
     }
-  }
+  },
+  "defaultProject": "@refinedev/core",
+  "cli": {
+    "packageManager": "npm"
+  },
+  "workspaceLayout": {
+    "libsDir": "packages",
+    "appsDir": "examples"
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [],
+    "production": ["default"]
+  },
+  "nxCloudAccessToken": "NGI2NjNiYWItMWNhYi00MDA4LWI1OTMtM2IwYmFmYzRkMjEzfHJlYWQtd3JpdGU=",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "master",
+  "extends": "nx/presets/npm.json"
 }
