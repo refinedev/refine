@@ -22,6 +22,7 @@ import { ThemeProvider } from "./providers/theme-provider";
 import { authProvider } from "./providers/auth-provider";
 import { notificationProvider } from "./providers/notification-provider";
 import { supabaseClient } from "./supabase-client";
+import { AboutWindow } from "./components/about-window";
 
 const App = () => {
   return (
@@ -64,6 +65,7 @@ const App = () => {
                 element={
                   <VideoClubLayout>
                     <Outlet />
+                    <AboutWindow />
                   </VideoClubLayout>
                 }
               >
