@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat openssh-client
 COPY package.json package-lock.json .npmrc ./
 
 RUN npm pkg delete scripts.prepare
-RUN npm ci
+RUN npm ci --workspaces false
 
 FROM base AS builder
 
@@ -17,7 +17,7 @@ COPY . .
 
 ENV CI true
 
-RUN npm run bootstrap -- --scope @refinedev/live-previews
+RUN npm install -w @refinedev/live-previews
 RUN npm run build -- --scope @refinedev/live-previews
 
 FROM base AS runner
