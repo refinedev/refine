@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useList, useTable } from "@refinedev/core";
+import { useTable } from "@refinedev/core";
 import {
   Hourglass,
   Select,
@@ -13,7 +13,7 @@ import {
 } from "react95";
 import { styled } from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ITape, IVideoTitle } from "../../../interfaces";
+import { IExtendedVideoTitle } from "../../../interfaces";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../../components/pagination";
 import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
@@ -37,21 +37,16 @@ export const VideoClubPageBrowseTitles = () => {
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IVideoTitle>({
+  } = useTable<IExtendedVideoTitle>({
     resource: "titles",
-  });
-
-  const { data: dataTapes, isLoading: tapesIsLoading } = useList<ITape>({
-    resource: "tapes",
-    pagination: {
-      mode: "off",
+    meta: {
+      select: "*, tapes(*), rentals(*)",
     },
   });
 
   const titles = titlesQueryResult?.data?.data || [];
   const titlesIsLoading = titlesQueryResult?.isLoading || false;
-  const tapes = dataTapes?.data || [];
-  const isLoading = titlesIsLoading || tapesIsLoading;
+  const isLoading = titlesIsLoading;
 
   return (
     <VideoClubLayoutSubPage
@@ -106,7 +101,25 @@ export const VideoClubPageBrowseTitles = () => {
           </FilterInputContainer>
           <FilterInputContainer>
             <FilterInputLabel>Category:</FilterInputLabel>
-            <FilterInputText />
+            <FilterInputText
+              defaultValue={
+                findFilterFromCrudFilters({
+                  field: "genres",
+                  filters,
+                })?.value
+              }
+              onChange={(e) => {
+                const value = e.target?.value?.trim();
+
+                setFilters([
+                  {
+                    field: "genres",
+                    value: value.split(",").map((v) => v.trim()),
+                    operator: "contains",
+                  },
+                ]);
+              }}
+            />
           </FilterInputContainer>
           <FilterInputContainer>
             <FilterInputLabel>Year:</FilterInputLabel>
@@ -130,31 +143,28 @@ export const VideoClubPageBrowseTitles = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableHeadCell width={24} px={5}>
+              <TableHeadCell $width={24} $px={5}>
                 {""}
               </TableHeadCell>
-              <TableHeadCell width={32}>ID</TableHeadCell>
-              <TableHeadCell width={240}>Title</TableHeadCell>
-              <TableHeadCell width={120}>Category</TableHeadCell>
-              <TableHeadCell width={64}>Year</TableHeadCell>
-              <TableHeadCell width={64}>Copies</TableHeadCell>
-              <TableHeadCell width={82}>Earnings</TableHeadCell>
-              <TableHeadCell width={48}>{}</TableHeadCell>
+              <TableHeadCell $width={32}>ID</TableHeadCell>
+              <TableHeadCell $width={240}>Title</TableHeadCell>
+              <TableHeadCell $width={120}>Category</TableHeadCell>
+              <TableHeadCell $width={64}>Year</TableHeadCell>
+              <TableHeadCell $width={64}>Copies</TableHeadCell>
+              <TableHeadCell $width={82}>Rentals</TableHeadCell>
+              <TableHeadCell $width={48}>{}</TableHeadCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{ height: "340px" }}>
             {!isLoading &&
               titles.map((title) => {
-                const copies = tapes.filter(
-                  (tape) => tape.title_id === title.id,
-                );
-                const atleastOneCopyAvailable = copies.some(
+                const atleastOneCopyAvailable = title.tapes.some(
                   (copy) => copy.available,
                 );
 
                 return (
                   <TableRow key={title.id}>
-                    <TableDataCell px={5} width={24}>
+                    <TableDataCell $px={5} $width={24}>
                       {atleastOneCopyAvailable ? (
                         ""
                       ) : (
@@ -165,15 +175,19 @@ export const VideoClubPageBrowseTitles = () => {
                         />
                       )}
                     </TableDataCell>
-                    <TableDataCell width={64}>{title.id}</TableDataCell>
-                    <TableDataCell width={240}>{title.title}</TableDataCell>
-                    <TableDataCell width={120} title={title.genres.join(", ")}>
+                    <TableDataCell $width={64}>{title.id}</TableDataCell>
+                    <TableDataCell $width={240}>{title.title}</TableDataCell>
+                    <TableDataCell $width={120} title={title.genres.join(", ")}>
                       {title.genres.join(", ")}
                     </TableDataCell>
-                    <TableDataCell width={64}>{title.year}</TableDataCell>
-                    <TableDataCell width={64}>{copies.length}</TableDataCell>
-                    <TableDataCell width={82}>$-1</TableDataCell>
-                    <TableDataCell width={48} style={{ textAlign: "right" }}>
+                    <TableDataCell $width={64}>{title.year}</TableDataCell>
+                    <TableDataCell $width={64}>
+                      {title.tapes.length}
+                    </TableDataCell>
+                    <TableDataCell $width={82}>
+                      {title.rentals.length}
+                    </TableDataCell>
+                    <TableDataCell $width={48} style={{ textAlign: "right" }}>
                       <Link to={`/video-club/titles/${title.id}`}>View</Link>
                     </TableDataCell>
                   </TableRow>
@@ -228,28 +242,28 @@ const FilterInputSelect = styled(Select)`
 `;
 
 const TableDataCell = styled(DefaultTableDataCell)<{
-  width?: number;
-  px?: number;
+  $width?: number;
+  $px?: number;
 }>`
-  max-width: ${({ width }) => `${width}px`};
-  min-width: ${({ width }) => `${width}px`};
+  max-width: ${({ $width }) => `${$width}px`};
+  min-width: ${({ $width }) => `${$width}px`};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  ${({ px }) =>
-    typeof px !== "undefined" &&
-    `padding-left: ${px}px; padding-right: ${px}px;`}
+  ${({ $px }) =>
+    typeof $px !== "undefined" &&
+    `padding-left: ${$px}px; padding-right: ${$px}px;`}
 `;
 
 const TableHeadCell = styled(DefaultTableHeadCell)<{
-  width?: number;
-  px?: number;
+  $width?: number;
+  $px?: number;
 }>`
   text-align: left;
-  max-width: ${({ width }) => `${width}px`};
-  min-width: ${({ width }) => `${width}px`};
-  width: ${({ width }) => `${width}px`};
-  ${({ px }) =>
-    typeof px !== "undefined" &&
-    `padding-left: ${px}px; padding-right: ${px}px;`}
+  max-width: ${({ $width }) => `${$width}px`};
+  min-width: ${({ $width }) => `${$width}px`};
+  width: ${({ $width }) => `${$width}px`};
+  ${({ $px }) =>
+    typeof $px !== "undefined" &&
+    `padding-left: ${$px}px; padding-right: ${$px}px;`}
 `;
