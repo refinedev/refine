@@ -14,8 +14,8 @@ import {
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { CommonLayout } from "./components/layout";
-import { VideoClubLayout } from "./components/video-club/layout";
-import { VideoClubPageBrowseTitles } from "./components/video-club/titles";
+import { VideoClubLayout } from "./routes/video-club/layout";
+import { VideoClubPageBrowseTitles } from "./routes/video-club/titles";
 import { HomePage } from "./components/home-page";
 import { LoginPage } from "./components/login-page";
 import { ThemeProvider } from "./providers/theme-provider";
