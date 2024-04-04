@@ -19,3 +19,31 @@ export type ITape = {
   title_id: number;
   available: boolean;
 };
+
+export type IRental = {
+  id: number;
+  member_id: number;
+  period: number;
+  created_at: string;
+  start_at: string;
+  expected_return_at: string;
+  returned_at: string | null;
+  title_id: number;
+  tape_id: number;
+};
+
+export type IMember = {
+  id: number;
+  deposit: number;
+  created_at: string;
+  first_name: string;
+  last_name: string;
+  phone?: string;
+  address?: string;
+  photo_url?: string;
+};
+
+export type IExtendedVideoTitle = IVideoTitle & {
+  tapes: ITape[];
+  rentals: IRental[];
+};
