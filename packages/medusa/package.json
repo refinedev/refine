@@ -33,10 +33,10 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "nx build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
-    "types": "node ../shared/generate-declarations.js"
+    "types": "nx exec -- node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -62,6 +62,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

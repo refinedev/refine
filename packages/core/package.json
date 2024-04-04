@@ -29,11 +29,11 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "nx build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "test:dev": "jest --silent --noStackTrace",
-    "types": "node ../shared/generate-declarations.js"
+    "types": "nx exec -- node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@refinedev/devtools-internal": "1.1.7",
@@ -78,6 +78,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
+  }
 }

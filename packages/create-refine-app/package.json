@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
-    "prepare": "npm run build",
+    "prepare": "nx build",
     "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
@@ -44,6 +44,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

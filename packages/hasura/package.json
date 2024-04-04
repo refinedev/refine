@@ -33,10 +33,10 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "nx build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
-    "types": "node ../shared/generate-declarations.js"
+    "types": "nx exec -- node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "camelcase": "^6.2.0",
