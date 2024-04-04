@@ -56,10 +56,9 @@ jobs:
         run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
       # run npm ci
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
@@ -89,19 +88,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_1 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
 
       - name: Get short SHA
         id: slug
@@ -131,19 +126,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_2 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
 
       - name: Get short SHA
         id: slug
@@ -173,19 +164,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_3 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_3 }}
 
       - name: Get short SHA
         id: slug
@@ -215,19 +202,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_4 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_4 }}
 
       - name: Get short SHA
         id: slug
@@ -257,19 +240,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_5 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_5 }}
 
       - name: Get short SHA
         id: slug
@@ -299,19 +278,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_6 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_6 }}
 
       - name: Get short SHA
         id: slug
@@ -341,19 +316,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_7 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_7 }}
 
       - name: Get short SHA
         id: slug
@@ -382,19 +353,15 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
         run: npm ci
 
-      - name: Bootstrap
-        run: npm run bootstrap -- --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
-
       - name: Build
-        run: npm run build -- --no-bail --scope={@refinedev/core,${{ needs.chunks.outputs.CHUNK_8 }}} --ignore blog-sveltekit-crud --ignore blog-react-aria
+        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_8 }}
 
       - name: Get short SHA
         id: slug
