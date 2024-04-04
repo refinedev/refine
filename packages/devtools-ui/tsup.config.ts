@@ -1,6 +1,7 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
+import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 
 export default defineConfig({
   entry: ["src/index.ts", "src/style.css"],
@@ -12,6 +13,7 @@ export default defineConfig({
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [
+    lodashReplacePlugin,
     dayJsEsmReplacePlugin,
     NodeResolvePlugin({
       extensions: [".js", "ts", "tsx", "jsx"],
