@@ -160,6 +160,7 @@ const Header = styled(WindowHeader)`
 `;
 
 const TitleWrapper = styled.div`
+  user-select: none;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -174,6 +175,7 @@ const HeaderActions = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-right: -2px;
 `;
 
 const MenuBar = styled.div`
