@@ -33,7 +33,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci --workspaces false
-          npm ci -w finefoods-antd
+          npm install -w finefoods-antd
           npm run build -- --scope finefoods-antd
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
@@ -69,7 +69,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci --workspaces false
-          npm ci -w finefoods-material-ui
+          npm install -w finefoods-material-ui
           npm run build -- --scope finefoods-material-ui
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2

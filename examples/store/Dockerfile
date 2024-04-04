@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat openssh-client
 COPY package.json package-lock.json .npmrc ./
 
 RUN npm pkg delete scripts.prepare
-RUN npm ci
+RUN npm ci --workspaces false
 
 FROM base AS builder
 
@@ -17,7 +17,7 @@ COPY . .
 
 ENV CI true
 
-RUN npm run bootstrap -- --scope store
+RUN npm install -w store
 RUN npm run build -- --scope store
 
 FROM base AS runner
