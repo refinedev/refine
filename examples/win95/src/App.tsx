@@ -24,6 +24,7 @@ import { notificationProvider } from "./providers/notification-provider";
 import { supabaseClient } from "./supabase-client";
 import { AboutWindow } from "./components/about-window";
 import { VideoClubPageTitleDetails } from "./routes/video-club/titles/detail";
+import { VideoClubPageAddTitle } from "./routes/video-club/titles/add";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
               name: "titles",
               list: "/video-club/titles",
               show: "/video-club/titles/:id",
+              create: "/video-club/titles/new",
             },
           ]}
           options={{
@@ -83,6 +85,7 @@ const App = () => {
                   <Route index />
                   <Route path=":id" element={<VideoClubPageTitleDetails />} />
                 </Route>
+                <Route path="titles/new" element={<VideoClubPageAddTitle />} />
               </Route>
             </Route>
 
