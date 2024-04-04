@@ -32,7 +32,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   min-width: 1280px;
-  min-height: 960px;
+  min-height: 780px;
   height: 100dvh;
   width: 100%;
   padding: 0;
