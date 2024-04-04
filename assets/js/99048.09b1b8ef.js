@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[99048],{99048:e=>{e.exports=JSON.parse('{"filePath":"/home/runner/work/refine/refine/packages/inferencer/src/index.tsx","description":"If the `id` is a string, it will be wrapped in quotes.","displayName":"idQuoteWrapper","props":{},"generatedAt":1712215919436}')}}]);
