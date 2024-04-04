@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsup --format esm,cjs,iife --minify --legacy-output",
     "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
-    "prepare": "nx build",
+    "prepare": "nx build --nxBail --output-style stream --parallel 1",
     "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {

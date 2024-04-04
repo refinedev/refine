@@ -61,7 +61,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --workspaces false
 
       - name: Split Into Chunks
         id: chunkstep

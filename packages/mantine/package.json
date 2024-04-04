@@ -29,7 +29,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "prepare": "nx build",
+    "prepare": "nx build --nxBail --output-style stream --parallel 1",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "nx exec -- node ../shared/generate-declarations.js"
