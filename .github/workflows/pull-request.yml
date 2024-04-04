@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install & Build
         run: |
-          npm ci
+          npm ci -w packages --include-workspace-root
       - name: Test
         run: |
           npm run test:all -- --skip-nx-cache

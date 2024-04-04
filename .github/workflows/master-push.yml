@@ -39,7 +39,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Install Dependencies & Build
         run: |
-          npm ci
+          npm ci -w packages --include-workspace-root
       - name: Lint
         run: npm run lint:ci
       - name: Test
@@ -131,7 +131,7 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
-          npm ci
+          npm ci -w packages --include-workspace-root
           cd documentation
           npm ci
       - name: Release to GitHub Pages

@@ -42,7 +42,7 @@ jobs:
           EOT
       - name: Install Package Dependencies
         run: |
-          npm ci
+          npm ci -w packages --include-workspace-root
       - name: Install Doc Dependencies
         run: |
           cd documentation
