@@ -8,6 +8,7 @@ type Props = {
   help?: ReactNode;
   isLoading?: boolean;
   onClose?: () => void;
+  containerStyle?: React.CSSProperties;
 };
 
 export const VideoClubLayoutSubPage = ({
@@ -16,14 +17,15 @@ export const VideoClubLayoutSubPage = ({
   onClose,
   isLoading,
   children,
+  containerStyle,
 }: PropsWithChildren<Props>) => {
   return (
     <OverlayContainer>
       <Overlay />
-      <Container>
+      <Container style={containerStyle}>
         <AppLayoutHeader title={title} help={help} onClose={onClose} />
         <WindowContent>
-          <LoaderContainer isLoading={isLoading}>
+          <LoaderContainer $isLoading={isLoading}>
             <Hourglass size={64} style={{ zIndex: 2 }} />
           </LoaderContainer>
           {children}
@@ -44,7 +46,7 @@ const OverlayContainer = styled.div`
   height: 100%;
   z-index: 2;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 4px;
 `;
 
 const Overlay = styled.div`
@@ -59,10 +61,10 @@ background-size: 8px 8px;
 background-position: bottom right, bottom 4px right 0, bottom 4px right -4px, bottom 0px right 4px;
 `;
 
-const LoaderContainer = styled.div<{ isLoading?: boolean }>`
+const LoaderContainer = styled.div<{ $isLoading?: boolean }>`
   background: ${({ theme }) => theme.material};
-  pointer-events: ${({ isLoading }) => (isLoading ? "auto" : "none")};
-  opacity: ${({ isLoading }) => (isLoading ? 1 : 0)};
+  pointer-events: ${(props) => (props["$isLoading"] ? "auto" : "none")};
+  opacity: ${(props) => (props["$isLoading"] ? 1 : 0)};
   transition: opacity 0.2s linear;
   z-index: 3;
   position: absolute;
