@@ -57,7 +57,9 @@ export const VideoClubPageTitleDetails = () => {
           <DetailsContainer>
             <DetailItem>
               <DetailItemLabel>Title:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.title}</DetailItemValue>
+              <DetailItemValue style={{ fontWeight: "bold", color: "#000080" }}>
+                {data?.data?.title}
+              </DetailItemValue>
               {/* TODO: implement video player */}
               {/* <DetailItemTrailerButton>Watch Trailer</DetailItemTrailerButton> */}
             </DetailItem>
