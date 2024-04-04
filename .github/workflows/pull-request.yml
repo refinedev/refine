@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: lint
         run: |
-          npm ci
+          npm ci --workspaces false
           npm run lint:ci
   build:
     runs-on: ubuntu-latest
@@ -28,29 +28,16 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-    name: Bootstrap and Test
+    name: Build & Test
     steps:
       - uses: actions/checkout@v4
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install & Bootstrap
+      - name: Install & Build
         run: |
           npm ci
-          npm run bootstrap:all
-          npm run build:all
       - name: Test
         run: |
           npm run test:all -- --skip-nx-cache
@@ -66,7 +53,6 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
       - name: Check TSDoc Links
         run: npx tsdoc-link-check --patterns packages/**
