@@ -1,3 +1,4 @@
+import React from "react";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -12,6 +13,7 @@ import styled from "styled-components";
 
 export const TaskBar = () => {
   const { pathname } = useLocation();
+  const startMenuRef = React.useRef<HTMLDivElement>(null);
 
   const [startMenuIsOpen, setStartMenuIsOpen] = useState(false);
 
@@ -23,11 +25,34 @@ export const TaskBar = () => {
   const pageIndicator = pathnameToIndicatorMap[firstPathName];
   const hour = dayjs().format("h:m A");
 
+  React.useEffect(() => {
+    if (!startMenuIsOpen) return;
+
+    const handleClick = (e: MouseEvent) => {
+      if (
+        startMenuRef.current &&
+        !startMenuRef.current.contains(e.target as Node)
+      ) {
+        setStartMenuIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [startMenuIsOpen]);
+
   return (
     <Container>
       <StartButton
         variant="raised"
-        onClick={() => setStartMenuIsOpen((prev) => !prev)}
+        onClick={(event) => {
+          event.stopPropagation();
+          event.preventDefault();
+          setStartMenuIsOpen((prev) => !prev);
+        }}
         active={startMenuIsOpen}
       >
         <StartImage
@@ -38,7 +63,7 @@ export const TaskBar = () => {
       </StartButton>
 
       {startMenuIsOpen && (
-        <StartMenuList>
+        <StartMenuList ref={startMenuRef}>
           {menuItems.map((item) => (
             <StartMenuListItem key={item.label} size="md">
               <StartMenuListItemAnchor
@@ -154,6 +179,7 @@ const PageIndicatorText = styled.div`
 `;
 
 const Hour = styled(Frame)`
+  user-select: none;
   margin-left: auto;
   margin-right: 0;
   padding: 4px 12px;
