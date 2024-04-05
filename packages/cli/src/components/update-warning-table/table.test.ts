@@ -18,7 +18,7 @@ test("Update warning npm command", async () => {
     // has script, no dependency
     {
       output: "npm run refine update",
-      dependencies: ["@pankod/tefine-cli"],
+      dependencies: ["@pankod/refine-cli"],
       scripts: {
         refine: "refine",
       },
@@ -27,9 +27,7 @@ test("Update warning npm command", async () => {
     {
       output: "npx refine update",
       dependencies: ["@refinedev/cli"],
-      scripts: {
-        tefine: "refine",
-      },
+      scripts: {},
     },
     // no script, no dependency
     {
