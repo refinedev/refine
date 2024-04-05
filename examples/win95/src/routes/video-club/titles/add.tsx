@@ -101,6 +101,7 @@ export const VideoClubPageAddTitle = () => {
       resource: "titles",
       values: titleQuery.data,
       meta: { select: "*" },
+      successNotification: false,
     }).then((response) => {
       if (!response?.data) return;
 
@@ -115,7 +116,11 @@ export const VideoClubPageAddTitle = () => {
         resource: "tapes",
         values: tapes,
         meta: { select: "*" },
-        successNotification: false,
+        successNotification: {
+          message: "Title added successfully!",
+          type: "success",
+          description: `"${response?.data.title}" with ${numberOfCopies} copies.`,
+        },
       }).then(() => {
         show("titles", title_id, "push");
       });
