@@ -1,5 +1,12 @@
 # @refinedev/cli
 
+## 2.16.29
+
+### Patch Changes
+
+- Updated dependencies [[`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf)]:
+  - @refinedev/devtools-server@1.1.27
+
 ## 2.16.28
 
 ### Patch Changes

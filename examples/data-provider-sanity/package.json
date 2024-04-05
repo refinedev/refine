@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@refinedev/antd": "^5.37.6",
-    "@refinedev/cli": "^2.16.28",
+    "@refinedev/cli": "^2.16.29",
     "@refinedev/core": "^4.49.0",
-    "@refinedev/devtools": "^1.1.36",
+    "@refinedev/devtools": "^1.1.37",
     "@refinedev/react-router-v6": "^4.5.7",
     "@refinedev/simple-rest": "^5.0.4",
     "@sanity/client": "^6.6.0",
