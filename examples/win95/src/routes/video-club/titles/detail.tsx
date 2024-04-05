@@ -58,7 +58,13 @@ export const VideoClubPageTitleDetails = () => {
             <DetailItem>
               <DetailItemLabel>Title:</DetailItemLabel>
               <DetailItemValue style={{ fontWeight: "bold", color: "#000080" }}>
-                {data?.data?.title}
+                <a
+                  href={`https://themoviedb.org/movie/${data?.data?.tmdb_id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {data?.data?.title}
+                </a>
               </DetailItemValue>
               {/* TODO: implement video player */}
               {/* <DetailItemTrailerButton>Watch Trailer</DetailItemTrailerButton> */}
