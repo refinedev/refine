@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "nx build --nxBail --output-style stream --parallel 1",
+    "build": "nx build --nxBail --output-style stream",
     "start": "nx start",
     "test": "nx test"
   },

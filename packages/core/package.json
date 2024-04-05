@@ -29,11 +29,11 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "prepare": "nx build --nxBail --output-style stream --parallel 1",
+    "prepare": "nx build --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "test:dev": "jest --silent --noStackTrace",
-    "types": "nx exec -- node ../shared/generate-declarations.js"
+    "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@refinedev/devtools-internal": "1.1.7",
