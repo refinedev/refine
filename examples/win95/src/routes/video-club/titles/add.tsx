@@ -1,12 +1,16 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useShow } from "@refinedev/core";
+import {
+  HttpError,
+  useCreate,
+  useCreateMany,
+  useNavigation,
+} from "@refinedev/core";
 import dayjs from "dayjs";
 import durationPlugin from "dayjs/plugin/duration";
 import {
   Anchor,
   NumberInput,
-  TableDataCell as DefaultTableDataCell,
-  TableHeadCell as DefaultTableHeadCell,
   Button,
   TextInput,
   Separator,
@@ -14,32 +18,117 @@ import {
 } from "react95";
 import { styled } from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
+import {
+  TitleByTmdbIdResponse,
+  getTitleByTmdbId,
+} from "../../../utils/get-title-by-tmdb-id";
+import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
+import { ITape, IVideoTitle } from "../../../interfaces";
 
 dayjs.extend(durationPlugin);
 
 export const VideoClubPageAddTitle = () => {
   const navigate = useNavigate();
+  const { show } = useNavigation();
 
-  const {
-    queryResult: { data, isLoading },
-  } = useShow<
-    Omit<IExtendedVideoTitle, "rentals"> & {
-      rentals: Array<IRental & { member: IMember }>;
-    }
-  >({
-    resource: "titles",
-    meta: {
-      select: "*, tapes(*), rentals(*, member:members(*))",
-    },
+  const { mutateAsync: createTitle } = useCreate<
+    IVideoTitle,
+    HttpError,
+    Omit<IVideoTitle, "id" | "created_at">
+  >();
+  const { mutateAsync: createTapes } = useCreateMany<
+    ITape,
+    HttpError,
+    Omit<ITape, "id" | "created_at">
+  >();
+
+  const [numberOfCopies, setNumberOfCopies] = React.useState<number>(1);
+  const [titleQuery, setTitleQuery] = React.useState<{
+    data: TitleByTmdbIdResponse["data"] | null;
+    existing: boolean;
+    loading: boolean;
+    queried: boolean;
+  }>({
+    data: null,
+    existing: false,
+    loading: false,
+    queried: false,
   });
+
+  const checkMovieFromTMDB = async (value?: string) => {
+    const id = parseTmdbIdFromUrl(value);
+
+    if (!id) {
+      setTitleQuery({
+        data: null,
+        existing: false,
+        loading: false,
+        queried: true,
+      });
+      return;
+    }
+
+    setTitleQuery({
+      data: null,
+      existing: false,
+      loading: true,
+      queried: false,
+    });
+
+    getTitleByTmdbId(id)
+      .then((response) => {
+        setTitleQuery({
+          data: response?.data ?? null,
+          existing: response?.existing ?? false,
+          loading: false,
+          queried: true,
+        });
+      })
+      .catch(() => {
+        setTitleQuery({
+          data: null,
+          existing: false,
+          loading: false,
+          queried: true,
+        });
+      });
+  };
+
+  const addTitle = async () => {
+    if (!titleQuery?.data) return;
+
+    createTitle({
+      resource: "titles",
+      values: titleQuery.data,
+      meta: { select: "*" },
+    }).then((response) => {
+      if (!response?.data) return;
+
+      const title_id = response.data.id;
+
+      const tapes = Array.from({ length: numberOfCopies }, (_, index) => ({
+        title_id,
+        available: true,
+      }));
+
+      createTapes({
+        resource: "tapes",
+        values: tapes,
+        meta: { select: "*" },
+        successNotification: false,
+      }).then(() => {
+        show("titles", title_id, "push");
+      });
+    });
+  };
 
   return (
     <VideoClubLayoutSubPage
+      isLoading={titleQuery.loading}
       title="Add Title"
       help={"You can add a new title to the video club from TMDB database."}
       onClose={() => navigate("/video-club")}
-      containerStyle={{ minWidth: "800px" }}
+      containerStyle={{ minWidth: "800px", maxWidth: "800px" }}
     >
       <Container>
         <InfoDetails>
@@ -58,69 +147,111 @@ export const VideoClubPageAddTitle = () => {
             </InfoLine>
           </InfoContent>
         </InfoDetails>
-        <InputContainer>
+        <InputContainer
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.currentTarget);
+            const value = formData.get("movie-url") as string;
+
+            checkMovieFromTMDB(value);
+          }}
+        >
           <InputLabel>TMDB URL:</InputLabel>
-          <TMDBInput placeholder="e.g. https://www.themoviedb.org/movie/105" />
-          <GoButton>GO</GoButton>
+          <TMDBInput
+            name="movie-url"
+            id="movie-url"
+            placeholder="e.g. https://www.themoviedb.org/movie/105"
+          />
+          <GoButton type="submit">GO</GoButton>
         </InputContainer>
-        <TitleDetails disabled label="Title Details">
+        <TitleDetails disabled={!titleQuery?.data} label="Title Details">
           <Poster
-            src={`https://image.tmdb.org/t/p/w200${data?.data?.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w200${titleQuery?.data?.poster_path}`}
           />
           <DetailsContainer>
             <DetailItem>
               <DetailItemLabel>Title:</DetailItemLabel>
               <DetailItemValue style={{ fontWeight: "bold", color: "#000080" }}>
-                {data?.data?.title}
+                {titleQuery?.data?.title}
               </DetailItemValue>
               {/* TODO: implement video player */}
               {/* <DetailItemTrailerButton>Watch Trailer</DetailItemTrailerButton> */}
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>ID:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.id}</DetailItemValue>
+              <DetailItemValue>{titleQuery?.data?.id}</DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Category:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.genres.join(", ")}</DetailItemValue>
+              <DetailItemValue>
+                {titleQuery?.data?.genres.join(", ")}
+              </DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Year:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.year}</DetailItemValue>
+              <DetailItemValue>{titleQuery?.data?.year}</DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Duration:</DetailItemLabel>
               <DetailItemValue>
                 {dayjs
-                  .duration(data?.data?.duration_minutes ?? 0, "minutes")
+                  .duration(titleQuery?.data?.duration_minutes ?? 0, "minutes")
                   .format("H[h] m[m]")}
               </DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Director:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.director}</DetailItemValue>
+              <DetailItemValue>{titleQuery?.data?.director}</DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Cast:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.cast.join(", ")}</DetailItemValue>
+              <DetailItemValue>
+                {titleQuery?.data?.cast.join(", ")}
+              </DetailItemValue>
             </DetailItem>
             <DetailItem>
               <DetailItemLabel>Overview:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.overview}</DetailItemValue>
+              <DetailItemValue>{titleQuery?.data?.overview}</DetailItemValue>
             </DetailItem>
           </DetailsContainer>
         </TitleDetails>
         <CopiesContainer>
           <CopiesLabel>Number of Copies:</CopiesLabel>
-          <CopiesInput defaultValue={1} />
+          <CopiesInput
+            disabled={titleQuery?.existing}
+            value={numberOfCopies}
+            onChange={(value) => setNumberOfCopies(value)}
+          />
         </CopiesContainer>
         <Separator />
-        <ButtonsContainer>
-          <AddButton>Add Title</AddButton>
-          <CancelButton onClick={() => navigate("/video-club/titles")}>
-            Cancel
-          </CancelButton>
-        </ButtonsContainer>
+        <BottomContainer>
+          <ExistingContainer $visible={titleQuery.existing}>
+            <ExistingCheckmark src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-titlegreen-check.png" />
+            <span>This title is already in our inventory.</span>
+          </ExistingContainer>
+          <ButtonsContainer>
+            {titleQuery?.existing ? (
+              <ViewDetailsButton
+                onClick={() =>
+                  navigate(`/video-club/titles/${titleQuery?.data?.id}`)
+                }
+              >
+                View Details
+              </ViewDetailsButton>
+            ) : (
+              <AddButton
+                disabled={!titleQuery?.data || titleQuery?.existing}
+                onClick={addTitle}
+              >
+                Add Title
+              </AddButton>
+            )}
+            <CancelButton onClick={() => navigate("/video-club/titles")}>
+              Cancel
+            </CancelButton>
+          </ButtonsContainer>
+        </BottomContainer>
       </Container>
     </VideoClubLayoutSubPage>
   );
@@ -167,7 +298,7 @@ const ExternalAnchorIcon = styled.img`
   margin-bottom: -4px;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
     display: flex;
     align-items: center;
     gap: 8px;
@@ -221,6 +352,7 @@ const DetailsContainer = styled.div`
   flex-direction: column;
   overflow: auto;
   max-height: 305px;
+  min-height: 305px;
 `;
 
 const DetailItem = styled.div`
@@ -255,10 +387,38 @@ const CopiesInput = styled(NumberInput)`
   min-width: unset;
 `;
 
-const ButtonsContainer = styled.div`
+const BottomContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
+`;
+
+const ExistingCheckmark = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const ExistingContainer = styled.div<{ $visible: boolean }>`
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: bold;
+  color: #2F721E;
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+`;
+
+const ButtonsContainer = styled.div`
+  flex-shrink: 0;
+  display: flex;
+  gap: 12px;
+`;
+
+const ViewDetailsButton = styled(Button)`
+  font-weight: bold;
+  min-width: 158px;
 `;
 
 const AddButton = styled(Button)`
