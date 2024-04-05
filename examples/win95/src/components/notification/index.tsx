@@ -40,6 +40,7 @@ const Wrapper = styled.div`
   padding-left: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-right: 16px;
   display: flex;
   align-items: center;
   background-color: #ffffe5;
