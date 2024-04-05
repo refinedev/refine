@@ -27,6 +27,7 @@
     "nuke:lockfiles": "lerna exec --ignore @refinedev/codemod -- rm -rf package-lock.json && lerna exec --ignore @refinedev/codemod -- rm -rf yarn.lock && lerna exec --ignore @refinedev/codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
     "nuke:nx": "rm -rf .nx/cache",
+    "nx": "nx",
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",

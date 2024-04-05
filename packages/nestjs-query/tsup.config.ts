@@ -13,5 +13,4 @@ export default defineConfig({
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [markAsExternalPlugin, lodashReplacePlugin],
-  onSuccess: "npm run types",
 });

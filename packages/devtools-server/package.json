@@ -34,11 +34,11 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "npm run dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
-    "prepare": "nx build --nxBail --output-style stream",
+    "prepare": "nx build --skipNxCache --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.js",
     "test": "jest --passWithNoTests --runInBand",
@@ -113,7 +113,8 @@
         "dependsOn": [
           "^build",
           "build:client"
-        ]
+        ],
+        "cache": true
       },
       "build:client": {
         "dependsOn": [

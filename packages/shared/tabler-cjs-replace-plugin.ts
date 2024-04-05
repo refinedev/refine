@@ -8,7 +8,7 @@ export const tablerCjsReplacePlugin: Plugin = {
   name: "replaceTablerWithTablerCjsInCjs",
   setup: (build) => {
     if (build.initialOptions.format === "cjs") {
-      build.onEnd(async (args) => {
+      build.onEnd((args) => {
         const tablerRequire = 'require("@tabler/icons-react")';
         const cjsTablerRequire =
           'require("@tabler/icons-react/dist/cjs/tabler-icons-react.cjs")';

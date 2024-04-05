@@ -31,5 +31,4 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "npm run types",
 });

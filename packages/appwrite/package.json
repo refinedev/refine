@@ -30,9 +30,9 @@
     "./refine.config.js"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "nx build --nxBail --output-style stream",
+    "prepare": "nx build --skipNxCache --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"

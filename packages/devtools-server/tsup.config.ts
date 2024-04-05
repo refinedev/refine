@@ -31,5 +31,4 @@ export default defineConfig((tsupOptions) => ({
       },
     }),
   ],
-  onSuccess: "npm run types",
 }));
