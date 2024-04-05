@@ -51,6 +51,7 @@
     "clsx": "^1.1.1",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "prism-react-renderer": "^1.3.5",
     "react-gravatar": "^2.6.3",
     "react-json-view": "^1.21.3",
