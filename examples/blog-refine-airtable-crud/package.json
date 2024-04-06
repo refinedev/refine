@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@refinedev/airtable": "^4.4.7",
-    "@refinedev/cli": "^2.16.28",
+    "@refinedev/cli": "^2.16.29",
     "@refinedev/core": "^4.49.0",
     "@refinedev/inferencer": "^4.6.0",
     "@refinedev/react-hook-form": "^4.8.16",

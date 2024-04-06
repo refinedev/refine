@@ -1,5 +1,18 @@
 # @refinedev/devtools-server
 
+## 1.1.27
+
+### Patch Changes
+
+- [#5823](https://github.com/refinedev/refine/pull/5823) [`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf) Thanks [@aliemir](https://github.com/aliemir)! - fix: broken lodash imports in ESM builds
+
+  Fixed lodash imports in ESM builds which requires `lodash-es` imports to use `.js` extension to work properly unless the bundler is configured to handle non-fully-specified imports.
+
+  Resolves [#5822](https://github.com/refinedev/refine/issues/5822)
+
+- Updated dependencies [[`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf)]:
+  - @refinedev/devtools-ui@1.1.20
+
 ## 1.1.26
 
 ### Patch Changes
