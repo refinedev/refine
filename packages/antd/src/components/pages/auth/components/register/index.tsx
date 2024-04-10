@@ -237,7 +237,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               fontSize: 12,
             }}
           >
-            {translate("pages.login.buttons.haveAccount", "Have an account?")}{" "}
+            {translate("pages.register.buttons.haveAccount", "Have an account?")}{" "}
             <ActiveLink
               style={{
                 fontWeight: "bold",
