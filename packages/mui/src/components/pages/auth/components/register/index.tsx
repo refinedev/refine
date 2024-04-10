@@ -232,7 +232,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             }}
           >
             <Typography variant="body2" component="span" fontSize="12px">
-              {translate("pages.login.buttons.haveAccount", "Have an account?")}
+              {translate("pages.register.buttons.haveAccount", "Have an account?")}
             </Typography>
             <MuiLink
               ml="4px"
