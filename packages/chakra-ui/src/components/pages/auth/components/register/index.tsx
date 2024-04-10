@@ -189,7 +189,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             >
               <span>
                 {translate(
-                  "pages.login.buttons.haveAccount",
+                  "pages.register.buttons.haveAccount",
                   "Have an account?",
                 )}
               </span>
