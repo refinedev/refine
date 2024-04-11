@@ -114,7 +114,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
   .patch("/rest/v1/products", { name: "IPhone 16" })
-  .query({ id: "eq.1" })
+  .query({ id: "eq.1", select: "*" })
   .reply(
     406,
     {

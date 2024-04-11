@@ -128,6 +128,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
   .post("/rest/v1/products", [])
+  .query({ select: "*" })
   .reply(
     406,
     {

@@ -211,7 +211,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
   .patch("/rest/v1/products", { name: "foo" })
-  .query({ id: "eq.1" })
+  .query({ id: "eq.1", select: "*" })
   .reply(
     406,
     {
@@ -258,7 +258,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
   .patch("/rest/v1/products", { name: "foo" })
-  .query({ id: "eq.2" })
+  .query({ id: "eq.2", select: "*" })
   .reply(
     406,
     {
