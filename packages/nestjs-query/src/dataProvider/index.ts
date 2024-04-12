@@ -415,9 +415,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         data: [],
       };
     },
+    // getApiUrl: () => {
+    //   throw Error("Not implemented on refine-nestjs-query data provider.");
+    // },
     getApiUrl: () => {
-      throw Error("Not implemented on refine-nestjs-query data provider.");
-    },
+      return client.getApiUrl();
+  },
     custom: async ({ url, method, headers, meta }) => {
       if (url) {
         client.setEndpoint(url);
