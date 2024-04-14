@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 import { useGo } from "@refinedev/core";
 
 export const AboutWindow = () => {
-  const { hash } = useLocation();
+  const { hash, pathname } = useLocation();
   const go = useGo();
 
   const onClose = () => {
     go({
-      to: "",
+      to: pathname,
       hash: undefined,
       type: "replace",
       options: {
