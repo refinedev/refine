@@ -9,6 +9,7 @@ import {
   handleMultiple,
   pickDataProvider,
   pickNotDeprecated,
+  prepareQueryContext,
   useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
@@ -167,27 +168,18 @@ export const useMany = <
         ...(preferredMeta || {}),
       })
       .get(preferLegacyKeys),
-    queryFn: ({ queryKey, pageParam, signal }) => {
+    queryFn: (context) => {
+      const meta = {
+        ...combinedMeta,
+        queryContext: prepareQueryContext(context),
+      };
+
       if (getMany) {
         return getMany({
           resource: resource?.name,
           ids,
-          meta: {
-            ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
-          },
-          metaData: {
-            ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
-          },
+          meta,
+          metaData: meta,
         });
       }
       return handleMultiple(
@@ -195,22 +187,8 @@ export const useMany = <
           getOne<TQueryFnData>({
             resource: resource?.name,
             id,
-            meta: {
-              ...combinedMeta,
-              queryContext: {
-                queryKey,
-                pageParam,
-                signal,
-              },
-            },
-            metaData: {
-              ...combinedMeta,
-              queryContext: {
-                queryKey,
-                pageParam,
-                signal,
-              },
-            },
+            meta,
+            metaData: meta,
           }),
         ),
       );
