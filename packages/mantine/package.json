@@ -27,7 +27,7 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup && node ../shared/generate-declarations.js",
+    "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/mantine --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",

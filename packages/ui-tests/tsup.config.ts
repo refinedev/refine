@@ -14,4 +14,5 @@ export default defineConfig({
   loader: {
     ".svg": "dataurl",
   },
+  onSuccess: "npm run types",
 });

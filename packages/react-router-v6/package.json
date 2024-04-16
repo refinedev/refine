@@ -51,7 +51,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup && node ../shared/generate-declarations.js",
+    "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/react-router-v6 --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",

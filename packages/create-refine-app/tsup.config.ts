@@ -21,4 +21,5 @@ export default defineConfig({
     }),
   ],
   onSuccess: "tsc --project tsconfig.declarations.json",
+  onSuccess: "npm run types",
 });
