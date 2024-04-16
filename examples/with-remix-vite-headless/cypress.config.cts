@@ -1,8 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  projectId: "sq5j3e",
-  retries: 10,
+  retries: { openMode: null, runMode: 2 },
   e2e: {
     fixturesFolder: "../../cypress/fixtures",
     supportFile: "../../cypress/support/e2e.ts",

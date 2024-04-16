@@ -8,11 +8,10 @@ const { promisify } = require("util");
 const { exec } = require("child_process");
 
 const KEY = process.env.KEY;
-const CI_BUILD_ID = process.env.CI_BUILD_ID;
+const PROJECT_ID = process.env.PROJECT_ID;
 
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
-const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
 
 const execPromise = (command) => {
   let commandProcess;
@@ -103,7 +102,7 @@ const getProjectsWithE2E = async () => {
         const dir = pathJoin(EXAMPLES_DIR, path);
         const isDirectory = (await promisify(fs.stat)(dir)).isDirectory();
         const isConfigExists = await promisify(fs.exists)(
-          pathJoin(dir, "cypress.config.ts"),
+          pathJoin(dir, "cypress"),
         );
 
         if (isDirectory && isConfigExists) {
@@ -241,7 +240,7 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --key ${KEY} --group ${path}`;
+        const params = `-- --record --key ${KEY} --group ${path} --projectId ${PROJECT_ID}`;
         const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
