@@ -155,7 +155,7 @@ chunks.forEach((chunk, i) => {
 
   const baseScript = "npm ci -w packages --include-workspace-root";
   // -w base-antd -w with-nextjs
-  const workspaceArgs = chunk.map((c) => `-w ${c}`);
+  const workspaceArgs = chunk.map((c) => `-w ${c}`).join(" ");
 
   const chunkScript = `${baseScript} ${workspaceArgs}`;
 
