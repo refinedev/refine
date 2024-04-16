@@ -37,41 +37,23 @@ After you fork the Refine repository, you need to clone it to your local machine
 git clone https://github.com/refinedev/refine.git
 ```
 
-### Installing dependencies
+### Installing root dependencies
 
-After you clone the repository, you need to install the dependencies. You can use your favorite package manager to do that.
+After you clone the repository, you need to install the dependencies. We use npm as package manager with workspaces feature. To install root level dependencies, run the following command:
 
-<Tabs>
-
-<TabItem value="npm" label="npm">
-
-```sh
-npm install
+```sh title="Terminal"
+npm install --workspaces false
 ```
 
-</TabItem>
+### Working with packages
 
-<TabItem value="yarn" label="yarn">
+Refine uses npm workspaces to link dependencies inside monorepo. You can specify package name with `-w` argument to npm install script. Npm will take care of installing external dependencies, building and linking internal packages together.
 
-```sh
-yarn
+```sh title="Terminal"
+npm i -w @refinedev/nestjs-query
 ```
 
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm">
-
-```sh
-pnpm install
-```
-
-</TabItem>
-
-</Tabs>
-
-### Bootstrapping the Packages
-
-Refine uses [Lerna](https://lerna.js.org) to manage and run packages and examples. If you're unfamiliar with Lerna, you may get confused about how to run the packages in development mode but don't worry, we got you covered. By following the steps below, you will be able to prepare the packages and examples you're going to work on.
+Running the script above, will install external dependencies from npm registry, also build and link `@refinedev/core` package locally.
 
 :::simple Development Tip
 
@@ -79,32 +61,23 @@ It's recommended to always keep at least one example ready to run while you are 
 
 :::
 
-Let's start with bootstrapping a package and an example:
+You can specify example name with `-w` argument, which will install external dependencies from npm registry, build and link packages of given example(s) locally.
 
 ```sh title="Terminal"
-npm run bootstrap -- --scope @refinedev/antd --scope base-antd --includeDependencies
+npm i -w base-antd
 ```
 
-- We're using `--scope` flag to filter the packages and examples we want to bootstrap. In this example, we're bootstrapping `@refinedev/antd` package and `base-antd` example.
-- `--includeDependencies` flag is used to tell Lerna to also include the dependencies of the packages and examples we've filtered to the bootstrapping process.
-
-### Building the Packages
-
-After bootstrapping the packages we want to work on, we need to build them in order to run properly. You can use the command below to build the packages:
-
-```sh title="Terminal"
-npm run build -- --scope @refinedev/antd --scope base-antd --includeDependencies
-```
-
-Just like the `bootstrap` command we're using `--scope` flag to filter the packages we want and use `--includeDependencies` flag to include the dependencies of the packages we've filtered. This way, we're including the dependencies of the packages we're working on to the build process.
+Running the command above will install external dependencies of `base-antd` example from npm registry then will build and link internal dependencies (@refinedev/core, @refinedev/antd) locally.
 
 <details>
 
 <summary>How to add a dependency to a package?</summary>
 
-If you need to add a dependency to a package you're working on, it's best to update the `package.json` file of the package manually and run the `bootstrap` command again in the root. This way, Lerna will install the dependency to the package and link it to the other packages.
+You can use the following command:
 
-Since Refine's repository uses the hoist option of Lerna, you need to use the same version of the dependency if it exists in another package or an example.
+```
+npm i my-new-dependency -w @refinedev/core
+```
 
 </details>
 
@@ -119,12 +92,6 @@ npm run dev -- --scope @refinedev/antd --scope base-antd
 After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
 
 If you make a change in the `@refinedev/antd` package, you will see that right after the compilation, the `base-antd` example will re-compile and you will see the changes in the browser.
-
-:::simple Development Tip
-
-Notice that we're not using `--includeDependencies` flag in this command. This is because we don't want to start the dependencies in watch mode. If we do, it will cause unnecessary re-compilations and slow down the development process.
-
-:::
 
 ### Running Tests
 
