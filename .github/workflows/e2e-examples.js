@@ -6,9 +6,6 @@ const pidtree = require("pidtree");
 const { join: pathJoin } = require("path");
 const { exec } = require("child_process");
 
-const KEY = process.env.KEY;
-const PROJECT_ID = process.env.PROJECT_ID;
-
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
 
@@ -232,7 +229,7 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --key ${KEY} --group ${path} --projectId ${PROJECT_ID}`;
+        const params = `-- --record --group ${path}`;
         const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
