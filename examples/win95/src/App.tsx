@@ -13,18 +13,19 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { supabaseClient } from "./supabase-client";
 import { CommonLayout } from "./components/layout";
-import { VideoClubLayout } from "./routes/video-club/layout";
-import { VideoClubPageBrowseTitles } from "./routes/video-club/titles";
+import { AboutWindow } from "./components/about-window";
 import { HomePage } from "./components/home-page";
 import { LoginPage } from "./components/login-page";
 import { ThemeProvider } from "./providers/theme-provider";
 import { authProvider } from "./providers/auth-provider";
 import { notificationProvider } from "./providers/notification-provider";
-import { supabaseClient } from "./supabase-client";
-import { AboutWindow } from "./components/about-window";
+import { VideoClubLayout } from "./routes/video-club/layout";
+import { VideoClubPageBrowseTitles } from "./routes/video-club/titles/list";
 import { VideoClubPageTitleDetails } from "./routes/video-club/titles/detail";
 import { VideoClubPageAddTitle } from "./routes/video-club/titles/add";
+import { VideoClubPageTapeRent } from "./routes/video-club/rent";
 
 const App = () => {
   return (
@@ -42,6 +43,10 @@ const App = () => {
               list: "/video-club/titles",
               show: "/video-club/titles/:id",
               create: "/video-club/titles/new",
+            },
+            {
+              name: "members",
+              list: "/video-club/tape/rent",
             },
           ]}
           options={{
@@ -86,6 +91,9 @@ const App = () => {
                   <Route path=":id" element={<VideoClubPageTitleDetails />} />
                 </Route>
                 <Route path="titles/new" element={<VideoClubPageAddTitle />} />
+                <Route path="tape" element={<Outlet />}>
+                  <Route path="rent" element={<VideoClubPageTapeRent />} />
+                </Route>
               </Route>
             </Route>
 

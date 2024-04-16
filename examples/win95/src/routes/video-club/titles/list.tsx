@@ -12,20 +12,13 @@ import {
   TextInput,
 } from "react95";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle } from "../../../interfaces";
-import { Link } from "react-router-dom";
 import { Pagination } from "../../../components/pagination";
+import { DangerIcon } from "../../../components/icons/danger-icon";
 import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
-
-// fill with years from 1980 to current year
-const OPTIONS_YEAR = Array.from(
-  { length: new Date().getFullYear() - 1980 + 1 },
-  (_, i) => 1980 + i,
-).map((year) => ({
-  label: year.toString(),
-  value: year.toString(),
-}));
+import { OPTIONS_YEAR } from "../../../utils/options-year";
 
 export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();
@@ -67,6 +60,7 @@ export const VideoClubPageBrowseTitles = () => {
                 })?.value
               }
               onChange={(e) => {
+                setCurrent(1);
                 setFilters([
                   {
                     field: "title",
@@ -88,7 +82,7 @@ export const VideoClubPageBrowseTitles = () => {
               }
               onChange={(e) => {
                 const value = e.target?.value?.trim();
-
+                setCurrent(1);
                 setFilters([
                   {
                     field: "id",
@@ -110,7 +104,7 @@ export const VideoClubPageBrowseTitles = () => {
               }
               onChange={(e) => {
                 const value = e.target?.value?.trim();
-
+                setCurrent(1);
                 setFilters([
                   {
                     field: "genres",
@@ -132,6 +126,7 @@ export const VideoClubPageBrowseTitles = () => {
                 })?.value
               }
               onChange={(option) => {
+                setCurrent(1);
                 setFilters([
                   { field: "year", value: option?.value, operator: "eq" },
                 ]);
@@ -168,11 +163,7 @@ export const VideoClubPageBrowseTitles = () => {
                       {atleastOneCopyAvailable ? (
                         ""
                       ) : (
-                        <OutOfStockIcon
-                          src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/error-icon.png"
-                          alt="Out of Stock"
-                          aria-label="out of stock"
-                        />
+                        <DangerIcon message="Out of Stock" />
                       )}
                     </TableDataCell>
                     <TableDataCell $width={64}>{title.id}</TableDataCell>
@@ -208,12 +199,6 @@ export const VideoClubPageBrowseTitles = () => {
 
 const Container = styled.div`
   padding: 16px 24px;
-`;
-
-const OutOfStockIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  vertical-align: sub;
 `;
 
 const FilterContainer = styled.div`

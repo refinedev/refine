@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { useGo, useNotification } from "@refinedev/core";
+import { useGo } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button } from "react95";
@@ -10,7 +10,6 @@ import { Loading } from "./loading";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
-  const { open } = useNotification();
   const go = useGo();
 
   return (

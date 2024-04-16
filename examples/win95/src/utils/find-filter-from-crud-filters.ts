@@ -1,4 +1,4 @@
-import { CrudFilters, LogicalFilter } from "@refinedev/core";
+import { CrudFilters } from "@refinedev/core";
 
 export const findFilterFromCrudFilters = (params: {
   field: string;

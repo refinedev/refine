@@ -48,6 +48,10 @@ export type IExtendedVideoTitle = IVideoTitle & {
   rentals: IRental[];
 };
 
+export type IExendedMember = IMember & {
+  rentals: IRental[];
+};
+
 export type ITMDBMovieResponse = {
   adult: boolean;
   backdrop_path: string;
