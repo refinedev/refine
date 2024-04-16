@@ -34,7 +34,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "npm run dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
