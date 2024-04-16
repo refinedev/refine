@@ -75,7 +75,6 @@ describe("form-antd-mutation-mode", () => {
     cy.getEditButton().first().should("not.be.disabled");
     cy.getEditButton().first().click();
     // wait loading state and render to be finished
-    cy.wait("@getPost");
     waitForEditPageLoading();
 
     fillForm();
