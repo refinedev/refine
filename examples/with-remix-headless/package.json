@@ -1,5 +1,6 @@
 {
   "name": "with-remix-headless",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
