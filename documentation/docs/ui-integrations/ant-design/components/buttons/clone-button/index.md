@@ -54,7 +54,7 @@ interface IPost {
 }
 // visible-block-end
 
-const CreatePage = () => {
+const PostCreate = () => {
   const params = useRouterContext().useParams();
   return <div>{JSON.stringify(params)}</div>;
 };
@@ -65,7 +65,7 @@ render(
       {
         name: "posts",
         list: PostList,
-        create: CreatePage,
+        create: PostCreate,
       },
     ]}
   />,
