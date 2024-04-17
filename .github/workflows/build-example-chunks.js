@@ -123,7 +123,7 @@ for (let i = 0; i < examples.length; i += chunkSize) {
   const tempChunk = [];
 
   for (j = 0; j < chunkSize; j++) {
-    if (j % (CHUNK_COUNT / 2) === 1) {
+    if (j % (CHUNK_COUNT / 3) === 1) {
       if (examplesWithE2eTests.length > 0) {
         tempChunk.push(examplesWithE2eTests.shift());
       } else if (examplesWithoutE2eTests.length > 0) {
