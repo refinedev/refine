@@ -142,9 +142,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  {
-    /* highlight-next-line*/
-  }
+  /* highlight-next-line */
   return <RouterProvider router={router} />;
 };
 
