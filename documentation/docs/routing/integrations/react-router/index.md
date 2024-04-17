@@ -30,6 +30,16 @@ You can define your routes the way you want, then pass the `routerProvider` prop
 
 We'll pass the `routerProvider` prop to the `Refine` component to instruct Refine on how to communicate with the router. We'll also define our resources and their action paths, this will inform Refine to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 
+<Tabs
+defaultValue="browser-router"
+values={[
+{label: 'Using <BrowserRouter>', value: 'browser-router'},
+{label: 'Using <RouterProvider>', value: 'router-provider'},
+]}>
+<TabItem value="browser-router">
+
+This example uses the [`<BrowserRouter>`](https://reactrouter.com/en/main/router-components/browser-router) router component.
+
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
@@ -82,6 +92,91 @@ const App = () => {
   );
 };
 ```
+
+</TabItem>
+<TabItem value="router-provider">
+
+In their v6.4, React Router introduced Data APIs Router. It uses [`<RouterProvider>`](https://reactrouter.com/en/main/routers/router-provider) component coupled with a [`createBrowserRouter()`](https://reactrouter.com/en/main/routers/create-browser-router) function that live outside the DOM.
+
+The example below start from the `<BrowserRouter>` example and follow their [migration guide](https://reactrouter.com/en/main/upgrading/v6-data) to the `<RouterProvider>` component.
+
+:::caution Use cases
+
+While the basic usage of routing works out of the box, more advanced use cases of the Data APIs are not tested.
+
+You are welcome to [contribute][contributing] to help test and support the advanced use cases of the Data APIs.
+
+:::
+
+```tsx title=App.tsx
+import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
+import { PostList, PostCreate } from "pages/posts";
+import { CategoryList, CategoryShow } from "pages/categories";
+
+const router = createBrowserRouter([
+  {
+    Component: RefineProvider,
+    children: [
+      // highlight-start
+      {
+        path: "posts",
+        children: [
+          { index: true, Component: PostList },
+          { path: "create", Component: PostCreate },
+        ],
+      },
+      {
+        path: "categories",
+        children: [
+          { index: true, Component: CategoryList },
+          { path: "show/:id", Component: CategoryShow },
+        ],
+      },
+      // highlight-end
+    ],
+  },
+]);
+
+const App = () => {
+  /* highlight-next-line */
+  return <RouterProvider router={router} />;
+};
+
+const RefineProvider = () => {
+  return (
+    <Refine
+      dataProvider={dataProvider}
+      // highlight-next-line
+      routerProvider={routerProvider}
+      resources={[
+        {
+          name: "posts",
+          // highlight-start
+          list: "/posts",
+          create: "/posts/create",
+          // highlight-end
+        },
+        {
+          name: "categories",
+          // highlight-start
+          list: "/categories",
+          show: "/categories/show/:id",
+          // highlight-end
+        },
+      ]}
+    >
+      <Outlet />
+    </Refine>
+  );
+};
+```
+
+</TabItem>
+</Tabs>
 
 ### Usage with Authentication
 
