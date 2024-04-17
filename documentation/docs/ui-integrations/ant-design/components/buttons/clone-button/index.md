@@ -15,7 +15,8 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live
+```tsx live previewHeight=300px
+const { useRouterContext } = RefineCore;
 // visible-block-start
 import {
   List,
@@ -53,12 +54,18 @@ interface IPost {
 }
 // visible-block-end
 
+const PostCreate = () => {
+  const params = useRouterContext().useParams();
+  return <div>{JSON.stringify(params)}</div>;
+};
+
 render(
   <RefineAntdDemo
     resources={[
       {
         name: "posts",
         list: PostList,
+        create: PostCreate,
       },
     ]}
   />,
