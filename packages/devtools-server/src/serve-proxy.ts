@@ -141,7 +141,7 @@ export const serveProxy = async (app: Express) => {
     changeOrigin: true,
     pathRewrite: { "^/api/.auth": "/.auth" },
     cookieDomainRewrite: {
-      "refine.dev": "",
+      "refine.dev": "localhost",
     },
     logLevel: __DEVELOPMENT__ ? "debug" : "silent",
     headers: {
@@ -156,6 +156,13 @@ export const serveProxy = async (app: Express) => {
       }
     },
     onProxyRes: (proxyRes, req, res) => {
+      const newSetCookie = proxyRes.headers["set-cookie"]?.map((cookie) =>
+        cookie
+          .replace("Domain=refine.dev;", "Domain=localhost;")
+          .replace(" HttpOnly; Secure; SameSite=Lax", ""),
+      );
+      if (newSetCookie) proxyRes.headers["set-cookie"] = newSetCookie;
+
       if (req.url.includes("self-service/methods/oidc/callback")) {
         return handleSignInCallbacks((_token, _jwt) => {
           token = _token;
