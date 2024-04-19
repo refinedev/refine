@@ -4,10 +4,6 @@
   "private": true,
   "license": "MIT",
   "author": "refine",
-  "workspaces": [
-    "packages/*",
-    "examples/*"
-  ],
   "scripts": {
     "biome": "biome",
     "build": "lerna run build --scope @refinedev/core",

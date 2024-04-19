@@ -3,5 +3,6 @@
   "packages": ["packages/*", "examples/*"],
   "ignore": "{monorepo-*,with-nx}",
   "version": "4.0.0",
-  "stream": true
+  "stream": true,
+  "npmClient": "pnpm"
 }
