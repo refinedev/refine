@@ -53,6 +53,7 @@
     "@refinedev/cli": "^2.16.28",
     "@refinedev/core": "^4.49.0",
     "@types/jest": "^29.2.4",
+    "@types/lodash": "^4.14.171",
     "@types/pluralize": "^0.0.29",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
