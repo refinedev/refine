@@ -14,6 +14,7 @@ export function getXRay(
   hookName: string,
   legacyKey: boolean,
   resourceName?: string,
+  excludeFromTrace?: string[],
 ): XRayResponse {
   if (__DEV_CONDITION__ !== "development") {
     return {
@@ -23,7 +24,7 @@ export function getXRay(
       legacyKey: false,
     };
   }
-  const trace = getTrace().slice(1);
+  const trace = getTrace(excludeFromTrace).slice(1);
 
   const resourcePath = getResourcePath(hookName as RefineHook, legacyKey);
 
