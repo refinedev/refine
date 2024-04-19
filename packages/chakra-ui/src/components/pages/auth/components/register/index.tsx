@@ -148,7 +148,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               type="text"
               placeholder="Email"
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -170,7 +173,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               type="password"
               placeholder="Password"
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
             />
             <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>

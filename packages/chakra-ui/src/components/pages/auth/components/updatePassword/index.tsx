@@ -104,7 +104,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             type="password"
             placeholder="Password"
             {...register("password", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password required",
+              ),
             })}
           />
           <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>
@@ -122,7 +125,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm password is required",
+              ),
               validate: (val: any) => {
                 if (watch("password") !== val) {
                   return translate(
