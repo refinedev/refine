@@ -131,13 +131,15 @@ import type { I18nProvider } from "@refinedev/core";
 import { Refine } from "@refinedev/core";
 // highlight-next-line
 import { useTranslation } from "react-i18next";
+// highlight-next-line
+import { $Dictionary } from "i18next/typescript/helpers";
 
 const App: React.FC = () => {
   // highlight-start
   const { t, i18n } = useTranslation();
 
   const i18nProvider: I18nProvider = {
-    translate: (key: string, options?: any) => t(key, options),
+    translate: (key: string, options?: $Dictionary<unknown>) => t(key, options),
     changeLocale: (lang: string) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
@@ -276,6 +278,7 @@ import { Refine, Resource } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 import { useTranslation } from "react-i18next";
+import { $Dictionary } from "i18next/typescript/helpers";
 
 import "./i18n";
 
@@ -286,7 +289,7 @@ const App: React.FC = () => {
     const { t, i18n } = useTranslation();
 
     const i18nProvider = {
-        translate: (key: string, options?: any) => t(key, options),
+        translate: (key: string, options?: $Dictionary<unknown>) => t(key, options),
         changeLocale: (lang: string) => i18n.changeLanguage(lang),
         getLocale: () => i18n.language,
     };
