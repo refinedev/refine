@@ -164,7 +164,10 @@ export const LoginPage: React.FC<LoginProps> = ({
           >
             <TextField
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredEmail",
+                  "Email is required",
+                ),
               })}
               id="email"
               margin="normal"
@@ -180,7 +183,10 @@ export const LoginPage: React.FC<LoginProps> = ({
             />
             <TextField
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
               id="password"
               margin="normal"
