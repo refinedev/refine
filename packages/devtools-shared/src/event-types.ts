@@ -41,6 +41,7 @@ type ActivityPayload =
       variables?: Mutation<any, any, any, any>["state"]["variables"];
       hookName: string;
       resourcePath: string | null;
+      resourceName?: string;
       legacyKey: boolean;
     }
   | {
@@ -52,6 +53,7 @@ type ActivityPayload =
       state: QueryState<any, any>;
       hookName: string;
       resourcePath: string | null;
+      resourceName?: string;
       legacyKey: boolean;
     };
 

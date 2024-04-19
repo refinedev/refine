@@ -7,9 +7,14 @@ export type XRayResponse = {
   trace: TraceType[];
   resourcePath: string | null;
   legacyKey: boolean;
+  resourceName?: string;
 };
 
-export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
+export function getXRay(
+  hookName: string,
+  legacyKey: boolean,
+  resourceName?: string,
+): XRayResponse {
   if (__DEV_CONDITION__ !== "development") {
     return {
       hookName: "",
@@ -27,5 +32,6 @@ export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
     trace,
     resourcePath,
     legacyKey,
+    resourceName,
   };
 }
