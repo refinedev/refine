@@ -5,7 +5,7 @@ import { TestWrapper } from "@test";
 import { useGetToPath } from "./";
 
 describe("useGetToPath Hook", () => {
-  it("should return undefined if not not found resource", () => {
+  it("should return undefined if not found resource", () => {
     const { result } = renderHook(() => useGetToPath(), {
       wrapper: TestWrapper({}),
     });

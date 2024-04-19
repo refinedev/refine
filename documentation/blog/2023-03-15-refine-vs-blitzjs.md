@@ -34,7 +34,7 @@ The Refine framework was created in 2021 and has witnessed rapid growth and attr
 
 ### Blitz
 
-Blitz is is a full-stack web framework built on top of NextJS, which means it preserves many of the core features like server-side rendering, static site generation, and automatic code splitting.
+Blitz is a full-stack web framework built on top of NextJS, which means it preserves many of the core features like server-side rendering, static site generation, and automatic code splitting.
 
 Furthermore, it is the NextJS toolkit that provides the necessary pieces to create feature-rich applications, adding features like authentication, a type-safe API layer, and many more.
 

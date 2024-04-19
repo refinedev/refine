@@ -90,7 +90,7 @@ As was discussed in the previous section, it is simple to mistake the React Susp
 
 Traditionally, the fetch-on-render pattern is the commonest approach when fetching data from an API. With this pattern, you render the component, fetch data in a `useEffect` hook, update state, and the component re-renders to display the data.
 
-Therefore, you need to declare state to manage the different data fetching stages. You need to display an appropriate UI when the data is is still loading and an error message when an error occurs like in the example below.
+Therefore, you need to declare state to manage the different data fetching stages. You need to display an appropriate UI when the data is still loading and an error message when an error occurs like in the example below.
 
 ```tsx
 function MyComponent() {
