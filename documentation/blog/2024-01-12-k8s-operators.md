@@ -6,7 +6,6 @@ authors: muhammad_khabbab
 tags: [kubernetes, docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/social.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 ## Introduction
