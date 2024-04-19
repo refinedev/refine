@@ -8,12 +8,19 @@ import dayjs from "dayjs";
 import { Owners } from "./owners";
 import { JsonViewer } from "./json-viewer";
 import { excludeKeys } from "src/utils/exclude-keys";
+import { InvalidateButton } from "./invalidate-button";
 import { getResourceValue } from "src/utils/get-resource-value";
 import { ResourceValue } from "./resource-value";
-import { RefineHook, scopes } from "@refinedev/devtools-shared";
+import {
+  DevToolsContext,
+  RefineHook,
+  scopes,
+} from "@refinedev/devtools-shared";
 import { getOwners } from "src/utils/get-owners";
 
 export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
+  const { ws } = React.useContext(DevToolsContext);
+
   return (
     <div className={clsx("re-h-full", "re-text-gray-300", "re-relative")}>
       <div
@@ -327,9 +334,13 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                       "re-text-xs",
                       "re-font-semibold",
                       "re-text-gray-300",
+                      "re-flex",
+                      "re-items-center",
+                      "re-justify-between",
                     )}
                   >
-                    Data
+                    <span>Data</span>
+                    <InvalidateButton activity={activity} />
                   </div>
                   <JsonViewer data={activity.state.data ?? {}} label="Data" />
                 </div>
@@ -351,9 +362,13 @@ export const MonitorDetails = ({ activity }: { activity?: Activity }) => {
                       "re-text-xs",
                       "re-font-semibold",
                       "re-text-gray-300",
+                      "re-flex",
+                      "re-items-center",
+                      "re-justify-between",
                     )}
                   >
                     Error
+                    <InvalidateButton activity={activity} />
                   </div>
                   <JsonViewer data={activity.state.error ?? {}} label="Error" />
                 </div>
