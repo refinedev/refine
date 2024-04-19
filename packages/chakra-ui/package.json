@@ -48,6 +48,7 @@
     "@refinedev/cli": "^2.16.28",
     "@refinedev/core": "^4.49.0",
     "@refinedev/ui-tests": "^1.14.3",
+    "@testing-library/dom": "^8.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",

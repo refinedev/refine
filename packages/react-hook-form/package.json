@@ -54,7 +54,8 @@
     "react-router-dom": "^6.8.1",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "tsup": "^6.7.0"
+    "tsup": "^6.7.0",
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
