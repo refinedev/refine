@@ -248,7 +248,7 @@ export const useMany = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useMany", preferLegacyKeys),
+      ...getXRay("useMany", preferLegacyKeys, resource?.name),
     },
   });
 

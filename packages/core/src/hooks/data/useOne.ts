@@ -246,7 +246,7 @@ export const useOne = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useOne", preferLegacyKeys),
+      ...getXRay("useOne", preferLegacyKeys, resource?.name),
     },
   });
 

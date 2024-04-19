@@ -323,7 +323,7 @@ export const useInfiniteList = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useInfiniteList", preferLegacyKeys),
+      ...getXRay("useInfiniteList", preferLegacyKeys, resource?.name),
     },
   });
 
