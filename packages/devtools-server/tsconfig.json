@@ -1,5 +1,8 @@
 {
   "include": ["src", "types"],
+  "exclude": [
+    "src/client/**/*",
+  ],
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
     "types": ["node", "jest", "@testing-library/jest-dom"],
