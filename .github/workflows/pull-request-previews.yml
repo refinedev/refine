@@ -25,11 +25,13 @@ jobs:
     name: Fine Foods Antd
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v4
+          cache: "pnpm"
       - name: Install Dependencies
         run: |
           npm ci -w finefoods-antd --include-workspace-root
@@ -60,11 +62,14 @@ jobs:
     name: Fine Foods Material UI
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v4
+          cache: "pnpm"
+      - uses: pnpm/action-setup@v3
       - name: Install Dependencies
         run: |
           npm ci -w finefoods-material-ui --include-workspace-root

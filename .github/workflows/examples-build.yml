@@ -62,12 +62,14 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
       - name: Fetch commits
         run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: npm ci --workspaces false
@@ -95,11 +97,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_1_INSTALL_SCRIPT }}
@@ -133,11 +137,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_2_INSTALL_SCRIPT }}
@@ -171,11 +177,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_3_INSTALL_SCRIPT }}
@@ -209,11 +217,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_4_INSTALL_SCRIPT }}
@@ -247,11 +257,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_5_INSTALL_SCRIPT }}
@@ -285,11 +297,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_6_INSTALL_SCRIPT }}
@@ -323,11 +337,13 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_7_INSTALL_SCRIPT }}
@@ -361,10 +377,12 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_8_INSTALL_SCRIPT }}
@@ -398,10 +416,12 @@ jobs:
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: ${{ needs.chunks.outputs.CHUNK_9_INSTALL_SCRIPT }}
