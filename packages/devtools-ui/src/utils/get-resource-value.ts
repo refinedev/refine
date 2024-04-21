@@ -15,7 +15,7 @@ export const getResourceValue = (activity: Activity): string => {
     }
   }
 
-  if (resource) {
+  if (resource && typeof resource === "string") {
     resource = resource.charAt(0).toUpperCase() + resource.slice(1);
   }
 
