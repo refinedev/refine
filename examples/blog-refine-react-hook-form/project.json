@@ -1,0 +1,4 @@
+{
+  "name": "blog-refine-react-hook-form",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

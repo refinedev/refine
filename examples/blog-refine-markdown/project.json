@@ -1,0 +1,4 @@
+{
+  "name": "blog-refine-markdown",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

@@ -1,0 +1,4 @@
+{
+  "name": "data-provider-nestjs-query",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

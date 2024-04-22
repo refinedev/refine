@@ -1,0 +1,4 @@
+{
+  "name": "access-control-cerbos",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

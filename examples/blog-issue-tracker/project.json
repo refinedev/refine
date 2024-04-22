@@ -1,0 +1,4 @@
+{
+  "name": "blog-issue-tracker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

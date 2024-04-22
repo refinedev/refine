@@ -1,0 +1,4 @@
+{
+  "name": "inferencer-graphql-hasura",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

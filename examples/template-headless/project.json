@@ -1,0 +1,4 @@
+{
+  "name": "template-headless",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

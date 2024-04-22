@@ -1,0 +1,4 @@
+{
+  "name": "data-provider-strapi-v4",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

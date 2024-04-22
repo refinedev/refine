@@ -1,0 +1,4 @@
+{
+  "name": "core-use-menu",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

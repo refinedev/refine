@@ -1,0 +1,4 @@
+{
+  "name": "data-provider-airtable",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

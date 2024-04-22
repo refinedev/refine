@@ -1,0 +1,4 @@
+{
+  "name": "blog-react-dnd",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}
