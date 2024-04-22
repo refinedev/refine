@@ -14007,6 +14007,9 @@ importers:
       '@chakra-ui/react':
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.2.79)(react@18.2.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(framer-motion@7.10.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@chakra-ui/theme-tools':
+        specifier: ^2.1.2
+        version: 2.1.2(@chakra-ui/styled-system@2.9.2)
       '@emotion/react':
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.2.79)(react@18.2.0)

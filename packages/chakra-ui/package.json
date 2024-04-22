@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
+    "@chakra-ui/theme-tools": "^2.1.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@refinedev/react-hook-form": "^4.8.16",
