@@ -153,11 +153,12 @@ chunks.forEach((chunk, i) => {
 
   const CHUNK_SCRIPT_OUTPUT_NAME = `${CHUNK_STR}_INSTALL_SCRIPT`;
 
-  const baseScript = "pnpm install";
+  const baseScript = "npm ci -w packages --include-workspace-root";
   // -w base-antd -w with-nextjs
   const workspaceArgs = chunk.map((c) => `-w ${c}`).join(" ");
 
-  const chunkScript = `${baseScript} ${workspaceArgs}`;
+  // const chunkScript = `${baseScript} ${workspaceArgs}`;
+  const chunkScript = "pnpm install";
 
   console.log(`::set-output name=${CHUNK_STR}::${chunk.join(",")}`);
   console.log(`::set-output name=${CHUNK_SCRIPT_OUTPUT_NAME} ::${chunkScript}`);

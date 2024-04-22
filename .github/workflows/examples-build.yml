@@ -113,7 +113,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_1_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
 
       - name: Get short SHA
         id: slug
@@ -155,7 +155,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_2_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
 
       - name: Get short SHA
         id: slug
@@ -197,7 +197,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_3_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_3 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_3 }}
 
       - name: Get short SHA
         id: slug
@@ -239,7 +239,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_4_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_4 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_4 }}
 
       - name: Get short SHA
         id: slug
@@ -281,7 +281,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_5_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_5 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_5 }}
 
       - name: Get short SHA
         id: slug
@@ -323,7 +323,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_6_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_6 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_6 }}
 
       - name: Get short SHA
         id: slug
@@ -365,7 +365,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_7_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_7 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_7 }}
 
       - name: Get short SHA
         id: slug
@@ -406,7 +406,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_8_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_8 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_8 }}
 
       - name: Get short SHA
         id: slug
@@ -447,7 +447,7 @@ jobs:
         run: ${{ needs.chunks.outputs.CHUNK_9_INSTALL_SCRIPT }}
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true npm run build -- --no-bail --scope=${{ needs.chunks.outputs.CHUNK_9 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_9 }}
 
       - name: Get short SHA
         id: slug

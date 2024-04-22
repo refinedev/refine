@@ -67,7 +67,7 @@ const getProjectInfo = (path) => {
     dependencies.includes("react-scripts") ||
     devDependencies.includes("react-scripts")
   ) {
-    additionalParams = "-- --host 127.0.0.1";
+    additionalParams = "--host 127.0.0.1";
   }
 
   return {
@@ -229,8 +229,8 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --group ${path}`;
-        const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+        const params = `--record --group ${path}`;
+        const runner = `pnpm lerna run cypress:run --scope ${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
 

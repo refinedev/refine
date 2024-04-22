@@ -13,8 +13,19 @@ jobs:
       - uses: wagoid/commitlint-github-action@v5
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
     name: Lint
     steps:
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
       - uses: actions/checkout@v4
       - name: lint
         run: |
@@ -44,7 +55,7 @@ jobs:
           pnpm install
       - name: Test
         run: |
-          pnpm test:all -- --skip-nx-cache
+          pnpm test:all --skip-nx-cache
       - name: Publint
         run: |
           pnpm publint:all
