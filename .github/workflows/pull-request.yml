@@ -18,6 +18,7 @@ jobs:
         node-version: [18.x]
     name: Lint
     steps:
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
           version: 9
@@ -26,7 +27,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - uses: actions/checkout@v4
       - name: lint
         run: |
           pnpm install
