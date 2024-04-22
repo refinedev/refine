@@ -1,0 +1,4 @@
+{
+  "name": "@refinedev/devtools-internal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}
