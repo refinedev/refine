@@ -36,8 +36,8 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: |
-          npm ci -w finefoods-antd --include-workspace-root
-          npm run build -- --scope finefoods-antd
+          pnpm install
+          pnpm build -- --scope finefoods-antd
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
@@ -78,8 +78,8 @@ jobs:
           version: 9
       - name: Install Dependencies
         run: |
-          npm ci -w finefoods-material-ui --include-workspace-root
-          npm run build -- --scope finefoods-material-ui
+          pnpm install
+          pnpm build -- --scope finefoods-material-ui
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:

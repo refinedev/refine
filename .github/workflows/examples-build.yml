@@ -74,7 +74,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: npm ci --workspaces false
+        run: pnpm install -w
 
       - name: Split Into Chunks
         id: chunkstep

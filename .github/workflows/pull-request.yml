@@ -18,8 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: lint
         run: |
-          npm ci --workspaces false
-          npm run lint:ci
+          pnpm install
+          pnpm lint:ci
   build:
     runs-on: ubuntu-latest
     concurrency:
@@ -41,13 +41,13 @@ jobs:
           cache: "pnpm"
       - name: Install & Build
         run: |
-          npm ci -w packages --include-workspace-root
+          pnpm install
       - name: Test
         run: |
-          npm run test:all -- --skip-nx-cache
+          pnpm test:all -- --skip-nx-cache
       - name: Publint
         run: |
-          npm run publint:all
+          pnpm publint:all
 
   tsdoc-check:
     runs-on: ubuntu-latest
