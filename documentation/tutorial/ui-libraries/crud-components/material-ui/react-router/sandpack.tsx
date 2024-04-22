@@ -69,7 +69,7 @@ export const ListProducts = () => {
         flex: 0.5,
         type: "singleSelect",
         valueOptions: categories,
-        valueFormatter: (params) => params.value,
+        valueFormatter: (params) => params?.value,
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
