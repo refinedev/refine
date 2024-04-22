@@ -71,7 +71,6 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.49.0",
     "@types/center-align": "^1.0.0",
     "@types/dedent": "^0.7.0",
     "@types/envinfo": "^7.8.1",
