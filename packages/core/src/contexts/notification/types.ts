@@ -37,6 +37,12 @@ export type OpenNotificationParams = {
   description?: string;
   cancelMutation?: () => void;
   undoableTimeout?: number;
+  anchorOrigin?: {
+    vertical: "top" | "bottom";
+    horizontal: "left" | "center" | "right";
+  };
+  preventDuplicate?: boolean;
+  disableWindowBlurListener?: boolean;
 };
 
 export interface INotificationContext {
