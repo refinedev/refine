@@ -16118,6 +16118,9 @@ importers:
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
+      '@types/qs':
+        specifier: ^6.9.7
+        version: 6.9.15
       jest:
         specifier: ^29.3.1
         version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
