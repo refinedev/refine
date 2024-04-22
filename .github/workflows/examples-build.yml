@@ -63,6 +63,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: Fetch commits
         run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
       - name: Use Node.js ${{ matrix.node-version }}
@@ -98,6 +100,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -138,6 +142,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -178,6 +184,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -218,6 +226,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -258,6 +268,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -298,6 +310,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -338,6 +352,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -378,6 +394,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -417,6 +435,8 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
