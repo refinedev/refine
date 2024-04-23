@@ -33,7 +33,7 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "attw": "attw --pack .",
+    "attw": "attw --pack . --exclude-entrypoints dist/reset.css",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
