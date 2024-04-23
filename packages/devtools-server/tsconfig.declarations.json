@@ -9,7 +9,7 @@
     "**/*.test.ts",
     "**/*.spec.tsx",
     "**/*.test.tsx",
-    "src/client/**/*",
+    "src/client/**/*"
   ],
   "compilerOptions": {
     "outDir": "dist",
