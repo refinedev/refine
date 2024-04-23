@@ -1,12 +1,12 @@
 import React from "react";
 import { useResource } from "@refinedev/core";
 
-import { ShowInferencer } from "./show";
-import { ListInferencer } from "./list";
-import { CreateInferencer } from "./create";
-import { EditInferencer } from "./edit";
+import { ShowInferencer } from "./show.js";
+import { ListInferencer } from "./list.js";
+import { CreateInferencer } from "./create.js";
+import { EditInferencer } from "./edit.js";
 
-import type { InferencerComponentProps } from "../../types";
+import type { InferencerComponentProps } from "../../types/index.js";
 
 const ChakraUIInferencer: React.FC<InferencerComponentProps> = ({
   action: actionFromProps,
@@ -31,17 +31,17 @@ export { ChakraUIInferencer };
 export {
   ListInferencer as ChakraUIListInferencer,
   renderer as ChakraUIListRenderer,
-} from "./list";
+} from "./list.js";
 export {
   ShowInferencer as ChakraUIShowInferencer,
   renderer as ChakraUIShowRenderer,
-} from "./show";
+} from "./show.js";
 export {
   EditInferencer as ChakraUIEditInferencer,
   renderer as ChakraUIEditRenderer,
-} from "./edit";
+} from "./edit.js";
 export {
   CreateInferencer as ChakraUICreateInferencer,
   renderer as ChakraUICreateRenderer,
-} from "./create";
-export * from "../../types";
+} from "./create.js";
+export * from "../../types/index.js";

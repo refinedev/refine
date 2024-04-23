@@ -1,5 +1,5 @@
-export * from "./definitions";
-export { getImports, getNameChangeInImport } from "./utils/swizzle/import";
-export { appendAfterImports } from "./utils/swizzle/appendAfterImports";
-export { getFileContent } from "./utils/swizzle/getFileContent";
-export type { ImportMatch, NameChangeMatch } from "./utils/swizzle/import";
+export * from "./definitions/index.js";
+export { getImports, getNameChangeInImport } from "./utils/swizzle/import.js";
+export { appendAfterImports } from "./utils/swizzle/appendAfterImports.js";
+export { getFileContent } from "./utils/swizzle/getFileContent.js";
+export type { ImportMatch, NameChangeMatch } from "./utils/swizzle/import.js";

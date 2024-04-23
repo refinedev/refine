@@ -1,6 +1,6 @@
-import { RouterProvider } from "./routerProvider";
+import { RouterProvider } from "./routerProvider.js";
 
-export { checkAuthentication } from "./checkAuthentication";
-export { RemixRouteComponent } from "./routeComponent";
-export { handleRefineParams } from "./useParams";
+export { checkAuthentication } from "./checkAuthentication.js";
+export { RemixRouteComponent } from "./routeComponent.js";
+export { handleRefineParams } from "./useParams.js";
 export default RouterProvider;
