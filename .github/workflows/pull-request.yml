@@ -27,9 +27,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - name: lint
+      - name: Install Dependencies
         run: |
           pnpm install -w
+      - name: lint
+        run: |
           pnpm lint:ci
   build:
     runs-on: ubuntu-latest
