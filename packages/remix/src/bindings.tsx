@@ -6,7 +6,7 @@ import {
   ParseResponse,
 } from "@refinedev/core";
 import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
-import { parse, stringify } from "qs";
+import qs from "qs";
 import React, { ComponentProps, useCallback, useContext } from "react";
 import { paramsFromCurrentPath } from "./params-from-current-path";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
@@ -36,7 +36,7 @@ export const routerBindings: RouterBindings = {
         const urlQuery = {
           ...(keepQuery &&
             existingSearch &&
-            parse(existingSearch, { ignoreQueryPrefix: true })),
+            qs.parse(existingSearch, { ignoreQueryPrefix: true })),
           ...query,
         };
 
@@ -57,7 +57,7 @@ export const routerBindings: RouterBindings = {
         const urlTo = to || "";
 
         const fullPath = `${urlTo}${
-          hasUrlQuery ? stringify(urlQuery, stringifyConfig) : ""
+          hasUrlQuery ? qs.stringify(urlQuery, stringifyConfig) : ""
         }${hasUrlHash ? urlHash : ""}`;
 
         if (type === "path") {
@@ -98,7 +98,7 @@ export const routerBindings: RouterBindings = {
     const inferredId = inferredParams.id;
 
     const fn = useCallback(() => {
-      const parsedSearch = parse(search, { ignoreQueryPrefix: true });
+      const parsedSearch = qs.parse(search, { ignoreQueryPrefix: true });
 
       const combinedParams = {
         ...inferredParams,
