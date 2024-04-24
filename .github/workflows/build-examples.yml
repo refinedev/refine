@@ -74,7 +74,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install -w
+        run: pnpm install
 
       - name: Split Into Chunks
         id: chunkstep
@@ -110,7 +110,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_1_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
@@ -152,7 +152,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_2_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
@@ -194,7 +194,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_3_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_3 }}
@@ -236,7 +236,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_4_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_4 }}
@@ -278,7 +278,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_5_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_5 }}
@@ -320,7 +320,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_6_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_6 }}
@@ -362,7 +362,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_7_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_7 }}
@@ -403,7 +403,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_8_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_8 }}
@@ -444,7 +444,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: ${{ needs.chunks.outputs.CHUNK_9_INSTALL_SCRIPT }}
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_9 }}
