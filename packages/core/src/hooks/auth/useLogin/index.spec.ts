@@ -382,6 +382,47 @@ describe("useLogin Hook", () => {
     expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
   });
 
+  it("succeed login with custom `onSuccess` handler", async () => {
+    const { result } = renderHook(
+      () => useLogin({ mutationOptions: { onSuccess: () => undefined } }),
+      {
+        wrapper: TestWrapper({
+          authProvider: {
+            login: ({ email }: any) => {
+              if (email === "test") {
+                return Promise.resolve({
+                  success: true,
+                  redirectTo: "/",
+                });
+              }
+
+              return Promise.resolve({
+                success: false,
+                error: new Error("Wrong email"),
+              });
+            },
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: () => Promise.resolve({}),
+            logout: () => Promise.resolve({ success: true }),
+          },
+          routerProvider,
+        }),
+      },
+    );
+
+    const { mutate: login } = result.current ?? { mutate: () => 0 };
+
+    await act(async () => {
+      login({ email: "test" });
+    });
+
+    await waitFor(() => {
+      expect(result.current.data?.success).toBeTruthy();
+    });
+
+    expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
+  });
+
   it("should successfully login with no redirect", async () => {
     const { result } = renderHook(() => useLogin(), {
       wrapper: TestWrapper({
