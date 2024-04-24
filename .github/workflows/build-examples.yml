@@ -108,17 +108,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependencies
         run: pnpm install
@@ -164,18 +153,8 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+        env:
+          CYPRESS_CACHE_FOLDER: "./node_modules"
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
@@ -186,6 +165,8 @@ jobs:
 
       - name: Run E2E Tests
         run: REFINE_NO_TELEMETRY=true BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_2 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-2-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
+        env:
+          CYPRESS_CACHE_FOLDER: "./node_modules"
 
   build-chunk-3:
     runs-on: ubuntu-latest
