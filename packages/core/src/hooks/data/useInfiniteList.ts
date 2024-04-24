@@ -12,6 +12,7 @@ import {
   handlePaginationParams,
   pickDataProvider,
   pickNotDeprecated,
+  prepareQueryContext,
   useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
@@ -250,10 +251,15 @@ export const useInfiniteList = <
         }),
       })
       .get(preferLegacyKeys),
-    queryFn: ({ queryKey, pageParam, signal }) => {
+    queryFn: (context) => {
       const paginationProperties = {
         ...prefferedPagination,
-        current: pageParam,
+        current: context.pageParam,
+      };
+
+      const meta = {
+        ...combinedMeta,
+        queryContext: prepareQueryContext(context),
       };
 
       return getList<TQueryFnData>({
@@ -263,22 +269,8 @@ export const useInfiniteList = <
         filters: prefferedFilters,
         sort: prefferedSorters,
         sorters: prefferedSorters,
-        meta: {
-          ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
-        },
-        metaData: {
-          ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
-        },
+        meta,
+        metaData: meta,
       }).then(({ data, total, ...rest }) => {
         return {
           data,
