@@ -391,7 +391,7 @@ e = some(where (p.eft == allow))
 m = g(r.sub, p.sub) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 `);
 
-export const adapter = new MemoryAdapter(`
+export const adapter = new StringAdapter(`
 p, editor, posts, list
 `);
 ```

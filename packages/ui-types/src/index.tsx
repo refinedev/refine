@@ -1,4 +1,4 @@
-export type { RefineBreadcrumbProps } from "./types";
+export type { RefineBreadcrumbProps } from "./types/index.tsx";
 
 export type {
   RefineButtonCommonProps,
@@ -16,7 +16,7 @@ export type {
   RefineRefreshButtonProps,
   RefineSaveButtonProps,
   RefineShowButtonProps,
-} from "./types";
+} from "./types/index.tsx";
 
 export type {
   RefineCrudCreateProps,
@@ -24,9 +24,12 @@ export type {
   RefineCrudListProps,
   RefineCrudShowProps,
   ActionButtonRenderer,
-} from "./types";
+} from "./types/index.tsx";
 
-export type { RefineErrorPageProps, RefineReadyPageProps } from "./types";
+export type {
+  RefineErrorPageProps,
+  RefineReadyPageProps,
+} from "./types/index.tsx";
 
 export type {
   RefineFieldBooleanProps,
@@ -41,7 +44,7 @@ export type {
   RefineFieldTagProps,
   RefineFieldTextProps,
   RefineFieldTooltipProps,
-} from "./types";
+} from "./types/index.tsx";
 
 export type {
   RefineLayoutFooterProps,
@@ -56,7 +59,7 @@ export type {
   RefineThemedLayoutV2Props,
   RefineThemedLayoutV2SiderProps,
   RefineThemedLayoutV2HeaderProps,
-} from "./types";
+} from "./types/index.tsx";
 
-export { RefineButtonTestIds } from "./ids";
-export * from "./classNames";
+export { RefineButtonTestIds } from "./ids.tsx";
+export * from "./classNames.ts";

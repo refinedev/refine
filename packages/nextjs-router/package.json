@@ -67,7 +67,7 @@
         "dist/pages/index.d.ts"
       ],
       "parse-table-params": [
-        "dist/parse-table-params/index.d.ts"
+        "dist/common/parse-table-params.d.ts"
       ]
     }
   },
@@ -77,6 +77,7 @@
     "src"
   ],
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
