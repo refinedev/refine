@@ -127,7 +127,8 @@
       "linter": {
         "rules": {
           "suspicious": {
-            "noExportsInTest": "off"
+            "noExportsInTest": "off",
+            "useDefaultSwitchClauseLast": "error"
           }
         }
       }
