@@ -37,8 +37,8 @@ export type {
   SnackbarProviderProps,
 } from "notistack";
 
-export * from "./components/index.js";
-export * from "./hooks/index.js";
-export * from "./theme/index.js";
-export * from "./providers/index.js";
-export * from "./contexts/index.js";
+export * from "./components/index.tsx";
+export * from "./hooks/index.ts";
+export * from "./theme/index.ts";
+export * from "./providers/index.tsx";
+export * from "./contexts/index.ts";

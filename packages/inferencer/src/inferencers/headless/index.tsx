@@ -1,12 +1,12 @@
 import React from "react";
 import { useResource } from "@refinedev/core";
 
-import { ShowInferencer } from "./show.js";
-import { ListInferencer } from "./list.js";
-import { CreateInferencer } from "./create.js";
-import { EditInferencer } from "./edit.js";
+import { ShowInferencer } from "./show.tsx";
+import { ListInferencer } from "./list.tsx";
+import { CreateInferencer } from "./create.tsx";
+import { EditInferencer } from "./edit.tsx";
 
-import type { InferencerComponentProps } from "../../types/index.js";
+import type { InferencerComponentProps } from "../../types/index.ts";
 
 const HeadlessInferencer: React.FC<InferencerComponentProps> = ({
   action: actionFromProps,
@@ -31,17 +31,17 @@ export { HeadlessInferencer };
 export {
   ListInferencer as HeadlessListInferencer,
   renderer as HeadlessListRenderer,
-} from "./list.js";
+} from "./list.tsx";
 export {
   ShowInferencer as HeadlessShowInferencer,
   renderer as HeadlessShowRenderer,
-} from "./show.js";
+} from "./show.tsx";
 export {
   EditInferencer as HeadlessEditInferencer,
   renderer as HeadlessEditRenderer,
-} from "./edit.js";
+} from "./edit.tsx";
 export {
   CreateInferencer as HeadlessCreateInferencer,
   renderer as HeadlessCreateRenderer,
-} from "./create.js";
-export * from "../../types/index.js";
+} from "./create.tsx";
+export * from "../../types/index.ts";

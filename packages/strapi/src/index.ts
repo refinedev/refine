@@ -1,3 +1,3 @@
-export * from "./dataProvider.js";
-export * from "./helpers/index.js";
-export * from "./hooks/index.js";
+export * from "./dataProvider.ts";
+export * from "./helpers/index.ts";
+export * from "./hooks/index.ts";
