@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "@types/google.maps": "^3.50.4",
+    "@types/lodash": "^4.14.171",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

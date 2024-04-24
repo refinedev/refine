@@ -1,4 +1,8 @@
 import { styled } from "@mui/material/styles";
+
+import type EmotionStyled from "@emotion/styled";
+import type { styled as MuiSystemStyled } from "@mui/system";
+
 import { SnackbarProvider } from "notistack";
 
 export const RefineSnackbarProvider = styled(SnackbarProvider)`
