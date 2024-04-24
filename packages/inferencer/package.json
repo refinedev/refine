@@ -99,6 +99,7 @@
   },
   "typings": "dist/index.d.ts",
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",

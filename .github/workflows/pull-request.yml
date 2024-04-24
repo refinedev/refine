@@ -57,6 +57,9 @@ jobs:
       - name: Publint
         run: |
           npm run publint:all
+      - name: Are The Types Wrong
+        run: |
+          npm run attw:all
 
   tsdoc-check:
     runs-on: ubuntu-latest
