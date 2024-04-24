@@ -2,7 +2,7 @@ export * from "./components/index.ts";
 export * from "./hooks/index.ts";
 
 // all auth types
-export * from "./components/pages/auth/types.ts";
+export * from "./components/pages/auth/types.tsx";
 export { ILoginForm } from "./components/pages/login/index.tsx";
 
 export {
