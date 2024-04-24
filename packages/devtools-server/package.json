@@ -34,6 +34,7 @@
     "src"
   ],
   "scripts": {
+    "attw": "attw --pack .",
     "build": "npm run build:client && tsup",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "npm run dev:client & tsup --watch",
