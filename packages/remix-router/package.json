@@ -51,6 +51,7 @@
     "src"
   ],
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/remix-router --nxBail --output-style stream",

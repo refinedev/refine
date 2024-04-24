@@ -59,6 +59,9 @@ jobs:
       - name: Publint
         run: |
           pnpm publint:all
+      - name: Are The Types Wrong
+        run: |
+          pnpm attw:all
 
   tsdoc-check:
     runs-on: ubuntu-latest

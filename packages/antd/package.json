@@ -33,6 +33,7 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
+    "attw": "attw --pack . --exclude-entrypoints dist/reset.css",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/antd --nxBail --output-style stream",
