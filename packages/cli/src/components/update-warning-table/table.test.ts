@@ -9,7 +9,7 @@ test("Update warning npm command", async () => {
   }[] = [
     // have script, have dependency
     {
-      output: "npm run refine update",
+      output: "pnpm run refine update",
       dependencies: ["@refinedev/cli"],
       scripts: {
         refine: "refine",
@@ -17,7 +17,7 @@ test("Update warning npm command", async () => {
     },
     // has script, no dependency
     {
-      output: "npm run refine update",
+      output: "pnpm run refine update",
       dependencies: ["@pankod/refine-cli"],
       scripts: {
         refine: "refine",
