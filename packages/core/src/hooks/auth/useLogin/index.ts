@@ -144,7 +144,10 @@ export function useLogin<TVariables = {}>({
   >({
     mutationKey: keys().auth().action("login").get(preferLegacyKeys),
     mutationFn: loginFromContext,
-    onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+    ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
+    onSuccess: async (data, variables, context) => {
+      const { success, redirectTo, error, successNotification } = data;
+
       if (success) {
         close?.("login-error");
 
@@ -176,11 +179,14 @@ export function useLogin<TVariables = {}>({
       }
 
       await invalidateAuthStore();
+
+      if (!v3LegacyAuthProviderCompatible) {
+        mutationOptions?.onSuccess?.(data, variables, context);
+      }
     },
     onError: (error: any) => {
       open?.(buildNotification(error));
     },
-    ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
     meta: {
       ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions?.meta),
       ...getXRay("useLogin", preferLegacyKeys),
