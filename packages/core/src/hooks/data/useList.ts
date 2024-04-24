@@ -321,7 +321,7 @@ export const useList = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useList", preferLegacyKeys),
+      ...getXRay("useList", preferLegacyKeys, resource?.name),
     },
   });
 

@@ -8,7 +8,8 @@
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/*.spec.tsx",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "src/client/**/*"
   ],
   "compilerOptions": {
     "outDir": "dist",
