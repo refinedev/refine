@@ -4,7 +4,13 @@
     "enabled": false
   },
   "files": {
-    "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
+    "ignore": [
+      "theme.d.ts",
+      "documentation/plugins",
+      "documentation/static",
+      "packages/*/package.json",
+      "examples/*/package.json"
+    ]
   },
   "formatter": {
     "enabled": true,

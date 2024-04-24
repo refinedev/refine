@@ -1,9 +1,7 @@
 {
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "outputs": [
         "{projectRoot}/.next",
         "{projectRoot}/build",
@@ -16,26 +14,15 @@
     },
     "test": {
       "cache": true,
-      "outputs": [
-        "{projectRoot}/coverage"
-      ]
+      "outputs": ["{projectRoot}/coverage"]
     },
     "dev": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
     },
     "types": {
-      "dependsOn": [
-        "^types",
-        "build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["^types", "build"],
+      "outputs": ["{projectRoot}/dist"]
     }
   },
   "defaultProject": "@refinedev/core",
@@ -47,14 +34,9 @@
     "appsDir": "examples"
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
+    "production": ["default"]
   },
   "nxCloudAccessToken": "NGI2NjNiYWItMWNhYi00MDA4LWI1OTMtM2IwYmFmYzRkMjEzfHJlYWQtd3JpdGU=",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
