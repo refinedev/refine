@@ -48,6 +48,8 @@ jobs:
         run: npm run test:all
       - name: Publint
         run: npm run publint:all
+      - name: Are The Types Wrong
+        run: npm run attw:all
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1

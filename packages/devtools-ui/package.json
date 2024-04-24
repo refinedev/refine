@@ -35,6 +35,7 @@
     "src"
   ],
   "scripts": {
+    "attw": "attw --pack . --exclude-entrypoints style.css",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",

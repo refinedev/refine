@@ -32,3 +32,6 @@ examples/**/package-lock.json
 /refine
 
 .biome/reports
+
+# nx daemon
+.nx
