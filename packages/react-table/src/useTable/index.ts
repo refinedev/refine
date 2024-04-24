@@ -168,7 +168,7 @@ export function useTable<
     if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
       setCurrent(1);
     }
-  }, [columnFilters]);
+  }, [columnFilters, columns]);
 
   return {
     ...reactTableResult,
