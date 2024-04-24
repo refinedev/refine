@@ -1,3 +1,3 @@
-export * from "./dataProvider";
-export * from "./helpers";
-export * from "./utils";
+export * from "./dataProvider.ts";
+export * from "./helpers/index.ts";
+export * from "./utils/index.ts";

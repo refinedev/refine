@@ -1,8 +1,8 @@
-import dataProvider from "./dataProvider";
+import dataProvider from "./dataProvider/index.ts";
 
-export * from "./dataProvider";
-export * from "./interfaces";
-export * from "./liveProvider";
+export * from "./dataProvider/index.ts";
+export * from "./interfaces.ts";
+export * from "./liveProvider/index.ts";
 export * as qqlQueryBuilder from "gql-query-builder";
 export type {
   BatchRequestDocument,
