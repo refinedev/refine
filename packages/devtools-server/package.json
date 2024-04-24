@@ -41,7 +41,7 @@
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "prepare": "npm run build",
     "publint": "publint --strict=true --level=suggestion",
-    "start:server": "node dist/cli.js",
+    "start:server": "node dist/cli.cjs",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
