@@ -29,7 +29,7 @@ jobs:
           cache: "pnpm"
       - name: lint
         run: |
-          pnpm install
+          pnpm install -w
           pnpm lint:ci
   build:
     runs-on: ubuntu-latest
