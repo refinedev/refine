@@ -5,7 +5,7 @@ import { RefineFieldDateProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
-import "dayjs/locale/tr";
+import "dayjs/locale/tr.js";
 
 export const fieldDateTests = (
   DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
