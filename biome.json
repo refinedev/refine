@@ -85,7 +85,9 @@
         "useDefaultParameterLast": "warn",
         "useSelfClosingElements": "error",
         "useSingleVarDeclarator": "error",
-        "useTemplate": "error"
+        "useTemplate": "error",
+        "useImportType": "warn",
+        "useNodejsImportProtocol": "off"
       },
       "suspicious": {
         "noArrayIndexKey": "warn",
