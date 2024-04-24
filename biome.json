@@ -64,7 +64,8 @@
         "noUselessSwitchCase": "error",
         "useArrowFunction": "error",
         "useLiteralKeys": "off",
-        "useOptionalChain": "error"
+        "useOptionalChain": "error",
+        "noExcessiveNestedTestSuites": "off"
       },
       "correctness": {
         "noConstantCondition": "error",
@@ -72,7 +73,8 @@
         "noSwitchDeclarations": "error",
         "noUnreachable": "error",
         "noUnsafeOptionalChaining": "error",
-        "useExhaustiveDependencies": "off"
+        "useExhaustiveDependencies": "off",
+        "useJsxKeyInIterable": "off"
       },
       "performance": {
         "noAccumulatingSpread": "off",
@@ -119,6 +121,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["packages/ui-tests"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExportsInTest": "off"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "defaultBranch": "master",

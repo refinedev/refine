@@ -74,7 +74,7 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="posts" />} />;
+              <Route index element={<NavigateToResource resource="posts" />} />
               <Route path="/posts">
                 <Route index element={<PostList />} />
                 <Route path="create" element={<PostCreate />} />

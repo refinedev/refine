@@ -128,7 +128,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     },
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: should run when `value` changed
   useEffect(() => {
     setOptions([]);
     refetchOrders();

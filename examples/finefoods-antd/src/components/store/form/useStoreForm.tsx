@@ -14,8 +14,8 @@ type Props = {
 };
 
 export const useStoreForm = (props: Props) => {
-  const [isFormDisabled, setIsFormDisabled] = useState(() =>
-    props.action === "edit" ? true : false,
+  const [isFormDisabled, setIsFormDisabled] = useState(
+    () => props.action === "edit",
   );
 
   const form = useForm<IStore>({
