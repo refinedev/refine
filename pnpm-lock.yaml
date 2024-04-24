@@ -5899,9 +5899,9 @@ importers:
       i18next-xhr-backend:
         specifier: ^3.2.2
         version: 3.2.2
-      lodash.debounce:
-        specifier: ^4.0.8
-        version: 4.0.8
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.0.0
         version: 18.2.0
