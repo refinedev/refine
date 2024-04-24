@@ -54,6 +54,10 @@ It also syncs the filtering state with the URL if you enable the [`syncWithLocat
 
 By default, filter operators are set to "eq" for all fields. You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. Just be aware that the `filterOperator` must be a [`CrudOperators`](/docs/core/interface-references#crudoperators) type.
 
+If you're going to use [logical filters](/docs/core/interface-references#logicalfilter) (`and`, `or`), you can set `filterOperator` to `and` or `or` in the `meta` object. By design, logical filters do not have `field` property, instead they have `key` property to differentiate between filters if there are multiple filters with the same operator.
+
+By default, `id` field of the column is used as the `key` property. If you want to use a different field as the `key`, you can set the `filterKey` property in the `meta` object.
+
 <FilteringLivePreview/>
 
 ## Realtime Updates
