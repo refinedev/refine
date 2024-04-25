@@ -50,6 +50,10 @@ const getProjectInfo = (path) => {
   // check for vite
   if (dependencies.includes("vite") || devDependencies.includes("vite")) {
     port = 5173;
+
+    if (dependencies.includes("@refinedev/devtools")) {
+      additionalParams = "--devtools false";
+    }
   }
 
   // check for next and remix
@@ -68,10 +72,6 @@ const getProjectInfo = (path) => {
     devDependencies.includes("react-scripts")
   ) {
     additionalParams = "--host 127.0.0.1";
-  }
-
-  if (dependencies.includes("@refinedev/devtools")) {
-    additionalParams = "--devtools false";
   }
 
   return {
