@@ -3,17 +3,6 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("deleteMany", () => {
-  beforeAll(async () => {
-    await supabaseClient.auth.signInWithPassword({
-      email: "info@refine.dev",
-      password: "refine-supabase",
-    });
-  });
-
-  afterAll(async () => {
-    await supabaseClient.auth.signOut();
-  });
-
   it("correct response", async () => {
     const promise = dataProvider(supabaseClient).deleteMany!({
       resource: "posts",

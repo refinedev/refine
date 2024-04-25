@@ -3,17 +3,6 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("create", () => {
-  beforeAll(async () => {
-    await supabaseClient.auth.signInWithPassword({
-      email: "info@refine.dev",
-      password: "refine-supabase",
-    });
-  });
-
-  afterAll(async () => {
-    await supabaseClient.auth.signOut();
-  });
-
   it("correct response with `select`", async () => {
     const { data } = await dataProvider(supabaseClient).create({
       resource: "posts",
