@@ -14,6 +14,7 @@ import { CatalogsList } from "../../components/rvc-website/catalog";
 import { RefineBanner } from "../../components/refine-banner";
 import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
 import { IVideoTitle } from "../../interfaces";
+import { Link } from "react-router-dom";
 
 export const RVCWebsitePageHome = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ export const RVCWebsitePageHome = () => {
           dir="right"
         />
 
-        <RefineBanner />
+        <RefineBanner banner="crm" />
         <AdvertisementBanners />
       </RVCWebsiteLayout>
     </Browser>
@@ -73,8 +74,6 @@ const NewTitles = () => {
   const [controlledSwiper, setControlledSwiper] = useState<ISwiper | null>(
     null,
   );
-
-  const { showUrl } = useNavigation();
 
   const { data } = useList<IVideoTitle>({
     resource: "titles",
@@ -100,7 +99,7 @@ const NewTitles = () => {
       >
         {titles?.map((title) => (
           <SwiperSlide key={title.id}>
-            <TitleContainer href={showUrl("titles", title.id)}>
+            <TitleContainer to={`/rvc-website/titles/${title.id}`}>
               <TitleImage
                 src={getTMDBImgLink({
                   path: title.poster_path,
@@ -127,7 +126,7 @@ const TopTitles = () => {
   return (
     <TopTitlesContainer>
       {TOP_TITLES.map((title) => (
-        <TitleContainer key={title.id} href={showUrl("titles", title.id)}>
+        <TitleContainer key={title.id} to={`/rvc-website/titles/${title.id}`}>
           <TitleImage
             src={getTMDBImgLink({
               path: title.poster_path,
@@ -310,7 +309,7 @@ const SwiperButton = styled.img<{ dir: "left" | "right" }>`
   cursor: pointer;
 `;
 
-const TitleContainer = styled.a`
+const TitleContainer = styled(Link)`
   appearance: none;
   display: flex;
   flex-direction: column;

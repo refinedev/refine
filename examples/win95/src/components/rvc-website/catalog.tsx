@@ -74,6 +74,7 @@ export const RVCWebsiteCatalogPage = () => {
             </CatalogList>
           )}
           <RefineBanner
+            banner="finefoods"
             style={{
               marginTop: "80px",
             }}
