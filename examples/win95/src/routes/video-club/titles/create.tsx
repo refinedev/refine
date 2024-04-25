@@ -141,7 +141,11 @@ export const VideoClubPageCreateTitle = () => {
           <InfoContent>
             <InfoLine>
               <span>{"Our inventory is provided by "}</span>
-              <InfoAnchor href="https://www.themoviedb.org">
+              <InfoAnchor
+                href="https://www.themoviedb.org"
+                target="_blank"
+                rel="noreferrer"
+              >
                 {"The Movie DB "}
                 <ExternalAnchorIcon src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/external-icon.png" />
               </InfoAnchor>
