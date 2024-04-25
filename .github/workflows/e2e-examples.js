@@ -67,11 +67,11 @@ const getProjectInfo = (path) => {
     dependencies.includes("react-scripts") ||
     devDependencies.includes("react-scripts")
   ) {
-    additionalParams = "-- --host 127.0.0.1";
+    additionalParams = "--host 127.0.0.1";
   }
 
   if (dependencies.includes("@refinedev/devtools")) {
-    additionalParams = "-- --devtools false";
+    additionalParams = "--devtools false";
   }
 
   return {
