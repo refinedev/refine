@@ -24,6 +24,7 @@ import {
 } from "../../../utils/get-title-by-tmdb-id";
 import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
 import { ITape, IVideoTitle } from "../../../interfaces";
+import { ImagePixelated } from "../../../components/image-pixelated";
 
 dayjs.extend(durationPlugin);
 
@@ -337,7 +338,7 @@ const TitleDetails = styled(GroupBox)`
   gap: 32px;
 `;
 
-const Poster = styled.img`
+const Poster = styled(ImagePixelated)`
   flex-shrink: 0;
   width: 200px;
   height: 300px;

@@ -87,7 +87,8 @@ const History = ({ member }: { member?: IExendedMember }) => {
   return (
     <HistoryGroupBox label="History">
       <MemberCreatedAtText>
-        Member added on: {dayjs(member?.created_at).format("DD.MM.YYYY")}
+        Member added on:{" "}
+        {dayjs(member?.created_at).year(1995).format("DD.MM.YYYY")}
       </MemberCreatedAtText>
       <TableContainer>
         <Table>

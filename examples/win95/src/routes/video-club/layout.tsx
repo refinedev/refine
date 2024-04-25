@@ -101,11 +101,6 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
           </HomeContainer>
 
           {children}
-
-          <BgImage
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/noisy-gray.jpg"
-            alt="background"
-          />
         </Container>
       </StyledAppLayout>
       <Loading />
@@ -125,6 +120,8 @@ const Container = styled.div`
   height: 100%;
   position: relative;
   z-index: 1;
+  background-image: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/noisy-gray.png);
+  background-repeat: repeat;
 `;
 
 const HomeContainer = styled.div`

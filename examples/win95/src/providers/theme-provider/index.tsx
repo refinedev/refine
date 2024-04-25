@@ -33,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'ms_sans_serif', sans-serif;
   }
   div {
-    line-height: normal !important;
+    line-height: 20px;
   }
   tr > td > a {
     color: #0000FF;

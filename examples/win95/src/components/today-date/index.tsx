@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const VideoClubTodayDate = ({ className }: Props) => {
-  const today = dayjs();
+  const today = dayjs().year(1995);
   // format today as "weekday, month day, year"
   const date = today.format("dddd, MMMM D, YYYY");
   // format today as "hour:minute AM/PM""

@@ -150,7 +150,7 @@ export const VideoClubPageBrowseTitles = () => {
               <TableHeadCell $width={48}>{}</TableHeadCell>
             </TableRow>
           </TableHead>
-          <TableBody style={{ height: "340px" }}>
+          <TableBody>
             {!isLoading &&
               titles.map((title) => {
                 const atleastOneCopyAvailable = title.tapes.some(

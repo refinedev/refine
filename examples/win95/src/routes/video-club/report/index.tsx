@@ -250,6 +250,7 @@ export const VideoClubReportPage = () => {
                 dataKey="value"
                 stroke="#FF00FF"
                 strokeWidth={2}
+                isAnimationActive={false}
                 dot={(props) => {
                   const { cx, cy, value } = props;
 

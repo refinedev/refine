@@ -85,6 +85,7 @@ export const RVCWebsitePageTitleDetails = () => {
                     <TitleDetailValue
                       style={{
                         maxWidth: "320px",
+                        lineHeight: "20px",
                       }}
                     >
                       {title.overview}
@@ -120,7 +121,8 @@ const Container = styled.div`
 
 const Title = styled.h2`
   color: #ff00ff;
-  font-size: 32px;
+  font-size: 64px;
+  line-height: 40px;
   margin-top: 48px;
   margin-bottom: 24px;
   font-family: "pixelated-times-new-roman", "ms_sans_serif";

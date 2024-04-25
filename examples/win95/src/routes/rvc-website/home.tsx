@@ -193,6 +193,10 @@ const AdvertisementBanners = () => {
         <img
           src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/vcr_md_wht.gif"
           alt="vcr"
+          style={{
+            width: "208px",
+            height: "96px",
+          }}
         />
         <img
           src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/Video.gif"

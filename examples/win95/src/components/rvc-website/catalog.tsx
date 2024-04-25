@@ -164,7 +164,8 @@ export const CatalogListItem = styled(Link)`
   width: 224px;
   color: #00ccff;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  line-height: 20px;
   gap: 12px;
 `;
 
