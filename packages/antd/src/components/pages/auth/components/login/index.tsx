@@ -163,13 +163,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             name="email"
             label={translate("pages.login.fields.email", "Email")}
             rules={[
-              {
-                required: true,
-                message: translate(
-                  "pages.login.errors.requiredEmail",
-                  "Email is required",
-                ),
-              },
+              { required: true },
               {
                 type: "email",
                 message: translate(
