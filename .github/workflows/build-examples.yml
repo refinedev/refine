@@ -110,7 +110,9 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
+        run: |
+          pnpm install
+          pnpm cypress install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
