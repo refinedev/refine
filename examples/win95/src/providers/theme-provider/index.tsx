@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     background: ${themeOriginal.desktopBackground};
-    font-family: 'ms_sans_serif', 'pixelated-times-new-roman', sans-serif;
+    font-family: 'ms_sans_serif', sans-serif;
   }
   div {
     line-height: normal !important;
