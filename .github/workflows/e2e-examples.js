@@ -44,7 +44,7 @@ const getProjectInfo = (path) => {
   const devDependencies = Object.keys(packageJson.devDependencies || {});
 
   let port = 3000;
-  let command = "npm run dev";
+  let command = "pnpm dev";
   let additionalParams = "";
 
   // check for vite
@@ -60,7 +60,7 @@ const getProjectInfo = (path) => {
     devDependencies.includes("@remix-run/node")
   ) {
     port = 3000;
-    command = "npm run build && npm run start:prod";
+    command = "pnpm build && pnpm start:prod";
   }
 
   if (
@@ -68,6 +68,10 @@ const getProjectInfo = (path) => {
     devDependencies.includes("react-scripts")
   ) {
     additionalParams = "-- --host 127.0.0.1";
+  }
+
+  if (dependencies.includes("@refinedev/devtools")) {
+    additionalParams = "-- --devtools false";
   }
 
   return {
