@@ -2,7 +2,6 @@
 "@refinedev/antd": minor
 "@refinedev/chakra-ui": minor
 "@refinedev/mui": minor
-"@refinedev/live-previews": minor
 ---
 
 feat: add message prop for required auth input fields for the above packages.
