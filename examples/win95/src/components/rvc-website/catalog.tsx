@@ -111,7 +111,7 @@ export const CatalogsList = ({
 };
 
 const Container = styled.div`
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,6 +172,7 @@ export const CatalogListItem = styled(Link)`
 
 export const CatalogListMarkerContainer = styled.div`
   position: relative;
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
 `;

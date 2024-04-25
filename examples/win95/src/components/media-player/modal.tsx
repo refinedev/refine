@@ -55,7 +55,7 @@ const StyledWindowHeader = styled(WindowHeader)`
   justify-content: space-between;
   align-items: center;
   padding-left: 8px;
-`;
+  height: 100dvh`;
 
 const StyledWindowContent = styled(WindowContent)`
   display: flex;
