@@ -13349,6 +13349,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      cookie:
+        specifier: ^0.5.0
+        version: 0.5.0
       js-cookie:
         specifier: ^3.0.1
         version: 3.0.5
@@ -13377,6 +13380,9 @@ importers:
 
   examples/with-remix-material-ui:
     dependencies:
+      '@emotion/cache':
+        specifier: ^11.11.0
+        version: 11.11.0
       '@emotion/react':
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.2.79)(react@18.2.0)
@@ -13492,6 +13498,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      cookie:
+        specifier: ^0.5.0
+        version: 0.5.0
       js-cookie:
         specifier: ^3.0.1
         version: 3.0.5
