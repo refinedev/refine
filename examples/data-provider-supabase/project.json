@@ -1,4 +1,0 @@
-{
-  "name": "data-provider-supabase",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json"
-}

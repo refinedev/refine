@@ -1,4 +1,0 @@
-{
-  "name": "auth-otp",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json"
-}
