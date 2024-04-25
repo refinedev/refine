@@ -42,7 +42,6 @@
       "prettier --config ./.prettierrc --write"
     ],
     "package.json": [
-      "biome format --write",
       "sort-package-json"
     ]
   },
