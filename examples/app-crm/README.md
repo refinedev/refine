@@ -72,7 +72,7 @@ refine is a React-based powerful framework for building low-code applications. I
 ## Try this example on your local
 
 ```bash
-npm create refine-app@latest -- --example app-crm
+npm create refine-app@latest --example app-crm
 ```
 
 ## Try this example on CodeSandbox
