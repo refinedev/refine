@@ -60,12 +60,12 @@ export const LoginPage = () => {
 
             <InputWrapper>
               <InputLabel htmlFor="email">Email:</InputLabel>
-              <Input id="email" type="email" />
+              <Input id="email" type="email" value="demo@refine.dev" />
             </InputWrapper>
 
             <InputWrapper>
               <InputLabel htmlFor="password">Password:</InputLabel>
-              <Input id="password" type="password" />
+              <Input id="password" type="password" value="demo" />
             </InputWrapper>
           </FormContainer>
 
