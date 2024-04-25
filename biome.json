@@ -8,8 +8,7 @@
       "theme.d.ts",
       "documentation/plugins",
       "documentation/static",
-      "packages/*/package.json",
-      "examples/*/package.json"
+      "package.json"
     ]
   },
   "formatter": {
