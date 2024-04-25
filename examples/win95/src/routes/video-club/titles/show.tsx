@@ -17,12 +17,15 @@ import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
 import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 import { ImagePixelated } from "../../../components/image-pixelated";
+import { useState } from "react";
+import { MediaPlayerModal } from "../../../components/media-player/modal";
 
 dayjs.extend(durationPlugin);
 
 const FEE_PER_DAY = 20;
 
 export const VideoClubPageShowTitle = () => {
+  const [trailer, setTrailer] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -39,159 +42,177 @@ export const VideoClubPageShowTitle = () => {
   });
 
   return (
-    <VideoClubLayoutSubPage
-      isLoading={isLoading}
-      title={data?.data?.title ?? ""}
-      help={
-        "You can see the details of the selected title with rental history."
-      }
-      onClose={() => navigate("/video-club/titles")}
-      containerStyle={{
-        width: "100%",
-      }}
-    >
-      <Container>
-        <TitleDetails label="Title Details">
-          <Poster
-            src={getTMDBImgLink({
-              path: data?.data?.poster_path || "",
-            })}
-          />
-          <DetailsContainer>
-            <DetailItem>
-              <DetailItemLabel>Title:</DetailItemLabel>
-              <DetailItemValue style={{ fontWeight: "bold", color: "#000080" }}>
-                <a
-                  href={`https://themoviedb.org/movie/${data?.data?.tmdb_id}`}
-                  target="_blank"
-                  rel="noreferrer"
+    <>
+      <VideoClubLayoutSubPage
+        isLoading={isLoading}
+        title={data?.data?.title ?? ""}
+        help={
+          "You can see the details of the selected title with rental history."
+        }
+        onClose={() => navigate("/video-club/titles")}
+        containerStyle={{
+          width: "100%",
+        }}
+      >
+        <Container>
+          <TitleDetails label="Title Details">
+            <Poster
+              src={getTMDBImgLink({
+                path: data?.data?.poster_path || "",
+              })}
+            />
+            <DetailsContainer>
+              <DetailItem>
+                <DetailItemLabel>Title:</DetailItemLabel>
+                <DetailItemValue
+                  style={{ fontWeight: "bold", color: "#000080" }}
                 >
-                  {data?.data?.title}
-                </a>
-              </DetailItemValue>
-              {/* TODO: implement video player */}
-              {/* <DetailItemTrailerButton>Watch Trailer</DetailItemTrailerButton> */}
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>ID:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.id}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Category:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.genres.join(", ")}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Year:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.year}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Duration:</DetailItemLabel>
-              <DetailItemValue>
-                {dayjs
-                  .duration(data?.data?.duration_minutes ?? 0, "minutes")
-                  .format("H[h] m[m]")}
-              </DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Director:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.director}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Cast:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.cast.join(", ")}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Overview:</DetailItemLabel>
-              <DetailItemValue>{data?.data?.overview}</DetailItemValue>
-            </DetailItem>
-          </DetailsContainer>
-        </TitleDetails>
-        <HistoryContainer label="History">
-          <CreatedAtSpan>{`Movie added on: ${dayjs(
-            data?.data?.created_at,
-          ).format("DD.MM.YYYY")}`}</CreatedAtSpan>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableHeadCell $width={24} $px={5}>
-                  {""}
-                </TableHeadCell>
-                <TableHeadCell $width={64}>Tape ID</TableHeadCell>
-                <TableHeadCell $width={240}>Member</TableHeadCell>
-                <TableHeadCell $width={100}>Rent Date</TableHeadCell>
-                <TableHeadCell $width={100}>Return Date</TableHeadCell>
-                <TableHeadCell $width={64} $align="right">
-                  Earning
-                </TableHeadCell>
-                {/* <TableHeadCell $width={48}>{}</TableHeadCell> */}
-              </TableRow>
-            </TableHead>
-            <TableBody style={{ height: "128px" }}>
-              {!isLoading &&
-                data?.data?.rentals.map((rental) => {
-                  return (
-                    <TableRow key={rental.id}>
-                      <TableDataCell $px={5} $width={24}>
-                        {""}
-                      </TableDataCell>
-                      <TableDataCell $width={64}>
-                        {rental.tape_id}
-                      </TableDataCell>
-                      <TableDataCell $width={240}>
-                        {rental.member.first_name} {rental.member.last_name}
-                      </TableDataCell>
-                      <TableDataCell $width={100}>
-                        {dayjs(rental.start_at).format("DD.MM.YYYY")}
-                      </TableDataCell>
-                      <TableDataCell $width={100}>
-                        {dayjs(rental.returned_at).format("DD.MM.YYYY")}
-                      </TableDataCell>
-                      <TableDataCell $width={64} $align="right">
-                        {"$"}
-                        {(rental.period * FEE_PER_DAY).toFixed(2)}
-                      </TableDataCell>
-                      {/* TODO: receipt concept is not implemented in our db schema */}
-                      {/* <TableDataCell $width={48} style={{ textAlign: "right" }}>
+                  <a
+                    href={`https://themoviedb.org/movie/${data?.data?.tmdb_id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {data?.data?.title}
+                  </a>
+                </DetailItemValue>
+                <DetailItemTrailerButton
+                  onClick={() => {
+                    setTrailer(true);
+                  }}
+                >
+                  Watch Trailer
+                </DetailItemTrailerButton>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>ID:</DetailItemLabel>
+                <DetailItemValue>{data?.data?.id}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Category:</DetailItemLabel>
+                <DetailItemValue>
+                  {data?.data?.genres.join(", ")}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Year:</DetailItemLabel>
+                <DetailItemValue>{data?.data?.year}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Duration:</DetailItemLabel>
+                <DetailItemValue>
+                  {dayjs
+                    .duration(data?.data?.duration_minutes ?? 0, "minutes")
+                    .format("H[h] m[m]")}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Director:</DetailItemLabel>
+                <DetailItemValue>{data?.data?.director}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Cast:</DetailItemLabel>
+                <DetailItemValue>{data?.data?.cast.join(", ")}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Overview:</DetailItemLabel>
+                <DetailItemValue>{data?.data?.overview}</DetailItemValue>
+              </DetailItem>
+            </DetailsContainer>
+          </TitleDetails>
+          <HistoryContainer label="History">
+            <CreatedAtSpan>{`Movie added on: ${dayjs(
+              data?.data?.created_at,
+            ).format("DD.MM.YYYY")}`}</CreatedAtSpan>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeadCell $width={24} $px={5}>
+                    {""}
+                  </TableHeadCell>
+                  <TableHeadCell $width={64}>Tape ID</TableHeadCell>
+                  <TableHeadCell $width={240}>Member</TableHeadCell>
+                  <TableHeadCell $width={100}>Rent Date</TableHeadCell>
+                  <TableHeadCell $width={100}>Return Date</TableHeadCell>
+                  <TableHeadCell $width={64} $align="right">
+                    Earning
+                  </TableHeadCell>
+                  {/* <TableHeadCell $width={48}>{}</TableHeadCell> */}
+                </TableRow>
+              </TableHead>
+              <TableBody style={{ height: "128px" }}>
+                {!isLoading &&
+                  data?.data?.rentals.map((rental) => {
+                    return (
+                      <TableRow key={rental.id}>
+                        <TableDataCell $px={5} $width={24}>
+                          {""}
+                        </TableDataCell>
+                        <TableDataCell $width={64}>
+                          {rental.tape_id}
+                        </TableDataCell>
+                        <TableDataCell $width={240}>
+                          {rental.member.first_name} {rental.member.last_name}
+                        </TableDataCell>
+                        <TableDataCell $width={100}>
+                          {dayjs(rental.start_at).format("DD.MM.YYYY")}
+                        </TableDataCell>
+                        <TableDataCell $width={100}>
+                          {dayjs(rental.returned_at).format("DD.MM.YYYY")}
+                        </TableDataCell>
+                        <TableDataCell $width={64} $align="right">
+                          {"$"}
+                          {(rental.period * FEE_PER_DAY).toFixed(2)}
+                        </TableDataCell>
+                        {/* TODO: receipt concept is not implemented in our db schema */}
+                        {/* <TableDataCell $width={48} style={{ textAlign: "right" }}>
                         <Link
                           to={`/video-club/titles/${data?.data.id}/receipt/${rental.id}`}
                         >
                           Receipt
                         </Link>
                       </TableDataCell> */}
-                    </TableRow>
-                  );
-                })}
-              {Array.from({
-                length: Math.max(0, 5 - (data?.data?.rentals.length ?? 0)),
-              }).map((_, index) => (
-                <TableRow key={`placeholder-${index}`}>{}</TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <StatsContainer>
-            <StatSpan>
-              {"Tapes: "}
-              {data?.data?.tapes?.length}
-            </StatSpan>
-            <StatSpan>
-              {"Total earnings so far: "}
-              <Strong>
-                {"$"}
-                {data?.data?.rentals
-                  ?.reduce(
-                    (acc, rental) => acc + rental.period * FEE_PER_DAY,
-                    0,
-                  )
-                  .toFixed(2)}
-              </Strong>
-            </StatSpan>
-          </StatsContainer>
-        </HistoryContainer>
-        <CancelButton onClick={() => navigate("/video-club/titles")}>
-          Cancel
-        </CancelButton>
-      </Container>
-    </VideoClubLayoutSubPage>
+                      </TableRow>
+                    );
+                  })}
+                {Array.from({
+                  length: Math.max(0, 5 - (data?.data?.rentals.length ?? 0)),
+                }).map((_, index) => (
+                  <TableRow key={`placeholder-${index}`}>{}</TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <StatsContainer>
+              <StatSpan>
+                {"Tapes: "}
+                {data?.data?.tapes?.length}
+              </StatSpan>
+              <StatSpan>
+                {"Total earnings so far: "}
+                <Strong>
+                  {"$"}
+                  {data?.data?.rentals
+                    ?.reduce(
+                      (acc, rental) => acc + rental.period * FEE_PER_DAY,
+                      0,
+                    )
+                    .toFixed(2)}
+                </Strong>
+              </StatSpan>
+            </StatsContainer>
+          </HistoryContainer>
+          <CancelButton onClick={() => navigate("/video-club/titles")}>
+            Cancel
+          </CancelButton>
+        </Container>
+      </VideoClubLayoutSubPage>
+      {trailer && (
+        <MediaPlayerModal
+          youtubeKey={data?.data?.trailer_key || "dQw4w9WgXcQ"}
+          onClose={() => setTrailer(false)}
+          title={data?.data?.title || ""}
+        />
+      )}
+    </>
   );
 };
 
@@ -254,7 +275,9 @@ const DetailItemValue = styled.div`
   flex: 1;
 `;
 
-const DetailItemTrailerButton = styled(Button)``;
+const DetailItemTrailerButton = styled(Button)`
+  margin-right: 16px;
+`;
 
 const HistoryContainer = styled(GroupBox)`
   padding-top: 24px;

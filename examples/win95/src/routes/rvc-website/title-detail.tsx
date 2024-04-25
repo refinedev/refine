@@ -12,6 +12,7 @@ import { RVCWebsiteLayout } from "../../components/rvc-website/layout";
 import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
 import { getHourFromMinutes } from "../../utils/get-hour-from-minutes";
 import { IVideoTitle } from "../../interfaces";
+import { MediaPlayer } from "../../components/media-player";
 
 export const RVCWebsitePageTitleDetails = () => {
   const { titleId } = useParams();
@@ -93,6 +94,7 @@ export const RVCWebsitePageTitleDetails = () => {
                   </TitleDetailRow>
                 </div>
               </TitleDetailsContainer>
+              <MediaPlayer youtubeKey={title.trailer_key} />
             </>
           )}
           <BackButton to="/rvc-website/catalog">
@@ -131,6 +133,7 @@ const Title = styled.h2`
 const TitleDetailsContainer = styled.div`
   display: flex;
   gap: 40px;
+  margin-bottom: 80px;
 `;
 
 const TitleImage = styled(ImagePixelated)`
