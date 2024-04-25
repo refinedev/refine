@@ -16,6 +16,7 @@ import styled from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
 import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
+import { ImagePixelated } from "../../../components/image-pixelated";
 
 dayjs.extend(durationPlugin);
 
@@ -210,7 +211,7 @@ const TitleDetails = styled(GroupBox)`
   gap: 32px;
 `;
 
-const Poster = styled.img`
+const Poster = styled(ImagePixelated)`
   flex-shrink: 0;
   width: 200px;
   height: 300px;

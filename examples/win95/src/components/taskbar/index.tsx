@@ -1,4 +1,5 @@
 import React from "react";
+import { useLogout } from "@refinedev/core";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -17,8 +18,10 @@ export const TaskBar = () => {
 
   const [startMenuIsOpen, setStartMenuIsOpen] = useState(false);
 
+  const { mutate } = useLogout();
+
   const onLogoutClick = () => {
-    alert("Logging out...");
+    mutate();
   };
 
   const firstPathName = pathname.split("/")[1];

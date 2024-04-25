@@ -117,8 +117,7 @@ const MemberDetails = ({ member }: { member: IExendedMember | null }) => {
           <Row>
             <Label>Name:</Label>
             <Value>
-              {member?.first_name}
-              {member?.last_name}
+              {member?.first_name} {member?.last_name}
             </Value>
           </Row>
           <Row>

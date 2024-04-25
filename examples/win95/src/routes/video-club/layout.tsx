@@ -23,31 +23,49 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
           {
             label: "Tapes",
             children: [
-              { label: "Rent Tape", onClick: () => alert("Rent Tape") },
-              { label: "Return Tape", onClick: () => alert("Return Tape") },
+              {
+                label: "Rent Tape",
+                onClick: () => navigate("/video-club/tapes/rent"),
+              },
+              {
+                label: "Return Tape",
+                onClick: () => navigate("/video-club/tapes/return"),
+              },
             ],
           },
           {
             label: "Titles",
             children: [
-              { label: "Add Title", onClick: () => navigate("titles/new") },
-              { label: "Browse Titles", onClick: () => navigate("titles") },
+              {
+                label: "Add Title",
+                onClick: () => navigate("/video-club/titles/new"),
+              },
+              {
+                label: "Browse Titles",
+                onClick: () => navigate("/video-club/titles"),
+              },
             ],
           },
           {
             label: "Members",
             children: [
-              { label: "Add Member", onClick: () => alert("Add Member") },
+              {
+                label: "Add Member",
+                onClick: () => navigate("/video-club/members/new"),
+              },
               {
                 label: "Browse Members",
-                onClick: () => alert("Browse Member"),
+                onClick: () => navigate("/video-club/members"),
               },
             ],
           },
           {
             label: "Help",
             children: [
-              { label: "Documentation", onClick: () => alert("Documentation") },
+              {
+                label: "Documentation",
+                onClick: () => window.open("https://refine.dev/docs"),
+              },
               {
                 label: "About",
                 onClick: () =>

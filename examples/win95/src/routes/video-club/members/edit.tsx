@@ -169,7 +169,7 @@ const AddPhotoInput = styled.input`
   cursor: pointer;
 `;
 
-const MemberPhoto = styled(ImagePixelated)`
+const MemberPhoto = styled.img`
   min-width: 200px;
   min-height: 200px;
   max-width: 200px;

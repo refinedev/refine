@@ -11,13 +11,27 @@ export const RVCWebsiteLinks = () => {
         <ReactRouterLink to="/rvc-website/catalog">Our Catalog</ReactRouterLink>
       </Button>
       <Button>
-        <a href="https://refine.dev/">Refine Home</a>
+        <a href="https://refine.dev/" target="_blank" rel="noopener noreferrer">
+          Refine Home
+        </a>
       </Button>
       <Button>
-        <a href="https://refine.dev/docs/">Documentation</a>
+        <a
+          href="https://refine.dev/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Documentation
+        </a>
       </Button>
       <Button>
-        <a href="https://refine.dev/tutorial/essentials/intro/">Tutorial</a>
+        <a
+          href="https://refine.dev/tutorial/essentials/intro/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tutorial
+        </a>
       </Button>
     </Container>
   );
