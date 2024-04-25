@@ -1,6 +1,6 @@
 ---
 title: Developing Internal Tools in 2024
-description: JavaScript some method implementation on Array with examples
+description: Internal tools are specialized software applications used by a company's back-office departments.
 slug: internal-tools
 authors: abdullah_numan
 tags: [dev-tools]

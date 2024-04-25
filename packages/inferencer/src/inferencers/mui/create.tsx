@@ -56,7 +56,6 @@ export const renderer = ({
     ["Create", "@refinedev/mui"],
     ["Box", "@mui/material"],
     ["useForm", "@refinedev/react-hook-form"],
-    ["IResourceComponentsProps", "@refinedev/core"],
   ];
 
   if (i18n) {
@@ -347,7 +346,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
 
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const {
             saveButtonProps,

@@ -14,9 +14,12 @@ import { Button, Drawer, Skeleton, Space, Tag } from "antd";
 import dayjs from "dayjs";
 
 import { Text, UserTag } from "@/components";
-import { Event } from "@/graphql/schema.types";
 
 import { CALENDAR_GET_EVENT_QUERY } from "./queries";
+import { GetFields } from "@refinedev/nestjs-query";
+import { GetEventQuery } from "../../graphql/types";
+
+type Event = GetFields<GetEventQuery>;
 
 export const CalendarShowPage: React.FC = () => {
   const { id } = useResource();

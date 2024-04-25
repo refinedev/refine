@@ -1,21 +1,13 @@
 import React from "react";
 import { Button } from "antd";
 import { RedoOutlined } from "@ant-design/icons";
-import {
-  useTranslate,
-  useResource,
-  useInvalidate,
-  queryKeys,
-  pickDataProvider,
-} from "@refinedev/core";
+import { useRefreshButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
 import { RefreshButtonProps } from "../types";
-
-import { useQueryClient } from "@tanstack/react-query";
 
 /**
  * `<RefreshButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component
@@ -30,47 +22,25 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
   hideText = false,
   dataProviderName,
   children,
-  onClick,
   meta: _meta,
   metaData: _metaData,
   ...rest
 }) => {
-  const translate = useTranslate();
-
-  const queryClient = useQueryClient();
-  const invalidates = useInvalidate();
-
-  const { resources, identifier, id } = useResource(
-    resourceNameFromProps ?? propResourceNameOrRouteName,
-  );
-
-  const isInvalidating = !!queryClient.isFetching({
-    queryKey: queryKeys(
-      identifier,
-      pickDataProvider(identifier, dataProviderName, resources),
-    ).detail(recordItemId ?? id),
+  const { onClick, label, loading } = useRefreshButton({
+    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    id: recordItemId,
+    dataProviderName,
   });
-
-  const handleInvalidate = () => {
-    invalidates({
-      id: recordItemId ?? id,
-      invalidates: ["detail"],
-      dataProviderName,
-      resource: identifier,
-    });
-  };
 
   return (
     <Button
-      onClick={(e) => {
-        onClick ? onClick(e) : handleInvalidate();
-      }}
-      icon={<RedoOutlined spin={isInvalidating} />}
+      onClick={onClick}
+      icon={<RedoOutlined spin={loading} />}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
       {...rest}
     >
-      {!hideText && (children ?? translate("buttons.refresh", "Refresh"))}
+      {!hideText && (children ?? label)}
     </Button>
   );
 };

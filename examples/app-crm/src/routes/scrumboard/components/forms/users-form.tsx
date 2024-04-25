@@ -3,10 +3,13 @@ import { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "@/graphql/schema.types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+import { GetFields } from "@refinedev/nestjs-query";
+import { KanbanUpdateTaskMutation } from "../../../../graphql/types";
+
+type Task = GetFields<KanbanUpdateTaskMutation>;
 
 type Props = {
   initialValues: {

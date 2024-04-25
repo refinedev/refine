@@ -1,5 +1,81 @@
 # @refinedev/graphql
 
+## 6.5.0
+
+### Minor Changes
+
+- [#5742](https://github.com/refinedev/refine/pull/5742) [`028ba6a11d0`](https://github.com/refinedev/refine/commit/028ba6a11d0f35a9ac4add54af0fdc714dc3772b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: add `gqlQuery` and `gqlMutation` support. #5743
+
+  Previously, `@refinedev/graphql` package only supported GraphQL operations through `meta.fields`.
+
+  Now we've added `gqlQuery` and `gqlMutation` fields in `meta` object.
+
+  You can utilize these fields along with `graphql-tag` package to build your queries/mutations.
+
+  See the updated documentation for more information: https://refine.dev/docs/packages/data-providers/graphql
+
+  Query Example:
+
+  ```tsx
+  import { useList } from "@refinedev/core";
+  import gql from "graphql-tag";
+
+  const POSTS_LIST_QUERY = gql`
+    query PostList($where: JSON, $sort: String) {
+      posts(where: $where, sort: $sort) {
+        id
+        title
+        content
+        category {
+          id
+        }
+      }
+    }
+  `;
+
+  const { data } = useList({
+    resource: "posts",
+    meta: { gqlQuery: POSTS_QUERY },
+  });
+  ```
+
+  Mutation Example:
+
+  ```tsx
+  import { useForm } from "@refinedev/core";
+  import gql from "graphql-tag";
+
+  const POST_CREATE_MUTATION = gql`
+    mutation createPost($input: createPostInput!) {
+      createPost(input: $input) {
+        id
+        title
+        content
+        category {
+          id
+        }
+      }
+    }
+  `;
+
+  const { formProps } = useForm({
+    resource: "posts",
+    meta: { gqlMutation: CREATE_POST_MUTATION },
+  });
+  ```
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
 ## 6.4.9
 
 ### Patch Changes

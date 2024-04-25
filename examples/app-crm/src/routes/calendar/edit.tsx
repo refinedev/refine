@@ -6,10 +6,12 @@ import { useNavigation, useResource } from "@refinedev/core";
 import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/graphql/schema.types";
-
 import { CalendarForm } from "./components";
 import { CALENDAR_UPDATE_EVENT_MUTATION } from "./queries";
+import { GetFields } from "@refinedev/nestjs-query";
+import { UpdateEventMutation } from "../../graphql/types";
+
+type Event = GetFields<UpdateEventMutation>;
 
 export const CalendarEditPage: React.FC = () => {
   const [isAllDayEvent, setIsAllDayEvent] = useState(false);

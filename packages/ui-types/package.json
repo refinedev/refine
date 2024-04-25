@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ui-types",
-  "version": "1.22.4",
+  "version": "1.22.5",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -21,6 +21,7 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
@@ -29,7 +30,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^4.49.0",
     "dayjs": "^1.10.7",
     "tslib": "^2.6.2"
   },

@@ -57,3 +57,61 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     "X-Response-Time",
     "70ms",
   ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id, title }\n  }\n    }",
+    variables: { input: { where: { id: "43" } } },
+  })
+  .reply(200, { data: { deletePost: { post: { id: "43", title: "foo" } } } }, [
+    "Server",
+    "nginx/1.17.10",
+    "Date",
+    "Fri, 17 Sep 2021 08:58:32 GMT",
+    "Content-Type",
+    "application/json",
+    "Content-Length",
+    "59",
+    "Connection",
+    "close",
+    "Vary",
+    "Origin",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains",
+    "X-Frame-Options",
+    "SAMEORIGIN",
+    "X-Powered-By",
+    "Strapi <strapi.io>",
+    "X-Response-Time",
+    "85ms",
+  ]);
+
+nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    query:
+      "mutation ($input: deletePostInput!) {\n  deletePost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
+    variables: { input: { where: { id: "10045" } } },
+  })
+  .reply(200, { data: { deletePost: { post: { id: "10045" } } } }, [
+    "Date",
+    "Tue, 12 Mar 2024 21:36:15 GMT",
+    "Content-Type",
+    "application/json",
+    "Content-Length",
+    "359",
+    "Connection",
+    "close",
+    "Vary",
+    "Accept-Encoding",
+    "Vary",
+    "Origin",
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains",
+    "X-Frame-Options",
+    "SAMEORIGIN",
+    "X-Powered-By",
+    "Strapi <strapi.io>",
+    "X-Response-Time",
+    "16ms",
+  ]);

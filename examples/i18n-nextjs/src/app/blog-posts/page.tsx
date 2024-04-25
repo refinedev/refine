@@ -9,11 +9,11 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord, useMany, useTranslate } from "@refinedev/core";
+import { BaseRecord, useMany, useTranslation } from "@refinedev/core";
 import { Space, Table, Typography } from "antd";
 
 export default function BlogPostList() {
-  const t = useTranslate();
+  const { translate: t } = useTranslation();
   const { tableProps } = useTable({
     syncWithLocation: true,
   });

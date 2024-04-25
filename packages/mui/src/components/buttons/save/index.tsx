@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -22,7 +22,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   const { sx, ...restProps } = rest;
 
@@ -38,7 +38,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       {hideText ? (
         <SaveOutlined fontSize="small" {...svgIconProps} />
       ) : (
-        children ?? translate("buttons.save", "Save")
+        children ?? label
       )}
     </LoadingButton>
   );

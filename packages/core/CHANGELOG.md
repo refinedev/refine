@@ -1,5 +1,127 @@
 # @refinedev/core
 
+## 4.49.0
+
+### Minor Changes
+
+- [#5751](https://github.com/refinedev/refine/pull/5751) [`f32512b9042`](https://github.com/refinedev/refine/commit/f32512b90427cbb97b28e9d5445dcd343067aa7e) Thanks [@aliemir](https://github.com/aliemir)! - Added `useResourceParams` hook. This hook initially works similarly to `useResource` but it correctly handles the `id` and `action` params per active route and explicit parameters. In `@refinedev/core` and other Refine packages there was a common logic of handling the `id` since its inference is dependent on the active resource and route. The same also applies to the `action` parameter of forms. This hook handles these cases and provides a more consistent API to share the same logic without duplicating it.
+
+  - `id` and `action` values returned from `useResource` is deprecated in favor of `useResourceParams`.
+  - `useForm` hook is updated to use `useResourceParams` under the hood.
+  - `useShow` hook is updated to use `useResourceParams` under the hood.
+  - `<CanAccess />` component is updated to use `useResourceParams` under the hood.
+
+### Patch Changes
+
+- [#5737](https://github.com/refinedev/refine/pull/5737) [`4e8188a6652`](https://github.com/refinedev/refine/commit/4e8188a665209b0d0b77aef27c795a29b9513226) Thanks [@aliemir](https://github.com/aliemir)! - chore: updated content of `README.md` to include installation, usage and scaffolding instructions.
+
+- [#5808](https://github.com/refinedev/refine/pull/5808) [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39) Thanks [@aliemir](https://github.com/aliemir)! - chore: improved `useMutationMode` hooks usage by accepting explicit values to be passed for `mutationMode` and `undoableTimeout`, handling the precedence of the values inside the hook rather than outside to avoid repetition
+
+- [#5733](https://github.com/refinedev/refine/pull/5733) [`2b5ac6f5409`](https://github.com/refinedev/refine/commit/2b5ac6f5409b7b175c453793224a531e644f6513) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `useTranslation` hook. It combines `useTranslate`, `useSetLocale` and `useGetLocale` hooks and returns `translate`, `changeLocale` and `getLocale` methods from that hooks for better developer experience.
+
+  It returns all [`i18nProvider`](/docs/i18n/i18n-provider) methods in one hook. It can be used to translate texts, change the locale, and get the current locale in your own components.
+
+  ```tsx
+  import { useTranslation } from "@refinedev/core";
+
+  export const MyComponent = () => {
+    const { translate, getLocale, changeLocale } = useTranslation();
+    const currentLocale = getLocale();
+
+    return (
+      <div>
+        <h1>{translate("languages")}</h1>
+        <button
+          onClick={() => changeLocale("en")}
+          disabled={currentLocale === "en"}
+        >
+          English
+        </button>
+        <button
+          onClick={() => changeLocale("de")}
+          disabled={currentLocale === "de"}
+        >
+          German
+        </button>
+      </div>
+    );
+  };
+  ```
+
+  Example of combining `useTranslation` with `useTranslate`, `useSetLocale` and `useGetLocale` hooks.
+
+  ```diff
+  import {
+  -  useGetLocale,
+  -  useSetLocale,
+  -  useTranslate,
+  +  useTranslation,
+  } from "@refinedev/core";
+
+  export const MyComponent = () => {
+  -  const changeLocale = useSetLocale();
+  -  const getLocale = useGetLocale();
+  -  const translate = useTranslate();
+
+  +  const { translate, getLocale, changeLocale } = useTranslation();
+
+    return <div>{/* ... */}</div>;
+  };
+  ```
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `lodash-es` imports for ESM builds to access the exports properly.
+
+- [#5755](https://github.com/refinedev/refine/pull/5755) [`404b2ef5e1b`](https://github.com/refinedev/refine/commit/404b2ef5e1b8fed469eeab753bac8736ed3fe58e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: refactor TS typings.
+
+  Type definitions in `src/interfaces` folder moved to their main consumer's folder under `types.ts` files.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - Update `papaparse` imports to fix ESM exports to work properly
+
+- [#5808](https://github.com/refinedev/refine/pull/5808) [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39) Thanks [@aliemir](https://github.com/aliemir)! - feat: added headless button hooks
+
+  We've added a new set of hooks to make it easier to create and manage UI buttons of Refine. There's a hook for each type of button which previously had duplicated logic across the codebase between UI integrations of Refine. Now all these buttons will be powered by the same hooks maintained in the `@refinedev/core` package to ensure consistency and reduce duplication.
+
+  New Hooks:
+
+  - `useListButton`: A navigation button that navigates to the list page of a resource.
+  - `useCreateButton`: A navigation button that navigates to the create page of a resource.
+  - `useShowButton`: A navigation button that navigates to the show page of a record.
+  - `useEditButton`: A navigation button that navigates to the edit page of a record.
+  - `useCloneButton`: A navigation button that navigates to the clone page of a record.
+  - `useRefreshButton`: A button that triggers an invalidation of the cache of a record.
+  - `useDeleteButton`: A button that triggers a delete mutation on a record.
+  - `useSaveButton`: A button to be used inside a form to trigger a save mutation.
+  - `useExportButton`: A button to be used with `useExport` to trigger an export bulk data of a resource.
+  - `useImportButton`: A button to be used with `useImport` to trigger an import bulk data for a resource.
+
+- [#5714](https://github.com/refinedev/refine/pull/5714) [`38f129f40ee`](https://github.com/refinedev/refine/commit/38f129f40eea109c9b89b23a8fd3f217964330c7) Thanks [@aliemir](https://github.com/aliemir)! - Refactored the internal logic of `useForm` to be more efficient and readable, along with few bug fixes and improvements to the `useForm` hook.
+
+  These changes are related to the issue [#5702](https://github.com/refinedev/refine/issues/5702) and resolves [#5460](https://github.com/refinedev/refine/issues/5460).
+
+  - `onFinish` now rejects when; - `values` is not provided, - `resource` is not defined, - `id` is required but not provided.
+    previously these cases were silently ignored.
+  - Same changes also applies to `onFinishAutoSave`.
+  - `onFinishAutoSave` had an issue with returning the appropriate promise after being called. This resulted in unhandled promise rejections and uncontrollable resolved promises. Now it is fixed, `onFinishAutoSave` will resolve and reject based on the response of the mutation.
+  - When using auto save, debounced calls will now be cancelled and the respective promises will be rejected with `"cancelled by debounce"` message. These changes might require an update to the code bases that uses `onFinishAutoSave` to handle the rejection of the promise to avoid unhandled promise rejections.
+  - Combined the separated submit functions into one for sake of simplicity and consistency. (internal)
+  - `onFinish` rejects and resolved regardless of the `onMutationSuccess` and `onMutationError` hooks are provided or not. (Resolves [#5460](https://github.com/refinedev/refine/issues/5460))
+  - `meta` values were concatenated multiple times causing confusion and unexpected behavior, now it is fixed. (internal)
+  - Moved the `id` determination/inference logic to a separate hook. (internal)
+  -
+
+- Updated dependencies [[`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927)]:
+  - @refinedev/devtools-internal@1.1.7
+
 ## 4.48.0
 
 ### Minor Changes

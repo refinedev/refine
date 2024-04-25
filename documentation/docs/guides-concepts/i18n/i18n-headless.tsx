@@ -75,13 +75,10 @@ export default App;
 
 const HomePageTsxCode = /* jsx */ `
 import React from "react";
-import { useTranslate, useGetLocale, useSetLocale } from "@refinedev/core";
+import { useTranslation } from "@refinedev/core";
 
 export const HomePage = () => {
-    const translate = useTranslate();
-    const changeLanguage = useSetLocale();
-    const getLocale = useGetLocale();
-
+    const { translate, getLocale, changeLocale } = useTranslation();
 
     return (
         <div>

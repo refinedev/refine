@@ -1287,8 +1287,6 @@ import {
 } from "@ant-design/icons";
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
-import { Contact } from "@/graphql/schema.types";
-
 import { statusOptions } from "@/constants";
 import { COMPANY_CONTACTS_TABLE_QUERY } from "@/graphql/queries";
 
@@ -1296,6 +1294,8 @@ import { CompanyContactsTableQuery } from "@/graphql/types";
 import { Text } from "@/components/text";
 import CustomAvatar from "@/components/custom-avatar";
 import { ContactStatusTag } from "@/components/tags/contact-status-tag";
+
+type Contact = GetFieldsFromList<CompanyContactsTableQuery>;
 
 export const CompanyContactsTable = () => {
   // get params from the url
@@ -1307,71 +1307,69 @@ export const CompanyContactsTable = () => {
    * Under the hood it uses useList hook to fetch the data.
    * https://refine.dev/docs/packages/tanstack-table/use-table/#installation
    */
-  const { tableProps } = useTable<GetFieldsFromList<CompanyContactsTableQuery>>(
-    {
-      // specify the resource for which the table is to be used
-      resource: "contacts",
-      syncWithLocation: false,
-      // specify initial sorters
-      sorters: {
-        /**
-         * initial sets the initial value of sorters.
-         * it's not permanent
-         * it will be cleared when the user changes the sorting
-         * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#sortersinitial
-         */
-        initial: [
-          {
-            field: "createdAt",
-            order: "desc",
-          },
-        ],
-      },
-      // specify initial filters
-      filters: {
-        /**
-         * similar to initial in sorters
-         * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#filtersinitial
-         */
-        initial: [
-          {
-            field: "jobTitle",
-            value: "",
-            operator: "contains",
-          },
-          {
-            field: "name",
-            value: "",
-            operator: "contains",
-          },
-          {
-            field: "status",
-            value: undefined,
-            operator: "in",
-          },
-        ],
-        /**
-         * permanent filters are the filters that are always applied
-         * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#filterspermanent
-         */
-        permanent: [
-          {
-            field: "company.id",
-            operator: "eq",
-            value: params?.id as string,
-          },
-        ],
-      },
+  const { tableProps } = useTable<Contact>({
+    // specify the resource for which the table is to be used
+    resource: "contacts",
+    syncWithLocation: false,
+    // specify initial sorters
+    sorters: {
       /**
-       * used to provide any additional information to the data provider.
-       * https://refine.dev/docs/data/hooks/use-form/#meta-
+       * initial sets the initial value of sorters.
+       * it's not permanent
+       * it will be cleared when the user changes the sorting
+       * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#sortersinitial
        */
-      meta: {
-        // gqlQuery is used to specify the GraphQL query that should be used to fetch the data.
-        gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
-      },
+      initial: [
+        {
+          field: "createdAt",
+          order: "desc",
+        },
+      ],
     },
-  );
+    // specify initial filters
+    filters: {
+      /**
+       * similar to initial in sorters
+       * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#filtersinitial
+       */
+      initial: [
+        {
+          field: "jobTitle",
+          value: "",
+          operator: "contains",
+        },
+        {
+          field: "name",
+          value: "",
+          operator: "contains",
+        },
+        {
+          field: "status",
+          value: undefined,
+          operator: "in",
+        },
+      ],
+      /**
+       * permanent filters are the filters that are always applied
+       * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/#filterspermanent
+       */
+      permanent: [
+        {
+          field: "company.id",
+          operator: "eq",
+          value: params?.id as string,
+        },
+      ],
+    },
+    /**
+     * used to provide any additional information to the data provider.
+     * https://refine.dev/docs/data/hooks/use-form/#meta-
+     */
+    meta: {
+      // gqlQuery is used to specify the GraphQL query that should be used to fetch the data.
+      gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
+    },
+  });
 
   return (
     <Card

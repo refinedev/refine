@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.27",
+  "version": "2.16.29",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "refine": "./dist/cli.cjs"
   },
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
@@ -32,7 +33,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/devtools-server": "1.1.25",
+    "@refinedev/devtools-server": "1.1.27",
     "boxen": "^5.1.2",
     "cardinal": "^2.1.1",
     "center-align": "1.0.1",
@@ -54,7 +55,7 @@
     "http-proxy-middleware": "^2.0.6",
     "inquirer": "^8.2.5",
     "inquirer-autocomplete-prompt": "^2.0.0",
-    "jscodeshift": "0.13.1",
+    "jscodeshift": "0.15.2",
     "marked": "^4.3.0",
     "marked-terminal": "^6.0.0",
     "node-emoji": "^2.1.3",
@@ -64,14 +65,14 @@
     "pluralize": "^8.0.0",
     "preferred-pm": "^3.0.3",
     "prettier": "^2.7.1",
-    "semver": "7.3.8",
+    "semver": "7.5.2",
     "semver-diff": "^3.1.1",
     "temp": "^0.9.4",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.48.0",
+    "@refinedev/core": "^4.49.0",
     "@types/center-align": "^1.0.0",
     "@types/dedent": "^0.7.0",
     "@types/envinfo": "^7.8.1",
@@ -81,7 +82,7 @@
     "@types/inquirer": "^8.2.5",
     "@types/inquirer-autocomplete-prompt": "^2.0.0",
     "@types/jest": "^29.2.4",
-    "@types/jscodeshift": "^0.11.5",
+    "@types/jscodeshift": "^0.11.11",
     "@types/marked-terminal": "^3.1.5",
     "@types/node-fetch": "^2.6.2",
     "@types/prettier": "^2.7.3",

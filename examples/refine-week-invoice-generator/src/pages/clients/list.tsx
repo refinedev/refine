@@ -51,7 +51,7 @@ export const ClientList = () => {
         <Table {...tableProps} rowKey="id">
           <Table.Column dataIndex="id" title="ID" sorter />
           <Table.Column<IClient> dataIndex="name" title="Name" sorter />
-          <Table.Column<IContact[]>
+          <Table.Column<IClient>
             dataIndex={["contacts"]}
             title="Contacts"
             render={(values) =>

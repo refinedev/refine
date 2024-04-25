@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -20,7 +20,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   return (
     <Button
@@ -30,7 +30,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
-      {!hideText && (children ?? translate("buttons.export", "Export"))}
+      {!hideText && (children ?? label)}
     </Button>
   );
 };

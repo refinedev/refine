@@ -53,7 +53,6 @@ export const renderer = ({
     "create",
   );
   const imports: Array<ImportElement> = [
-    ["IResourceComponentsProps", "@refinedev/core"],
     ["Create", "@refinedev/chakra-ui"],
     ["FormControl", "@chakra-ui/react"],
     ["FormLabel", "@chakra-ui/react"],
@@ -295,7 +294,7 @@ export const renderer = ({
   return jsx`
     ${printImports(imports)}
     
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
+    export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const {
             refineCore: { formLoading },

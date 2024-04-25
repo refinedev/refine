@@ -7,13 +7,13 @@ import {
   Show,
   TextField,
 } from "@refinedev/antd";
-import { useOne, useShow, useTranslate } from "@refinedev/core";
+import { useOne, useShow, useTranslation } from "@refinedev/core";
 import { Typography } from "antd";
 
 const { Title } = Typography;
 
 export default function BlogPostShow() {
-  const t = useTranslate();
+  const { translate: t } = useTranslation();
   const { queryResult } = useShow({});
   const { data, isLoading } = queryResult;
 

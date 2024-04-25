@@ -170,7 +170,7 @@ Notice that we've removed the `<SaveButton />` component from the `<EditProduct 
 
 ## Show View
 
-The `<Show />` component is a wrapper component for show pages.It provides a header with i18n support and navigation to the list view, edit the record, a refresh button, a delete button, a back button, and breadcrumbs. You can always provide more features and elements by passing customizing the component.
+The `<Show />` component is a wrapper component for show pages. It provides a header with i18n support and navigation to the list view, edit the record, a refresh button, a delete button, a back button, and breadcrumbs. You can always provide more features and elements by passing customizing the component.
 
 Update your `src/pages/products/show.tsx` file by adding the following lines:
 

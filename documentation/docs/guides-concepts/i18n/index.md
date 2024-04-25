@@ -59,11 +59,7 @@ const App: React.FC = () => {
 };
 ```
 
-This will allow us to put translation features to the followings hooks:
-
-- [`useTranslate`][use-translate] shows translation between different languages.
-- [`useSetLocale`][use-setlocale] changes locale at runtime.
-- [`useGetLocale`][use-getlocale] getting current locale.
+This will allow us to put translation features to the [`useTranslation`][use-translation] hook
 
 Let's add multi-language support to our application using the `react-i18next` framework. When we are done, our application will support both German and English.
 
@@ -159,7 +155,7 @@ const App: React.FC = () => {
 };
 ```
 
-After we pass the `i18nProvider` to the `<Refine>` component, all three translation hooks ([`useTranslate`][use-translate], [`useSetLocale`][use-setlocale], [`useGetLocale`][use-getlocale]) will be ready for use.
+After we pass the `i18nProvider` to the `<Refine />` component, [`useTranslation`][use-translation] hook will be ready for use.
 
 ### Adding the Translations Files
 
@@ -215,27 +211,25 @@ All of Refine's components support i18n, meaning that if you want to change thei
 
 ### Changing The Locale
 
-Next, we will create a `<Header>` component. This component will allow us to change the language.
+Next, we will create a `<Header />` component. This component will allow us to change the language.
 
 ```tsx title="src/components/header.tsx"
 import { DownOutlined } from "@ant-design/icons";
-import { useGetLocale, useSetLocale } from "@refinedev/core";
+import { useTranslation } from "@refinedev/core";
 import { Avatar, Button, Dropdown, Layout, Menu, Space } from "antd";
 import { useTranslation } from "react-i18next";
 
 export const Header: React.FC = () => {
   const { i18n } = useTranslation();
-  const locale = useGetLocale();
-  const changeLanguage = useSetLocale();
-
-  const currentLocale = locale();
+  const { getLocale, changeLocale } = useTranslation();
+  const currentLocale = getLocale();
 
   const menu = (
     <Menu selectedKeys={currentLocale ? [currentLocale] : []}>
       {[...(i18n.languages || [])].sort().map((lang: string) => (
         <Menu.Item
           key={lang}
-          onClick={() => changeLanguage(lang)}
+          onClick={() => changeLocale(lang)}
           icon={
             <span style={{ marginRight: 8 }}>
               <Avatar size={16} src={`/images/flags/${lang}.svg`} />
@@ -315,12 +309,12 @@ const App: React.FC = () => {
 
 <br />
 
-Finally, we will create the `<PostList>` page and then we will translate texts using `useTranslate`.
+Finally, we will create the `<PostList>` page and then we will translate texts using [`useTranslation`][use-translation].
 
 ```tsx title="src/App.tsx"
 import {
   // highlight-next-line
-  useTranslate,
+  useTranslation,
   useMany,
 } from "@refinedev/core";
 import {
@@ -336,7 +330,7 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
   // highlight-next-line
-  const translate = useTranslate();
+  const { translate } = useTranslation();
   const { tableProps } = useTable<IPost>();
 
   const categoryIds =
@@ -425,6 +419,4 @@ Here is the list of all translation keys that you can override:
 [i18nnextjs]: /examples/i18n/i18n-nextjs.md
 [react-i18next]: https://react.i18next.com/
 [create-refine-app]: /docs/getting-started/quickstart.md
-[use-translate]: /docs/i18n/hooks/use-translate
-[use-getlocale]: /docs/i18n/hooks/use-get-locale
-[use-setlocale]: /docs/i18n/hooks/use-set-locale
+[use-translation]: /docs/i18n/hooks/use-translation

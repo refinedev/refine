@@ -10,6 +10,6 @@ export default defineConfig({
     remix({
       ignoredRouteFiles: ["**/.*"],
     }),
-    tsconfigPaths(),
+    tsconfigPaths({ root: __dirname }),
   ],
 });

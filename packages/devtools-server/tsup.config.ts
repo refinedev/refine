@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 
 export default defineConfig((tsupOptions) => ({
   entry: ["src/index.ts", "src/cli.ts"],
@@ -17,6 +18,7 @@ export default defineConfig((tsupOptions) => ({
     };
   },
   esbuildPlugins: [
+    lodashReplacePlugin,
     NodeResolvePlugin({
       extensions: [".js", "ts", "tsx", "jsx"],
       onResolved: (resolved) => {
