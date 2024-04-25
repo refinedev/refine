@@ -16078,6 +16078,12 @@ importers:
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
+      '@testing-library/react':
+        specifier: ^13.1.1
+        version: 13.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.1.1
+        version: 14.5.2(@testing-library/dom@8.20.1)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
@@ -16179,6 +16185,15 @@ importers:
       '@refinedev/core':
         specifier: ^4.49.0
         version: 4.49.0(@tanstack/react-query@4.36.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@types/react-dom@18.2.25)(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/jest-dom':
+        specifier: ^5.16.4
+        version: 5.17.0
+      '@testing-library/react':
+        specifier: ^13.1.1
+        version: 13.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.1.1
+        version: 14.5.2(@testing-library/dom@8.20.1)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
