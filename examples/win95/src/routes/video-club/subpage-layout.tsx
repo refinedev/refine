@@ -63,8 +63,8 @@ background-position: bottom right, bottom 4px right 0, bottom 4px right -4px, bo
 
 const LoaderContainer = styled.div<{ $isLoading?: boolean }>`
   background: ${({ theme }) => theme.material};
-  pointer-events: ${(props) => (props["$isLoading"] ? "auto" : "none")};
-  opacity: ${(props) => (props["$isLoading"] ? 1 : 0)};
+  pointer-events: ${(props) => (props.$isLoading ? "auto" : "none")};
+  opacity: ${(props) => (props.$isLoading ? 1 : 0)};
   transition: opacity 0.2s linear;
   z-index: 3;
   position: absolute;

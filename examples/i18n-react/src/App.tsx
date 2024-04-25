@@ -4,6 +4,7 @@ import {
   ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
+  AuthPage,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -64,10 +65,7 @@ const App: React.FC = () => {
                   </ThemedLayoutV2>
                 }
               >
-                <Route
-                  index
-                  element={<NavigateToResource resource="posts" />}
-                />
+                <Route index element={<AuthPage />} />
 
                 <Route path="posts">
                   <Route index element={<PostList />} />

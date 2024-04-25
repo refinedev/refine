@@ -15,7 +15,8 @@ export const Table = styled(DefaultTable)``;
 
 export const TableHead = styled(DefaultTableHead)``;
 
-export const TableBody = styled(DefaultTableBody)``;
+export const TableBody = styled(DefaultTableBody)`
+`;
 
 export const TableContainer = styled.div`
   display: flex;
@@ -31,12 +32,14 @@ export const TableRow = styled(DefaultTableRow)<{ $selected?: boolean }>`
 export const TableDataCell = styled(DefaultTableDataCell)<{
   $width?: number;
   $px?: number;
+  $textAlign?: "left" | "right" | "center";
 }>`
   max-width: ${({ $width }) => `${$width}px`};
   min-width: ${({ $width }) => `${$width}px`};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: ${({ $textAlign }) => $textAlign || "left"};
   ${({ $px }) =>
     typeof $px !== "undefined" &&
     `padding-left: ${$px}px; padding-right: ${$px}px;`}
@@ -45,8 +48,9 @@ export const TableDataCell = styled(DefaultTableDataCell)<{
 export const TableHeadCell = styled(DefaultTableHeadCell)<{
   $width?: number;
   $px?: number;
+  $textAlign?: "left" | "right" | "center";
 }>`
-  text-align: left;
+  text-align: ${({ $textAlign }) => $textAlign || "left"};
   max-width: ${({ $width }) => `${$width}px`};
   min-width: ${({ $width }) => `${$width}px`};
   width: ${({ $width }) => `${$width}px`};

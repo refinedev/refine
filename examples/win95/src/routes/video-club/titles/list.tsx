@@ -11,7 +11,7 @@ import {
   TableRow,
   TextInput,
 } from "react95";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle } from "../../../interfaces";

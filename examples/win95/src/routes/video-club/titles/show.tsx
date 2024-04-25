@@ -12,16 +12,16 @@ import {
   Button,
   GroupBox,
 } from "react95";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
-import { Link } from "react-router-dom";
+import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 
 dayjs.extend(durationPlugin);
 
 const FEE_PER_DAY = 20;
 
-export const VideoClubPageTitleDetails = () => {
+export const VideoClubPageShowTitle = () => {
   const navigate = useNavigate();
 
   const {
@@ -52,7 +52,9 @@ export const VideoClubPageTitleDetails = () => {
       <Container>
         <TitleDetails label="Title Details">
           <Poster
-            src={`https://image.tmdb.org/t/p/w200${data?.data?.poster_path}`}
+            src={getTMDBImgLink({
+              path: data?.data?.poster_path || "",
+            })}
           />
           <DetailsContainer>
             <DetailItem>

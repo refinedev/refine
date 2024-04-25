@@ -1,9 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { GroupBox, Select, Separator, TextInput } from "react95";
+import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
-import { useList, useMany } from "@refinedev/core";
+import { Controller, FieldValues } from "react-hook-form";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useList, useMany, useOne } from "@refinedev/core";
 import dayjs from "dayjs";
+import { VideoClubPageTapeSelectTitle } from "./select-title";
+import { VideoClubLayoutSubPage } from "../subpage-layout";
+import { ImagePixelated } from "../../../components/image-pixelated";
 import {
   Table,
   TableBody,
@@ -12,26 +17,94 @@ import {
   TableHeadCell,
   TableRow,
 } from "../../../components/table";
+import { DangerIcon } from "../../../components/icons/danger-icon";
 import {
+  ICreateRental,
   IExendedMember,
   IExtendedVideoTitle,
   ITape,
   IVideoTitle,
 } from "../../../interfaces";
-import { DangerIcon } from "../../../components/icons/danger-icon";
-import { ImagePixelated } from "../../../components/image-pixelated";
+import { IconChevronLeft } from "../../../components/icons/chevron-left";
+import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
+import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
+import { convertToUSD } from "../../../utils/convert-to-usd";
 
-type Props = {
-  member: IExendedMember | null;
-  title: IExtendedVideoTitle | null;
-};
+export const VideoClubPageTapeRent = () => {
+  const navigate = useNavigate();
+  const { memberId } = useParams();
 
-export const VideoClubPageTapeRentConfirm = ({ member, title }: Props) => {
+  const [selectedTitle, setSelectedTitle] =
+    useState<IExtendedVideoTitle | null>(null);
+  const [screen, setScreen] = useState<"titles" | "rent">("titles");
+
+  const { data: dataMember, isLoading } = useOne<IExendedMember>({
+    resource: "members",
+    id: memberId,
+    queryOptions: {
+      enabled: !!memberId,
+    },
+    meta: {
+      select: "*, rentals(*)",
+    },
+  });
+  const member = dataMember?.data || null;
+
+  if (screen === "titles") {
+    return (
+      <VideoClubPageTapeSelectTitle
+        selectedTitle={selectedTitle}
+        onTitleSelect={(title) => setSelectedTitle(title)}
+        onBackClick={() => navigate("/video-club/tapes/rent")}
+        onNextClick={() => setScreen("rent")}
+      />
+    );
+  }
+
+  if (!member && !isLoading) {
+    return <Navigate to="/video-club" />;
+  }
+
   return (
-    <Container>
-      <MemberDetails member={member} />
-      <TitleDetails title={title} member={member} />
-    </Container>
+    <VideoClubLayoutSubPage
+      title="Rent Tape"
+      help="Please confirm the rental."
+      onClose={() => navigate("/video-club")}
+      isLoading={isLoading}
+    >
+      <Container>
+        <MemberDetails member={member} />
+
+        <TitleDetails title={selectedTitle} member={member}>
+          <RentTapeForm member={member} title={selectedTitle} />
+        </TitleDetails>
+      </Container>
+
+      <Separator />
+
+      <ActionContainer>
+        <ActionButton type="button" onClick={() => setScreen("titles")}>
+          <IconChevronLeft />
+          <span>Back</span>
+        </ActionButton>
+        <ActionButton
+          type="submit"
+          form="rent-tape-form"
+          disabled={!selectedTitle}
+        >
+          <ArrowGreenPixelatedIcon />
+          <span>Confirm</span>
+        </ActionButton>
+        <ActionButton
+          style={{
+            marginLeft: "12px",
+          }}
+          onClick={() => navigate("/video-club")}
+        >
+          Cancel
+        </ActionButton>
+      </ActionContainer>
+    </VideoClubLayoutSubPage>
   );
 };
 
@@ -141,11 +214,12 @@ const TableCurrentRentals = ({ member }: { member: IExendedMember | null }) => {
 };
 
 const TitleDetails = ({
-  member,
   title,
+  children,
 }: {
   member: IExendedMember | null;
   title: IExtendedVideoTitle | null;
+  children?: React.ReactNode;
 }) => {
   return (
     <StyledGroupBox label="Title">
@@ -177,13 +251,13 @@ const TitleDetails = ({
             marginBottom: "24px",
           }}
         />
-        <RentTape member={member} title={title} />
+        {children}
       </ContainerInfo>
     </StyledGroupBox>
   );
 };
 
-const RentTape = ({
+const RentTapeForm = ({
   member,
   title,
 }: {
@@ -223,8 +297,10 @@ const RentTape = ({
     watch,
     refineCore: { onFinish },
     handleSubmit,
-  } = useForm({
+  } = useForm<ICreateRental>({
     defaultValues: {
+      member_id: member?.id,
+      title_id: title?.id,
       tape_id: tapeOptions?.[0]?.value,
       period: periodOptions?.[0]?.value,
     },
@@ -236,15 +312,19 @@ const RentTape = ({
 
   const period = watch<"period">("period");
   const returnDate = dayjs().add(period, "day").format("DD.MM.YYYY");
+  const price = NIGHTLY_RENTAL_FEE * period;
+
+  const onFinishHandler = (data: FieldValues) => {
+    onFinish({
+      ...data,
+      expected_return_at: dayjs().add(data.period, "day").format(),
+    });
+  };
 
   return (
-    <RentTapeForm
+    <StyledRentTapeForm
       id="rent-tape-form"
-      onSubmit={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        console.log("submitting form");
-      }}
+      onSubmit={handleSubmit(onFinishHandler)}
     >
       <Grid>
         <FormRow>
@@ -269,7 +349,7 @@ const RentTape = ({
         </FormRow>
         <FormRow>
           <Label>Nightly Fee:</Label>
-          <Value>$5,00</Value>
+          <Value>{convertToUSD(price)}</Value>
         </FormRow>
         <FormRow>
           <FormLabel>Period</FormLabel>
@@ -298,17 +378,18 @@ const RentTape = ({
           <Value>{returnDate}</Value>
         </FormRow>
       </Grid>
-    </RentTapeForm>
+    </StyledRentTapeForm>
   );
 };
 
-const RentTapeForm = styled.form``;
-
 const Container = styled.div`
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 24px;
 `;
+
+const StyledRentTapeForm = styled.form``;
 
 const StyledGroupBox = styled(GroupBox)`
   display: flex;
@@ -316,7 +397,7 @@ const StyledGroupBox = styled(GroupBox)`
   gap: 32px;
 `;
 
-const ImageMember = styled(ImagePixelated)`
+const ImageMember = styled.img`
   width: 200px;
   height: 200px;
   aspect-ratio: 200 / 200;
@@ -361,4 +442,19 @@ const FormLabel = styled(Label)``;
 
 const FormValue = styled(Value)`
   width: 104px;
+`;
+
+const ActionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px;
+`;
+
+const ActionButton = styled(Button)`
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 `;

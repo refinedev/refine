@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
-import { AppLayout } from "../../components/layout";
+import styled from "styled-components";
+import { AppLayout } from "../components/layout";
 import { ProgressBar } from "react95";
 
 export const Loading = () => {
   const navigate = useNavigate();
-  const [percent, setPercent] = React.useState(0);
+  const [percent, setPercent] = React.useState(100);
 
   React.useEffect(() => {
     const interval = setInterval(() => {

@@ -36,7 +36,7 @@ export const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 320px;
-  height: 60px;
+  min-height: 60px;
   padding-left: 16px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -53,7 +53,7 @@ const Shadow = styled.div`
   position: absolute;
   z-index: 0;
   width: 320px;
-  height: 60px;
+  min-height: 60px;
   right: -12px;
   bottom: -16px;
   background-image: linear-gradient(45deg, #000 25%, transparent 25%),

@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
 import { useGo } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Button } from "react95";
 import { AppLayout } from "../../components/layout";
 import { VideoClubTodayDate } from "../../components/today-date";
 import { Link } from "react-router-dom";
-import { Loading } from "./loading";
+import { Loading } from "../../utils/loading";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
@@ -179,12 +179,12 @@ const links = [
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rent-tape.png",
     label: "Rent Tape",
-    href: "tape/rent",
+    href: "tapes/rent",
   },
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/return-tape.png",
     label: "Return Tape",
-    href: "tape/return",
+    href: "tapes/return",
   },
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-title.png",
@@ -199,7 +199,7 @@ const links = [
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-member.png",
     label: "Add Member",
-    href: "member/new",
+    href: "members/new",
   },
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-members.png",
@@ -209,7 +209,7 @@ const links = [
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/report.png",
     label: "Report",
-    href: "report",
+    href: "reports",
   },
   {
     icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/settings.png",

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { LinkDoubleClick } from "../link-double-click";
 
 export const HomePage = () => {

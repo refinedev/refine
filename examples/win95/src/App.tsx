@@ -13,8 +13,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { supabaseClient } from "./supabase-client";
 import { CommonLayout } from "./components/layout";
+import { supabaseClient } from "./supabase-client";
 import { AboutWindow } from "./components/about-window";
 import { HomePage } from "./components/home-page";
 import { LoginPage } from "./components/login-page";
@@ -23,9 +23,20 @@ import { authProvider } from "./providers/auth-provider";
 import { notificationProvider } from "./providers/notification-provider";
 import { VideoClubLayout } from "./routes/video-club/layout";
 import { VideoClubPageBrowseTitles } from "./routes/video-club/titles/list";
-import { VideoClubPageTitleDetails } from "./routes/video-club/titles/detail";
-import { VideoClubPageAddTitle } from "./routes/video-club/titles/add";
-import { VideoClubPageTapeRent } from "./routes/video-club/rent";
+import { VideoClubPageShowTitle } from "./routes/video-club/titles/show";
+import { VideoClubPageCreateTitle } from "./routes/video-club/titles/create";
+import { VideoClubPageTapeRent } from "./routes/video-club/tapes/rent";
+import { VideoClubPageTapeSelectMember } from "./routes/video-club/tapes/select-member";
+import { VideoClubPageTapeReturn } from "./routes/video-club/tapes/return";
+import { VideoClubMemberPageList } from "./routes/video-club/members/list";
+import { VideoClubMemberPageCreate } from "./routes/video-club/members/create";
+import { VideoClubMemberPageShow } from "./routes/video-club/members/show";
+import { VideoClubMemberPageEdit } from "./routes/video-club/members/edit";
+import { VideoClubReportPage } from "./routes/video-club/report";
+import { VideoClubSettingsPage } from "./routes/video-club/settings";
+import { RVCWebsitePageHome } from "./routes/rvc-website/home";
+import { RVCWebsitePageTitleDetails } from "./routes/rvc-website/title-detail";
+import { RVCWebsiteCatalogPage } from "./components/rvc-website/catalog";
 
 const App = () => {
   return (
@@ -45,8 +56,31 @@ const App = () => {
               create: "/video-club/titles/new",
             },
             {
+              name: "rentals",
+              list: "/video-club/tapes/rent",
+              create: "/video-club/tapes/rent/:memberId",
+              identifier: "rentals-rent",
+            },
+            {
+              name: "rentals",
+              list: "/video-club/tapes/return",
+              create: "/video-club/tapes/return/:memberId",
+              identifier: "rentals-return",
+            },
+            {
               name: "members",
-              list: "/video-club/tape/rent",
+              list: "/video-club/members",
+              show: "/video-club/members/:id",
+              create: "/video-club/members/new",
+              edit: "/video-club/members/:id/edit",
+            },
+            {
+              name: "reports",
+              list: "/video-club/reports",
+            },
+            {
+              name: "settings",
+              list: "/video-club/settings",
             },
           ]}
           options={{
@@ -88,12 +122,66 @@ const App = () => {
                   }
                 >
                   <Route index />
-                  <Route path=":id" element={<VideoClubPageTitleDetails />} />
+                  <Route path=":id" element={<VideoClubPageShowTitle />} />
                 </Route>
-                <Route path="titles/new" element={<VideoClubPageAddTitle />} />
-                <Route path="tape" element={<Outlet />}>
-                  <Route path="rent" element={<VideoClubPageTapeRent />} />
+                <Route
+                  path="titles/new"
+                  element={<VideoClubPageCreateTitle />}
+                />
+                <Route path="tapes" element={<Outlet />}>
+                  <Route path="rent" element={<Outlet />}>
+                    <Route
+                      index
+                      element={<VideoClubPageTapeSelectMember variant="rent" />}
+                    />
+                    <Route
+                      path=":memberId"
+                      element={<VideoClubPageTapeRent />}
+                    />
+                  </Route>
+                  <Route path="return" element={<Outlet />}>
+                    <Route
+                      index
+                      element={
+                        <VideoClubPageTapeSelectMember variant="return" />
+                      }
+                    />
+                    <Route
+                      path=":memberId"
+                      element={<VideoClubPageTapeReturn />}
+                    />
+                  </Route>
                 </Route>
+                <Route path="members" element={<Outlet />}>
+                  <Route index element={<VideoClubMemberPageList />} />
+                  <Route path="new" element={<VideoClubMemberPageCreate />} />
+                  <Route path=":id" element={<VideoClubMemberPageShow />} />
+                  <Route
+                    path=":id/edit"
+                    element={<VideoClubMemberPageEdit />}
+                  />
+                </Route>
+
+                <Route path="reports" element={<Outlet />}>
+                  <Route index element={<VideoClubReportPage />} />
+                </Route>
+
+                <Route path="settings" element={<Outlet />}>
+                  <Route index element={<VideoClubSettingsPage />} />
+                </Route>
+              </Route>
+
+              <Route path="rvc-website" element={<Outlet />}>
+                <Route index element={<RVCWebsitePageHome />} />
+                <Route
+                  path="titles/:titleId"
+                  element={<RVCWebsitePageTitleDetails />}
+                />
+                <Route path="catalog" element={<RVCWebsiteCatalogPage />} />
+                <Route
+                  path="catalog/:catalogLetter"
+                  element={<RVCWebsiteCatalogPage />}
+                />
               </Route>
             </Route>
 

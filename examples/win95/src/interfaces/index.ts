@@ -13,6 +13,11 @@ export type IVideoTitle = {
   overview: string;
 };
 
+export type IExtendedVideoTitle = IVideoTitle & {
+  tapes: ITape[];
+  rentals: IRental[];
+};
+
 export type ITape = {
   id: number;
   created_at: string;
@@ -32,6 +37,17 @@ export type IRental = {
   tape_id: number;
 };
 
+export type IExtendedRental = IRental & {
+  titles?: IVideoTitle;
+};
+
+export type ICreateRental = {
+  member_id: number;
+  period: number;
+  title_id: number;
+  expected_return_at: string;
+};
+
 export type IMember = {
   id: number;
   deposit: number;
@@ -43,13 +59,8 @@ export type IMember = {
   photo_url?: string;
 };
 
-export type IExtendedVideoTitle = IVideoTitle & {
-  tapes: ITape[];
-  rentals: IRental[];
-};
-
 export type IExendedMember = IMember & {
-  rentals: IRental[];
+  rentals: IExtendedRental[];
 };
 
 export type ITMDBMovieResponse = {

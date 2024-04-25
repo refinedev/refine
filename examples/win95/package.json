@@ -37,7 +37,9 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.8.1",
     "react95": "^4.0.0",
-    "styled-components": "^6.1.8"
+    "recharts": "^2.1.9",
+    "styled-components": "^6.1.8",
+    "swiper": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.16.2",

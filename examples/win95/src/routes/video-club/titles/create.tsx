@@ -16,7 +16,7 @@ import {
   Separator,
   GroupBox,
 } from "react95";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import {
   TitleByTmdbIdResponse,
@@ -27,7 +27,7 @@ import { ITape, IVideoTitle } from "../../../interfaces";
 
 dayjs.extend(durationPlugin);
 
-export const VideoClubPageAddTitle = () => {
+export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();
   const { show } = useNavigation();
 

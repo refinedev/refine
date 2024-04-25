@@ -121,7 +121,7 @@ export const AppLayoutMenu = (props: Pick<Props, "menu">) => {
             }}
           >
             {item.label}
-            {isSelected && (
+            {isSelected && !!item?.children?.length && (
               <MenuBarItemChildList>
                 {item.children.map((child, i) => (
                   <Fragment key={child.label}>

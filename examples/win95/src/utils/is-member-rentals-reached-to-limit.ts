@@ -1,6 +1,5 @@
 import { IExendedMember } from "../interfaces";
-
-export const MAX_RENTALS = 4;
+import { MAXIMUM_TAPE_ALLOWED_TO_RENT } from "./app-settings";
 
 type Props = {
   member: IExendedMember;
@@ -15,5 +14,5 @@ export const isMemberRentalsReachedToLimit = ({ member }: Props) => {
     }
   });
 
-  return rentalCount >= MAX_RENTALS;
+  return rentalCount >= MAXIMUM_TAPE_ALLOWED_TO_RENT;
 };
