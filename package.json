@@ -11,16 +11,16 @@
     "build": "lerna run build --scope @refinedev/core",
     "build:all": "lerna run build --scope @refinedev/* --scope create-refine-app",
     "changeset": "changeset",
-    "coffee": "npm run nuke && npm i && npm run build:all",
+    "coffee": "pnpm nuke && pnpm i && pnpm build:all",
     "dev": "lerna run dev",
-    "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
+    "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
     "lint": "biome check .",
     "lint:ci": "biome ci .",
     "lint:error": "biome check . --diagnostic-level error",
     "lint:fix": "biome check . --apply",
     "lint:staged": "lint-staged",
-    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:nx; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
+    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; pnpm nuke:nx; pnpm nuke:node_modules; pnpm nuke:builds; pnpm nuke:lockfiles;",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @refinedev/codemod -- rm -rf package-lock.json && lerna exec --ignore @refinedev/codemod -- rm -rf yarn.lock && lerna exec --ignore @refinedev/codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
@@ -31,8 +31,8 @@
     "publint:all": "lerna run publint --scope @refinedev/*",
     "test": "lerna run test --stream",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
-    "test:all:coverage": "npm run test:all -- -- --coverage",
-    "test:coverage": "npm run test -- -- --coverage"
+    "test:all:coverage": "pnpm test:all -- -- --coverage",
+    "test:coverage": "pnpm test -- -- --coverage"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

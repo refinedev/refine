@@ -19,5 +19,5 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "npm run types",
+  onSuccess: "pnpm types",
 });

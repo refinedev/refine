@@ -26,5 +26,5 @@ export default defineConfig({
       },
     }),
   ],
-  onSuccess: "npm run types",
+  onSuccess: "pnpm types",
 });

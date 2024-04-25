@@ -23,7 +23,7 @@ const sharedConfig: Partial<Options> = {
       },
     }),
   ],
-  onSuccess: "npm run types",
+  onSuccess: "pnpm types",
 };
 
 export default defineConfig([

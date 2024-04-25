@@ -37,7 +37,7 @@
     "attw": "attw --pack .",
     "build": "tsup && node ../shared/generate-declarations.js",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
-    "dev": "npm run dev:client & tsup --watch",
+    "dev": "pnpm dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "prepare": "nx build --project @refinedev/devtools-server --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
