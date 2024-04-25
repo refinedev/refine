@@ -3,13 +3,24 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("update", () => {
+  beforeAll(async () => {
+    await supabaseClient.auth.signInWithPassword({
+      email: "info@refine.dev",
+      password: "refine-supabase",
+    });
+  });
+
+  afterAll(async () => {
+    await supabaseClient.auth.signOut();
+  });
+
   it("correct response with `select`", async () => {
     const { data } = await dataProvider(supabaseClient).update({
-      id: 1246,
+      id: 1,
       resource: "posts",
       variables: {
         title: "test",
-        categoryId: 52,
+        categoryId: 5,
         content: "test content",
       },
       meta: {
@@ -19,9 +30,9 @@ describe("update", () => {
 
     expect(data).toEqual(
       expect.objectContaining({
-        id: 1246,
+        id: 1,
         title: "test",
-        categoryId: 52,
+        categoryId: 5,
         content: "test content",
       }),
     );
@@ -32,30 +43,32 @@ describe("update", () => {
 
     const { data } = await dataProvider(supabaseClient).update({
       id,
-      resource: "products",
+      resource: "posts",
       variables: {
-        name: "IPhone 16",
+        title: "IPhone 16",
       },
       meta: {
         select: "*",
       },
     });
 
-    expect(data).toEqual({ id: 1, name: "IPhone 16" });
+    expect(data).toEqual(
+      expect.objectContaining({ id: 1, title: "IPhone 16" }),
+    );
 
-    try {
-      await dataProvider(supabaseClient).update({
-        id,
-        resource: "products",
-        variables: {
-          name: "IPhone 16",
-        },
-        meta: {
-          schema: "private",
-        },
-      });
-    } catch (error: any) {
-      expect(error.code).toEqual("PGRST106");
-    }
+    const promise = dataProvider(supabaseClient).update({
+      id,
+      resource: "posts",
+      variables: {
+        title: "IPhone 16",
+      },
+      meta: {
+        schema: "private",
+      },
+    });
+
+    await expect(promise).rejects.toEqual(
+      expect.objectContaining({ code: "PGRST106" }),
+    );
   });
 });

@@ -3,6 +3,17 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("create", () => {
+  beforeAll(async () => {
+    await supabaseClient.auth.signInWithPassword({
+      email: "info@refine.dev",
+      password: "refine-supabase",
+    });
+  });
+
+  afterAll(async () => {
+    await supabaseClient.auth.signOut();
+  });
+
   it("correct response with `select`", async () => {
     const { data } = await dataProvider(supabaseClient).create({
       resource: "posts",
@@ -11,14 +22,13 @@ describe("create", () => {
         slug: "foo-bar",
         content: "bar",
         categoryId: 2,
-        image: {},
       },
       meta: {
         select: "*",
       },
     });
 
-    expect(data["id"]).toEqual(33);
+    expect(data["id"]).toEqual(12893);
     expect(data["title"]).toEqual("foo");
     expect(data["slug"]).toEqual("foo-bar");
     expect(data["content"]).toEqual("bar");
@@ -27,9 +37,12 @@ describe("create", () => {
 
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).create({
-      resource: "products",
+      resource: "posts",
       variables: {
-        name: "foo",
+        title: "foo",
+        slug: "foo-bar",
+        content: "bar",
+        categoryId: 2,
       },
       meta: {
         schema: "public",
@@ -37,11 +50,11 @@ describe("create", () => {
       },
     });
 
-    expect(data["name"]).toEqual("foo");
+    expect(data["title"]).toEqual("foo");
 
     try {
       await dataProvider(supabaseClient).create({
-        resource: "products",
+        resource: "posts",
         variables: {},
         meta: {
           schema: "private",
