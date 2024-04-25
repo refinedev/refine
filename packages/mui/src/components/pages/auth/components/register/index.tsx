@@ -167,7 +167,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
           >
             <TextField
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -190,7 +193,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             />
             <TextField
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
               id="password"
               margin="normal"
