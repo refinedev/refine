@@ -23,14 +23,14 @@ const GlobalStyles = createGlobalStyle`
   }
   @font-face {
     font-family: 'pixelated-times-new-roman';
-    src: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/fonts/pixelated-times-new-roman.ttf) format('ttf'), 
+    src: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/fonts/pixelated-times-new-roman.ttf) format('truetype'), 
          url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/fonts/pixelated-times-new-roman.otf) format('otf');
     font-weight: 400;
     font-style: normal
   }
   body {
     background: ${themeOriginal.desktopBackground};
-    font-family: 'ms_sans_serif';
+    font-family: 'ms_sans_serif', 'pixelated-times-new-roman', sans-serif;
   }
   div {
     line-height: normal !important;

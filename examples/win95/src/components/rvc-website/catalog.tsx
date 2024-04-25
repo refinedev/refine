@@ -118,7 +118,7 @@ const Container = styled.div`
 
 export const CatalogTitle = styled.h2`
   color: #ff00ff;
-  font-size: 32px;
+  font-size: 64px;
   margin-bottom: 24px;
   font-family: "pixelated-times-new-roman", "ms_sans_serif";
 `;

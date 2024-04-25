@@ -39,6 +39,7 @@ export const TableDataCell = styled(DefaultTableDataCell)<{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  vertical-align: middle;
   text-align: ${({ $textAlign }) => $textAlign || "left"};
   ${({ $px }) =>
     typeof $px !== "undefined" &&
