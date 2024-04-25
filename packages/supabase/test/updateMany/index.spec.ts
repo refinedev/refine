@@ -3,13 +3,24 @@ import supabaseClient from "../supabaseClient";
 import "./index.mock";
 
 describe("updateMany", () => {
+  beforeAll(async () => {
+    await supabaseClient.auth.signInWithPassword({
+      email: "info@refine.dev",
+      password: "refine-supabase",
+    });
+  });
+
+  afterAll(async () => {
+    await supabaseClient.auth.signOut();
+  });
+
   it("correct response with `select`", async () => {
     const { data } = await dataProvider(supabaseClient).updateMany!({
       resource: "posts",
-      ids: [1246],
+      ids: [5],
       variables: {
         title: "test",
-        categoryId: 52,
+        categoryId: 12,
         content: "test content",
       },
       meta: {
@@ -19,9 +30,9 @@ describe("updateMany", () => {
 
     expect(data[0]).toEqual(
       expect.objectContaining({
-        id: 1246,
+        id: 5,
         title: "test",
-        categoryId: 52,
+        categoryId: 12,
         content: "test content",
       }),
     );
@@ -29,10 +40,10 @@ describe("updateMany", () => {
 
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).updateMany({
-      resource: "products",
+      resource: "posts",
       ids: [1, 2],
       variables: {
-        name: "Samsung Galaxy S21",
+        title: "Samsung Galaxy S21",
       },
       meta: {
         schema: "public",
@@ -40,22 +51,26 @@ describe("updateMany", () => {
       },
     });
 
-    expect(data[0]).toEqual({ id: 1, name: "Samsung Galaxy S21" });
-    expect(data[1]).toEqual({ id: 2, name: "Samsung Galaxy S21" });
+    expect(data[0]).toEqual(
+      expect.objectContaining({ id: 1, title: "Samsung Galaxy S21" }),
+    );
+    expect(data[1]).toEqual(
+      expect.objectContaining({ id: 2, title: "Samsung Galaxy S21" }),
+    );
 
-    try {
-      await dataProvider(supabaseClient).updateMany({
-        resource: "products",
-        ids: [1, 2],
-        variables: {
-          name: "foo",
-        },
-        meta: {
-          schema: "private",
-        },
-      });
-    } catch (error: any) {
-      expect(error.code).toEqual("PGRST106");
-    }
+    const promise = dataProvider(supabaseClient).updateMany({
+      resource: "posts",
+      ids: [1, 2],
+      variables: {
+        title: "foo",
+      },
+      meta: {
+        schema: "private",
+      },
+    });
+
+    await expect(promise).rejects.toEqual(
+      expect.objectContaining({ code: "PGRST106" }),
+    );
   });
 });
