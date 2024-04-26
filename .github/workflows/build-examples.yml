@@ -65,6 +65,9 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+          run_install: |
+            - recursive: false
+              args: [-w, --ignore-scripts]
       - name: Fetch commits
         run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
       - name: Use Node.js ${{ matrix.node-version }}
@@ -72,9 +75,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-
-      - name: Install Dependencies
-        run: pnpm install
 
       - name: Split Into Chunks
         id: chunkstep
@@ -102,6 +102,9 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+          run_install: |
+            - recursive: false
+              args: [-w, --ignore-scripts]
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
