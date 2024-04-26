@@ -114,7 +114,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install
+          pnpm install --ignore-scripts
           pnpm cypress install
 
       - name: Build
