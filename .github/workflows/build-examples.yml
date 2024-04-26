@@ -113,7 +113,7 @@ jobs:
           cache: "pnpm"
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}}
 
       - name: Install Dependencies
         run: |
@@ -162,7 +162,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_2 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}}
 
       - name: Get short SHA
         id: slug
@@ -206,7 +206,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_3 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}}
 
       - name: Get short SHA
         id: slug
@@ -250,7 +250,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_4 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}}
 
       - name: Get short SHA
         id: slug
@@ -294,7 +294,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_5 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}}
 
       - name: Get short SHA
         id: slug
@@ -338,7 +338,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_6 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}}
 
       - name: Get short SHA
         id: slug
@@ -382,7 +382,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_7 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}}
 
       - name: Get short SHA
         id: slug
@@ -425,7 +425,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_8 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}}
 
       - name: Get short SHA
         id: slug
@@ -468,7 +468,7 @@ jobs:
           pnpm cypress install
 
       - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_9 }}
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_9 }}}
 
       - name: Get short SHA
         id: slug
