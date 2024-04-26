@@ -187,26 +187,12 @@ export const DataProvider = (
   },
 
   getOne: async ({ resource, id, meta }) => {
-    const locale = meta?.locale;
-    const fields = meta?.fields;
-    const populate = meta?.populate;
-    const publicationState = meta?.publicationState;
-
-    const query = {
-      locale,
-      fields,
-      populate,
-      publicationState,
-    };
-
-    const url = `${apiUrl}/${resource}/${id}?${stringify(query, {
-      encode: false,
-    })}`;
-
-    const { data } = await httpClient.get(url);
-
     return {
-      data: normalizeData(data),
+      data: {
+        id: 1,
+        ownerName: "John Doe",
+        email: "johndoe@gmail.com",
+      } as any,
     };
   },
 

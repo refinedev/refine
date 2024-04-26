@@ -1,0 +1,13 @@
+.ant-page-header-content {
+  padding-block-start: 32px;
+}
+
+.refine-create-button {
+  width: 224px;
+}
+
+
+.ant-modal {
+  max-width: 656px;
+  width: 100% !important;
+},
