@@ -80,6 +80,10 @@ export const VideoClubPageShowTitle = () => {
                     setTrailer(true);
                   }}
                 >
+                  <DetailItemTrailerIcon
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/watch-trailer.png"
+                    alt="watch trailer"
+                  />
                   Watch Trailer
                 </DetailItemTrailerButton>
               </DetailItem>
@@ -277,6 +281,12 @@ const DetailItemValue = styled.div`
 
 const DetailItemTrailerButton = styled(Button)`
   margin-right: 16px;
+`;
+
+const DetailItemTrailerIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 `;
 
 const HistoryContainer = styled(GroupBox)`
