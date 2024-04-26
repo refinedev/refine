@@ -22,8 +22,8 @@ export const dataProvider = (
 ): Required<DataProvider> => {
   const {
     databaseId,
-    defaultReadPermissions = [],
-    defaultWritePermissions = [],
+    defaultReadPermissions = [Permission.read(Role.any())],
+    defaultWritePermissions = [Permission.write(Role.any())],
   } = options;
 
   const database = new Databases(appwriteClient);
