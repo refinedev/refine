@@ -21,9 +21,6 @@ export const useNotificationProvider = (): NotificationProvider => {
       key,
       cancelMutation,
       description,
-      anchorOrigin,
-      preventDuplicate,
-      disableWindowBlurListener,
     }) => {
       if (type === "progress") {
         const action = (key: any) => (
@@ -48,12 +45,6 @@ export const useNotificationProvider = (): NotificationProvider => {
             action,
             key,
             autoHideDuration: (undoableTimeout ?? 0) * 1000,
-            anchorOrigin: anchorOrigin ?? {
-              vertical: "top",
-              horizontal: "right",
-            },
-            preventDuplicate,
-            disableWindowBlurListener,
           },
         );
       } else {
@@ -69,12 +60,6 @@ export const useNotificationProvider = (): NotificationProvider => {
           {
             key,
             variant: type,
-            anchorOrigin: anchorOrigin ?? {
-              vertical: "top",
-              horizontal: "right",
-            },
-            preventDuplicate,
-            disableWindowBlurListener,
           },
         );
       }

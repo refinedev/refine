@@ -16,12 +16,6 @@ const mockNotification: OpenNotificationParams = {
   message: "Test Notification Message",
   type: "success",
   description: "Test Notification Description",
-  anchorOrigin: {
-    vertical: "top",
-    horizontal: "right",
-  },
-  disableWindowBlurListener: true,
-  preventDuplicate: true,
 };
 
 const mockNotificationUndoable: OpenNotificationParams = {
@@ -71,12 +65,6 @@ describe("Notistack notificationProvider", () => {
       {
         key: mockNotification.key,
         variant: "success",
-        anchorOrigin: mockNotification.anchorOrigin ?? {
-          vertical: "top",
-          horizontal: "right",
-        },
-        disableWindowBlurListener: mockNotification.disableWindowBlurListener,
-        preventDuplicate: mockNotification.preventDuplicate,
       },
     );
   });
@@ -97,12 +85,6 @@ describe("Notistack notificationProvider", () => {
       {
         key: mockNotification.key,
         variant: "error",
-        anchorOrigin: mockNotification.anchorOrigin ?? {
-          vertical: "top",
-          horizontal: "right",
-        },
-        disableWindowBlurListener: mockNotification.disableWindowBlurListener,
-        preventDuplicate: mockNotification.preventDuplicate,
       },
     );
   });
@@ -122,15 +104,8 @@ describe("Notistack notificationProvider", () => {
       </>,
       {
         action: expect.any(Function),
-        anchorOrigin: mockNotificationUndoable.anchorOrigin ?? {
-          vertical: "top",
-          horizontal: "right",
-        },
-        preventDuplicate: mockNotificationUndoable.preventDuplicate,
         key: "test-notification-undoable",
         autoHideDuration: 5000,
-        disableWindowBlurListener:
-          mockNotificationUndoable.disableWindowBlurListener,
       },
     );
   });
