@@ -40,11 +40,13 @@ const getProjectInfo = (path) => {
   // parse package.json
   const packageJson = JSON.parse(pkg);
 
+  const projectName = packageJson.name;
+
   const dependencies = Object.keys(packageJson.dependencies || {});
   const devDependencies = Object.keys(packageJson.devDependencies || {});
 
   let port = 3000;
-  let command = "pnpm dev";
+  let command = `pnpm dev --scope ${projectName}`;
   let additionalParams = "";
 
   // check for vite
@@ -64,7 +66,7 @@ const getProjectInfo = (path) => {
     devDependencies.includes("@remix-run/node")
   ) {
     port = 3000;
-    command = "pnpm build && pnpm start:prod";
+    command = `pnpm build --scope ${projectName} && pnpm run --filter ${projectName} start:prod`;
   }
 
   if (
@@ -200,9 +202,7 @@ const runTests = async () => {
 
     // starting the dev server
     try {
-      start = exec(
-        `cd ${pathJoin(EXAMPLES_DIR, path)} && ${command} ${additionalParams}`,
-      );
+      start = exec(`${command} ${additionalParams}`);
 
       start.stdout.on("data", console.log);
       start.stderr.on("data", console.error);
