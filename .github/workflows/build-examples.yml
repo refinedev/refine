@@ -112,13 +112,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
+
       - name: Install Dependencies
         run: |
           pnpm install --ignore-scripts
           pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope=${{ needs.chunks.outputs.CHUNK_1 }}
 
       - name: Get short SHA
         id: slug
