@@ -84,7 +84,7 @@ const App = () => {
             },
           ]}
           options={{
-            liveMode: "off",
+            liveMode: "auto",
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
           }}
