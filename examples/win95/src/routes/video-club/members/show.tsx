@@ -20,7 +20,7 @@ import { convertToUSD } from "../../../utils/convert-to-usd";
 
 export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();
-  const { list, editUrl } = useNavigation();
+  const { list } = useNavigation();
 
   const { data, isLoading } = useOne<IExendedMember>({
     resource: "members",
@@ -33,7 +33,7 @@ export const VideoClubMemberPageShow: React.FC = () => {
 
   return (
     <VideoClubLayoutSubPage
-      title={`${member?.first_name} ${member?.last_name}`}
+      title={`${member?.first_name || ""} ${member?.last_name || ""}`}
       help="You can see the details of the member in the Refine Video Club."
       onClose={() => list("members")}
       isLoading={isLoading}
