@@ -17,7 +17,7 @@ export const Loading = () => {
         }
         return prev + 1;
       });
-    }, 60);
+    }, 10);
 
     return () => {
       clearInterval(interval);
