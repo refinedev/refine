@@ -6,7 +6,7 @@ import { ProgressBar } from "react95";
 
 export const Loading = () => {
   const navigate = useNavigate();
-  const [percent, setPercent] = React.useState(100);
+  const [percent, setPercent] = React.useState(0);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
