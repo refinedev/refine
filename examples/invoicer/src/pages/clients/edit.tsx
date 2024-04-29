@@ -2,10 +2,10 @@ import { useNavigation } from "@refinedev/core";
 import { DeleteButton, useForm } from "@refinedev/antd";
 import { Card, Divider, Flex, Form, Typography } from "antd";
 import {
-  BankOutlined,
-  UserOutlined,
   ShopOutlined,
+  UserOutlined,
   ExportOutlined,
+  BankOutlined,
   MailOutlined,
   GlobalOutlined,
   EnvironmentOutlined,
@@ -15,30 +15,25 @@ import { Col, Row } from "antd";
 import { PageHeader } from "../../components/page-header";
 import { FormItemEditableInputText } from "../../components/form/form-item-editable-input-text";
 import { FormItemEditableText } from "../../components/form/form-item-editable-text";
-import { UploadAvatar } from "../../components/upload-avatar";
 import { FormItemEditableSelect } from "../../components/form/form-item-editable-select";
 import { countryOptions } from "../../utils/countries";
 
-export const AccountsPageEdit = () => {
+export const ClientsPageEdit = () => {
   const { listUrl } = useNavigation();
 
   const { formProps, queryResult } = useForm();
-  const account = queryResult?.data?.data;
+  const client = queryResult?.data?.data;
 
   return (
     <>
       <PageHeader
-        backButtonText="Accounts"
-        backButtonHref={listUrl("accounts")}
+        backButtonText="Clients"
+        backButtonHref={listUrl("clients")}
       />
       <Form {...formProps} layout="vertical">
         <Row>
           <Col span={24}>
             <Flex gap={16}>
-              <UploadAvatar
-                name={account?.ownerName}
-                src={account?.companyLogo}
-              />
               <FormItemEditableText
                 formItemProps={{
                   name: "companyName",
@@ -58,11 +53,25 @@ export const AccountsPageEdit = () => {
               styles={{ body: { padding: 0 } }}
               title={
                 <Flex gap={12} align="center">
-                  <BankOutlined />
-                  <Typography.Text>Account info</Typography.Text>
+                  <ShopOutlined />
+                  <Typography.Text>Client info</Typography.Text>
                 </Flex>
               }
             >
+              <FormItemEditableSelect
+                icon={<BankOutlined />}
+                editIcon={<ExportOutlined />}
+                selectProps={{
+                  showSearch: true,
+                  placeholder: "Select account",
+                  options: [],
+                }}
+                formItemProps={{
+                  name: "account",
+                  label: "Account",
+                  rules: [{ required: true }],
+                }}
+              />
               <FormItemEditableInputText
                 icon={<UserOutlined />}
                 placeholder="Add owner name"
@@ -86,8 +95,8 @@ export const AccountsPageEdit = () => {
               <FormItemEditableSelect
                 icon={<GlobalOutlined />}
                 selectProps={{
-                  placeholder: "Select country",
                   showSearch: true,
+                  placeholder: "Select country",
                   options: countryOptions,
                 }}
                 formItemProps={{
@@ -126,7 +135,7 @@ export const AccountsPageEdit = () => {
                 listUrl("clients");
               }}
             >
-              Delete account
+              Delete client
             </DeleteButton>
           </Col>
         </Row>

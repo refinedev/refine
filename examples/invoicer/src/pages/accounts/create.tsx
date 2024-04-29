@@ -1,15 +1,14 @@
 import { useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, Flex, Form, Input, Select, Upload, theme } from "antd";
+import InputMask from "react-input-mask";
 import { CloudUploadOutlined, PictureOutlined } from "@ant-design/icons";
 import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 import { ModalForm } from "../../components/modal/form";
 import { countryOptions } from "../../utils/countries";
 import { API_URL, TOKEN_KEY } from "../../utils/constants";
-import { useColorMode } from "../../providers/color-mode";
 
 export const AccountsPageCreate = () => {
-  const { mode } = useColorMode();
   const { token } = theme.useToken();
 
   const go = useGo();
@@ -130,7 +129,13 @@ export const AccountsPageCreate = () => {
               <Input />
             </Form.Item>
             <Form.Item name="phone" label="Phone" rules={[{ required: true }]}>
-              <Input />
+              <InputMask mask="(999) 999-9999">
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                {/* @ts-ignore */}
+                {(props: InputProps) => (
+                  <Input {...props} placeholder="Please enter phone number" />
+                )}
+              </InputMask>
             </Form.Item>
           </Flex>
         </Flex>

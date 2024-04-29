@@ -26,6 +26,9 @@ import { CommonLayout } from "./components/Layout/common";
 import { AccountsPageList } from "./pages/accounts/list";
 import { AccountsPageCreate } from "./pages/accounts/create";
 import { AccountsPageEdit } from "./pages/accounts/edit";
+import { ClientsPageList } from "./pages/clients/list";
+import { ClientsPageCreate } from "./pages/clients/create";
+import { ClientsPageEdit } from "./pages/clients/edit";
 
 const App: React.FC = () => {
   return (
@@ -47,6 +50,8 @@ const App: React.FC = () => {
                 {
                   name: "clients",
                   list: "/clients",
+                  create: "/clients/new",
+                  edit: "/clients/:id/edit",
                 },
                 {
                   name: "invoices",
@@ -79,7 +84,6 @@ const App: React.FC = () => {
                   }
                 >
                   <Route index element={<NavigateToResource />} />
-
                   <Route
                     path="/accounts"
                     element={
@@ -96,14 +100,24 @@ const App: React.FC = () => {
                     element={<AccountsPageEdit />}
                   />
 
-                  <Route path="/clients">
-                    <Route index element={<div>clients page</div>} />
+                  <Route
+                    path="/clients"
+                    element={
+                      <ClientsPageList>
+                        <Outlet />
+                      </ClientsPageList>
+                    }
+                  >
+                    <Route index element={null} />
+                    <Route path="new" element={<ClientsPageCreate />} />
                   </Route>
-
+                  <Route
+                    path="/clients/:id/edit"
+                    element={<ClientsPageEdit />}
+                  />
                   <Route path="/invoices">
                     <Route index element={<div>invoices page</div>} />
                   </Route>
-
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
 

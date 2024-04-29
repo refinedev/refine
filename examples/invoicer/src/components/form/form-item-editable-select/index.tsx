@@ -1,25 +1,32 @@
+import {
+  Button,
+  Flex,
+  Form,
+  FormItemProps,
+  Select,
+  SelectProps,
+  Typography,
+} from "antd";
 import { PropsWithChildren, useState } from "react";
-import { Button, Flex, Form, FormItemProps, Input, Typography } from "antd";
-import InputMask from "react-input-mask";
 import { EditOutlined } from "@ant-design/icons";
 
 import { useStyles } from "./styled";
 
 type Props = {
   icon?: React.ReactNode;
-  placeholder?: string;
   formItemProps?: FormItemProps;
-  variant?: "text" | "phone";
+  selectProps?: SelectProps;
+  editIcon?: React.ReactNode;
   onEditClick?: () => void;
   onCancelClick?: () => void;
   onSave?: () => void;
 };
 
-export const FormItemEditableInputText = ({
+export const FormItemEditableSelect = ({
   icon,
-  placeholder,
   formItemProps,
-  variant = "text",
+  selectProps,
+  editIcon = <EditOutlined />,
   onEditClick,
   onCancelClick,
   onSave,
@@ -43,21 +50,20 @@ export const FormItemEditableInputText = ({
   const handleOnSave = async () => {
     try {
       await form.validateFields();
-      form.submit();
       setDisabled(true);
       onSave?.();
-    } catch (error) {}
+    } catch (err) {}
   };
 
   return (
     <Flex align="center" vertical={!disabled} className={styles.container}>
       <Form.Item
         {...formItemProps}
-        rules={disabled ? [] : formItemProps?.rules}
         className={cx(styles.formItem, {
           [styles.formItemDisabled]: disabled,
           [styles.formItemEnabled]: !disabled,
         })}
+        rules={disabled ? [] : formItemProps?.rules}
         label={
           formItemProps?.label && (
             <Flex gap={16} align="center">
@@ -69,29 +75,9 @@ export const FormItemEditableInputText = ({
           )
         }
       >
-        {variant === "phone" && (
-          <InputMask mask="(999) 999-9999">
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
-            {(props: InputProps) => (
-              <Input
-                {...props}
-                disabled={disabled}
-                placeholder={placeholder}
-                addonBefore={<div style={{ width: "8px" }} />}
-              />
-            )}
-          </InputMask>
-        )}
-        {variant === "text" && (
-          <Input
-            disabled={disabled}
-            placeholder={placeholder}
-            addonBefore={<div style={{ width: "8px" }} />}
-          />
-        )}
+        <Select {...selectProps} disabled={disabled} />
       </Form.Item>
-      {disabled && <Button icon={<EditOutlined />} onClick={handleEdit} />}
+      {disabled && <Button icon={editIcon} onClick={handleEdit} />}
       {!disabled && (
         <Flex
           gap={8}

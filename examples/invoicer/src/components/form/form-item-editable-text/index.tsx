@@ -50,7 +50,7 @@ export const FormItemEditableText = ({
           [styles.formItemDisabled]: disabled,
           [styles.formItemEnabled]: !disabled,
         })}
-        required={false}
+        rules={disabled ? [] : formItemProps?.rules}
         label={null}
       >
         {disabled && (

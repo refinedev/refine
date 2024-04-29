@@ -4,7 +4,7 @@ import { Table } from "antd";
 import { PropsWithChildren } from "react";
 import { useGo } from "@refinedev/core";
 
-export const AccountsPageList = ({ children }: PropsWithChildren) => {
+export const ClientsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
   const { tableProps } = useTable<IAccounts>({
@@ -14,19 +14,19 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
   return (
     <>
       <List
-        title="Accounts"
+        title="Clients"
         headerButtons={() => {
           return (
             <CreateButton
               size="large"
               onClick={() =>
                 go({
-                  to: { resource: "accounts", action: "create" },
+                  to: { resource: "clients", action: "create" },
                   options: { keepQuery: true },
                 })
               }
             >
-              Add new account
+              Add new client
             </CreateButton>
           );
         }}
