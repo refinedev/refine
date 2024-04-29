@@ -1,3 +1,4 @@
+import React from "react";
 import {
   getElementFromFiber,
   getFiberFromElement,
@@ -7,62 +8,31 @@ import {
   getParentOfFiber,
 } from "@aliemir/dom-to-fiber-utils";
 import { DevToolsContext } from "@refinedev/devtools-shared";
-import debounce from "lodash/debounce";
-import React from "react";
 
 type Fiber = Exclude<ReturnType<typeof getFiberFromElement>, null>;
 
+type SelectableElement = {
+  element: HTMLElement;
+  name: string;
+};
+
 export const useSelector = (active: boolean) => {
   const { devtoolsUrl } = React.useContext(DevToolsContext);
-  const [traceItems, setTraceItems] = React.useState<string[]>([]);
+  const [selectableElements, setSelectableElements] = React.useState<
+    SelectableElement[]
+  >([]);
 
-  React.useEffect(() => {
-    if (active) {
-      fetch(
-        `${devtoolsUrl ?? "http://localhost:5001"}/api/unique-trace-items`,
-      ).then((res) =>
-        res.json().then((data: { data: string[] }) => setTraceItems(data.data)),
-      );
-    }
-  }, [active, devtoolsUrl]);
+  const fetchTraceItems = React.useCallback(async () => {
+    const response = await fetch(
+      `${devtoolsUrl ?? "http://localhost:5001"}/api/unique-trace-items`,
+    );
+    const data = await response.json();
 
-  const [selectedFiber, setSelectedFiber] = React.useState<{
-    stateNode: Fiber | null;
-    nameFiber: Fiber | null;
-  }>({
-    stateNode: null,
-    nameFiber: null,
-  });
-  const [activeFiber, setActiveFiber] = React.useState<{
-    stateNode: Fiber | null;
-    nameFiber: Fiber | null;
-    derived?: boolean;
-  }>({
-    stateNode: null,
-    nameFiber: null,
-    derived: false,
-  });
-
-  React.useEffect(() => {
-    if (active) {
-      return () => {
-        setSelectedFiber({
-          stateNode: null,
-          nameFiber: null,
-        });
-        setActiveFiber({
-          stateNode: null,
-          nameFiber: null,
-          derived: false,
-        });
-      };
-    }
-
-    return () => 0;
-  }, [active]);
+    return data.data as string[];
+  }, [devtoolsUrl]);
 
   const selectAppropriateFiber = React.useCallback(
-    (start: Fiber | null) => {
+    (start: Fiber | null, activeTraceItems: string[]) => {
       let fiber = start;
       let firstParentOfNodeWithName: Fiber | null;
       let fiberWithStateNode: Fiber | null;
@@ -74,7 +44,7 @@ export const useSelector = (active: boolean) => {
         firstParentOfNodeWithName = getFirstFiberHasName(fiber);
         // Get the first fiber node that has a state node (look up the tree)
         fiberWithStateNode = getFirstStateNodeFiber(firstParentOfNodeWithName);
-        acceptedName = traceItems.includes(
+        acceptedName = activeTraceItems.includes(
           getNameFromFiber(firstParentOfNodeWithName) ?? "",
         );
         if (!acceptedName) {
@@ -93,157 +63,78 @@ export const useSelector = (active: boolean) => {
         nameFiber: null,
       };
     },
-    [traceItems],
+    [],
   );
 
-  const pickFiber = React.useCallback(
-    (target: HTMLElement) => {
-      const fiber = getFiberFromElement(target);
+  const getUniqueNodes = React.useCallback((nodes: SelectableElement[]) => {
+    const uniques: SelectableElement[] = [];
 
-      setSelectedFiber(selectAppropriateFiber(fiber));
-      return;
+    nodes.forEach((node) => {
+      const isElementExist = uniques.find(
+        (item) => item.element === node.element,
+      );
+      if (!isElementExist) {
+        uniques.push(node);
+      }
+    });
+
+    return uniques;
+  }, []);
+
+  const traverseBodyNodes = React.useCallback(
+    (
+      node: HTMLElement | null,
+      activeTraceItems: string[],
+    ): SelectableElement[] => {
+      if (!node) {
+        return [];
+      }
+
+      const items: SelectableElement[] = [];
+
+      const fiber = getFiberFromElement(node);
+      const targetFiber = selectAppropriateFiber(fiber, activeTraceItems);
+
+      if (targetFiber.nameFiber && targetFiber.stateNode) {
+        const element = getElementFromFiber(targetFiber.stateNode);
+        const name = getNameFromFiber(targetFiber.nameFiber);
+        if (element && name) {
+          items.push({
+            element,
+            name,
+          });
+        }
+      }
+
+      for (let i = 0; i < node?.children?.length ?? 0; i++) {
+        items.push(
+          ...traverseBodyNodes(
+            node.children[i] as HTMLElement,
+            activeTraceItems,
+          ),
+        );
+      }
+
+      return items;
     },
-    [traceItems],
+    [selectAppropriateFiber],
   );
 
-  React.useEffect(() => {
-    if (
-      activeFiber.stateNode !== selectedFiber.stateNode ||
-      activeFiber.nameFiber !== selectedFiber.nameFiber
-    ) {
-      setActiveFiber({
-        stateNode: selectedFiber.stateNode,
-        nameFiber: selectedFiber.nameFiber,
-        derived: false,
-      });
-    }
-  }, [selectedFiber]);
+  const prepareSelector = React.useCallback(async () => {
+    const fetchedTraceItems = await fetchTraceItems();
+    const traversedNodes = traverseBodyNodes(document.body, fetchedTraceItems);
+    const uniqueNodes = getUniqueNodes(traversedNodes);
 
-  const previousValues = React.useRef<{
-    rect: {
-      width: number;
-      height: number;
-      x: number;
-      y: number;
-    };
-    name: string;
-  }>({
-    rect: {
-      width: 0,
-      height: 0,
-      x: 0,
-      y: 0,
-    },
-    name: "",
-  });
-
-  const { rect, name } = React.useMemo(() => {
-    if (!active) {
-      return {
-        rect: {
-          width: 0,
-          height: 0,
-          x: 0,
-          y: 0,
-        },
-        name: "",
-      };
-    }
-    if (activeFiber.stateNode || activeFiber.nameFiber) {
-      // Get the element from the fiber with a state node
-      const element = activeFiber.stateNode
-        ? getElementFromFiber(activeFiber.stateNode)
-        : null;
-      // Get the name of the fiber node with a name
-      const fiberName = activeFiber.nameFiber
-        ? getNameFromFiber(activeFiber.nameFiber)
-        : null;
-
-      if (!element) {
-        return {
-          rect: previousValues.current.rect,
-          name: fiberName ?? previousValues.current.name,
-        };
-      }
-
-      const bounding = element.getBoundingClientRect?.();
-
-      if (!bounding) {
-        return {
-          rect: previousValues.current.rect,
-          name: fiberName ?? previousValues.current.name,
-        };
-      }
-
-      return {
-        rect: {
-          width: bounding.width,
-          height: bounding.height,
-          x: bounding.left,
-          y: bounding.top,
-        },
-        name: fiberName ?? previousValues.current.name,
-      };
-    }
-
-    return previousValues.current;
-  }, [activeFiber, active]);
-
-  previousValues.current = {
-    rect,
-    name,
-  };
+    setSelectableElements(uniqueNodes);
+  }, [fetchTraceItems, traverseBodyNodes, getUniqueNodes]);
 
   React.useEffect(() => {
     if (active) {
-      const listener = (e: KeyboardEvent) => {
-        // if user presses shift, toggle the derived state and set the active fiber to the parent
-        if (e.key === "Shift" && activeFiber.stateNode) {
-          e.stopPropagation();
-          e.preventDefault();
-
-          const parent = getParentOfFiber(activeFiber.nameFiber);
-
-          const fibers = selectAppropriateFiber(parent);
-
-          if (fibers.nameFiber && fibers.stateNode) {
-            setActiveFiber({
-              ...fibers,
-              derived: true,
-            });
-            return;
-          }
-        }
-      };
-
-      document.addEventListener("keydown", listener);
-      return () => document.removeEventListener("keydown", listener);
+      prepareSelector();
     }
-    return () => 0;
-  }, [activeFiber, active]);
-
-  React.useEffect(() => {
-    if (active) {
-      let previousTarget: HTMLElement | null = null;
-      const listener = debounce((e: MouseEvent) => {
-        if (e?.target) {
-          if (previousTarget === e.target) {
-            return;
-          }
-          pickFiber(e.target as HTMLElement);
-          previousTarget = e.target as HTMLElement;
-        }
-      }, 50);
-
-      document.addEventListener("mousemove", listener);
-
-      return () => document.removeEventListener("mousemove", listener);
-    }
-    return () => 0;
-  }, [active, pickFiber]);
+  }, [active, prepareSelector]);
 
   return {
-    rect,
-    name,
+    selectableElements,
   };
 };
