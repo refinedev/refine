@@ -18,7 +18,7 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
     case "lte":
       return query.lte(filter.field, filter.value);
     case "contains":
-      return query.ilike(filter.field, `%${filter.value}%`);
+      return query.containedBy(filter.field, filter.value);
     case "containss":
       return query.like(filter.field, `%${filter.value}%`);
     case "null":

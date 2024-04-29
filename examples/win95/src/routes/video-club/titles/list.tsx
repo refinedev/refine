@@ -105,12 +105,11 @@ export const VideoClubPageBrowseTitles = () => {
               onChange={(e) => {
                 const value = e.target?.value?.trim();
                 setCurrent(1);
-                console.log(value.split(",").map((v) => v.trim()));
                 setFilters([
                   {
                     field: "genres",
                     value: value.split(",").map((v) => v.trim()),
-                    operator: "in",
+                    operator: "contains",
                   },
                 ]);
               }}
