@@ -191,12 +191,10 @@ export const SelectableElements = ({
             padding: 0;
             appearance: none;
             z-index: 9999;
-            border: 1px dashed #000;
-            outline: 1px dashed #FFF;
+            border: 2px dashed #47EBEB;
             border-radius: 6px;
-            background: rgba(0,0,0, 0.05);
+            background: rgba(71, 235, 235, 0.01);
             transition: opacity 0.2s ease-in-out;
-            backdrop-filter: sepia(0.05);
           }
         
           .selector-xray-info {
@@ -210,8 +208,8 @@ export const SelectableElements = ({
             min-width: 22px;
             height: 22px;
       
-            color: white;
-            background: black;
+            color: #14141F;
+            background: #47EBEB;
       
             font-size: 12px;
             line-height: 16px;
