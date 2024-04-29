@@ -132,16 +132,6 @@ const HomeContainer = styled.div`
   margin: auto 0;
 `;
 
-const BgImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-`;
-
 const Logo = styled.img`
   user-select: none;
   margin-right: auto;

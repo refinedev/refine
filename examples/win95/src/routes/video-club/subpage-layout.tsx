@@ -58,7 +58,6 @@ height: 100%;
 background-image: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/tile.png);
 background-repeat: repeat;
 background-size: 4px;
-background-position: bottom right, bottom 4px right 0, bottom 4px right -4px, bottom 0px right 4px;
 `;
 
 const LoaderContainer = styled.div<{ $isLoading?: boolean }>`

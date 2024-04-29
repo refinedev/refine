@@ -396,7 +396,7 @@ const StyledGroupBox = styled(GroupBox)`
   gap: 32px;
 `;
 
-const ImageMember = styled.img`
+const ImageMember = styled(ImagePixelated)`
   width: 200px;
   height: 200px;
   aspect-ratio: 200 / 200;

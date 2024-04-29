@@ -133,10 +133,9 @@ inset: 0;
 z-index: 0;
 width: 100%;
 height: 100%;
-opacity: 0.5;
-background-image: linear-gradient(45deg, #000 25%, transparent 25%), linear-gradient(-45deg, #000 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #000 75%), linear-gradient(-45deg, transparent 75%, #000 75%);
-background-size: 8px 8px;
-background-position: bottom right, bottom 4px right 0, bottom 4px right -4px, bottom 0px right 4px;
+background-image: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/tile.png);
+background-repeat: repeat;
+background-size: 4px;
 `;
 
 const Container = styled(Window)`

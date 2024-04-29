@@ -10,7 +10,6 @@ import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-p
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { supabaseClient } from "../../../supabase-client";
 import { IMember } from "../../../interfaces";
-import { DEPOSIT } from "../../../utils/app-settings";
 
 export const VideoClubMemberPageEdit = () => {
   const [memberPhoto, setMemberPhoto] = useState<string | null>(null);
@@ -169,7 +168,7 @@ const AddPhotoInput = styled.input`
   cursor: pointer;
 `;
 
-const MemberPhoto = styled.img`
+const MemberPhoto = styled(ImagePixelated)`
   min-width: 200px;
   min-height: 200px;
   max-width: 200px;

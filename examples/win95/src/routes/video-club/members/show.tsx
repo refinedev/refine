@@ -14,6 +14,7 @@ import {
   TableHead,
   TableContainer,
 } from "../../../components/table";
+import { ImagePixelated } from "../../../components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
 
@@ -160,7 +161,7 @@ const HistoryGroupBox = styled(StyledGroupBox)`
   gap: 16px;
 `;
 
-const Image = styled.img`
+const Image = styled(ImagePixelated)`
   min-width: 200px;
   min-height: 200px;
   max-width: 200px;

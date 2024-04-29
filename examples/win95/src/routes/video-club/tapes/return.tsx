@@ -23,6 +23,7 @@ import {
 } from "../../../components/table";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
+import { ImagePixelated } from "../../../components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
 import { IExendedMember, IExtendedRental } from "../../../interfaces";
 import { convertToUSD } from "../../../utils/convert-to-usd";
@@ -314,7 +315,7 @@ const ContainerReceipt = styled(StyledGroupBox)`
   flex-direction: column;
 `;
 
-const ImageMember = styled.img`
+const ImageMember = styled(ImagePixelated)`
   min-width: 200px;
   min-height: 200px;
   max-width: 200px;
