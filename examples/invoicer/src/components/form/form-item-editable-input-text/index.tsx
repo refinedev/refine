@@ -6,26 +6,44 @@ import { useStyles } from "./styled";
 
 type Props = {
   icon?: React.ReactNode;
+  placeholder?: string;
   formItemProps?: FormItemProps;
+  onEditClick?: () => void;
+  onCancelClick?: () => void;
+  onSave?: () => void;
 };
 
-export const FormItemEditable = ({
+export const FormItemEditableInputText = ({
   icon,
+  placeholder,
   formItemProps,
+  onEditClick,
+  onCancelClick,
+  onSave,
 }: PropsWithChildren<Props>) => {
   const [disabled, setDisabled] = useState(true);
 
   const { styles, cx } = useStyles();
   const form = Form.useFormInstance();
 
+  const handleEdit = () => {
+    setDisabled(false);
+    onEditClick?.();
+  };
+
   const handleOnCancel = () => {
     setDisabled(true);
     form.resetFields([formItemProps?.name]);
+    onCancelClick?.();
   };
 
-  const handleOnSave = () => {
-    form.submit();
-    setDisabled(true);
+  const handleOnSave = async () => {
+    try {
+      await form.validateFields();
+      form.submit();
+      setDisabled(true);
+      onSave?.();
+    } catch (error) {}
   };
 
   return (
@@ -38,27 +56,23 @@ export const FormItemEditable = ({
         })}
         required={false}
         label={
-          <Flex gap={16} align="center">
-            <Typography.Text type="secondary">{icon}</Typography.Text>
-            <Typography.Text type="secondary">
-              {formItemProps?.label}
-            </Typography.Text>
-          </Flex>
+          formItemProps?.label && (
+            <Flex gap={16} align="center">
+              <Typography.Text type="secondary">{icon}</Typography.Text>
+              <Typography.Text type="secondary">
+                {formItemProps?.label}
+              </Typography.Text>
+            </Flex>
+          )
         }
       >
         <Input
           disabled={disabled}
+          placeholder={placeholder}
           addonBefore={<div style={{ width: "8px" }} />}
         />
       </Form.Item>
-      {disabled && (
-        <Button
-          icon={<EditOutlined />}
-          onClick={() => {
-            setDisabled(false);
-          }}
-        />
-      )}
+      {disabled && <Button icon={<EditOutlined />} onClick={handleEdit} />}
       {!disabled && (
         <Flex
           gap={8}

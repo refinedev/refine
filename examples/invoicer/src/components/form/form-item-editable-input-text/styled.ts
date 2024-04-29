@@ -3,6 +3,8 @@ import { createStyles } from "antd-style";
 export const useStyles = createStyles((props) => {
   return {
     container: {
+      padding: "8px 16px",
+
       ".ant-form-item": {
         marginBottom: "0",
         width: "100%",
@@ -10,7 +12,12 @@ export const useStyles = createStyles((props) => {
       ".ant-form-item-explain-error": {
         marginLeft: "32px",
       },
+
+      "input::placeholder": {
+        color: props.token.colorPrimary,
+      },
     },
+
     formItem: {
       ".ant-input-group >.ant-input:last-child": {
         borderStartStartRadius: "6px",
@@ -35,7 +42,7 @@ export const useStyles = createStyles((props) => {
         color: props.token.colorText,
         userSelect: "text",
         cursor: "text",
-        paddingLeft: "0",
+        paddingLeft: 0,
       },
     },
   };

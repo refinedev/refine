@@ -191,7 +191,12 @@ export const DataProvider = (
       data: {
         id: 1,
         ownerName: "John Doe",
-        email: "johndoe@gmail.com",
+        ownerEmail: "johndoe@gmail.com",
+        companyName: "Microsoft",
+        companyLogo: "https://picsum.photos/200",
+        country: "United States",
+        address: "",
+        phone: "+1 425-882-8080",
       } as any,
     };
   },

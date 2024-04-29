@@ -18,7 +18,6 @@ import { App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/custom.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import { Header } from "./components/header";
 import { dataProvider } from "./providers/data-provider";
 import { authProvider } from "./providers/auth-provider";

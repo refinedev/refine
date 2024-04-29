@@ -1,16 +1,20 @@
 import { useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Button, Flex, Form, Input, Select, Upload } from "antd";
+import { Button, Flex, Form, Input, Select, Upload, theme } from "antd";
 import { CloudUploadOutlined, PictureOutlined } from "@ant-design/icons";
 import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 import { ModalForm } from "../../components/modal/form";
 import { countryOptions } from "../../utils/countries";
 import { API_URL, TOKEN_KEY } from "../../utils/constants";
+import { useColorMode } from "../../providers/color-mode";
 
 export const AccountsPageCreate = () => {
-  const { formProps } = useForm();
+  const { mode } = useColorMode();
+  const { token } = theme.useToken();
 
   const go = useGo();
+
+  const { formProps } = useForm();
 
   return (
     <ModalForm
@@ -55,7 +59,12 @@ export const AccountsPageCreate = () => {
                   multiple={false}
                   showUploadList={false}
                 >
-                  <PictureOutlined />
+                  <PictureOutlined
+                    style={{
+                      fontSize: "48px",
+                      color: token.colorTextTertiary,
+                    }}
+                  />
                 </Upload.Dragger>
               </div>
               <Upload

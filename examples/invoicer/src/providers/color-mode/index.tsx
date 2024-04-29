@@ -50,6 +50,9 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     ...RefineThemes.Purple,
     algorithm,
     components: {
+      Card: {
+        headerBg: mode === "dark" ? "#1F1F1F" : "#FAFAFA",
+      },
       Tabs: {
         horizontalMargin: "0px",
         inkBarColor: theme.getDesignToken({ algorithm }).purple8,
