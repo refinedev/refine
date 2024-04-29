@@ -202,6 +202,7 @@ export const SelectableElements = ({
             border-radius: 6px;
             background: rgba(71, 235, 235, 0.01);
             transition: opacity 0.2s ease-in-out;
+            cursor: crosshair;
           }
         
           .selector-xray-info {

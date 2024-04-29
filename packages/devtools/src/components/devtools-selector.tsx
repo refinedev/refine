@@ -20,14 +20,6 @@ export const DevtoolsSelector = ({
 }: Props) => {
   const { selectableElements } = useSelector(active);
 
-  React.useEffect(() => {
-    if (active) {
-      document.body.style.cursor = "crosshair";
-    } else {
-      document.body.style.cursor = "default";
-    }
-  }, [active]);
-
   const onSelect = (name: string) => {
     onHighlight(name);
     setActive(false);
