@@ -2,6 +2,7 @@ import React from "react";
 import debounce from "lodash/debounce";
 import { createPortal } from "react-dom";
 import { ApplyStyles } from "./apply-styles";
+import { SelectorIcon } from "./icons/selector-button";
 
 const SelectableElement = ({
   element,
@@ -133,7 +134,13 @@ const SelectableElement = ({
         }}
         className="selector-xray-info"
       >
-        <span className="selector-xray-info-icon">⚡️</span>
+        <span className="selector-xray-info-icon">
+          <SelectorIcon
+            width={12}
+            height={12}
+            style={{ pointerEvents: "none" }}
+          />
+        </span>
         <span className="selector-xray-info-title">{` ${name}`}</span>
       </div>
     </button>
