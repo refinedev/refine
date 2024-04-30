@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { useGo } from "@refinedev/core";
+import { useGo, useNavigation } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
@@ -10,7 +10,51 @@ import { Loading } from "../../utils/loading";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
+  const { createUrl, listUrl } = useNavigation();
   const go = useGo();
+
+  const links = [
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rent-tape.png",
+      label: "Rent Tape",
+      href: listUrl("rentals-rent"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/return-tape.png",
+      label: "Return Tape",
+      href: listUrl("rentals-return"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-title.png",
+      label: "Add Title",
+      href: createUrl("titles"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-titles.png",
+      label: "Browse Titles",
+      href: listUrl("titles"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-member.png",
+      label: "Add Member",
+      href: createUrl("members"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-members.png",
+      label: "Browse Members",
+      href: listUrl("members"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/report.png",
+      label: "Report",
+      href: listUrl("reports"),
+    },
+    {
+      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/settings.png",
+      label: "Settings",
+      href: listUrl("settings"),
+    },
+  ];
 
   return (
     <>
@@ -179,46 +223,3 @@ const LinkItemImg = styled.img`
 const LinkItemLabel = styled.div`
   padding: 1px 0;
 `;
-
-const links = [
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rent-tape.png",
-    label: "Rent Tape",
-    href: "tapes/rent",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/return-tape.png",
-    label: "Return Tape",
-    href: "tapes/return",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-title.png",
-    label: "Add Title",
-    href: "titles/new",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-titles.png",
-    label: "Browse Titles",
-    href: "titles",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-member.png",
-    label: "Add Member",
-    href: "members/new",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-members.png",
-    label: "Browse Members",
-    href: "members",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/report.png",
-    label: "Report",
-    href: "reports",
-  },
-  {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/settings.png",
-    label: "Settings",
-    href: "settings",
-  },
-];
