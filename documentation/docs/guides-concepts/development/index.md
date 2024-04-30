@@ -261,6 +261,24 @@ const App = () => {
 
 <Image src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/devtools-demo.gif" />
 
+**Running Devtools Server**
+
+Devtools will boot up a server to operate both on your app and have control over your project's source code to provide you with the best experience. If you're using `@refinedev/cli`'s `refine dev` command, it will automatically start the devtools server for you if you have `@refinedev/devtools` installed.
+
+If you want to start devtools server manually, you can use the following command:
+
+```bash
+refine devtools start
+```
+
+If you're running the devtools manually, you can disable the automatic start of the devtools server by passing `--devtools=false` flag to the `refine dev` command.
+
+As an alternative, you can also install the `@refinedev/devtools-server` package and use `refine-devtools` command to start the server.
+
+**Required Ports**
+
+Devtools server will run on port `5001` and also run a WebSocket server on port `5002`. Make sure these ports are available on your machine. Both of these ports are required for devtools to work properly and maintain a connection between your app and the devtools interface.
+
 ## Using Inferencer
 
 `@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily.
