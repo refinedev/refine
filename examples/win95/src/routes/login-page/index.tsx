@@ -7,8 +7,8 @@ import {
   WindowHeader,
 } from "react95";
 import styled from "styled-components";
-import { IconQuestionMark } from "../icons/question";
-import { Popover } from "../tooltip";
+import { IconQuestionMark } from "../../components/icons/question";
+import { Popover } from "../../components/tooltip";
 import { useLogin } from "@refinedev/core";
 
 export const LoginPage = () => {
@@ -16,10 +16,10 @@ export const LoginPage = () => {
 
   const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("password") as HTMLInputElement)
-      .value;
+
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
 
     mutate({ email, password });
   };
@@ -60,12 +60,22 @@ export const LoginPage = () => {
 
             <InputWrapper>
               <InputLabel htmlFor="email">Email:</InputLabel>
-              <Input id="email" type="email" value="demo@refine.dev" />
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value="demo@refine.dev"
+              />
             </InputWrapper>
 
             <InputWrapper>
               <InputLabel htmlFor="password">Password:</InputLabel>
-              <Input id="password" type="password" value="demo" />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                value="demo"
+              />
             </InputWrapper>
           </FormContainer>
 
