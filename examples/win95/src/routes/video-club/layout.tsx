@@ -6,7 +6,7 @@ import { Button } from "react95";
 import { AppLayout } from "../../components/layout";
 import { VideoClubTodayDate } from "../../components/today-date";
 import { Link } from "react-router-dom";
-import { Loading } from "../../utils/loading";
+import { RVCSplashScreen } from "../../components/rvc-splash-screen";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
