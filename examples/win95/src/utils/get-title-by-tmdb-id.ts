@@ -23,8 +23,6 @@ export const getTitleByTmdbId = async (
     });
     if (existingResponse?.data) {
       title = existingResponse.data;
-    } else {
-      title = null;
     }
   } catch (error) {
     title = null;
