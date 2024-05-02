@@ -1,16 +1,20 @@
 import { useGo } from "@refinedev/core";
-import { useForm } from "@refinedev/antd";
-import { Flex, Form, Input, Select, theme } from "antd";
+import { useForm, useSelect } from "@refinedev/antd";
+import { Flex, Form, Input, Select } from "antd";
 import InputMask from "react-input-mask";
 import { ModalForm } from "../../components/modal/form";
 import { countryOptions } from "../../utils/countries";
 
 export const ClientsPageCreate = () => {
-  const { token } = theme.useToken();
-
   const go = useGo();
 
   const { formProps } = useForm();
+
+  const { selectProps: selectPropsAccount } = useSelect({
+    resource: "accounts",
+    optionLabel: "company_name",
+    optionValue: "id",
+  });
 
   return (
     <ModalForm
@@ -37,26 +41,29 @@ export const ClientsPageCreate = () => {
             label="Account"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Please select an account" options={[]} />
+            <Select
+              {...selectPropsAccount}
+              placeholder="Please select an account"
+            />
           </Form.Item>
           <Form.Item
-            name="title"
+            name="name"
             label="Client title"
             rules={[{ required: true }]}
           >
             <Input placeholder="Please enter client title" />
           </Form.Item>
           <Form.Item
-            name="ownerName"
+            name="owner_name"
             label="Owner name"
             rules={[{ required: true }]}
           >
             <Input placeholder="Please enter owner name" />
           </Form.Item>
           <Form.Item
-            name="ownerEmail"
+            name="owner_email"
             label="Owner email"
-            rules={[{ required: true }]}
+            rules={[{ required: true, type: "email" }]}
           >
             <Input placeholder="Please enter owner email" />
           </Form.Item>

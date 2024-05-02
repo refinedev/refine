@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Button, Flex, Form, Input, Select, Upload, theme } from "antd";
@@ -7,13 +8,16 @@ import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 import { ModalForm } from "../../components/modal/form";
 import { countryOptions } from "../../utils/countries";
 import { API_URL, TOKEN_KEY } from "../../utils/constants";
+import { IAccount } from "../../interfaces";
+import { AccountLogoUpload } from "../../components/account-logo-upload";
 
 export const AccountsPageCreate = () => {
+  const imageUrl = useRef<string | undefined>();
   const { token } = theme.useToken();
 
   const go = useGo();
 
-  const { formProps } = useForm();
+  const { formProps } = useForm<IAccount>();
 
   return (
     <ModalForm
@@ -37,55 +41,15 @@ export const AccountsPageCreate = () => {
       >
         <Flex gap={40}>
           <Form.Item
-            name="logo"
+            name="cover"
             valuePropName="fileList"
             getValueProps={(data) => getValueProps(data, API_URL)}
           >
-            <Flex gap={16} vertical>
-              <div
-                style={{
-                  width: "148px",
-                  height: "148px",
-                }}
-              >
-                <Upload.Dragger
-                  name="files"
-                  action={`${API_URL}/api/upload`}
-                  headers={{
-                    Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
-                  }}
-                  listType="picture"
-                  multiple={false}
-                  showUploadList={false}
-                >
-                  <PictureOutlined
-                    style={{
-                      fontSize: "48px",
-                      color: token.colorTextTertiary,
-                    }}
-                  />
-                </Upload.Dragger>
-              </div>
-              <Upload
-                name="files"
-                action={`${API_URL}/api/upload`}
-                headers={{
-                  Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
-                }}
-                listType="picture"
-                multiple={false}
-                showUploadList={false}
-              >
-                <Button
-                  style={{
-                    width: "148px",
-                  }}
-                  icon={<CloudUploadOutlined />}
-                >
-                  Upload Logo
-                </Button>
-              </Upload>
-            </Flex>
+            <AccountLogoUpload
+              onUpload={(url) => {
+                imageUrl.current = url;
+              }}
+            />
           </Form.Item>
           <Flex
             vertical
@@ -94,23 +58,23 @@ export const AccountsPageCreate = () => {
             }}
           >
             <Form.Item
-              name="companyName"
+              name="company_name"
               label="Company Name"
               rules={[{ required: true }]}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              name="ownerName"
+              name="owner_name"
               label="Owner Name"
               rules={[{ required: true }]}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              name="ownerEmail"
+              name="owner_email"
               label="Owner email"
-              rules={[{ required: true }]}
+              rules={[{ required: true, type: "email" }]}
             >
               <Input />
             </Form.Item>

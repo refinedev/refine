@@ -12,6 +12,9 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
       fontWeight: 700,
     },
     tabs: {
+      marginLeft: "auto",
+      marginRight: "auto",
+
       ".ant-tabs-nav": {
         height: "48px",
       },
@@ -55,6 +58,13 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
       display: "flex !important",
       color: token.colorTextHeading,
       fontSize: "14px",
+    },
+    rightSlot: {
+      marginLeft: "auto",
+
+      "@media (max-width: 1000px)": {
+        padding: "16px",
+      },
     },
   };
 });

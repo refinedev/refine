@@ -6,8 +6,14 @@
   width: 224px;
 }
 
-
 .ant-modal {
   max-width: 656px;
   width: 100% !important;
-},
+}
+
+.ant-pagination-total-text {
+  margin-right: auto;
+  font-size: 14px !important;
+  color: rgba(0, 0, 0, 0.45) !important;
+  margin-inline-end: auto !important;
+}

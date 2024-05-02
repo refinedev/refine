@@ -2,76 +2,67 @@ import { PropsWithChildren } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,
+  DateField,
   DeleteButton,
-  EditButton,
   FilterDropdown,
   List,
   NumberField,
+  ShowButton,
   getDefaultSortOrder,
   useSelect,
   useTable,
 } from "@refinedev/antd";
-import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { Flex, Input, Select, Table, Typography } from "antd";
+import { Button, Flex, Input, Select, Table, Typography } from "antd";
+import {
+  EyeOutlined,
+  SearchOutlined,
+  FilePdfOutlined,
+} from "@ant-design/icons";
 import { CustomAvatar } from "../../components/avatar";
-import { IAccount } from "../../interfaces";
 import { API_URL } from "../../utils/constants";
+import { IInvoice } from "../../interfaces";
 import { PaginationTotal } from "../../components/pagination-total";
 
-export const AccountsPageList = ({ children }: PropsWithChildren) => {
+export const InvoicePageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
-  const { tableProps, filters, sorters } = useTable<IAccount>({
-    sorters: {
-      initial: [{ field: "createdAt", order: "desc" }],
-    },
-    filters: {
-      initial: [
-        {
-          field: "owner_email",
-          operator: "contains",
-          value: "",
-        },
-        {
-          field: "phone",
-          operator: "contains",
-          value: "",
-        },
-      ],
-    },
+  const { tableProps, filters, sorters } = useTable<IInvoice>({
     meta: {
-      populate: ["logo", "invoices"],
+      populate: ["client", "account.logo"],
+    },
+    sorters: {
+      initial: [{ field: "date", order: "desc" }],
     },
   });
 
-  const { selectProps: selectPropsCompanyName } = useSelect({
+  const { selectProps: selectPropsAccounts } = useSelect({
     resource: "accounts",
     optionLabel: "company_name",
     optionValue: "company_name",
   });
 
-  const { selectProps: selectPropsOwnerName } = useSelect({
-    resource: "accounts",
-    optionLabel: "owner_name",
-    optionValue: "owner_name",
+  const { selectProps: selectPropsClients } = useSelect({
+    resource: "clients",
+    optionLabel: "name",
+    optionValue: "name",
   });
 
   return (
     <>
       <List
-        title="Accounts"
+        title="Invoices"
         headerButtons={() => {
           return (
             <CreateButton
               size="large"
               onClick={() =>
                 go({
-                  to: { resource: "accounts", action: "create" },
+                  to: { resource: "invoices", action: "create" },
                   options: { keepQuery: true },
                 })
               }
             >
-              Add new account
+              Add new invoice
             </CreateButton>
           );
         }}
@@ -83,7 +74,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             ...tableProps.pagination,
             showSizeChanger: true,
             showTotal: (total) => (
-              <PaginationTotal total={total} entityName="accounts" />
+              <PaginationTotal total={total} entityName="invoices" />
             ),
           }}
           scroll={{ x: 960 }}
@@ -104,11 +95,44 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             }}
           />
           <Table.Column
-            title="Title"
-            dataIndex="company_name"
-            key="company_name"
-            sorter
-            defaultSortOrder={getDefaultSortOrder("company_name", sorters)}
+            title="Account"
+            dataIndex="account.company_name"
+            key="account.company_name"
+            defaultFilteredValue={getDefaultFilter(
+              "account.company_name",
+              filters,
+              "in",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Select
+                  mode="multiple"
+                  placeholder="Search Account"
+                  style={{ width: 220 }}
+                  {...selectPropsAccounts}
+                />
+              </FilterDropdown>
+            )}
+            render={(_, record: IInvoice) => {
+              const logoUrl = record?.account?.logo?.url;
+              const src = logoUrl ? `${API_URL}${logoUrl}` : undefined;
+              const name = record?.account?.company_name;
+
+              return (
+                <Flex align="center" gap={8}>
+                  <CustomAvatar name={name} src={src} shape="square" />
+                  <Typography.Text>{name}</Typography.Text>
+                </Flex>
+              );
+            }}
+          />
+          <Table.Column
+            title="Client"
+            dataIndex="client.name"
+            key="client.name"
+            render={(_, record: IInvoice) => {
+              return <Typography.Text>{record.client?.name}</Typography.Text>;
+            }}
             defaultFilteredValue={getDefaultFilter(
               "company_name",
               filters,
@@ -120,87 +144,30 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
                   mode="multiple"
                   placeholder="Search Company Name"
                   style={{ width: 220 }}
-                  {...selectPropsCompanyName}
-                />
-              </FilterDropdown>
-            )}
-            render={(name: string, record: IAccount) => {
-              const logoUrl = record?.logo?.url;
-              const src = logoUrl ? `${API_URL}${logoUrl}` : undefined;
-
-              return (
-                <Flex align="center" gap={8}>
-                  <CustomAvatar name={name} src={src} shape="square" />
-                  <Typography.Text>{name}</Typography.Text>
-                </Flex>
-              );
-            }}
-          />
-          <Table.Column
-            title="Owner"
-            dataIndex="owner_name"
-            key="owner_name"
-            sorter
-            defaultSortOrder={getDefaultSortOrder("owner_name", sorters)}
-            defaultFilteredValue={getDefaultFilter("owner_name", filters, "in")}
-            filterDropdown={(props) => (
-              <FilterDropdown {...props}>
-                <Select
-                  mode="multiple"
-                  placeholder="Search Owner Name"
-                  style={{ width: 220 }}
-                  {...selectPropsOwnerName}
+                  {...selectPropsClients}
                 />
               </FilterDropdown>
             )}
           />
           <Table.Column
-            title="Email"
-            dataIndex="owner_email"
-            key="owner_email"
-            defaultFilteredValue={getDefaultFilter(
-              "owner_email",
-              filters,
-              "contains",
-            )}
-            filterIcon={<SearchOutlined />}
-            filterDropdown={(props) => {
-              return (
-                <FilterDropdown {...props}>
-                  <Input placeholder="Search Email" />
-                </FilterDropdown>
-              );
-            }}
-          />
-          <Table.Column
-            title="Phone"
-            dataIndex="phone"
-            key="phone"
-            width={154}
-            defaultFilteredValue={getDefaultFilter(
-              "phone",
-              filters,
-              "contains",
-            )}
-            filterIcon={<SearchOutlined />}
-            filterDropdown={(props) => {
-              return (
-                <FilterDropdown {...props}>
-                  <Input placeholder="Search Phone" />
-                </FilterDropdown>
-              );
-            }}
-          />
-          <Table.Column
-            title="Income"
-            dataIndex="income"
-            key="income"
+            title="Date"
+            dataIndex="date"
+            key="date"
             width={120}
-            render={(_, record: IAccount) => {
-              let total = 0;
-              record.invoices?.forEach((invoice) => {
-                total += invoice.total;
-              });
+            sorter
+            defaultSortOrder={getDefaultSortOrder("date", sorters)}
+            render={(date) => {
+              return <DateField value={date} format="D MMM YYYY" />;
+            }}
+          />
+          <Table.Column
+            title="Total"
+            dataIndex="total"
+            key="total"
+            width={132}
+            sorter
+            defaultSortOrder={getDefaultSortOrder("total", sorters)}
+            render={(total) => {
               return (
                 <NumberField
                   value={total}
@@ -214,11 +181,12 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             key="actions"
             fixed="right"
             align="end"
-            width={106}
-            render={(_, record: IAccount) => {
+            width={144}
+            render={(_, record: IInvoice) => {
               return (
                 <Flex align="center" gap={8}>
-                  <EditButton
+                  <Button icon={<FilePdfOutlined />} />
+                  <ShowButton
                     hideText
                     recordItemId={record.id}
                     icon={<EyeOutlined />}

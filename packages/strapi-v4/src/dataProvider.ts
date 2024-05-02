@@ -187,17 +187,26 @@ export const DataProvider = (
   },
 
   getOne: async ({ resource, id, meta }) => {
+    const locale = meta?.locale;
+    const fields = meta?.fields;
+    const populate = meta?.populate;
+    const publicationState = meta?.publicationState;
+
+    const query = {
+      locale,
+      fields,
+      populate,
+      publicationState,
+    };
+
+    const url = `${apiUrl}/${resource}/${id}?${stringify(query, {
+      encode: false,
+    })}`;
+
+    const { data } = await httpClient.get(url);
+
     return {
-      data: {
-        id: 1,
-        ownerName: "John Doe",
-        ownerEmail: "johndoe@gmail.com",
-        companyName: "Microsoft",
-        companyLogo: "https://picsum.photos/200",
-        country: "United States",
-        address: "",
-        phone: "+1 425-882-8080",
-      } as any,
+      data: normalizeData(data),
     };
   },
 

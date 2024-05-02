@@ -29,6 +29,9 @@ import { AccountsPageEdit } from "./pages/accounts/edit";
 import { ClientsPageList } from "./pages/clients/list";
 import { ClientsPageCreate } from "./pages/clients/create";
 import { ClientsPageEdit } from "./pages/clients/edit";
+import { InvoicePageList } from "./pages/invoices/list";
+import { InvoicesPageCreate } from "./pages/invoices/create";
+import { InvoicesPageShow } from "./pages/invoices/show";
 
 const App: React.FC = () => {
   return (
@@ -56,6 +59,8 @@ const App: React.FC = () => {
                 {
                   name: "invoices",
                   list: "/invoices",
+                  show: "/invoices/:id",
+                  create: "/invoices/new",
                 },
               ]}
               notificationProvider={useNotificationProvider}
@@ -116,7 +121,9 @@ const App: React.FC = () => {
                     element={<ClientsPageEdit />}
                   />
                   <Route path="/invoices">
-                    <Route index element={<div>invoices page</div>} />
+                    <Route index element={<InvoicePageList />} />
+                    <Route path="new" element={<InvoicesPageCreate />} />
+                    <Route path=":id" element={<InvoicesPageShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

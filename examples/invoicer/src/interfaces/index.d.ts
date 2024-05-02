@@ -1,28 +1,84 @@
-export interface ICategory {
+export interface IAccount {
   id: number;
-  title: string;
-}
-
-export interface IPost {
-  id: number;
-  title: string;
-  content: string;
-  status: "published" | "draft" | "rejected";
-  category: { id: number };
-}
-
-export interface IAccounts {
-  id: number;
-  title: string;
-  avatar: string;
-  name: string;
-  email: string;
-  income: number;
+  company_name: string;
+  owner_name: string;
+  owner_email: string;
+  country: string;
+  address: string;
   phone: string;
+  createdAt: string;
+  updatedAt: string;
+  logo?: ILogo;
+  invoices?: IInvoice[];
+  clients?: IClient[];
 }
 
-export type IUser = {
+export interface IClient {
   id: number;
   name: string;
-  avatar: string;
-};
+  owner_name: string;
+  owner_email: string;
+  country: string;
+  address: string;
+  phone: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  invoices?: IInvoice[];
+  account?: IAccount;
+}
+
+export interface IInvoice {
+  id: number;
+  name: string;
+  date: string;
+  discount: number;
+  tax: number;
+  custom_id: string;
+  services: string;
+  total: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  account: IAccount;
+  client: IClient;
+}
+
+export interface IService {
+  title: string;
+  unitPrice: number;
+  quantity: number;
+  discount: number;
+  totalPrice: number;
+}
+
+export interface IUser {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ILogo {
+  id: number;
+  name: string;
+  alternativeText: any;
+  caption: any;
+  width: number;
+  height: number;
+  formats: any;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: any;
+  provider: string;
+  provider_metadata: any;
+  createdAt: string;
+  updatedAt: string;
+}

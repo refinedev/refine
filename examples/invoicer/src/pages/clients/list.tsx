@@ -1,14 +1,57 @@
-import { CreateButton, List, useTable } from "@refinedev/antd";
-import { IAccounts } from "../../interfaces";
-import { Table } from "antd";
 import { PropsWithChildren } from "react";
-import { useGo } from "@refinedev/core";
+import { getDefaultFilter, useGo } from "@refinedev/core";
+import {
+  CreateButton,
+  DeleteButton,
+  EditButton,
+  FilterDropdown,
+  List,
+  NumberField,
+  getDefaultSortOrder,
+  useSelect,
+  useTable,
+} from "@refinedev/antd";
+import { Flex, Input, Select, Table, Typography } from "antd";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
+import { IClient } from "../../interfaces";
+import { CustomAvatar } from "../../components/avatar";
+import { API_URL } from "../../utils/constants";
+import { PaginationTotal } from "../../components/pagination-total";
 
 export const ClientsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
-  const { tableProps } = useTable<IAccounts>({
-    queryOptions: { enabled: false },
+  const { tableProps, filters, sorters } = useTable<IClient>({
+    filters: {
+      initial: [
+        {
+          field: "owner_email",
+          operator: "contains",
+          value: "",
+        },
+      ],
+    },
+    meta: {
+      populate: ["account.logo", "invoices"],
+    },
+  });
+
+  const { selectProps: selectPropsName } = useSelect({
+    resource: "clients",
+    optionLabel: "name",
+    optionValue: "name",
+  });
+
+  const { selectProps: selectPropsOwnerName } = useSelect({
+    resource: "clients",
+    optionLabel: "owner_name",
+    optionValue: "owner_name",
+  });
+
+  const { selectProps: selectPropsAccountName } = useSelect({
+    resource: "accounts",
+    optionLabel: "company_name",
+    optionValue: "company_name",
   });
 
   return (
@@ -31,13 +74,154 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
           );
         }}
       >
-        <Table {...tableProps}>
-          <Table.Column title="ID" dataIndex="id" key="id" />
-          <Table.Column title="Title" dataIndex="title" key="title" />
-          <Table.Column title="Name" dataIndex="name" key="name" />
-          <Table.Column title="Email" dataIndex="email" key="email" />
-          <Table.Column title="Income" dataIndex="income" key="income" />
-          <Table.Column title="Phone" dataIndex="phone" key="phone" />
+        <Table
+          {...tableProps}
+          rowKey={"id"}
+          pagination={{
+            ...tableProps.pagination,
+            showSizeChanger: true,
+            showTotal: (total) => (
+              <PaginationTotal total={total} entityName="accounts" />
+            ),
+          }}
+          scroll={{ x: 960 }}
+        >
+          <Table.Column
+            title="ID"
+            dataIndex="id"
+            key="id"
+            width={80}
+            defaultFilteredValue={getDefaultFilter("id", filters)}
+            filterIcon={<SearchOutlined />}
+            filterDropdown={(props) => {
+              return (
+                <FilterDropdown {...props}>
+                  <Input placeholder="Search ID" />
+                </FilterDropdown>
+              );
+            }}
+          />
+          <Table.Column
+            title="Title"
+            dataIndex="name"
+            key="name"
+            sorter
+            defaultSortOrder={getDefaultSortOrder("name", sorters)}
+            defaultFilteredValue={getDefaultFilter("name", filters, "in")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Select
+                  mode="multiple"
+                  placeholder="Search Name"
+                  style={{ width: 220 }}
+                  {...selectPropsName}
+                />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column
+            title="Owner"
+            dataIndex="owner_name"
+            key="owner_name"
+            sorter
+            defaultSortOrder={getDefaultSortOrder("owner_name", sorters)}
+            defaultFilteredValue={getDefaultFilter("owner_name", filters, "in")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Select
+                  mode="multiple"
+                  placeholder="Search Owner"
+                  style={{ width: 220 }}
+                  {...selectPropsOwnerName}
+                />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column
+            title="Email"
+            dataIndex="owner_email"
+            key="owner_email"
+            defaultFilteredValue={getDefaultFilter(
+              "owner_email",
+              filters,
+              "contains",
+            )}
+            filterIcon={<SearchOutlined />}
+            filterDropdown={(props) => {
+              return (
+                <FilterDropdown {...props}>
+                  <Input placeholder="Search Email" />
+                </FilterDropdown>
+              );
+            }}
+          />
+          <Table.Column
+            title="Total"
+            dataIndex="total"
+            key="total"
+            width={120}
+            render={(_, record: IClient) => {
+              let total = 0;
+              record.invoices?.forEach((invoice) => {
+                total += invoice.total;
+              });
+              return (
+                <NumberField
+                  value={total}
+                  options={{ style: "currency", currency: "USD" }}
+                />
+              );
+            }}
+          />
+          <Table.Column
+            title="Account"
+            dataIndex="account.company_name"
+            key="account.company_name"
+            defaultFilteredValue={getDefaultFilter(
+              "account.company_name",
+              filters,
+              "in",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Select
+                  mode="multiple"
+                  placeholder="Search Account"
+                  style={{ width: 220 }}
+                  {...selectPropsAccountName}
+                />
+              </FilterDropdown>
+            )}
+            render={(_, record: IClient) => {
+              const logoUrl = record?.account?.logo?.url;
+              const src = logoUrl ? `${API_URL}${logoUrl}` : null;
+              const name = record?.account?.company_name;
+
+              return (
+                <Flex align="center" gap={8}>
+                  <CustomAvatar name={name} src={src} shape="square" />
+                  <Typography.Text>{name}</Typography.Text>
+                </Flex>
+              );
+            }}
+          />
+          <Table.Column
+            title="Actions"
+            key="actions"
+            fixed="right"
+            render={(_, record: IClient) => {
+              return (
+                <Flex align="center" gap={8}>
+                  <EditButton
+                    hideText
+                    recordItemId={record.id}
+                    icon={<EyeOutlined />}
+                  />
+                  <DeleteButton hideText recordItemId={record.id} />
+                </Flex>
+              );
+            }}
+          />
         </Table>
       </List>
       {children}

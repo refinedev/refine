@@ -1,5 +1,5 @@
 import { Button, Flex, Form, FormItemProps, Input, Typography } from "antd";
-import { PropsWithChildren, useRef, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { EditOutlined, EnterOutlined } from "@ant-design/icons";
 
 import { useStyles } from "./styled";
@@ -21,6 +21,7 @@ export const FormItemEditableText = ({
 
   const { styles, cx } = useStyles();
   const form = Form.useFormInstance();
+  const fieldValue = Form.useWatch(formItemProps?.name, form);
 
   const handleEdit = () => {
     setDisabled(false);
@@ -61,7 +62,7 @@ export const FormItemEditableText = ({
                 marginBottom: "0",
               }}
             >
-              {form.getFieldValue(formItemProps?.name)}
+              {fieldValue}
             </Typography.Title>
             {disabled && (
               <Button

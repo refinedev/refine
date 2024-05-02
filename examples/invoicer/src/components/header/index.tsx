@@ -12,6 +12,7 @@ import {
   theme,
   Flex,
   Tabs,
+  Skeleton,
 } from "antd";
 import debounce from "lodash/debounce";
 import {
@@ -27,6 +28,7 @@ import { IconSun } from "../icons/icon-sun";
 import { IconInvoicerLogo } from "../icons/icon-invoicer";
 import { IUser } from "../../interfaces";
 import { useLocation } from "react-router-dom";
+import { CustomAvatar } from "../avatar";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list } = useNavigation();
@@ -34,7 +36,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const location = useLocation();
 
   const { token } = theme.useToken();
-  const { data: user } = useGetIdentity<IUser>();
+  const { data: user, isLoading } = useGetIdentity<IUser>();
   const { mode, setMode } = useColorMode();
   const { styles } = useStyles();
 
@@ -46,19 +48,22 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       style={{
         backgroundColor: token.colorBgElevated,
         padding: "0 16px",
-        height: "48px",
+        minHeight: "48px",
+        height: "max-content",
       }}
     >
       <Flex
         align="center"
         justify="space-between"
+        wrap="wrap"
         style={{
+          width: "100%",
           maxWidth: "1440px",
           margin: "0 auto",
           height: "100%",
         }}
       >
-        <Flex align="center" gap={24}>
+        <Flex align="center" wrap="wrap">
           <Flex
             align="center"
             gap={12}
@@ -102,7 +107,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             ]}
           />
         </Flex>
-        <Flex align="center" gap={32}>
+        <Flex align="center" gap={32} className={styles.rightSlot}>
           <AutoComplete
             style={{
               width: "100%",
@@ -129,15 +134,29 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
             }}
           />
           <Flex align="center" gap={16}>
-            <Typography.Text ellipsis className={styles.userName}>
-              {user?.name || "James Sullivan"}
-            </Typography.Text>
-            <Avatar
+            <div
+              style={{
+                width: "112px",
+              }}
+            >
+              <Typography.Text ellipsis className={styles.userName}>
+                {isLoading ? (
+                  <Skeleton.Input
+                    style={{
+                      width: "100px",
+                      height: "32px",
+                      borderRadius: "4px",
+                    }}
+                  />
+                ) : (
+                  user?.username
+                )}
+              </Typography.Text>
+            </div>
+            <CustomAvatar
               size={32}
-              src={
-                user?.avatar || "https://randomuser.me/api/portraits/men/0.jpg"
-              }
-              alt={user?.name}
+              src={"https://randomuser.me/api/portraits/lego/5.jpg"}
+              alt={user?.username}
             />
           </Flex>
         </Flex>

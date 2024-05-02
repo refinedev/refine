@@ -50,9 +50,12 @@ export const FormItemEditableSelect = ({
   const handleOnSave = async () => {
     try {
       await form.validateFields();
+      form.submit();
       setDisabled(true);
       onSave?.();
-    } catch (err) {}
+    } catch (err) {
+      console.log("Error", err);
+    }
   };
 
   return (
