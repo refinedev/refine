@@ -104,6 +104,7 @@ describe("Notistack notificationProvider", () => {
       </>,
       {
         action: expect.any(Function),
+        preventDuplicate: true,
         key: "test-notification-undoable",
         autoHideDuration: 5000,
       },
