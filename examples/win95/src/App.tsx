@@ -38,6 +38,10 @@ import { RVCWebsitePageHome } from "./routes/rvc-website/home";
 import { RVCWebsitePageTitleDetails } from "./routes/rvc-website/title-detail";
 import { RVCWebsiteCatalogPage } from "./components/rvc-website/catalog";
 
+import dayjs from "dayjs";
+import durationPlugin from "dayjs/plugin/duration";
+dayjs.extend(durationPlugin);
+
 const App = () => {
   return (
     <BrowserRouter>

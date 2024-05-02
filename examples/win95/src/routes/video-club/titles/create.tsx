@@ -7,7 +7,6 @@ import {
   useNavigation,
 } from "@refinedev/core";
 import dayjs from "dayjs";
-import durationPlugin from "dayjs/plugin/duration";
 import {
   Anchor,
   NumberInput,
@@ -25,8 +24,6 @@ import {
 import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
 import { ITape, IVideoTitle } from "../../../interfaces";
 import { ImagePixelated } from "../../../components/image-pixelated";
-
-dayjs.extend(durationPlugin);
 
 export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();
