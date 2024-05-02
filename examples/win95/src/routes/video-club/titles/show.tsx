@@ -140,7 +140,6 @@ export const VideoClubPageShowTitle = () => {
                   <TableHeadCell $width={64} $align="right">
                     Earning
                   </TableHeadCell>
-                  {/* <TableHeadCell $width={48}>{}</TableHeadCell> */}
                 </TableRow>
               </TableHead>
               <TableBody style={{ height: "128px" }}>
@@ -167,20 +166,13 @@ export const VideoClubPageShowTitle = () => {
                           {"$"}
                           {(rental.period * FEE_PER_DAY).toFixed(2)}
                         </TableDataCell>
-                        {/* TODO: receipt concept is not implemented in our db schema */}
-                        {/* <TableDataCell $width={48} style={{ textAlign: "right" }}>
-                        <Link
-                          to={`/video-club/titles/${data?.data.id}/receipt/${rental.id}`}
-                        >
-                          Receipt
-                        </Link>
-                      </TableDataCell> */}
                       </TableRow>
                     );
                   })}
                 {Array.from({
                   length: Math.max(0, 5 - (data?.data?.rentals.length ?? 0)),
                 }).map((_, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableRow key={`placeholder-${index}`}>{}</TableRow>
                 ))}
               </TableBody>
