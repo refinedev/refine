@@ -1,4 +1,3 @@
-import React from "react";
 import { Edit } from "@refinedev/mui";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -7,39 +6,41 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller, useFieldArray } from "react-hook-form";
+import { HttpError } from "@refinedev/core";
 
 interface IPost {
   firstName: string;
   email: string;
-  skills: string;
+  skills: string[];
 }
 
 const defaultValues = {
   firstName: "",
   email: "",
-  skills: "",
+  skills: [],
 };
 
-function PostEdit(Props: any) {
+function PostEdit() {
   const {
-    refineCore: { onFinish },
     saveButtonProps,
     control,
     formState: { errors },
-    handleSubmit,
     watch,
-  } = useForm<IPost>({
+  } = useForm<IPost, HttpError, IPost>({
     mode: "onChange",
     defaultValues,
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
+    // @ts-expect-error - `useFieldArray` works without an `id` field in the array items but the type definition requires it
     name: "skills",
     rules: {
       required: "please add at least one skill",
     },
   });
+
+  const skills = watch("skills");
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
@@ -79,10 +80,10 @@ function PostEdit(Props: any) {
               />
             )}
           />
-          {fields.map(({ id }, index) => {
+          {skills.map((_, index) => {
             return (
               <Box
-                key={id}
+                key={fields[index]?.id}
                 sx={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -91,7 +92,7 @@ function PostEdit(Props: any) {
               >
                 <Controller
                   control={control}
-                  name={`skills[${index}]`}
+                  name={`skills.${index}`}
                   render={({ field }) => (
                     <TextField
                       {...field}
