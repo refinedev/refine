@@ -43,6 +43,7 @@ export const useNotificationProvider = (): NotificationProvider => {
           </>,
           {
             action,
+            preventDuplicate: true,
             key,
             autoHideDuration: (undoableTimeout ?? 0) * 1000,
           },
