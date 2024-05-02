@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,
@@ -19,11 +19,14 @@ import {
   FilePdfOutlined,
 } from "@ant-design/icons";
 import { CustomAvatar } from "../../components/avatar";
+import { PaginationTotal } from "../../components/pagination-total";
+import { InvoicePDFModal } from "../../components/invoice-pdf";
 import { API_URL } from "../../utils/constants";
 import { IInvoice } from "../../interfaces";
-import { PaginationTotal } from "../../components/pagination-total";
 
-export const InvoicePageList = ({ children }: PropsWithChildren) => {
+export const InvoicePageList = () => {
+  const [selectedInvoice, setSelectedInvoice] = useState<IInvoice | null>(null);
+
   const go = useGo();
 
   const { tableProps, filters, sorters } = useTable<IInvoice>({
@@ -185,7 +188,12 @@ export const InvoicePageList = ({ children }: PropsWithChildren) => {
             render={(_, record: IInvoice) => {
               return (
                 <Flex align="center" gap={8}>
-                  <Button icon={<FilePdfOutlined />} />
+                  <Button
+                    icon={<FilePdfOutlined />}
+                    onClick={() => {
+                      setSelectedInvoice(record);
+                    }}
+                  />
                   <ShowButton
                     hideText
                     recordItemId={record.id}
@@ -198,7 +206,12 @@ export const InvoicePageList = ({ children }: PropsWithChildren) => {
           />
         </Table>
       </List>
-      {children}
+      {selectedInvoice && (
+        <InvoicePDFModal
+          invoice={selectedInvoice}
+          onClose={() => setSelectedInvoice(null)}
+        />
+      )}
     </>
   );
 };
