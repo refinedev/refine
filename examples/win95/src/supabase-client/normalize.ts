@@ -1,13 +1,3 @@
-// import { Upload } from "antd";
-
-// interface UploadResponse {
-//   url: string;
-// }
-// interface EventArgs<T = UploadResponse> {
-//   file: UploadFile<T>;
-//   fileList: Array<UploadFile<T>>;
-// }
-
 export const normalizeFile = (event: any) => {
   const { fileList } = event;
 
