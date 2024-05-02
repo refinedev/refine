@@ -19,7 +19,7 @@ import { DangerIcon } from "../../../components/icons/danger-icon";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExendedMember } from "../../../interfaces";
 import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
-import { hasMemberUnreturnedTape } from "../../../utils/has-member-unreturned-tabes";
+import { hasActiveRental } from "../../../utils/has-active-rental";
 import { Button } from "react95";
 
 export const VideoClubMemberPageList = () => {
@@ -156,7 +156,7 @@ export const VideoClubMemberPageList = () => {
                 return (
                   <TableRow key={member.id}>
                     <TableDataCell $width={24}>
-                      {hasMemberUnreturnedTape({
+                      {hasActiveRental({
                         member,
                       }) ? (
                         <DangerIcon message="Member has unreturned tape(s)" />

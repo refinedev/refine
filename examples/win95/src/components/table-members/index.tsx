@@ -16,7 +16,7 @@ import {
 } from "../../components/table";
 import { IExendedMember } from "../../interfaces";
 import { findFilterFromCrudFilters } from "../../utils/find-filter-from-crud-filters";
-import { hasMemberUnreturnedTape } from "../../utils/has-member-unreturned-tabes";
+import { hasActiveRental } from "../../utils/has-active-rental";
 import { Pagination } from "../pagination";
 import { DangerIcon } from "../icons/danger-icon";
 import { VideoClubLayoutSubPage } from "../../routes/video-club/subpage-layout";
@@ -162,7 +162,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
                     onClick={() => setSelectedMember(member)}
                   >
                     <TableDataCell $px={5} $width={24}>
-                      {hasMemberUnreturnedTape({
+                      {hasActiveRental({
                         member,
                       }) ? (
                         <DangerIcon message="Member has unreturned tape(s)" />

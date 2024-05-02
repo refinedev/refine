@@ -19,7 +19,7 @@ import {
   TableFilterInputText,
 } from "../../../components/table";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { hasMemberUnreturnedTape } from "../../../utils/has-member-unreturned-tabes";
+import { hasActiveRental } from "../../../utils/has-active-rental";
 import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
 import { IExendedMember } from "../../../interfaces";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
@@ -176,7 +176,7 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
                     onClick={() => setSelectedMember(member)}
                   >
                     <TableDataCell $px={5} $width={24}>
-                      {hasMemberUnreturnedTape({
+                      {hasActiveRental({
                         member,
                       }) ? (
                         <DangerIcon message="Member has unreturned tape(s)" />
