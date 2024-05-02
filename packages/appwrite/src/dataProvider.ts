@@ -6,7 +6,7 @@ import {
   getAppwriteSorting,
 } from "./utils";
 
-type DefaultOptions = {
+type DataProviderOptions = {
   databaseId: string;
   defaultReadPermissions?: Permission[];
   defaultWritePermissions?: Permission[];
@@ -14,17 +14,13 @@ type DefaultOptions = {
 
 export const dataProvider = (
   appwriteClient: Appwrite,
-  options: DefaultOptions = {
-    databaseId: "default",
-    defaultReadPermissions: [],
-    defaultWritePermissions: [],
-  },
+  options?: DataProviderOptions,
 ): Required<DataProvider> => {
   const {
     databaseId = "default",
     defaultReadPermissions = [Permission.read(Role.any())],
     defaultWritePermissions = [Permission.write(Role.any())],
-  } = options;
+  } = options ?? {};
 
   const database = new Databases(appwriteClient);
 
