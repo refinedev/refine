@@ -147,7 +147,7 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
           {children}
         </Container>
       </StyledAppLayout>
-      <Loading />
+      <RVCSplashScreen />
     </>
   );
 };
