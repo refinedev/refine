@@ -11,6 +11,7 @@ import { supabaseClient } from "../../../supabase-client";
 import { IMember } from "../../../interfaces";
 import { DEPOSIT } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
+import { getCdnUrl } from "../../../utils/get-cdn-url";
 
 export const VideoClubMemberPageCreate = () => {
   const [memberPhoto, setMemberPhoto] = useState<string | null>(null);
@@ -65,12 +66,7 @@ export const VideoClubMemberPageCreate = () => {
           {memberPhoto && <MemberPhoto src={memberPhoto} alt="member" />}
           {!memberPhoto && (
             <>
-              <AddPhotoImage
-                src={
-                  "https://refine.ams3.cdn.digitaloceanspaces.com/win95/camera.png"
-                }
-                alt="camera"
-              />
+              <AddPhotoImage src={getCdnUrl("/camera.png")} alt="camera" />
               <AddPhotoText>MEMBER PHOTO</AddPhotoText>
             </>
           )}

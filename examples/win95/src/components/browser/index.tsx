@@ -2,6 +2,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import styled from "styled-components";
 import { Select, Separator, Window } from "react95";
 import { AppLayoutHeader, AppLayoutMenu } from "../../components/layout";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 type Props = {
   title?: ReactNode;
@@ -34,7 +35,7 @@ export const Browser = ({
         <AppBarContainer>
           <Separator />
           <ImageBrowserIcons
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/browser-icons.png"
+            src={getCdnUrl("/browser-icons.png")}
             alt="browser icons"
           />
           <Separator />
@@ -53,10 +54,7 @@ export const Browser = ({
           </AddressBarContainer>
         </AppBarContainer>
         <Win95LogoContainer>
-          <Win95Logo
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/win95-logo.png"
-            alt="win95 logo"
-          />
+          <Win95Logo src={getCdnUrl("/win95-logo.png")} alt="win95 logo" />
         </Win95LogoContainer>
       </AppBar>
       <WindowContent>{children}</WindowContent>

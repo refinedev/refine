@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
 import { useGo, useNavigation } from "@refinedev/core";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
 import { AppLayout } from "../../components/layout";
 import { VideoClubTodayDate } from "../../components/today-date";
-import { Link } from "react-router-dom";
 import { RVCSplashScreen } from "../../components/rvc-splash-screen";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
@@ -15,42 +15,42 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
 
   const links = [
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rent-tape.png",
+      icon: getCdnUrl("/rent-tape.png"),
       label: "Rent Tape",
       href: listUrl("rentals-rent"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/return-tape.png",
+      icon: getCdnUrl("/return-tape.png"),
       label: "Return Tape",
       href: listUrl("rentals-return"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-title.png",
+      icon: getCdnUrl("/add-title.png"),
       label: "Add Title",
       href: createUrl("titles"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-titles.png",
+      icon: getCdnUrl("/browse-titles.png"),
       label: "Browse Titles",
       href: listUrl("titles"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/add-member.png",
+      icon: getCdnUrl("/add-member.png"),
       label: "Add Member",
       href: createUrl("members"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/browse-members.png",
+      icon: getCdnUrl("/browse-members.png"),
       label: "Browse Members",
       href: listUrl("members"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/report.png",
+      icon: getCdnUrl("/report.png"),
       label: "Report",
       href: listUrl("reports"),
     },
     {
-      icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/settings.png",
+      icon: getCdnUrl("/settings.png"),
       label: "Settings",
       href: listUrl("settings"),
     },
@@ -60,7 +60,7 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
     <>
       <StyledAppLayout
         title="Refine Video Club"
-        iconURL="https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-video-club-app-icon-pixelated.png"
+        iconURL={getCdnUrl("/refine-video-club-app-icon-pixelated.png")}
         onClose={() => navigate("/")}
         onMinimize={() => navigate("/")}
         menu={[
@@ -128,7 +128,7 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
           <TodayDate />
           <HomeContainer>
             <Logo
-              src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-video-club-emboss-logo.png"
+              src={getCdnUrl("/refine-video-club-emboss-logo.png")}
               alt="refine video club logo"
             />
 
@@ -164,7 +164,7 @@ const Container = styled.div`
   height: 100%;
   position: relative;
   z-index: 1;
-  background-image: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/noisy-gray.png);
+  background-image: url(${getCdnUrl("//noisy-gray.png")});
   background-repeat: repeat;
 `;
 

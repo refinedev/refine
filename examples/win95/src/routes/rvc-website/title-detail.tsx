@@ -13,6 +13,7 @@ import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
 import { getHourFromMinutes } from "../../utils/get-hour-from-minutes";
 import { IVideoTitle } from "../../interfaces";
 import { MediaPlayer } from "../../components/media-player";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const RVCWebsitePageTitleDetails = () => {
   const { titleId } = useParams();
@@ -103,7 +104,7 @@ export const RVCWebsitePageTitleDetails = () => {
                 width: "64px",
                 height: "64px",
               }}
-              src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/arrow1.gif"
+              src={getCdnUrl("/arrow1.gif")}
               alt="Back"
             />
             Back to catalog

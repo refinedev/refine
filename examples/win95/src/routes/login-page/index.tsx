@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { IconQuestionMark } from "../../components/icons/question";
 import { Popover } from "../../components/tooltip";
 import { useLogin } from "@refinedev/core";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const LoginPage = () => {
   const { mutate } = useLogin();
@@ -52,7 +53,7 @@ export const LoginPage = () => {
         </Header>
         <Content>
           <WindowsKeyImage
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/windows-key.png"
+            src={`${getCdnUrl("/windows-key.png")}`}
             alt="windows key"
           />
           <FormContainer id="loginForm" onSubmit={onFormSubmit}>

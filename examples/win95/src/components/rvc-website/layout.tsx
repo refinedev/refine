@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { RVCWebsiteLinks } from "./links";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const RVCWebsiteLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -15,7 +16,7 @@ export const RVCWebsiteLayout = ({ children }: PropsWithChildren) => {
 
 const Page = styled.div`
   background-color: black;
-  background-image: url(https://refine.ams3.cdn.digitaloceanspaces.com/win95/stars.gif);
+  background-image: url(${getCdnUrl("/stars.gif")});
 `;
 
 const Container = styled.div`

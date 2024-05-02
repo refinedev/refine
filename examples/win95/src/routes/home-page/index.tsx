@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { LinkDoubleClick } from "../../components/link-double-click";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const HomePage = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -58,13 +59,11 @@ const links = [
   {
     label: "Refine Video Club",
     link: "/video-club",
-    iconURL:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-video-club-app-icon.png",
+    iconURL: `${getCdnUrl("/refine-video-club-app-icon.png")}`,
   },
   {
     label: "RVC Website",
     link: "/rvc-website",
-    iconURL:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rvc-website-app-icon.png",
+    iconURL: `${getCdnUrl("/rvc-website-app-icon.png")}`,
   },
 ];

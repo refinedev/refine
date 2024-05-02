@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const ArrowGreenPixelatedIcon = () => {
   return (
     <Container>
-      <StyledArrowGreenPixelatedIcon src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/arrow-green-pixelated.png" />
+      <StyledArrowGreenPixelatedIcon
+        src={getCdnUrl("/arrow-green-pixelated.png")}
+      />
     </Container>
   );
 };

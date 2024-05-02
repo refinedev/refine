@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 type Banner = "crm" | "finefoods";
 
@@ -32,11 +33,11 @@ const RefineBannerGif = styled.img`
 
 const BANNERS: Record<Banner, { img: string; href: string }> = {
   crm: {
-    img: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/refinecrm.gif",
+    img: getCdnUrl("/refinecrm.gif"),
     href: "https://refine.dev/templates/crm-application/",
   },
   finefoods: {
-    img: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/refinefoods.gif",
+    img: getCdnUrl("/refinefoods.gif"),
     href: "https://refine.dev/templates/react-admin-panel-ant-design/",
   },
 };

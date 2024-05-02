@@ -11,6 +11,7 @@ import {
   Separator as SeparatorBase,
 } from "react95";
 import styled from "styled-components";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const TaskBar = () => {
   const { pathname } = useLocation();
@@ -58,10 +59,7 @@ export const TaskBar = () => {
         }}
         active={startMenuIsOpen}
       >
-        <StartImage
-          src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/windows-logo.png"
-          alt="start"
-        />
+        <StartImage src={getCdnUrl("/windows-logo.png")} alt="start" />
         Start
       </StartButton>
 
@@ -82,7 +80,7 @@ export const TaskBar = () => {
           <Separator />
           <LogoffButton variant="thin" onClick={onLogoutClick}>
             <StartMenuListItemImage
-              src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/logoff.png"
+              src={getCdnUrl("/logoff.png")}
               alt="log off"
             />
             Log Off
@@ -190,42 +188,42 @@ const Hour = styled(Frame)`
 
 const menuItems = [
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-pixelated.png",
+    icon: getCdnUrl("/refine-pixelated.png"),
     label: "Refine Home",
     href: "https://refine.dev",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/book.png",
+    icon: getCdnUrl("/book.png"),
     label: "Documentation",
     href: "https://refine.dev/docs",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/notepad.png",
+    icon: getCdnUrl("/notepad.png"),
     label: "Tutorial",
     href: "https://refine.dev/tutorial/essentials/intro",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/earth.png",
+    icon: getCdnUrl("/earth.png"),
     label: "Templates",
     href: "https://refine.dev/templates",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/paper-with-pencil.png",
+    icon: getCdnUrl("/paper-with-pencil.png"),
     label: "Blog",
     href: "https://refine.dev/blog",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/github-pixelated.png",
+    icon: getCdnUrl("/github-pixelated.png"),
     label: "GitHub",
     href: "https://github.com/refinedev/refine",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/discord-pixelated.png",
+    icon: getCdnUrl("/discord-pixelated.png"),
     label: "Discord",
     href: "https://discord.gg/refine",
   },
   {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/x-pixelated.png",
+    icon: getCdnUrl("/x-pixelated.png"),
     label: "X",
     href: "https://twitter.com/refine_dev",
   },
@@ -239,11 +237,11 @@ const pathnameToIndicatorMap: Record<
   }
 > = {
   "video-club": {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-video-club-app-icon-pixelated.png",
+    icon: getCdnUrl("/refine-video-club-app-icon-pixelated.png"),
     label: "Refine Video Club",
   },
   "rvc-website": {
-    icon: "https://refine.ams3.cdn.digitaloceanspaces.com/win95/rvc-website-app-icon.png",
+    icon: getCdnUrl("/rvc-website-app-icon.png"),
     label: "RVC Website",
   },
 };

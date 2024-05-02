@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 type Props = {
   message?: string;
@@ -8,7 +9,7 @@ export const DangerIcon = ({ message }: Props) => {
   return (
     <Container>
       <StyledDangerIcon
-        src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/error-icon.png"
+        src={getCdnUrl("/error-icon.png")}
         alt={message}
         aria-label={message}
       />

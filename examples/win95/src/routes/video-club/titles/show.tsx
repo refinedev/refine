@@ -19,6 +19,7 @@ import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { useState } from "react";
 import { MediaPlayerModal } from "../../../components/media-player/modal";
+import { getCdnUrl } from "../../../utils/get-cdn-url";
 
 dayjs.extend(durationPlugin);
 
@@ -81,7 +82,7 @@ export const VideoClubPageShowTitle = () => {
                   }}
                 >
                   <DetailItemTrailerIcon
-                    src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/watch-trailer.png"
+                    src={getCdnUrl("/watch-trailer.png")}
                     alt="watch trailer"
                   />
                   Watch Trailer
@@ -238,7 +239,7 @@ const Poster = styled(ImagePixelated)`
   &::before {
     content: "";
     background-color: ${({ theme }) => theme.material};
-    background-image: url("https://refine.ams3.cdn.digitaloceanspaces.com/win95/movie-poster-placeholder.png");
+    background-image: url(${getCdnUrl("/movie-poster-placeholder.png")});
     background-size: 200px 300px;
     display: block;
     width: 100%;

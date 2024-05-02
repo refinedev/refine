@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AppLayout } from "../layout";
 import { ProgressBar } from "react95";
+import { getCdnUrl } from "../../utils/get-cdn-url";
 
 export const RVCSplashScreen = () => {
   const navigate = useNavigate();
@@ -31,14 +32,14 @@ export const RVCSplashScreen = () => {
   return (
     <StyledAppLayout
       title="Refine Video Club"
-      iconURL="https://refine.ams3.cdn.digitaloceanspaces.com/win95/refine-video-club-app-icon-pixelated.png"
+      iconURL={getCdnUrl("/refine-video-club-app-icon-pixelated.png")}
       onClose={() => navigate("/")}
       onMinimize={() => navigate("/")}
     >
       <Container>
         <SplashContainer>
           <SplashShadow />
-          <Splash src="https://refine.ams3.cdn.digitaloceanspaces.com/win95/splash-screen.png" />
+          <Splash src={getCdnUrl("/splash-screen.png")} />
         </SplashContainer>
         <Progress variant="tile" value={percent} hideValue />
       </Container>
