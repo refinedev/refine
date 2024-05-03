@@ -77,7 +77,6 @@ export const Search = () => {
       filterOption={false}
       options={options}
       value={searchText}
-      placeholder="Search"
       onChange={(text) => setSearchText(text)}
       optionRender={(option) => {
         const data = option.data as Option;
