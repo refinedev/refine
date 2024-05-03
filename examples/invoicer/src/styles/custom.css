@@ -17,3 +17,13 @@
   color: rgba(0, 0, 0, 0.45) !important;
   margin-inline-end: auto !important;
 }
+
+@media print {
+  .print-hidden {
+    display: none;
+  }
+  .ant-layout {
+    padding: 0;
+    background: transparent;
+  }
+}

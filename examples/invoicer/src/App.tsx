@@ -15,9 +15,6 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { App as AntdApp } from "antd";
-import "@refinedev/antd/dist/reset.css";
-import "./styles/custom.css";
-
 import { Header } from "./components/header";
 import { dataProvider } from "./providers/data-provider";
 import { authProvider } from "./providers/auth-provider";
@@ -32,6 +29,9 @@ import { ClientsPageEdit } from "./pages/clients/edit";
 import { InvoicePageList } from "./pages/invoices/list";
 import { InvoicesPageCreate } from "./pages/invoices/create";
 import { InvoicesPageShow } from "./pages/invoices/show";
+import { InvoicePDF } from "./components/invoice-pdf";
+import "@refinedev/antd/dist/reset.css";
+import "./styles/custom.css";
 
 const App: React.FC = () => {
   return (
@@ -125,7 +125,18 @@ const App: React.FC = () => {
                     <Route path="new" element={<InvoicesPageCreate />} />
                     <Route path=":id" element={<InvoicesPageShow />} />
                   </Route>
+
                   <Route path="*" element={<ErrorComponent />} />
+                </Route>
+
+                <Route
+                  element={
+                    <Authenticated key="authenticated-no-layout">
+                      <Outlet />
+                    </Authenticated>
+                  }
+                >
+                  <Route path="/invoices/:id/pdf" element={<InvoicePDF />} />
                 </Route>
 
                 <Route

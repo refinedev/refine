@@ -23,7 +23,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
 
   const { tableProps, filters, sorters } = useTable<IAccount>({
     sorters: {
-      initial: [{ field: "createdAt", order: "desc" }],
+      initial: [{ field: "updatedAt", order: "desc" }],
     },
     filters: {
       initial: [

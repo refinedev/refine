@@ -10,10 +10,10 @@ type Props = {
 };
 
 export const PageHeader = (props: PropsWithChildren<Props>) => {
-  const { styles } = useStyles();
+  const { styles, cx } = useStyles();
 
   return (
-    <Flex className={styles.container}>
+    <Flex className={cx(styles.container, "print-hidden")}>
       <Button icon={<LeftOutlined />} className={styles.button}>
         <Link to={props.backButtonHref || ""}>{props.backButtonText}</Link>
       </Button>

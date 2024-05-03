@@ -35,7 +35,6 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
     addNewServiceItemButton: {
       color: token.colorPrimary,
     },
-
     labelTotal: {
       color: token.colorTextSecondary,
     },

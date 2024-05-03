@@ -3,9 +3,7 @@ import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity, useNavigation } from "@refinedev/core";
 import {
   Input,
-  Avatar,
   Typography,
-  Grid,
   AutoComplete,
   Layout as AntdLayout,
   Button,
@@ -45,6 +43,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
 
   return (
     <AntdLayout.Header
+      className="print-hidden"
       style={{
         backgroundColor: token.colorBgElevated,
         padding: "0 16px",

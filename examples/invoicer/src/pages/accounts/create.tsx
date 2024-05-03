@@ -1,23 +1,18 @@
-import { useRef, useState } from "react";
-import { useGo } from "@refinedev/core";
+import { HttpError, useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Button, Flex, Form, Input, Select, Upload, theme } from "antd";
+import { Flex, Form, Input, Select } from "antd";
 import InputMask from "react-input-mask";
-import { CloudUploadOutlined, PictureOutlined } from "@ant-design/icons";
-import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import { getValueProps } from "@refinedev/strapi-v4";
 import { ModalForm } from "../../components/modal/form";
+import { FormItemUploadLogoDraggable } from "../../components/form/form-item-upload-logo-draggable";
 import { countryOptions } from "../../utils/countries";
-import { API_URL, TOKEN_KEY } from "../../utils/constants";
-import { IAccount } from "../../interfaces";
-import { AccountLogoUpload } from "../../components/account-logo-upload";
+import { API_URL } from "../../utils/constants";
+import { IAccount, IAccountForm } from "../../interfaces";
 
 export const AccountsPageCreate = () => {
-  const imageUrl = useRef<string | undefined>();
-  const { token } = theme.useToken();
-
   const go = useGo();
 
-  const { formProps } = useForm<IAccount>();
+  const { formProps } = useForm<IAccount, HttpError, IAccountForm>();
 
   return (
     <ModalForm
@@ -36,7 +31,11 @@ export const AccountsPageCreate = () => {
         id="create-account-form"
         {...formProps}
         onFinish={(values) => {
-          formProps.onFinish?.(mediaUploadMapper(values));
+          const logoId = values.logo?.file?.response?.[0]?.id;
+          return formProps.onFinish?.({
+            ...values,
+            logo: logoId,
+          } as IAccountForm);
         }}
       >
         <Flex gap={40}>
@@ -45,11 +44,7 @@ export const AccountsPageCreate = () => {
             valuePropName="fileList"
             getValueProps={(data) => getValueProps(data, API_URL)}
           >
-            <AccountLogoUpload
-              onUpload={(url) => {
-                imageUrl.current = url;
-              }}
-            />
+            <FormItemUploadLogoDraggable />
           </Form.Item>
           <Flex
             vertical

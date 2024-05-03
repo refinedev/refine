@@ -1,297 +1,244 @@
-import { IInvoice, IService } from "../../interfaces";
+import { useShow } from "@refinedev/core";
 import {
-  Document,
-  Image,
-  Page,
-  StyleSheet,
-  View,
-  Text,
-  PDFViewer,
-} from "@react-pdf/renderer";
-import { Modal } from "antd";
-import dayjs from "dayjs";
-import { useStyles } from "./styled";
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Row,
+  Skeleton,
+  Spin,
+  Table,
+  Typography,
+} from "antd";
+import { DateField, NumberField } from "@refinedev/antd";
+import { CustomAvatar } from "../../components/avatar";
 import { API_URL } from "../../utils/constants";
+import { IInvoice, IService } from "../../interfaces";
+import { useStyles } from "./styled";
 
-type Props = {
-  invoice: IInvoice;
-  onClose: () => void;
-};
-
-export const InvoicePDFModal = ({ invoice, onClose }: Props) => {
+export const InvoicePDF = () => {
   const { styles } = useStyles();
 
+  const { queryResult, showId } = useShow<IInvoice>({
+    meta: {
+      populate: ["client", "account.logo"],
+    },
+  });
+
+  const invoice = queryResult?.data?.data;
   const services = JSON.parse(invoice?.services || "[]") as IService[];
+  const isLoading = queryResult?.isLoading;
+
   const subtotal = services.reduce(
     (acc, service) =>
       acc +
       (service.unitPrice * service.quantity * (100 - service.discount)) / 100,
     0,
   );
+  const total = subtotal - (subtotal * (invoice?.tax || 0)) / 100;
 
   return (
-    <Modal
-      className={styles.modal}
-      open={true}
-      footer={false}
-      onCancel={() => {
-        onClose();
-      }}
-    >
-      <PDFViewer style={pdfStyles.viewer}>
-        <Document>
-          <Page style={pdfStyles.page} size="A4">
-            <View>
-              <View style={pdfStyles.inoviceTextNumberContainer}>
-                <Text style={pdfStyles.inoviceText}>
-                  {`Invoice ID: #${invoice?.id}`}
-                </Text>
-                <Text style={pdfStyles.inoviceId}>{`Date: ${dayjs(
-                  invoice.date,
-                ).format("D MMM YYYY")}`}</Text>
-              </View>
-            </View>
-            <View style={pdfStyles.dividerLG} />
-
-            <View style={pdfStyles.inoviceForFromCotnainer}>
-              <View style={pdfStyles.inoviceFrom}>
-                <Text style={pdfStyles.inoviceForFromTitle}>From:</Text>
-                <View style={pdfStyles.inoviceFromContent}>
-                  {invoice?.account?.logo?.url && (
-                    <Image
-                      src={API_URL + invoice?.account?.logo?.url}
-                      style={{ width: "64px", height: "auto" }}
-                    />
-                  )}
-                  <View>
-                    <Text style={pdfStyles.inoviceForFromText}>
-                      {invoice?.account.company_name}
-                    </Text>
-                    <Text style={pdfStyles.inoviceForFromText}>
-                      {invoice?.account.address}, {invoice?.account.country}
-                    </Text>
-                    <Text style={pdfStyles.inoviceForFromText}>
-                      {invoice?.account.phone}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-
-              <View style={pdfStyles.inoviceFor}>
-                <Text style={pdfStyles.inoviceForFromTitle}>To:</Text>
-                <View style={pdfStyles.inoviceForContent}>
-                  <Text style={pdfStyles.inoviceForFromText}>
+    <div id="invoice-pdf" className={styles.container}>
+      <Card
+        bordered={false}
+        title={
+          <Typography.Text
+            style={{
+              fontWeight: 400,
+            }}
+          >{`Invoice ID #${showId}`}</Typography.Text>
+        }
+        extra={
+          <Flex gap={8} align="center">
+            <Typography.Text>Date:</Typography.Text>
+            {isLoading ? (
+              <Skeleton.Button style={{ width: 82, height: 22 }} />
+            ) : (
+              <DateField
+                style={{ width: 84 }}
+                value={invoice?.date}
+                format="D MMM YYYY"
+              />
+            )}
+          </Flex>
+        }
+      >
+        <Spin spinning={isLoading}>
+          <Row className={styles.fromToContainer}>
+            <Col xs={24} md={12}>
+              <Flex vertical gap={24}>
+                <Typography.Text>From:</Typography.Text>
+                <Flex gap={24}>
+                  <CustomAvatar
+                    name={invoice?.account?.company_name}
+                    shape="square"
+                    size={64}
+                    src={
+                      invoice?.account?.logo?.url
+                        ? `${API_URL}${invoice?.account?.logo?.url}`
+                        : undefined
+                    }
+                  />
+                  <Flex vertical gap={8}>
+                    <Typography.Text
+                      style={{
+                        fontWeight: 700,
+                      }}
+                    >
+                      {invoice?.account?.company_name}
+                    </Typography.Text>
+                    <Typography.Text>
+                      {invoice?.account?.address}
+                    </Typography.Text>
+                    <Typography.Text>{invoice?.account?.phone}</Typography.Text>
+                  </Flex>
+                </Flex>
+              </Flex>
+            </Col>
+            <Col xs={24} md={12}>
+              <Flex vertical gap={24} align="flex-end">
+                <Typography.Text>To:</Typography.Text>
+                <Flex vertical gap={8} align="flex-end">
+                  <Typography.Text
+                    style={{
+                      fontWeight: 700,
+                    }}
+                  >
                     {invoice?.client?.name}
-                  </Text>
-                  <Text style={pdfStyles.inoviceForFromText}>
-                    {invoice?.client?.address}, {invoice?.client?.country}
-                  </Text>
+                  </Typography.Text>
+                  <Typography.Text>{invoice?.client?.address}</Typography.Text>
+                  <Typography.Text>{invoice?.client?.phone}</Typography.Text>
+                </Flex>
+              </Flex>
+            </Col>
+          </Row>
+        </Spin>
 
-                  <Text style={pdfStyles.inoviceForFromText}>
-                    {invoice?.client?.phone}
-                  </Text>
-                </View>
-              </View>
-            </View>
+        <Divider
+          style={{
+            margin: 0,
+          }}
+        />
+        <Flex vertical gap={24} className={styles.productServiceContainer}>
+          <Typography.Title
+            level={4}
+            style={{
+              margin: 0,
+              fontWeight: 400,
+            }}
+          >
+            Product / Services
+          </Typography.Title>
+          <Table
+            dataSource={services}
+            rowKey={"id"}
+            pagination={false}
+            loading={isLoading}
+            scroll={{ x: 960 }}
+          >
+            <Table.Column title="Title" dataIndex="title" key="title" />
+            <Table.Column
+              title="Unit Price"
+              dataIndex="unitPrice"
+              key="unitPrice"
+              render={(unitPrice: number) => (
+                <NumberField
+                  value={unitPrice}
+                  options={{ style: "currency", currency: "USD" }}
+                />
+              )}
+            />
+            <Table.Column
+              title="Quantity"
+              dataIndex="quantity"
+              key="quantity"
+            />
+            <Table.Column
+              title="Discount"
+              dataIndex="discount"
+              key="discount"
+              render={(discount: number) => (
+                <Typography.Text>{`${discount}%`}</Typography.Text>
+              )}
+            />
 
-            <View style={pdfStyles.dividerLG} />
-
-            <View style={pdfStyles.table}>
-              <View style={pdfStyles.tableHeader}>
-                <Text style={[pdfStyles.tableHeaderItem, { width: "40%" }]}>
-                  Title
-                </Text>
-                <Text style={[pdfStyles.tableHeaderItem, { width: "20%" }]}>
-                  Unit Price
-                </Text>
-                <Text style={[pdfStyles.tableHeaderItem, { width: "20%" }]}>
-                  Quantity
-                </Text>
-                <Text style={[pdfStyles.tableHeaderItem, { width: "20%" }]}>
-                  Discount
-                </Text>
-                <Text style={[pdfStyles.tableHeaderItem, { width: "20%" }]}>
-                  Total Price
-                </Text>
-              </View>
-              {services.map((item, i) => {
+            <Table.Column
+              title="Total Price"
+              dataIndex="total"
+              key="total"
+              align="right"
+              width={128}
+              render={(_, record: IService) => {
                 return (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                  <View key={i} style={pdfStyles.tableRow}>
-                    <Text style={[pdfStyles.tableCol, { width: "40%" }]}>
-                      {item.title}
-                    </Text>
-                    <Text style={[pdfStyles.tableCol, { width: "20%" }]}>
-                      {item.unitPrice}
-                    </Text>
-                    <Text style={[pdfStyles.tableCol, { width: "20%" }]}>
-                      {item.quantity}
-                    </Text>
-                    <Text style={[pdfStyles.tableCol, { width: "20%" }]}>
-                      {item.discount}
-                    </Text>
-                    <Text style={[pdfStyles.tableCol, { width: "20%" }]}>
-                      {item.totalPrice}
-                    </Text>
-                  </View>
+                  <NumberField
+                    value={record.totalPrice}
+                    options={{ style: "currency", currency: "USD" }}
+                  />
                 );
-              })}
-            </View>
-
-            <View style={pdfStyles.totalContainer}>
-              <View style={pdfStyles.totalRow}>
-                <Text style={pdfStyles.totalLabel}>Subtotal:</Text>
-                <Text style={pdfStyles.totalValue}>
-                  {new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(subtotal)}
-                </Text>
-              </View>
-              <View style={pdfStyles.totalRow}>
-                <Text style={pdfStyles.totalLabel}>Sales tax:</Text>
-                <Text style={pdfStyles.totalValue}>{invoice?.tax}%</Text>
-              </View>
-              <View style={pdfStyles.totalRow}>
-                <Text style={pdfStyles.totalLabel}>Discount:</Text>
-                <Text style={pdfStyles.totalValue}>{invoice?.discount}%</Text>
-              </View>
-
-              <View style={pdfStyles.divider} />
-
-              <View style={pdfStyles.totalRow}>
-                <Text style={pdfStyles.totalLabel}> Total value:</Text>
-                <Text style={pdfStyles.totalValue}>
-                  {new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(invoice?.total)}
-                </Text>
-              </View>
-            </View>
-          </Page>
-        </Document>
-      </PDFViewer>
-    </Modal>
+              }}
+            />
+          </Table>
+          <Flex
+            gap={16}
+            vertical
+            style={{
+              marginLeft: "auto",
+              marginTop: "24px",
+              width: "200px",
+            }}
+          >
+            <Flex
+              justify="space-between"
+              style={{
+                paddingLeft: 32,
+              }}
+            >
+              <Typography.Text className={styles.labelTotal}>
+                Subtotal:
+              </Typography.Text>
+              <NumberField
+                value={subtotal}
+                options={{ style: "currency", currency: "USD" }}
+              />
+            </Flex>
+            <Flex
+              justify="space-between"
+              style={{
+                paddingLeft: 32,
+              }}
+            >
+              <Typography.Text className={styles.labelTotal}>
+                Sales tax:
+              </Typography.Text>
+              <Typography.Text>{invoice?.tax || 0}%</Typography.Text>
+            </Flex>
+            <Divider
+              style={{
+                margin: "0",
+              }}
+            />
+            <Flex
+              justify="space-between"
+              style={{
+                paddingLeft: 16,
+              }}
+            >
+              <Typography.Text
+                className={styles.labelTotal}
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                Total value:
+              </Typography.Text>
+              <NumberField
+                value={total}
+                options={{ style: "currency", currency: "USD" }}
+              />
+            </Flex>
+          </Flex>
+        </Flex>
+      </Card>
+    </div>
   );
 };
-
-const pdfStyles = StyleSheet.create({
-  viewer: {
-    paddingTop: 32,
-    width: "100%",
-    height: "80vh",
-    border: "none",
-  },
-  page: {
-    display: "flex",
-    padding: "0.6in 0.4in",
-    fontSize: 12,
-    color: "#333",
-    backgroundColor: "#fff",
-  },
-  inoviceTextNumberContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  inoviceText: {
-    fontSize: 14,
-  },
-  inoviceId: {
-    fontSize: 14,
-  },
-  inoviceForFromCotnainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  inoviceForFromTitle: {
-    marginBottom: 24,
-  },
-  inoviceFor: {
-    flex: 1,
-    width: "50%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-  },
-  inoviceForContent: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-  },
-  inoviceFrom: {
-    flex: 1,
-    width: "50%",
-  },
-  inoviceFromContent: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 24,
-  },
-  inoviceForFromText: {
-    color: "#000000D9",
-    lineHeight: 1.5,
-  },
-  divider: {
-    width: "100%",
-    height: 1,
-    backgroundColor: "#e5e5e5",
-  },
-  dividerSM: {
-    width: "100%",
-    height: 1,
-    marginTop: 12,
-    marginBottom: 12,
-    backgroundColor: "#e5e5e5",
-  },
-  dividerLG: {
-    width: "100%",
-    height: 1,
-    marginTop: 40,
-    marginBottom: 40,
-    backgroundColor: "#e5e5e5",
-  },
-  table: {},
-  tableHeader: {
-    display: "flex",
-    flexDirection: "row",
-    textAlign: "center",
-  },
-  tableHeaderItem: {
-    paddingVertical: 8,
-    border: "1px solid #000",
-    borderBottom: "none",
-  },
-  tableRow: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  tableCol: {
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-    border: "1px solid #000",
-  },
-  totalContainer: {
-    marginTop: 24,
-    marginLeft: "auto",
-    width: "180px",
-    display: "flex",
-    flexDirection: "column",
-    gap: 16,
-  },
-  totalRow: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  totalLabel: {
-    textAlign: "right",
-    width: "100px",
-    color: "#000000A6",
-  },
-  totalValue: {},
-});

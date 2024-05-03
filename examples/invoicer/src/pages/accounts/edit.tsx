@@ -1,4 +1,4 @@
-import { useNavigation } from "@refinedev/core";
+import { HttpError, useNavigation } from "@refinedev/core";
 import {
   DateField,
   DeleteButton,
@@ -24,26 +24,38 @@ import { PageHeader } from "../../components/page-header";
 import { FormItemEditableInputText } from "../../components/form/form-item-editable-input-text";
 import { FormItemEditableText } from "../../components/form/form-item-editable-text";
 import { FormItemEditableSelect } from "../../components/form/form-item-editable-select";
+import { FormItemUploadLogo } from "../../components/form/form-item-upload-logo";
 import { countryOptions } from "../../utils/countries";
-import { IAccount } from "../../interfaces";
-import { FormItemUploadLogo } from "../../components/form/form-item-upload-avatar";
+import { IAccount, IAccountForm } from "../../interfaces";
 
 export const AccountsPageEdit = () => {
   const { listUrl } = useNavigation();
 
-  const { formProps, queryResult } = useForm<IAccount>({
-    redirect: false,
-    meta: {
-      populate: ["logo", "clients", "invoices.client"],
+  const { formProps, queryResult } = useForm<IAccount, HttpError, IAccountForm>(
+    {
+      redirect: false,
+      meta: {
+        populate: ["logo", "clients", "invoices.client"],
+      },
     },
-  });
+  );
 
   const clients = queryResult?.data?.data?.clients || [];
   const invoices = queryResult?.data?.data?.invoices || [];
   const isLoading = queryResult?.isLoading;
 
   return (
-    <Form {...formProps} layout="vertical">
+    <Form
+      {...formProps}
+      onFinish={(values) => {
+        const logoId = values.logo?.file?.response?.[0]?.id;
+        return formProps.onFinish?.({
+          ...values,
+          logo: logoId,
+        } as IAccountForm);
+      }}
+      layout="vertical"
+    >
       <PageHeader
         backButtonText="Accounts"
         backButtonHref={listUrl("accounts")}
@@ -52,8 +64,13 @@ export const AccountsPageEdit = () => {
       <Row>
         <Col span={24}>
           <Flex gap={16}>
-            <FormItemUploadLogo />
+            <FormItemUploadLogo
+              onUpload={() => {
+                formProps.form?.submit();
+              }}
+            />
             <FormItemEditableText
+              loading={isLoading}
               formItemProps={{
                 name: "company_name",
                 rules: [{ required: true }],
@@ -70,6 +87,7 @@ export const AccountsPageEdit = () => {
       >
         <Col xs={{ span: 24 }} xl={{ span: 8 }}>
           <Card
+            bordered={false}
             styles={{ body: { padding: 0 } }}
             title={
               <Flex gap={12} align="center">
@@ -79,6 +97,7 @@ export const AccountsPageEdit = () => {
             }
           >
             <FormItemEditableInputText
+              loading={isLoading}
               icon={<UserOutlined />}
               placeholder="Add owner name"
               formItemProps={{
@@ -89,6 +108,7 @@ export const AccountsPageEdit = () => {
             />
             <Divider style={{ margin: 0 }} />
             <FormItemEditableInputText
+              loading={isLoading}
               icon={<MailOutlined />}
               placeholder="Add email"
               formItemProps={{
@@ -99,6 +119,7 @@ export const AccountsPageEdit = () => {
             />
             <Divider style={{ margin: 0 }} />
             <FormItemEditableSelect
+              loading={isLoading}
               icon={<GlobalOutlined />}
               selectProps={{
                 placeholder: "Select country",
@@ -113,6 +134,7 @@ export const AccountsPageEdit = () => {
             />
             <Divider style={{ margin: 0 }} />
             <FormItemEditableInputText
+              loading={isLoading}
               icon={<EnvironmentOutlined />}
               placeholder="Add address"
               formItemProps={{
@@ -123,6 +145,7 @@ export const AccountsPageEdit = () => {
             />
             <Divider style={{ margin: 0 }} />
             <FormItemEditableInputText
+              loading={isLoading}
               icon={<PhoneOutlined />}
               placeholder="Add phone number"
               formItemProps={{
@@ -147,6 +170,7 @@ export const AccountsPageEdit = () => {
 
         <Col xs={{ span: 24 }} xl={{ span: 16 }}>
           <Card
+            bordered={false}
             title={
               <Flex gap={12} align="center">
                 <ShopOutlined />
@@ -158,7 +182,7 @@ export const AccountsPageEdit = () => {
                 padding: "0 16px",
               },
               body: {
-                padding: 0,
+                padding: "0",
               },
             }}
           >
@@ -193,6 +217,7 @@ export const AccountsPageEdit = () => {
           </Card>
 
           <Card
+            bordered={false}
             title={
               <Flex gap={12} align="center">
                 <ContainerOutlined />

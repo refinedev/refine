@@ -22,6 +22,9 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
   const { tableProps, filters, sorters } = useTable<IClient>({
+    sorters: {
+      initial: [{ field: "updatedAt", order: "desc" }],
+    },
     filters: {
       initial: [
         {
@@ -209,6 +212,8 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             title="Actions"
             key="actions"
             fixed="right"
+            align="end"
+            width={106}
             render={(_, record: IClient) => {
               return (
                 <Flex align="center" gap={8}>

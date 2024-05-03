@@ -1,5 +1,13 @@
 import { PropsWithChildren, useState } from "react";
-import { Button, Flex, Form, FormItemProps, Input, Typography } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  FormItemProps,
+  Input,
+  Skeleton,
+  Typography,
+} from "antd";
 import InputMask from "react-input-mask";
 import { EditOutlined } from "@ant-design/icons";
 
@@ -10,6 +18,7 @@ type Props = {
   placeholder?: string;
   formItemProps?: FormItemProps;
   variant?: "text" | "phone";
+  loading?: boolean;
   onEditClick?: () => void;
   onCancelClick?: () => void;
   onSave?: () => void;
@@ -20,6 +29,7 @@ export const FormItemEditableInputText = ({
   placeholder,
   formItemProps,
   variant = "text",
+  loading,
   onEditClick,
   onCancelClick,
   onSave,
@@ -69,7 +79,13 @@ export const FormItemEditableInputText = ({
           )
         }
       >
-        {variant === "phone" && (
+        {loading && (
+          <Skeleton.Input
+            style={{ height: "22px", marginLeft: "32px" }}
+            active
+          />
+        )}
+        {!loading && variant === "phone" && (
           <InputMask mask="(999) 999-9999">
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
@@ -83,7 +99,7 @@ export const FormItemEditableInputText = ({
             )}
           </InputMask>
         )}
-        {variant === "text" && (
+        {!loading && variant === "text" && (
           <Input
             disabled={disabled}
             placeholder={placeholder}

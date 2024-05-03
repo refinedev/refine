@@ -1,4 +1,12 @@
-import { Button, Flex, Form, FormItemProps, Input, Typography } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  FormItemProps,
+  Input,
+  Skeleton,
+  Typography,
+} from "antd";
 import { PropsWithChildren, useState } from "react";
 import { EditOutlined, EnterOutlined } from "@ant-design/icons";
 
@@ -6,6 +14,7 @@ import { useStyles } from "./styled";
 
 type Props = {
   formItemProps?: FormItemProps;
+  loading?: boolean;
   onEditClick?: () => void;
   onCancelClick?: () => void;
   onSave?: () => void;
@@ -13,6 +22,7 @@ type Props = {
 
 export const FormItemEditableText = ({
   formItemProps,
+  loading,
   onEditClick,
   onCancelClick,
   onSave,
@@ -42,6 +52,14 @@ export const FormItemEditableText = ({
       onSave?.();
     } catch (error) {}
   };
+
+  if (loading) {
+    return (
+      <Flex align="center" className={styles.container}>
+        <Skeleton.Input style={{ width: "240px", height: "40px" }} active />
+      </Flex>
+    );
+  }
 
   return (
     <Flex align="center" className={styles.container}>

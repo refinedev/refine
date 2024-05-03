@@ -5,6 +5,7 @@ import {
   FormItemProps,
   Select,
   SelectProps,
+  Skeleton,
   Typography,
 } from "antd";
 import { PropsWithChildren, useState } from "react";
@@ -17,6 +18,7 @@ type Props = {
   formItemProps?: FormItemProps;
   selectProps?: SelectProps;
   editIcon?: React.ReactNode;
+  loading?: boolean;
   onEditClick?: () => void;
   onCancelClick?: () => void;
   onSave?: () => void;
@@ -27,6 +29,7 @@ export const FormItemEditableSelect = ({
   formItemProps,
   selectProps,
   editIcon = <EditOutlined />,
+  loading,
   onEditClick,
   onCancelClick,
   onSave,
@@ -78,7 +81,13 @@ export const FormItemEditableSelect = ({
           )
         }
       >
-        <Select {...selectProps} disabled={disabled} />
+        {loading && (
+          <Skeleton.Input
+            style={{ height: "22px", marginLeft: "32px" }}
+            active
+          />
+        )}
+        {!loading && <Select {...selectProps} disabled={disabled} />}
       </Form.Item>
       {disabled && <Button icon={editIcon} onClick={handleEdit} />}
       {!disabled && (

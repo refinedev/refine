@@ -1,23 +1,38 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Avatar, Form, Upload } from "antd";
-import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
+import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { getNameInitials } from "../../../utils/get-name-initials";
 import { getRandomColorFromString } from "../../../utils/get-random-color";
 import { API_URL, TOKEN_KEY } from "../../../utils/constants";
+import { IMedia, UploadResponse } from "../../../interfaces";
 import { useStyles } from "./styled";
-import { ILogo } from "../../../interfaces";
 
 type Props = {
   name?: string;
+  onUpload?: (params: UploadResponse) => void;
 };
 
-export const FormItemUploadLogo = ({ name = "logo" }: Props) => {
+export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
   const [error, setError] = useState<string | null>(null);
 
   const form = Form.useFormInstance();
-  const fieldValue = Form.useWatch(name, form) as ILogo | undefined;
-  const src = fieldValue?.url ? `${API_URL}${fieldValue?.url}` : null;
+  const fieldValue = Form.useWatch(name, form) as IMedia | UploadResponse;
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
+  const src = useMemo(() => {
+    if (!fieldValue) return null;
+
+    if ("url" in fieldValue) {
+      return `${API_URL}${fieldValue?.url}`;
+    }
+
+    if (fieldValue.file?.response?.[0]?.url) {
+      return `${API_URL}${fieldValue?.file?.response?.[0]?.url}`;
+    }
+
+    return null;
+  }, [fieldValue]);
 
   const { styles } = useStyles();
 
@@ -33,19 +48,19 @@ export const FormItemUploadLogo = ({ name = "logo" }: Props) => {
       >
         <Upload
           className={styles.upload}
-          name="file"
+          name="files"
           action={`${API_URL}/api/upload`}
+          listType="picture"
+          multiple={false}
+          showUploadList={false}
           onChange={(info) => {
             if (info.file.status === "done") {
-              const media = mediaUploadMapper(info);
+              onUpload?.(info);
             }
           }}
           headers={{
             Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
           }}
-          listType="picture"
-          multiple={false}
-          showUploadList={false}
         >
           <Avatar
             size={96}

@@ -17,7 +17,7 @@ import {
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { IInvoice, IService } from "../../interfaces";
-import { useStyles } from "./styled";
+import { useStyles } from "./create.styled";
 
 export const InvoicesPageCreate = () => {
   const [tax, setTax] = useState<number>(0);
@@ -99,6 +99,7 @@ export const InvoicesPageCreate = () => {
       <Flex vertical gap={32}>
         <Typography.Title level={3}>New Invoice</Typography.Title>
         <Card
+          bordered={false}
           styles={{
             body: {
               padding: 0,
