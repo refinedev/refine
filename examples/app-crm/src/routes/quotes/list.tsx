@@ -117,6 +117,11 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
               <Form {...searchFormProps} layout="inline">
                 <Form.Item name="title" noStyle>
                   <Input
+                    defaultValue={getDefaultFilter(
+                      "title",
+                      filters,
+                      "contains",
+                    )}
                     size="large"
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={

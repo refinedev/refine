@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import { HttpError, getDefaultFilter } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
@@ -106,6 +106,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
               <Form {...searchFormProps} layout="inline">
                 <Form.Item name="name" noStyle>
                   <Input
+                    defaultValue={getDefaultFilter("name", filters, "contains")}
                     size="large"
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
