@@ -1,0 +1,128 @@
+import { useState } from "react";
+import { SearchOutlined, ContainerOutlined } from "@ant-design/icons";
+import { AutoComplete, Flex, Input, Typography } from "antd";
+import { useStyles } from "./styled";
+import { useList, useNavigation } from "@refinedev/core";
+import { IAccount, IClient } from "../../../interfaces";
+import { Link } from "react-router-dom";
+import { CustomAvatar } from "../../avatar";
+import { API_URL } from "../../../utils/constants";
+
+type Option =
+  | (IAccount & {
+      resource: "accounts";
+    })
+  | (IClient & {
+      resource: "clients";
+    });
+
+export const Search = () => {
+  const [searchText, setSearchText] = useState<string>("");
+
+  const { styles } = useStyles();
+
+  const { editUrl } = useNavigation();
+
+  const { data: dataAccount } = useList<IAccount>({
+    resource: "accounts",
+    pagination: {
+      current: 1,
+      pageSize: 999,
+    },
+    filters: [
+      {
+        field: "company_name",
+        operator: "contains",
+        value: searchText,
+      },
+    ],
+    meta: {
+      populate: ["logo"],
+    },
+  });
+  const accounts =
+    dataAccount?.data?.map((account) => ({
+      ...account,
+      resource: "accounts",
+    })) || [];
+
+  const { data: dataClient } = useList<IClient>({
+    resource: "clients",
+    pagination: {
+      current: 1,
+      pageSize: 999,
+    },
+    filters: [
+      {
+        field: "name",
+        operator: "contains",
+        value: searchText,
+      },
+    ],
+  });
+  const clients =
+    dataClient?.data?.map((client) => ({
+      ...client,
+      resource: "clients",
+    })) || [];
+
+  const options = [...accounts, ...clients];
+
+  return (
+    <AutoComplete
+      style={{
+        width: "100%",
+        maxWidth: "360px",
+      }}
+      filterOption={false}
+      options={options}
+      value={searchText}
+      placeholder="Search"
+      onChange={(text) => setSearchText(text)}
+      optionRender={(option) => {
+        const data = option.data as Option;
+
+        let title = "";
+        let to = "";
+        let imageSrc = undefined;
+
+        if (data.resource === "accounts") {
+          if (data?.logo?.url) {
+            imageSrc = `${API_URL}${data.logo?.url}`;
+          }
+          to = editUrl(data.resource, data.id);
+          title = data.company_name;
+        }
+
+        if (data.resource === "clients") {
+          title = data.name;
+          to = editUrl(data.resource, data.id);
+        }
+
+        return (
+          <Link to={to}>
+            <Flex align="center" gap={8}>
+              {data.resource === "accounts" && (
+                <CustomAvatar
+                  name={data.company_name}
+                  shape="square"
+                  size={24}
+                  src={imageSrc}
+                  alt={data.company_name}
+                />
+              )}
+              <Typography.Text>{title}</Typography.Text>
+            </Flex>
+          </Link>
+        );
+      }}
+    >
+      <Input
+        size="middle"
+        placeholder="Search"
+        suffix={<div className={styles.inputSuffix}>/</div>}
+        prefix={<SearchOutlined className={styles.inputPrefix} />}
+      />
+    </AutoComplete>
+  );
+};

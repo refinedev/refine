@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetIdentity, useNavigation } from "@refinedev/core";
+import { useGetIdentity, useList, useNavigation } from "@refinedev/core";
 import {
-  Input,
   Typography,
-  AutoComplete,
   Layout as AntdLayout,
   Button,
   theme,
@@ -12,21 +10,20 @@ import {
   Tabs,
   Skeleton,
 } from "antd";
-import debounce from "lodash/debounce";
 import {
-  SearchOutlined,
   BankOutlined,
   ShopOutlined,
   ContainerOutlined,
 } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 import { useColorMode } from "../../providers/color-mode";
-import { useStyles } from "./styled";
 import { IconMoon } from "../icons/icon-moon";
 import { IconSun } from "../icons/icon-sun";
 import { IconInvoicerLogo } from "../icons/icon-invoicer";
-import { IUser } from "../../interfaces";
-import { useLocation } from "react-router-dom";
 import { CustomAvatar } from "../avatar";
+import { Search } from "./search";
+import { IUser } from "../../interfaces";
+import { useStyles } from "./styled";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list } = useNavigation();
@@ -37,9 +34,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { data: user, isLoading } = useGetIdentity<IUser>();
   const { mode, setMode } = useColorMode();
   const { styles } = useStyles();
-
-  const [value, setValue] = useState<string>("");
-  const [options, setOptions] = useState([]);
 
   return (
     <AntdLayout.Header
@@ -107,23 +101,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
           />
         </Flex>
         <Flex align="center" gap={32} className={styles.rightSlot}>
-          <AutoComplete
-            style={{
-              width: "100%",
-              maxWidth: "256px",
-            }}
-            filterOption={false}
-            options={options}
-            value={value}
-            onSearch={debounce((value: string) => setValue(value), 300)}
-          >
-            <Input
-              size="middle"
-              placeholder="Search"
-              suffix={<div className={styles.inputSuffix}>/</div>}
-              prefix={<SearchOutlined className={styles.inputPrefix} />}
-            />
-          </AutoComplete>
+          <Search />
           <Button
             className={styles.themeSwitch}
             type="text"
