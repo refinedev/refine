@@ -118,10 +118,15 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                 marginTop: screens.xs ? "1.6rem" : undefined,
               }}
             >
-              <Form {...searchFormProps} layout="inline">
+              <Form
+                {...searchFormProps}
+                initialValues={{
+                  name: getDefaultFilter("name", filters, "contains"),
+                }}
+                layout="inline"
+              >
                 <Form.Item name="name" noStyle>
                   <Input
-                    defaultValue={getDefaultFilter("name", filters, "contains")}
                     size="large"
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
