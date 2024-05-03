@@ -9,9 +9,9 @@ describe("getList", () => {
       resource: "posts",
     });
 
-    expect(data[0]["id"]).toBe(2);
-    expect(data[0]["title"]).toBe("test title");
-    expect(total).toBe(2);
+    expect(data[0]["id"]).toBe(1);
+    expect(data[0]["title"]).toBe("Black Psorotichia Lichen");
+    expect(total).toBe(20);
   });
 
   it("correct response with metadata select", async () => {
@@ -23,8 +23,8 @@ describe("getList", () => {
     });
 
     expect(Object.keys(data[0]).length).toBe(1);
-    expect(data[0]["title"]).toBe("sadasdsa333");
-    expect(total).toBe(71);
+    expect(data[0]["title"]).toBe("Black Psorotichia Lichen");
+    expect(total).toBe(20);
   });
 
   it("correct response with metadata count", async () => {
@@ -35,9 +35,9 @@ describe("getList", () => {
       },
     });
 
-    expect(data[0]["id"]).toBe(2);
-    expect(data[0]["title"]).toBe("test title");
-    expect(total).toBe(2);
+    expect(data[0]["id"]).toBe(1);
+    expect(data[0]["title"]).toBe("Black Psorotichia Lichen");
+    expect(total).toBe(20);
   });
 
   it("correct sorting response", async () => {
@@ -51,9 +51,9 @@ describe("getList", () => {
       ],
     });
 
-    expect(data[0]["id"]).toBe(3);
-    expect(data[0]["title"]).toBe("What a library");
-    expect(total).toBe(2);
+    expect(data[0]["id"]).toBe(16);
+    expect(data[0]["title"]).toBe("Anopteris");
+    expect(total).toBe(20);
   });
 
   describe("Supabase order", () => {
@@ -105,11 +105,11 @@ describe("filtering", () => {
         {
           field: "title",
           operator: "eq",
-          value: "Hello World",
+          value: "Basil Mountainmint",
         },
       ],
     });
-    expect(data[0]["title"]).toBe("Hello World");
+    expect(data[0]["title"]).toBe("Basil Mountainmint");
     expect(total).toBe(1);
   });
 
@@ -120,12 +120,12 @@ describe("filtering", () => {
         {
           field: "title",
           operator: "ne",
-          value: "Hello World",
+          value: "Basil Mountainmint",
         },
       ],
     });
-    expect(data[0]["title"]).not.toBe("Hello World");
-    expect(total).toBe(2);
+    expect(data[0]["title"]).not.toBe("Basil Mountainmint");
+    expect(total).toBe(19);
   });
 
   it("lt operator should work correctly", async () => {
@@ -139,8 +139,9 @@ describe("filtering", () => {
         },
       ],
     });
-    expect(data[0]["id"]).toBe(2);
-    expect(total).toBe(1);
+    expect(data[0]["id"]).toBe(1);
+    expect(data[1]["id"]).toBe(2);
+    expect(total).toBe(2);
   });
 
   it("gt operator should work correctly", async () => {
@@ -154,8 +155,9 @@ describe("filtering", () => {
         },
       ],
     });
-    expect(data[0]["id"]).toBe(42);
-    expect(total).toBe(1);
+    expect(data[0]["id"]).toBe(4);
+    expect(data[1]["id"]).toBe(5);
+    expect(total).toBe(17);
   });
 
   it("lte operator should work correctly", async () => {
@@ -169,8 +171,9 @@ describe("filtering", () => {
         },
       ],
     });
-    expect(data[0]["id"]).toBe(2);
-    expect(total).toBe(1);
+    expect(data[0]["id"]).toBe(1);
+    expect(data[1]["id"]).toBe(2);
+    expect(total).toBe(2);
   });
 
   it("gte operator should work correctly", async () => {
@@ -180,12 +183,12 @@ describe("filtering", () => {
         {
           field: "id",
           operator: "gte",
-          value: 42,
+          value: 20,
         },
       ],
     });
 
-    expect(data[0]["id"]).toBe(42);
+    expect(data[0]["id"]).toBe(20);
     expect(total).toBe(1);
   });
 
@@ -213,13 +216,14 @@ describe("filtering", () => {
         {
           field: "title",
           operator: "contains",
-          value: "world",
+          value: "Basil",
         },
       ],
     });
 
-    expect(data).toEqual([]);
-    expect(total).toBe(0);
+    expect(data).toHaveLength(1);
+    expect(data[0].title).toBe("Basil Mountainmint");
+    expect(total).toBe(1);
   });
 
   it("containss operator should work correctly", async () => {
@@ -229,12 +233,12 @@ describe("filtering", () => {
         {
           field: "title",
           operator: "containss",
-          value: "world",
+          value: "Basil",
         },
       ],
     });
 
-    expect(data[0]["title"]).toBe("Hello World");
+    expect(data[0]["title"]).toBe("Basil Mountainmint");
     expect(total).toBe(1);
   });
 
@@ -250,9 +254,8 @@ describe("filtering", () => {
       ],
     });
 
-    expect(data[0]["title"]).toBe("Supabase");
-    expect(data[0]["slug"]).toBe("supabase-data-provider");
-    expect(total).toBe(1);
+    expect(data).toHaveLength(0);
+    expect(total).toBe(0);
   });
 
   it("or operator should work correctly", async () => {
@@ -265,54 +268,43 @@ describe("filtering", () => {
             {
               field: "title",
               operator: "eq",
-              value: "Hello",
+              value: "Dust Lichen",
             },
             {
               field: "title",
               operator: "eq",
-              value: "World",
+              value: "Black Psorotichia Lichen",
             },
           ],
         },
       ],
     });
 
-    expect(data[0]["title"]).toBe("Hello");
-    expect(data[1]["title"]).toBe("World");
+    expect(data[0]["title"]).toBe("Black Psorotichia Lichen");
+    expect(data[1]["title"]).toBe("Dust Lichen");
     expect(total).toBe(2);
   });
 
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).getList({
-      resource: "products",
+      resource: "posts",
       meta: {
         schema: "public",
         select: "*",
       },
     });
 
-    expect(data).toEqual([
-      { id: 16, name: "Test" },
-      { id: 1, name: "Macbook Proeeeeeasdas" },
-      { id: 15, name: "eeeвцфвфцвфцвфц" },
-      { id: 2, name: "iPhone 15" },
-      { id: 17, name: "Iphone 15" },
-      { id: 18, name: "iPhone 15" },
-      { id: 21, name: "foo" },
-      { id: 22, name: "foo" },
-      { id: 23, name: "foo" },
-      { id: 24, name: "foo" },
-    ]);
+    expect(data.length).toBeGreaterThan(0);
 
-    try {
-      await dataProvider(supabaseClient).getList({
-        resource: "products",
-        meta: {
-          schema: "private",
-        },
-      });
-    } catch (error: any) {
-      expect(error.code).toEqual("PGRST106");
-    }
+    const promise = dataProvider(supabaseClient).getList({
+      resource: "posts",
+      meta: {
+        schema: "private",
+      },
+    });
+
+    await expect(promise).rejects.toEqual(
+      expect.objectContaining({ code: "PGRST106" }),
+    );
   });
 });

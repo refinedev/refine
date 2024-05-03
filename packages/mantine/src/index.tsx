@@ -1,8 +1,8 @@
-import "./types/theme";
+import "./types/theme.ts";
 
-export * from "./components";
-export * from "./providers";
-export * from "./hooks";
-export * from "./theme";
-export * from "./definitions";
-export * from "./contexts";
+export * from "./components/index.ts";
+export * from "./providers/index.ts";
+export * from "./hooks/index.ts";
+export * from "./theme/index.ts";
+export * from "./definitions/index.ts";
+export * from "./contexts/index.ts";

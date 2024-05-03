@@ -1,11 +1,11 @@
-export { useForm, UseFormProps, UseFormReturnType } from "./useForm";
+export { useForm, UseFormProps, UseFormReturnType } from "./useForm/index.ts";
 export {
   useStepsForm,
   UseStepsFormProps,
   UseStepsFormReturnType,
-} from "./useStepsForm";
+} from "./useStepsForm/index.ts";
 export {
   useModalForm,
   UseModalFormProps,
   UseModalFormReturnType,
-} from "./useModalForm";
+} from "./useModalForm/index.ts";

@@ -110,7 +110,10 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             id="email"
             type="text"
             {...register("email", {
-              required: true,
+              required: translate(
+                "pages.forgotPassword.errors.requiredEmail",
+                "Email is required",
+              ),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: translate(

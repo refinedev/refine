@@ -1,3 +1,3 @@
-export { getTrace } from "./get-trace";
-export { getXRay } from "./get-xray";
-export { useQuerySubscription } from "./use-query-subscription";
+export { getTrace } from "./get-trace.ts";
+export { getXRay } from "./get-xray.ts";
+export { useQuerySubscription } from "./use-query-subscription.tsx";

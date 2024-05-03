@@ -1,14 +1,14 @@
-export { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
-export { TraceType } from "./trace";
-export { Feed, FeedSection } from "./feed";
+export { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types.ts";
+export { TraceType } from "./trace.ts";
+export { Feed, FeedSection } from "./feed.ts";
 export {
   PackageType,
   PackageLatestVersionType,
   AvailablePackageType,
-} from "./package";
-export { RefineHook, Scopes, hooksByScope, scopes } from "./scopes";
+} from "./package.ts";
+export { RefineHook, Scopes, hooksByScope, scopes } from "./scopes.ts";
 
-export { DevToolsContextProvider, DevToolsContext } from "./context";
+export { DevToolsContextProvider, DevToolsContext } from "./context.tsx";
 
-export { send } from "./send";
-export { receive } from "./receive";
+export { send } from "./send.ts";
+export { receive } from "./receive.ts";
