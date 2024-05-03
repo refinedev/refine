@@ -1,9 +1,8 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   ThemedLayoutV2,
   ErrorComponent,
-  RefineThemes,
   AuthPage,
 } from "@refinedev/antd";
 import routerProvider, {
@@ -16,10 +15,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { App as AntdApp } from "antd";
 import { Header } from "./components/header";
+import { GitHubBanner } from "./components/gh-banner";
+import { CommonLayout } from "./components/Layout/common";
 import { dataProvider } from "./providers/data-provider";
 import { authProvider } from "./providers/auth-provider";
 import { ColorModeContextProvider } from "./providers/color-mode";
-import { CommonLayout } from "./components/Layout/common";
 import { AccountsPageList } from "./pages/accounts/list";
 import { AccountsPageCreate } from "./pages/accounts/create";
 import { AccountsPageEdit } from "./pages/accounts/edit";
@@ -36,6 +36,7 @@ import "./styles/custom.css";
 const App: React.FC = () => {
   return (
     <DevtoolsProvider>
+      <GitHubBanner />
       <BrowserRouter>
         <ColorModeContextProvider>
           <AntdApp>
