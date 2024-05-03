@@ -140,7 +140,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 <>
                   <span>
                     {translate(
-                      "pages.login.buttons.haveAccount",
+                      "pages.register.buttons.haveAccount",
                       "Have an account?",
                     )}{" "}
                     {renderLink(
@@ -156,7 +156,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
       )}
       {loginLink !== false && hideForm && (
         <div style={{ textAlign: "center" }}>
-          {translate("pages.login.buttons.haveAccount", "Have an account?")}{" "}
+          {translate("pages.register.buttons.haveAccount", "Have an account?")}{" "}
           {renderLink("/login", translate("pages.login.signin", "Sign in"))}
         </div>
       )}
