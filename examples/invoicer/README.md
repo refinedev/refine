@@ -33,11 +33,11 @@
 ## Try this example on your local
 
 ```bash
-npm create refine-app@latest -- --example base-antd
+npm create refine-app@latest -- --example invoicer
 ```
 
 ## Try this example on CodeSandbox
 
 <br/>
 
-[![Open base-antd example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/base-antd?view=preview&theme=dark&codemirror=1)
+[![Open invoicer example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/invoicer?view=preview&theme=dark&codemirror=1)
