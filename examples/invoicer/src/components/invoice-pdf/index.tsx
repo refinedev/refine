@@ -16,18 +16,15 @@ import { API_URL } from "../../utils/constants";
 import { IInvoice, IService } from "../../interfaces";
 import { useStyles } from "./styled";
 
-export const InvoicePDF = () => {
+type Props = {
+  invoice?: IInvoice;
+  loading?: boolean;
+};
+
+export const InvoicePDF = ({ invoice, loading }: Props) => {
   const { styles } = useStyles();
 
-  const { queryResult, showId } = useShow<IInvoice>({
-    meta: {
-      populate: ["client", "account.logo"],
-    },
-  });
-
-  const invoice = queryResult?.data?.data;
   const services = JSON.parse(invoice?.services || "[]") as IService[];
-  const isLoading = queryResult?.isLoading;
 
   const subtotal = services.reduce(
     (acc, service) =>
@@ -46,24 +43,32 @@ export const InvoicePDF = () => {
             style={{
               fontWeight: 400,
             }}
-          >{`Invoice ID #${showId}`}</Typography.Text>
+          >
+            {loading ? (
+              <Skeleton.Button style={{ width: 100, height: 22 }} />
+            ) : (
+              `Invoice ID #${invoice?.id}`
+            )}
+          </Typography.Text>
         }
         extra={
           <Flex gap={8} align="center">
-            <Typography.Text>Date:</Typography.Text>
-            {isLoading ? (
-              <Skeleton.Button style={{ width: 82, height: 22 }} />
+            {loading ? (
+              <Skeleton.Button style={{ width: 140, height: 22 }} />
             ) : (
-              <DateField
-                style={{ width: 84 }}
-                value={invoice?.date}
-                format="D MMM YYYY"
-              />
+              <>
+                <Typography.Text>Date:</Typography.Text>
+                <DateField
+                  style={{ width: 84 }}
+                  value={invoice?.date}
+                  format="D MMM YYYY"
+                />
+              </>
             )}
           </Flex>
         }
       >
-        <Spin spinning={isLoading}>
+        <Spin spinning={loading}>
           <Row className={styles.fromToContainer}>
             <Col xs={24} md={12}>
               <Flex vertical gap={24}>
@@ -133,7 +138,7 @@ export const InvoicePDF = () => {
             dataSource={services}
             rowKey={"id"}
             pagination={false}
-            loading={isLoading}
+            loading={loading}
             scroll={{ x: 960 }}
           >
             <Table.Column title="Title" dataIndex="title" key="title" />

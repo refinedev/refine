@@ -7,16 +7,23 @@ import { useStyles } from "./styled";
 type Props = {
   backButtonText?: string;
   backButtonHref?: string;
+  extra?: React.ReactNode;
 };
 
 export const PageHeader = (props: PropsWithChildren<Props>) => {
   const { styles, cx } = useStyles();
 
   return (
-    <Flex className={cx(styles.container, "print-hidden")}>
+    <Flex
+      gap={16}
+      align="center"
+      justify="space-between"
+      className={cx(styles.container, "print-hidden")}
+    >
       <Button icon={<LeftOutlined />} className={styles.button}>
         <Link to={props.backButtonHref || ""}>{props.backButtonText}</Link>
       </Button>
+      {props.extra}
     </Flex>
   );
 };
