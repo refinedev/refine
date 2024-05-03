@@ -310,19 +310,17 @@ We built this template to showcase the efficiency and ease of using the Refine f
         slug: "win-95-style-admin-panel",
         title: "Win95 Style Admin Panel",
         images: [
-            "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-win95.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club-win95.png",
         ],
-        runOnYourLocalPath: "blog-win95",
-        liveDemo: "https://win95.refine.dev/",
-        github: "https://github.com/refinedev/refine/tree/master/examples/blog-win95",
-        tutorial:
-            "https://refine.dev/blog/awesome-react-windows95-ui-with-refine/",
+    runOnYourLocalPath: "win95",
+    liveDemo: "https://videoclub.refine.dev",
+    github: "https://github.com/refinedev/refine/tree/master/examples/win95",
         reactPlatform: "Vite",
         uiFramework: "Headless",
         dataProvider: "Supabase",
         authProvider: "Supabase",
         description: `
-This Fun CRUD app example demonstrates how you can customize the Refine app design for specific needs. It is connected to a Supabase backend through Refine’s Supabase data provider and its user interface is developed using [React95](https://github.com/React95/React95).
+This Fun CRUD app example demonstrates how you can customize the Refine app design for specific needs. It is connected to a Supabase backend through Refine’s Supabase data provider and its user interface is developed using [React95](https://github.com/react95-io/React95).
 
 The source code of the CRUD app is also open-source; feel free to use or inspect it to discover how Refine works along with external UI packages.
         `,
