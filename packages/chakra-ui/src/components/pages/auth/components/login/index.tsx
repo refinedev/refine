@@ -155,7 +155,10 @@ export const LoginPage: React.FC<LoginProps> = ({
               placeholder="Email"
               type="text"
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -177,7 +180,10 @@ export const LoginPage: React.FC<LoginProps> = ({
               type="password"
               placeholder="Password"
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
             />
             <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>

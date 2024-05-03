@@ -11,7 +11,9 @@
         "password": "Passwort"
       },
       "errors": {
-        "validEmail": "Ungültige E-Mail-Adresse"
+        "validEmail": "Ungültige E-Mail-Adresse",
+        "requiredEmail": "E-Mail ist erforderlich",
+        "requiredPassword": "Passwort wird benötigt"
       },
       "buttons": {
         "submit": "Anmeldung",
@@ -26,7 +28,8 @@
         "email": "Email"
       },
       "errors": {
-        "validEmail": "Ungültige E-Mail-Adresse"
+        "validEmail": "Ungültige E-Mail-Adresse",
+        "requiredEmail": "E-Mail ist erforderlich"
       },
       "buttons": {
         "submit": "Anweisungen zum Zurücksetzen senden"
@@ -39,7 +42,9 @@
         "password": "Passwort"
       },
       "errors": {
-        "validEmail": "Ungültige E-Mail-Adresse"
+        "validEmail": "Ungültige E-Mail-Adresse",
+        "requiredEmail": "E-Mail ist erforderlich",
+        "requiredPassword": "Passwort wird benötigt"
       },
       "buttons": {
         "submit": "Registrieren",
@@ -53,7 +58,9 @@
         "confirmPassword": "Bestätige neues Passwort"
       },
       "errors": {
-        "confirmPasswordNotMatch": "Passwörter stimmen nicht überein"
+        "confirmPasswordNotMatch": "Passwörter stimmen nicht überein",
+        "requiredPassword": "Passwort wird benötigt",
+        "requiredConfirmPassword": "Das Feld „Passwort bestätigen“ ist erforderlich"
       },
       "buttons": {
         "submit": "Aktualisieren"

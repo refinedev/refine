@@ -83,6 +83,18 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
       },
     );
 
+    receive(
+      client as any,
+      DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY,
+      ({ queryKey }) => {
+        ws.clients.forEach((c) => {
+          send(c as any, DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY_ACTION, {
+            queryKey,
+          });
+        });
+      },
+    );
+
     receive(client as any, DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS, () => {
       ws.clients.forEach((c) => {
         send(c as any, DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN, {});

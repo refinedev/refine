@@ -15,7 +15,6 @@ describe("table-material-ui-table-filter", () => {
 
   it("the table should be filterable by form", () => {
     cy.wait("@getPosts");
-    cy.wait("@getPosts");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.fixture("categories.json").then((categories) => {

@@ -1,4 +1,4 @@
-export { default } from "./dataProvider";
-export { default as dataProvider } from "./dataProvider";
-export * from "./authProvider";
-export * from "./utils";
+export { default } from "./dataProvider/index.ts";
+export { default as dataProvider } from "./dataProvider/index.ts";
+export * from "./authProvider/index.ts";
+export * from "./utils/index.ts";

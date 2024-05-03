@@ -106,7 +106,15 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             "pages.updatePassword.fields.password",
             "New Password",
           )}
-          rules={[{ required: true }]}
+          rules={[
+            {
+              required: true,
+              message: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password is required",
+              ),
+            },
+          ]}
           style={{ marginBottom: "12px" }}
         >
           <Input type="password" placeholder="●●●●●●●●" size="large" />
@@ -122,6 +130,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
           rules={[
             {
               required: true,
+              message: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm password is required",
+              ),
             },
             ({ getFieldValue }) => ({
               validator(_, value) {

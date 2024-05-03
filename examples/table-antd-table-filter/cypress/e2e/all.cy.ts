@@ -8,7 +8,6 @@ describe("table-antd-table-filter", () => {
     cy.interceptGETCategories();
     cy.visit("http://localhost:5173");
     cy.wait("@getPosts");
-    cy.wait("@getPosts");
     cy.wait("@getCategories");
   });
 

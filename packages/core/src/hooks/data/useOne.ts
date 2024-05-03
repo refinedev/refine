@@ -8,6 +8,7 @@ import {
 import {
   pickDataProvider,
   pickNotDeprecated,
+  prepareQueryContext,
   useActiveAuthProvider,
 } from "@definitions";
 import {
@@ -174,25 +175,17 @@ export const useOne = <
         ...(preferredMeta || {}),
       })
       .get(preferLegacyKeys),
-    queryFn: ({ queryKey, pageParam, signal }) =>
+    queryFn: (context) =>
       getOne<TQueryFnData>({
         resource: resource?.name ?? "",
         id: id!,
         meta: {
           ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
+          queryContext: prepareQueryContext(context),
         },
         metaData: {
           ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
+          queryContext: prepareQueryContext(context),
         },
       }),
     ...queryOptions,
@@ -246,7 +239,7 @@ export const useOne = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useOne", preferLegacyKeys),
+      ...getXRay("useOne", preferLegacyKeys, resource?.name),
     },
   });
 

@@ -1,5 +1,5 @@
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./dataProvider.ts";
 
-export * from "./utils";
-export * from "./dataProvider";
+export * from "./utils/index.ts";
+export * from "./dataProvider.ts";
 export default dataProvider;

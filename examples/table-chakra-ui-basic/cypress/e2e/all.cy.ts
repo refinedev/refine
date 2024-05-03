@@ -41,9 +41,8 @@ describe("table-chakra-ui-basic", () => {
 
     cy.wait("@getPosts").then((interception) => {
       const { request } = interception;
-      const { _sort } = request.query;
 
-      expect(_sort).to.contains("id");
+      expect(request.query).not.to.ownProperty("_sort");
     });
 
     cy.intercept(
