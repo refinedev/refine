@@ -14,6 +14,7 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
     tabs: {
       marginLeft: "auto",
       marginRight: "auto",
+      width: "300px",
 
       ".ant-tabs-nav": {
         height: "48px",

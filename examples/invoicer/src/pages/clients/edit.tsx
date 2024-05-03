@@ -193,7 +193,12 @@ export const ClientsPageEdit = () => {
               },
             }}
           >
-            <Table dataSource={invoices} pagination={false} loading={isLoading}>
+            <Table
+              dataSource={invoices}
+              pagination={false}
+              loading={isLoading}
+              rowKey={"id"}
+            >
               <Table.Column title="ID" dataIndex="id" key="id" width={72} />
               <Table.Column
                 title="Date"
