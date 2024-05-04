@@ -241,20 +241,36 @@ It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and r
 
 Refine will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
+#### Retrieving the Total Row Count
+
+When the `getList` method is called with pagination parameters, it expects to receive the total number of rows (`rowCount`) from the `x-total-count` header. If the backend doesn't return this header, the `getList` method defaults to using the length of the paginated data array as the total count.
+
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
   const { current, pageSize, mode } = pagination;
   const { field, order } = sorters;
   const { field, operator, value } = filters;
 
-  // You can handle the request according to your API requirements.
+  // Retrieve paginated data from your API, including the x-total-count header.
+  const response = await apiClient.get(`/${resource}`, {
+    headers: { ...meta },
+    params: {
+      _page: current,
+      _limit: pageSize,
+      _sort: field,
+      _order: order,
+      // Additional parameters for filtering
+    },
+  });
+
+  // Fallback to the length of returned data if x-total-count header is absent
+  const total = response.headers["x-total-count"] ?? response.data.length;
 
   return {
-    data,
+    data: response.data,
     total,
   };
 };
-```
 
 :::tip
 
