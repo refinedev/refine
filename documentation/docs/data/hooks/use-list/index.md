@@ -29,6 +29,12 @@ The `useList` hook supports the pagination feature. You can pass the `pagination
 
 Dynamically changing the `pagination` properties will trigger a new request.
 
+### Retrieving the Total Row Count
+
+When the `useList` hook calls the `getList` method, it expects the response to include the total number of rows (`rowCount`). This is typically obtained from the `x-total-count` header. If this header isn't provided by the backend, the `getList` method defaults to using the length of the returned data.
+
+For further details on how the `getList` method retrieves and returns data, refer to the [`getList` documentation](https://refine.dev/docs/data/data-provider/#getlist).
+
 <PaginationLivePreview />
 
 ## Sorting
