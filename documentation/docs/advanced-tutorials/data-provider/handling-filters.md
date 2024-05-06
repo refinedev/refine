@@ -20,6 +20,8 @@ type CrudOperators =
   | "gte"
   | "in"
   | "nin"
+  | "ina"
+  | "nina"
   | "contains"
   | "ncontains"
   | "containss"
@@ -234,7 +236,7 @@ filter = [
 ];
 ```
 
-Here the query will look like:  
+Here the query will look like:
 `"status" == "published" AND ("createdAt" == "2022-01-01" OR "createdAt" == "2022-01-02")`
 
 ## Handle filters in a data provider
