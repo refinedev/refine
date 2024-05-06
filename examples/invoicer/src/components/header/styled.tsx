@@ -55,11 +55,6 @@ export const useStyles = createStyles(({ token, isDarkMode }) => {
         ? token.colorBgLayout
         : token.colorBgTextHover,
     },
-    userName: {
-      display: "flex !important",
-      color: token.colorTextHeading,
-      fontSize: "14px",
-    },
     rightSlot: {
       marginLeft: "auto",
 

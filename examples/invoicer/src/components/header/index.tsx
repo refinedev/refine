@@ -25,6 +25,7 @@ import { Search } from "./search";
 import { IUser } from "../../interfaces";
 import { useStyles } from "./styled";
 import { Link } from "react-router-dom";
+import { User } from "./user";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list, listUrl } = useNavigation();
@@ -113,32 +114,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               setMode(mode === "light" ? "dark" : "light");
             }}
           />
-          <Flex align="center" gap={16}>
-            <div
-              style={{
-                width: "114px",
-              }}
-            >
-              <Typography.Text ellipsis className={styles.userName}>
-                {isLoading ? (
-                  <Skeleton.Input
-                    style={{
-                      width: "100px",
-                      height: "32px",
-                      borderRadius: "4px",
-                    }}
-                  />
-                ) : (
-                  user?.username
-                )}
-              </Typography.Text>
-            </div>
-            <CustomAvatar
-              size={32}
-              src={"https://randomuser.me/api/portraits/lego/5.jpg"}
-              alt={user?.username}
-            />
-          </Flex>
+          <User />
         </Flex>
       </Flex>
     </AntdLayout.Header>

@@ -152,6 +152,8 @@ const App: React.FC = () => {
                     element={
                       <AuthPage
                         type="login"
+                        registerLink={false}
+                        forgotPasswordLink={false}
                         formProps={{
                           initialValues: {
                             email: "demo@refine.dev",
