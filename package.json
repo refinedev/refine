@@ -26,6 +26,7 @@
     "nuke:node_modules": "lerna clean --yes",
     "nuke:nx": "rm -rf .nx/cache",
     "nx": "nx",
+    "pnpm:devPreinstall": "mkdir -p packages/cli/dist packages/devtools-server/dist && echo '#! /usr/bin/env node' > packages/cli/dist/cli.cjs && echo '#! /usr/bin/env node' > packages/devtools-server/dist/cli.cjs",
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
