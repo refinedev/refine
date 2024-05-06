@@ -65,6 +65,7 @@ export const AccountsPageEdit = () => {
         <Col span={24}>
           <Flex gap={16}>
             <FormItemUploadLogo
+              isLoading={isLoading}
               label={account?.company_name || " "}
               onUpload={() => {
                 formProps.form?.submit();

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Avatar, Form, Typography, Upload } from "antd";
+import { Avatar, Form, Skeleton, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { RcFile } from "antd/lib/upload";
@@ -12,12 +12,14 @@ import { useStyles } from "./styled";
 type Props = {
   label: string;
   formName?: string;
+  isLoading?: boolean;
   onUpload?: (params: UploadResponse) => void;
 };
 
 export const FormItemUploadLogo = ({
   formName = "logo",
   label,
+  isLoading,
   onUpload,
 }: Props) => {
   const { styles } = useStyles();
@@ -90,51 +92,61 @@ export const FormItemUploadLogo = ({
           return getValueProps(data, API_URL);
         }}
       >
-        <Upload
-          className={styles.upload}
-          name="files"
-          listType="picture"
-          multiple={false}
-          showUploadList={false}
-          onChange={(info) => {
-            if (info.file.status === "done") {
-              onUpload?.(info);
-            }
-          }}
-          customRequest={(options) => {
-            customRequest({
-              file: options.file,
-              onSuccess: options.onSuccess,
-            });
-          }}
-        >
-          <Avatar
-            size={96}
+        {isLoading && (
+          <Skeleton.Avatar
+            active
             shape="square"
-            src={src}
-            alt={label}
-            onError={() => {
-              setError("Error loading image");
-              return true;
+            size={96}
+            style={{ borderRadius: "6px" }}
+          />
+        )}
+        {!isLoading && (
+          <Upload
+            className={styles.upload}
+            name="files"
+            listType="picture"
+            multiple={false}
+            showUploadList={false}
+            onChange={(info) => {
+              if (info.file.status === "done") {
+                onUpload?.(info);
+              }
             }}
-            style={{
-              zIndex: 1,
-              cursor: "pointer",
-              borderRadius: "6px",
-              ...((error || !src) && {
-                background: getRandomColorFromString(label),
-              }),
+            customRequest={(options) => {
+              customRequest({
+                file: options.file,
+                onSuccess: options.onSuccess,
+              });
             }}
           >
-            {<Typography.Text>{label[0].toUpperCase()}</Typography.Text>}
-          </Avatar>
+            <Avatar
+              size={96}
+              shape="square"
+              src={src}
+              alt={label}
+              onError={() => {
+                setError("Error loading image");
+                return true;
+              }}
+              style={{
+                zIndex: 1,
+                cursor: "pointer",
+                borderRadius: "6px",
+                ...((error || !src) && {
+                  background: getRandomColorFromString(label),
+                }),
+              }}
+            >
+              {<Typography.Text>{label[0].toUpperCase()}</Typography.Text>}
+            </Avatar>
 
-          <div className={styles.overlayContainer}>
-            <div className={styles.overlayIconContainer}>
-              <CloudUploadOutlined className={styles.overlayIcon} />
+            <div className={styles.overlayContainer}>
+              <div className={styles.overlayIconContainer}>
+                <CloudUploadOutlined className={styles.overlayIcon} />
+              </div>
             </div>
-          </div>
-        </Upload>
+          </Upload>
+        )}
       </Form.Item>
     </div>
   );
