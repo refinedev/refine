@@ -1,6 +1,6 @@
 import { CrudFilters, LogicalFilter, ConditionalFilter } from "@refinedev/core";
 import { mapOperator } from "./mapOperator";
-import { stringify, parse } from "qs";
+import qs from "qs";
 
 export const generateNestedFilterField = (field: string) => {
   const fields = field.split(".");
@@ -77,9 +77,9 @@ export const generateFilter = (filters?: CrudFilters) => {
     });
   }
 
-  const parsedQuery = parse(rawQuery, { depth: 15 });
+  const parsedQuery = qs.parse(rawQuery, { depth: 15 });
 
-  const queryFilters = stringify(parsedQuery, { encodeValuesOnly: true });
+  const queryFilters = qs.stringify(parsedQuery, { encodeValuesOnly: true });
 
   return queryFilters;
 };

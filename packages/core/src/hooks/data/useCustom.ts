@@ -5,7 +5,11 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
+import {
+  pickNotDeprecated,
+  useActiveAuthProvider,
+  prepareQueryContext,
+} from "@definitions/helpers";
 import {
   useDataProvider,
   useHandleNotification,
@@ -156,26 +160,18 @@ export const useCustom = <
           ...(preferredMeta || {}),
         })
         .get(preferLegacyKeys),
-      queryFn: ({ queryKey, pageParam, signal }) =>
+      queryFn: (context) =>
         custom<TQueryFnData>({
           url,
           method,
           ...config,
           meta: {
             ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
+            queryContext: prepareQueryContext(context),
           },
           metaData: {
             ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
+            queryContext: prepareQueryContext(context),
           },
         }),
       ...queryOptions,

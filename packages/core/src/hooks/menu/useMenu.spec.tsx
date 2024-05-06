@@ -390,7 +390,59 @@ describe("useMenu Hook", () => {
     );
   });
 
-  it("should hide item if parameter is missing", async () => {
+  it("should hide item if parameter is missing by default", async () => {
+    const { result } = renderHook(() => useMenu(), {
+      wrapper: TestWrapper({
+        resources: legacyResourceTransform([
+          {
+            name: "visible",
+            list: () => null,
+          },
+          {
+            name: "org-users",
+            list: "orgs/:orgId/users",
+          },
+        ]),
+      }),
+    });
+
+    expect(result.current.menuItems).toEqual(
+      expect.arrayContaining([expect.objectContaining({ name: "visible" })]),
+    );
+    expect(result.current.menuItems).toEqual(
+      expect.not.arrayContaining([
+        expect.objectContaining({ name: "org-users" }),
+      ]),
+    );
+  });
+
+  it("should hide item if parameter is missing by partial props", async () => {
+    const { result } = renderHook(() => useMenu({ meta: {} }), {
+      wrapper: TestWrapper({
+        resources: legacyResourceTransform([
+          {
+            name: "visible",
+            list: () => null,
+          },
+          {
+            name: "org-users",
+            list: "orgs/:orgId/users",
+          },
+        ]),
+      }),
+    });
+
+    expect(result.current.menuItems).toEqual(
+      expect.arrayContaining([expect.objectContaining({ name: "visible" })]),
+    );
+    expect(result.current.menuItems).toEqual(
+      expect.not.arrayContaining([
+        expect.objectContaining({ name: "org-users" }),
+      ]),
+    );
+  });
+
+  it("should hide item if parameter is missing if set explicitly", async () => {
     const { result } = renderHook(
       () => useMenu({ hideOnMissingParameter: true }),
       {

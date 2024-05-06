@@ -41,7 +41,7 @@
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
     "prepare": "nx build --project @refinedev/devtools-server --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
-    "start:server": "node dist/cli.js",
+    "start:server": "node dist/cli.cjs",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
@@ -74,6 +74,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@refinedev/devtools-ui": "1.1.20",
     "@testing-library/jest-dom": "^5.16.4",
     "@types/dedent": "^0.7.0",
     "@types/express": "^4.17.21",

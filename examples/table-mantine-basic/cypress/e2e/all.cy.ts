@@ -60,9 +60,8 @@ describe("table-mantine-basic", () => {
 
     cy.wait("@getPosts").then((interception) => {
       const { request } = interception;
-      const { _sort } = request.query;
 
-      expect(_sort).not.to.contains("id");
+      expect(request.query).not.to.ownProperty("_sort");
     });
   });
 
@@ -94,8 +93,6 @@ describe("table-mantine-basic", () => {
   });
 
   it("should work with pagination", () => {
-    cy.wait("@getPosts");
-
     cy.get(".mantine-Pagination-item").contains("2").click();
 
     cy.url().should("include", "current=2");

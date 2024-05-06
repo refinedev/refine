@@ -66,7 +66,7 @@ export const useLogList = <
     retry: false,
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useLogList", preferLegacyKeys),
+      ...getXRay("useLogList", preferLegacyKeys, resource),
     },
   });
 

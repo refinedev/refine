@@ -1,5 +1,6 @@
 import { defineConfig, Options } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+import { nextJsEsmReplacePlugin } from "../shared/next-js-esm-replace-plugin";
 
 const sharedConfig: Partial<Options> = {
   outDir: "dist",
@@ -22,6 +23,7 @@ const sharedConfig: Partial<Options> = {
         return resolved;
       },
     }),
+    nextJsEsmReplacePlugin,
   ],
   onSuccess: "pnpm types",
 };

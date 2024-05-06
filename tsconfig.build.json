@@ -8,6 +8,7 @@
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": true,
     "moduleResolution": "node",
     "jsx": "react",
     "esModuleInterop": true,

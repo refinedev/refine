@@ -68,6 +68,37 @@ If you are using `merge` behavior and want to remove one of the filters, you sho
 
 :::
 
+:::simple Finding the filter value
+
+Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
+
+```tsx
+import { getDefaultFilter, useTable } from "@refinedev/core";
+
+const MyComponent = () => {
+  const { filters } = useTable({
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "John Doe",
+        },
+      ],
+    },
+  });
+
+  const nameFilterValue = getDefaultFilter("name", filters, "contains");
+  console.log(nameFilterValue); // "John Doe"
+
+  return {
+    /** ... */
+  };
+};
+```
+
+:::
+
 <FilteringLivePreview/>
 
 ## Realtime Updates
