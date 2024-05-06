@@ -163,6 +163,7 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             dataIndex="total"
             key="total"
             width={120}
+            align="end"
             render={(_, record: IClient) => {
               let total = 0;
               record.invoices?.forEach((invoice) => {

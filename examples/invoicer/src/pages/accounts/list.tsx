@@ -196,6 +196,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             dataIndex="income"
             key="income"
             width={120}
+            align="end"
             render={(_, record: IAccount) => {
               let total = 0;
               record.invoices?.forEach((invoice) => {

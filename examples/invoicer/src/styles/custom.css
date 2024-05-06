@@ -20,7 +20,7 @@
 
 @media print {
   .print-hidden {
-    display: none;
+    display: none !important;
   }
   .ant-layout {
     padding: 0;

@@ -34,6 +34,8 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
   );
   const total = subtotal - (subtotal * (invoice?.tax || 0)) / 100;
 
+  console.log(invoice?.account?.logo?.url);
+
   return (
     <div id="invoice-pdf" className={styles.container}>
       <Card
@@ -75,6 +77,9 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
                 <Typography.Text>From:</Typography.Text>
                 <Flex gap={24}>
                   <CustomAvatar
+                    className={
+                      invoice?.account?.logo?.url ? "" : "print-hidden"
+                    }
                     name={invoice?.account?.company_name}
                     shape="square"
                     size={64}

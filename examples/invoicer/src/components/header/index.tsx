@@ -24,9 +24,10 @@ import { CustomAvatar } from "../avatar";
 import { Search } from "./search";
 import { IUser } from "../../interfaces";
 import { useStyles } from "./styled";
+import { Link } from "react-router-dom";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
-  const { list } = useNavigation();
+  const { list, listUrl } = useNavigation();
 
   const location = useLocation();
 
@@ -57,24 +58,26 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
         }}
       >
         <Flex align="center" wrap="wrap">
-          <Flex
-            align="center"
-            gap={12}
-            style={{
-              width: "200px",
-              height: "48px",
-            }}
-          >
-            <IconInvoicerLogo />
-            <div>
-              <Typography.Text className={styles.headerTitleRefine}>
-                Refine{" "}
-              </Typography.Text>
-              <Typography.Text className={styles.headerTitleInvoicer}>
-                Invoicer
-              </Typography.Text>
-            </div>
-          </Flex>
+          <Link to={listUrl("accounts")}>
+            <Flex
+              align="center"
+              gap={12}
+              style={{
+                width: "200px",
+                height: "48px",
+              }}
+            >
+              <IconInvoicerLogo />
+              <div>
+                <Typography.Text className={styles.headerTitleRefine}>
+                  Refine{" "}
+                </Typography.Text>
+                <Typography.Text className={styles.headerTitleInvoicer}>
+                  Invoicer
+                </Typography.Text>
+              </div>
+            </Flex>
+          </Link>
           <Tabs
             className={styles.tabs}
             activeKey={location.pathname.split("/")[1]}
@@ -113,7 +116,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
           <Flex align="center" gap={16}>
             <div
               style={{
-                width: "112px",
+                width: "114px",
               }}
             >
               <Typography.Text ellipsis className={styles.userName}>
