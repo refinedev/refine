@@ -36,7 +36,7 @@ export const InvoicesPageCreate = () => {
       (service.unitPrice * service.quantity * (100 - service.discount)) / 100,
     0,
   );
-  const total = subtotal - (subtotal * (tax || 0)) / 100;
+  const total = subtotal + (subtotal * (tax || 0)) / 100;
 
   const { styles } = useStyles();
 

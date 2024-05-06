@@ -26,14 +26,6 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
 
   const services = JSON.parse(invoice?.services || "[]") as IService[];
 
-  const subtotal = services.reduce(
-    (acc, service) =>
-      acc +
-      (service.unitPrice * service.quantity * (100 - service.discount)) / 100,
-    0,
-  );
-  const total = subtotal - (subtotal * (invoice?.tax || 0)) / 100;
-
   return (
     <div id="invoice-pdf" className={styles.container}>
       <Card
@@ -205,7 +197,7 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
                 Subtotal:
               </Typography.Text>
               <NumberField
-                value={subtotal}
+                value={invoice?.subTotal || 0}
                 options={{ style: "currency", currency: "USD" }}
               />
             </Flex>
@@ -240,7 +232,7 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
                 Total value:
               </Typography.Text>
               <NumberField
-                value={total}
+                value={invoice?.total || 0}
                 options={{ style: "currency", currency: "USD" }}
               />
             </Flex>

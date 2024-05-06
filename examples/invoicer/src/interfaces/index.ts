@@ -51,6 +51,7 @@ export interface IInvoice {
   tax: number;
   custom_id: string;
   services: string;
+  subTotal: number;
   total: number;
   createdAt: string;
   updatedAt: string;
