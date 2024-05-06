@@ -9,6 +9,15 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
       return query.neq(filter.field, filter.value);
     case "in":
       return query.in(filter.field, filter.value);
+    case "ina":
+      return query.contains(filter.field, filter.value);
+    case "nina":
+      return query.not(
+        filter.field,
+        "cs",
+        `{${filter.value.map((val: any) => `"${val}"`).join(",")}}`,
+      );
+
     case "gt":
       return query.gt(filter.field, filter.value);
     case "gte":
@@ -35,6 +44,11 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
             item.operator !== "and" &&
             "field" in item
           ) {
+            if (item.operator === "ina" || item.operator === "nina")
+              return `${item.field}.${mapOperator(
+                item.operator,
+              )}.${`{${item.value.map((val: any) => `"${val}"`).join(",")}}`}`;
+
             return `${item.field}.${mapOperator(item.operator)}.${item.value}`;
           }
           return;

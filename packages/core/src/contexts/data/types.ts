@@ -224,6 +224,8 @@ export type CrudOperators =
   | "gte"
   | "in"
   | "nin"
+  | "ina"
+  | "nina"
   | "contains"
   | "ncontains"
   | "containss"
