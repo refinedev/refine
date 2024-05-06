@@ -44,7 +44,7 @@ export interface IInvoice {
   discount: number;
   tax: number;
   custom_id: string;
-  services: string;
+  services: IService[];
   subTotal: number;
   total: number;
   createdAt: string;

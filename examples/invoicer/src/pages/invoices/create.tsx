@@ -74,19 +74,12 @@ export const InvoicesPageCreate = () => {
   };
 
   const onFinishHandler = (values: IInvoice) => {
-    console.log({
-      ...values,
-      total,
-      tax,
-      date: new Date().toISOString(),
-      services: JSON.stringify(services.filter((service) => service.title)),
-    });
     const valuesWithServices = {
       ...values,
       total,
       tax,
       date: new Date().toISOString(),
-      services: JSON.stringify(services.filter((service) => service.title)),
+      services: services.filter((service) => service.title),
     };
 
     formProps?.onFinish?.(valuesWithServices);

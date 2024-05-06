@@ -24,8 +24,6 @@ type Props = {
 export const InvoicePDF = ({ invoice, loading }: Props) => {
   const { styles } = useStyles();
 
-  const services = JSON.parse(invoice?.services || "[]") as IService[];
-
   return (
     <div id="invoice-pdf" className={styles.container}>
       <Card
@@ -130,7 +128,7 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
             Product / Services
           </Typography.Title>
           <Table
-            dataSource={services}
+            dataSource={invoice?.services || []}
             rowKey={"id"}
             pagination={false}
             loading={loading}
