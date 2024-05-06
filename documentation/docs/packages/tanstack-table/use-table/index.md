@@ -58,6 +58,42 @@ If you're going to use [logical filters](/docs/core/interface-references#logical
 
 By default, `id` field of the column is used as the `key` property. If you want to use a different field as the `key`, you can set the `filterKey` property in the `meta` object.
 
+:::simple Finding the filter value
+
+Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
+
+```tsx
+import { getDefaultFilter } from "@refinedev/core";
+import { useTable } from "@refinedev/react-table";
+
+const MyComponent = () => {
+  const {
+    refineCore: { filters },
+  } = useTable({
+    refineCoreProps: {
+      filters: {
+        initial: [
+          {
+            field: "name",
+            operator: "contains",
+            value: "John Doe",
+          },
+        ],
+      },
+    },
+  });
+
+  const nameFilterValue = getDefaultFilter("name", filters, "contains");
+  console.log(nameFilterValue); // "John Doe"
+
+  return {
+    /** ... */
+  };
+};
+```
+
+:::
+
 <FilteringLivePreview/>
 
 ## Realtime Updates
