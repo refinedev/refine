@@ -34,8 +34,6 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
   );
   const total = subtotal - (subtotal * (invoice?.tax || 0)) / 100;
 
-  console.log(invoice?.account?.logo?.url);
-
   return (
     <div id="invoice-pdf" className={styles.container}>
       <Card

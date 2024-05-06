@@ -229,7 +229,6 @@ export const ClientsPageEdit = () => {
                 key="actions"
                 width={64}
                 render={(_, record: IInvoice) => {
-                  console.log(record);
                   return (
                     <Flex align="center" gap={8}>
                       <ShowButton

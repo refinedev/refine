@@ -56,9 +56,7 @@ export const FormItemEditableSelect = ({
       form.submit();
       setDisabled(true);
       onSave?.();
-    } catch (err) {
-      console.log("Error", err);
-    }
+    } catch (err) {}
   };
 
   return (
