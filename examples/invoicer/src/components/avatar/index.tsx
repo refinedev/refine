@@ -2,7 +2,6 @@ import { FC, memo } from "react";
 
 import type { AvatarProps } from "antd";
 import { Avatar as AntdAvatar, Typography } from "antd";
-import { getNameInitials } from "../../utils/get-name-initials";
 import { getRandomColorFromString } from "../../utils/get-random-color";
 
 type Props = AvatarProps & {
@@ -25,7 +24,7 @@ const CustomAvatarComponent: FC<Props> = ({ name = "", style, ...rest }) => {
       }}
       {...rest}
     >
-      <Typography.Text>{getNameInitials(name, 1)}</Typography.Text>
+      <Typography.Text>{name?.[0]?.toUpperCase()}</Typography.Text>
     </AntdAvatar>
   );
 };

@@ -2,8 +2,6 @@
  * generates random colors from  https://ant.design/docs/spec/colors. <color-4> used.
  */
 export const getRandomColorFromString = (text: string) => {
-  if (!text) return "transparent";
-
   const colors = [
     "#ff9c6e",
     "#ff7875",

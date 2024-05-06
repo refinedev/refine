@@ -3,7 +3,6 @@ import { Avatar, Form, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { RcFile } from "antd/lib/upload";
-import { getNameInitials } from "../../../utils/get-name-initials";
 import { getRandomColorFromString } from "../../../utils/get-random-color";
 import { API_URL, TOKEN_KEY } from "../../../utils/constants";
 import { IMedia, UploadResponse } from "../../../interfaces";
@@ -11,11 +10,16 @@ import { axiosInstance } from "../../../providers/axios";
 import { useStyles } from "./styled";
 
 type Props = {
-  name?: string;
+  label: string;
+  formName?: string;
   onUpload?: (params: UploadResponse) => void;
 };
 
-export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
+export const FormItemUploadLogo = ({
+  formName = "logo",
+  label,
+  onUpload,
+}: Props) => {
   const { styles } = useStyles();
 
   const [error, setError] = useState<string | null>(null);
@@ -80,7 +84,7 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
   return (
     <div className={styles.container}>
       <Form.Item
-        name="logo"
+        name={formName}
         valuePropName="fileList"
         getValueProps={(data) => {
           return getValueProps(data, API_URL);
@@ -108,7 +112,7 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
             size={96}
             shape="square"
             src={src}
-            alt={name}
+            alt={label}
             onError={() => {
               setError("Error loading image");
               return true;
@@ -118,15 +122,13 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
               cursor: "pointer",
               borderRadius: "6px",
               ...((error || !src) && {
-                background: getRandomColorFromString(name || ""),
+                background: getRandomColorFromString(label),
               }),
             }}
           >
-            {getNameInitials(name || "")}
+            {<Typography.Text>{label[0].toUpperCase()}</Typography.Text>}
           </Avatar>
-          {/* {formError.length > 0 && (
-            <Typography.Text type="danger">{formError[0]}</Typography.Text>
-          )} */}
+
           <div className={styles.overlayContainer}>
             <div className={styles.overlayIconContainer}>
               <CloudUploadOutlined className={styles.overlayIcon} />

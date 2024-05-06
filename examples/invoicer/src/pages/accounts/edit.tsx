@@ -39,9 +39,9 @@ export const AccountsPageEdit = () => {
       },
     },
   );
-
-  const clients = queryResult?.data?.data?.clients || [];
-  const invoices = queryResult?.data?.data?.invoices || [];
+  const account = queryResult?.data?.data;
+  const clients = account?.clients || [];
+  const invoices = account?.invoices || [];
   const isLoading = queryResult?.isLoading;
 
   return (
@@ -65,6 +65,7 @@ export const AccountsPageEdit = () => {
         <Col span={24}>
           <Flex gap={16}>
             <FormItemUploadLogo
+              label={account?.company_name || " "}
               onUpload={() => {
                 formProps.form?.submit();
               }}
