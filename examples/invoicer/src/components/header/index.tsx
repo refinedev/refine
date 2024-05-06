@@ -8,7 +8,6 @@ import {
   theme,
   Flex,
   Tabs,
-  Skeleton,
 } from "antd";
 import {
   BankOutlined,
@@ -20,12 +19,11 @@ import { useColorMode } from "../../providers/color-mode";
 import { IconMoon } from "../icons/icon-moon";
 import { IconSun } from "../icons/icon-sun";
 import { IconInvoicerLogo } from "../icons/icon-invoicer";
-import { CustomAvatar } from "../avatar";
 import { Search } from "./search";
-import { IUser } from "../../interfaces";
-import { useStyles } from "./styled";
 import { Link } from "react-router-dom";
 import { User } from "./user";
+import { useStyles } from "./styled";
+import { Logo } from "../logo";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list, listUrl } = useNavigation();
@@ -33,7 +31,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const location = useLocation();
 
   const { token } = theme.useToken();
-  const { data: user, isLoading } = useGetIdentity<IUser>();
   const { mode, setMode } = useColorMode();
   const { styles } = useStyles();
 
@@ -60,24 +57,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
       >
         <Flex align="center" wrap="wrap">
           <Link to={listUrl("accounts")}>
-            <Flex
-              align="center"
-              gap={12}
+            <Logo
               style={{
                 width: "200px",
-                height: "48px",
               }}
-            >
-              <IconInvoicerLogo />
-              <div>
-                <Typography.Text className={styles.headerTitleRefine}>
-                  Refine{" "}
-                </Typography.Text>
-                <Typography.Text className={styles.headerTitleInvoicer}>
-                  Invoicer
-                </Typography.Text>
-              </div>
-            </Flex>
+            />
           </Link>
           <Tabs
             className={styles.tabs}

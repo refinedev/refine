@@ -32,6 +32,7 @@ import { InvoicesPageShow } from "./pages/invoices/show";
 import { InvoicePDF } from "./components/invoice-pdf";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/custom.css";
+import { Logo } from "./components/logo";
 
 const App: React.FC = () => {
   return (
@@ -154,6 +155,15 @@ const App: React.FC = () => {
                         type="login"
                         registerLink={false}
                         forgotPasswordLink={false}
+                        title={
+                          <Logo
+                            titleProps={{ level: 2 }}
+                            svgProps={{
+                              width: "48px",
+                              height: "40px",
+                            }}
+                          />
+                        }
                         formProps={{
                           initialValues: {
                             email: "demo@refine.dev",
