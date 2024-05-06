@@ -44,7 +44,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
     },
   });
 
-  const { selectProps: selectPropsCompanyName } = useSelect({
+  const { selectProps: companyNameSelectProps } = useSelect({
     resource: "accounts",
     optionLabel: "company_name",
     optionValue: "company_name",
@@ -120,7 +120,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
                   mode="multiple"
                   placeholder="Search Company Name"
                   style={{ width: 220 }}
-                  {...selectPropsCompanyName}
+                  {...companyNameSelectProps}
                 />
               </FilterDropdown>
             )}

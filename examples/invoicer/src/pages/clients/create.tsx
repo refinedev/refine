@@ -87,8 +87,7 @@ export const ClientsPageCreate = () => {
           </Form.Item>
           <Form.Item name="phone" label="Phone" rules={[{ required: true }]}>
             <InputMask mask="(999) 999-9999">
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-ignore */}
+              {/* @ts-expect-error  <InputMask /> expects JSX.Element but we are using React.ReactNode */}
               {(props: InputProps) => (
                 <Input {...props} placeholder="Please enter phone number" />
               )}

@@ -3,21 +3,6 @@ import { UploadChangeParam } from "antd/lib/upload";
 
 export type UploadResponse = UploadChangeParam<UploadFile<IMedia[]>>;
 
-export interface IAccount {
-  id: number;
-  company_name: string;
-  owner_name: string;
-  owner_email: string;
-  country: string;
-  address: string;
-  phone: string;
-  createdAt: string;
-  updatedAt: string;
-  logo?: IMedia;
-  invoices?: IInvoice[];
-  clients?: IClient[];
-}
-
 export interface IAccountForm {
   company_name: string;
   owner_name: string;
@@ -26,6 +11,15 @@ export interface IAccountForm {
   address: string;
   phone: string;
   logo?: UploadResponse;
+}
+
+export interface IAccount extends Omit<IAccountForm, "logo"> {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  logo?: IMedia;
+  invoices?: IInvoice[];
+  clients?: IClient[];
 }
 
 export interface IClient {

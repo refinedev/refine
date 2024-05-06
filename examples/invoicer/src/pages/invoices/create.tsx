@@ -36,7 +36,7 @@ export const InvoicesPageCreate = () => {
       (service.unitPrice * service.quantity * (100 - service.discount)) / 100,
     0,
   );
-  const total = subtotal + (subtotal * (tax || 0)) / 100;
+  const total = subtotal + (subtotal * tax) / 100;
 
   const { styles } = useStyles();
 
@@ -74,11 +74,17 @@ export const InvoicesPageCreate = () => {
   };
 
   const onFinishHandler = (values: IInvoice) => {
+    console.log({
+      ...values,
+      total,
+      tax,
+      date: new Date().toISOString(),
+      services: JSON.stringify(services.filter((service) => service.title)),
+    });
     const valuesWithServices = {
       ...values,
       total,
       tax,
-      discount: 0,
       date: new Date().toISOString(),
       services: JSON.stringify(services.filter((service) => service.title)),
     };
@@ -185,7 +191,7 @@ export const InvoicesPageCreate = () => {
                 <Row>
                   {services.map((service, index) => {
                     return (
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                      // biome-ignore lint/suspicious/noArrayIndexKey: We don't have a unique key for each service item when we create a new one
                       <Fragment key={index}>
                         <Col
                           xs={{ span: 7 }}
@@ -361,6 +367,7 @@ export const InvoicesPageCreate = () => {
                   addonAfter="%"
                   style={{ width: "96px" }}
                   value={tax}
+                  min={0}
                   onChange={(value) => {
                     setTax(value || 0);
                   }}
