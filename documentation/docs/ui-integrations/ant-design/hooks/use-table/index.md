@@ -127,6 +127,38 @@ const { tableProps, sorters, filters } = useTable({
 // ---
 ```
 
+:::simple Finding the filter value
+
+Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
+
+```tsx
+import { getDefaultFilter } from "@refinedev/core";
+import { useTable } from "@refinedev/antd";
+
+const MyComponent = () => {
+  const { filters } = useTable({
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "John Doe",
+        },
+      ],
+    },
+  });
+
+  const nameFilterValue = getDefaultFilter("name", filters, "contains");
+  console.log(nameFilterValue); // "John Doe"
+
+  return {
+    /** ... */
+  };
+};
+```
+
+:::
+
 ## Search
 
 We can use the [`onSearch`](#onsearch) and [`searchFormProps`](#searchformprops) properties to make custom filter form. `onSearch` is a function that is called when the form is submitted. `searchFormProps` is a property that is passed to the [`<Form>`](https://ant.design/components/form) component.
