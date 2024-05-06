@@ -2,7 +2,7 @@ import { Button, Frame, Separator, Slider, Window } from "react95";
 import styled from "styled-components";
 import { SVGProps, useRef, useState } from "react";
 import ReactPlayer, { YouTubeConfig } from "react-player/youtube";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 type Props = {
   youtubeKey: string;
@@ -21,7 +21,7 @@ export const MediaPlayer = ({ youtubeKey }: Props) => {
       <VideoContainer>
         {videoState === "stop" && (
           <WindowsLogo
-            src={getCdnUrl("/windows-logo-merging.gif")}
+            src={getImagesUrl("/windows-logo-merging.gif")}
             alt="Windows Logo"
           />
         )}
@@ -125,8 +125,8 @@ export const MediaPlayer = ({ youtubeKey }: Props) => {
             <VolumeIcon
               src={
                 volume === 0
-                  ? getCdnUrl("/volume-off.png")
-                  : getCdnUrl("/volume-on.png")
+                  ? getImagesUrl("/volume-off.png")
+                  : getImagesUrl("/volume-on.png")
               }
             />
           </ActionButton>

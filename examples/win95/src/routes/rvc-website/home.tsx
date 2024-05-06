@@ -14,7 +14,7 @@ import { CatalogsList } from "../../components/rvc-website/catalog";
 import { RefineBanner } from "../../components/refine-banner";
 import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
 import { IVideoTitle } from "../../interfaces";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const RVCWebsitePageHome = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const RVCWebsitePageHome = () => {
       address="http://www.refinevideoclub.geocities.com/index.html"
     >
       <RVCWebsiteLayout>
-        <Hero src={`${getCdnUrl("/rvc-hero-logo.png")}`} alt="rvc logo" />
+        <Hero src={`${getImagesUrl("/rvc-hero-logo.png")}`} alt="rvc logo" />
         <HeroTitle>“The best way to rent movies”</HeroTitle>
         <HeroDescription>
           We provide our members with more than 5.000 movie titles. If you want
@@ -34,14 +34,14 @@ export const RVCWebsitePageHome = () => {
           your home, join our 1.500 happy members!
         </HeroDescription>
 
-        <NewGif src={`${getCdnUrl("/new.gif")}`} alt="new" />
+        <NewGif src={`${getImagesUrl("/new.gif")}`} alt="new" />
         <NewTitles />
 
-        <Top10Gif src={`${getCdnUrl("/top10.gif")}`} alt="top10" />
+        <Top10Gif src={`${getImagesUrl("/top10.gif")}`} alt="top10" />
         <TopTitles />
 
         <SeparatorGif
-          src={`${getCdnUrl("/separator.gif")}`}
+          src={`${getImagesUrl("/separator.gif")}`}
           alt="separator"
           dir="left"
         />
@@ -49,7 +49,7 @@ export const RVCWebsitePageHome = () => {
         <CatalogsList />
 
         <SeparatorGif
-          src={`${getCdnUrl("/separator.gif")}`}
+          src={`${getImagesUrl("/separator.gif")}`}
           alt="separator"
           dir="right"
         />
@@ -76,7 +76,7 @@ const NewTitles = () => {
   return (
     <SwiperContainer>
       <SwiperButton
-        src={`${getCdnUrl("/arrow1.gif")}`}
+        src={`${getImagesUrl("/arrow1.gif")}`}
         alt="left-arrow"
         dir="left"
         onClick={() => controlledSwiper?.slidePrev()}
@@ -102,7 +102,7 @@ const NewTitles = () => {
         ))}
       </Swiper>
       <SwiperButton
-        src={`${getCdnUrl("/arrow1.gif")}`}
+        src={`${getImagesUrl("/arrow1.gif")}`}
         alt="right-arrow"
         dir="right"
         onClick={() => controlledSwiper?.slideNext()}
@@ -176,9 +176,9 @@ const AdvertisementBanners = () => {
           gap: "40px",
         }}
       >
-        <img src={`${getCdnUrl("/Video.gif")}`} alt="tape" />
+        <img src={`${getImagesUrl("/Video.gif")}`} alt="tape" />
         <img
-          src={`${getCdnUrl("/vcr_md_wht.gif")}`}
+          src={`${getImagesUrl("/vcr_md_wht.gif")}`}
           alt="vcr"
           style={{
             width: "208px",
@@ -186,7 +186,7 @@ const AdvertisementBanners = () => {
           }}
         />
         <img
-          src={`${getCdnUrl("/Video.gif")}`}
+          src={`${getImagesUrl("/Video.gif")}`}
           alt="tape"
           style={{
             transform: "scaleX(-1)",
@@ -228,21 +228,21 @@ const AdvertisementBanners = () => {
         }}
       >
         <img
-          src={`${getCdnUrl("/gc_icon.gif")}`}
+          src={`${getImagesUrl("/gc_icon.gif")}`}
           alt="geocities"
           style={{
             width: "176px",
           }}
         />
         <img
-          src={`${getCdnUrl("/FPCreated.gif")}`}
+          src={`${getImagesUrl("/FPCreated.gif")}`}
           alt="microsoft"
           style={{
             width: "228px",
           }}
         />
         <img
-          src={`${getCdnUrl("/explorer.gif")}`}
+          src={`${getImagesUrl("/explorer.gif")}`}
           alt="internet explorer"
           style={{
             width: "176px",

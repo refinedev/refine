@@ -2,7 +2,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import styled from "styled-components";
 import { Hourglass, Window } from "react95";
 import { AppLayoutHeader } from "../../components/layout";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 type Props = {
   title?: ReactNode;
@@ -56,7 +56,7 @@ inset: 0;
 z-index: 0;
 width: 100%;
 height: 100%;
-background-image: url(${getCdnUrl("/tile.png")});
+background-image: url(${getImagesUrl("/tile.png")});
 background-repeat: repeat;
 background-size: 4px;
 `;

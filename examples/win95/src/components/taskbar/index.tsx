@@ -11,7 +11,7 @@ import {
   Separator as SeparatorBase,
 } from "react95";
 import styled from "styled-components";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const TaskBar = () => {
   const { pathname } = useLocation();
@@ -59,7 +59,7 @@ export const TaskBar = () => {
         }}
         active={startMenuIsOpen}
       >
-        <StartImage src={getCdnUrl("/windows-logo.png")} alt="start" />
+        <StartImage src={getImagesUrl("/windows-logo.png")} alt="start" />
         Start
       </StartButton>
 
@@ -80,7 +80,7 @@ export const TaskBar = () => {
           <Separator />
           <LogoffButton variant="thin" onClick={onLogoutClick}>
             <StartMenuListItemImage
-              src={getCdnUrl("/logoff.png")}
+              src={getImagesUrl("/logoff.png")}
               alt="log off"
             />
             Log Off
@@ -188,42 +188,42 @@ const Hour = styled(Frame)`
 
 const menuItems = [
   {
-    icon: getCdnUrl("/refine-pixelated.png"),
+    icon: getImagesUrl("/refine-pixelated.png"),
     label: "Refine Home",
     href: "https://refine.dev",
   },
   {
-    icon: getCdnUrl("/book.png"),
+    icon: getImagesUrl("/book.png"),
     label: "Documentation",
     href: "https://refine.dev/docs",
   },
   {
-    icon: getCdnUrl("/notepad.png"),
+    icon: getImagesUrl("/notepad.png"),
     label: "Tutorial",
     href: "https://refine.dev/tutorial/essentials/intro",
   },
   {
-    icon: getCdnUrl("/earth.png"),
+    icon: getImagesUrl("/earth.png"),
     label: "Templates",
     href: "https://refine.dev/templates",
   },
   {
-    icon: getCdnUrl("/paper-with-pencil.png"),
+    icon: getImagesUrl("/paper-with-pencil.png"),
     label: "Blog",
     href: "https://refine.dev/blog",
   },
   {
-    icon: getCdnUrl("/github-pixelated.png"),
+    icon: getImagesUrl("/github-pixelated.png"),
     label: "GitHub",
     href: "https://github.com/refinedev/refine",
   },
   {
-    icon: getCdnUrl("/discord-pixelated.png"),
+    icon: getImagesUrl("/discord-pixelated.png"),
     label: "Discord",
     href: "https://discord.gg/refine",
   },
   {
-    icon: getCdnUrl("/x-pixelated.png"),
+    icon: getImagesUrl("/x-pixelated.png"),
     label: "X",
     href: "https://twitter.com/refine_dev",
   },
@@ -237,11 +237,11 @@ const pathnameToIndicatorMap: Record<
   }
 > = {
   "video-club": {
-    icon: getCdnUrl("/refine-video-club-app-icon-pixelated.png"),
+    icon: getImagesUrl("/refine-video-club-app-icon-pixelated.png"),
     label: "Refine Video Club",
   },
   "rvc-website": {
-    icon: getCdnUrl("/rvc-website-app-icon.png"),
+    icon: getImagesUrl("/rvc-website-app-icon.png"),
     label: "RVC Website",
   },
 };

@@ -3,7 +3,7 @@ import { IconClose } from "../icons/close";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useGo } from "@refinedev/core";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const AboutWindow = () => {
   const { hash, pathname } = useLocation();
@@ -42,11 +42,11 @@ export const AboutWindow = () => {
         <WindowContent>
           <AboutContent>
             <AboutLogoContainer>
-              <AboutLogo src={getCdnUrl("/about-refine-logo.png")} />
+              <AboutLogo src={getImagesUrl("/about-refine-logo.png")} />
             </AboutLogoContainer>
             <AboutRightColumn>
               <AboutLabelContainer>
-                <AboutLabelLogo src={getCdnUrl("/about-refine-label.png")} />
+                <AboutLabelLogo src={getImagesUrl("/about-refine-label.png")} />
                 <AboutLabelCopyright>
                   {"Copyright (c) 1980 - 1995"}
                 </AboutLabelCopyright>
@@ -54,7 +54,7 @@ export const AboutWindow = () => {
               <Separator />
               <InfoContainer>
                 <InfoItem>
-                  <InfoItemIcon src={getCdnUrl("/about-webpage.png")} />
+                  <InfoItemIcon src={getImagesUrl("/about-webpage.png")} />
 
                   <InfoItemLabel>Website:</InfoItemLabel>
                   <div>
@@ -64,7 +64,7 @@ export const AboutWindow = () => {
                   </div>
                 </InfoItem>
                 <InfoItem>
-                  <InfoItemIcon src={getCdnUrl("/about-email.png")} />
+                  <InfoItemIcon src={getImagesUrl("/about-email.png")} />
 
                   <InfoItemLabel>Website:</InfoItemLabel>
                   <div>
@@ -74,7 +74,7 @@ export const AboutWindow = () => {
                   </div>
                 </InfoItem>
                 <InfoItem>
-                  <InfoItemIcon src={getCdnUrl("/about-globe.png")} />
+                  <InfoItemIcon src={getImagesUrl("/about-globe.png")} />
 
                   <InfoItemLabel>Address:</InfoItemLabel>
                   <InfoItemParagraph>
@@ -134,7 +134,7 @@ inset: 0;
 z-index: 0;
 width: 100%;
 height: 100%;
-background-image: url(${getCdnUrl("/tile.png")});
+background-image: url(${getImagesUrl("/tile.png")});
 background-repeat: repeat;
 background-size: 4px;
 `;

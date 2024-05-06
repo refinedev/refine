@@ -24,7 +24,7 @@ import { IExtendedVideoTitle } from "../../../interfaces";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { IconChevronRight } from "../../../components/icons/chevron-right";
-import { getCdnUrl } from "../../../utils/get-cdn-url";
+import { getImagesUrl } from "../../../utils/get-cdn-url";
 
 type Props = {
   selectedTitle?: IExtendedVideoTitle | null;
@@ -65,7 +65,7 @@ export const VideoClubPageTapeSelectTitle = ({
       isLoading={titlesQueryResult?.isLoading}
     >
       <Container>
-        <Poster src={getCdnUrl("/members.jpg")} alt="members" />
+        <Poster src={getImagesUrl("/tape.jpg")} alt="members" />
 
         <TableContainer>
           <StyledTableFilterContainer>

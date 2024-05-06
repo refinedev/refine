@@ -24,7 +24,7 @@ import {
 import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
 import { ITape, IVideoTitle } from "../../../interfaces";
 import { ImagePixelated } from "../../../components/image-pixelated";
-import { getCdnUrl } from "../../../utils/get-cdn-url";
+import { getImagesUrl } from "../../../utils/get-cdn-url";
 
 export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();
@@ -136,7 +136,7 @@ export const VideoClubPageCreateTitle = () => {
     >
       <Container>
         <InfoDetails>
-          <InfoBubble src={getCdnUrl("/info-bubble.png")} />
+          <InfoBubble src={getImagesUrl("/info-bubble.png")} />
           <InfoContent>
             <InfoLine>
               <span>{"Our inventory is provided by "}</span>
@@ -146,7 +146,7 @@ export const VideoClubPageCreateTitle = () => {
                 rel="noreferrer"
               >
                 {"The Movie DB "}
-                <ExternalAnchorIcon src={getCdnUrl("/external-icon.png")} />
+                <ExternalAnchorIcon src={getImagesUrl("/external-icon.png")} />
               </InfoAnchor>
             </InfoLine>
             <InfoLine>
@@ -235,7 +235,9 @@ export const VideoClubPageCreateTitle = () => {
         <Separator />
         <BottomContainer>
           <ExistingContainer $visible={titleQuery.existing}>
-            <ExistingCheckmark src={getCdnUrl("/add-titlegreen-check.png")} />
+            <ExistingCheckmark
+              src={getImagesUrl("/add-titlegreen-check.png")}
+            />
             <span>This title is already in our inventory.</span>
           </ExistingContainer>
           <ButtonsContainer>
@@ -346,7 +348,7 @@ const Poster = styled(ImagePixelated)`
   &::before {
     content: "";
     background-color: ${({ theme }) => theme.material};
-    background-image: url(${getCdnUrl("/movie-poster-placeholder.png")});
+    background-image: url(${getImagesUrl("/movie-poster-placeholder.png")});
     background-size: 200px 300px;
     display: block;
     width: 100%;

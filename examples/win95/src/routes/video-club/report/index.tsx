@@ -16,7 +16,7 @@ import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IRental } from "../../../interfaces";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
-import { getCdnUrl } from "../../../utils/get-cdn-url";
+import { getImagesUrl } from "../../../utils/get-cdn-url";
 
 const today = dayjs().year(1995);
 
@@ -191,7 +191,7 @@ export const VideoClubReportPage = () => {
       onClose={() => navigate("/video-club")}
       containerStyle={{
         maxWidth: "unset",
-        backgroundImage: `url(${getCdnUrl("/bg-white-noise.png")})`,
+        backgroundImage: `url(${getImagesUrl("/bg-white-noise.png")})`,
       }}
     >
       <Container>

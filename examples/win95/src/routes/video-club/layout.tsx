@@ -6,7 +6,7 @@ import { Button } from "react95";
 import { AppLayout } from "../../components/layout";
 import { VideoClubTodayDate } from "../../components/today-date";
 import { RVCSplashScreen } from "../../components/rvc-splash-screen";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
@@ -15,42 +15,42 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
 
   const links = [
     {
-      icon: getCdnUrl("/rent-tape.png"),
+      icon: getImagesUrl("/rent-tape.png"),
       label: "Rent Tape",
       href: listUrl("rentals-rent"),
     },
     {
-      icon: getCdnUrl("/return-tape.png"),
+      icon: getImagesUrl("/return-tape.png"),
       label: "Return Tape",
       href: listUrl("rentals-return"),
     },
     {
-      icon: getCdnUrl("/add-title.png"),
+      icon: getImagesUrl("/add-title.png"),
       label: "Add Title",
       href: createUrl("titles"),
     },
     {
-      icon: getCdnUrl("/browse-titles.png"),
+      icon: getImagesUrl("/browse-titles.png"),
       label: "Browse Titles",
       href: listUrl("titles"),
     },
     {
-      icon: getCdnUrl("/add-member.png"),
+      icon: getImagesUrl("/add-member.png"),
       label: "Add Member",
       href: createUrl("members"),
     },
     {
-      icon: getCdnUrl("/browse-members.png"),
+      icon: getImagesUrl("/browse-members.png"),
       label: "Browse Members",
       href: listUrl("members"),
     },
     {
-      icon: getCdnUrl("/report.png"),
+      icon: getImagesUrl("/report.png"),
       label: "Report",
       href: listUrl("reports"),
     },
     {
-      icon: getCdnUrl("/settings.png"),
+      icon: getImagesUrl("/settings.png"),
       label: "Settings",
       href: listUrl("settings"),
     },
@@ -60,7 +60,7 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
     <>
       <StyledAppLayout
         title="Refine Video Club"
-        iconURL={getCdnUrl("/refine-video-club-app-icon-pixelated.png")}
+        iconURL={getImagesUrl("/refine-video-club-app-icon-pixelated.png")}
         onClose={() => navigate("/")}
         onMinimize={() => navigate("/")}
         menu={[
@@ -128,7 +128,7 @@ export const VideoClubLayout = ({ children }: PropsWithChildren) => {
           <TodayDate />
           <HomeContainer>
             <Logo
-              src={getCdnUrl("/refine-video-club-emboss-logo.png")}
+              src={getImagesUrl("/refine-video-club-emboss-logo.png")}
               alt="refine video club logo"
             />
 
@@ -164,7 +164,7 @@ const Container = styled.div`
   height: 100%;
   position: relative;
   z-index: 1;
-  background-image: url(${getCdnUrl("//noisy-gray.png")});
+  background-image: url(${getImagesUrl("//noisy-gray.png")});
   background-repeat: repeat;
 `;
 
@@ -222,4 +222,5 @@ const LinkItemImg = styled.img`
 
 const LinkItemLabel = styled.div`
   padding: 1px 0;
+  white-space: nowrap;
 `;

@@ -24,7 +24,7 @@ import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-
 import { IExendedMember } from "../../../interfaces";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { IconChevronRight } from "../../../components/icons/chevron-right";
-import { getCdnUrl } from "../../../utils/get-cdn-url";
+import { getImagesUrl } from "../../../utils/get-cdn-url";
 
 type Props = {
   variant: "rent" | "return";
@@ -62,7 +62,7 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
       isLoading={membersQueryResult?.isLoading}
     >
       <Container>
-        <Poster src={getCdnUrl("/members.jpg")} alt="members" />
+        <Poster src={getImagesUrl("/members.jpg")} alt="members" />
 
         <TableContainer>
           <TableFilterContainer>

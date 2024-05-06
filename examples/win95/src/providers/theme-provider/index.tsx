@@ -6,26 +6,26 @@ import {
 } from "styled-components";
 import { styleReset } from "react95";
 import themeOriginal from "react95/dist/themes/original";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getFontsUrl } from "../../utils/get-cdn-url";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
   @font-face {
     font-family: 'ms_sans_serif';
-    src: url(${getCdnUrl("/fonts/ms_sans_serif.woff2")}) format('woff2');
+    src: url(${getFontsUrl("/ms_sans_serif.woff2")}) format('woff2');
     font-weight: 400;
     font-style: normal
   }
   @font-face {
     font-family: 'ms_sans_serif';
-    src: url(${getCdnUrl("/fonts/ms_sans_serif_bold.woff2")}) format('woff2');
+    src: url(${getFontsUrl("/ms_sans_serif_bold.woff2")}) format('woff2');
     font-weight: bold;
     font-style: normal
   }
   @font-face {
     font-family: 'pixelated-times-new-roman';
-    src: url(${getCdnUrl("/fonts/pixelated-times-new-roman.ttf")}) format('truetype'), 
-         url(${getCdnUrl("/fonts/pixelated-times-new-roman.otf")}) format('otf');
+    src: url(${getFontsUrl("/pixelated-times-new-roman.ttf")}) format('truetype'), 
+         url(${getFontsUrl("/pixelated-times-new-roman.otf")}) format('otf');
     font-weight: 400;
     font-style: normal
   }

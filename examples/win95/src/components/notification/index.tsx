@@ -1,6 +1,6 @@
 import { OpenNotificationParams } from "@refinedev/core";
 import styled, { CSSProperties } from "styled-components";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 type Props = {
   className?: string;
@@ -15,8 +15,8 @@ export const Notification = (props: Props) => {
         <Icon
           src={
             props.type === "success"
-              ? getCdnUrl("/checkmark-icon.png")
-              : getCdnUrl("/error-icon.png")
+              ? getImagesUrl("/checkmark-icon.png")
+              : getImagesUrl("/error-icon.png")
           }
         />
         <Content>

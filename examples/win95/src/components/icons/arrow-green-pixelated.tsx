@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { getCdnUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const ArrowGreenPixelatedIcon = () => {
   return (
     <Container>
       <StyledArrowGreenPixelatedIcon
-        src={getCdnUrl("/arrow-green-pixelated.png")}
+        src={getImagesUrl("/arrow-green-pixelated.png")}
       />
     </Container>
   );

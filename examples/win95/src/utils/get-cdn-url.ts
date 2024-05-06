@@ -1,3 +1,7 @@
-export const getCdnUrl = (path: string) => {
-  return `https://refine.ams3.cdn.digitaloceanspaces.com/win95${path}`;
+export const getImagesUrl = (path: string) => {
+  return `/images${path}`;
+};
+
+export const getFontsUrl = (path: string) => {
+  return `/fonts${path}`;
 };
