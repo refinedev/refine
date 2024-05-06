@@ -6,11 +6,21 @@ import {
   getAppwriteSorting,
 } from "./utils";
 
+type DataProviderOptions = {
+  databaseId: string;
+  defaultReadPermissions?: Permission[];
+  defaultWritePermissions?: Permission[];
+};
+
 export const dataProvider = (
   appwriteClient: Appwrite,
-  options: { databaseId: string } = { databaseId: "default" },
+  options?: DataProviderOptions,
 ): Required<DataProvider> => {
-  const { databaseId } = options;
+  const {
+    databaseId = "default",
+    defaultReadPermissions = [Permission.read(Role.any())],
+    defaultWritePermissions = [Permission.write(Role.any())],
+  } = options ?? {};
 
   const database = new Databases(appwriteClient);
 
@@ -45,7 +55,6 @@ export const dataProvider = (
         resource,
         id.toString(),
       );
-
       return {
         data: {
           id: $id,
@@ -54,18 +63,16 @@ export const dataProvider = (
       } as any;
     },
     update: async ({ resource, id, variables, meta }) => {
-      const permissions = [
-        Permission.read(Role.any()),
-        Permission.write(Role.any()),
-        ...(meta?.readPermissions ?? ""),
-        ...(meta?.writePermissions ?? ""),
-      ];
+      const readPermissions = meta?.readPermissions ?? defaultReadPermissions;
+      const writePermissions =
+        meta?.writePermissions ?? defaultWritePermissions;
+
       const { $id, ...restData } = await database.updateDocument(
         databaseId,
         resource,
         id.toString(),
         variables as any,
-        permissions,
+        [...readPermissions, ...writePermissions],
       );
 
       return {
@@ -76,19 +83,16 @@ export const dataProvider = (
       } as any;
     },
     create: async ({ resource, variables, meta }) => {
-      const permissions = [
-        Permission.read(Role.any()),
-        Permission.write(Role.any()),
-        ...(meta?.readPermissions ?? ""),
-        ...(meta?.writePermissions ?? ""),
-      ];
+      const readPermissions = meta?.readPermissions ?? defaultReadPermissions;
+      const writePermissions =
+        meta?.writePermissions ?? defaultWritePermissions;
 
       const { $id, ...restData } = await database.createDocument(
         databaseId,
         resource,
         meta?.documentId ?? ID.unique(),
         variables as unknown as object,
-        permissions,
+        [...readPermissions, ...writePermissions],
       );
 
       return {
@@ -99,12 +103,10 @@ export const dataProvider = (
       } as any;
     },
     createMany: async ({ resource, variables, meta }) => {
-      const permissions = [
-        Permission.read(Role.any()),
-        Permission.write(Role.any()),
-        ...(meta?.readPermissions ?? ""),
-        ...(meta?.writePermissions ?? ""),
-      ];
+      const readPermissions = meta?.readPermissions ?? defaultReadPermissions;
+      const writePermissions =
+        meta?.writePermissions ?? defaultWritePermissions;
+
       const data = await Promise.all(
         variables.map((document) =>
           database.createDocument<any>(
@@ -112,7 +114,7 @@ export const dataProvider = (
             resource,
             meta?.documentId ?? ID.unique(),
             document as unknown as any,
-            permissions,
+            [...readPermissions, ...writePermissions],
           ),
         ),
       );
@@ -126,7 +128,6 @@ export const dataProvider = (
     },
     deleteOne: async ({ resource, id }) => {
       await database.deleteDocument(databaseId, resource, id.toString());
-
       return {
         data: { id },
       } as any;
@@ -137,7 +138,6 @@ export const dataProvider = (
           database.deleteDocument(databaseId, resource, id.toString()),
         ),
       );
-
       return {
         data: ids.map((id) => ({
           id,
@@ -150,7 +150,6 @@ export const dataProvider = (
           database.getDocument<any>(databaseId, resource, id.toString()),
         ),
       );
-
       return {
         data: data.map(({ $id, ...restData }) => ({
           id: $id,
@@ -159,12 +158,10 @@ export const dataProvider = (
       } as any;
     },
     updateMany: async ({ resource, ids, variables, meta }) => {
-      const permissions = [
-        Permission.read(Role.any()),
-        Permission.write(Role.any()),
-        ...(meta?.readPermissions ?? ""),
-        ...(meta?.writePermissions ?? ""),
-      ];
+      const readPermissions = meta?.readPermissions ?? defaultReadPermissions;
+      const writePermissions =
+        meta?.writePermissions ?? defaultWritePermissions;
+
       const data = await Promise.all(
         ids.map((id) =>
           database.updateDocument<any>(
@@ -172,11 +169,10 @@ export const dataProvider = (
             resource,
             id.toString(),
             variables as unknown as object,
-            permissions,
+            [...readPermissions, ...writePermissions],
           ),
         ),
       );
-
       return {
         data: data.map(({ $id, ...restData }) => ({
           id: $id,

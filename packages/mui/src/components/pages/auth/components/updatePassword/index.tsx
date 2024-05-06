@@ -110,7 +110,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         >
           <TextField
             {...register("password", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password required",
+              ),
             })}
             id="password"
             margin="normal"
@@ -132,7 +135,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
           <TextField
             {...register("confirmPassword", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm Password is required",
+              ),
               validate: (value?: string) => {
                 if (watch("password") !== value) {
                   return translate(

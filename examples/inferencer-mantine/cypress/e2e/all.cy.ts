@@ -279,14 +279,13 @@ describe("inferencer-mantine", () => {
   it("should work with pagination", () => {
     cy.wait("@getBlogPosts");
     cy.wait("@getBlogPosts");
+    cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getMantineLoadingOverlay().should("not.exist");
 
     cy.get(".mantine-Pagination-item").contains("2").click();
     cy.url().should("include", "current=2");
     cy.getMantineLoadingOverlay().should("not.exist");
-    cy.wait("@getBlogPosts");
-    cy.wait("@getBlogPosts");
     cy.wait("@getBlogPosts").then((interception) => {
       const { request } = interception;
       const { _start, _end } = request.query;

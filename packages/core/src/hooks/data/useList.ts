@@ -9,6 +9,7 @@ import {
   handlePaginationParams,
   pickDataProvider,
   pickNotDeprecated,
+  prepareQueryContext,
   useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
@@ -248,7 +249,11 @@ export const useList = <
         }),
       })
       .get(preferLegacyKeys),
-    queryFn: ({ queryKey, pageParam, signal }) => {
+    queryFn: (context) => {
+      const meta = {
+        ...combinedMeta,
+        queryContext: prepareQueryContext(context),
+      };
       return getList<TQueryFnData>({
         resource: resource?.name ?? "",
         pagination: prefferedPagination,
@@ -256,22 +261,8 @@ export const useList = <
         filters: prefferedFilters,
         sort: prefferedSorters,
         sorters: prefferedSorters,
-        meta: {
-          ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
-        },
-        metaData: {
-          ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
-        },
+        meta,
+        metaData: meta,
       });
     },
     ...queryOptions,
@@ -330,7 +321,7 @@ export const useList = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useList", preferLegacyKeys),
+      ...getXRay("useList", preferLegacyKeys, resource?.name),
     },
   });
 

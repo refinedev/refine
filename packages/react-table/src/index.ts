@@ -1,2 +1,2 @@
-export { useTable } from "./useTable";
-export type { UseTableProps, UseTableReturnType } from "./useTable";
+export { useTable } from "./useTable/index.ts";
+export type { UseTableProps, UseTableReturnType } from "./useTable/index.ts";

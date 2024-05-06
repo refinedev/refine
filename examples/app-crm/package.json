@@ -14,7 +14,7 @@
     "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "^5.0.1",
     "@ant-design/plots": "^1.2.5",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
@@ -33,7 +33,7 @@
     "@refinedev/react-router-v6": "^4.5.7",
     "@uiw/react-md-editor": "^3.19.5",
     "algoliasearch": "^4.19.1",
-    "antd": "^5.0.5",
+    "antd": "5.16.5",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",

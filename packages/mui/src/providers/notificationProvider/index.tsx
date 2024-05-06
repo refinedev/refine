@@ -43,14 +43,9 @@ export const useNotificationProvider = (): NotificationProvider => {
           </>,
           {
             action,
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right",
-            },
             preventDuplicate: true,
             key,
             autoHideDuration: (undoableTimeout ?? 0) * 1000,
-            disableWindowBlurListener: true,
           },
         );
       } else {
@@ -66,11 +61,6 @@ export const useNotificationProvider = (): NotificationProvider => {
           {
             key,
             variant: type,
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right",
-            },
-            disableWindowBlurListener: true,
           },
         );
       }

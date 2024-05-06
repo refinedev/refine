@@ -21,6 +21,8 @@ export enum DevtoolsEvent {
   DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION = "devtools:highlight-in-monitor-action",
   DEVTOOLS_LOGIN_SUCCESS = "devtools:login-success",
   DEVTOOLS_RELOAD_AFTER_LOGIN = "devtools:reload-after-login",
+  DEVTOOLS_INVALIDATE_QUERY = "devtools:invalidate-query",
+  DEVTOOLS_INVALIDATE_QUERY_ACTION = "devtools:invalidate-query-action",
 }
 
 type Timestamps = {
@@ -39,6 +41,7 @@ type ActivityPayload =
       variables?: Mutation<any, any, any, any>["state"]["variables"];
       hookName: string;
       resourcePath: string | null;
+      resourceName?: string;
       legacyKey: boolean;
     }
   | {
@@ -50,6 +53,7 @@ type ActivityPayload =
       state: QueryState<any, any>;
       hookName: string;
       resourcePath: string | null;
+      resourceName?: string;
       legacyKey: boolean;
     };
 
@@ -68,4 +72,6 @@ export type DevtoolsEventPayloads = {
   [DevtoolsEvent.DEVTOOLS_HIGHLIGHT_IN_MONITOR_ACTION]: { name: string };
   [DevtoolsEvent.DEVTOOLS_LOGIN_SUCCESS]: {};
   [DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN]: {};
+  [DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY]: { queryKey: QueryKey };
+  [DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY_ACTION]: { queryKey: QueryKey };
 };

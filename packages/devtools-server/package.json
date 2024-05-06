@@ -38,17 +38,16 @@
     "build": "npm run build:client && tsup",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "npm run dev:client & tsup --watch",
-    "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "dev:client": "vite build --watch --config src/client/vite.config.ts",
     "prepare": "npm run build",
     "publint": "publint --strict=true --level=suggestion",
-    "start:server": "node dist/cli.js",
+    "start:server": "node dist/cli.cjs",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@ory/client": "^1.5.2",
     "@refinedev/devtools-shared": "1.1.5",
-    "@refinedev/devtools-ui": "1.1.20",
     "body-parser": "^1.20.2",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
@@ -73,6 +72,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@refinedev/devtools-ui": "1.1.20",
     "@testing-library/jest-dom": "^5.16.4",
     "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^9.0.13",

@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "^5.0.1",
     "@refinedev/antd": "^5.37.6",
     "@refinedev/cli": "^2.16.29",
     "@refinedev/core": "^4.49.0",
@@ -33,7 +33,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
-    "antd": "^5.0.5",
+    "antd": "5.16.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",

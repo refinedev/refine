@@ -65,11 +65,6 @@ describe("Notistack notificationProvider", () => {
       {
         key: mockNotification.key,
         variant: "success",
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right",
-        },
-        disableWindowBlurListener: true,
       },
     );
   });
@@ -90,11 +85,6 @@ describe("Notistack notificationProvider", () => {
       {
         key: mockNotification.key,
         variant: "error",
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right",
-        },
-        disableWindowBlurListener: true,
       },
     );
   });
@@ -114,14 +104,9 @@ describe("Notistack notificationProvider", () => {
       </>,
       {
         action: expect.any(Function),
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right",
-        },
         preventDuplicate: true,
         key: "test-notification-undoable",
         autoHideDuration: 5000,
-        disableWindowBlurListener: true,
       },
     );
   });

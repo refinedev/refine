@@ -1,6 +1,6 @@
-export { createInferencer } from "./create-inferencer";
+export { createInferencer } from "./create-inferencer/index.tsx";
 
-export { SharedCodeViewer } from "./components/shared-code-viewer";
+export { SharedCodeViewer } from "./components/shared-code-viewer/index.tsx";
 
 export {
   jsx,
@@ -21,7 +21,7 @@ export {
   printImports,
   removeRelationSuffix,
   idQuoteWrapper,
-} from "./utilities";
+} from "./utilities/index.ts";
 
 export type {
   AdditionalScopeType,
@@ -37,4 +37,4 @@ export type {
   InferencerResultComponent,
   RecordField,
   RendererContext,
-} from "./types";
+} from "./types/index.ts";

@@ -1,3 +1,3 @@
-export * from "./app/index";
+export * from "./app/index.ts";
 
-export { default } from "./app/index";
+export { default } from "./app/index.ts";
