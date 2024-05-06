@@ -31,7 +31,12 @@ Dynamically changing the `pagination` properties will trigger a new request.
 
 ### Retrieving the Total Row Count
 
-When the `useList` hook calls the `getList` method, it expects the response to include the total number of rows (`rowCount`). This is typically obtained from the `x-total-count` header. If this header isn't provided by the backend, the `getList` method defaults to using the length of the returned data.
+When the `useList` hook calls the `getList` method, it expects the response to include the total number of rows (`rowCount`). The way this count is retrieved can vary based on the data provider:
+- **REST Providers:** Frequently use the `x-total-count` header to determine the total count.
+- **GraphQL Providers:** Typically return the count in specific data fields, such as `pageInfo.total`.
+- **Other Providers:** Follow their own conventions for obtaining the total count.
+
+If the backend doesn't provide a specific count, the `getList` method may default to using the length of the returned data array as the `rowCount`.
 
 For further details on how the `getList` method retrieves and returns data, refer to the [`getList` documentation](https://refine.dev/docs/data/data-provider/#getlist).
 
