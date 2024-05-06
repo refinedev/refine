@@ -282,6 +282,72 @@ describe("filtering", () => {
     expect(total).toBe(2);
   });
 
+  it("or operator should work correctly", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          operator: "or",
+          value: [
+            {
+              field: "id",
+              operator: "eq",
+              value: "1",
+            },
+            {
+              field: "tags",
+              operator: "ina",
+              value: ["recipes"],
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(data[0]["title"]).toBe("Black Psorotichia Lichen");
+    expect(data[1]["title"]).toBe("Oakwoods Prairie Clover");
+    expect(data[2]["title"]).toBe("Funck's Wart Lichen");
+    expect(total).toBe(3);
+  });
+
+  it("ina operator should work correctly", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          field: "tags",
+          operator: "ina",
+          value: ["health", "travel"],
+        },
+      ],
+    });
+
+    expect(data[0]["id"]).toBe(1);
+    expect(data[1]["id"]).toBe(6);
+    expect(data[2]["id"]).toBe(2);
+    expect(total).toBe(3);
+  });
+
+  it("nina operator should work correctly", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          field: "tags",
+          operator: "nina",
+          value: ["lifestyle", "personal"],
+        },
+      ],
+    });
+
+    expect(data[0]["id"]).toBe(7);
+    expect(data[1]["id"]).toBe(8);
+    expect(data[2]["id"]).toBe(5);
+    expect(data[3]["id"]).toBe(2);
+    expect(data[4]["id"]).toBe(11);
+    expect(total).toBe(5);
+  });
+
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).getList({
       resource: "products",
