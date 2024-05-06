@@ -1,11 +1,13 @@
 import { useMemo, useState } from "react";
-import { Avatar, Form, Upload } from "antd";
+import { Avatar, Form, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import { RcFile } from "antd/lib/upload";
 import { getNameInitials } from "../../../utils/get-name-initials";
 import { getRandomColorFromString } from "../../../utils/get-random-color";
 import { API_URL, TOKEN_KEY } from "../../../utils/constants";
 import { IMedia, UploadResponse } from "../../../interfaces";
+import { axiosInstance } from "../../../providers/axios";
 import { useStyles } from "./styled";
 
 type Props = {
@@ -14,6 +16,8 @@ type Props = {
 };
 
 export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
+  const { styles } = useStyles();
+
   const [error, setError] = useState<string | null>(null);
 
   const form = Form.useFormInstance();
@@ -34,7 +38,44 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
     return null;
   }, [fieldValue]);
 
-  const { styles } = useStyles();
+  const customRequest = async ({
+    file,
+    onSuccess,
+  }: {
+    file: string | RcFile | Blob;
+    onSuccess:
+      | ((body: any, xhr?: XMLHttpRequest | undefined) => void)
+      | undefined;
+  }) => {
+    const formData = new FormData();
+    formData.append("files", file);
+    form.setFields([{ name: name, errors: [] }]);
+
+    try {
+      const response = await axiosInstance.post(
+        `${API_URL}/api/upload`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+          },
+        },
+      );
+
+      onSuccess?.(response?.data, response?.request);
+    } catch (error: any) {
+      if (error.request.status === 0 || error.request.status === 413) {
+        form.setFields([{ name: name, errors: ["File is too large"] }]);
+        return;
+      }
+
+      form.setFields([
+        { name: name, errors: [error?.message || "Something went wrong"] },
+      ]);
+
+      return;
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -44,12 +85,10 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
         getValueProps={(data) => {
           return getValueProps(data, API_URL);
         }}
-        noStyle
       >
         <Upload
           className={styles.upload}
           name="files"
-          action={`${API_URL}/api/upload`}
           listType="picture"
           multiple={false}
           showUploadList={false}
@@ -58,8 +97,11 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
               onUpload?.(info);
             }
           }}
-          headers={{
-            Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+          customRequest={(options) => {
+            customRequest({
+              file: options.file,
+              onSuccess: options.onSuccess,
+            });
           }}
         >
           <Avatar
@@ -82,6 +124,9 @@ export const FormItemUploadLogo = ({ name = "logo", onUpload }: Props) => {
           >
             {getNameInitials(name || "")}
           </Avatar>
+          {/* {formError.length > 0 && (
+            <Typography.Text type="danger">{formError[0]}</Typography.Text>
+          )} */}
           <div className={styles.overlayContainer}>
             <div className={styles.overlayIconContainer}>
               <CloudUploadOutlined className={styles.overlayIcon} />

@@ -1,9 +1,12 @@
+import { useMemo } from "react";
 import { Button, Flex, Form, Upload, theme } from "antd";
 import { CloudUploadOutlined, PictureOutlined } from "@ant-design/icons";
 import { getValueProps } from "@refinedev/strapi-v4";
+import { RcFile, UploadChangeParam } from "antd/lib/upload";
+import { axiosInstance } from "../../../providers/axios";
 import { API_URL, TOKEN_KEY } from "../../../utils/constants";
 import { IMedia, UploadResponse } from "../../../interfaces";
-import { useMemo } from "react";
+import { useStyles } from "./styled";
 
 type Props = {
   name?: string;
@@ -14,6 +17,9 @@ export const FormItemUploadLogoDraggable = ({
   name = "logo",
   onUpload,
 }: Props) => {
+  const { styles } = useStyles();
+  const { token } = theme.useToken();
+
   const form = Form.useFormInstance();
   const fieldValue = Form.useWatch(name, form) as IMedia | UploadResponse;
 
@@ -32,16 +38,57 @@ export const FormItemUploadLogoDraggable = ({
     return null;
   }, [fieldValue]);
 
-  const { token } = theme.useToken();
+  const onChange = (info: UploadChangeParam) => {
+    if (info.file.status === "error") {
+    }
+
+    if (info.file.status === "done") {
+      onUpload?.(info);
+    }
+  };
+
+  const customRequest = async ({
+    file,
+    onSuccess,
+  }: {
+    file: string | RcFile | Blob;
+    onSuccess:
+      | ((body: any, xhr?: XMLHttpRequest | undefined) => void)
+      | undefined;
+  }) => {
+    const formData = new FormData();
+    formData.append("files", file);
+    form.setFields([{ name: name, errors: [] }]);
+
+    try {
+      const response = await axiosInstance.post(
+        `${API_URL}/api/upload`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+          },
+        },
+      );
+
+      onSuccess?.(response?.data, response?.request);
+    } catch (error: any) {
+      if (error.request.status === 0 || error.request.status === 413) {
+        form.setFields([{ name: name, errors: ["File is too large"] }]);
+        return;
+      }
+
+      form.setFields([
+        { name: name, errors: [error?.message || "Something went wrong"] },
+      ]);
+
+      return;
+    }
+  };
 
   return (
     <Flex gap={16} vertical>
-      <div
-        style={{
-          width: "148px",
-          height: "148px",
-        }}
-      >
+      <div className={styles.container}>
         <Form.Item
           name="logo"
           valuePropName="fileList"
@@ -52,20 +99,19 @@ export const FormItemUploadLogoDraggable = ({
         >
           <Upload.Dragger
             name="files"
-            action={`${API_URL}/api/upload`}
             listType="picture"
+            accept="image/*"
             multiple={false}
             showUploadList={false}
             style={{
               padding: 0,
             }}
-            onChange={(info) => {
-              if (info.file.status === "done") {
-                onUpload?.(info);
-              }
-            }}
-            headers={{
-              Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+            onChange={onChange}
+            customRequest={(options) => {
+              customRequest({
+                file: options.file,
+                onSuccess: options.onSuccess,
+              });
             }}
           >
             {src && (
@@ -73,8 +119,8 @@ export const FormItemUploadLogoDraggable = ({
                 src={src}
                 alt="preview"
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  width: "148px",
+                  height: "148px",
                   objectFit: "cover",
                 }}
               />
@@ -100,17 +146,16 @@ export const FormItemUploadLogoDraggable = ({
       >
         <Upload
           name="files"
-          action={`${API_URL}/api/upload`}
           listType="picture"
+          accept="image/*"
           multiple={false}
           showUploadList={false}
-          onChange={(info) => {
-            if (info.file.status === "done") {
-              onUpload?.(info);
-            }
-          }}
-          headers={{
-            Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY)}`,
+          onChange={onChange}
+          customRequest={(options) => {
+            customRequest({
+              file: options.file,
+              onSuccess: options.onSuccess,
+            });
           }}
         >
           <Button
