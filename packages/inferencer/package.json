@@ -100,7 +100,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/inferencer --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",

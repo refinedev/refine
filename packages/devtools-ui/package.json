@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "attw": "attw --pack . --exclude-entrypoints style.css",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
     "prepare": "nx build --project @refinedev/devtools-ui --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
