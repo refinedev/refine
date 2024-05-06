@@ -117,7 +117,16 @@ module.exports = {
         montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
         disket: ["Disket Mono", ...defaultTheme.fontFamily.mono],
         inter: ["Inter", ...defaultTheme.fontFamily.serif],
-        "jetBrains-mono": ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
+        "jetBrains-mono": [
+          "JetBrains Mono",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          '"Liberation Mono"',
+          '"Courier New"',
+          "monospace",
+        ],
       },
       dropShadow: {
         "showcase-highlight": [
