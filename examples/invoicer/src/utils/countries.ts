@@ -1,4 +1,4 @@
-const countires = [
+const countries = [
   {
     name: "Ascension Island",
     code: "AC",
@@ -2089,7 +2089,7 @@ const countires = [
   },
 ];
 
-export const countryOptions = countires.map((country) => ({
+export const countryOptions = countries.map((country) => ({
   label: `${country.emoji} ${country.name}`,
   value: country.name,
 }));
