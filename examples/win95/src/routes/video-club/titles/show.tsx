@@ -21,8 +21,6 @@ import { useState } from "react";
 import { MediaPlayerModal } from "../../../components/media-player/modal";
 import { getCdnUrl } from "../../../utils/get-cdn-url";
 
-dayjs.extend(durationPlugin);
-
 const FEE_PER_DAY = 20;
 
 export const VideoClubPageShowTitle = () => {
