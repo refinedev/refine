@@ -1,6 +1,7 @@
-import { useTable } from "@refinedev/core";
+import { getDefaultFilter, useTable } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "react95";
 import {
   Table,
   TableBody,
@@ -18,9 +19,7 @@ import { Pagination } from "../../../components/pagination";
 import { DangerIcon } from "../../../components/icons/danger-icon";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExendedMember } from "../../../interfaces";
-import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
 import { hasActiveRental } from "../../../utils/has-active-rental";
-import { Button } from "react95";
 
 export const VideoClubMemberPageList = () => {
   const navigate = useNavigate();
@@ -54,12 +53,11 @@ export const VideoClubMemberPageList = () => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>First Name:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "first_name",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter(
+                  "first_name",
+                  filters,
+                  "contains",
+                )}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
@@ -75,12 +73,11 @@ export const VideoClubMemberPageList = () => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Last Name:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "last_name",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter(
+                  "last_name",
+                  filters,
+                  "contains",
+                )}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
@@ -96,12 +93,7 @@ export const VideoClubMemberPageList = () => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Member ID:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "id",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("id", filters, "eq")}
                 onChange={(e) => {
                   const value = e.target?.value?.trim();
                   setCurrent(1);
@@ -118,12 +110,7 @@ export const VideoClubMemberPageList = () => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Phone Number:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "phone",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("phone", filters, "contains")}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([

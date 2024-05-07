@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useTable } from "@refinedev/core";
+import { getDefaultFilter, useTable } from "@refinedev/core";
 import {
   Hourglass,
   Select,
@@ -17,7 +17,6 @@ import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IExtendedVideoTitle } from "../../../interfaces";
 import { Pagination } from "../../../components/pagination";
 import { DangerIcon } from "../../../components/icons/danger-icon";
-import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
 import { OPTIONS_YEAR } from "../../../utils/options-year";
 
 export const VideoClubPageBrowseTitles = () => {
@@ -53,12 +52,7 @@ export const VideoClubPageBrowseTitles = () => {
           <FilterInputContainer>
             <FilterInputLabel>Title:</FilterInputLabel>
             <FilterInputText
-              defaultValue={
-                findFilterFromCrudFilters({
-                  field: "title",
-                  filters,
-                })?.value
-              }
+              defaultValue={getDefaultFilter("title", filters, "contains")}
               onChange={(e) => {
                 setCurrent(1);
                 setFilters([
@@ -74,12 +68,7 @@ export const VideoClubPageBrowseTitles = () => {
           <FilterInputContainer>
             <FilterInputLabel>Movie ID:</FilterInputLabel>
             <FilterInputText
-              defaultValue={
-                findFilterFromCrudFilters({
-                  field: "id",
-                  filters,
-                })?.value
-              }
+              defaultValue={getDefaultFilter("id", filters, "eq")}
               onChange={(e) => {
                 const value = e.target?.value?.trim();
                 setCurrent(1);
@@ -96,12 +85,7 @@ export const VideoClubPageBrowseTitles = () => {
           <FilterInputContainer>
             <FilterInputLabel>Category:</FilterInputLabel>
             <FilterInputText
-              defaultValue={
-                findFilterFromCrudFilters({
-                  field: "genres",
-                  filters,
-                })?.value
-              }
+              defaultValue={getDefaultFilter("genres", filters, "contains")}
               onChange={(e) => {
                 const value = e.target?.value?.trim();
                 setCurrent(1);
@@ -119,12 +103,7 @@ export const VideoClubPageBrowseTitles = () => {
             <FilterInputLabel>Year:</FilterInputLabel>
             <FilterInputSelect
               menuMaxHeight={160}
-              defaultValue={
-                findFilterFromCrudFilters({
-                  field: "year",
-                  filters,
-                })?.value
-              }
+              defaultValue={getDefaultFilter("year", filters, "eq")}
               onChange={(option) => {
                 setCurrent(1);
                 setFilters([

@@ -1,4 +1,4 @@
-import { useNavigation, useTable } from "@refinedev/core";
+import { getDefaultFilter, useNavigation, useTable } from "@refinedev/core";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button, Separator } from "react95";
@@ -19,7 +19,6 @@ import {
   TableFilterInputSelect,
 } from "../../../components/table";
 import { OPTIONS_YEAR } from "../../../utils/options-year";
-import { findFilterFromCrudFilters } from "../../../utils/find-filter-from-crud-filters";
 import { IExtendedVideoTitle } from "../../../interfaces";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
@@ -72,12 +71,7 @@ export const VideoClubPageTapeSelectTitle = ({
             <TableFilterInputContainer>
               <TableFilterInputLabel>Title:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "title",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("title", filters, "contains")}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
@@ -93,12 +87,7 @@ export const VideoClubPageTapeSelectTitle = ({
             <TableFilterInputContainer>
               <TableFilterInputLabel>Movie ID:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "id",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("id", filters, "eq")}
                 onChange={(e) => {
                   const value = e.target?.value?.trim();
                   setCurrent(1);
@@ -115,12 +104,7 @@ export const VideoClubPageTapeSelectTitle = ({
             <TableFilterInputContainer>
               <TableFilterInputLabel>Category:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "genres",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("genres", filters, "contains")}
                 onChange={(e) => {
                   const value = e.target?.value?.trim();
                   setCurrent(1);
@@ -138,12 +122,7 @@ export const VideoClubPageTapeSelectTitle = ({
               <TableFilterInputLabel>Year:</TableFilterInputLabel>
               <TableFilterInputSelect
                 menuMaxHeight={160}
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "year",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("year", filters, "eq")}
                 onChange={(option) => {
                   setCurrent(1);
                   setFilters([

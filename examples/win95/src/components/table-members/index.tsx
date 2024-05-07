@@ -1,4 +1,4 @@
-import { useTable } from "@refinedev/core";
+import { getDefaultFilter, useTable } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -15,7 +15,6 @@ import {
   TableFilterInputText,
 } from "../../components/table";
 import { IExendedMember } from "../../interfaces";
-import { findFilterFromCrudFilters } from "../../utils/find-filter-from-crud-filters";
 import { hasActiveRental } from "../../utils/has-active-rental";
 import { Pagination } from "../pagination";
 import { DangerIcon } from "../icons/danger-icon";
@@ -58,12 +57,11 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>First Name:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "first_name",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter(
+                  "first_name",
+                  filters,
+                  "contains",
+                )}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
@@ -79,12 +77,11 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Last Name:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "last_name",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter(
+                  "last_name",
+                  filters,
+                  "contains",
+                )}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
@@ -100,12 +97,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Member ID:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "id",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("id", filters, "eq")}
                 onChange={(e) => {
                   const value = e.target?.value?.trim();
                   setCurrent(1);
@@ -122,12 +114,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
             <TableFilterInputContainer>
               <TableFilterInputLabel>Phone Number:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={
-                  findFilterFromCrudFilters({
-                    field: "phone",
-                    filters,
-                  })?.value
-                }
+                defaultValue={getDefaultFilter("phone", filters, "contains")}
                 onChange={(e) => {
                   setCurrent(1);
                   setFilters([
