@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import { Select } from "react95";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IRental } from "../../../types";
+import { Rental } from "../../../types";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
@@ -33,7 +33,7 @@ export const VideoClubReportPage = () => {
 
   const navigate = useNavigate();
 
-  const { data: dataRental, isLoading: isLoadingRental } = useList<IRental>({
+  const { data: dataRental, isLoading: isLoadingRental } = useList<Rental>({
     resource: "rentals",
     pagination: {
       mode: "off",
@@ -101,7 +101,7 @@ export const VideoClubReportPage = () => {
       0,
     );
 
-    const rentalsGroupByRange: Record<string, IRental[]> = {};
+    const rentalsGroupByRange: Record<string, Rental[]> = {};
     rentalsByRangeFilter?.forEach((rental) => {
       let key = "";
       switch (range.value) {
