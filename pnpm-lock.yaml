@@ -344,12 +344,15 @@ importers:
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
+      graphql:
+        specifier: ^15.6.1
+        version: 15.8.0
       graphql-tag:
         specifier: ^2.12.6
-        version: 2.12.6(graphql@16.8.1)
+        version: 2.12.6(graphql@15.8.0)
       graphql-ws:
         specifier: ^5.9.1
-        version: 5.16.0(graphql@16.8.1)
+        version: 5.16.0(graphql@15.8.0)
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -377,16 +380,16 @@ importers:
     devDependencies:
       '@graphql-codegen/cli':
         specifier: ^5.0.0
-        version: 5.0.2(@parcel/watcher@2.4.1)(@types/node@18.19.31)(bufferutil@4.0.8)(encoding@0.1.13)(enquirer@2.4.1)(graphql@16.8.1)(typescript@5.4.5)(utf-8-validate@5.0.10)
+        version: 5.0.2(@parcel/watcher@2.4.1)(@types/node@18.19.31)(bufferutil@4.0.8)(encoding@0.1.13)(enquirer@2.4.1)(graphql@15.8.0)(typescript@5.4.5)(utf-8-validate@5.0.10)
       '@graphql-codegen/import-types-preset':
         specifier: ^3.0.0
-        version: 3.0.0(encoding@0.1.13)(graphql@16.8.1)
+        version: 3.0.0(encoding@0.1.13)(graphql@15.8.0)
       '@graphql-codegen/typescript':
         specifier: ^4.0.1
-        version: 4.0.6(encoding@0.1.13)(graphql@16.8.1)
+        version: 4.0.6(encoding@0.1.13)(graphql@15.8.0)
       '@graphql-codegen/typescript-operations':
         specifier: ^4.0.1
-        version: 4.2.0(encoding@0.1.13)(graphql@16.8.1)
+        version: 4.2.0(encoding@0.1.13)(graphql@15.8.0)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
