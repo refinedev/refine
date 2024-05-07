@@ -72,9 +72,9 @@ export const MobileVersionIsNotAvailable = ({
         <h2
           style={{
             fontSize: "24px",
-            lineHeight: "1.5",
+            lineHeight: "2",
             textAlign: "center",
-            marginTop: "24px",
+            marginTop: "16px",
           }}
         >
           Mobile version is not available yet.
