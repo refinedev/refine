@@ -102,7 +102,7 @@
     "attw": "attw --pack .",
     "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "nx build --verbose --project @refinedev/inferencer --nxBail --output-style stream",
+    "prepare": "pnpm -w build --scope @refinedev/inferencer",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"

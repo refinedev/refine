@@ -39,7 +39,7 @@
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "pnpm dev:client & tsup --watch",
     "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
-    "prepare": "nx build --verbose --project @refinedev/devtools-server --nxBail --output-style stream",
+    "prepare": "pnpm -w build --scope @refinedev/devtools-server",
     "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.cjs",
     "test": "jest --passWithNoTests --runInBand",
