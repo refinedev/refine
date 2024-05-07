@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useShow } from "@refinedev/core";
 import dayjs from "dayjs";
-import durationPlugin from "dayjs/plugin/duration";
 import {
   Table,
   TableBody,
@@ -14,14 +14,12 @@ import {
 } from "react95";
 import styled from "styled-components";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
-import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 import { ImagePixelated } from "../../../components/image-pixelated";
-import { useState } from "react";
 import { MediaPlayerModal } from "../../../components/media-player/modal";
+import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
-
-const FEE_PER_DAY = 20;
+import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
+import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
 
 export const VideoClubPageShowTitle = () => {
   const [trailer, setTrailer] = useState(false);
@@ -163,7 +161,7 @@ export const VideoClubPageShowTitle = () => {
                         </TableDataCell>
                         <TableDataCell $width={64} $align="right">
                           {"$"}
-                          {(rental.period * FEE_PER_DAY).toFixed(2)}
+                          {(rental.period * NIGHTLY_RENTAL_FEE).toFixed(2)}
                         </TableDataCell>
                       </TableRow>
                     );
@@ -187,7 +185,7 @@ export const VideoClubPageShowTitle = () => {
                   {"$"}
                   {data?.data?.rentals
                     ?.reduce(
-                      (acc, rental) => acc + rental.period * FEE_PER_DAY,
+                      (acc, rental) => acc + rental.period * NIGHTLY_RENTAL_FEE,
                       0,
                     )
                     .toFixed(2)}
