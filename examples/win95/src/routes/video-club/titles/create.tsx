@@ -54,7 +54,7 @@ export const VideoClubPageCreateTitle = () => {
     queried: false,
   });
 
-  const checkMovieFromTMDB = async (value?: string) => {
+  const checkMovieFromTMDB = async (value: string) => {
     const id = parseTmdbIdFromUrl(value);
 
     if (!id) {
@@ -161,6 +161,7 @@ export const VideoClubPageCreateTitle = () => {
 
             const formData = new FormData(event.currentTarget);
             const value = formData.get("movie-url") as string;
+            if (!value.trim()) return;
 
             checkMovieFromTMDB(value);
           }}

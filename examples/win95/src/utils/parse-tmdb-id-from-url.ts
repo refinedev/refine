@@ -1,7 +1,5 @@
-export const parseTmdbIdFromUrl = (value?: string) => {
+export const parseTmdbIdFromUrl = (value: string) => {
   try {
-    if (!value) return null;
-
     const url = new URL(value);
 
     const hostsRegex = /^(www\.)?themoviedb\.org$/;
