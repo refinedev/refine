@@ -54,7 +54,7 @@ const getProjectInfo = (path) => {
     port = 5173;
 
     if (dependencies.includes("@refinedev/devtools")) {
-      additionalParams = "--devtools false";
+      additionalParams = "-- --devtools false";
     }
   }
 
