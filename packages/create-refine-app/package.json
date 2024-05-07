@@ -10,10 +10,11 @@
   "typings": "dist/index.d.ts",
   "bin": "./dist/index.js",
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
+    "build": "tsup && tsc --project tsconfig.declarations.json",
+    "dev": "tsup --watch",
     "prepare": "pnpm -w build --scope create-refine-app",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "tsc --project tsconfig.declarations.json"
   },
   "dependencies": {
     "boxen": "^5.1.2",
