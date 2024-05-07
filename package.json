@@ -36,7 +36,7 @@
     "test:coverage": "pnpm test -- -- --coverage"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{js,jsx,ts,tsx,json}": [
       "biome format --write"
     ],
     "*.{md,mdx}": [

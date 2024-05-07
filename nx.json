@@ -2,7 +2,7 @@
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
-      "options": {"cacheableOperations": ["build", "types", "lint", "test"]}
+      "options": { "cacheableOperations": ["build", "types", "lint", "test"] }
     }
   },
   "targetDefaults": {
