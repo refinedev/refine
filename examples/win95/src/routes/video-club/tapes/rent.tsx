@@ -19,11 +19,11 @@ import {
 } from "../../../components/table";
 import { DangerIcon } from "../../../components/icons/danger-icon";
 import {
-  ICreateRental,
-  IExendedMember,
-  IExtendedVideoTitle,
-  ITape,
-  IVideoTitle,
+  CreateRental,
+  ExtendedMember,
+  ExtendedVideoTitle,
+  Tape,
+  VideoTitle,
 } from "../../../types";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
@@ -34,11 +34,12 @@ export const VideoClubPageTapeRent = () => {
   const navigate = useNavigate();
   const { memberId } = useParams();
 
-  const [selectedTitle, setSelectedTitle] =
-    useState<IExtendedVideoTitle | null>(null);
+  const [selectedTitle, setSelectedTitle] = useState<ExtendedVideoTitle | null>(
+    null,
+  );
   const [screen, setScreen] = useState<"titles" | "rent">("titles");
 
-  const { data: dataMember, isLoading } = useOne<IExendedMember>({
+  const { data: dataMember, isLoading } = useOne<ExtendedMember>({
     resource: "members",
     id: memberId,
     queryOptions: {
@@ -108,7 +109,7 @@ export const VideoClubPageTapeRent = () => {
   );
 };
 
-const MemberDetails = ({ member }: { member: IExendedMember | null }) => {
+const MemberDetails = ({ member }: { member: ExtendedMember | null }) => {
   return (
     <StyledGroupBox label="Member">
       <ImageMember src={member?.photo_url} />
@@ -131,12 +132,12 @@ const MemberDetails = ({ member }: { member: IExendedMember | null }) => {
   );
 };
 
-const TableCurrentRentals = ({ member }: { member: IExendedMember | null }) => {
+const TableCurrentRentals = ({ member }: { member: ExtendedMember | null }) => {
   const currentRentals = member?.rentals.filter(
     (rental) => !rental.returned_at,
   );
 
-  const { data } = useMany<IVideoTitle>({
+  const { data } = useMany<VideoTitle>({
     resource: "titles",
     ids: currentRentals?.map((rental) => rental.title_id) || [],
     queryOptions: {
@@ -216,8 +217,8 @@ const TitleDetails = ({
   title,
   children,
 }: {
-  member: IExendedMember | null;
-  title: IExtendedVideoTitle | null;
+  member: ExtendedMember | null;
+  title: ExtendedVideoTitle | null;
   children?: React.ReactNode;
 }) => {
   return (
@@ -260,10 +261,10 @@ const RentTapeForm = ({
   member,
   title,
 }: {
-  member: IExendedMember | null;
-  title: IExtendedVideoTitle | null;
+  member: ExtendedMember | null;
+  title: ExtendedVideoTitle | null;
 }) => {
-  const { data: dataTapes } = useList<ITape>({
+  const { data: dataTapes } = useList<Tape>({
     resource: "tapes",
     filters: [
       {
@@ -296,7 +297,7 @@ const RentTapeForm = ({
     watch,
     refineCore: { onFinish },
     handleSubmit,
-  } = useForm<ICreateRental>({
+  } = useForm<CreateRental>({
     defaultValues: {
       member_id: member?.id,
       title_id: title?.id,
