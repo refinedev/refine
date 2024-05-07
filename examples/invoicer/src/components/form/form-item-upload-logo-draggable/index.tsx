@@ -3,9 +3,9 @@ import { Button, Flex, Form, Upload, theme } from "antd";
 import { CloudUploadOutlined, PictureOutlined } from "@ant-design/icons";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { RcFile, UploadChangeParam } from "antd/lib/upload";
-import { axiosInstance } from "../../../providers/axios";
-import { API_URL, TOKEN_KEY } from "../../../utils/constants";
-import { IMedia, UploadResponse } from "../../../interfaces";
+import { axiosInstance } from "@/providers/axios";
+import { API_URL, TOKEN_KEY } from "@/utils/constants";
+import { Media, UploadResponse } from "@/types";
 import { useStyles } from "./styled";
 
 type Props = {
@@ -21,7 +21,7 @@ export const FormItemUploadLogoDraggable = ({
   const { token } = theme.useToken();
 
   const form = Form.useFormInstance();
-  const fieldValue = Form.useWatch(name, form) as IMedia | UploadResponse;
+  const fieldValue = Form.useWatch(name, form) as Media | UploadResponse;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
   const src = useMemo(() => {

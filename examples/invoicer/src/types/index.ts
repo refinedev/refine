@@ -1,9 +1,9 @@
 import { UploadFile } from "antd";
 import { UploadChangeParam } from "antd/lib/upload";
 
-export type UploadResponse = UploadChangeParam<UploadFile<IMedia[]>>;
+export type UploadResponse = UploadChangeParam<UploadFile<Media[]>>;
 
-export interface IAccountForm {
+export type AccountForm = {
   company_name: string;
   owner_name: string;
   owner_email: string;
@@ -11,18 +11,18 @@ export interface IAccountForm {
   address: string;
   phone: string;
   logo?: UploadResponse;
-}
+};
 
-export interface IAccount extends Omit<IAccountForm, "logo"> {
+export type Account = {
   id: number;
   createdAt: string;
   updatedAt: string;
-  logo?: IMedia;
-  invoices?: IInvoice[];
-  clients?: IClient[];
-}
+  logo?: Media;
+  invoices?: Invoice[];
+  clients?: Client[];
+} & Omit<AccountForm, "logo">;
 
-export interface IClient {
+export type Client = {
   id: number;
   name: string;
   owner_name: string;
@@ -33,36 +33,36 @@ export interface IClient {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  invoices?: IInvoice[];
-  account?: IAccount;
-}
+  invoices?: Invoice[];
+  account?: Account;
+};
 
-export interface IInvoice {
+export type Invoice = {
   id: number;
   name: string;
   date: string;
   discount: number;
   tax: number;
   custom_id: string;
-  services: IService[];
+  services: Service[];
   subTotal: number;
   total: number;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  account: IAccount;
-  client: IClient;
-}
+  account: Account;
+  client: Client;
+};
 
-export interface IService {
+export type Service = {
   title: string;
   unitPrice: number;
   quantity: number;
   discount: number;
   totalPrice: number;
-}
+};
 
-export interface IUser {
+export type User = {
   id: number;
   username: string;
   email: string;
@@ -71,9 +71,9 @@ export interface IUser {
   blocked: boolean;
   createdAt: string;
   updatedAt: string;
-}
+};
 
-export interface IMedia {
+export type Media = {
   id: number;
   name: string;
   alternativeText: any;
@@ -91,4 +91,4 @@ export interface IMedia {
   provider_metadata: any;
   createdAt: string;
   updatedAt: string;
-}
+};

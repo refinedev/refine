@@ -9,7 +9,6 @@ import {
 } from "antd";
 import { PropsWithChildren, useState } from "react";
 import { EditOutlined, EnterOutlined } from "@ant-design/icons";
-
 import { useStyles } from "./styled";
 
 type Props = {

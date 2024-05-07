@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { SearchOutlined, ContainerOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { AutoComplete, Flex, Input, Typography } from "antd";
-import { useStyles } from "./styled";
 import { useList, useNavigation } from "@refinedev/core";
-import { IAccount, IClient } from "../../../interfaces";
 import { Link } from "react-router-dom";
-import { CustomAvatar } from "../../avatar";
-import { API_URL } from "../../../utils/constants";
+import { CustomAvatar } from "@/components/avatar";
+import { API_URL } from "@/utils/constants";
+import { Account, Client } from "@/types";
+import { useStyles } from "./styled";
 
 type Option =
-  | (IAccount & {
+  | (Account & {
       resource: "accounts";
     })
-  | (IClient & {
+  | (Client & {
       resource: "clients";
     });
 
@@ -23,7 +23,7 @@ export const Search = () => {
 
   const { editUrl } = useNavigation();
 
-  const { data: dataAccount } = useList<IAccount>({
+  const { data: dataAccount } = useList<Account>({
     resource: "accounts",
     pagination: {
       current: 1,
@@ -46,7 +46,7 @@ export const Search = () => {
       resource: "accounts",
     })) || [];
 
-  const { data: dataClient } = useList<IClient>({
+  const { data: dataClient } = useList<Client>({
     resource: "clients",
     pagination: {
       current: 1,

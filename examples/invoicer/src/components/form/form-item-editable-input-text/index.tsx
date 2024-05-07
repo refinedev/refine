@@ -10,7 +10,6 @@ import {
 } from "antd";
 import InputMask from "react-input-mask";
 import { EditOutlined } from "@ant-design/icons";
-
 import { useStyles } from "./styled";
 
 type Props = {

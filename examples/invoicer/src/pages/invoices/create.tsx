@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { useNavigation } from "@refinedev/core";
-import { PageHeader } from "../../components/page-header";
 import { NumberField, useForm, useSelect } from "@refinedev/antd";
 import {
   Button,
@@ -16,12 +15,13 @@ import {
   Typography,
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { IInvoice, IService } from "../../interfaces";
+import { PageHeader } from "@/components/page-header";
+import { Invoice, Service } from "@/types";
 import { useStyles } from "./create.styled";
 
 export const InvoicesPageCreate = () => {
   const [tax, setTax] = useState<number>(0);
-  const [services, setServices] = useState<IService[]>([
+  const [services, setServices] = useState<Service[]>([
     {
       title: "",
       unitPrice: 0,
@@ -42,7 +42,7 @@ export const InvoicesPageCreate = () => {
 
   const { listUrl } = useNavigation();
 
-  const { formProps } = useForm<IInvoice>();
+  const { formProps } = useForm<Invoice>();
 
   const { selectProps: selectPropsAccounts } = useSelect({
     resource: "accounts",
@@ -73,7 +73,7 @@ export const InvoicesPageCreate = () => {
     });
   };
 
-  const onFinishHandler = (values: IInvoice) => {
+  const onFinishHandler = (values: Invoice) => {
     const valuesWithServices = {
       ...values,
       total,
@@ -88,7 +88,7 @@ export const InvoicesPageCreate = () => {
   return (
     <Form
       {...formProps}
-      onFinish={(values) => onFinishHandler(values as IInvoice)}
+      onFinish={(values) => onFinishHandler(values as Invoice)}
       layout="vertical"
     >
       <PageHeader

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TOKEN_KEY } from "../../utils/constants";
+import { TOKEN_KEY } from "@/utils/constants";
 
 export const axiosInstance = axios.create();
 

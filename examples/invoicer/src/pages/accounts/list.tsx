@@ -13,15 +13,15 @@ import {
 } from "@refinedev/antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Flex, Input, Select, Table, Typography } from "antd";
-import { CustomAvatar } from "../../components/avatar";
-import { IAccount } from "../../interfaces";
-import { API_URL } from "../../utils/constants";
-import { PaginationTotal } from "../../components/pagination-total";
+import { PaginationTotal } from "@/components/pagination-total";
+import { CustomAvatar } from "@/components/avatar";
+import { API_URL } from "@/utils/constants";
+import { Account } from "@/types";
 
 export const AccountsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
-  const { tableProps, filters, sorters } = useTable<IAccount>({
+  const { tableProps, filters, sorters } = useTable<Account>({
     sorters: {
       initial: [{ field: "updatedAt", order: "desc" }],
     },
@@ -124,7 +124,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
                 />
               </FilterDropdown>
             )}
-            render={(name: string, record: IAccount) => {
+            render={(name: string, record: Account) => {
               const logoUrl = record?.logo?.url;
               const src = logoUrl ? `${API_URL}${logoUrl}` : undefined;
 
@@ -197,7 +197,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             key="income"
             width={120}
             align="end"
-            render={(_, record: IAccount) => {
+            render={(_, record: Account) => {
               let total = 0;
               record.invoices?.forEach((invoice) => {
                 total += invoice.total;
@@ -216,7 +216,7 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
             fixed="right"
             align="end"
             width={106}
-            render={(_, record: IAccount) => {
+            render={(_, record: Account) => {
               return (
                 <Flex align="center" gap={8}>
                   <EditButton

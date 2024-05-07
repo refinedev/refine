@@ -20,12 +20,14 @@ import {
   ContainerOutlined,
 } from "@ant-design/icons";
 import { Col, Row } from "antd";
-import { PageHeader } from "../../components/page-header";
-import { FormItemEditableInputText } from "../../components/form/form-item-editable-input-text";
-import { FormItemEditableText } from "../../components/form/form-item-editable-text";
-import { FormItemEditableSelect } from "../../components/form/form-item-editable-select";
-import { countryOptions } from "../../utils/countries";
-import { IInvoice } from "../../interfaces";
+import { PageHeader } from "@/components/page-header";
+import {
+  FormItemEditableInputText,
+  FormItemEditableText,
+  FormItemEditableSelect,
+} from "@/components/form";
+import { countryOptions } from "@/utils/countries";
+import { Invoice } from "@/types";
 
 export const ClientsPageEdit = () => {
   const { listUrl } = useNavigation();
@@ -228,7 +230,7 @@ export const ClientsPageEdit = () => {
               <Table.Column
                 key="actions"
                 width={64}
-                render={(_, record: IInvoice) => {
+                render={(_, record: Invoice) => {
                   return (
                     <Flex align="center" gap={8}>
                       <ShowButton

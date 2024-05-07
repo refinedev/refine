@@ -1,6 +1,6 @@
 import { AuthProvider } from "@refinedev/core";
 import { AuthHelper } from "@refinedev/strapi-v4";
-import { API_URL, TOKEN_KEY } from "../../utils/constants";
+import { API_URL, TOKEN_KEY } from "@/utils/constants";
 
 export const strapiAuthHelper = AuthHelper(`${API_URL}/api`);
 

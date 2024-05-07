@@ -46,6 +46,7 @@
     "@types/react-input-mask": "^3.0.1",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }

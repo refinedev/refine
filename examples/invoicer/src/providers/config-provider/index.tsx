@@ -5,22 +5,20 @@ import {
   useEffect,
   useState,
 } from "react";
-import { ConfigProvider, ThemeConfig, theme } from "antd";
+import { ConfigProvider as AntdConfigProvider, ThemeConfig, theme } from "antd";
 import { ThemeProvider } from "antd-style";
 import { RefineThemes } from "@refinedev/antd";
 
-type ColorModeContextType = {
+type ConfigProviderType = {
   mode: string;
   setMode: (mode: string) => void;
 };
 
-export const ColorModeContext = createContext<ColorModeContextType>(
-  {} as ColorModeContextType,
+export const ConfigProviderContext = createContext<ConfigProviderType>(
+  {} as ConfigProviderType,
 );
 
-export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
-  children,
-}) => {
+export const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const colorModeFromLocalStorage = localStorage.getItem("colorMode");
   const isSystemPreferenceDark = window.matchMedia(
     "(prefers-color-scheme: dark)",
@@ -63,26 +61,26 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
   };
 
   return (
-    <ColorModeContext.Provider
+    <ConfigProviderContext.Provider
       value={{
         setMode: setColorMode,
         mode,
       }}
     >
-      <ConfigProvider theme={customTheme}>
+      <AntdConfigProvider theme={customTheme}>
         {/* @ts-expect-error Type error via React.ReactNode from antd-style */}
         <ThemeProvider theme={customTheme} appearance={mode}>
           {children}
         </ThemeProvider>
-      </ConfigProvider>
-    </ColorModeContext.Provider>
+      </AntdConfigProvider>
+    </ConfigProviderContext.Provider>
   );
 };
 
-export const useColorMode = () => {
-  const context = useContext(ColorModeContext);
+export const useConfigProvider = () => {
+  const context = useContext(ConfigProviderContext);
   if (!context) {
-    throw new Error("useColorMode must be used within a ColorModeContext");
+    throw new Error("useConfigProvider must be used within a ConfigProvider");
   }
   return context;
 };

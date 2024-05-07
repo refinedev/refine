@@ -1,14 +1,14 @@
 import { useNavigation, useShow } from "@refinedev/core";
 import { FilePdfOutlined } from "@ant-design/icons";
-import { PageHeader } from "../../components/page-header";
-import { InvoicePDF } from "../../components/invoice-pdf";
-import { IInvoice } from "../../interfaces";
+import { PageHeader } from "@/components/page-header";
+import { InvoicePDF } from "@/components/invoice-pdf";
+import { Invoice } from "@/types";
 import { Button } from "antd";
 
 export const InvoicesPageShow = () => {
   const { listUrl } = useNavigation();
 
-  const { queryResult } = useShow<IInvoice>({
+  const { queryResult } = useShow<Invoice>({
     meta: {
       populate: ["client", "account.logo"],
     },

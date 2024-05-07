@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 
 import type { AvatarProps } from "antd";
 import { Avatar as AntdAvatar, Typography } from "antd";
-import { getRandomColorFromString } from "../../utils/get-random-color";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 
 type Props = AvatarProps & {
   name?: string;

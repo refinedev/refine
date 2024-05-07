@@ -13,15 +13,15 @@ import {
 } from "@refinedev/antd";
 import { Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { IClient } from "../../interfaces";
-import { CustomAvatar } from "../../components/avatar";
-import { API_URL } from "../../utils/constants";
-import { PaginationTotal } from "../../components/pagination-total";
+import { CustomAvatar } from "@/components/avatar";
+import { PaginationTotal } from "@/components/pagination-total";
+import { API_URL } from "@/utils/constants";
+import { Client } from "@/types";
 
 export const ClientsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
 
-  const { tableProps, filters, sorters } = useTable<IClient>({
+  const { tableProps, filters, sorters } = useTable<Client>({
     sorters: {
       initial: [{ field: "updatedAt", order: "desc" }],
     },
@@ -164,7 +164,7 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             key="total"
             width={120}
             align="end"
-            render={(_, record: IClient) => {
+            render={(_, record: Client) => {
               let total = 0;
               record.invoices?.forEach((invoice) => {
                 total += invoice.total;
@@ -196,7 +196,7 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
                 />
               </FilterDropdown>
             )}
-            render={(_, record: IClient) => {
+            render={(_, record: Client) => {
               const logoUrl = record?.account?.logo?.url;
               const src = logoUrl ? `${API_URL}${logoUrl}` : null;
               const name = record?.account?.company_name;
@@ -215,7 +215,7 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             fixed="right"
             align="end"
             width={106}
-            render={(_, record: IClient) => {
+            render={(_, record: Client) => {
               return (
                 <Flex align="center" gap={8}>
                   <EditButton

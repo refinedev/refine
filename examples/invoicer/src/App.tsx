@@ -14,32 +14,38 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { App as AntdApp } from "antd";
-import { Header } from "./components/header";
-import { GitHubBanner } from "./components/gh-banner";
-import { CommonLayout } from "./components/Layout/common";
-import { dataProvider } from "./providers/data-provider";
-import { authProvider } from "./providers/auth-provider";
-import { ColorModeContextProvider } from "./providers/color-mode";
-import { AccountsPageList } from "./pages/accounts/list";
-import { AccountsPageCreate } from "./pages/accounts/create";
-import { AccountsPageEdit } from "./pages/accounts/edit";
-import { ClientsPageList } from "./pages/clients/list";
-import { ClientsPageCreate } from "./pages/clients/create";
-import { ClientsPageEdit } from "./pages/clients/edit";
-import { InvoicePageList } from "./pages/invoices/list";
-import { InvoicesPageCreate } from "./pages/invoices/create";
-import { InvoicesPageShow } from "./pages/invoices/show";
-import { InvoicePDF } from "./components/invoice-pdf";
+import { Header } from "@/components/header";
+import { GitHubBanner } from "@/components/gh-banner";
+import { CommonLayout } from "@/components/Layout/common";
+import { Logo } from "@/components/logo";
+import { InvoicePDF } from "@/components/invoice-pdf";
+import {
+  AccountsPageList,
+  AccountsPageCreate,
+  AccountsPageEdit,
+} from "@/pages/accounts";
+import {
+  ClientsPageList,
+  ClientsPageCreate,
+  ClientsPageEdit,
+} from "@/pages/clients";
+import {
+  InvoicePageList,
+  InvoicesPageCreate,
+  InvoicesPageShow,
+} from "@/pages/invoices";
+import { dataProvider } from "@/providers/data-provider";
+import { authProvider } from "@/providers/auth-provider";
+import { ConfigProvider } from "@/providers/config-provider";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/custom.css";
-import { Logo } from "./components/logo";
 
 const App: React.FC = () => {
   return (
     <DevtoolsProvider>
       <GitHubBanner />
       <BrowserRouter>
-        <ColorModeContextProvider>
+        <ConfigProvider>
           <AntdApp>
             <Refine
               routerProvider={routerProvider}
@@ -191,7 +197,7 @@ const App: React.FC = () => {
               <DocumentTitleHandler />
             </Refine>
           </AntdApp>
-        </ColorModeContextProvider>
+        </ConfigProvider>
         <DevtoolsPanel />
       </BrowserRouter>
     </DevtoolsProvider>

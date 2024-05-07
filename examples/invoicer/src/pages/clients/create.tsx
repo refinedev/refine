@@ -2,8 +2,8 @@ import { useGo } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
 import { Flex, Form, Input, Select } from "antd";
 import InputMask from "react-input-mask";
-import { ModalForm } from "../../components/modal/form";
-import { countryOptions } from "../../utils/countries";
+import { ModalForm } from "@/components/modal/form";
+import { countryOptions } from "@/utils/countries";
 
 export const ClientsPageCreate = () => {
   const go = useGo();

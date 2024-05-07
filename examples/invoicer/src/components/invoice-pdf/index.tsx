@@ -1,4 +1,3 @@
-import { useShow } from "@refinedev/core";
 import {
   Card,
   Col,
@@ -11,13 +10,13 @@ import {
   Typography,
 } from "antd";
 import { DateField, NumberField } from "@refinedev/antd";
-import { CustomAvatar } from "../../components/avatar";
-import { API_URL } from "../../utils/constants";
-import { IInvoice, IService } from "../../interfaces";
+import { CustomAvatar } from "@/components/avatar";
+import { API_URL } from "@/utils/constants";
+import { Invoice, Service } from "@/types";
 import { useStyles } from "./styled";
 
 type Props = {
-  invoice?: IInvoice;
+  invoice?: Invoice;
   loading?: boolean;
 };
 
@@ -166,7 +165,7 @@ export const InvoicePDF = ({ invoice, loading }: Props) => {
               key="total"
               align="right"
               width={128}
-              render={(_, record: IService) => {
+              render={(_, record: Service) => {
                 return (
                   <NumberField
                     value={record.totalPrice}

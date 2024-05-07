@@ -14,15 +14,15 @@ import {
 } from "@refinedev/antd";
 import { Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { CustomAvatar } from "../../components/avatar";
-import { PaginationTotal } from "../../components/pagination-total";
-import { API_URL } from "../../utils/constants";
-import { IInvoice } from "../../interfaces";
+import { CustomAvatar } from "@/components/avatar";
+import { PaginationTotal } from "@/components/pagination-total";
+import { API_URL } from "@/utils/constants";
+import { Invoice } from "@/types";
 
 export const InvoicePageList = () => {
   const go = useGo();
 
-  const { tableProps, filters, sorters } = useTable<IInvoice>({
+  const { tableProps, filters, sorters } = useTable<Invoice>({
     meta: {
       populate: ["client", "account.logo"],
     },
@@ -108,7 +108,7 @@ export const InvoicePageList = () => {
               />
             </FilterDropdown>
           )}
-          render={(_, record: IInvoice) => {
+          render={(_, record: Invoice) => {
             const logoUrl = record?.account?.logo?.url;
             const src = logoUrl ? `${API_URL}${logoUrl}` : undefined;
             const name = record?.account?.company_name;
@@ -125,7 +125,7 @@ export const InvoicePageList = () => {
           title="Client"
           dataIndex="client.name"
           key="client.name"
-          render={(_, record: IInvoice) => {
+          render={(_, record: Invoice) => {
             return <Typography.Text>{record.client?.name}</Typography.Text>;
           }}
           defaultFilteredValue={getDefaultFilter("company_name", filters, "in")}
@@ -174,7 +174,7 @@ export const InvoicePageList = () => {
           fixed="right"
           align="end"
           width={102}
-          render={(_, record: IInvoice) => {
+          render={(_, record: Invoice) => {
             return (
               <Flex align="center" gap={8}>
                 <ShowButton

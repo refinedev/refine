@@ -1,14 +1,14 @@
 import { useGetIdentity, useLogout } from "@refinedev/core";
-import { IUser } from "../../../interfaces";
-import { useStyles } from "./styled";
 import { Button, Dropdown, Flex, Skeleton, Typography } from "antd";
-import { CustomAvatar } from "../../avatar";
+import { CustomAvatar } from "@/components/avatar";
+import { User as UserType } from "@/types";
+import { useStyles } from "./styled";
 
 export const User = () => {
   const { styles } = useStyles();
 
   const { mutate: logout } = useLogout();
-  const { data: user, isLoading } = useGetIdentity<IUser>();
+  const { data: user, isLoading } = useGetIdentity<UserType>();
 
   return (
     <Dropdown

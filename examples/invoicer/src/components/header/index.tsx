@@ -1,29 +1,20 @@
 import React from "react";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetIdentity, useList, useNavigation } from "@refinedev/core";
-import {
-  Typography,
-  Layout as AntdLayout,
-  Button,
-  theme,
-  Flex,
-  Tabs,
-} from "antd";
+import { useNavigation } from "@refinedev/core";
+import { Layout as AntdLayout, Button, theme, Flex, Tabs } from "antd";
 import {
   BankOutlined,
   ShopOutlined,
   ContainerOutlined,
 } from "@ant-design/icons";
-import { useLocation } from "react-router-dom";
-import { useColorMode } from "../../providers/color-mode";
-import { IconMoon } from "../icons/icon-moon";
-import { IconSun } from "../icons/icon-sun";
-import { IconInvoicerLogo } from "../icons/icon-invoicer";
-import { Search } from "./search";
 import { Link } from "react-router-dom";
-import { User } from "./user";
+import { useLocation } from "react-router-dom";
+import { useConfigProvider } from "@/providers/config-provider";
+import { Search } from "@/components/header/search";
+import { IconMoon, IconSun } from "@/components/icons";
+import { User } from "@/components/header/user";
+import { Logo } from "@/components/logo";
 import { useStyles } from "./styled";
-import { Logo } from "../logo";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list, listUrl } = useNavigation();
@@ -31,7 +22,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const location = useLocation();
 
   const { token } = theme.useToken();
-  const { mode, setMode } = useColorMode();
+  const { mode, setMode } = useConfigProvider();
   const { styles } = useStyles();
 
   return (

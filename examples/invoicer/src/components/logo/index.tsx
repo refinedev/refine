@@ -1,8 +1,8 @@
 import { CSSProperties, SVGProps } from "react";
-import { Flex, Typography, TypographyProps } from "antd";
-import { IconInvoicerLogo } from "../icons/icon-invoicer";
-import { useStyles } from "./styled";
+import { Flex, Typography } from "antd";
 import { TitleProps } from "antd/lib/typography/Title";
+import { IconInvoicerLogo } from "@/components/icons";
+import { useStyles } from "./styled";
 
 type Props = {
   className?: string;

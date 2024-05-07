@@ -3,16 +3,16 @@ import { useForm } from "@refinedev/antd";
 import { Flex, Form, Input, Select } from "antd";
 import InputMask from "react-input-mask";
 import { getValueProps } from "@refinedev/strapi-v4";
-import { ModalForm } from "../../components/modal/form";
-import { FormItemUploadLogoDraggable } from "../../components/form/form-item-upload-logo-draggable";
-import { countryOptions } from "../../utils/countries";
-import { API_URL } from "../../utils/constants";
-import { IAccount, IAccountForm } from "../../interfaces";
+import { ModalForm } from "@/components/modal";
+import { FormItemUploadLogoDraggable } from "@/components/form";
+import { countryOptions } from "@/utils/countries";
+import { API_URL } from "@/utils/constants";
+import { Account, AccountForm } from "@/types";
 
 export const AccountsPageCreate = () => {
   const go = useGo();
 
-  const { formProps } = useForm<IAccount, HttpError, IAccountForm>();
+  const { formProps } = useForm<Account, HttpError, AccountForm>();
 
   return (
     <ModalForm
@@ -35,7 +35,7 @@ export const AccountsPageCreate = () => {
           return formProps.onFinish?.({
             ...values,
             logo: logoId,
-          } as IAccountForm);
+          } as AccountForm);
         }}
       >
         <Flex gap={40}>

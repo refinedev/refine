@@ -20,25 +20,25 @@ import {
   ShopOutlined,
 } from "@ant-design/icons";
 import { Col, Row } from "antd";
-import { PageHeader } from "../../components/page-header";
-import { FormItemEditableInputText } from "../../components/form/form-item-editable-input-text";
-import { FormItemEditableText } from "../../components/form/form-item-editable-text";
-import { FormItemEditableSelect } from "../../components/form/form-item-editable-select";
-import { FormItemUploadLogo } from "../../components/form/form-item-upload-logo";
-import { countryOptions } from "../../utils/countries";
-import { IAccount, IAccountForm } from "../../interfaces";
+import { PageHeader } from "@/components/page-header";
+import {
+  FormItemEditableInputText,
+  FormItemEditableText,
+  FormItemEditableSelect,
+  FormItemUploadLogo,
+} from "@/components/form";
+import { countryOptions } from "@/utils/countries";
+import { Account, AccountForm } from "@/types";
 
 export const AccountsPageEdit = () => {
   const { listUrl } = useNavigation();
 
-  const { formProps, queryResult } = useForm<IAccount, HttpError, IAccountForm>(
-    {
-      redirect: false,
-      meta: {
-        populate: ["logo", "clients", "invoices.client"],
-      },
+  const { formProps, queryResult } = useForm<Account, HttpError, AccountForm>({
+    redirect: false,
+    meta: {
+      populate: ["logo", "clients", "invoices.client"],
     },
-  );
+  });
   const account = queryResult?.data?.data;
   const clients = account?.clients || [];
   const invoices = account?.invoices || [];
@@ -52,7 +52,7 @@ export const AccountsPageEdit = () => {
         return formProps.onFinish?.({
           ...values,
           logo: logoId,
-        } as IAccountForm);
+        } as AccountForm);
       }}
       layout="vertical"
     >
@@ -209,7 +209,7 @@ export const AccountsPageEdit = () => {
               <Table.Column
                 key="actions"
                 width={64}
-                render={(_, record: IAccount) => {
+                render={(_, record: Account) => {
                   return (
                     <EditButton
                       hideText
@@ -276,7 +276,7 @@ export const AccountsPageEdit = () => {
               <Table.Column
                 key="actions"
                 width={64}
-                render={(_, record: IAccount) => {
+                render={(_, record: Account) => {
                   return (
                     <ShowButton
                       hideText

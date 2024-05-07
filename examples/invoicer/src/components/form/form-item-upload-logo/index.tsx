@@ -3,10 +3,10 @@ import { Avatar, Form, Skeleton, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { RcFile } from "antd/lib/upload";
-import { getRandomColorFromString } from "../../../utils/get-random-color";
-import { API_URL, TOKEN_KEY } from "../../../utils/constants";
-import { IMedia, UploadResponse } from "../../../interfaces";
-import { axiosInstance } from "../../../providers/axios";
+import { axiosInstance } from "@/providers/axios";
+import { getRandomColorFromString } from "@/utils/get-random-color";
+import { API_URL, TOKEN_KEY } from "@/utils/constants";
+import { Media, UploadResponse } from "@/types";
 import { useStyles } from "./styled";
 
 type Props = {
@@ -27,7 +27,7 @@ export const FormItemUploadLogo = ({
   const [error, setError] = useState<string | null>(null);
 
   const form = Form.useFormInstance();
-  const fieldValue = Form.useWatch(name, form) as IMedia | UploadResponse;
+  const fieldValue = Form.useWatch(name, form) as Media | UploadResponse;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
   const src = useMemo(() => {

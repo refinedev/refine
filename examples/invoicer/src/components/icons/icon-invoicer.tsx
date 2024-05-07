@@ -1,8 +1,8 @@
 import { SVGProps } from "react";
-import { useColorMode } from "../../providers/color-mode";
+import { useConfigProvider } from "@/providers/config-provider";
 
 export const IconInvoicerLogo = (props: SVGProps<SVGSVGElement>) => {
-  const { mode } = useColorMode();
+  const { mode } = useConfigProvider();
   const isDarkMode = mode === "dark";
 
   return (
