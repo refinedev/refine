@@ -37,7 +37,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
-      "biome format --write"
+      "biome format --write --no-errors-on-unmatched"
     ],
     "*.{md,mdx}": [
       "prettier --config ./.prettierrc --write"
