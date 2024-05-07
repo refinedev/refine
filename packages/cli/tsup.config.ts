@@ -29,7 +29,7 @@ const getRefinePackageNames = () => {
   }
 };
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.ts", "src/cli.ts"],
   splitting: false,
   sourcemap: true,
@@ -95,5 +95,5 @@ export default defineConfig({
       },
     }),
   ],
-  onSuccess: "pnpm types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));
