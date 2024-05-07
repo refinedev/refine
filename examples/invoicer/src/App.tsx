@@ -16,7 +16,7 @@ import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { App as AntdApp } from "antd";
 import { Header } from "@/components/header";
 import { GitHubBanner } from "@/components/gh-banner";
-import { CommonLayout } from "@/components/Layout/common";
+import { CommonLayout } from "@/components/layout/common";
 import { Logo } from "@/components/logo";
 import { InvoicePDF } from "@/components/invoice-pdf";
 import {
