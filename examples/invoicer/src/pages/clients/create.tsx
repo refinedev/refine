@@ -1,8 +1,7 @@
 import { useGo } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
-import { Flex, Form, Input, Select } from "antd";
+import { Flex, Form, Input, Modal, Select } from "antd";
 import InputMask from "react-input-mask";
-import { ModalForm } from "@/components/modal/form";
 import { countryOptions } from "@/utils/countries";
 
 export const ClientsPageCreate = () => {
@@ -17,8 +16,8 @@ export const ClientsPageCreate = () => {
   });
 
   return (
-    <ModalForm
-      formId="create-client-form"
+    <Modal
+      okButtonProps={{ form: "create-account-form", htmlType: "submit" }}
       title="Add new client"
       open
       onCancel={() => {
@@ -95,6 +94,6 @@ export const ClientsPageCreate = () => {
           </Form.Item>
         </Flex>
       </Form>
-    </ModalForm>
+    </Modal>
   );
 };

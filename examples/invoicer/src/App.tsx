@@ -15,10 +15,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { App as AntdApp } from "antd";
 import { Header } from "@/components/header";
-import { GitHubBanner } from "@/components/gh-banner";
-import { CommonLayout } from "@/components/layout/common";
 import { Logo } from "@/components/logo";
-import { InvoicePDF } from "@/components/invoice-pdf";
 import {
   AccountsPageList,
   AccountsPageCreate,
@@ -43,7 +40,6 @@ import "./styles/custom.css";
 const App: React.FC = () => {
   return (
     <DevtoolsProvider>
-      <GitHubBanner />
       <BrowserRouter>
         <ConfigProvider>
           <AntdApp>
@@ -89,9 +85,15 @@ const App: React.FC = () => {
                         Header={() => <Header sticky />}
                         Sider={() => null}
                       >
-                        <CommonLayout>
+                        <div
+                          style={{
+                            maxWidth: "1280px",
+                            padding: "24px",
+                            margin: "0 auto",
+                          }}
+                        >
                           <Outlet />
-                        </CommonLayout>
+                        </div>
                       </ThemedLayoutV2>
                     </Authenticated>
                   }
@@ -135,16 +137,6 @@ const App: React.FC = () => {
                   </Route>
 
                   <Route path="*" element={<ErrorComponent />} />
-                </Route>
-
-                <Route
-                  element={
-                    <Authenticated key="authenticated-no-layout">
-                      <Outlet />
-                    </Authenticated>
-                  }
-                >
-                  <Route path="/invoices/:id/pdf" element={<InvoicePDF />} />
                 </Route>
 
                 <Route

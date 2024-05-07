@@ -1,9 +1,8 @@
 import { HttpError, useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
-import { Flex, Form, Input, Select } from "antd";
+import { Flex, Form, Input, Modal, Select } from "antd";
 import InputMask from "react-input-mask";
 import { getValueProps } from "@refinedev/strapi-v4";
-import { ModalForm } from "@/components/modal";
 import { FormItemUploadLogoDraggable } from "@/components/form";
 import { countryOptions } from "@/utils/countries";
 import { API_URL } from "@/utils/constants";
@@ -15,8 +14,8 @@ export const AccountsPageCreate = () => {
   const { formProps } = useForm<Account, HttpError, AccountForm>();
 
   return (
-    <ModalForm
-      formId="create-account-form"
+    <Modal
+      okButtonProps={{ form: "create-account-form", htmlType: "submit" }}
       title="Add new account"
       open
       onCancel={() => {
@@ -98,6 +97,6 @@ export const AccountsPageCreate = () => {
           </Flex>
         </Flex>
       </Form>
-    </ModalForm>
+    </Modal>
   );
 };

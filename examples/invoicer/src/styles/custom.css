@@ -54,10 +54,31 @@
   border-start-end-radius: 0px;
 }
 
+.ant-modal-content {
+  padding: 0 !important;
+}
+
+.ant-modal-body {
+  padding: 24px !important;
+}
+
+.ant-modal-header {
+  padding: 20px 24px !important;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid var(--ant-color-border) !important;
+}
+
+.ant-modal-footer {
+  padding: 20px 24px !important;
+  margin-top: 0 !important;
+  border-top: 1px solid var(--ant-color-border) !important;
+}
+
 @media print {
   .print-hidden {
     display: none !important;
   }
+
   .ant-layout {
     padding: 0;
     background: transparent;
