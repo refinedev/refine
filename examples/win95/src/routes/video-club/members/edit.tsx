@@ -9,7 +9,7 @@ import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { supabaseClient } from "../../../supabase-client";
-import { IMember } from "../../../interfaces";
+import { Member } from "../../../types";
 
 export const VideoClubMemberPageEdit = () => {
   const [memberPhoto, setMemberPhoto] = useState<string | null>(null);
@@ -21,7 +21,7 @@ export const VideoClubMemberPageEdit = () => {
     control,
     refineCore: { onFinish, queryResult },
     handleSubmit,
-  } = useForm<IMember>();
+  } = useForm<Member>();
 
   const onFinishHandler = (data: FieldValues) => {
     onFinish({

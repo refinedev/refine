@@ -1,31 +1,31 @@
-export type IVideoTitle = {
+export type VideoTitle = {
   id: number;
   created_at: string;
   tmdb_id: number;
   poster_path: string;
   trailer_key: string;
   title: string;
-  genres: Array<string>;
+  genres: string[];
   year: number;
   duration_minutes: number;
   director: string;
-  cast: Array<string>;
+  cast: string[];
   overview: string;
 };
 
-export type IExtendedVideoTitle = IVideoTitle & {
-  tapes: ITape[];
-  rentals: IRental[];
+export type ExtendedVideoTitle = VideoTitle & {
+  tapes: Tape[];
+  rentals: Rental[];
 };
 
-export type ITape = {
+export type Tape = {
   id: number;
   created_at: string;
   title_id: number;
   available: boolean;
 };
 
-export type IRental = {
+export type Rental = {
   id: number;
   member_id: number;
   period: number;
@@ -37,18 +37,18 @@ export type IRental = {
   tape_id: number;
 };
 
-export type IExtendedRental = IRental & {
-  titles?: IVideoTitle;
+export type ExtendedRental = Rental & {
+  titles?: VideoTitle;
 };
 
-export type ICreateRental = {
+export type CreateRental = {
   member_id: number;
   period: number;
   title_id: number;
   expected_return_at: string;
 };
 
-export type IMember = {
+export type Member = {
   id: number;
   deposit: number;
   created_at: string;
@@ -59,15 +59,15 @@ export type IMember = {
   photo_url?: string;
 };
 
-export type IExendedMember = IMember & {
-  rentals: IExtendedRental[];
+export type ExtendedMember = Member & {
+  rentals: ExtendedRental[];
 };
 
-export type ITMDBMovieResponse = {
+export type TMDBMovieResponse = {
   adult: boolean;
   backdrop_path: string;
   budget: number;
-  genres: Array<{ id: number; name: string }>;
+  genres: { id: number; name: string }[];
   id: number;
   imdb_id: string;
   original_language: string;
@@ -85,30 +85,30 @@ export type ITMDBMovieResponse = {
   vote_average: number;
   vote_count: number;
   credits: {
-    cast: Array<{
+    cast: {
       adult: boolean;
       gender: number;
       id: number;
       known_for_department: string;
       name: string;
       job: string;
-    }>;
-    crew: Array<{
+    }[];
+    crew: {
       adult: boolean;
       gender: number;
       id: number;
       known_for_department: string;
       name: string;
       job: string;
-    }>;
+    }[];
   };
   videos: {
-    results: Array<{
+    results: {
       name: string;
       key: string;
       site: string;
       type: string;
       id: string;
-    }>;
+    }[];
   };
 };

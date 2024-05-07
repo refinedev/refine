@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import { Select } from "react95";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IRental } from "../../../interfaces";
+import { IRental } from "../../../types";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
 import { getImagesUrl } from "../../../utils/get-cdn-url";

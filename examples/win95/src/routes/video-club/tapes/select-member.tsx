@@ -20,7 +20,7 @@ import {
 } from "../../../components/table";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { hasActiveRental } from "../../../utils/has-active-rental";
-import { IExendedMember } from "../../../interfaces";
+import { ExtendedMember } from "../../../types";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { IconChevronRight } from "../../../components/icons/chevron-right";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
@@ -30,7 +30,7 @@ type Props = {
 };
 
 export const VideoClubPageTapeSelectMember = (props: Props) => {
-  const [selectedMember, setSelectedMember] = useState<IExendedMember | null>(
+  const [selectedMember, setSelectedMember] = useState<ExtendedMember | null>(
     null,
   );
 
@@ -44,7 +44,7 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IExendedMember>({
+  } = useTable<ExtendedMember>({
     resource: "members",
     meta: {
       select: "*, rentals(*)",

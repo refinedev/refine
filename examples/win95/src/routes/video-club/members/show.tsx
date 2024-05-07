@@ -1,10 +1,10 @@
 import { useNavigation, useOne } from "@refinedev/core";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { Button, GroupBox, ScrollView } from "react95";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IExendedMember } from "../../../interfaces";
+import { ExtendedMember } from "../../../types";
 import {
   Table,
   TableBody,
@@ -22,7 +22,7 @@ export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();
   const { list } = useNavigation();
 
-  const { data, isLoading } = useOne<IExendedMember>({
+  const { data, isLoading } = useOne<ExtendedMember>({
     resource: "members",
     id,
     meta: {
@@ -46,7 +46,7 @@ export const VideoClubMemberPageShow: React.FC = () => {
   );
 };
 
-const MemberDetails = ({ member }: { member?: IExendedMember }) => {
+const MemberDetails = ({ member }: { member?: ExtendedMember }) => {
   const { edit } = useNavigation();
 
   return (
@@ -84,7 +84,7 @@ const MemberDetails = ({ member }: { member?: IExendedMember }) => {
   );
 };
 
-const History = ({ member }: { member?: IExendedMember }) => {
+const History = ({ member }: { member?: ExtendedMember }) => {
   return (
     <HistoryGroupBox label="History">
       <MemberCreatedAtText>

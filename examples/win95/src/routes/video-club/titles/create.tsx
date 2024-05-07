@@ -22,7 +22,7 @@ import {
   getTitleByTmdbId,
 } from "../../../utils/get-title-by-tmdb-id";
 import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
-import { ITape, IVideoTitle } from "../../../interfaces";
+import { Tape, VideoTitle } from "../../../types";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
 import { MediaPlayerModal } from "../../../components/media-player/modal";
@@ -34,14 +34,14 @@ export const VideoClubPageCreateTitle = () => {
   const [trailer, setTrailer] = useState(false);
 
   const { mutateAsync: createTitle } = useCreate<
-    IVideoTitle,
+    VideoTitle,
     HttpError,
-    Omit<IVideoTitle, "id" | "created_at">
+    Omit<VideoTitle, "id" | "created_at">
   >();
   const { mutateAsync: createTapes } = useCreateMany<
-    ITape,
+    Tape,
     HttpError,
-    Omit<ITape, "id" | "created_at">
+    Omit<Tape, "id" | "created_at">
   >();
 
   const [numberOfCopies, setNumberOfCopies] = React.useState<number>(1);

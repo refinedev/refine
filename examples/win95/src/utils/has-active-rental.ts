@@ -1,7 +1,7 @@
-import { IExendedMember } from "../interfaces";
+import { ExtendedMember } from "../types";
 
 type Props = {
-  member: IExendedMember;
+  member: ExtendedMember;
 };
 
 export const hasActiveRental = ({ member }: Props) => {

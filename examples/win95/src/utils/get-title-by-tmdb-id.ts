@@ -1,10 +1,10 @@
 import { dataProvider, supabaseClient } from "../supabase-client";
-import { ITMDBMovieResponse, IVideoTitle } from "../interfaces";
+import { TMDBMovieResponse, VideoTitle } from "../types";
 import { tmdbToTitle } from "./tmdb-to-title";
 
 export type TitleByTmdbIdResponse = {
   existing: boolean;
-  data: Omit<IVideoTitle, "created_at" | "id"> & { id?: number };
+  data: Omit<VideoTitle, "created_at" | "id"> & { id?: number };
 };
 
 export const getTitleByTmdbId = async (
@@ -13,7 +13,7 @@ export const getTitleByTmdbId = async (
   let title: TitleByTmdbIdResponse["data"] | null = null;
 
   try {
-    const existingResponse = await dataProvider.getOne<IVideoTitle>({
+    const existingResponse = await dataProvider.getOne<VideoTitle>({
       resource: "titles",
       id: tmdbId,
       meta: {
@@ -33,7 +33,7 @@ export const getTitleByTmdbId = async (
   }
 
   try {
-    const response = await supabaseClient.functions.invoke<ITMDBMovieResponse>(
+    const response = await supabaseClient.functions.invoke<TMDBMovieResponse>(
       "movie",
       {
         body: { movieId: tmdbId },

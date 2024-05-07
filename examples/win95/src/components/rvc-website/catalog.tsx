@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Hourglass } from "react95";
 import styled from "styled-components";
 import { Browser } from "../browser";
-import { IVideoTitle } from "../../interfaces";
+import { VideoTitle } from "../../types";
 import { RVCWebsiteLayout } from "./layout";
 import { RefineBanner } from "../refine-banner";
 
@@ -11,7 +11,7 @@ export const RVCWebsiteCatalogPage = () => {
   const navigate = useNavigate();
   const { catalogLetter } = useParams();
 
-  const { data, isFetching } = useList<IVideoTitle>({
+  const { data, isFetching } = useList<VideoTitle>({
     resource: "titles",
     pagination: { mode: "off" },
     filters: [{ field: "title", operator: "startswith", value: catalogLetter }],

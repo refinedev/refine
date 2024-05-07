@@ -13,7 +13,7 @@ import { RVCWebsiteLayout } from "../../components/rvc-website/layout";
 import { CatalogsList } from "../../components/rvc-website/catalog";
 import { RefineBanner } from "../../components/refine-banner";
 import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
-import { IVideoTitle } from "../../interfaces";
+import { VideoTitle } from "../../types";
 import { getImagesUrl } from "../../utils/get-cdn-url";
 
 export const RVCWebsitePageHome = () => {
@@ -66,7 +66,7 @@ const NewTitles = () => {
     null,
   );
 
-  const { data } = useList<IVideoTitle>({
+  const { data } = useList<VideoTitle>({
     resource: "titles",
     sorters: [{ field: "created_at", order: "desc" }],
     pagination: { current: 1, pageSize: 10 },

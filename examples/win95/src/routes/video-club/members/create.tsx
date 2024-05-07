@@ -8,7 +8,7 @@ import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { supabaseClient } from "../../../supabase-client";
-import { IMember } from "../../../interfaces";
+import { Member } from "../../../types";
 import { DEPOSIT } from "../../../utils/app-settings";
 import { convertToUSD } from "../../../utils/convert-to-usd";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
@@ -22,7 +22,7 @@ export const VideoClubMemberPageCreate = () => {
     control,
     refineCore: { onFinish },
     handleSubmit,
-  } = useForm<IMember>();
+  } = useForm<Member>();
 
   const onFinishHandler = (data: FieldValues) => {
     onFinish({

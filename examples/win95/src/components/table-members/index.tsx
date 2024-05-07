@@ -14,15 +14,15 @@ import {
   TableFilterInputLabel,
   TableFilterInputText,
 } from "../../components/table";
-import { IExendedMember } from "../../interfaces";
+import { ExtendedMember } from "../../types";
 import { hasActiveRental } from "../../utils/has-active-rental";
 import { Pagination } from "../pagination";
 import { DangerIcon } from "../icons/danger-icon";
 import { VideoClubLayoutSubPage } from "../../routes/video-club/subpage-layout";
 
 type Props = {
-  selectedMember: IExendedMember | null;
-  setSelectedMember: (member: IExendedMember) => void;
+  selectedMember: ExtendedMember | null;
+  setSelectedMember: (member: ExtendedMember) => void;
 };
 
 export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
@@ -35,7 +35,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IExendedMember>({
+  } = useTable<ExtendedMember>({
     resource: "members",
     meta: {
       select: "*, rentals(*)",

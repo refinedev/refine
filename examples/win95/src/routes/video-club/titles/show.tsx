@@ -19,7 +19,7 @@ import { MediaPlayerModal } from "../../../components/media-player/modal";
 import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { IExtendedVideoTitle, IMember, IRental } from "../../../interfaces";
+import { ExtendedVideoTitle, Member, Rental } from "../../../types";
 
 export const VideoClubPageShowTitle = () => {
   const [trailer, setTrailer] = useState(false);
@@ -28,8 +28,8 @@ export const VideoClubPageShowTitle = () => {
   const {
     queryResult: { data, isLoading },
   } = useShow<
-    Omit<IExtendedVideoTitle, "rentals"> & {
-      rentals: Array<IRental & { member: IMember }>;
+    Omit<ExtendedVideoTitle, "rentals"> & {
+      rentals: (Rental & { member: Member })[];
     }
   >({
     resource: "titles",

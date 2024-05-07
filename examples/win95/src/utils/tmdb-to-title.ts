@@ -1,8 +1,8 @@
-import { ITMDBMovieResponse, IVideoTitle } from "../interfaces";
+import { TMDBMovieResponse, VideoTitle } from "../types";
 
 export const tmdbToTitle = (
-  tmdbBody: ITMDBMovieResponse,
-): Omit<IVideoTitle, "created_at" | "id"> => {
+  tmdbBody: TMDBMovieResponse,
+): Omit<VideoTitle, "created_at" | "id"> => {
   return {
     tmdb_id: tmdbBody.id,
     poster_path: tmdbBody.poster_path ?? "",

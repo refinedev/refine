@@ -24,7 +24,7 @@ import {
   IExtendedVideoTitle,
   ITape,
   IVideoTitle,
-} from "../../../interfaces";
+} from "../../../types";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";

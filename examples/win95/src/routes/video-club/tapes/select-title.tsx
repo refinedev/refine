@@ -19,15 +19,15 @@ import {
   TableFilterInputSelect,
 } from "../../../components/table";
 import { OPTIONS_YEAR } from "../../../utils/options-year";
-import { IExtendedVideoTitle } from "../../../interfaces";
+import { ExtendedVideoTitle } from "../../../types";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
 import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { IconChevronRight } from "../../../components/icons/chevron-right";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
 
 type Props = {
-  selectedTitle?: IExtendedVideoTitle | null;
-  onTitleSelect: (title: IExtendedVideoTitle) => void;
+  selectedTitle?: ExtendedVideoTitle | null;
+  onTitleSelect: (title: ExtendedVideoTitle) => void;
   onNextClick: () => void;
   onBackClick: () => void;
 };
@@ -47,7 +47,7 @@ export const VideoClubPageTapeSelectTitle = ({
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IExtendedVideoTitle>({
+  } = useTable<ExtendedVideoTitle>({
     resource: "titles",
     meta: {
       select: "*, tapes(*), rentals(*)",

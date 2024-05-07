@@ -14,7 +14,7 @@ import {
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IExtendedVideoTitle } from "../../../interfaces";
+import { ExtendedVideoTitle } from "../../../types";
 import { Pagination } from "../../../components/pagination";
 import { DangerIcon } from "../../../components/icons/danger-icon";
 import { OPTIONS_YEAR } from "../../../utils/options-year";
@@ -29,7 +29,7 @@ export const VideoClubPageBrowseTitles = () => {
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IExtendedVideoTitle>({
+  } = useTable<ExtendedVideoTitle>({
     resource: "titles",
     meta: {
       select: "*, tapes(*), rentals(*)",

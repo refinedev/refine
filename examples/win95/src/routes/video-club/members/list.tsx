@@ -18,7 +18,7 @@ import {
 import { Pagination } from "../../../components/pagination";
 import { DangerIcon } from "../../../components/icons/danger-icon";
 import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IExendedMember } from "../../../interfaces";
+import { ExtendedMember } from "../../../types";
 import { hasActiveRental } from "../../../utils/has-active-rental";
 
 export const VideoClubMemberPageList = () => {
@@ -31,7 +31,7 @@ export const VideoClubMemberPageList = () => {
     setCurrent,
     filters,
     setFilters,
-  } = useTable<IExendedMember>({
+  } = useTable<ExtendedMember>({
     resource: "members",
     meta: {
       select: "*, rentals(*)",

@@ -25,17 +25,17 @@ import { IconChevronLeft } from "../../../components/icons/chevron-left";
 import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { IExendedMember, IExtendedRental } from "../../../interfaces";
+import { ExtendedMember, ExtendedRental } from "../../../types";
 import { convertToUSD } from "../../../utils/convert-to-usd";
 
 export const VideoClubPageTapeReturn = () => {
-  const [selectedRentals, setSelectedRentals] = useState<IExtendedRental[]>([]);
+  const [selectedRentals, setSelectedRentals] = useState<ExtendedRental[]>([]);
 
   const { list } = useNavigation();
   const navigate = useNavigate();
   const { memberId } = useParams();
 
-  const { data: dataMember, isLoading } = useOne<IExendedMember>({
+  const { data: dataMember, isLoading } = useOne<ExtendedMember>({
     resource: "members",
     id: memberId,
     queryOptions: {
@@ -46,9 +46,9 @@ export const VideoClubPageTapeReturn = () => {
     },
   });
 
-  const { mutate: checkout } = useUpdateMany<IExtendedRental>();
+  const { mutate: checkout } = useUpdateMany<ExtendedRental>();
 
-  const handleOnRentalSelect = (rental: IExtendedRental) => {
+  const handleOnRentalSelect = (rental: ExtendedRental) => {
     if (selectedRentals.includes(rental)) {
       setSelectedRentals((prev) => prev.filter((r) => r.id !== rental.id));
     } else {
@@ -138,7 +138,7 @@ export const VideoClubPageTapeReturn = () => {
   );
 };
 
-const MemberInfo = (props: { member: IExendedMember | null }) => {
+const MemberInfo = (props: { member: ExtendedMember | null }) => {
   const { show } = useNavigation();
 
   return (
@@ -170,9 +170,9 @@ const MemberInfo = (props: { member: IExendedMember | null }) => {
 };
 
 const RentalsTable = (props: {
-  rentals: IExtendedRental[];
-  selectedRentals?: IExtendedRental[];
-  onRentalSelect: (rental: IExtendedRental) => void;
+  rentals: ExtendedRental[];
+  selectedRentals?: ExtendedRental[];
+  onRentalSelect: (rental: ExtendedRental) => void;
 }) => {
   return (
     <TableContainer>
@@ -212,7 +212,7 @@ const RentalsTable = (props: {
   );
 };
 
-const Receipt = (props: { rentals: IExendedMember["rentals"] }) => {
+const Receipt = (props: { rentals: ExtendedMember["rentals"] }) => {
   return (
     <ReceiptTable>
       <ReceiptTableHead>
@@ -253,7 +253,7 @@ const Receipt = (props: { rentals: IExendedMember["rentals"] }) => {
   );
 };
 
-const SubTotalSection = (props: { rentals: IExtendedRental[] }) => {
+const SubTotalSection = (props: { rentals: ExtendedRental[] }) => {
   const [discount, setDiscount] = useState(0);
 
   const total = props.rentals.reduce(

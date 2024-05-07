@@ -11,7 +11,7 @@ import { Browser } from "../../components/browser";
 import { RVCWebsiteLayout } from "../../components/rvc-website/layout";
 import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
 import { getHourFromMinutes } from "../../utils/get-hour-from-minutes";
-import { IVideoTitle } from "../../interfaces";
+import { VideoTitle } from "../../types";
 import { MediaPlayer } from "../../components/media-player";
 import { getImagesUrl } from "../../utils/get-cdn-url";
 
@@ -19,7 +19,7 @@ export const RVCWebsitePageTitleDetails = () => {
   const { titleId } = useParams();
   const navigate = useNavigate();
 
-  const { queryResult } = useShow<IVideoTitle>({
+  const { queryResult } = useShow<VideoTitle>({
     resource: "titles",
     id: titleId,
   });
