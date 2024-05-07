@@ -1,3 +1,4 @@
+import { useLogin } from "@refinedev/core";
 import { FormEvent } from "react";
 import {
   Button,
@@ -7,10 +8,9 @@ import {
   WindowHeader,
 } from "react95";
 import styled from "styled-components";
-import { IconQuestionMark } from "../../components/icons/question";
-import { Popover } from "../../components/tooltip";
-import { useLogin } from "@refinedev/core";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { IconQuestionMark } from "@/components/icons";
+import { Popover } from "@/components/tooltip";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const LoginPage = () => {
   const { mutate } = useLogin();

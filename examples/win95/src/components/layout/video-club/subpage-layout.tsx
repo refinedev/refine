@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
 import styled from "styled-components";
 import { Hourglass, Window } from "react95";
-import { AppLayoutHeader } from "../../components/layout";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { AppLayoutHeader } from "@/components/layout";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 type Props = {
   title?: ReactNode;

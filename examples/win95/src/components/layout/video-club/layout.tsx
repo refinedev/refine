@@ -3,10 +3,10 @@ import { useGo, useNavigation } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
-import { AppLayout } from "../../components/layout";
-import { VideoClubTodayDate } from "../../components/today-date";
-import { RVCSplashScreen } from "../../components/rvc-splash-screen";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { AppLayout } from "@/components/layout";
+import { VideoClubTodayDate } from "@/components/today-date";
+import { RVCSplashScreen } from "@/components/rvc-splash-screen";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const VideoClubLayout = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();

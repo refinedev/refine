@@ -14,30 +14,34 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { CommonLayout } from "./components/layout";
-import { supabaseClient } from "./supabase-client";
-import { AboutWindow } from "./components/about-window";
-import { HomePage } from "./routes/home-page";
-import { LoginPage } from "./routes/login-page";
-import { ThemeProvider } from "./providers/theme-provider";
-import { authProvider } from "./providers/auth-provider";
-import { notificationProvider } from "./providers/notification-provider";
-import { VideoClubLayout } from "./routes/video-club/layout";
-import { VideoClubPageBrowseTitles } from "./routes/video-club/titles/list";
-import { VideoClubPageShowTitle } from "./routes/video-club/titles/show";
-import { VideoClubPageCreateTitle } from "./routes/video-club/titles/create";
-import { VideoClubPageTapeRent } from "./routes/video-club/tapes/rent";
-import { VideoClubPageTapeSelectMember } from "./routes/video-club/tapes/select-member";
-import { VideoClubPageTapeReturn } from "./routes/video-club/tapes/return";
-import { VideoClubMemberPageList } from "./routes/video-club/members/list";
-import { VideoClubMemberPageCreate } from "./routes/video-club/members/create";
-import { VideoClubMemberPageShow } from "./routes/video-club/members/show";
-import { VideoClubMemberPageEdit } from "./routes/video-club/members/edit";
-import { VideoClubReportPage } from "./routes/video-club/report";
-import { VideoClubSettingsPage } from "./routes/video-club/settings";
-import { RVCWebsitePageHome } from "./routes/rvc-website/home";
-import { RVCWebsitePageTitleDetails } from "./routes/rvc-website/title-detail";
-import { RVCWebsiteCatalogPage } from "./components/rvc-website/catalog";
+import { CommonLayout } from "@/components/layout";
+import { AboutWindow } from "@/components/about-window";
+import { VideoClubLayout } from "@/components/layout";
+import { RVCWebsiteCatalogPage } from "@/components/rvc-website/catalog";
+import { supabaseClient } from "@/supabase-client";
+import { HomePage } from "@/routes/home-page";
+import { LoginPage } from "@/routes/login-page";
+import {
+  VideoClubMemberPageEdit,
+  VideoClubMemberPageCreate,
+  VideoClubMemberPageList,
+  VideoClubMemberPageShow,
+  VideoClubPageBrowseTitles,
+  VideoClubPageCreateTitle,
+  VideoClubPageShowTitle,
+  VideoClubPageTapeRent,
+  VideoClubPageTapeReturn,
+  VideoClubPageTapeSelectMember,
+  VideoClubReportPage,
+  VideoClubSettingsPage,
+} from "@/routes/video-club";
+import {
+  RVCWebsitePageHome,
+  RVCWebsitePageTitleDetails,
+} from "@/routes/rvc-website";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { authProvider } from "@/providers/auth-provider";
+import { notificationProvider } from "@/providers/notification-provider";
 
 import dayjs from "dayjs";
 import durationPlugin from "dayjs/plugin/duration";

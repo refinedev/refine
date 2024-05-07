@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 type Banner = "crm" | "finefoods";
 

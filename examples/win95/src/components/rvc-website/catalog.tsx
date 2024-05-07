@@ -2,10 +2,10 @@ import { useList } from "@refinedev/core";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Hourglass } from "react95";
 import styled from "styled-components";
-import { Browser } from "../browser";
-import { VideoTitle } from "../../types";
-import { RVCWebsiteLayout } from "./layout";
-import { RefineBanner } from "../refine-banner";
+import { Browser } from "@/components/browser";
+import { RVCWebsiteLayout } from "@/components/rvc-website";
+import { RefineBanner } from "@/components/refine-banner";
+import { VideoTitle } from "@/types";
 
 export const RVCWebsiteCatalogPage = () => {
   const navigate = useNavigate();

@@ -7,14 +7,13 @@ import { Controller } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as ISwiper } from "swiper/types";
 import "swiper/css";
-import { Browser } from "../../components/browser";
-import { ImagePixelated } from "../../components/image-pixelated";
-import { RVCWebsiteLayout } from "../../components/rvc-website/layout";
-import { CatalogsList } from "../../components/rvc-website/catalog";
-import { RefineBanner } from "../../components/refine-banner";
-import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
-import { VideoTitle } from "../../types";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { Browser } from "@/components/browser";
+import { ImagePixelated } from "@/components/image-pixelated";
+import { RVCWebsiteLayout, CatalogsList } from "@/components/rvc-website";
+import { RefineBanner } from "@/components/refine-banner";
+import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
+import { VideoTitle } from "@/types";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const RVCWebsitePageHome = () => {
   const navigate = useNavigate();

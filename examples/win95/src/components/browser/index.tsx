@@ -1,8 +1,8 @@
 import { PropsWithChildren, ReactNode } from "react";
 import styled from "styled-components";
 import { Select, Separator, Window } from "react95";
-import { AppLayoutHeader, AppLayoutMenu } from "../../components/layout";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { AppLayoutHeader, AppLayoutMenu } from "@/components/layout";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 type Props = {
   title?: ReactNode;

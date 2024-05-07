@@ -11,7 +11,7 @@ import {
   Separator,
 } from "react95";
 import dayjs from "dayjs";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
+import { VideoClubLayoutSubPage } from "@/components/layout";
 import {
   Table,
   TableBody,
@@ -20,13 +20,12 @@ import {
   TableRow,
   TableDataCell,
   TableHead,
-} from "../../../components/table";
-import { IconChevronLeft } from "../../../components/icons/chevron-left";
-import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
-import { ImagePixelated } from "../../../components/image-pixelated";
-import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { ExtendedMember, ExtendedRental } from "../../../types";
-import { convertToUSD } from "../../../utils/convert-to-usd";
+} from "@/components/table";
+import { IconChevronLeft, ArrowGreenPixelatedIcon } from "@/components/icons";
+import { ImagePixelated } from "@/components/image-pixelated";
+import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
+import { convertToUSD } from "@/utils/convert-to-usd";
+import { ExtendedMember, ExtendedRental } from "@/types";
 
 export const VideoClubPageTapeReturn = () => {
   const [selectedRentals, setSelectedRentals] = useState<ExtendedRental[]>([]);

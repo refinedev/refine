@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import {
   Table as DefaultTable,
   TableBody as DefaultTableBody,

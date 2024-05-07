@@ -6,7 +6,7 @@ import {
 } from "styled-components";
 import { styleReset } from "react95";
 import themeOriginal from "react95/dist/themes/original";
-import { getFontsUrl } from "../../utils/get-cdn-url";
+import { getFontsUrl } from "@/utils/get-cdn-url";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}

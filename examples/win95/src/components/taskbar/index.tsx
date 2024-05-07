@@ -11,7 +11,7 @@ import {
   Separator as SeparatorBase,
 } from "react95";
 import styled from "styled-components";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const TaskBar = () => {
   const { pathname } = useLocation();

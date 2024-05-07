@@ -2,9 +2,8 @@ import { useNavigation, useOne } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import { Button, GroupBox, ScrollView } from "react95";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ExtendedMember } from "../../../types";
+import { Button, GroupBox } from "react95";
+import { VideoClubLayoutSubPage } from "@/components/layout";
 import {
   Table,
   TableBody,
@@ -13,10 +12,11 @@ import {
   TableDataCell,
   TableHead,
   TableContainer,
-} from "../../../components/table";
-import { ImagePixelated } from "../../../components/image-pixelated";
-import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { convertToUSD } from "../../../utils/convert-to-usd";
+} from "@/components/table";
+import { ImagePixelated } from "@/components/image-pixelated";
+import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
+import { convertToUSD } from "@/utils/convert-to-usd";
+import { ExtendedMember } from "@/types";
 
 export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();

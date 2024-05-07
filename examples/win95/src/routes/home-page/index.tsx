@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { LinkDoubleClick } from "../../components/link-double-click";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { LinkDoubleClick } from "@/components/link-double-click";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const HomePage = () => {
   const [selected, setSelected] = useState<string | null>(null);

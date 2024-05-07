@@ -16,16 +16,16 @@ import {
   GroupBox,
 } from "react95";
 import styled from "styled-components";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import { MediaPlayerModal } from "@/components/media-player";
+import { ImagePixelated } from "@/components/image-pixelated";
 import {
   TitleByTmdbIdResponse,
   getTitleByTmdbId,
-} from "../../../utils/get-title-by-tmdb-id";
-import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
-import { Tape, VideoTitle } from "../../../types";
-import { ImagePixelated } from "../../../components/image-pixelated";
-import { getImagesUrl } from "../../../utils/get-cdn-url";
-import { MediaPlayerModal } from "../../../components/media-player/modal";
+} from "@/utils/get-title-by-tmdb-id";
+import { parseTmdbIdFromUrl } from "@/utils/parse-tmdb-id-from-url";
+import { getImagesUrl } from "@/utils/get-cdn-url";
+import { Tape, VideoTitle } from "@/types";
 
 export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, LinkProps } from "react-router-dom";
-import { Button } from "react95";
 
 type Props = {} & LinkProps;
 

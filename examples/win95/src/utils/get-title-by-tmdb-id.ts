@@ -1,6 +1,6 @@
-import { dataProvider, supabaseClient } from "../supabase-client";
-import { TMDBMovieResponse, VideoTitle } from "../types";
-import { tmdbToTitle } from "./tmdb-to-title";
+import { dataProvider, supabaseClient } from "@/supabase-client";
+import { TMDBMovieResponse, VideoTitle } from "@/types";
+import { tmdbToTitle } from "@/utils/tmdb-to-title";
 
 export type TitleByTmdbIdResponse = {
   existing: boolean;

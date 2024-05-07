@@ -1,5 +1,5 @@
 import { AuthProvider } from "@refinedev/core";
-import { supabaseClient } from "../../supabase-client";
+import { supabaseClient } from "@/supabase-client";
 
 export const authProvider: AuthProvider = {
   login: async ({ email, password, providerName }) => {

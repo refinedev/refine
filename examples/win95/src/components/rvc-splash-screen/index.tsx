@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { AppLayout } from "../layout";
 import { ProgressBar } from "react95";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { AppLayout } from "@/components/layout";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const RVCSplashScreen = () => {
   const navigate = useNavigate();

@@ -13,12 +13,12 @@ import {
   TableFilterInputContainer,
   TableFilterInputLabel,
   TableFilterInputText,
-} from "../../components/table";
-import { ExtendedMember } from "../../types";
-import { hasActiveRental } from "../../utils/has-active-rental";
-import { Pagination } from "../pagination";
-import { DangerIcon } from "../icons/danger-icon";
-import { VideoClubLayoutSubPage } from "../../routes/video-club/subpage-layout";
+} from "@/components/table";
+import { ExtendedMember } from "@/types";
+import { hasActiveRental } from "@/utils/has-active-rental";
+import { Pagination } from "@/components/pagination";
+import { DangerIcon } from "@/components/icons";
+import { VideoClubLayoutSubPage } from "@/components/layout";
 
 type Props = {
   selectedMember: ExtendedMember | null;

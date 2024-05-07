@@ -2,8 +2,7 @@ import { getDefaultFilter, useNavigation, useTable } from "@refinedev/core";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button, Separator } from "react95";
-import { Pagination } from "../../../components/pagination";
-import { DangerIcon } from "../../../components/icons/danger-icon";
+import { Pagination } from "@/components/pagination";
 import {
   Table,
   TableBody,
@@ -17,13 +16,16 @@ import {
   TableFilterInputLabel,
   TableFilterInputText,
   TableFilterInputSelect,
-} from "../../../components/table";
-import { OPTIONS_YEAR } from "../../../utils/options-year";
-import { ExtendedVideoTitle } from "../../../types";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { IconChevronLeft } from "../../../components/icons/chevron-left";
-import { IconChevronRight } from "../../../components/icons/chevron-right";
-import { getImagesUrl } from "../../../utils/get-cdn-url";
+} from "@/components/table";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  DangerIcon,
+} from "@/components/icons";
+import { OPTIONS_YEAR } from "@/utils/options-year";
+import { getImagesUrl } from "@/utils/get-cdn-url";
+import { ExtendedVideoTitle } from "@/types";
 
 type Props = {
   selectedTitle?: ExtendedVideoTitle | null;

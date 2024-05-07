@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
-import { RVCWebsiteLinks } from "./links";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { RVCWebsiteLinks } from "@/components/rvc-website";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const RVCWebsiteLayout = ({ children }: PropsWithChildren) => {
   return (

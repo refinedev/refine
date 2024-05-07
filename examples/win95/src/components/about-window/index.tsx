@@ -1,9 +1,9 @@
+import { useGo } from "@refinedev/core";
 import { Window, Button, WindowHeader, Separator, Anchor } from "react95";
-import { IconClose } from "../icons/close";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import { useGo } from "@refinedev/core";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { IconClose } from "@/components/icons";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 export const AboutWindow = () => {
   const { hash, pathname } = useLocation();

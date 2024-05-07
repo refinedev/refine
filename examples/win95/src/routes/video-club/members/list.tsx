@@ -14,12 +14,12 @@ import {
   TableFilterInputContainer,
   TableFilterInputLabel,
   TableFilterInputText,
-} from "../../../components/table";
-import { Pagination } from "../../../components/pagination";
-import { DangerIcon } from "../../../components/icons/danger-icon";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ExtendedMember } from "../../../types";
-import { hasActiveRental } from "../../../utils/has-active-rental";
+} from "@/components/table";
+import { Pagination } from "@/components/pagination";
+import { DangerIcon } from "@/components/icons";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import { ExtendedMember } from "@/types";
+import { hasActiveRental } from "@/utils/has-active-rental";
 
 export const VideoClubMemberPageList = () => {
   const navigate = useNavigate();

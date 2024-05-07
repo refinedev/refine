@@ -13,13 +13,13 @@ import {
   GroupBox,
 } from "react95";
 import styled from "styled-components";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ImagePixelated } from "../../../components/image-pixelated";
-import { MediaPlayerModal } from "../../../components/media-player/modal";
-import { getTMDBImgLink } from "../../../utils/get-tmdb-img-link";
-import { getImagesUrl } from "../../../utils/get-cdn-url";
-import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { ExtendedVideoTitle, Member, Rental } from "../../../types";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import { ImagePixelated } from "@/components/image-pixelated";
+import { MediaPlayerModal } from "@/components/media-player";
+import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
+import { getImagesUrl } from "@/utils/get-cdn-url";
+import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
+import { ExtendedVideoTitle, Member, Rental } from "@/types";
 
 export const VideoClubPageShowTitle = () => {
   const [trailer, setTrailer] = useState(false);

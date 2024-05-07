@@ -1,8 +1,8 @@
-import { AppBar, Window, WindowHeader, WindowContent, Button } from "react95";
-import { MediaPlayer } from ".";
-import { IconClose } from "../icons/close";
+import { Window, WindowHeader, WindowContent, Button } from "react95";
 import styled from "styled-components";
 import Modal from "react-modal";
+import { MediaPlayer } from "@/components/media-player";
+import { IconClose } from "@/components/icons";
 
 type Props = {
   youtubeKey: string;

@@ -6,14 +6,14 @@ import {
 } from "react-router-dom";
 import { Hourglass } from "react95";
 import styled from "styled-components";
-import { ImagePixelated } from "../../components/image-pixelated";
-import { Browser } from "../../components/browser";
-import { RVCWebsiteLayout } from "../../components/rvc-website/layout";
-import { getTMDBImgLink } from "../../utils/get-tmdb-img-link";
-import { getHourFromMinutes } from "../../utils/get-hour-from-minutes";
-import { VideoTitle } from "../../types";
-import { MediaPlayer } from "../../components/media-player";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import { ImagePixelated } from "@/components/image-pixelated";
+import { Browser } from "@/components/browser";
+import { RVCWebsiteLayout } from "@/components/rvc-website";
+import { MediaPlayer } from "@/components/media-player/player";
+import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
+import { getImagesUrl } from "@/utils/get-cdn-url";
+import { getHourFromMinutes } from "@/utils/get-hour-from-minutes";
+import { VideoTitle } from "@/types";
 
 export const RVCWebsitePageTitleDetails = () => {
   const { titleId } = useParams();

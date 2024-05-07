@@ -8,10 +8,8 @@ import {
   Separator,
 } from "react95";
 import styled from "styled-components";
-import { IconMinimize } from "../../icons/minimize";
-import { IconClose } from "../../icons/close";
-import { IconQuestionMark } from "../../icons/question";
-import { Popover } from "../../tooltip";
+import { IconMinimize, IconClose, IconQuestionMark } from "@/components/icons";
+import { Popover } from "@/components/tooltip";
 
 type MenuItems = {
   label: string;

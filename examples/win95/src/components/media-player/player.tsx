@@ -1,8 +1,8 @@
-import { Button, Frame, Separator, Slider, Window } from "react95";
+import { Button, Separator, Slider, Window } from "react95";
 import styled from "styled-components";
 import { SVGProps, useRef, useState } from "react";
-import ReactPlayer, { YouTubeConfig } from "react-player/youtube";
-import { getImagesUrl } from "../../utils/get-cdn-url";
+import ReactPlayer from "react-player/youtube";
+import { getImagesUrl } from "@/utils/get-cdn-url";
 
 type Props = {
   youtubeKey: string;

@@ -3,8 +3,7 @@ import { getDefaultFilter, useNavigation, useTable } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Separator } from "react95";
-import { Pagination } from "../../../components/pagination";
-import { DangerIcon } from "../../../components/icons/danger-icon";
+import { Pagination } from "@/components/pagination";
 import {
   Table,
   TableBody,
@@ -17,13 +16,16 @@ import {
   TableFilterInputContainer,
   TableFilterInputLabel,
   TableFilterInputText,
-} from "../../../components/table";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { hasActiveRental } from "../../../utils/has-active-rental";
-import { ExtendedMember } from "../../../types";
-import { IconChevronLeft } from "../../../components/icons/chevron-left";
-import { IconChevronRight } from "../../../components/icons/chevron-right";
-import { getImagesUrl } from "../../../utils/get-cdn-url";
+} from "@/components/table";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import {
+  IconChevronRight,
+  IconChevronLeft,
+  DangerIcon,
+} from "@/components/icons";
+import { hasActiveRental } from "@/utils/has-active-rental";
+import { getImagesUrl } from "@/utils/get-cdn-url";
+import { ExtendedMember } from "@/types";
 
 type Props = {
   variant: "rent" | "return";

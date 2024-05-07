@@ -1,6 +1,6 @@
 import { NotificationProvider } from "@refinedev/core";
 import toast from "react-hot-toast";
-import { Notification } from "../../components/notification";
+import { Notification } from "@/components/notification";
 
 export const notificationProvider: NotificationProvider = {
   open: (props) => {

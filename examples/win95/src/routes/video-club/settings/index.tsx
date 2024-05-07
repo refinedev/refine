@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
+import { VideoClubLayoutSubPage } from "../../../components/layout/video-club/subpage-layout";
 import { NumberInput, TextInput } from "react95";
 import {
   DEPOSIT,

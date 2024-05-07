@@ -1,11 +1,12 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { Button, Frame, TextInput } from "react95";
+import { Dispatch, SetStateAction } from "react";
+import { Button, TextInput } from "react95";
 import styled from "styled-components";
-import { IconPaginationGoToFirst } from "../icons/pagination-go-to-first";
-import { IconPaginationPrev } from "../icons/pagination-prev";
-import { IconPaginationNext } from "../icons/pagination-next";
-import { IconPaginationGoToLast } from "../icons/pagination-go-to-last";
-import { theme } from "../../providers/theme-provider";
+import {
+  IconPaginationGoToFirst,
+  IconPaginationPrev,
+  IconPaginationNext,
+  IconPaginationGoToLast,
+} from "@/components/icons";
 
 type Props = {
   pageCount: number;

@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { ScrollView } from "react95";
-import { TaskBar } from "../../taskbar";
+import { TaskBar } from "@/components/taskbar";
 
 export const CommonLayout = ({ children }: PropsWithChildren) => {
   return (

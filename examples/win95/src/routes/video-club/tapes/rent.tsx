@@ -1,14 +1,14 @@
+import { useList, useMany, useOne } from "@refinedev/core";
 import { useState } from "react";
 import styled from "styled-components";
 import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller, FieldValues } from "react-hook-form";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useList, useMany, useOne } from "@refinedev/core";
 import dayjs from "dayjs";
-import { VideoClubPageTapeSelectTitle } from "./select-title";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ImagePixelated } from "../../../components/image-pixelated";
+import { VideoClubPageTapeSelectTitle } from "@/routes/video-club/tapes/select-title";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import { ImagePixelated } from "@/components/image-pixelated";
 import {
   Table,
   TableBody,
@@ -16,19 +16,18 @@ import {
   TableHead,
   TableHeadCell,
   TableRow,
-} from "../../../components/table";
-import { DangerIcon } from "../../../components/icons/danger-icon";
+} from "@/components/table";
+import { DangerIcon, IconChevronLeft } from "@/components/icons";
+import { ArrowGreenPixelatedIcon } from "@/components/icons/arrow-green-pixelated";
+import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
+import { convertToUSD } from "@/utils/convert-to-usd";
 import {
   CreateRental,
   ExtendedMember,
   ExtendedVideoTitle,
   Tape,
   VideoTitle,
-} from "../../../types";
-import { IconChevronLeft } from "../../../components/icons/chevron-left";
-import { ArrowGreenPixelatedIcon } from "../../../components/icons/arrow-green-pixelated";
-import { NIGHTLY_RENTAL_FEE } from "../../../utils/app-settings";
-import { convertToUSD } from "../../../utils/convert-to-usd";
+} from "@/types";
 
 export const VideoClubPageTapeRent = () => {
   const navigate = useNavigate();

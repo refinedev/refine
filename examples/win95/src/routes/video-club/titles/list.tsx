@@ -13,11 +13,11 @@ import {
 } from "react95";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { VideoClubLayoutSubPage } from "../subpage-layout";
-import { ExtendedVideoTitle } from "../../../types";
-import { Pagination } from "../../../components/pagination";
-import { DangerIcon } from "../../../components/icons/danger-icon";
-import { OPTIONS_YEAR } from "../../../utils/options-year";
+import { VideoClubLayoutSubPage } from "@/components/layout";
+import { Pagination } from "@/components/pagination";
+import { DangerIcon } from "@/components/icons";
+import { OPTIONS_YEAR } from "@/utils/options-year";
+import { ExtendedVideoTitle } from "@/types";
 
 export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();
