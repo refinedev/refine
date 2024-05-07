@@ -1,5 +1,20 @@
 # @refinedev/mantine
 
+## 4.6.1
+
+### Patch Changes
+
+- [#5887](https://github.com/refinedev/refine/pull/5887) [`113c1337bf0`](https://github.com/refinedev/refine/commit/113c1337bf02ecf22b4beb459b06a6acadc0e11d) Thanks [@aliemir](https://github.com/aliemir)! - chore: remove version lock from @ant-design/icons 5.0.1 to ^5.0.1
+
+- [#5836](https://github.com/refinedev/refine/pull/5836) [`cc6285ddf96`](https://github.com/refinedev/refine/commit/cc6285ddf963a31417d87cf9b3688aa8f61ddbb5) Thanks [@aliemir](https://github.com/aliemir)! - fix: inferencer now should work with ESM builds
+
+  Fixed the issue with `prism-react-renderer` theme imports not being resolved correctly in ESM builds.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`0a76576da0f`](https://github.com/refinedev/refine/commit/0a76576da0f18c6db372e737c610ad462b56ff21), [`8d2dd4376f6`](https://github.com/refinedev/refine/commit/8d2dd4376f672786d4722d3dee09e6344f1002e4), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f), [`9a0c1c8414a`](https://github.com/refinedev/refine/commit/9a0c1c8414a7b228378c234468396e6288cdb6f0)]:
+  - @refinedev/core@4.49.1
+
 ## 4.6.0
 
 ### Minor Changes

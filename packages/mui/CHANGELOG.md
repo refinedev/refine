@@ -1,5 +1,29 @@
 # @refinedev/mui
 
+## 5.15.0
+
+### Minor Changes
+
+- [#5868](https://github.com/refinedev/refine/pull/5868) [`a82ef6afc15`](https://github.com/refinedev/refine/commit/a82ef6afc1512631ca3f7936818d646e4c7d0725) Thanks [@Ac-Srikanth](https://github.com/Ac-Srikanth)! - feat: add message prop for required auth input fields for the above packages.
+
+  Now you can provide custom required messages with translate feature for all auth input fields(Login, register, forget password,update password).
+
+  Resolves #[5855](https://github.com/refinedev/refine/issues/5855)
+
+### Patch Changes
+
+- [#5876](https://github.com/refinedev/refine/pull/5876) [`4940b6106b2`](https://github.com/refinedev/refine/commit/4940b6106b24be29ffa479b88f58ed225c2f7754) Thanks [@Yash-271120](https://github.com/Yash-271120)! - feat: add ability to customize anchor origin from snackbar provider
+
+  Previously, `useNotificationProvider` used hardcoded `anchorOrigin` and `disableWindowBlurListener` values, preventing users to customize these values. This change moves these values to `<RefineSnackbarProvider />` as default props to allow users to customize them when needed.
+
+  Resolves [#5847](https://github.com/refinedev/refine/issues/5847)
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/react-hook-form@4.8.17
+  - @refinedev/ui-types@1.22.6
+
 ## 5.14.6
 
 ### Patch Changes

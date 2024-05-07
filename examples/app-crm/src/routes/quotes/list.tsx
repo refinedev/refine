@@ -114,7 +114,13 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 marginTop: screens.xs ? "1.6rem" : undefined,
               }}
             >
-              <Form {...searchFormProps} layout="inline">
+              <Form
+                {...searchFormProps}
+                initialValues={{
+                  title: getDefaultFilter("title", filters, "contains"),
+                }}
+                layout="inline"
+              >
                 <Form.Item name="title" noStyle>
                   <Input
                     size="large"
