@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   HttpError,
@@ -25,10 +25,13 @@ import { parseTmdbIdFromUrl } from "../../../utils/parse-tmdb-id-from-url";
 import { ITape, IVideoTitle } from "../../../interfaces";
 import { ImagePixelated } from "../../../components/image-pixelated";
 import { getImagesUrl } from "../../../utils/get-cdn-url";
+import { MediaPlayerModal } from "../../../components/media-player/modal";
 
 export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();
   const { show } = useNavigation();
+
+  const [trailer, setTrailer] = useState(false);
 
   const { mutateAsync: createTitle } = useCreate<
     IVideoTitle,
@@ -126,145 +129,176 @@ export const VideoClubPageCreateTitle = () => {
     });
   };
 
+  console.log(titleQuery);
+
   return (
-    <VideoClubLayoutSubPage
-      isLoading={titleQuery.loading}
-      title="Add Title"
-      help={"You can add a new title to the video club from TMDB database."}
-      onClose={() => navigate("/video-club")}
-      containerStyle={{ minWidth: "800px", maxWidth: "800px" }}
-    >
-      <Container>
-        <InfoDetails>
-          <InfoBubble src={getImagesUrl("/info-bubble.png")} />
-          <InfoContent>
-            <InfoLine>
-              <span>{"Our inventory is provided by "}</span>
-              <InfoAnchor
-                href="https://www.themoviedb.org"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {"The Movie DB "}
-                <ExternalAnchorIcon src={getImagesUrl("/external-icon.png")} />
-              </InfoAnchor>
-            </InfoLine>
-            <InfoLine>
-              Please find the title from their catalog and paste the URL to the
-              input below.
-            </InfoLine>
-          </InfoContent>
-        </InfoDetails>
-        <InputContainer
-          onSubmit={(event) => {
-            event.preventDefault();
+    <>
+      <VideoClubLayoutSubPage
+        isLoading={titleQuery.loading}
+        title="Add Title"
+        help={"You can add a new title to the video club from TMDB database."}
+        onClose={() => navigate("/video-club")}
+        containerStyle={{ minWidth: "800px", maxWidth: "800px" }}
+      >
+        <Container>
+          <InfoDetails>
+            <InfoBubble src={getImagesUrl("/info-bubble.png")} />
+            <InfoContent>
+              <InfoLine>
+                <span>{"Our inventory is provided by "}</span>
+                <InfoAnchor
+                  href="https://www.themoviedb.org"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {"The Movie DB "}
+                  <ExternalAnchorIcon
+                    src={getImagesUrl("/external-icon.png")}
+                  />
+                </InfoAnchor>
+              </InfoLine>
+              <InfoLine>
+                Please find the title from their catalog and paste the URL to
+                the input below.
+              </InfoLine>
+            </InfoContent>
+          </InfoDetails>
+          <InputContainer
+            onSubmit={(event) => {
+              event.preventDefault();
 
-            const formData = new FormData(event.currentTarget);
-            const value = formData.get("movie-url") as string;
-            if (!value.trim()) return;
+              const formData = new FormData(event.currentTarget);
+              const value = formData.get("movie-url") as string;
+              if (!value.trim()) return;
 
-            checkMovieFromTMDB(value);
-          }}
-        >
-          <InputLabel>TMDB URL:</InputLabel>
-          <TMDBInput
-            name="movie-url"
-            id="movie-url"
-            placeholder="e.g. https://www.themoviedb.org/movie/105"
-          />
-          <GoButton type="submit">GO</GoButton>
-        </InputContainer>
-        <TitleDetails disabled={!titleQuery?.data} label="Title Details">
-          <Poster
-            src={`https://image.tmdb.org/t/p/w200${titleQuery?.data?.poster_path}`}
-          />
-          <DetailsContainer>
-            <DetailItem>
-              <DetailItemLabel>Title:</DetailItemLabel>
-              <DetailItemValue style={{ fontWeight: "bold", color: "#000080" }}>
-                {titleQuery?.data?.title}
-              </DetailItemValue>
-              {/* TODO: implement video player */}
-              {/* <DetailItemTrailerButton>Watch Trailer</DetailItemTrailerButton> */}
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>ID:</DetailItemLabel>
-              <DetailItemValue>{titleQuery?.data?.id}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Category:</DetailItemLabel>
-              <DetailItemValue>
-                {titleQuery?.data?.genres.join(", ")}
-              </DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Year:</DetailItemLabel>
-              <DetailItemValue>{titleQuery?.data?.year}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Duration:</DetailItemLabel>
-              <DetailItemValue>
-                {dayjs
-                  .duration(titleQuery?.data?.duration_minutes ?? 0, "minutes")
-                  .format("H[h] m[m]")}
-              </DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Director:</DetailItemLabel>
-              <DetailItemValue>{titleQuery?.data?.director}</DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Cast:</DetailItemLabel>
-              <DetailItemValue>
-                {titleQuery?.data?.cast.join(", ")}
-              </DetailItemValue>
-            </DetailItem>
-            <DetailItem>
-              <DetailItemLabel>Overview:</DetailItemLabel>
-              <DetailItemValue>{titleQuery?.data?.overview}</DetailItemValue>
-            </DetailItem>
-          </DetailsContainer>
-        </TitleDetails>
-        <CopiesContainer>
-          <CopiesLabel>Number of Copies:</CopiesLabel>
-          <CopiesInput
-            disabled={titleQuery?.existing}
-            value={numberOfCopies}
-            onChange={(value) => setNumberOfCopies(value)}
-          />
-        </CopiesContainer>
-        <Separator />
-        <BottomContainer>
-          <ExistingContainer $visible={titleQuery.existing}>
-            <ExistingCheckmark
-              src={getImagesUrl("/add-titlegreen-check.png")}
+              checkMovieFromTMDB(value);
+            }}
+          >
+            <InputLabel>TMDB URL:</InputLabel>
+            <TMDBInput
+              name="movie-url"
+              id="movie-url"
+              placeholder="e.g. https://www.themoviedb.org/movie/105"
             />
-            <span>This title is already in our inventory.</span>
-          </ExistingContainer>
-          <ButtonsContainer>
-            {titleQuery?.existing ? (
-              <ViewDetailsButton
-                onClick={() =>
-                  navigate(`/video-club/titles/${titleQuery?.data?.id}`)
-                }
-              >
-                View Details
-              </ViewDetailsButton>
-            ) : (
-              <AddButton
-                disabled={!titleQuery?.data || titleQuery?.existing}
-                onClick={addTitle}
-              >
-                Add Title
-              </AddButton>
-            )}
-            <CancelButton onClick={() => navigate("/video-club/titles")}>
-              Cancel
-            </CancelButton>
-          </ButtonsContainer>
-        </BottomContainer>
-      </Container>
-    </VideoClubLayoutSubPage>
+            <GoButton type="submit">GO</GoButton>
+          </InputContainer>
+          <TitleDetails disabled={!titleQuery?.data} label="Title Details">
+            <Poster
+              src={`https://image.tmdb.org/t/p/w200${titleQuery?.data?.poster_path}`}
+            />
+            <DetailsContainer>
+              <DetailItem>
+                <DetailItemLabel>Title:</DetailItemLabel>
+                <DetailItemValue
+                  style={{ fontWeight: "bold", color: "#000080" }}
+                >
+                  {titleQuery?.data?.title}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>ID:</DetailItemLabel>
+                <DetailItemValue>{titleQuery?.data?.id}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Category:</DetailItemLabel>
+                <DetailItemValue>
+                  {titleQuery?.data?.genres.join(", ")}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Year:</DetailItemLabel>
+                <DetailItemValue>{titleQuery?.data?.year}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Duration:</DetailItemLabel>
+                <DetailItemValue>
+                  {dayjs
+                    .duration(
+                      titleQuery?.data?.duration_minutes ?? 0,
+                      "minutes",
+                    )
+                    .format("H[h] m[m]")}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Director:</DetailItemLabel>
+                <DetailItemValue>{titleQuery?.data?.director}</DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Cast:</DetailItemLabel>
+                <DetailItemValue>
+                  {titleQuery?.data?.cast.join(", ")}
+                </DetailItemValue>
+              </DetailItem>
+              <DetailItem>
+                <DetailItemLabel>Overview:</DetailItemLabel>
+                <DetailItemValue>{titleQuery?.data?.overview}</DetailItemValue>
+              </DetailItem>
+            </DetailsContainer>
+          </TitleDetails>
+          <CopiesContainer>
+            <DetailItemTrailerButton
+              disabled={!titleQuery?.data?.trailer_key}
+              onClick={() => {
+                setTrailer(true);
+              }}
+            >
+              <DetailItemTrailerIcon
+                src={getImagesUrl("/watch-trailer.png")}
+                alt="watch trailer"
+              />
+              Watch Trailer
+            </DetailItemTrailerButton>
+
+            <CopiesInputContainer>
+              <CopiesLabel>Number of Copies:</CopiesLabel>
+              <CopiesInput
+                disabled={titleQuery?.existing}
+                value={numberOfCopies}
+                onChange={(value) => setNumberOfCopies(value)}
+              />
+            </CopiesInputContainer>
+          </CopiesContainer>
+          <Separator />
+          <BottomContainer>
+            <ExistingContainer $visible={titleQuery.existing}>
+              <ExistingCheckmark
+                src={getImagesUrl("/add-titlegreen-check.png")}
+              />
+              <span>This title is already in our inventory.</span>
+            </ExistingContainer>
+            <ButtonsContainer>
+              {titleQuery?.existing ? (
+                <ViewDetailsButton
+                  onClick={() =>
+                    navigate(`/video-club/titles/${titleQuery?.data?.id}`)
+                  }
+                >
+                  View Details
+                </ViewDetailsButton>
+              ) : (
+                <AddButton
+                  disabled={!titleQuery?.data || titleQuery?.existing}
+                  onClick={addTitle}
+                >
+                  Add Title
+                </AddButton>
+              )}
+              <CancelButton onClick={() => navigate("/video-club/titles")}>
+                Cancel
+              </CancelButton>
+            </ButtonsContainer>
+          </BottomContainer>
+        </Container>
+      </VideoClubLayoutSubPage>
+      {trailer && titleQuery?.data?.trailer_key && (
+        <MediaPlayerModal
+          youtubeKey={titleQuery?.data?.trailer_key}
+          onClose={() => setTrailer(false)}
+          title={titleQuery?.data?.title}
+        />
+      )}
+    </>
   );
 };
 
@@ -386,7 +420,13 @@ const DetailItemValue = styled.div`
 const CopiesContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+`;
+
+const CopiesInputContainer = styled.div`
+  display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -439,4 +479,14 @@ const AddButton = styled(Button)`
 
 const CancelButton = styled(Button)`
   width: 110px;
+`;
+
+const DetailItemTrailerButton = styled(Button)`
+  width: 192px;
+`;
+
+const DetailItemTrailerIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 `;

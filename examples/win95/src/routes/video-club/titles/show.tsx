@@ -73,6 +73,7 @@ export const VideoClubPageShowTitle = () => {
                   </a>
                 </DetailItemValue>
                 <DetailItemTrailerButton
+                  disabled={!data?.data?.trailer_key}
                   onClick={() => {
                     setTrailer(true);
                   }}
@@ -198,9 +199,9 @@ export const VideoClubPageShowTitle = () => {
           </CancelButton>
         </Container>
       </VideoClubLayoutSubPage>
-      {trailer && (
+      {trailer && data?.data?.trailer_key && (
         <MediaPlayerModal
-          youtubeKey={data?.data?.trailer_key || "dQw4w9WgXcQ"}
+          youtubeKey={data?.data?.trailer_key}
           onClose={() => setTrailer(false)}
           title={data?.data?.title || ""}
         />
