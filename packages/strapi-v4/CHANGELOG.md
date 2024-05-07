@@ -1,5 +1,15 @@
 # @refinedev/strapi-v4
 
+## 6.0.5
+
+### Patch Changes
+
+- [#5850](https://github.com/refinedev/refine/pull/5850) [`c2ef59bf82f`](https://github.com/refinedev/refine/commit/c2ef59bf82f80a1963dfc2fbbb0fb896e961cc7b) Thanks [@aliemir](https://github.com/aliemir)! - fix: replace imports of `qs` with default imports
+
+  Updated `qs` imports and usage to prevent issues with ESM builds and to ensure correctly importing the module.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
 ## 6.0.4
 
 ### Patch Changes

@@ -1,5 +1,30 @@
 # @refinedev/devtools-server
 
+## 1.1.28
+
+### Patch Changes
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - chore: move `@refinedev/devtools-ui` dependency
+
+  Moved `@refinedev/devtools-ui` dependency to `devDependencies` since only the `vite` output is used in the server.
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - feat: update resource name accessing logic
+
+  Updated resource name displaying logic to use `resourceName` from activity records to make sure `resource` is correctly displayed with custom query keys.
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - feat: add invalidate query button
+
+  Added `Invalidate Query` button to settled queries in the devtools panel to allow users to manually invalidate queries for debugging purposes.
+
+- [#5865](https://github.com/refinedev/refine/pull/5865) [`a9dbd808782`](https://github.com/refinedev/refine/commit/a9dbd808782212ed0bf6cf4401f85b675975a744) Thanks [@aliemir](https://github.com/aliemir)! - fix: devtools authentication not working with safari
+
+  Fixed the authentication flow and cookie handling for Safari. Now devtools users will be able to authenticate and use the devtools server using Safari.
+
+  Resolves [#5753](https://github.com/refinedev/refine/issues/5753)
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/devtools-shared@1.1.6
+
 ## 1.1.27
 
 ### Patch Changes
