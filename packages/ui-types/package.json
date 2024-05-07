@@ -24,7 +24,7 @@
     "attw": "attw --pack .",
     "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "nx build --project @refinedev/ui-types --nxBail --output-style stream",
+    "prepare": "nx build --verbose --project @refinedev/ui-types --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
     "test": "echo \"no tests\"",
     "types": "node ../shared/generate-declarations.js"

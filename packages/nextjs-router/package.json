@@ -80,7 +80,7 @@
     "attw": "attw --pack .",
     "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "nx build --project @refinedev/nextjs-router --nxBail --output-style stream",
+    "prepare": "nx build --verbose --project @refinedev/nextjs-router --nxBail --output-style stream",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
