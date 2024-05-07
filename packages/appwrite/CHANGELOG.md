@@ -1,5 +1,17 @@
 # @refinedev/appwrite
 
+## 6.5.0
+
+### Minor Changes
+
+- [#5886](https://github.com/refinedev/refine/pull/5886) [`f3ddcce0bf5`](https://github.com/refinedev/refine/commit/f3ddcce0bf59a8847347f911e710b8d216eb2699) Thanks [@abdelrahman-essawy](https://github.com/abdelrahman-essawy)! - fix: add ability to customize default permission without explicitly passing them on each mutation
+
+  fixing an issue which didn't allow users to override the default `readPermissions` / `writePermissions` values `Role.any()`, by passing `defaultReadPermissions` / `defaultWritePermissions` OR by passing `meta?.readPermissions` / `meta?.writePermissions`.
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
 ## 6.4.8
 
 ### Patch Changes
