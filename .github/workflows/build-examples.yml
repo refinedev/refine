@@ -58,7 +58,7 @@ jobs:
           version: 9
           run_install: |
             - recursive: false
-              args: [-w, --ignore-scripts]
+              args: [--ignore-scripts]
       - name: Fetch commits
         run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
       - name: Use Node.js ${{ matrix.node-version }}
@@ -93,9 +93,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-          run_install: |
-            - recursive: false
-              args: [-w, --ignore-scripts]
+          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -108,7 +106,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
 
       - name: Get short SHA
@@ -149,7 +147,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
 
       - name: Build
@@ -193,8 +191,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
-          pnpm cypress install
+          pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}}
@@ -237,11 +234,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}}
 
       - name: Get short SHA
         id: slug
@@ -281,7 +275,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
 
       - name: Build
@@ -316,20 +310,13 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-
-      - name: Install Dependencies
-        run: |
-          pnpm install --ignore-scripts
-          pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}}
 
       - name: Get short SHA
         id: slug
@@ -360,6 +347,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -369,11 +357,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
-          pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}}
+          pnpm install
 
       - name: Get short SHA
         id: slug
@@ -412,7 +396,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
 
       - name: Build
@@ -455,7 +439,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install --ignore-scripts
+          pnpm install
           pnpm cypress install
 
       - name: Build
