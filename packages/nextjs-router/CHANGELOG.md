@@ -1,5 +1,23 @@
 # @refinedev/nextjs-router
 
+## 6.0.3
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: `/parse-table-params` export in node10 module resolutions
+
+  `/parse-table-params` subpath export is not correctly resolved by `node10` module resolutions.
+
+- [#5850](https://github.com/refinedev/refine/pull/5850) [`c2ef59bf82f`](https://github.com/refinedev/refine/commit/c2ef59bf82f80a1963dfc2fbbb0fb896e961cc7b) Thanks [@aliemir](https://github.com/aliemir)! - fix: replace imports of `qs` with default imports
+
+  Updated `qs` imports and usage to prevent issues with ESM builds and to ensure correctly importing the module.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- [#5849](https://github.com/refinedev/refine/pull/5849) [`8a8f88b2c30`](https://github.com/refinedev/refine/commit/8a8f88b2c30fefd4fed91ce4a378e7828524d085) Thanks [@aliemir](https://github.com/aliemir)! - fix: replace `next/*` imports with extensions in ESM builds
+
+  Updated imports from `next/*` to `next/*.js` to prevent issues with ESM builds and to ensure correctly importing the module.
+
 ## 6.0.2
 
 ### Patch Changes

@@ -11,7 +11,6 @@ export const prepareQueryContext = (
   Object.defineProperty(queryContext, "signal", {
     enumerable: true,
     get: () => {
-      console.log("with getter prepare");
       return context.signal;
     },
   });

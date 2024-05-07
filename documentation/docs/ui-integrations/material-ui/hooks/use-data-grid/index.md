@@ -232,6 +232,38 @@ return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
 
 When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
 
+:::simple Finding the filter value
+
+Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
+
+```tsx
+import { getDefaultFilter } from "@refinedev/core";
+import { useDataGrid } from "@refinedev/mui";
+
+const MyComponent = () => {
+  const { filters } = useDataGrid({
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "John Doe",
+        },
+      ],
+    },
+  });
+
+  const nameFilterValue = getDefaultFilter("name", filters, "contains");
+  console.log(nameFilterValue); // "John Doe"
+
+  return {
+    /** ... */
+  };
+};
+```
+
+:::
+
 ## Realtime Updates
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.

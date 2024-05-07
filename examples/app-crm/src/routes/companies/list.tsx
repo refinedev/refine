@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import { getDefaultFilter, HttpError } from "@refinedev/core";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
@@ -103,7 +103,13 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                 marginTop: screens.xs ? "1.6rem" : undefined,
               }}
             >
-              <Form {...searchFormProps} layout="inline">
+              <Form
+                {...searchFormProps}
+                initialValues={{
+                  name: getDefaultFilter("name", filters, "contains"),
+                }}
+                layout="inline"
+              >
                 <Form.Item name="name" noStyle>
                   <Input
                     size="large"

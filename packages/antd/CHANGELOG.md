@@ -1,5 +1,30 @@
 # @refinedev/antd
 
+## 5.38.0
+
+### Minor Changes
+
+- [#5868](https://github.com/refinedev/refine/pull/5868) [`a82ef6afc15`](https://github.com/refinedev/refine/commit/a82ef6afc1512631ca3f7936818d646e4c7d0725) Thanks [@Ac-Srikanth](https://github.com/Ac-Srikanth)! - feat: add message prop for required auth input fields for the above packages.
+
+  Now you can provide custom required messages with translate feature for all auth input fields(Login, register, forget password,update password).
+
+  Resolves #[5855](https://github.com/refinedev/refine/issues/5855)
+
+### Patch Changes
+
+- [#5887](https://github.com/refinedev/refine/pull/5887) [`113c1337bf0`](https://github.com/refinedev/refine/commit/113c1337bf02ecf22b4beb459b06a6acadc0e11d) Thanks [@aliemir](https://github.com/aliemir)! - chore: remove version lock from @ant-design/icons 5.0.1 to ^5.0.1
+
+- [#5920](https://github.com/refinedev/refine/pull/5920) [`df0dad6ca46`](https://github.com/refinedev/refine/commit/df0dad6ca46ac86574722723daa543fab849c406) Thanks [@aliemir](https://github.com/aliemir)! - fix: lock `antd` version to `5.16.5` due to broken builds in `5.17.0`
+
+  In the latest release of `antd` package, Next.js apps are failing to build or taking extremely long time to build. Until this issue is fixed in the `antd` package, we are locking the version to `5.16.5` to prevent any build issues.
+
+  Related issue [antd/#48758](https://github.com/ant-design/ant-design/issues/48758)
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/ui-types@1.22.6
+
 ## 5.37.6
 
 ### Patch Changes
