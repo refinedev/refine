@@ -213,8 +213,8 @@ export const VideoClubReportPage = () => {
 
           <ContainerChart>
             <LineChart
-              width={730}
-              height={300}
+              width={600}
+              height={352}
               data={chartData}
               margin={{
                 top: 32,
@@ -377,7 +377,7 @@ const StatLight = styled(StatRow)`
 const StatTodaysRevenue = styled(StatRow)`
   background-color: #2F711E;
   color: white;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 `;
 
 const StatActiveMembers = styled(StatRow)`
