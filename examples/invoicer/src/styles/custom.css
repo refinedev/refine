@@ -89,8 +89,4 @@
     border: none !important;
     box-shadow: none !important;
   }
-
-  #invoice-pdf {
-    max-height: 100dvh;
-  }
 }
