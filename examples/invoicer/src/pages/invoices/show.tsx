@@ -1,7 +1,7 @@
-import { useNavigation, useShow } from "@refinedev/core";
+import { useShow } from "@refinedev/core";
 import { FilePdfOutlined } from "@ant-design/icons";
-import { PageHeader } from "@/components/page-header";
 import {
+  Avatar,
   Card,
   Col,
   Divider,
@@ -12,17 +12,15 @@ import {
   Table,
   Typography,
 } from "antd";
-import { DateField, NumberField } from "@refinedev/antd";
-import { CustomAvatar } from "@/components/avatar";
+import { DateField, NumberField, Show } from "@refinedev/antd";
 import { API_URL } from "@/utils/constants";
 import { Invoice, Service } from "@/types";
 import { Button } from "antd";
 import { useStyles } from "./show.styled";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 
 export const InvoicesPageShow = () => {
   const { styles } = useStyles();
-
-  const { listUrl } = useNavigation();
 
   const { queryResult } = useShow<Invoice>({
     meta: {
@@ -34,22 +32,30 @@ export const InvoicesPageShow = () => {
   const loading = queryResult?.isLoading;
 
   return (
-    <>
-      <PageHeader
-        backButtonText="Invoices"
-        backButtonHref={listUrl("invoices")}
-        extra={
-          <>
-            <Button
-              disabled={!invoice}
-              icon={<FilePdfOutlined />}
-              onClick={() => window.print()}
-            >
-              Export PDF
-            </Button>
-          </>
-        }
-      />
+    <Show
+      title="Invoices"
+      headerButtons={() => (
+        <>
+          <Button
+            disabled={!invoice}
+            icon={<FilePdfOutlined />}
+            onClick={() => window.print()}
+          >
+            Export PDF
+          </Button>
+        </>
+      )}
+      contentProps={{
+        styles: {
+          body: {
+            padding: 0,
+          },
+        },
+        style: {
+          background: "transparent",
+        },
+      }}
+    >
       <div id="invoice-pdf" className={styles.container}>
         <Card
           bordered={false}
@@ -89,19 +95,25 @@ export const InvoicesPageShow = () => {
                 <Flex vertical gap={24}>
                   <Typography.Text>From:</Typography.Text>
                   <Flex gap={24}>
-                    <CustomAvatar
-                      className={
-                        invoice?.account?.logo?.url ? "" : "print-hidden"
-                      }
-                      name={invoice?.account?.company_name}
-                      shape="square"
+                    <Avatar
+                      alt={invoice?.account?.company_name}
                       size={64}
                       src={
                         invoice?.account?.logo?.url
                           ? `${API_URL}${invoice?.account?.logo?.url}`
                           : undefined
                       }
-                    />
+                      shape="square"
+                      style={{
+                        backgroundColor: getRandomColorFromString(
+                          invoice?.account?.company_name || "",
+                        ),
+                      }}
+                    >
+                      <Typography.Text>
+                        {invoice?.account?.company_name?.[0]?.toUpperCase()}
+                      </Typography.Text>
+                    </Avatar>
                     <Flex vertical gap={8}>
                       <Typography.Text
                         style={{
@@ -267,6 +279,6 @@ export const InvoicesPageShow = () => {
           </Flex>
         </Card>
       </div>
-    </>
+    </Show>
   );
 };

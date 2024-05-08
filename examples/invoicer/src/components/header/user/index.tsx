@@ -1,6 +1,5 @@
 import { useGetIdentity, useLogout } from "@refinedev/core";
-import { Button, Dropdown, Flex, Skeleton, Typography } from "antd";
-import { CustomAvatar } from "@/components/avatar";
+import { Avatar, Button, Dropdown, Flex, Skeleton, Typography } from "antd";
 import { User as UserType } from "@/types";
 import { useStyles } from "./styled";
 
@@ -52,7 +51,7 @@ export const User = () => {
             )}
           </Typography.Text>
         </div>
-        <CustomAvatar
+        <Avatar
           size={32}
           src={"https://randomuser.me/api/portraits/lego/5.jpg"}
           alt={user?.username}

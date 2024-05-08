@@ -11,11 +11,10 @@ import {
   useSelect,
   useTable,
 } from "@refinedev/antd";
-import { Flex, Input, Select, Table, Typography } from "antd";
+import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { CustomAvatar } from "@/components/avatar";
-import { PaginationTotal } from "@/components/pagination-total";
 import { API_URL } from "@/utils/constants";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 import { Client } from "@/types";
 
 export const ClientsPageList = ({ children }: PropsWithChildren) => {
@@ -83,9 +82,6 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
           pagination={{
             ...tableProps.pagination,
             showSizeChanger: true,
-            showTotal: (total) => (
-              <PaginationTotal total={total} entityName="accounts" />
-            ),
           }}
           scroll={{ x: 960 }}
         >
@@ -199,11 +195,22 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             render={(_, record: Client) => {
               const logoUrl = record?.account?.logo?.url;
               const src = logoUrl ? `${API_URL}${logoUrl}` : null;
-              const name = record?.account?.company_name;
+              const name = record?.account?.company_name || "";
 
               return (
                 <Flex align="center" gap={8}>
-                  <CustomAvatar name={name} src={src} shape="square" />
+                  <Avatar
+                    alt={name}
+                    src={src}
+                    shape="square"
+                    style={{
+                      backgroundColor: getRandomColorFromString(name),
+                    }}
+                  >
+                    <Typography.Text>
+                      {name?.[0]?.toUpperCase()}
+                    </Typography.Text>
+                  </Avatar>
                   <Typography.Text>{name}</Typography.Text>
                 </Flex>
               );

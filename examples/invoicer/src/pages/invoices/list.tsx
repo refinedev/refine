@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,
@@ -12,11 +11,10 @@ import {
   useSelect,
   useTable,
 } from "@refinedev/antd";
-import { Flex, Input, Select, Table, Typography } from "antd";
+import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { CustomAvatar } from "@/components/avatar";
-import { PaginationTotal } from "@/components/pagination-total";
 import { API_URL } from "@/utils/constants";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 import { Invoice } from "@/types";
 
 export const InvoicePageList = () => {
@@ -68,9 +66,6 @@ export const InvoicePageList = () => {
         pagination={{
           ...tableProps.pagination,
           showSizeChanger: true,
-          showTotal: (total) => (
-            <PaginationTotal total={total} entityName="invoices" />
-          ),
         }}
         scroll={{ x: 960 }}
       >
@@ -115,7 +110,16 @@ export const InvoicePageList = () => {
 
             return (
               <Flex align="center" gap={8}>
-                <CustomAvatar name={name} src={src} shape="square" />
+                <Avatar
+                  alt={name}
+                  src={src}
+                  shape="square"
+                  style={{
+                    backgroundColor: getRandomColorFromString(name),
+                  }}
+                >
+                  <Typography.Text>{name?.[0]?.toUpperCase()}</Typography.Text>
+                </Avatar>
                 <Typography.Text>{name}</Typography.Text>
               </Flex>
             );

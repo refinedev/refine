@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { AutoComplete, Flex, Input, Typography } from "antd";
+import { AutoComplete, Avatar, Flex, Input, Typography } from "antd";
 import { useList, useNavigation } from "@refinedev/core";
 import { Link } from "react-router-dom";
-import { CustomAvatar } from "@/components/avatar";
 import { API_URL } from "@/utils/constants";
 import { Account, Client } from "@/types";
 import { useStyles } from "./styled";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 
 type Option =
   | (Account & {
@@ -102,13 +102,21 @@ export const Search = () => {
           <Link to={to}>
             <Flex align="center" gap={8}>
               {data.resource === "accounts" && (
-                <CustomAvatar
-                  name={data.company_name}
+                <Avatar
                   shape="square"
                   size={24}
                   src={imageSrc}
                   alt={data.company_name}
-                />
+                  style={{
+                    backgroundColor: getRandomColorFromString(
+                      data.company_name,
+                    ),
+                  }}
+                >
+                  <Typography.Text>
+                    {data.company_name?.[0]?.toUpperCase()}
+                  </Typography.Text>
+                </Avatar>
               )}
               <Typography.Text>{title}</Typography.Text>
             </Flex>

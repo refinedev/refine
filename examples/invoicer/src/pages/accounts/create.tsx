@@ -4,7 +4,6 @@ import { Flex, Form, Input, Modal, Select } from "antd";
 import InputMask from "react-input-mask";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { FormItemUploadLogoDraggable } from "@/components/form";
-import { countryOptions } from "@/utils/countries";
 import { API_URL } from "@/utils/constants";
 import { Account, AccountForm } from "@/types";
 
@@ -71,13 +70,6 @@ export const AccountsPageCreate = () => {
               rules={[{ required: true, type: "email" }]}
             >
               <Input />
-            </Form.Item>
-            <Form.Item
-              name="country"
-              label="Country"
-              rules={[{ required: true }]}
-            >
-              <Select options={countryOptions} />
             </Form.Item>
             <Form.Item
               name="address"

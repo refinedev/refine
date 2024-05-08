@@ -12,11 +12,10 @@ import {
   useTable,
 } from "@refinedev/antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { Flex, Input, Select, Table, Typography } from "antd";
-import { PaginationTotal } from "@/components/pagination-total";
-import { CustomAvatar } from "@/components/avatar";
+import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { API_URL } from "@/utils/constants";
 import { Account } from "@/types";
+import { getRandomColorFromString } from "@/utils/get-random-color";
 
 export const AccountsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
@@ -82,9 +81,6 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
           pagination={{
             ...tableProps.pagination,
             showSizeChanger: true,
-            showTotal: (total) => (
-              <PaginationTotal total={total} entityName="accounts" />
-            ),
           }}
           scroll={{ x: 960 }}
         >
@@ -130,7 +126,18 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
 
               return (
                 <Flex align="center" gap={8}>
-                  <CustomAvatar name={name} src={src} shape="square" />
+                  <Avatar
+                    alt={name}
+                    src={src}
+                    shape="square"
+                    style={{
+                      backgroundColor: getRandomColorFromString(name),
+                    }}
+                  >
+                    <Typography.Text>
+                      {name?.[0]?.toUpperCase()}
+                    </Typography.Text>
+                  </Avatar>
                   <Typography.Text>{name}</Typography.Text>
                 </Flex>
               );

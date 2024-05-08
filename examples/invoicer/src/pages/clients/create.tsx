@@ -2,7 +2,6 @@ import { useGo } from "@refinedev/core";
 import { useForm, useSelect } from "@refinedev/antd";
 import { Flex, Form, Input, Modal, Select } from "antd";
 import InputMask from "react-input-mask";
-import { countryOptions } from "@/utils/countries";
 
 export const ClientsPageCreate = () => {
   const go = useGo();
@@ -17,7 +16,7 @@ export const ClientsPageCreate = () => {
 
   return (
     <Modal
-      okButtonProps={{ form: "create-account-form", htmlType: "submit" }}
+      okButtonProps={{ form: "create-client-form", htmlType: "submit" }}
       title="Add new client"
       open
       onCancel={() => {
@@ -65,17 +64,6 @@ export const ClientsPageCreate = () => {
             rules={[{ required: true, type: "email" }]}
           >
             <Input placeholder="Please enter owner email" />
-          </Form.Item>
-          <Form.Item
-            name="country"
-            label="Country"
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch
-              placeholder="Please select country"
-              options={countryOptions}
-            />
           </Form.Item>
           <Form.Item
             name="address"

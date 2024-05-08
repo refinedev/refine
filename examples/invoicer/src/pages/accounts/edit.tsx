@@ -4,6 +4,7 @@ import {
   DeleteButton,
   EditButton,
   NumberField,
+  Show,
   ShowButton,
   useForm,
 } from "@refinedev/antd";
@@ -20,14 +21,12 @@ import {
   ShopOutlined,
 } from "@ant-design/icons";
 import { Col, Row } from "antd";
-import { PageHeader } from "@/components/page-header";
 import {
   FormItemEditableInputText,
   FormItemEditableText,
   FormItemEditableSelect,
   FormItemUploadLogo,
 } from "@/components/form";
-import { countryOptions } from "@/utils/countries";
 import { Account, AccountForm } from "@/types";
 
 export const AccountsPageEdit = () => {
@@ -45,252 +44,248 @@ export const AccountsPageEdit = () => {
   const isLoading = queryResult?.isLoading;
 
   return (
-    <Form
-      {...formProps}
-      onFinish={(values) => {
-        const logoId = values.logo?.file?.response?.[0]?.id;
-        return formProps.onFinish?.({
-          ...values,
-          logo: logoId,
-        } as AccountForm);
+    <Show
+      title="Accounts"
+      headerButtons={() => false}
+      contentProps={{
+        styles: {
+          body: {
+            padding: 0,
+          },
+        },
+        style: {
+          background: "transparent",
+        },
       }}
-      layout="vertical"
     >
-      <PageHeader
-        backButtonText="Accounts"
-        backButtonHref={listUrl("accounts")}
-      />
-
-      <Row>
-        <Col span={24}>
-          <Flex gap={16}>
-            <FormItemUploadLogo
-              isLoading={isLoading}
-              label={account?.company_name || " "}
-              onUpload={() => {
-                formProps.form?.submit();
-              }}
-            />
-            <FormItemEditableText
-              loading={isLoading}
-              formItemProps={{
-                name: "company_name",
-                rules: [{ required: true }],
-              }}
-            />
-          </Flex>
-        </Col>
-      </Row>
-      <Row
-        gutter={32}
-        style={{
-          marginTop: "32px",
+      <Form
+        {...formProps}
+        onFinish={(values) => {
+          const logoId = values.logo?.file?.response?.[0]?.id;
+          return formProps.onFinish?.({
+            ...values,
+            logo: logoId,
+          } as AccountForm);
         }}
+        layout="vertical"
       >
-        <Col xs={{ span: 24 }} xl={{ span: 8 }}>
-          <Card
-            bordered={false}
-            styles={{ body: { padding: 0 } }}
-            title={
-              <Flex gap={12} align="center">
-                <BankOutlined />
-                <Typography.Text>Account info</Typography.Text>
-              </Flex>
-            }
-          >
-            <FormItemEditableInputText
-              loading={isLoading}
-              icon={<UserOutlined />}
-              placeholder="Add owner name"
-              formItemProps={{
-                name: "owner_name",
-                label: "Owner name",
-                rules: [{ required: true }],
-              }}
-            />
-            <Divider style={{ margin: 0 }} />
-            <FormItemEditableInputText
-              loading={isLoading}
-              icon={<MailOutlined />}
-              placeholder="Add email"
-              formItemProps={{
-                name: "owner_email",
-                label: "Owner email",
-                rules: [{ required: true }],
-              }}
-            />
-            <Divider style={{ margin: 0 }} />
-            <FormItemEditableSelect
-              loading={isLoading}
-              icon={<GlobalOutlined />}
-              selectProps={{
-                placeholder: "Select country",
-                showSearch: true,
-                options: countryOptions,
-              }}
-              formItemProps={{
-                name: "country",
-                label: "Country",
-                rules: [{ required: true }],
-              }}
-            />
-            <Divider style={{ margin: 0 }} />
-            <FormItemEditableInputText
-              loading={isLoading}
-              icon={<EnvironmentOutlined />}
-              placeholder="Add address"
-              formItemProps={{
-                name: "address",
-                label: "Address",
-                rules: [{ required: true }],
-              }}
-            />
-            <Divider style={{ margin: 0 }} />
-            <FormItemEditableInputText
-              loading={isLoading}
-              icon={<PhoneOutlined />}
-              placeholder="Add phone number"
-              formItemProps={{
-                name: "phone",
-                label: "Phone",
-                rules: [{ required: true }],
-              }}
-            />
-          </Card>
-          <DeleteButton
-            type="text"
-            style={{
-              marginTop: "16px",
-            }}
-            onSuccess={() => {
-              listUrl("clients");
-            }}
-          >
-            Delete account
-          </DeleteButton>
-        </Col>
-
-        <Col xs={{ span: 24 }} xl={{ span: 16 }}>
-          <Card
-            bordered={false}
-            title={
-              <Flex gap={12} align="center">
-                <ShopOutlined />
-                <Typography.Text>Clients</Typography.Text>
-              </Flex>
-            }
-            styles={{
-              header: {
-                padding: "0 16px",
-              },
-              body: {
-                padding: "0",
-              },
-            }}
-          >
-            <Table
-              dataSource={clients}
-              pagination={false}
-              loading={isLoading}
-              rowKey={"id"}
-            >
-              <Table.Column title="ID" dataIndex="id" key="id" />
-              <Table.Column title="Client" dataIndex="name" key="name" />
-              <Table.Column
-                title="Owner"
-                dataIndex="owner_name"
-                key="owner_name"
-              />
-              <Table.Column
-                title="Email"
-                dataIndex="owner_email"
-                key="owner_email"
-              />
-              <Table.Column
-                key="actions"
-                width={64}
-                render={(_, record: Account) => {
-                  return (
-                    <EditButton
-                      hideText
-                      resource="clients"
-                      recordItemId={record.id}
-                      icon={<ExportOutlined />}
-                    />
-                  );
+        <Row>
+          <Col span={24}>
+            <Flex gap={16}>
+              <FormItemUploadLogo
+                isLoading={isLoading}
+                label={account?.company_name || " "}
+                onUpload={() => {
+                  formProps.form?.submit();
                 }}
               />
-            </Table>
-          </Card>
-
-          <Card
-            bordered={false}
-            title={
-              <Flex gap={12} align="center">
-                <ContainerOutlined />
-                <Typography.Text>Invoices</Typography.Text>
-              </Flex>
-            }
-            style={{ marginTop: "32px" }}
-            styles={{
-              header: {
-                padding: "0 16px",
-              },
-              body: {
-                padding: 0,
-              },
-            }}
-          >
-            <Table
-              dataSource={invoices}
-              pagination={false}
-              loading={isLoading}
-              rowKey={"id"}
-            >
-              <Table.Column title="ID" dataIndex="id" key="id" width={72} />
-              <Table.Column
-                title="Date"
-                dataIndex="date"
-                key="date"
-                render={(date) => (
-                  <DateField value={date} format="D MMM YYYY" />
-                )}
-              />
-              <Table.Column
-                title="Client"
-                dataIndex="client"
-                key="client"
-                render={(client) => client?.name}
-              />
-              <Table.Column
-                title="Amount"
-                dataIndex="total"
-                key="total"
-                render={(total) => (
-                  <NumberField
-                    value={total}
-                    options={{ style: "currency", currency: "USD" }}
-                  />
-                )}
-              />
-              <Table.Column
-                key="actions"
-                width={64}
-                render={(_, record: Account) => {
-                  return (
-                    <ShowButton
-                      hideText
-                      resource="invoices"
-                      recordItemId={record.id}
-                      icon={<ExportOutlined />}
-                    />
-                  );
+              <FormItemEditableText
+                loading={isLoading}
+                formItemProps={{
+                  name: "company_name",
+                  rules: [{ required: true }],
                 }}
               />
-            </Table>
-          </Card>
-        </Col>
-      </Row>
-    </Form>
+            </Flex>
+          </Col>
+        </Row>
+        <Row
+          gutter={32}
+          style={{
+            marginTop: "32px",
+          }}
+        >
+          <Col xs={{ span: 24 }} xl={{ span: 8 }}>
+            <Card
+              bordered={false}
+              styles={{ body: { padding: 0 } }}
+              title={
+                <Flex gap={12} align="center">
+                  <BankOutlined />
+                  <Typography.Text>Account info</Typography.Text>
+                </Flex>
+              }
+            >
+              <FormItemEditableInputText
+                loading={isLoading}
+                icon={<UserOutlined />}
+                placeholder="Add owner name"
+                formItemProps={{
+                  name: "owner_name",
+                  label: "Owner name",
+                  rules: [{ required: true }],
+                }}
+              />
+              <Divider style={{ margin: 0 }} />
+              <FormItemEditableInputText
+                loading={isLoading}
+                icon={<MailOutlined />}
+                placeholder="Add email"
+                formItemProps={{
+                  name: "owner_email",
+                  label: "Owner email",
+                  rules: [{ required: true }],
+                }}
+              />
+              <Divider style={{ margin: 0 }} />
+              <Divider style={{ margin: 0 }} />
+              <FormItemEditableInputText
+                loading={isLoading}
+                icon={<EnvironmentOutlined />}
+                placeholder="Add address"
+                formItemProps={{
+                  name: "address",
+                  label: "Address",
+                  rules: [{ required: true }],
+                }}
+              />
+              <Divider style={{ margin: 0 }} />
+              <FormItemEditableInputText
+                loading={isLoading}
+                icon={<PhoneOutlined />}
+                placeholder="Add phone number"
+                formItemProps={{
+                  name: "phone",
+                  label: "Phone",
+                  rules: [{ required: true }],
+                }}
+              />
+            </Card>
+            <DeleteButton
+              type="text"
+              style={{
+                marginTop: "16px",
+              }}
+              onSuccess={() => {
+                listUrl("clients");
+              }}
+            >
+              Delete account
+            </DeleteButton>
+          </Col>
+
+          <Col xs={{ span: 24 }} xl={{ span: 16 }}>
+            <Card
+              bordered={false}
+              title={
+                <Flex gap={12} align="center">
+                  <ShopOutlined />
+                  <Typography.Text>Clients</Typography.Text>
+                </Flex>
+              }
+              styles={{
+                header: {
+                  padding: "0 16px",
+                },
+                body: {
+                  padding: "0",
+                },
+              }}
+            >
+              <Table
+                dataSource={clients}
+                pagination={false}
+                loading={isLoading}
+                rowKey={"id"}
+              >
+                <Table.Column title="ID" dataIndex="id" key="id" />
+                <Table.Column title="Client" dataIndex="name" key="name" />
+                <Table.Column
+                  title="Owner"
+                  dataIndex="owner_name"
+                  key="owner_name"
+                />
+                <Table.Column
+                  title="Email"
+                  dataIndex="owner_email"
+                  key="owner_email"
+                />
+                <Table.Column
+                  key="actions"
+                  width={64}
+                  render={(_, record: Account) => {
+                    return (
+                      <EditButton
+                        hideText
+                        resource="clients"
+                        recordItemId={record.id}
+                        icon={<ExportOutlined />}
+                      />
+                    );
+                  }}
+                />
+              </Table>
+            </Card>
+
+            <Card
+              bordered={false}
+              title={
+                <Flex gap={12} align="center">
+                  <ContainerOutlined />
+                  <Typography.Text>Invoices</Typography.Text>
+                </Flex>
+              }
+              style={{ marginTop: "32px" }}
+              styles={{
+                header: {
+                  padding: "0 16px",
+                },
+                body: {
+                  padding: 0,
+                },
+              }}
+            >
+              <Table
+                dataSource={invoices}
+                pagination={false}
+                loading={isLoading}
+                rowKey={"id"}
+              >
+                <Table.Column title="ID" dataIndex="id" key="id" width={72} />
+                <Table.Column
+                  title="Date"
+                  dataIndex="date"
+                  key="date"
+                  render={(date) => (
+                    <DateField value={date} format="D MMM YYYY" />
+                  )}
+                />
+                <Table.Column
+                  title="Client"
+                  dataIndex="client"
+                  key="client"
+                  render={(client) => client?.name}
+                />
+                <Table.Column
+                  title="Amount"
+                  dataIndex="total"
+                  key="total"
+                  render={(total) => (
+                    <NumberField
+                      value={total}
+                      options={{ style: "currency", currency: "USD" }}
+                    />
+                  )}
+                />
+                <Table.Column
+                  key="actions"
+                  width={64}
+                  render={(_, record: Account) => {
+                    return (
+                      <ShowButton
+                        hideText
+                        resource="invoices"
+                        recordItemId={record.id}
+                        icon={<ExportOutlined />}
+                      />
+                    );
+                  }}
+                />
+              </Table>
+            </Card>
+          </Col>
+        </Row>
+      </Form>
+    </Show>
   );
 };
