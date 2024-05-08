@@ -1,6 +1,5 @@
+import { MINIMUM_APP_HEIGHT, MINIMUM_APP_WIDTH } from "@/utils/app-settings";
 import { PropsWithChildren, useEffect, useState } from "react";
-
-const MOBILE_WIDTH = 1200;
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -10,7 +9,7 @@ function getWindowDimensions() {
   };
 }
 
-export const MobileVersionIsNotAvailable = ({
+export const UnsupportedResolutionHandler = ({
   children,
 }: PropsWithChildren) => {
   const [windowDimensions, setWindowDimensions] = useState(() =>
@@ -22,7 +21,10 @@ export const MobileVersionIsNotAvailable = ({
       const dimensions = getWindowDimensions();
       const body = document.body;
 
-      if (dimensions.width < MOBILE_WIDTH) {
+      if (
+        dimensions.width < MINIMUM_APP_WIDTH ||
+        dimensions.height < MINIMUM_APP_HEIGHT
+      ) {
         body.style.overflow = "hidden";
       } else {
         body.style.overflow = "unset";
@@ -35,15 +37,17 @@ export const MobileVersionIsNotAvailable = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = windowDimensions.width < MOBILE_WIDTH;
+  const isSupported =
+    windowDimensions.width >= MINIMUM_APP_WIDTH &&
+    windowDimensions.height >= MINIMUM_APP_HEIGHT;
 
   return (
     <>
       <div
         style={{
-          display: isMobile ? "flex" : "none",
-          pointerEvents: isMobile ? "none" : "unset",
-          overflow: isMobile ? "hidden" : "unset",
+          display: isSupported ? "none" : "flex",
+          pointerEvents: isSupported ? "unset" : "none",
+          overflow: isSupported ? "unset" : "hidden",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -78,8 +82,10 @@ export const MobileVersionIsNotAvailable = ({
             marginTop: "16px",
           }}
         >
-          Mobile version is not available yet.
-          <div>Please visit from a desktop browser.</div>
+          Resolution not supported.
+          <div>
+            This website is best browsed at resolutions 1024x768 or higher.
+          </div>
         </h2>
       </div>
       {children}

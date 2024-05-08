@@ -45,7 +45,7 @@ import { notificationProvider } from "@/providers/notification-provider";
 
 import dayjs from "dayjs";
 import durationPlugin from "dayjs/plugin/duration";
-import { MobileVersionIsNotAvailable } from "./components/mobile-version-is-not-available";
+import { UnsupportedResolutionHandler } from "./components/mobile-version-is-not-available";
 dayjs.extend(durationPlugin);
 
 const App = () => {
@@ -53,7 +53,7 @@ const App = () => {
     <DevtoolsProvider>
       <BrowserRouter>
         <ThemeProvider>
-          <MobileVersionIsNotAvailable>
+          <UnsupportedResolutionHandler>
             <Refine
               dataProvider={dataProvider(supabaseClient)}
               liveProvider={liveProvider(supabaseClient)}
@@ -226,7 +226,7 @@ const App = () => {
               <DocumentTitleHandler />
               <Toaster />
             </Refine>
-          </MobileVersionIsNotAvailable>
+          </UnsupportedResolutionHandler>
         </ThemeProvider>
         <DevtoolsPanel />
       </BrowserRouter>

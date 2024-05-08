@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { ScrollView } from "react95";
 import { TaskBar } from "@/components/taskbar";
+import { MINIMUM_APP_HEIGHT, MINIMUM_APP_WIDTH } from "@/utils/app-settings";
 
 export const CommonLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -31,8 +32,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-width: 1200px;
-  min-height: 780px;
+  min-width: ${MINIMUM_APP_WIDTH}px;
+  min-height: ${MINIMUM_APP_HEIGHT}px;
   height: 100dvh;
   width: 100%;
   padding: 0;
