@@ -1,12 +1,12 @@
 import React from "react";
 import { useResource } from "@refinedev/core";
 
-import { ShowInferencer } from "./show.tsx";
-import { ListInferencer } from "./list.tsx";
-import { CreateInferencer } from "./create.tsx";
-import { EditInferencer } from "./edit.tsx";
+import { ShowInferencer } from "./show.js";
+import { ListInferencer } from "./list.js";
+import { CreateInferencer } from "./create.js";
+import { EditInferencer } from "./edit.js";
 
-import type { InferencerComponentProps } from "../../types/index.ts";
+import type { InferencerComponentProps } from "../../types/index.js";
 
 const MantineInferencer: React.FC<InferencerComponentProps> = ({
   action: actionFromProps,
@@ -31,17 +31,17 @@ export { MantineInferencer };
 export {
   ShowInferencer as MantineShowInferencer,
   renderer as MantineShowRenderer,
-} from "./show.tsx";
+} from "./show.js";
 export {
   EditInferencer as MantineEditInferencer,
   renderer as MantineEditRenderer,
-} from "./edit.tsx";
+} from "./edit.js";
 export {
   ListInferencer as MantineListInferencer,
   renderer as MantineListRenderer,
-} from "./list.tsx";
+} from "./list.js";
 export {
   CreateInferencer as MantineCreateInferencer,
   renderer as MantineCreateRenderer,
-} from "./create.tsx";
-export * from "../../types/index.ts";
+} from "./create.js";
+export * from "../../types/index.js";

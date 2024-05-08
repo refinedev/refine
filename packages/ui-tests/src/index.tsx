@@ -1,1 +1,1 @@
-export * from "./tests/index.tsx";
+export * from "./tests/index.js";
