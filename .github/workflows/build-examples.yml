@@ -80,7 +80,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 1)
 
@@ -121,7 +121,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 2)
 
@@ -162,7 +162,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 3)
 
@@ -203,7 +203,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 4)
 
@@ -244,7 +244,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 5)
 
@@ -285,7 +285,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 6)
 
@@ -326,7 +326,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 7)
 
@@ -367,7 +367,7 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
+      CYPRESS_CACHE_FOLDER: "${{ github.workspace }}/node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 8)
 
