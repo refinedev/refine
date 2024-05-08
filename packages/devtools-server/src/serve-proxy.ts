@@ -170,7 +170,16 @@ export const serveProxy = async (app: Express) => {
           saveAuth(token, jwt);
         })(proxyRes, req, res);
       }
-      res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+
+      if (proxyRes.statusCode === 401) {
+        res.writeHead(200, {
+          ...proxyRes.headers,
+          "Access-Control-Expose-Headers": `Refine-Is-Authenticated, ${proxyRes.headers["Access-Control-Expose-Headers"]}`,
+        });
+      } else {
+        res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+      }
+
       proxyRes.pipe(res, { end: true });
     },
   });
