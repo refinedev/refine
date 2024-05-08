@@ -236,25 +236,36 @@ const dataProvider: DataProvider = {
 
 ### getList <PropTag required />
 
-`getList` method is used to get a list of resources with sorting, filtering, and pagination features.
-It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters and returns `data` and `total`.
+The `getList` method is used to get a list of resources with sorting, filtering, and pagination features. It takes `resource`, `sorters`, `pagination`, and, `filters` as parameters. And it returns both `data` and `total` fields, regardless of the data provider used.
 
 Refine will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
+#### Retrieving the Total Row Count
+- Different data providers have specific ways to determine the total row count, and these are just some examples:
+  - **Simple REST Providers:** The `x-total-count` header is commonly used to get the row count.
+  - **GraphQL Providers:** The total count is often sourced from specific data fields, like `response.data.pageInfo.total`.
+
+This documentation provides only illustrative examples. It's up to the data provider to determine how to best source the total count.
+
+The method signature remains the same, and Refine expects a consistent format:
+
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
-  const { current, pageSize, mode } = pagination;
-  const { field, order } = sorters;
-  const { field, operator, value } = filters;
+  const { current, pageSize } = pagination ?? {};
 
-  // You can handle the request according to your API requirements.
+  // Adjust request parameters to meet the requirements of your API
+  const response = await apiClient.get(`/${resource}`, {
+    params: { _page: current, _limit: pageSize },
+  });
+
+  // The total row count could be sourced differently based on the provider
+  const total = response.headers["x-total-count"] ?? response.data.length;
 
   return {
-    data,
+    data: response.data,
     total,
   };
 };
-```
 
 :::tip
 

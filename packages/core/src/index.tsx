@@ -1,9 +1,9 @@
-export * from "./components/index.ts";
-export * from "./hooks/index.ts";
+export * from "./components/index.js";
+export * from "./hooks/index.js";
 
 // all auth types
-export * from "./components/pages/auth/types.tsx";
-export { ILoginForm } from "./components/pages/login/index.tsx";
+export * from "./components/pages/auth/types.js";
+export { ILoginForm } from "./components/pages/login/index.js";
 
 export {
   getDefaultFilter,
@@ -15,7 +15,7 @@ export {
   stringifyTableParams,
   unionFilters,
   unionSorters,
-} from "./definitions/table/index.ts";
+} from "./definitions/table/index.js";
 export {
   createTreeView,
   handleUseParams,
@@ -35,13 +35,13 @@ export {
   KeyBuilder,
   flattenObjectKeys,
   propertyPathToArray,
-} from "./definitions/helpers/index.ts";
-export { file2Base64 } from "./definitions/upload/index.ts";
-export { generateDefaultDocumentTitle } from "./definitions/index.ts";
+} from "./definitions/helpers/index.js";
+export { file2Base64 } from "./definitions/upload/index.js";
+export { generateDefaultDocumentTitle } from "./definitions/index.js";
 
-export { ResourceContext } from "./contexts/resource/index.tsx";
+export { ResourceContext } from "./contexts/resource/index.js";
 
-export { AccessControlContext } from "./contexts/accessControl/index.tsx";
+export { AccessControlContext } from "./contexts/accessControl/index.js";
 
 export {
   AccessControlProvider,
@@ -49,21 +49,21 @@ export {
   CanParams,
   CanReturnType,
   IAccessControlContext,
-} from "./contexts/accessControl/types.ts";
+} from "./contexts/accessControl/types.js";
 
 export {
   AuditLogProvider,
   ILog,
   ILogData,
   LogParams,
-} from "./contexts/auditLog/types.ts";
+} from "./contexts/auditLog/types.js";
 
 export {
   AuthBindings,
   AuthProvider,
   ILegacyAuthContext,
   LegacyAuthProvider,
-} from "./contexts/auth/types.ts";
+} from "./contexts/auth/types.js";
 
 export {
   ConditionalFilter,
@@ -107,19 +107,19 @@ export {
   BaseOption,
   IQueryKeys,
   Prettify,
-} from "./contexts/data/types.ts";
+} from "./contexts/data/types.js";
 
 export {
   I18nContext,
   I18nContext as TranslationContext,
-} from "./contexts/i18n/index.tsx";
+} from "./contexts/i18n/index.js";
 
 export {
   I18nProvider,
   I18nProvider as TranslationProvider,
   I18nProvider as i18nBindings,
   II18nContext as ITranslationContext,
-} from "./contexts/i18n/types.ts";
+} from "./contexts/i18n/types.js";
 
 export {
   ILiveContext,
@@ -130,7 +130,7 @@ export {
   LiveOneParams,
   LiveProvider,
   LiveListParams,
-} from "./contexts/live/types.ts";
+} from "./contexts/live/types.js";
 
 export {
   INotificationContext,
@@ -138,7 +138,7 @@ export {
   NotificationProvider as NotificationsBindings,
   OpenNotificationParams,
   SuccessErrorNotification,
-} from "./contexts/notification/types.ts";
+} from "./contexts/notification/types.js";
 
 export {
   IRefineContext,
@@ -149,7 +149,7 @@ export {
   RefineProps,
   TextTransformers,
   TitleProps,
-} from "./contexts/refine/types.ts";
+} from "./contexts/refine/types.js";
 
 export {
   ResourceProps,
@@ -159,7 +159,7 @@ export {
   IResourceItem,
   ITreeMenu,
   ResourceBindings,
-} from "./contexts/resource/types.ts";
+} from "./contexts/resource/types.js";
 
 export {
   ActionWithPage,
@@ -170,7 +170,7 @@ export {
   ResourceErrorRouterParams,
   ResourceRouterParams,
   RouteAction,
-} from "./contexts/router/legacy/types.ts";
+} from "./contexts/router/legacy/types.js";
 
 export {
   Action,
@@ -182,6 +182,6 @@ export {
   ParseFunction,
   RouterProvider,
   RouterProvider as RouterBindings,
-} from "./contexts/router/types.ts";
+} from "./contexts/router/types.js";
 
-export { IUnsavedWarnContext } from "./contexts/unsavedWarn/types.ts";
+export { IUnsavedWarnContext } from "./contexts/unsavedWarn/types.js";
