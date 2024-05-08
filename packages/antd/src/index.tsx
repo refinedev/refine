@@ -1,14 +1,14 @@
-export * from "./hooks/index.ts";
-export * from "./providers/index.ts";
-export * from "./components/index.ts";
-export * from "./contexts/index.ts";
+export * from "./hooks/index.js";
+export * from "./providers/index.js";
+export * from "./components/index.js";
+export * from "./contexts/index.js";
 
 export {
   getDefaultSortOrder,
   getDefaultFilter,
   mapAntdSorterToCrudSorting,
   mapAntdFilterToCrudFilter,
-} from "./definitions/table/index.ts";
-export { getValueFromEvent } from "./definitions/upload/index.ts";
+} from "./definitions/table/index.js";
+export { getValueFromEvent } from "./definitions/upload/index.js";
 
-export * from "./definitions/themes/index.ts";
+export * from "./definitions/themes/index.js";

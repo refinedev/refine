@@ -1,6 +1,6 @@
-export { routerBindings as default, stringifyConfig } from "./bindings.tsx";
-export { RefineRoutes } from "./refine-routes.tsx";
-export { UnsavedChangesNotifier } from "./unsaved-changes-notifier.tsx";
-export { NavigateToResource } from "./navigate-to-resource.ts";
-export { parseTableParams } from "./parse-table-params.ts";
-export { paramsFromCurrentPath } from "./params-from-current-path/index.ts";
+export { routerBindings as default, stringifyConfig } from "./bindings.js";
+export { RefineRoutes } from "./refine-routes.js";
+export { UnsavedChangesNotifier } from "./unsaved-changes-notifier.js";
+export { NavigateToResource } from "./navigate-to-resource.js";
+export { parseTableParams } from "./parse-table-params.js";
+export { paramsFromCurrentPath } from "./params-from-current-path/index.js";

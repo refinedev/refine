@@ -1,8 +1,8 @@
-import "./types/theme.ts";
+import "./types/theme.js";
 
-export * from "./components/index.ts";
-export * from "./providers/index.ts";
-export * from "./hooks/index.ts";
-export * from "./theme/index.ts";
-export * from "./definitions/index.ts";
-export * from "./contexts/index.ts";
+export * from "./components/index.js";
+export * from "./providers/index.js";
+export * from "./hooks/index.js";
+export * from "./theme/index.js";
+export * from "./definitions/index.js";
+export * from "./contexts/index.js";
