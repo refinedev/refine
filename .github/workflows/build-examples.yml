@@ -46,7 +46,6 @@ jobs:
       CHUNK_6: ${{ steps.chunkstep.outputs.CHUNK_6 }}
       CHUNK_7: ${{ steps.chunkstep.outputs.CHUNK_7 }}
       CHUNK_8: ${{ steps.chunkstep.outputs.CHUNK_8 }}
-      CHUNK_9: ${{ steps.chunkstep.outputs.CHUNK_9 }}
 
     steps:
       - name: Get PR labels
@@ -381,41 +380,3 @@ jobs:
 
       - name: Run E2E Tests
         run: BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_8 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-8-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
-
-  build-chunk-9:
-    runs-on: ubuntu-latest
-    if: "${{ needs.chunks.outputs.CHUNK_9 != '' }}"
-    concurrency:
-      group: ${{ github.ref }}-build-examples-chunk-9
-      cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    name: Build All Examples (Chunk 9)
-
-    needs: chunks
-
-    steps:
-      - name: Get PR labels
-        id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.6
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: pnpm install --ignore-scripts
-
-      - name: Get short SHA
-        id: slug
-        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
-
-      - name: Run E2E Tests
-        run: BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_9 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-9-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
