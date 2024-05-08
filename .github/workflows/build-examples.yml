@@ -93,7 +93,6 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -101,11 +100,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}}
-
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -144,10 +140,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}}
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -186,10 +179,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}}
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -228,7 +218,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -267,10 +257,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}}
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -301,7 +288,6 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -338,7 +324,6 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -347,7 +332,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
@@ -387,9 +372,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
 
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}}
-
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -426,10 +408,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_9 }}}
+        run: pnpm install --ignore-scripts
 
       - name: Get short SHA
         id: slug
