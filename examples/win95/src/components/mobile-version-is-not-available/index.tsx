@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 
-const MOBILE_WIDTH = 1280;
+const MOBILE_WIDTH = 1200;
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -42,8 +42,9 @@ export const MobileVersionIsNotAvailable = ({
       <div
         style={{
           display: isMobile ? "flex" : "none",
-          flexDirection: "column",
           pointerEvents: isMobile ? "none" : "unset",
+          overflow: isMobile ? "hidden" : "unset",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           position: "absolute",

@@ -31,7 +31,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-width: 1280px;
+  min-width: 1200px;
   min-height: 780px;
   height: 100dvh;
   width: 100%;
