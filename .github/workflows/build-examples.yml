@@ -105,9 +105,7 @@ jobs:
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}}
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install
 
       - name: Get short SHA
         id: slug
@@ -146,9 +144,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}}
@@ -190,8 +186,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}}
@@ -233,9 +228,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install
 
       - name: Get short SHA
         id: slug
@@ -274,9 +267,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}}
@@ -356,8 +347,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
+        run: pnpm install
 
       - name: Get short SHA
         id: slug
@@ -395,9 +385,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install --ignore-scripts
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}}
@@ -438,9 +426,7 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm cypress install
+        run: pnpm install
 
       - name: Build
         run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_9 }}}
