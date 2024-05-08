@@ -1,2 +1,2 @@
-export { DevtoolsPanel } from "./panel.tsx";
-export { DevtoolsProvider } from "./provider.tsx";
+export { DevtoolsPanel } from "./panel.js";
+export { DevtoolsProvider } from "./provider.js";

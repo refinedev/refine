@@ -13,8 +13,8 @@ import {
   BrowserRouterComponent,
   MemoryRouterComponent,
   HashRouterComponent,
-} from "./routerComponent.tsx";
-import { Prompt } from "./prompt.tsx";
+} from "./routerComponent.js";
+import { Prompt } from "./prompt.js";
 
 export type RefineRouteProps = RouteProps & {
   layout?: boolean;
