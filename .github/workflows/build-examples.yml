@@ -79,6 +79,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 1)
 
@@ -118,6 +120,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 2)
 
@@ -157,6 +161,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 3)
 
@@ -196,6 +202,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 4)
 
@@ -235,6 +243,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 5)
 
@@ -274,6 +284,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 6)
 
@@ -313,6 +325,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 7)
 
@@ -352,6 +366,8 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      CYPRESS_CACHE_FOLDER: "./node_modules/.cache/cypress"
 
     name: Build All Examples (Chunk 8)
 
