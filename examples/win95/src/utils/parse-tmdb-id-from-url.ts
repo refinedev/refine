@@ -9,7 +9,7 @@ export const parseTmdbIdFromUrl = (value: string) => {
     const match = url.pathname.match(idRegex);
     if (!match) return null;
 
-    return parseInt(match[1], 10);
+    return Number.parseInt(match[1], 10);
   } catch (error) {
     return null;
   }
