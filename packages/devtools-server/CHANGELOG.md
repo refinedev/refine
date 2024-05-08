@@ -1,5 +1,12 @@
 # @refinedev/devtools-server
 
+## 1.1.29
+
+### Patch Changes
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/devtools-shared@1.1.7
+
 ## 1.1.28
 
 ### Patch Changes
