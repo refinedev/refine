@@ -14447,8 +14447,8 @@ importers:
         specifier: 3.0.2
         version: 3.0.2
       superplate-cli:
-        specifier: ^1.19.0
-        version: 1.19.0(encoding@0.1.13)(typescript@5.4.5)
+        specifier: ^1.20.0
+        version: 1.20.0(encoding@0.1.13)(typescript@5.4.5)
       tar:
         specifier: ^6.2.0
         version: 6.2.1
@@ -36068,8 +36068,8 @@ packages:
   supercluster@8.0.1:
     resolution: {integrity: sha512-IiOea5kJ9iqzD2t7QJq/cREyLHTtSmUT6gQsweojg9WH2sYJqZK9SswTu6jrscO6D1G5v5vYZ9ru/eq85lXeZQ==}
 
-  superplate-cli@1.19.0:
-    resolution: {integrity: sha512-8scWK0ieXCFXRMfYi4xi64Lc9LXFZXRgDkeGoVB20ZC44+N5IR7KA0j0NmpGWpjvotG07nhcjmen3mHDm4dQ8g==}
+  superplate-cli@1.20.0:
+    resolution: {integrity: sha512-zOHK4Z++q4ZUcOZa0KNDqobjm5mXBfx74OiP9z0bSwn1FPtb7CrntZhz3pwW28sX6xRhaErNSj2SAcS8cSGyDg==}
     hasBin: true
 
   supports-color@2.0.0:
@@ -46448,7 +46448,7 @@ snapshots:
       '@octokit/request-error': 3.0.3
       '@octokit/types': 9.3.2
       is-plain-object: 5.0.0
-      node-fetch: 2.6.7(encoding@0.1.13)
+      node-fetch: 2.7.0(encoding@0.1.13)
       universal-user-agent: 6.0.1
     transitivePeerDependencies:
       - encoding
@@ -66306,7 +66306,7 @@ snapshots:
     dependencies:
       kdbush: 4.0.2
 
-  superplate-cli@1.19.0(encoding@0.1.13)(typescript@5.4.5):
+  superplate-cli@1.20.0(encoding@0.1.13)(typescript@5.4.5):
     dependencies:
       chalk: 4.1.2
       clear: 0.1.0
