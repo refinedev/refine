@@ -31,4 +31,6 @@
 "@refinedev/ui-types": patch
 ---
 
-asdasdasdasd
+fix: type errors on typescript <5
+
+Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
