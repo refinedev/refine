@@ -71,4 +71,4 @@ Hygraph is an API-first, headless CMS engineered like a GraphQL API. It bestows 
 
 ## Conclusion
 
-Web applications, mobile applications, or any other project that needs a strong and customizable CMS with a good developer community. Each of these systems has certain characteristics and advantages, due to which they are suitable for a particular type of project.
+Web applications, mobile applications, or any other project that needs a strong and customizable CMS with a good developer community. Each of these systems has certain characteristics and advantages, due to which they are suitable for a particular type of project
