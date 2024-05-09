@@ -25,12 +25,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PANKOD_BOT_TOKEN }}
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-          registry-url: https://registry.npmjs.org/
       - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
@@ -39,22 +41,21 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Install Dependencies & Build
-        run: |
-          pnpm install
+        run: pnpm install
       - name: Lint
-        run: npm run lint:ci
+        run: pnpm lint:ci
       - name: Test
-        run: npm run test:all
+        run: pnpm test:all
       - name: Publint
-        run: npm run publint:all
+        run: pnpm publint:all
       - name: Are The Types Wrong
-        run: npm run attw:all
+        run: pnpm attw:all
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: npm run changeset version
-          publish: npm run changeset publish
+          version: pnpm changeset version
+          publish: pnpm changeset publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:
@@ -114,6 +115,9 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
@@ -136,7 +140,7 @@ jobs:
         run: |
           pnpm install
           cd documentation
-          npm ci
+          pnpm --ignore-workspace install
       - name: Release to GitHub Pages
         env:
           USE_SSH: true
@@ -147,4 +151,4 @@ jobs:
           cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview npm run deploy
+          LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview pnpm deploy
