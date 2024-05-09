@@ -104,6 +104,9 @@ jobs:
           pnpm install --ignore-scripts
           pnpm cypress install
 
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_1 }}}
+
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -144,6 +147,9 @@ jobs:
         run: |
           pnpm install --ignore-scripts
           pnpm cypress install
+
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_2 }}}
 
       - name: Get short SHA
         id: slug
@@ -186,6 +192,9 @@ jobs:
           pnpm install --ignore-scripts
           pnpm cypress install
 
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_3 }}}
+
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -226,6 +235,9 @@ jobs:
         run: |
           pnpm install --ignore-scripts
           pnpm cypress install
+
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_4 }}}
 
       - name: Get short SHA
         id: slug
@@ -268,6 +280,9 @@ jobs:
           pnpm install --ignore-scripts
           pnpm cypress install
 
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_5 }}}
+
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -308,6 +323,9 @@ jobs:
         run: |
           pnpm install --ignore-scripts
           pnpm cypress install
+
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_6 }}}
 
       - name: Get short SHA
         id: slug
@@ -350,6 +368,9 @@ jobs:
           pnpm install --ignore-scripts
           pnpm cypress install
 
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}}
+
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
@@ -389,6 +410,9 @@ jobs:
         run: |
           pnpm install --ignore-scripts
           pnpm cypress install
+
+      - name: Build
+        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}}
 
       - name: Get short SHA
         id: slug
