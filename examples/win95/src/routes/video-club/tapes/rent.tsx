@@ -317,8 +317,6 @@ const RentTapeForm = ({
     }
   }, [tapesIsSuccess]);
 
-  console.log(formState.defaultValues);
-
   const period = watch<"period">("period");
   const returnDate = dayjs().add(period, "day").format("DD.MM.YYYY");
   const price = NIGHTLY_RENTAL_FEE * period;
@@ -342,6 +340,7 @@ const RentTapeForm = ({
             <Controller
               control={control}
               name="tape_id"
+              rules={{ required: "Tape ID is required" }}
               render={({ field }) => (
                 <Select
                   width={"100%"}
