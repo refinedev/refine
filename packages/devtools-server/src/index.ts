@@ -1,7 +1,5 @@
 import express from "express";
 
-import { cyanBright, bold } from "chalk";
-
 import { DevtoolsEvent, receive, send } from "@refinedev/devtools-shared";
 
 import { serveClient } from "./serve-client";
@@ -10,7 +8,6 @@ import { reloadOnChange } from "./reload-on-change";
 import { setupServer } from "./setup-server";
 import { Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
-import { SERVER_PORT } from "./constants";
 import { serveProxy } from "./serve-proxy";
 import { serveOpenInEditor } from "./serve-open-in-editor";
 
@@ -20,7 +17,8 @@ type Options = {
 
 export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
   const app = express();
-  const ws = serveWs();
+  const server = setupServer(app);
+  const ws = serveWs(server);
 
   const db = createDb();
 
@@ -130,7 +128,6 @@ export const server = async ({ projectPath = process.cwd() }: Options = {}) => {
 
   reloadOnChange(ws);
   serveClient(app);
-  setupServer(app);
   serveApi(app, db);
   serveProxy(app);
   serveOpenInEditor(app, projectPath);

@@ -1,14 +1,12 @@
 import type { Express } from "express";
 import { SERVER_PORT } from "./constants";
 import { bold, cyanBright } from "chalk";
+import http from "http";
 
 export const setupServer = (app: Express) => {
-  const server = app
-    .listen(SERVER_PORT, () => {
-      if (__DEVELOPMENT__) {
-        console.log(`Server started on PORT ${SERVER_PORT}`);
-      }
-    })
+  const server = http.createServer(app);
+
+  server
     .on("error", (error: any) => {
       if (error?.code === "EADDRINUSE") {
         console.error(
@@ -41,4 +39,12 @@ export const setupServer = (app: Express) => {
       }
     });
   });
+
+  server.listen(SERVER_PORT, undefined, undefined, () => {
+    if (__DEVELOPMENT__) {
+      console.log(`Server started on PORT ${SERVER_PORT}`);
+    }
+  });
+
+  return server;
 };
