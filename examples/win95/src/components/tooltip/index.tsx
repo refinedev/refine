@@ -10,7 +10,7 @@ export const Popover = ({ children, ...props }: PropsWithChildren<Props>) => {
     <Tooltip
       {...props}
       style={{ color: "black" }}
-      // @ts-expect-error react95 types are incorrect. <Tooltip />ReactNode but types are expecting a string
+      // @ts-expect-error react95 types are incorrect. <Tooltip /> works with ReactNode but types are expecting a string
       text={props.content}
     >
       {children}
