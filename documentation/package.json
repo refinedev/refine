@@ -31,9 +31,15 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.13.8",
     "@codesandbox/sandpack-themes": "^2.0.21",
+    "@docsearch/react": "^3.5.2",
     "@docusaurus/core": "2.4.0",
     "@docusaurus/plugin-client-redirects": "2.4.0",
+    "@docusaurus/plugin-content-docs": "2.4.0",
     "@docusaurus/preset-classic": "2.4.0",
+    "@docusaurus/theme-classic": "2.4.0",
+    "@docusaurus/theme-common": "2.4.0",
+    "@docusaurus/theme-search-algolia": "2.4.0",
+    "@docusaurus/utils-common": "2.4.0",
     "@floating-ui/react": "^0.26.9",
     "@headlessui/react": "^1.7.15",
     "@mdx-js/react": "^1.6.22",
@@ -89,6 +95,12 @@
     "react-docgen-typescript": "^2.2.2",
     "sucrase": "^3.27.0",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "unist-util-visit": "^2.0.3"
+  },
+  "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">= 9"
   }
 }
