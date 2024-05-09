@@ -4,7 +4,7 @@ description: This post is provides a guide on how to ensure type safety to dicti
 slug: typescript-dictionary
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-01-ts-keyof/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-07-ts-dictionary/social.png
 hide_table_of_contents: false
 ---
 
@@ -12,13 +12,13 @@ hide_table_of_contents: false
 
 Dictionaries are one of the crucial data structures in programming. Dictionaries or maps are useful for describing key-value paired objects in an application. They can be implemented using `Object` and `Map` instances in JavaScript. In TypeScript, dictionaries are also implemented as a `Record<>` with related types for its keys and values.
 
-TypeScript necessitates proper type annotation to a dictionary keys and values. So, in this post, we explore how type safe dictionaries in TypeScript are implemented with necessary type definitions, annotations and specificity.
+TypeScript necessitates proper type annotation to a dictionary's keys and values. So, in this post, we explore how type safe dictionaries in TypeScript are implemented with necessary type definitions, annotations and specificity.
 
 We first make sense of what dictionaries are and go through a couple of examples which illustrate that dictionaries are collections of entries with key-value pairs which adhere to a specific structure describable by their types. Through these examples, we observe how dictionaries are implemented in JavaScript with `Object` instances.
 
 We then relate how dictionaries in TypeScript demand proper type definition and annotation in order to achieve type safety and specificity and see how to apply proper types for dictionary keys and entries. We elaborate with examples how to implement open ended TypeScript dictionaries with index signatures and closed set dictionaries with TypeScript generic mapped types.
 
-Towards the later half, we cover type safe approaches to iterating over TS `Object` based dictionaries with `for...in` and `for...of` loops, with dictionary data extracted by `Object.keys()`, `Object.values()` and `Object.entries`, and traversing them using the `Array.prototype.map()` as an example. We also encounter and address how to solve a TypeScript `7503` type incompatibility error with the type assertion `as` operator while iterating over dictionary keys returned by `for...in` and `Object.keys()`.
+Towards the later half, we cover type safe approaches to iterating over TS `Object` based dictionaries with `for...in` and `for...of` loops. We consider dictionary data extracted with `Object.keys()`, `Object.values()` and `Object.entries`, and traversing them using `Array` iterators like `Array.prototype.map()` as an example. We also encounter a TypeScript `7503` type incompatibility error while iterating over dictionary keys returned by `Object.keys()` with a `for...in` loop, and address how to solve it with the type assertion `as` operator.
 
 Towards the end, we explore examples of implementing the same dictionary (`fictionalDictators`) features with the TypeScript `Record<>` utility and TS `Map` instances.
 
@@ -38,60 +38,60 @@ Most programming languages implement a dictionary in the form of an object with 
 
 ```tsx
 const dictators = {
-  kj_un: "Kim Jong Un",
-  mm_gaddafi: "Muammar Muhammad Gaddafi",
-  sh_almajid: "Saddam Hussein Al-Majid",
   ah_aladeen: "Admiral Haffaz Aladeen",
+  bg_brother: "Big Brother",
+  cr_snow: "Coriolanus Snow",
+  es_palpatine: "Emperor Sheev Palpatine",
 };
 ```
 
-The term "dictionary" belongs mainly to Python. It is synonymous with the hash or hash map data structure in Ruby and hash tables in Java. Dictionary is also often referred to as a map.
+The term "dictionary" belongs mainly to Python. It is synonymous with the hash or hash map data structure in Ruby and hash tables in Java. A dictionary is also often referred to as a map.
 
 ### How Dictionaries are Implemented in JavaScript
 
-JavaScript has a legacy of implementing dictionaries with the help of basic JavaScript objects -- which are instances of the `Object` prototype. ES2015 brings a dedicated JavaScript `Map` prototype which helps implement dictionaries in JavaScript using key-value tuples in a multidimensional `Array` object.
+JavaScript has a legacy of implementing dictionaries with the help of basic objects -- which are instances of the `Object` prototype. ES2015 brings a dedicated JavaScript `Map` prototype which helps implement dictionaries in JavaScript using key-value tuples in a multidimensional `Array` instance.
 
 In this section, we briefly look at how object based dictionaries are implemented in JavaScript.
 
 #### JavaScript Dictionaries with `Object` Literals
 
-In the above `dictators` example, we are using a JavaScript object literal to define a list of dictators. The property key identifiers describe a dictator's lowercase name / initials. We have the values of each key as `string` literals. Dictionaries are what they are called because all their values are describable by some type, such as a `string`.
+In the above `dictators` example, we are using a JavaScript object literal to define a list of dictators. The property keys describe a dictator's lowercase name / initials. We have the values of each key as `string` literals. Dictionaries are what they are called because all their values are describable by some type, such as a `string`. In other words, the values of a dictionary are always some consistently structured object.
 
-In other words, the values of a dictionary are always some consistently structured object. For example, the `dictators` dictionary above could be this:
+For example, the `dictators` dictionary above could also have entries with consistently shaped `Object` values, like this:
 
 ```tsx
 const dictators = {
-  kj_un: {
-    name: "Kim Jong Un",
-    country: "Democratic People's Republic of Korea",
-  },
-  mm_gaddafi: {
-    name: "Muammar Muhammad Gaddafi",
-    country: "Great Socialist People's Libyan Arab Jamahiriya",
-  },
-  sh_almajid: {
-    name: "Saddam Hussein Al-Majid",
-    country: "Republic of Iraq",
-  },
   ah_aladeen: {
     name: "Admiral Haffaz Aladeen",
-    country: "North African Republic of Wadiya",
+    dominion: "North African Republic of Wadiya",
+  },
+  bg_brother: {
+    name: "Big Brother",
+    dominion: "Oceania",
+  },
+  cr_snow: {
+    name: "Coriolanus Snow",
+    dominion: "The Capitol of Anem",
+  },
+  es_palpatine: {
+    name: "Emperor Sheev Palpatine",
+    dominion: "Star Wars Galaxy, First Order",
   },
 };
 ```
 
-This precisely means that in a dictionary, the items are composed in a particular shape - rather than assuming random shapes from inconsistent property names and values.
+This precisely means that in a dictionary, the items are composed in a well defined shape - rather than assuming random shapes from inconsistent property names and values.
 
 #### JavaScript Dictionaries with `Object` Prototype
 
-In JavaScript, we can create a dictionary using the `Object` constructor and then add the items:
+In JavaScript, we can create a dictionary using the `Object` constructor and then add items:
 
 ```tsx
 const dictators = new Object();
 
-dictators["kj_un"] = "Kim Jong Un";
-dictators.mm_gaddafi = "Muammar Muhammad Gaddafi";
-console.log(dictators); // Object { kj_un: "Kim Jong Un", mm_gaddafi: "Muammar Muhammad Gaddafi" }
+dictators["ah_aladeen"] = "Admiral Haffaz Aladeen";
+dictators.bg_brother = "Big Brother";
+console.log(dictators); // Object { ah_aladeen: "Admiral Haffaz Aladeen", bg_brother: "Big Brother" }
 ```
 
 A different approach to creating dictionaries from a prototype is using the `Object.create()` method:
@@ -101,18 +101,18 @@ const dictators_dictionary = { title: "The Ultimate Dictionary of Dictators" };
 
 const dictators = Object.create(dictators_dictionary);
 
-dictators["kj_un"] = "Kim Jong Un";
-dictators.mm_gaddafi = "Muammar Muhammad Gaddafi";
+dictators["ah_aladeen"] = "Admiral Haffaz Aladeen";
+dictators.bg_brother = "Big Brother";
 
-console.log(dictators); // Object { kj_un: "Kim Jong Un", mm_gaddafi: "Muammar Muhammad Gaddafi" }
+console.log(dictators); // Object { ah_aladeen: "Admiral Haffaz Aladeen", bg_brother: "Big Brother" }
 console.log(dictators.title); // "The Ultimate Dictionary of Dictators"
 ```
 
-Dictionaries created from a prototype gives access to interited properties. You can see this in the `title` field of the above `dictators` object.
+Dictionaries created from a prototype give access to inherited properties. You can see this in the `title` field of the above `dictators` object, which is derived from the `dictators_dictionary` prototype.
 
 :::tip
 
-Overall, it is important that a JavaScript object based dictionary maintains consistent structures in its item values.
+Overall, it is important that a JavaScript object based dictionary maintains consistent structure in its item values.
 
 :::
 
@@ -126,7 +126,7 @@ Since TypeScript applies a structural typing system, randomly shaped objects pos
 
 One common example of dictionary type errrors, as discussed later in a [later section](#how-to-solve-typescript-mapped-type-keys-problem-type-assertion-with-as), is while iterating over a dictionary via its keys extracted in an array with `Object.keys()`.
 
-Also, TypeScript's structural typing complements the consistency of structure sought in dictionary entries. So, it is essential that we annotate types to dictionary keys and values in TypeScript.
+Also, TypeScript's structural typing complements the consistency of structure sought in dictionary entries. So, it is essential that we annotate well-defined types to dictionary keys and values in TypeScript.
 
 ## Dictionaries in TypeScript: How to Apply Type Safety
 
@@ -148,16 +148,16 @@ type TDictators = {
 };
 
 const dictators: TDictators = {
-  kj_un: "Kim Jong Un",
-  mm_gaddafi: "Muammar Muhammad Gaddafi",
-  sh_almajid: "Saddam Hussein Al-Majid",
   ah_aladeen: "Admiral Haffaz Aladeen",
+  bg_brother: "Big Brother",
+  cr_snow: "Coriolanus Snow",
+  es_palpatine: "Emperor Sheev Palpatine",
 };
 
 console.log(dictators.ah_aladeen); // "Admiral Haffaz Aladeen"
 ```
 
-Here, we first defined a `TDictators` type with indexed signature syntax and then annotated the `dictators` object with `TDictators`.
+Here, we first defined a `TDictators` type with index signature syntax and then annotated the `dictators` object with `TDictators`.
 
 Notice, we have to annotate both the key and value of the dictionary items. Notice also that this dictionary is a perpetually extendable one. That's because, with the index signature type above, we have annotated the keys to be **_any_** `string`. And we want the value to be `string` as well.
 
@@ -166,16 +166,16 @@ The value of a TypeScript dictionary entry can be any valid type, in order to re
 ```ts
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 ```
 
-And this allows us to express the `dictators` dictionary values with an object that conform to this shape:
+And this allows us to express the `dictators` dictionary values with an object that conforms to this shape:
 
 ```ts
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TDictators = {
@@ -183,39 +183,39 @@ type TDictators = {
 };
 
 const dictators: TDictators = {
-  kj_un: {
-    name: "Kim Jong Un",
-    country: "Democratic People's Republic of Korea",
-  },
-  mm_gaddafi: {
-    name: "Muammar Muhammad Gaddafi",
-    country: "Great Socialist People's Libyan Arab Jamahiriya",
-  },
-  sh_almajid: {
-    name: "Saddam Hussein Al-Majid",
-    country: "Republic of Iraq",
-  },
   ah_aladeen: {
     name: "Admiral Haffaz Aladeen",
-    country: "North African Republic of Wadiya",
+    dominion: "North African Republic of Wadiya",
+  },
+  bg_brother: {
+    name: "Big Brother",
+    dominion: "Oceania",
+  },
+  cr_snow: {
+    name: "Coriolanus Snow",
+    dominion: "The Capitol of Anem",
+  },
+  es_palpatine: {
+    name: "Emperor Sheev Palpatine",
+    dominion: "Star Wars Galaxy, First Order",
   },
 };
 
-dictators["sm_niyazov"] = {
-  name: "Saparmurat Niyazov",
-  country: "Turkmenistan",
+dictators["sl_snoke"] = {
+  name: "Supreme Leader Snoke",
+  dominion: "Star Wars Galaxy, First Order",
 };
 ```
 
-Notice, with the above definition / annotation changes, the `dictators` dictionary remains open ended since keys can still be any `string`. So, we are able to keep adding entries, as we are doing with the `dictators["sm_niyazov"] =` assignment.
+Notice, with the above definition / annotation changes, the `dictators` dictionary remains open ended since keys can still be any `string`. So, we are able to keep adding entries, as we are doing with the `dictators["sl_snoke"] =` assignment.
 
 However, if we try to add a value inconsistent with `TDictatorInfo`, we get TypeScript errors:
 
 ```ts
-dictators["kj-il"] = "Kim Jong Il"; // Type 'string' is not assignable to type 'TDictatorInfo'.(2322)
-dictators["ia_oumee"] = {
-  name: "Idi Amin Oumee",
-  nick_name: "Big Daddy",
+dictators["sl_kylo"] = "Supreme Leader Kylo Ren"; // Type 'string' is not assignable to type 'TDictatorInfo'.(2322)
+dictators["sl_kylo"] = {
+  name: "Supreme Leader Kylo Ren",
+  nick_name: "Ben Solo",
 }; // Object literal may only specify known properties, and 'nick_name' does not exist in type 'TDictatorInfo'.(2353)
 ```
 
@@ -239,7 +239,7 @@ type TDictionary<Keys extends string | number | symbol, Value> = {
 };
 ```
 
-The `TDictionary` type here is a generic type that accepts `Keys` and `Value` as type parameters. `TDictionary` is also a mapped type that limits its keys to the members of `Keys` union type. `Keys` is a union type because it is being looped over by the `in` operator. And `Keys` can be only among `string`, `number` and `symbol` primitive types. So, we are applying type specificity on several levels to consolidate type safety besides code reusability.
+The `TDictionary` type now is a generic type that accepts `Keys` and `Value` as type parameters. `TDictionary` is also a mapped type that limits its keys to the members of `Keys` union type. `Keys` is a union type because it is being looped over by the `in` operator. And we want `Keys` to be only among `string`, `number` and `symbol` primitive types. So, we are applying type specificity on several levels to consolidate type safety besides code reusability.
 
 Now we can use this type to constrain the dictionary entries to a certain set of keys:
 
@@ -256,7 +256,7 @@ type TFictionalDictatorKeys =
 
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TFictionalDictators = TDictionary<TFictionalDictatorKeys, TDictatorInfo>;
@@ -265,18 +265,18 @@ const fictionalDictators: Partial<TFictionalDictators> = new Object();
 
 fictionalDictators["ah_aladeen"] = {
   name: "Admiral Haffaz Aladeen",
-  country: "North African Republic of Wadiya",
+  dominion: "North African Republic of Wadiya",
 }; // Does okay. No error.
 
-fictionalDictators["kj_un"] = {
-  name: "Kim Jong Un",
-  country: "Democratic People's Republic of Korea",
-}; // Throws error: Property 'kj_un' does not exist on type 'Partial<TFictionalDictators>'.(7053)
+fictionalDictators["sl_snoke"] = {
+  name: "Supreme Leader Snoke",
+  dominion: "Star Wars Galaxy, First Order",
+}; // Throws error: Property 'sl_snoke' does not exist on type 'Partial<TFictionalDictators>'.(7053)
 ```
 
 Here, we limit the keys of the `TFictionalDictators` type with the `TFictionalDictatorKeys` union type and set the type for the value to `TDictatorInfo` type. We are also partializing the type for `fictionalDictators` dictionary object with the `Partial<>` tranformation utility. Partializing allows us to instantiate `fictionalDictators` without initializing any property -- as with no object passed to `new Object()`.
 
-Notice, an entry with acceptable key (`"ah_aladeen"`) encounters no complain. However, when we try to add a non-member key (`"kj_un"`), TypeScript throws `7053` error.
+Notice, an entry with acceptable key (`"ah_aladeen"`) encounters no complain. However, when we try to add a non-member key (`"sl_snoke"`), TypeScript throws `7053` error.
 
 Since `TDictonary<>` is now a generic type, we can reuse it for a dictionary with `Value`s that are `string`:
 
@@ -310,7 +310,7 @@ type TFictionalDictatorKeys =
 
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TFictionalDictators = Record<TFictionalDictatorKeys, TDictatorInfo>;
@@ -319,20 +319,20 @@ const fictionalDictators: Partial<TFictionalDictators> = {};
 
 fictionalDictators["ah_aladeen"] = {
   name: "Admiral Haffaz Aladeen",
-  country: "North African Republic of Wadiya",
+  dominion: "North African Republic of Wadiya",
 }; // Does okay. No error.
 
-fictionalDictators["kj_un"] = {
-  name: "Kim Jong Un",
-  country: "Democratic People's Republic of Korea",
-}; // Same 7053 error
+fictionalDictators["sl_snoke"] = {
+  name: "Supreme Leader Snoke",
+  dominion: "Star Wars Galaxy, First Order",
+}; // Same 7053 error due to union member constraint
 ```
 
 ## Iterating Over TypeScript Dictionaries
 
 Type safety and type specificity of TypeScript dictionaries prove important and offer convenience while iterating over a dictionary. This is particularly because individual keys or values or entries have to be consistently typed for the iteration operations.
 
-Most often, as in the examples we have explored so far, the types of the keys and values need to be in the form predefined, and reusable type definitions so that they can be used as a suite as part of the main dictionary type:
+Most often, as in the examples we have explored so far, the types of the keys and values need to be in the form of predefined, and reusable type definitions so that all can be used as a suite accompanies with the main dictionary type:
 
 ```ts
 type TDictionary<Keys extends string | number | symbol, Value> = {
@@ -347,7 +347,7 @@ type TFictionalDictatorKeys =
 
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TFictionalDictators = TDictionary<TFictionalDictatorKeys, TDictatorInfo>;
@@ -355,11 +355,9 @@ type TFictionalDictators = TDictionary<TFictionalDictatorKeys, TDictatorInfo>;
 const fictionalDictators: Partial<TFictionalDictators> = {};
 ```
 
-There are various use cases and hence various ways where a dictionary is iterated over. Most legacy code involve iterating over a dictionary with the keys extracted in an array with `Object.keys()` method.
+There are various use cases and hence various ways where a dictionary is iterated over. Most legacy code involve iterating over a dictionary with the keys extracted in an array with `Object.keys()` method. Similar extraction of dictionary entries with `Object.entries()` and only values with `Object.values()` are also often used.
 
-Similar extraction of dictionary entries with `Object.entries()` and only values with `Object.values()` are also often used.
-
-For the iteration, we can use the `for...in` loop directly on the dictionary object itself or the `for...of` loop on the extracted arrays. We can use regular JS iterators like `Array.prototype.map()`, `Array.prototype.forEach()`, `Array.prototype.reduce()` and the likes to match our use cases.
+For iteration, we can use the `for...in` loop directly on the dictionary object itself or the `for...of` loop on the extracted arrays. We can also use regular JS iterators like `Array.prototype.map()`, `Array.prototype.forEach()`, `Array.prototype.reduce()` and the likes to match our use cases.
 
 In the sections that follow, we discuss with examples the type safety aspects of some of these iteration APIs.
 
@@ -382,7 +380,7 @@ type TFictionalDictatorKeys =
 
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TFictionalDictators = TDictionary<TFictionalDictatorKeys, TDictatorInfo>;
@@ -390,19 +388,19 @@ type TFictionalDictators = TDictionary<TFictionalDictatorKeys, TDictatorInfo>;
 const fictionalDictators: TFictionalDictators = {
   ah_aladeen: {
     name: "Admiral Haffaz Aladeen",
-    country: "North African Republic of Wadiya",
+    dominion: "North African Republic of Wadiya",
   },
   bg_brother: {
     name: "Big Brother",
-    country: "Oceania",
+    dominion: "Oceania",
   },
   cr_snow: {
     name: "Coriolanus Snow",
-    country: "The Capitol of Anem",
+    dominion: "The Capitol of Anem",
   },
   es_palpatine: {
     name: "Emperor Sheev Palpatine",
-    country: "Star Wars Galaxy, First Order",
+    dominion: "Star Wars Galaxy, First Order",
   },
 };
 ```
@@ -419,19 +417,19 @@ For example, when we want to store the fictional dictator names in an array:
 const fictionalDictatorNames = [];
 
 for (const key in fictionalDictators) {
-  fictionalDictatorNames.push(fictionalDictators[keys]?.name); // Gives 7053 error
+  fictionalDictatorNames.push(fictionalDictators[key]?.name); // Gives 7053 error
 }
 
 console.log(fictionalDictatorNames);
 ```
 
-With the above code, we try to populate the `fictionalDictatorNames` array with the names of the dictators from the `fictionalDicatiors` dictationary.
+With the above code, we try to populate the `fictionalDictatorNames` array with the names of the dictators from the `fictionalDicatiors` dictionary.
 
 However, we encounter this big error:
 
 ```ts
-Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Partial<TDictionary<TFictionalDictatorKeys, TDictatorInfo>>'.
-No index signature with a parameter of type 'string' was found on type 'Partial<TDictionary<TFictionalDictatorKeys, TDictatorInfo>>'.(7053)
+Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'TFictionalDictators'.
+No index signature with a parameter of type 'string' was found on type 'TFictionalDictators'.(7053)
 ```
 
 We'll come to what it stands for and where it originates from in a later section when we encounter it again with `Object.keys()`, but we can fix this with type assertion using the TypeScript `as` operator:
@@ -440,8 +438,8 @@ We'll come to what it stands for and where it originates from in a later section
 const fictionalDictatorNames = [];
 
 for (const key in fictionalDictators) {
-  // highlight-next-line
   fictionalDictatorNames.push(
+    // highlight-next-line
     fictionalDictators[key as TFictionalDictatorKeys]?.name,
   );
 }
@@ -451,22 +449,23 @@ console.log(fictionalDictatorNames); // ["Admiral Haffaz Aladeen", "Big Brother"
 
 And this time, we get the desired array of dictator names without error.
 
-### Iterating Over TypeScript Dictionaries with `for..of` Loop
+### Iterating Over TypeScript Dictionaries with `for...of` Loop
 
-The `for...of` loop can be used to iterate over array of keys, values and key-value pairs.
+The `for...of` loop can be used to iterate over array of keys, values and key-value tuples.
 
-For example, we can get the same `fictionalDictatorNames` array in the previous example by extracting the keys first in a separate array with `Object.keys()` and then by iterating over the array with `for...of` loop to populate `fictionalDictatorNames`:
+For example, we can get the same `fictionalDictatorNames` array in the previous example by extracting the keys first in a separate array with `Object.keys()`. And then by iterating over the array with `for...of` loop to populate `fictionalDictatorNames`:
 
 ```ts
 const dictatorKeysArray = Object.keys(fictionalDictators);
 const fictionalDictatorNames = [];
 
+// highlight-start
 for (const key of dictatorKeysArray) {
-  // highlight-next-line
   fictionalDictatorNames.push(
     fictionalDictators[key as TFictionalDictatorKeys]?.name,
   );
 }
+// highlight-end
 
 console.log(fictionalDictatorNames); // ["Admiral Haffaz Aladeen", "Big Brother", "Coriolanus Snow", "Emperor Sheev Palpatine"]
 ```
@@ -478,6 +477,7 @@ Let's cover a couple of more examples of using the `for...of` loop. In the code 
 ```ts
 const dictatorsInfoArray = Object.values(fictionalDictators);
 const fictionalDictatorNames = [];
+
 for (const value of dictatorsInfoArray) {
   fictionalDictatorNames.push(value?.name);
 }
@@ -485,6 +485,7 @@ console.log(fictionalDictatorNames); // ["Admiral Haffaz Aladeen", "Big Brother"
 
 const dictatorItemsArray = Object.entries(fictionalDictators);
 const fictionalDictatorList = [];
+
 for (const entry of dictatorItemsArray) {
   fictionalDictatorList.push(entry[1]);
 }
@@ -508,26 +509,26 @@ The `fictionalDictatorList` ends up being an array of `TDictatorInfo` objects.
 [
   {
     name: "Admiral Haffaz Aladeen",
-    country: "North African Republic of Wadiya",
+    dominion: "North African Republic of Wadiya",
   },
   {
     name: "Big Brother",
-    country: "Oceania",
+    dominion: "Oceania",
   },
   {
     name: "Coriolanus Snow",
-    country: "The Capitol of Anem",
+    dominion: "The Capitol of Anem",
   },
   {
     name: "Emperor Sheev Palpatine",
-    country: "Star Wars Galaxy, First Order",
+    dominion: "Star Wars Galaxy, First Order",
   },
 ];
 ```
 
 </details>
 
-The original `dictatorItemsArray` entries generated by `Object.entries(fictionalDictators)` is an array of dictionary key-pair tuples.
+The original `dictatorItemsArray` entries generated by `Object.entries(fictionalDictators)` is an array of dictionary key-value tuples.
 
 <details>
 
@@ -539,28 +540,28 @@ The original `dictatorItemsArray` entries generated by `Object.entries(fictional
     "ah_aladeen",
     {
       name: "Admiral Haffaz Aladeen",
-      country: "North African Republic of Wadiya",
+      dominion: "North African Republic of Wadiya",
     },
   ],
   [
     "bg_brother",
     {
       name: "Big Brother",
-      country: "Oceania",
+      dominion: "Oceania",
     },
   ],
   [
     "cr_snow",
     {
       name: "Coriolanus Snow",
-      country: "The Capitol of Anem",
+      dominion: "The Capitol of Anem",
     },
   ],
   [
     "es_palpatine",
     {
       name: "Emperor Sheev Palpatine",
-      country: "Star Wars Galaxy, First Order",
+      dominion: "Star Wars Galaxy, First Order",
     },
   ],
 ];
@@ -578,14 +579,14 @@ We cover type-safe TypeScript `Map` based dictionaries in [this later section](#
 
 ### Iterating Over TypeScript Dictionaries with Array Methods
 
-It is common to use `Array` iterators such as `Array.prototype.map()`, `Array.prototype.reduce()`, `Array.prototype.forEach()` to traverse through the array generated by `Object.keys()`, `Object.values()` and `Object.entries()`. These iterators operate in similar ways with `O(n)` complexity, so we'll just cover an example of `Array.prototype.map()`.
+It is common to use `Array` iterators such as `Array.prototype.map()`, `Array.prototype.reduce()`, `Array.prototype.forEach()` to traverse through arrays generated by `Object.keys()`, `Object.values()` and `Object.entries()`. These iterators operate in similar ways with `O(n)` complexity, so we'll just cover an example of `Array.prototype.map()`.
 
-For instance, we want to map `fictionalDictators` to only its countries based on the keys extracted with `Object.keys()`:
+For instance, we want to map `fictionalDictators` to only its dominions based on the keys extracted with `Object.keys()`:
 
 ```ts
 const dictatorKeysArray = Object.keys(fictionalDictators);
 const fictionalDictatorships = dictatorKeysArray?.map(
-  (key) => fictionalDictators[key]?.country,
+  (key) => fictionalDictators[key]?.dominion,
 );
 console.log(fictionalDictatorships);
 ```
@@ -593,8 +594,8 @@ console.log(fictionalDictatorships);
 Here also, we run into the same `7053` error we encountered before with object keys:
 
 ```ts
-Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Partial<TDictionary<TFictionalDictatorKeys, TDictatorInfo>>'.
-No index signature with a parameter of type 'string' was found on type 'Partial<TDictionary<TFictionalDictatorKeys, TDictatorInfo>>'.(7053)
+Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'TFictionalDictators'.
+No index signature with a parameter of type 'string' was found on type 'TFictionalDictators'.(7053)
 ```
 
 #### How to Solve TypeScript Mapped Type Keys Problem: Type Assertion with `as`
@@ -616,7 +617,8 @@ Therefore, we have to assert the `key` to `TFictionalDictatorKeys` with the help
 ```ts
 const dictatorKeysArray = Object.keys(fictionalDictators);
 const fictionalDictatorships = dictatorKeysArray?.map(
-  (key) => fictionalDictators[key as TFictionalDictatorKeys]?.country,
+  // highlight-next-line
+  (key) => fictionalDictators[key as TFictionalDictatorKeys]?.dominion,
 );
 console.log(fictionalDictatorships); // ["North African Republic of Wadiya", "Oceania", "The Capitol of Anem", "Star Wars Galaxy, First Order"]
 ```
@@ -644,7 +646,7 @@ type TFictionalDictatorKeys =
 
 type TDictatorInfo = {
   name: string;
-  country: string;
+  dominion: string;
 };
 
 type TFictionalDictators = Map<TFictionalDictatorKeys, TDictatorInfo>;
@@ -654,34 +656,34 @@ const fictionalDictators: TFictionalDictators = new Map([
     "ah_aladeen",
     {
       name: "Admiral Haffaz Aladeen",
-      country: "North African Republic of Wadiya",
+      dominion: "North African Republic of Wadiya",
     },
   ],
   [
     "bg_brother",
     {
       name: "Big Brother",
-      country: "Oceania",
+      dominion: "Oceania",
     },
   ],
 ]);
 
 fictionalDictators.set("cr_snow", {
   name: "Coriolanus Snow",
-  country: "The Capitol of Anem",
+  dominion: "The Capitol of Anem",
 }); // Works okay. No error
 
 console.log(fictionalDictators); // Map(3)
 
-fictionalDictators.set("kj_un", {
-  name: "Kim Jong Un",
-  country: "Democratic People's Republic of Korea",
-}); // Argument of type '"kj_un"' is not assignable to parameter of type 'TFictionalDictatorKeys'.(2345)
+fictionalDictators.set("sl_snoke", {
+  name: "Supreme Leader Snoke",
+  dominion: "Star Wars Galaxy, First Order",
+}); // Argument of type '"sl_snoke"' is not assignable to parameter of type 'TFictionalDictatorKeys'.(2345)
 ```
 
 You can notice, this time, we are using the TypeScript type supported `Map` class. And we can use it with the same type parameters for `Keys` and `Value`s as we did before with the `Object` examples.
 
-Notice that we are now passing a array of tuples to the `new Map` initializer. This is similar to the array of tuples we get from `Object.entries()` in the `TDictionary<>` example with `Object`. Take note also that we are not able to enter invalid keys (`"kj_un"`) when we limit them to a union with `TFictionalDictatorKeys`.
+Notice that we are now passing a array of tuples to the `new Map` initializer. This is similar to the array of tuples we get from `Object.entries()` in the `TDictionary<>` example with `Object` instance. Take note also that we are not able to enter invalid keys (`"sl_snoke"`) when we limit them to a union with `TFictionalDictatorKeys`.
 
 ### Open Ended Dictionaries with TypeScript `Map`
 
@@ -695,15 +697,15 @@ const fictionalDictators: TFictionalDictators = new Map();
 
 fictionalDictators.set("cr_snow", {
   name: "Coriolanus Snow",
-  country: "The Capitol of Anem",
+  dominion: "The Capitol of Anem",
 });
 
 fictionalDictators.set("sl_kyloren", {
   name: "Supreme Leader Kylo Ren",
-  country: "Star Wars, First Order",
+  dominion: "Star Wars Galaxy, First Order",
 });
 
-console.log(fictionalDictators); // Map(3)
+console.log(fictionalDictators); // Map(2)
 ```
 
 ## Summary
