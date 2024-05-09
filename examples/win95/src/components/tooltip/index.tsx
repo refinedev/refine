@@ -7,7 +7,12 @@ type Props = {
 
 export const Popover = ({ children, ...props }: PropsWithChildren<Props>) => {
   return (
-    <Tooltip {...props} style={{ color: "black" }} text={props.content as any}>
+    <Tooltip
+      {...props}
+      style={{ color: "black" }}
+      // @ts-expect-error - `text` prop supports ReactNode but the type definition only allows string
+      text={props.content}
+    >
       {children}
     </Tooltip>
   );
