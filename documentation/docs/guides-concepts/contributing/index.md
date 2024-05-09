@@ -23,7 +23,7 @@ We follow a [code of conduct](https://github.com/refinedev/refine/blob/master/CO
 
 - [Node.js](https://nodejs.org/en/) version 18 or higher
 - [Git](https://git-scm.com/) and [GitHub](https://github.com) account
-- [npm](https://www.npmjs.com/) version 7 or higher
+- [pnpm](https://pnpm.io/) version 9 or higher
 
 :::
 
@@ -39,21 +39,27 @@ git clone https://github.com/refinedev/refine.git
 
 ### Installing root dependencies
 
-After you clone the repository, you need to install the dependencies. We use npm as package manager with workspaces feature. To install root level dependencies, run the following command:
+After you clone the repository, you need to install the dependencies. We use pnpm as package manager with workspaces feature. You can run the following command to install, link dependencies and build packages:
 
 ```sh title="Terminal"
-npm install --workspaces false
+pnpm install
+```
+
+If you don't want to wait for building packages, you can use
+
+```sh title="Terminal"
+pnpm install --ignore-scripts
 ```
 
 ### Working with packages
 
-Refine uses npm workspaces to link dependencies inside monorepo. You can specify package name with `-w` argument to npm install script. Npm will take care of installing external dependencies, building and linking internal packages together.
-
 ```sh title="Terminal"
-npm i -w @refinedev/nestjs-query
+pnpm dev --scope @refinedev/antd --scope base-antd
 ```
 
-Running the script above, will install external dependencies from npm registry, also build and link `@refinedev/core` package locally.
+After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
+
+If you make a change in the `@refinedev/antd` package, you will see that right after the compilation, the `base-antd` example will re-compile and you will see the changes in the browser.
 
 :::simple Development Tip
 
@@ -61,44 +67,25 @@ It's recommended to always keep at least one example ready to run while you are 
 
 :::
 
-You can specify example name with `-w` argument, which will install external dependencies from npm registry, build and link packages of given example(s) locally.
-
-```sh title="Terminal"
-npm i -w base-antd
-```
-
-Running the command above will install external dependencies of `base-antd` example from npm registry then will build and link internal dependencies (@refinedev/core, @refinedev/antd) locally.
-
 <details>
 
 <summary>How to add a dependency to a package?</summary>
 
-You can use the following command:
+Navigate to the folder and run the following command:
 
-```
-npm i my-new-dependency -w @refinedev/core
+```sh title="Terminal"
+cd packages/core
+pnpm add my-new-dep
 ```
 
 </details>
-
-### Starting the Packages and Examples in Watch Mode
-
-Now that we've bootstrapped and built the packages and examples we want to work on, we can start them in watch mode. This way, the packages and examples we've started will re-compile when we make a change in any of them.
-
-```sh title="Terminal"
-npm run dev -- --scope @refinedev/antd --scope base-antd
-```
-
-After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
-
-If you make a change in the `@refinedev/antd` package, you will see that right after the compilation, the `base-antd` example will re-compile and you will see the changes in the browser.
 
 ### Running Tests
 
 Just like the `dev` command, we can use the `test` command to run tests for the packages and examples we're working on.
 
 ```sh title="Terminal"
-npm run test -- --scope @refinedev/antd
+pnpm test -- --scope @refinedev/antd
 ```
 
 :::simple Good to know
@@ -114,17 +101,17 @@ Refine documentation is built with [Docusaurus](https://docusaurus.io/). Documen
 
 ```sh title="Terminal"
 cd documentation
-npm install
-npm run dev:docs
+pnpm --ignore-workspace install
+pnpm dev:docs
 ```
 
 :::simple Documentation Scripts
 
-- You can also use `npm run dev:blog` to start the blog section of the documentation.
+- You can also use `pnpm dev:blog` to start the blog section of the documentation.
 
-- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run dev` command.
+- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `pnpm dev` command.
 
-- To create a production build of the documentation, you can use `npm run build` command. Then, you can use `npm run serve` command to serve the production build in your local machine.
+- To create a production build of the documentation, you can use `pnpm build` command. Then, you can use `pnpm serve` command to serve the production build in your local machine.
 
 :::
 
@@ -179,7 +166,7 @@ To manage our releases, changelogs and versioning, we're using [Changesets](http
 Follow the steps below to create a changeset:
 
 ```sh
-npm run changeset
+pnpm changeset
 ```
 
 After you run this command, you will be asked couple of questions:
