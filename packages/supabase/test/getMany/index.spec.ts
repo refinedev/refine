@@ -20,21 +20,21 @@ describe("getMany", () => {
   it("correct response with select metadata", async () => {
     const { data } = await dataProvider(supabaseClient).getMany!({
       resource: "posts",
-      ids: ["3", "61"],
+      ids: ["3", "4"],
       meta: {
         select: "title",
       },
     });
 
     expect(Object.keys(data[0]).length).toBe(1);
-    expect(data[0]["title"]).toBe("1asdasd");
-    expect(data[1]["title"]).toBe("Lorem Ipsum 2-6");
+    expect(data[0]["title"]).toBe("Copperweed");
+    expect(data[1]["title"]).toBe("Bastard Toadflax");
     expect(data.length).toBe(2);
   });
 
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).getMany({
-      resource: "products",
+      resource: "posts",
       ids: [1, 2],
       meta: {
         schema: "public",
@@ -42,21 +42,23 @@ describe("getMany", () => {
       },
     });
 
-    expect(data).toEqual([
-      { id: 1, name: "Macbook Proeeeeeasdas" },
-      { id: 2, name: "iPhone 15" },
-    ]);
+    expect(data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 1, title: "Black Psorotichia Lichen" }),
+        expect.objectContaining({ id: 2, title: "Great Plains Flatsedge" }),
+      ]),
+    );
 
-    try {
-      await dataProvider(supabaseClient).getMany({
-        resource: "products",
-        ids: [1, 2],
-        meta: {
-          schema: "private",
-        },
-      });
-    } catch (error: any) {
-      expect(error.code).toEqual("PGRST106");
-    }
+    const promise = dataProvider(supabaseClient).getMany({
+      resource: "posts",
+      ids: [1, 2],
+      meta: {
+        schema: "private",
+      },
+    });
+
+    await expect(promise).rejects.toEqual(
+      expect.objectContaining({ code: "PGRST106" }),
+    );
   });
 });

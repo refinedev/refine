@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/devtools",
-  "version": "1.1.37",
+  "version": "1.2.1",
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "repository": {
@@ -31,6 +31,7 @@
     "src"
   ],
   "scripts": {
+    "attw": "attw --pack .",
     "build": "tsup",
     "dev": "tsup --watch",
     "prepare": "npm run build",
@@ -40,7 +41,7 @@
   },
   "dependencies": {
     "@aliemir/dom-to-fiber-utils": "^0.4.0",
-    "@refinedev/devtools-shared": "1.1.5",
+    "@refinedev/devtools-shared": "1.1.7",
     "error-stack-parser": "^2.1.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"
@@ -58,9 +59,9 @@
     "tsup": "^6.7.0"
   },
   "peerDependencies": {
-    "@refinedev/cli": "2.16.29",
+    "@refinedev/cli": "2.16.31",
     "@refinedev/core": "^4.46.1",
-    "@refinedev/devtools-server": "1.1.27",
+    "@refinedev/devtools-server": "1.1.29",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",

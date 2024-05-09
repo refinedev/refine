@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import ReactJson from "react-json-view";
+import { JsonView, darkStyles } from "react-json-view-lite";
 import { MaximizeIcon } from "./icons/maximize";
 import { Modal } from "./modal";
 
@@ -9,24 +9,61 @@ export const JsonViewer = ({ data, label }: { data: any; label: string }) => {
 
   return (
     <div className={clsx("re-relative")}>
-      <ReactJson
-        src={data}
-        enableClipboard={false}
-        displayDataTypes={false}
-        theme="flat"
+      <JsonView
+        data={data}
+        shouldExpandNode={(l) => l < 2}
         style={{
-          backgroundColor: "#303450",
-          padding: "8px",
-          borderRadius: "8px",
-          overflow: "auto",
-          maxHeight: "160px",
+          ...darkStyles,
+          container: clsx(
+            "re-bg-[#303450]",
+            "re-font-mono re-text-xs",
+            "[&>*:first-child]:!re-px-[12px]",
+            "re-py-1",
+            "re-overflow-auto",
+            "re-max-h-[160px]",
+            "re-rounded-lg",
+          ),
+          basicChildStyle: clsx(
+            "re-py-[3px]",
+            "re-pr-[5px]",
+            "re-pl-[20px]",
+            "re-leading-5",
+          ),
+          collapsedContent: clsx(
+            "re-text-amber-500",
+            "after:re-content-['...']",
+            "after:re-pr-[5px]",
+          ),
+          label: clsx("re-mr-[8px]", "re-text-neutral-200"),
+          stringValue: clsx("re-text-amber-500"),
+          numberValue: clsx("re-text-amber-500"),
+          undefinedValue: clsx("re-text-neutral-500"),
+          nullValue: clsx("re-text-neutral-500"),
+          expandIcon: clsx(
+            "after:re-transition-transform",
+            "after:re-duration-200",
+            "after:re-ease-in-out",
+            "after:re-content-['⏵']",
+            "after:re-mr-[8px]",
+            "after:re-inline-block",
+          ),
+          collapseIcon: clsx(
+            "after:re-transition-transform",
+            "after:re-duration-200",
+            "after:re-ease-in-out",
+            "after:re-content-['⏵']",
+            "after:re-mr-[8px]",
+            "after:re-inline-block",
+            "after:re-rotate-90",
+          ),
         }}
-        collapsed={2}
-        name={false}
       />
       <button
         type="button"
-        onClick={() => setModalVisible(true)}
+        onClick={(event) => {
+          event.preventDefault();
+          setModalVisible(true);
+        }}
         className={clsx(
           "re-group",
           "re-absolute",
@@ -69,21 +106,55 @@ export const JsonViewer = ({ data, label }: { data: any; label: string }) => {
         }
       >
         <div className={clsx("re-p-2")}>
-          <ReactJson
-            src={data}
-            enableClipboard={false}
-            displayDataTypes={false}
-            theme="flat"
+          <JsonView
+            data={data}
+            shouldExpandNode={(l) => l < 2}
             style={{
-              backgroundColor: "#303450",
-              padding: "8px",
-              borderRadius: "8px",
-              overflow: "auto",
-              maxHeight: "calc(100vh - 96px - 65px - 16px - 2px)",
-              minHeight: "calc(100vh - 96px - 65px - 16px - 2px)",
+              ...darkStyles,
+              container: clsx(
+                "re-bg-[#303450]",
+                "re-font-mono re-text-xs",
+                "[&>*:first-child]:!re-px-[12px]",
+                "re-py-1",
+                "re-overflow-auto",
+                "re-max-h-[calc(100vh-96px-65px-16px-2px)]",
+                "re-min-h-[calc(100vh-96px-65px-16px-2px)]",
+                "re-rounded-lg",
+              ),
+              basicChildStyle: clsx(
+                "re-py-[3px]",
+                "re-pr-[5px]",
+                "re-pl-[20px]",
+                "re-leading-5",
+              ),
+              collapsedContent: clsx(
+                "re-text-amber-500",
+                "after:re-content-['...']",
+                "after:re-pr-[5px]",
+              ),
+              label: clsx("re-mr-[8px]", "re-text-neutral-200"),
+              stringValue: clsx("re-text-amber-500"),
+              numberValue: clsx("re-text-amber-500"),
+              undefinedValue: clsx("re-text-neutral-500"),
+              nullValue: clsx("re-text-neutral-500"),
+              expandIcon: clsx(
+                "after:re-transition-transform",
+                "after:re-duration-200",
+                "after:re-ease-in-out",
+                "after:re-content-['⏵']",
+                "after:re-mr-[8px]",
+                "after:re-inline-block",
+              ),
+              collapseIcon: clsx(
+                "after:re-transition-transform",
+                "after:re-duration-200",
+                "after:re-ease-in-out",
+                "after:re-content-['⏵']",
+                "after:re-mr-[8px]",
+                "after:re-inline-block",
+                "after:re-rotate-90",
+              ),
             }}
-            collapsed={2}
-            name={false}
           />
         </div>
       </Modal>

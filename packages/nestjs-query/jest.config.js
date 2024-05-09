@@ -4,4 +4,7 @@ module.exports = {
   displayName: "nestjs-query",
   setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
   testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "^(..?/.+).js?$": "$1",
+  },
 };

@@ -1,3 +1,3 @@
-export * from "./app/index";
+export * from "./app/index.js";
 
-export { default } from "./app/index";
+export { default } from "./app/index.js";

@@ -1,8 +1,8 @@
-import dataProvider from "./dataProvider";
+import dataProvider from "./dataProvider/index.js";
 export default dataProvider;
 
-export * from "./dataProvider";
-export * from "./liveProvider";
+export * from "./dataProvider/index.js";
+export * from "./liveProvider/index.js";
 
 export {
   GraphQLClient,
@@ -29,4 +29,4 @@ export type {
 
 export * as qqlQueryBuilder from "gql-query-builder";
 export * as graphqlWS from "graphql-ws";
-export * from "./interfaces";
+export * from "./interfaces.js";

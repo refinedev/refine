@@ -89,9 +89,6 @@ describe("data-provider-strapi-v4", () => {
     });
 
     it("should list with pagination", () => {
-      cy.wait("@strapiV4GetPosts");
-      cy.getAntdLoadingOverlay().should("not.exist");
-
       cy.wait("@strapiV4GetPosts").then(({ request }) => {
         const query = request.query;
         expect(query.pagination).to.deep.equal({
@@ -99,6 +96,7 @@ describe("data-provider-strapi-v4", () => {
           pageSize: "10",
         });
       });
+      cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.get(".ant-pagination-item-2 > a").click();
       cy.wait("@strapiV4GetPosts").then(({ request }) => {
@@ -111,13 +109,11 @@ describe("data-provider-strapi-v4", () => {
     });
 
     it("should sort", () => {
-      cy.wait("@strapiV4GetPosts");
-      cy.getAntdLoadingOverlay().should("not.exist");
-
       cy.wait("@strapiV4GetPosts").then(({ request }) => {
         const query = request.query;
         expect(query.sort).to.eq("id:desc");
       });
+      cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.getAntdColumnSorter(0).click();
       cy.wait("@strapiV4GetPosts").then(({ request }) => {
@@ -134,7 +130,6 @@ describe("data-provider-strapi-v4", () => {
 
     it("should filter", () => {
       cy.wait("@strapiV4GetCategories");
-      cy.wait("@strapiV4GetPosts");
       cy.wait("@strapiV4GetPosts");
       cy.getAntdLoadingOverlay().should("not.exist");
 
@@ -298,7 +293,6 @@ describe("data-provider-strapi-v4", () => {
     });
 
     it("should change locale", () => {
-      cy.wait("@strapiV4GetPosts");
       cy.get("#locale").contains("Deutsch").click();
       cy.wait("@strapiV4GetPosts").then(({ request }) => {
         const query = request.query;

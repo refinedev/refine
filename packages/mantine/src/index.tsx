@@ -1,8 +1,8 @@
-import "./types/theme";
+import "./types/theme.js";
 
-export * from "./components";
-export * from "./providers";
-export * from "./hooks";
-export * from "./theme";
-export * from "./definitions";
-export * from "./contexts";
+export * from "./components/index.js";
+export * from "./providers/index.js";
+export * from "./hooks/index.js";
+export * from "./theme/index.js";
+export * from "./definitions/index.js";
+export * from "./contexts/index.js";

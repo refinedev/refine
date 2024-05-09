@@ -46,7 +46,7 @@ const getCleanPath = (pathname: string) => {
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/ui/useMenu} for more details.
  */
 export const useMenu = (
-  { meta, hideOnMissingParameter }: UseMenuProps = {
+  { meta, hideOnMissingParameter = true }: UseMenuProps = {
     hideOnMissingParameter: true,
   },
 ): UseMenuReturnType => {

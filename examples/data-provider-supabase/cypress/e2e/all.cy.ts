@@ -95,7 +95,6 @@ describe("data-provider-supabase", () => {
       cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.get(".ant-pagination-item-2 > a").click();
-      cy.wait("@supabaseGetPosts");
       cy.wait("@supabaseGetPosts").then(({ request }) => {
         const query = request.query;
         expect(query).to.deep.equal({
@@ -108,9 +107,6 @@ describe("data-provider-supabase", () => {
     });
 
     it("should sort", () => {
-      cy.wait("@supabaseGetPosts");
-      cy.getAntdLoadingOverlay().should("not.exist");
-
       cy.wait("@supabaseGetPosts").then(({ request }) => {
         const query = request.query;
         expect(query).to.deep.equal({
@@ -120,6 +116,7 @@ describe("data-provider-supabase", () => {
           order: "id.asc",
         });
       });
+      cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.getAntdColumnSorter(0).click();
       cy.wait("@supabaseGetPosts").then(({ request }) => {
@@ -158,7 +155,6 @@ describe("data-provider-supabase", () => {
           .click();
         cy.contains(/filter/i).click({ force: true });
 
-        cy.wait("@supabaseGetPosts");
         cy.wait("@supabaseGetPosts").then(({ request }) => {
           const query = request.query;
           expect(query).to.deep.equal({
@@ -180,7 +176,6 @@ describe("data-provider-supabase", () => {
     });
 
     it("should show", () => {
-      cy.wait("@supabaseGetPosts");
       cy.wait("@supabaseGetPosts");
 
       cy.getShowButton().first().click();

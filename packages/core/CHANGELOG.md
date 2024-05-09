@@ -1,5 +1,47 @@
 # @refinedev/core
 
+## 4.49.2
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/devtools-internal@1.1.9
+
+## 4.49.1
+
+### Patch Changes
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - refactor: add resource name to devtools xray calls
+
+  Added the resource name to the devtools xray calls to allow resource names to be displayed in the devtools even with custom query keys.
+
+- [#5883](https://github.com/refinedev/refine/pull/5883) [`0a76576da0f`](https://github.com/refinedev/refine/commit/0a76576da0f18c6db372e737c610ad462b56ff21) Thanks [@aliemir](https://github.com/aliemir)! - fix: development errors being logged when `useOnError` is called without an auth provider
+
+  When there's no `authProvider` set, the `useOnError` hook will log `"no mutationFn found"` to the console in development because of missing `onError` property. This PR fixes the issue by providing a dummy `onError` function when `authProvider` is not set.
+
+- [#5851](https://github.com/refinedev/refine/pull/5851) [`8d2dd4376f6`](https://github.com/refinedev/refine/commit/8d2dd4376f672786d4722d3dee09e6344f1002e4) Thanks [@aliemir](https://github.com/aliemir)! - refactor: prevented early accessing `signal` from `useQuery` of `@tanstack/react-query`
+
+  In query hooks, `signal` was accessed directly by destructuring which was causing issues in development mode with duplicated requests. This change accesses `queryContext` instead of destructured `signal` properly to prevent `@tanstack/react-query` from setting `abortSignalConsumed` flag unexpectedly.
+
+  Resolves [#5843](https://github.com/refinedev/refine/issues/5843)
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - fix: exclude internal button hook calls from devtools trace
+
+  Removed internal button hook calls from devtools trace to avoid crowding the trace with unnecessary information.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- [#5884](https://github.com/refinedev/refine/pull/5884) [`9a0c1c8414a`](https://github.com/refinedev/refine/commit/9a0c1c8414a7b228378c234468396e6288cdb6f0) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): `useMenu` `hideOnMissingParameter` prop default value set to `true`
+
+  There was an error in the `useMenu` hook's `hideOnMissingParameter` prop. Its default value should be `true` but it was missed when props are passed partially. This PR fixes the issue by setting the default value to `true`.
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/devtools-internal@1.1.8
+
 ## 4.49.0
 
 ### Minor Changes

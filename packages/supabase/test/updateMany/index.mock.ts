@@ -3,123 +3,118 @@ import nock from "nock";
 nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
+  .post("/auth/v1/token", {
+    email: "info@refine.dev",
+    password: "refine-supabase",
+    gotrue_meta_security: {},
+  })
+  .query({ grant_type: "password" })
+  .reply(
+    200,
+    {
+      access_token:
+        "eyJhbGciOiJIUzI1NiIsImtpZCI6IldGWnFuOWt6bnBJZTIvL2wiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzE0MDM5OTc5LCJpYXQiOjE3MTQwMzYzNzksImlzcyI6Imh0dHBzOi8vaXdkZnp2ZnFidG9rcWV0bWJtYnAuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6ImJkZWZhYzgxLTJiZDEtNDRkMS1iNWVkLTdhYmVkYjk2Y2NjZSIsImVtYWlsIjoiaW5mb0ByZWZpbmUuZGV2IiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCJ9LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTcxNDAzNjM3OX1dLCJzZXNzaW9uX2lkIjoiZjRlNjkwNTgtOWY0Ni00YmYwLWI3MjQtZDVkY2ZkMmY5ZmQyIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.FWA46pwyXCu-BfBoMZwNCooGi1teFtoQ_E7_noCL7hU",
+      token_type: "bearer",
+      expires_in: 3600,
+      expires_at: 1714039979,
+      refresh_token: "RgfN0VQQ6MCOAHoJis5lVw",
+      user: {
+        id: "bdefac81-2bd1-44d1-b5ed-7abedb96ccce",
+        aud: "authenticated",
+        role: "authenticated",
+        email: "info@refine.dev",
+        email_confirmed_at: "2021-09-08T11:09:24.284171Z",
+        phone: "",
+        confirmation_sent_at: "2021-09-08T11:08:06.793257Z",
+        confirmed_at: "2021-09-08T11:09:24.284171Z",
+        recovery_sent_at: "2024-02-04T09:33:53.383988Z",
+        last_sign_in_at: "2024-04-25T09:12:59.984007107Z",
+        app_metadata: { provider: "email" },
+        user_metadata: {},
+        identities: [
+          {
+            identity_id: "6b8dcf5b-f068-401b-95ae-ddd93d771b74",
+            id: "bdefac81-2bd1-44d1-b5ed-7abedb96ccce",
+            user_id: "bdefac81-2bd1-44d1-b5ed-7abedb96ccce",
+            identity_data: {
+              email: "info@refine.dev",
+              sub: "bdefac81-2bd1-44d1-b5ed-7abedb96ccce",
+            },
+            provider: "email",
+            last_sign_in_at: "2022-11-25T00:00:00Z",
+            created_at: "2022-11-25T00:00:00Z",
+            updated_at: "2022-11-25T00:00:00Z",
+            email: "info@refine.dev",
+          },
+        ],
+        created_at: "2021-09-08T11:08:06.789274Z",
+        updated_at: "2024-04-25T09:12:59.985841Z",
+        is_anonymous: false,
+      },
+    },
+    [
+      "Date",
+      "Thu, 25 Apr 2024 09:13:00 GMT",
+      "Content-Type",
+      "application/json",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "CF-Ray",
+      "879d36ec2b315178-IST",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Access-Control-Allow-Origin",
+      "*",
+      "Set-Cookie",
+      "sb-access-token=eyJhbGciOiJIUzI1NiIsImtpZCI6IldGWnFuOWt6bnBJZTIvL2wiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzE0MDM5OTc5LCJpYXQiOjE3MTQwMzYzNzksImlzcyI6Imh0dHBzOi8vaXdkZnp2ZnFidG9rcWV0bWJtYnAuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6ImJkZWZhYzgxLTJiZDEtNDRkMS1iNWVkLTdhYmVkYjk2Y2NjZSIsImVtYWlsIjoiaW5mb0ByZWZpbmUuZGV2IiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCJ9LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTcxNDAzNjM3OX1dLCJzZXNzaW9uX2lkIjoiZjRlNjkwNTgtOWY0Ni00YmYwLWI3MjQtZDVkY2ZkMmY5ZmQyIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.FWA46pwyXCu-BfBoMZwNCooGi1teFtoQ_E7_noCL7hU; Path=/; Expires=Fri, 26 Apr 2024 09:12:59 GMT; Max-Age=86400; HttpOnly; Secure",
+      "Strict-Transport-Security",
+      "max-age=15552000; includeSubDomains",
+      "Vary",
+      "Accept-Encoding, Origin",
+      "Via",
+      "kong/2.8.1",
+      "sb-gateway-version",
+      "1",
+      "Set-Cookie",
+      "sb-refresh-token=RgfN0VQQ6MCOAHoJis5lVw; Path=/; Expires=Fri, 26 Apr 2024 09:12:59 GMT; Max-Age=86400; HttpOnly; Secure",
+      "x-kong-proxy-latency",
+      "4",
+      "x-kong-upstream-latency",
+      "90",
+      "Server",
+      "cloudflare",
+      "alt-svc",
+      'h3=":443"; ma=86400',
+    ],
+  );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+  encodedQueryParams: true,
+})
   .patch("/rest/v1/posts", {
     title: "test",
-    categoryId: 52,
+    categoryId: 12,
     content: "test content",
   })
-  .query({ id: "eq.1246", select: "*" })
+  .query({ id: "eq.5", select: "%2A" })
   .reply(
     200,
     [
       {
-        id: 1246,
+        id: 5,
         title: "test",
-        slug: "255",
-        createdAt: "2022-05-17T04:25:58.80596+00:00",
+        slug: "6ca3651b-ce0b-45c7-9bd3-ece235142da5",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
         content: "test content",
-        categoryId: 52,
-        images: [
-          {
-            uid: "rc-upload-1653445523640-23",
-            name: "Screen Shot 2022-05-24 at 01.44.50.png",
-            url: "https://iwdfzvfqbtokqetmbmbp.supabase.co/storage/v1/object/public/refine/public/Screen Shot 2022-05-24 at 01.44.50.png",
-            type: "image/png",
-            size: 1052925,
-            percent: 100,
-            status: "done",
-          },
-        ],
+        categoryId: 12,
+        images: null,
       },
     ],
     [
-      "Content-Type",
-      "application/json; charset=utf-8",
-      "Transfer-Encoding",
-      "chunked",
-      "Connection",
-      "close",
       "Date",
-      "Mon, 06 Sep 2021 13:28:25 GMT",
-      "Server",
-      "postgrest/8.0.0",
-      "Content-Profile",
-      "public",
-      "Content-Range",
-      "0-0/*",
-      "vary",
-      "Origin",
-      "Access-Control-Allow-Origin",
-      "*",
-      "X-Kong-Upstream-Latency",
-      "4",
-      "X-Kong-Proxy-Latency",
-      "0",
-      "Via",
-      "kong/2.2.1",
-    ],
-  );
-
-nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
-  encodedQueryParams: true,
-})
-  .patch("/rest/v1/products", [{ name: "foo" }, { name: "foo-2" }])
-  .query({ id: "eq.1" })
-  .reply(
-    406,
-    {
-      code: "PGRST106",
-      details: null,
-      hint: null,
-      message: "The schema must be one of the following: public, storage",
-    },
-    [
-      "Date",
-      "Tue, 23 Jan 2024 14:18:22 GMT",
-      "Content-Type",
-      "application/json; charset=utf-8",
-      "Transfer-Encoding",
-      "chunked",
-      "Connection",
-      "close",
-      "CF-Ray",
-      "84a0aa5f9ba36847-BUD",
-      "CF-Cache-Status",
-      "DYNAMIC",
-      "Access-Control-Allow-Origin",
-      "*",
-      "Strict-Transport-Security",
-      "max-age=2592000; includeSubDomains",
-      "Via",
-      "kong/2.8.1",
-      "sb-gateway-version",
-      "1",
-      "X-Kong-Proxy-Latency",
-      "0",
-      "X-Kong-Upstream-Latency",
-      "1",
-      "Vary",
-      "Accept-Encoding",
-      "Server",
-      "cloudflare",
-      "alt-svc",
-      'h3=":443"; ma=86400',
-    ],
-  );
-
-nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
-  encodedQueryParams: true,
-})
-  .patch("/rest/v1/products", { name: "Samsung Galaxy S21" })
-  .query({ id: "eq.2", select: "%2A" })
-  .reply(
-    200,
-    [
-      "1f8b08000000000000038bae56ca4c51b232d251ca4bcc4d55b2520a4ecc2d2ecd4b57704fcc49aca85408363254aa8d05005a7944d826000000",
-    ],
-    [
-      "Date",
-      "Tue, 23 Jan 2024 14:20:50 GMT",
+      "Thu, 25 Apr 2024 09:13:00 GMT",
       "Content-Type",
       "application/json; charset=utf-8",
       "Transfer-Encoding",
@@ -129,27 +124,25 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       "Content-Range",
       "0-0/*",
       "CF-Ray",
-      "84a0adffcb7c68b0-BUD",
+      "879d36efdc2a68ac-IST",
       "CF-Cache-Status",
       "DYNAMIC",
       "Access-Control-Allow-Origin",
       "*",
-      "Content-Encoding",
-      "gzip",
       "Strict-Transport-Security",
-      "max-age=2592000; includeSubDomains",
+      "max-age=15552000; includeSubDomains",
       "Vary",
       "Accept-Encoding",
       "Via",
       "kong/2.8.1",
-      "Content-Profile",
+      "content-profile",
       "public",
       "sb-gateway-version",
       "1",
-      "X-Kong-Proxy-Latency",
-      "1",
-      "X-Kong-Upstream-Latency",
+      "x-kong-proxy-latency",
       "3",
+      "x-kong-upstream-latency",
+      "6",
       "Server",
       "cloudflare",
       "alt-svc",
@@ -160,16 +153,25 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
 nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
-  .patch("/rest/v1/products", { name: "Samsung Galaxy S21" })
+  .patch("/rest/v1/posts", { title: "Samsung Galaxy S21" })
   .query({ id: "eq.1", select: "%2A" })
   .reply(
     200,
     [
-      "1f8b08000000000000038bae56ca4c51b232d451ca4bcc4d55b2520a4ecc2d2ecd4b57704fcc49aca85408363254aa8d050029406ccb26000000",
+      {
+        id: 1,
+        title: "Samsung Galaxy S21",
+        slug: "61a31089-c85d-48a0-a4be-d5dce5c96b6a",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+        categoryId: 7,
+        images: null,
+      },
     ],
     [
       "Date",
-      "Tue, 23 Jan 2024 14:20:50 GMT",
+      "Thu, 25 Apr 2024 09:13:00 GMT",
       "Content-Type",
       "application/json; charset=utf-8",
       "Transfer-Encoding",
@@ -179,27 +181,25 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       "Content-Range",
       "0-0/*",
       "CF-Ray",
-      "84a0adffc8f51cfa-BUD",
+      "879d36f1fe315105-IST",
       "CF-Cache-Status",
       "DYNAMIC",
       "Access-Control-Allow-Origin",
       "*",
-      "Content-Encoding",
-      "gzip",
       "Strict-Transport-Security",
-      "max-age=2592000; includeSubDomains",
+      "max-age=15552000; includeSubDomains",
       "Vary",
       "Accept-Encoding",
       "Via",
       "kong/2.8.1",
-      "Content-Profile",
+      "content-profile",
       "public",
       "sb-gateway-version",
       "1",
-      "X-Kong-Proxy-Latency",
-      "1",
-      "X-Kong-Upstream-Latency",
-      "3",
+      "x-kong-proxy-latency",
+      "0",
+      "x-kong-upstream-latency",
+      "4",
       "Server",
       "cloudflare",
       "alt-svc",
@@ -210,8 +210,65 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
 nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
-  .patch("/rest/v1/products", { name: "foo" })
-  .query({ id: "eq.1" })
+  .patch("/rest/v1/posts", { title: "Samsung Galaxy S21" })
+  .query({ id: "eq.2", select: "%2A" })
+  .reply(
+    200,
+    [
+      {
+        id: 2,
+        title: "Samsung Galaxy S21",
+        slug: "5aecd7b0-cf28-40b4-ad48-7d4c6718837e",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+        categoryId: 8,
+        images: null,
+      },
+    ],
+    [
+      "Date",
+      "Thu, 25 Apr 2024 09:13:00 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Content-Range",
+      "0-0/*",
+      "CF-Ray",
+      "879d36f208677790-IST",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Access-Control-Allow-Origin",
+      "*",
+      "Strict-Transport-Security",
+      "max-age=15552000; includeSubDomains",
+      "Vary",
+      "Accept-Encoding",
+      "Via",
+      "kong/2.8.1",
+      "content-profile",
+      "public",
+      "sb-gateway-version",
+      "1",
+      "x-kong-proxy-latency",
+      "0",
+      "x-kong-upstream-latency",
+      "6",
+      "Server",
+      "cloudflare",
+      "alt-svc",
+      'h3=":443"; ma=86400',
+    ],
+  );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+  encodedQueryParams: true,
+})
+  .patch("/rest/v1/posts", { title: "foo" })
+  .query({ id: "eq.1", select: "%2A" })
   .reply(
     406,
     {
@@ -222,7 +279,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     },
     [
       "Date",
-      "Tue, 23 Jan 2024 14:20:15 GMT",
+      "Thu, 25 Apr 2024 09:13:01 GMT",
       "Content-Type",
       "application/json; charset=utf-8",
       "Transfer-Encoding",
@@ -230,21 +287,21 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       "Connection",
       "close",
       "CF-Ray",
-      "84a0ad26aa6568bf-BUD",
+      "879d36f5adfe696e-IST",
       "CF-Cache-Status",
       "DYNAMIC",
       "Access-Control-Allow-Origin",
       "*",
       "Strict-Transport-Security",
-      "max-age=2592000; includeSubDomains",
+      "max-age=15552000; includeSubDomains",
       "Via",
       "kong/2.8.1",
       "sb-gateway-version",
       "1",
-      "X-Kong-Proxy-Latency",
-      "1",
-      "X-Kong-Upstream-Latency",
+      "x-kong-proxy-latency",
       "0",
+      "x-kong-upstream-latency",
+      "1",
       "Vary",
       "Accept-Encoding",
       "Server",
@@ -257,8 +314,8 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
 nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
   encodedQueryParams: true,
 })
-  .patch("/rest/v1/products", { name: "foo" })
-  .query({ id: "eq.2" })
+  .patch("/rest/v1/posts", { title: "foo" })
+  .query({ id: "eq.2", select: "%2A" })
   .reply(
     406,
     {
@@ -269,7 +326,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     },
     [
       "Date",
-      "Tue, 23 Jan 2024 14:20:15 GMT",
+      "Thu, 25 Apr 2024 09:13:01 GMT",
       "Content-Type",
       "application/json; charset=utf-8",
       "Transfer-Encoding",
@@ -277,21 +334,21 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       "Connection",
       "close",
       "CF-Ray",
-      "84a0ad26aa6568bf-BUD",
+      "879d36f5ad0750c3-IST",
       "CF-Cache-Status",
       "DYNAMIC",
       "Access-Control-Allow-Origin",
       "*",
       "Strict-Transport-Security",
-      "max-age=2592000; includeSubDomains",
+      "max-age=15552000; includeSubDomains",
       "Via",
       "kong/2.8.1",
       "sb-gateway-version",
       "1",
-      "X-Kong-Proxy-Latency",
+      "x-kong-proxy-latency",
+      "5",
+      "x-kong-upstream-latency",
       "1",
-      "X-Kong-Upstream-Latency",
-      "0",
       "Vary",
       "Accept-Encoding",
       "Server",
@@ -300,3 +357,41 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       'h3=":443"; ma=86400',
     ],
   );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+  encodedQueryParams: true,
+})
+  .post("/auth/v1/logout")
+  .query({ scope: "global" })
+  .reply(204, "", [
+    "Date",
+    "Thu, 25 Apr 2024 09:13:01 GMT",
+    "Connection",
+    "close",
+    "CF-Ray",
+    "879d36f6eb4351a1-IST",
+    "CF-Cache-Status",
+    "DYNAMIC",
+    "Access-Control-Allow-Origin",
+    "*",
+    "Set-Cookie",
+    "sb-access-token=; Path=/; Expires=Wed, 24 Apr 2024 23:13:01 GMT; Max-Age=0; HttpOnly; Secure",
+    "Strict-Transport-Security",
+    "max-age=15552000; includeSubDomains",
+    "Vary",
+    "Origin, Accept-Encoding",
+    "Via",
+    "kong/2.8.1",
+    "sb-gateway-version",
+    "1",
+    "Set-Cookie",
+    "sb-refresh-token=; Path=/; Expires=Wed, 24 Apr 2024 23:13:01 GMT; Max-Age=0; HttpOnly; Secure",
+    "x-kong-proxy-latency",
+    "0",
+    "x-kong-upstream-latency",
+    "6",
+    "Server",
+    "cloudflare",
+    "alt-svc",
+    'h3=":443"; ma=86400',
+  ]);

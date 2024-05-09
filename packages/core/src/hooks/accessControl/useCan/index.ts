@@ -75,7 +75,10 @@ export const useCan = ({
     ...mergedQueryOptions,
     meta: {
       ...mergedQueryOptions?.meta,
-      ...getXRay("useCan", preferLegacyKeys),
+      ...getXRay("useCan", preferLegacyKeys, resource, [
+        "useButtonCanAccess",
+        "useNavigationButton",
+      ]),
     },
     retry: false,
   });

@@ -1,12 +1,12 @@
 import React from "react";
 import { useResource } from "@refinedev/core";
 
-import { ShowInferencer } from "./show";
-import { ListInferencer } from "./list";
-import { CreateInferencer } from "./create";
-import { EditInferencer } from "./edit";
+import { ShowInferencer } from "./show.js";
+import { ListInferencer } from "./list.js";
+import { CreateInferencer } from "./create.js";
+import { EditInferencer } from "./edit.js";
 
-import type { InferencerComponentProps } from "../../types";
+import type { InferencerComponentProps } from "../../types/index.js";
 
 const AntdInferencer: React.FC<InferencerComponentProps> = ({
   action: actionFromProps,
@@ -31,17 +31,17 @@ export { AntdInferencer };
 export {
   ShowInferencer as AntdShowInferencer,
   renderer as AntdShowRenderer,
-} from "./show";
+} from "./show.js";
 export {
   EditInferencer as AntdEditInferencer,
   renderer as AntdEditRenderer,
-} from "./edit";
+} from "./edit.js";
 export {
   ListInferencer as AntdListInferencer,
   renderer as AntdListRenderer,
-} from "./list";
+} from "./list.js";
 export {
   CreateInferencer as AntdCreateInferencer,
   renderer as AntdCreateRenderer,
-} from "./create";
-export * from "../../types";
+} from "./create.js";
+export * from "../../types/index.js";

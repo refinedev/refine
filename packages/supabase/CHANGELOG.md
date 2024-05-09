@@ -1,5 +1,21 @@
 # @refinedev/supabase
 
+## 5.7.10
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 5.7.9
+
+### Patch Changes
+
+- [#5841](https://github.com/refinedev/refine/pull/5841) [`7b13515b3c0`](https://github.com/refinedev/refine/commit/7b13515b3c0feba36a7f2d89cc9e8a4455a2c4ca) Thanks [@issa012](https://github.com/issa012)! - fix: in methods update, updateMany, create, createMany, meta.select changed to "\*". Resolves #5679
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
 ## 5.7.8
 
 ### Patch Changes

@@ -1,14 +1,14 @@
-export * from "./hooks";
-export * from "./providers";
-export * from "./components";
-export * from "./contexts";
+export * from "./hooks/index.js";
+export * from "./providers/index.js";
+export * from "./components/index.js";
+export * from "./contexts/index.js";
 
 export {
   getDefaultSortOrder,
   getDefaultFilter,
   mapAntdSorterToCrudSorting,
   mapAntdFilterToCrudFilter,
-} from "./definitions/table";
-export { getValueFromEvent } from "./definitions/upload";
+} from "./definitions/table/index.js";
+export { getValueFromEvent } from "./definitions/upload/index.js";
 
-export * from "./definitions/themes";
+export * from "./definitions/themes/index.js";

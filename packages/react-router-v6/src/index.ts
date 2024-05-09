@@ -1,7 +1,7 @@
-export { routerBindings as default, stringifyConfig } from "./bindings";
-export { RefineRoutes } from "./refine-routes";
-export { NavigateToResource } from "./navigate-to-resource";
-export { UnsavedChangesNotifier } from "./unsaved-changes-notifier";
-export { CatchAllNavigate } from "./catch-all-navigate";
-export { DocumentTitleHandler } from "./document-title-handler";
-export { useDocumentTitle } from "./use-document-title";
+export { routerBindings as default, stringifyConfig } from "./bindings.js";
+export { RefineRoutes } from "./refine-routes.js";
+export { NavigateToResource } from "./navigate-to-resource.js";
+export { UnsavedChangesNotifier } from "./unsaved-changes-notifier.js";
+export { CatchAllNavigate } from "./catch-all-navigate.js";
+export { DocumentTitleHandler } from "./document-title-handler.js";
+export { useDocumentTitle } from "./use-document-title.js";
