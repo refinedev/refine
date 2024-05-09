@@ -1,5 +1,5 @@
 import { useList, useMany, useOne } from "@refinedev/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
@@ -263,7 +263,7 @@ const RentTapeForm = ({
   member: ExtendedMember | null;
   title: ExtendedVideoTitle | null;
 }) => {
-  const { data: dataTapes } = useList<Tape>({
+  const { data: dataTapes, isSuccess: tapesIsSuccess } = useList<Tape>({
     resource: "tapes",
     filters: [
       {
@@ -295,6 +295,8 @@ const RentTapeForm = ({
     control,
     watch,
     refineCore: { onFinish },
+    formState,
+    setValue,
     handleSubmit,
   } = useForm<CreateRental>({
     defaultValues: {
@@ -308,6 +310,14 @@ const RentTapeForm = ({
       action: "create",
     },
   });
+
+  useEffect(() => {
+    if (tapesIsSuccess) {
+      setValue("tape_id", tapeOptions?.[0]?.value);
+    }
+  }, [tapesIsSuccess]);
+
+  console.log(formState.defaultValues);
 
   const period = watch<"period">("period");
   const returnDate = dayjs().add(period, "day").format("DD.MM.YYYY");
