@@ -3,14 +3,14 @@ import { Tooltip, TooltipProps } from "react95";
 
 type Props = {
   content: ReactNode;
-} & Omit<TooltipProps, "text">;
+} & Omit<TooltipProps, "text" | "content">;
 
 export const Popover = ({ children, ...props }: PropsWithChildren<Props>) => {
   return (
     <Tooltip
       {...props}
       style={{ color: "black" }}
-      // @ts-expect-error - `text` prop supports ReactNode but the type definition only allows string
+      // @ts-expect-error react95 types are incorrect. <Tooltip />ReactNode but types are expecting a string
       text={props.content}
     >
       {children}
