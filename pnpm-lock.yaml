@@ -643,13 +643,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
       vite-plugin-cdn-import:
         specifier: ^0.3.5
         version: 0.3.5(rollup@4.16.4)
@@ -823,7 +823,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -832,7 +832,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/auth-google-login:
     dependencies:
@@ -933,7 +933,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -942,7 +942,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/auth-keycloak:
     dependencies:
@@ -1125,7 +1125,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -1134,7 +1134,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/auth-material-ui:
     dependencies:
@@ -1366,7 +1366,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -1375,7 +1375,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/base-headless:
     dependencies:
@@ -1491,7 +1491,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -1500,7 +1500,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/base-material-ui:
     dependencies:
@@ -2041,7 +2041,7 @@ importers:
         specifier: ^6.8.1
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       styled-components:
-        specifier: ^6.0.5
+        specifier: ^6.1.8
         version: 6.1.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
     devDependencies:
       '@types/node':
@@ -2195,13 +2195,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/blog-react-dnd:
     dependencies:
@@ -3876,10 +3876,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react95:
         specifier: ^4.0.0
-        version: 4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0))
+        version: 4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(styled-components@6.1.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0))
       styled-components:
-        specifier: ^5.3.3
-        version: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
+        specifier: ^6.1.8
+        version: 6.1.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
     devDependencies:
       '@types/node':
         specifier: ^18.16.2
@@ -4549,13 +4549,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/customization-theme-mantine:
     dependencies:
@@ -4619,13 +4619,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/customization-theme-material-ui:
     dependencies:
@@ -6366,7 +6366,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6375,7 +6375,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-chakra-ui-use-drawer-form:
     dependencies:
@@ -6427,7 +6427,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6436,7 +6436,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-chakra-ui-use-form:
     dependencies:
@@ -6488,7 +6488,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6497,7 +6497,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-chakra-use-modal-form:
     dependencies:
@@ -6549,7 +6549,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6558,7 +6558,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-core-use-form:
     dependencies:
@@ -6680,7 +6680,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6689,7 +6689,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-mantine-use-drawer-form:
     dependencies:
@@ -6753,7 +6753,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6762,7 +6762,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-mantine-use-form:
     dependencies:
@@ -6829,7 +6829,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6838,7 +6838,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-mantine-use-modal-form:
     dependencies:
@@ -6902,7 +6902,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6911,7 +6911,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-mantine-use-steps-form:
     dependencies:
@@ -6981,7 +6981,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -6990,7 +6990,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/form-material-ui-mutation-mode:
     dependencies:
@@ -7831,13 +7831,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/import-export-material-ui:
     dependencies:
@@ -9347,7 +9347,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -9356,7 +9356,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/server-side-form-validation-mantine:
     dependencies:
@@ -9420,7 +9420,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -9429,7 +9429,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/server-side-form-validation-material-ui:
     dependencies:
@@ -9533,7 +9533,7 @@ importers:
         version: 5.48.0(eslint@8.57.0)(typescript@5.4.5)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       eslint:
         specifier: ^8.24.0
         version: 8.57.0
@@ -9548,7 +9548,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/store:
     dependencies:
@@ -10078,7 +10078,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -10087,7 +10087,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/table-chakra-ui-basic:
     dependencies:
@@ -10139,7 +10139,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -10148,7 +10148,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/table-handson:
     dependencies:
@@ -10194,7 +10194,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -10203,7 +10203,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/table-mantine-advanced:
     dependencies:
@@ -10267,7 +10267,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -10276,7 +10276,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/table-mantine-basic:
     dependencies:
@@ -10337,7 +10337,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       cypress:
         specifier: ^13.6.3
         version: 13.8.1
@@ -10346,7 +10346,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/table-material-ui-advanced:
     dependencies:
@@ -11424,13 +11424,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/theme-mantine-demo:
     dependencies:
@@ -11494,13 +11494,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/theme-material-ui-demo:
     dependencies:
@@ -12118,13 +12118,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/upload-chakra-ui-multipart:
     dependencies:
@@ -12179,13 +12179,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/upload-mantine-base64:
     dependencies:
@@ -12252,13 +12252,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/upload-mantine-multipart:
     dependencies:
@@ -12325,13 +12325,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/upload-material-ui-base64:
     dependencies:
@@ -12795,10 +12795,10 @@ importers:
     devDependencies:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/with-meta-properties:
     dependencies:
@@ -12838,13 +12838,13 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
   examples/with-nextjs:
     dependencies:
@@ -13155,7 +13155,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
-        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       '@types/js-cookie':
         specifier: ^3.0.2
         version: 3.0.6
@@ -13234,7 +13234,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
-        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       '@types/js-cookie':
         specifier: ^3.0.2
         version: 3.0.6
@@ -13295,7 +13295,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
-        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.0
@@ -13380,7 +13380,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
-        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       '@types/js-cookie':
         specifier: ^3.0.2
         version: 3.0.6
@@ -13444,7 +13444,7 @@ importers:
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
-        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.0
@@ -13459,10 +13459,10 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.1.6
-        version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+        version: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
       vite-tsconfig-paths:
         specifier: ^4.2.1
-        version: 4.3.2(typescript@5.4.5)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
+        version: 4.3.2(typescript@5.4.5)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
 
   examples/with-storybook-antd:
     dependencies:
@@ -16491,7 +16491,7 @@ importers:
         version: 18.3.0
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -47855,7 +47855,7 @@ snapshots:
       pluralize: 8.0.0
       query-string: 7.1.3
 
-  '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@18.19.31)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))':
+  '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/generator': 7.24.4
@@ -47872,7 +47872,7 @@ snapshots:
       '@remix-run/router': 1.16.0
       '@remix-run/server-runtime': 2.9.1(typescript@5.4.5)
       '@types/mdx': 2.0.13
-      '@vanilla-extract/integration': 6.5.0(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+      '@vanilla-extract/integration': 6.5.0(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
       arg: 5.0.2
       cacache: 17.1.4
       chalk: 4.1.2
@@ -47899,7 +47899,7 @@ snapshots:
       pidtree: 0.6.0
       postcss: 8.4.38
       postcss-discard-duplicates: 5.1.0(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       postcss-modules: 6.0.0(postcss@8.4.38)
       prettier: 2.8.8
       pretty-ms: 7.0.1
@@ -47914,7 +47914,7 @@ snapshots:
     optionalDependencies:
       '@remix-run/serve': 2.9.1(typescript@5.4.5)
       typescript: 5.4.5
-      vite: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+      vite: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
     transitivePeerDependencies:
       - '@types/node'
       - bluebird
@@ -50844,7 +50844,7 @@ snapshots:
       modern-ahocorasick: 1.0.1
       outdent: 0.8.0
 
-  '@vanilla-extract/integration@6.5.0(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)':
+  '@vanilla-extract/integration@6.5.0(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/plugin-syntax-typescript': 7.24.1(@babel/core@7.24.4)
@@ -50857,8 +50857,8 @@ snapshots:
       lodash: 4.17.21
       mlly: 1.6.1
       outdent: 0.8.0
-      vite: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
-      vite-node: 1.5.2(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+      vite: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
+      vite-node: 1.5.2(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -50881,6 +50881,17 @@ snapshots:
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.1
       vite: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))':
+    dependencies:
+      '@babel/core': 7.24.4
+      '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.4)
+      '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
+      '@types/babel__core': 7.20.5
+      react-refresh: 0.14.1
+      vite: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -51989,7 +52000,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)):
+  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)):
     dependencies:
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-module-imports': 7.24.3
@@ -62378,14 +62389,6 @@ snapshots:
       postcss: 8.4.38
       ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
 
-  postcss-load-config@3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      lilconfig: 2.1.0
-      yaml: 1.10.2
-    optionalDependencies:
-      postcss: 8.4.38
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
-
   postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
     dependencies:
       lilconfig: 3.1.1
@@ -64259,12 +64262,6 @@ snapshots:
       '@reach/observe-rect': 1.2.0
       react: 18.3.0
 
-  react95@4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)):
-    dependencies:
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
-
   react95@4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(styled-components@6.1.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)):
     dependencies:
       react: 18.3.0
@@ -66081,7 +66078,7 @@ snapshots:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0))
+      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0))
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
       react: 18.3.0
@@ -66870,29 +66867,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  tsup@6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
-    dependencies:
-      bundle-require: 4.0.3(esbuild@0.17.19)
-      cac: 6.7.14
-      chokidar: 3.6.0
-      debug: 4.3.4(supports-color@5.5.0)
-      esbuild: 0.17.19
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      resolve-from: 5.0.0
-      rollup: 3.29.4
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tree-kill: 1.2.2
-    optionalDependencies:
-      postcss: 8.4.38
-      typescript: 5.4.5
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-
   tsutils@3.21.0(typescript@5.4.5):
     dependencies:
       tslib: 1.14.1
@@ -67590,13 +67564,13 @@ snapshots:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
 
-  vite-node@1.5.2(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4):
+  vite-node@1.5.2(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4(supports-color@5.5.0)
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
+      vite: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -67624,6 +67598,17 @@ snapshots:
       - supports-color
       - typescript
 
+  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)):
+    dependencies:
+      debug: 4.3.4(supports-color@5.5.0)
+      globrex: 0.1.2
+      tsconfck: 3.0.3(typescript@5.4.5)
+    optionalDependencies:
+      vite: 5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4):
     dependencies:
       esbuild: 0.20.2
@@ -67631,6 +67616,17 @@ snapshots:
       rollup: 4.16.4
     optionalDependencies:
       '@types/node': 18.19.31
+      fsevents: 2.3.3
+      sass: 1.75.0
+      terser: 5.30.4
+
+  vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4):
+    dependencies:
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.16.4
+    optionalDependencies:
+      '@types/node': 20.5.1
       fsevents: 2.3.3
       sass: 1.75.0
       terser: 5.30.4
