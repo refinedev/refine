@@ -1,5 +1,5 @@
-export * from "./dataProvider.ts";
-export * from "./liveProvider.ts";
+export * from "./dataProvider.js";
+export * from "./liveProvider.js";
 
 export {
   Account,

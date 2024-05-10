@@ -1,5 +1,13 @@
 # create-refine-app
 
+## 1.12.6
+
+### Patch Changes
+
+- [#5925](https://github.com/refinedev/refine/pull/5925) [`b840c4b224e`](https://github.com/refinedev/refine/commit/b840c4b224e7f4984f2135068da2041e8bb7c6ca) Thanks [@aliemir](https://github.com/aliemir)! - chore: update `superplate-cli` dependency to latest
+
+  This updates the `superplate-cli` and includes a fix for the re-initializing git repository issue. Now when a new project is created, it will check if the current directory is a git repository and if it is, it will not re-initialize it.
+
 ## 1.12.5
 
 ### Patch Changes
