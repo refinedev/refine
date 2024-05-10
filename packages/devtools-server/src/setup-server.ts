@@ -3,7 +3,7 @@ import { SERVER_PORT } from "./constants";
 import { bold, cyanBright } from "chalk";
 import http from "http";
 
-export const setupServer = (app: Express) => {
+export const setupServer = (app: Express, onError: () => void) => {
   const server = http.createServer(app);
 
   server
@@ -11,8 +11,8 @@ export const setupServer = (app: Express) => {
       if (error?.code === "EADDRINUSE") {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "refine devtools",
-          )} failed to start. Port ${SERVER_PORT} is already in use, please make sure no other devtools server is running\n`,
+            "refine devtools server",
+          )} (http) failed to start. Port ${SERVER_PORT} is already in use.\n`,
         );
       } else {
         console.error(
@@ -22,7 +22,12 @@ export const setupServer = (app: Express) => {
           error,
         );
       }
-      process.exit(1);
+      server.close(() => {
+        if (__DEVELOPMENT__) {
+          console.log("Process terminated");
+        }
+      });
+      onError();
     })
     .on("listening", () => {
       console.log(

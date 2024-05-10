@@ -6,13 +6,14 @@ import http from "http";
 
 export const serveWs = (
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>,
+  onError: () => void,
 ) => {
   const ws = new WebSocket.Server({ server }).on("error", (error: any) => {
     if (error?.code === "EADDRINUSE") {
       console.error(
         `\n${cyanBright.bold("\u2717 ")}${bold(
-          "refine devtools",
-        )} failed to start. Port ${SERVER_PORT} is already in use, please make sure no other devtools server is running\n`,
+          "refine devtools server",
+        )} (websocket) failed to start. Port ${SERVER_PORT} is already in use.\n`,
       );
     } else {
       console.error(
@@ -20,7 +21,12 @@ export const serveWs = (
         error,
       );
     }
-    process.exit(1);
+    ws.close(() => {
+      if (__DEVELOPMENT__) {
+        console.log("Process terminated");
+      }
+    });
+    onError();
   });
 
   ws.on("connection", (client) => {
