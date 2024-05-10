@@ -20,7 +20,7 @@
     "@refinedev/strapi-v4": "^6.0.1",
     "axios": "^1.6.2",
     "framer-motion": "^7.5.3",
-    "next": "^13.5.4",
+    "next": "^14.1.1",
     "cross-env": "^7.0.3",
     "next-compose-plugins": "^2.2.1",
     "nookies": "^2.5.2",
