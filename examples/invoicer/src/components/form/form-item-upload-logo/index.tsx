@@ -27,7 +27,7 @@ export const FormItemUploadLogo = ({
   const [error, setError] = useState<string | null>(null);
 
   const form = Form.useFormInstance();
-  const fieldValue = Form.useWatch(name, form) as Media | UploadResponse;
+  const fieldValue = Form.useWatch(formName, form) as Media | UploadResponse;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
   const src = useMemo(() => {
@@ -82,6 +82,11 @@ export const FormItemUploadLogo = ({
       return;
     }
   };
+
+  console.log({
+    src,
+    fieldValue,
+  });
 
   return (
     <div className={styles.container}>

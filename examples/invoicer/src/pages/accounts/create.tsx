@@ -37,13 +37,7 @@ export const AccountsPageCreate = () => {
         }}
       >
         <Flex gap={40}>
-          <Form.Item
-            name="cover"
-            valuePropName="fileList"
-            getValueProps={(data) => getValueProps(data, API_URL)}
-          >
-            <FormItemUploadLogoDraggable />
-          </Form.Item>
+          <FormItemUploadLogoDraggable />
           <Flex
             vertical
             style={{

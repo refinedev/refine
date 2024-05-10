@@ -82,7 +82,7 @@ const App: React.FC = () => {
                       fallback={<CatchAllNavigate to="/login" />}
                     >
                       <ThemedLayoutV2
-                        Header={() => <Header sticky />}
+                        Header={() => <Header />}
                         Sider={() => null}
                       >
                         <div
@@ -142,7 +142,7 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="auth-pages" fallback={<Outlet />}>
-                      <NavigateToResource resource="posts" />
+                      <NavigateToResource />
                     </Authenticated>
                   }
                 >
@@ -176,7 +176,10 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="catch-all">
-                      <ThemedLayoutV2>
+                      <ThemedLayoutV2
+                        Header={() => <Header />}
+                        Sider={() => null}
+                      >
                         <Outlet />
                       </ThemedLayoutV2>
                     </Authenticated>
