@@ -18,7 +18,7 @@
     "@refinedev/simple-rest": "^5.0.1",
     "@refinedev/inferencer": "^4.5.17",
     "cross-env": "^7.0.3",
-    "next": "^13.5.4",
+    "next": "^14.1.1",
     "next-auth": "^4.20.1",
     "nookies": "^2.5.2",
     "react": "^18.0.0",
