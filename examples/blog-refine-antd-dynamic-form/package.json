@@ -33,7 +33,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
-    "antd": "5.16.5",
+    "antd": "^5.17.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1",
