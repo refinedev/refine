@@ -14,7 +14,7 @@ type DevToolsContextValue = {
 
 export const DevToolsContext = React.createContext<DevToolsContextValue>({
   __devtools: false,
-  port: 5002,
+  port: 5001,
   url: "localhost",
   secure: false,
   ws: null,
@@ -31,7 +31,7 @@ export const DevToolsContextProvider: React.FC<Props> = ({
 }) => {
   const [values, setValues] = React.useState<DevToolsContextValue>({
     __devtools: __devtools ?? false,
-    port: port ?? 5002,
+    port: port ?? 5001,
     url: "localhost",
     secure: false,
     ws: null,

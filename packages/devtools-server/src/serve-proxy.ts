@@ -137,7 +137,6 @@ export const serveProxy = async (app: Express) => {
 
   const authProxy = createProxyMiddleware({
     target: REFINE_API_URL,
-    // secure: false,
     changeOrigin: true,
     pathRewrite: { "^/api/.auth": "/.auth" },
     cookieDomainRewrite: {

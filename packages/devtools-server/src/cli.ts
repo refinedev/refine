@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 import { server } from "./index";
 
-server();
+server().catch(() => 0);
