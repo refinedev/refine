@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { useNavigation } from "@refinedev/core";
 import { NumberField, Show, useForm, useSelect } from "@refinedev/antd";
 import {
   Button,
@@ -38,8 +37,6 @@ export const InvoicesPageCreate = () => {
   const total = subtotal + (subtotal * tax) / 100;
 
   const { styles } = useStyles();
-
-  const { listUrl } = useNavigation();
 
   const { formProps } = useForm<Invoice>();
 
@@ -96,6 +93,7 @@ export const InvoicesPageCreate = () => {
         },
         style: {
           background: "transparent",
+          boxShadow: "none",
         },
       }}
     >

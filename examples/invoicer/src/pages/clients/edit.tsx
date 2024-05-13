@@ -59,6 +59,7 @@ export const ClientsPageEdit = () => {
         },
         style: {
           background: "transparent",
+          boxShadow: "none",
         },
       }}
     >

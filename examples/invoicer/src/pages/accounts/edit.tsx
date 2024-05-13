@@ -13,7 +13,6 @@ import {
   BankOutlined,
   UserOutlined,
   MailOutlined,
-  GlobalOutlined,
   EnvironmentOutlined,
   PhoneOutlined,
   ExportOutlined,
@@ -24,7 +23,6 @@ import { Col, Row } from "antd";
 import {
   FormItemEditableInputText,
   FormItemEditableText,
-  FormItemEditableSelect,
   FormItemUploadLogo,
 } from "@/components/form";
 import { Account, AccountForm } from "@/types";
@@ -55,6 +53,7 @@ export const AccountsPageEdit = () => {
         },
         style: {
           background: "transparent",
+          boxShadow: "none",
         },
       }}
     >

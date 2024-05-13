@@ -130,6 +130,7 @@ const App: React.FC = () => {
                     path="/clients/:id/edit"
                     element={<ClientsPageEdit />}
                   />
+
                   <Route path="/invoices">
                     <Route index element={<InvoicePageList />} />
                     <Route path="new" element={<InvoicesPageCreate />} />
