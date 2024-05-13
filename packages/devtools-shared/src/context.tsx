@@ -69,7 +69,16 @@ export const DevToolsContextProvider: React.FC<Props> = ({
     return () => {
       unsubscribe();
 
-      wsInstance.close(1000, window.location.origin);
+      // In strict mode, the WebSocket instance might not be connected yet
+      // so we need to wait for it to connect before closing it
+      // otherwise it will log an unnecessary error in the console
+      if (wsInstance.readyState === WebSocket.CONNECTING) {
+        wsInstance.addEventListener("open", () => {
+          wsInstance.close(1000, window.location.origin);
+        });
+      } else {
+        wsInstance.close(1000, window.location.origin);
+      }
     };
   }, []);
 
