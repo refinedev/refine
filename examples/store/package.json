@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "nextjs-progressbar": "^0.0.14",
-    "@medusajs/medusa-js": "1.3.3",
+    "@medusajs/medusa-js": "1.3.4",
     "@refinedev/core": "^4.46.2",
     "@refinedev/cli": "^2.16.22",
     "@refinedev/nextjs-router": "^5.5.5",
