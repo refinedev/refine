@@ -14247,9 +14247,6 @@ importers:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.17.19)
-      '@refinedev/core':
-        specifier: ^4.49.2
-        version: link:../core
       '@types/center-align':
         specifier: ^1.0.0
         version: 1.0.2
