@@ -11,9 +11,6 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
       - name: live previews docker build
         uses: docker/build-push-action@v1
         with:
