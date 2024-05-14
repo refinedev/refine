@@ -44,8 +44,6 @@ jobs:
       CHUNK_4: ${{ steps.chunkstep.outputs.CHUNK_4 }}
       CHUNK_5: ${{ steps.chunkstep.outputs.CHUNK_5 }}
       CHUNK_6: ${{ steps.chunkstep.outputs.CHUNK_6 }}
-      CHUNK_7: ${{ steps.chunkstep.outputs.CHUNK_7 }}
-      CHUNK_8: ${{ steps.chunkstep.outputs.CHUNK_8 }}
 
     steps:
       - name: Get PR labels
@@ -68,7 +66,7 @@ jobs:
 
       - name: Split Into Chunks
         id: chunkstep
-        run: CHUNKS=9 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/build-example-chunks.js
+        run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/build-example-chunks.js
 
   build-chunk-1:
     runs-on: ubuntu-latest
@@ -333,90 +331,3 @@ jobs:
 
       - name: Run E2E Tests
         run: BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_6 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-6-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
-
-  build-chunk-7:
-    runs-on: ubuntu-latest
-    if: "${{ needs.chunks.outputs.CHUNK_7 != '' }}"
-    concurrency:
-      group: ${{ github.ref }}-build-examples-chunk-7
-      cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    name: Build All Examples (Chunk 7)
-
-    needs: chunks
-
-    steps:
-      - name: Get PR labels
-        id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.6
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: |
-          pnpm install --ignore-scripts
-          pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_7 }}}
-
-      - name: Get short SHA
-        id: slug
-        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
-
-      - name: Run E2E Tests
-        run: BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_7 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-7-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
-
-  build-chunk-8:
-    runs-on: ubuntu-latest
-    if: "${{ needs.chunks.outputs.CHUNK_8 != '' }}"
-    concurrency:
-      group: ${{ github.ref }}-build-examples-chunk-8
-      cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    name: Build All Examples (Chunk 8)
-
-    needs: chunks
-
-    steps:
-      - name: Get PR labels
-        id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.6
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: |
-          pnpm install --ignore-scripts
-          pnpm cypress install
-
-      - name: Build
-        run: REFINE_NO_TELEMETRY=true pnpm build --no-bail --scope={${{ needs.chunks.outputs.CHUNK_8 }}}
-
-      - name: Get short SHA
-        id: slug
-        run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
-
-      - name: Run E2E Tests
-        run: BASE_REF=${{ github.base_ref }} EXAMPLES=${{ needs.chunks.outputs.CHUNK_8 }} CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }} CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }} CI_BUILD_ID=refine-${{ github.ref_name }}-${{ steps.slug.outputs.sha7 }}-chunk-8-${{ github.run_attempt }} node ./.github/workflows/e2e-examples.js
