@@ -1,13 +1,16 @@
 FROM refinedev/node:18 AS base
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
 FROM base AS deps
 
 RUN apk add --no-cache libc6-compat openssh-client
 
-COPY package.json package-lock.json .npmrc ./
+COPY package.json pnpm-lock.yaml .npmrc ./
 
-RUN npm pkg delete scripts.prepare
-RUN npm ci --workspaces false
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --ignore-scripts
 
 FROM base AS builder
 
@@ -17,8 +20,11 @@ COPY . .
 
 ENV CI true
 
-RUN npm install -w store
-RUN npm run build -- --scope store
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --ignore-scripts
+
+RUN pnpm run build --scope store --skipNxCache
+
+RUN ls -l /app/refine/examples/store/.next/standalone/
 
 FROM base AS runner
 
@@ -29,9 +35,9 @@ COPY --from=builder /app/refine/examples/store/public ./public
 RUN mkdir .next
 RUN chown refine:nodejs .next
 
-COPY --from=builder --chown=refine:nodejs /app/refine/examples/store/.next/standalone/examples/store ./
-COPY --from=builder --chown=refine:nodejs /app/refine/examples/store/.next/standalone/node_modules ./node_modules
-COPY --from=builder --chown=refine:nodejs /app/refine/examples/store/.next/static ./.next/static
+RUN rm -rf node_modules
+
+COPY --from=builder --chown=refine:nodejs /app/refine/examples/store/.next/standalone ./
 
 USER refine
 
@@ -40,4 +46,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["node", "./examples/store/server.js"]
