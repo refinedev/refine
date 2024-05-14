@@ -1,44 +1,4 @@
-const getImports = (content) => {
-  const matches = content.matchAll(packageRegex);
-
-  const imports = [];
-
-  for (const match of matches) {
-    const [
-      statement,
-      defaultImport,
-      namedImports,
-      namespaceImport,
-      importPath,
-    ] = match;
-
-    imports.push({
-      statement,
-      importPath,
-      ...(defaultImport && { defaultImport }),
-      ...(namedImports && { namedImports }),
-      ...(namespaceImport && { namespaceImport }),
-    });
-  }
-
-  return imports?.filter(Boolean);
-};
-
-const appendAfterImports = (content, append) => {
-  const imports = getImports(content);
-  const lastImport = imports[imports.length - 1];
-
-  const lastImportIndex = lastImport
-    ? content.indexOf(lastImport.statement)
-    : content.length - 1;
-
-  return `${content.slice(
-    0,
-    lastImportIndex + lastImport?.statement.length,
-  )}\n${append}\n${content.slice(
-    lastImportIndex + lastImport?.statement.length,
-  )}`;
-};
+const { getImports, appendAfterImports } = require("@refinedev/cli");
 
 /** @type {import('@refinedev/cli').RefineConfig} */
 module.exports = {
