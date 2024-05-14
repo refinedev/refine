@@ -85,7 +85,7 @@ export const HomePage = () => {
             <h1>{translate("page.home.title")}</h1>
             <select
                 value={getLocale()}
-                onChange={(e) => changeLanguage(e.target.value)}
+                onChange={(e) => changeLocale(e.target.value)}
             >
                 <option value="en">English</option>
                 <option value="de">German</option>
