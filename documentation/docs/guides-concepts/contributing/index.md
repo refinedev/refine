@@ -37,7 +37,7 @@ After you fork the Refine repository, you need to clone it to your local machine
 git clone https://github.com/refinedev/refine.git
 ```
 
-### Installing root dependencies
+### Installing dependencies
 
 After you clone the repository, you need to install the dependencies. We use pnpm as package manager with workspaces feature. You can run the following command to install, link dependencies and build packages:
 
@@ -49,6 +49,14 @@ If you don't want to wait for building packages, you can use
 
 ```sh title="Terminal"
 pnpm install --ignore-scripts
+```
+
+### Building packages
+
+You can use `pnpm build` command with `--scope` flag to build packages & examples.
+
+```sh title="Terminal"
+pnpm build --scope @refinedev/antd --scope base-antd
 ```
 
 ### Working with packages
@@ -101,7 +109,7 @@ Refine documentation is built with [Docusaurus](https://docusaurus.io/). Documen
 
 ```sh title="Terminal"
 cd documentation
-pnpm --ignore-workspace install
+pnpm install
 pnpm dev:docs
 ```
 
