@@ -29,7 +29,7 @@ import {
 import { Invoice } from "@/types";
 
 export const ClientsPageEdit = () => {
-  const { listUrl } = useNavigation();
+  const { list } = useNavigation();
 
   const { formProps, queryResult } = useForm({
     redirect: false,
@@ -166,7 +166,7 @@ export const ClientsPageEdit = () => {
                 marginTop: "16px",
               }}
               onSuccess={() => {
-                listUrl("clients");
+                list("clients");
               }}
             >
               Delete client
