@@ -6,7 +6,7 @@ import { removeTestIdsPlugin } from "../shared/remove-test-ids-plugin";
 import { muiIconsMaterialEsmReplacePlugin } from "../shared/mui-icons-material-esm-replace-plugin";
 import { dayJsEsmReplacePlugin } from "../shared/dayjs-esm-replace-plugin";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.tsx"],
   splitting: false,
   sourcemap: true,
@@ -31,5 +31,5 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

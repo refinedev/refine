@@ -1,12 +1,14 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.ts"],
   splitting: false,
   sourcemap: true,
   clean: false,
   platform: "node",
+  format: ["cjs", "esm", "iife"],
+  legacyOutput: true,
   esbuildPlugins: [
     NodeResolvePlugin({
       extensions: [".js", "ts", "tsx", "jsx"],
@@ -20,5 +22,5 @@ export default defineConfig({
       },
     }),
   ],
-  onSuccess: "tsc --project tsconfig.declarations.json",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

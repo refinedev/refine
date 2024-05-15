@@ -1,5 +1,6 @@
 {
   "name": "with-remix-material-ui",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -11,8 +12,10 @@
     "start:prod": "refine start"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.3",
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",

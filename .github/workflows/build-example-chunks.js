@@ -11,7 +11,7 @@ const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
 const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";
 
 const getChangedPackages = () => {
-  const p = require.resolve("lerna/cli.js");
+  const p = require.resolve("lerna/dist/cli.js");
 
   const output = execSync(`node ${p} ls --since origin/${BASE_REF} --json`, {
     stdio: "pipe",

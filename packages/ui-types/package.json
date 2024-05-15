@@ -22,9 +22,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/ui-types",
     "publint": "publint --strict=true --level=suggestion",
     "test": "echo \"no tests\"",
     "types": "node ../shared/generate-declarations.js"
@@ -48,6 +48,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

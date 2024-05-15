@@ -69,7 +69,6 @@ export const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <AntdConfigProvider theme={customTheme}>
-        {/* @ts-expect-error Type error via React.ReactNode from antd-style */}
         <ThemeProvider theme={customTheme} appearance={mode}>
           {children}
         </ThemeProvider>

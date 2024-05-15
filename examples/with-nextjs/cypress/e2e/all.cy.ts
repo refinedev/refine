@@ -291,5 +291,3 @@ describe("with-nextjs", () => {
     });
   });
 });
-
-export type {};

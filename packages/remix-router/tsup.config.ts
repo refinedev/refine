@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: {
     index: "src/index.ts",
     legacy: "src/legacy/index.ts",
@@ -26,5 +26,5 @@ export default defineConfig({
       },
     }),
   ],
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

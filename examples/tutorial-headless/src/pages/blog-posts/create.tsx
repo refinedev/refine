@@ -67,7 +67,6 @@ export const BlogPostCreate = () => {
           <label>
             <span style={{ marginRight: "8px" }}>Category</span>
             <select
-              placeholder="Select category"
               {...register("category.id", {
                 required: "This field is required",
               })}
