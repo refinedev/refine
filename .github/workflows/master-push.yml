@@ -140,7 +140,7 @@ jobs:
         run: |
           pnpm install
           cd documentation
-          pnpm --ignore-workspace install
+          pnpm install
       - name: Release to GitHub Pages
         env:
           USE_SSH: true

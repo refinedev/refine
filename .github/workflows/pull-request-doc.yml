@@ -50,7 +50,7 @@ jobs:
       - name: Install Doc Dependencies
         run: |
           cd documentation
-          pnpm --ignore-workspace install
+          pnpm install
       - name: Wait for Netlify Deploy (Live Previews)
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
