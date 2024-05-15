@@ -2,11 +2,11 @@ import { useMemo, useState } from "react";
 import { Avatar, Form, Skeleton, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import { RcFile } from "antd/lib/upload";
+import type { RcFile } from "antd/lib/upload";
 import { axiosInstance } from "@/providers/axios";
 import { getRandomColorFromString } from "@/utils/get-random-color";
 import { API_URL, TOKEN_KEY } from "@/utils/constants";
-import { Media, UploadResponse } from "@/types";
+import type { Media, UploadResponse } from "@/types";
 import { useStyles } from "./styled";
 
 type Props = {
@@ -82,11 +82,6 @@ export const FormItemUploadLogo = ({
       return;
     }
   };
-
-  console.log({
-    src,
-    fieldValue,
-  });
 
   return (
     <div className={styles.container}>

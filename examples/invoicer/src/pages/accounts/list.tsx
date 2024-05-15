@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,
@@ -14,8 +14,8 @@ import {
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { API_URL } from "@/utils/constants";
-import { Account } from "@/types";
 import { getRandomColorFromString } from "@/utils/get-random-color";
+import type { Account } from "@/types";
 
 export const AccountsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();

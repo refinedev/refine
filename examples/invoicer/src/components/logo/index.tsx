@@ -1,6 +1,6 @@
-import { CSSProperties, SVGProps } from "react";
+import type { CSSProperties, SVGProps } from "react";
 import { Flex, Typography } from "antd";
-import { TitleProps } from "antd/lib/typography/Title";
+import type { TitleProps } from "antd/lib/typography/Title";
 import { IconInvoicerLogo } from "@/components/icons";
 import { useStyles } from "./styled";
 
