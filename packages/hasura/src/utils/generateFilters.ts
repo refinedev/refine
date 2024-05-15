@@ -47,9 +47,8 @@ export type HasuraCrudFilter = HasuraLogicalFilter | HasuraConditionalFilter;
 
 export type HasuraCrudFilters = HasuraCrudFilter[];
 
-const hasuraFilters: Record<
-  HasuraCrudOperators,
-  HasuraFilterCondition | undefined
+const hasuraFilters: Partial<
+  Record<HasuraCrudOperators, HasuraFilterCondition | undefined>
 > = {
   eq: "_eq",
   ne: "_neq",
