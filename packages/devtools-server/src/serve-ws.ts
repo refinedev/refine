@@ -10,13 +10,13 @@ export const serveWs = () => {
       if (error?.code === "EADDRINUSE") {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "refine devtools",
+            "Refine Devtools",
           )} failed to start. Port ${WS_PORT} is already in use, please make sure no other devtools server is running\n`,
         );
       } else {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "error from refine devtools",
+            "error from Refine Devtools",
           )}`,
           error,
         );
