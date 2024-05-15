@@ -4,7 +4,7 @@ import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 import { replaceCoreVersionPlugin } from "../shared/replace-core-version-plugin";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.tsx"],
   splitting: false,
   sourcemap: true,
@@ -24,5 +24,5 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

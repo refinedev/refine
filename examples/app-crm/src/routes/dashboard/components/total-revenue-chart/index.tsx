@@ -80,8 +80,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
       : 0;
 
   const config: GaugeConfig = {
-    animation:
-      expectedRevenueIsLoading || realizedRevenueIsLoading ? false : true,
+    animation: !(expectedRevenueIsLoading || realizedRevenueIsLoading),
     supportCSSTransform: true,
     // antd expects a percentage value between 0 and 1
     percent: realizationPercentageOfExpected / 100,

@@ -34,9 +34,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack . --exclude-entrypoints dist/reset.css",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/antd",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -63,6 +63,7 @@
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
+    "@types/lodash": "^4.14.171",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
@@ -88,6 +89,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

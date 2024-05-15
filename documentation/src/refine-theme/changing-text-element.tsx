@@ -94,12 +94,7 @@ export const ChangingTextElement = React.memo(
           {next.split("")[pos] ?? ""}
         </span>
         <span className={clsx("will-change-contents", nextClassName)}>
-          {prev
-            .split("")
-            .slice(pos + 1)
-            .map((letter) => {
-              return letter;
-            })}
+          {prev.split("").slice(pos + 1)}
         </span>
       </span>
     );

@@ -438,9 +438,7 @@ describe("useTable Hook", () => {
         mode === "server" ? undefined : expect.any(Function),
       );
 
-      expect(result.current.options.manualSorting).toEqual(
-        mode === "server" ? true : false,
-      );
+      expect(result.current.options.manualSorting).toEqual(mode === "server");
     },
   );
 
@@ -466,9 +464,7 @@ describe("useTable Hook", () => {
         mode === "server" ? undefined : expect.any(Function),
       );
 
-      expect(result.current.options.manualFiltering).toEqual(
-        mode === "server" ? true : false,
-      );
+      expect(result.current.options.manualFiltering).toEqual(mode === "server");
     },
   );
 });

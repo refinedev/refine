@@ -9,7 +9,7 @@ import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 
 const JS_EXTENSIONS = new Set(["js", "cjs", "mjs"]);
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.tsx"],
   splitting: false,
   sourcemap: true,
@@ -76,5 +76,5 @@ export default defineConfig({
       js: '"use client"',
     };
   },
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

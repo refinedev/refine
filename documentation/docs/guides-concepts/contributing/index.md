@@ -23,7 +23,7 @@ We follow a [code of conduct](https://github.com/refinedev/refine/blob/master/CO
 
 - [Node.js](https://nodejs.org/en/) version 18 or higher
 - [Git](https://git-scm.com/) and [GitHub](https://github.com) account
-- [npm](https://www.npmjs.com/) version 7 or higher
+- [pnpm](https://pnpm.io/) version 9 or higher
 
 :::
 
@@ -39,81 +39,30 @@ git clone https://github.com/refinedev/refine.git
 
 ### Installing dependencies
 
-After you clone the repository, you need to install the dependencies. You can use your favorite package manager to do that.
+After you clone the repository, you need to install the dependencies. We use pnpm as package manager with workspaces feature. You can run the following command to install, link dependencies and build packages:
 
-<Tabs>
-
-<TabItem value="npm" label="npm">
-
-```sh
-npm install
-```
-
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-
-```sh
-yarn
-```
-
-</TabItem>
-
-<TabItem value="pnpm" label="pnpm">
-
-```sh
+```sh title="Terminal"
 pnpm install
 ```
 
-</TabItem>
-
-</Tabs>
-
-### Bootstrapping the Packages
-
-Refine uses [Lerna](https://lerna.js.org) to manage and run packages and examples. If you're unfamiliar with Lerna, you may get confused about how to run the packages in development mode but don't worry, we got you covered. By following the steps below, you will be able to prepare the packages and examples you're going to work on.
-
-:::simple Development Tip
-
-It's recommended to always keep at least one example ready to run while you are working on Refine. This way, you can test your changes in the example and make sure everything works as expected.
-
-:::
-
-Let's start with bootstrapping a package and an example:
+If you don't want to wait for building packages, you can use
 
 ```sh title="Terminal"
-npm run bootstrap -- --scope @refinedev/antd --scope base-antd --includeDependencies
+pnpm install --ignore-scripts
 ```
 
-- We're using `--scope` flag to filter the packages and examples we want to bootstrap. In this example, we're bootstrapping `@refinedev/antd` package and `base-antd` example.
-- `--includeDependencies` flag is used to tell Lerna to also include the dependencies of the packages and examples we've filtered to the bootstrapping process.
+### Building packages
 
-### Building the Packages
-
-After bootstrapping the packages we want to work on, we need to build them in order to run properly. You can use the command below to build the packages:
+You can use `pnpm build` command with `--scope` flag to build packages & examples.
 
 ```sh title="Terminal"
-npm run build -- --scope @refinedev/antd --scope base-antd --includeDependencies
+pnpm build --scope @refinedev/antd --scope base-antd
 ```
 
-Just like the `bootstrap` command we're using `--scope` flag to filter the packages we want and use `--includeDependencies` flag to include the dependencies of the packages we've filtered. This way, we're including the dependencies of the packages we're working on to the build process.
-
-<details>
-
-<summary>How to add a dependency to a package?</summary>
-
-If you need to add a dependency to a package you're working on, it's best to update the `package.json` file of the package manually and run the `bootstrap` command again in the root. This way, Lerna will install the dependency to the package and link it to the other packages.
-
-Since Refine's repository uses the hoist option of Lerna, you need to use the same version of the dependency if it exists in another package or an example.
-
-</details>
-
-### Starting the Packages and Examples in Watch Mode
-
-Now that we've bootstrapped and built the packages and examples we want to work on, we can start them in watch mode. This way, the packages and examples we've started will re-compile when we make a change in any of them.
+### Working with packages
 
 ```sh title="Terminal"
-npm run dev -- --scope @refinedev/antd --scope base-antd
+pnpm dev --scope @refinedev/antd --scope base-antd
 ```
 
 After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
@@ -122,16 +71,29 @@ If you make a change in the `@refinedev/antd` package, you will see that right a
 
 :::simple Development Tip
 
-Notice that we're not using `--includeDependencies` flag in this command. This is because we don't want to start the dependencies in watch mode. If we do, it will cause unnecessary re-compilations and slow down the development process.
+It's recommended to always keep at least one example ready to run while you are working on Refine. This way, you can test your changes in the example and make sure everything works as expected.
 
 :::
+
+<details>
+
+<summary>How to add a dependency to a package?</summary>
+
+Navigate to the folder and run the following command:
+
+```sh title="Terminal"
+cd packages/core
+pnpm add my-new-dep
+```
+
+</details>
 
 ### Running Tests
 
 Just like the `dev` command, we can use the `test` command to run tests for the packages and examples we're working on.
 
 ```sh title="Terminal"
-npm run test -- --scope @refinedev/antd
+pnpm test -- --scope @refinedev/antd
 ```
 
 :::simple Good to know
@@ -147,17 +109,17 @@ Refine documentation is built with [Docusaurus](https://docusaurus.io/). Documen
 
 ```sh title="Terminal"
 cd documentation
-npm install
-npm run dev:docs
+pnpm install
+pnpm dev:docs
 ```
 
 :::simple Documentation Scripts
 
-- You can also use `npm run dev:blog` to start the blog section of the documentation.
+- You can also use `pnpm dev:blog` to start the blog section of the documentation.
 
-- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `npm run dev` command.
+- `dev:docs` and `dev:blog` scripts start a portion of the documentation and skips the unnecessary parts to speed up the development process such as type and props table generation, checklist generation, etc. If you want to start the documentation with all the features, you can use `pnpm dev` command.
 
-- To create a production build of the documentation, you can use `npm run build` command. Then, you can use `npm run serve` command to serve the production build in your local machine.
+- To create a production build of the documentation, you can use `pnpm build` command. Then, you can use `pnpm serve` command to serve the production build in your local machine.
 
 :::
 
@@ -212,7 +174,7 @@ To manage our releases, changelogs and versioning, we're using [Changesets](http
 Follow the steps below to create a changeset:
 
 ```sh
-npm run changeset
+pnpm changeset
 ```
 
 After you run this command, you will be asked couple of questions:

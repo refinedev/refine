@@ -13,7 +13,7 @@ export const relationInfer: FieldInferencer = (key, value) => {
     return {
       key,
       relation: true,
-      multiple: isBasicArray ? true : false,
+      multiple: isBasicArray,
       type: "relation",
       priority: 1,
     };

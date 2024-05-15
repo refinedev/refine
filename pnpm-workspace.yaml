@@ -1,0 +1,8 @@
+packages:
+  - "packages/*"
+  - "examples/*"
+  - "!examples/monorepo-*"
+  - "!examples/with-nx"
+  - "!documentation"
+  - "!examples/blog-sveltekit-crud"
+  - "!examples/blog-react-aria"

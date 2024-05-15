@@ -34,7 +34,6 @@ export type NavigationButtonValues = {
   canAccess: CanReturnType | undefined;
   LinkComponent: React.ComponentType<
     React.PropsWithChildren<{
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       [prop: string]: any;
       to: string;
     }>
