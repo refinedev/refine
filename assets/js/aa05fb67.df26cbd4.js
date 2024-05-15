@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[16493],{32303:(t,e,n)=>{n.r(e),n.d(e,{default:()=>r});var u=n(96540),a=n(56347);function r(){return u.createElement(a.rd,{to:"/tutorial/essentials/intro"})}}}]);
