@@ -21,7 +21,7 @@ export const printUpdateWarningTable = async (
   console.log(table);
   console.log(
     center(
-      `To update ${chalk.bold("`refine`")} packages with wanted version`,
+      `To update ${chalk.bold("`Refine`")} packages with wanted version`,
       width,
     ),
   );

@@ -24,7 +24,7 @@ const load = (program: Command) => {
   return program
     .command("update")
     .description(
-      "Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.",
+      "Interactively select and update all `Refine` packages to selected version. To skip the interactive mode, use the `--all` option.",
     )
     .addOption(
       new Option("-t, --tag [tag]", "Select version to update to.")
@@ -36,7 +36,7 @@ const load = (program: Command) => {
     )
     .option(
       "-a, --all",
-      "Update all `refine` packages to the selected `tag`. If `tag` is not provided, version ranges in the `package.json` will be installed. This option skips the interactive mode.",
+      "Update all `Refine` packages to the selected `tag`. If `tag` is not provided, version ranges in the `package.json` will be installed. This option skips the interactive mode.",
       false,
     )
     .option(
@@ -52,7 +52,7 @@ const action = async (options: OptionValues) => {
 
   const packages = await spinner(isRefineUptoDate, "Checking for updates...");
   if (!packages?.length) {
-    console.log("All `refine` packages are up to date 🎉");
+    console.log("All `Refine` packages are up to date 🎉");
     return;
   }
 
@@ -109,7 +109,7 @@ const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
     );
     if (isAllPackagesAtWantedVersion) {
       console.log(
-        "All `refine` packages are up to date with the wanted version 🎉",
+        "All `Refine` packages are up to date with the wanted version 🎉",
       );
       return null;
     }
@@ -130,7 +130,7 @@ const printInstallCommand = async (packages: string[]) => {
 };
 
 const pmInstall = (packages: string[]) => {
-  console.log("Updating `refine` packages...");
+  console.log("Updating `Refine` packages...");
   console.log(packages.map((pkg) => ` - ${pkg}`).join("\n"));
   installPackages(packages);
 };
