@@ -115,7 +115,9 @@ export const InvoicePageList = () => {
                   src={src}
                   shape="square"
                   style={{
-                    backgroundColor: getRandomColorFromString(name),
+                    backgroundColor: src
+                      ? "none"
+                      : getRandomColorFromString(name || ""),
                   }}
                 >
                   <Typography.Text>{name?.[0]?.toUpperCase()}</Typography.Text>

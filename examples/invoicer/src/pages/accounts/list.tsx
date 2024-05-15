@@ -131,7 +131,9 @@ export const AccountsPageList = ({ children }: PropsWithChildren) => {
                     src={src}
                     shape="square"
                     style={{
-                      backgroundColor: getRandomColorFromString(name),
+                      backgroundColor: src
+                        ? "none"
+                        : getRandomColorFromString(name),
                     }}
                   >
                     <Typography.Text>

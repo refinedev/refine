@@ -30,6 +30,9 @@ export const InvoicesPageShow = () => {
 
   const invoice = queryResult?.data?.data;
   const loading = queryResult?.isLoading;
+  const logoUrl = invoice?.account?.logo?.url
+    ? `${API_URL}${invoice?.account?.logo?.url}`
+    : undefined;
 
   return (
     <Show
@@ -98,16 +101,14 @@ export const InvoicesPageShow = () => {
                     <Avatar
                       alt={invoice?.account?.company_name}
                       size={64}
-                      src={
-                        invoice?.account?.logo?.url
-                          ? `${API_URL}${invoice?.account?.logo?.url}`
-                          : undefined
-                      }
+                      src={logoUrl}
                       shape="square"
                       style={{
-                        backgroundColor: getRandomColorFromString(
-                          invoice?.account?.company_name || "",
-                        ),
+                        backgroundColor: logoUrl
+                          ? "transparent"
+                          : getRandomColorFromString(
+                              invoice?.account?.company_name || "",
+                            ),
                       }}
                     >
                       <Typography.Text>

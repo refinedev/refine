@@ -120,6 +120,7 @@ export const FormItemUploadLogo = ({
             }}
           >
             <Avatar
+              key={src}
               size={96}
               shape="square"
               src={src}
@@ -132,9 +133,8 @@ export const FormItemUploadLogo = ({
                 zIndex: 1,
                 cursor: "pointer",
                 borderRadius: "6px",
-                ...((error || !src) && {
-                  background: getRandomColorFromString(label),
-                }),
+                background:
+                  error || !src ? getRandomColorFromString(label) : "none",
               }}
             >
               {<Typography.Text>{label[0].toUpperCase()}</Typography.Text>}
