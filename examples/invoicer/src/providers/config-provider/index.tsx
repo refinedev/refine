@@ -1,11 +1,15 @@
 import {
-  PropsWithChildren,
+  type PropsWithChildren,
   createContext,
   useContext,
   useEffect,
   useState,
 } from "react";
-import { ConfigProvider as AntdConfigProvider, ThemeConfig, theme } from "antd";
+import {
+  ConfigProvider as AntdConfigProvider,
+  type ThemeConfig,
+  theme,
+} from "antd";
 import { ThemeProvider } from "antd-style";
 import { RefineThemes } from "@refinedev/antd";
 
