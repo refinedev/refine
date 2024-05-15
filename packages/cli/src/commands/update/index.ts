@@ -1,9 +1,12 @@
+import inquirer from "inquirer";
+import center from "center-align";
 import { Command, Option } from "commander";
-import { isRefineUptoDate } from "@commands/check-updates";
 import spinner from "@utils/spinner";
+import { isRefineUptoDate } from "@commands/check-updates";
 import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
 import { RefinePackageInstalledVersionData } from "@definitions/package";
+import { getVersionTable } from "@components/version-table";
 
 enum Tag {
   Wanted = "wanted",
@@ -53,9 +56,41 @@ const action = async (options: OptionValues) => {
     return;
   }
 
-  const selectedPackages = all
-    ? runAll(tag, packages)
-    : await promptInteractiveRefineUpdate(packages);
+  let selectedPackages: string[] | null | undefined = null;
+
+  if (all) {
+    runAll(tag, packages);
+  } else {
+    const { table, width } = getVersionTable(packages) ?? "";
+
+    console.log(center("Available Updates", width));
+    console.log(table);
+
+    const { allByPrompt } = await inquirer.prompt<{ allByPrompt: boolean }>([
+      {
+        type: "list",
+        name: "allByPrompt",
+        message:
+          "Do you want to update all Refine packages for minor and patch versions?",
+        choices: [
+          {
+            name: "Yes (Recommended)",
+            value: true,
+          },
+          {
+            name: "No, use interactive mode",
+            value: false,
+          },
+        ],
+      },
+    ]);
+
+    if (allByPrompt) {
+      selectedPackages = runAll(tag, packages);
+    } else {
+      selectedPackages = await promptInteractiveRefineUpdate(packages);
+    }
+  }
 
   if (!selectedPackages) return;
 
@@ -96,7 +131,7 @@ const printInstallCommand = async (packages: string[]) => {
 
 const pmInstall = (packages: string[]) => {
   console.log("Updating `refine` packages...");
-  console.log(packages);
+  console.log(packages.map((pkg) => ` - ${pkg}`).join("\n"));
   installPackages(packages);
 };
 
