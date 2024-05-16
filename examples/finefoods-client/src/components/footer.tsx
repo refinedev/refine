@@ -1,51 +1,61 @@
 import React from "react";
 import Link from "next/link";
 
-import { MotorcycleIcon, FinefoodsIcon, RefineLoveIcon } from "@components";
+import { DividerVerticalIcon, RefineIcon } from "@components";
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-primary">
-      <div className="container mx-auto my-4 flex flex-wrap items-center justify-between px-2 md:px-0">
-        <div className="hidden gap-4 md:flex">
-          <MotorcycleIcon />
-          <FinefoodsIcon className="w-32" />
-        </div>
-        <div className="flex flex-col gap-4 text-lg font-semibold text-white md:flex-row">
-          <div>
-            <Link
-              href="https://refine.dev/docs/getting-started/overview/"
-              className="transition-all hover:underline hover:underline-offset-2"
-            >
-              Quickstart
-            </Link>
-          </div>
+      <div className="container mx-auto md:px-10 my-6 flex flex-wrap items-center justify-between">
+        <div className="flex flex-col gap-3 font-semibold text-white md:flex-row">
           <div>
             <Link
               href="https://refine.dev/docs/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-all hover:underline hover:underline-offset-2"
             >
-              Tutorials
+              Documentation
             </Link>
           </div>
+          <DividerVerticalIcon />
           <div>
             <Link
-              href="https://refine.dev/docs/examples/"
+              href="https://refine.dev/tutorial/essentials/intro/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-all hover:underline hover:underline-offset-2"
             >
-              Examples
+              Tutorial
             </Link>
           </div>
+          <DividerVerticalIcon />
+          <div>
+            <Link
+              href="https://refine.dev/templates/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all hover:underline hover:underline-offset-2"
+            >
+              Templates
+            </Link>
+          </div>
+          <DividerVerticalIcon />
           <div>
             <Link
               href="https://refine.dev/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-all hover:underline hover:underline-offset-2"
             >
               Blog
             </Link>
           </div>
         </div>
-        <RefineLoveIcon />
+        <div className="text-white flex gap-3 items-center">
+          Developed in
+          <RefineIcon />
+        </div>
       </div>
     </footer>
   );

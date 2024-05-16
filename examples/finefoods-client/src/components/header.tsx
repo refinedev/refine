@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { MotorcycleIcon, FinefoodsIcon, BasketIcon } from "@components";
+import { FinefoodsIcon, BasketIcon } from "@components";
 import { useBasketContext, useOrdesModalContext } from "@hooks";
 
 export const Header: React.FC = () => {
@@ -10,11 +10,10 @@ export const Header: React.FC = () => {
   const isBasketHaveOrders = orders.length > 0;
 
   return (
-    <header className="bg-primary sticky top-0 z-50 shadow-md">
+    <header className="bg-primary sticky top-0 z-50 shadow-lg">
       <div className="container flex h-full items-center justify-between px-2 md:px-0">
         <Link href="/" className="flex gap-4">
-          <MotorcycleIcon className="hidden md:block" />
-          <FinefoodsIcon className="w-32 md:w-48" />
+          <FinefoodsIcon className="text-white" />
         </Link>
         <div
           className="flex cursor-pointer items-center gap-2"
@@ -23,9 +22,7 @@ export const Header: React.FC = () => {
           {isBasketHaveOrders && (
             <div className="text-lg font-semibold text-white">
               {isBasketHaveOrders && `${orders.length} items /`}{" "}
-              <span className="text-xl font-extrabold">
-                ${totalPrice / 100}
-              </span>
+              <span className="text-xl font-extrabold">${totalPrice}</span>
             </div>
           )}
           <BasketIcon className="h-6 w-6" />

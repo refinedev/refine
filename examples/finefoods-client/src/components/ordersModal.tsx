@@ -55,7 +55,7 @@ export const OrdersModal: React.FC = () => {
               <div className="flex items-center justify-center gap-2">
                 Total:
                 <span className="text-lg font-bold text-gray-800">
-                  {orders.length} items / ${totalPrice / 100}
+                  {orders.length} items / ${totalPrice}
                 </span>
               </div>
               <button
@@ -72,7 +72,11 @@ export const OrdersModal: React.FC = () => {
                     {
                       onSuccess: (data) => {
                         go({
-                          to: `/order/${data.data.id}`,
+                          to: {
+                            resource: "orders",
+                            id: data.data.id,
+                            action: "show",
+                          },
                           type: "replace",
                         });
                         setOrdersModalVisible(false);

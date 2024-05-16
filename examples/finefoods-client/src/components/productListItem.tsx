@@ -25,7 +25,7 @@ export const ProductListItem: React.FC<ProducrtListItemProps> = ({
         <p className="text-gray-600">{product.description}</p>
       </div>
       <div className="w-16 shrink-0 text-lg font-bold text-gray-800">
-        ${product.price / 100}
+        ${product.price}
       </div>
       <div className="flex shrink-0 gap-4">
         <NumberInput value={amount} setValue={setAmount} />

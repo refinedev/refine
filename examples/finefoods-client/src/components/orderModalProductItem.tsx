@@ -19,8 +19,7 @@ export const OrderModalProductItem: React.FC<{ order: IBasketOrder }> = ({
         <p>{product?.name}</p>
       </div>
       <div className="flex-none">
-        <span className="font-semibold">${(product?.price ?? 0) / 100}</span> x{" "}
-        {amount}
+        <span className="font-semibold">${product?.price ?? 0}</span> x {amount}
       </div>
     </div>
   );
