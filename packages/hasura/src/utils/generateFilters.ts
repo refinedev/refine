@@ -66,8 +66,6 @@ const hasuraFilters: Partial<
   or: "_or",
   and: "_and",
   not: "_not",
-  between: undefined,
-  nbetween: undefined,
   nnull: "_is_null",
   startswith: "_iregex",
   nstartswith: "_iregex",
