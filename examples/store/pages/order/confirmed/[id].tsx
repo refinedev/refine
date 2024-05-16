@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useOne } from "@refinedev/core";
 import { Order } from "@medusajs/medusa";
 
-import { IS_BROWSER } from "@lib/isBrowser";
+import { IS_BROWSER } from "src/contants";
 import { SEO } from "@components/common";
 import { OrderCompletedTemplate } from "@components/orders/OrderCompletedTemplate";
 import { SkeletonOrderConfirmed } from "@components/skeletons";

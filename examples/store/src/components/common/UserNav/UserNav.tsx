@@ -12,7 +12,6 @@ import {
   DropdownTrigger as DropdownTriggerInst,
   Button,
 } from "@components/ui";
-import { useCart } from "@lib/hooks";
 import { useCartContext } from "@lib/context";
 
 import s from "./UserNav.module.css";
@@ -20,9 +19,7 @@ import s from "./UserNav.module.css";
 export const UserNav: React.FC<{
   className?: string;
 }> = ({ className }) => {
-  const { cartId } = useCartContext();
-
-  const { cart } = useCart({ id: cartId });
+  const { cart } = useCartContext();
 
   const countItem = (count: number, item: LineItem) => count + item.quantity;
 

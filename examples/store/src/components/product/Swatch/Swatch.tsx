@@ -3,7 +3,6 @@ import cn from "clsx";
 
 import { Check } from "@components/icons";
 import { Button, ButtonProps } from "@components/ui/Button";
-import { isDark } from "@lib/colors";
 
 import s from "./Swatch.module.css";
 interface SwatchProps extends PropsWithChildren {
@@ -34,7 +33,6 @@ export const Swatch: React.FC<Omit<ButtonProps, "variant"> & SwatchProps> = ({
       [s.color]: color,
       [s.active]: active,
       [s.size]: variant === "size",
-      [s.dark]: color ? isDark(color) : false,
       [s.textLabel]: !color && label && label.length > 3,
     },
     className,
