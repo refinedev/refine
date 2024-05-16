@@ -49,7 +49,7 @@ const action = async (
   const devtools = params.devtools === "false" ? false : devtoolsDefault;
 
   if (devtools) {
-    devtoolsRunner();
+    devtoolsRunner({ exitOnError: false });
   }
 
   runScript(binPath, command);
