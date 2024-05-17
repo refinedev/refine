@@ -19,8 +19,8 @@ import {
   SERVER_API_URL,
 } from "src/contants";
 import clsx from "clsx";
-import { ButtonCategory } from "@components/button-category";
-import { ProductGridItem } from "@components/product-grid-item";
+import { ButtonCategory } from "@components/ui/button-category";
+import { ProductGridItem } from "@components/product/product-grid-item";
 
 type Props = {
   initialResults?: GetListResponse<Product>;

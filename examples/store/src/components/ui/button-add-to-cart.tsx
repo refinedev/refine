@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
-import { IconHourglass } from "./icon-hourglass";
-import { IconAdd } from "./icon-add";
-import { LoadingDots } from "./ui";
+import { IconHourglass } from "../icons/icon-hourglass";
+import { IconAdd } from "../icons/icon-add";
+import { LoadingDots } from ".";
 
 type Props = Omit<React.ComponentProps<"button">, "children"> & {
   loading?: boolean;

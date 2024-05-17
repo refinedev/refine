@@ -6,7 +6,6 @@ import { useUI } from "@lib/context";
 import {
   CartItem,
   Button,
-  Text,
   SidebarLayout,
   SkeletonCartSidebar,
 } from "@components";

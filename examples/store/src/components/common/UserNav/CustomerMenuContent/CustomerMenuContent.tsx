@@ -74,26 +74,6 @@ export const CustomerMenuContent: React.FC = () => {
             </a>
           </DropdownMenuItem>
         ))}
-        {/* TODO: uncomment dark mode when theme is ready */}
-        {/* <DropdownMenuItem>
-                <a
-                    className={cn(s.link, "justify-between")}
-                    onClick={() => {
-                        setTheme(theme === "dark" ? "light" : "dark");
-                    }}
-                >
-                    <div>
-                        Theme: <strong>{theme}</strong>{" "}
-                    </div>
-                    <div className="ml-3">
-                        {theme == "dark" ? (
-                            <Moon width={20} height={20} />
-                        ) : (
-                            <Sun width={20} height={20} />
-                        )}
-                    </div>
-                </a>
-            </DropdownMenuItem> */}
         <DropdownMenuItem>
           <a
             className={cn(s.link, "border-accent-2 mt-4 border-t")}

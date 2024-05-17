@@ -13,7 +13,7 @@ import {
 import { useCartContext } from "@lib/context";
 
 import s from "./UserNav.module.css";
-import { ButtonCircle } from "@components/button-circle";
+import { ButtonCircle } from "@components/ui/button-circle";
 
 export const UserNav: React.FC<{
   className?: string;

@@ -11,9 +11,9 @@ import {
 } from "@components/product/helpers";
 import { SERVER_API_URL } from "src/contants";
 import { useProductPrice } from "@lib/hooks";
-import { ProductSlider } from "@components/product-slider";
-import { ProductOptionPicker } from "@components/product-option-picker";
-import { ButtonAddToCart } from "@components/button-add-to-cart";
+import { ProductSlider } from "@components/product/product-slider";
+import { ProductOptionPicker } from "@components/product/product-option-picker";
+import { ButtonAddToCart } from "@components/ui/button-add-to-cart";
 import { useCartContext, useUI } from "@lib/context";
 
 type Props = {
