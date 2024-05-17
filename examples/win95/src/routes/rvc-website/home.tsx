@@ -85,7 +85,7 @@ const NewTitles = () => {
         controller={{ control: controlledSwiper }}
         onSwiper={(swiper) => setControlledSwiper(swiper)}
         slidesPerView={5}
-        loop={titles?.length ? true : false}
+        loop={!!titles?.length}
       >
         {titles?.map((title) => (
           <SwiperSlide key={title.id}>

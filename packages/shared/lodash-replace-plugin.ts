@@ -8,8 +8,8 @@ export const lodashReplacePlugin: Plugin = {
   name: "replaceLodashWithLodashEsForEsm",
   setup: (build) => {
     if (build.initialOptions.format === "esm") {
-      build.onLoad({ filter: /.*/ }, async (args) => {
-        const contents = await fs.promises.readFile(args.path, "utf8");
+      build.onLoad({ filter: /.*/ }, (args) => {
+        const contents = fs.readFileSync(args.path, "utf8");
 
         const extension = path.extname(args.path).replace(".", "");
         const loader = JS_EXTENSIONS.has(extension)

@@ -28,9 +28,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/core",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "test:dev": "jest --silent --noStackTrace",
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@testing-library/dom": "^8.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
@@ -79,6 +80,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
+  }
 }

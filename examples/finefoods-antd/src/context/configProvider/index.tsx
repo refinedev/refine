@@ -56,7 +56,6 @@ export const ConfigProvider = ({
           ...themeFromProps,
         }}
       >
-        {/* @ts-expect-error Type error via React.ReactNode from antd-style */}
         <ThemeProvider appearance={mode}>{children}</ThemeProvider>
       </AntdConfigProvider>
     </ConfigProviderContext.Provider>

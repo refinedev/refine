@@ -25,10 +25,9 @@ const sharedConfig: Partial<Options> = {
     }),
     nextJsEsmReplacePlugin,
   ],
-  onSuccess: "npm run types",
 };
 
-export default defineConfig([
+export default defineConfig((options) => [
   {
     entry: {
       index: "src/index.ts",
@@ -40,6 +39,7 @@ export default defineConfig([
       };
     },
     ...sharedConfig,
+    onSuccess: options.watch ? "pnpm types" : undefined,
   },
   {
     entry: {
@@ -52,5 +52,6 @@ export default defineConfig([
       "parse-table-params": "src/common/parse-table-params.ts",
     },
     ...sharedConfig,
+    onSuccess: options.watch ? "pnpm types" : undefined,
   },
 ]);

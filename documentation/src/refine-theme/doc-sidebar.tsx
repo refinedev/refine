@@ -101,7 +101,6 @@ const SidebarCategory = ({
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we don't want to re-run this effect when the location changes
   React.useEffect(() => {
     // find <a> elements with href attribute value equal to the current path
     const activeLink = document.querySelector(

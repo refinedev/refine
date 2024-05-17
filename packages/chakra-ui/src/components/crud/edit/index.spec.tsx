@@ -360,7 +360,7 @@ describe("Edit", () => {
       return (
         <Edit autoSaveProps={autoSaveProps}>
           {formLoading && <div>loading...</div>}
-          <input data-testid="title" {...register("title")} />;
+          <input data-testid="title" {...register("title")} />
         </Edit>
       );
     };

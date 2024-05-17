@@ -10,3 +10,5 @@ CHANGELOG.md
 *.ts
 *.tsx
 *.json
+
+/.nx/cache

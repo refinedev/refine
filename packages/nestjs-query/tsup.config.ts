@@ -3,7 +3,7 @@ import { defineConfig } from "tsup";
 import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.ts"],
   splitting: false,
   sourcemap: true,
@@ -13,5 +13,5 @@ export default defineConfig({
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",
   esbuildPlugins: [markAsExternalPlugin, lodashReplacePlugin],
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));

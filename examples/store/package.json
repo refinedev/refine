@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build && rm -rf .next/cache",
+    "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "start:prod": "next start"
   },
   "dependencies": {
