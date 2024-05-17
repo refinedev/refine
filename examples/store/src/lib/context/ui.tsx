@@ -47,7 +47,7 @@ type Action =
       view: SIDEBAR_VIEWS;
     };
 
-type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW" | "FORGOT_VIEW";
+type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW";
 
 type SIDEBAR_VIEWS = "CART_VIEW" | "MOBILE_MENU_VIEW";
 

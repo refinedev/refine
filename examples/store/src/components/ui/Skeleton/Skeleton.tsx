@@ -1,9 +1,9 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 import cn from "clsx";
-
-import px from "@lib/to-pixels";
-
 import s from "./Skeleton.module.css";
+
+const px = (size: string | number) =>
+  typeof size === "number" ? `${size}px` : size;
 
 interface SkeletonProps {
   show?: boolean;

@@ -6,6 +6,8 @@ import { IS_BROWSER } from "src/contants";
 import { SEO } from "@components/common";
 import { OrderCompletedTemplate } from "@components/orders/OrderCompletedTemplate";
 import { SkeletonOrderConfirmed } from "@components/skeletons";
+import clsx from "clsx";
+import { LoadingDots } from "@components/ui";
 
 const Confirmed: React.FC = () => {
   const router = useRouter();
@@ -22,14 +24,50 @@ const Confirmed: React.FC = () => {
   });
 
   if (isLoading) {
-    return <SkeletonOrderConfirmed />;
+    return (
+      <>
+        <div
+          className={clsx(
+            "flex",
+            "lg:hidden",
+            "items-center",
+            "justify-center",
+            "py-40",
+            "text-gray-darkest",
+          )}
+        >
+          <LoadingDots />
+        </div>
+        <div className={clsx("hidden", "lg:block")}>
+          <SkeletonOrderConfirmed />
+        </div>
+      </>
+    );
   }
 
   if (isError) {
     if (IS_BROWSER) {
       router.replace("/404");
     }
-    return <SkeletonOrderConfirmed />;
+    return (
+      <>
+        <div
+          className={clsx(
+            "flex",
+            "lg:hidden",
+            "items-center",
+            "justify-center",
+            "py-40",
+            "text-gray-darkest",
+          )}
+        >
+          <LoadingDots />
+        </div>
+        <div className={clsx("hidden", "lg:block")}>
+          <SkeletonOrderConfirmed />
+        </div>
+      </>
+    );
   }
 
   if (isSuccess) {

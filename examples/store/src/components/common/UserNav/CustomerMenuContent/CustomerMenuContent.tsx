@@ -1,4 +1,4 @@
-import cn from "clsx";
+import cn, { clsx } from "clsx";
 import { useRouter } from "next/router";
 import { useLogout } from "@refinedev/core";
 
@@ -47,15 +47,27 @@ export const CustomerMenuContent: React.FC = () => {
         asChild
         side="bottom"
         sideOffset={10}
-        className={s.root}
+        className={clsx(
+          s.root,
+          "rounded-lg",
+          "shadow-lg",
+          "border",
+          "border-gray-light",
+        )}
         id="CustomerMenuContent"
       >
         {LINKS.map(({ name, href }) => (
           <DropdownMenuItem key={href}>
             <a
-              className={cn(s.link, {
-                [s.active]: pathname === href,
-              })}
+              className={cn(
+                s.link,
+                "font-normal",
+                "text-base",
+                "text-gray-darkest",
+                {
+                  [s.active]: pathname === href,
+                },
+              )}
               onClick={(e) => handleClick(e, href)}
             >
               {name}
