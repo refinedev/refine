@@ -1,6 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
+  <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/social.png">
 </a>
 
 </br>
@@ -28,27 +28,9 @@
 
 ## About
 
-⭐ **You can view the live demo of the application [here](https://refine-invoicer-8mk7d.ondigitalocean.app/).**
-
 PDF Invoice Generator app example project built using [Refine](https://refine.dev/) and [Ant Design](https://ant.design/).
 
-Refine is an open source React meta-framework for building data-heavy apps such as internal tools, dashboards, admin panels, storefronts and all type of CRUD applications. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems and UI frameworks.
-
-## Features
-
-**Login Page**: Secure user authentication with email/password; password reset and remember me options for user convenience.
-
-**Accounts Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for account details.
-
-**Clients Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for client details.
-
-**Invoices Page**: Invoice generation with account, client details and invoice items; generate invoice as PDF.
-
-<br>
-
-![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/crm-demo.gif "Demo GIF")
-
-<br>
+⭐ **You can view the live demo of the application [here](https://refine-invoicer-8mk7d.ondigitalocean.app/).**
 
 ## Try this example on your local
 
@@ -61,3 +43,33 @@ npm create refine-app@latest -- --example invoicer
 <br/>
 
 [![Open invoicer example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/invoicer?view=preview&theme=dark&codemirror=1)
+
+## Features
+
+**Login Page**: Secure user authentication with email/password; password reset and remember me options for user convenience.
+
+**Accounts Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for account details.
+
+**Clients Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for client details.
+
+**Invoices Page**: Invoice generation with account, client details and invoice items; generate invoice as PDF.
+
+## Screenshots
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/login-page.png)
+
+![Accounts List](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/accounts-list.png)
+
+![New Account](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/accounts-new.png)
+
+![Edit Account](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/accounts-edit.png)
+
+![Clients List](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/clients-list.png)
+
+![Invoices List](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/invoices-list.png)
+
+![New Invoice](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/invoices-new.png)
+
+![Show Invoice](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/invoices-show.png)
+
+![PDF Export](https://refine.ams3.cdn.digitaloceanspaces.com/blog/invoicer/pdf-export.png)
