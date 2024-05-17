@@ -13,7 +13,7 @@ import "src/styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
-      {/* <GitHubBanner /> */}
+      <GitHubBanner />
       <Refine
         resources={[
           {

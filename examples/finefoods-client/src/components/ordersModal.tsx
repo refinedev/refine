@@ -7,7 +7,7 @@ import {
   useOnClickOutside,
 } from "@hooks";
 
-import { OrderModalProductItem, OrderIcon, CloseIcon } from "@components";
+import { OrderIcon, CloseIcon } from "@components";
 import { IOrder } from "@interfaces";
 
 export const OrdersModal: React.FC = () => {
@@ -42,9 +42,31 @@ export const OrdersModal: React.FC = () => {
           <div className="p-4">
             <div className="flex flex-col gap-2">
               {orders.length ? (
-                orders.map((order, index) => (
-                  <OrderModalProductItem key={index} order={order} />
-                ))
+                orders.map((order) => {
+                  const { amount, productId } = order;
+                  const product = products.find((p) => p.id === productId);
+                  return (
+                    <div
+                      key={order.productId}
+                      className="flex items-center justify-between border-b p-1"
+                    >
+                      <div className="flex items-center gap-2">
+                        <img
+                          className="h-12 w-12 rounded-full object-cover object-center"
+                          src={product?.images[0].url}
+                          alt={product?.name}
+                        />
+                        <p>{product?.name}</p>
+                      </div>
+                      <div className="flex-none">
+                        <span className="font-semibold">
+                          ${product?.price ?? 0}
+                        </span>{" "}
+                        x {amount}
+                      </div>
+                    </div>
+                  );
+                })
               ) : (
                 <p className="flex h-48 items-center justify-center text-xl font-bold text-gray-500">
                   No have any items.

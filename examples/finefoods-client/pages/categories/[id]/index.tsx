@@ -1,12 +1,7 @@
-/* eslint-disable react/jsx-key */
 import React from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import {
-  GetListResponse,
-  GetOneResponse,
-  useNavigation,
-} from "@refinedev/core";
+import { GetListResponse, useNavigation } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { useTable } from "@refinedev/react-table";
 
@@ -23,14 +18,12 @@ import Link from "next/link";
 import cn from "classnames";
 
 type CategoryShowPageProps = {
-  category: GetOneResponse<ICategory>;
   categories: GetListResponse<ICategory>;
   products: GetListResponse<IProduct>;
 };
 
 const CategoryShowPage: React.FC<CategoryShowPageProps> = ({
   categories,
-  category,
   products,
 }) => {
   const { query } = useRouter();
@@ -186,11 +179,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     });
 
-    const categoryData = await dataProvider(API_URL).getOne({
-      resource: "categories",
-      id: id as string,
-    });
-
     const productData = await dataProvider(API_URL).getList({
       resource: "products",
       pagination: {
@@ -208,7 +196,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         categories: categoriesData,
-        category: categoryData,
         products: productData,
       },
     };

@@ -15,7 +15,6 @@
     "@refinedev/simple-rest": "^5.0.6",
     "@tanstack/react-table": "^8.2.6",
     "classnames": "^2.3.2",
-    "gsap": "^3.8.0",
     "js-confetti": "^0.9.0",
     "next": "^14.1.0",
     "react": "^18.0.0",

@@ -8,7 +8,6 @@ export default function Home() {
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
     redirect: {
-      permanent: true,
       destination: "/categories/1",
     },
     props: {},
