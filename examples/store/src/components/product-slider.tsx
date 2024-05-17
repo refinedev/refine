@@ -53,8 +53,6 @@ export const ProductSlider = ({ product }: Props) => {
               )}
               alt={"Product Image"}
               className={clsx("object-cover", "object-center")}
-              width={600}
-              height={600}
               layout="fill"
               quality="100"
             />
