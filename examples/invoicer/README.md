@@ -16,19 +16,39 @@
 </div>
 
 </br>
-</br>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
-
+<div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.<br>An open-source, headless React meta-framework, developed with a commitment to best practices, flexibility, minimal tech debt, and team alignment, could be a perfect fit for dynamic environments.
 <br />
 <br />
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
 </div>
+
+## About
+
+⭐ **You can view the live demo of the application [here](https://refine-invoicer-8mk7d.ondigitalocean.app/).**
+
+PDF Invoice Generator app example project built using [Refine](https://refine.dev/) and [Ant Design](https://ant.design/).
+
+Refine is an open source React meta-framework for building data-heavy apps such as internal tools, dashboards, admin panels, storefronts and all type of CRUD applications. It comes with a core package that segregates app concerns like data handling, authentication, access control, etc., into React contexts. It also supports integration with industry standard backend systems and UI frameworks.
+
+## Features
+
+**Login Page**: Secure user authentication with email/password; password reset and remember me options for user convenience.
+
+**Accounts Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for account details.
+
+**Clients Page**: Data table with pagination, search, and filter options; fully-functional create/edit/show subpages for client details.
+
+**Invoices Page**: Invoice generation with account, client details and invoice items; generate invoice as PDF.
+
+<br>
+
+![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/CRM-Minimal/crm-demo.gif "Demo GIF")
+
+<br>
 
 ## Try this example on your local
 
