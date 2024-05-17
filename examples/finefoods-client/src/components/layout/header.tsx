@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-
-import { FinefoodsIcon, BasketIcon } from "@components";
-import { useBasketContext, useOrdesModalContext } from "@hooks";
+import { BasketIcon, FinefoodsIcon } from "@components/icons";
+import { useBasketContext } from "@hooks/useBasketContext";
+import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
 
 export const Header: React.FC = () => {
   const { setOrdersModalVisible } = useOrdesModalContext();

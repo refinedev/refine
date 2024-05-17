@@ -22,9 +22,18 @@
       "@hooks": ["src/hooks"],
       "@interfaces": ["src/interfaces"],
       "@context/*": ["src/context/*"],
-      "@context": ["src/context"]
-    }
+      "@context": ["src/context"],
+      "@providers/*": ["src/providers/*"],
+      "@providers": ["src/providers"],
+      "@utils/*": ["src/utils/*"],
+      "@constants": ["src/constants"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

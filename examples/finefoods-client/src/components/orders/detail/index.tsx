@@ -1,23 +1,34 @@
-import { useLayoutEffect } from "react";
-import { GetServerSideProps } from "next";
-import dataProvider from "@refinedev/simple-rest";
-import JSConfetti from "js-confetti";
+"use client";
 
-import { FastMotocycleIcon, OrderIcon } from "@components";
+import { GetOneResponse, UseShowProps, useShow } from "@refinedev/core";
+import { useLayoutEffect } from "react";
+import JSConfetti from "js-confetti";
+import { FastMotocycleIcon, OrderIcon } from "@components/icons";
+import { TRANSLATIONS_BON_APPETIT } from "@constants";
 import { IOrder } from "@interfaces";
-import { API_URL, TRANSLATIONS_BON_APPETIT } from "src/constants";
+import dayjs from "dayjs";
 
 type OrderPageProps = {
-  order: IOrder;
+  useShowProps?: UseShowProps<IOrder>;
 };
 
-export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
+export const OrderDetail: React.FC<OrderPageProps> = ({ useShowProps }) => {
+  const { queryResult } = useShow<IOrder>({
+    resource: "orders",
+    ...useShowProps,
+  });
+  const order = queryResult.data?.data;
+
   useLayoutEffect(() => {
     const jsConfetti = new JSConfetti();
     setTimeout(() => {
       jsConfetti.addConfetti();
     }, 500);
   }, []);
+
+  if (!order) {
+    return null;
+  }
 
   return (
     <div className="container mt-8 overflow-hidden rounded-xl bg-white">
@@ -45,7 +56,7 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
             </div>
             <div className="flex items-center gap-2">
               <h4 className="text-lg font-bold text-gray-700">Order Date:</h4>
-              <p>{order.createdAt}</p>
+              <p>{dayjs(order.createdAt).format("DD.MM.YYYY HH:mm")}</p>
             </div>
             <div className="flex items-center gap-2">
               <h4 className="text-lg font-bold text-gray-700">Total:</h4>
@@ -107,28 +118,4 @@ export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
       </div>
     </div>
   );
-};
-
-export default OrderDetail;
-
-export const getServerSideProps: GetServerSideProps = async (props) => {
-  const { id } = props.query;
-
-  try {
-    const { data: orderData } = await dataProvider(API_URL).getOne({
-      resource: "orders",
-      id: id as string,
-    });
-
-    return {
-      props: { order: orderData },
-    };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 };

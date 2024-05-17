@@ -1,13 +1,10 @@
+"use client";
 import { useRef } from "react";
 import { useCreate, useGo } from "@refinedev/core";
-
-import {
-  useBasketContext,
-  useOrdesModalContext,
-  useOnClickOutside,
-} from "@hooks";
-
-import { OrderIcon, CloseIcon } from "@components";
+import { CloseIcon, OrderIcon } from "@components/icons";
+import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
+import { useBasketContext } from "@hooks/useBasketContext";
+import { useOnClickOutside } from "@hooks/useOnClickOutside";
 import { IOrder } from "@interfaces";
 
 export const OrdersModal: React.FC = () => {
@@ -93,6 +90,7 @@ export const OrdersModal: React.FC = () => {
                     },
                     {
                       onSuccess: (data) => {
+                        console.log(data.data.id);
                         go({
                           to: {
                             resource: "orders",

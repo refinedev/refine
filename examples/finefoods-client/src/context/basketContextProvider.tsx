@@ -1,15 +1,23 @@
+"use client";
+
 import React, { createContext, PropsWithChildren, useReducer } from "react";
 import { useMany } from "@refinedev/core";
-
-import { IBasketOrder, IProduct } from "../interfaces";
 import { OrdersModalContextProvider } from "@context";
+import { IBasketOrder, IProduct } from "../interfaces";
 
 export const BasketContext = createContext<{
   orders: IBasketOrder[];
+  findOrderByProductId: (productId: number) => IBasketOrder | undefined;
   dispatch: Function;
   totalPrice: number;
   products: IProduct[];
-}>({ orders: [], dispatch: () => null, totalPrice: 0, products: [] });
+}>({
+  orders: [],
+  findOrderByProductId: () => undefined,
+  dispatch: () => null,
+  totalPrice: 0,
+  products: [],
+});
 
 const initialBasket: IBasketOrder[] = [];
 
@@ -21,8 +29,62 @@ const basketReducer = (
   },
 ): IBasketOrder[] => {
   switch (action.type) {
-    case "addProduct":
-      return [...state, { ...action.payload }];
+    case "addProduct": {
+      const currentOrder = state.find(
+        (order) => order.productId === action.payload.productId,
+      );
+
+      if (currentOrder) {
+        return state.map((order) =>
+          order.productId === action.payload.productId
+            ? { ...order, amount: order.amount + 1 }
+            : order,
+        );
+      }
+
+      return [...state, action.payload];
+    }
+
+    case "incrementProductAmount":
+      return state.map((order) => {
+        return order.productId === action.payload.productId
+          ? { ...order, amount: order.amount + 1 }
+          : order;
+      });
+    case "decrementProductAmount": {
+      const currentOrder = state.find(
+        (order) => order.productId === action.payload.productId,
+      );
+      if (!currentOrder) {
+        return state;
+      }
+
+      if (currentOrder.amount === 1) {
+        return state.filter(
+          (order) => order.productId !== action.payload.productId,
+        );
+      }
+
+      return state.map((order) =>
+        order.productId === action.payload.productId
+          ? { ...order, amount: order.amount - 1 }
+          : order,
+      );
+    }
+    case "setProductAmount": {
+      if (action.payload.amount <= 0) {
+        return state.filter(
+          (order) => order.productId !== action.payload.productId,
+        );
+      }
+
+      return state.map((order) =>
+        order.productId === action.payload.productId
+          ? { ...order, amount: action.payload.amount }
+          : order,
+      );
+    }
+
     case "resetBasket":
       return [];
     default:
@@ -55,10 +117,15 @@ export const BasketContextProvider: React.FC<PropsWithChildren> = ({
     return total + currentValue.amount * (product?.price ?? 0);
   }, 0);
 
+  const findOrderByProductId = (productId: number) => {
+    return orders.find((order) => order.productId === productId);
+  };
+
   return (
     <BasketContext.Provider
       value={{
         orders,
+        findOrderByProductId,
         dispatch,
         totalPrice,
         products: productsData?.data ?? [],
