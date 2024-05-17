@@ -15,7 +15,6 @@ import {
   ExportOutlined,
   BankOutlined,
   MailOutlined,
-  GlobalOutlined,
   EnvironmentOutlined,
   PhoneOutlined,
   ContainerOutlined,
@@ -26,7 +25,7 @@ import {
   FormItemEditableText,
   FormItemEditableSelect,
 } from "@/components/form";
-import { Invoice } from "@/types";
+import type { Invoice } from "@/types";
 
 export const ClientsPageEdit = () => {
   const { list } = useNavigation();
