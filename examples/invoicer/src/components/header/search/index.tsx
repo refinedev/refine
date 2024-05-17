@@ -4,9 +4,9 @@ import { AutoComplete, Avatar, Flex, Input, Typography } from "antd";
 import { useList, useNavigation } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import { API_URL } from "@/utils/constants";
-import { Account, Client } from "@/types";
-import { useStyles } from "./styled";
 import { getRandomColorFromString } from "@/utils/get-random-color";
+import type { Account, Client } from "@/types";
+import { useStyles } from "./styled";
 
 type Option =
   | (Account & {

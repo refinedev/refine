@@ -2,13 +2,13 @@ import {
   Button,
   Flex,
   Form,
-  FormItemProps,
+  type FormItemProps,
   Select,
-  SelectProps,
+  type SelectProps,
   Skeleton,
   Typography,
 } from "antd";
-import { PropsWithChildren, useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import { useStyles } from "./styled";
 
