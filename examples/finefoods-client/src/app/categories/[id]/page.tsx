@@ -17,7 +17,9 @@ export default async function CategoryShowPage({
   const { categories, products } = await getData({
     categoryId: params.id,
     productPaginationOptions: {
-      current: searchParams.page ? Number(searchParams.page as string) : 1,
+      current: searchParams.current
+        ? Number(searchParams.current as string)
+        : 1,
     },
   });
 
