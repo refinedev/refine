@@ -54,7 +54,6 @@ export const CategoryList = () => {
                 Array.from({ length: 10 }).map((_, index) => {
                   return (
                     <Skeleton
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <Skeleton /> not important to have unique key
                       key={index}
                       sx={{
                         width: "32px",

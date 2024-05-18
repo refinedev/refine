@@ -2,7 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   projectId: "sq5j3e",
-  retries: 10,
+  retries: 3,
   e2e: {
     fixturesFolder: "../../cypress/fixtures",
     supportFile: "../../cypress/support/e2e.ts",

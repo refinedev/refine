@@ -1,11 +1,9 @@
-import { HttpError, useGo } from "@refinedev/core";
+import { type HttpError, useGo } from "@refinedev/core";
 import { useForm } from "@refinedev/antd";
 import { Flex, Form, Input, Modal, Select } from "antd";
 import InputMask from "react-input-mask";
-import { getValueProps } from "@refinedev/strapi-v4";
 import { FormItemUploadLogoDraggable } from "@/components/form";
-import { API_URL } from "@/utils/constants";
-import { Account, AccountForm } from "@/types";
+import type { Account, AccountForm } from "@/types";
 
 export const AccountsPageCreate = () => {
   const go = useGo();

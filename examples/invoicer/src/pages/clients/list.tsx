@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,
@@ -15,7 +15,7 @@ import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { API_URL } from "@/utils/constants";
 import { getRandomColorFromString } from "@/utils/get-random-color";
-import { Client } from "@/types";
+import type { Client } from "@/types";
 
 export const ClientsPageList = ({ children }: PropsWithChildren) => {
   const go = useGo();
@@ -204,7 +204,9 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
                     src={src}
                     shape="square"
                     style={{
-                      backgroundColor: getRandomColorFromString(name),
+                      backgroundColor: src
+                        ? "none"
+                        : getRandomColorFromString(name),
                     }}
                   >
                     <Typography.Text>

@@ -45,11 +45,11 @@ export const useStyles = createStyles(({ token }) => {
     },
     fromToContainer: {
       minHeight: "192px",
-      flexWrap: "nowrap",
-      flexFlow: "row nowrap",
       padding: "32px",
 
       "@media print": {
+        flexWrap: "nowrap",
+        flexFlow: "row nowrap",
         minHeight: "unset",
         padding: "32px 0",
       },

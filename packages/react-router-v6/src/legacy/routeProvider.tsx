@@ -214,7 +214,7 @@ export const RouteProvider = ({
     if (authProvider?.isProvided) {
       if (authProvider?.isLegacy) {
         const hasAuthError = isError || authData?.error;
-        return hasAuthError ? false : true;
+        return !hasAuthError;
       }
 
       return authData?.authenticated;

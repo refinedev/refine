@@ -94,5 +94,3 @@ describe("with-nextjs-next-auth", () => {
     });
   });
 });
-
-export type {};

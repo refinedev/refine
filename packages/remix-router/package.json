@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",
-    "directory": "packages/remix"
+    "directory": "packages/remix-router"
   },
   "license": "MIT",
   "author": "refine",
@@ -52,9 +52,9 @@
   ],
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/remix-router",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -74,7 +74,8 @@
     "remix": "^2.4.0",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "tsup": "^6.7.0"
+    "tsup": "^6.7.0",
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
@@ -91,6 +92,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
+  }
 }

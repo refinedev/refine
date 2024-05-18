@@ -6,13 +6,15 @@ import Button from "@mui/material/Button";
 import {
   DataGrid,
   GridColDef,
+  GridRowSelectionModel,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] =
+    React.useState<GridRowSelectionModel>([]);
   const hasSelected = selectedRowKeys.length > 0;
 
   const { mutate } = useDeleteMany<IPost>();
@@ -109,7 +111,7 @@ export const PostList: React.FC = () => {
         autoHeight
         checkboxSelection
         onRowSelectionModelChange={(newSelectionModel) => {
-          setSelectedRowKeys(newSelectionModel as React.Key[]);
+          setSelectedRowKeys(newSelectionModel);
         }}
         pageSizeOptions={[10, 20, 50, 100]}
         rowSelectionModel={selectedRowKeys}

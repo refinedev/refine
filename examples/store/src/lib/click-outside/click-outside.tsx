@@ -14,7 +14,6 @@ import hasParent from "./has-parent";
 interface ClickOutsideProps {
   active: boolean;
   onClick: (e?: MouseEvent) => void;
-  ref?: Ref<any>; // eslint-disable-line
 }
 
 /**

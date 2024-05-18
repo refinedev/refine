@@ -38,6 +38,7 @@
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
+    "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.9.1",
     "leaflet": "^1.9.4",
