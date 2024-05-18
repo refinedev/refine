@@ -1,4 +1,10 @@
-import React, { Children, createElement, Fragment } from "react";
+import React, {
+  Children,
+  createElement,
+  Fragment,
+  useEffect,
+  useMemo,
+} from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
@@ -19,6 +25,7 @@ import {
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
 import { FilterValue, SorterResult } from "../../../definitions/table";
+import dayjs, { Dayjs } from "dayjs";
 
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
@@ -47,6 +54,29 @@ export type useTableReturnType<
  * @typeParam TData - Result data returned by the `select` function. Extends {@link https://refine.dev/docs/api-reference/core/interfaceReferences#baserecord `BaseRecord`}. Defaults to `TQueryFnData`
  *
  */
+function convertDayjsToISO(dayjsObj: any): string {
+  const isoString = dayjsObj.$d;
+  return isoString;
+}
+
+function transformFilters(filters: any): any {
+  for (let i = 0; i < filters.length; i++) {
+    const filter = filters[i];
+    if (filter.field === "createdAt") {
+      const value = filter.value;
+      if (Array.isArray(value) && value.length === 2) {
+        if (dayjs.isDayjs(value[0]) && dayjs.isDayjs(value[1])) {
+          filter.value = [
+            convertDayjsToISO(value[0]),
+            convertDayjsToISO(value[1]),
+          ];
+          filters[i] = filter;
+        }
+      }
+    }
+  }
+  return filters;
+}
 
 export const useTable = <
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -139,6 +169,12 @@ export const useTable = <
   );
 
   const { data, isFetched, isLoading } = tableQueryResult;
+
+  const memoizedTransformFilters = useMemo(() => transformFilters, []);
+
+  useEffect(() => {
+    memoizedTransformFilters(filters);
+  }, [filters, memoizedTransformFilters]);
 
   const onChange = (
     paginationState: TablePaginationConfig,

@@ -1,4 +1,4 @@
-import React, { type ReactNode, useState } from "react";
+import React, { type ReactNode, useState, useEffect } from "react";
 import { Button, Space } from "antd";
 import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
 import dayjs from "dayjs";
@@ -25,7 +25,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
     children,
   } = props;
 
-  const [value, setValue] = useState<any[] | undefined>(selectedKeys);
+  const [value, setValue] = useState<any[] | undefined>();
   const translate = useTranslate();
 
   const clearFilter = () => {
@@ -51,6 +51,20 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
     confirm?.();
   };
+
+  useEffect(() => {
+    if (Array.isArray(selectedKeys) && selectedKeys.length > 0) {
+      const _selectedKeys = selectedKeys.map((key) => {
+        if (typeof key === "string" && key.includes("T")) {
+          return dayjs(key);
+        }
+        return key;
+      });
+      setValue(_selectedKeys);
+    } else {
+      setValue(selectedKeys);
+    }
+  }, [selectedKeys]);
 
   const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
 
