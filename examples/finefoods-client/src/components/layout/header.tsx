@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { BasketIcon, FinefoodsIcon } from "@components/icons";
-import { useBasketContext } from "@hooks/useBasketContext";
-import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
+import { BasketIcon, FinefoodsIcon } from "@/components/icons";
+import { useBasketContext } from "@/hooks/useBasketContext";
+import { useOrdesModalContext } from "@/hooks/useOrdersModalContext";
 
 export const Header: React.FC = () => {
   const { setOrdersModalVisible } = useOrdesModalContext();

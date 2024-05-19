@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { DividerVerticalIcon, RefineIcon } from "@components/icons";
+import { DividerVerticalIcon, RefineIcon } from "@/components/icons";
 
 export const Footer: React.FC = () => {
   return (

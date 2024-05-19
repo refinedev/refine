@@ -1,11 +1,11 @@
 "use client";
 import { useRef } from "react";
 import { useCreate, useGo } from "@refinedev/core";
-import { CloseIcon, OrderIcon } from "@components/icons";
-import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
-import { useBasketContext } from "@hooks/useBasketContext";
-import { useOnClickOutside } from "@hooks/useOnClickOutside";
-import { Order } from "src/types";
+import { CloseIcon, OrderIcon } from "@/components/icons";
+import { useOrdesModalContext } from "@/hooks/useOrdersModalContext";
+import { useBasketContext } from "@/hooks/useBasketContext";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { Order } from "@/types";
 
 export const OrdersModal: React.FC = () => {
   const ref = useRef(null);

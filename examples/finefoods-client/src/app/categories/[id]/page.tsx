@@ -1,9 +1,9 @@
 import React from "react";
 import { GetListParams, GetListResponse } from "@refinedev/core";
-import { dataProvider } from "@providers/data-provider/server";
-import { Category, Product } from "src/types";
-import { ProductsTable } from "@components/products/table";
-import { CategoriesNavLinks } from "@components/categories";
+import { dataProvider } from "@/providers/data-provider/server";
+import { Category, Product } from "@/types";
+import { ProductsTable } from "@/components/products/table";
+import { CategoriesNavLinks } from "@/components/categories";
 
 type CategoryShowPageProps = {
   params: { id: string };

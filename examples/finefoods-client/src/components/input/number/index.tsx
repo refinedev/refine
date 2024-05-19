@@ -1,4 +1,4 @@
-import { ChevronUpIcon, ChevronDownIcon } from "@components/icons";
+import { ChevronUpIcon, ChevronDownIcon } from "@/components/icons";
 
 type NumberInputProps = {
   value: number;

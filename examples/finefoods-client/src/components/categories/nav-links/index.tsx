@@ -2,7 +2,7 @@
 
 import { GetListResponse, useNavigation } from "@refinedev/core";
 import Link from "next/link";
-import { Category } from "src/types";
+import { Category } from "@/types";
 import cn from "classnames";
 
 type Props = {

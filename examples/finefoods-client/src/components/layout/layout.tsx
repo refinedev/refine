@@ -2,10 +2,10 @@
 
 import React from "react";
 import { LayoutProps } from "@refinedev/core";
-import { OrdersModal } from "@components/orders";
-import { Footer } from "@components/layout/footer";
-import { Header } from "@components/layout/header";
-import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
+import { OrdersModal } from "@/components/orders";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { useOrdesModalContext } from "@/hooks/useOrdersModalContext";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { ordersModalVisible } = useOrdesModalContext();

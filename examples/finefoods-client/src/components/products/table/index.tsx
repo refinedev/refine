@@ -11,9 +11,9 @@ import {
   ChevronRightIcon,
   ChevronUpIcon,
   PlusSquareIcon,
-} from "@components/icons";
-import { useBasketContext } from "@hooks/useBasketContext";
-import { Product } from "src/types";
+} from "@/components/icons";
+import { useBasketContext } from "@/hooks/useBasketContext";
+import { Product } from "@/types";
 
 type Props = {
   refineCoreProps?: Partial<useTableProps<Product, HttpError, Product>>;

@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
-import { Layout } from "@components/layout";
-import { BasketContextProvider } from "@context";
-import { dataProvider } from "@providers/data-provider/client";
+import { Layout } from "@/components/layout";
+import { BasketContextProvider } from "@/context";
+import { dataProvider } from "@/providers/data-provider/client";
 import "src/styles/globals.css";
 
 export const metadata: Metadata = {
