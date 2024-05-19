@@ -1,6 +1,6 @@
 import { useGetIdentity, useLogout } from "@refinedev/core";
 import { Avatar, Button, Dropdown, Flex, Skeleton, Typography } from "antd";
-import { User as UserType } from "@/types";
+import type { User as UserType } from "@/types";
 import { useStyles } from "./styled";
 
 export const User = () => {
