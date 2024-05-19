@@ -2,11 +2,11 @@
 
 import { GetListResponse, useNavigation } from "@refinedev/core";
 import Link from "next/link";
-import { ICategory } from "@interfaces";
+import { Category } from "src/types";
 import cn from "classnames";
 
 type Props = {
-  categories: GetListResponse<ICategory>;
+  categories: GetListResponse<Category>;
   selectedCategoryId: string;
 };
 

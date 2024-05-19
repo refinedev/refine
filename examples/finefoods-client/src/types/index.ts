@@ -1,4 +1,4 @@
-export interface IFile {
+export type File = {
   name: string;
   percent: number;
   size: number;
@@ -6,32 +6,33 @@ export interface IFile {
   type: string;
   uid: string;
   url: string;
-}
+};
 
-export interface ICategory {
+export type Category = {
   id: number;
   title: string;
   isActive: boolean;
   cover?: string;
-}
+};
 
-export interface IProduct {
+export type Product = {
   id: number;
   name: string;
   isActive: boolean;
   description: string;
-  images: IFile[];
+  images: File[];
   createdAt: string;
   price: number;
-  category: ICategory;
+  category: Category;
   stock: number;
-}
+};
 
-export interface IAddress {
+export type Address = {
   text: string;
   coordinate: [string, string];
-}
-export interface IUser {
+};
+
+export type User = {
   id: number;
   firstName: string;
   lastName: string;
@@ -40,25 +41,25 @@ export interface IUser {
   gsm: string;
   createdAt: string;
   isActive: boolean;
-  avatar: IFile[];
-  addresses: IAddress[];
-}
+  avatar: File[];
+  addresses: Address[];
+};
 
-export interface IOrderStatus {
+export type OrderStatus = {
   id: number;
   text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
-}
+};
 
-export interface IStore {
+export type Store = {
   id: number;
   title: string;
   isActive: boolean;
   createdAt: string;
-  address: IAddress;
-  products: IProduct[];
-}
+  address: Address;
+  products: Product[];
+};
 
-export interface ICourier {
+export type Courier = {
   id: number;
   name: string;
   surname: string;
@@ -66,29 +67,29 @@ export interface ICourier {
   gsm: string;
   createdAt: string;
   isActive: boolean;
-  avatar: IFile[];
-}
+  avatar: File[];
+};
 
-export interface IEvent {
+export type Event = {
   date: string;
   status: string;
-}
+};
 
-export interface IOrder {
+export type Order = {
   id: number;
-  user: IUser;
+  user: User;
   createdAt: string;
-  products: IProduct[];
-  status: IOrderStatus;
-  adress: IAddress;
-  store: IStore;
-  courier: ICourier;
-  events: IEvent[];
+  products: Product[];
+  status: OrderStatus;
+  adress: Address;
+  store: Store;
+  courier: Courier;
+  events: Event[];
   orderNumber: number;
   amount: number;
-}
+};
 
-export interface IBasketOrder {
+export type BasketOrder = {
   productId: number;
   amount: number;
-}
+};

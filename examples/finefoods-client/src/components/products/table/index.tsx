@@ -13,14 +13,14 @@ import {
   PlusSquareIcon,
 } from "@components/icons";
 import { useBasketContext } from "@hooks/useBasketContext";
-import { IProduct } from "@interfaces";
+import { Product } from "src/types";
 
 type Props = {
-  refineCoreProps?: Partial<useTableProps<IProduct, HttpError, IProduct>>;
+  refineCoreProps?: Partial<useTableProps<Product, HttpError, Product>>;
 };
 
 export const ProductsTable = ({ refineCoreProps }: Props) => {
-  const columns = useMemo<ColumnDef<IProduct>[]>(
+  const columns = useMemo<ColumnDef<Product>[]>(
     () => [
       {
         id: "product",
@@ -63,7 +63,7 @@ export const ProductsTable = ({ refineCoreProps }: Props) => {
     getPageOptions,
     nextPage,
     previousPage,
-  } = useTable<IProduct>({
+  } = useTable<Product>({
     columns,
     refineCoreProps: {
       syncWithLocation: true,

@@ -5,15 +5,15 @@ import { useLayoutEffect } from "react";
 import JSConfetti from "js-confetti";
 import { FastMotocycleIcon, OrderIcon } from "@components/icons";
 import { TRANSLATIONS_BON_APPETIT } from "@constants";
-import { IOrder } from "@interfaces";
+import { Order } from "src/types";
 import dayjs from "dayjs";
 
 type OrderPageProps = {
-  useShowProps?: UseShowProps<IOrder>;
+  useShowProps?: UseShowProps<Order>;
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ useShowProps }) => {
-  const { queryResult } = useShow<IOrder>({
+  const { queryResult } = useShow<Order>({
     resource: "orders",
     ...useShowProps,
   });

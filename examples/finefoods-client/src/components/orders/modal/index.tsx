@@ -5,14 +5,14 @@ import { CloseIcon, OrderIcon } from "@components/icons";
 import { useOrdesModalContext } from "@hooks/useOrdersModalContext";
 import { useBasketContext } from "@hooks/useBasketContext";
 import { useOnClickOutside } from "@hooks/useOnClickOutside";
-import { IOrder } from "@interfaces";
+import { Order } from "src/types";
 
 export const OrdersModal: React.FC = () => {
   const ref = useRef(null);
   const go = useGo();
   const { setOrdersModalVisible } = useOrdesModalContext();
   const { orders, totalPrice, products, dispatch } = useBasketContext();
-  const { mutate } = useCreate<IOrder>();
+  const { mutate } = useCreate<Order>();
 
   const handleClickOutside = () => {
     setOrdersModalVisible(false);
@@ -90,7 +90,6 @@ export const OrdersModal: React.FC = () => {
                     },
                     {
                       onSuccess: (data) => {
-                        console.log(data.data.id);
                         go({
                           to: {
                             resource: "orders",

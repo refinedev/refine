@@ -1,7 +1,7 @@
 import React from "react";
 import { GetListParams, GetListResponse } from "@refinedev/core";
 import { dataProvider } from "@providers/data-provider/server";
-import { ICategory, IProduct } from "@interfaces";
+import { Category, Product } from "src/types";
 import { ProductsTable } from "@components/products/table";
 import { CategoriesNavLinks } from "@components/categories";
 
@@ -73,7 +73,7 @@ type GetDataProps = {
 
 async function getData(props: GetDataProps) {
   try {
-    const categoriesData: GetListResponse<ICategory> =
+    const categoriesData: GetListResponse<Category> =
       await dataProvider.getList({
         resource: "categories",
         pagination: {
@@ -81,7 +81,7 @@ async function getData(props: GetDataProps) {
         },
       });
 
-    const productData: GetListResponse<IProduct> = await dataProvider.getList({
+    const productData: GetListResponse<Product> = await dataProvider.getList({
       resource: "products",
       pagination: {
         pageSize: 6,

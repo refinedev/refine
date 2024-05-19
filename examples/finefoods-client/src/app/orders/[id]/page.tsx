@@ -1,7 +1,7 @@
 import React from "react";
 import { GetOneResponse } from "@refinedev/core";
 import { dataProvider } from "@providers/data-provider/server";
-import { IOrder } from "@interfaces";
+import { Order } from "src/types";
 import { redirect } from "next/navigation";
 import { OrderDetail } from "@components/orders";
 
@@ -39,7 +39,7 @@ type GetDataProps = {
 
 async function getData(props: GetDataProps) {
   try {
-    const orderData: GetOneResponse<IOrder> = await dataProvider.getOne({
+    const orderData: GetOneResponse<Order> = await dataProvider.getOne({
       resource: "orders",
       id: props.orderId,
     });
