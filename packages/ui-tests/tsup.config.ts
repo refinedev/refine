@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 import { markAsExternalPlugin } from "../shared/mark-as-external-plugin";
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ["src/index.tsx"],
   splitting: false,
   sourcemap: true,
@@ -14,5 +14,5 @@ export default defineConfig({
   loader: {
     ".svg": "dataurl",
   },
-  onSuccess: "npm run types",
-});
+  onSuccess: options.watch ? "pnpm types" : undefined,
+}));
