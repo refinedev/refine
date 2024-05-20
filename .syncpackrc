@@ -9,8 +9,15 @@
       "label": "These packages should only be under devDependencies."
     },
     {
-      "dependencies": ["react", "@types/react"],
-      "dependencyType": ["peer"],
+      "label": "@refinedev dependencies are managed by changeset.",
+      "dependencies": ["@refinedev/**"],
+      "packages": ["**"],
+      "isIgnored": true
+    },
+    {
+      "dependencies": ["**"],
+      "dependencyTypes": ["peer"],
+      "packages": ["**"],
       "isIgnored": true
     }
   ]
