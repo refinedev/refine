@@ -14,3 +14,4 @@ export * from "./Package";
 export * from "./Edit";
 export * from "./PlaceholderImage";
 export * from "./Spinner";
+export * from "./ArrowRight";
