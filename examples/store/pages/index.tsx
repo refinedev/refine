@@ -31,49 +31,20 @@ const Home = ({ initialCategories, initialResults }: Props) => {
   const go = useGo();
   const { params } = useParsed();
   const { cartId } = useCartContext();
+  const [enabled, setEnabled] = React.useState(false);
 
   const { data: categories } = useList<ProductCollection>({
     resource: "collections",
     queryOptions: {
       initialData: initialCategories,
+      enabled: false,
     },
   });
 
-  const selectedCategory = React.useMemo(() => {
-    return categories?.data.find(
-      (category) => category.handle === params?.category,
-    );
-  }, [categories, params?.category]);
-
-  const searchQuery = React.useMemo(() => {
-    return params?.q;
-  }, [params?.q]);
-
-  React.useEffect(() => {
-    setFilters(
-      [
-        {
-          field: "collection_id",
-          operator: "eq",
-          value: selectedCategory?.id ? [selectedCategory?.id] : undefined,
-        },
-      ],
-      "replace",
-    );
-  }, [selectedCategory]);
-
-  React.useEffect(() => {
-    setFilters(
-      [
-        {
-          field: "q",
-          operator: "eq",
-          value: searchQuery,
-        },
-      ],
-      "replace",
-    );
-  }, [searchQuery]);
+  const searchQuery = params?.q;
+  const selectedCategoryId = categories?.data.find(
+    (category) => category.handle === params?.category,
+  )?.id;
 
   const {
     tableQueryResult: { data: products },
@@ -89,12 +60,76 @@ const Home = ({ initialCategories, initialResults }: Props) => {
           operator: "eq",
         },
       ],
+      initial: [
+        ...(selectedCategoryId
+          ? [
+              {
+                field: "collection_id",
+                value: [selectedCategoryId],
+                operator: "eq",
+              } as CrudFilter,
+            ]
+          : []),
+        ...(searchQuery
+          ? [
+              {
+                field: "q",
+                value: searchQuery,
+                operator: "eq",
+              } as CrudFilter,
+            ]
+          : []),
+      ],
     },
     pagination: { mode: "off" },
     queryOptions: {
       initialData: initialResults,
+      enabled,
     },
   });
+
+  const activeSearchQuery = filters.find(
+    (f) => "field" in f && f.field === "q",
+  )?.value;
+  const activeCategoryId = filters.find(
+    (f) => "field" in f && f.field === "collection_id",
+  )?.value?.[0];
+
+  React.useEffect(() => {
+    if (selectedCategoryId !== activeCategoryId) {
+      setFilters(
+        [
+          {
+            field: "collection_id",
+            operator: "eq",
+            value: selectedCategoryId ? [selectedCategoryId] : undefined,
+          },
+        ],
+        "replace",
+      );
+      setEnabled(true);
+    }
+  }, [selectedCategoryId, activeCategoryId]);
+
+  React.useEffect(() => {
+    if (searchQuery !== activeSearchQuery) {
+      console.log("???Q", {
+        searchQuery,
+        activeSearchQuery,
+      });
+      setFilters(
+        [
+          {
+            field: "q",
+            operator: "eq",
+            value: searchQuery,
+          },
+        ],
+        "replace",
+      );
+      setEnabled(true);
+    }
+  }, [searchQuery, activeSearchQuery]);
 
   const selectCategory = React.useCallback(
     (value?: string | undefined) => {
@@ -124,7 +159,7 @@ const Home = ({ initialCategories, initialResults }: Props) => {
           onClick={() => {
             selectCategory();
           }}
-          active={selectedCategory === undefined}
+          active={selectedCategoryId === undefined}
         >
           All Items
         </ButtonCategory>
@@ -134,7 +169,7 @@ const Home = ({ initialCategories, initialResults }: Props) => {
             onClick={() => {
               selectCategory(category.handle);
             }}
-            active={selectedCategory?.id === category.id}
+            active={selectedCategoryId === category.id}
           >
             {category.title}
           </ButtonCategory>
