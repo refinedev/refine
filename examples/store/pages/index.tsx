@@ -25,9 +25,16 @@ import { ProductGridItem } from "@components/product/product-grid-item";
 type Props = {
   initialResults?: GetListResponse<Product>;
   initialCategories?: GetListResponse<ProductCollection>;
+  initialCategory?: string;
+  initialQuery?: string;
 };
 
-const Home = ({ initialCategories, initialResults }: Props) => {
+const Home = ({
+  initialCategories,
+  initialResults,
+  initialCategory,
+  initialQuery,
+}: Props) => {
   const go = useGo();
   const { params } = useParsed();
   const { cartId } = useCartContext();
@@ -41,9 +48,10 @@ const Home = ({ initialCategories, initialResults }: Props) => {
   });
 
   const searchQuery = params?.q;
-  const selectedCategoryId = categories?.data.find(
+  const selectedCategory = categories?.data.find(
     (category) => category.handle === params?.category,
-  )?.id;
+  );
+  const selectedCategoryId = selectedCategory?.id;
 
   const {
     tableQueryResult: { data: products, isLoading, isFetching },
@@ -82,7 +90,11 @@ const Home = ({ initialCategories, initialResults }: Props) => {
     },
     pagination: { mode: "off" },
     queryOptions: {
-      initialData: initialResults,
+      initialData:
+        searchQuery === initialQuery &&
+        selectedCategory?.handle === initialCategory
+          ? initialResults
+          : undefined,
       keepPreviousData: false,
     },
   });
@@ -252,7 +264,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       (cat) => cat.handle === category,
     )?.id;
 
-    const queryFilters: CrudFilter[] = [
+    const filters: CrudFilter[] = [
+      {
+        field: "cart_id",
+        value: cartId,
+        operator: "eq",
+      },
       ...(categoryId && !q
         ? [
             {
@@ -273,15 +290,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
         : []),
     ];
 
-    const filters: CrudFilter[] = [
-      {
-        field: "cart_id",
-        value: cartId,
-        operator: "eq",
-      },
-      ...queryFilters,
-    ];
-
     const products = await medusaDataProvider.getList<Product>({
       resource: "products",
       filters,
@@ -300,6 +308,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       props: {
         initialResults: products,
         initialCategories: categories,
+        ...(q && { initialQuery: q as string }),
+        ...(category && { initialCategory: category as string }),
       },
     };
   } catch (error) {
