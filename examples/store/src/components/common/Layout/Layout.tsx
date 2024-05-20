@@ -105,7 +105,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."
         hide={acceptedCookies}
         action={
-          <Button className="mx-5" onClick={() => onAcceptCookies()}>
+          <Button
+            className={clsx("mx-5", "py-2", "px-4", "rounded-lg")}
+            onClick={() => onAcceptCookies()}
+          >
             Accept cookies
           </Button>
         }
