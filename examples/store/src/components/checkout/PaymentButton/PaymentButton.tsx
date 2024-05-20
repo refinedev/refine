@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 
-import { Spinner } from "@components/icons";
+import { Cross, Spinner } from "@components/icons";
 import { Button } from "@components";
 import { useCartContext, useCheckout } from "@lib/context";
 import clsx from "clsx";
@@ -182,6 +182,23 @@ const StripePaymentButton = ({
 
   return (
     <>
+      {errorMessage && (
+        <div
+          className={clsx(
+            "text-sm",
+            "mb-2",
+            "text-red",
+            "font-medium",
+            "flex",
+            "items-center",
+            "justify-start",
+            "gap-2",
+          )}
+        >
+          <Cross className="w-5 h-5 flex-shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
       <Button
         disabled={submitting || disabled || notReady}
         onClick={handlePayment}
@@ -199,11 +216,6 @@ const StripePaymentButton = ({
       >
         {submitting ? <Spinner /> : `Checkout (${getAmount(cart?.total)})`}
       </Button>
-      {errorMessage && (
-        <div className="text-small-regular mt-2 text-red-500">
-          {errorMessage}
-        </div>
-      )}
     </>
   );
 };
