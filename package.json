@@ -54,7 +54,7 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@lerna/filter-options": "^6.2.0",
-    "@netlify/plugin-nextjs": "4.32.2",
+    "@netlify/plugin-nextjs": "5.2.2",
     "@types/jest": "^29.2.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
