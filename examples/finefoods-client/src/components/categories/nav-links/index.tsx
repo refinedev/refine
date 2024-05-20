@@ -35,7 +35,7 @@ export const CategoriesNavLinks = ({
             </Link>
           );
         })}
-      </div>{" "}
+      </div>
     </div>
   );
 };
