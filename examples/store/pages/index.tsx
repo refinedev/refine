@@ -31,7 +31,6 @@ const Home = ({ initialCategories, initialResults }: Props) => {
   const go = useGo();
   const { params } = useParsed();
   const { cartId } = useCartContext();
-  const [enabled, setEnabled] = React.useState(false);
 
   const { data: categories } = useList<ProductCollection>({
     resource: "collections",
@@ -84,7 +83,6 @@ const Home = ({ initialCategories, initialResults }: Props) => {
     pagination: { mode: "off" },
     queryOptions: {
       initialData: initialResults,
-      enabled,
     },
   });
 
@@ -107,7 +105,6 @@ const Home = ({ initialCategories, initialResults }: Props) => {
         ],
         "replace",
       );
-      setEnabled(true);
     }
   }, [selectedCategoryId, activeCategoryId]);
 
@@ -127,7 +124,6 @@ const Home = ({ initialCategories, initialResults }: Props) => {
         ],
         "replace",
       );
-      setEnabled(true);
     }
   }, [searchQuery, activeSearchQuery]);
 
