@@ -135,9 +135,13 @@ const OrderAmountInput = ({ productId }: { productId: number }) => {
   return (
     <div className="flex shrink-0 gap-4">
       <div
-        className={cn("relative flex items-center overflow-hidden", {
-          "opacity-20": !order,
-        })}
+        className={cn(
+          "relative flex items-center overflow-hidden",
+          "transition-opacity duration-300 ease-in-out",
+          {
+            "opacity-0": !order,
+          },
+        )}
       >
         <button
           className="h-full rounded-tl-md rounded-bl-md border p-2 transition-all hover:bg-gray-50 active:bg-gray-50"
