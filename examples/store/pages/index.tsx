@@ -83,6 +83,7 @@ const Home = ({ initialCategories, initialResults }: Props) => {
     pagination: { mode: "off" },
     queryOptions: {
       initialData: initialResults,
+      keepPreviousData: false,
     },
   });
 
@@ -144,7 +145,7 @@ const Home = ({ initialCategories, initialResults }: Props) => {
           onClick={() => {
             selectCategory();
           }}
-          active={selectedCategoryId === undefined}
+          active={params?.category === undefined}
         >
           All Items
         </ButtonCategory>
@@ -154,7 +155,7 @@ const Home = ({ initialCategories, initialResults }: Props) => {
             onClick={() => {
               selectCategory(category.handle);
             }}
-            active={selectedCategoryId === category.id}
+            active={params?.category === category.handle}
           >
             {category.title}
           </ButtonCategory>
