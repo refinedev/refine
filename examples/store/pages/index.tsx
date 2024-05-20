@@ -21,6 +21,7 @@ import {
 import clsx from "clsx";
 import { ButtonCategory } from "@components/ui/button-category";
 import { ProductGridItem } from "@components/product/product-grid-item";
+import { ProductGridItemSkeleton } from "@components/product/product-grid-item-skeleton";
 
 type Props = {
   initialResults?: GetListResponse<Product>;
@@ -153,6 +154,8 @@ const Home = ({
           "gap-2",
         )}
       >
+        <p>{`inCat: ${initialCategory}`}</p>
+        <p>{`inQ: ${initialQuery}`}</p>
         <p>{isLoading ? "loading..." : "not loading"}</p>
         <p>{products?.data?.length ? "has data" : "no data"}</p>
         <p>{isFetching ? "fetching..." : "not fetching"}</p>
@@ -192,6 +195,18 @@ const Home = ({
         {products?.data.map((product) => (
           <ProductGridItem key={product.id} product={product} />
         ))}
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, i) => (
+              <ProductGridItemSkeleton key={i} />
+            ))
+          : null}
+        {!isLoading && !products?.data.length ? (
+          <div
+            className={clsx("text-xl", "font-semibold", "text-gray-darkest")}
+          >
+            <p>No products found.</p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
