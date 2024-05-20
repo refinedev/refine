@@ -1,1 +1,11 @@
-{}
+{
+  "semverGroups": [],
+  "versionGroups": [
+    {
+      "dependencies": ["@types/**", "@testing-library/**", "typescript"],
+      "dependencyTypes": ["prod"],
+      "isBanned": true,
+      "label": "These packages should only be under devDependencies."
+    }
+  ]
+}
