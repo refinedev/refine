@@ -1,2 +1,0 @@
-  [[plugins]]
-  package = "@netlify/plugin-nextjs@5"
