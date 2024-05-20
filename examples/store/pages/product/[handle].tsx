@@ -76,7 +76,7 @@ const ProductShow: React.FC<Props> = ({ initialData, handle }) => {
       setSidebarView("CART_VIEW");
       openSidebar();
     }
-  }, []);
+  }, [variant]);
 
   return (
     <div
