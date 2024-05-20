@@ -94,7 +94,10 @@ const Home = ({ initialCategories, initialResults }: Props) => {
   )?.value?.[0];
 
   React.useEffect(() => {
-    if (selectedCategoryId !== activeCategoryId) {
+    if (
+      selectedCategoryId !== activeCategoryId ||
+      searchQuery !== activeSearchQuery
+    ) {
       setFilters(
         [
           {
@@ -102,30 +105,16 @@ const Home = ({ initialCategories, initialResults }: Props) => {
             operator: "eq",
             value: selectedCategoryId ? [selectedCategoryId] : undefined,
           },
-        ],
-        "replace",
-      );
-    }
-  }, [selectedCategoryId, activeCategoryId]);
-
-  React.useEffect(() => {
-    if (searchQuery !== activeSearchQuery) {
-      console.log("???Q", {
-        searchQuery,
-        activeSearchQuery,
-      });
-      setFilters(
-        [
           {
             field: "q",
             operator: "eq",
-            value: searchQuery,
+            value: searchQuery ? searchQuery : undefined,
           },
         ],
-        "replace",
+        "merge",
       );
     }
-  }, [searchQuery, activeSearchQuery]);
+  }, [selectedCategoryId, activeCategoryId, searchQuery, activeSearchQuery]);
 
   const selectCategory = React.useCallback(
     (value?: string | undefined) => {
