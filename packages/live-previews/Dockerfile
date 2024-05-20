@@ -4,9 +4,9 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-FROM base AS deps
+ENV CI true
 
-RUN apk add --no-cache libc6-compat openssh-client
+FROM base AS deps
 
 COPY package.json pnpm-lock.yaml .npmrc ./
 
@@ -18,8 +18,6 @@ COPY --from=deps /app/refine/node_modules ./node_modules
 
 COPY . .
 
-ENV CI true
-
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --ignore-scripts
 
 RUN pnpm run build --scope @refinedev/live-previews --skipNxCache
@@ -30,10 +28,8 @@ ENV NODE_ENV production
 
 COPY --from=builder /app/refine/packages/live-previews/public ./public
 
-RUN mkdir .next
-RUN chown refine:nodejs .next
-
-COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews ./
+COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/standalone ./
+COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/static ./packages/live-previews/.next/static
 
 USER refine
 
