@@ -30,6 +30,7 @@
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
+    "sp": "syncpack",
     "test": "lerna run test --stream",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
     "test:all:coverage": "pnpm test:all -- -- --coverage",
@@ -74,6 +75,7 @@
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
     "sort-package-json": "^2.7.0",
+    "syncpack": "^12.3.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.2",
     "wait-on": "^7.0.1"
