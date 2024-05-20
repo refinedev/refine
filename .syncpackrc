@@ -1,4 +1,5 @@
 {
+  "lintSemverRanges": false,
   "semverGroups": [],
   "versionGroups": [
     {
@@ -6,6 +7,11 @@
       "dependencyTypes": ["prod"],
       "isBanned": true,
       "label": "These packages should only be under devDependencies."
+    },
+    {
+      "dependencies": ["react", "@types/react"],
+      "dependencyType": ["peer"],
+      "isIgnored": true
     }
   ]
 }
