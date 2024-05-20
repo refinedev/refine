@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
   return (
     <ManagedUIContext>
       <GitHubBanner />
-      <main className={clsx(inter.variable, "font-sans")}>
+      <main className={clsx(inter.variable, "font-sans", "bg-gray-lightest")}>
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider(API_URL)}
