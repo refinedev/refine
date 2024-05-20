@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { Product } from "@medusajs/medusa";
 
 export const ProductGridItemSkeleton = () => {
   return (

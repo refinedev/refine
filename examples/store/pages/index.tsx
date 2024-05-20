@@ -154,13 +154,6 @@ const Home = ({
           "gap-2",
         )}
       >
-        <p>{`inCat: ${initialCategory}`}</p>
-        <p>{`inQ: ${initialQuery}`}</p>
-        <p>{isLoading ? "loading..." : "not loading"}</p>
-        <p>{products?.data?.length ? "has data" : "no data"}</p>
-        <p>{isFetching ? "fetching..." : "not fetching"}</p>
-        <p>{params?.category ? params.category : "no category"}</p>
-        <p>{params?.q ? params.q : "no search"}</p>
         <ButtonCategory
           onClick={() => {
             selectCategory();
