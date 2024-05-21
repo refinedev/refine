@@ -44,7 +44,8 @@
       "prettier --config ./.prettierrc --write"
     ],
     "package.json": [
-      "sort-package-json"
+      "sort-package-json",
+      "syncpack lint"
     ]
   },
   "devDependencies": {
