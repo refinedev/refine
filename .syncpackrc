@@ -1,5 +1,6 @@
 {
   "lintSemverRanges": false,
+  "lintFormatting": false,
   "semverGroups": [],
   "versionGroups": [
     {
