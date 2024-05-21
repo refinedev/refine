@@ -33,6 +33,8 @@ jobs:
       - name: lint
         run: |
           pnpm lint:ci
+      - name: syncpack
+        run: pnpm sp lint
   build:
     runs-on: ubuntu-latest
     concurrency:
