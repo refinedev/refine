@@ -9,10 +9,10 @@
       "label": "These packages should only be under devDependencies."
     },
     {
-      "label": "@refinedev dependencies are managed by changeset.",
       "dependencies": ["@refinedev/**"],
       "packages": ["**"],
-      "isIgnored": true
+      "isIgnored": true,
+      "label": "@refinedev dependencies are managed by changeset."
     },
     {
       "dependencies": ["**"],

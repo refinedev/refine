@@ -7537,8 +7537,8 @@ importers:
         specifier: ^6.8.1
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       uuid:
-        specifier: ^8.3.2
-        version: 8.3.2
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@types/node':
         specifier: ^18.16.2
@@ -7550,8 +7550,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0
       '@types/uuid':
-        specifier: ^8.3.4
-        version: 8.3.4
+        specifier: ^9.0.6
+        version: 9.0.8
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
@@ -9707,8 +9707,8 @@ importers:
         specifier: ^8.1.4
         version: 8.4.38
       postcss-nesting:
-        specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.38)
+        specifier: ^12.0.1
+        version: 12.1.2(postcss@8.4.38)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -13162,8 +13162,8 @@ importers:
         specifier: ^6.8.1
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react-toastify:
-        specifier: ^8.1.0
-        version: 8.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^9.1.3
+        version: 9.1.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
     devDependencies:
       '@types/node':
         specifier: ^18.16.2
@@ -14263,7 +14263,7 @@ importers:
         specifier: ^7.8.1
         version: 7.8.3
       '@types/express':
-        specifier: ^4.17.17
+        specifier: ^4.17.21
         version: 4.17.21
       '@types/figlet':
         specifier: ^1.5.5
@@ -14284,13 +14284,13 @@ importers:
         specifier: ^0.11.11
         version: 0.11.11
       '@types/marked':
-        specifier: '4'
-        version: 4.3.2
+        specifier: ^5.0.1
+        version: 5.0.2
       '@types/marked-terminal':
         specifier: ^3.1.5
         version: 3.1.7
       '@types/node-fetch':
-        specifier: ^2.6.2
+        specifier: ^2.6.11
         version: 2.6.11
       '@types/pluralize':
         specifier: ^0.0.29
@@ -14754,13 +14754,13 @@ importers:
         specifier: ^2.6.7
         version: 2.7.0(encoding@0.1.13)
       preferred-pm:
-        specifier: ^3.0.3
+        specifier: ^3.1.3
         version: 3.1.3
       react:
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^18.0.0
         version: 18.3.0
       react-dom:
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       sanitize-html:
         specifier: ^2.11.0
@@ -14791,7 +14791,7 @@ importers:
         specifier: ^29.2.4
         version: 29.5.12
       '@types/jscodeshift':
-        specifier: ^0.11.5
+        specifier: ^0.11.11
         version: 0.11.11
       '@types/lodash':
         specifier: ^4.14.171
@@ -15544,7 +15544,7 @@ importers:
         specifier: ^6.8.1
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       uuid:
-        specifier: ^9.0.0
+        specifier: ^9.0.1
         version: 9.0.1
     devDependencies:
       '@types/jest':
@@ -15560,7 +15560,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0
       '@types/uuid':
-        specifier: ^9.0.2
+        specifier: ^9.0.6
         version: 9.0.8
       jest:
         specifier: ^29.3.1
@@ -23883,9 +23883,6 @@ packages:
   '@types/marked-terminal@3.1.7':
     resolution: {integrity: sha512-bKbVK9E6ADmxDsSQAQmEA9NToAfsCTC7TeCiZ5Nl1BCi/IbJqlzSfRTdYrq0PxWL3Lb+dxhWVbHwF9l48neOsA==}
 
-  '@types/marked@4.3.2':
-    resolution: {integrity: sha512-a79Yc3TOk6dGdituy8hmTTJXjOkZ7zsFYV10L337ttq/rec8lRMDBpV7fL3uLx6TgbFCa5DU/h8FmIBQPSbU0w==}
-
   '@types/marked@5.0.2':
     resolution: {integrity: sha512-OucS4KMHhFzhz27KxmWg7J+kIYqyqoW5kdIEI319hqARQQUTqhao3M/F+uFnDXD0Rg72iDDZxZNxq5gvctmLlg==}
 
@@ -24110,9 +24107,6 @@ packages:
 
   '@types/unist@2.0.10':
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
-
-  '@types/uuid@8.3.4':
-    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
 
   '@types/uuid@9.0.8':
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
@@ -32950,12 +32944,6 @@ packages:
     peerDependencies:
       postcss: ^8.4
 
-  postcss-nesting@8.0.1:
-    resolution: {integrity: sha512-cHPNhW5VvRQjszFDxmy16mis9qFQqQLBNw6KVmueLqqE3M182ZAk9+QoxGqbGVryzLVhannw2B5Yhosqq522fA==}
-    engines: {node: 12 - 16}
-    peerDependencies:
-      postcss: ^8
-
   postcss-normalize-charset@5.1.0:
     resolution: {integrity: sha512-mSgUJ+pd/ldRGVx26p2wz9dNZ7ji6Pn8VWBajMXFf8jk7vUoSrZ2lt/wZR7DtlZYKesmZI680qjr2CeFF2fbUg==}
     engines: {node: ^10 || ^12 || >=14.0}
@@ -34178,12 +34166,6 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
-
-  react-toastify@8.2.0:
-    resolution: {integrity: sha512-Pg2Ju7NngAamarFvLwqrFomJ57u/Ay6i6zfLurt/qPynWkAkOthu6vxfqYpJCyNhHRhR4hu7+bySSeWWJu6PAg==}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
 
   react-toastify@9.1.3:
     resolution: {integrity: sha512-fPfb8ghtn/XMxw3LkxQBk3IyagNpF/LIKjOBflbexr2AWxAH1MJgvnESwEwBn9liLFXgTKWgBSdZpw9m4OTHTg==}
@@ -49897,8 +49879,6 @@ snapshots:
       chalk: 2.4.2
       marked: 6.0.0
 
-  '@types/marked@4.3.2': {}
-
   '@types/marked@5.0.2': {}
 
   '@types/mdast@3.0.15':
@@ -50132,8 +50112,6 @@ snapshots:
       source-map: 0.6.1
 
   '@types/unist@2.0.10': {}
-
-  '@types/uuid@8.3.4': {}
 
   '@types/uuid@9.0.8': {}
 
@@ -61939,10 +61917,6 @@ snapshots:
       postcss: 8.4.38
       postcss-selector-parser: 6.0.16
 
-  postcss-nesting@8.0.1(postcss@8.4.38):
-    dependencies:
-      postcss: 8.4.38
-
   postcss-normalize-charset@5.1.0(postcss@8.4.38):
     dependencies:
       postcss: 8.4.38
@@ -63570,12 +63544,6 @@ snapshots:
       use-latest: 1.2.1(@types/react@18.3.0)(react@18.3.0)
     transitivePeerDependencies:
       - '@types/react'
-
-  react-toastify@8.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
-    dependencies:
-      clsx: 1.2.1
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
 
   react-toastify@9.1.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
