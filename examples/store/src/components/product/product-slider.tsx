@@ -70,52 +70,54 @@ export const ProductSlider = ({ product }: Props) => {
             "scrollbar-hidden",
           )}
         >
-          <div
-            className={clsx(
-              product.images.length <= 1 ? "hidden" : "flex",
-              "items-center",
-              "justify-start",
-              "gap-6",
-              "p-1",
-            )}
-          >
-            {product.images.map((image, i: number) => (
-              <button
-                key={image.url}
-                type="button"
-                onClick={() => slider.current?.moveToIdx(i)}
-                className={clsx(
-                  "h-[120px] w-[108px]",
-                  "flex-shrink-0",
-                  "flex",
-                  "items-center",
-                  "justify-center",
-                  "bg-gray-lighter",
-                  "transition-all",
-                  "duration-75",
-                  "ease-in-out",
-                  "delay-100",
-                  "rounded-lg",
-                  "border-2 border-solid",
-                  currentSlide === i
-                    ? "border-gray-darkest"
-                    : "hover:border-gray-darkest border-transparent hover:border-opacity-50",
-                )}
-              >
-                <Image
-                  src={image.url?.replace(
-                    "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
-                    "",
+          {product.images.length > 1 ? (
+            <div
+              className={clsx(
+                "flex",
+                "items-center",
+                "justify-start",
+                "gap-6",
+                "p-1",
+              )}
+            >
+              {product.images.map((image, i: number) => (
+                <button
+                  key={image.url}
+                  type="button"
+                  onClick={() => slider.current?.moveToIdx(i)}
+                  className={clsx(
+                    "h-[120px] w-[108px]",
+                    "flex-shrink-0",
+                    "flex",
+                    "items-center",
+                    "justify-center",
+                    "bg-gray-lighter",
+                    "transition-all",
+                    "duration-75",
+                    "ease-in-out",
+                    "delay-100",
+                    "rounded-lg",
+                    "border-2 border-solid",
+                    currentSlide === i
+                      ? "border-gray-darkest"
+                      : "hover:border-gray-darkest border-transparent hover:border-opacity-50",
                   )}
-                  alt={"Product Image"}
-                  className={clsx("object-contain", "object-center")}
-                  width={600}
-                  height={600}
-                  quality="100"
-                />
-              </button>
-            ))}
-          </div>
+                >
+                  <Image
+                    src={image.url?.replace(
+                      "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+                      "",
+                    )}
+                    alt={"Product Image"}
+                    className={clsx("object-contain", "object-center")}
+                    width={600}
+                    height={600}
+                    quality="100"
+                  />
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </>
