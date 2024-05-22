@@ -15,7 +15,15 @@ export const replaceImports = (content: string): string => {
   const imports = new Set();
 
   for (const match of matches) {
-    const [, defaultImport, namedImports, namespaceImport, packageName] = match;
+    const [
+      ,
+      baseDefaultImport,
+      baseNamedImports,
+      namespaceImport,
+      packageName,
+    ] = match;
+    let defaultImport: string | undefined = baseDefaultImport;
+    let namedImports: string | undefined = baseNamedImports;
 
     const regexMatch = Object.entries(packageScopeMap).find(([key, value]) =>
       // value is regexp, key is package name
@@ -25,6 +33,39 @@ export const replaceImports = (content: string): string => {
 
     if (regexPackage && !(packageName in packageMap)) {
       const importName = packageMap[regexPackage];
+
+      if (regexMatch) {
+        // If `regexMatch` is present, it means we have a scoped import
+        // In this case if there's a default import, we should use the scope name instead
+        // Because the default import name may not match the root export name
+        // eg: import Button$1 from "@mui/material/Button";
+        // We'll convert it to a named export: import { /scopedImportName/ as /defaultImport/ } from "@mui/material";
+        if (defaultImport) {
+          const scopedImportName = packageName.match(regexMatch[1])?.[1];
+          if (scopedImportName) {
+            if (namedImports) {
+              namedImports = `{ ${scopedImportName} as ${defaultImport}, ${namedImports.slice(
+                1,
+                -1,
+              )} }`;
+            } else {
+              namedImports = ` { ${scopedImportName} as ${defaultImport} }`;
+            }
+            defaultImport = undefined;
+          }
+        }
+        if (namedImports) {
+          // If the import is made like this: import { default as Button$1 } from "@mui/material/Button";
+          // We should convert it to: import { Button as Button$1 } from "@mui/material";
+          if (namedImports.includes("default as")) {
+            const scopedImportName = packageName.match(regexMatch[1])?.[1];
+            namedImports = namedImports.replace(
+              "default as",
+              `${scopedImportName} as`,
+            );
+          }
+        }
+      }
 
       if (defaultImport) {
         imports.add(`const { ${defaultImport} } = ${importName};`);
