@@ -72,7 +72,7 @@ export const ProductSlider = ({ product }: Props) => {
         >
           <div
             className={clsx(
-              "flex",
+              product.images.length <= 1 ? "hidden" : "flex",
               "items-center",
               "justify-start",
               "gap-6",
