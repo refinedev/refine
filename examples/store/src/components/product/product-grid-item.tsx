@@ -47,11 +47,10 @@ export const ProductGridItem = ({ product }: Props) => {
           alt={product?.title || "Product Image"}
           priority={false}
           className={clsx(
-            "object-contain",
-            "group-hover:scale-110",
             "transition-transform",
             "duration-200",
             "ease-in-out",
+            "object-cover",
           )}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           layout="fill"
