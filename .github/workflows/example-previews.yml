@@ -2,6 +2,8 @@ name: Deploy Example Previews
 
 on:
   pull_request:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       example:
@@ -30,11 +32,11 @@ jobs:
       id: filter
       with:
         filters: |
-          'finefoods-antd': 'examples/finefoods-antd'
-          'finefoods-mui': 'examples/finefoods-mui'
-          'app-crm': 'examples/app-crm'
-          'pixels': 'examples/pixels'
-          'invoicer': 'examples/invoicer'
+          'finefoods-antd': 'examples/finefoods-antd/**'
+          'finefoods-mui': 'examples/finefoods-mui/**'
+          'app-crm': 'examples/app-crm/**'
+          'pixels': 'examples/pixels/**'
+          'invoicer': 'examples/invoicer/**'
   preview:
     runs-on: ubuntu-latest
     needs: changes
