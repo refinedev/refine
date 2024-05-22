@@ -1,0 +1,70 @@
+name: Deploy Example Previews
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      example:
+        description: "Example name to deploy preview"
+        type: choice
+        required: true
+        options:
+          - finefoods-antd
+          - finefoods-mui
+          - app-crm
+          - pixels
+          - invoicer
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    # Set job outputs to values from filter step
+    outputs:
+      examples: ${{ inputs.example || steps.filter.outputs.changes }}
+    steps:
+    # For pull requests it's not necessary to checkout the code
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          'finefoods-antd': 'examples/finefoods-antd
+          'finefoods-mui': 'examples/finefoods-mui'
+          'app-crm': 'examples/app-crm'
+          'pixels': 'examples/pixels'
+          'invoicer': 'examples/invoicer'
+  preview:
+    runs-on: ubuntu-latest
+    needs: changes
+    strategy:
+      matrix:
+        example: ${{ fromJSON(needs.changes.outputs.examples) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: |
+          pnpm install
+          pnpm build --scope ${{ matrix.example }}
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: "./examples/${{ matrix.example }}/dist"
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          alias: deploy-preview-${{ matrix.example }}-${{ github.event.number }}
+          enable-pull-request-comment: false
+          overwrites-pull-request-comment: false
+          github-deployment-environment: "deploy-preview-${{ matrix.example }}-${{ github.event.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10
