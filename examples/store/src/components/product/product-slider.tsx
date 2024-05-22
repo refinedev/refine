@@ -59,18 +59,18 @@ export const ProductSlider = ({ product }: Props) => {
           </div>
         ))}
       </div>
-      <div className={clsx("relative", "w-full", "h-32", "mt-12")}>
-        <div
-          className={clsx(
-            "absolute",
-            "inset-0",
-            "w-full",
-            "h-full",
-            "overflow-scroll",
-            "scrollbar-hidden",
-          )}
-        >
-          {product.images.length > 1 ? (
+      {product.images.length > 1 ? (
+        <div className={clsx("relative", "w-full", "h-32", "mt-12")}>
+          <div
+            className={clsx(
+              "absolute",
+              "inset-0",
+              "w-full",
+              "h-full",
+              "overflow-scroll",
+              "scrollbar-hidden",
+            )}
+          >
             <div
               className={clsx(
                 "flex",
@@ -117,9 +117,9 @@ export const ProductSlider = ({ product }: Props) => {
                 </button>
               ))}
             </div>
-          ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 };
