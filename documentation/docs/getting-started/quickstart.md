@@ -34,6 +34,6 @@ Refine's browser-based scaffolder has the same set of options as the CLI-based s
 
 👉 Jump to [Tutorials](/tutorial) and continue your work to turn your example project into a full-blown CRUD application! 🚀
 
-👉 See [real-life examples](https://github.com/refinedev/refine/tree/master/examples) built using **Refine**
+👉 See [real-life examples](/templates) built using **Refine**
 
 👉 Check out the [General Concepts](/docs/guides-concepts/general-concepts) and [Data Fetching](/docs/guides-concepts/data-fetching) guides to start learning Refine.
