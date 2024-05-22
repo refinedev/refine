@@ -150,4 +150,4 @@ for (let i = 0; i < examples.length; i += chunkSize) {
 //
 chunks.map((chunk) => chunk.join(","));
 
-console.log(`::set-output name=CHUNKS::${chunks}`);
+console.log(`::set-output name=CHUNKS::[${chunks}]`);
