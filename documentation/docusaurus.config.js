@@ -139,7 +139,6 @@ const siteConfig = {
       };
     },
     "./plugins/docgen.js",
-    "./plugins/examples.js",
     ...(process.env.DISABLE_BLOG
       ? []
       : [
