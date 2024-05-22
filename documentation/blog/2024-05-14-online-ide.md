@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide
 hide_table_of_contents: false
 ---
 
+**_This article was last updated on May 21, 2024 to clarifying the explanations, update screenshots, adding new online ide and fix installation steps._**
+
 ## Introduction
 
 Programmers and software engineers spend a significant proportion of their time using IDEs and text editors for writing code. Most IDEs and text editors, such as VS Code, Sublime Text, and Notepad++, are desktop applications. However, there are also several online editors that you can use for building, testing, prototyping, and showcasing simple hobby projects, especially in web development.
@@ -20,9 +22,37 @@ It is worth pointing out that this article will explore the main features of the
 
 Steps we will cover:
 
+- [What Is an Online Code Editor](#what-is-an-online-code-editor)
+- [Why We Need Online Code Editors](#why-we-need-online-code-editors)
 - [Bootstrapping a project for demonstration](#bootstrapping-a-project-for-demonstration)
 - [Top free online Editors and IDEs with free plans for hobby projects](#top-free-online-editors-and-ides-with-free-plans-for-hobby-projects)
 - [Comparing top online Editors and IDEs](#comparing-top-online-editors-and-ides)
+
+## What Is an Online Code Editor
+
+In simple terms, an online code editor is a web-based tool for developers to write, edit, and test code in their browsers. These online code editors come packed with features for languages and all the other features of the conventional text editors.
+
+The unique feature of online code editors, different from the traditional stationary IDEs, is the fact that no setup or configuration is required on the system, thus making it easily available and user-friendly. Just for this reason, online code editors can be invaluable in the case of needing people to work collaboratively on the fly over the particular piece in which you are interested.
+
+In other words, you are able to quickly build prototypes or entire projects in a really powerful and flexible coding setup.
+
+## Why We Need Online Code Editors ?
+
+Online Code Editors have been growing important due to a number of reasons:
+
+1. **Accessibility**: Any device with an internet connection can write and test code through an online code editor. That means there's no need for a specific setup or powerful hardware in order to make coding accessible.
+
+2. **Collaboration**: Most of these online code editors allow the feature of real-time collaboration, meaning a lot of developers can work on a project at the same time. This helps a lot for team projects, pair programming, and in most educational setups.
+
+3. Convenience: No software installations and configurations are required on your machine. Online code editors come pre-installed and pre-configured, so they save you time and save you from managing many development environments.
+
+4. **Cost-effective**: Most of the code editors available online come for free, or they have a free tier attached to them, which makes them a cheaper solution for all individual developers and organizations, especially those working on a tight budget.
+
+5. **Version Control and Backup**: Most of the online editors are well integrated with the likes of Git, which makes it very easy and smooth when it comes to version tracking and collaboration. Besides, the code is usually automatically saved to reduce the danger of losing information.
+
+6. **Learn and Experiment**: Online code editors are the easiest means to get coding for novices without all the hassles needed for setting up a local development environment. They are also perfect for experimenting with new languages or frameworks.
+
+In other words, online code editors are flexible, collaborative, and accessible, hence improving one's productivity, and developers of all levels find it convenient to write code.
 
 ## Bootstrapping a project for demonstration
 
@@ -32,14 +62,13 @@ It is possible to import a project from your local machine or Git hosting servic
 
 ### How to create Refine application
 
-The easiest way to start using Refine is to bootstrap an application using [superplate](https://github.com/pankod/superplate).  
-Run the command below on the terminal.
+The easiest way to start using Refine is to bootstrap an application using Refine CLI.
 
 ```sh
-npx superplate-cli example-project --project refine-react
+npm create refine-app@latest
 ```
 
-Successfully running the command above will create a `refine-react` project in the `example-project` directory. You must respond to the command line prompts. You can also choose the default options throughout if you wish.
+You must respond to the command line prompts. You can also choose the default options throughout if you wish.
 
 After successfully creating the Refine project, navigate to the `example-project` project directory using the command below.
 
@@ -100,7 +129,7 @@ To start using StackBlitz, sign in using your GitHub account. You can create a p
 
 As a [Refine](https://github.com/refinedev/refine) team, we use +100 example code projects on StackBlitz to showcase the features of the framework.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/stackblitz.png"  alt="stackblitz ide" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/stackbltiz-2"  alt="stackblitz ide" />
 
 <br />
 
@@ -303,13 +332,6 @@ As you import a project from GitHub, be aware of the [Repl.it resources limitat
 
 - No command line tool to interact with Repl.it from the terminal
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
 ## Glitch
 
 [Glitch](https://glitch.com/) is another online editor you can use for front-end, back-end, and full-stack web development. Unlike Repl.it, which supports several programming languages and runtime environments, Glitch supports the Node runtime environment and front-end languages like HTML, CSS, and JavaScript. To start using Glitch, create an account using your Email, GitHub, or Google account.
@@ -353,6 +375,23 @@ The free online editors and IDEs highlighted above have similarities and differe
 | Front-end application | Yes                | Yes                | Yes                | Yes                | Yes                | Yes                |
 | Embed demos           | Yes                | Yes                | Yes                | Yes                | Yes                | Yes                |
 | Back-end application  | No                 | **Yes**            | No                 | No                 | **Yes**            | **Yes**            |
+
+## Bonus: GitPod
+
+ <div className="centered-image">
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/gitpod.png" alt="gitpod online ide" />
+</div>
+
+[Gitpod](https://www.gitpod.io/) is an in-browser code editor with all the required functionality developers expect as an IDE or text editor to write code. This is in line with providing developers instant development environments in the cloud. Gitpod works seamlessly with repositories hosted on GitHub, GitLab, and Bitbucket, ensuring that you can start coding instantly.
+
+### Key Features of Gitpod:
+
+- **Ready Workspaces**: Based on your repo or branch, GitPod prepares a full development environment ready to go.
+- **Cloud-based**: All your work is stored on the cloud, making it possible to work on less powerful local hardware.
+- **Instant Setup**: Gitpod is automatically installing all the dependencies and tools that one would need. It greatly reduces time spent setting up and configuring.
+- **Continuous Integration**: Gitpod supports CI/CD workflows. Thus, you can test and deploy code changes quickly.
+- **Multi-Language Support**: Gitpod supports many programming languages and frameworks, easing work with different projects.
+- **Easy Access**: You can access Gitpod from any device using a web browser, so you can work from literally anywhere.
 
 ## Conclusion
 
