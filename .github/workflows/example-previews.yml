@@ -30,7 +30,7 @@ jobs:
       id: filter
       with:
         filters: |
-          'finefoods-antd': 'examples/finefoods-antd
+          'finefoods-antd': 'examples/finefoods-antd'
           'finefoods-mui': 'examples/finefoods-mui'
           'app-crm': 'examples/app-crm'
           'pixels': 'examples/pixels'
