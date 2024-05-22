@@ -45,6 +45,7 @@ export const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
       <div className={clsx("py-2", "flex", "flex-col", "w-full")}>
         {values.map((v) => (
           <div
+            key={v.label}
             className={clsx(
               "flex",
               "items-center",
