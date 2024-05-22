@@ -26,7 +26,7 @@ FROM base AS runner
 
 ENV NODE_ENV production
 
-COPY --from=builder /app/refine/packages/live-previews/public ./public
+COPY --from=builder /app/refine/packages/live-previews/public ./packages/live-previews/public
 
 COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/standalone ./
 COPY --from=builder --chown=refine:nodejs /app/refine/packages/live-previews/.next/static ./packages/live-previews/.next/static
