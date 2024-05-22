@@ -25,7 +25,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: "pnpm"
       - name: Install Dependencies
         run: |
@@ -52,7 +52,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: "pnpm"
       - name: Install & Build
         run: |
@@ -66,7 +66,6 @@ jobs:
       - name: Are The Types Wrong
         run: |
           pnpm attw:all
-
   tsdoc-check:
     runs-on: ubuntu-latest
     name: Check TSDoc Links
