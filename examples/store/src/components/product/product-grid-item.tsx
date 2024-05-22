@@ -22,7 +22,6 @@ export const ProductGridItem = ({ product }: Props) => {
     <Link
       onClick={product ? undefined : (event) => event.preventDefault()}
       href={`/product/${product?.handle}`}
-      className={clsx("group")}
     >
       <div
         className={clsx(
@@ -30,7 +29,6 @@ export const ProductGridItem = ({ product }: Props) => {
           "bg-gray-lighter",
           "relative",
           "rounded-3xl",
-          "group-hover:bg-gray-light",
           "transition-colors",
           "duration-200",
           "ease-in-out",
