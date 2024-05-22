@@ -32,7 +32,8 @@ jobs:
 
     name: Create Example Chunks
 
-    if: "${{ !github.event.pull_request.draft }}"
+    # TODO: Enable it back after testing.
+    # if: "${{ !github.event.pull_request.draft }}"
 
     outputs:
       CHUNKS: ${{ steps.chunkstep.outputs.CHUNKS }}
