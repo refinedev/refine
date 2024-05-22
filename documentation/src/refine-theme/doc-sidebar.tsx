@@ -184,7 +184,9 @@ const SidebarCategory = ({
             )}
           />
         )}
-        <span className="z-[1]">{item.label}</span>
+        <span className="z-[1] text-refine-react-6 dark:text-refine-react-3">
+          {item.label}
+        </span>
         <div
           className={clsx(
             "absolute",
