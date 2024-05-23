@@ -55,7 +55,7 @@ jobs:
 
       - name: Split Into Chunks
         id: chunkstep
-        run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(github.event.pull_request.labels.*.name, 'build examples') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/scripts/build-example-chunks.js
+        run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ contains(github.event.pull_request.labels.*.name, 'build examples') || github.event_name == 'schedule' }} node ./.github/workflows/scripts/build-example-chunks.js
 
   build-chunk:
     runs-on: ubuntu-latest
