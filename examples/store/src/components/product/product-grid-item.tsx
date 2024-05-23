@@ -14,9 +14,11 @@ type Props = {
 export const ProductGridItem = ({ product }: Props) => {
   const { amount, currency_code } = product?.variants?.[0].prices?.[0] ?? {};
 
-  const price = `${currencySymbolFromCode(currency_code ?? "USD")}${
+  const price = `${currencySymbolFromCode(currency_code ?? "USD")}${(
     amount / 100
-  }`;
+  ).toFixed(2)}`;
+
+  console.log("Amount", amount);
 
   return (
     <Link
