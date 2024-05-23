@@ -48,7 +48,7 @@ export const OrderTimeline: React.FC = () => {
           const isLast = i === data.data.length - 1;
           return (
             <ListItem
-              divider={isLast ? false : true}
+              divider={!isLast}
               key={order.id}
               secondaryAction={dayjs(order.createdAt).fromNow()}
               onClick={() => show("orders", order.id)}

@@ -41,23 +41,23 @@ const App = () => {
 
 export default App;
 ---------------------------------------------------- 1`] = `
-"import {
-  ErrorComponent,
+"import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
+import {
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
-  useNotificationProvider,
+  ErrorComponent,
 } from "@refinedev/antd";
-import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
-import routerProvider, {
-  DocumentTitleHandler,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
 
 const App = () => {
   return (
@@ -114,9 +114,9 @@ export default App;
 ---------------------------------------------------- 1`] = `
 "import { Refine, WelcomePage } from "@refinedev/core";
 
-import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
 
 function App() {
   return (
@@ -157,9 +157,9 @@ export default App;
 ---------------------------------------------------- 1`] = `
 "import { Refine, WelcomePage } from "@refinedev/core";
 
-import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
 
 function App() {
   return (

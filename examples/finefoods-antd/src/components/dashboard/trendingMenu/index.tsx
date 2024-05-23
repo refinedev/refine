@@ -91,7 +91,7 @@ export const TrendingMenu: React.FC = () => {
                         margin: 0,
                         fontSize: 24,
                       }}
-                      strong={index <= 2 ? true : false}
+                      strong={index <= 2}
                     >
                       {item.product?.name}
                     </Typography.Paragraph>

@@ -14,7 +14,7 @@ import {
   Typography,
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { Invoice, Service } from "@/types";
+import type { Invoice, Service } from "@/types";
 import { useStyles } from "./create.styled";
 
 export const InvoicesPageCreate = () => {

@@ -43,7 +43,6 @@ export const OrderDetails = ({ order }: Props) => {
         )}
       >
         {order?.events.map((event: IEvent, index: number) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: order?.events has no unique key
           <Step key={index}>
             <StepLabel
               optional={

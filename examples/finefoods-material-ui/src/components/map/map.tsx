@@ -64,7 +64,6 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
       <div ref={ref} style={{ flexGrow: "1", height: "100%" }} />
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
           return cloneElement<any>(child, { map });
         }
       })}

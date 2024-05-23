@@ -1,11 +1,8 @@
 {
-  "$schema": "https://unpkg.com/lerna/schemas/lerna-schema.json",
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": ["packages/*", "examples/*"],
-  "ignore": "{monorepo-*,with-nx}",
-  "registry": "https://registry.npmjs.org/",
-  "npmClient": "npm",
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "3.25.0"
+  "ignore": "{monorepo-*,with-nx,blog-react-aria,blog-sveltekit-crud}",
+  "version": "4.0.0",
+  "stream": true,
+  "npmClient": "pnpm"
 }

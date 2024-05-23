@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build && rm -rf .next/cache",
+    "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "start:prod": "next start"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
     "nextjs-progressbar": "^0.0.14",
     "nookies": "^2.5.2",
     "postcss": "^8.1.4",
-    "postcss-nesting": "^8.0.1",
+    "postcss-nesting": "^12.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-fast-marquee": "^1.3.1",

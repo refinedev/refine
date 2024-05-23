@@ -1,13 +1,13 @@
+import { type PropsWithChildren, useState } from "react";
 import {
   Button,
   Flex,
   Form,
-  FormItemProps,
+  type FormItemProps,
   Input,
   Skeleton,
   Typography,
 } from "antd";
-import { PropsWithChildren, useState } from "react";
 import { EditOutlined, EnterOutlined } from "@ant-design/icons";
 import { useStyles } from "./styled";
 

@@ -62,9 +62,9 @@ export const packageMap: Record<string, string> = {
 };
 
 export const packageScopeMap: Record<string, RegExp> = {
-  "@mui/lab": /@mui\/lab\/.*/,
-  "@mui/material/styles": /@mui\/material\/styles\/.*/,
-  "@mui/material": /@mui\/material\/.*/,
-  "@mui/icons-material": /@mui\/icons-material\/.*/,
-  "@mui/x-data-grid": /@mui\/x-data-grid\/.*/,
+  "@mui/lab": /@mui\/lab\/(.*)/,
+  "@mui/material/styles": /@mui\/material\/styles\/(.*)/,
+  "@mui/material": /@mui\/material\/(.*)/,
+  "@mui/icons-material": /@mui\/icons-material\/(.*)/,
+  "@mui/x-data-grid": /@mui\/x-data-grid\/(.*)/,
 };

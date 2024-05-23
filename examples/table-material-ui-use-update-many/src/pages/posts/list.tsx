@@ -7,12 +7,14 @@ import {
   DataGrid,
   GridValueFormatterParams,
   GridColDef,
+  GridRowSelectionModel,
 } from "@mui/x-data-grid";
 
 import { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] =
+    React.useState<GridRowSelectionModel>([]);
   const hasSelected = selectedRowKeys.length > 0;
 
   const { mutate } = useUpdateMany<IPost>();
@@ -110,7 +112,7 @@ export const PostList: React.FC = () => {
         autoHeight
         checkboxSelection
         onRowSelectionModelChange={(newSelectionModel) => {
-          setSelectedRowKeys(newSelectionModel as React.Key[]);
+          setSelectedRowKeys(newSelectionModel);
         }}
         pageSizeOptions={[10, 20, 50, 100]}
         rowSelectionModel={selectedRowKeys}

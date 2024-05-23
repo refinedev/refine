@@ -1,6 +1,7 @@
 import { useShow } from "@refinedev/core";
 import { FilePdfOutlined } from "@ant-design/icons";
 import {
+  Button,
   Avatar,
   Card,
   Col,
@@ -14,10 +15,9 @@ import {
 } from "antd";
 import { DateField, NumberField, Show } from "@refinedev/antd";
 import { API_URL } from "@/utils/constants";
-import { Invoice, Service } from "@/types";
-import { Button } from "antd";
-import { useStyles } from "./show.styled";
 import { getRandomColorFromString } from "@/utils/get-random-color";
+import type { Invoice, Service } from "@/types";
+import { useStyles } from "./show.styled";
 
 export const InvoicesPageShow = () => {
   const { styles } = useStyles();
@@ -30,6 +30,9 @@ export const InvoicesPageShow = () => {
 
   const invoice = queryResult?.data?.data;
   const loading = queryResult?.isLoading;
+  const logoUrl = invoice?.account?.logo?.url
+    ? `${API_URL}${invoice?.account?.logo?.url}`
+    : undefined;
 
   return (
     <Show
@@ -98,16 +101,14 @@ export const InvoicesPageShow = () => {
                     <Avatar
                       alt={invoice?.account?.company_name}
                       size={64}
-                      src={
-                        invoice?.account?.logo?.url
-                          ? `${API_URL}${invoice?.account?.logo?.url}`
-                          : undefined
-                      }
+                      src={logoUrl}
                       shape="square"
                       style={{
-                        backgroundColor: getRandomColorFromString(
-                          invoice?.account?.company_name || "",
-                        ),
+                        backgroundColor: logoUrl
+                          ? "transparent"
+                          : getRandomColorFromString(
+                              invoice?.account?.company_name || "",
+                            ),
                       }}
                     >
                       <Typography.Text>

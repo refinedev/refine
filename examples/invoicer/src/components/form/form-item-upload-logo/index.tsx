@@ -2,11 +2,11 @@ import { useMemo, useState } from "react";
 import { Avatar, Form, Skeleton, Typography, Upload } from "antd";
 import { getValueProps } from "@refinedev/strapi-v4";
 import { CloudUploadOutlined } from "@ant-design/icons";
-import { RcFile } from "antd/lib/upload";
+import type { RcFile } from "antd/lib/upload";
 import { axiosInstance } from "@/providers/axios";
 import { getRandomColorFromString } from "@/utils/get-random-color";
 import { API_URL, TOKEN_KEY } from "@/utils/constants";
-import { Media, UploadResponse } from "@/types";
+import type { Media, UploadResponse } from "@/types";
 import { useStyles } from "./styled";
 
 type Props = {
@@ -83,11 +83,6 @@ export const FormItemUploadLogo = ({
     }
   };
 
-  console.log({
-    src,
-    fieldValue,
-  });
-
   return (
     <div className={styles.container}>
       <Form.Item
@@ -125,6 +120,7 @@ export const FormItemUploadLogo = ({
             }}
           >
             <Avatar
+              key={src}
               size={96}
               shape="square"
               src={src}
@@ -137,9 +133,8 @@ export const FormItemUploadLogo = ({
                 zIndex: 1,
                 cursor: "pointer",
                 borderRadius: "6px",
-                ...((error || !src) && {
-                  background: getRandomColorFromString(label),
-                }),
+                background:
+                  error || !src ? getRandomColorFromString(label) : "none",
               }}
             >
               {<Typography.Text>{label[0].toUpperCase()}</Typography.Text>}
