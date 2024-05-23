@@ -38,7 +38,7 @@ const templates = [
     slug: "crm-application",
     title: "CRM Application",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.png",
     ],
     runOnYourLocalPath: "app-crm",
     liveDemo: "https://example.crm.refine.dev/",
@@ -94,7 +94,7 @@ This CRM app template can be used in for various app requirements like B2B appli
     slug: "next-js-tailwind",
     title: "E-Commerce Application Storefront",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-storefront.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-storefront.png",
     ],
     runOnYourLocalPath: "finefoods-client",
     liveDemo: "https://example.refine.dev/",
@@ -119,7 +119,7 @@ The source code is also open-source; feel free to use or inspect it to discover 
     slug: "react-admin-panel",
     title: "B2B Admin Panel with Material UI",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.png",
     ],
     runOnYourLocalPath: "finefoods-material-ui",
     liveDemo: "https://example.mui.admin.refine.dev",
@@ -169,7 +169,7 @@ This admin panel template can be used in for various app requirements like B2B a
     slug: "react-admin-panel-ant-design",
     title: "B2B Internal tool with Ant Design",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.png",
     ],
     runOnYourLocalPath: "finefoods-antd",
     liveDemo: "https://example.admin.refine.dev",
@@ -221,7 +221,7 @@ This admin panel template can be used in for various app requirements like B2B a
     slug: "next-js-ecommerce-store",
     title: "Swag Store",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-store.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-store.png",
     ],
     runOnYourLocalPath: "store",
     liveDemo: "https://store.refine.dev/",
@@ -254,7 +254,7 @@ With its production-ready status, this template offers a solid foundation for bu
     slug: "supabase-crud-app",
     title: "Pixels",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.png",
     ],
     runOnYourLocalPath: "pixels",
     liveDemo: "https://pixels.refine.dev/",
@@ -284,7 +284,7 @@ We built this template to demonstrate how the Refine framework simplifies and sp
     slug: "react-pdf-invoice-generator",
     title: "Invoice Generator - Internal Tool",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.png",
     ],
     runOnYourLocalPath: "refine-week-invoice-generator",
     liveDemo: "https://invoice-generator.refine.dev/",
@@ -334,7 +334,7 @@ The source code of the CRUD app is also open-source; feel free to use or inspect
     slug: "react-crud-app",
     title: "Realworld Example",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-realworld.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-realworld.png",
     ],
     runOnYourLocalPath: "real-world-example",
     liveDemo: "https://refine-real-world.netlify.app/",
@@ -367,7 +367,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
     slug: "multitenancy-strapi",
     title: "Multitenancy App with Strapi",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.png",
     ],
     runOnYourLocalPath: "multi-tenancy-strapi",
     liveDemo: "https://multi-tenancy-strapi.refine.dev",
@@ -390,7 +390,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     slug: "multitenancy-appwrite",
     title: "Multitenancy App with Appwrite",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-appwrite.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-appwrite.png",
     ],
     runOnYourLocalPath: "multi-tenancy-appwrite",
     liveDemo: "https://multi-tenancy-appwrite.refine.dev",
@@ -413,7 +413,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     slug: "ant-design-template",
     title: "Internal tool template with Ant Design ",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.png",
     ],
     runOnYourLocalPath: "auth-antd",
     liveDemo:
@@ -433,7 +433,7 @@ Complete internal tool template built with Material UI. Features authentication 
     slug: "material-ui-template",
     title: "Generic Internal Tool Template with Material UI",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.png",
     ],
     runOnYourLocalPath: "auth-material-ui",
     liveDemo:
@@ -453,7 +453,7 @@ Complete internal tool template built with Material UI. Features authentication 
     slug: "mantine-template",
     title: "Generic Internal Tool Template with Mantine",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.png",
     ],
     runOnYourLocalPath: "auth-mantine",
     liveDemo:
@@ -473,7 +473,7 @@ Complete internal tool template built with Mantine. Features authentication and 
     slug: "chakra-ui-template",
     title: "Generic Internal Tool Template with Chakra UI",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.jpg",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.png",
     ],
     runOnYourLocalPath: "auth-chakra-ui",
     liveDemo:
