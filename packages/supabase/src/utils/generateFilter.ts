@@ -44,12 +44,13 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
             item.operator !== "and" &&
             "field" in item
           ) {
-            if (item.operator === "ina" || item.operator === "nina")
-              return `${item.field}.${mapOperator(
-                item.operator,
-              )}.${`{${item.value.map((val: any) => `"${val}"`).join(",")}}`}`;
+            let value = item.value;
 
-            return `${item.field}.${mapOperator(item.operator)}.${item.value}`;
+            if (item.operator === "ina" || item.operator === "nina") {
+              value = `{${item.value.map((val: any) => `"${val}"`).join(",")}}`;
+            }
+
+            return `${item.field}.${mapOperator(item.operator)}.${value}`;
           }
           return;
         })
