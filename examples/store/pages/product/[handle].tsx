@@ -115,7 +115,14 @@ const ProductShow: React.FC<Props> = ({ initialData, handle }) => {
           >
             {record.title}
           </h1>
-          <p className={clsx("font-semibold", "text-xl", "text-gray-darker")}>
+          <p
+            className={clsx(
+              "font-semibold",
+              "text-xl",
+              "text-gray-darker",
+              "min-h-7",
+            )}
+          >
             {selectedPrice?.calculated_price}
           </p>
         </div>
