@@ -12,7 +12,8 @@ on:
         required: true
         options:
           - finefoods-antd
-          - finefoods-mui
+          - finefoods-client
+          - finefoods-material-ui
           - app-crm
           - pixels
           - invoicer
@@ -33,7 +34,8 @@ jobs:
       with:
         filters: |
           'finefoods-antd': 'examples/finefoods-antd/**'
-          'finefoods-mui': 'examples/finefoods-mui/**'
+          'finefoods-client': 'examples/finefoods-client/**'
+          'finefoods-material-ui': 'examples/finefoods-material-ui/**'
           'app-crm': 'examples/app-crm/**'
           'pixels': 'examples/pixels/**'
           'invoicer': 'examples/invoicer/**'
@@ -41,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: changes
     strategy:
+      fail-fast: false
+      max-parallel: 6
       matrix:
         example: ${{ fromJSON(needs.changes.outputs.examples) }}
     steps:
