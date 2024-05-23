@@ -63,9 +63,11 @@ jobs:
   build-chunk:
     runs-on: ubuntu-latest
     needs: chunks
-    concurrency:
-      group: ${{ github.ref }}-${{ matrix.chunk }}
-      cancel-in-progress: true
+    # TODO: Remove completely or make it shorter.
+    # .github/workflows/build-examples.yml (Line: 67, Col: 7): Concurrency group name must be less than 400 characters
+    # concurrency:
+    #   group: ${{ github.ref }}-${{ matrix.chunk }}
+    #   cancel-in-progress: true
     strategy:
       matrix:
         chunk: ${{ fromJson(needs.chunks.outputs.CHUNKS) }}
