@@ -93,11 +93,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         "w-full",
         "max-w-screen-max-content",
         "mx-auto",
-        "min-h-[100svh]",
+        "min-h-[calc(100svh-48px)]",
       )}
     >
       <Navbar />
-      <main className="fit">{children}</main>
+      <main>{children}</main>
       <Footer />
       <ModalUI />
       <SidebarUI links={[]} />
