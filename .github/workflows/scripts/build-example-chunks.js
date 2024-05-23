@@ -148,6 +148,9 @@ for (let i = 0; i < examples.length; i += chunkSize) {
 //
 // Set outputs
 //
-chunks.map((chunk) => chunk.join(","));
 
-console.log(`::set-output name=CHUNKS::${JSON.stringify(chunks)}`);
+console.log(
+  `::set-output name=CHUNKS::${JSON.stringify(
+    chunks.map((chunk) => chunk.join(",")),
+  )}`,
+);
