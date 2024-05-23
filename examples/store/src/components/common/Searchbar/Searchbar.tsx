@@ -1,62 +1,107 @@
-import { useEffect } from "react";
-import cn from "clsx";
-import { useRouter } from "next/router";
+import React from "react";
+import { useGo, useParsed } from "@refinedev/core";
+import clsx from "clsx";
+import debounce from "lodash/debounce";
+import { SEARCH_INPUT_ID } from "src/contants";
 
-import s from "./Searchbar.module.css";
+type Props = React.ComponentProps<"input">;
 
-interface SearchbarProps {
-  className?: string;
-  id?: string;
-}
+export const Searchbar = ({ className, ...props }: Props) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const go = useGo();
+  const {
+    pathname,
+    params: { q } = {},
+  } = useParsed();
 
-export const Searchbar: React.FC<SearchbarProps> = ({
-  className,
-  id = "search",
-}) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.prefetch("/search");
-  }, [router]);
-
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    if (e.key === "Enter") {
-      const q = e.currentTarget.value;
-
-      router.push(
-        {
-          pathname: "/search",
-          query: q ? { q } : {},
-        },
-        undefined,
-        { shallow: true },
-      );
+  React.useEffect(() => {
+    if (typeof q === "undefined") {
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
     }
-  };
+  }, [q]);
+
+  const onSearch = React.useMemo(() => {
+    const debounced = debounce(
+      (value: string) => {
+        go({
+          to: pathname !== "/" ? "/" : undefined,
+          type: pathname === "/" ? "replace" : "push",
+          query: {
+            q: value ? value : undefined,
+          },
+        });
+      },
+      400,
+      {
+        trailing: true,
+        leading: false,
+      },
+    );
+
+    return debounced;
+  }, [go, pathname]);
 
   return (
-    <div className={cn(s.root, className)}>
-      <label className="hidden" htmlFor={id}>
-        Search
-      </label>
+    <div
+      className={clsx(
+        "flex",
+        "relative",
+        "flex",
+        "items-center",
+        "justify-start",
+        "gap-3",
+        "pl-10",
+        "pr-6",
+        "border",
+        "border-solid",
+        "border-gray-dark",
+        "rounded-[40px]",
+        className,
+      )}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={16}
+        height={16}
+        viewBox="0 0 16 16"
+        fill="none"
+        className={clsx(
+          "absolute",
+          "w-4",
+          "h-4",
+          "left-4",
+          "top-4",
+          "text-gray-dark",
+        )}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.333}
+          d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667ZM14 14l-2.867-2.867"
+        />
+      </svg>
       <input
-        id={id}
-        className={s.input}
-        placeholder="Search for products..."
-        defaultValue={router.query.q}
-        onKeyUp={handleKeyUp}
+        type="search"
+        ref={inputRef}
+        id={SEARCH_INPUT_ID}
+        className={clsx(
+          "border-none",
+          "placeholder-gray-dark",
+          "text-gray-darkest",
+          "text-base",
+          "w-full",
+          "py-3",
+          "focus:outline-none",
+        )}
+        placeholder="Search for products"
+        defaultValue={q}
+        onChange={(event) => onSearch(event.target.value)}
+        {...props}
       />
-      <div className={s.iconContainer}>
-        <svg className={s.icon} fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-          />
-        </svg>
-      </div>
     </div>
   );
 };
