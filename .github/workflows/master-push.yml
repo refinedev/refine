@@ -44,6 +44,8 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint:ci
+      - name: Syncpack
+        run: pnpm sp lint
       - name: Test
         run: pnpm test:all
       - name: Publint
