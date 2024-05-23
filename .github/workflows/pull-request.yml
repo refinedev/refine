@@ -36,9 +36,6 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-pr-build
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
     name: Build & Test
     steps:
       - uses: actions/checkout@v4
