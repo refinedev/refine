@@ -4,6 +4,11 @@ on:
   pull_request:
     branches:
       - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - labeled
   workflow_dispatch:
     inputs:
       example:
@@ -26,7 +31,9 @@ jobs:
       pull-requests: read
     # Set job outputs to values from filter step
     outputs:
-      examples: ${{ inputs.example || steps.filter.outputs.changes }}
+      examples: ${{ steps.filter.outputs.changes }}
+      all_examples: '["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]'
+      dispatch_example: '[${{ inputs.example }}]'
     steps:
     # For pull requests it's not necessary to checkout the code
     - uses: dorny/paths-filter@v3
@@ -46,7 +53,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.examples) }}
+        example: ${{ fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) || fromJSON(needs.changes.outputs.all_examples) }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
