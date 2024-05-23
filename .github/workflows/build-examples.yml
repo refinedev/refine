@@ -39,6 +39,9 @@ jobs:
       CHUNKS: ${{ steps.chunkstep.outputs.CHUNKS }}
 
     steps:
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
@@ -55,7 +58,7 @@ jobs:
 
       - name: Split Into Chunks
         id: chunkstep
-        run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ github.event.label.name == 'build examples' || github.event_name == 'schedule' }} node ./.github/workflows/scripts/build-example-chunks.js
+        run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' ) && 'true' || 'false' }} node ./.github/workflows/scripts/build-example-chunks.js
 
   build-chunk:
     runs-on: ubuntu-latest
