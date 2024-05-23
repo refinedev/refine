@@ -24,7 +24,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       <div
         role="checkbox"
         aria-checked={checked}
-        className="border-accent-2 flex h-5 w-5 items-center justify-center border"
+        className="border-accent-2 flex h-5 w-5 rounded items-center justify-center border"
       >
         {checked ? "✓" : null}
       </div>

@@ -1,52 +1,45 @@
 import Link from "next/link";
-import { Logo, Container } from "@components/ui";
+import { Logo } from "@components/ui";
 
-import { NavbarRoot } from "./NavbarRoot";
 import { UserNav, Searchbar } from "@components/common";
 
-import styles from "./Navbar.module.css";
+import clsx from "clsx";
 
 interface NavbarProps {
   links?: { title: string; id: string }[];
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ links }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   return (
-    <NavbarRoot>
-      <Container clean className="max-w-8xl mx-auto px-6">
-        <div className={styles.nav}>
-          <div className="flex flex-1 items-center">
-            <Link href="/">
-              <>
-                <Logo short />
-              </>
-            </Link>
-            <nav className={styles.navMenu}>
-              <Link href="/search" className={styles.link}>
-                All
-              </Link>
-              {links?.map((col) => (
-                <Link
-                  href={`/search/${col.id}`}
-                  className={styles.link}
-                  key={col.id}
-                >
-                  {col.title}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div className="hidden flex-1 justify-center lg:flex">
-            <Searchbar />
-          </div>
-          <div className="flex flex-1 items-center justify-end space-x-8">
-            <UserNav />
-          </div>
+    <div className={clsx("flex", "items-center", "justify-between", "gap-8")}>
+      <div className={clsx("w-auto lg:w-[200px]", "flex-shrink-0")}>
+        <Link href="/">
+          <Logo className={clsx("text-brand", "h-16", "w-auto")} />
+        </Link>
+      </div>
+      <div
+        className={clsx(
+          "flex",
+          "items-center",
+          "justify-end sm:justify-between",
+          "flex-1",
+        )}
+      >
+        <Searchbar
+          className={clsx("flex-1", "max-w-[600px]", "hidden", "sm:flex")}
+        />
+        <div
+          className={clsx(
+            "flex-shrink-0",
+            "flex",
+            "items-center",
+            "justify-center",
+            "gap-4",
+          )}
+        >
+          <UserNav />
         </div>
-        <div className="flex pb-4 lg:hidden lg:px-6">
-          <Searchbar id="mobile-search" />
-        </div>
-      </Container>
-    </NavbarRoot>
+      </div>
+    </div>
   );
 };

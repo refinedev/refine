@@ -4,6 +4,14 @@
 @import "./components.css";
 @import "tailwindcss/utilities";
 
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
 @layer base {
     button[type="submit"] {
         background-color: rgb(0 0 0);
