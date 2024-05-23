@@ -1,8 +1,9 @@
+import React from "react";
 import { CrudFilters } from "@refinedev/core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
-
-import { act, TestWrapper } from "@test";
+import { Form, Input } from "antd";
+import { act, TestWrapper, render } from "@test";
 
 import { useTable } from "./useTable";
 
@@ -289,5 +290,53 @@ describe("useTable Hook", () => {
     );
 
     expect(result.current.tableProps.pagination).toBeFalsy();
+  });
+
+  it("should pass form values to search form from params (syncWithLocation)", async () => {
+    const Component = () => {
+      const { searchFormProps } = useTable({
+        resource: "categories",
+        syncWithLocation: true,
+      });
+
+      return (
+        <Form {...searchFormProps}>
+          <Form.Item name="name" noStyle>
+            <Input
+              data-test-id="search-name"
+              size="large"
+              placeholder="Search by name"
+            />
+          </Form.Item>
+        </Form>
+      );
+    };
+
+    const { getByDisplayValue } = render(<Component />, {
+      wrapper: TestWrapper({
+        routerProvider: {
+          parse: () => {
+            return () => ({
+              resource: {
+                name: "posts",
+              },
+              params: {
+                filters: [
+                  {
+                    field: "name",
+                    operator: "contains",
+                    value: "Some Name To Look For",
+                  },
+                ],
+              },
+            });
+          },
+        },
+      }),
+    });
+
+    await waitFor(() => {
+      expect(getByDisplayValue("Some Name To Look For")).toBeInTheDocument();
+    });
   });
 });
