@@ -68,7 +68,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        chunk: ${{ join(toJson(needs.chunks.outputs.CHUNKS)) }}
+        chunk: ${{ toJson(needs.chunks.outputs.CHUNKS) }}
     steps:
       - name: Get PR labels
         id: pr-labels
