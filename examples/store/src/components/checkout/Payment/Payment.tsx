@@ -2,7 +2,13 @@ import { useEffect } from "react";
 
 import { Spinner } from "@components/icons";
 import { useCheckout } from "@lib/context";
-import { PaymentContainer, StepContainer } from "@components";
+import {
+  LoadingDots,
+  PaymentButton,
+  PaymentContainer,
+  StepContainer,
+} from "@components";
+import clsx from "clsx";
 
 export const Payment: React.FC = () => {
   const {
@@ -32,47 +38,40 @@ export const Payment: React.FC = () => {
     };
   }, [cart]);
 
-  if (cart?.total === 0) {
-    return null;
-  }
-
   return (
-    <StepContainer
-      className="bg-accent-2"
-      title="Payment"
-      index={isSame ? 3 : 4}
-      closedState={
-        <div className="text-small-regular text-primary px-8 pb-8">
-          <p>Enter your address to see available payment options.</p>
+    <StepContainer title="Payment" index={isSame ? 3 : 4}>
+      <div className="bg-gray-normal h-px w-full" />
+      {cart?.total !== 0 && (
+        <div className={clsx("pt-4", "flex", "flex-col", "w-full", "gap-4")}>
+          {cart?.payment_sessions?.length ? (
+            cart.payment_sessions
+              .sort((a, b) => {
+                return a.provider_id > b.provider_id ? 1 : -1;
+              })
+              .map((paymentSession) => {
+                return (
+                  <PaymentContainer
+                    paymentSession={paymentSession}
+                    key={paymentSession.id}
+                    selected={
+                      cart?.payment_session?.provider_id ===
+                      paymentSession.provider_id
+                    }
+                    setSelected={() =>
+                      setPaymentSession(paymentSession.provider_id)
+                    }
+                  />
+                );
+              })
+          ) : (
+            <div className="text-gray-darkest flex flex-col items-center justify-center px-4 py-16">
+              <LoadingDots />
+            </div>
+          )}
         </div>
-      }
-    >
-      <div className="text-secondary">
-        {cart?.payment_sessions?.length ? (
-          cart.payment_sessions
-            .sort((a, b) => {
-              return a.provider_id > b.provider_id ? 1 : -1;
-            })
-            .map((paymentSession) => {
-              return (
-                <PaymentContainer
-                  paymentSession={paymentSession}
-                  key={paymentSession.id}
-                  selected={
-                    cart?.payment_session?.provider_id ===
-                    paymentSession.provider_id
-                  }
-                  setSelected={() =>
-                    setPaymentSession(paymentSession.provider_id)
-                  }
-                />
-              );
-            })
-        ) : (
-          <div className="flex flex-col items-center justify-center px-4 py-16 text-gray-900">
-            <Spinner />
-          </div>
-        )}
+      )}
+      <div className={clsx("pt-12", "pb-6")}>
+        <PaymentButton paymentSession={cart?.payment_session} />
       </div>
     </StepContainer>
   );

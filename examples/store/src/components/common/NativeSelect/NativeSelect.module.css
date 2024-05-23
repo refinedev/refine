@@ -7,7 +7,7 @@
 }
 
 .fieldset .select {
-    @apply border-accent-2 w-full border p-2 text-sm font-normal;
+    @apply appearance-none border-accent-2 w-full border p-2 text-sm font-normal;
 }
 
 .fieldset .select:focus {
