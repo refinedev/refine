@@ -1,26 +1,30 @@
 import { useEffect, useRef } from "react";
-import { UseFormProps, useNavigation, useTranslate } from "@refinedev/core";
+import {
+  type UseFormProps,
+  useNavigation,
+  useTranslate,
+} from "@refinedev/core";
 import {
   DeleteButton,
   ListButton,
   SaveButton,
-  UseFormReturnType,
+  type UseFormReturnType,
 } from "@refinedev/antd";
 import {
   Form,
   Input,
-  InputProps,
+  type InputProps,
   Segmented,
   Card,
   Flex,
   Divider,
   InputNumber,
   Button,
-  InputRef,
+  type InputRef,
 } from "antd";
 import InputMask from "react-input-mask";
 import _debounce from "lodash/debounce";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import {
   EditOutlined,
   EnvironmentOutlined,

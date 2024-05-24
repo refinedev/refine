@@ -1,7 +1,7 @@
 import {
   GitHubBanner,
   Refine,
-  AuthProvider,
+  type AuthProvider,
   Authenticated,
 } from "@refinedev/core";
 import {

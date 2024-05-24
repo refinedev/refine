@@ -8,7 +8,7 @@ import {
 } from "@hooks";
 
 import { OrderModalProductItem, OrderIcon, CloseIcon } from "@components";
-import { IOrder } from "@interfaces";
+import type { IOrder } from "@interfaces";
 
 export const OrdersModal: React.FC = () => {
   const ref = useRef(null);

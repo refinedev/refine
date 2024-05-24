@@ -1,4 +1,4 @@
-import { useEffect, useRef, PropsWithChildren } from "react";
+import { useEffect, useRef, type PropsWithChildren } from "react";
 import cn, { clsx } from "clsx";
 
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";

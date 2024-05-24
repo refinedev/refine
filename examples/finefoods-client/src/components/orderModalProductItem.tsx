@@ -1,5 +1,5 @@
 import { useBasketContext } from "@hooks";
-import { IBasketOrder } from "@interfaces";
+import type { IBasketOrder } from "@interfaces";
 
 export const OrderModalProductItem: React.FC<{ order: IBasketOrder }> = ({
   order,

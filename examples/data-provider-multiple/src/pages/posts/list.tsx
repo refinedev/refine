@@ -14,7 +14,7 @@ import {
 
 import { Table, Space, Select, Radio, Collapse, List as AntdList } from "antd";
 
-import { IPost, ICategory, IProducts } from "../../interfaces";
+import type { IPost, ICategory, IProducts } from "../../interfaces";
 
 export const PostList = () => {
   const { Panel } = Collapse;

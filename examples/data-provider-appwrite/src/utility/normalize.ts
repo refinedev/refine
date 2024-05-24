@@ -1,4 +1,4 @@
-import { UploadFile } from "antd/lib/upload/interface";
+import type { UploadFile } from "antd/lib/upload/interface";
 
 interface UploadResponse {
   url: string;

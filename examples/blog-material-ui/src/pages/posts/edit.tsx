@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { Edit, useAutocomplete } from "@refinedev/mui";
@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { IPost, ICategory, Nullable } from "interfaces";
+import type { IPost, ICategory, Nullable } from "interfaces";
 
 export const PostEdit: React.FC = () => {
   const {

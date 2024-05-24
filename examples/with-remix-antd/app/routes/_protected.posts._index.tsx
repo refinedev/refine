@@ -7,11 +7,11 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 import { parseTableParams } from "@refinedev/remix-router";
 
-import { IPost } from "../interfaces";
+import type { IPost } from "../interfaces";
 import { API_URL } from "~/constants";
 
 const PostList: React.FC = () => {

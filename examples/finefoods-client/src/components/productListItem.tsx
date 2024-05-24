@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { NumberInput, PlusSquareIcon } from "@components";
 import { useBasketContext } from "@hooks";
-import { IProduct } from "@interfaces";
+import type { IProduct } from "@interfaces";
 
 type ProducrtListItemProps = {
   product: IProduct;

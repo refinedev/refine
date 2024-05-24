@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import type { Dayjs } from "dayjs";
 
 export interface IOrderChart {
   count: number;

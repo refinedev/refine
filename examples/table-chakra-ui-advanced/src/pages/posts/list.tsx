@@ -1,8 +1,8 @@
 import React, { Fragment, useCallback } from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import { type ColumnDef, flexRender, type Row } from "@tanstack/react-table";
 import {
-  GetManyResponse,
+  type GetManyResponse,
   useDeleteMany,
   useMany,
   useSelect,
@@ -38,7 +38,7 @@ import { IconChevronDown, IconChevronRight } from "@tabler/icons-react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";
-import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import type { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const {

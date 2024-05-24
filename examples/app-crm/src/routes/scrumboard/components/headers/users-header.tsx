@@ -1,9 +1,9 @@
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Space, Typography } from "antd";
 
 import { UserTag } from "@/components";
-import { KanbanGetTaskQuery } from "@/graphql/types";
+import type { KanbanGetTaskQuery } from "@/graphql/types";
 
 type Props = {
   users?: GetFields<KanbanGetTaskQuery>["users"];

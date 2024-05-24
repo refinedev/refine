@@ -1,7 +1,7 @@
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton, List } from "@refinedev/antd";
 import { ProductListCard, ProductListTable } from "../../components";
-import { PropsWithChildren, useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Segmented } from "antd";
 import { useLocation } from "react-router-dom";

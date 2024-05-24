@@ -1,4 +1,4 @@
-import { List, ListProps } from "@refinedev/mui";
+import { List, type ListProps } from "@refinedev/mui";
 
 type Props = {} & ListProps;
 

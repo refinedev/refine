@@ -1,10 +1,10 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Space, Tag } from "antd";
 
-import { UsersSelectQuery } from "@/graphql/types";
+import type { UsersSelectQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 

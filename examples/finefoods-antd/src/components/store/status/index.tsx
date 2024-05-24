@@ -2,7 +2,7 @@ import { Tag, Typography, theme } from "antd";
 import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 import { useConfigProvider } from "../../../context";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 
 type Props = {
   value: IStore["isActive"];

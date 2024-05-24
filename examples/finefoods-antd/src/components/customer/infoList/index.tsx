@@ -1,5 +1,5 @@
 import React from "react";
-import { IUser } from "../../../interfaces";
+import type { IUser } from "../../../interfaces";
 import {
   PhoneOutlined,
   EnvironmentOutlined,

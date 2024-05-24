@@ -1,12 +1,12 @@
 import {
-  HttpError,
+  type HttpError,
   useGo,
   useList,
   useNavigation,
   useTranslate,
 } from "@refinedev/core";
 import { NumberField, useSimpleList } from "@refinedev/antd";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import {
   Card,
   Divider,

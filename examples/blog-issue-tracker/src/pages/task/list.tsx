@@ -1,5 +1,5 @@
 import React from "react";
-import { useMany, HttpError, CrudFilters } from "@refinedev/core";
+import { useMany, type HttpError, type CrudFilters } from "@refinedev/core";
 
 import {
   useTable,
@@ -14,7 +14,7 @@ import {
 
 import { Table, Space, Row, Col, Card } from "antd";
 
-import {
+import type {
   ILabel,
   IPriority,
   ITask,

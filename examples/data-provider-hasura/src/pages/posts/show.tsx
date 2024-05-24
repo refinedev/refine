@@ -4,8 +4,8 @@ import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { GetFields } from "@refinedev/hasura";
-import { GetPostQuery } from "graphql/types";
+import type { GetFields } from "@refinedev/hasura";
+import type { GetPostQuery } from "graphql/types";
 import { POST_QUERY } from "./queries";
 
 const { Title, Text } = Typography;

@@ -16,13 +16,13 @@ import {
   Form,
   Input,
   InputNumber,
-  InputRef,
+  type InputRef,
   Row,
   Select,
 } from "antd";
 import InputMask from "react-input-mask";
 
-import { ICourier } from "../../interfaces";
+import type { ICourier } from "../../interfaces";
 import {
   BikeWhiteIcon,
   CourierFormItemAvatar,

@@ -1,8 +1,8 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import dataProvider from "@refinedev/simple-rest";
 
 import { Promotional, CategoryCard, ProductCard } from "@components";
-import { ICategory, IProduct } from "@interfaces";
+import type { ICategory, IProduct } from "@interfaces";
 import { API_URL } from "src/constants";
 
 type HomePageProps = {

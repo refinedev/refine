@@ -17,7 +17,7 @@ import { VideoClubLayoutSubPage } from "@/components/layout";
 import { Pagination } from "@/components/pagination";
 import { DangerIcon } from "@/components/icons";
 import { OPTIONS_YEAR } from "@/utils/options-year";
-import { ExtendedVideoTitle } from "@/types";
+import type { ExtendedVideoTitle } from "@/types";
 
 export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();

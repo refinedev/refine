@@ -1,7 +1,7 @@
 import { Flex, Skeleton, Spin, Tag, Typography, theme } from "antd";
 import { CheckCircleOutlined, PoweroffOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { ICourier } from "../../../interfaces";
+import type { ICourier } from "../../../interfaces";
 import { useConfigProvider } from "../../../context";
 import { BikeWhiteIcon } from "../../icons";
 

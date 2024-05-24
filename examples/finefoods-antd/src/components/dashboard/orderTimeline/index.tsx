@@ -19,7 +19,7 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import { OrderStatus } from "../../order/status";
 
 dayjs.extend(relativeTime);

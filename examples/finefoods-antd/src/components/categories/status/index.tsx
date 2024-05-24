@@ -1,7 +1,7 @@
 import { Tag, Typography, theme } from "antd";
 import { EyeOutlined, StopOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { ICategory } from "../../../interfaces";
+import type { ICategory } from "../../../interfaces";
 import { useConfigProvider } from "../../../context";
 
 type Props = {

@@ -1,9 +1,9 @@
 import { useSelect } from "@refinedev/antd";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import gql from "graphql-tag";
 
-import { CompaniesSelectQuery } from "@/graphql/types";
+import type { CompaniesSelectQuery } from "@/graphql/types";
 
 const COMPANIES_SELECT_QUERY = gql`
     query CompaniesSelect(

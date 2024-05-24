@@ -3,7 +3,7 @@ import { Show, MarkdownField } from "@refinedev/mantine";
 
 import { Title, Text, Badge, Flex } from "@mantine/core";
 
-import { ICategory, IPost, ITag } from "../../interfaces";
+import type { ICategory, IPost, ITag } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
   const { queryResult } = useShow<IPost>();

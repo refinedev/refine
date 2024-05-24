@@ -1,4 +1,4 @@
-import { HttpError, useBack, useSelect } from "@refinedev/core";
+import { type HttpError, useBack, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
@@ -10,7 +10,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { InputTextarea } from "primereact/inputtextarea";
 
-import { IProduct } from "../../interfaces";
+import type { IProduct } from "../../interfaces";
 
 export const ProductCreate = () => {
   const goBack = useBack();

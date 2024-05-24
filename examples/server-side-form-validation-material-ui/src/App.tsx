@@ -1,4 +1,4 @@
-import { GitHubBanner, HttpError, Refine } from "@refinedev/core";
+import { GitHubBanner, type HttpError, Refine } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   ErrorComponent,

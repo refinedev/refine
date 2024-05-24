@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { LayoutProps } from "@refinedev/core";
+import type { LayoutProps } from "@refinedev/core";
 import dynamic from "next/dynamic";
 
 import { Sidebar, Button, LoadingDots } from "@components/ui";

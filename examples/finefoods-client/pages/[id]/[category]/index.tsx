@@ -1,19 +1,19 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { GetListResponse } from "@refinedev/core";
+import type { GetListResponse } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 import { useTable } from "@refinedev/react-table";
 
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
   ProductListItem,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@components";
-import { ICategory, IProduct } from "@interfaces";
+import type { ICategory, IProduct } from "@interfaces";
 import { API_URL } from "src/constants";
 
 type CategoryPageProps = {

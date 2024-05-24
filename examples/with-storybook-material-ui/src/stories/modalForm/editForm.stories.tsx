@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { EditButton } from "@refinedev/mui";
 
 import TextField from "@mui/material/TextField";
@@ -17,7 +17,7 @@ import Select from "@mui/material/Select";
 import { useModalForm } from "@refinedev/react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export default {
   title: "Hooks / Modal Form",

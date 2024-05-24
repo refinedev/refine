@@ -1,7 +1,7 @@
 import { useForm } from "@refinedev/antd";
 import {
-  BaseKey,
-  HttpError,
+  type BaseKey,
+  type HttpError,
   useGetIdentity,
   useInvalidate,
   useParsed,
@@ -11,7 +11,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Form, Input } from "antd";
 
 import { CustomAvatar } from "@/components";
-import { TaskComment, User } from "@/graphql/schema.types";
+import type { TaskComment, User } from "@/graphql/schema.types";
 
 type FormValues = TaskComment & {
   taskId: BaseKey;

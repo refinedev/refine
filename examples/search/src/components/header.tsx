@@ -5,7 +5,7 @@ import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
-import { ICategory, IOptions, IPost } from "../interfaces";
+import type { ICategory, IOptions, IPost } from "../interfaces";
 
 const { Link } = routerProvider;
 const { Text } = Typography;

@@ -1,11 +1,11 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import dataProvider from "@refinedev/simple-rest";
 import JSConfetti from "js-confetti";
 import { gsap, Power3 } from "gsap";
 
 import { FastMotocycleIcon, OrderIcon } from "@components";
-import { IOrder } from "@interfaces";
+import type { IOrder } from "@interfaces";
 import { API_URL, TRANSLATIONS_BON_APPETIT } from "src/constants";
 
 type OrderPageProps = {

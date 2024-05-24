@@ -1,5 +1,5 @@
 import React from "react";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 
 import { AddAddress, EditAddress } from "@components";
 

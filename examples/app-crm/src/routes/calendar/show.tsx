@@ -16,8 +16,8 @@ import dayjs from "dayjs";
 import { Text, UserTag } from "@/components";
 
 import { CALENDAR_GET_EVENT_QUERY } from "./queries";
-import { GetFields } from "@refinedev/nestjs-query";
-import { GetEventQuery } from "../../graphql/types";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { GetEventQuery } from "../../graphql/types";
 
 type Event = GetFields<GetEventQuery>;
 

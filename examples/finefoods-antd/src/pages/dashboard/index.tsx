@@ -1,4 +1,4 @@
-import { Row, Col, theme, Dropdown, MenuProps, Button, Flex } from "antd";
+import { Row, Col, theme, Dropdown, type MenuProps, Button, Flex } from "antd";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -26,7 +26,7 @@ import { useMemo, useState } from "react";
 import { List, NumberField } from "@refinedev/antd";
 import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
-import { ISalesChart } from "../../interfaces";
+import type { ISalesChart } from "../../interfaces";
 
 type DateFilter = "lastWeek" | "lastMonth";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import { type IResourceComponentsProps, useNavigation } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Form, FormItem, FormLabel, FormMessage } from "@/components/ui/form";

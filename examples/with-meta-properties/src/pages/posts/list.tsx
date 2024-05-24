@@ -1,7 +1,7 @@
 import { List, FilterDropdown, TagField, useTable } from "@refinedev/antd";
 import { Table, Radio } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { tableProps } = useTable<IPost>({

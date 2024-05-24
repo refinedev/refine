@@ -25,7 +25,7 @@ import {
 } from "@/components/icons";
 import { OPTIONS_YEAR } from "@/utils/options-year";
 import { getImagesUrl } from "@/utils/get-cdn-url";
-import { ExtendedVideoTitle } from "@/types";
+import type { ExtendedVideoTitle } from "@/types";
 
 type Props = {
   selectedTitle?: ExtendedVideoTitle | null;

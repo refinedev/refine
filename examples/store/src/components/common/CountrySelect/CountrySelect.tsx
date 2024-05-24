@@ -1,6 +1,6 @@
 import { useOne } from "@refinedev/core";
 import { useFormContext } from "react-hook-form";
-import { Cart, Country } from "@medusajs/medusa";
+import type { Cart, Country } from "@medusajs/medusa";
 
 import { useCartContext } from "@lib/context";
 import { NativeSelect } from "@components";

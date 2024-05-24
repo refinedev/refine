@@ -16,7 +16,7 @@ import { VideoClubLayoutSubPage } from "@/components/layout";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
 import { getImagesUrl } from "@/utils/get-cdn-url";
-import { Rental } from "@/types";
+import type { Rental } from "@/types";
 
 const today = dayjs().year(1995);
 

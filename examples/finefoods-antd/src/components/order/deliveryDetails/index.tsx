@@ -1,5 +1,5 @@
 import { Flex, Grid, List, Space, Steps, Typography, theme } from "antd";
-import { IEvent, IOrder } from "../../../interfaces";
+import type { IEvent, IOrder } from "../../../interfaces";
 import { useTranslate } from "@refinedev/core";
 import dayjs from "dayjs";
 import {

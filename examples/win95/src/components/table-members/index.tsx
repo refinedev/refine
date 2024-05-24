@@ -14,7 +14,7 @@ import {
   TableFilterInputLabel,
   TableFilterInputText,
 } from "@/components/table";
-import { ExtendedMember } from "@/types";
+import type { ExtendedMember } from "@/types";
 import { hasActiveRental } from "@/utils/has-active-rental";
 import { Pagination } from "@/components/pagination";
 import { DangerIcon } from "@/components/icons";

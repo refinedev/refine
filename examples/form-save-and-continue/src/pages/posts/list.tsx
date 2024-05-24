@@ -1,6 +1,6 @@
 import { useTable, useNavigation } from "@refinedev/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { tableQueryResult } = useTable<IPost>({

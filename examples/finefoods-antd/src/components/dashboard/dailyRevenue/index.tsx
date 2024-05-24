@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useTranslate } from "@refinedev/core";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import dayjs from "dayjs";
 
 import { useConfigProvider } from "../../../context";

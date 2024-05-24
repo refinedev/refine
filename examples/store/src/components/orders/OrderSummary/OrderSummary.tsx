@@ -1,4 +1,4 @@
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
 import clsx from "clsx";
 import { formatAmount } from "medusa-react";
 

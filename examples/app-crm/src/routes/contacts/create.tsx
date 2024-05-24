@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { type PropsWithChildren, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
@@ -8,7 +8,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { User } from "@/graphql/schema.types";
+import type { User } from "@/graphql/schema.types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({

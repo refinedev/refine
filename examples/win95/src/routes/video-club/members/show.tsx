@@ -16,7 +16,7 @@ import {
 import { ImagePixelated } from "@/components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
-import { ExtendedMember } from "@/types";
+import type { ExtendedMember } from "@/types";
 
 export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();

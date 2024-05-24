@@ -1,5 +1,5 @@
 import { useGetIdentity, useOne } from "@refinedev/core";
-import { Customer, StoreCustomersListOrdersRes } from "@medusajs/medusa";
+import type { Customer, StoreCustomersListOrdersRes } from "@medusajs/medusa";
 
 import { AccountLayout, Overview } from "@components/account";
 

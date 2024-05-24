@@ -1,17 +1,17 @@
 import React from "react";
 
 import { useDelete, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
   EllipsisOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, MenuProps } from "antd";
+import { Button, Dropdown, type MenuProps } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { ContactsListQuery } from "@/graphql/types";
+import type { ContactsListQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { ContactCardSkeleton } from "./skeleton";

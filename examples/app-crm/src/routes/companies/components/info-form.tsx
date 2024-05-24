@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useShow } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import {
   ApiOutlined,
@@ -14,8 +14,12 @@ import {
 import { Card, Input, InputNumber, Select, Space } from "antd";
 
 import { SingleElementForm, Text } from "@/components";
-import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
-import { CompanyInfoQuery } from "@/graphql/types";
+import type {
+  BusinessType,
+  CompanySize,
+  Industry,
+} from "@/graphql/schema.types";
+import type { CompanyInfoQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { COMPANY_INFO_QUERY } from "./queries";

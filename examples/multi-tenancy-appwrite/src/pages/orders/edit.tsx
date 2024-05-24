@@ -2,7 +2,7 @@ import { useParsed } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
-import { IOrder, IProduct } from "../../interfaces";
+import type { IOrder, IProduct } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
 export const OrderEdit = () => {

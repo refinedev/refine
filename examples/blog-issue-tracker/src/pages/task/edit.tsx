@@ -2,7 +2,7 @@ import { useForm, Edit, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
-import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
+import type { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
 export const TaskEdit = () => {
   const { formProps, saveButtonProps } = useForm<ITask>();

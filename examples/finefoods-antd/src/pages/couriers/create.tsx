@@ -3,7 +3,7 @@ import {
   SaveButton,
   useStepsForm,
   useSelect,
-  UseFormReturnType,
+  type UseFormReturnType,
 } from "@refinedev/antd";
 import {
   Form,
@@ -11,13 +11,13 @@ import {
   Input,
   Button,
   Steps,
-  InputProps,
+  type InputProps,
   Modal,
   Flex,
   theme,
 } from "antd";
 import InputMask from "react-input-mask";
-import { ICourier, IStore, IVehicle } from "../../interfaces";
+import type { ICourier, IStore, IVehicle } from "../../interfaces";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CourierFormItemAvatar } from "../../components";

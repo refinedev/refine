@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { getDefaultFilter, useGo } from "@refinedev/core";
 import {
   CreateButton,

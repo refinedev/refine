@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { type FC, type PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   AppstoreOutlined,
@@ -13,7 +13,7 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { CompaniesTableQuery } from "@/graphql/types";
+import type { CompaniesTableQuery } from "@/graphql/types";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
 import { COMPANIES_TABLE_QUERY } from "./queries";

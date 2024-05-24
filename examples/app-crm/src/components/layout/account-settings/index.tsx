@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { HttpError, useOne, useUpdate } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import { type HttpError, useOne, useUpdate } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
   CloseOutlined,
@@ -25,7 +25,7 @@ import {
 } from "antd";
 
 import { TimezoneEnum } from "@/enums";
-import {
+import type {
   AccountSettingsGetUserQuery,
   AccountSettingsUpdateUserMutation,
   AccountSettingsUpdateUserMutationVariables,

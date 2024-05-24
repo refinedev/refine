@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import {
   DeleteButton,
@@ -9,8 +9,8 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { getDefaultFilter, HttpError } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { getDefaultFilter, type HttpError } from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
@@ -25,8 +25,8 @@ import {
   QuoteStatusTag,
   Text,
 } from "@/components";
-import { QuoteStatus } from "@/graphql/schema.types";
-import { QuotesTableQuery } from "@/graphql/types";
+import type { QuoteStatus } from "@/graphql/schema.types";
+import type { QuotesTableQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";

@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from "axios";
-import { DataProvider } from "@refinedev/core";
+import axios, { type AxiosInstance } from "axios";
+import type { DataProvider } from "@refinedev/core";
 
 const axiosInstance = axios.create();
 

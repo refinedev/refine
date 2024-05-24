@@ -1,6 +1,13 @@
 import { useParsed } from "@refinedev/core";
 import { mediaUploadMapper, getValueProps } from "@refinedev/strapi-v4";
-import { Form, FormProps, Input, Upload, ModalProps, Modal } from "antd";
+import {
+  Form,
+  type FormProps,
+  Input,
+  Upload,
+  type ModalProps,
+  Modal,
+} from "antd";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 

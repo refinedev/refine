@@ -1,6 +1,11 @@
 import { RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import {
+  createContext,
+  type PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 
 type ColorModeContextType = {
   mode: string;

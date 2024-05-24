@@ -1,6 +1,6 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import {
+import type { HttpError } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -10,8 +10,12 @@ import { Form, Input, InputNumber, Select } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
-import {
+import type {
+  BusinessType,
+  CompanySize,
+  Industry,
+} from "@/graphql/schema.types";
+import type {
   UpdateCompanyMutation,
   UpdateCompanyMutationVariables,
   UsersSelectQuery,

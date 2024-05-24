@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { type FC, useMemo } from "react";
 import { useModal } from "@refinedev/core";
 import { RefineThemes } from "@refinedev/mui";
 import Card from "@mui/material/Card";

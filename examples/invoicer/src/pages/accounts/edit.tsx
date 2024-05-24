@@ -1,4 +1,4 @@
-import { HttpError, useNavigation } from "@refinedev/core";
+import { type HttpError, useNavigation } from "@refinedev/core";
 import {
   DateField,
   DeleteButton,
@@ -25,7 +25,7 @@ import {
   FormItemEditableText,
   FormItemUploadLogo,
 } from "@/components/form";
-import { Account, AccountForm } from "@/types";
+import type { Account, AccountForm } from "@/types";
 
 export const AccountsPageEdit = () => {
   const { listUrl } = useNavigation();

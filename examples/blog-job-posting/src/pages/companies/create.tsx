@@ -2,7 +2,7 @@ import { Create, useForm } from "@refinedev/antd";
 
 import { Form, Input, Checkbox, Typography, Row, Col } from "antd";
 
-import { ICompany } from "interfaces";
+import type { ICompany } from "interfaces";
 
 export const CompanyCreate = () => {
   const { Title } = Typography;

@@ -3,7 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Typography, Space, Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "../../utility";
-import { Pixel } from "../../types";
+import type { Pixel } from "../../types";
 
 const { Title } = Typography;
 

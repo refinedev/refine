@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
-import { HttpError, getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { type HttpError, getDefaultFilter } from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   AppstoreOutlined,
@@ -13,7 +13,7 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { ContactsListQuery } from "@/graphql/types";
+import type { ContactsListQuery } from "@/graphql/types";
 
 import { CardView, TableView } from "./components";
 import { CONTACTS_LIST_QUERY } from "./queries";

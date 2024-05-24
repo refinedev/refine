@@ -1,10 +1,10 @@
 import { useModalForm } from "@refinedev/antd";
 import { useInvalidate, useNavigation } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input, Modal } from "antd";
 
-import { KanbanCreateStageMutation } from "@/graphql/types";
+import type { KanbanCreateStageMutation } from "@/graphql/types";
 
 import { KANBAN_CREATE_STAGE_MUTATION } from "./queries";
 

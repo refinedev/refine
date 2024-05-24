@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 import { useConfigProvider } from "@/providers/config-provider";
 
 export const IconInvoicerLogo = (props: SVGProps<SVGSVGElement>) => {

@@ -1,6 +1,6 @@
 import {
   useTranslate,
-  HttpError,
+  type HttpError,
   getDefaultFilter,
   useExport,
   useGo,
@@ -25,10 +25,10 @@ import {
   Button,
 } from "antd";
 
-import { IUser, IUserFilterVariables } from "../../interfaces";
+import type { IUser, IUserFilterVariables } from "../../interfaces";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { PaginationTotal, UserStatus } from "../../components";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { useLocation } from "react-router-dom";
 
 export const CustomerList = ({ children }: PropsWithChildren) => {

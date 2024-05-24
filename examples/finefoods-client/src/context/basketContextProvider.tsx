@@ -1,7 +1,11 @@
-import React, { createContext, PropsWithChildren, useReducer } from "react";
+import React, {
+  createContext,
+  type PropsWithChildren,
+  useReducer,
+} from "react";
 import { useMany } from "@refinedev/core";
 
-import { IBasketOrder, IProduct } from "../interfaces";
+import type { IBasketOrder, IProduct } from "../interfaces";
 import { OrdersModalContextProvider } from "@context";
 
 export const BasketContext = createContext<{

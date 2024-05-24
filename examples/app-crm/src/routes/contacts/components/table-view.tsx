@@ -4,8 +4,12 @@ import {
   getDefaultSortOrder,
   ShowButton,
 } from "@refinedev/antd";
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import {
+  type CrudFilters,
+  type CrudSorting,
+  getDefaultFilter,
+} from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { PhoneOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space, Table, type TableProps } from "antd";
@@ -17,7 +21,7 @@ import {
   Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { ContactsListQuery } from "@/graphql/types";
+import type { ContactsListQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
 type Contact = GetFieldsFromList<ContactsListQuery>;

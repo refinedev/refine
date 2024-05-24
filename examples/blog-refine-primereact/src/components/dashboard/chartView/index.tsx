@@ -2,9 +2,9 @@ import { Card } from "primereact/card";
 import { Chart } from "primereact/chart";
 import { TabView, TabPanel } from "primereact/tabview";
 
-import { ChartData, ChartOptions } from "chart.js";
+import type { ChartData, ChartOptions } from "chart.js";
 
-import { IChartDatum } from "../../../interfaces";
+import type { IChartDatum } from "../../../interfaces";
 
 interface ChartViewProps {
   revenue: IChartDatum[];
