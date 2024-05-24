@@ -2,9 +2,6 @@ name: Deploy Example Previews
 
 on:
   pull_request:
-    paths:
-      - "packages/**"
-      - "examples/**"
     types:
       - opened
       - synchronize
