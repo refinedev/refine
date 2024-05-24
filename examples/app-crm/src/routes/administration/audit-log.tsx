@@ -1,6 +1,7 @@
 import {
   DateField,
   FilterDropdown,
+  rangePickerFilterMapper,
   getDefaultSortOrder,
   List,
   useTable,
@@ -147,7 +148,7 @@ export const AuditLogPage = () => {
               />
             )}
             filterDropdown={(props) => (
-              <FilterDropdown {...props}>
+              <FilterDropdown {...props} mapValue={rangePickerFilterMapper}>
                 <DatePicker.RangePicker />
               </FilterDropdown>
             )}
