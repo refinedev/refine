@@ -9,7 +9,6 @@ import {
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
-  TwitterIcon,
   RedditIcon,
   LinkedinIcon,
 } from "react-share";

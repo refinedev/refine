@@ -97,7 +97,7 @@ For live features to work automatically we added `liveMode: "auto"` in the `opti
 :::
 
 <br/>
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/Realtime/real-time.gif" alt="Realtime Demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/real-time.gif" alt="Realtime Demo" />
 
 ## Configuring `liveMode`
 
