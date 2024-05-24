@@ -2,16 +2,20 @@ name: Deploy Example Previews
 
 on:
   pull_request:
-    branches:
-      - master
+    paths:
+      - "packages/**"
+      - "examples/**"
     types:
       - opened
       - synchronize
       - reopened
       - labeled
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
-      example:
+      example_name:
         description: "Example name to deploy preview"
         type: choice
         required: true
@@ -32,9 +36,12 @@ jobs:
     # Set job outputs to values from filter step
     outputs:
       examples: ${{ steps.filter.outputs.changes }}
-      all_examples: '["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]'
-      dispatch_example: '[${{ inputs.example }}]'
+      all_examples: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-previews ') && '["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' || '[]'}}
+      dispatch_example: '[${{ inputs.example_name }}]'
     steps:
+    - name: Get PR labels
+      id: pr-labels
+      uses: joerick/pr-labels-action@v1.0.6
     # For pull requests it's not necessary to checkout the code
     - uses: dorny/paths-filter@v3
       id: filter
@@ -53,7 +60,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) || fromJSON(needs.changes.outputs.all_examples) }}
+        example: ${{ fromJSON(needs.changes.outputs.all_examples) || fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
