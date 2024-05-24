@@ -87,6 +87,7 @@ jobs:
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false
           github-deployment-environment: "deploy-preview-${{ matrix.example }}-${{ github.event.number }}"
+          netlify-config-path: ./netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
