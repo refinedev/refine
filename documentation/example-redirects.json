@@ -178,7 +178,7 @@
     },
     {
       "from": "/docs/3.xx.xx/examples",
-      "to": "https://github.com/refinedev/refine/tree/master/examples"
+      "to": "https://github.com/refinedev/refine/tree/v3/examples"
     }
   ]
 }
