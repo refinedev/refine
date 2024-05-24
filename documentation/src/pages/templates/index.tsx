@@ -1,5 +1,5 @@
 import Head from "@docusaurus/Head";
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from "react";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";

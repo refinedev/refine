@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from "react";
 
 export const TopAnnouncement = () => {
   return (

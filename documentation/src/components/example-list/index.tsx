@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { GithubIconOutlined } from "@site/src/refine-theme/icons/github";
 import { ArrowUpIcon } from "@site/src/refine-theme/icons/arrow-up";
 import { AnimatePresence, motion } from "framer-motion";
-import { Example } from "@site/src/types/examples";
+import type { Example } from "@site/src/types/examples";
 import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 
 type ExampleDoc = Record<
