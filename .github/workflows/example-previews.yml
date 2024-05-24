@@ -36,13 +36,17 @@ jobs:
     # Set job outputs to values from filter step
     outputs:
       examples: ${{ steps.filter.outputs.changes }}
-      all_examples: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-previews ') && '["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' || '[]'}}
-      dispatch_example: '[${{ inputs.example_name }}]'
+      all_examples: ${{ steps.deploy-previews-label.outputs.all_examples || '' }}
+      dispatch_example: ${{ join(inputs.example_name) || '' }}
     steps:
     - name: Get PR labels
       id: pr-labels
       uses: joerick/pr-labels-action@v1.0.6
     # For pull requests it's not necessary to checkout the code
+    - name: 'Check deploy previews label'
+      id: deploy-previews-label
+      run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' > $GITHUB_OUTPUT
+      if: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-preview ') }}
     - uses: dorny/paths-filter@v3
       id: filter
       with:
