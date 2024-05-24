@@ -33,8 +33,8 @@ jobs:
     # Set job outputs to values from filter step
     outputs:
       examples: ${{ steps.filter.outputs.changes }}
-      all_examples: ${{ steps.deploy-previews-label.outputs.all_examples || '' }}
-      dispatch_example: ${{ join(inputs.example_name) || '' }}
+      all_examples: ${{ steps.deploy-previews-label.outputs.all_examples || '[]' }}
+      dispatch_example: ${{ join(inputs.example_name) || '[]' }}
     steps:
     - name: Get PR labels
       id: pr-labels
