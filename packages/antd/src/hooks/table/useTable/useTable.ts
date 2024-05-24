@@ -11,6 +11,7 @@ import {
   useTableProps as useTablePropsCore,
   useTableReturnType as useTableCoreReturnType,
   pickNotDeprecated,
+  useSyncWithLocation,
 } from "@refinedev/core";
 
 import {
@@ -122,6 +123,8 @@ export const useTable = <
     metaData: pickNotDeprecated(meta, metaData),
     dataProviderName,
   });
+  const { syncWithLocation: defaultSyncWithLocation } = useSyncWithLocation();
+  const shouldSyncWithLocation = syncWithLocation ?? defaultSyncWithLocation;
   const breakpoint = Grid.useBreakpoint();
   const [form] = Form.useForm<TSearchVariables>();
   const formSF = useFormSF<any, TSearchVariables>({
@@ -139,6 +142,33 @@ export const useTable = <
   );
 
   const { data, isFetched, isLoading } = tableQueryResult;
+
+  React.useEffect(() => {
+    if (shouldSyncWithLocation) {
+      // get registered fields of form
+      const registeredFields = formSF.form.getFieldsValue() as Record<
+        string,
+        any
+      >;
+      // map `filters` for registered fields
+      const filterFilterMap = Object.keys(registeredFields).reduce(
+        (acc, curr) => {
+          // find filter for current field
+          const filter = filters.find(
+            (filter) => "field" in filter && filter.field === curr,
+          );
+          // if filter exists, set value to filter value
+          if (filter) {
+            acc[curr] = filter?.value;
+          }
+          return acc;
+        },
+        {} as Record<string, any>,
+      );
+      // set values to form
+      formSF.form.setFieldsValue(filterFilterMap as any);
+    }
+  }, [shouldSyncWithLocation]);
 
   const onChange = (
     paginationState: TablePaginationConfig,
