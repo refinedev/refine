@@ -26,7 +26,7 @@ const dev = (program: Command) => {
     .addOption(
       new Option(
         "-d, --devtools <devtools>",
-        "Start refine's devtools server",
+        "Start Refine Devtools server",
       ).default("true", "true if devtools is installed"),
     )
     .argument("[args...]")
