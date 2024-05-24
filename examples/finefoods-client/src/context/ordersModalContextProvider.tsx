@@ -1,3 +1,5 @@
+"use client";
+
 import React, { PropsWithChildren, useState } from "react";
 
 export const OrdersModalContext = React.createContext<{

@@ -1,4 +1,7 @@
+"use client";
+
 import * as React from "react";
+
 import { SVGProps } from "react";
 
 const SvgCloseIcon = (props: SVGProps<SVGSVGElement>) => (
