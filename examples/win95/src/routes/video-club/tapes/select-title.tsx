@@ -1,4 +1,9 @@
-import { getDefaultFilter, useNavigation, useTable } from "@refinedev/core";
+import {
+  getDefaultFilter,
+  useNavigation,
+  useSubscription,
+  useTable,
+} from "@refinedev/core";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button, Separator } from "react95";
@@ -53,6 +58,20 @@ export const VideoClubPageTapeSelectTitle = ({
     resource: "titles",
     meta: {
       select: "*, tapes(*), rentals(*)",
+    },
+  });
+
+  useSubscription({
+    channel: "tapes",
+    onLiveEvent: () => {
+      titlesQueryResult.refetch();
+    },
+  });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      titlesQueryResult.refetch();
     },
   });
 
