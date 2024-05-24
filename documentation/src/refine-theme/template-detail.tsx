@@ -83,18 +83,13 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             className={clsx(
               "flex",
               "mt-8 landing-sm:mt-12 landing-md:mt-16",
-              "rounded-lg landing-md:rounded-xl landing-lg:rounded-3xl",
               "-mx-4 landing-sm:-mx-0",
               "landing-sm:px-4",
               "aspect-[1168/736]",
             )}
           >
             <img
-              className={clsx(
-                "rounded-lg landing-md:rounded-xl landing-lg:rounded-3xl",
-                "block",
-                "aspect-[1168/736]",
-              )}
+              className={clsx("block", "aspect-[1168/736]")}
               src={data.images[0]}
               alt={data.title}
             />
