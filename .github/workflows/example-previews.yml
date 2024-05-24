@@ -43,7 +43,7 @@ jobs:
     - name: 'Check deploy previews label'
       id: deploy-previews-label
       run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' > $GITHUB_OUTPUT
-      if: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-preview ') }}
+      if: ${{ github.event.label.name == 'deploy preview' }}
     - uses: dorny/paths-filter@v3
       id: filter
       with:
