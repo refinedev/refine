@@ -155,7 +155,7 @@
   "autoSave": {
     "success": "gespeichert",
     "error": "fehler beim automatischen speichern",
-    "loading": "speichern..",
+    "loading": "speichern...",
     "idle": "warten auf anderungen"
   }
 }
