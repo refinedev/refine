@@ -13,7 +13,7 @@ import {
   useLogout,
   useTitle,
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useRouterContext,
   useMenu,
@@ -26,7 +26,7 @@ import {
 } from "@refinedev/core";
 
 import { drawerButtonStyles } from "./styles";
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 

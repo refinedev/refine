@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -24,8 +24,8 @@ import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
 
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useLogin,
   useTranslate,
   useRouterContext,
@@ -34,7 +34,7 @@ import {
 } from "@refinedev/core";
 import { layoutStyles, titleStyles } from "../styles";
 
-import { FormPropsType } from "../../index";
+import type { FormPropsType } from "../../index";
 import { ThemedTitleV2 } from "@components";
 
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;

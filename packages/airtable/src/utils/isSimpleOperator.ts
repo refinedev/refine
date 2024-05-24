@@ -1,5 +1,5 @@
 export type SimpleOperators = "eq" | "ne" | "lt" | "lte" | "gt" | "gte";
-import { OperatorSymbol } from "@qualifyze/airtable-formulator";
+import type { OperatorSymbol } from "@qualifyze/airtable-formulator";
 
 export const simpleOperatorMapping: Record<SimpleOperators, OperatorSymbol> = {
   eq: "=",

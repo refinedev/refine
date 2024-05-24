@@ -1,4 +1,4 @@
-import {
+import type {
   BaseKey,
   CrudFilters,
   CrudSorting,
@@ -6,7 +6,7 @@ import {
   HttpError,
   LogicalFilter,
 } from "@refinedev/core";
-import axios, { AxiosInstance } from "axios";
+import axios, { type AxiosInstance } from "axios";
 import { stringify } from "query-string";
 
 const axiosInstance = axios.create();

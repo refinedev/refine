@@ -1,14 +1,14 @@
 import {
-  CrudFilters,
-  CrudOperators,
-  CrudSorting,
-  CrudFilter,
+  type CrudFilters,
+  type CrudOperators,
+  type CrudSorting,
+  type CrudFilter,
   getDefaultFilter as getDefaultFilterCore,
   getDefaultSortOrder as getDefaultSortOrderCore,
-  ConditionalFilter,
-  LogicalFilter,
+  type ConditionalFilter,
+  type LogicalFilter,
 } from "@refinedev/core";
-import { TableProps } from "antd";
+import type { TableProps } from "antd";
 
 export type FilterValue = Parameters<
   NonNullable<TableProps["onChange"]>

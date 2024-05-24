@@ -26,7 +26,7 @@ import { RouterPickerProvider } from "../../../contexts/router/picker";
 import { UndoableQueueContextProvider } from "../../../contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "../../../contexts/unsavedWarn";
 
-import { RefineProps } from "../../../contexts/refine/types";
+import type { RefineProps } from "../../../contexts/refine/types";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
 
 /**

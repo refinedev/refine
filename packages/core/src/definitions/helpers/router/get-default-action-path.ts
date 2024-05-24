@@ -1,4 +1,4 @@
-import { Action } from "../../../contexts/router/types";
+import type { Action } from "../../../contexts/router/types";
 import { removeLeadingTrailingSlashes } from "./remove-leading-trailing-slashes";
 
 /**

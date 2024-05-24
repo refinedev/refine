@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
 import { Link as ChakraLink, Icon, HStack, Heading } from "@chakra-ui/react";
-import { RefineLayoutThemedTitleProps } from "../types";
+import type { RefineLayoutThemedTitleProps } from "../types";
 
 const defaultText = "Refine Project";
 

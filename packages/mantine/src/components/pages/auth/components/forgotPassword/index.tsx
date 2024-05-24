@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  ForgotPasswordPageProps,
-  ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type ForgotPasswordFormTypes,
   useRouterType,
   useLink,
 } from "@refinedev/core";
@@ -19,8 +19,8 @@ import {
   Anchor,
   Button,
   Text,
-  BoxProps,
-  CardProps,
+  type BoxProps,
+  type CardProps,
   Group,
   useMantineTheme,
 } from "@mantine/core";
@@ -33,7 +33,7 @@ import {
   titleStyles,
   pageTitleStyles,
 } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 
 type ResetPassworProps = ForgotPasswordPageProps<
   BoxProps,

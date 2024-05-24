@@ -1,5 +1,5 @@
 import { pickDataProvider } from ".";
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 
 describe("pickDataProvider", () => {
   it("should return the dataProvider from the params", () => {

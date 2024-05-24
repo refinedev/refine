@@ -1,4 +1,4 @@
-import { FieldTransformer, InferField } from "../types";
+import type { FieldTransformer, InferField } from "../types";
 
 export const relationToFieldable: FieldTransformer = (
   fields,

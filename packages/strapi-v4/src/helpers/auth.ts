@@ -1,4 +1,4 @@
-import { MetaQuery, pickNotDeprecated } from "@refinedev/core";
+import { type MetaQuery, pickNotDeprecated } from "@refinedev/core";
 import axios from "axios";
 import qs from "qs";
 

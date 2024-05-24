@@ -1,5 +1,5 @@
 import React from "react";
-import { Action, ResourceProps } from "@refinedev/core";
+import type { Action, ResourceProps } from "@refinedev/core";
 
 import { Route } from "react-router-dom";
 

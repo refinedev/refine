@@ -27,12 +27,12 @@ import {
   ListButton,
   EditButton,
   Breadcrumb,
-  ListButtonProps,
-  EditButtonProps,
-  DeleteButtonProps,
-  RefreshButtonProps,
+  type ListButtonProps,
+  type EditButtonProps,
+  type DeleteButtonProps,
+  type RefreshButtonProps,
 } from "@components";
-import { ShowProps } from "../types";
+import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**

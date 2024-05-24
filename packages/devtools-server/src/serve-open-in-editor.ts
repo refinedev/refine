@@ -1,4 +1,4 @@
-import { Express } from "express";
+import type { Express } from "express";
 import path from "path";
 
 export const serveOpenInEditor = (app: Express, basePath: string) => {

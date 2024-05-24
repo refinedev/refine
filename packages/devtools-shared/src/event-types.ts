@@ -1,4 +1,4 @@
-import {
+import type {
   Mutation,
   MutationKey,
   MutationStatus,
@@ -6,7 +6,7 @@ import {
   QueryState,
   QueryStatus,
 } from "@tanstack/react-query";
-import { TraceType } from "./trace";
+import type { TraceType } from "./trace";
 
 export enum DevtoolsEvent {
   RELOAD = "devtools:reload",

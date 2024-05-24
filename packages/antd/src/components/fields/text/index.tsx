@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "antd";
 
-import { TextFieldProps } from "../types";
+import type { TextFieldProps } from "../types";
 
 /**
  * This field lets you show basic text. It uses Ant Design's {@link https://ant.design/components/typography/#Typography.Text `<Typography.Text>`} component.

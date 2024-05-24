@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
-import { OpenNotificationParams } from "../../../contexts/notification/types";
+import type { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useHandleNotification } from "./";
 
 const dummyNotification: OpenNotificationParams = {

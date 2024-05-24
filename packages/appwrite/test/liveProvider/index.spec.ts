@@ -1,4 +1,4 @@
-import { Client as Appwrite } from "appwrite";
+import type { Client as Appwrite } from "appwrite";
 import { liveProvider } from "../../src";
 
 const mockClient: Appwrite = {

@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthProvider, Refine } from "@refinedev/core";
+import { type AuthProvider, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
-import {
+import type {
   I18nProvider,
   AccessControlProvider,
   LegacyAuthProvider,

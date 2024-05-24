@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import sanitizeHtml from "sanitize-html";
 
-import { Feed, FeedSection } from "@refinedev/devtools-shared";
+import type { Feed, FeedSection } from "@refinedev/devtools-shared";
 
 import { FEED_MD_URL } from "src/constants";
 

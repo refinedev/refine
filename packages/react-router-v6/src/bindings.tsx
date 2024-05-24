@@ -1,8 +1,8 @@
-import React, { ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 import {
-  GoConfig,
-  ParseResponse,
-  RouterBindings,
+  type GoConfig,
+  type ParseResponse,
+  type RouterBindings,
   matchResourceFromRoute,
   ResourceContext,
 } from "@refinedev/core";

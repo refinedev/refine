@@ -2,7 +2,7 @@ import React from "react";
 
 import { Box, Spinner } from "@chakra-ui/react";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const LoadingComponent: CreateInferencerConfig["loadingComponent"] =
   () => {

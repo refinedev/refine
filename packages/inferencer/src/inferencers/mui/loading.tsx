@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const LoadingComponent: CreateInferencerConfig["loadingComponent"] =
   () => {

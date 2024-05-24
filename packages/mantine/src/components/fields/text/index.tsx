@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "@mantine/core";
 
-import { TextFieldProps } from "../types";
+import type { TextFieldProps } from "../types";
 
 /**
  * This field lets you show basic text. It uses Mantine {@link https://mantine.dev/core/text `<Text>`} component.

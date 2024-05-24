@@ -6,7 +6,7 @@ import { serveClient } from "./serve-client";
 import { serveWs } from "./serve-ws";
 import { reloadOnChange } from "./reload-on-change";
 import { setupServer } from "./setup-server";
-import { Activity, createDb } from "./create-db";
+import { type Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
 import { serveProxy } from "./serve-proxy";
 import { serveOpenInEditor } from "./serve-open-in-editor";

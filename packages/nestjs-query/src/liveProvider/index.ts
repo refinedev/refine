@@ -1,6 +1,6 @@
-import { LiveProvider } from "@refinedev/core";
+import type { LiveProvider } from "@refinedev/core";
 
-import { Client } from "graphql-ws";
+import type { Client } from "graphql-ws";
 
 import { generateSubscription } from "../utils";
 

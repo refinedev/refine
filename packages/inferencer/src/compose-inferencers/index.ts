@@ -1,4 +1,4 @@
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 import { pickInferredField } from "../utilities";
 
 /**

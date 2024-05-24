@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -27,7 +27,7 @@ import {
   DrawerOverlay,
   IconButton,
   Tooltip,
-  TooltipProps,
+  type TooltipProps,
   VStack,
 } from "@chakra-ui/react";
 import {
@@ -40,7 +40,7 @@ import {
 } from "@tabler/icons-react";
 
 import { Title as DefaultTitle } from "@components";
-import { RefineLayoutSiderProps } from "../types";
+import type { RefineLayoutSiderProps } from "../types";
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({
   Title: TitleFromProps,

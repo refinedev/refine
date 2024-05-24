@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -27,7 +27,7 @@ import {
   DrawerOverlay,
   IconButton,
   Tooltip,
-  TooltipProps,
+  type TooltipProps,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
@@ -39,7 +39,7 @@ import {
 } from "@tabler/icons-react";
 
 import { ThemedTitle as DefaultTitle } from "@components";
-import { RefineThemedLayoutSiderProps } from "../types";
+import type { RefineThemedLayoutSiderProps } from "../types";
 
 /**
  * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/#migrate-themedlayout-to-themedlayoutv2

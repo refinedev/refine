@@ -8,7 +8,7 @@ import { FilterField } from "./filter-field";
 import { CheckboxGroup } from "./checkbox-group";
 import { scopes } from "@refinedev/devtools-shared";
 import { MonitorAppliedFilterGroup } from "./monitor-applied-filter-group";
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 
 export type Filters = {
   scope: string[];

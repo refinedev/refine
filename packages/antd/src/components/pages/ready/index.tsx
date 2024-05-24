@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@refinedev/ui-types";
+import type { RefineReadyPageProps } from "@refinedev/ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 

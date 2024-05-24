@@ -3,7 +3,7 @@ import { useCallback, useContext } from "react";
 import { ResourceContext } from "@contexts/resource";
 import { pickResource } from "@definitions/helpers/pick-resource";
 
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 
 export type UseResourceWithRouteReturnType = (route: string) => IResourceItem;
 

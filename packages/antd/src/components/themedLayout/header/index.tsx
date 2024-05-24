@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
 import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
-import { RefineThemedLayoutHeaderProps } from "../types";
+import type { RefineThemedLayoutHeaderProps } from "../types";
 
 /**
  * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/antd/components/antd-themed-layout/#migrate-themedlayout-to-themedlayoutv2

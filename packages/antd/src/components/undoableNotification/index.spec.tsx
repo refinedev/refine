@@ -2,7 +2,7 @@ import React from "react";
 
 import { fireEvent, render } from "@test";
 
-import { UndoableNotification, UndoableNotificationProps } from ".";
+import { UndoableNotification, type UndoableNotificationProps } from ".";
 
 const cancelMutation = jest.fn();
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { AutoSaveIndicatorProps } from "@refinedev/core";
+import type { AutoSaveIndicatorProps } from "@refinedev/core";
 import { render } from "@test";
 
 export const autoSaveIndicatorTests = (

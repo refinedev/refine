@@ -2,7 +2,7 @@ import React from "react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-import { UrlFieldProps } from "../types";
+import type { UrlFieldProps } from "../types";
 
 /**
  * This field lets you embed a link.It uses the {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>` }

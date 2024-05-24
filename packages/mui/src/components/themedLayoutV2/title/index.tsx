@@ -5,7 +5,7 @@ import MuiLink from "@mui/material/Link";
 import SvgIcon from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
 
-import { RefineLayoutThemedTitleProps } from "../types";
+import type { RefineLayoutThemedTitleProps } from "../types";
 
 const defaultText = "Refine Project";
 

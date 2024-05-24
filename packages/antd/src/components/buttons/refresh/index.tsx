@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { RefreshButtonProps } from "../types";
+import type { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component

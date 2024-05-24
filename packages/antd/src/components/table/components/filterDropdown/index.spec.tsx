@@ -2,7 +2,7 @@ import React from "react";
 import { Input, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 import { render, fireEvent } from "@test";
-import { FilterDropdown, FilterDropdownProps } from "./";
+import { FilterDropdown, type FilterDropdownProps } from "./";
 
 describe("FilterDropdown", () => {
   beforeEach(() => {

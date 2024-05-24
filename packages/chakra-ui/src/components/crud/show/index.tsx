@@ -21,12 +21,12 @@ import {
   ListButton,
   RefreshButton,
   Breadcrumb,
-  ListButtonProps,
-  EditButtonProps,
-  DeleteButtonProps,
-  RefreshButtonProps,
+  type ListButtonProps,
+  type EditButtonProps,
+  type DeleteButtonProps,
+  type RefreshButtonProps,
 } from "@components";
-import { ShowProps } from "../types";
+import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Show: React.FC<ShowProps> = (props) => {

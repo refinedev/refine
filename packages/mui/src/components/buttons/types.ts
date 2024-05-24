@@ -1,6 +1,6 @@
-import { UseImportInputPropsType } from "@refinedev/core";
+import type { UseImportInputPropsType } from "@refinedev/core";
 
-import {
+import type {
   RefineCloneButtonProps,
   RefineCreateButtonProps,
   RefineDeleteButtonProps,

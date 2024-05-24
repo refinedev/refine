@@ -1,6 +1,6 @@
-import React, { useState, PropsWithChildren } from "react";
+import React, { useState, type PropsWithChildren } from "react";
 
-import { IUnsavedWarnContext } from "./types";
+import type { IUnsavedWarnContext } from "./types";
 
 export const UnsavedWarnContext = React.createContext<IUnsavedWarnContext>({});
 

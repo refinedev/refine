@@ -1,4 +1,4 @@
-import { ConditionalFilter } from "@refinedev/core";
+import type { ConditionalFilter } from "@refinedev/core";
 import dataProvider from "../../src/index";
 import "./index.mock";
 

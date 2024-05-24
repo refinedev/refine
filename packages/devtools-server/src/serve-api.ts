@@ -1,13 +1,13 @@
 import type { Express } from "express";
 import { json } from "express";
 import uniq from "lodash/uniq";
-import {
+import type {
   AvailablePackageType,
   Feed,
   PackageType,
 } from "@refinedev/devtools-shared";
 
-import { Data } from "./create-db";
+import type { Data } from "./create-db";
 import { getFeed } from "./feed/get-feed";
 import { getAllPackages } from "./packages/get-all-packages";
 import { getAvailablePackages } from "./packages/get-available-packages";

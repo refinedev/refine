@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldFileProps } from "@refinedev/ui-types";
+import type { RefineFieldFileProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

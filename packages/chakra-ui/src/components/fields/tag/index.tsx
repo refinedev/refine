@@ -1,7 +1,7 @@
 import React from "react";
 import { Tag } from "@chakra-ui/react";
 
-import { TagFieldProps } from "../types";
+import type { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Chakra UI {@link https://chakra-ui.com/docs/components/tag `<Tag>`} component.

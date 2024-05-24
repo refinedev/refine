@@ -8,11 +8,11 @@ import {
   useResource,
   matchResourceFromRoute,
 } from "@refinedev/core";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
   Breadcrumb as AntdBreadcrumb,
-  BreadcrumbProps as AntdBreadcrumbProps,
+  type BreadcrumbProps as AntdBreadcrumbProps,
 } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 

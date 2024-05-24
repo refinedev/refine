@@ -1,4 +1,4 @@
-import { LegacyAuthProvider } from "@refinedev/core";
+import type { LegacyAuthProvider } from "@refinedev/core";
 import { redirect } from "@remix-run/node";
 
 export const checkAuthentication = async (

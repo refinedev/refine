@@ -1,4 +1,4 @@
-import { Command } from "commander";
+import type { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { getResourcePath } from "@utils/resource";
 import { createResources } from "@commands/add/sub-commands/resource/create-resources";
