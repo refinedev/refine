@@ -314,6 +314,14 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
           });
           prepareFinalSteps();
         },
+        onError: (error) => {
+          if (error?.message?.includes("email")) {
+            methods.setError("email", {
+              type: "manual",
+              message: "Email is invalid",
+            });
+          }
+        },
       },
     );
   };

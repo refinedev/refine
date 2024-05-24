@@ -1,4 +1,4 @@
-import cn from "clsx";
+import cn, { clsx } from "clsx";
 import { useRouter } from "next/router";
 import { useLogout } from "@refinedev/core";
 
@@ -47,41 +47,33 @@ export const CustomerMenuContent: React.FC = () => {
         asChild
         side="bottom"
         sideOffset={10}
-        className={s.root}
+        className={clsx(
+          s.root,
+          "rounded-lg",
+          "shadow-lg",
+          "border",
+          "border-gray-light",
+        )}
         id="CustomerMenuContent"
       >
         {LINKS.map(({ name, href }) => (
           <DropdownMenuItem key={href}>
             <a
-              className={cn(s.link, {
-                [s.active]: pathname === href,
-              })}
+              className={cn(
+                s.link,
+                "font-normal",
+                "text-base",
+                "text-gray-darkest",
+                {
+                  [s.active]: pathname === href,
+                },
+              )}
               onClick={(e) => handleClick(e, href)}
             >
               {name}
             </a>
           </DropdownMenuItem>
         ))}
-        {/* TODO: uncomment dark mode when theme is ready */}
-        {/* <DropdownMenuItem>
-                <a
-                    className={cn(s.link, "justify-between")}
-                    onClick={() => {
-                        setTheme(theme === "dark" ? "light" : "dark");
-                    }}
-                >
-                    <div>
-                        Theme: <strong>{theme}</strong>{" "}
-                    </div>
-                    <div className="ml-3">
-                        {theme == "dark" ? (
-                            <Moon width={20} height={20} />
-                        ) : (
-                            <Sun width={20} height={20} />
-                        )}
-                    </div>
-                </a>
-            </DropdownMenuItem> */}
         <DropdownMenuItem>
           <a
             className={cn(s.link, "border-accent-2 mt-4 border-t")}

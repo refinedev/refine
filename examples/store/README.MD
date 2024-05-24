@@ -1,4 +1,4 @@
-# refine Swag Store
+# Refine Swag Store
 
 ![Screenshot](./cover-image.jpg)
 
@@ -23,9 +23,9 @@ We had two options when it came to building this shop.
 
 The first option was to deploy a ready-made solution like Shopify, and the second was to create a custom solution.
 
-Since refine can be used to build eCommerce storefronts with SSR support, we started looking for Headless eCommerce solutions.
+Since Refine can be used to build eCommerce storefronts with SSR support, we started looking for Headless eCommerce solutions.
 During this process, we met with the Medusa, and we decided that the solution offered by Medusajs fit us quite well.
-Starting from this, we decided to use the Medusa commerce API and built the storefront app with refine and Next.js.
+Starting from this, we decided to use the Medusa commerce API and built the storefront app with Refine and Next.js.
 
 In that way, we could share complete eCommerce store solutions with the open source community. Also, it helps us to test our framework with a real-world use case.
 
@@ -38,14 +38,14 @@ Currently, we are using this store and have already processed real shopping tran
 
 The app includes the following features:
 
--   Authentication & Authorization
--   Product Listing
--   Account information pages
--   Product detail
--   Shopping cart
--   Payment with Stripe
--   Gift Code feature
--   Email send and verification
+- Authentication & Authorization
+- Product Listing
+- Account information pages
+- Product detail
+- Shopping cart
+- Payment with Stripe
+- Gift Code feature
+- Email send and verification
 
 ### Preview
 
@@ -55,9 +55,9 @@ The app includes the following features:
 
 ### Prerequisites
 
--   Minimum Node v16.0.0
--   [Stripe Account](https://stripe.com/)
--   [Medusa API](https://docs.medusajs.com/quickstart/quick-start)
+- Minimum Node v16.0.0
+- [Stripe Account](https://stripe.com/)
+- [Medusa API](https://docs.medusajs.com/quickstart/quick-start)
 
 ### Install Project
 
@@ -75,9 +75,9 @@ npm run dev
 
 ## Resources
 
--   [refine documentation](https://refine.dev/docs/getting-started/overview/)
--   [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)
--   [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
-    -   [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
--   [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
-    -   [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+- [Refine Documentation](https://refine.dev/docs/getting-started/overview/)
+- [Medusa Documentation](https://docs.medusajs.com/quickstart/quick-start)
+- [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)
+- [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+  - [@refinedev/medusa](https://www.npmjs.com/package/@refinedev/medusa)

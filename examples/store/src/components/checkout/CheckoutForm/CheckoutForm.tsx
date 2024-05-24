@@ -1,7 +1,8 @@
 import { Shipping, Addresses, Payment } from "@components";
 import { useCartContext } from "@lib/context";
+import clsx from "clsx";
 
-export const CheckoutForm: React.FC = () => {
+export const CheckoutForm = ({ className }: { className?: string }) => {
   const { cart } = useCartContext();
 
   if (!cart?.id) {
@@ -9,20 +10,18 @@ export const CheckoutForm: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="grid w-full grid-cols-1 gap-y-8">
-        <div>
-          <Addresses />
-        </div>
-
-        <div>
-          <Shipping cart={cart} />
-        </div>
-
-        <div>
-          <Payment />
-        </div>
-      </div>
+    <div
+      className={clsx(
+        className,
+        "flex",
+        "flex-col",
+        "w-full",
+        "gap-6 lg:gap-8",
+      )}
+    >
+      <Addresses />
+      <Shipping cart={cart} />
+      <Payment />
     </div>
   );
 };
