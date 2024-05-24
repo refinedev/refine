@@ -148,12 +148,7 @@ export const AuditLogPage = () => {
               />
             )}
             filterDropdown={(props) => (
-              <FilterDropdown
-                {...props}
-                mapValue={(selectedKeys, event) => {
-                  return rangePickerFilterMapper(selectedKeys, event);
-                }}
-              >
+              <FilterDropdown {...props} mapValue={rangePickerFilterMapper}>
                 <DatePicker.RangePicker />
               </FilterDropdown>
             )}
