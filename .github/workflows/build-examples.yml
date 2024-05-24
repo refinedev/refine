@@ -72,6 +72,9 @@ jobs:
       matrix:
         chunk: ${{ fromJson(needs.chunks.outputs.CHUNKS) }}
     steps:
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.6
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
