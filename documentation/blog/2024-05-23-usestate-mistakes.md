@@ -4,9 +4,11 @@ description: Find out what the five most common mistakes React developers make w
 slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/social.png
 hide_table_of_contents: false
 ---
+
+**_This article was last updated on May 23, 2024 to add more informations, new sections for performance of useState hook._**
 
 ## Introduction
 
@@ -22,11 +24,28 @@ The `useState` hook can be tricky to understand, especially for newer React deve
 
 Steps we'll cover:
 
+- [What is React useState?](#what-is-react-usestate)
 - [Initializing useState Wrongly](#initializing-usestate-wrongly)
 - [Not Using Optional Chaining](#not-using-optional-chaining)
 - [Updating useState Directly](#updating-usestate-directly)
 - [Updating Specific Object Property](#updating-specific-object-property)
 - [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
+- [Bonus: Optimize performance when using useState](#bonus-optimize-performance-when-using-usestate)
+- [Bonus: use `useReducer` for complex state management](#bonus-use-usereducer-for-complex-state-management)
+
+## What is React useState?
+
+We would like to describe shortly the `useState` hook in React, which we use very often in all of our projects. The `useState` hook is one of the fundamental hooks. With it, we can introduce state variables into our functional components. The hook returns an array with two elements: the current state value and a function to maintain or set that value.
+
+Here's an example:
+
+```tsx
+const [count, setCount] = useState(0);
+```
+
+In the above code, `count` is a state variable, and `setCount` is a function to update it. Whenever we need to change that state, we call `setCount` with the new value. It is just a way to deal with state easily in your components without class components.
+
+We love `useState` because it allows us to keep our components super clean and very easy to read. It's one of the main reasons why functional components are such a powerful feature in React.
 
 ## Initializing useState Wrongly
 
@@ -555,13 +574,59 @@ export default function App() {
 
 With this implementation, the event handler function is fired for each user input. In this event function, we have a `setUser()` state function that accepts the previous/current state of the user and unpacks this user state using the spread operator. Then we check the event object for whatever target element name that fired the function (which correlates to the property name in the state). Once this property name is gotten, we modify it to reflect the user input value in the form.
 
+## Bonus: Optimize performance when using useState
+
+We wanted to give you a heads-up on some tips to optimize performance when using `useState` within a React application. With every `useState`, by default, every state change of our component will re-render. That is completely cool and normally works fine.
+
+In larger and more complex applications, this could—in the worst-case scenario—become a performance bottleneck, and one way to optimize that is by using functional updates. If your new state depends on the previous state, then using a function for updates ensures no unnecessary renders with `setState`. Here's a quick example:
+
+```javascript
+const [count, setCount] = useState(0);
+
+const increment = () => {
+  setCount((prevCount) => prevCount + 1);
+};
+```
+
+And another great tip to always remember is: Try and keep the number of state variables in your application to a minimum. Group related parts of your state to one state object, using an object instead of multiple calls to `useState`. This can really help reduce the number of renders and make your code more manageable.
+
+Finally, `React.memo` for functional components or `PureComponent` for class components will prevent re-renders if props or state don't change.
+
+Optimizing how state is managed with `useState` will bring a huge performance gain to our app, providing more speed and a better user experience.
+
+## Bonus: use `useReducer` for complex state management
+
+Another great pro tip on dealing with complex state in React is to use `useReducer`. Even though `useState` is awesome for dealing with simple state, `useReducer` can sometimes be more efficient for dealing with bigger state logic. Pretty much `useReducer`. It acts identically to `useState` but lets us deal with state transitions through a `reducer` function.
+
+This is helpful in two cases: either the state has sub-values or the next state depends on the previous one. Here is a quick example:
+
+```tsx
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+const [state, dispatch] = useReducer(reducer, initialState);
+
+const increment = () => {
+  dispatch({ type: "increment" });
+};
+
+const decrement = () => {
+  dispatch({ type: "decrement" });
+};
+```
+
+In this way, the code becomes much cleaner and maintainable when using `useReducer`. Also, it's quite similar to what's happening in Redux, so this is a great stepping stone if you're going to use Redux in the future. I find `useReducer` extremely helpful for managing complex states. It has worked wonders in terms of maintainability and readability for our code.
+
 ## Conclusion
 
 As a React developer creating highly interactive user interfaces, you have probably made some of the mistakes mentioned above. Hopefully, these helpful useState practices will help you avoid some of these potential mistakes while using the `useState` hook down the road while building your React-powered applications.
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
