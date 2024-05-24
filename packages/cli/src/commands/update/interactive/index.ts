@@ -28,7 +28,7 @@ export const promptInteractiveRefineUpdate = async (
 ) => {
   const uiGroup = createUIGroup(packages);
   if (!uiGroup) {
-    console.log("All `refine` packages are up to date. 🎉");
+    console.log("All `Refine` packages are up to date. 🎉");
     return;
   }
 
