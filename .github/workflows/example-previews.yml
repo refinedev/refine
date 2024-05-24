@@ -78,7 +78,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./examples/${{ matrix.example }}/dist"
+          publish-dir: ${{ matrix.example == 'finefoods-client' && 'examples/finefoods-client/.next' || format('examples/{0}/dist', matrix.example) }}
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-${{ matrix.example }}-${{ github.event.number }}
