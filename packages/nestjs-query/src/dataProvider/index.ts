@@ -416,7 +416,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       };
     },
     getApiUrl: () => {
-      throw Error("Not implemented on refine-nestjs-query data provider.");
+      return (client as any).url; // url field in GraphQLClient is private
     },
     custom: async ({ url, method, headers, meta }) => {
       if (url) {
