@@ -5836,9 +5836,12 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      gsap:
-        specifier: ^3.8.0
-        version: 3.12.5
+      classnames:
+        specifier: ^2.3.2
+        version: 2.5.1
+      dayjs:
+        specifier: ^1.10.7
+        version: 1.11.10
       js-confetti:
         specifier: ^0.9.0
         version: 0.9.1
@@ -9682,12 +9685,9 @@ importers:
       keen-slider:
         specifier: ^6.6.3
         version: 6.8.6
-      lodash.random:
-        specifier: ^3.2.0
-        version: 3.2.0
-      lodash.throttle:
-        specifier: ^4.1.1
-        version: 4.1.1
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       medusa-react:
         specifier: ^0.3.5
         version: 0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0)
@@ -28505,9 +28505,6 @@ packages:
     resolution: {integrity: sha512-i1JBi6CnRAVbsld9pThccvEg0jEq+xDiZE1OAkbTTt6bakpic5nv3QASvdgA+nWAoaX754q1ACvntgB7Pf83VQ==}
     engines: {node: '>= 14'}
 
-  gsap@3.12.5:
-    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
-
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
     hasBin: true
@@ -30571,9 +30568,6 @@ packages:
   lodash.once@4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}
 
-  lodash.random@3.2.0:
-    resolution: {integrity: sha512-A6Vn7teN0+qSnhOsE8yx2bGowCS1G7D9e5abq8VhwOP98YHS/KrGMf43yYxA05lvcvloT+W9Z2ffkSajFTcPUA==}
-
   lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
 
@@ -30582,9 +30576,6 @@ packages:
 
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
-
-  lodash.throttle@4.1.1:
-    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
 
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
@@ -55956,8 +55947,6 @@ snapshots:
     dependencies:
       zod: 3.22.4
 
-  gsap@3.12.5: {}
-
   gunzip-maybe@1.4.2:
     dependencies:
       browserify-zlib: 0.1.4
@@ -58836,15 +58825,11 @@ snapshots:
 
   lodash.once@4.1.1: {}
 
-  lodash.random@3.2.0: {}
-
   lodash.snakecase@4.1.1: {}
 
   lodash.sortby@4.7.0: {}
 
   lodash.startcase@4.4.0: {}
-
-  lodash.throttle@4.1.1: {}
 
   lodash.uniq@4.5.0: {}
 

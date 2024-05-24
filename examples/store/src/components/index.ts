@@ -1,7 +1,4 @@
-export * from "./dashboard";
 export * from "./common";
-export * from "./product";
-export * from "./search";
 export * from "./ui";
 export * from "./account";
 export * from "./address";
