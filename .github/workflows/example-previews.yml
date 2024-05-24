@@ -73,12 +73,12 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: |
-          pnpm install
+          pnpm install --ignore-scripts
           pnpm build --scope ${{ matrix.example }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: ${{ matrix.example == 'finefoods-client' && 'examples/finefoods-client/.next' || format('examples/{0}/dist', matrix.example) }}
+          publish-dir: ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-${{ matrix.example }}-${{ github.event.number }}
