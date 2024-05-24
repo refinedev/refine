@@ -4,9 +4,11 @@ description: Learn how to use the Google Chrome Lighthouse performance audit too
 slug: lighthouse-google-chrome
 authors: joseph_mawa
 tags: [dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/social-2.png
 hide_table_of_contents: false
 ---
+
+**_This article was last updated on May 24, 2024 to update screenshots, add new sections on advanced configuration, lighthouse metrics and common issues on Google Lighthouse_**
 
 ## Introduction
 
@@ -28,6 +30,10 @@ Step we'll cover:
 - [How to use Google lighthouse for auditing progressive web apps](#how-to-use-google-lighthouse-for-auditing-progressive-web-apps)
 - [How to view Google lighthouse report](#how-to-view-google-lighthouse-report)
 - [How to add Google lighthouse to a CI workflow](#how-to-add-google-lighthouse-to-a-ci-workflow)
+- [Understanding Lighthouse Metrics](#understanding-lighthouse-metrics)
+- [Interpreting Lighthouse Scores](#interpreting-lighthouse-scores)
+- [Advanced Configuration and Custom Audits](#advanced-configuration-and-custom-audits)
+- [Common Issues Identified by Lighthouse and How to Fix Them](#common-issues-identified-by-lighthouse-and-how-to-fix-them)
 
 ## Prerequisites
 
@@ -52,13 +58,13 @@ Follow the steps below to start using Google lighthouse in Chrome DevTools.
 
 ### Step 1 - Navigate to the site you want to audit
 
-To use Google lighthouse in Chrome DevTools, navigate to the site you want to audit. We will use the [Refine](https://refine.dev/) landing page for illustration throughout this article.
+To use Google lighthouse in Chrome DevTools, navigate to the site you want to audit. We will use the React landing page for illustration throughout this article.
 
 ### Step 2 - Open Chrome DevTools
 
 You can open Chrome DevTools by pressing the <kbd> F12 </kbd> key. Click the lighthouse tab after that.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/checked-categories.png" alt="Lighthouse checked" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/categories-2.png" alt="Lighthouse checked" />
 
 <br/>
 
@@ -74,9 +80,9 @@ You can click the `Analyze page load` button to start auditing the website.
 
 ### Step 5 - Interpret the audit results
 
-After successfully analyzing the page, Google lighthouse will present the lighthouse scores and provide suggestions on where to make improvements. The lighthouse scores for the [Refine](https://refine.dev/) landing page look like the image below.
+After successfully analyzing the page, Google lighthouse will present the lighthouse scores and provide suggestions on where to make improvements. The lighthouse scores for the [React](https://react.dev/) landing page look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-all-categories.png" alt="Lighthouse scores for all categories" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/score-categories.png" alt="Lighthouse scores for all categories" />
 
 <br/>
 
@@ -119,13 +125,6 @@ The Navigation mode analyzes a single page load and is the default. We will use 
 
 Each mode has unique use cases, benefits, and limitations which the [Lighthouse documentation](https://github.com/GoogleChrome/lighthouse/blob/HEAD/docs/user-flows.md#user-flows-in-lighthouse) articulates in great detail. Do check it out. You can select one of the other modes before analyzing if the default doesn't meet your use case.
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
-
 ## How to use Google lighthouse Node CLI
 
 You have the flexibility of running Google lighthouse as a command line tool. The command line tool requires you to have Node version 14 or higher. If you don't have Node, you can install it for your system from the Node [downloads page](https://nodejs.org/en/download/).
@@ -152,10 +151,10 @@ The Google lighthouse command line tool has comprehensive documentation accessib
 lighthouse --help
 ```
 
-The command line tool will generate the audit report and write it in an HTML file by default. You can pass optional arguments to the lighthouse command to change the default behavior. The code below will audit the [Refine landing page](https://refine.dev/) for accessibility and writes the report to a JSON file. You can view the JSON report using the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/).
+The command line tool will generate the audit report and write it in an HTML file by default. You can pass optional arguments to the lighthouse command to change the default behavior. The code below will audit the [React landing page](https://react.dev/) for accessibility and writes the report to a JSON file. You can view the JSON report using the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/).
 
 ```sh
-lighthouse https://refine.dev/  --output=json --output-path=./report.json --only-categories=accessibility
+lighthouse https://react.dev/  --output=json --output-path=./report.json --only-categories=accessibility
 ```
 
 You can read the documentation for more options to pass to the `lighthouse` command.
@@ -196,10 +195,10 @@ const launchChromeAndAudit = async (url) => {
   chrome.kill();
 };
 
-launchChromeAndAudit("https://refine.dev/");
+launchChromeAndAudit("https://react.dev/");
 ```
 
-The code above will audit the [Refine landing page](https://refine.dev/) for accessibility and save the report to a file in JSON format. After that, you can upload the data to the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/) to view it in the browser. Omitting the `onlyCategories` field will audit the site for all categories.
+The code above will audit the [React landing page](https://react.dev/) for accessibility and save the report to a file in JSON format. After that, you can upload the data to the [lighthouse viewer](https://googlechrome.github.io/lighthouse/viewer/) to view it in the browser. Omitting the `onlyCategories` field will audit the site for all categories.
 
 You can also save the audit report as an HTML file by setting the value of the output field to `html` instead of `json`, as we did in the example above. What I have provided above is a simple example. Check the [documentation](https://github.com/GoogleChrome/lighthouse/blob/master/docs/readme.md#using-programmatically) for more on how to run Google lighthouse programmatically.
 
@@ -211,15 +210,11 @@ You can install the browser extension from the [Chrome web store](https://chrom
 
 ### Step 1 - Navigate to the website you want to audit
 
-Like using Google lighthouse in chrome DevTools, start by navigating to the site you want to audit. For this illustration, navigate to the [Refine landing page](https://refine.dev/).
+Like using Google lighthouse in chrome DevTools, start by navigating to the site you want to audit. For this illustration, navigate to the [React landing page](https://react.dev/).
 
 ### Step 2 - Open the extension popup
 
 Open the Google lighthouse chrome extension popup by clicking the extension icon in the Chrome toolbar.
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png" alt="Lighthouse extension dropdown" />
-
-<br/>
 
 ### Step 3 - Select the categories to audit
 
@@ -233,9 +228,9 @@ Finally, click the "Generate Report" button to generate the audit report. The re
 
 As pointed out above, Google lighthouse can audit a website for performance, best practices, accessibility, SEO, and PWA. In addition to being installable, Progressive web apps come with several progressively enhanced features. You can use Google lighthouse to validate whether a site is installable or optimized for PWA.
 
-If you navigate to the [Refine landing page](https://refine.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [Refine](https://refine.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
+If you navigate to the [React landing page](https://react.dev/) and use Lighthouse to audit the site for PWA features and best practices, you will get a report similar to the image below. Because [React](https://react.dev/) is not a PWA, most of the tests will fail. Google lighthouse will highlight the failing test and provide a link to documentation that explains the feature.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/scores-pwa-category.png" alt="Lighthouse pwa" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/pwa.png" alt="Lighthouse pwa" />
 
 <br/>
 
@@ -300,6 +295,94 @@ The code above will run the Google lighthouse CI when you commit and push the ch
 
 GitHub is by no means the only CI provider. You can run Google lighthouse with other CI tools like Circle CI and Travis CI. The Google lighthouse CI documentation explains all the supported CI providers.
 
+## Google Lighthouse Metrics Explained
+
+This can help elucidate what Google Lighthouse wants to convey about the variety of metrics. It makes us understand every metric and also how it would affect our app's performance.
+
+### First Contentful Paint (FCP)
+
+FCP measures the time it takes for rendering the first piece of DOM content from initial navigation. This is important because one is able to get to know the discharging speed of the page.
+
+### Time to Interactive (TTI)
+
+TTI is the measure of how long it will take before a page is fully interactive, and it is one of the most important steps toward a great user experience.
+
+### Speed Index
+
+Speed Index: This tells how fast the contents are populated on a page visibly while the loading is in progress. The lower the better.
+
+### Total Blocking Time (TBT)
+
+TBT is the sum of time in which the page is blocked and can't respond because of several user inputs. A low TBT means good interactivity.
+
+### Largest Contentful Paint (LCP)
+
+The LCP identifies the moment when the largest text or image is painted. It helps measure perceived load speed and user experience.
+
+### Cumulative Layout Shift (CLS)
+
+CLS tracks the movements of visible elements in the viewport. Small numbers will indicate less unexpected layout shifts, which is better for the user experience.
+
+## Lighthouse Scores Interpretation
+
+We should explain how to read and understand the Lighthouse scores. Each category score of this report is a score within the range of 0 to 100, where a higher score is an indicator of better performance in that category.
+
+### Performance Score
+
+This is mostly based on the FCP, TTI, speed index, and TBT together in order to get LCP and CLS. In fact, these metrics build each segment of the score, so it helps us realize where to make improvements.
+
+### Accessible Score
+
+This score checks for things like contrast ratios, input labels, and ARIA roles. Still, it's paramount to be mindful of the fact that even with a high score, manual testing for accessibility issues should be done.
+
+### Best Practices Score
+
+That includes correctness of HTTPS usage, having images with an aspect ratio that is correct, and not using API that has been deprecated. A high bar here, then, assures that we are sticking to modern practices of web development.
+
+### SEO Score
+
+This score verifies some essential elements for search engine optimization, such as descriptive link texts, and the correct use of meta tags.
+
+### PWA Score
+
+This confirms that the app meets the basic baseline of being a Progressive Web App, including working offline and loading instantly with appropriate service worker registration.
+
+Such scores enable us, with accuracy, to know what areas exactly we need to focus on for an improvement in the overall quality of our app.
+
+## Advanced Configuration and Custom Audit
+
+We can also help optimize Lighthouse audits to be more adapted with our needs.
+
+### Custom Configuration
+
+Create a custom configuration file that can turn on/off reports in the audit list, adjust the usage of throttling, and modify all the other emulation parameters. This way, we can make sure the audits take into account our performance goals.
+
+### Custom Audits
+
+We can also do custom audits for more specific needs. This involves writing our own definitions of an audit and integrating it with Lighthouse. This will be useful for checking compliance with internal performance standards or any other unique requirements.
+
+Customizing the audits helps us gain more relevant insights and be able to focus only on the aspects of performance that are really important to our projects.
+
+## Common Google Lighthouse issues and suggestions to fix them
+
+Here is where we could list common problems with performance, identified by Lighthouse, and give practical solutions on how to fix them.
+
+### Elimination of render-blocking resources
+
+A very common problem is the large number of render-blocking resources. These can be greatly reduced and some totally removed by either deferring non-critical CSS and JavaScript, or using async attributes.
+
+### Image Optimization
+
+The Lighthouse tool often criticizes images that are not optimized. Further improve performance drastically by compressing images, using next-gen formats like WebP, and serving images at the right size.
+
+### JavaScript Loading Efficiently
+
+Rendering process is delayed by large JavaScript bundles, so splittable code, and using dynamic imports to remove unused code should be applied.
+
+### Reducing Server Response Times
+
+The response time of a server that is slow can also be detected by Lighthouse. A Content Delivery Network (CDN) and database query optimization methods, as well as enabling server-side caching, can help improve the response time. Fixing these issues based on Lighthouse recommendations will vastly boost the performance of our app.
+
 ## Conclusion
 
 You can use Google Lighthouse for auditing a website or application for performance, accessibility, best practices, SEO, and PWA. Depending on your preferences, you can use Chrome DevTools, as a Chrome extension, command line tool, or Node module. Several other Chromium-based browsers like Opera, Edge, and Brave also package Google Lighthouse as part of their DevTools.
@@ -307,12 +390,3 @@ You can use Google Lighthouse for auditing a website or application for performa
 On the other hand, it is worth mentioning that Google Lighthouse is just a tool. And a tool is only as good as the user. Striving for the highest Google lighthouse scores is commendable but not sufficient. One fine example where the Google lighthouse usually falls short is the accessibility audit. It is common to have an inaccessible site with a perfect Google lighthouse accessibility score.
 
 Therefore, you must go above and beyond to test your site with actual users even though you have perfect Google lighthouse accessibility scores. We have covered the introduction to Google Lighthouse in this article. Check the documentation for in-depth guides.
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
-
----
