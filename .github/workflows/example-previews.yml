@@ -72,9 +72,11 @@ jobs:
           node-version: 18
           cache: "pnpm"
       - name: Install Dependencies
-        run: |
-          pnpm install --ignore-scripts
-          pnpm build --scope ${{ matrix.example }}
+        run: pnpm install --ignore-scripts
+      - name: Build example
+        run: pnpm build --scope ${{ matrix.example }}
+      - name: test path
+        run: ls -l ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
