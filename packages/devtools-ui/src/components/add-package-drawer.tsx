@@ -198,7 +198,7 @@ export const AddPackageDrawer = ({
               "re-font-semibold",
             )}
           >
-            Explore refine packages
+            Explore Refine packages
           </div>
           <button
             type="button"

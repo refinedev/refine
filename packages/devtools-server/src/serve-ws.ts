@@ -12,7 +12,7 @@ export const serveWs = (
     if (error?.code === "EADDRINUSE") {
       console.error(
         `\n${cyanBright.bold("\u2717 ")}${bold(
-          "refine devtools server",
+          "Refine Devtools server",
         )} (websocket) failed to start. Port ${SERVER_PORT} is already in use.\n`,
       );
     } else {

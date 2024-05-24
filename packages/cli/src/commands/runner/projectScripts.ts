@@ -1,7 +1,7 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 
 /**
- * Map `refine` cli commands to project script
+ * Map `Refine` cli commands to project script
  */
 export const projectScripts = {
   [ProjectTypes.REACT_SCRIPT]: {

@@ -11,13 +11,13 @@ export const setupServer = (app: Express, onError: () => void) => {
       if (error?.code === "EADDRINUSE") {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "refine devtools server",
+            "Refine Devtools server",
           )} (http) failed to start. Port ${SERVER_PORT} is already in use.\n`,
         );
       } else {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "error from refine devtools",
+            "error from Refine Devtools",
           )}`,
           error,
         );
@@ -32,7 +32,7 @@ export const setupServer = (app: Express, onError: () => void) => {
     .on("listening", () => {
       console.log(
         `\n${cyanBright.bold("\u2713 ")}${bold(
-          "refine devtools",
+          "Refine Devtools",
         )} is running at port ${cyanBright.bold(SERVER_PORT)}\n`,
       );
     });
