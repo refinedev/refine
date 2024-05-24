@@ -4,15 +4,10 @@ const fs = require("fs");
 const waitOn = require("wait-on");
 const pidtree = require("pidtree");
 const { join: pathJoin } = require("path");
-const { promisify } = require("util");
 const { exec } = require("child_process");
-
-const KEY = process.env.KEY;
-const CI_BUILD_ID = process.env.CI_BUILD_ID;
 
 const EXAMPLES_DIR = "./examples";
 const EXAMPLES = process.env.EXAMPLES ? process.env.EXAMPLES : [];
-const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "master";
 
 const execPromise = (command) => {
   let commandProcess;
@@ -38,26 +33,29 @@ const execPromise = (command) => {
   };
 };
 
-const getProjectInfo = async (path) => {
+const getProjectInfo = (path) => {
   // read package.json
-  const pkg = await promisify(fs.readFile)(
-    pathJoin(path, "package.json"),
-    "utf8",
-  );
+  const pkg = fs.readFileSync(pathJoin(path, "package.json"), "utf8");
 
   // parse package.json
   const packageJson = JSON.parse(pkg);
+
+  const projectName = packageJson.name;
 
   const dependencies = Object.keys(packageJson.dependencies || {});
   const devDependencies = Object.keys(packageJson.devDependencies || {});
 
   let port = 3000;
-  let command = "npm run dev";
+  let command = `pnpm dev --scope ${projectName}`;
   let additionalParams = "";
 
   // check for vite
   if (dependencies.includes("vite") || devDependencies.includes("vite")) {
     port = 5173;
+
+    if (dependencies.includes("@refinedev/devtools")) {
+      additionalParams = "-- --devtools false";
+    }
   }
 
   // check for next and remix
@@ -68,14 +66,14 @@ const getProjectInfo = async (path) => {
     devDependencies.includes("@remix-run/node")
   ) {
     port = 3000;
-    command = "npm run build && npm run start:prod";
+    command = `pnpm build --scope ${projectName} && pnpm run --filter ${projectName} start:prod`;
   }
 
   if (
     dependencies.includes("react-scripts") ||
     devDependencies.includes("react-scripts")
   ) {
-    additionalParams = "-- --host 127.0.0.1";
+    additionalParams = "--host 127.0.0.1";
   }
 
   return {
@@ -96,22 +94,18 @@ const prettyLog = (bg, ...args) => {
   console.log(code, ...args, "\x1b[0m");
 };
 
-const getProjectsWithE2E = async () => {
-  return (
-    await Promise.all(
-      EXAMPLES.split(",").map(async (path) => {
-        const dir = pathJoin(EXAMPLES_DIR, path);
-        const isDirectory = (await promisify(fs.stat)(dir)).isDirectory();
-        const isConfigExists = await promisify(fs.exists)(
-          pathJoin(dir, "cypress.config.ts"),
-        );
+const getProjectsWithE2E = () => {
+  return EXAMPLES.split(",")
+    .map((path) => {
+      const dir = pathJoin(EXAMPLES_DIR, path);
+      const isDirectory = fs.statSync(dir).isDirectory();
+      const isConfigExists = fs.existsSync(pathJoin(dir, "cypress"));
 
-        if (isDirectory && isConfigExists) {
-          return path;
-        }
-      }),
-    )
-  ).filter(Boolean);
+      if (isDirectory && isConfigExists) {
+        return path;
+      }
+    })
+    .filter(Boolean);
 };
 
 const waitOnFor = async (resource) => {
@@ -176,7 +170,7 @@ const waitForClose = (resource) => {
 };
 
 const runTests = async () => {
-  const examplesToRun = await getProjectsWithE2E();
+  const examplesToRun = getProjectsWithE2E();
 
   if (examplesToRun.length === 0) {
     return { success: true, empty: true };
@@ -191,7 +185,7 @@ const runTests = async () => {
   for await (const path of examplesToRun) {
     console.log(`::group::Example ${path}`);
 
-    const { port, command, additionalParams } = await getProjectInfo(
+    const { port, command, additionalParams } = getProjectInfo(
       `${EXAMPLES_DIR}/${path}`,
     );
     console.log("port", port);
@@ -208,9 +202,7 @@ const runTests = async () => {
 
     // starting the dev server
     try {
-      start = exec(
-        `cd ${pathJoin(EXAMPLES_DIR, path)} && ${command} ${additionalParams}`,
-      );
+      start = exec(`${command} ${additionalParams}`);
 
       start.stdout.on("data", console.log);
       start.stderr.on("data", console.error);
@@ -241,8 +233,8 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --key ${KEY} --group ${path}`;
-        const runner = `npm run lerna run cypress:run -- --scope ${path} ${params}`;
+        const params = `-- --record --group ${path}`;
+        const runner = `pnpm lerna run cypress:run --scope ${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
 

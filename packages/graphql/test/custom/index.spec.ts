@@ -52,8 +52,8 @@ describe("custom", () => {
   });
 });
 
-describe.only("custom gql", () => {
-  it.only("correct get query response", async () => {
+describe("custom gql", () => {
+  it("correct get query response", async () => {
     const response = await dataProvider(client).custom({
       url: "",
       method: "get",

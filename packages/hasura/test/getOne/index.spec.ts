@@ -27,7 +27,7 @@ const mockData = {
   },
 } as const;
 
-describe.only("with meta.fields", () => {
+describe("with meta.fields", () => {
   describe.each(["hasura-default", "graphql-default"] as const)(
     "updateOne with %s naming convention",
     (namingConvention) => {

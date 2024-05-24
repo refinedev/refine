@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-export const getRefineCoreVersion = async () => {
-  const packages = await fs.promises.readFile(
+export const getRefineCoreVersion = () => {
+  const packages = fs.readFileSync(
     path.join("..", "core", "package.json"),
     "utf8",
   );

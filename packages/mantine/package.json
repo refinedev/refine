@@ -28,9 +28,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/mantine",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -43,6 +43,7 @@
     "@mantine/notifications": "^5.10.4",
     "@refinedev/ui-types": "^1.22.7",
     "@tabler/icons-react": "^3.1.0",
+    "@tanstack/react-query": "^4.10.1",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
@@ -90,6 +91,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

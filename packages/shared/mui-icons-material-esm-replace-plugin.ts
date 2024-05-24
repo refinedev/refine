@@ -4,7 +4,7 @@ export const muiIconsMaterialEsmReplacePlugin: Plugin = {
   name: "muiIconsMaterialEsmReplace",
   setup: (build) => {
     if (build.initialOptions.format === "esm") {
-      build.onEnd(async (args) => {
+      build.onEnd((args) => {
         const muiIconsMaterialImportRegexp =
           /from\s?"@mui\/icons-material\/(\w*?)"/g;
         const muiIconsMaterialEsmImport = 'from "@mui/icons-material/esm/$1"';

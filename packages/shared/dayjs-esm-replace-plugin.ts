@@ -4,7 +4,7 @@ export const dayJsEsmReplacePlugin: Plugin = {
   name: "dayJsEsmReplace",
   setup: (build) => {
     if (build.initialOptions.format === "esm") {
-      build.onEnd(async (args) => {
+      build.onEnd((args) => {
         const dayJsImportRegexp = /from\s?"dayjs\/plugin\/(\w*?)"/g;
         const dayJsEsmImport = 'from "dayjs/plugin/$1.js"';
 

@@ -66,7 +66,6 @@ export const ProductCreate = () => {
           </label>
           <select
             className="input input-sm input-bordered"
-            placeholder="Select category"
             {...register("category.id", {
               required: "This field is required",
             })}

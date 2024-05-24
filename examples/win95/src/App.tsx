@@ -18,6 +18,7 @@ import { CommonLayout } from "@/components/layout";
 import { AboutWindow } from "@/components/about-window";
 import { VideoClubLayout } from "@/components/layout";
 import { RVCWebsiteCatalogPage } from "@/components/rvc-website/catalog";
+import { UnsupportedResolutionHandler } from "@/components/unsupported-resolution-handler";
 import { supabaseClient } from "@/supabase-client";
 import { HomePage } from "@/routes/home-page";
 import { LoginPage } from "@/routes/login-page";
@@ -45,7 +46,6 @@ import { notificationProvider } from "@/providers/notification-provider";
 
 import dayjs from "dayjs";
 import durationPlugin from "dayjs/plugin/duration";
-import { MobileVersionIsNotAvailable } from "./components/mobile-version-is-not-available";
 dayjs.extend(durationPlugin);
 
 const App = () => {
@@ -53,7 +53,7 @@ const App = () => {
     <DevtoolsProvider>
       <BrowserRouter>
         <ThemeProvider>
-          <MobileVersionIsNotAvailable>
+          <UnsupportedResolutionHandler>
             <Refine
               dataProvider={dataProvider(supabaseClient)}
               liveProvider={liveProvider(supabaseClient)}
@@ -226,7 +226,7 @@ const App = () => {
               <DocumentTitleHandler />
               <Toaster />
             </Refine>
-          </MobileVersionIsNotAvailable>
+          </UnsupportedResolutionHandler>
         </ThemeProvider>
         <DevtoolsPanel />
       </BrowserRouter>

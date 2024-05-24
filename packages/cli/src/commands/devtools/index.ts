@@ -164,7 +164,9 @@ const devtoolsInstaller = async () => {
   }
 };
 
-export const devtoolsRunner = async () => {
+export const devtoolsRunner = async ({
+  exitOnError = true,
+}: { exitOnError?: boolean } = {}) => {
   const corePackage = await getRefineCorePackage();
 
   if (corePackage) {
@@ -184,7 +186,13 @@ export const devtoolsRunner = async () => {
     }
   }
 
-  server();
+  server({
+    onError: () => {
+      if (exitOnError) {
+        process.exit(1);
+      }
+    },
+  }).catch((e) => {});
 };
 
 const getRefineCorePackage = async () => {

@@ -1,5 +1,5 @@
 {
-  "name": "refinejs-repo",
+  "name": "refinedev",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -8,55 +8,55 @@
     "attw": "lerna run publint --scope @refinedev/core",
     "attw:all": "lerna run attw --scope @refinedev/*",
     "biome": "biome",
-    "bootstrap": "lerna bootstrap --hoist --strict --ignore-scripts --include-dependencies",
-    "bootstrap:all": "lerna bootstrap --hoist --strict --ignore-scripts --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
-    "bootstrap:codemod": "cd packages/codemod && npm ci && cd ../..",
-    "bootstrap:dev": "lerna bootstrap --ignore-scripts --include-dependencies",
-    "build": "lerna run build --include-dependencies --scope @refinedev/core",
-    "build:all": "lerna run build --ignore=\"monorepo-*\" --ignore with-nx --scope @refinedev/* --scope create-refine-app",
+    "build": "lerna run build --scope @refinedev/core",
+    "build:all": "lerna run build --scope @refinedev/* --scope create-refine-app",
     "changeset": "changeset",
-    "coffee": "npm run nuke && npm i && npm run bootstrap:all && npm run build:all",
-    "dev": "lerna run dev --stream --parallel --scope @refinedev/core",
-    "dev:docs": "concurrently \"cd documentation && npm run dev\" \"npm run dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
+    "coffee": "pnpm nuke && pnpm i && pnpm build:all",
+    "dev": "lerna run dev",
+    "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
     "lint": "biome check .",
     "lint:ci": "biome ci .",
     "lint:error": "biome check . --diagnostic-level error",
     "lint:fix": "biome check . --apply",
     "lint:staged": "lint-staged",
-    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
+    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; pnpm nuke:nx; pnpm nuke:node_modules; pnpm nuke:builds; pnpm nuke:lockfiles;",
     "nuke:builds": "lerna exec -- rm -rf dist && lerna exec -- rm -rf .next && lerna exec -- rm -rf build",
     "nuke:lockfiles": "lerna exec --ignore @refinedev/codemod -- rm -rf package-lock.json && lerna exec --ignore @refinedev/codemod -- rm -rf yarn.lock && lerna exec --ignore @refinedev/codemod -- rm -rf pnpm-lock.yaml",
     "nuke:node_modules": "lerna clean --yes",
+    "nuke:nx": "rm -rf .nx/cache",
+    "nx": "nx",
+    "pnpm:devPreinstall": "mkdir -p packages/cli/dist packages/devtools-server/dist && echo '#! /usr/bin/env node' > packages/cli/dist/cli.cjs && echo '#! /usr/bin/env node' > packages/devtools-server/dist/cli.cjs",
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
+    "sp": "syncpack",
     "test": "lerna run test --stream",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
-    "test:all:coverage": "npm run test:all -- -- --coverage",
-    "test:coverage": "npm run test -- -- --coverage"
+    "test:all:coverage": "pnpm test:all -- -- --coverage",
+    "test:coverage": "pnpm test -- -- --coverage"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "biome format --write"
+    "*.{js,jsx,ts,tsx,json}": [
+      "biome format --write --no-errors-on-unmatched"
     ],
     "*.{md,mdx}": [
       "prettier --config ./.prettierrc --write"
     ],
     "package.json": [
-      "sort-package-json"
+      "sort-package-json",
+      "syncpack lint"
     ]
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.3",
-    "@biomejs/biome": "^1.5.3",
+    "@biomejs/biome": "^1.7.3",
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.3",
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@lerna/filter-options": "^6.2.0",
-    "@netlify/plugin-nextjs": "4.32.2",
-    "@nrwl/nx-cloud": "^16.0.4",
+    "@netlify/plugin-nextjs": "5.2.2",
     "@types/jest": "^29.2.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
@@ -65,8 +65,9 @@
     "husky": "^8.0.1",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
-    "lerna": "^6.1.0",
+    "lerna": "^8.1.2",
     "lint-staged": "^10.5.4",
+    "nx": "18.2.2",
     "pidtree": "^0.6.0",
     "port-pid": "^0.0.7",
     "prettier": "^2.7.1",
@@ -75,11 +76,15 @@
     "react-dom": "^18.0.0",
     "react-refresh": "^0.11.0",
     "sort-package-json": "^2.7.0",
+    "syncpack": "^12.3.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.2",
     "wait-on": "^7.0.1"
   },
+  "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7",
   "engines": {
-    "node": ">=16"
-  }
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "nx": {}
 }

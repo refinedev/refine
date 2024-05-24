@@ -5,6 +5,7 @@ import { formatAmount } from "medusa-react";
 
 import { CalculatedVariant } from "../../types/medusa";
 import { useCartContext } from "@lib/context";
+import { getPercentageDiff } from "@lib/getPercentageDiff";
 
 interface UseProductPriceProps {
   id: string;
@@ -40,13 +41,6 @@ export const useProductPrice = ({ id, variantId }: UseProductPriceProps) => {
   });
 
   const product = productData?.data[0];
-
-  const getPercentageDiff = (original: number, calculated: number) => {
-    const diff = original - calculated;
-    const decrease = (diff / original) * 100;
-
-    return decrease.toFixed();
-  };
 
   const cheapestPrice = useMemo(() => {
     if (!product || !cart?.region) {

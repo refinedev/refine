@@ -35,11 +35,11 @@
   ],
   "scripts": {
     "attw": "attw --pack .",
-    "build": "npm run build:client && tsup",
+    "build": "pnpm build:client && tsup && node ../shared/generate-declarations.js",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
-    "dev": "npm run dev:client & tsup --watch",
-    "dev:client": "vite build --watch --config src/client/vite.config.ts",
-    "prepare": "npm run build",
+    "dev": "pnpm dev:client & tsup --watch",
+    "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "prepare": "pnpm -w build --scope @refinedev/devtools-server",
     "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.cjs",
     "test": "jest --passWithNoTests --runInBand",
@@ -64,7 +64,7 @@
     "lodash-es": "^4.17.21",
     "marked": "^4.3.0",
     "node-fetch": "^2.6.7",
-    "preferred-pm": "^3.0.3",
+    "preferred-pm": "^3.1.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sanitize-html": "^2.11.0",
@@ -75,10 +75,14 @@
     "@refinedev/devtools-ui": "1.1.22",
     "@testing-library/jest-dom": "^5.16.4",
     "@types/dedent": "^0.7.0",
+    "@types/express": "^4.17.21",
     "@types/fs-extra": "^9.0.13",
     "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^0.11.11",
+    "@types/lodash": "^4.14.171",
     "@types/marked": "^5.0.1",
+    "@types/node": "^18.16.2",
+    "@types/node-fetch": "^2.6.11",
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
     "@vitejs/plugin-react": "^4.2.1",
@@ -104,5 +108,24 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  "nx": {
+    "targets": {
+      "build": {
+        "dependsOn": [
+          "^build",
+          "build:client"
+        ],
+        "cache": true
+      },
+      "build:client": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "{projectRoot}/dist"
+        ],
+        "cache": true
+      }
+    }
+  }
 }
