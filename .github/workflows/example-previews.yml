@@ -60,7 +60,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.all_examples) || fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) }}
+        example: ${{ fromJSON(needs.changes.outputs.all_examples) || fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) || '[]' }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
