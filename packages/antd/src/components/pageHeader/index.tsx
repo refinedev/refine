@@ -4,19 +4,19 @@ import {
   type PageHeaderProps as AntdPageHeaderProps,
 } from "@ant-design/pro-layout";
 import { Button, Typography } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export type PageHeaderProps = AntdPageHeaderProps;
 
 export const PageHeader: FC<AntdPageHeaderProps> = ({ children, ...props }) => {
+  const renderBackButton = () => {
+    if (props.backButtonOrientation === "right")
+      return <Button type="text" icon={<ArrowRightOutlined />} />;
+    return <Button type="text" icon={<ArrowLeftOutlined />} />;
+  };
   const backIcon =
-    typeof props.backIcon === "undefined" ? (
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-      <Button type="text" icon={<ArrowLeftOutlined />} />
-    ) : (
-      props.backIcon
-    );
+    typeof props.backIcon === "undefined" ? renderBackButton() : props.backIcon;
 
   const title =
     typeof props.title === "string" ? (

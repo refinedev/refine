@@ -36,6 +36,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   meta,
   fixed,
   activeItemDisabled = false,
+  buttonOrientation,
 }) => {
   const { token } = theme.useToken();
   const {
@@ -282,6 +283,36 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     siderStyles.height = "100vh";
     siderStyles.zIndex = 999;
   }
+  const renderClosingIcons = () => {
+    if (buttonOrientation === "right") {
+      return siderCollapsed ? (
+        <LeftOutlined
+          style={{
+            color: token.colorPrimary,
+          }}
+        />
+      ) : (
+        <RightOutlined
+          style={{
+            color: token.colorPrimary,
+          }}
+        />
+      );
+    }
+    return siderCollapsed ? (
+      <RightOutlined
+        style={{
+          color: token.colorPrimary,
+        }}
+      />
+    ) : (
+      <LeftOutlined
+        style={{
+          color: token.colorPrimary,
+        }}
+      />
+    );
+  };
 
   return (
     <>
@@ -314,21 +345,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               backgroundColor: token.colorBgElevated,
             }}
           >
-            {siderCollapsed ? (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-              <RightOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            ) : (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-              <LeftOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            )}
+            {renderClosingIcons()}
           </Button>
         }
       >

@@ -23,7 +23,7 @@ export const PostShow = () => {
     });
 
   return (
-    <Show isLoading={isLoading}>
+    <Show backButtonOrientation="right" isLoading={isLoading}>
       <Title level={5}>Id</Title>
       <Text>{record?.id}</Text>
 

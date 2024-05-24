@@ -7,6 +7,7 @@ import type {
 
 type RefineThemedLayoutV2SiderProps = BaseRefineThemedLayoutV2SiderProps & {
   fixed?: boolean;
+  buttonOrientation?: "right" | "left";
 };
 
 export type {
