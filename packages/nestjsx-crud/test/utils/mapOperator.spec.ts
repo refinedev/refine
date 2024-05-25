@@ -4,7 +4,7 @@ import { mapOperator } from "../../src/utils";
 
 describe("mapOperator", () => {
   it("should map CrudOperators to ComparisonOperator", () => {
-    const operators: Record<CrudOperators, ComparisonOperator> = {
+    const operators: Partial<Record<CrudOperators, ComparisonOperator>> = {
       and: "$and",
       or: "$or",
       ne: CondOperator.NOT_EQUALS,
