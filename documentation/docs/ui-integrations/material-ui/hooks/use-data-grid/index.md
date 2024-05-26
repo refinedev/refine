@@ -270,6 +270,40 @@ const MyComponent = () => {
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
+## Editing
+
+The hook can further extend editing provided in [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component. To enable column editing, set `editable: "true"` on specific column definition.
+
+`useDataGrid` will utilize `processRowUpdate` from `<DataGrid>` component, which in turn will call [`useForm`](https://refine.dev/docs/data/hooks/use-form/) to attempt updating the row with the new value.
+
+```tsx
+const columns = React.useMemo<GridColDef<IPost>[]>(
+  () => [
+    {
+      field: "title",
+      headerName: "Title",
+      minWidth: 400,
+      flex: 1,
+      editable: true,
+    },
+  ],
+  [],
+);
+```
+
+Properties from [`useForm`](https://refine.dev/docs/data/hooks/use-form/), with exception of `autoSave`, `action` and `redirect`, are available in `useDataGrid`.
+
+The hook returns `onFinish`, `setId`, `id` and `formLoading` from `useForm`, which can be used to extend functionality.
+
+```tsx
+const {
+  dataGridProps,
+  formProps: { onFinish, setId, id, formLoading },
+} = useDataGrid<IPost>();
+```
+
+By default, the `onCellEditStart` and `onRowEditStart` callbacks from `<DataGrid>` will set the `id` on the form, and `processRowUpdate` will call `onFinish`.
+
 ## Properties
 
 ### resource
