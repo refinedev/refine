@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: chunks
     concurrency:
-      group: ${{ github.ref }}-${{ format('chunk-{0}', join(fromJson(format('[{0}]', matrix.chunk)))) }}
+      group: ${{ github.ref }}-${{ format('chunk-{0}', join(fromJson(format('[{0}]', matrix.chunk)), ',')) }}
       cancel-in-progress: false
     strategy:
       matrix:
