@@ -72,14 +72,14 @@ jobs:
       - name: Calculate CHUNK_HASH
         id: calculate-chunk-hash
         run: |
-          chunk_hash=$(cksum <<< "${{ github.ref }}-${{ matrix.chunk }}-${{ github.run_id }}-${{ github.run_attempt }}" | cut -f 1 -d ' ')
+          chunk_hash=$(cksum <<< "${{ matrix.chunk }}-${{ github.run_id }}-${{ github.run_attempt }}" | cut -f 1 -d ' ')
           echo "::set-output name=chunk_hash::$chunk_hash"
 
   build-chunk:
     runs-on: ubuntu-latest
     needs: calculate-chunk-hash
     concurrency:
-      group: ${{ github.ref }}-${{ matrix.chunk }}-${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
+      group: ${{ github.ref }}-${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
       cancel-in-progress: true
     strategy:
       matrix:
