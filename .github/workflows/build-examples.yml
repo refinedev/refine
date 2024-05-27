@@ -32,8 +32,7 @@ jobs:
 
     name: Create Example Chunks
 
-    # TODO: Enable it back after testing.
-    # if: "${{ !github.event.pull_request.draft }}"
+    if: "${{ !github.event.pull_request.draft }}"
 
     outputs:
       CHUNKS: ${{ steps.chunkstep.outputs.CHUNKS }}
@@ -60,17 +59,31 @@ jobs:
         id: chunkstep
         run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' || github.event_name == 'synchronize' ) && 'true' || 'false' }} node ./.github/workflows/scripts/build-example-chunks.js
 
-  build-chunk:
+  calculate-chunk-hash:
     runs-on: ubuntu-latest
     needs: chunks
-    # TODO: Remove completely or make it shorter.
-    # .github/workflows/build-examples.yml (Line: 67, Col: 7): Concurrency group name must be less than 400 characters
-    # concurrency:
-    #   group: ${{ github.ref }}-${{ matrix.chunk }}
-    #   cancel-in-progress: true
     strategy:
       matrix:
         chunk: ${{ fromJson(needs.chunks.outputs.CHUNKS) }}
+    outputs:
+      chunk_hash: ${{ steps.calculate-chunk-hash.outputs.chunk_hash }}
+      CHUNKS: ${{ needs.chunks.outputs.CHUNKS }}
+    steps:
+      - name: Calculate CHUNK_HASH
+        id: calculate-chunk-hash
+        run: |
+          chunk_hash=$(echo -n "${{ github.ref }}-${{ matrix.chunk }}-${{ github.run_id }}-${{ github.run_attempt }}" | sha256sum | cut -c1-40)
+          echo "::set-output name=chunk_hash::$chunk_hash"
+
+  build-chunk:
+    runs-on: ubuntu-latest
+    needs: calculate-chunk-hash
+    concurrency:
+      group: ${{ github.ref }}-${{ matrix.chunk }}-${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
+      cancel-in-progress: true
+    strategy:
+      matrix:
+        chunk: ${{ fromJson(needs.calculate-chunk-hash.outputs.CHUNKS) }}
     steps:
       - name: Get PR labels
         id: pr-labels
