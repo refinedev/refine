@@ -96,6 +96,14 @@ export interface IRefineOptions {
    */
   projectId?: string;
   useNewQueryKeys?: boolean;
+  /**
+   * Icon and name for the app title. These values are used as default values in the <ThemedLayoutV2 /> and <AuthPage /> components.
+   * By default, `icon` is the Refine logo and `text` is "Refine Project".
+   */
+  title?: {
+    icon?: React.ReactNode;
+    text?: React.ReactNode;
+  };
 }
 
 export interface IRefineContextOptions {
@@ -115,6 +123,10 @@ export interface IRefineContextOptions {
   disableServerSideValidation: boolean;
   projectId?: string;
   useNewQueryKeys?: boolean;
+  title: {
+    icon?: React.ReactNode;
+    text?: React.ReactNode;
+  };
 }
 
 export interface IRefineContext {
