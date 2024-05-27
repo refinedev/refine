@@ -270,7 +270,7 @@ export const DashboardPage: React.FC = () => {
                 rightSlot={
                   <Flex align="center" gap={8}>
                     <NumberField
-                      value={newCustomers.trend / 100}
+                      value={newCustomers.trend}
                       options={{
                         style: "percent",
                         minimumFractionDigits: 2,

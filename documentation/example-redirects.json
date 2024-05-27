@@ -175,6 +175,10 @@
     {
       "from": "/docs/examples/tutorial/mui-tutorial",
       "to": "https://github.com/refinedev/refine/tree/master/examples/tutorial-material-ui"
+    },
+    {
+      "from": "/docs/3.xx.xx/examples",
+      "to": "https://github.com/refinedev/refine/tree/v3/examples"
     }
   ]
 }

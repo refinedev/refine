@@ -608,10 +608,6 @@
     {
       "type": "category",
       "label": "Examples",
-      "link": {
-        "type": "doc",
-        "id": "examples/examples"
-      },
       "items": [
         "examples/real-world-example",
         {
