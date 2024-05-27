@@ -38,7 +38,7 @@ jobs:
     steps:
     - name: Get PR labels
       id: pr-labels
-      uses: joerick/pr-labels-action@v1.0.6
+      uses: joerick/pr-labels-action@v1.0.9
     # For pull requests it's not necessary to checkout the code
     - name: 'Check deploy previews label'
       id: deploy-previews-label
