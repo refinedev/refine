@@ -81,11 +81,13 @@ jobs:
     needs: calculate-chunk-hash
     concurrency:
       group: ${{ github.ref }}-${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
-      cancel-in-progress: true
+      cancel-in-progress: false
     strategy:
       matrix:
         chunk: ${{ fromJson(needs.calculate-chunk-hash.outputs.CHUNKS) }}
     steps:
+      - name: Print chunk_hash
+        run: echo ${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.9
