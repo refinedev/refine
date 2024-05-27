@@ -14,7 +14,7 @@ type DevToolsContextValue = {
 
 export const DevToolsContext = React.createContext<DevToolsContextValue>({
   __devtools: false,
-  port: 5002,
+  port: 5001,
   url: "localhost",
   secure: false,
   ws: null,
@@ -31,7 +31,7 @@ export const DevToolsContextProvider: React.FC<Props> = ({
 }) => {
   const [values, setValues] = React.useState<DevToolsContextValue>({
     __devtools: __devtools ?? false,
-    port: port ?? 5002,
+    port: port ?? 5001,
     url: "localhost",
     secure: false,
     ws: null,
@@ -69,7 +69,16 @@ export const DevToolsContextProvider: React.FC<Props> = ({
     return () => {
       unsubscribe();
 
-      wsInstance.close(1000, window.location.origin);
+      // In strict mode, the WebSocket instance might not be connected yet
+      // so we need to wait for it to connect before closing it
+      // otherwise it will log an unnecessary error in the console
+      if (wsInstance.readyState === WebSocket.CONNECTING) {
+        wsInstance.addEventListener("open", () => {
+          wsInstance.close(1000, window.location.origin);
+        });
+      } else {
+        wsInstance.close(1000, window.location.origin);
+      }
     };
   }, []);
 

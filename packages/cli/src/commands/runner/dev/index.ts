@@ -26,7 +26,7 @@ const dev = (program: Command) => {
     .addOption(
       new Option(
         "-d, --devtools <devtools>",
-        "Start refine's devtools server",
+        "Start Refine Devtools server",
       ).default("true", "true if devtools is installed"),
     )
     .argument("[args...]")
@@ -49,7 +49,7 @@ const action = async (
   const devtools = params.devtools === "false" ? false : devtoolsDefault;
 
   if (devtools) {
-    devtoolsRunner();
+    devtoolsRunner({ exitOnError: false });
   }
 
   runScript(binPath, command);
