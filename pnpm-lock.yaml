@@ -13068,6 +13068,79 @@ importers:
         specifier: ^5.4.2
         version: 5.4.5
 
+  examples/with-nextjs-supabase:
+    dependencies:
+      '@ant-design/icons':
+        specifier: ^5.0.1
+        version: 5.3.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/nextjs-registry':
+        specifier: ^1.0.0
+        version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.16.5(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@refinedev/antd':
+        specifier: ^5.38.1
+        version: link:../../packages/antd
+      '@refinedev/cli':
+        specifier: ^2.16.31
+        version: link:../../packages/cli
+      '@refinedev/core':
+        specifier: ^4.49.2
+        version: link:../../packages/core
+      '@refinedev/devtools':
+        specifier: ^1.2.1
+        version: link:../../packages/devtools
+      '@refinedev/kbar':
+        specifier: ^1.3.10
+        version: link:../../packages/kbar
+      '@refinedev/nextjs-router':
+        specifier: ^6.0.4
+        version: link:../../packages/nextjs-router
+      '@refinedev/simple-rest':
+        specifier: ^5.0.6
+        version: link:../../packages/simple-rest
+      '@supabase/ssr':
+        specifier: ^0.3.0
+        version: 0.3.0(@supabase/supabase-js@2.42.7(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+      antd:
+        specifier: 5.16.5
+        version: 5.16.5(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      js-cookie:
+        specifier: ^3.0.1
+        version: 3.0.5
+      next:
+        specifier: ^14.1.0
+        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      nookies:
+        specifier: ^2.5.2
+        version: 2.5.2
+      react:
+        specifier: ^18.0.0
+        version: 18.3.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.3.0(react@18.3.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^18.16.2
+        version: 18.19.31
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.0
+      '@types/react-dom':
+        specifier: ^18.0.0
+        version: 18.3.0
+      '@typescript-eslint/parser':
+        specifier: 5.48.0
+        version: 5.48.0(eslint@8.57.0)(typescript@5.4.5)
+      eslint:
+        specifier: ^8.24.0
+        version: 8.57.0
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.5
+
   examples/with-persist-query:
     dependencies:
       '@refinedev/cli':
@@ -23359,6 +23432,11 @@ packages:
   '@supabase/realtime-js@2.9.4':
     resolution: {integrity: sha512-wdq+2hZpgw0r2ldRs87d3U08Y8BrsO1bZxPNqbImpYshAEkusDz4vufR8KaqujKxqewmXS6YnUhuRVdvSEIKCA==}
 
+  '@supabase/ssr@0.3.0':
+    resolution: {integrity: sha512-lcVyQ7H6eumb2FB1Wa2N+jYWMfq6CFza3KapikT0fgttMQ+QvDgpNogx9jI8bZgKds+XFSMCojxFvFb+gwdbfA==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.33.1
+
   '@supabase/storage-js@2.5.5':
     resolution: {integrity: sha512-OpLoDRjFwClwc2cjTJZG8XviTiQH4Ik8sCiMK5v7et0MDu2QlXjCAW3ljxJB5+z/KazdMOTnySi+hysxWUPu3w==}
 
@@ -28345,10 +28423,12 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
@@ -29037,6 +29117,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.3:
     resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
@@ -34733,14 +34814,17 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@4.4.1:
@@ -49272,6 +49356,12 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  '@supabase/ssr@0.3.0(@supabase/supabase-js@2.42.7(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+    dependencies:
+      '@supabase/supabase-js': 2.42.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      cookie: 0.5.0
+      ramda: 0.29.0
 
   '@supabase/storage-js@2.5.5':
     dependencies:
