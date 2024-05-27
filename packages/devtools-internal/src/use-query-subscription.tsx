@@ -9,7 +9,9 @@ import { createQueryListener, createMutationListener } from "./listeners";
 
 export const useQuerySubscription =
   __DEV_CONDITION__ !== "development"
-    ? () => ({})
+    ? () => {
+        return {};
+      }
     : (queryClient: QueryClient) => {
         const { ws } = useContext(DevToolsContext);
         const queryCacheSubscription = React.useRef<() => void>();
