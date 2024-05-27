@@ -72,7 +72,7 @@ jobs:
       - name: Calculate CHUNK_HASH
         id: calculate-chunk-hash
         run: |
-          chunk_hash=$(cksum <<< "${{ matrix.chunk }}" | cut -f 1 -d ' ')
+          chunk_hash=$("${{ matrix.chunk }}" | cut -f 1 -d ',')
           echo "::set-output name=chunk_hash::$chunk_hash"
           echo $chunk_hash
 
