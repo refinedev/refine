@@ -22,7 +22,7 @@ values={[
 <TabItem value="refetch">
 
 ```tsx
-import { useTable, useForm, useShow } from "@refinedev/core";
+import { useTable, useForm, useShow, useList } from "@refinedev/core";
 
 // All "data" related hooks provided by Refine can use queryResult' refetch function
 const { tableQueryResult: { refetch } } = useTable();
@@ -32,6 +32,12 @@ const { queryResult: { refetch } } = useForm();
 const { queryResult: { refetch } } = useShow();
 ...
 ...
+// Note: useList also has a refetch function but is called in this fashion
+   const { refetch } = useList();
+...
+...
+
+refetch();
 ```
 
 </TabItem>
