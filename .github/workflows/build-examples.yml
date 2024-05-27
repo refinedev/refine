@@ -72,7 +72,7 @@ jobs:
       - name: Calculate CHUNK_HASH
         id: calculate-chunk-hash
         run: |
-          chunk_hash=$(echo -n "${{ github.ref }}-${{ matrix.chunk }}-${{ github.run_id }}-${{ github.run_attempt }}" | sha256sum | cut -c1-40)
+          chunk_hash=$(cksum <<< "${{ github.ref }}-${{ matrix.chunk }}-${{ github.run_id }}-${{ github.run_attempt }}" | cut -f 1 -d ' ')
           echo "::set-output name=chunk_hash::$chunk_hash"
 
   build-chunk:
