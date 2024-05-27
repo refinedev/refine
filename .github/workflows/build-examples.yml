@@ -59,35 +59,16 @@ jobs:
         id: chunkstep
         run: CHUNKS=6 BASE_REF=${{ github.base_ref }} BUILD_ALL_EXAMPLES=${{ (contains(steps.pr-labels.outputs.labels, ' build-examples ') || github.event_name == 'schedule' || github.event_name == 'synchronize' ) && 'true' || 'false' }} node ./.github/workflows/scripts/build-example-chunks.js
 
-  calculate-chunk-hash:
-    runs-on: ubuntu-latest
-    needs: chunks
-    strategy:
-      matrix:
-        chunk: ${{ fromJson(needs.chunks.outputs.CHUNKS) }}
-    outputs:
-      chunk_hash: ${{ steps.calculate-chunk-hash.outputs.chunk_hash }}
-      CHUNKS: ${{ needs.chunks.outputs.CHUNKS }}
-    steps:
-      - name: Calculate CHUNK_HASH
-        id: calculate-chunk-hash
-        run: |
-          chunk_hash=$(echo "${{ matrix.chunk }}" | cut -f 1 -d ',')
-          echo "::set-output name=chunk_hash::$chunk_hash"
-          echo $chunk_hash
-
   build-chunk:
     runs-on: ubuntu-latest
-    needs: calculate-chunk-hash
+    needs: chunks
     concurrency:
-      group: ${{ github.ref }}-${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
+      group: ${{ github.ref }}-${{ format('group-{0}', matrix.chunk) }}
       cancel-in-progress: false
     strategy:
       matrix:
-        chunk: ${{ fromJson(needs.calculate-chunk-hash.outputs.CHUNKS) }}
+        chunk: ${{ fromJson(needs.chunks.outputs.CHUNKS) }}
     steps:
-      - name: Print chunk_hash
-        run: echo ${{ needs.calculate-chunk-hash.outputs.chunk_hash }}
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.9
