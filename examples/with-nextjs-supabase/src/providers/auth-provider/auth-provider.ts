@@ -88,8 +88,8 @@ export const authProvider: AuthProvider = {
     };
   },
   check: async () => {
-    const { data, error } = await supabaseBrowserClient.auth.getSession();
-    const { session } = data;
+    const { data, error } = await supabaseBrowserClient.auth.getUser();
+    const { user } = data;
 
     if (error) {
       return {
@@ -99,7 +99,7 @@ export const authProvider: AuthProvider = {
       };
     }
 
-    if (session) {
+    if (user) {
       return {
         authenticated: true,
       };

@@ -41,7 +41,7 @@ export default function BlogPostList() {
           title={"Content"}
           render={(value: any) => {
             if (!value) return "-";
-            return <MarkdownField value={value.slice(0, 80) + "..."} />;
+            return <MarkdownField value={`${value.slice(0, 80)}...`} />;
           }}
         />
         <Table.Column
