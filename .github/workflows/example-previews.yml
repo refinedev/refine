@@ -1,0 +1,43 @@
+name: Deploy Example Previews
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  deploy_example_preview:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.comment.body, '/deploy') }}
+    steps:
+      - name: Set Example Name
+        id: set-example-name
+        run: echo 'example_name=$(echo ${{ github.event.comment.body }} | cut -f 2 -d ' ') > $GITHUB_OUTPUT'
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install --ignore-scripts
+      - name: Build example
+        run: pnpm build --scope ${{ steps.set-example-name.outputs.example_name }}
+      - name: test path
+        run: ls -l ${{ format('./examples/{0}/{1}', steps.set-example-name.outputs.example_name, contains(fromJson('["finefoods-client"]'), steps.set-example-name.outputs.example_name) && '.next' || 'dist') }}
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: ${{ format('./examples/{0}/{1}', steps.set-example-name.outputs.example_name, contains(fromJson('["finefoods-client"]'), steps.set-example-name.outputs.example_name) && '.next' || 'dist') }}
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          alias: deploy-preview-${{ steps.set-example-name.outputs.example_name }}-${{ github.event.comment.node_id }}
+          enable-pull-request-comment: false
+          overwrites-pull-request-comment: false
+          github-deployment-environment: "deploy-preview-${{ steps.set-example-name.outputs.example_name }}-${{ github.event.comment.node_id }}"
+          netlify-config-path: ./examples/${{ steps.set-example-name.outputs.example_name }}/netlify.toml
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10
