@@ -101,6 +101,12 @@ const Home = ({
           ? initialResults
           : undefined,
       keepPreviousData: false,
+      select: (data) => {
+        return {
+          ...data,
+          data: data.data.sort(hsCodeSorter),
+        };
+      },
     },
   });
 
@@ -318,7 +324,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
     return {
       props: {
-        initialResults: products,
+        initialResults: {
+          ...products,
+          data: products.data.sort(hsCodeSorter),
+        },
         initialCategories: categories,
         ...(q && { initialQuery: q as string }),
         ...(category && { initialCategory: category as string }),
@@ -327,4 +336,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   } catch (error) {
     return { props: {} };
   }
+};
+
+const hsCodeSorter = (a: Product, b: Product) => {
+  return Number(a.hs_code ?? 0) - Number(b.hs_code ?? 0);
 };

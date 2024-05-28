@@ -136,7 +136,7 @@ export const RecentOrders: React.FC = () => {
         render={(amount) => {
           return (
             <NumberField
-              value={amount / 100}
+              value={amount}
               style={{
                 whiteSpace: "nowrap",
               }}

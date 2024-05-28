@@ -1,3 +1,5 @@
+"use client";
+
 import { type RefObject, useEffect, useRef } from "react";
 
 function useEventListener<K extends keyof WindowEventMap>(

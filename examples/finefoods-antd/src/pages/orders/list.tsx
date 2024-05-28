@@ -183,7 +183,7 @@ export const OrderList = () => {
                   currency: "USD",
                   style: "currency",
                 }}
-                value={value / 100}
+                value={value}
               />
             );
           }}

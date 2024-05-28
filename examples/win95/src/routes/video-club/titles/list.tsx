@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { getDefaultFilter, useTable } from "@refinedev/core";
+import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
 import {
   Hourglass,
   Select,
@@ -35,10 +35,23 @@ export const VideoClubPageBrowseTitles = () => {
       select: "*, tapes(*), rentals(*)",
     },
   });
-
   const titles = titlesQueryResult?.data?.data || [];
   const titlesIsLoading = titlesQueryResult?.isLoading || false;
   const isLoading = titlesIsLoading;
+
+  useSubscription({
+    channel: "tapes",
+    onLiveEvent: () => {
+      titlesQueryResult.refetch();
+    },
+  });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      titlesQueryResult.refetch();
+    },
+  });
 
   return (
     <VideoClubLayoutSubPage

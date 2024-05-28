@@ -1,4 +1,4 @@
-import { getDefaultFilter, useTable } from "@refinedev/core";
+import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
@@ -35,6 +35,13 @@ export const VideoClubMemberPageList = () => {
     resource: "members",
     meta: {
       select: "*, rentals(*)",
+    },
+  });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      membersQueryResult?.refetch();
     },
   });
 

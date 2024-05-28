@@ -1,4 +1,4 @@
-import { getDefaultFilter, useTable } from "@refinedev/core";
+import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -41,8 +41,14 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
       select: "*, rentals(*)",
     },
   });
-
   const members = membersQueryResult?.data?.data || [];
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      membersQueryResult?.refetch();
+    },
+  });
 
   return (
     <VideoClubLayoutSubPage

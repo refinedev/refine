@@ -9,9 +9,11 @@ const Tooltip: FC<PropsWithChildren<Props>> = ({ label, children }) => {
   if (!label) return <>{children}</>;
 
   return (
-    <div className={`${styles.tooltip} group`}>
+    <div className={`${styles.tooltip} group/prop-tooltip`}>
       {children}
-      <div className={`${styles.tooltipContainer} group-hover:visible`}>
+      <div
+        className={`${styles.tooltipContainer} group-hover/prop-tooltip:visible`}
+      >
         <span className={styles.tooltipContent}>{label}</span>
         <div className={styles.tooltipArrow} />
       </div>
