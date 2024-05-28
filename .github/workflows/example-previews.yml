@@ -44,7 +44,7 @@ jobs:
     # For pull requests it's not necessary to checkout the code
     - name: 'Check deploy previews label'
       id: deploy-previews-label
-      run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' > $GITHUB_OUTPUT
+      run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' >> $GITHUB_OUTPUT
       if: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-previews ') }}
     - uses: dorny/paths-filter@v3
       id: filter
@@ -57,12 +57,14 @@ jobs:
           'pixels': 'examples/pixels/**'
           'invoicer': 'examples/invoicer/**'
   deploy_example_preview:
+    outputs:
+      example_name: ${{ steps.set-example-name.outputs.example_name }}
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.comment.body, '/deploy') }}
     steps:
       - name: Set Example Name
         id: set-example-name
-        run: echo 'example_name=$(echo ${ github.event.comment.body } | cut -f 2 -d ' ')' > $GITHUB_OUTPUT
+        run: echo "example_name=$(echo ${ github.event.comment.body } | cut -f 2 -d ' ')" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
