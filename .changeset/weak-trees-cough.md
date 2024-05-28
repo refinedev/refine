@@ -37,6 +37,6 @@
 chore: added `type` qualifier to imports used as type only.
 
 ```diff
-- import { A } from "./example.js";
-+ import type { A } from "./example.js";
+- import { A } from "./example.ts";
++ import type { A } from "./example.ts";
 ```
