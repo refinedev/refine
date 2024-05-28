@@ -159,7 +159,6 @@ const siteConfig = {
             },
           ],
         ]),
-    "./plugins/intercom.js",
     "./plugins/clarity.js",
     "./plugins/templates.js",
     "./plugins/example-redirects.js",

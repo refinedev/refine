@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.comment.body, '/deploy') }}
     steps:
-      - name: Get Example Name
+      - name: Set Example Name
         id: set-example-name
         run: echo 'example_name=$(echo ${{ github.event.comment.body }} | cut -f 2 -d ' ') > $GITHUB_OUTPUT'
       - uses: actions/checkout@v4
