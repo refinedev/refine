@@ -64,7 +64,7 @@ jobs:
     steps:
       - name: Set Example Name
         id: set-example-name
-        run: echo "example_name=$(echo ${ github.event.comment.body } | cut -f 2 -d ' ')" >> $GITHUB_OUTPUT
+        run: echo 'EXAMPLE_NAME=$(echo ${ github.event.comment.body } | cut -f 2 -d " ")' >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
@@ -76,7 +76,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
       - name: Build example
-        run: pnpm build --scope ${{ steps.set-example-name.outputs.example_name }}
+        run: pnpm build --scope ${{ env.EXAMPLE_NAME }}
       - name: test path
         run: ls -l ${{ format('./examples/{0}/{1}', steps.set-example-name.outputs.example_name, contains(fromJson('["finefoods-client"]'), steps.set-example-name.outputs.example_name) && '.next' || 'dist') }}
       - name: Deploy to Netlify
