@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Set Example Name
         id: set-example-name
-        run: echo 'example_name=$(echo ${{ github.event.comment.body }} | cut -f 2 -d " ")' >> $GITHUB_OUTPUT
+        run: echo 'EXAMPLE_NAME=$(echo ${{ github.event.comment.body }} | cut -f 2 -d " ")' >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
@@ -23,20 +23,20 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
       - name: Build example
-        run: pnpm build --scope ${{ steps.set-example-name.outputs.example_name }}
+        run: pnpm build --scope ${{ env.EXAMPLE_NAME }}
       - name: test path
-        run: ls -l ${{ format('./examples/{0}/{1}', steps.set-example-name.outputs.example_name, contains(fromJson('["finefoods-client"]'), steps.set-example-name.outputs.example_name) && '.next' || 'dist') }}
+        run: ls -l ${{ format('./examples/{0}/{1}', env.EXAMPLE_NAME, contains(fromJson('["finefoods-client"]'), env.EXAMPLE_NAME) && '.next' || 'dist') }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: ${{ format('./examples/{0}/{1}', steps.set-example-name.outputs.example_name, contains(fromJson('["finefoods-client"]'), steps.set-example-name.outputs.example_name) && '.next' || 'dist') }}
+          publish-dir: ${{ format('./examples/{0}/{1}', env.EXAMPLE_NAME, contains(fromJson('["finefoods-client"]'), env.EXAMPLE_NAME) && '.next' || 'dist') }}
           github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
-          alias: deploy-preview-${{ steps.set-example-name.outputs.example_name }}-${{ github.event.comment.node_id }}
+          alias: deploy-preview-${{ env.EXAMPLE_NAME }}-${{ github.event.comment.node_id }}
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false
-          github-deployment-environment: "deploy-preview-${{ steps.set-example-name.outputs.example_name }}-${{ github.event.comment.node_id }}"
-          netlify-config-path: ./examples/${{ steps.set-example-name.outputs.example_name }}/netlify.toml
+          github-deployment-environment: "deploy-preview-${{ env.EXAMPLE_NAME }}-${{ github.event.comment.node_id }}"
+          netlify-config-path: ./examples/${{ env.EXAMPLE_NAME }}/netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
