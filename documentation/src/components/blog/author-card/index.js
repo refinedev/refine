@@ -5,14 +5,6 @@ import { useBlogPost } from "@docusaurus/theme-common/internal";
 
 import { Github, Twitter, Linkedin } from "../icons";
 
-export const AuthorCardWithHook = ({ className }) => {
-  const { metadata } = useBlogPost();
-
-  const author = metadata.authors[0];
-
-  return <AuthorCard author={author} className={className} />;
-};
-
 export const AuthorCardWithProps = ({ author, className }) => {
   return <AuthorCard author={author} className={className} />;
 };

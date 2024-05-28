@@ -1374,12 +1374,12 @@ So far, we have implemented the followings:
 
 **Refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
-## Supabase Real Time Support
+## Supabase Realtime Support
 
-Refine has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
-Required Supabase Real Time setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
+Refine has a built-in support for [Supabase Realtime](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.
+Required Supabase Realtime setup is already done in the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
-[You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
+[You can check the Supabase Realtime integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
 We only need to register Refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
@@ -1407,13 +1407,9 @@ function App() {
 }
 ```
 
-:::note
-
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
 [Refer to Live Provider docs for more information &#8594](/docs/realtime/live-provider#livemode)
-
-:::
 
 ### Let see how real-time feature works in the app
 
@@ -1604,6 +1600,34 @@ useList({
 By default the `exact` count is used.
 
 [Refer to the PostgREST docs for more information about the count property &#8594](https://postgrest.org/en/stable/references/api/tables_views.html#exact-count)
+
+## FAQ
+
+### How can I use Supabase Realtime with relational queries?
+
+We use `meta.select` property to fetch relational data from foreign tables in Supabase. However, Supabase client doesn't have [Supabase Realtime](#supabase-realtime-support) support for the relational data changes. To handle this, we need to [manually subscribe](https://refine.dev/docs/realtime/hooks/use-subscription) and refetch the data when a change occurs in the related table.
+
+```tsx
+import { useTable, useSubscription } from "@refinedev/core";
+
+export const PostList = () => {
+  const table = useTable({
+    meta: {
+      select: "*, categories(title)",
+    },
+  });
+
+  useSubscription({
+    channel: "categories",
+    types: ["*"],
+    onLiveEvent: () => {
+      table.tableQueryResult.refetch();
+    },
+  });
+
+  return <>{/* ... */}</>;
+};
+```
 
 ## Example
 

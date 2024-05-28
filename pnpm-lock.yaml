@@ -5836,9 +5836,12 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      gsap:
-        specifier: ^3.8.0
-        version: 3.12.5
+      classnames:
+        specifier: ^2.3.2
+        version: 2.5.1
+      dayjs:
+        specifier: ^1.10.7
+        version: 1.11.10
       js-confetti:
         specifier: ^0.9.0
         version: 0.9.1
@@ -28512,9 +28515,6 @@ packages:
   groqd@0.15.11:
     resolution: {integrity: sha512-i1JBi6CnRAVbsld9pThccvEg0jEq+xDiZE1OAkbTTt6bakpic5nv3QASvdgA+nWAoaX754q1ACvntgB7Pf83VQ==}
     engines: {node: '>= 14'}
-
-  gsap@3.12.5:
-    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -56047,8 +56047,6 @@ snapshots:
   groqd@0.15.11:
     dependencies:
       zod: 3.22.4
-
-  gsap@3.12.5: {}
 
   gunzip-maybe@1.4.2:
     dependencies:

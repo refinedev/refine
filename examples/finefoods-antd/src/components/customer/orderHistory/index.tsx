@@ -87,7 +87,7 @@ export const CustomerOrderHistory = ({ customer }: Props) => {
         render={(amount) => {
           return (
             <NumberField
-              value={amount / 100}
+              value={amount}
               style={{
                 whiteSpace: "nowrap",
               }}
