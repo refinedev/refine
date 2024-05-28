@@ -1,9 +1,13 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  type GridColDef,
+  type GridRowSelectionModel,
+} from "@mui/x-data-grid";
 import { useUpdateMany } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 
 import { RefineWithoutLayout } from "../../../../.storybook/preview";

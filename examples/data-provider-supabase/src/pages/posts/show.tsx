@@ -11,7 +11,7 @@ import {
 
 import { Typography, Space, Alert, Button } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 import { useState } from "react";
 
 const { Title, Text } = Typography;

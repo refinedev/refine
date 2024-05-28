@@ -1,11 +1,11 @@
 import { useList } from "@refinedev/core";
 
 import { Show } from "@refinedev/antd";
-import { Badge, BadgeProps, Calendar } from "antd";
-import { CalendarMode } from "antd/lib/calendar/generateCalendar";
+import { Badge, type BadgeProps, Calendar } from "antd";
+import type { CalendarMode } from "antd/lib/calendar/generateCalendar";
 import dayjs from "dayjs";
 
-import { IEvent } from "../../interfaces";
+import type { IEvent } from "../../interfaces";
 
 import "./index.css";
 

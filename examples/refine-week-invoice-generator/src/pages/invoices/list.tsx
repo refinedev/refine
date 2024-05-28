@@ -14,7 +14,7 @@ import * as Icons from "@ant-design/icons";
 
 import { Table, Space, Button, Modal } from "antd";
 
-import { IInvoice, IMission } from "../../interfaces";
+import type { IInvoice, IMission } from "../../interfaces";
 import { PdfLayout } from "../../components/pdf";
 
 const { FilePdfOutlined } = Icons;

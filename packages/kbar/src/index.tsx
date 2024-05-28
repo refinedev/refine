@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
-import { KBarProvider, KBarProviderProps } from "kbar";
+import { KBarProvider, type KBarProviderProps } from "kbar";
 
-import { CommandBar } from "./components/index.js";
+import type { CommandBar } from "./components/index.js";
 
 interface IKBarProviderProps extends KBarProviderProps {
   commandBarProps?: React.ComponentProps<typeof CommandBar>;

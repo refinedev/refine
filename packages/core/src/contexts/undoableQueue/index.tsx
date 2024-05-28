@@ -1,9 +1,17 @@
-import React, { createContext, useReducer, PropsWithChildren } from "react";
+import React, {
+  createContext,
+  useReducer,
+  type PropsWithChildren,
+} from "react";
 
 import isEqual from "lodash/isEqual";
 
 import { UndoableQueue } from "../../components";
-import { ActionTypes, IUndoableQueue, IUndoableQueueContext } from "./types";
+import {
+  ActionTypes,
+  type IUndoableQueue,
+  type IUndoableQueueContext,
+} from "./types";
 
 export const UndoableQueueContext = createContext<IUndoableQueueContext>({
   notifications: [],

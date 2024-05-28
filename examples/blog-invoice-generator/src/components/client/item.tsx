@@ -2,9 +2,9 @@ import { useDelete } from "@refinedev/core";
 import { TagField } from "@refinedev/antd";
 
 import { FormOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
-import { Card, Typography, Dropdown, MenuProps } from "antd";
+import { Card, Typography, Dropdown, type MenuProps } from "antd";
 
-import { IClient } from "interfaces";
+import type { IClient } from "interfaces";
 
 const { Title, Text } = Typography;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 
 import {
   Card,
@@ -16,7 +16,7 @@ import {
   Flex,
   TextInput,
   Icon,
-  DeltaType,
+  type DeltaType,
   BadgeDelta,
   Select,
   SelectItem,

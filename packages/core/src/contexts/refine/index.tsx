@@ -5,7 +5,7 @@ import pluralize from "pluralize";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { humanizeString } from "../../definitions/helpers/humanizeString";
-import {
+import type {
   IRefineContext,
   IRefineContextOptions,
   IRefineContextProvider,

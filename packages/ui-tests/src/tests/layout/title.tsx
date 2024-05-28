@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineLayoutTitleProps } from "@refinedev/ui-types";
+import type { RefineLayoutTitleProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 

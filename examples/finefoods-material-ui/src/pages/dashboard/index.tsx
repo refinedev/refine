@@ -23,7 +23,7 @@ import {
 } from "../../components/dashboard";
 import { TrendIcon } from "../../components/icons";
 import { Card, RefineListView } from "../../components";
-import { IOrderChart, ISalesChart } from "../../interfaces";
+import type { IOrderChart, ISalesChart } from "../../interfaces";
 
 type DateFilter = "lastWeek" | "lastMonth";
 

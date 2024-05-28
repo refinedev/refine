@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { GetManyResponse, useDeleteMany, useMany } from "@refinedev/core";
+import { type GetManyResponse, useDeleteMany, useMany } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import { type ColumnDef, flexRender, type Row } from "@tanstack/react-table";
 import {
   useForm,
   SaveButton,
@@ -30,7 +30,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons-react";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const {

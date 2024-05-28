@@ -1,5 +1,9 @@
-import React, { ElementType, RefObject, PropsWithChildren } from "react";
-import { OverlayTriggerState } from "@react-stately/overlays";
+import React, {
+  type ElementType,
+  type RefObject,
+  type PropsWithChildren,
+} from "react";
+import type { OverlayTriggerState } from "@react-stately/overlays";
 import {
   useOverlay,
   usePreventScroll,
@@ -8,7 +12,7 @@ import {
 } from "@react-aria/overlays";
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
-import { AriaButtonProps, OverlayProvider } from "react-aria";
+import { type AriaButtonProps, OverlayProvider } from "react-aria";
 
 // eslint-disable-next-line
 function ModalDialog(props: AriaButtonProps<ElementType> | any) {

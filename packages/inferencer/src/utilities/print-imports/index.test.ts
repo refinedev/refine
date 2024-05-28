@@ -1,4 +1,4 @@
-import { ImportElement } from "@/types";
+import type { ImportElement } from "@/types";
 import { printImports } from ".";
 
 describe("printImports", () => {

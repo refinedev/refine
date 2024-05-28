@@ -1,11 +1,11 @@
-import {
+import type {
   ConditionalFilter,
   CrudOperators,
   LogicalFilter,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
-import { NamingConvention } from "src/dataProvider";
+import type { NamingConvention } from "src/dataProvider";
 
 export type HasuraFilterCondition =
   | "_and"

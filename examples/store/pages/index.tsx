@@ -1,15 +1,19 @@
 import React from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import {
-  CrudFilter,
-  GetListResponse,
+  type CrudFilter,
+  type GetListResponse,
   useGo,
   useList,
   useParsed,
   useTable,
 } from "@refinedev/core";
 import { dataProvider } from "@refinedev/medusa";
-import { Product, ProductCollection, StoreCartsRes } from "@medusajs/medusa";
+import type {
+  Product,
+  ProductCollection,
+  StoreCartsRes,
+} from "@medusajs/medusa";
 import nookies from "nookies";
 
 import { useCartContext } from "@lib/context";
@@ -97,6 +101,12 @@ const Home = ({
           ? initialResults
           : undefined,
       keepPreviousData: false,
+      select: (data) => {
+        return {
+          ...data,
+          data: data.data.sort(hsCodeSorter),
+        };
+      },
     },
   });
 
@@ -314,7 +324,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 
     return {
       props: {
-        initialResults: products,
+        initialResults: {
+          ...products,
+          data: products.data.sort(hsCodeSorter),
+        },
         initialCategories: categories,
         ...(q && { initialQuery: q as string }),
         ...(category && { initialCategory: category as string }),
@@ -323,4 +336,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   } catch (error) {
     return { props: {} };
   }
+};
+
+const hsCodeSorter = (a: Product, b: Product) => {
+  return Number(a.hs_code ?? 0) - Number(b.hs_code ?? 0);
 };

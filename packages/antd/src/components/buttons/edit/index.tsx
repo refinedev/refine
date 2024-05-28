@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { EditButtonProps } from "../types";
+import type { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

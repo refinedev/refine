@@ -1,4 +1,4 @@
-import { MetaQuery } from "@refinedev/core";
+import type { MetaQuery } from "@refinedev/core";
 import {
   generateUseManySubscription,
   genereteUseManySubscription,

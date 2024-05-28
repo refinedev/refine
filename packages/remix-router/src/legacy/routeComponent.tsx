@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { type PropsWithChildren, useEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
 
 import {

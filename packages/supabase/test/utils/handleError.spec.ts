@@ -1,6 +1,6 @@
 import { handleError } from "../../src/utils";
-import { PostgrestError } from "@supabase/supabase-js";
-import { HttpError } from "@refinedev/core";
+import type { PostgrestError } from "@supabase/supabase-js";
+import type { HttpError } from "@refinedev/core";
 
 describe("handleError", () => {
   it("should transform PostgrestError into HttpError and reject the promise", async () => {

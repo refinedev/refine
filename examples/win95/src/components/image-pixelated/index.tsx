@@ -1,6 +1,6 @@
 import {
-  DetailedHTMLProps,
-  ImgHTMLAttributes,
+  type DetailedHTMLProps,
+  type ImgHTMLAttributes,
   useLayoutEffect,
   useRef,
 } from "react";

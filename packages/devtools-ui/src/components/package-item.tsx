@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import {
+import type {
   PackageLatestVersionType,
   PackageType,
 } from "@refinedev/devtools-shared";

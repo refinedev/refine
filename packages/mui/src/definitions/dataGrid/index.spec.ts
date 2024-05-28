@@ -1,6 +1,6 @@
 import type { GridFilterModel, GridSortModel } from "@mui/x-data-grid";
 import { GridLogicOperator } from "@mui/x-data-grid";
-import { CrudFilters, CrudSorting } from "@refinedev/core";
+import type { CrudFilters, CrudSorting } from "@refinedev/core";
 
 import {
   transformCrudFiltersToFilterModel,

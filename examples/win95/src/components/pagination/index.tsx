@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { Button, TextInput } from "react95";
 import styled from "styled-components";
 import {

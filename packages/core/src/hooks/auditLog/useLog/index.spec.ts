@@ -3,8 +3,8 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { TestWrapper, mockAuthProvider, mockLegacyAuthProvider } from "@test";
 
 import { useLog } from ".";
-import { LogParams } from "../../../contexts/auditLog/types";
-import { ResourceProps } from "../../../contexts/resource/types";
+import type { LogParams } from "../../../contexts/auditLog/types";
+import type { ResourceProps } from "../../../contexts/resource/types";
 import * as hasPermission from "../../../definitions/helpers/hasPermission";
 
 const auditLogProviderCreateMock = jest.fn();

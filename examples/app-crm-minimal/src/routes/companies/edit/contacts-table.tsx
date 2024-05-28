@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { FilterDropdown, useTable } from "@refinedev/antd";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   MailOutlined,
@@ -12,7 +12,7 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { CompanyContactsTableQuery } from "@/graphql/types";
+import type { CompanyContactsTableQuery } from "@/graphql/types";
 
 import { COMPANY_CONTACTS_TABLE_QUERY } from "./queries";
 

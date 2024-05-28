@@ -1,11 +1,11 @@
 import differenceWith from "lodash/differenceWith";
 import unionWith from "lodash/unionWith";
-import qs, { IStringifyOptions } from "qs";
+import qs, { type IStringifyOptions } from "qs";
 import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";
 
-import {
+import type {
   CrudFilter,
   CrudOperators,
   CrudSort,

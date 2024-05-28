@@ -1,4 +1,4 @@
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 
 /**
  * Remove all properties that are non-serializable from a resource object.

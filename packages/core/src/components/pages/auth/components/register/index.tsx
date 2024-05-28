@@ -10,8 +10,8 @@ import {
 
 import { useActiveAuthProvider } from "@definitions/helpers";
 
-import { DivPropsType, FormPropsType } from "../..";
-import { RegisterPageProps } from "../../types";
+import type { DivPropsType, FormPropsType } from "../..";
+import type { RegisterPageProps } from "../../types";
 
 type RegisterProps = RegisterPageProps<
   DivPropsType,

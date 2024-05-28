@@ -2,14 +2,14 @@ import { useContext, useEffect } from "react";
 
 import { LiveContext } from "@contexts/live";
 
-import {
+import type {
   BaseKey,
   CrudFilter,
   CrudSort,
   MetaQuery,
   Pagination,
 } from "../../../contexts/data/types";
-import { LiveEvent } from "../../../contexts/live/types";
+import type { LiveEvent } from "../../../contexts/live/types";
 
 export type UseSubscriptionProps = {
   /**

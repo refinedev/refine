@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useList } from "@refinedev/core";
+import { useList, useSubscription } from "@refinedev/core";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +16,10 @@ import { VideoClubLayoutSubPage } from "@/components/layout";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
 import { getImagesUrl } from "@/utils/get-cdn-url";
-import { Rental } from "@/types";
+import type { Rental } from "@/types";
+import { getToday } from "@/utils/get-today";
 
-const today = dayjs().year(1995);
+const today = getToday();
 
 const optionsRange = [
   { value: "weekly", label: "Weekly" },
@@ -42,6 +43,7 @@ export const VideoClubReportPage = () => {
       select: "*",
     },
   });
+
   const rentals = dataRental?.data || [];
   const {
     rentalsDueTodayCount,
@@ -50,7 +52,7 @@ export const VideoClubReportPage = () => {
     totalRentalCount,
   } = useMemo(() => {
     const todayRentals = rentals?.filter((rental) =>
-      today.isSame(dayjs(rental.created_at), "day"),
+      today.isSame(dayjs(rental.start_at), "day"),
     );
 
     const todayRevenue = todayRentals?.reduce(
@@ -91,8 +93,8 @@ export const VideoClubReportPage = () => {
       }
 
       return (
-        dayjs(rental.created_at).isAfter(start) &&
-        dayjs(rental.created_at).isBefore(today)
+        dayjs(rental.start_at).isAfter(start) &&
+        dayjs(rental.start_at).isBefore(today)
       );
     });
 
@@ -106,13 +108,13 @@ export const VideoClubReportPage = () => {
       let key = "";
       switch (range.value) {
         case "weekly":
-          key = dayjs(rental.created_at).format("dddd");
+          key = dayjs(rental.start_at).format("dddd");
           break;
         case "monthly":
-          key = dayjs(rental.created_at).format("DD-MM-YYYY");
+          key = dayjs(rental.start_at).format("DD-MM-YYYY");
           break;
         case "yearly":
-          key = dayjs(rental.created_at).format("MM-YYYY");
+          key = dayjs(rental.start_at).format("MM-YYYY");
           break;
       }
 
@@ -137,7 +139,11 @@ export const VideoClubReportPage = () => {
     };
   }, [rentals, range.value]);
 
-  const { data: dataMembers, isLoading: isLoadingMembers } = useList({
+  const {
+    data: dataMembers,
+    isLoading: isLoadingMembers,
+    refetch: refetchMemebers,
+  } = useList({
     resource: "members",
     pagination: {
       mode: "off",
@@ -146,6 +152,14 @@ export const VideoClubReportPage = () => {
       select: "*, rentals(*)",
     },
   });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      refetchMemebers();
+    },
+  });
+
   const members = dataMembers?.data || [];
   const totalMembers = members?.length || 0;
   const { activeMembers } = useMemo(() => {
@@ -177,6 +191,7 @@ export const VideoClubReportPage = () => {
       select: "*",
     },
   });
+
   const tapes = dataTapes?.data || [];
   const totalTapes = tapes?.length || 0;
 

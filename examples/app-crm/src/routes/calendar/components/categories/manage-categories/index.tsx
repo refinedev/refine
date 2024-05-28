@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useCreateMany, useDelete, useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
+import { Button, Form, Input, Modal, type ModalProps, Popconfirm } from "antd";
 
 import { Text } from "@/components";
 import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
-import { EventCategoriesQuery } from "@/graphql/types";
+import type { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION } from "./queries";

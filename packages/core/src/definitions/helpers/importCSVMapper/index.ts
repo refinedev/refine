@@ -1,7 +1,7 @@
 import fromPairs from "lodash/fromPairs";
 import zip from "lodash/zip";
 
-import { MapDataFn } from "../../../hooks/export/types";
+import type { MapDataFn } from "../../../hooks/export/types";
 
 export const importCSVMapper = <TItem = any, TVariables = any>(
   data: any[][],

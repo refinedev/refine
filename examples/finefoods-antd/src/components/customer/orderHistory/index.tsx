@@ -1,6 +1,6 @@
 import { NumberField, useTable } from "@refinedev/antd";
-import { IUser, IOrder, IOrderFilterVariables } from "../../../interfaces";
-import { HttpError, useNavigation, useTranslate } from "@refinedev/core";
+import type { IUser, IOrder, IOrderFilterVariables } from "../../../interfaces";
+import { type HttpError, useNavigation, useTranslate } from "@refinedev/core";
 import { Table, Typography } from "antd";
 import { OrderStatus, OrderTableColumnProducts } from "../../order";
 
@@ -87,7 +87,7 @@ export const CustomerOrderHistory = ({ customer }: Props) => {
         render={(amount) => {
           return (
             <NumberField
-              value={amount / 100}
+              value={amount}
               style={{
                 whiteSpace: "nowrap",
               }}

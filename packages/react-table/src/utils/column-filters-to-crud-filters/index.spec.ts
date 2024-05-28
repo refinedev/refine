@@ -1,4 +1,4 @@
-import { ColumnDef, ColumnFilter } from "@tanstack/react-table";
+import type { ColumnDef, ColumnFilter } from "@tanstack/react-table";
 import { columnFiltersToCrudFilters } from ".";
 
 describe("columnFiltersToCrudFilters", () => {

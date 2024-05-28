@@ -2,17 +2,17 @@ import { Create, useSelect, useModalForm } from "@refinedev/antd";
 
 import {
   Drawer,
-  DrawerProps,
+  type DrawerProps,
   Form,
-  FormProps,
+  type FormProps,
   Input,
-  ButtonProps,
+  type ButtonProps,
   Grid,
   Select,
   Button,
 } from "antd";
 
-import { IContact } from "../../interfaces";
+import type { IContact } from "../../interfaces";
 import { CreateContact } from "../../components/contact";
 
 type CreateClientProps = {

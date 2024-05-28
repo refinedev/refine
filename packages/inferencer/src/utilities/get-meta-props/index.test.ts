@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
-import { Action, getMetaProps } from ".";
-import { InferencerComponentProps } from "@/types";
+import { type Action, getMetaProps } from ".";
+import type { InferencerComponentProps } from "@/types";
 
 // remove all indentation, newlines, empty spaces
 const getMetaPropsForTest = (

@@ -8,7 +8,7 @@ import {
   AuthPage,
 } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
-import { ConfigProvider, ThemeConfig, theme } from "antd";
+import { ConfigProvider, type ThemeConfig, theme } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,

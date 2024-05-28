@@ -1,7 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -19,13 +19,13 @@ import {
   Drawer,
   Navbar,
   NavLink,
-  NavLinkStylesNames,
-  NavLinkStylesParams,
+  type NavLinkStylesNames,
+  type NavLinkStylesParams,
   ScrollArea,
   MediaQuery,
   Tooltip,
-  TooltipProps,
-  Styles,
+  type TooltipProps,
+  type Styles,
   useMantineTheme,
   Flex,
 } from "@mantine/core";
@@ -34,7 +34,7 @@ import { IconList, IconPower, IconDashboard } from "@tabler/icons-react";
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 
 const defaultNavIcon = <IconList size={20} />;
 

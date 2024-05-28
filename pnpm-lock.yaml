@@ -276,7 +276,7 @@ importers:
   examples/app-crm:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/plots':
         specifier: ^1.2.5
@@ -487,7 +487,7 @@ importers:
         specifier: ^1.17.2
         version: 1.20.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/plots':
         specifier: ^1.2.5
@@ -660,7 +660,7 @@ importers:
   examples/auth-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -1209,7 +1209,7 @@ importers:
   examples/auth-otp:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -1688,7 +1688,7 @@ importers:
   examples/blog-invoice-generator:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-pdf/renderer':
         specifier: ^3.1.8
@@ -1782,7 +1782,7 @@ importers:
         specifier: ^1.2.0
         version: 1.4.3(@ant-design/icons@5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(antd@5.17.3(date-fns@3.6.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(reflect-metadata@0.2.2)
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@craco/craco':
         specifier: ^7.1.0
@@ -2657,7 +2657,7 @@ importers:
   examples/blog-refine-antd-dynamic-form:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -2797,7 +2797,7 @@ importers:
   examples/blog-refine-digital-ocean:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/plots':
         specifier: ^1.2.5
@@ -3031,7 +3031,7 @@ importers:
   examples/blog-refine-markdown:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -3975,7 +3975,7 @@ importers:
   examples/command-palette-kbar:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -4303,7 +4303,7 @@ importers:
   examples/customization-offlayout-area:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -5362,7 +5362,7 @@ importers:
   examples/data-provider-supabase:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -5698,7 +5698,7 @@ importers:
         specifier: ^1.2.7
         version: 1.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/plots':
         specifier: ^1.2.5
@@ -5836,9 +5836,12 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.17.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      gsap:
-        specifier: ^3.8.0
-        version: 3.12.5
+      classnames:
+        specifier: ^2.3.2
+        version: 2.5.1
+      dayjs:
+        specifier: ^1.10.7
+        version: 1.11.11
       js-confetti:
         specifier: ^0.9.0
         version: 0.9.1
@@ -7568,7 +7571,7 @@ importers:
   examples/i18n-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
@@ -7662,7 +7665,7 @@ importers:
   examples/i18n-react:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -7912,7 +7915,7 @@ importers:
   examples/inferencer-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -8091,7 +8094,7 @@ importers:
   examples/inferencer-graphql-hasura:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -8626,7 +8629,7 @@ importers:
   examples/live-provider-ably:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/ably':
         specifier: ^4.1.6
@@ -8912,7 +8915,7 @@ importers:
   examples/multi-tenancy-appwrite:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -8964,7 +8967,7 @@ importers:
   examples/multi-tenancy-strapi:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -9071,7 +9074,7 @@ importers:
   examples/pixels:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -9126,7 +9129,7 @@ importers:
   examples/pixels-admin:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -9193,7 +9196,7 @@ importers:
   examples/refine-week-invoice-generator:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-pdf/renderer':
         specifier: ^3.1.8
@@ -9257,7 +9260,7 @@ importers:
   examples/search:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -9826,7 +9829,7 @@ importers:
   examples/table-antd-table-filter:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -11642,7 +11645,7 @@ importers:
   examples/tutorial-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -12919,7 +12922,7 @@ importers:
   examples/with-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
@@ -12992,7 +12995,7 @@ importers:
   examples/with-nextjs-next-auth:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
@@ -13537,7 +13540,7 @@ importers:
   examples/with-storybook-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@refinedev/antd':
         specifier: ^5.38.1
@@ -28366,10 +28369,12 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
@@ -28525,9 +28530,6 @@ packages:
   groqd@0.15.11:
     resolution: {integrity: sha512-i1JBi6CnRAVbsld9pThccvEg0jEq+xDiZE1OAkbTTt6bakpic5nv3QASvdgA+nWAoaX754q1ACvntgB7Pf83VQ==}
     engines: {node: '>= 14'}
-
-  gsap@3.12.5:
-    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
 
   gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -34743,14 +34745,17 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@4.4.1:
@@ -55932,8 +55937,6 @@ snapshots:
   groqd@0.15.11:
     dependencies:
       zod: 3.22.4
-
-  gsap@3.12.5: {}
 
   gunzip-maybe@1.4.2:
     dependencies:

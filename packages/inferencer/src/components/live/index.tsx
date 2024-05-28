@@ -2,10 +2,14 @@ import React from "react";
 import * as RefineCore from "@refinedev/core";
 import * as gql from "graphql-tag";
 
-import { LivePreview, LiveProvider, ContextProps } from "@aliemir/react-live";
+import {
+  LivePreview,
+  LiveProvider,
+  type ContextProps,
+} from "@aliemir/react-live";
 
 import { replaceImports, replaceExports } from "../../utilities";
-import { AdditionalScopeType, LiveComponentProps } from "../../types";
+import type { AdditionalScopeType, LiveComponentProps } from "../../types";
 
 const defaultScope: Array<AdditionalScopeType> = [
   ["react", "React", React],

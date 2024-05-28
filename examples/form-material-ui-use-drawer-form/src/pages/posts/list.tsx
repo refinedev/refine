@@ -1,11 +1,11 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { HttpError, useMany } from "@refinedev/core";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { type HttpError, useMany } from "@refinedev/core";
 import { EditButton, List, useDataGrid } from "@refinedev/mui";
 import { useModalForm } from "@refinedev/react-hook-form";
 import React from "react";
 
 import { CreatePostDrawer, EditPostDrawer } from "../../components";
-import { ICategory, IPost, Nullable } from "../../interfaces";
+import type { ICategory, IPost, Nullable } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();

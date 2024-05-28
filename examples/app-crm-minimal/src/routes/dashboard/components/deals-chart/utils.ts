@@ -1,8 +1,8 @@
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import dayjs from "dayjs";
 
-import { DashboardDealsChartQuery } from "@/graphql/types";
+import type { DashboardDealsChartQuery } from "@/graphql/types";
 
 type DealStage = GetFieldsFromList<DashboardDealsChartQuery>;
 

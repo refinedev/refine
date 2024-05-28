@@ -16,7 +16,7 @@ import {
 
 import { Table, Space, Select } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, sorter } = useTable<IPost>({

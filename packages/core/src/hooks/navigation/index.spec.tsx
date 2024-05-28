@@ -8,7 +8,7 @@ import {
 } from "@test";
 
 import { useNavigation } from ".";
-import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
+import type { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 
 const legacyPushMock = jest.fn();
 const legacyReplaceMock = jest.fn();

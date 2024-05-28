@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  TitleProps,
+  type TitleProps,
   useRouterContext,
   useRouterType,
   useLink,

@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { NumberField } from "@refinedev/mui";
 import { useTranslate } from "@refinedev/core";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import { IOrder, IProduct } from "../../../interfaces";
+import type { IOrder, IProduct } from "../../../interfaces";
 import { getUniqueListWithCount } from "../../../utils";
 
 type Props = {

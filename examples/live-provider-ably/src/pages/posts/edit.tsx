@@ -9,7 +9,7 @@ import {
 import { Alert, Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
   const [deprecated, setDeprecated] = useState<

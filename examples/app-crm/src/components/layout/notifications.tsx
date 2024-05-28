@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 
 import { useList, useMany } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { BellOutlined } from "@ant-design/icons";
 import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
 
-import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+import type {
+  NotificationsDealsQuery,
+  NotificationsQuery,
+} from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";

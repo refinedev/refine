@@ -13,7 +13,7 @@ import { MediaPlayer } from "@/components/media-player/player";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 import { getHourFromMinutes } from "@/utils/get-hour-from-minutes";
-import { VideoTitle } from "@/types";
+import type { VideoTitle } from "@/types";
 
 export const RVCWebsitePageTitleDetails = () => {
   const { titleId } = useParams();

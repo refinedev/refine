@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
-import CardBase, { CardProps } from "@mui/material/Card";
-import CardHeader, { CardHeaderProps } from "@mui/material/CardHeader";
-import CardContent, { CardContentProps } from "@mui/material/CardContent";
+import type { PropsWithChildren } from "react";
+import CardBase, { type CardProps } from "@mui/material/Card";
+import CardHeader, { type CardHeaderProps } from "@mui/material/CardHeader";
+import CardContent, { type CardContentProps } from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 

@@ -17,11 +17,11 @@ import {
   TableContainer,
   HStack,
 } from "@chakra-ui/react";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import { Pagination } from "../../components/pagination";
 import { ColumnSorter } from "../../components/column-sorter";
 import { ColumnFilter } from "../../components/column-filter";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(

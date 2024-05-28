@@ -1,4 +1,4 @@
-import { Payment, PaymentStatus } from "@medusajs/medusa";
+import type { Payment, PaymentStatus } from "@medusajs/medusa";
 import clsx from "clsx";
 
 interface PaymentDetailsProps {

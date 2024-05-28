@@ -9,7 +9,7 @@ dayjs.extend(LocalizedFormat);
 
 const defaultLocale = dayjs.locale();
 
-import { DateFieldProps } from "../types";
+import type { DateFieldProps } from "../types";
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and

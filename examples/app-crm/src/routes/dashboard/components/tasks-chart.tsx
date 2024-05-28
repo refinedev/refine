@@ -1,14 +1,14 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { PieConfig } from "@ant-design/plots";
+import type { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 
 import { Text } from "@/components";
-import { DashboardTasksChartQuery } from "@/graphql/types";
+import type { DashboardTasksChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_TASKS_CHART_QUERY } from "./queries";
 

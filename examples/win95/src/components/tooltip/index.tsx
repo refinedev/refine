@@ -1,5 +1,5 @@
-import { PropsWithChildren, ReactNode } from "react";
-import { Tooltip, TooltipProps } from "react95";
+import type { PropsWithChildren, ReactNode } from "react";
+import { Tooltip, type TooltipProps } from "react95";
 
 type Props = {
   content: ReactNode;

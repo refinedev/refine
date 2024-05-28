@@ -1,4 +1,4 @@
-import { ResourceActionRoute } from "./get-action-routes-from-resource";
+import type { ResourceActionRoute } from "./get-action-routes-from-resource";
 import { isParameter } from "./is-parameter";
 import { removeLeadingTrailingSlashes } from "./remove-leading-trailing-slashes";
 import { splitToSegments } from "./split-to-segments";

@@ -1,6 +1,6 @@
 // receive ws message by adding a listener to the ws object
 
-import { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
+import type { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
 
 export function receive<T extends DevtoolsEvent>(
   ws: WebSocket,

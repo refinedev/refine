@@ -1,5 +1,5 @@
 import React from "react";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 import clsx from "clsx";
 

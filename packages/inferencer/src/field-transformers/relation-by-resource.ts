@@ -1,5 +1,5 @@
 import { resourceFromInferred } from "../utilities";
-import { FieldTransformer, InferField } from "../types";
+import type { FieldTransformer, InferField } from "../types";
 
 export const relationByResource: FieldTransformer = (
   fields,

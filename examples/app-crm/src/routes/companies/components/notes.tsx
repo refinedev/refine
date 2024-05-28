@@ -1,23 +1,23 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useParams } from "react-router-dom";
 
 import { DeleteButton, useForm } from "@refinedev/antd";
 import {
-  HttpError,
+  type HttpError,
   useGetIdentity,
   useInvalidate,
   useList,
   useParsed,
 } from "@refinedev/core";
-import { GetFieldsFromList, GetVariables } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList, GetVariables } from "@refinedev/nestjs-query";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { Button, Card, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { User } from "@/graphql/schema.types";
-import {
+import type { User } from "@/graphql/schema.types";
+import type {
   CompanyCompanyNotesQuery,
   CompanyCreateCompanyNoteMutationVariables,
 } from "@/graphql/types";

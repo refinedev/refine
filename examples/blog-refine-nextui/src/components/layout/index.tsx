@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { Breadcrumb } from "../breadcrumb";
 import { Menu } from "../menu";
 

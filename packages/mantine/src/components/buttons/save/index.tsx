@@ -8,7 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `}.

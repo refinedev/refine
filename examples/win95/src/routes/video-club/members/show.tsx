@@ -1,4 +1,4 @@
-import { useNavigation, useOne } from "@refinedev/core";
+import { useNavigation, useOne, useSubscription } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import dayjs from "dayjs";
@@ -16,13 +16,13 @@ import {
 import { ImagePixelated } from "@/components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
-import { ExtendedMember } from "@/types";
+import type { ExtendedMember } from "@/types";
 
 export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();
   const { list } = useNavigation();
 
-  const { data, isLoading } = useOne<ExtendedMember>({
+  const { data, isLoading, refetch } = useOne<ExtendedMember>({
     resource: "members",
     id,
     meta: {
@@ -30,6 +30,20 @@ export const VideoClubMemberPageShow: React.FC = () => {
     },
   });
   const member = data?.data;
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      refetch();
+    },
+  });
+
+  useSubscription({
+    channel: "titles",
+    onLiveEvent: () => {
+      refetch();
+    },
+  });
 
   return (
     <VideoClubLayoutSubPage

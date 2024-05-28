@@ -1,4 +1,4 @@
-import { getDefaultFilter, useTable } from "@refinedev/core";
+import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
@@ -18,7 +18,7 @@ import {
 import { Pagination } from "@/components/pagination";
 import { DangerIcon } from "@/components/icons";
 import { VideoClubLayoutSubPage } from "@/components/layout";
-import { ExtendedMember } from "@/types";
+import type { ExtendedMember } from "@/types";
 import { hasActiveRental } from "@/utils/has-active-rental";
 
 export const VideoClubMemberPageList = () => {
@@ -35,6 +35,13 @@ export const VideoClubMemberPageList = () => {
     resource: "members",
     meta: {
       select: "*, rentals(*)",
+    },
+  });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      membersQueryResult?.refetch();
     },
   });
 

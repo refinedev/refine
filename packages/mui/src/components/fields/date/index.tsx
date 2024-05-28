@@ -6,7 +6,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 import Typography from "@mui/material/Typography";
 
-import { DateFieldProps } from "../types";
+import type { DateFieldProps } from "../types";
 
 dayjs.extend(LocalizedFormat);
 

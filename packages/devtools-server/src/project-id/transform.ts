@@ -1,5 +1,5 @@
-import { namedTypes } from "ast-types";
-import {
+import type { namedTypes } from "ast-types";
+import type {
   API,
   ASTPath,
   Collection,

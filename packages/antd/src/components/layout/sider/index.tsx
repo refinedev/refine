@@ -11,7 +11,7 @@ import {
   useLogout,
   useTitle,
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useRouterContext,
   useMenu,
@@ -26,7 +26,7 @@ import {
 import { Title as DefaultTitle } from "@components";
 
 import { drawerButtonStyles } from "./styles";
-import { RefineLayoutSiderProps } from "../types";
+import type { RefineLayoutSiderProps } from "../types";
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({
   Title: TitleFromProps,

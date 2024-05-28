@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useShow } from "@refinedev/core";
+import { useShow, useSubscription } from "@refinedev/core";
 import dayjs from "dayjs";
 import {
   Table,
@@ -19,14 +19,14 @@ import { MediaPlayerModal } from "@/components/media-player";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
-import { ExtendedVideoTitle, Member, Rental } from "@/types";
+import type { ExtendedVideoTitle, Member, Rental } from "@/types";
 
 export const VideoClubPageShowTitle = () => {
   const [trailer, setTrailer] = useState(false);
   const navigate = useNavigate();
 
   const {
-    queryResult: { data, isLoading },
+    queryResult: { data, isLoading, refetch },
   } = useShow<
     Omit<ExtendedVideoTitle, "rentals"> & {
       rentals: (Rental & { member: Member })[];
@@ -35,6 +35,27 @@ export const VideoClubPageShowTitle = () => {
     resource: "titles",
     meta: {
       select: "*, tapes(*), rentals(*, member:members(*))",
+    },
+  });
+
+  useSubscription({
+    channel: "tapes",
+    onLiveEvent: () => {
+      refetch();
+    },
+  });
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      refetch();
+    },
+  });
+
+  useSubscription({
+    channel: "members",
+    onLiveEvent: () => {
+      refetch();
     },
   });
 

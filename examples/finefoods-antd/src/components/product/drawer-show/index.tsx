@@ -1,6 +1,6 @@
 import {
-  BaseKey,
-  HttpError,
+  type BaseKey,
+  type HttpError,
   useGetToPath,
   useGo,
   useNavigation,
@@ -20,7 +20,7 @@ import {
 } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { Drawer } from "../../drawer";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import { DeleteButton, NumberField } from "@refinedev/antd";
 import { ProductStatus } from "../status";
 import { EditOutlined } from "@ant-design/icons";

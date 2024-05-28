@@ -1,6 +1,6 @@
-import { ButtonProps } from "@chakra-ui/react";
-import { UseImportInputPropsType } from "@refinedev/core";
-import {
+import type { ButtonProps } from "@chakra-ui/react";
+import type { UseImportInputPropsType } from "@refinedev/core";
+import type {
   RefineCloneButtonProps,
   RefineCreateButtonProps,
   RefineDeleteButtonProps,
@@ -12,7 +12,7 @@ import {
   RefineSaveButtonProps,
   RefineShowButtonProps,
 } from "@refinedev/ui-types";
-import { IconProps } from "@tabler/icons-react";
+import type { IconProps } from "@tabler/icons-react";
 
 export type ShowButtonProps = Omit<
   RefineShowButtonProps<

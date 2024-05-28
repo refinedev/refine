@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import type { ComponentMeta } from "@storybook/react";
 import {
   EditButton,
   List,
@@ -11,7 +11,7 @@ import {
 } from "@refinedev/antd";
 import { Button, Form, Input, Select, Space, Table } from "antd";
 import { useMany, useDeleteMany } from "@refinedev/core";
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 import MDEditor from "@uiw/react-md-editor";
 

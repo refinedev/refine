@@ -4,7 +4,7 @@ import {
   useDelete,
   useTranslate,
   useResource,
-  IResourceItem,
+  type IResourceItem,
   useCanWithoutCache,
   useUserFriendlyName,
   useRouterType,
@@ -13,7 +13,7 @@ import {
 import {
   useRegisterActions,
   createAction,
-  Action,
+  type Action,
   KBarContext,
   VisualState,
 } from "kbar";

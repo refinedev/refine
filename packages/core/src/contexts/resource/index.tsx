@@ -3,7 +3,7 @@ import React from "react";
 import { legacyResourceTransform } from "@definitions/helpers";
 import { useDeepMemo } from "@hooks/deepMemo";
 
-import { IResourceContext, IResourceItem, ResourceProps } from "./types";
+import type { IResourceContext, IResourceItem, ResourceProps } from "./types";
 
 export const ResourceContext = React.createContext<IResourceContext>({
   resources: [],

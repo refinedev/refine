@@ -1,8 +1,8 @@
 import React from "react";
-import { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
+import type { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
 import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
-import { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
+import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
 import { Route, Router, Routes } from "react-router-dom";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {

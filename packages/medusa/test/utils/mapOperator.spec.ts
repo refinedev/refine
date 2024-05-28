@@ -1,4 +1,4 @@
-import { CrudOperators } from "@refinedev/core";
+import type { CrudOperators } from "@refinedev/core";
 import { mapOperator } from "../../src/utils";
 
 describe("mapOperator", () => {

@@ -13,7 +13,7 @@
     "changeset": "changeset",
     "coffee": "pnpm nuke && pnpm i && pnpm build:all",
     "dev": "lerna run dev",
-    "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev -- --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
+    "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
     "lint": "biome check .",
     "lint:ci": "biome ci .",

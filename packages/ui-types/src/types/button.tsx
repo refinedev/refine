@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import {
+import type { PropsWithChildren } from "react";
+import type {
   BaseKey,
   DeleteOneResponse,
   IQueryKeys,

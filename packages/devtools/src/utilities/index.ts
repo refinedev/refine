@@ -1,4 +1,4 @@
-import { Placement } from "src/interfaces/placement";
+import type { Placement } from "src/interfaces/placement";
 
 export const getPanelToggleTransforms = (visible: boolean) => {
   return visible ? "scaleX(1) translateY(0)" : "scaleX(0) translateY(25vw)";

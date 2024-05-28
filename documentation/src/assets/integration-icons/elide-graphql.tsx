@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 const SvgElideGraphql = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
   <svg

@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 
-import { NumberFieldProps } from "../types";
+import type { NumberFieldProps } from "../types";
 
 function toLocaleStringSupportsOptions() {
   return !!(

@@ -1,9 +1,9 @@
-import { useList, useMany, useOne } from "@refinedev/core";
+import { useList, useMany, useOne, useSubscription } from "@refinedev/core";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller, type FieldValues } from "react-hook-form";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { VideoClubPageTapeSelectTitle } from "@/routes/video-club/tapes/select-title";
@@ -21,13 +21,14 @@ import { DangerIcon, IconChevronLeft } from "@/components/icons";
 import { ArrowGreenPixelatedIcon } from "@/components/icons/arrow-green-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
-import {
+import type {
   CreateRental,
   ExtendedMember,
   ExtendedVideoTitle,
   Tape,
   VideoTitle,
 } from "@/types";
+import { getToday } from "@/utils/get-today";
 
 export const VideoClubPageTapeRent = () => {
   const navigate = useNavigate();
@@ -38,7 +39,11 @@ export const VideoClubPageTapeRent = () => {
   );
   const [screen, setScreen] = useState<"titles" | "rent">("titles");
 
-  const { data: dataMember, isLoading } = useOne<ExtendedMember>({
+  const {
+    data: dataMember,
+    isLoading,
+    refetch,
+  } = useOne<ExtendedMember>({
     resource: "members",
     id: memberId,
     queryOptions: {
@@ -49,6 +54,13 @@ export const VideoClubPageTapeRent = () => {
     },
   });
   const member = dataMember?.data || null;
+
+  useSubscription({
+    channel: "rentals",
+    onLiveEvent: () => {
+      refetch();
+    },
+  });
 
   if (screen === "titles") {
     return (
@@ -318,13 +330,14 @@ const RentTapeForm = ({
   }, [tapesIsSuccess]);
 
   const period = watch<"period">("period");
-  const returnDate = dayjs().add(period, "day").format("DD.MM.YYYY");
+  const returnDate = getToday().add(period, "day").format("DD.MM.YYYY");
   const price = NIGHTLY_RENTAL_FEE * period;
 
   const onFinishHandler = (data: FieldValues) => {
     onFinish({
       ...data,
-      expected_return_at: dayjs().add(data.period, "day").format(),
+      start_at: getToday().format(),
+      expected_return_at: getToday().add(data.period, "day").format(),
     });
   };
 

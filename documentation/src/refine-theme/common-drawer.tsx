@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, PropsWithChildren } from "react";
+import React, { type FC, type PropsWithChildren } from "react";
 import { CloseIcon } from "./icons/close";
 import { Transition } from "@headlessui/react";
 import { createPortal } from "react-dom";

@@ -1,7 +1,7 @@
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
-import { divIcon, LatLngExpression, point } from "leaflet";
+import { divIcon, type LatLngExpression, point } from "leaflet";
 
 import Markers from "./markers.json";
 

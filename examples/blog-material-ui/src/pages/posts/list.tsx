@@ -8,9 +8,9 @@ import {
 import React from "react";
 
 import Stack from "@mui/material/Stack";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
-import { IPost } from "interfaces";
+import type { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({

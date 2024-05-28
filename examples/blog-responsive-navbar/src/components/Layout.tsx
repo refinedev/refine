@@ -1,4 +1,4 @@
-import { useMenu, LayoutProps } from "@refinedev/core";
+import { useMenu, type LayoutProps } from "@refinedev/core";
 import { Link } from "react-router-dom";
 import React from "react";
 

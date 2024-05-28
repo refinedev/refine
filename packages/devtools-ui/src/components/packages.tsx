@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { Fireworks } from "@fireworks-js/react";
 import type { FireworksHandlers } from "@fireworks-js/react";
-import { PackageType } from "@refinedev/devtools-shared";
+import type { PackageType } from "@refinedev/devtools-shared";
 
 import { getInstalledPackages, installPackages } from "src/utils/packages";
 import { PackageItem } from "src/components/package-item";

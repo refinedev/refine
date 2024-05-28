@@ -4,7 +4,7 @@ import { Show, MarkdownField, ImageField } from "@refinedev/antd";
 
 import { Typography, Space } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

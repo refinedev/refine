@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import { Card } from "antd";
 
 import { Text } from "@/components";
-import { DashboardDealsChartQuery } from "@/graphql/types";
+import type { DashboardDealsChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
 import { mapDealsData } from "./utils";

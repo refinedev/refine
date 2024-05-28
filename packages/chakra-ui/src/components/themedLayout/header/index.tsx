@@ -9,7 +9,7 @@ import {
   IconButton,
   Icon,
 } from "@chakra-ui/react";
-import { RefineThemedLayoutHeaderProps } from "../types";
+import type { RefineThemedLayoutHeaderProps } from "../types";
 import {
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,

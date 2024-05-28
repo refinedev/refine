@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldMarkdownProps } from "@refinedev/ui-types";
+import type { RefineFieldMarkdownProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

@@ -1,12 +1,12 @@
 import React from "react";
 import { KpiCard } from "./KpiCard";
-import { IChartDatum } from "../../interfaces";
+import type { IChartDatum } from "../../interfaces";
 import {
   CurrencyDollarIcon,
   ShoppingCartIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
-import { GetListResponse } from "@refinedev/core";
+import type { GetListResponse } from "@refinedev/core";
 
 type TStats = {
   dailyRevenue?: GetListResponse<IChartDatum>;

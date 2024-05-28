@@ -11,7 +11,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import {
   MantineProvider,
   Global,
-  ColorScheme,
+  type ColorScheme,
   ColorSchemeProvider,
 } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";

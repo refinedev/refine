@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  IResourceComponentsProps,
+  type IResourceComponentsProps,
   useNavigation,
   useOne,
   useResource,

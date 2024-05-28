@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { AvailablePackageType } from "@refinedev/devtools-shared";
+import type { AvailablePackageType } from "@refinedev/devtools-shared";
 
 import { CloseIcon } from "./icons/close";
 import { SearchIcon } from "./icons/search";

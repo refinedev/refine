@@ -10,9 +10,9 @@ import {
   Text,
   HStack,
   useColorModeValue,
-  BoxProps,
+  type BoxProps,
 } from "@chakra-ui/react";
-import { RefineThemedLayoutV2HeaderProps } from "../types";
+import type { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({

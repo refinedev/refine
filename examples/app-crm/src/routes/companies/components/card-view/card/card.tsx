@@ -1,13 +1,13 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { useDelete, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Button, Card, Dropdown, Space, Tooltip } from "antd";
 
 import { CustomAvatar, Text } from "@/components";
-import { CompaniesTableQuery } from "@/graphql/types";
+import type { CompaniesTableQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { AvatarGroup } from "../../avatar-group";

@@ -1,9 +1,9 @@
-import { FC, useMemo } from "react";
+import { type FC, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { FilterDropdown, ShowButton, useTable } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   ContainerOutlined,
@@ -14,8 +14,8 @@ import {
 import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Participants, QuoteStatusTag, Text } from "@/components";
-import { QuoteStatus } from "@/graphql/schema.types";
-import { CompanyQuotesTableQuery } from "@/graphql/types";
+import type { QuoteStatus } from "@/graphql/schema.types";
+import type { CompanyQuotesTableQuery } from "@/graphql/types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
