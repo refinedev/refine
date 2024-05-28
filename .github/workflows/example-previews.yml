@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Set Example Name
         id: set-example-name
-        run: echo 'EXAMPLE_NAME=$(echo ${{ github.event.comment.body }} | cut -f 2 -d " ")' >> $GITHUB_ENV
+        run: echo "EXAMPLE_NAME=$(echo ${{ github.event.comment.body }} | cut -f 2 -d ' ')" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
