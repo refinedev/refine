@@ -57,6 +57,9 @@ jobs:
           'pixels': 'examples/pixels/**'
           'invoicer': 'examples/invoicer/**'
   deploy_example_preview:
+    permissions:
+      pull-requests: read
+      issues: read
     outputs:
       example_name: ${{ steps.set-example-name.outputs.example_name }}
     runs-on: ubuntu-latest
