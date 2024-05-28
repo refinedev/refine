@@ -1,5 +1,5 @@
 import { useTable } from "@refinedev/antd";
-import { ICourier, IStore } from "../../../interfaces";
+import type { ICourier, IStore } from "../../../interfaces";
 import { Table } from "antd";
 import { useTranslate } from "@refinedev/core";
 import { CourierTableColumnRating } from "../../courier";

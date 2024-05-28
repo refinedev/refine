@@ -1,9 +1,14 @@
 import { useTable } from "@hooks";
-import { BaseKey, BaseRecord, HttpError, UseFormProps } from "@refinedev/core";
-import { ButtonProps } from "antd";
+import type {
+  BaseKey,
+  BaseRecord,
+  HttpError,
+  UseFormProps,
+} from "@refinedev/core";
+import type { ButtonProps } from "antd";
 
-import { useTableProps, useTableReturnType } from "../useTable";
-import { UseFormReturnType, useForm } from "../../form/useForm";
+import type { useTableProps, useTableReturnType } from "../useTable";
+import { type UseFormReturnType, useForm } from "../../form/useForm";
 
 export type useEditableTableReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,

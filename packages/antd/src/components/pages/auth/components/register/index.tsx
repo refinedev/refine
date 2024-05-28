@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  RegisterPageProps,
-  RegisterFormTypes,
+  type RegisterPageProps,
+  type RegisterFormTypes,
   useRouterType,
   useLink,
   useActiveAuthProvider,
@@ -15,9 +15,9 @@ import {
   Form,
   Input,
   Button,
-  LayoutProps,
-  CardProps,
-  FormProps,
+  type LayoutProps,
+  type CardProps,
+  type FormProps,
   Divider,
   theme,
 } from "antd";

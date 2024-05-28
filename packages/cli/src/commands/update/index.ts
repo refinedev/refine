@@ -1,11 +1,11 @@
 import inquirer from "inquirer";
 import center from "center-align";
-import { Command, Option } from "commander";
+import { type Command, Option } from "commander";
 import spinner from "@utils/spinner";
 import { isRefineUptoDate } from "@commands/check-updates";
 import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getVersionTable } from "@components/version-table";
 
 enum Tag {

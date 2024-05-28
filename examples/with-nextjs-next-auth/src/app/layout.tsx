@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import React, { Suspense } from "react";
 import { RefineContext } from "./_refine_context";
 import { AntdRegistry } from "@ant-design/nextjs-registry";

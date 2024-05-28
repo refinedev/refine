@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
+import { type ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
 
 import {
   UnorderedListOutlined,

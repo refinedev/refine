@@ -1,6 +1,9 @@
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
-import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+import type {
+  NotificationsDealsQuery,
+  NotificationsQuery,
+} from "@/graphql/types";
 
 import { Text } from "../text";
 

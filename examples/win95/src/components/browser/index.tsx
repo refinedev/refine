@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 import styled from "styled-components";
 import { Select, Separator, Window } from "react95";
 import { AppLayoutHeader, AppLayoutMenu } from "@/components/layout";

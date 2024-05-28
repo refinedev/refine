@@ -1,7 +1,7 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  QueryObserverResult,
-  UseQueryOptions,
+  type QueryObserverResult,
+  type UseQueryOptions,
   useQuery,
 } from "@tanstack/react-query";
 
@@ -23,18 +23,18 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseKey,
   BaseRecord,
   GetManyResponse,
   HttpError,
   MetaQuery,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

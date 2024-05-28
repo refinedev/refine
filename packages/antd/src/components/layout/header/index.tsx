@@ -1,7 +1,7 @@
 import { useActiveAuthProvider, useGetIdentity } from "@refinedev/core";
 import { Avatar, Layout as AntdLayout, Space, Typography } from "antd";
 import React from "react";
-import { RefineLayoutHeaderProps } from "../types";
+import type { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
   const authProvider = useActiveAuthProvider();

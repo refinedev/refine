@@ -2,7 +2,7 @@ import React from "react";
 
 import { Center, Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
   error,

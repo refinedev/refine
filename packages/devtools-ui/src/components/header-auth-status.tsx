@@ -4,7 +4,7 @@ import Gravatar from "react-gravatar";
 
 import { getMe } from "src/utils/me";
 
-import { MeResponse } from "src/interfaces/api";
+import type { MeResponse } from "src/interfaces/api";
 import { logoutUser } from "src/utils/auth";
 import { useNavigate } from "react-router-dom";
 

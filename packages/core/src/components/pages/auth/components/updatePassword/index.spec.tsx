@@ -5,7 +5,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { TestWrapper } from "@test/index";
 
 import { UpdatePasswordPage } from ".";
-import { AuthProvider } from "../../../../../contexts/auth/types";
+import type { AuthProvider } from "../../../../../contexts/auth/types";
 
 const mockAuthProvider: AuthProvider = {
   login: async () => ({ success: true }),

@@ -1,7 +1,7 @@
 import React, {
-  DetailedHTMLProps,
-  HTMLAttributes,
-  FormHTMLAttributes,
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+  type FormHTMLAttributes,
 } from "react";
 
 import {
@@ -11,7 +11,7 @@ import {
   UpdatePasswordPage,
 } from "./components";
 
-import { AuthPageProps } from "./types";
+import type { AuthPageProps } from "./types";
 
 export type DivPropsType = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

@@ -30,7 +30,7 @@ import { IconChevronLeft, ArrowGreenPixelatedIcon } from "@/components/icons";
 import { ImagePixelated } from "@/components/image-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
-import { ExtendedMember, ExtendedRental } from "@/types";
+import type { ExtendedMember, ExtendedRental } from "@/types";
 
 export const VideoClubPageTapeReturn = () => {
   const [selectedRentals, setSelectedRentals] = useState<ExtendedRental[]>([]);

@@ -1,5 +1,5 @@
 import { Flex, Avatar, Typography } from "antd";
-import { IUser } from "../../../interfaces";
+import type { IUser } from "../../../interfaces";
 
 type Props = {
   customer?: IUser;

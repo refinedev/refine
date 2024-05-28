@@ -4,7 +4,7 @@ import { act, renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
-import { Resource, handleResourceErrors, useGo } from "./";
+import { type Resource, handleResourceErrors, useGo } from "./";
 
 describe("useGo Hook", () => {
   it("should return routerProvider go function", () => {

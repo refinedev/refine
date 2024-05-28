@@ -1,4 +1,8 @@
-import { CrudFilters, LogicalFilter, ConditionalFilter } from "@refinedev/core";
+import type {
+  CrudFilters,
+  LogicalFilter,
+  ConditionalFilter,
+} from "@refinedev/core";
 import { mapOperator } from "./mapOperator";
 import qs from "qs";
 

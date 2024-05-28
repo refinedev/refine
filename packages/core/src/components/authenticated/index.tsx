@@ -9,7 +9,7 @@ import {
   useRouterContext,
   useRouterType,
 } from "@hooks";
-import { GoConfig } from "../../contexts/router/types";
+import type { GoConfig } from "../../contexts/router/types";
 
 export type AuthenticatedCommonProps = {
   /**

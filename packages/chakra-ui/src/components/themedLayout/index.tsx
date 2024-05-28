@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
-import { RefineThemedLayoutProps } from "./types";
+import type { RefineThemedLayoutProps } from "./types";
 
 /**
  * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/#migrate-themedlayout-to-themedlayoutv2

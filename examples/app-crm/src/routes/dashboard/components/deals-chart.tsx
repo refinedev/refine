@@ -1,15 +1,15 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
+import type { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { DashboardDealsChartQuery } from "@/graphql/types";
+import type { DashboardDealsChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
 

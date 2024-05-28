@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ShowButtonProps } from "../types";
+import type { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

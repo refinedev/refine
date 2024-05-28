@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import {
-  BaseKey,
-  BaseRecord,
-  FormWithSyncWithLocationParams,
-  HttpError,
+  type BaseKey,
+  type BaseRecord,
+  type FormWithSyncWithLocationParams,
+  type HttpError,
   useGo,
   useModal,
   useParsed,
@@ -13,9 +13,9 @@ import {
   useWarnAboutChange,
   useInvalidate,
 } from "@refinedev/core";
-import { FieldValues } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 import React from "react";
 
 export type UseModalFormReturnType<

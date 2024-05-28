@@ -3,7 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 
 import { getUniqueContributorsAvatarURL } from "../../utility";
-import { Pixel } from "../../types";
+import type { Pixel } from "../../types";
 
 type ContributorsProps = {
   pixels: Pixel[];

@@ -1,4 +1,4 @@
-import { LiveEvent } from "@refinedev/core";
+import type { LiveEvent } from "@refinedev/core";
 import { REALTIME_POSTGRES_CHANGES_LISTEN_EVENT } from "@supabase/supabase-js";
 
 export const liveTypes: Record<

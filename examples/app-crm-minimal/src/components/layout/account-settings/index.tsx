@@ -1,11 +1,11 @@
 import { SaveButton, useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { CloseOutlined } from "@ant-design/icons";
 import { Button, Card, Drawer, Form, Input, Spin } from "antd";
 
-import {
+import type {
   UpdateUserMutation,
   UpdateUserMutationVariables,
 } from "@/graphql/types";

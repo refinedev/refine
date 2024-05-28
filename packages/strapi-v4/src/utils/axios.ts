@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 export const axiosInstance = axios.create();
 

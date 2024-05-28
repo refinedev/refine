@@ -5,7 +5,7 @@ import { useNotificationProvider } from "@refinedev/antd";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
 import { useTranslation } from "next-i18next";

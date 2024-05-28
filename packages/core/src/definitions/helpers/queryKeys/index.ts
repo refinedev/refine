@@ -1,6 +1,6 @@
-import { QueryKey } from "@tanstack/react-query";
+import type { QueryKey } from "@tanstack/react-query";
 
-import { IQueryKeys, MetaQuery } from "../../../contexts/data/types";
+import type { IQueryKeys, MetaQuery } from "../../../contexts/data/types";
 import { keys as newKeys } from "../keys";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 

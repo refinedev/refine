@@ -2,7 +2,7 @@ import WebSocket from "ws";
 import { SERVER_PORT } from "./constants";
 import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 import { bold, cyanBright } from "chalk";
-import http from "http";
+import type http from "http";
 
 export const serveWs = (
   server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>,

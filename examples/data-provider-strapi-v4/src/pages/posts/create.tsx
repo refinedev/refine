@@ -5,7 +5,7 @@ import { Form, Input, Select, Upload, Radio } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
   const [locale, setLocale] = useState("en");

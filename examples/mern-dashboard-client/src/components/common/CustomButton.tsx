@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-import { CustomButtonProps } from "interfaces/common";
+import type { CustomButtonProps } from "interfaces/common";
 
 const CustomButton = ({
   type,

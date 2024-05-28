@@ -1,4 +1,4 @@
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 import get from "lodash/get";
 
 export const getResourceValue = (activity: Activity): string => {

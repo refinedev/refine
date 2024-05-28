@@ -1,4 +1,4 @@
-import { CrudSort, CrudSorting } from "@refinedev/core";
+import type { CrudSort, CrudSorting } from "@refinedev/core";
 import setWith from "lodash/setWith";
 
 export type HasuraSortOrder = "asc" | "desc";

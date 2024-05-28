@@ -19,7 +19,7 @@ import { MediaPlayerModal } from "@/components/media-player";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
-import { ExtendedVideoTitle, Member, Rental } from "@/types";
+import type { ExtendedVideoTitle, Member, Rental } from "@/types";
 
 export const VideoClubPageShowTitle = () => {
   const [trailer, setTrailer] = useState(false);

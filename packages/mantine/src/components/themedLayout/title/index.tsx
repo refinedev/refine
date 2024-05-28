@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouterContext, useRouterType, useLink } from "@refinedev/core";
 import { Center, Text, useMantineTheme } from "@mantine/core";
-import { RefineLayoutThemedTitleProps } from "../types";
+import type { RefineLayoutThemedTitleProps } from "../types";
 
 const defaultText = "Refine Project";
 

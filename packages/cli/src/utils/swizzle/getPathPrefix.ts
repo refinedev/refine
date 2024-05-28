@@ -1,4 +1,4 @@
-import { ProjectTypes } from "@definitions/projectTypes";
+import type { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
 import { getFilesPathByProject } from "@utils/resource";
 

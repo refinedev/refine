@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
 import { useInvalidate, useUpdate } from "@refinedev/core";
 

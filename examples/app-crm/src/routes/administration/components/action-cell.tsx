@@ -5,7 +5,7 @@ import { Button, Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 import { Text } from "@/components";
-import { Audit } from "..";
+import type { Audit } from "..";
 
 export const ActionCell = ({ record }: { record: Audit }) => {
   const [opened, setOpened] = useState(false);

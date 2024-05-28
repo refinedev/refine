@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
-import { useDroppable, UseDroppableArguments } from "@dnd-kit/core";
+import { useDroppable, type UseDroppableArguments } from "@dnd-kit/core";
 import { Badge, Button, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";

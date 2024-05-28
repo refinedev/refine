@@ -2,7 +2,7 @@ import { DeleteButton, EditButton, List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import Stack from "@mui/material/Stack";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 interface IPost {
   firstName: string;

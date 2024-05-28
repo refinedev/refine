@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
 import { useGetIdentity } from "@refinedev/core";
-import { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 
 import { StoreSelect } from "../select";
 

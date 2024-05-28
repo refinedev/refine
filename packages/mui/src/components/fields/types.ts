@@ -1,4 +1,4 @@
-import { ReactChild, ReactNode } from "react";
+import type { ReactChild, ReactNode } from "react";
 
 import type { ChipProps } from "@mui/material/Chip";
 import type { LinkProps } from "@mui/material/Link";
@@ -6,7 +6,7 @@ import type { SvgIconProps } from "@mui/material/SvgIcon";
 import type { TooltipProps } from "@mui/material/Tooltip";
 import type { TypographyProps } from "@mui/material/Typography";
 
-import {
+import type {
   RefineFieldBooleanProps,
   RefineFieldDateProps,
   RefineFieldEmailProps,

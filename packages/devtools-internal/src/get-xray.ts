@@ -1,4 +1,4 @@
-import { RefineHook, TraceType } from "@refinedev/devtools-shared";
+import type { RefineHook, TraceType } from "@refinedev/devtools-shared";
 import { getTrace } from "./get-trace";
 import { getResourcePath } from "./get-resource-path";
 

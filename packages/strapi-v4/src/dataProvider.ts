@@ -1,5 +1,5 @@
-import { DataProvider as IDataProvider, HttpError } from "@refinedev/core";
-import { AxiosInstance } from "axios";
+import type { DataProvider as IDataProvider, HttpError } from "@refinedev/core";
+import type { AxiosInstance } from "axios";
 import qs from "qs";
 import {
   axiosInstance,

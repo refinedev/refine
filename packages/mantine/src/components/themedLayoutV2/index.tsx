@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mantine/core";
 
-import { RefineThemedLayoutV2Props } from "./types";
+import type { RefineThemedLayoutV2Props } from "./types";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
 import { ThemedLayoutContextProvider } from "../../contexts";

@@ -3,12 +3,12 @@ import { useOne } from "@pankod/refine-core";
 import {
   useDataGrid,
   DataGrid,
-  GridColumns,
+  type GridColumns,
   List,
   EditButton,
 } from "@pankod/refine-mui";
 
-import { ICategory, IPost } from "interfaces";
+import type { ICategory, IPost } from "interfaces";
 
 export const PostsList: React.FC = () => {
   const columns = React.useMemo<GridColumns<IPost>>(

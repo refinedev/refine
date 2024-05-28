@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelect } from "@refinedev/antd";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   Checkbox,
@@ -9,8 +9,8 @@ import {
   ColorPicker,
   DatePicker,
   Form,
-  FormInstance,
-  FormProps,
+  type FormInstance,
+  type FormProps,
   Input,
   Row,
   Select,
@@ -19,7 +19,7 @@ import {
 import dayjs from "dayjs";
 
 import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
-import { EventCategoriesQuery } from "@/graphql/types";
+import type { EventCategoriesQuery } from "@/graphql/types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 type CalendarFormProps = {

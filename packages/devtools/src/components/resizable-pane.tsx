@@ -1,5 +1,5 @@
 import React from "react";
-import { Placement } from "src/interfaces/placement";
+import type { Placement } from "src/interfaces/placement";
 import {
   getDefaultPanelSize,
   getMaxPanelHeight,

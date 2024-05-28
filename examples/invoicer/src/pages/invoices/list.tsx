@@ -15,7 +15,7 @@ import { Avatar, Flex, Input, Select, Table, Typography } from "antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { API_URL } from "@/utils/constants";
 import { getRandomColorFromString } from "@/utils/get-random-color";
-import { Invoice } from "@/types";
+import type { Invoice } from "@/types";
 
 export const InvoicePageList = () => {
   const go = useGo();

@@ -2,7 +2,7 @@ import React from "react";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();

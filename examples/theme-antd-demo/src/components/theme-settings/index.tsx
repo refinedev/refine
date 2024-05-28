@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { useModal } from "@refinedev/core";
-import { Button, Modal, Space, ThemeConfig, theme } from "antd";
+import { Button, Modal, Space, type ThemeConfig, theme } from "antd";
 import { RefineThemes } from "@refinedev/antd";
 
 type ThemeName = keyof typeof RefineThemes;

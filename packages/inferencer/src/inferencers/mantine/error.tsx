@@ -3,7 +3,7 @@ import React from "react";
 import { Alert, Center } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
   error,

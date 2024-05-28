@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { EnterpriseGetInTouchButton } from "./enterprise-get-in-touch-button";
 
 type Props = {

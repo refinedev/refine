@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "antd";
 
-import { ImageFieldProps } from "../types";
+import type { ImageFieldProps } from "../types";
 
 /**
  * This field is used to display images and uses {@link https://ant.design/components/image/#header `<Image>`} from Ant Design.

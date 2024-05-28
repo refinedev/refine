@@ -1,4 +1,4 @@
-import { BaseRecord, DataProvider } from "@refinedev/core";
+import type { BaseRecord, DataProvider } from "@refinedev/core";
 import camelCase from "camelcase";
 import * as gql from "gql-query-builder";
 import { GraphQLClient } from "graphql-request";

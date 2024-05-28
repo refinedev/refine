@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
-import { TooltipProps } from "recharts";
+import type { TooltipProps } from "recharts";
 
 type ChartTooltipProps = TooltipProps<number, string> & {
   labelFormatter?: (label: string | number) => string;

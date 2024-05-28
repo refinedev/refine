@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route, Routes } from "react-router-dom";
-import { IRefineOptions, HttpError } from "@refinedev/core";
+import type { IRefineOptions, HttpError } from "@refinedev/core";
 
 import { Button, Form, Input, Select, Steps } from "antd";
 import { useStepsForm } from "..";

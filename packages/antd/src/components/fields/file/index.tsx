@@ -1,7 +1,7 @@
 import React from "react";
 
 import { UrlField } from "@components";
-import { FileFieldProps } from "../types";
+import type { FileFieldProps } from "../types";
 
 /**
  * This field is used to display files and uses {@link https://ant.design/components/typography `<Typography.Link>`} from Ant Design.

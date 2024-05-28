@@ -1,4 +1,4 @@
-import React, { CSSProperties, SVGProps, useEffect } from "react";
+import React, { type CSSProperties, type SVGProps, useEffect } from "react";
 import { CSSRules } from "./styles";
 
 const text =

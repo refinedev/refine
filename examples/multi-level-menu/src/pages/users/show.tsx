@@ -2,7 +2,7 @@ import { useShow } from "@refinedev/core";
 import { Show, EmailField, ImageField } from "@refinedev/antd";
 import { Typography, Space } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

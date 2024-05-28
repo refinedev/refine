@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import { List as AntdList } from "@refinedev/antd";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";

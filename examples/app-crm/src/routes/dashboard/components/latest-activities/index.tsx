@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import {
+import type {
   LatestActivitiesAuditsQuery,
   LatestActivitiesDealsQuery,
 } from "@/graphql/types";

@@ -1,7 +1,7 @@
 import React from "react";
 import {
   useRouterContext,
-  TitleProps,
+  type TitleProps,
   useLink,
   useRouterType,
 } from "@refinedev/core";

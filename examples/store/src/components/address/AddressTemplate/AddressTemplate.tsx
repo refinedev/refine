@@ -1,5 +1,5 @@
 import { useOne } from "@refinedev/core";
-import { StoreCustomersRes } from "@medusajs/medusa";
+import type { StoreCustomersRes } from "@medusajs/medusa";
 
 import { AddressBook } from "@components";
 

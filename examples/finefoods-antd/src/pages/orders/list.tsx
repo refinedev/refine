@@ -2,7 +2,7 @@ import {
   useTranslate,
   useExport,
   useNavigation,
-  HttpError,
+  type HttpError,
   getDefaultFilter,
 } from "@refinedev/core";
 
@@ -25,7 +25,11 @@ import {
   PaginationTotal,
   OrderTableColumnProducts,
 } from "../../components";
-import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
+import type {
+  IOrder,
+  IOrderFilterVariables,
+  IOrderStatus,
+} from "../../interfaces";
 
 export const OrderList = () => {
   const { token } = theme.useToken();

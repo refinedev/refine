@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { InstantSearch } from "react-instantsearch";
 
 import { indexName, searchClient } from "@/providers";

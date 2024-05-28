@@ -2,7 +2,7 @@ import { useShow } from "@refinedev/core";
 import { Show, ImageField } from "@refinedev/antd";
 import { Typography, Space } from "antd";
 
-import { IProduct } from "../../interfaces";
+import type { IProduct } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

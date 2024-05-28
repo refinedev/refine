@@ -1,7 +1,7 @@
 import { Tag, Typography, theme } from "antd";
 import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { IProduct } from "../../../interfaces";
+import type { IProduct } from "../../../interfaces";
 import { useConfigProvider } from "../../../context";
 
 type Props = {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@refinedev/ui-types";
+import type { RefineReadyPageProps } from "@refinedev/ui-types";
 
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";

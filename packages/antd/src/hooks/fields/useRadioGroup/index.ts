@@ -1,15 +1,15 @@
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { QueryObserverResult } from "@tanstack/react-query";
 import type { Radio } from "antd";
 
 import {
-  BaseKey,
-  BaseOption,
-  BaseRecord,
-  GetListResponse,
-  HttpError,
+  type BaseKey,
+  type BaseOption,
+  type BaseRecord,
+  type GetListResponse,
+  type HttpError,
   pickNotDeprecated,
   useSelect,
-  UseSelectProps,
+  type UseSelectProps,
 } from "@refinedev/core";
 
 export type UseRadioGroupReturnType<

@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 
-import { RcFile } from "antd/lib/upload/interface";
+import type { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 import { supabaseClient, normalizeFile } from "../../utility";
 
 export const PostCreate = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  HttpError,
+  type HttpError,
   useCreate,
   useCreateMany,
   useNavigation,
@@ -20,12 +20,12 @@ import { VideoClubLayoutSubPage } from "@/components/layout";
 import { MediaPlayerModal } from "@/components/media-player";
 import { ImagePixelated } from "@/components/image-pixelated";
 import {
-  TitleByTmdbIdResponse,
+  type TitleByTmdbIdResponse,
   getTitleByTmdbId,
 } from "@/utils/get-title-by-tmdb-id";
 import { parseTmdbIdFromUrl } from "@/utils/parse-tmdb-id-from-url";
 import { getImagesUrl } from "@/utils/get-cdn-url";
-import { Tape, VideoTitle } from "@/types";
+import type { Tape, VideoTitle } from "@/types";
 
 export const VideoClubPageCreateTitle = () => {
   const navigate = useNavigate();

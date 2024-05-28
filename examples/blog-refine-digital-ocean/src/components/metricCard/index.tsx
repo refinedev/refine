@@ -1,7 +1,7 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { type FC, type PropsWithChildren } from "react";
 import { Card, Skeleton, Typography } from "antd";
 import { useList } from "@refinedev/core";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 
 type MetricType = "companies" | "contacts" | "deals";

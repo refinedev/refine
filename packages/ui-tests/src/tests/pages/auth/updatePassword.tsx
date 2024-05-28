@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
 import {
   fireEvent,
@@ -8,7 +8,7 @@ import {
   TestWrapper,
   waitFor,
 } from "@test";
-import { UpdatePasswordPageProps } from "@refinedev/core";
+import type { UpdatePasswordPageProps } from "@refinedev/core";
 
 export const pageUpdatePasswordTests = (
   UpdatePasswordPage: FC<UpdatePasswordPageProps<any, any, any>>,

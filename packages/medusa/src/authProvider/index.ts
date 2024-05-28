@@ -1,4 +1,4 @@
-import { AuthProvider, HttpError } from "@refinedev/core";
+import type { AuthProvider, HttpError } from "@refinedev/core";
 import axios from "axios";
 
 export const authProvider = (API_URL: string): AuthProvider => {

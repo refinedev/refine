@@ -3,7 +3,7 @@ import * as Icons from "@ant-design/icons";
 import { Button, Modal, Space } from "antd";
 
 import { prettierFormat } from "../../utilities";
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 import { CodeHighlight } from "../../components";
 
 /**

@@ -4,7 +4,7 @@ import {
   IconSelector,
   IconChevronUp,
 } from "@tabler/icons-react";
-import { Column } from "@tanstack/react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<{ column: Column<any, any> }> = ({
   column,

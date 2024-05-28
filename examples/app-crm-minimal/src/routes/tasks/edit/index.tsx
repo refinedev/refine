@@ -11,7 +11,7 @@ import {
 import { Modal } from "antd";
 
 import { Accordion } from "@/components";
-import { Task } from "@/graphql/schema.types";
+import type { Task } from "@/graphql/schema.types";
 
 import { DescriptionForm } from "./forms/description/description-form";
 import { DescriptionHeader } from "./forms/description/description-header";

@@ -16,7 +16,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import KpiCard from "../../components/kpi-card";
 import { AreaGraph, BarChart } from "../../components/charts";
 import { RecentSales } from "../../components/recent-sales";
-import { IChart } from "../../interfaces";
+import type { IChart } from "../../interfaces";
 
 const Responsive = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {

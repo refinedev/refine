@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import {
   useSimpleList,
@@ -9,7 +9,7 @@ import {
 
 import { List as AntdList } from "antd";
 
-import { IClient } from "interfaces";
+import type { IClient } from "interfaces";
 import { ClientItem, CreateClient, EditClient } from "@/components/client";
 
 export const ClientList = () => {

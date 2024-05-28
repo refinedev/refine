@@ -1,7 +1,7 @@
 import {
-  DevtoolsEvent,
-  DevtoolsEventPayloads,
-  RefineHook,
+  type DevtoolsEvent,
+  type DevtoolsEventPayloads,
+  type RefineHook,
   scopes,
 } from "@refinedev/devtools-shared";
 

@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconRefresh } from "@tabler/icons-react";
 
-import { RefreshButtonProps } from "../types";
+import type { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.

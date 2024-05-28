@@ -1,9 +1,9 @@
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
-import { ICommit } from "../../interfaces";
+import type { ICommit } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const [next, setNext] = React.useState<string | undefined>(undefined);

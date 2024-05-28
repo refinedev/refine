@@ -6,7 +6,7 @@ import {
   Button,
   Dropdown,
   Avatar,
-  MenuProps,
+  type MenuProps,
 } from "antd";
 import { useTranslation as usei18nextTranslation } from "react-i18next";
 

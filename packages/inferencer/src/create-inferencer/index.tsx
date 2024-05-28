@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useResource, TranslationContext } from "@refinedev/core";
 
-import {
+import type {
   CreateInferencer,
   InferencerComponentProps,
   InferencerResultComponent,

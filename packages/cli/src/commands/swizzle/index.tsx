@@ -2,7 +2,7 @@ import React from "react";
 import path from "path";
 import chalk from "chalk";
 import inquirer from "inquirer";
-import { Command, OptionValues } from "commander";
+import type { Command, OptionValues } from "commander";
 import inquirerAutoCompletePrompt from "inquirer-autocomplete-prompt";
 import { ensureFile, pathExists, readFile, writeFile } from "fs-extra";
 
@@ -15,7 +15,7 @@ import {
 
 import { printSwizzleMessage } from "@components/swizzle-message";
 
-import { SwizzleFile } from "@definitions";
+import type { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";

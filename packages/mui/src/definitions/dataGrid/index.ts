@@ -5,7 +5,7 @@ import type {
 } from "@mui/x-data-grid";
 import { GridLogicOperator } from "@mui/x-data-grid";
 
-import {
+import type {
   CrudFilters,
   CrudOperators,
   CrudSorting,

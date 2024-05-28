@@ -1,5 +1,5 @@
 import React from "react";
-import { CrudFilters } from "@refinedev/core";
+import type { CrudFilters } from "@refinedev/core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
 import { Form, Input } from "antd";

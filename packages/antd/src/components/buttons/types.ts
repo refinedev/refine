@@ -1,5 +1,5 @@
-import { ButtonProps, UploadProps } from "antd";
-import {
+import type { ButtonProps, UploadProps } from "antd";
+import type {
   RefineCloneButtonProps,
   RefineCreateButtonProps,
   RefineDeleteButtonProps,

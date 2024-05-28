@@ -1,6 +1,6 @@
 import { useForm, useSelect } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import {
+import type { HttpError } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -11,7 +11,7 @@ import { Checkbox, Form, Select, Space } from "antd";
 
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
-import {
+import type {
   TaskStagesSelectQuery,
   UpdateTaskMutation,
   UpdateTaskMutationVariables,

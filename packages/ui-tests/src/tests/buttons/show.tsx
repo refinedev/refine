@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  RefineShowButtonProps,
+  type RefineShowButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 

@@ -5,7 +5,7 @@ import { Button } from "src/components/button";
 import { LogoIcon } from "src/components/icons/logo";
 import { Input } from "src/components/input";
 import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
-import { MeUpdateVariables } from "src/interfaces/api";
+import type { MeUpdateVariables } from "src/interfaces/api";
 import { getMe, updateMe } from "src/utils/me";
 
 export const Onboarding = () => {

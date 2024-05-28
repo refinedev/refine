@@ -5,15 +5,15 @@ import {
   useLink,
   useRouterContext,
   useRegister,
-  RegisterPageProps,
-  RegisterFormTypes,
-  BaseRecord,
-  HttpError,
+  type RegisterPageProps,
+  type RegisterFormTypes,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   Divider,
   FormControl,
@@ -28,7 +28,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<

@@ -1,7 +1,7 @@
-import React, { FC, PropsWithChildren, Suspense } from "react";
+import React, { type FC, type PropsWithChildren, Suspense } from "react";
 
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
+import type { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
 
 import { Text } from "@/components";

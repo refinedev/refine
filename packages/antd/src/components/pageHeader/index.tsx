@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import {
   PageHeader as AntdPageHeader,
-  PageHeaderProps as AntdPageHeaderProps,
+  type PageHeaderProps as AntdPageHeaderProps,
 } from "@ant-design/pro-layout";
 import { Button, Typography } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";

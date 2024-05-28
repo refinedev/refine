@@ -1,8 +1,8 @@
 import {
   handleUseParams,
-  IRouterProvider,
-  ResourceRouterParams,
-  RouteAction,
+  type IRouterProvider,
+  type ResourceRouterParams,
+  type RouteAction,
 } from "@refinedev/core";
 import { useParams as useRemixParams } from "@remix-run/react";
 

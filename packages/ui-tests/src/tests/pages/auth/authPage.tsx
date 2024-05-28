@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { AuthPageProps } from "@refinedev/core";
+import React, { type FC } from "react";
+import type { AuthPageProps } from "@refinedev/core";
 
 import { render, TestWrapper } from "@test";
 

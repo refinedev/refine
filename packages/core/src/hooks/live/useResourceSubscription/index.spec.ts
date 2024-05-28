@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 import { TestWrapper } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
-import { IRefineContextProvider } from "../../../contexts/refine/types";
+import type { IRefineContextProvider } from "../../../contexts/refine/types";
 import { useResourceSubscription } from "./";
 
 const invalidateQueriesMock = jest.fn();

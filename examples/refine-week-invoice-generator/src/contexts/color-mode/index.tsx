@@ -1,5 +1,10 @@
 import { ConfigProvider, theme, App as AntdApp } from "antd";
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import {
+  type PropsWithChildren,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { RefineThemes } from "@refinedev/antd";
 

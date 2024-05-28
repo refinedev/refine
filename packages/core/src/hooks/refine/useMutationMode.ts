@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
-import { IRefineContextOptions } from "../../contexts/refine/types";
+import type { IRefineContextOptions } from "../../contexts/refine/types";
 import type { MutationMode } from "../../contexts/data/types";
 
 type UseMutationModeType = (

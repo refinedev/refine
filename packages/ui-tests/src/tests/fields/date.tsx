@@ -1,7 +1,7 @@
 import React from "react";
-import { ConfigType } from "dayjs";
+import type { ConfigType } from "dayjs";
 
-import { RefineFieldDateProps } from "@refinedev/ui-types";
+import type { RefineFieldDateProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
