@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { useInView } from "framer-motion";
 import React, {
-  DetailedHTMLProps,
-  FC,
-  ReactNode,
-  SVGProps,
+  type DetailedHTMLProps,
+  type FC,
+  type ReactNode,
+  type SVGProps,
   useRef,
 } from "react";
 import {

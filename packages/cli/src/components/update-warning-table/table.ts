@@ -1,4 +1,4 @@
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import chalk from "chalk";
 import center from "center-align";
 import { getDependencies, getPreferedPM, getScripts } from "@utils/package";

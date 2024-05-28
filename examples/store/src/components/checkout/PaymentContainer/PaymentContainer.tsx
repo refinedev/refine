@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { PaymentSession } from "@medusajs/medusa";
+import type { PaymentSession } from "@medusajs/medusa";
 
 import { PaymentStripe, Radio } from "@components";
 

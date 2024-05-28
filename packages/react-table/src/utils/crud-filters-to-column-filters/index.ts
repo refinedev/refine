@@ -1,5 +1,5 @@
-import { CrudFilter, LogicalFilter } from "@refinedev/core";
-import { ColumnDef, ColumnFilter } from "@tanstack/react-table";
+import type { CrudFilter, LogicalFilter } from "@refinedev/core";
+import type { ColumnDef, ColumnFilter } from "@tanstack/react-table";
 
 type Params = {
   columns: ColumnDef<any, any>[];

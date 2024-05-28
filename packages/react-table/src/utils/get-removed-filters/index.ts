@@ -1,4 +1,4 @@
-import { CrudFilter, LogicalFilter } from "@refinedev/core";
+import type { CrudFilter, LogicalFilter } from "@refinedev/core";
 
 type Params = {
   nextFilters: CrudFilter[];

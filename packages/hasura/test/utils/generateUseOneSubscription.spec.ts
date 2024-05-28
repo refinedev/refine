@@ -2,7 +2,7 @@ import {
   generateUseOneSubscription,
   genereteUseOneSubscription,
 } from "../../src/utils";
-import { MetaQuery } from "@refinedev/core";
+import type { MetaQuery } from "@refinedev/core";
 
 describe("genereteUseOneSubscription (deprecated)", () => {
   const resource = "post";

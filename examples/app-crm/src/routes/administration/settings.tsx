@@ -1,6 +1,6 @@
 import { FilterDropdown, useTable } from "@refinedev/antd";
 import { getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   EnvironmentOutlined,
@@ -15,7 +15,7 @@ import { Card, Col, Input, Row, Select, Space, Table } from "antd";
 import cn from "classnames";
 
 import { CustomAvatar, Logo, Text } from "@/components";
-import { AdministrationUsersQuery } from "@/graphql/types";
+import type { AdministrationUsersQuery } from "@/graphql/types";
 
 import { RoleTag } from "./components";
 import { ADMINISTRATION_USERS_QUERY } from "./queries";

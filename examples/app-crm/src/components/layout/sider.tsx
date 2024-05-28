@@ -1,9 +1,9 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 
 import { useThemedLayoutContext } from "@refinedev/antd";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   pickNotDeprecated,
   useLink,
   useMenu,

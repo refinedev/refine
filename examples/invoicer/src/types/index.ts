@@ -1,5 +1,5 @@
-import { UploadFile } from "antd";
-import { UploadChangeParam } from "antd/lib/upload";
+import type { UploadFile } from "antd";
+import type { UploadChangeParam } from "antd/lib/upload";
 
 export type UploadResponse = UploadChangeParam<UploadFile<Media[]>>;
 

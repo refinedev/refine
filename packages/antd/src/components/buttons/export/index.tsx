@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` is an Ant Design {@link https://ant.design/components/button/ `<Button>`} with a default export icon and a default text with "Export".

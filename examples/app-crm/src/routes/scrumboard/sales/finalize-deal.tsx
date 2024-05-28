@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
 import { useModalForm } from "@refinedev/antd";
-import { HttpError, useInvalidate, useNavigation } from "@refinedev/core";
+import { type HttpError, useInvalidate, useNavigation } from "@refinedev/core";
 
 import { DatePicker, Form, Input, Modal } from "antd";
 import dayjs from "dayjs";
 
 import { SALES_FINALIZE_DEAL_MUTATION } from "./queries";
-import { GetFields } from "@refinedev/nestjs-query";
-import { SalesFinalizeDealMutation } from "../../../graphql/types";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { SalesFinalizeDealMutation } from "../../../graphql/types";
 
 type Deal = GetFields<SalesFinalizeDealMutation>;
 

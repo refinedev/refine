@@ -1,6 +1,6 @@
-import { IResourceItem } from "@refinedev/core";
+import type { IResourceItem } from "@refinedev/core";
 import { prettyString } from "../pretty-string";
-import { InferField } from "../../types";
+import type { InferField } from "../../types";
 
 export const translatePrettyString = (payload: {
   resource: IResourceItem;

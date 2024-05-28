@@ -1,5 +1,5 @@
-import { DataProvider } from "@refinedev/core";
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { DataProvider } from "@refinedev/core";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
 export const dataProvider = (

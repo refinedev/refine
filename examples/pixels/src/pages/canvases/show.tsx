@@ -15,8 +15,8 @@ import { Button, Typography, Spin, Modal } from "antd";
 import { CanvasItem, DisplayCanvas } from "../../components/canvas";
 import { ColorSelect } from "../../components/color-select";
 import { AvatarPanel } from "../../components/avatar";
-import { colors } from "../../utility";
-import { Canvas } from "../../types";
+import type { colors } from "../../utility";
+import type { Canvas } from "../../types";
 import { LogList } from "../../components/logs";
 
 const { Title } = Typography;

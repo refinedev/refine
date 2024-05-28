@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  SurveyOption,
+  type SurveyOption,
   SurveyTypeEnum,
   useRefineCloudSurveyAPI,
 } from "../hooks/use-refine-cloud-survey-api";

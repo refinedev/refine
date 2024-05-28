@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { IAreaGraphProps } from "../../interfaces";
+import type { IAreaGraphProps } from "../../interfaces";
 
 export const formatDate = new Intl.DateTimeFormat("en-US", {
   month: "short",

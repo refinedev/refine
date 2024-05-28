@@ -2,7 +2,7 @@ import {
   GitHubBanner,
   Refine,
   Authenticated,
-  AuthProvider,
+  type AuthProvider,
 } from "@refinedev/core";
 import {
   useNotificationProvider,

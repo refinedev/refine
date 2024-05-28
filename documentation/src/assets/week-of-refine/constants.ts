@@ -1,4 +1,4 @@
-import { CardProps } from "@site/src/pages/week-of-refine";
+import type { CardProps } from "@site/src/pages/week-of-refine";
 import { StrapiWithText, SupabaseWithText } from "../integration-icons";
 
 export const weekOfRefineCards: CardProps[] = [

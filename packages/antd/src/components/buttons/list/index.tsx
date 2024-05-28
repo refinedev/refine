@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ListButtonProps } from "../types";
+import type { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

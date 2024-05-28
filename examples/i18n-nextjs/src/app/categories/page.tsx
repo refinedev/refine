@@ -7,7 +7,7 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord, useTranslate } from "@refinedev/core";
+import { type BaseRecord, useTranslate } from "@refinedev/core";
 import { Space, Table } from "antd";
 
 export default function CategoryList() {

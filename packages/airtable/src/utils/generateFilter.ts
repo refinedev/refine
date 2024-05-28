@@ -1,4 +1,4 @@
-import { CrudFilters } from "@refinedev/core";
+import type { CrudFilters } from "@refinedev/core";
 import { compile } from "@qualifyze/airtable-formulator";
 import { generateFilterFormula } from "./generateFilterFormula";
 

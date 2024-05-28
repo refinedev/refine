@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 export const layoutStyles: CSSProperties = {
   display: "flex",

@@ -8,7 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { ImportButtonProps } from "../types";
+import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.

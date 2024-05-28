@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
-import { I18nProvider, II18nContext } from "./types";
+import type { I18nProvider, II18nContext } from "./types";
 
 /** @deprecated default value for translation context has no use and is an empty object.  */
 export const defaultProvider: Partial<I18nProvider> = {};

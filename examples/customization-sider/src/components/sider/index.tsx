@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  ITreeMenu,
+  type ITreeMenu,
   CanAccess,
   useIsExistAuthentication,
   useTranslate,
@@ -9,7 +9,7 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
-import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { type Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
   LogoutOutlined,

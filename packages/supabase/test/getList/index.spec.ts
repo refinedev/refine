@@ -1,4 +1,4 @@
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";

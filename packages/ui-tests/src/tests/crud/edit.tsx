@@ -1,9 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { RefineCrudEditProps, RefineButtonTestIds } from "@refinedev/ui-types";
-import { AccessControlProvider } from "@refinedev/core";
+import {
+  type RefineCrudEditProps,
+  RefineButtonTestIds,
+} from "@refinedev/ui-types";
+import type { AccessControlProvider } from "@refinedev/core";
 
-import { ITestWrapperProps, render, TestWrapper } from "@test";
+import { type ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderEdit = (
   edit: React.ReactNode,

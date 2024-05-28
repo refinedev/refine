@@ -1,13 +1,13 @@
 import { useForm } from "@refinedev/antd";
-import { HttpError, useGetIdentity, useParsed } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import { type HttpError, useGetIdentity, useParsed } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { Form, Input } from "antd";
 
 import { CustomAvatar } from "@/components";
-import { User } from "@/graphql/schema.types";
-import {
+import type { User } from "@/graphql/schema.types";
+import type {
   ContactsCreateContactNoteMutation,
   ContactsCreateContactNoteMutationVariables,
 } from "@/graphql/types";

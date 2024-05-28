@@ -1,7 +1,7 @@
 import React from "react";
 import { useIsAuthenticated } from "@refinedev/core";
 import cn from "clsx";
-import { LineItem } from "@medusajs/medusa";
+import type { LineItem } from "@medusajs/medusa";
 
 import { useUI } from "@lib/context";
 import { Bag, User } from "@components/icons";

@@ -1,4 +1,4 @@
-import { AuthProvider } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 import { notification } from "antd";
 import { disableAutoLogin, enableAutoLogin } from "./hooks";
 

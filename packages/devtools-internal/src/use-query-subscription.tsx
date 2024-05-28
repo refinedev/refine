@@ -3,7 +3,7 @@ import {
   DevtoolsEvent,
   receive,
 } from "@refinedev/devtools-shared";
-import { QueryClient } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { createQueryListener, createMutationListener } from "./listeners";
 

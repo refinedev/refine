@@ -1,4 +1,4 @@
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import { Map, MapMarker } from "../../map";
 
 type Props = {

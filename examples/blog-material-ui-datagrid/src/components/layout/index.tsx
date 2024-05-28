@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutProps } from "@refinedev/core";
+import type { LayoutProps } from "@refinedev/core";
 import styled from "styled-components";
 
 import { Header } from "../header";

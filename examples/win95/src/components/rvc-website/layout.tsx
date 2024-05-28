@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { RVCWebsiteLinks } from "@/components/rvc-website";
 import { getImagesUrl } from "@/utils/get-cdn-url";

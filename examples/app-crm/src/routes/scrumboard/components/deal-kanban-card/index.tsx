@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from "react";
+import { type FC, memo, useMemo } from "react";
 
 import { useDelete, useNavigation } from "@refinedev/core";
 
@@ -8,14 +8,14 @@ import {
   Card,
   ConfigProvider,
   Dropdown,
-  MenuProps,
+  type MenuProps,
   Skeleton,
   Tooltip,
 } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
+import type { User } from "@/graphql/schema.types";
 
 type Props = {
   id: string;

@@ -5,7 +5,7 @@ import { Form, Input, Select, Upload, Radio } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IPost>({

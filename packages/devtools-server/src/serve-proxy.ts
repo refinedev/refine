@@ -1,6 +1,6 @@
 import { readJSON, writeJSON } from "fs-extra";
 import { FrontendApi } from "@ory/client";
-import { createProxyMiddleware, Options } from "http-proxy-middleware";
+import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import path from "path";
 import { REFINE_API_URL, SERVER_PORT } from "./constants";
 import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-package-json";

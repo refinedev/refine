@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -13,23 +13,26 @@ import { I18nContextProvider } from "@contexts/i18n";
 import { LiveContextProvider } from "@contexts/live";
 import { NotificationContextProvider } from "@contexts/notification";
 import { RefineContextProvider } from "@contexts/refine";
-import { IRefineContextProvider } from "@contexts/refine/types";
+import type { IRefineContextProvider } from "@contexts/refine/types";
 import { ResourceContextProvider } from "@contexts/resource";
 import { RouterContextProvider } from "@contexts/router";
 import { LegacyRouterContextProvider } from "@contexts/router/legacy";
 import { RouterPickerProvider } from "@contexts/router/picker";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 
-import { AccessControlProvider } from "../src/contexts/accessControl/types";
-import { AuditLogProvider } from "../src/contexts/auditLog/types";
-import { AuthProvider, ILegacyAuthContext } from "../src/contexts/auth/types";
-import { DataProvider, DataProviders } from "../src/contexts/data/types";
-import { I18nProvider } from "../src/contexts/i18n/types";
-import { LiveProvider } from "../src/contexts/live/types";
-import { NotificationProvider } from "../src/contexts/notification/types";
-import { IResourceItem } from "../src/contexts/resource/types";
-import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
-import { RouterProvider } from "../src/contexts/router/types";
+import type { AccessControlProvider } from "../src/contexts/accessControl/types";
+import type { AuditLogProvider } from "../src/contexts/auditLog/types";
+import type {
+  AuthProvider,
+  ILegacyAuthContext,
+} from "../src/contexts/auth/types";
+import type { DataProvider, DataProviders } from "../src/contexts/data/types";
+import type { I18nProvider } from "../src/contexts/i18n/types";
+import type { LiveProvider } from "../src/contexts/live/types";
+import type { NotificationProvider } from "../src/contexts/notification/types";
+import type { IResourceItem } from "../src/contexts/resource/types";
+import type { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
+import type { RouterProvider } from "../src/contexts/router/types";
 
 export const queryClient = new QueryClient({
   logger: {

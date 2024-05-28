@@ -1,4 +1,4 @@
-import { NavMenu } from "../types/nav-menu";
+import type { NavMenu } from "../types/nav-menu";
 import {
   DocumentsIcon,
   IntegrationsIcon,

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useModal } from "@refinedev/antd";
 import { useNavigation, useShow } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import {
   AlignLeftOutlined,
@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Modal } from "antd";
 
-import { KanbanGetTaskQuery } from "@/graphql/types";
+import type { KanbanGetTaskQuery } from "@/graphql/types";
 
 import {
   Accordion,

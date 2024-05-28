@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  UpdatePasswordPageProps,
-  UpdatePasswordFormTypes,
+  type UpdatePasswordPageProps,
+  type UpdatePasswordFormTypes,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import { useUpdatePassword, useTranslate } from "@refinedev/core";
@@ -12,8 +12,8 @@ import {
   TextInput,
   Title,
   Button,
-  BoxProps,
-  CardProps,
+  type BoxProps,
+  type CardProps,
   useMantineTheme,
 } from "@mantine/core";
 
@@ -24,7 +24,7 @@ import {
   titleStyles,
   pageTitleStyles,
 } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type UpdatePassworProps = UpdatePasswordPageProps<

@@ -9,8 +9,8 @@ import {
   render,
 } from "@test";
 
-import { AuthProvider } from "../../contexts/auth/types";
-import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
+import type { AuthProvider } from "../../contexts/auth/types";
+import type { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 import { Authenticated } from "./";
 
 const legacyMockAuthProvider = {

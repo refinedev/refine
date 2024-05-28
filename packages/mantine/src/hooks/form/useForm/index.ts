@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import {
   useForm as useMantineForm,
-  UseFormReturnType as UseMantineFormReturnType,
+  type UseFormReturnType as UseMantineFormReturnType,
 } from "@mantine/form";
 import get from "lodash/get";
 import has from "lodash/has";
 import set from "lodash/set";
-import { UseFormInput } from "@mantine/form/lib/types";
+import type { UseFormInput } from "@mantine/form/lib/types";
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useForm as useFormCore,
   useWarnAboutChange,
-  UseFormProps as UseFormCoreProps,
-  UseFormReturnType as UseFormReturnTypeCore,
+  type UseFormProps as UseFormCoreProps,
+  type UseFormReturnType as UseFormReturnTypeCore,
   useTranslate,
   useRefineContext,
   flattenObjectKeys,

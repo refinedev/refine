@@ -1,5 +1,5 @@
-import { OpenNotificationParams } from "@refinedev/core";
-import styled, { CSSProperties } from "styled-components";
+import type { OpenNotificationParams } from "@refinedev/core";
+import styled, { type CSSProperties } from "styled-components";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 import { getParentResource } from "../router";
 import { createResourceKey } from "./create-resource-key";
 

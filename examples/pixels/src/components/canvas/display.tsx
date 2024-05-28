@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { type ReactElement } from "react";
 import { useList } from "@refinedev/core";
 
-import { Canvas } from "../../types/canvas";
-import { Pixel } from "../../types/pixel";
+import type { Canvas } from "../../types/canvas";
+import type { Pixel } from "../../types/pixel";
 
 type DisplayCanvasProps = {
   canvas: Canvas;

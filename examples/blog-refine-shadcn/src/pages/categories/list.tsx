@@ -1,7 +1,7 @@
 import React from "react";
-import { IResourceComponentsProps, useNavigation } from "@refinedev/core";
+import { type IResourceComponentsProps, useNavigation } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTable } from "@/components/table/data-table";
 import { Button } from "@/components/ui/button";

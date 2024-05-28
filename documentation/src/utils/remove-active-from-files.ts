@@ -1,4 +1,4 @@
-import { SandpackFile, SandpackFiles } from "@codesandbox/sandpack-react";
+import type { SandpackFile, SandpackFiles } from "@codesandbox/sandpack-react";
 
 export const removeActiveFromFiles = (files: SandpackFiles) => {
   const newFiles = Object.keys(files).reduce((acc, file) => {

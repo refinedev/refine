@@ -1,5 +1,5 @@
 import {
-  HttpError,
+  type HttpError,
   getDefaultFilter,
   useGo,
   useNavigation,
@@ -12,7 +12,7 @@ import {
   useSelect,
   useTable,
 } from "@refinedev/antd";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import {
   Avatar,
   Button,

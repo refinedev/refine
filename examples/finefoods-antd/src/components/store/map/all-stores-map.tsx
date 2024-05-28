@@ -1,6 +1,6 @@
 import { useList, useNavigation, useTranslate } from "@refinedev/core";
 import { Map, AdvancedMarker } from "../../map";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { Card, Flex, List, Tag, Typography } from "antd";
 import { useRef, useState } from "react";
 import {

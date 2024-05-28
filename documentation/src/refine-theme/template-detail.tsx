@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, SVGProps } from "react";
+import React, { type FC, type PropsWithChildren, type SVGProps } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";

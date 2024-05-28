@@ -6,7 +6,7 @@ import { Form, Input, Select, Button, Steps } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
   const {

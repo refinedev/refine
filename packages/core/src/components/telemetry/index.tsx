@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTelemetryData } from "@hooks/useTelemetryData";
 
-import { ITelemetryData } from "./types";
+import type { ITelemetryData } from "./types";
 
 const encode = (payload: ITelemetryData): string | undefined => {
   try {

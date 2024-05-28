@@ -3,7 +3,7 @@ import semverDiff from "semver-diff";
 import chalk from "chalk";
 import { findDuplicates } from "@utils/array";
 import { parsePackageNameAndVersion } from "@utils/package";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 
 type UIGroup = {
   patch: {

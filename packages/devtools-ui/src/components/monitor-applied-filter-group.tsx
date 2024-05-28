@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { Filters } from "./monitor-filters";
+import type { Filters } from "./monitor-filters";
 import { CloseIcon } from "./icons/close";
 
 type Props = {

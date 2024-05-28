@@ -1,9 +1,9 @@
-import { Command } from "commander";
+import type { Command } from "commander";
 import { printUpdateWarningTable } from "@components/update-warning-table";
 import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
-import {
+import type {
   NpmOutdatedResponse,
   RefinePackageInstalledVersionData,
 } from "@definitions/package";

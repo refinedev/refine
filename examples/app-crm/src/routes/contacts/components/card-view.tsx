@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { List, type ListProps, type TableProps } from "antd";
 
 import { PaginationTotal } from "@/components";
-import { Contact } from "@/graphql/schema.types";
-import { ContactsListQuery } from "@/graphql/types";
+import type { Contact } from "@/graphql/schema.types";
+import type { ContactsListQuery } from "@/graphql/types";
 
 import { ContactCard, ContactCardSkeleton } from "./card";
 

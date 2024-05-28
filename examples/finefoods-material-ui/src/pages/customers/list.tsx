@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, useMemo } from "react";
+import React, { type PropsWithChildren, useMemo } from "react";
 import {
-  HttpError,
+  type HttpError,
   useExport,
   useGo,
   useNavigation,
@@ -8,13 +8,13 @@ import {
 } from "@refinedev/core";
 import { useLocation } from "react-router-dom";
 import { DateField, ExportButton, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
-import { IUser, IUserFilterVariables } from "../../interfaces";
+import type { IUser, IUserFilterVariables } from "../../interfaces";
 import { CustomTooltip, RefineListView } from "../../components";
 import { CustomerStatus } from "../../components/customer";
 

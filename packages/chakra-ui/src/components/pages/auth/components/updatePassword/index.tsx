@@ -2,15 +2,15 @@ import React from "react";
 import {
   useTranslate,
   useUpdatePassword,
-  UpdatePasswordFormTypes,
-  UpdatePasswordPageProps,
-  BaseRecord,
-  HttpError,
+  type UpdatePasswordFormTypes,
+  type UpdatePasswordPageProps,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   FormControl,
   FormErrorMessage,
@@ -22,7 +22,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<

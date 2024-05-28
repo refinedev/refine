@@ -1,4 +1,4 @@
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 
 /**

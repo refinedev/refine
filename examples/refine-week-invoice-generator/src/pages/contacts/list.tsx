@@ -9,7 +9,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-import { IContact } from "../../interfaces";
+import type { IContact } from "../../interfaces";
 import { CreateContact } from "../../components/contact";
 
 export const ContactList: React.FC = () => {

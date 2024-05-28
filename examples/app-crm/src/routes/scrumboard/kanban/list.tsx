@@ -1,21 +1,21 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import { type FC, type PropsWithChildren, useMemo } from "react";
 
 import {
-  HttpError,
+  type HttpError,
   useDelete,
   useList,
   useNavigation,
   useUpdate,
   useUpdateMany,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { DragEndEvent } from "@dnd-kit/core";
-import { MenuProps } from "antd";
+import type { DragEndEvent } from "@dnd-kit/core";
+import type { MenuProps } from "antd";
 
-import { TaskUpdateInput } from "@/graphql/schema.types";
-import { KanbanTasksQuery, KanbanTaskStagesQuery } from "@/graphql/types";
+import type { TaskUpdateInput } from "@/graphql/schema.types";
+import type { KanbanTasksQuery, KanbanTaskStagesQuery } from "@/graphql/types";
 
 import {
   KanbanAddCardButton,

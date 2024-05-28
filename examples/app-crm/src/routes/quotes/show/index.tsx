@@ -7,7 +7,7 @@ import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
 
 import { CustomAvatar, FullScreenLoading, Text } from "@/components";
-import { Quote } from "@/graphql/schema.types";
+import type { Quote } from "@/graphql/schema.types";
 
 import {
   ProductsServices,

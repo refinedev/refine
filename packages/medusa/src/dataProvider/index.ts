@@ -1,6 +1,6 @@
-import { DataProvider as DataProviderType } from "@refinedev/core";
-import { AxiosInstance } from "axios";
-import { stringify, StringifyOptions } from "query-string";
+import type { DataProvider as DataProviderType } from "@refinedev/core";
+import type { AxiosInstance } from "axios";
+import { stringify, type StringifyOptions } from "query-string";
 import { axiosInstance, generateFilter } from "../utils";
 
 const DataProvider = (

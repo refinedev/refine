@@ -1,10 +1,10 @@
 import {
   RequestQueryBuilder,
-  QueryJoin,
-  QueryJoinArr,
+  type QueryJoin,
+  type QueryJoinArr,
 } from "@nestjsx/crud-request";
 import { handleFilter, handleJoin, handleSort } from "../../src/utils";
-import { CrudFilters, CrudSorting } from "@refinedev/core";
+import type { CrudFilters, CrudSorting } from "@refinedev/core";
 
 describe("handleJoin", () => {
   it("should apply join to the query", () => {

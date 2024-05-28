@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `}.

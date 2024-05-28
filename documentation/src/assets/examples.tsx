@@ -1,7 +1,7 @@
 import { PageIcon } from "@site/src/refine-theme/icons/page";
 import { ShareIcon } from "@site/src/refine-theme/icons/share";
 import React from "react";
-import { Examples } from "../types/examples";
+import type { Examples } from "../types/examples";
 
 export const SHOW_CASES: Examples = [
   {

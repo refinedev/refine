@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
 import { Button, Thumbnail } from "@components";

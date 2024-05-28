@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { LandingHeroItemNodeSvg } from "./icons/landing-hero-item-node";
 import {
   ChangingTextElement,
-  ChangingTextElementRef,
+  type ChangingTextElementRef,
 } from "./changing-text-element";
 
 type ItemProps = {

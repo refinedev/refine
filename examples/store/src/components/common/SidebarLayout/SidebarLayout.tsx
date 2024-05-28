@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
 import { Cross } from "@components/icons";
 import { UserNav } from "@components/common/UserNav";

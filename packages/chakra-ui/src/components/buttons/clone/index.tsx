@@ -7,7 +7,7 @@ import {
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { CloneButtonProps } from "../types";
+import type { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`}.

@@ -3,7 +3,7 @@ import { useMeta, useOne, useResourceParams, useLoadingOvertime } from "@hooks";
 import { pickNotDeprecated } from "@definitions/helpers";
 
 import type { UseShowProps, UseShowReturnType } from "./types";
-import { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
+import type { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
 
 export type {
   UseShowProps,

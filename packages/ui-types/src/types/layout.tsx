@@ -1,4 +1,4 @@
-import { TitleProps, LayoutProps } from "@refinedev/core";
+import type { TitleProps, LayoutProps } from "@refinedev/core";
 
 export type SiderRenderProps = {
   /**

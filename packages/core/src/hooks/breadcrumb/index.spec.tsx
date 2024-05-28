@@ -2,7 +2,7 @@ import React from "react";
 
 import { renderHook } from "@testing-library/react";
 
-import { ITestWrapperProps, TestWrapper, mockRouterProvider } from "@test";
+import { type ITestWrapperProps, TestWrapper, mockRouterProvider } from "@test";
 
 import { useBreadcrumb } from ".";
 

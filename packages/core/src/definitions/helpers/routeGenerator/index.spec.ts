@@ -1,5 +1,5 @@
 import { routeGenerator } from ".";
-import { ResourceProps } from "../../../contexts/resource/types";
+import type { ResourceProps } from "../../../contexts/resource/types";
 
 const mockResources: ResourceProps[] = [
   { name: "posts" },

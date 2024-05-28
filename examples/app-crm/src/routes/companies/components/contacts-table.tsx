@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { type FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -7,8 +7,8 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { HttpError, useCreateMany, useOne } from "@refinedev/core";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import { type HttpError, useCreateMany, useOne } from "@refinedev/core";
+import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
@@ -33,8 +33,8 @@ import {
 } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { ContactCreateInput } from "@/graphql/schema.types";
-import {
+import type { ContactCreateInput } from "@/graphql/schema.types";
+import type {
   CompanyContactsGetCompanyQuery,
   CompanyContactsTableQuery,
 } from "@/graphql/types";

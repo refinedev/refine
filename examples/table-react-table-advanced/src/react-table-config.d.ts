@@ -1,4 +1,4 @@
-import {
+import type {
   UseColumnOrderInstanceProps,
   UseColumnOrderState,
   UseExpandedHooks,

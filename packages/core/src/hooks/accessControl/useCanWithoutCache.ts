@@ -3,7 +3,7 @@ import React from "react";
 import { AccessControlContext } from "@contexts/accessControl";
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 
-import { IAccessControlContext } from "../../contexts/accessControl/types";
+import type { IAccessControlContext } from "../../contexts/accessControl/types";
 
 export const useCanWithoutCache = (): IAccessControlContext => {
   const { can: canFromContext } = React.useContext(AccessControlContext);

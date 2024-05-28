@@ -1,4 +1,4 @@
-import { AvailablePackageType } from "@refinedev/devtools-shared";
+import type { AvailablePackageType } from "@refinedev/devtools-shared";
 import dedent from "dedent";
 import { getPackagesFromPackageJSON } from "./get-packages-from-package-json";
 

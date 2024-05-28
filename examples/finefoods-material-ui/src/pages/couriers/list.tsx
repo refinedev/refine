@@ -1,13 +1,13 @@
-import { PropsWithChildren, useMemo } from "react";
+import { type PropsWithChildren, useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton, EditButton, useDataGrid } from "@refinedev/mui";
 import { useLocation } from "react-router-dom";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { CourierRating, CourierStatus, RefineListView } from "../../components";
-import { ICourier } from "../../interfaces";
+import type { ICourier } from "../../interfaces";
 
 export const CourierList = ({ children }: PropsWithChildren) => {
   const go = useGo();

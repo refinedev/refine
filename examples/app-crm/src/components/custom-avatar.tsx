@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { type FC, memo } from "react";
 
 import type { AvatarProps } from "antd";
 import { Avatar as AntdAvatar } from "antd";

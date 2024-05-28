@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { Button, Space, TableColumnProps } from "antd";
+import { Button, Space, type TableColumnProps } from "antd";
 import dayjs from "dayjs";
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";

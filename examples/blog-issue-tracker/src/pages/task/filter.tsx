@@ -2,9 +2,9 @@ import React from "react";
 import { useSelect } from "@refinedev/antd";
 
 import { SearchOutlined } from "@ant-design/icons";
-import { Form, FormProps, Input, Select, DatePicker, Button } from "antd";
+import { Form, type FormProps, Input, Select, DatePicker, Button } from "antd";
 
-import { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
+import type { ITask, IPriority, IStatus, IAuthUser } from "interfaces";
 
 const { RangePicker } = DatePicker;
 

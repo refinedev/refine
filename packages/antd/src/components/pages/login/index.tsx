@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
+import { type LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
 import {
   Row,
   Col,

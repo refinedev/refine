@@ -1,7 +1,7 @@
 import React from "react";
 import { useList, useMany } from "@refinedev/core";
 import { Row, Col, Card } from "antd";
-import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
+import type { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
 

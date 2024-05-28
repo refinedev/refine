@@ -8,7 +8,7 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import RefreshOutlined from "@mui/icons-material/RefreshOutlined";
 
-import { RefreshButtonProps } from "../types";
+import type { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component

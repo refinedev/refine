@@ -7,7 +7,7 @@ import {
   EditButton,
 } from "@refinedev/antd";
 import { Input, InputNumber, Select, Table, Typography, theme } from "antd";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { PaginationTotal } from "../../../components";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { StoreStatus } from "../../../components/store";

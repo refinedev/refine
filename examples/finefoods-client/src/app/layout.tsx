@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router";
 import { Layout } from "@/components/layout";

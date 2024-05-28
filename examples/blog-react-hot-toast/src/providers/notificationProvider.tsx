@@ -1,5 +1,5 @@
 import React from "react";
-import { NotificationProvider } from "@refinedev/core";
+import type { NotificationProvider } from "@refinedev/core";
 import toast from "react-hot-toast";
 
 export const notificationProvider: NotificationProvider = {

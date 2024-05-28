@@ -1,5 +1,5 @@
 import { useLogin } from "@refinedev/core";
-import { FormEvent } from "react";
+import type { FormEvent } from "react";
 import {
   Button,
   TextInput,

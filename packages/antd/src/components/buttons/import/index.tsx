@@ -7,7 +7,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ImportButtonProps } from "../types";
+import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/antd/hooks/import/useImport `useImport`} hook and is meant to be used as it's upload button.

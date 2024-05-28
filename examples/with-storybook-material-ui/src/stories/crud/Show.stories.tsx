@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Show } from "@refinedev/mui";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";

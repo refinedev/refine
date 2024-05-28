@@ -1,4 +1,4 @@
-import { NotificationProvider } from "@refinedev/core";
+import type { NotificationProvider } from "@refinedev/core";
 import toast from "react-hot-toast";
 import { Notification } from "@/components/notification";
 

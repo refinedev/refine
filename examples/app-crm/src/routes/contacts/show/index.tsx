@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import {
   CloseOutlined,
@@ -36,7 +36,7 @@ import {
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
 import type { Contact } from "@/graphql/schema.types";
-import { ContactShowQuery } from "@/graphql/types";
+import type { ContactShowQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 

@@ -1,8 +1,8 @@
 import {
   extendTheme,
   baseTheme,
-  Theme,
-  StyleFunctionProps,
+  type Theme,
+  type StyleFunctionProps,
 } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 

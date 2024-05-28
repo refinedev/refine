@@ -1,6 +1,6 @@
 import { pickNotDeprecated } from "@definitions/helpers/pickNotDeprecated";
 
-import {
+import type {
   IMenuItem,
   IResourceItem,
   ITreeMenu,

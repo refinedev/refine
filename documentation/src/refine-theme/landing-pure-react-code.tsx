@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, memo, useRef } from "react";
+import React, { type FC, memo, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import Highlight, { defaultProps } from "prism-react-renderer";

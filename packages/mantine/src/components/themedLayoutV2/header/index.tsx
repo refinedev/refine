@@ -8,12 +8,12 @@ import {
   Avatar,
   Flex,
   Header as MantineHeader,
-  Sx,
+  type Sx,
   Title,
   useMantineTheme,
 } from "@mantine/core";
 
-import { RefineThemedLayoutV2HeaderProps } from "../types";
+import type { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({

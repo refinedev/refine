@@ -12,7 +12,7 @@ import spinner from "@utils/spinner";
 import boxen from "boxen";
 import cardinal from "cardinal";
 import chalk from "chalk";
-import { Argument, Command } from "commander";
+import { Argument, type Command } from "commander";
 import dedent from "dedent";
 import semver from "semver";
 

@@ -1,14 +1,14 @@
-import { FC, PropsWithChildren, useEffect } from "react";
+import { type FC, type PropsWithChildren, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
 import {
-  HttpError,
+  type HttpError,
   useCreate,
   useGetIdentity,
   useNavigation,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   DollarOutlined,
@@ -28,8 +28,8 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Contact, Deal, User } from "@/graphql/schema.types";
-import { SalesCompaniesSelectQuery } from "@/graphql/types";
+import type { Contact, Deal, User } from "@/graphql/schema.types";
+import type { SalesCompaniesSelectQuery } from "@/graphql/types";
 import { useDealStagesSelect } from "@/hooks/useDealStagesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 

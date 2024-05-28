@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useList } from "@refinedev/core";
 import { Card, Typography } from "antd";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import { DollarOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 

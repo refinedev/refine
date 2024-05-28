@@ -1,5 +1,5 @@
-import { HttpError } from "@refinedev/core";
-import { PostgrestError } from "@supabase/supabase-js";
+import type { HttpError } from "@refinedev/core";
+import type { PostgrestError } from "@supabase/supabase-js";
 
 export const handleError = (error: PostgrestError) => {
   const customError: HttpError = {

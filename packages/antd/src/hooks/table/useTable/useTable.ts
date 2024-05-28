@@ -1,15 +1,21 @@
 import React, { Children, createElement, Fragment } from "react";
-import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
+import {
+  Grid,
+  type FormProps,
+  Form,
+  type TablePaginationConfig,
+  type TableProps,
+} from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import {
   useLiveMode,
-  BaseRecord,
-  CrudFilters,
-  HttpError,
+  type BaseRecord,
+  type CrudFilters,
+  type HttpError,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType as useTableCoreReturnType,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType as useTableCoreReturnType,
   pickNotDeprecated,
   useSyncWithLocation,
 } from "@refinedev/core";
@@ -19,7 +25,7 @@ import {
   mapAntdFilterToCrudFilter,
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
-import { FilterValue, SorterResult } from "../../../definitions/table";
+import type { FilterValue, SorterResult } from "../../../definitions/table";
 
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
