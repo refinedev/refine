@@ -163,34 +163,34 @@ export default function Posts() {
   const [posts, dispatch] = useReducer(postsReducer, initialPosts);
 
   return (
-    <div className="container mx-auto my-16 rounded-lg bg-gray-100">
-      <div className="ml-8 w-3/5 bg-inherit pt-8">
+    <div className="container mx-auto my-16 bg-gray-100 rounded-lg">
+      <div className="ml-8 pt-8 w-3/5 bg-inherit">
         <h2 className="title">All Posts</h2>
         {posts?.map((post) => {
           return (
             <div class="card">
               <div class="p-6">
                 <div className="px-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex justify-between items-center">
                     <div>
                       <h5 class="mb-1 text-xl font-medium leading-tight">
                         {post?.title}
                       </h5>
                       <h6 class="subtitle">{post?.subtitle}</h6>
                     </div>
-                    <div className="relative flex items-center justify-center">
+                    <div className="relative flex justify-center items-center">
                       <HeartIcon
                         height={32}
                         width={32}
-                        className="fill-red-500 text-red-500"
+                        className="text-red-500 fill-red-500"
                       />
-                      <span className="absolute text-xs font-normal text-gray-50">
+                      <span className="absolute text-gray-50 text-xs font-normal">
                         {post?.likes}
                       </span>
                     </div>
                   </div>
                 </div>
-                <p class="mb-4 bg-gray-50 p-2 text-base leading-normal">
+                <p class="mb-4 text-base leading-normal bg-gray-50 p-2">
                   {post?.content}
                 </p>
                 <div className="flex gap-4">
@@ -636,7 +636,7 @@ export function CreatePostForm({ posts, dispatch }) {
       <h2 className="title">Create Post</h2>
       // highlight-next-line
       <form
-        className="rounded-lg bg-white p-6 shadow-md"
+        className="shadow-md p-6 bg-white rounded-lg"
         onSubmit={handleSubmit}
       >
         <div className="form-control">
@@ -733,8 +733,8 @@ export default function Posts() {
   const [posts, dispatch] = useReducer(postsReducer, initialPosts);
 
   return (
-    <div className="container mx-auto my-16 rounded-lg bg-gray-100">
-      <div className="flex items-start justify-start p-8">
+    <div className="container mx-auto my-16 bg-gray-100 rounded-lg">
+      <div className="flex justify-start items-start p-8">
         // highlight-start
         <div className="">
           <CreatePostForm posts={posts} dispatch={dispatch} />
@@ -747,29 +747,29 @@ export default function Posts() {
               <div class="card">
                 <div class="p-6">
                   <div className="px-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex justify-between items-center">
                       <div>
                         <h5 class="mb-1 text-xl font-medium leading-tight">
                           {post?.title}
                         </h5>
                         <h6 class="subtitle">{post?.subtitle}</h6>
                       </div>
-                      <div className="relative flex items-center justify-center">
+                      <div className="relative flex justify-center items-center">
                         <HeartIcon
                           height={32}
                           width={32}
-                          className="fill-red-500 text-red-500"
+                          className="text-red-500 fill-red-500"
                         />
-                        <span className="absolute text-xs font-normal text-gray-50">
+                        <span className="absolute text-gray-50 text-xs font-normal">
                           {post?.likes}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <p class="mb-4 bg-gray-50 p-2 text-base leading-normal">
+                  <p class="mb-4 text-base leading-normal bg-gray-50 p-2">
                     {post?.content}
                   </p>
-                  <div className="flex items-center justify-between px-2">
+                  <div className="px-2 flex justify-between items-center">
                     <div className="">
                       <button
                         class="btn-delete"
