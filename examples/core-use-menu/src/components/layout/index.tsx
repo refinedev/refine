@@ -1,9 +1,9 @@
 import React from "react";
 import {
   useMenu,
-  LayoutProps,
+  type LayoutProps,
   useRefineContext,
-  ITreeMenu,
+  type ITreeMenu,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
 

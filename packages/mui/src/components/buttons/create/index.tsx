@@ -8,7 +8,7 @@ import {
 import Button from "@mui/material/Button";
 import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 
-import { CreateButtonProps } from "../types";
+import type { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.

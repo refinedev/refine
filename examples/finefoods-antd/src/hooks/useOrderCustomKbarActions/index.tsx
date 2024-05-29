@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslate, useUpdate } from "@refinedev/core";
 import {
-  Action,
+  type Action,
   createAction,
   Priority,
   useRegisterActions,
 } from "@refinedev/kbar";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-import { IOrder } from "../../interfaces";
+import type { IOrder } from "../../interfaces";
 
 export const useOrderCustomKbarActions = (order?: IOrder): void => {
   const t = useTranslate();

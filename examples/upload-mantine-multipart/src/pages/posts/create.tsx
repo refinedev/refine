@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { HttpError, useApiUrl } from "@refinedev/core";
+import { type HttpError, useApiUrl } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, SimpleGrid, Image } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
+import {
+  Dropzone,
+  IMAGE_MIME_TYPE,
+  type FileWithPath,
+} from "@mantine/dropzone";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 interface FormValues {
   title: string;

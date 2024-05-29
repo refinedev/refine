@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionImpl, ActionId } from "kbar";
+import type { ActionImpl, ActionId } from "kbar";
 
 interface IResultITemProps {
   action: ActionImpl;

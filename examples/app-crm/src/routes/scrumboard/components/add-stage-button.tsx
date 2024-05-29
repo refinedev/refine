@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { Button, ButtonProps } from "antd";
+import { Button, type ButtonProps } from "antd";
 
 import { Text } from "@/components";
 

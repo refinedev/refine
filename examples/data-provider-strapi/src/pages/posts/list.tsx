@@ -13,7 +13,7 @@ import {
 
 import { Table, Select, Space } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, sorter, filters } = useTable<IPost>({

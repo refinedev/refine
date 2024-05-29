@@ -7,7 +7,7 @@ import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();

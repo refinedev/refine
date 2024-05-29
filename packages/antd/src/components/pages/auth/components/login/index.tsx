@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useLink,
   useRouterType,
   useActiveAuthProvider,
@@ -16,10 +16,10 @@ import {
   Input,
   Button,
   Checkbox,
-  CardProps,
-  LayoutProps,
+  type CardProps,
+  type LayoutProps,
   Divider,
-  FormProps,
+  type FormProps,
   theme,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";

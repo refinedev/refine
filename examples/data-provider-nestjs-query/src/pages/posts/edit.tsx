@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import {
   Edit,
   ListButton,
@@ -6,13 +6,13 @@ import {
   useForm,
   useSelect,
 } from "@refinedev/antd";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import MDEditor from "@uiw/react-md-editor";
 import { Form, Input, Select } from "antd";
 
 import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
-import { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
+import type { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
 
 export const PostEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<

@@ -1,15 +1,15 @@
 import React, { useCallback } from "react";
-import { UseFormConfig } from "sunflower-antd";
-import { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
+import type { UseFormConfig } from "sunflower-antd";
+import type { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
   useTranslate,
   useWarnAboutChange,
-  UseFormProps as UseFormPropsCore,
-  HttpError,
-  LiveModeProps,
-  BaseRecord,
-  FormWithSyncWithLocationParams,
-  BaseKey,
+  type UseFormProps as UseFormPropsCore,
+  type HttpError,
+  type LiveModeProps,
+  type BaseRecord,
+  type FormWithSyncWithLocationParams,
+  type BaseKey,
   useResource,
   useParsed,
   useGo,
@@ -17,8 +17,8 @@ import {
   useInvalidate,
 } from "@refinedev/core";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { DeleteButtonProps } from "../../../components";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
+import type { DeleteButtonProps } from "../../../components";
 
 export interface UseDrawerFormConfig extends UseFormConfig {
   action: "show" | "edit" | "create" | "clone";

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  PreferredUIPackage,
+  type PreferredUIPackage,
   availableUIPackages,
   UIPackageIcons,
 } from "../../context/TutorialUIPackageContext/index";

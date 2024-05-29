@@ -2,7 +2,7 @@ import React from "react";
 
 import { UrlField } from "@components";
 
-import { FileFieldProps } from "../types";
+import type { FileFieldProps } from "../types";
 
 export const FileField: React.FC<FileFieldProps> = ({
   title,

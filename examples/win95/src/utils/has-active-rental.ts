@@ -1,4 +1,4 @@
-import { ExtendedMember } from "@/types";
+import type { ExtendedMember } from "@/types";
 
 type Props = {
   member: ExtendedMember;

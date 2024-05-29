@@ -5,7 +5,7 @@ import { CloseIcon, OrderIcon } from "@/components/icons";
 import { useOrdesModalContext } from "@/hooks/useOrdersModalContext";
 import { useBasketContext } from "@/hooks/useBasketContext";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
-import { Order } from "@/types";
+import type { Order } from "@/types";
 
 export const OrdersModal: React.FC = () => {
   const ref = useRef(null);

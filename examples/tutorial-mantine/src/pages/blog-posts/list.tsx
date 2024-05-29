@@ -1,7 +1,7 @@
 import React from "react";
-import { GetManyResponse, useMany } from "@refinedev/core";
+import { type GetManyResponse, useMany } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import { ScrollArea, Table, Pagination, Group } from "@mantine/core";
 import {
   List,

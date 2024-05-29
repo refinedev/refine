@@ -1,7 +1,7 @@
 import React, {
-  CSSProperties,
-  PropsWithChildren,
-  SVGProps,
+  type CSSProperties,
+  type PropsWithChildren,
+  type SVGProps,
   useState,
 } from "react";
 import clsx from "clsx";
@@ -18,7 +18,7 @@ import { useColorMode } from "@docusaurus/theme-common";
 import { ThumbsUpIcon } from "./icons/thumbs-up";
 import { ThumbsDownIcon } from "./icons/thumbs-down";
 import {
-  SurveyOption,
+  type SurveyOption,
   SurveyTypeEnum,
   useRefineCloudSurveyAPI,
 } from "../hooks/use-refine-cloud-survey-api";

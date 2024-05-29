@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sider as DefaultSider } from "@refinedev/mui";
+import type { Sider as DefaultSider } from "@refinedev/mui";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -22,7 +22,7 @@ import MenuRounded from "@mui/icons-material/MenuRounded";
 import Dashboard from "@mui/icons-material/Dashboard";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLogout,
   useTitle,

@@ -1,6 +1,6 @@
 import { useForm, useSelect } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import {
+import type { HttpError } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -9,7 +9,7 @@ import {
 import { Button, Form, Select, Space } from "antd";
 
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import {
+import type {
   UpdateTaskMutation,
   UpdateTaskMutationVariables,
   UsersSelectQuery,

@@ -1,6 +1,6 @@
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import { handleFilter, handlePagination, handleSort } from "../../src/utils";
-import { CrudFilters, CrudSorting, Pagination } from "@refinedev/core";
+import type { CrudFilters, CrudSorting, Pagination } from "@refinedev/core";
 
 describe("handlePagination", () => {
   it("should apply pagination for server mode", () => {

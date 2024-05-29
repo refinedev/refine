@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import cn from "classnames";

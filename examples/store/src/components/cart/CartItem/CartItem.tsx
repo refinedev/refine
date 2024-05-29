@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { type ChangeEvent, useEffect, useMemo, useState } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import cn, { clsx } from "clsx";
 import { useDelete, useInvalidate, useUpdate } from "@refinedev/core";
-import { LineItem } from "@medusajs/medusa";
+import type { LineItem } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
 import { Quantity } from "@components";

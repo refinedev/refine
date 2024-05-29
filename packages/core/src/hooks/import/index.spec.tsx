@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils";
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useImport } from ".";
-import { DataProviders, HttpError } from "../../contexts/data/types";
+import type { DataProviders, HttpError } from "../../contexts/data/types";
 
 jest.mock("papaparse", () => {
   return {

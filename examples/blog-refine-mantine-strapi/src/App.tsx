@@ -18,7 +18,7 @@ import {
   MantineProvider,
   Global,
   ColorSchemeProvider,
-  ColorScheme,
+  type ColorScheme,
 } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { useLocalStorage } from "@mantine/hooks";
@@ -27,7 +27,7 @@ import {
   MantineCreateInferencer,
   MantineEditInferencer,
   MantineShowInferencer,
-  InferField,
+  type InferField,
 } from "@refinedev/inferencer/mantine";
 
 import { Header } from "./components/header";

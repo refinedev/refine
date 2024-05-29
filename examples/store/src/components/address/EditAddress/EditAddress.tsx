@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "clsx";
 import { useModalForm } from "@refinedev/react-hook-form";
-import { Address, Country, Region } from "@medusajs/medusa";
+import type { Address, Country, Region } from "@medusajs/medusa";
 import { useDelete, useList } from "@refinedev/core";
 
 import { Trash, Edit } from "@icons";

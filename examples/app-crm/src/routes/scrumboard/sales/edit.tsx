@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, useNavigation } from "@refinedev/core";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import { type HttpError, useNavigation } from "@refinedev/core";
+import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
 import { Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { DealUpdateInput } from "@/graphql/schema.types";
-import {
+import type { DealUpdateInput } from "@/graphql/schema.types";
+import type {
   SalesCompaniesSelectQuery,
   SalesUpdateDealMutation,
 } from "@/graphql/types";

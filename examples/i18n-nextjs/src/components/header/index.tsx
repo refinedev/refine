@@ -9,7 +9,7 @@ import {
   Avatar,
   Button,
   Dropdown,
-  MenuProps,
+  type MenuProps,
   Space,
   Switch,
   Typography,

@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { UpcomingEventsQuery } from "@/graphql/types";
+import type { UpcomingEventsQuery } from "@/graphql/types";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";

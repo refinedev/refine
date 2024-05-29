@@ -1,5 +1,9 @@
-import { PropsWithChildren } from "react";
-import { AutoSaveIndicatorProps, BaseKey, MutationMode } from "@refinedev/core";
+import type { PropsWithChildren } from "react";
+import type {
+  AutoSaveIndicatorProps,
+  BaseKey,
+  MutationMode,
+} from "@refinedev/core";
 
 export type ActionButtonRenderer<
   TExtraProps extends {} = Record<keyof any, unknown>,

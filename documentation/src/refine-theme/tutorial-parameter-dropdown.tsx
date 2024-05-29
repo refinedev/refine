@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from "react";
 import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 import { Menu, Transition } from "@headlessui/react";
 

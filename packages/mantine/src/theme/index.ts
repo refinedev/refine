@@ -1,4 +1,4 @@
-import { MantineTheme, MantineThemeOverride } from "@mantine/core";
+import type { MantineTheme, MantineThemeOverride } from "@mantine/core";
 
 const commonThemeProperties: Partial<MantineThemeOverride> = {
   fontFamily: [

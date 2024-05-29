@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
-import {
+import type { User } from "@/graphql/schema.types";
+import type {
   CompanyTitleFormMutation,
   CompanyTitleFormMutationVariables,
 } from "@/graphql/types";

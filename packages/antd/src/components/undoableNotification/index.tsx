@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Progress } from "antd";
-import { OpenNotificationParams } from "@refinedev/core";
+import type { OpenNotificationParams } from "@refinedev/core";
 import { UndoOutlined } from "@ant-design/icons";
 
 export type UndoableNotificationProps = {

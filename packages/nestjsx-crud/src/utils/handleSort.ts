@@ -1,10 +1,10 @@
-import {
+import type {
   RequestQueryBuilder,
   QuerySort,
   QuerySortArr,
   QuerySortOperator,
 } from "@nestjsx/crud-request";
-import { CrudSorting } from "@refinedev/core";
+import type { CrudSorting } from "@refinedev/core";
 
 export type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
 

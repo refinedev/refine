@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 

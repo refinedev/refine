@@ -11,7 +11,7 @@ import {
   render,
 } from "@test";
 
-import {
+import type {
   IRefineContextProvider,
   LayoutProps,
 } from "../../contexts/refine/types";

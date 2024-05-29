@@ -1,6 +1,6 @@
-import { IRefineContextOptions } from "../../../contexts/refine/types";
-import { Action } from "../../../contexts/router/types";
-import { RedirectAction } from "../../../hooks/form/types";
+import type { IRefineContextOptions } from "../../../contexts/refine/types";
+import type { Action } from "../../../contexts/router/types";
+import type { RedirectAction } from "../../../hooks/form/types";
 
 type RedirectPageProps = {
   redirectFromProps?: RedirectAction;

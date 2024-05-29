@@ -1,5 +1,5 @@
-import { LiveProvider } from "@refinedev/core";
-import { Client as Appwrite } from "appwrite";
+import type { LiveProvider } from "@refinedev/core";
+import type { Client as Appwrite } from "appwrite";
 import { getRefineEvent } from "./utils";
 
 export const liveProvider = (

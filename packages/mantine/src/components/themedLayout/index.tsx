@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mantine/core";
 
-import { RefineThemedLayoutProps } from "./types";
+import type { RefineThemedLayoutProps } from "./types";
 import { ThemedSider as DefaultSider } from "./sider";
 import { ThemedHeader as DefaultHeader } from "./header";
 

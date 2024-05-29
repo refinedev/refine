@@ -14,14 +14,14 @@ import {
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { Table, Avatar, Typography, theme, InputNumber, Input } from "antd";
 import InputMask from "react-input-mask";
-import { ICourier } from "../../interfaces";
+import type { ICourier } from "../../interfaces";
 import {
   PaginationTotal,
   CourierStatus,
   CourierTableColumnRating,
 } from "../../components";
 import { useLocation } from "react-router-dom";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export const CourierList = ({ children }: PropsWithChildren) => {
   const go = useGo();

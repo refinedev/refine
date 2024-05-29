@@ -1,4 +1,4 @@
-import { JSCodeshift, Collection } from "jscodeshift";
+import type { JSCodeshift, Collection } from "jscodeshift";
 
 const REFINE_ANTD_PATH = "@pankod/refine-antd";
 const REFINE_MUI_PATH = "@pankod/refine-mui";

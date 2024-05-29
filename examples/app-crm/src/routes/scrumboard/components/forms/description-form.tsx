@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Button, Form, Space } from "antd";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
-import { GetFields } from "@refinedev/nestjs-query";
-import { KanbanUpdateTaskMutation } from "../../../../graphql/types";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { KanbanUpdateTaskMutation } from "../../../../graphql/types";
 
 const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 

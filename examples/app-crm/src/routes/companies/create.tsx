@@ -2,13 +2,13 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
 import {
-  CreateResponse,
-  HttpError,
+  type CreateResponse,
+  type HttpError,
   useCreateMany,
   useGetToPath,
   useGo,
 } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
@@ -30,7 +30,7 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import {
+import type {
   CreateCompanyMutation,
   CreateCompanyMutationVariables,
 } from "@/graphql/types";

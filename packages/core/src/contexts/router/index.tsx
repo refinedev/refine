@@ -1,5 +1,5 @@
-import React, { createContext, PropsWithChildren } from "react";
-import { RouterProvider } from "./types";
+import React, { createContext, type PropsWithChildren } from "react";
+import type { RouterProvider } from "./types";
 
 const defaultRouterProvider = {};
 

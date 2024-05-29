@@ -6,7 +6,7 @@ import {
   useRefineOptions,
 } from "@refinedev/core";
 import { Link as ChakraLink, Icon, HStack, Heading } from "@chakra-ui/react";
-import { RefineLayoutThemedTitleProps } from "../types";
+import type { RefineLayoutThemedTitleProps } from "../types";
 
 export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
   collapsed,

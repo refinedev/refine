@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 import { Status } from "./status";
 import { TraceList } from "./trace-list";
 import dayjs from "dayjs";
@@ -13,7 +13,7 @@ import { getResourceValue } from "src/utils/get-resource-value";
 import { ResourceValue } from "./resource-value";
 import {
   DevToolsContext,
-  RefineHook,
+  type RefineHook,
   scopes,
 } from "@refinedev/devtools-shared";
 import { getOwners } from "src/utils/get-owners";

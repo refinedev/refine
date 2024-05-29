@@ -22,7 +22,7 @@ import {
   Layout as AntdLayout,
   Button,
   theme,
-  MenuProps,
+  type MenuProps,
 } from "antd";
 
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ import debounce from "lodash/debounce";
 
 import { useConfigProvider } from "../../context";
 import { IconMoon, IconSun } from "../../components/icons";
-import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
+import type { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
 import { useStyles } from "./styled";
 
 const { Header: AntdHeader } = AntdLayout;

@@ -1,4 +1,4 @@
-import {
+import type {
   CrudFilter,
   CrudOperators,
   CrudSorting,
@@ -8,8 +8,8 @@ import {
 
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
-import { Client } from "graphql-ws";
+import type VariableOptions from "gql-query-builder/build/VariableOptions";
+import type { Client } from "graphql-ws";
 import set from "lodash/set";
 import { singular } from "pluralize";
 

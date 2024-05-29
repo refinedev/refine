@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  Action,
-  IResourceItem,
+  type Action,
+  type IResourceItem,
   generateDefaultDocumentTitle,
   useParsed,
   useTranslate,

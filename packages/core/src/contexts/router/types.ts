@@ -26,8 +26,8 @@
  * `useGo`, `useBack` and `useParsed`
  */
 
-import { BaseKey, CrudFilter, CrudSort } from "../data/types";
-import { IResourceItem } from "../resource/types";
+import type { BaseKey, CrudFilter, CrudSort } from "../data/types";
+import type { IResourceItem } from "../resource/types";
 
 export type Action = "create" | "edit" | "list" | "show" | "clone";
 

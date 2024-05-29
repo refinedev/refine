@@ -2,7 +2,7 @@ import { useTranslate, useUpdate } from "@refinedev/core";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
 import { TableActionButton } from "../../tableActionButton";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 
 type OrderActionProps = {
   record: IOrder;

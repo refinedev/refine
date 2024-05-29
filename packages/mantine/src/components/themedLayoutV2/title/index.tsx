@@ -6,7 +6,7 @@ import {
   useRefineOptions,
 } from "@refinedev/core";
 import { Center, Text, useMantineTheme } from "@mantine/core";
-import { RefineLayoutThemedTitleProps } from "../types";
+import type { RefineLayoutThemedTitleProps } from "../types";
 
 export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
   collapsed,

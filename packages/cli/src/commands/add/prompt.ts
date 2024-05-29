@@ -1,10 +1,10 @@
 import chalk from "chalk";
-import inquirer, { ListChoiceOptions } from "inquirer";
+import inquirer, { type ListChoiceOptions } from "inquirer";
 
-import { IntegrationId } from "./sub-commands/integration/packages";
+import type { IntegrationId } from "./sub-commands/integration/packages";
 import { buildIntegrationChoices } from "./sub-commands/integration/prompt";
 import { buildProviderChoices } from "./sub-commands/provider/prompt";
-import { ProviderId } from "./sub-commands/provider/providers";
+import type { ProviderId } from "./sub-commands/provider/providers";
 
 const wrapChoices = (
   group: string,

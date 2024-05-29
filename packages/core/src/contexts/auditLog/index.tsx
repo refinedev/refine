@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
-import { IAuditLogContext } from "./types";
+import type { IAuditLogContext } from "./types";
 
 export const AuditLogContext = React.createContext<IAuditLogContext>({});
 

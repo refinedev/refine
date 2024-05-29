@@ -1,7 +1,7 @@
-import { UseFormReturnType, getValueFromEvent } from "@refinedev/antd";
+import { type UseFormReturnType, getValueFromEvent } from "@refinedev/antd";
 import { Avatar, Flex, Form, Upload } from "antd";
 import { useApiUrl } from "@refinedev/core";
-import { ICourier } from "../../../interfaces";
+import type { ICourier } from "../../../interfaces";
 import { useStyles } from "./styled";
 import { CloudUploadOutlined } from "@ant-design/icons";
 

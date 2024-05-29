@@ -1,4 +1,4 @@
-import { SxProps, styled } from "@mui/material/styles";
+import { type SxProps, styled } from "@mui/material/styles";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import Box from "@mui/material/Box";

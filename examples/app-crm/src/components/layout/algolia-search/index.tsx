@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { useHits, useSearchBox } from "react-instantsearch";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Input, List, Popover, Tag, Typography } from "antd";
 import cn from "classnames";
 
-import {
+import type {
   Company,
   Contact,
   Deal,

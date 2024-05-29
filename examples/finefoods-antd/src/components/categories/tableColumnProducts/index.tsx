@@ -1,6 +1,6 @@
 import { Flex, Popover, Avatar } from "antd";
-import { ICategory, IProduct } from "../../../interfaces";
-import { HttpError, useList } from "@refinedev/core";
+import type { ICategory, IProduct } from "../../../interfaces";
+import { type HttpError, useList } from "@refinedev/core";
 import { ProductDrawerForm } from "../../product/drawer-form";
 import { useState } from "react";
 import { ProductDrawerShow } from "../../product/drawer-show";

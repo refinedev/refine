@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/legacy/image";
-import { Product } from "@medusajs/medusa";
+import type { Product } from "@medusajs/medusa";
 
 import { PLACEHOLDER_IMAGE_SRC } from "src/contants";
 import { currencySymbolFromCode } from "@components/product/helpers";

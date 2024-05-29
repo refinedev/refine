@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AccessControlProvider } from "@refinedev/core";
+import type { AccessControlProvider } from "@refinedev/core";
 import { crudShowTests } from "@refinedev/ui-tests";
 
 import { render, TestWrapper, waitFor } from "@test";

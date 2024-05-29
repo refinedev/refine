@@ -3,7 +3,7 @@ import {
   Button,
   Flex,
   Form,
-  FormItemProps,
+  type FormItemProps,
   Input,
   Skeleton,
   Typography,

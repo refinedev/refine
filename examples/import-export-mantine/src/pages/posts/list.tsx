@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  GetManyResponse,
+  type GetManyResponse,
   useExport,
   useImport,
   useMany,
   useNotification,
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import {
   List,
   DeleteButton,
@@ -26,7 +26,7 @@ import {
 } from "@mantine/core";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
-import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import type { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(

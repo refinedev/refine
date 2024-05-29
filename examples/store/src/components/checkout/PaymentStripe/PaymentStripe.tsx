@@ -4,7 +4,7 @@ import {
   CardExpiryElement,
   CardNumberElement,
 } from "@stripe/react-stripe-js";
-import {
+import type {
   StripeCardCvcElementOptions,
   StripeCardExpiryElementOptions,
   StripeCardNumberElementOptions,

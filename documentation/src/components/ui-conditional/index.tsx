@@ -1,5 +1,5 @@
 import React from "react";
-import { PreferredUIPackage } from "../../context/TutorialUIPackageContext/index";
+import type { PreferredUIPackage } from "../../context/TutorialUIPackageContext/index";
 import { useTutorialUIPackage } from "../../hooks/use-tutorial-ui-package";
 
 type Props = {

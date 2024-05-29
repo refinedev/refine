@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import { type FC, type PropsWithChildren, useMemo } from "react";
 
 import {
   useDelete,
@@ -7,14 +7,14 @@ import {
   useUpdate,
   useUpdateMany,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { DragEndEvent } from "@dnd-kit/core";
-import { MenuProps } from "antd";
+import type { DragEndEvent } from "@dnd-kit/core";
+import type { MenuProps } from "antd";
 
 import { Text } from "@/components";
-import { SalesDealsQuery, SalesDealStagesQuery } from "@/graphql/types";
+import type { SalesDealsQuery, SalesDealStagesQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import {

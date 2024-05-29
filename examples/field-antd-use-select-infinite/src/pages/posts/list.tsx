@@ -9,9 +9,9 @@ import {
   FilterDropdown,
   useSelect,
 } from "@refinedev/antd";
-import { Table, Space, Select, SelectProps } from "antd";
+import { Table, Space, Select, type SelectProps } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps } = useTable<IPost>();

@@ -10,7 +10,7 @@ import {
 import { Table, Space, Select, Radio } from "antd";
 import { useTable, useSelect } from "@refinedev/antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, filters } = useTable<IPost>();

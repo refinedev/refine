@@ -7,8 +7,8 @@ import { useBack } from "@hooks/router/use-back";
 import { useGo } from "@hooks/router/use-go";
 import { useParsed } from "@hooks/router/use-parsed";
 
-import { BaseKey, MetaDataQuery } from "../../contexts/data/types";
-import { IResourceItem } from "../../contexts/resource/types";
+import type { BaseKey, MetaDataQuery } from "../../contexts/data/types";
+import type { IResourceItem } from "../../contexts/resource/types";
 
 export type HistoryType = "push" | "replace";
 

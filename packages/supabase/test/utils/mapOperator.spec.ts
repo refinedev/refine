@@ -1,5 +1,5 @@
 import { mapOperator } from "../../src/utils";
-import { CrudOperators } from "@refinedev/core";
+import type { CrudOperators } from "@refinedev/core";
 
 describe("mapOperator", () => {
   it("should correctly map CrudOperators to their corresponding string values", () => {

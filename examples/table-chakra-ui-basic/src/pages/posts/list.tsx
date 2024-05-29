@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, useMany } from "@refinedev/core";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
+import { type GetManyResponse, useMany } from "@refinedev/core";
 import {
   List,
   ShowButton,
@@ -25,7 +25,7 @@ import {
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";
-import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import type { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(

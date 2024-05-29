@@ -11,10 +11,10 @@ import {
 import {
   Breadcrumb,
   CreateButton,
-  CreateButtonProps,
+  type CreateButtonProps,
   PageHeader,
 } from "@components";
-import { ListProps } from "../types";
+import type { ListProps } from "../types";
 
 /**
  * `<List>` provides us a layout for displaying the page.

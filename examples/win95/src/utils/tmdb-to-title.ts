@@ -1,4 +1,4 @@
-import { TMDBMovieResponse, VideoTitle } from "@/types";
+import type { TMDBMovieResponse, VideoTitle } from "@/types";
 
 export const tmdbToTitle = (
   tmdbBody: TMDBMovieResponse,

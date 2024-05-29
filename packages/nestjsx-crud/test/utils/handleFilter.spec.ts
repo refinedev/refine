@@ -1,5 +1,5 @@
-import { RequestQueryBuilder, SCondition } from "@nestjsx/crud-request";
-import { CrudFilters, CrudSorting, CrudFilter } from "@refinedev/core";
+import { RequestQueryBuilder, type SCondition } from "@nestjsx/crud-request";
+import type { CrudFilters, CrudSorting, CrudFilter } from "@refinedev/core";
 import {
   handleFilter,
   handleSort,

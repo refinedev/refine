@@ -7,7 +7,7 @@ import { useParsed, useResource, useRouterContext, useTranslate } from "..";
 import { useRouterType } from "../../contexts/router/picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
 import {
-  FlatTreeItem,
+  type FlatTreeItem,
   createTree,
 } from "../../definitions/helpers/menu/create-tree";
 import { useGetToPath } from "../router/use-get-to-path/index";

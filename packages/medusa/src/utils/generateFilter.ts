@@ -1,4 +1,4 @@
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 import { mapOperator } from "./mapOperator";
 
 export const generateFilter = (filters?: CrudFilter[]) => {

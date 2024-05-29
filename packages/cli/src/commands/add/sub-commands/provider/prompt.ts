@@ -2,7 +2,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 
 import { getDefaultPath } from "./create-providers";
-import { availableProviders, ProviderId } from "./providers";
+import { availableProviders, type ProviderId } from "./providers";
 
 export const buildProviderChoices = () => {
   return availableProviders.map((provider) => {

@@ -3,13 +3,13 @@ import { BrowserRouter } from "react-router-dom";
 
 import {
   Refine,
-  I18nProvider,
-  AccessControlProvider,
-  LegacyAuthProvider,
-  DataProvider,
-  NotificationProvider,
-  IResourceItem,
-  AuthProvider,
+  type I18nProvider,
+  type AccessControlProvider,
+  type LegacyAuthProvider,
+  type DataProvider,
+  type NotificationProvider,
+  type IResourceItem,
+  type AuthProvider,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";

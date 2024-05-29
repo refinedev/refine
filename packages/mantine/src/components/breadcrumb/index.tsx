@@ -8,12 +8,12 @@ import {
   useRouterContext,
   useRouterType,
 } from "@refinedev/core";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
   Text,
   Breadcrumbs,
-  BreadcrumbsProps as MantineBreadcrumbProps,
+  type BreadcrumbsProps as MantineBreadcrumbProps,
   Anchor,
   Group,
 } from "@mantine/core";

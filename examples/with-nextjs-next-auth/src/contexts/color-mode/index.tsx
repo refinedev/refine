@@ -4,7 +4,7 @@ import { RefineThemes } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider, theme } from "antd";
 import Cookies from "js-cookie";
 import React, {
-  PropsWithChildren,
+  type PropsWithChildren,
   createContext,
   useEffect,
   useState,

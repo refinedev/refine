@@ -9,15 +9,15 @@ import {
   Button,
   Chip,
   Pagination,
-  SortDescriptor,
+  type SortDescriptor,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
 
-import { useTable, getDefaultFilter, CrudSort } from "@refinedev/core";
-import { IOrder } from "../../interfaces";
+import { useTable, getDefaultFilter, type CrudSort } from "@refinedev/core";
+import type { IOrder } from "../../interfaces";
 import { useCallback, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 

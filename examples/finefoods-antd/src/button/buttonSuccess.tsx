@@ -1,4 +1,4 @@
-import { Button, ButtonProps, theme } from "antd";
+import { Button, type ButtonProps, theme } from "antd";
 import { useConfigProvider } from "../context";
 import { CheckCircleOutlined } from "@ant-design/icons";
 

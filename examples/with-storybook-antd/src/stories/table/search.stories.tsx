@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import type { ComponentMeta } from "@storybook/react";
 import {
   DateField,
   EditButton,
@@ -16,7 +16,7 @@ import {
   Col,
   DatePicker,
   Form,
-  FormProps,
+  type FormProps,
   Input,
   Row,
   Select,
@@ -25,8 +25,8 @@ import {
   Tag,
 } from "antd";
 
-import { HttpError, CrudFilters, useMany } from "@refinedev/core";
-import { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
+import { type HttpError, type CrudFilters, useMany } from "@refinedev/core";
+import type { IPost, IPostFilterVariables, ICategory } from "../../interfaces";
 
 import { RefineWithLayout } from "../../../.storybook/preview";
 

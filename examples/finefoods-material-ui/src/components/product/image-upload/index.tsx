@@ -1,5 +1,5 @@
 import { useTranslate } from "@refinedev/core";
-import { SxProps, styled, useTheme } from "@mui/material/styles";
+import { type SxProps, styled, useTheme } from "@mui/material/styles";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import Button from "@mui/material/Button";

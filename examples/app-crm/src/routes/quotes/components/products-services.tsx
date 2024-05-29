@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 
 import { AutoSaveIndicator, useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import {
@@ -11,16 +11,16 @@ import {
   Form,
   Input,
   InputNumber,
-  InputNumberProps,
-  InputProps,
+  type InputNumberProps,
+  type InputProps,
   Row,
   Skeleton,
   Spin,
 } from "antd";
 
 import { FullScreenLoading, Text } from "@/components";
-import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
-import {
+import type { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import type {
   QuotesUpdateQuoteMutation,
   QuotesUpdateQuoteMutationVariables,
 } from "@/graphql/types";

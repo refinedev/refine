@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  AutoSaveIndicatorProps,
+  type AutoSaveIndicatorProps,
   useTranslate,
   AutoSaveIndicator as AutoSaveIndicatorCore,
 } from "@refinedev/core";

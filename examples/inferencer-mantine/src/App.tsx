@@ -9,7 +9,7 @@ import {
 } from "@refinedev/mantine";
 
 import {
-  ColorScheme,
+  type ColorScheme,
   ColorSchemeProvider,
   Global,
   MantineProvider,

@@ -1,5 +1,5 @@
 import { useShow, useTranslate, useUpdate } from "@refinedev/core";
-import { IOrder } from "../../interfaces";
+import type { IOrder } from "../../interfaces";
 import { List, ListButton } from "@refinedev/antd";
 import { Button, Col, Divider, Flex, Row, Skeleton } from "antd";
 import { CloseCircleOutlined, LeftOutlined } from "@ant-design/icons";

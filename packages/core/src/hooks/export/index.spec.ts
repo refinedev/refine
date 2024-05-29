@@ -6,7 +6,7 @@ import { mockRouterProvider, posts } from "@test/dataMocks";
 
 import { downloadInBrowser } from "../../definitions/helpers/downloadInBrowser";
 import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
-import { ExportOptions, useExport } from "./";
+import { type ExportOptions, useExport } from "./";
 
 const testCsv = "col1,col2\r\ncell1,cell2";
 jest.mock("papaparse", () => ({

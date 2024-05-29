@@ -1,9 +1,9 @@
 import { useOne } from "@refinedev/core";
 import { useFormContext } from "react-hook-form";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 
 import { emailRegex } from "@lib/regex";
-import { CheckoutFormValues } from "@lib/context";
+import type { CheckoutFormValues } from "@lib/context";
 import { Input, CountrySelect, AddressSelect } from "@components";
 import clsx from "clsx";
 

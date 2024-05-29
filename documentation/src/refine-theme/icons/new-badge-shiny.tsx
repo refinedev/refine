@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { NewBadgeShinyCyan } from "./new-badge-shiny-cyan";
 import { NewBadgeShinyBlue } from "./new-badge-shiny-blue";

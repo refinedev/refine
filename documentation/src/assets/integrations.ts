@@ -1,4 +1,4 @@
-import { IntegrationsType } from "../types/integrations";
+import type { IntegrationsType } from "../types/integrations";
 import {
   Ably,
   Airtable,

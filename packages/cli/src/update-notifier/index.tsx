@@ -2,7 +2,7 @@ import Conf from "conf";
 import chalk from "chalk";
 import { isRefineUptoDate } from "@commands/check-updates";
 import { printUpdateWarningTable } from "@components/update-warning-table";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getInstalledRefinePackages } from "@utils/package";
 import { ENV } from "@utils/env";
 import { stringToBase64 } from "@utils/encode";

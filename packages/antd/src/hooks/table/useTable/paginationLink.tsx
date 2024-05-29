@@ -1,5 +1,5 @@
 import { useLink, useRouterContext, useRouterType } from "@refinedev/core";
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 interface PaginationLinkProps {
   to: string;

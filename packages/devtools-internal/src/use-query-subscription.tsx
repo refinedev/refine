@@ -3,13 +3,15 @@ import {
   DevtoolsEvent,
   receive,
 } from "@refinedev/devtools-shared";
-import { QueryClient } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { createQueryListener, createMutationListener } from "./listeners";
 
 export const useQuerySubscription =
   __DEV_CONDITION__ !== "development"
-    ? () => ({})
+    ? () => {
+        return {};
+      }
     : (queryClient: QueryClient) => {
         const { ws } = useContext(DevToolsContext);
         const queryCacheSubscription = React.useRef<() => void>();

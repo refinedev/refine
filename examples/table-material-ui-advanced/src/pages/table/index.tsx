@@ -1,13 +1,13 @@
 import { alpha } from "@mui/material/styles";
 import {
-  GetManyResponse,
+  type GetManyResponse,
   useDeleteMany,
   useMany,
   useSelect,
 } from "@refinedev/core";
 import { DeleteButton, EditButton, List, SaveButton } from "@refinedev/mui";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import { type ColumnDef, flexRender, type Row } from "@tanstack/react-table";
 import React, { useCallback, useEffect } from "react";
 
 import Button from "@mui/material/Button";
@@ -33,7 +33,7 @@ import { Controller } from "react-hook-form";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const {

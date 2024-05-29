@@ -2,7 +2,7 @@ import React from "react";
 import { Tooltip } from "@chakra-ui/react";
 import { IconMinus, IconCheck } from "@tabler/icons-react";
 
-import { BooleanFieldProps } from "../types";
+import type { BooleanFieldProps } from "../types";
 
 /**
  * This field is used to display boolean values. It uses the {@link https://chakra-ui.com/docs/components/tooltip `<Tooltip>`} values from Chakra UI.

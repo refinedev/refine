@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "antd";
 
-import { EmailFieldProps } from "../types";
+import type { EmailFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://ant.design/components/typography/#FAQ `<Link>`} component

@@ -7,7 +7,7 @@ import {
   List,
 } from "@refinedev/mui";
 
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useTranslate } from "@refinedev/core";
 
 export const CategoryList = () => {

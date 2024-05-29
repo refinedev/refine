@@ -20,8 +20,8 @@ import Box from "@mui/material/Box";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
-import { CreateProps } from "../types";
+import { Breadcrumb, SaveButton, type SaveButtonProps } from "@components";
+import type { CreateProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**

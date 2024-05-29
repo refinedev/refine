@@ -2,7 +2,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
-import { NavbarPopoverItemType } from "./constants";
+import type { NavbarPopoverItemType } from "./constants";
 
 type MenuItemProps = {
   item: NavbarPopoverItemType["items"][0];

@@ -1,5 +1,5 @@
 import React from "react";
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 
 export const Status = ({ activity }: { activity: Activity }) => {
   const status = activity.status;

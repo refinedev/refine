@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { type LoaderFunctionArgs, redirect } from "@remix-run/node";
 
 import { authProvider } from "~/authProvider";
 import { Layout } from "~/components/layout";

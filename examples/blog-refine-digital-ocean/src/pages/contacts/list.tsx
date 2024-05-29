@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseRecord } from "@refinedev/core";
+import type { BaseRecord } from "@refinedev/core";
 import {
   useTable,
   List,

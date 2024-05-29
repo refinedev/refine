@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useRouterType,
   useLink,
   useActiveAuthProvider,
@@ -20,8 +20,8 @@ import {
   Text,
   Divider,
   Stack,
-  BoxProps,
-  CardProps,
+  type BoxProps,
+  type CardProps,
   useMantineTheme,
 } from "@mantine/core";
 
@@ -33,7 +33,7 @@ import {
   titleStyles,
   pageTitleStyles,
 } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 
 type LoginProps = LoginPageProps<BoxProps, CardProps, FormPropsType>;
 

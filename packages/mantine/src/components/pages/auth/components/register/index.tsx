@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  RegisterPageProps,
-  RegisterFormTypes,
+  type RegisterPageProps,
+  type RegisterFormTypes,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
@@ -21,8 +21,8 @@ import {
   Anchor,
   Button,
   Text,
-  BoxProps,
-  CardProps,
+  type BoxProps,
+  type CardProps,
   Group,
   Stack,
   Divider,
@@ -37,7 +37,7 @@ import {
   titleStyles,
   pageTitleStyles,
 } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 
 type RegisterProps = RegisterPageProps<BoxProps, CardProps, FormPropsType>;
 

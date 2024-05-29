@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { LayoutProps } from "@refinedev/core";
+import type { LayoutProps } from "@refinedev/core";
 import { OrdersModal } from "@/components/orders";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";

@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { HttpError, useTableProps } from "@refinedev/core";
+import type { HttpError, useTableProps } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import cn from "classnames";
 import {
   ChevronDownIcon,
@@ -13,7 +13,7 @@ import {
   PlusSquareIcon,
 } from "@/components/icons";
 import { useBasketContext } from "@/hooks/useBasketContext";
-import { Product } from "@/types";
+import type { Product } from "@/types";
 
 type Props = {
   refineCoreProps?: Partial<useTableProps<Product, HttpError, Product>>;
