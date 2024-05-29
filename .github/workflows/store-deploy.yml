@@ -14,9 +14,6 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-store-deploy
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v4

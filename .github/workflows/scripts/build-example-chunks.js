@@ -148,6 +148,7 @@ for (let i = 0; i < examples.length; i += chunkSize) {
 //
 // Set outputs
 //
+
 chunks.forEach((chunk, i) => {
   console.log(`::set-output name=CHUNK_${i + 1}::${chunk.join(",")}`);
 });
