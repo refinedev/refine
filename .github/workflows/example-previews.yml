@@ -70,8 +70,10 @@ jobs:
       - name: Build examples matrix
         id: build_examples_matrix
         run: COMMENT_BODY=${{ github.event.comment.body }} node ./.github/workflows/scripts/deploy-previews.js
+
   deploy_example_preview:
     needs: build_previews_matrix
+    if: needs.build_previews_matrix.outputs.matrix != '[]'
     permissions:
       pull-requests: read
       issues: read
@@ -110,11 +112,12 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     needs: changes
+    if: ${{ needs.changes.outputs.all_examples || needs.changes.outputs.examples || needs.changes.outputs.dispatch_example }}
     strategy:
       fail-fast: false
       max-parallel: 6
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.all_examples || needs.changes.outputs.examples || needs.changes.outputs.dispatch_example || '[]') }}
+        example: ${{ fromJSON(needs.changes.outputs.all_examples || needs.changes.outputs.examples || needs.changes.outputs.dispatch_example) }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
