@@ -18,7 +18,7 @@ We first spend time to understand what essentially makes a React reducer, how it
 
 We demonstrate how to consume reducer data (stored as `posts`) and present them in JSX. While doing so, we also cover how to invoke actions with `dispatch()` by passing desired types to it (`like` and `unlike`). We discuss the importance of a reducer function and acknowledge the painstaking care necessary while writing one. We analyze relevant code snippets to show some good practices involved in efficiently composing React reducer functions that is used by a `useReducer()` hook. We spare time to understand the significance of initial reducer state and examine examples of how to pass one to `useReducer()`.
 
-In the later half, we expand our example to demonstrate how `useReducer()` enables state updates on multiple nesting levels. We add `create` and `delete` action types to the topmost level of `posts` that allow creating and deleting a post respectively. We elucidate with an example how to use a state initializer function for enhancing performance of a reducer. Towards the end, disucss the benefits of using `useReducer()`, how reducers are vital in Redux and how `useReducer()` and Redux compare.
+In the later half, we expand our example to demonstrate how `useReducer()` enables state updates on multiple nesting levels. We add `create` and `delete` action types to the topmost level of `posts` that allow creating and deleting a post respectively. We elucidate with an example how to use a state initializer function for enhancing performance of a reducer. Towards the end, discuss the benefits of using `useReducer()`, how reducers are vital in Redux and how `useReducer()` and Redux compare.
 
 Steps we follow in this post are as follows:
 
