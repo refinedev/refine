@@ -26,7 +26,11 @@ extend-ignore-re = [
     "refineTheme",
     "exitt",
     "refine\\:",
-    "refine devtools"
+    "refine devtools",
+    "const [a-zA-Z0-9_]+ = .*",
+    "Example: .*",
+    "RGBa",
+    "Abd"
 ]
 
 [files]
@@ -49,5 +53,4 @@ DAA = "DAA"
 bare = "bare"
 inovice = "invoice"
 refine = "Refine"
-
 
