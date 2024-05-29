@@ -1,4 +1,4 @@
-name: stable Release
+name: Release
 
 on:
   push:
@@ -11,10 +11,6 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-stable-release
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
@@ -28,10 +24,9 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: "pnpm"
       - name: Creating .npmrc
         run: |
@@ -110,47 +105,3 @@ jobs:
             --set ingress.tls[0].hosts[0]=${{ env.domain }} \
         env:
           domain: "next.live-previews.refine.dev"
-  documentation-gh:
-    runs-on: ubuntu-latest
-    concurrency:
-      group: ${{ github.ref }}-stable-documentation
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-      - name: Add key to allow access to repository
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "${{ secrets.GH_PAGES_DEPLOY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          cat <<EOT >> ~/.ssh/config
-          Host github.com
-          HostName github.com
-          IdentityFile ~/.ssh/id_rsa
-          EOT
-      - name: Build packages
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: |
-          pnpm install
-          cd documentation
-          pnpm install
-      - name: Release to GitHub Pages
-        env:
-          USE_SSH: true
-          GIT_USER: pankod-bot
-          NODE_ENV: production
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: |
-          cd documentation
-          git config --global user.email "bot@pankod.com"
-          git config --global user.name "pankod-bot"
-          LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview pnpm run deploy
