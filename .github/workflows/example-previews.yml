@@ -56,18 +56,30 @@ jobs:
           'app-crm': 'examples/app-crm/**'
           'pixels': 'examples/pixels/**'
           'invoicer': 'examples/invoicer/**'
-  deploy_example_preview:
+  build_previews_matrix:
+    name: Build previews matrix
     permissions:
       pull-requests: read
       issues: read
     outputs:
-      example_name: ${{ steps.set-example-name.outputs.example_name }}
+      matrix: ${{ steps.build_examples_matrix.outputs.EXAMPLES }}
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.comment.body, '/deploy') }}
     steps:
-      - name: Set Example Name
-        id: set-example-name
-        run: echo "EXAMPLE_NAME=$(echo ${{ github.event.comment.body }} | cut -f 2 -d ' ')" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+      - name: Build examples matrix
+        id: build_examples_matrix
+        run: COMMENT_BODY=${{ github.event.comment.body }} node ./.github/workflows/scripts/deploy-previews.js
+  deploy_example_preview:
+    needs: build_previews_matrix
+    permissions:
+      pull-requests: read
+      issues: read
+    strategy:
+      matrix:
+        example: ${{ fromJson(needs.build_previews_matrix.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
@@ -79,25 +91,22 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
       - name: Build example
-        run: pnpm build --scope ${{ env.EXAMPLE_NAME }}
-      - name: test path
-        run: ls -l ${{ format('./examples/{0}/{1}', env.EXAMPLE_NAME, contains(fromJson('["finefoods-client"]'), env.EXAMPLE_NAME) && '.next' || 'dist') }}
+        run: pnpm build --scope ${{ matrix.example.name }}
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: ${{ format('./examples/{0}/{1}', env.EXAMPLE_NAME, contains(fromJson('["finefoods-client"]'), env.EXAMPLE_NAME) && '.next' || 'dist') }}
-          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          alias: deploy-preview-${{ env.EXAMPLE_NAME }}-${{ github.event.comment.node_id }}
-          enable-pull-request-comment: false
-          overwrites-pull-request-comment: false
-          github-deployment-environment: "deploy-preview-${{ env.EXAMPLE_NAME }}-${{ github.event.comment.node_id }}"
-          netlify-config-path: ./examples/${{ env.EXAMPLE_NAME }}/netlify.toml
+          publish-dir: ${{ matrix.example.publish_dir }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions [Comment]"
+          alias: deploy-preview-${{ matrix.example.name }}-${{ github.event.comment.node_id }}
+          enable-pull-request-comment: true
+          overwrites-pull-request-comment: true
+          github-deployment-environment: "deploy-preview-${{ matrix.example.name }}-${{ github.event.comment.node_id }}"
+          netlify-config-path: ${{ matrix.example.netlify_config_path }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 10
-
   preview:
     runs-on: ubuntu-latest
     needs: changes
