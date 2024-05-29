@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-m
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on May 23, 2024 to add more informations, new sections for performance of useState hook._**
+**_This article was last updated on May 23, 2024 to add more information, new sections for performance of useState hook._**
 
 ## Introduction
 

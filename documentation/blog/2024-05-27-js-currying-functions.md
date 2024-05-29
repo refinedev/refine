@@ -380,7 +380,7 @@ While currying really helps to make the code readable and flexible, during such 
 
 ## Bonus: Advanced JavaScript Currying Techniques
 
-Beyond the most basic kind of currying that we've already seen, there's a host of more sophisticated tricks to be played. One of them is **partial application**, in which we pre-fill some of the function's arguments, so as to create a more specialised version of the function, but without actually running it. That can be used, in particular, to 'configure' functions with common settings.
+Beyond the most basic kind of currying that we've already seen, there's a host of more sophisticated tricks to be played. One of them is **partial application**, in which we pre-fill some of the function's arguments, so as to create a more specialized version of the function, but without actually running it. That can be used, in particular, to 'configure' functions with common settings.
 
 For example:
 
