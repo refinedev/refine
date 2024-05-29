@@ -69,7 +69,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build examples matrix
         id: build_examples_matrix
-        run: COMMENT_BODY=${{ github.event.comment.body }} node ./.github/workflows/scripts/deploy-previews.js
+        run: node ./.github/workflows/scripts/deploy-previews.js
+        env:
+          COMMENT_BODY: '${{ github.event.comment.body }}'
 
   deploy_example_preview:
     needs: build_previews_matrix
