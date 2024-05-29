@@ -24,7 +24,9 @@ extend-ignore-re = [
     "\"refine\"",
     "\"refine",
     "refineTheme",
-    "exitt"
+    "exitt",
+    "refine\\:",
+    "refine devtools"
 ]
 
 [files]
