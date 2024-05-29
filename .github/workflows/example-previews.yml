@@ -114,7 +114,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.all_examples) || fromJSON(needs.changes.outputs.examples) || fromJSON(needs.changes.outputs.dispatch_example) || '[]' }}
+        example: ${{ fromJSON(needs.changes.outputs.all_examples || needs.changes.outputs.examples || needs.changes.outputs.dispatch_example || '[]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
@@ -128,13 +128,11 @@ jobs:
         run: pnpm install --ignore-scripts
       - name: Build example
         run: pnpm build --scope ${{ matrix.example }}
-      - name: test path
-        run: ls -l ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
-          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-${{ matrix.example }}-${{ github.event.number }}
           enable-pull-request-comment: false
