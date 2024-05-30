@@ -40,7 +40,7 @@ jobs:
 
   deploy_example_preview:
     needs: build_previews_matrix
-    if: needs.build_previews_matrix.outputs.matrix != '[]'
+    if: ${{ fromJson(needs.build_previews_matrix.outputs.matrix).include }}
     permissions:
       pull-requests: read
       issues: read
@@ -61,18 +61,18 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --ignore-scripts
       - name: Build example
-        run: pnpm build --scope ${{ fromJson(matrix.example).name }}
+        run: pnpm build --scope ${{ matrix.name }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: ${{ fromJson(matrix.example).publish_dir }}
+          publish-dir: ${{ matrix.publish_dir }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "[Comment] Deploy from GitHub Actions"
-          alias: deploy-preview-${{ fromJson(matrix.example).name }}-${{ github.event.comment.node_id }}
+          alias: deploy-preview-${{ matrix.name }}-${{ github.event.comment.node_id }}
           enable-pull-request-comment: true
           overwrites-pull-request-comment: true
-          github-deployment-environment: "deploy-preview-${{ fromJson(matrix.example).name }}-${{ github.event.comment.node_id }}"
-          netlify-config-path: ${{ fromJson(matrix.example).netlify_config_path }}
+          github-deployment-environment: "deploy-preview-${{ matrix.name }}-${{ github.event.comment.node_id }}"
+          netlify-config-path: ${{ matrix.netlify_config_path }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
