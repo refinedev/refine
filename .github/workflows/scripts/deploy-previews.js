@@ -4,6 +4,15 @@ const fs = require("fs");
 
 const COMMENT_BODY = process.env.COMMENT_BODY || false;
 
+const NETLIFY_SITES = [
+  "finefoods-antd",
+  "finefoods-client",
+  "finefoods-material-ui",
+  "app-crm",
+  "pixels",
+  "invoicer",
+];
+
 const setOutput = (output) =>
   console.log(`::set-output name=EXAMPLES::${output}`);
 
@@ -39,7 +48,7 @@ const buildExamplesOutput = (comment) => {
     ?.split(",")
     .filter((m) => m.length > 1)
     .map((e) => e.trim())
-    .filter((e) => fs.existsSync(`./examples/${e}/package.json`));
+    .filter((e) => NETLIFY_SITES.includes(e));
 
   if (!examples?.length) {
     setOutput("[]");
