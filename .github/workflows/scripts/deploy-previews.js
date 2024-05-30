@@ -64,7 +64,7 @@ const buildExamplesOutput = (comment) => {
     };
   });
 
-  setOutput(JSON.stringify(output));
+  setOutput(JSON.stringify({ include: output }));
 };
 
 buildExamplesOutput(COMMENT_BODY.trim());

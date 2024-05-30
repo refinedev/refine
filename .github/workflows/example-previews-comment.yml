@@ -45,8 +45,7 @@ jobs:
       pull-requests: read
       issues: read
     strategy:
-      matrix:
-        example: ${{ needs.build_previews_matrix.outputs.matrix }}
+      matrix: ${{ fromJson(needs.build_previews_matrix.outputs.matrix) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
