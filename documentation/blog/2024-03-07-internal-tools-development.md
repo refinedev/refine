@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post provides an industry-centric perspective on the track custom internal tools development. We cover the trail of emergent technologies in web based internal tools development, and present a comprehensive guide on building enterprise tools with cutting-edge open source frameworks and libraries in the React/Node.js ecosystem.
 
-Internal tools are specialized software applications used by a company's back-office departments. They empower a workforce by automating complex business processes and workflows for staff, managers, admnistrators and other stakeholders. Software based business process and workflow management helps companies achieve greater efficiency and productivity by enabling better collaboration among participants, more refined processes and streamlined workflows.
+Internal tools are specialized software applications used by a company's back-office departments. They empower a workforce by automating complex business processes and workflows for staff, managers, administrators and other stakeholders. Software based business process and workflow management helps companies achieve greater efficiency and productivity by enabling better collaboration among participants, more refined processes and streamlined workflows.
 
 In this post, we briefly review the current state of the enterprise tools landscape to understand how internal tools development looks like entering 2024. We first get a brief historical account of how off-the-shelf desktop based internal tools solutions made their way to the web via cloud hosted applications. We evaluate the pros and cons of internal tool builder platforms and differentiate them from more custom development using cutting edge open source technologies in the React/Node.js ecosystem.
 
@@ -58,7 +58,7 @@ Below is a quick rundown of common enterprise internal tools used by stable busn
   For C level administrators and decision makers, user and roles management is a key feature implemented to allow structuring their organization. Approval workflow is another feature typical to admin panels for all levels of admin scopes.
 
 - **Dashboards**
-  Dasboards present data metrics, visualizations, reports and real-time analytics in a page specifically intended to provide insightful overview to a stakeholder. Dashboards are used in ERP softwares, admin panels, business intelligence software and any tool that offer central access and management of resources.
+  Dashboards present data metrics, visualizations, reports and real-time analytics in a page specifically intended to provide insightful overview to a stakeholder. Dashboards are used in ERP software, admin panels, business intelligence software and any tool that offer central access and management of resources.
 
 - **Business Intelligence Tools**
   Essentially, business intelligence tools specialize in capturing, transforming, manipulating and analyzing data. Generating reports and visualizations are integral parts of BI software. In most cases, data processing is handled by powerful engines running in the background. BI tools are also able to integrate with ERP systems and third party services.
@@ -76,7 +76,7 @@ Below is a quick rundown of common enterprise internal tools used by stable busn
 - **Collaboration Tools**
   Central to workforce empowerment are collaboration tools such as Slack, Google Groups, Discord, Discourse, Trello and a host of other technologies that foster workplace communication and teamwork. Most of them start with a free tier and offer commercial features on its top.
 
-Apart from these common types, internal tools vary specific to industries. For example, inventory management software help automate and manage processes in warehouses, e-commerce stocks and sales stores. Logistics and supply chain software refine complex workflows that involve multiple stakeholders. And there are other types of internal tools for sourcing and procurement, manufacturing, research & development and engineering, asset management, etc.
+Apart from these common types, internal tools vary specific to industries. For example, inventory management software help automate and manage processes in warehouses, e-commerce stocks and sales stores. Logistics and supply chain software Refine complex workflows that involve multiple stakeholders. And there are other types of internal tools for sourcing and procurement, manufacturing, research & development and engineering, asset management, etc.
 
 Besides implementing domain specific logic for each of these types, internal tools have to implement the following core functionalities:
 
@@ -144,7 +144,7 @@ Modern internal tools development involves the following considerations that app
 - **Scalability and adaptability**. Mostly shaped by architectural decisions and choice of underlying technologies.
 - **Extensibility and integration support**.
 - **Development speed and efficiency**. Depends on the team size, sprint cycles, and the velocity offered by development infrastructure, frameworks and libraries.
-- **Developer experience**. Often aligns with optimal developer environment, technological choices and the team culture that enables developement of a product.
+- **Developer experience**. Often aligns with optimal developer environment, technological choices and the team culture that enables development of a product.
 - **User experience, interface design and implementation**
 - **Backend API integration, data fetching and management**
 
@@ -204,7 +204,7 @@ Refine offers unmatched flexibility in backend API integration. Again, Refine's 
 
 Refine's minimal coupling ensures a greater surface for backend API integration with the help of data providers. This gives Refine an upper edge over Redwood which is coupled to a backend that offers somewhat tedious integrations to external APIs via Prisma and other middlewares.
 
-**Interoperability and Mutliple Data Sources**
+**Interoperability and Multiple Data Sources**
 
 Internal tools are centered around a single source of data that is shared across business units. Interoperability of internal tools is essential to enterprise operations. Refine is geared to implement interoperable modules by connecting to a single data source with a primary data provider. In BI tools, that usually fetch and process data from multiple sources, multiple data providers can also be used to access the necessary data.
 
