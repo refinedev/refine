@@ -19,9 +19,7 @@ jobs:
       - uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ github.event.comment.id }}
-          reactions: |
-            "+1"
-            "rocket"
+          reactions: rocket
       - name: Github API Request
         id: request
         uses: octokit/request-action@v2.0.2
