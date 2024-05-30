@@ -58,4 +58,4 @@ const buildExamplesOutput = (comment) => {
   setOutput(JSON.stringify(output));
 };
 
-buildExamplesOutput(COMMENT_BODY);
+buildExamplesOutput(COMMENT_BODY.trim());
