@@ -18,12 +18,12 @@ const setOutput = (output) =>
 
 const getPublishDir = (exampleName) => {
   if (fs.existsSync(`./examples/${exampleName}/next-env.d.ts`))
-    return "./.next";
+    return `./examples/${exampleName}/.next`;
 
   if (fs.existsSync(`./examples/${exampleName}/remix.config.js`))
-    return "./build";
+    return `./examples/${exampleName}/build`;
 
-  return "./dist";
+  return `./examples/${exampleName}/dist`;
 };
 
 const getNetlifyConfigPath = (exampleName) => {
