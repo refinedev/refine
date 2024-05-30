@@ -71,7 +71,7 @@ jobs:
         with:
           publish-dir: ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: "[PR] Deploy from GitHub Actions"
           alias: deploy-preview-${{ matrix.example }}-${{ github.ref_name }}
           enable-pull-request-comment: true
           overwrites-pull-request-comment: true
@@ -109,7 +109,7 @@ jobs:
         with:
           publish-dir: ${{ format('./examples/{0}/{1}', matrix.example, contains(fromJson('["finefoods-client"]'), matrix.example) && '.next' || 'dist') }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: "[PR] Deploy from GitHub Actions"
           alias: deploy-preview-${{ matrix.example }}-${{ github.ref_name }}
           enable-pull-request-comment: true
           overwrites-pull-request-comment: true

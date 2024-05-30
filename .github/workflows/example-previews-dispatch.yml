@@ -36,7 +36,7 @@ jobs:
         with:
           publish-dir: ${{ format('./examples/{0}/{1}', inputs.example_name, contains(fromJson('["finefoods-client"]'), inputs.example_name) && '.next' || 'dist') }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: "[Dispatch] Deploy from GitHub Actions"
           alias: deploy-preview-dispatch-${{ inputs.example_name }}-${{ github.ref_name }}
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false
