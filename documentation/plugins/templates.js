@@ -286,17 +286,15 @@ We built this template to demonstrate how the Refine framework simplifies and sp
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.png",
     ],
-    runOnYourLocalPath: "refine-week-invoice-generator",
-    liveDemo: "https://invoice-generator.refine.dev/",
-    github:
-      "https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator",
-    tutorial: "https://refine.dev/week-of-refine-strapi/",
+    runOnYourLocalPath: "invoicer",
+    liveDemo: "https://refine-invoicer-8mk7d.ondigitalocean.app/",
+    github: "https://github.com/refinedev/refine/tree/master/examples/invoicer",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Strapi",
     authProvider: "Strapi",
     description: `
-The Invoicer is a template for an internal tool created as part of the #RefineWeek series, integrating Refine, Strapi, and Ant Design technologies. It's designed for users to manage company registrations, client and contact additions, task creations, and invoice issuance. A standout feature of this app is its ability to generate PDF invoices, enabling the creation of professional documents.
+The Invoicer is a template for an internal tool, integrating Refine, Strapi, and Ant Design technologies. It's designed for users to manage account registrations, client additions, and invoice issuance. A standout feature of this app is its ability to generate PDF invoices, enabling the creation of professional documents.
 
 With its PDF generation feature, this open-source internal tool template is ideal for understanding Refine's capabilities. The app uses Strapi for data management, connecting through a Strapi data provider. Its interface is crafted using Ant Design, supported natively by Refine for a seamless UI experience.
 
@@ -308,7 +306,7 @@ We built this template to showcase the efficiency and ease of using the Refine f
 
 - **Comprehensive CRUD Operations**: The app supports CRUD functionalities for companies, clients, contacts, missions, and invoices.
 - **Authentication and Authorization**: Implements secure user authentication and role-based permissions using Refine's authProvider.
-- **PDF Invoice Generation**: Includes the capability to generate and view PDF documents of invoices using the @react-pdf/renderer package.
+- **PDF Invoice Generation**: Includes the capability to generate and view PDF documents of invoices using the native browser print feature.
         `,
   },
   {
