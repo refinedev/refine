@@ -33,10 +33,12 @@ An open-source, headless React meta-framework, developed with a commitment to be
 
 Refine has a built-in integration with [Material UI](https://mui.com/material-ui/getting-started/), and this example demonstrates how to use it.
 
+The example includes list, create, edit, and delete pages for the `posts` and `category` resources, as well as a functional login page and dark mode.
+
 For more information on how to use Material UI with Refine, please refer to the [Material UI integration guide](https://refine.dev/docs/ui-integrations/material-ui/introduction/).
 
 
-The example includes list, create, edit, and delete pages for the `posts` and `category` resources, as well as a functional login page and dark mode.
+
 
 
 ## Try this example on your local
