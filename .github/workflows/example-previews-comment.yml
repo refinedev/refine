@@ -1,0 +1,77 @@
+name: Deploy Example Previews
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build_previews_matrix:
+    name: Build previews matrix
+    permissions:
+      pull-requests: read
+      issues: read
+    outputs:
+      matrix: ${{ steps.build_examples_matrix.outputs.EXAMPLES }}
+      pr_ref: ${{ fromJson(steps.request.outputs.data).head.ref }}
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.comment.body, '/deploy') }}
+    steps:
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: rocket
+      - name: Github API Request
+        id: request
+        uses: octokit/request-action@v2.0.2
+        with:
+          route: ${{ github.event.issue.pull_request.url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ fromJson(steps.request.outputs.data).head.ref }}
+      - name: Build examples matrix
+        id: build_examples_matrix
+        run: node ./.github/workflows/scripts/deploy-previews.js
+        env:
+          COMMENT_BODY: '${{ github.event.comment.body }}'
+
+  deploy_example_preview:
+    needs: build_previews_matrix
+    if: ${{ fromJson(needs.build_previews_matrix.outputs.matrix).include }}
+    permissions:
+      pull-requests: read
+      issues: read
+    strategy:
+      matrix: ${{ fromJson(needs.build_previews_matrix.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build_previews_matrix.outputs.pr_ref }}
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install --ignore-scripts
+      - name: Build example
+        run: pnpm build --scope ${{ matrix.name }}
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: ${{ matrix.publish_dir }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "[Comment] Deploy from GitHub Actions"
+          alias: deploy-preview-${{ matrix.name }}-${{ github.event.comment.node_id }}
+          enable-pull-request-comment: true
+          overwrites-pull-request-comment: true
+          github-deployment-environment: "deploy-preview-${{ matrix.name }}-${{ github.event.comment.node_id }}"
+          netlify-config-path: ${{ matrix.netlify_config_path }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10

@@ -18,7 +18,7 @@ We first spend time to understand what essentially makes a React reducer, how it
 
 We demonstrate how to consume reducer data (stored as `posts`) and present them in JSX. While doing so, we also cover how to invoke actions with `dispatch()` by passing desired types to it (`like` and `unlike`). We discuss the importance of a reducer function and acknowledge the painstaking care necessary while writing one. We analyze relevant code snippets to show some good practices involved in efficiently composing React reducer functions that is used by a `useReducer()` hook. We spare time to understand the significance of initial reducer state and examine examples of how to pass one to `useReducer()`.
 
-In the later half, we expand our example to demonstrate how `useReducer()` enables state updates on multiple nesting levels. We add `create` and `delete` action types to the topmost level of `posts` that allow creating and deleting a post respectively. We elucidate with an example how to use a state initializer function for enhancing performance of a reducer. Towards the end, disucss the benefits of using `useReducer()`, how reducers are vital in Redux and how `useReducer()` and Redux compare.
+In the later half, we expand our example to demonstrate how `useReducer()` enables state updates on multiple nesting levels. We add `create` and `delete` action types to the topmost level of `posts` that allow creating and deleting a post respectively. We elucidate with an example how to use a state initializer function for enhancing performance of a reducer. Towards the end, discuss the benefits of using `useReducer()`, how reducers are vital in Redux and how `useReducer()` and Redux compare.
 
 Steps we follow in this post are as follows:
 
@@ -163,34 +163,34 @@ export default function Posts() {
   const [posts, dispatch] = useReducer(postsReducer, initialPosts);
 
   return (
-    <div className="container mx-auto my-16 bg-gray-100 rounded-lg">
-      <div className="ml-8 pt-8 w-3/5 bg-inherit">
+    <div className="container mx-auto my-16 rounded-lg bg-gray-100">
+      <div className="ml-8 w-3/5 bg-inherit pt-8">
         <h2 className="title">All Posts</h2>
         {posts?.map((post) => {
           return (
             <div class="card">
               <div class="p-6">
                 <div className="px-2">
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <div>
                       <h5 class="mb-1 text-xl font-medium leading-tight">
                         {post?.title}
                       </h5>
                       <h6 class="subtitle">{post?.subtitle}</h6>
                     </div>
-                    <div className="relative flex justify-center items-center">
+                    <div className="relative flex items-center justify-center">
                       <HeartIcon
                         height={32}
                         width={32}
-                        className="text-red-500 fill-red-500"
+                        className="fill-red-500 text-red-500"
                       />
-                      <span className="absolute text-gray-50 text-xs font-normal">
+                      <span className="absolute text-xs font-normal text-gray-50">
                         {post?.likes}
                       </span>
                     </div>
                   </div>
                 </div>
-                <p class="mb-4 text-base leading-normal bg-gray-50 p-2">
+                <p class="mb-4 bg-gray-50 p-2 text-base leading-normal">
                   {post?.content}
                 </p>
                 <div className="flex gap-4">
@@ -421,7 +421,7 @@ const { type, payload } = action;
 const { id } = payload;
 ```
 
-As you can notice, we need to discretely handle each action type. Here we are using a `swtich` statement to handle each state change.
+As you can notice, we need to discretely handle each action type. Here we are using a `switch` statement to handle each state change.
 
 :::tip[Tip: Prefer Using `switch` Statements in a Reducer Function]
 
@@ -636,7 +636,7 @@ export function CreatePostForm({ posts, dispatch }) {
       <h2 className="title">Create Post</h2>
       // highlight-next-line
       <form
-        className="shadow-md p-6 bg-white rounded-lg"
+        className="rounded-lg bg-white p-6 shadow-md"
         onSubmit={handleSubmit}
       >
         <div className="form-control">
@@ -733,8 +733,8 @@ export default function Posts() {
   const [posts, dispatch] = useReducer(postsReducer, initialPosts);
 
   return (
-    <div className="container mx-auto my-16 bg-gray-100 rounded-lg">
-      <div className="flex justify-start items-start p-8">
+    <div className="container mx-auto my-16 rounded-lg bg-gray-100">
+      <div className="flex items-start justify-start p-8">
         // highlight-start
         <div className="">
           <CreatePostForm posts={posts} dispatch={dispatch} />
@@ -747,29 +747,29 @@ export default function Posts() {
               <div class="card">
                 <div class="p-6">
                   <div className="px-2">
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <div>
                         <h5 class="mb-1 text-xl font-medium leading-tight">
                           {post?.title}
                         </h5>
                         <h6 class="subtitle">{post?.subtitle}</h6>
                       </div>
-                      <div className="relative flex justify-center items-center">
+                      <div className="relative flex items-center justify-center">
                         <HeartIcon
                           height={32}
                           width={32}
-                          className="text-red-500 fill-red-500"
+                          className="fill-red-500 text-red-500"
                         />
-                        <span className="absolute text-gray-50 text-xs font-normal">
+                        <span className="absolute text-xs font-normal text-gray-50">
                           {post?.likes}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <p class="mb-4 text-base leading-normal bg-gray-50 p-2">
+                  <p class="mb-4 bg-gray-50 p-2 text-base leading-normal">
                     {post?.content}
                   </p>
-                  <div className="px-2 flex justify-between items-center">
+                  <div className="flex items-center justify-between px-2">
                     <div className="">
                       <button
                         class="btn-delete"
@@ -849,7 +849,7 @@ const [posts, dispatch] = useReducer(
 
 However, invoking an initializer is suboptimal, since `userReducer`'s initial state gets evaluated only during the reducer's initialization. And it does not get re-evaluated on state updates and subsequent renders. In other words re-evaluation of state initializer function is ignored despite it being called every time the component re-renders.
 
-So, using an invoked initilizer function with `useReducer()` wastes application resources.
+So, using an invoked initializer function with `useReducer()` wastes application resources.
 
 We can instead pass the function itself as the third argument to `useReducer()`, and any of its own arguments as the second argument to `useReducer()`. Like so:
 

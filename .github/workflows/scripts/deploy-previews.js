@@ -4,17 +4,26 @@ const fs = require("fs");
 
 const COMMENT_BODY = process.env.COMMENT_BODY || false;
 
+const NETLIFY_SITES = [
+  "finefoods-antd",
+  "finefoods-client",
+  "finefoods-material-ui",
+  "app-crm",
+  "pixels",
+  "invoicer",
+];
+
 const setOutput = (output) =>
   console.log(`::set-output name=EXAMPLES::${output}`);
 
 const getPublishDir = (exampleName) => {
   if (fs.existsSync(`./examples/${exampleName}/next-env.d.ts`))
-    return "./.next";
+    return `./examples/${exampleName}/.next`;
 
   if (fs.existsSync(`./examples/${exampleName}/remix.config.js`))
-    return "./build";
+    return `./examples/${exampleName}/build`;
 
-  return "./dist";
+  return `./examples/${exampleName}/dist`;
 };
 
 const getNetlifyConfigPath = (exampleName) => {
@@ -39,7 +48,7 @@ const buildExamplesOutput = (comment) => {
     ?.split(",")
     .filter((m) => m.length > 1)
     .map((e) => e.trim())
-    .filter((e) => fs.existsSync(`./examples/${e}/package.json`));
+    .filter((e) => NETLIFY_SITES.includes(e));
 
   if (!examples?.length) {
     setOutput("[]");
@@ -55,7 +64,7 @@ const buildExamplesOutput = (comment) => {
     };
   });
 
-  setOutput(JSON.stringify(output));
+  setOutput(JSON.stringify({ include: output }));
 };
 
-buildExamplesOutput(COMMENT_BODY);
+buildExamplesOutput(COMMENT_BODY.trim());

@@ -24,7 +24,7 @@ Towards the end, we explore examples of implementing the same dictionary (`ficti
 
 ## Prerequisites
 
-In order to properly follow this post and test out the examples, you need to have a JavaScript engine. The discussions in this post cover intermediate-to-advanced topics in TypeScript. We expect you come with enough knowledge about at the basics of TypeScript utility types and mapped types. It'll be useful if you have worked signficantly with the JavaScript [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) APIs as well.
+In order to properly follow this post and test out the examples, you need to have a JavaScript engine. The discussions in this post cover intermediate-to-advanced topics in TypeScript. We expect you come with enough knowledge about at the basics of TypeScript utility types and mapped types. It'll be useful if you have worked significantly with the JavaScript [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) APIs as well.
 
 ### TypeScript Setup
 
@@ -124,7 +124,7 @@ In TypeScript, the structure of a dictionary is described by respective types fo
 
 Since TypeScript applies a structural typing system, randomly shaped objects pose a challenge while implementing dictionaries in TypeScript. Structurally inconsistent values of dictionary key and values throw type errors in TypeScript.
 
-One common example of dictionary type errrors, as discussed later in a [later section](#how-to-solve-typescript-mapped-type-keys-problem-type-assertion-with-as), is while iterating over a dictionary via its keys extracted in an array with `Object.keys()`.
+One common example of dictionary type errors, as discussed later in a [later section](#how-to-solve-typescript-mapped-type-keys-problem-type-assertion-with-as), is while iterating over a dictionary via its keys extracted in an array with `Object.keys()`.
 
 Also, TypeScript's structural typing complements the consistency of structure sought in dictionary entries. So, it is essential that we annotate well-defined types to dictionary keys and values in TypeScript.
 
@@ -212,9 +212,9 @@ Notice, with the above definition / annotation changes, the `dictators` dictiona
 However, if we try to add a value inconsistent with `TDictatorInfo`, we get TypeScript errors:
 
 ```ts
-dictators["sl_kylo"] = "Supreme Leader Kylo Ren"; // Type 'string' is not assignable to type 'TDictatorInfo'.(2322)
+dictators["sl_kylo"] = "Supreme Leader Kylo Ern"; // Type 'string' is not assignable to type 'TDictatorInfo'.(2322)
 dictators["sl_kylo"] = {
-  name: "Supreme Leader Kylo Ren",
+  name: "Supreme Leader Kylo Ern",
   nick_name: "Ben Solo",
 }; // Object literal may only specify known properties, and 'nick_name' does not exist in type 'TDictatorInfo'.(2353)
 ```
@@ -225,7 +225,7 @@ So, as we can already see, proper type annotation of dictionaries proves useful 
 
 :::tip
 
-Take note that TS dictonaries with index signatures are open ended and extendable, as we can add as many items to the dictionary as we want.
+Take note that TS dictionaries with index signatures are open ended and extendable, as we can add as many items to the dictionary as we want.
 
 :::
 
@@ -274,11 +274,11 @@ fictionalDictators["sl_snoke"] = {
 }; // Throws error: Property 'sl_snoke' does not exist on type 'Partial<TFictionalDictators>'.(7053)
 ```
 
-Here, we limit the keys of the `TFictionalDictators` type with the `TFictionalDictatorKeys` union type and set the type for the value to `TDictatorInfo` type. We are also partializing the type for `fictionalDictators` dictionary object with the `Partial<>` tranformation utility. Partializing allows us to instantiate `fictionalDictators` without initializing any property -- as with no object passed to `new Object()`.
+Here, we limit the keys of the `TFictionalDictators` type with the `TFictionalDictatorKeys` union type and set the type for the value to `TDictatorInfo` type. We are also partializing the type for `fictionalDictators` dictionary object with the `Partial<>` transformation utility. Partializing allows us to instantiate `fictionalDictators` without initializing any property -- as with no object passed to `new Object()`.
 
 Notice, an entry with acceptable key (`"ah_aladeen"`) encounters no complain. However, when we try to add a non-member key (`"sl_snoke"`), TypeScript throws `7053` error.
 
-Since `TDictonary<>` is now a generic type, we can reuse it for a dictionary with `Value`s that are `string`:
+Since `TDictionary<>` is now a generic type, we can reuse it for a dictionary with `Value`s that are `string`:
 
 ```ts
 type TFictionalDictators = TDictionary<TFictionalDictatorKeys, string>;
@@ -295,7 +295,7 @@ The reusable dictionary `TDictionary<>` type that we have defined implements the
 
 :::tip
 
-Although TypeScript `Record<>` is often used to represent and manipulate database record types, we can use it to annotate TS `Object` based dictonaries as well.
+Although TypeScript `Record<>` is often used to represent and manipulate database record types, we can use it to annotate TS `Object` based dictionaries as well.
 
 :::
 
@@ -701,7 +701,7 @@ fictionalDictators.set("cr_snow", {
 });
 
 fictionalDictators.set("sl_kyloren", {
-  name: "Supreme Leader Kylo Ren",
+  name: "Supreme Leader Kylo Ern",
   dominion: "Star Wars Galaxy, First Order",
 });
 
@@ -710,7 +710,7 @@ console.log(fictionalDictators); // Map(2)
 
 ## Summary
 
-In this post, we covered in significant depth how to implement properly defined and annotated dictionaries in TypeScript. We illustrated common approaches of applying type safety to TypeScript dictionaries defined with `Object` and `Map` APIs, the `Record<>` utilty type, the `for...in` and `for...of` loops as well as the `Array.prototype.map()` method.
+In this post, we covered in significant depth how to implement properly defined and annotated dictionaries in TypeScript. We illustrated common approaches of applying type safety to TypeScript dictionaries defined with `Object` and `Map` APIs, the `Record<>` utility type, the `for...in` and `for...of` loops as well as the `Array.prototype.map()` method.
 
 We stressed that dictionaries are composed of key-value pairs that are described by respective types in TypeScript. We acknowledged how proper type definition and annotation in `Object` based dictionaries lead to consistent and type safe code that offer convenient type inference later during iteration. As part of the examples, we implemented the same `fictionalDictators` dictionary in three different ways: first with a custom typed `TDictionary<>` utility, then using the TypeScript `Record<>` utility type and finally with the TypeScript type supported `Map<>` instance.
 
