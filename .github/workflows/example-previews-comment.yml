@@ -8,8 +8,8 @@ jobs:
   build_previews_matrix:
     name: Build previews matrix
     permissions:
-      pull-requests: read
-      issues: read
+      pull-requests: write
+      issues: write
     outputs:
       matrix: ${{ steps.build_examples_matrix.outputs.EXAMPLES }}
       pr_ref: ${{ fromJson(steps.request.outputs.data).head.ref }}
@@ -20,6 +20,7 @@ jobs:
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: rocket
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Github API Request
         id: request
         uses: octokit/request-action@v2.0.2
@@ -40,8 +41,8 @@ jobs:
     needs: build_previews_matrix
     if: ${{ fromJson(needs.build_previews_matrix.outputs.matrix).include }}
     permissions:
-      pull-requests: read
-      issues: read
+      pull-requests: write
+      issues: write
     strategy:
       matrix: ${{ fromJson(needs.build_previews_matrix.outputs.matrix) }}
     runs-on: ubuntu-latest
