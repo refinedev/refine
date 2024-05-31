@@ -55,5 +55,7 @@ npm create refine-app@latest -- --example with-material-ui-vite
 ## Screenshots
 
 ![Login](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/with-material-ui-vite/login.png "Login")
+
 ![Posts Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/with-material-ui-vite/posts.png "Post")
+
 ![Create Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/with-material-ui-vite/create.png "Create")
