@@ -80,10 +80,6 @@ export type RefineThemedLayoutV2Props = {
    * Whether the sider is collapsed or not by default.
    */
   initialSiderCollapsed?: boolean;
-  /**
-   * Props to get the button orientation
-   */
-  buttonOrientation?: "left" | "right";
 } & RefineLayoutLayoutProps;
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;

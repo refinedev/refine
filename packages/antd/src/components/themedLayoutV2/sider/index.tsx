@@ -1,5 +1,13 @@
-import React from "react";
-import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
+import React, { useContext } from "react";
+import {
+  Layout,
+  Menu,
+  Grid,
+  Drawer,
+  Button,
+  theme,
+  ConfigProvider,
+} from "antd";
 import {
   DashboardOutlined,
   LogoutOutlined,
@@ -36,7 +44,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   meta,
   fixed,
   activeItemDisabled = false,
-  buttonOrientation,
 }) => {
   const { token } = theme.useToken();
   const {
@@ -47,6 +54,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   } = useThemedLayoutContext();
 
   const isExistAuthentication = useIsExistAuthentication();
+  const direction = useContext(ConfigProvider.ConfigContext)?.direction;
   const routerType = useRouterType();
   const NewLink = useLink();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
@@ -284,33 +292,22 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     siderStyles.zIndex = 999;
   }
   const renderClosingIcons = () => {
-    if (buttonOrientation === "right") {
+    const iconProps = { style: { color: token.colorPrimary } };
+    if (direction === "rtl") {
       return siderCollapsed ? (
-        <LeftOutlined
-          style={{
-            color: token.colorPrimary,
-          }}
-        />
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+        <LeftOutlined {...iconProps} />
       ) : (
-        <RightOutlined
-          style={{
-            color: token.colorPrimary,
-          }}
-        />
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+        <RightOutlined {...iconProps} />
       );
     }
     return siderCollapsed ? (
-      <RightOutlined
-        style={{
-          color: token.colorPrimary,
-        }}
-      />
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+      <RightOutlined {...iconProps} />
     ) : (
-      <LeftOutlined
-        style={{
-          color: token.colorPrimary,
-        }}
-      />
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+      <LeftOutlined {...iconProps} />
     );
   };
 

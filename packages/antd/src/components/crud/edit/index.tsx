@@ -37,7 +37,6 @@ import type { EditProps } from "../types";
  */
 export const Edit: React.FC<EditProps> = ({
   title,
-  backButtonOrientation,
   saveButtonProps: saveButtonPropsFromProps,
   mutationMode: mutationModeProp,
   recordItemId,
@@ -151,7 +150,6 @@ export const Edit: React.FC<EditProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        backButtonOrientation={backButtonOrientation ?? "left"}
         ghost={false}
         backIcon={goBackFromProps}
         onBack={

@@ -47,7 +47,7 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2 buttonOrientation="right">
+                  <ThemedLayoutV2>
                     <Outlet />
                   </ThemedLayoutV2>
                 }

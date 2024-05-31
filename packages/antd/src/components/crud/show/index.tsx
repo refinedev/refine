@@ -50,7 +50,6 @@ export const Show: React.FC<ShowProps> = ({
   footerButtonProps,
   headerButtonProps,
   goBack: goBackFromProps,
-  backButtonOrientation,
 }) => {
   const translate = useTranslate();
   const {
@@ -134,7 +133,6 @@ export const Show: React.FC<ShowProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        backButtonOrientation={backButtonOrientation ?? "left"}
         ghost={false}
         backIcon={goBackFromProps}
         onBack={

@@ -18,7 +18,7 @@ export const PostEdit = () => {
   });
 
   return (
-    <Edit backButtonOrientation="right" saveButtonProps={saveButtonProps}>
+    <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Title"

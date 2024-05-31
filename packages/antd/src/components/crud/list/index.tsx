@@ -23,7 +23,6 @@ import type { ListProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/basic-views/list} for more details.
  */
 export const List: React.FC<ListProps> = ({
-  backButtonOrientation,
   canCreate,
   title,
   children,
@@ -70,7 +69,6 @@ export const List: React.FC<ListProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        backButtonOrientation={backButtonOrientation ?? "left"}
         ghost={false}
         title={
           title ??

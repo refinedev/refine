@@ -39,7 +39,6 @@ export const Create: React.FC<CreateProps> = ({
   footerButtonProps,
   footerButtons,
   goBack: goBackFromProps,
-  backButtonOrientation,
 }) => {
   const translate = useTranslate();
   const {
@@ -73,7 +72,6 @@ export const Create: React.FC<CreateProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        backButtonOrientation={backButtonOrientation ?? "left"}
         ghost={false}
         backIcon={goBackFromProps}
         onBack={

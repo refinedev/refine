@@ -16,7 +16,7 @@ export const PostCreate = () => {
   });
 
   return (
-    <Create backButtonOrientation="right" saveButtonProps={saveButtonProps}>
+    <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item
           label="Title"

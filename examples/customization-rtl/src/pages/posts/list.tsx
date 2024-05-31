@@ -36,7 +36,6 @@ export const PostList = () => {
 
   return (
     <List
-      backButtonOrientation="right"
       headerProps={{
         onBack: () => console.log("clicked"),
         subTitle: "Subtitle",
