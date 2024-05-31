@@ -48,7 +48,7 @@ export const BlogPostList = () => {
         minWidth: 250,
         renderCell: function render({ value }) {
           if (!value) return "-";
-          return <MarkdownField value={value?.slice(0, 80) + "..." || ""} />;
+          return <MarkdownField value={`${value?.slice(0, 80)}...` || ""} />;
         },
       },
       {
