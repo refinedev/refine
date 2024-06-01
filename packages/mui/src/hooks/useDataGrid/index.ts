@@ -5,9 +5,7 @@ import {
   Pagination,
   pickNotDeprecated,
   Prettify,
-  useForm,
   UseFormProps,
-  UseFormReturnType,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -281,24 +279,26 @@ export function useDataGrid<
     };
   };
 
-  /*const { setId, onFinish, id, formLoading } = useForm<
-    TQueryFnData,
-    TError,
-    TData
-  >({
-    ...formProps,
-    action: "edit",
-    redirect: false,
-  });*/
-
   const { mutate, isLoading: formLoading } = useUpdate();
 
   const processRowUpdate = async (newRow: TData, oldRow: TData) => {
     try {
-      await mutate({
-        resource: resourceFromProp as string,
-        id: newRow.id as string,
-        values: newRow,
+      await new Promise((resolve, reject) => {
+        mutate(
+          {
+            resource: resourceFromProp as string,
+            id: newRow.id as string,
+            values: newRow,
+          },
+          {
+            onError: (error) => {
+              reject(error);
+            },
+            onSuccess: (data) => {
+              resolve(data);
+            },
+          },
+        );
       });
       return newRow;
     } catch (error) {
@@ -353,14 +353,6 @@ export function useDataGrid<
           )}`,
         },
       },
-      /*processRowUpdate: async (newRow, oldRow) => {
-        try {
-          await onFinish(newRow);
-          return newRow;
-        } catch {
-          return oldRow;
-        }
-      },*/
       processRowUpdate,
     },
     current,
@@ -381,11 +373,5 @@ export function useDataGrid<
       processRowUpdate,
       formLoading,
     },
-    /*formProps: {
-      onFinish,
-      setId,
-      id,
-      formLoading,
-    },*/
   };
 }

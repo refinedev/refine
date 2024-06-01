@@ -239,7 +239,7 @@ describe("useDataGrid Hook", () => {
     expect(newPost).toEqual(postToUpdate);
   });
 
-  /*it("when update fails, return old data to row", async () => {
+  it("when update fails, return old data to row", async () => {
     const { result } = renderHook(
       () =>
         useDataGrid({
@@ -272,5 +272,5 @@ describe("useDataGrid Hook", () => {
       );
       expect(returnValue).toEqual(oldPost);
     });
-  });*/
+  });
 });
