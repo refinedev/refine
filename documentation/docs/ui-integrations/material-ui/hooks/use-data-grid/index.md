@@ -272,9 +272,11 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 
 ## Editing
 
-The hook can further extend editing provided in [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component. To enable column editing, set `editable: "true"` on specific column definition.
+The `useDataGrid` hook extends the editing capabilities provided by the [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component from MUI. To enable column editing, set `editable: "true"` on specific column definitions.
 
-`useDataGrid` will utilize `processRowUpdate` from `<DataGrid>` component, which in turn will call [`useForm`](https://refine.dev/docs/data/hooks/use-form/) to attempt updating the row with the new value.
+`useDataGrid` leverages [`useUpdate`](https://refine.dev/docs/data/hooks/use-update/) for direct integration with update operations. This change enhances performance and simplifies the interaction model by directly using the update mechanisms provided by Refine.
+
+Here is how you can define columns to be editable:
 
 ```tsx
 const columns = React.useMemo<GridColDef<IPost>[]>(
@@ -291,18 +293,47 @@ const columns = React.useMemo<GridColDef<IPost>[]>(
 );
 ```
 
-Properties from [`useForm`](https://refine.dev/docs/data/hooks/use-form/), with exception of `autoSave`, `action` and `redirect`, are available in `useDataGrid`.
+### Handling Updates
 
-The hook returns `onFinish`, `setId`, `id` and `formLoading` from `useForm`, which can be used to extend functionality.
+With the integration of useUpdate, processRowUpdate from <DataGrid> directly interacts with the backend. This method attempts to update the row with the new values, handling the update logic internally.
+
+The hook now simplifies the handling of updates by removing the need for managing form state transitions explicitly:
 
 ```tsx
 const {
   dataGridProps,
-  formProps: { onFinish, setId, id, formLoading },
+  formProps: { processRowUpdate, formLoading },
 } = useDataGrid<IPost>();
 ```
 
-By default, the `onCellEditStart` and `onRowEditStart` callbacks from `<DataGrid>` will set the `id` on the form, and `processRowUpdate` will call `onFinish`.
+By default, when a cell edit is initiated and completed, the processRowUpdate function will be triggered, which will now use the mutate function from useUpdate to commit changes.
+
+```tsx
+const processRowUpdate = async (newRow: TData, oldRow: TData) => {
+  try {
+    await new Promise((resolve, reject) => {
+      mutate(
+        {
+          resource: resourceFromProp as string,
+          id: newRow.id as string,
+          values: newRow,
+        },
+        {
+          onError: (error) => {
+            reject(error);
+          },
+          onSuccess: (data) => {
+            resolve(data);
+          },
+        },
+      );
+    });
+    return newRow;
+  } catch (error) {
+    return oldRow;
+  }
+};
+```
 
 ## Properties
 
