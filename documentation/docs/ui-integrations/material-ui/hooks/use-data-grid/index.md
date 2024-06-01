@@ -295,7 +295,7 @@ const columns = React.useMemo<GridColDef<IPost>[]>(
 
 ### Handling Updates
 
-With the integration of useUpdate, processRowUpdate from <DataGrid> directly interacts with the backend. This method attempts to update the row with the new values, handling the update logic internally.
+With the integration of `useUpdate`, processRowUpdate from [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) directly interacts with the backend. This method attempts to update the row with the new values, handling the update logic internally.
 
 The hook now simplifies the handling of updates by removing the need for managing form state transitions explicitly:
 
