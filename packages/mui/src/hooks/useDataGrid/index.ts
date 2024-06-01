@@ -12,6 +12,7 @@ import {
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
   useTableReturnType as useTableReturnTypeCore,
+  useUpdate,
 } from "@refinedev/core";
 import { useState } from "react";
 
@@ -49,8 +50,6 @@ type DataGridPropsType = Required<
     | "onStateChange"
     | "paginationMode"
     | "processRowUpdate"
-    | "onCellEditStart"
-    | "onRowEditStart"
   >
 > &
   Pick<
@@ -96,17 +95,16 @@ export type UseDataGridProps<
 };
 
 export type UseDataGridReturnType<
-  TQueryFnData extends BaseRecord = BaseRecord,
+  TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TSearchVariables = unknown,
-  TData extends BaseRecord = TQueryFnData,
 > = useTableReturnTypeCore<TData, TError> & {
   dataGridProps: DataGridPropsType;
   search: (value: TSearchVariables) => Promise<void>;
-  formProps: Pick<
-    UseFormReturnType<TQueryFnData, TError, TData>,
-    "onFinish" | "setId" | "id" | "formLoading"
-  >;
+  formProps: {
+    processRowUpdate: (newRow: TData, oldRow: TData) => Promise<TData>;
+    formLoading: boolean;
+  };
 };
 
 /**
@@ -159,7 +157,7 @@ export function useDataGrid<
   TError,
   TSearchVariables,
   TData
-> = {}): UseDataGridReturnType<TQueryFnData, TError, TSearchVariables, TData> {
+> = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
   const theme = useTheme();
   const liveMode = useLiveMode(liveModeFromProp);
 
@@ -283,7 +281,7 @@ export function useDataGrid<
     };
   };
 
-  const { setId, onFinish, id, formLoading } = useForm<
+  /*const { setId, onFinish, id, formLoading } = useForm<
     TQueryFnData,
     TError,
     TData
@@ -291,7 +289,22 @@ export function useDataGrid<
     ...formProps,
     action: "edit",
     redirect: false,
-  });
+  });*/
+
+  const { mutate, isLoading: formLoading } = useUpdate();
+
+  const processRowUpdate = async (newRow: TData, oldRow: TData) => {
+    try {
+      await mutate({
+        resource: resourceFromProp as string,
+        id: newRow.id as string,
+        values: newRow,
+      });
+      return newRow;
+    } catch (error) {
+      return oldRow;
+    }
+  };
 
   return {
     tableQueryResult,
@@ -340,16 +353,15 @@ export function useDataGrid<
           )}`,
         },
       },
-      processRowUpdate: async (newRow, oldRow) => {
+      /*processRowUpdate: async (newRow, oldRow) => {
         try {
           await onFinish(newRow);
           return newRow;
         } catch {
           return oldRow;
         }
-      },
-      onCellEditStart: (params) => setId(params?.id),
-      onRowEditStart: (params) => setId(params?.id),
+      },*/
+      processRowUpdate,
     },
     current,
     setCurrent,
@@ -366,10 +378,14 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     formProps: {
+      processRowUpdate,
+      formLoading,
+    },
+    /*formProps: {
       onFinish,
       setId,
       id,
       formLoading,
-    },
+    },*/
   };
 }
