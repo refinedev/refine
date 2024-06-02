@@ -96,6 +96,10 @@ describe("generateFilters", () => {
         filters: [{ operator: "between", field: "age", value: [20, 30] }],
         expected: { age: { between: { lower: 20, upper: 30 } } },
       },
+      {
+        filters: [{ operator: "nbetween", field: "age", value: [20, 30] }],
+        expected: { age: { notBetween: { lower: 20, upper: 30 } } },
+      },
     ];
 
     testCases.forEach(({ filters, expected }) => {
