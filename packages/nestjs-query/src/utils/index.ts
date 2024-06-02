@@ -78,6 +78,14 @@ const operatorMapper = (
     return { notILike: `%${value}%` };
   }
 
+  if (operator === "containss") {
+    return { like: `%${value}%` };
+  }
+
+  if (operator === "ncontainss") {
+    return { notLike: `%${value}%` };
+  }
+
   if (operator === "startswith") {
     return { iLike: `${value}%` };
   }
@@ -86,12 +94,28 @@ const operatorMapper = (
     return { notILike: `${value}%` };
   }
 
+  if (operator === "startswiths") {
+    return { like: `${value}%` };
+  }
+
+  if (operator === "nstartswiths") {
+    return { notLike: `${value}%` };
+  }
+
   if (operator === "endswith") {
     return { iLike: `%${value}` };
   }
 
   if (operator === "nendswith") {
     return { notILike: `%${value}` };
+  }
+
+  if (operator === "endswiths") {
+    return { like: `%${value}` };
+  }
+
+  if (operator === "nendswiths") {
+    return { notLike: `%${value}` };
   }
 
   if (operator === "null") {
