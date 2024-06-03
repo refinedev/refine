@@ -191,7 +191,6 @@ export const VideoClubPageShowTitle = () => {
                 {Array.from({
                   length: Math.max(0, 5 - (data?.data?.rentals.length ?? 0)),
                 }).map((_, index) => (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableRow key={`placeholder-${index}`}>{}</TableRow>
                 ))}
               </TableBody>
