@@ -82,8 +82,10 @@ export const CalendarShowPage: React.FC = () => {
             </Text>
           </div>
           <div style={{ display: "flex", gap: "4px" }}>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <EditButton icon={<EditOutlined />} hideText type="text" />
             <Button
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<CloseOutlined />}
               type="text"
               onClick={handleOnClose}
@@ -118,6 +120,7 @@ export const CalendarShowPage: React.FC = () => {
         >
           {allDay ? (
             <div>
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <CalendarOutlined style={{ marginRight: ".5rem" }} />
               <Text>{`${dayjs(utcStartDate).format("MMMM D")} - ${dayjs(
                 utcEndDate,
@@ -129,10 +132,12 @@ export const CalendarShowPage: React.FC = () => {
           ) : (
             <>
               <div>
+                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <CalendarOutlined style={{ marginRight: ".5rem" }} />
                 <Text>{dayjs(utcStartDate).format("MMMM D, YYYY dddd")}</Text>
               </div>
               <div>
+                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <ClockCircleOutlined style={{ marginRight: ".5rem" }} />
                 <Text>{`${dayjs(utcStartDate).format("h:mma")} - ${dayjs(
                   utcEndDate,
@@ -142,10 +147,12 @@ export const CalendarShowPage: React.FC = () => {
           )}
 
           <div>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <FlagOutlined style={{ marginRight: ".5rem" }} />
             <Text>{category?.title}</Text>
           </div>
           <div style={{ display: "flex", alignItems: "start" }}>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <TeamOutlined style={{ marginRight: ".5rem" }} />
             <Space size={4} wrap style={{ marginTop: "-8px" }}>
               {participants?.map((participant) => (
@@ -154,6 +161,7 @@ export const CalendarShowPage: React.FC = () => {
             </Space>
           </div>
           <div style={{ display: "flex", alignItems: "start" }}>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <InfoCircleOutlined
               style={{
                 marginRight: ".5rem",

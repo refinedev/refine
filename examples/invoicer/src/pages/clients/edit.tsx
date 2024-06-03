@@ -88,6 +88,7 @@ export const ClientsPageEdit = () => {
               styles={{ body: { padding: 0 } }}
               title={
                 <Flex gap={12} align="center">
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <ShopOutlined />
                   <Typography.Text>Client info</Typography.Text>
                 </Flex>
@@ -95,7 +96,9 @@ export const ClientsPageEdit = () => {
             >
               <FormItemEditableSelect
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<BankOutlined />}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 editIcon={<ExportOutlined />}
                 selectProps={{
                   showSearch: true,
@@ -116,6 +119,7 @@ export const ClientsPageEdit = () => {
               />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<UserOutlined />}
                 placeholder="Add owner name"
                 formItemProps={{
@@ -127,6 +131,7 @@ export const ClientsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<MailOutlined />}
                 placeholder="Add email"
                 formItemProps={{
@@ -139,6 +144,7 @@ export const ClientsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<EnvironmentOutlined />}
                 placeholder="Add address"
                 formItemProps={{
@@ -150,6 +156,7 @@ export const ClientsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PhoneOutlined />}
                 placeholder="Add phone number"
                 formItemProps={{
@@ -177,6 +184,7 @@ export const ClientsPageEdit = () => {
               bordered={false}
               title={
                 <Flex gap={12} align="center">
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <ContainerOutlined />
                   <Typography.Text>Invoices</Typography.Text>
                 </Flex>
@@ -232,6 +240,7 @@ export const ClientsPageEdit = () => {
                           hideText
                           resource="invoices"
                           recordItemId={record.id}
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           icon={<ExportOutlined />}
                         />
                       </Flex>

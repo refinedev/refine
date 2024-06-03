@@ -45,6 +45,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
       preActions.push(
         createAction({
           name: t("buttons.accept"),
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon: <CheckCircleOutlined />,
           section: "actions",
           perform: () => {
@@ -61,6 +62,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
       preActions.push(
         createAction({
           name: t("buttons.reject"),
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon: <CloseCircleOutlined />,
           section: "actions",
           perform: () => {

@@ -58,19 +58,24 @@ const LifecycleStage: React.FC<{ status: ContactStatusType }> = ({
   status,
 }) => {
   const stage = statusToStage(status as ContactStatusEnum);
+  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
   let icon = <PlayCircleOutlined style={{ color: "#08979C" }} />;
 
   switch (status) {
     case ContactStatusEnum.WON:
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <CheckCircleFilled style={{ color: "#389E0D" }} />;
       break;
     case ContactStatusEnum.CHURNED:
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <MinusCircleFilled style={{ color: "#CF1322" }} />;
       break;
     case ContactStatusEnum.LOST:
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <PlayCircleFilled style={{ color: "#CF1322" }} />;
       break;
     case ContactStatusEnum.UNQUALIFIED:
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <PlayCircleOutlined style={{ color: "#CF1322" }} />;
       break;
     default:
@@ -177,6 +182,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
               {status === ContactStatusEnum.UNQUALIFIED
                 ? "Unqualified"
                 : "Interested"}
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <DownOutlined className={styles.arrow} />
             </a>
           </Dropdown>
@@ -225,6 +231,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
           >
             <a>
               {status === ContactStatusEnum.LOST ? "Lost" : "Negotiation"}
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <DownOutlined className={styles.arrow} />
             </a>
           </Dropdown>
@@ -260,6 +267,7 @@ export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
           >
             <a>
               {status === ContactStatusEnum.CHURNED ? "Churned" : "Won"}
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <DownOutlined className={styles.arrow} />
             </a>
           </Dropdown>

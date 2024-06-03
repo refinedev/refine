@@ -96,6 +96,7 @@ export const StoreFormFields = ({
         <FormItemHorizontal
           name="isActive"
           initialValue={true}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<RightCircleOutlined />}
           label={t("stores.fields.isActive.label")}
         >
@@ -122,6 +123,7 @@ export const StoreFormFields = ({
           }}
         />
         <FormItemHorizontal
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<MailOutlined />}
           label={t("stores.fields.email")}
           name="email"
@@ -141,6 +143,7 @@ export const StoreFormFields = ({
         />
         <FormItemHorizontal
           name={["address", "text"]}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<EnvironmentOutlined />}
           label={t("stores.fields.address")}
           flexProps={{
@@ -166,6 +169,7 @@ export const StoreFormFields = ({
         />
         <FormItemHorizontal
           name="gsm"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<PhoneOutlined />}
           label={t("stores.fields.gsm")}
           rules={[
@@ -222,6 +226,7 @@ export const StoreFormFields = ({
                   marginLeft: "auto",
                 }}
                 disabled={false}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<EditOutlined />}
                 onClick={() => setIsFormDisabled(false)}
               >

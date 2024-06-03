@@ -40,6 +40,7 @@ export const OrderShow = () => {
   return (
     <>
       <Flex>
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <ListButton icon={<LeftOutlined />}>{t("orders.orders")}</ListButton>
       </Flex>
       <Divider />
@@ -76,6 +77,7 @@ export const OrderShow = () => {
             disabled={!canRejectOrder}
             key="reject"
             danger
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<CloseCircleOutlined />}
             onClick={() =>
               handleMutate({

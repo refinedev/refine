@@ -84,6 +84,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
                   type="text"
                   shape="circle"
                   icon={
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     <MoreOutlined
                       style={{
                         transform: "rotate(90deg)",
@@ -95,6 +96,7 @@ export const KanbanColumn: FC<PropsWithChildren<Props>> = ({
             )}
             <Button
               shape="circle"
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<PlusOutlined />}
               onClick={onAddClickHandler}
             />
@@ -127,6 +129,7 @@ export const KanbanColumnSkeleton: FC<
             type="text"
             shape="circle"
             icon={
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <MoreOutlined
                 style={{
                   transform: "rotate(90deg)",
@@ -134,6 +137,7 @@ export const KanbanColumnSkeleton: FC<
               />
             }
           />
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <Button disabled shape="circle" icon={<PlusOutlined />} />
         </div>
         {type === "deal" && (

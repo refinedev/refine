@@ -52,6 +52,7 @@ function App() {
                 list: "/companies",
                 meta: {
                   label: "Company",
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <InfoCircleOutlined />,
                 },
               },
@@ -59,6 +60,7 @@ function App() {
                 name: "clients",
                 list: "/clients",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <TeamOutlined />,
                 },
               },
@@ -67,6 +69,7 @@ function App() {
                 list: "/contacts",
                 edit: "/contacts/edit/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <UserAddOutlined />,
                 },
               },
@@ -74,6 +77,7 @@ function App() {
                 name: "missions",
                 list: "/missions",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <SlidersOutlined />,
                 },
               },
@@ -83,6 +87,7 @@ function App() {
                 create: "/invoices/create",
                 edit: "/invoices/edit/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <FileAddOutlined />,
                 },
               },

@@ -93,6 +93,7 @@ export default function UserCreate() {
                         danger
                         onClick={() => remove(field.name)}
                         style={{ marginTop: "5px" }}
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<DeleteOutlined />}
                       />
                     </Space>
@@ -100,6 +101,7 @@ export default function UserCreate() {
                 })}
                 <Form.Item>
                   <Button
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<PlusOutlined />}
                     type="dashed"
                     block

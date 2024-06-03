@@ -88,6 +88,7 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
                       size="small"
                       onClick={() => remove(field.name)}
                       style={{ opacity: "0.15" }}
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<DeleteOutlined />}
                     />
                   </div>
@@ -97,6 +98,7 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
                     type="link"
                     onClick={() => add()}
                     block
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<PlusOutlined />}
                     style={{
                       textAlign: "left",

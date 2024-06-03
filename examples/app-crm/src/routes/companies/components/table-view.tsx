@@ -48,6 +48,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
         dataIndex="name"
         title="Company title"
         defaultFilteredValue={getDefaultFilter("id", filters)}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         filterIcon={<SearchOutlined />}
         filterDropdown={(props) => (
           <FilterDropdown {...props}>
@@ -146,6 +147,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
         render={(value) => (
           <Space>
             <EditButton
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<EyeOutlined />}
               hideText
               size="small"

@@ -42,6 +42,7 @@ const App: React.FC = () => {
                   create: "/posts/create",
                   edit: "/posts/edit/:id",
                   meta: {
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon: <StarOutlined />,
                     canDelete: true,
                   },

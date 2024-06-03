@@ -72,6 +72,7 @@ export const CompanyInfoForm = () => {
     <Card
       title={
         <Space size={15}>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <ShopOutlined className="sm" />
           <Text>Company info</Text>
         </Space>
@@ -91,6 +92,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<ColumnWidthOutlined className="tertiary" />}
         state={getActiveForm({ formName: "companySize" })}
         itemProps={{
@@ -116,6 +118,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<DollarOutlined className="tertiary" />}
         state={getActiveForm({ formName: "totalRevenue" })}
         itemProps={{
@@ -143,6 +146,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<BankOutlined className="tertiary" />}
         state={getActiveForm({ formName: "industry" })}
         itemProps={{
@@ -168,6 +172,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<ApiOutlined className="tertiary" />}
         state={getActiveForm({ formName: "businessType" })}
         itemProps={{
@@ -193,6 +198,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<EnvironmentOutlined className="tertiary" />}
         state={getActiveForm({ formName: "country" })}
         itemProps={{
@@ -218,6 +224,7 @@ export const CompanyInfoForm = () => {
         style={{
           padding: "0.5rem 1rem",
         }}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<EnvironmentOutlined className="tertiary" />}
         state={getActiveForm({ formName: "website" })}
         itemProps={{

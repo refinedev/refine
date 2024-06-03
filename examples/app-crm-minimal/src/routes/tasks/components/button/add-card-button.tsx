@@ -16,6 +16,7 @@ export const KanbanAddCardButton = ({
   return (
     <Button
       size="large"
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<PlusSquareOutlined className="md" />}
       style={{
         margin: "16px",

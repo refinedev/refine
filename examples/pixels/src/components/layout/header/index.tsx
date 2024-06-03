@@ -77,6 +77,7 @@ export const Header: React.FC = () => {
         </Space>
         <Space>
           <Button
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<PlusSquareOutlined />}
             onClick={() => {
               if (isAuthenticated) {
@@ -96,6 +97,7 @@ export const Header: React.FC = () => {
               onClick={() => {
                 mutateLogout();
               }}
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<LogoutOutlined />}
               title="Logout"
             />
@@ -105,6 +107,7 @@ export const Header: React.FC = () => {
               onClick={() => {
                 handleRedirect();
               }}
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<LoginOutlined />}
               title="Login"
             >

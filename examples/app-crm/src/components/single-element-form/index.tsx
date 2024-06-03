@@ -101,6 +101,7 @@ export const SingleElementForm: React.FC<SingleElementFormProps> = ({
 
         {state === "view" && (
           <div className={styles.actions}>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button onClick={onClick} icon={<EditOutlined />} />
           </div>
         )}
