@@ -8,7 +8,7 @@ import dayjs from "dayjs";
  * It is a mapper function for the <DatePicker.RangePicker /> filter.
  * when the `event` is:
  * - `"value"`: It converts the `selectedKeys` to Dayjs objects to be used in the `<DatePicker.RangePicker />` component.
- * - `"onChange"`, It converts the Dayjs objects to ISO 8601 string format to be used in the Refine(data-provider, snycWithLocation etc.) filter.
+ * - `"onChange"`, It converts the Dayjs objects to ISO 8601 string format to be used in the Refine(data-provider, syncWithLocation etc.) filter.
  * @see {@link https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown/#rangepickerfiltermapper} for more details.
  * @example
  * ```tsx

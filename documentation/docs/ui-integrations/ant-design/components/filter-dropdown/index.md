@@ -208,7 +208,7 @@ Let's closer look at the [`rangePickerFilterMapper`](https://github.com/refinede
 when the `event` is:
 
 - `"value"`: It converts the `selectedKeys` to Dayjs objects to be used in the `<DatePicker.RangePicker />` component.
-- `"onChange"`, It converts the Dayjs objects to ISO 8601 string format to be used in the Refine(data-provider, snycWithLocation etc.) filter.
+- `"onChange"`, It converts the Dayjs objects to ISO 8601 string format to be used in the Refine(data-provider, syncWithLocation etc.) filter.
 
 ```ts
 import type {
