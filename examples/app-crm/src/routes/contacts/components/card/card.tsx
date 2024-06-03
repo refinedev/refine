@@ -31,6 +31,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
     {
       label: "Show",
       key: "show",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <EyeOutlined />,
       onClick: () => {
         show("contacts", id, "replace");
@@ -40,6 +41,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
       label: "Delete",
       key: "delete",
       danger: true,
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <DeleteOutlined />,
       onClick: () => {
         deleteMutate({
@@ -57,6 +59,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
         menu={{ items }}
         trigger={["click"]}
       >
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <Button type="text" icon={<EllipsisOutlined />} />
       </Dropdown>
 

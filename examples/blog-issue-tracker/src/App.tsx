@@ -42,6 +42,7 @@ function App() {
                 list: "/",
                 meta: {
                   label: "Dashboard",
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <DashboardOutlined />,
                 },
               },

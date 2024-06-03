@@ -107,6 +107,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                 <Form.Item name="name" noStyle>
                   <Input
                     size="large"
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
                       <Spin
@@ -126,9 +127,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                   onChange={(e) => onViewChange(e.target.value)}
                 >
                   <Radio.Button value="table">
+                    {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                     <UnorderedListOutlined />
                   </Radio.Button>
                   <Radio.Button value="card">
+                    {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                     <AppstoreOutlined />
                   </Radio.Button>
                 </Radio.Group>

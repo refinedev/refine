@@ -29,6 +29,7 @@ export const Participants: FC<Props> = ({ userOne, userTwo }) => {
           name={userOne.name}
         />
       </Tooltip>
+      {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
       <PlusCircleOutlined className="xs tertiary" />
       <Tooltip title={userTwo.name}>
         <CustomAvatar

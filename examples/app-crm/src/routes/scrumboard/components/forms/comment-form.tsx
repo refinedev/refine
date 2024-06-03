@@ -93,6 +93,7 @@ export const CommentForm = () => {
         >
           <Input
             placeholder="Write a comment"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             addonAfter={formLoading && <LoadingOutlined />}
           />
         </Form.Item>

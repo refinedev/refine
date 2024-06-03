@@ -82,6 +82,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         <Text strong>Account Settings</Text>
         <Button
           type="text"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<CloseOutlined />}
           onClick={() => closeModal()}
         />
