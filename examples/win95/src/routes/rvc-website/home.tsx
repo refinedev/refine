@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Fragment } from "react";
 import styled from "styled-components";
 import { useList, useNavigation } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,22 +9,29 @@ import { Swiper as ISwiper } from "swiper/types";
 import "swiper/css";
 import { Browser } from "@/components/browser";
 import { ImagePixelated } from "@/components/image-pixelated";
-import { RVCWebsiteLayout, CatalogsList } from "@/components/rvc-website";
+import { RVCWebsiteLayout } from "@/components/rvc-website";
 import { RefineBanner } from "@/components/refine-banner";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
 import { VideoTitle } from "@/types";
 import { getImagesUrl } from "@/utils/get-cdn-url";
+import { CatalogsList } from "./catalog";
 
-export const RVCWebsitePageHome = () => {
+type Props = {
+  withBrowser?: boolean;
+};
+
+export const RVCWebsitePageHome = ({ withBrowser = true }: Props) => {
   const navigate = useNavigate();
 
+  const Wrapper = withBrowser ? Browser : Fragment;
+
   return (
-    <Browser
+    <Wrapper
       title="RVC Website"
       onClose={() => navigate("/")}
       address="http://www.refinevideoclub.geocities.com/index.html"
     >
-      <RVCWebsiteLayout>
+      <RVCWebsiteLayout withBrowser={withBrowser}>
         <Hero src={`${getImagesUrl("/rvc-hero-logo.png")}`} alt="rvc logo" />
         <HeroTitle>“The best way to rent movies”</HeroTitle>
         <HeroDescription>
@@ -45,7 +52,7 @@ export const RVCWebsitePageHome = () => {
           dir="left"
         />
 
-        <CatalogsList />
+        <CatalogsList withBrowser={withBrowser} />
 
         <SeparatorGif
           src={`${getImagesUrl("/separator.gif")}`}
@@ -56,7 +63,7 @@ export const RVCWebsitePageHome = () => {
         <RefineBanner banner="crm" />
         <AdvertisementBanners />
       </RVCWebsiteLayout>
-    </Browser>
+    </Wrapper>
   );
 };
 
@@ -89,7 +96,7 @@ const NewTitles = () => {
       >
         {titles?.map((title) => (
           <SwiperSlide key={title.id}>
-            <TitleContainer to={`/rvc-website/titles/${title.id}`}>
+            <TitleContainer to={`titles/${title.id}`}>
               <TitleImage
                 src={getTMDBImgLink({
                   path: title.poster_path,
@@ -116,7 +123,7 @@ const TopTitles = () => {
   return (
     <TopTitlesContainer>
       {TOP_TITLES.map((title) => (
-        <TitleContainer key={title.id} to={`/rvc-website/titles/${title.id}`}>
+        <TitleContainer key={title.id} to={`titles/${title.id}`}>
           <TitleImage
             src={getTMDBImgLink({
               path: title.poster_path,

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useList } from "@refinedev/core";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Hourglass } from "react95";
@@ -7,7 +8,11 @@ import { RVCWebsiteLayout } from "@/components/rvc-website";
 import { RefineBanner } from "@/components/refine-banner";
 import { VideoTitle } from "@/types";
 
-export const RVCWebsiteCatalogPage = () => {
+type Props = {
+  withBrowser?: boolean;
+};
+
+export const RVCWebsiteCatalogPage = ({ withBrowser = true }: Props) => {
   const navigate = useNavigate();
   const { catalogLetter } = useParams();
 
@@ -22,20 +27,25 @@ export const RVCWebsiteCatalogPage = () => {
     ? `http://www.refinevideoclub.geocities.com/catalog/${catalogLetter}.html`
     : "http://www.refinevideoclub.geocities.com/catalog";
 
+  const Wrapper = withBrowser ? Browser : Fragment;
+
   return (
-    <Browser
+    <Wrapper
       title="RVC Website"
       onClose={() => navigate("/")}
       address={address}
     >
-      <RVCWebsiteLayout>
+      <RVCWebsiteLayout withBrowser={withBrowser}>
         <Container>
           <div
             style={{
               marginTop: "64px",
             }}
           />
-          <CatalogsList selectedLetter={catalogLetter} />
+          <CatalogsList
+            selectedLetter={catalogLetter}
+            withBrowser={withBrowser}
+          />
           {titles.length === 0 && !isFetching && (
             <div
               style={{
@@ -62,7 +72,11 @@ export const RVCWebsiteCatalogPage = () => {
               {titles.map((title) => (
                 <CatalogListItem
                   key={title.id}
-                  to={`/rvc-website/titles/${title.id}`}
+                  to={
+                    withBrowser
+                      ? `/browser/rvc-website/titles/${title.id}`
+                      : `/rvc-website/titles/${title.id}`
+                  }
                 >
                   <CatalogListMarkerContainer>
                     <CatalogListMarker1 />
@@ -81,13 +95,14 @@ export const RVCWebsiteCatalogPage = () => {
           />
         </Container>
       </RVCWebsiteLayout>
-    </Browser>
+    </Wrapper>
   );
 };
 
 export const CatalogsList = ({
   selectedLetter,
-}: { selectedLetter?: string }) => {
+  withBrowser = true,
+}: { selectedLetter?: string; withBrowser?: boolean }) => {
   return (
     <>
       <CatalogTitle>Our Catalog</CatalogTitle>
@@ -99,7 +114,11 @@ export const CatalogsList = ({
                 width: "100%",
                 height: "100%",
               }}
-              to={`/rvc-website/catalog/${letter}`}
+              to={
+                withBrowser
+                  ? `/browser/rvc-website/catalog/${letter}`
+                  : `/rvc-website/catalog/${letter}`
+              }
             >
               {letter}
             </Link>
