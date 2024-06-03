@@ -50,6 +50,7 @@ export const DealKanbanCard: FC<Props> = ({
       {
         label: "View card",
         key: "1",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EyeOutlined />,
         onClick: () => {
           replace(`/scrumboard/sales/edit/${id}`);
@@ -59,6 +60,7 @@ export const DealKanbanCard: FC<Props> = ({
         danger: true,
         label: "Delete card",
         key: "2",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <DeleteOutlined />,
         onClick: () => {
           mutate({
@@ -209,6 +211,7 @@ export const DealKanbanCard: FC<Props> = ({
                     backgroundColor: "white",
                   }}
                   icon={
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     <MoreOutlined
                       style={{
                         transform: "rotate(90deg)",

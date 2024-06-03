@@ -49,22 +49,26 @@ function App() {
               {
                 name: "companies",
                 list: "/companies",
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <InfoCircleOutlined />,
               },
               {
                 name: "clients",
                 list: "/clients",
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <TeamOutlined />,
               },
               {
                 name: "contacts",
                 list: "/contacts",
                 edit: "/contacts/:id/edit",
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <UserAddOutlined />,
               },
               {
                 name: "missions",
                 list: "/missions",
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <SlidersOutlined />,
               },
               {
@@ -72,6 +76,7 @@ function App() {
                 list: "/invoices",
                 create: "/invoices/create",
                 edit: "invoices/:id/edit",
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <FileAddOutlined />,
               },
             ]}

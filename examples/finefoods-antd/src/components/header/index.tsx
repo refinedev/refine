@@ -215,6 +215,7 @@ export const Header: React.FC = () => {
               size="large"
               placeholder={t("search.placeholder")}
               suffix={<div className={styles.inputSuffix}>/</div>}
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               prefix={<SearchOutlined className={styles.inputPrefix} />}
             />
           </AutoComplete>
@@ -232,6 +233,7 @@ export const Header: React.FC = () => {
                   <Text className={styles.languageSwitchText}>
                     {currentLocale === "en" ? "English" : "German"}
                   </Text>
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <DownOutlined className={styles.languageSwitchIcon} />
                 </Space>
               </Button>

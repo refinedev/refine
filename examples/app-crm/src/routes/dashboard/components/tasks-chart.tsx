@@ -95,6 +95,7 @@ export const DashboardTasksChart: React.FC = () => {
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <ProjectOutlined />
           <Text size="sm" style={{ marginLeft: ".5rem" }}>
             Tasks
@@ -102,6 +103,7 @@ export const DashboardTasksChart: React.FC = () => {
         </div>
       }
       extra={
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         <Button onClick={() => list("tasks")} icon={<RightCircleOutlined />}>
           See kanban board
         </Button>

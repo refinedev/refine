@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.0.1",
+    "@ant-design/icons": "5.0.1",
     "@refinedev/ably": "^4.1.6",
     "@refinedev/antd": "^5.38.1",
     "@refinedev/cli": "^2.16.31",

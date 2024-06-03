@@ -97,6 +97,7 @@ const TitleInput = ({
       editable={{
         onChange,
         triggerType: ["text", "icon"],
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EditOutlined className={styles.titleEditIcon} />,
       }}
     >
@@ -151,6 +152,7 @@ const SalesOwnerInput = ({
           <Text>{salesOwner?.name}</Text>
           <Button
             type="link"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<EditOutlined className={styles.salesOwnerInputEditIcon} />}
           />
         </>
