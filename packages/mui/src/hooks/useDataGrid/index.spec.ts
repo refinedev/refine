@@ -207,9 +207,7 @@ describe("useDataGrid Hook", () => {
       () =>
         useDataGrid({
           resource: "posts",
-          formProps: {
-            resource: "posts",
-          },
+          editable: true,
         }),
       {
         wrapper: TestWrapper({
@@ -223,54 +221,20 @@ describe("useDataGrid Hook", () => {
         }),
       },
     );
-
     const newPost = {
       ...postToUpdate,
       title: "New title",
     };
 
     await act(async () => {
-      await result.current.dataGridProps.processRowUpdate(
-        newPost,
-        postToUpdate,
-      );
+      if (result.current.dataGridProps.processRowUpdate) {
+        await result.current.dataGridProps.processRowUpdate(
+          newPost,
+          postToUpdate,
+        );
+      }
     });
 
     expect(newPost).toEqual(postToUpdate);
-  });
-
-  it("when update fails, return old data to row", async () => {
-    const { result } = renderHook(
-      () =>
-        useDataGrid({
-          resource: "posts",
-          formProps: {
-            resource: "posts",
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: {
-            ...MockJSONServer,
-            update: () => Promise.reject(),
-          },
-        }),
-      },
-    );
-
-    const oldPost = posts[0];
-
-    const newPost = {
-      ...oldPost,
-      title: "New title",
-    };
-
-    await act(async () => {
-      const returnValue = await result.current.dataGridProps.processRowUpdate(
-        newPost,
-        oldPost,
-      );
-      expect(returnValue).toEqual(oldPost);
-    });
   });
 });

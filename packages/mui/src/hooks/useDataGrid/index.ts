@@ -5,7 +5,6 @@ import {
   Pagination,
   pickNotDeprecated,
   Prettify,
-  UseFormProps,
   useLiveMode,
   useTable as useTableCore,
   useTableProps as useTablePropsCore,
@@ -47,50 +46,48 @@ type DataGridPropsType = Required<
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
-    | "processRowUpdate"
   >
 > &
   Pick<
     DataGridProps,
-    "paginationModel" | "onPaginationModelChange" | "filterModel"
+    | "paginationModel"
+    | "onPaginationModelChange"
+    | "filterModel"
+    | "processRowUpdate"
   >;
 
-export type UseDataGridProps<
-  TQueryFnData extends BaseRecord,
-  TError extends HttpError,
-  TSearchVariables,
-  TData,
-> = Omit<
-  useTablePropsCore<TQueryFnData, TError, TData>,
-  "pagination" | "filters"
-> & {
-  onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-  pagination?: Prettify<
-    Omit<Pagination, "pageSize"> & {
-      /**
-       * Initial number of items per page
-       * @default 25
-       */
-      pageSize?: number;
-    }
-  >;
-  filters?: Prettify<
-    Omit<
-      NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
-      "defaultBehavior"
-    > & {
-      /**
-       * Default behavior of the `setFilters` function
-       * @default "replace"
-       */
-      defaultBehavior?: "replace" | "merge";
-    }
-  >;
-  formProps?: Omit<
-    UseFormProps<TQueryFnData, TError, TData>,
-    "autoSave" | "action" | "redirect"
-  >;
-};
+export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
+  Omit<
+    useTablePropsCore<TQueryFnData, TError, TData>,
+    "pagination" | "filters"
+  > & {
+    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    pagination?: Prettify<
+      Omit<Pagination, "pageSize"> & {
+        /**
+         * Initial number of items per page
+         * @default 25
+         */
+        pageSize?: number;
+      }
+    >;
+    filters?: Prettify<
+      Omit<
+        NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
+        "defaultBehavior"
+      > & {
+        /**
+         * Default behavior of the `setFilters` function
+         * @default "replace"
+         */
+        defaultBehavior?: "replace" | "merge";
+      }
+    >;
+    editable?: boolean;
+    updateMutationOptions?: {
+      retry?: number;
+    };
+  };
 
 export type UseDataGridReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -99,10 +96,6 @@ export type UseDataGridReturnType<
 > = useTableReturnTypeCore<TData, TError> & {
   dataGridProps: DataGridPropsType;
   search: (value: TSearchVariables) => Promise<void>;
-  formProps: {
-    processRowUpdate: (newRow: TData, oldRow: TData) => Promise<TData>;
-    formLoading: boolean;
-  };
 };
 
 /**
@@ -149,7 +142,7 @@ export function useDataGrid<
   metaData,
   dataProviderName,
   overtimeOptions,
-  formProps,
+  editable = false,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -282,28 +275,27 @@ export function useDataGrid<
   const { mutate, isLoading: formLoading } = useUpdate();
 
   const processRowUpdate = async (newRow: TData, oldRow: TData) => {
-    try {
-      await new Promise((resolve, reject) => {
-        mutate(
-          {
-            resource: resourceFromProp as string,
-            id: newRow.id as string,
-            values: newRow,
-          },
-          {
-            onError: (error) => {
-              reject(error);
-            },
-            onSuccess: (data) => {
-              resolve(data);
-            },
-          },
-        );
-      });
-      return newRow;
-    } catch (error) {
-      return oldRow;
+    if (!editable) {
+      return Promise.resolve(oldRow);
     }
+
+    return new Promise((resolve, reject) => {
+      mutate(
+        {
+          resource: resourceFromProp as string,
+          id: newRow.id as string,
+          values: newRow,
+        },
+        {
+          onError: (error) => {
+            reject(error);
+          },
+          onSuccess: (data) => {
+            resolve(newRow);
+          },
+        },
+      );
+    });
   };
 
   return {
@@ -353,7 +345,7 @@ export function useDataGrid<
           )}`,
         },
       },
-      processRowUpdate,
+      processRowUpdate: editable ? processRowUpdate : undefined,
     },
     current,
     setCurrent,
@@ -369,9 +361,5 @@ export function useDataGrid<
     search,
     createLinkForSyncWithLocation,
     overtime,
-    formProps: {
-      processRowUpdate,
-      formLoading,
-    },
   };
 }
