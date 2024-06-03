@@ -208,7 +208,6 @@ export const InvoicesPageCreate = () => {
                   <Row>
                     {services.map((service, index) => {
                       return (
-                        // biome-ignore lint/suspicious/noArrayIndexKey: We don't have a unique key for each service item when we create a new one
                         <Fragment key={index}>
                           <Col
                             xs={{ span: 7 }}
