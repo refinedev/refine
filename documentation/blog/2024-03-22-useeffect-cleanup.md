@@ -57,7 +57,7 @@ There are various scenarios which will prompt the use of the `useEffect` cleanup
 When initiating an **API** request in a component, it is important that we also account for a way to abort the request when the component is unmounted or re-rendered.
 There are several methods for canceling fetch request calls; we can use the native `fetch` `AbortController` or `Axios's` `AbortController` (If you are utilizing `Axios` as our API Client).
 
-To utilise `AbortController`, first, create a controller with the `AbortController()` constructor. When our fetch request is initiated, we pass `signal` as an option in the request's options object.
+To utilize `AbortController`, first, create a controller with the `AbortController()` constructor. When our fetch request is initiated, we pass `signal` as an option in the request's options object.
 
 This associates the controller and signals with the fetch request, allowing us to cancel the request call at any time using the `AbortController.abort()` method.
 We will then add the `AbortController.abort()` method to our `useEffect` cleanup function to ensure that the request is aborted when the component is unmounted or re-rendered.
@@ -77,7 +77,7 @@ useEffect(() => {
         // attach the controller to the request
         signal: controller.signal,
       });
-      // add the sucess response to a state value
+      // add the success response to a state value
     } catch (e) {
       // Handle the error
     }
@@ -101,7 +101,7 @@ useEffect(() => {
         signal: controller.signal,
       });
 
-      // add the sucess response to a state value
+      // add the success response to a state value
     } catch (e) {
       // Handle the error
     }

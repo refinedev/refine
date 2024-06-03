@@ -194,48 +194,48 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
+    <div className="flex min-h-screen w-full items-center justify-center dark:bg-gray-950">
+      <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md dark:bg-gray-900">
+        <h1 className="mb-4 text-center text-2xl font-bold dark:text-gray-200">
           Create Post
         </h1>
         <form onSubmit={onSubmit}>
-          <div className="block mb-4">
+          <div className="mb-4 block">
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Title
             </label>
             <input
               id="title"
               name="title"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               onChange={onChange}
               value={formState?.data?.title}
               placeholder="Add title"
             />
           </div>
-          <div className="block mb-4">
+          <div className="mb-4 block">
             <label
               htmlFor="subtitle"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Subtitle
             </label>
             <input
               id="subtitle"
               name="subtitle"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               onChange={onChange}
               value={formState?.data?.subtitle}
               placeholder="Add a subtitle"
             />
           </div>
-          <div className="block mb-4">
+          <div className="mb-4 block">
             <label
               htmlFor="content"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Content
             </label>
@@ -246,7 +246,7 @@ function App() {
               cols={40}
               rows={5}
               onChange={onChange}
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               value={formState?.data?.content}
               placeholder="Add content here"
             ></textarea>
@@ -256,14 +256,14 @@ function App() {
               <div>{error?.message}</div>
             ))}
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="w-40 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="flex w-40 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Create Post
             </button>
-            <div className="w-40 p-2 bg-red-600 text-white rounded-lg text-center">
+            <div className="w-40 rounded-lg bg-red-600 p-2 text-center text-white">
               Render count: {renderCount}
             </div>
           </div>
@@ -318,14 +318,14 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
+    <div className="flex min-h-screen w-full items-center justify-center dark:bg-gray-950">
+      <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md dark:bg-gray-900">
+        <h1 className="mb-4 text-center text-2xl font-bold dark:text-gray-200">
           Create Post
         </h1>
         <form>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Title
             </label>
             <input
@@ -333,22 +333,22 @@ function App() {
                 required: "Post title cannot be empty",
               })}
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add post title"
             />
             {formInstance?.formState.errors?.title && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.title?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Subtitle
             </label>
             <input
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add a subtitle"
               {...formInstance?.register("subtitle", {
                 maxLength: {
@@ -358,20 +358,20 @@ function App() {
               })}
             />
             {formInstance?.formState.errors?.subtitle && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.subtitle?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Content
             </label>
             <textarea
               type="text"
               cols={40}
               rows={5}
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add content here"
               {...formInstance?.register("content", {
                 required: "Content cannot be empty",
@@ -387,7 +387,7 @@ function App() {
               })}
             ></textarea>
             {formInstance?.formState.errors?.content && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.content?.message}
               </span>
             )}
@@ -395,11 +395,11 @@ function App() {
           <div className="flex justify-between">
             <button
               type="submit"
-              className="w-40 disabled:bg-gray-300 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="flex w-40 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
             >
               Create Post
             </button>
-            <div className="w-40 p-2 text-center text-sm bg-red-600 text-white rounded-lg">
+            <div className="w-40 rounded-lg bg-red-600 p-2 text-center text-sm text-white">
               Render count: {renderCount}
             </div>
           </div>
@@ -527,7 +527,7 @@ In our case we have done it for each field. For example, the `content` field err
 // highlight-start
 {
   formInstance?.formState.errors?.content && (
-    <span className="text-red-500 text-xs">
+    <span className="text-xs text-red-500">
       {formInstance?.formState.errors?.content?.message}
     </span>
   );
@@ -563,9 +563,9 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
+    <div className="flex min-h-screen w-full items-center justify-center dark:bg-gray-950">
+      <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md dark:bg-gray-900">
+        <h1 className="mb-4 text-center text-2xl font-bold dark:text-gray-200">
           Create Post
         </h1>
         <form
@@ -576,7 +576,7 @@ function App() {
           // highlight-end
         >
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Title
             </label>
             <input
@@ -584,22 +584,22 @@ function App() {
                 required: "Post title cannot be empty",
               })}
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add post title"
             />
             {formInstance?.formState.errors?.title && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.title?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Subtitle
             </label>
             <input
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add a subtitle"
               {...formInstance?.register("subtitle", {
                 maxLength: {
@@ -609,20 +609,20 @@ function App() {
               })}
             />
             {formInstance?.formState.errors?.subtitle && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.subtitle?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Content
             </label>
             <textarea
               type="text"
               cols={40}
               rows={5}
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add content here"
               {...formInstance?.register("content", {
                 required: "Content cannot be empty",
@@ -638,7 +638,7 @@ function App() {
               })}
             ></textarea>
             {formInstance?.formState.errors?.content && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.content?.message}
               </span>
             )}
@@ -647,11 +647,11 @@ function App() {
             <button
               // disabled={!formInstance?.formState?.isValid}
               type="submit"
-              className="w-40 disabled:bg-gray-300 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="flex w-40 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
             >
               Create Post
             </button>
-            <div className="w-40 p-2 text-center text-sm bg-red-600 text-white rounded-lg">
+            <div className="w-40 rounded-lg bg-red-600 p-2 text-center text-sm text-white">
               Render count: {renderCount}
             </div>
           </div>
@@ -694,7 +694,7 @@ We can use the `isValid` property of `formState` to implement a submission lock 
 <button
   disabled={!formInstance?.formState?.isValid}
   type="submit"
-  className="w-40 disabled:bg-gray-300 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  className="flex w-40 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
 >
   Create Post
 </button>
@@ -763,9 +763,9 @@ function App() {
   // highlight-end
 
   return (
-    <div className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
+    <div className="flex min-h-screen w-full items-center justify-center dark:bg-gray-950">
+      <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md dark:bg-gray-900">
+        <h1 className="mb-4 text-center text-2xl font-bold dark:text-gray-200">
           Create Post
         </h1>
         <form
@@ -780,7 +780,7 @@ function App() {
           })}
         >
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Title
             </label>
             <input
@@ -788,22 +788,22 @@ function App() {
                 required: "Post title cannot be empty",
               })}
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add post title"
             />
             {formInstance?.formState.errors?.title && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.title?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Subtitle
             </label>
             <input
               type="text"
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add a subtitle"
               {...formInstance?.register("subtitle", {
                 maxLength: {
@@ -813,20 +813,20 @@ function App() {
               })}
             />
             {formInstance?.formState.errors?.subtitle && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.subtitle?.message}
               </span>
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Content
             </label>
             <textarea
               type="text"
               cols={40}
               rows={5}
-              className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
               placeholder="Add content here"
               {...formInstance?.register("content", {
                 required: "Content cannot be empty",
@@ -842,7 +842,7 @@ function App() {
               })}
             ></textarea>
             {formInstance?.formState.errors?.content && (
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {formInstance?.formState.errors?.content?.message}
               </span>
             )}
@@ -851,11 +851,11 @@ function App() {
             <button
               disabled={!formInstance?.formState?.isValid}
               type="submit"
-              className="w-40 disabled:bg-gray-300 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="flex w-40 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
             >
               Create Post
             </button>
-            <div className="w-40 p-2 text-center text-sm bg-red-600 text-white rounded-lg">
+            <div className="w-40 rounded-lg bg-red-600 p-2 text-center text-sm text-white">
               Render count: {renderCount}
             </div>
           </div>
@@ -995,7 +995,7 @@ Feel free to play around with both versions and examine the difference React Hoo
 
 ### Advanced Implementations with React Hook Form
 
-In this post, we have covered essential APIs of React Hook Form that help implement average form features very conveniently. However, it is equipped with myriad of additonal APIs that facilitate speedy development of more advanced features and robust reusable form components and collections.
+In this post, we have covered essential APIs of React Hook Form that help implement average form features very conveniently. However, it is equipped with myriad of additional APIs that facilitate speedy development of more advanced features and robust reusable form components and collections.
 
 #### Using Schema Validation Libraries
 
