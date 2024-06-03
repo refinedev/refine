@@ -19,7 +19,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
   text: textFromProps,
 }) => {
   const {
-    title: { icon: defaultIcon, text: defaultText },
+    title: { icon: defaultIcon, text: defaultText } = {},
   } = useRefineOptions();
   const icon =
     typeof iconFromProps === "undefined" ? defaultIcon : iconFromProps;
