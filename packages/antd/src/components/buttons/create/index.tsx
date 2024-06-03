@@ -52,6 +52,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       }}
     >
       <Button
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<PlusSquareOutlined />}
         disabled={disabled}
         title={title}
