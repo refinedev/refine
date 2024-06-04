@@ -1,5 +1,5 @@
 import { useResource, useGetToPath } from "@refinedev/core";
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";
 
 type NavigateToResourceProps = PropsWithChildren<{

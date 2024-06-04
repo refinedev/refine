@@ -5,7 +5,7 @@ import {
   IconChevronUp,
 } from "@tabler/icons-react";
 
-import { ColumnButtonProps } from "../../interfaces";
+import type { ColumnButtonProps } from "../../interfaces";
 import type { SortDirection } from "@tanstack/react-table";
 
 export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {

@@ -46,6 +46,8 @@ type CrudOperators =
   | "gte" // Greater than or equal to
   | "in" // Included in an array
   | "nin" // Not included in an array
+  | "ina" // Column contains every element in an array
+  | "nina" // Column doesn't contain every element in an array
   | "contains" // Contains
   | "ncontains" // Doesn't contain
   | "containss" // Contains, case sensitive

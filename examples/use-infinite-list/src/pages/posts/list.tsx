@@ -1,7 +1,7 @@
 import React from "react";
 import { useInfiniteList } from "@refinedev/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const {

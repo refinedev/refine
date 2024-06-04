@@ -1,10 +1,14 @@
-import React, { SVGProps, useEffect } from "react";
+import React, { type CSSProperties, type SVGProps, useEffect } from "react";
 import { CSSRules } from "./styles";
 
 const text =
   "If you find Refine useful, you can contribute to its growth by giving it a star on GitHub";
 
-export const GitHubBanner = () => {
+type Props = {
+  containerStyle?: CSSProperties;
+};
+
+export const GitHubBanner = ({ containerStyle }: Props) => {
   useEffect(() => {
     const styleTag = document.createElement("style");
     document.head.appendChild(styleTag);
@@ -32,6 +36,7 @@ export const GitHubBanner = () => {
           maxWidth: "100vw",
           height: "100%",
           borderBottom: "1px solid #47ebeb26",
+          ...containerStyle,
         }}
       >
         <div

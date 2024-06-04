@@ -6,12 +6,12 @@ import {
   useNotificationProvider,
 } from "@refinedev/antd";
 import {
-  AppwriteException,
+  type AppwriteException,
   dataProvider,
   liveProvider,
 } from "@refinedev/appwrite";
 import {
-  AuthProvider,
+  type AuthProvider,
   Authenticated,
   GitHubBanner,
   Refine,

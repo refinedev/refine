@@ -1,6 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
 
-import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import type {
+  QueryObserverResult,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import debounce from "lodash/debounce";
 import get from "lodash/get";
 import uniqBy from "lodash/uniqBy";
@@ -8,7 +11,7 @@ import uniqBy from "lodash/uniqBy";
 import { pickNotDeprecated } from "@definitions/helpers";
 import { useList, useMany, useMeta } from "@hooks";
 
-import {
+import type {
   BaseKey,
   BaseOption,
   BaseRecord,
@@ -21,13 +24,13 @@ import {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { BaseListProps } from "../data/useList";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { BaseListProps } from "../data/useList";
 import { useResource } from "../resource/useResource/index";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

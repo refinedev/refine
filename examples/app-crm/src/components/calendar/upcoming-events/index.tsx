@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { CalendarOutlined, RightCircleOutlined } from "@ant-design/icons";
 import type { CardProps } from "antd";
 import { Button, Card, Skeleton as AntdSkeleton } from "antd";
 import dayjs from "dayjs";
 
-import { UpcomingEventsQuery } from "@/graphql/types";
+import type { UpcomingEventsQuery } from "@/graphql/types";
 
 import { Text } from "../../text";
 import { CalendarUpcomingEvent } from "./event";
@@ -109,6 +109,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <CalendarOutlined />
           <Text size="sm" style={{ marginLeft: ".7rem" }}>
             Upcoming events
@@ -117,6 +118,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
       }
       extra={
         showGoToListButton && (
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <Button onClick={() => list("events")} icon={<RightCircleOutlined />}>
             See calendar
           </Button>

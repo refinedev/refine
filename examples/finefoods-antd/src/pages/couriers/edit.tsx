@@ -16,13 +16,13 @@ import {
   Form,
   Input,
   InputNumber,
-  InputRef,
+  type InputRef,
   Row,
   Select,
 } from "antd";
 import InputMask from "react-input-mask";
 
-import { ICourier } from "../../interfaces";
+import type { ICourier } from "../../interfaces";
 import {
   BikeWhiteIcon,
   CourierFormItemAvatar,
@@ -79,6 +79,7 @@ export const CourierEdit = () => {
   return (
     <>
       <Flex>
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <ListButton icon={<LeftOutlined />}>
           {t("couriers.couriers")}
         </ListButton>
@@ -126,6 +127,7 @@ export const CourierEdit = () => {
             >
               <FormItemHorizontal
                 isInput={false}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<RightCircleOutlined />}
                 label={t("couriers.fields.status.label")}
                 flexProps={{
@@ -149,6 +151,7 @@ export const CourierEdit = () => {
               />
               <FormItemHorizontal
                 name="gsm"
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PhoneOutlined />}
                 label={t("couriers.fields.gsm.label")}
                 rules={[
@@ -170,6 +173,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<MailOutlined />}
                 label={t("couriers.fields.email.label")}
                 name="email"
@@ -188,6 +192,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<MailOutlined />}
                 label={t("couriers.fields.address.label")}
                 name="address"
@@ -208,6 +213,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<BankOutlined />}
                 label={t("couriers.fields.accountNumber.label")}
                 name="accountNumber"
@@ -229,6 +235,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<ShopOutlined />}
                 label={t("couriers.fields.store.label")}
                 name={["store", "id"]}
@@ -246,6 +253,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<BikeWhiteIcon />}
                 label={t("couriers.fields.vehicle.label")}
                 name={["vehicle", "id"]}
@@ -263,6 +271,7 @@ export const CourierEdit = () => {
                 }}
               />
               <FormItemHorizontal
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<ScanOutlined />}
                 label={t("couriers.fields.licensePlate.label")}
                 name="licensePlate"
@@ -298,6 +307,7 @@ export const CourierEdit = () => {
                       marginLeft: "auto",
                     }}
                     disabled={false}
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<EditOutlined />}
                     onClick={() => setIsFormDisabled(false)}
                   >

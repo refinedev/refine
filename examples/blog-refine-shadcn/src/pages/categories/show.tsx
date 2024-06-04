@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
-  IResourceComponentsProps,
+  type IResourceComponentsProps,
   useNavigation,
   useResource,
   useShow,

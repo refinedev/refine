@@ -1,11 +1,11 @@
 import {
-  CrudFilters,
+  type CrudFilters,
   getDefaultFilter,
-  HttpError,
+  type HttpError,
   useMany,
 } from "@refinedev/core";
 import { List, TagField, useAutocomplete, useDataGrid } from "@refinedev/mui";
-import React, { ComponentProps, useMemo } from "react";
+import React, { type ComponentProps, useMemo } from "react";
 
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
@@ -18,12 +18,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import {
+import type {
   ICategory,
   IPost,
   IPostFilterVariables,

@@ -2,7 +2,7 @@ import React from "react";
 import matter from "gray-matter";
 import boxen from "boxen";
 
-import { Announcement } from "@definitions/announcement";
+import type { Announcement } from "@definitions/announcement";
 import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
 
 const ANNOUNCEMENT_URL =

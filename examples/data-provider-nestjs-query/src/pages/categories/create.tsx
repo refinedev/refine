@@ -1,9 +1,9 @@
 import { Create, useForm } from "@refinedev/antd";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input } from "antd";
 
-import { CategoryCreateMutation } from "graphql/types";
+import type { CategoryCreateMutation } from "graphql/types";
 import { CATEGORY_CREATE_MUTATION } from "./queries";
 
 export const CategoryCreate = () => {

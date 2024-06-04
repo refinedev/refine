@@ -1,13 +1,18 @@
-import React, { type ReactNode, useState } from "react";
-import { Button, Space } from "antd";
-import type { FilterDropdownProps as AntdFilterDropdownProps } from "antd/lib/table/interface";
+import React, { type ReactNode } from "react";
+import { Button, Space, type TableColumnProps } from "antd";
 import dayjs from "dayjs";
 import { FilterOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 
+type AntdFilterDropdownProps = React.ComponentProps<
+  Exclude<TableColumnProps<any>["filterDropdown"], ReactNode>
+>;
+
+export type MapValueEvent = "onChange" | "value";
+
 export type FilterDropdownProps = AntdFilterDropdownProps & {
-  mapValue?: (selectedKeys: React.Key[]) => any;
-  children: ReactNode;
+  mapValue?: (selectedKeys: React.Key[], event: MapValueEvent) => any;
+  children: JSX.Element;
 };
 
 /**
@@ -20,72 +25,63 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
     setSelectedKeys,
     confirm,
     clearFilters,
-    mapValue,
+    mapValue = (value) => value,
     selectedKeys,
     children,
   } = props;
 
-  const [value, setValue] = useState<any[] | undefined>(selectedKeys);
   const translate = useTranslate();
 
   const clearFilter = () => {
     if (clearFilters) {
-      setValue([]);
       clearFilters();
     }
   };
 
   const onFilter = () => {
-    const _mappedValue = mappedValue(value);
-
     let keys;
-    if (typeof _mappedValue === "number") {
-      keys = `${_mappedValue}`;
-    } else if (dayjs.isDayjs(_mappedValue)) {
-      keys = [_mappedValue.toISOString()];
+    if (typeof selectedKeys === "number") {
+      keys = `${selectedKeys}`;
+    } else if (dayjs.isDayjs(selectedKeys)) {
+      keys = [selectedKeys.toISOString()];
     } else {
-      keys = _mappedValue;
+      keys = selectedKeys;
     }
 
-    setSelectedKeys(keys);
-
+    setSelectedKeys(keys as any);
     confirm?.();
   };
-
-  const mappedValue = (value: any) => (mapValue ? mapValue(value) : value);
 
   const onChange = (e: any) => {
     if (typeof e === "object") {
       if (Array.isArray(e)) {
-        const _mappedValue = mappedValue(e);
-
-        setValue(_mappedValue);
-        return setSelectedKeys(_mappedValue);
+        const mappedValue = mapValue(e, "onChange");
+        return setSelectedKeys(mappedValue);
       }
 
       const changeEvent =
         !e || !e.target || dayjs.isDayjs(e) ? { target: { value: e } } : e;
 
       const { target }: React.ChangeEvent<HTMLInputElement> = changeEvent;
-      const _mappedValue = mappedValue(target.value);
-      setValue(_mappedValue);
+      const mappedValue = mapValue(target.value as any, "onChange");
+      setSelectedKeys(mappedValue);
       return;
     }
 
-    const _mappedValue = mappedValue(e);
-
-    setValue(_mappedValue);
+    const mappedValue = mapValue(e, "onChange");
+    setSelectedKeys(mappedValue);
   };
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child as React.ReactElement, {
         onChange,
-        value: mappedValue(value),
+        value: mapValue(selectedKeys, "value"),
       });
     }
     return child;
   });
+
   return (
     <div
       style={{
@@ -98,6 +94,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
       <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
       <Space>
         <Button type="primary" size="small" onClick={() => onFilter()}>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <FilterOutlined /> {translate("buttons.filter", "Filter")}
         </Button>
         <Button danger size="small" onClick={() => clearFilter()}>

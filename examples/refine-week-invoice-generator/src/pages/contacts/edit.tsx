@@ -1,7 +1,7 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Select, Input } from "antd";
 
-import { IContact } from "../../interfaces";
+import type { IContact } from "../../interfaces";
 
 export const EditContact = () => {
   const { formProps, saveButtonProps, queryResult } = useForm<IContact>({

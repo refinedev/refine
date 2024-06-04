@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 
 import { yariga } from "../assets";
 
-import { CredentialResponse } from "../interfaces/google";
+import type { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>({

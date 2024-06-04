@@ -8,7 +8,7 @@ import {
 
 import { Space, Table } from "antd";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 const CategoryList = () => {
   const { tableProps } = useTable<ICategory>();

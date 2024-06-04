@@ -1,4 +1,4 @@
-import { JSCodeshift, Collection } from "jscodeshift";
+import type { JSCodeshift, Collection } from "jscodeshift";
 
 const deprecatedPropName = "ignoreAccessControlProvider";
 const newName = "accessControl";

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../index.d.ts" />
 
-import { ICategory, IPost } from "../../types";
+import type { ICategory, IPost } from "../../types";
 
 const HOSTNAME = "iwdfzvfqbtokqetmbmbp.supabase.co";
 const BASE_PATH = "/rest/v1";

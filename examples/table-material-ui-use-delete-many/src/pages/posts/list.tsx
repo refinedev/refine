@@ -1,16 +1,16 @@
-import { Option, useDeleteMany, useSelect } from "@refinedev/core";
+import { type Option, useDeleteMany, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import Button from "@mui/material/Button";
 import {
   DataGrid,
-  GridColDef,
-  GridRowSelectionModel,
-  GridValueFormatterParams,
+  type GridColDef,
+  type GridRowSelectionModel,
+  type GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] =

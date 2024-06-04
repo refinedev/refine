@@ -1,5 +1,5 @@
-import { MetaQuery } from "../../../contexts/data/types";
-import { ParseResponse } from "../../../contexts/router/types";
+import type { MetaQuery } from "../../../contexts/data/types";
+import type { ParseResponse } from "../../../contexts/router/types";
 import { pickRouteParams } from "./pick-route-params";
 import { prepareRouteParams } from "./prepare-route-params";
 

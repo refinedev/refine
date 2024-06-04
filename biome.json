@@ -18,6 +18,7 @@
     "lineWidth": 80
   },
   "javascript": {
+    "jsxRuntime": "reactClassic",
     "formatter": {
       "arrowParentheses": "always",
       "quoteStyle": "double",
@@ -93,7 +94,7 @@
         "useSelfClosingElements": "error",
         "useSingleVarDeclarator": "error",
         "useTemplate": "error",
-        "useImportType": "off",
+        "useImportType": "error",
         "useNodejsImportProtocol": "off"
       },
       "suspicious": {

@@ -1,18 +1,27 @@
 import {
   DateField,
   FilterDropdown,
+  rangePickerFilterMapper,
   getDefaultSortOrder,
   List,
   useTable,
 } from "@refinedev/antd";
 import { getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
-import { DatePicker, Input, Radio, Space, Table, Tag, TagProps } from "antd";
+import {
+  DatePicker,
+  Input,
+  Radio,
+  Space,
+  Table,
+  Tag,
+  type TagProps,
+} from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { AdministrationAuditLogsQuery } from "@/graphql/types";
+import type { AdministrationAuditLogsQuery } from "@/graphql/types";
 
 import { ActionCell } from "./components";
 import { ADMINISTRATION_AUDIT_LOGS_QUERY } from "./queries";
@@ -81,6 +90,7 @@ export const AuditLogPage = () => {
             dataIndex="user.name"
             title="User"
             width="15%"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             render={(_, record: Audit) => {
               return (
@@ -147,7 +157,7 @@ export const AuditLogPage = () => {
               />
             )}
             filterDropdown={(props) => (
-              <FilterDropdown {...props}>
+              <FilterDropdown {...props} mapValue={rangePickerFilterMapper}>
                 <DatePicker.RangePicker />
               </FilterDropdown>
             )}

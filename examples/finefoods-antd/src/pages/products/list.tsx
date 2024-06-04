@@ -1,7 +1,7 @@
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton, List } from "@refinedev/antd";
 import { ProductListCard, ProductListTable } from "../../components";
-import { PropsWithChildren, useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Segmented } from "antd";
 import { useLocation } from "react-router-dom";
@@ -41,11 +41,13 @@ export const ProductList = ({ children }: PropsWithChildren) => {
             {
               label: "",
               value: "table",
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <UnorderedListOutlined />,
             },
             {
               label: "",
               value: "card",
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <AppstoreOutlined />,
             },
           ]}

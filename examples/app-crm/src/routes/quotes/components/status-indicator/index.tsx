@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
-import { HttpError, useUpdate } from "@refinedev/core";
+import { type HttpError, useUpdate } from "@refinedev/core";
 
 import cn from "classnames";
 
-import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import type { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 import { QUOTES_UPDATE_QUOTE_MUTATION } from "../../queries";
 import styles from "./index.module.css";

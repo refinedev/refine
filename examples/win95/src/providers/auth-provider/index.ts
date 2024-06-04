@@ -1,4 +1,4 @@
-import { AuthProvider } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 import { supabaseClient } from "@/supabase-client";
 
 export const authProvider: AuthProvider = {

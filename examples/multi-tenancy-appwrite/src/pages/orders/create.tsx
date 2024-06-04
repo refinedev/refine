@@ -1,8 +1,8 @@
-import { HttpError, useParsed } from "@refinedev/core";
+import { type HttpError, useParsed } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
-import { IOrder, IProduct } from "../../interfaces";
+import type { IOrder, IProduct } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
 export const OrderCreate = () => {

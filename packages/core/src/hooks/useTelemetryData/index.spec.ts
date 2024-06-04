@@ -4,7 +4,7 @@ import { defaultRefineOptions } from "@contexts/refine";
 import { MockJSONServer, TestWrapper, mockLegacyRouterProvider } from "@test";
 
 import { useTelemetryData } from ".";
-import { IRefineContextProvider } from "../../contexts/refine/types";
+import type { IRefineContextProvider } from "../../contexts/refine/types";
 
 describe("useTelemetryData Hook", () => {
   describe("authProvider", () => {

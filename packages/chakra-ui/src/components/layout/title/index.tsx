@@ -3,7 +3,7 @@ import {
   useRouterContext,
   useRouterType,
   useLink,
-  TitleProps,
+  type TitleProps,
 } from "@refinedev/core";
 import { Link as ChakraLink } from "@chakra-ui/react";
 

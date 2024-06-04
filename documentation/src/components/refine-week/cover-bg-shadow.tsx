@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { WeekVariants } from "./data";
+import type { WeekVariants } from "./data";
 
 type Props = {
   variant: WeekVariants;

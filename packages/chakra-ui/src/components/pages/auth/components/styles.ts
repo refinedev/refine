@@ -1,4 +1,4 @@
-import { BoxProps } from "@chakra-ui/react";
+import type { BoxProps } from "@chakra-ui/react";
 
 export const layoutProps: BoxProps = {
   display: "flex",

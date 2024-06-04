@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { useList } from "@refinedev/core";
-import { Product } from "@medusajs/medusa";
+import type { Product } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
-import { CalculatedVariant } from "../../types/medusa";
+import type { CalculatedVariant } from "../../types/medusa";
 import { useCartContext } from "@lib/context";
 import { getPercentageDiff } from "@lib/getPercentageDiff";
 

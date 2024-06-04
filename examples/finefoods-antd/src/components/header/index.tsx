@@ -22,7 +22,7 @@ import {
   Layout as AntdLayout,
   Button,
   theme,
-  MenuProps,
+  type MenuProps,
 } from "antd";
 
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ import debounce from "lodash/debounce";
 
 import { useConfigProvider } from "../../context";
 import { IconMoon, IconSun } from "../../components/icons";
-import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
+import type { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
 import { useStyles } from "./styled";
 
 const { Header: AntdHeader } = AntdLayout;
@@ -215,6 +215,7 @@ export const Header: React.FC = () => {
               size="large"
               placeholder={t("search.placeholder")}
               suffix={<div className={styles.inputSuffix}>/</div>}
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               prefix={<SearchOutlined className={styles.inputPrefix} />}
             />
           </AutoComplete>
@@ -232,6 +233,7 @@ export const Header: React.FC = () => {
                   <Text className={styles.languageSwitchText}>
                     {currentLocale === "en" ? "English" : "German"}
                   </Text>
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <DownOutlined className={styles.languageSwitchIcon} />
                 </Space>
               </Button>

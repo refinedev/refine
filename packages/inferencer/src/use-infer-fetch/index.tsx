@@ -1,8 +1,8 @@
 import React from "react";
-import { useDataProvider, useResource, BaseKey } from "@refinedev/core";
+import { useDataProvider, useResource, type BaseKey } from "@refinedev/core";
 
 import { pickDataProvider, dataProviderFromResource } from "../utilities";
-import { InferencerComponentProps } from "../types";
+import type { InferencerComponentProps } from "../types";
 import { pickMeta } from "../utilities/get-meta-props";
 
 /**

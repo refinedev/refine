@@ -1,22 +1,22 @@
 import React, { useCallback } from "react";
-import { FormInstance, FormProps, ModalProps } from "antd";
+import type { FormInstance, FormProps, ModalProps } from "antd";
 
 import {
   useTranslate,
   useWarnAboutChange,
-  HttpError,
-  UseFormProps as UseFormPropsCore,
-  BaseRecord,
-  LiveModeProps,
-  BaseKey,
+  type HttpError,
+  type UseFormProps as UseFormPropsCore,
+  type BaseRecord,
+  type LiveModeProps,
+  type BaseKey,
   useUserFriendlyName,
   useResource,
-  FormWithSyncWithLocationParams,
+  type FormWithSyncWithLocationParams,
   useParsed,
   useGo,
   useInvalidate,
 } from "@refinedev/core";
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 import { useModal } from "@hooks/modal";
 
 export type useModalFormFromSFReturnType<TResponse, TVariables> = {

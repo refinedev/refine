@@ -1,4 +1,4 @@
-import {
+import type {
   CreateButtonProps,
   DeleteButtonProps,
   EditButtonProps,
@@ -13,7 +13,7 @@ import type { CardContentProps } from "@mui/material/CardContent";
 import type { CardHeaderProps } from "@mui/material/CardHeader";
 import type { CardProps } from "@mui/material/Card";
 
-import {
+import type {
   RefineCrudCreateProps,
   RefineCrudEditProps,
   RefineCrudListProps,

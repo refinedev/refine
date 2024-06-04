@@ -1,10 +1,10 @@
-import { GetServerSideProps } from "next";
-import { GetListResponse, useTable } from "@refinedev/core";
+import type { GetServerSideProps } from "next";
+import { type GetListResponse, useTable } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 
 import { API_URL } from "src/constants";
-import { IProduct, IStore } from "src/interfaces";
+import type { IProduct, IStore } from "src/interfaces";
 import { ProductCard, FilterButton } from "src/components";
 
 type ItemProps = {

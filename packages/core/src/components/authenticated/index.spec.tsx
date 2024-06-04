@@ -9,8 +9,8 @@ import {
   render,
 } from "@test";
 
-import { AuthProvider } from "../../contexts/auth/types";
-import { LegacyRouterProvider } from "../../contexts/router/legacy/types";
+import type { AuthProvider } from "../../contexts/auth/types";
+import type { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 import { Authenticated } from "./";
 
 const legacyMockAuthProvider = {
@@ -513,6 +513,95 @@ describe("Authenticated", () => {
             to: "/dashboard?current=1&pageSize=2",
           },
           type: "replace",
+        }),
+      ),
+    );
+  });
+
+  it("should redirect to `/login` without `to` query if at root", async () => {
+    const mockGo = jest.fn();
+
+    const { queryByText } = render(
+      <Authenticated key="should-redirect-custom-provider-check">
+        Custom Authenticated
+      </Authenticated>,
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          authProvider: {
+            ...mockAuthProvider,
+            check: async () => {
+              return {
+                authenticated: false,
+                redirectTo: "/login",
+              };
+            },
+          },
+          routerProvider: {
+            go: () => mockGo,
+          },
+          resources: [{ name: "posts", route: "posts" }],
+        }),
+      },
+    );
+
+    await act(async () => {
+      expect(queryByText("Custom Authenticated")).toBeNull();
+    });
+
+    await waitFor(() =>
+      expect(mockGo).toBeCalledWith(
+        expect.objectContaining({
+          to: "/login",
+          type: "replace",
+          query: undefined,
+        }),
+      ),
+    );
+  });
+
+  it("should redirect to `/login?to=/dashboard` if at /dashboard route", async () => {
+    const mockGo = jest.fn();
+
+    // Mocking first return value to simulate that user's location is at /dashboard
+    mockGo.mockReturnValueOnce("/dashboard");
+
+    const { queryByText } = render(
+      <Authenticated key="should-redirect-custom-provider-check">
+        Custom Authenticated
+      </Authenticated>,
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          authProvider: {
+            ...mockAuthProvider,
+            check: async () => {
+              return {
+                authenticated: false,
+                redirectTo: "/login",
+              };
+            },
+          },
+          routerProvider: {
+            go: () => mockGo,
+          },
+          resources: [{ name: "posts", route: "posts" }],
+        }),
+      },
+    );
+
+    await act(async () => {
+      expect(queryByText("Custom Authenticated")).toBeNull();
+    });
+
+    await waitFor(() =>
+      expect(mockGo).toBeCalledWith(
+        expect.objectContaining({
+          to: "/login",
+          type: "replace",
+          query: expect.objectContaining({
+            to: "/dashboard",
+          }),
         }),
       ),
     );

@@ -15,9 +15,9 @@ import {
 } from "@chakra-ui/react";
 
 import { useSelect } from "@refinedev/core";
-import { UseModalFormReturnType } from "@refinedev/react-hook-form";
+import type { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const EditPostModal: React.FC<UseModalFormReturnType<IPost>> = ({
   saveButtonProps,

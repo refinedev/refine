@@ -1,14 +1,14 @@
-import { Option, useSelect } from "@refinedev/core";
+import { type Option, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import {
   DataGrid,
-  GridColDef,
-  GridValueFormatterParams,
+  type GridColDef,
+  type GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({

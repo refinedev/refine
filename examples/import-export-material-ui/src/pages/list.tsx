@@ -6,11 +6,11 @@ import {
   useNotification,
 } from "@refinedev/core";
 import { ExportButton, ImportButton, List, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 import Stack from "@mui/material/Stack";
 
-import { ICategory, IPost } from "../interfaces";
+import type { ICategory, IPost } from "../interfaces";
 
 export const ImportList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();

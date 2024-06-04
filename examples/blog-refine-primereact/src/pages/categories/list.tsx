@@ -12,7 +12,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { confirmDialog } from "primereact/confirmdialog";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
   const {

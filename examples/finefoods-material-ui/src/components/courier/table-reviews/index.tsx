@@ -2,10 +2,10 @@ import { useMemo } from "react";
 import { useTranslate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
 import Paper from "@mui/material/Paper";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Rating from "@mui/material/Rating";
 import Chip from "@mui/material/Chip";
-import { ICourier, IReview } from "../../../interfaces";
+import type { ICourier, IReview } from "../../../interfaces";
 
 interface Props {
   courier?: ICourier;

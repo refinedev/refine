@@ -1,7 +1,7 @@
 import pluralize from "pluralize";
-import { IResourceItem } from "@refinedev/core";
+import type { IResourceItem } from "@refinedev/core";
 
-import { InferField } from "../../types";
+import type { InferField } from "../../types";
 
 import { removeRelationSuffix } from "../remove-relation-suffix";
 

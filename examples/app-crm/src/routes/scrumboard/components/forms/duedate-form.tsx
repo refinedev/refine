@@ -1,10 +1,10 @@
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Button, DatePicker, Form, Space } from "antd";
 import dayjs from "dayjs";
 
-import { Task } from "@/graphql/schema.types";
+import type { Task } from "@/graphql/schema.types";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 

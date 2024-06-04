@@ -9,7 +9,7 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord, useMany, useTranslation } from "@refinedev/core";
+import { type BaseRecord, useMany, useTranslation } from "@refinedev/core";
 import { Space, Table, Typography } from "antd";
 
 export default function BlogPostList() {

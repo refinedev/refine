@@ -1,4 +1,4 @@
-import { ResourceProps } from "../../../contexts/resource/types";
+import type { ResourceProps } from "../../../contexts/resource/types";
 import { pickNotDeprecated } from "../pickNotDeprecated";
 import { getParentPrefixForResource } from "../router";
 

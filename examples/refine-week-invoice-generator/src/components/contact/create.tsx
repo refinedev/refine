@@ -1,5 +1,13 @@
 import { useSelect } from "@refinedev/antd";
-import { Form, Modal, Input, ModalProps, FormProps, Select, Grid } from "antd";
+import {
+  Form,
+  Modal,
+  Input,
+  type ModalProps,
+  type FormProps,
+  Select,
+  Grid,
+} from "antd";
 
 type CreateContactProps = {
   modalProps: ModalProps;

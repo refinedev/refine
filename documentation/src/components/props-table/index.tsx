@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import {
-  DeclarationType,
+  type DeclarationType,
   useDynamicImport,
 } from "../../hooks/use-dynamic-import";
 import PropTag from "../prop-tag";

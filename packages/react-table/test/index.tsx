@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
-import { Refine, DataProvider, IResourceItem } from "@refinedev/core";
+import { Refine, type DataProvider, type IResourceItem } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "./dataMocks";
 

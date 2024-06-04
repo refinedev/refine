@@ -8,7 +8,7 @@ import {
 import Button from "@mui/material/Button";
 import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 
-import { ShowButtonProps } from "../types";
+import type { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.

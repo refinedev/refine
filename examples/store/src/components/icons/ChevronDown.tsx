@@ -1,4 +1,4 @@
-import { IconProps } from "src/types/icon";
+import type { IconProps } from "src/types/icon";
 
 export const ChevronDown: React.FC<IconProps> = ({ ...props }) => {
   return (

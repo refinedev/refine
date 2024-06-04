@@ -2,7 +2,7 @@ import { useLogList } from "@refinedev/core";
 import { Avatar, List as AntdList, Typography } from "antd";
 
 import { formattedDate, timeFromNow } from "../../utility/time";
-import { TCanvas } from "../../types";
+import type { TCanvas } from "../../types";
 
 type TLogListProps = {
   currentCanvas: TCanvas | {};

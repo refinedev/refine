@@ -1,6 +1,6 @@
-import Chip, { ChipProps } from "@mui/material/Chip";
+import Chip, { type ChipProps } from "@mui/material/Chip";
 import { useTranslate } from "@refinedev/core";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import BlockOutlinedIcon from "@mui/icons-material/BlockOutlined";
 import { useTheme } from "@mui/material/styles";

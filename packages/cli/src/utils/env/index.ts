@@ -1,4 +1,4 @@
-import { NODE_ENV } from "@definitions/node";
+import type { NODE_ENV } from "@definitions/node";
 import * as dotenv from "dotenv";
 dotenv.config();
 

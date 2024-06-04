@@ -6,7 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { Controller, useFieldArray } from "react-hook-form";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 interface IPost {
   firstName: string;

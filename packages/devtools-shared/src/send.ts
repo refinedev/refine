@@ -1,4 +1,4 @@
-import { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
+import type { DevtoolsEvent, DevtoolsEventPayloads } from "./event-types";
 
 export async function send<T extends DevtoolsEvent>(
   ws: WebSocket,

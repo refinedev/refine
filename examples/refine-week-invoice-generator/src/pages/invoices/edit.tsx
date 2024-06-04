@@ -1,7 +1,7 @@
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
-import { IInvoice, IMission } from "../../interfaces";
+import type { IInvoice, IMission } from "../../interfaces";
 
 export const EditInvoice = () => {
   const { formProps, saveButtonProps } = useForm<IInvoice>({

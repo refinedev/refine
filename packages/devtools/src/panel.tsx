@@ -8,7 +8,7 @@ import {
   send,
 } from "@refinedev/devtools-shared";
 
-import { Placement } from "./interfaces/placement";
+import type { Placement } from "./interfaces/placement";
 
 export const DevtoolsPanel =
   __DEV_CONDITION__ !== "development"

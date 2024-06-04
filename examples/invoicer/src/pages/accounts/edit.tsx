@@ -1,4 +1,4 @@
-import { HttpError, useNavigation } from "@refinedev/core";
+import { type HttpError, useNavigation } from "@refinedev/core";
 import {
   DateField,
   DeleteButton,
@@ -25,7 +25,7 @@ import {
   FormItemEditableText,
   FormItemUploadLogo,
 } from "@/components/form";
-import { Account, AccountForm } from "@/types";
+import type { Account, AccountForm } from "@/types";
 
 export const AccountsPageEdit = () => {
   const { listUrl } = useNavigation();
@@ -100,6 +100,7 @@ export const AccountsPageEdit = () => {
               styles={{ body: { padding: 0 } }}
               title={
                 <Flex gap={12} align="center">
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <BankOutlined />
                   <Typography.Text>Account info</Typography.Text>
                 </Flex>
@@ -107,6 +108,7 @@ export const AccountsPageEdit = () => {
             >
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<UserOutlined />}
                 placeholder="Add owner name"
                 formItemProps={{
@@ -118,6 +120,7 @@ export const AccountsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<MailOutlined />}
                 placeholder="Add email"
                 formItemProps={{
@@ -130,6 +133,7 @@ export const AccountsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<EnvironmentOutlined />}
                 placeholder="Add address"
                 formItemProps={{
@@ -141,6 +145,7 @@ export const AccountsPageEdit = () => {
               <Divider style={{ margin: 0 }} />
               <FormItemEditableInputText
                 loading={isLoading}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PhoneOutlined />}
                 placeholder="Add phone number"
                 formItemProps={{
@@ -168,6 +173,7 @@ export const AccountsPageEdit = () => {
               bordered={false}
               title={
                 <Flex gap={12} align="center">
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <ShopOutlined />
                   <Typography.Text>Clients</Typography.Text>
                 </Flex>
@@ -208,6 +214,7 @@ export const AccountsPageEdit = () => {
                         hideText
                         resource="clients"
                         recordItemId={record.id}
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<ExportOutlined />}
                       />
                     );
@@ -220,6 +227,7 @@ export const AccountsPageEdit = () => {
               bordered={false}
               title={
                 <Flex gap={12} align="center">
+                  {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                   <ContainerOutlined />
                   <Typography.Text>Invoices</Typography.Text>
                 </Flex>
@@ -275,6 +283,7 @@ export const AccountsPageEdit = () => {
                         hideText
                         resource="invoices"
                         recordItemId={record.id}
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<ExportOutlined />}
                       />
                     );

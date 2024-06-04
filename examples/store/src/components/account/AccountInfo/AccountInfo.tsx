@@ -1,4 +1,4 @@
-import { useState, useEffect, PropsWithChildren } from "react";
+import { useState, useEffect, type PropsWithChildren } from "react";
 import cn from "clsx";
 import { Disclosure } from "@headlessui/react";
 

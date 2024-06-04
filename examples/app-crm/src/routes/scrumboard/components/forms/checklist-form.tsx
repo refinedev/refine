@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
+import { type HttpError, useInvalidate } from "@refinedev/core";
 
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form } from "antd";
 
-import { Task, TaskUpdateInput } from "@/graphql/schema.types";
+import type { Task, TaskUpdateInput } from "@/graphql/schema.types";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 import { AccordionHeaderSkeleton, ChecklistHeader, CheckListInput } from "../";
@@ -88,6 +88,7 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
                       size="small"
                       onClick={() => remove(field.name)}
                       style={{ opacity: "0.15" }}
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<DeleteOutlined />}
                     />
                   </div>
@@ -97,6 +98,7 @@ export const CheckListForm = ({ initialValues, isLoading }: Props) => {
                     type="link"
                     onClick={() => add()}
                     block
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<PlusOutlined />}
                     style={{
                       textAlign: "left",

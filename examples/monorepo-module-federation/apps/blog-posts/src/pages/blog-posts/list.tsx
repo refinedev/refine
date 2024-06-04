@@ -13,7 +13,7 @@ import {
 
 import { Radio, Select, Space, Table } from "antd";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 const PostList = () => {
   const { tableProps, filters } = useTable<IPost>({

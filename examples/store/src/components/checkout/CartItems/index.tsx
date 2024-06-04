@@ -1,5 +1,5 @@
 import { CheckoutCartItem } from "@components/cart";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 import clsx from "clsx";
 import React from "react";
 

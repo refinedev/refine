@@ -1,9 +1,9 @@
 import React from "react";
 import { useMany } from "@refinedev/core";
 import { EditButton, List, useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();

@@ -2,7 +2,7 @@ import React from "react";
 import { Edit, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 export const UserEdit = () => {
   const { formProps, saveButtonProps } = useForm<IUser>();

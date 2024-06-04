@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
-import { EmailFieldProps } from "../types";
+import type { EmailFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>` }

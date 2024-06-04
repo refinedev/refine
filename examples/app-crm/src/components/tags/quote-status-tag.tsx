@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import type { FC, ReactElement } from "react";
 
 import {
   CheckCircleOutlined,
@@ -7,19 +7,22 @@ import {
 } from "@ant-design/icons";
 import { Tag } from "antd";
 
-import { QuoteStatus } from "@/graphql/schema.types";
+import type { QuoteStatus } from "@/graphql/schema.types";
 
 const variant: Record<QuoteStatus, { color: string; icon: ReactElement }> = {
   DRAFT: {
     color: "blue",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <ExpandOutlined />,
   },
   SENT: {
     color: "cyan",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <SendOutlined />,
   },
   ACCEPTED: {
     color: "green",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <CheckCircleOutlined />,
   },
 };

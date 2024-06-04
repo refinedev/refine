@@ -1,6 +1,6 @@
-import React, { ReactNode, useState } from "react";
+import React, { type ReactNode, useState } from "react";
 
-import { IThemedLayoutContext } from "./IThemedLayoutContext";
+import type { IThemedLayoutContext } from "./IThemedLayoutContext";
 
 export const ThemedLayoutContext = React.createContext<IThemedLayoutContext>({
   siderCollapsed: false,

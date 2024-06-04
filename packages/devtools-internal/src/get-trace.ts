@@ -2,7 +2,7 @@ import ErrorStackParser from "error-stack-parser";
 import { cleanStack } from "./clean-stack";
 import { isRefineStack } from "./is-refine-stack";
 import { getPackageNameFromFilename } from "./get-package-name-from-filename";
-import { TraceType } from "@refinedev/devtools-shared";
+import type { TraceType } from "@refinedev/devtools-shared";
 
 export function getTrace(excludeFromTrace?: string[]) {
   if (__DEV_CONDITION__ !== "development") {

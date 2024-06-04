@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconEye } from "@tabler/icons-react";
 
-import { ShowButtonProps } from "../types";
+import type { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.

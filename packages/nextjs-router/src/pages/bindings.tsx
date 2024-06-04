@@ -1,14 +1,14 @@
 import {
-  GoConfig,
-  RouterBindings,
+  type GoConfig,
+  type RouterBindings,
   ResourceContext,
   matchResourceFromRoute,
-  ParseResponse,
+  type ParseResponse,
 } from "@refinedev/core";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import qs from "qs";
-import React, { ComponentProps, useContext } from "react";
+import React, { type ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
 import { convertToNumberIfPossible } from "src/common/convert-to-number-if-possible";
 

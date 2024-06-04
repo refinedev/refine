@@ -1,4 +1,4 @@
-import { InferencerComponentProps } from "../../types";
+import type { InferencerComponentProps } from "../../types";
 
 export type Action = keyof NonNullable<
   InferencerComponentProps["meta"]

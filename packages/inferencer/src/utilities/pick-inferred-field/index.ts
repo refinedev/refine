@@ -1,4 +1,4 @@
-import { InferField } from "../../types";
+import type { InferField } from "../../types";
 
 /**
  * Each field inferencer will run with every property of a record and output a result.

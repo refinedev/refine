@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 
 import { useForm, useSelect } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import { type HttpError, useInvalidate } from "@refinedev/core";
+import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { FlagOutlined } from "@ant-design/icons";
 import { Checkbox, Form, Select, Space } from "antd";
 
-import { Task } from "@/graphql/schema.types";
-import { KanbanGetTaskQuery, TaskStagesSelectQuery } from "@/graphql/types";
+import type { Task } from "@/graphql/schema.types";
+import type {
+  KanbanGetTaskQuery,
+  TaskStagesSelectQuery,
+} from "@/graphql/types";
 
 import { AccordionHeaderSkeleton } from "../accordion-header-skeleton";
 import { TASK_STAGES_SELECT_QUERY } from "./queries";
@@ -72,6 +75,7 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
         initialValues={initialValues}
       >
         <Space size={5}>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <FlagOutlined />
           <Form.Item noStyle name={["stage", "id"]}>
             <Select

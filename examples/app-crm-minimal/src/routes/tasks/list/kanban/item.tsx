@@ -3,7 +3,7 @@ import React from "react";
 import {
   DragOverlay,
   useDraggable,
-  UseDraggableArguments,
+  type UseDraggableArguments,
 } from "@dnd-kit/core";
 
 interface Props {

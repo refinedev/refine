@@ -1,5 +1,5 @@
 import React from "react";
-import { DataGrid, GridColTypeDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColTypeDef } from "@mui/x-data-grid";
 import { useDataGrid } from "@refinedev/mui";
 
 import Card from "@mui/material/Card";
@@ -11,7 +11,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { getDefaultFilter } from "@refinedev/core";
-import { IOrder, IOrderStatus } from "../../interfaces";
+import type { IOrder, IOrderStatus } from "../../interfaces";
 
 export function RecentSales() {
   const { dataGridProps, setCurrent, setFilters, filters } =

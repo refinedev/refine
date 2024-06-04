@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useList } from "@refinedev/core";
 import { Card, Typography } from "antd";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import { DollarOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
@@ -97,6 +97,7 @@ export const DealChart: React.FC<{}> = () => {
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <DollarOutlined />
           <Typography.Text style={{ marginLeft: ".5rem" }}>
             Deals

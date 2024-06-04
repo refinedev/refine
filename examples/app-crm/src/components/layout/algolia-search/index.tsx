@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { useHits, useSearchBox } from "react-instantsearch";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Input, List, Popover, Tag, Typography } from "antd";
 import cn from "classnames";
 
-import {
+import type {
   Company,
   Contact,
   Deal,
@@ -53,6 +53,7 @@ export const AlgoliaSearch: React.FC = () => {
           className={styles.input}
           size="large"
           prefix={
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               className={cn(styles.inputPrefix, "secondary", "tertiary")}
             />

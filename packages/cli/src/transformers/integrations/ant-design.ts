@@ -6,7 +6,7 @@ import {
   wrapElement,
 } from "../../utils/codeshift";
 import { prettierFormat } from "../../utils/swizzle/prettierFormat";
-import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
+import type { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
 
 export const parser = "tsx";
 

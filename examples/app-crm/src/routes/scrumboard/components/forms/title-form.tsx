@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
+import { type HttpError, useInvalidate } from "@refinedev/core";
 
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task, TaskUpdateInput } from "@/graphql/schema.types";
+import type { Task, TaskUpdateInput } from "@/graphql/schema.types";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
 

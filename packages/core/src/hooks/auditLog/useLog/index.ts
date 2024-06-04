@@ -2,8 +2,8 @@ import { useContext } from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseMutationOptions,
-  UseMutationResult,
+  type UseMutationOptions,
+  type UseMutationResult,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
@@ -16,8 +16,8 @@ import { pickResource } from "@definitions/helpers/pick-resource";
 import { useGetIdentity } from "@hooks/auth";
 import { useKeys } from "@hooks/useKeys";
 
-import { LogParams } from "../../../contexts/auditLog/types";
-import { BaseKey } from "../../../contexts/data/types";
+import type { LogParams } from "../../../contexts/auditLog/types";
+import type { BaseKey } from "../../../contexts/data/types";
 
 type LogRenameData =
   | {

@@ -1,4 +1,9 @@
-import React, { DetailedHTMLProps, ReactNode, SVGProps, useRef } from "react";
+import React, {
+  type DetailedHTMLProps,
+  type ReactNode,
+  type SVGProps,
+  useRef,
+} from "react";
 import clsx from "clsx";
 import {
   Atlassian,

@@ -20,22 +20,27 @@ export const OrderStatus: React.FC<OrderStatusProps> = ({ status }) => {
   switch (status) {
     case "Pending":
       color = "orange";
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <ClockCircleOutlined />;
       break;
     case "Ready":
       color = "cyan";
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <BellOutlined />;
       break;
     case "On The Way":
       color = "blue";
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <BikeWhiteIcon />;
       break;
     case "Delivered":
       color = "green";
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <CheckCircleOutlined />;
       break;
     case "Cancelled":
       color = "red";
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon = <CloseCircleOutlined />;
       break;
   }

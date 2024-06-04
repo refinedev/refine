@@ -1,8 +1,8 @@
-import { HttpError, useParsed } from "@refinedev/core";
+import { type HttpError, useParsed } from "@refinedev/core";
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
-import { IOrder, IProduct } from "../../interfaces";
+import type { IOrder, IProduct } from "../../interfaces";
 
 export const OrderEdit = () => {
   const { params } = useParsed<{ tenant: string }>();

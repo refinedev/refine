@@ -1,4 +1,4 @@
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 
 export const relationRegexp = /(-id|-ids|_id|_ids|Id|Ids|ID|IDs)(\[\])?$/;
 

@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconFileExport } from "@tabler/icons-react";
 
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component with a default export icon and a default text with "Export".

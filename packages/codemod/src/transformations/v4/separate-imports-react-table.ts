@@ -1,4 +1,4 @@
-import { Collection, JSCodeshift } from "jscodeshift";
+import type { Collection, JSCodeshift } from "jscodeshift";
 import { exported } from "../../definitions/separated-imports/react-table";
 import {
   CONFIG_FILE_NAME,

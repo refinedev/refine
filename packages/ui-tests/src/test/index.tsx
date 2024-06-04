@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthProvider, Refine } from "@refinedev/core";
+import { type AuthProvider, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
-import {
+import type {
   I18nProvider,
   AccessControlProvider,
   LegacyAuthProvider,
@@ -13,6 +13,7 @@ import {
   IResourceItem,
   RouterBindings,
   IRouterContext,
+  IRefineOptions,
 } from "@refinedev/core";
 
 /* interface ITestWrapperProps {
@@ -42,6 +43,7 @@ export interface ITestWrapperProps {
   routerProvider?: RouterBindings;
   routerInitialEntries?: string[];
   DashboardPage?: React.FC;
+  options?: IRefineOptions;
 }
 
 export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
@@ -56,6 +58,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
   i18nProvider,
   routerProvider,
   legacyRouterProvider,
+  options,
 }) => {
   // Previously, MemoryRouter was used in this wrapper. However, the
   // recommendation by react-router developers (see
@@ -75,6 +78,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         <Refine
           options={{
             disableTelemetry: true,
+            ...options,
           }}
           dataProvider={dataProvider ?? MockJSONServer}
           i18nProvider={i18nProvider}

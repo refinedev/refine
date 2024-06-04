@@ -1,16 +1,16 @@
 import {
   useStepsForm as useStepsFormSF,
-  UseStepsFormConfig,
+  type UseStepsFormConfig,
 } from "sunflower-antd";
-import { FormInstance, FormProps } from "antd";
+import type { FormInstance, FormProps } from "antd";
 
-import {
+import type {
   HttpError,
   UseFormProps as UseFormPropsCore,
   BaseRecord,
 } from "@refinedev/core";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 
 export type UseStepsFormFromSFReturnType<TResponse, TVariables> = {
   current: number;

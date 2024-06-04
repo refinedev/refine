@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Pagination from "@mui/material/Pagination";
 import dayjs from "dayjs";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";

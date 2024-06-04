@@ -1,4 +1,4 @@
-import { GetListResponse } from "../../../contexts/data/types";
+import type { GetListResponse } from "../../../contexts/data/types";
 
 export const getNextPageParam = (lastPage: GetListResponse) => {
   const { pagination, cursor } = lastPage;

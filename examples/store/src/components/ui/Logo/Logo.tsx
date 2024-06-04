@@ -1,4 +1,4 @@
-import { IconProps } from "src/types/icon";
+import type { IconProps } from "src/types/icon";
 
 export const Logo: React.FC<IconProps & { short?: boolean }> = ({
   short,

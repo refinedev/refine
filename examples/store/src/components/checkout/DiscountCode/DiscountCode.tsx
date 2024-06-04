@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { formatAmount } from "medusa-react";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
 import { useDelete, useInvalidate, useUpdate } from "@refinedev/core";
 

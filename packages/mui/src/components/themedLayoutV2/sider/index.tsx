@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { type CSSProperties, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -20,7 +20,7 @@ import Dashboard from "@mui/icons-material/Dashboard";
 
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLogout,
   useTitle,
@@ -34,7 +34,7 @@ import {
   pickNotDeprecated,
   useWarnAboutChange,
 } from "@refinedev/core";
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";

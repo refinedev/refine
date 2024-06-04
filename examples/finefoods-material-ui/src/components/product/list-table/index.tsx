@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
-import { NumberField, UseDataGridReturnType } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { NumberField, type UseDataGridReturnType } from "@refinedev/mui";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import { useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";

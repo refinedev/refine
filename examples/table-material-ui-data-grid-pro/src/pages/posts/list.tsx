@@ -1,10 +1,10 @@
-import { GridValueFormatterParams } from "@mui/x-data-grid";
-import { DataGridPro, GridColDef } from "@mui/x-data-grid-pro";
-import { Option, useSelect } from "@refinedev/core";
+import type { GridValueFormatterParams } from "@mui/x-data-grid";
+import { DataGridPro, type GridColDef } from "@mui/x-data-grid-pro";
+import { type Option, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({

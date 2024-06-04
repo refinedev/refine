@@ -277,7 +277,7 @@ As an alternative, you can also install the `@refinedev/devtools-server` package
 
 **Required Ports**
 
-Devtools server will run on port `5001` and also run a WebSocket server on port `5002`. Make sure these ports are available on your machine. Both of these ports are required for devtools to work properly and maintain a connection between your app and the devtools interface.
+Devtools server will run on port `5001`. Devtools will serve HTTP and WebSocket connections on this port. Make sure the port is available on your machine.
 
 ## Using Inferencer
 

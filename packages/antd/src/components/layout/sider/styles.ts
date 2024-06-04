@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 export const drawerButtonStyles: CSSProperties = {
   borderTopLeftRadius: 0,

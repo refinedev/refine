@@ -1,4 +1,8 @@
-import { json, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -8,7 +12,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { AuthProvider, GitHubBanner, Refine } from "@refinedev/core";
+import { type AuthProvider, GitHubBanner, Refine } from "@refinedev/core";
 import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {

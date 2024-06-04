@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useWatch } from "react-hook-form";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 
 import { Input } from "@components";
 import { AccountInfo } from "@components/account";

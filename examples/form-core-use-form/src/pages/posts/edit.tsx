@@ -1,6 +1,6 @@
 import { AutoSaveIndicator, useForm } from "@refinedev/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 type FormValues = Omit<IPost, "id">;
 

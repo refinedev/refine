@@ -1,7 +1,7 @@
 import React from "react";
 import { Chip } from "@mantine/core";
 
-import { TagFieldProps } from "../types";
+import type { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Mantine {@link https://mantine.dev/core/chip `<Chip>`} component.

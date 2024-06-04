@@ -18,13 +18,13 @@ describe("generateDocumentTitle", () => {
   });
 
   it("should return the default title when resource is undefined", () => {
-    expect(generateDefaultDocumentTitle(translateMock)).toBe("refine");
+    expect(generateDefaultDocumentTitle(translateMock)).toBe("Refine");
   });
 
   it("should return `resource name` when action is `list`", () => {
     expect(
       generateDefaultDocumentTitle(translateMock, { name: "posts" }, "list"),
-    ).toBe("Posts | refine");
+    ).toBe("Posts | Refine");
   });
 
   it("should return the label of the resource when it is provided", () => {
@@ -34,7 +34,7 @@ describe("generateDocumentTitle", () => {
         { name: "posts", label: "Posts Label" },
         "list",
       ),
-    ).toBe("Posts Label | refine");
+    ).toBe("Posts Label | Refine");
   });
 
   it("should return the meta.label of the resource when it is provided", () => {
@@ -48,13 +48,13 @@ describe("generateDocumentTitle", () => {
         },
         "list",
       ),
-    ).toBe("Meta Label | refine");
+    ).toBe("Meta Label | Refine");
   });
 
   it("should return `Create new resource name` when action is `create`", () => {
     expect(
       generateDefaultDocumentTitle(translateMock, { name: "posts" }, "create"),
-    ).toBe("Create new Post | refine");
+    ).toBe("Create new Post | Refine");
   });
 
   it("should return `#id Clone resource name` when action is `clone`", () => {
@@ -65,7 +65,7 @@ describe("generateDocumentTitle", () => {
         "clone",
         "1",
       ),
-    ).toBe("#1 Clone Post | refine");
+    ).toBe("#1 Clone Post | Refine");
   });
 
   it("should return `#id Edit resource name` when action is `edit`", () => {
@@ -76,7 +76,7 @@ describe("generateDocumentTitle", () => {
         "edit",
         "1",
       ),
-    ).toBe("#1 Edit Post | refine");
+    ).toBe("#1 Edit Post | Refine");
   });
 
   it("should return `#id Show resource name` when action is `show`", () => {
@@ -87,7 +87,7 @@ describe("generateDocumentTitle", () => {
         "show",
         "1",
       ),
-    ).toBe("#1 Show Post | refine");
+    ).toBe("#1 Show Post | Refine");
   });
 
   it("should pass `id` to `translate` function", () => {
@@ -96,7 +96,7 @@ describe("generateDocumentTitle", () => {
     expect(translateMock).toHaveBeenCalledWith(
       "documentTitle.posts.show",
       { id: "1" },
-      "#1 Show Post | refine",
+      "#1 Show Post | Refine",
     );
   });
 
@@ -109,6 +109,6 @@ describe("generateDocumentTitle", () => {
         "show",
         "1",
       ),
-    ).toBe("#1 Show Post | refine");
+    ).toBe("#1 Show Post | Refine");
   });
 });

@@ -6,7 +6,7 @@ import {
 } from "@tabler/icons-react";
 
 import type { SortDirection } from "@tanstack/react-table";
-import { ColumnButtonProps } from "../../interfaces";
+import type { ColumnButtonProps } from "../../interfaces";
 
 export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
   if (!column.getCanSort()) {

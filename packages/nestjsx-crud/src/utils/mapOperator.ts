@@ -1,5 +1,5 @@
-import { ComparisonOperator, CondOperator } from "@nestjsx/crud-request";
-import { CrudOperators } from "@refinedev/core";
+import { type ComparisonOperator, CondOperator } from "@nestjsx/crud-request";
+import type { CrudOperators } from "@refinedev/core";
 
 export const mapOperator = (operator: CrudOperators): ComparisonOperator => {
   switch (operator) {

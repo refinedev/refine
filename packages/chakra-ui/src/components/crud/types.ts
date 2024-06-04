@@ -1,5 +1,5 @@
-import { BoxProps, StackProps } from "@chakra-ui/react";
-import {
+import type { BoxProps, StackProps } from "@chakra-ui/react";
+import type {
   CreateButtonProps,
   DeleteButtonProps,
   EditButtonProps,
@@ -7,7 +7,7 @@ import {
   ListButtonProps,
   SaveButtonProps,
 } from "../buttons/types";
-import {
+import type {
   RefineCrudCreateProps,
   RefineCrudEditProps,
   RefineCrudListProps,

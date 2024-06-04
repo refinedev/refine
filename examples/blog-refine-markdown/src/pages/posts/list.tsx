@@ -14,7 +14,7 @@ import {
   ShowButton,
 } from "@refinedev/antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, sorter } = useTable<IPost>({

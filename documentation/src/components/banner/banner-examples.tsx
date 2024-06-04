@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import clsx from "clsx";
 import { LandingRainbowButton } from "@site/src/refine-theme/landing-rainbow-button";
 import { RefineLogoSeal } from "@site/src/refine-theme/icons/refine-logo-seal";

@@ -1,12 +1,12 @@
 import React from "react";
 import {
   useNavigation,
-  GetManyResponse,
+  type GetManyResponse,
   useMany,
   useDelete,
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 
 export const BlogPostList = () => {
   const { mutate: deleteBlogPost } = useDelete();

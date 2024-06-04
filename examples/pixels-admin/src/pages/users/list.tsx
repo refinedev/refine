@@ -2,7 +2,7 @@ import { useTable, List } from "@refinedev/antd";
 import { Table, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-import { TUser } from "../../types/user";
+import type { TUser } from "../../types/user";
 
 export const UserList = () => {
   const { tableProps } = useTable<TUser>();
@@ -17,6 +17,7 @@ export const UserList = () => {
           }
           render={(_, record: TUser) => (
             <Avatar
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<UserOutlined />}
               src={record.avatar_url}
               size={{ xs: 24, sm: 32, md: 40 }}

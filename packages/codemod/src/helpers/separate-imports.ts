@@ -1,4 +1,4 @@
-import { Collection, ImportSpecifier, JSCodeshift } from "jscodeshift";
+import type { Collection, ImportSpecifier, JSCodeshift } from "jscodeshift";
 
 /**
  * Separate imports from currentLibName to nextLibName

@@ -14,7 +14,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
 
-import { DeleteButtonProps } from "../types";
+import type { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} and {@link https://mui.com/material-ui/react-dialog/#main-content `<Dialog>`} components.

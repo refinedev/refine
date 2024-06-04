@@ -1,11 +1,11 @@
 import React from "react";
 import {
   BrowserRouter,
-  BrowserRouterProps,
+  type BrowserRouterProps,
   MemoryRouter,
-  MemoryRouterProps,
+  type MemoryRouterProps,
   HashRouter,
-  HashRouterProps,
+  type HashRouterProps,
 } from "react-router-dom";
 
 import { RouteProvider } from "./routeProvider";

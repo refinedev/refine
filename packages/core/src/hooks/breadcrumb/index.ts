@@ -10,7 +10,7 @@ import { composeRoute } from "@definitions/helpers/router/compose-route";
 import { useRefineContext, useResource, useTranslate } from "@hooks";
 import { useParsed } from "@hooks/router/use-parsed";
 
-import { IResourceItem } from "../../contexts/resource/types";
+import type { IResourceItem } from "../../contexts/resource/types";
 import { pickResource } from "../../definitions/helpers/pick-resource/index";
 
 export type BreadcrumbsType = {
