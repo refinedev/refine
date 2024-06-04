@@ -1,18 +1,18 @@
 import { Children, createElement, Fragment } from "react";
-import { ListProps, FormProps, Form, Grid } from "antd";
+import { type ListProps, type FormProps, Form, Grid } from "antd";
 
 import {
-  BaseRecord,
-  CrudFilters,
-  HttpError,
+  type BaseRecord,
+  type CrudFilters,
+  type HttpError,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType,
   pickNotDeprecated,
 } from "@refinedev/core";
 import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
-import { PaginationConfig } from "antd/lib/pagination";
+import type { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {

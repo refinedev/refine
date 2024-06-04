@@ -8,7 +8,7 @@ import {
 } from "recharts";
 import { ChartTooltip } from "../chartTooltip";
 import dayjs from "dayjs";
-import { IOrderChart } from "../../../interfaces";
+import type { IOrderChart } from "../../../interfaces";
 
 type Props = {
   data: IOrderChart[];

@@ -1,14 +1,14 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import { useNavigation } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 import { parseTableParams } from "@refinedev/remix-router";
 
 import { API_URL } from "~/constants";
-import { IPost } from "~/interfaces";
+import type { IPost } from "~/interfaces";
 
 const PostList: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();

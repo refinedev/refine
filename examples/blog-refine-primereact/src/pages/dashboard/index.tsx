@@ -6,7 +6,7 @@ import { KpiCard } from "../../components/dashboard/kpiCard";
 import { ChartView } from "../../components/dashboard/chartView";
 import { RecentSales } from "../../components/dashboard/recentSales";
 
-import { IChart } from "../../interfaces";
+import type { IChart } from "../../interfaces";
 
 const query = {
   start: dayjs().subtract(7, "days").startOf("day"),

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import { ThemedLayoutContextProvider } from "@contexts";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
-import { RefineThemedLayoutV2Props } from "./types";
+import type { RefineThemedLayoutV2Props } from "./types";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   Sider,

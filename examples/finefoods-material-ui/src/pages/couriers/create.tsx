@@ -2,7 +2,7 @@ import React from "react";
 import {
   useTranslate,
   useApiUrl,
-  HttpError,
+  type HttpError,
   useGetToPath,
   useGo,
 } from "@refinedev/core";
@@ -10,7 +10,7 @@ import InputMask from "react-input-mask";
 import { useSearchParams } from "react-router-dom";
 import { useAutocomplete } from "@refinedev/mui";
 import {
-  UseStepsFormReturnType,
+  type UseStepsFormReturnType,
   useStepsForm,
 } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
@@ -30,7 +30,7 @@ import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import type { TextFieldProps } from "@mui/material/TextField";
-import { ICourier, IFile, IStore, Nullable } from "../../interfaces";
+import type { ICourier, IFile, IStore, Nullable } from "../../interfaces";
 import { CourierImageUpload } from "../../components";
 import { useImageUpload } from "../../utils";
 import Divider from "@mui/material/Divider";

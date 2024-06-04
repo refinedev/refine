@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { Edit, useAutocomplete, SaveButton } from "@refinedev/mui";
 import { useTheme } from "@mui/material/styles";
 
@@ -15,7 +15,7 @@ import { useStepsForm } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
+import type { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
 
 const stepTitles = [
   "Edit Title",

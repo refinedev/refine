@@ -1,6 +1,6 @@
 import { useModalForm, useSelect } from "@refinedev/antd";
-import { HttpError, useGo } from "@refinedev/core";
-import {
+import { type HttpError, useGo } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -10,7 +10,7 @@ import { Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import {
+import type {
   CreateCompanyMutation,
   CreateCompanyMutationVariables,
   UsersSelectQuery,

@@ -9,8 +9,8 @@ import {
 
 import { Box, Heading } from "@chakra-ui/react";
 
-import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
-import { ListProps } from "../types";
+import { CreateButton, Breadcrumb, type CreateButtonProps } from "@components";
+import type { ListProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const List: React.FC<ListProps> = (props) => {

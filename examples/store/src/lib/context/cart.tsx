@@ -1,5 +1,5 @@
-import React, { useEffect, useState, PropsWithChildren } from "react";
-import { Region, StoreCartsRes, Cart } from "@medusajs/medusa";
+import React, { useEffect, useState, type PropsWithChildren } from "react";
+import type { Region, StoreCartsRes, Cart } from "@medusajs/medusa";
 import {
   useCreate,
   useDelete,

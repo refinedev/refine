@@ -4,7 +4,7 @@ import Tooltip from "@mui/material/Tooltip";
 import CheckOutlined from "@mui/icons-material/CheckOutlined";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { BooleanFieldProps } from "../types";
+import type { BooleanFieldProps } from "../types";
 
 /**
  * This field is used to display boolean values. It uses the {@link https://mui.com/material-ui/react-tooltip/#main-content `<Tooltip>`} values from Materila UI.

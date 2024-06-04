@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import {
-  GetManyResponse,
+  type GetManyResponse,
   useDeleteMany,
   useMany,
   useSelect,
@@ -8,11 +8,11 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender, Row } from "@tanstack/react-table";
+import { type ColumnDef, flexRender, type Row } from "@tanstack/react-table";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const {

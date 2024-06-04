@@ -1,6 +1,6 @@
 import { FilterDropdown, useTable } from "@refinedev/antd";
 import { getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   EnvironmentOutlined,
@@ -15,7 +15,7 @@ import { Card, Col, Input, Row, Select, Space, Table } from "antd";
 import cn from "classnames";
 
 import { CustomAvatar, Logo, Text } from "@/components";
-import { AdministrationUsersQuery } from "@/graphql/types";
+import type { AdministrationUsersQuery } from "@/graphql/types";
 
 import { RoleTag } from "./components";
 import { ADMINISTRATION_USERS_QUERY } from "./queries";
@@ -132,6 +132,7 @@ const UsersTable = () => {
       }}
       title={
         <Space size="middle">
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <TeamOutlined />
           <Text>Contacts</Text>
         </Space>
@@ -150,6 +151,7 @@ const UsersTable = () => {
           dataIndex="name"
           title="Name"
           defaultFilteredValue={getDefaultFilter("name", filters, "contains")}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
@@ -179,6 +181,7 @@ const UsersTable = () => {
             filters,
             "contains",
           )}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
@@ -213,21 +216,25 @@ const companyInfo = [
   {
     label: "Address",
     value: "2158 Mount Tabor, Westbury, New York, USA 11590",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <EnvironmentOutlined className="tertiary" />,
   },
   {
     label: "Phone",
     value: "+123 456 789 01 23",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <PhoneOutlined className="tertiary" />,
   },
   {
     label: "Email",
     value: "info@globexcorp.com",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <MailOutlined className="tertiary" />,
   },
   {
     label: "Website",
     value: "https://globexcorp.com",
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     icon: <GlobalOutlined className="tertiary" />,
   },
 ];
@@ -237,6 +244,7 @@ export const CompanyInfo = () => {
     <Card
       title={
         <Space>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <ShopOutlined />
           <Text>Company info</Text>
         </Space>

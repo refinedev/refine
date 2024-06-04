@@ -1,4 +1,4 @@
-import { MetaQuery, BaseKey } from "@refinedev/core";
+import type { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
 import camelCase from "camelcase";

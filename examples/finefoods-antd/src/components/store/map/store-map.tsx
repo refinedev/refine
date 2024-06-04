@@ -1,7 +1,7 @@
 import { Flex } from "antd";
 import _debounce from "lodash/debounce";
 import { Map, MapMarker } from "../../map";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { useCallback } from "react";
 import { convertLatLng } from "../../../utils";
 

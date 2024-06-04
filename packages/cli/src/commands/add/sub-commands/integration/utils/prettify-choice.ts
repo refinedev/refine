@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { IntegrationId } from "../packages";
+import type { IntegrationId } from "../packages";
 
 interface IntegrationChoice {
   id: IntegrationId;

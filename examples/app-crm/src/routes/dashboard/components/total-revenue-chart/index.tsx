@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 
 import { useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined } from "@ant-design/icons";
-import { GaugeConfig } from "@ant-design/plots";
+import type { GaugeConfig } from "@ant-design/plots";
 import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
-import { DashboardTotalRevenueQuery } from "@/graphql/types";
+import type { DashboardTotalRevenueQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { DASHBOARD_TOTAL_REVENUE_QUERY } from "./queries";
@@ -151,6 +151,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <DollarOutlined />
           <Text size="sm">Total revenue (yearly)</Text>
         </div>

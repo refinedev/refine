@@ -1,6 +1,6 @@
-import React, { ElementType, RefObject } from "react";
+import React, { type ElementType, type RefObject } from "react";
 import { useButton } from "@react-aria/button";
-import { AriaButtonProps } from "react-aria";
+import type { AriaButtonProps } from "react-aria";
 
 // eslint-disable-next-line
 export default function Button(props: AriaButtonProps<ElementType> | any) {

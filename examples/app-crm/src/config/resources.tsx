@@ -16,6 +16,7 @@ export const resources: IResourceItem[] = [
     list: "/",
     meta: {
       label: "Dashboard",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <DashboardOutlined />,
     },
   },
@@ -27,6 +28,7 @@ export const resources: IResourceItem[] = [
     show: "/calendar/show/:id",
     meta: {
       label: "Calendar",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <CalendarOutlined />,
     },
   },
@@ -34,6 +36,7 @@ export const resources: IResourceItem[] = [
     name: "scrumboard",
     meta: {
       label: "Scrumboard",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <ProjectOutlined />,
     },
   },
@@ -92,6 +95,7 @@ export const resources: IResourceItem[] = [
     edit: "/companies/edit/:id",
     meta: {
       label: "Companies",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <ShopOutlined />,
     },
   },
@@ -111,6 +115,7 @@ export const resources: IResourceItem[] = [
     show: "/contacts/show/:id",
     meta: {
       label: "Contacts",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <TeamOutlined />,
     },
   },
@@ -122,6 +127,7 @@ export const resources: IResourceItem[] = [
     show: "/quotes/show/:id",
     meta: {
       label: "Quotes",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <ContainerOutlined />,
     },
   },
@@ -129,6 +135,7 @@ export const resources: IResourceItem[] = [
     name: "administration",
     meta: {
       label: "Administration",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <CrownOutlined />,
     },
   },

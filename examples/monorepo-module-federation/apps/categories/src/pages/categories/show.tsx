@@ -4,7 +4,7 @@ import { Show } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

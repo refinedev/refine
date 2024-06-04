@@ -3,7 +3,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { defaultRefineOptions } from "@contexts/refine";
 
 import { handleRefineOptions } from ".";
-import { IRefineOptions } from "../../../contexts/refine/types";
+import type { IRefineOptions } from "../../../contexts/refine/types";
 
 describe("handleRefineOptions", () => {
   it("should return the default options if no options are provided", () => {
@@ -61,6 +61,10 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      title: expect.objectContaining({
+        icon: expect.any(Object),
+        text: "Refine Project",
+      }),
     });
     expect(disableTelemetryWithDefault).toBe(true);
     expect(reactQueryWithDefaults).toEqual({
@@ -127,6 +131,10 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      title: expect.objectContaining({
+        icon: expect.any(Object),
+        text: "Refine Project",
+      }),
     });
     expect(disableTelemetryWithDefault).toBe(true);
     expect(reactQueryWithDefaults).toEqual({
@@ -177,6 +185,10 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      title: expect.objectContaining({
+        icon: expect.any(Object),
+        text: "Refine Project",
+      }),
     });
     expect(disableTelemetryWithDefault).toBe(true);
     expect(reactQueryWithDefaults).toEqual({
@@ -231,5 +243,50 @@ describe("handleRefineOptions", () => {
     const { optionsWithDefaults } = handleRefineOptions({ options });
 
     expect(optionsWithDefaults.projectId).toEqual("test");
+  });
+
+  it("it should return title", () => {
+    const options: IRefineOptions = {
+      title: {
+        icon: "My Icon",
+        text: "My Project",
+      },
+    };
+
+    const { optionsWithDefaults } = handleRefineOptions({ options });
+
+    expect(optionsWithDefaults.title).toEqual(
+      expect.objectContaining({ icon: "My Icon", text: "My Project" }),
+    );
+  });
+
+  it("it should return modified title partially", () => {
+    const options: IRefineOptions = {
+      title: {
+        icon: undefined,
+        text: "My Project",
+      },
+    };
+
+    const { optionsWithDefaults } = handleRefineOptions({ options });
+
+    expect(optionsWithDefaults.title).toEqual(
+      expect.objectContaining({ icon: expect.any(Object), text: "My Project" }),
+    );
+  });
+
+  it("it should accept null values for title", () => {
+    const options: IRefineOptions = {
+      title: {
+        icon: null,
+        text: "My Project",
+      },
+    };
+
+    const { optionsWithDefaults } = handleRefineOptions({ options });
+
+    expect(optionsWithDefaults.title).toEqual(
+      expect.objectContaining({ icon: null, text: "My Project" }),
+    );
   });
 });

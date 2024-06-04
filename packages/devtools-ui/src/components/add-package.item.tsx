@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { Button } from "./button";
 import { PlusCircleIcon } from "./icons/plus-circle";
-import { AvailablePackageType } from "@refinedev/devtools-shared";
+import type { AvailablePackageType } from "@refinedev/devtools-shared";
 
 type PackageItemProps = {
   onInstall?: () => void;

@@ -1,26 +1,30 @@
 import { useEffect, useRef } from "react";
-import { UseFormProps, useNavigation, useTranslate } from "@refinedev/core";
+import {
+  type UseFormProps,
+  useNavigation,
+  useTranslate,
+} from "@refinedev/core";
 import {
   DeleteButton,
   ListButton,
   SaveButton,
-  UseFormReturnType,
+  type UseFormReturnType,
 } from "@refinedev/antd";
 import {
   Form,
   Input,
-  InputProps,
+  type InputProps,
   Segmented,
   Card,
   Flex,
   Divider,
   InputNumber,
   Button,
-  InputRef,
+  type InputRef,
 } from "antd";
 import InputMask from "react-input-mask";
 import _debounce from "lodash/debounce";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import {
   EditOutlined,
   EnvironmentOutlined,
@@ -92,6 +96,7 @@ export const StoreFormFields = ({
         <FormItemHorizontal
           name="isActive"
           initialValue={true}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<RightCircleOutlined />}
           label={t("stores.fields.isActive.label")}
         >
@@ -118,6 +123,7 @@ export const StoreFormFields = ({
           }}
         />
         <FormItemHorizontal
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<MailOutlined />}
           label={t("stores.fields.email")}
           name="email"
@@ -137,6 +143,7 @@ export const StoreFormFields = ({
         />
         <FormItemHorizontal
           name={["address", "text"]}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<EnvironmentOutlined />}
           label={t("stores.fields.address")}
           flexProps={{
@@ -162,6 +169,7 @@ export const StoreFormFields = ({
         />
         <FormItemHorizontal
           name="gsm"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<PhoneOutlined />}
           label={t("stores.fields.gsm")}
           rules={[
@@ -218,6 +226,7 @@ export const StoreFormFields = ({
                   marginLeft: "auto",
                 }}
                 disabled={false}
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<EditOutlined />}
                 onClick={() => setIsFormDisabled(false)}
               >

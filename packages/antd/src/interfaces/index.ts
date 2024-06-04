@@ -1,4 +1,4 @@
-import { IResourceItem } from "@refinedev/core";
+import type { IResourceItem } from "@refinedev/core";
 
 export type BaseRecord = {
   id?: string;

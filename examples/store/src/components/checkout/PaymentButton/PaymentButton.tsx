@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PaymentSession } from "@medusajs/medusa";
+import type { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 
 import { Cross, Spinner } from "@components/icons";

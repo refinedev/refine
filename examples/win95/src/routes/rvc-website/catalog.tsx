@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Browser } from "@/components/browser";
 import { RVCWebsiteLayout } from "@/components/rvc-website";
 import { RefineBanner } from "@/components/refine-banner";
-import { VideoTitle } from "@/types";
+import type { VideoTitle } from "@/types";
 
 type Props = {
   withBrowser?: boolean;

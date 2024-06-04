@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { IconTrash } from "@tabler/icons-react";
 
-import { DeleteButtonProps } from "../types";
+import type { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button>`} and {@link https://chakra-ui.com/docs/components/popover `<Popover>`} components.

@@ -8,10 +8,10 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-import { HttpError, useSelect } from "@refinedev/core";
+import { type HttpError, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const {

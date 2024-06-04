@@ -1,5 +1,5 @@
 import { useTable } from "@refinedev/antd";
-import { ICourier, IReview } from "../../../interfaces";
+import type { ICourier, IReview } from "../../../interfaces";
 import { Rate, Table, Tag } from "antd";
 import { useNavigation, useTranslate } from "@refinedev/core";
 

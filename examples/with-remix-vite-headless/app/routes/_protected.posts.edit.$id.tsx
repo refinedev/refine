@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useSelect } from "@refinedev/core";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import dataProvider from "@refinedev/simple-rest";
 
 import { API_URL } from "~/constants";
-import { IPost } from "~/interfaces";
+import type { IPost } from "~/interfaces";
 
 const PostEdit: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();

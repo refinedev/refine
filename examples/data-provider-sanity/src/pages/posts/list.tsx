@@ -15,7 +15,7 @@ import {
 
 import { Table, Space, Input, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, filters, sorters } = useTable<IPost>({
@@ -65,6 +65,7 @@ export const PostList = () => {
         <Table.Column
           dataIndex="title"
           title="Title"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           defaultFilteredValue={getDefaultFilter("title", filters, "contains")}
           filterDropdown={(props) => (

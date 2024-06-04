@@ -1,6 +1,6 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 
-import { Integration } from ".";
+import type { Integration } from ".";
 import { runTransformer } from "../run-transformer";
 import { prettifyChoice } from "../utils/prettify-choice";
 

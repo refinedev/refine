@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
 
-import { NumberFieldProps } from "../types";
+import type { NumberFieldProps } from "../types";
 
 function toLocaleStringSupportsOptions() {
   return !!(

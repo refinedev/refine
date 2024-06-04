@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import {
-  AuthProvider,
+  type AuthProvider,
   Refine,
-  I18nProvider,
-  AccessControlProvider,
-  LegacyAuthProvider,
-  DataProvider,
-  NotificationProvider,
-  IResourceItem,
+  type I18nProvider,
+  type AccessControlProvider,
+  type LegacyAuthProvider,
+  type DataProvider,
+  type NotificationProvider,
+  type IResourceItem,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";

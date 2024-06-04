@@ -1,14 +1,14 @@
 import React from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 
-import { RcFile } from "antd/lib/upload/interface";
+import type { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, IPostVariables, ICategory } from "../../interfaces";
+import type { IPost, IPostVariables, ICategory } from "../../interfaces";
 import { normalizeFile, storage } from "../../utility";
 
 export const PostEdit = () => {

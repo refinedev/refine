@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/devtools-internal",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "repository": {
@@ -40,7 +40,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/devtools-shared": "1.1.7",
+    "@refinedev/devtools-shared": "1.1.8",
     "@tanstack/react-query": "^4.10.1",
     "error-stack-parser": "^2.1.4"
   },

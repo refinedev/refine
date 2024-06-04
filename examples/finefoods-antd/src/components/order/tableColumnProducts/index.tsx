@@ -1,6 +1,6 @@
 import { Flex, Popover, Typography, Badge, Avatar, theme } from "antd";
 import { getUniqueListWithCount } from "../../../utils";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import { useTranslate } from "@refinedev/core";
 
 const visibleProductCount = 4;

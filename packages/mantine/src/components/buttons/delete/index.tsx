@@ -8,7 +8,7 @@ import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { DeleteButtonProps } from "../types";
+import type { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button `<Button>`} and {@link https://mantine.dev/core/modal `<Modal>`} components.

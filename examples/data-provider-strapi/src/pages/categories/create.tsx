@@ -2,7 +2,7 @@ import { Create, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryCreate = () => {
   const { formProps, saveButtonProps } = useForm<ICategory>();

@@ -1,5 +1,5 @@
 import { useBack, useShow } from "@refinedev/core";
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";

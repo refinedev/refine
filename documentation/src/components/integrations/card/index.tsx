@@ -1,4 +1,4 @@
-import { contributor } from "@site/src/types/integrations";
+import type { contributor } from "@site/src/types/integrations";
 import clsx from "clsx";
 import React from "react";
 

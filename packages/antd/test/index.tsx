@@ -1,17 +1,17 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import {
-  AccessControlProvider,
-  AuthProvider,
-  LegacyAuthProvider,
-  NotificationProvider,
+  type AccessControlProvider,
+  type AuthProvider,
+  type LegacyAuthProvider,
+  type NotificationProvider,
   Refine,
-  I18nProvider,
-  DataProvider,
-  IResourceItem,
-  RouterBindings,
-  IRefineOptions,
+  type I18nProvider,
+  type DataProvider,
+  type IResourceItem,
+  type RouterBindings,
+  type IRefineOptions,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";

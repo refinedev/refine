@@ -8,7 +8,7 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import ImportExportOutlined from "@mui/icons-material/ImportExportOutlined";
 
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".

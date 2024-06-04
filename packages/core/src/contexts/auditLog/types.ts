@@ -1,4 +1,4 @@
-import { BaseKey, MetaDataQuery } from "../data/types";
+import type { BaseKey, MetaDataQuery } from "../data/types";
 
 export type ILog<TData = any> = {
   id: BaseKey;

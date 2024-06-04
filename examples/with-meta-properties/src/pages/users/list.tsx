@@ -1,7 +1,7 @@
 import { List, useTable, EmailField } from "@refinedev/antd";
 import { Table } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 export const UserList: React.FC = () => {
   const { tableProps } = useTable<IUser>({

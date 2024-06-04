@@ -1,6 +1,6 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
-import React, { FC, PropsWithChildren, SVGProps } from "react";
+import React, { type FC, type PropsWithChildren, type SVGProps } from "react";
 
 type Props = {
   className?: string;

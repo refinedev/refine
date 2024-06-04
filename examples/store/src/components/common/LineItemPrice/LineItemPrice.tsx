@@ -1,9 +1,9 @@
-import { Region } from "@medusajs/medusa";
+import type { Region } from "@medusajs/medusa";
 import cn from "clsx";
 import { formatAmount } from "medusa-react";
 
 import { getPercentageDiff } from "@lib/getPercentageDiff";
-import { CalculatedVariant } from "src/types/medusa";
+import type { CalculatedVariant } from "src/types/medusa";
 
 type LineItemPriceProps = {
   variant: CalculatedVariant;

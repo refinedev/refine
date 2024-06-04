@@ -1,7 +1,11 @@
 // import type { Product } from "@commerce/types/product";
 export type SelectedOptions = Record<string, string | null>;
-import { Dispatch, SetStateAction } from "react";
-import { Product, ProductOptionValue, ProductVariant } from "@medusajs/medusa";
+import type { Dispatch, SetStateAction } from "react";
+import type {
+  Product,
+  ProductOptionValue,
+  ProductVariant,
+} from "@medusajs/medusa";
 
 export type MedusaProduct = Awaited<Product>;
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 import { useForm } from "@refinedev/react-hook-form";
 import { useCreate } from "@refinedev/core";
 

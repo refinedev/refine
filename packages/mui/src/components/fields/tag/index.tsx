@@ -1,7 +1,7 @@
 import React from "react";
 import Chip from "@mui/material/Chip";
 
-import { TagFieldProps } from "../types";
+import type { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Material UI {@link https://mui.com/material-ui/react-chip/#main-content `<Chip>`} component.

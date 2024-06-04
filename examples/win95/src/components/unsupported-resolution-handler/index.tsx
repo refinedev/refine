@@ -1,5 +1,5 @@
 import { MINIMUM_APP_HEIGHT, MINIMUM_APP_WIDTH } from "@/utils/app-settings";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren, useEffect, useState } from "react";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;

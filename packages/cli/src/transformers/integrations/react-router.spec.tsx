@@ -1,4 +1,4 @@
-import { FileInfo } from "jscodeshift";
+import type { FileInfo } from "jscodeshift";
 import transform from "./react-router";
 import { VITE_STARTER_SOURCE } from "./fixtures/vite-starter";
 

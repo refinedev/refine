@@ -1,4 +1,4 @@
-import { HttpError, useParsed } from "@refinedev/core";
+import { type HttpError, useParsed } from "@refinedev/core";
 
 import {
   useSimpleList,
@@ -13,7 +13,7 @@ import {
   EditProduct,
   CreateProduct,
 } from "../../components/product";
-import { IProduct } from "../../interfaces";
+import type { IProduct } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
 export const ProductList = () => {

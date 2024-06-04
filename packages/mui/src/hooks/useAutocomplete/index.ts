@@ -1,9 +1,9 @@
 import {
   useSelect as useSelectCore,
-  HttpError,
-  UseSelectProps,
-  UseSelectReturnType,
-  BaseRecord,
+  type HttpError,
+  type UseSelectProps,
+  type UseSelectReturnType,
+  type BaseRecord,
 } from "@refinedev/core";
 
 import type { AutocompleteProps } from "@mui/material/Autocomplete";

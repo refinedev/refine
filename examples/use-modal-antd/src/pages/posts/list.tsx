@@ -2,7 +2,7 @@ import { List, useTable, useModal } from "@refinedev/antd";
 
 import { Table, Modal, Button } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps } = useTable<IPost>();

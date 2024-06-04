@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  ForgotPasswordPageProps,
-  ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type ForgotPasswordFormTypes,
   useRouterType,
   useLink,
 } from "@refinedev/core";
@@ -14,9 +14,9 @@ import {
   Form,
   Input,
   Button,
-  LayoutProps,
-  CardProps,
-  FormProps,
+  type LayoutProps,
+  type CardProps,
+  type FormProps,
   theme,
 } from "antd";
 import {

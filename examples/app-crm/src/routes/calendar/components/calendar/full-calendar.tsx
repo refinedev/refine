@@ -1,11 +1,11 @@
-import { Dispatch, FC, RefObject, SetStateAction } from "react";
+import type { Dispatch, FC, RefObject, SetStateAction } from "react";
 
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
-import { Event } from "@/graphql/schema.types";
+import type { Event } from "@/graphql/schema.types";
 
 type FullCalendarWrapperProps = {
   calendarRef: RefObject<FullCalendar>;

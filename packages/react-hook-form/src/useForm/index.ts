@@ -4,19 +4,19 @@ import has from "lodash/has";
 
 import {
   useForm as useHookForm,
-  UseFormProps as UseHookFormProps,
-  UseFormReturn,
-  FieldValues,
-  UseFormHandleSubmit,
-  Path,
+  type UseFormProps as UseHookFormProps,
+  type UseFormReturn,
+  type FieldValues,
+  type UseFormHandleSubmit,
+  type Path,
 } from "react-hook-form";
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useForm as useFormCore,
   useWarnAboutChange,
-  UseFormProps as UseFormCoreProps,
-  UseFormReturnType as UseFormReturnTypeCore,
+  type UseFormProps as UseFormCoreProps,
+  type UseFormReturnType as UseFormReturnTypeCore,
   useTranslate,
   useRefineContext,
   flattenObjectKeys,

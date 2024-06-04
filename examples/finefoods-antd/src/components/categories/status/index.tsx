@@ -1,7 +1,7 @@
 import { Tag, Typography, theme } from "antd";
 import { EyeOutlined, StopOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { ICategory } from "../../../interfaces";
+import type { ICategory } from "../../../interfaces";
 import { useConfigProvider } from "../../../context";
 
 type Props = {
@@ -20,6 +20,7 @@ export const CategoryStatus = ({ value }: Props) => {
       style={{
         color: value ? token.colorSuccess : token.colorTextTertiary,
       }}
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={value ? <EyeOutlined /> : <StopOutlined />}
     >
       <Typography.Text

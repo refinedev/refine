@@ -1,5 +1,5 @@
 import { Button, Space } from "antd";
-import { FC } from "react";
+import type { FC } from "react";
 
 const IconSun = () => (
   <svg

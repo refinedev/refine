@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { SaveButton, useAutocomplete } from "@refinedev/mui";
 
 import Autocomplete from "@mui/material/Autocomplete";
@@ -10,11 +10,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 
-import { UseModalFormReturnType } from "@refinedev/react-hook-form";
+import type { UseModalFormReturnType } from "@refinedev/react-hook-form";
 
 import { Controller } from "react-hook-form";
 
-import { ICategory, IPost, IStatus, Nullable } from "../interfaces";
+import type { ICategory, IPost, IStatus, Nullable } from "../interfaces";
 
 export const EditPostModal: React.FC<
   UseModalFormReturnType<IPost, HttpError, Nullable<IPost>>

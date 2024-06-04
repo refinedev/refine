@@ -3,7 +3,7 @@ import { Show } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { ICompany } from "interfaces";
+import type { ICompany } from "interfaces";
 
 const { Title, Text, Paragraph } = Typography;
 

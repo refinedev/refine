@@ -1,5 +1,5 @@
-import { AxiosInstance } from "axios";
-import { DataProvider } from "@refinedev/core";
+import type { AxiosInstance } from "axios";
+import type { DataProvider } from "@refinedev/core";
 import { axiosInstance } from "./utils";
 
 /*

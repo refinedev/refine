@@ -1,5 +1,5 @@
-import { CrudFilters, LogicalFilter } from "@refinedev/core";
-import { Formula } from "@qualifyze/airtable-formulator";
+import type { CrudFilters, LogicalFilter } from "@refinedev/core";
+import type { Formula } from "@qualifyze/airtable-formulator";
 import { generateLogicalFilterFormula } from "./generateLogicalFilterFormula";
 
 export const generateFilterFormula = (filters: CrudFilters): Formula[] => {

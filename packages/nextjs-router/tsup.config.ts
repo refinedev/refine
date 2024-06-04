@@ -1,4 +1,4 @@
-import { defineConfig, Options } from "tsup";
+import { defineConfig, type Options } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 import { nextJsEsmReplacePlugin } from "../shared/next-js-esm-replace-plugin";
 

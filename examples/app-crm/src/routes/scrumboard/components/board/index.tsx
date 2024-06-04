@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import {
   DndContext,
-  DragEndEvent,
+  type DragEndEvent,
   MouseSensor,
   TouchSensor,
   useSensor,

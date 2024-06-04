@@ -1,11 +1,11 @@
-import { AvailablePackageType } from "@refinedev/devtools-shared";
+import type { AvailablePackageType } from "@refinedev/devtools-shared";
 import dedent from "dedent";
 import { getPackagesFromPackageJSON } from "./get-packages-from-package-json";
 
 export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   {
     name: "@refinedev/ably",
-    description: "Ably integration for refine",
+    description: "Ably integration for Refine",
     install: "npm install @refinedev/ably",
     usage: dedent(
       `
@@ -28,7 +28,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/airtable",
-    description: "Airtable integration for refine",
+    description: "Airtable integration for Refine",
     install: "npm install @refinedev/airtable",
     usage: dedent(
       `
@@ -49,7 +49,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/antd",
-    description: "Ant Design integration for refine",
+    description: "Ant Design integration for Refine",
     install: "npm install @refinedev/antd antd",
     usage: dedent(
       `
@@ -73,7 +73,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/appwrite",
-    description: "Appwrite integration for refine",
+    description: "Appwrite integration for Refine",
     install: "npm install @refinedev/appwrite",
     usage: dedent(
       `
@@ -100,7 +100,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/chakra-ui",
-    description: "Chakra UI integration for refine",
+    description: "Chakra UI integration for Refine",
     install:
       "npm install @refinedev/chakra-ui @chakra-ui/react @emotion/react @emotion/styled framer-motion @tabler/icons-react",
     usage: dedent(
@@ -126,7 +126,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/graphql",
-    description: "GraphQL integration for refine",
+    description: "GraphQL integration for Refine",
     install: "npm install @refinedev/graphql",
     usage: dedent(
       `
@@ -149,7 +149,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/hasura",
-    description: "GraphQL integration for refine",
+    description: "GraphQL integration for Refine",
     install: "npm install @refinedev/hasura",
     usage: dedent(
       `
@@ -176,7 +176,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/inferencer",
-    description: "Auto generate views based on your APIs with refine",
+    description: "Auto generate views based on your APIs with Refine",
     install: "npm install @refinedev/inferencer",
     usage: dedent(
       `
@@ -196,7 +196,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/kbar",
-    description: "Command palette integration with kbar for refine",
+    description: "Command palette integration with kbar for Refine",
     install: "npm install @refinedev/kbar",
     usage: dedent(
       `
@@ -218,7 +218,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/mantine",
-    description: "Mantine UI integration for refine",
+    description: "Mantine UI integration for Refine",
     install:
       "npm install @refinedev/mantine @refinedev/react-table @mantine/core @mantine/hooks @mantine/form @mantine/notifications @emotion/react @tabler/icons-react",
     usage: dedent(
@@ -244,7 +244,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/medusa",
-    description: "Medusa store integration for refine",
+    description: "Medusa store integration for Refine",
     install: "npm install @refinedev/medusa",
     usage: dedent(
       `
@@ -266,7 +266,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/mui",
-    description: "Material UI integration for refine",
+    description: "Material UI integration for Refine",
     install:
       "npm install @refinedev/mui @refinedev/react-hook-form @mui/material @mui/lab @mui/x-data-grid @emotion/react @emotion/styled react-hook-form",
     usage: dedent(
@@ -297,7 +297,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/nestjs-query",
-    description: "NestJS Query data provider integration for refine",
+    description: "NestJS Query data provider integration for Refine",
     install: "npm install @refinedev/nestjs-query graphql-ws",
     usage: dedent(
       `
@@ -324,7 +324,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/nestjsx-crud",
-    description: "NestJSX CRUD data provider integration for refine",
+    description: "NestJSX CRUD data provider integration for Refine",
     install: "npm install @refinedev/nestjsx-crud",
     usage: dedent(
       `
@@ -345,7 +345,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/react-hook-form",
-    description: "React Hook Form integration for refine",
+    description: "React Hook Form integration for Refine",
     install: "npm install @refinedev/react-hook-form react-hook-form",
     usage: dedent(
       `
@@ -371,7 +371,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/react-table",
-    description: "Tanstack React Table integration for refine",
+    description: "Tanstack React Table integration for Refine",
     install: "npm install @refinedev/react-table @tanstack/react-table",
     usage: dedent(
       `
@@ -411,7 +411,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/simple-rest",
-    description: "Data provider integration for REST APIs with refine",
+    description: "Data provider integration for REST APIs with Refine",
     install: "npm install @refinedev/simple-rest",
     usage: dedent(
       `
@@ -433,7 +433,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   {
     name: "@refinedev/supabase",
     description:
-      "Data provider and live provider integrations for Supabase with refine",
+      "Data provider and live provider integrations for Supabase with Refine",
     install: "npm install @refinedev/supabase",
     usage: dedent(
       `
@@ -457,7 +457,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/strapi",
-    description: "Strapi integration of refine",
+    description: "Strapi integration of Refine",
     install: "npm install @refinedev/strapi axios",
     usage: dedent(
       `
@@ -481,7 +481,7 @@ export const AVAILABLE_PACKAGES: AvailablePackageType[] = [
   },
   {
     name: "@refinedev/strapi-v4",
-    description: "StrapiV4 integration of refine",
+    description: "StrapiV4 integration of Refine",
     install: "npm install @refinedev/strapi-v4 axios",
     usage: dedent(
       `

@@ -1,4 +1,4 @@
-import { LayoutProps } from "@refinedev/core";
+import type { LayoutProps } from "@refinedev/core";
 import { Layout as AntdLayout, Grid } from "antd";
 
 export const Layout: React.FC<LayoutProps> = ({

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import type {
+  QueryObserverResult,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 import qs from "qs";
@@ -28,7 +31,7 @@ import {
   useSyncWithLocation,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CrudFilter,
   CrudSort,
@@ -38,12 +41,12 @@ import {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { BaseListProps } from "../data/useList";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { BaseListProps } from "../data/useList";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

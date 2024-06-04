@@ -1,4 +1,4 @@
-import {
+import type {
   NpmOutdatedResponse,
   RefinePackageInstalledVersionData,
 } from "@definitions/package";

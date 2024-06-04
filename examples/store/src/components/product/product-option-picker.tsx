@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { ProductOption } from "@medusajs/medusa";
+import type { ProductOption } from "@medusajs/medusa";
 
 type Props = {
   option: ProductOption;

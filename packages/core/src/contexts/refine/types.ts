@@ -1,19 +1,19 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
-import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
+import type { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
-import { RedirectAction } from "../../hooks/form/types";
-import { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
-import { AccessControlProvider } from "../accessControl/types";
-import { AuditLogProvider } from "../auditLog/types";
-import { AuthProvider, LegacyAuthProvider } from "../auth/types";
-import { DataProvider, DataProviders, MutationMode } from "../data/types";
-import { I18nProvider } from "../i18n/types";
-import { LiveModeProps, LiveProvider } from "../live/types";
-import { NotificationProvider } from "../notification/types";
-import { ResourceProps } from "../resource/types";
-import { LegacyRouterProvider } from "../router/legacy/types";
-import { RouterProvider } from "../router/types";
+import type { RedirectAction } from "../../hooks/form/types";
+import type { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
+import type { AccessControlProvider } from "../accessControl/types";
+import type { AuditLogProvider } from "../auditLog/types";
+import type { AuthProvider, LegacyAuthProvider } from "../auth/types";
+import type { DataProvider, DataProviders, MutationMode } from "../data/types";
+import type { I18nProvider } from "../i18n/types";
+import type { LiveModeProps, LiveProvider } from "../live/types";
+import type { NotificationProvider } from "../notification/types";
+import type { ResourceProps } from "../resource/types";
+import type { LegacyRouterProvider } from "../router/legacy/types";
+import type { RouterProvider } from "../router/types";
 
 export type TitleProps = {
   collapsed: boolean;
@@ -96,6 +96,14 @@ export interface IRefineOptions {
    */
   projectId?: string;
   useNewQueryKeys?: boolean;
+  /**
+   * Icon and name for the app title. These values are used as default values in the <ThemedLayoutV2 /> and <AuthPage /> components.
+   * By default, `icon` is the Refine logo and `text` is "Refine Project".
+   */
+  title?: {
+    icon?: React.ReactNode;
+    text?: React.ReactNode;
+  };
 }
 
 export interface IRefineContextOptions {
@@ -115,6 +123,10 @@ export interface IRefineContextOptions {
   disableServerSideValidation: boolean;
   projectId?: string;
   useNewQueryKeys?: boolean;
+  title: {
+    icon?: React.ReactNode;
+    text?: React.ReactNode;
+  };
 }
 
 export interface IRefineContext {

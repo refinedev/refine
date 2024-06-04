@@ -1,20 +1,20 @@
 import React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useRouterType,
   useLink,
   useRouterContext,
   useLogin,
   useTranslate,
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
   Heading,
-  BoxProps,
+  type BoxProps,
   VStack,
   Button,
   Divider,
@@ -31,7 +31,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FormProvider } from "react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type LoginProps = LoginPageProps<

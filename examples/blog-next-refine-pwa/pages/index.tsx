@@ -1,6 +1,6 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import dataProvider from "@refinedev/simple-rest";
-import { GetListResponse, useTable } from "@refinedev/core";
+import { type GetListResponse, useTable } from "@refinedev/core";
 
 import ProductCards from "@components/ProductCards";
 

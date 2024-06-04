@@ -1,17 +1,17 @@
 import React from "react";
 
 import { useDelete, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
   EllipsisOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, MenuProps } from "antd";
+import { Button, Dropdown, type MenuProps } from "antd";
 
 import { ContactStatusTag, CustomAvatar, Text } from "@/components";
-import { ContactsListQuery } from "@/graphql/types";
+import type { ContactsListQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { ContactCardSkeleton } from "./skeleton";
@@ -31,6 +31,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
     {
       label: "Show",
       key: "show",
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <EyeOutlined />,
       onClick: () => {
         show("contacts", id, "replace");
@@ -40,6 +41,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
       label: "Delete",
       key: "delete",
       danger: true,
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <DeleteOutlined />,
       onClick: () => {
         deleteMutate({
@@ -57,6 +59,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
         menu={{ items }}
         trigger={["click"]}
       >
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <Button type="text" icon={<EllipsisOutlined />} />
       </Dropdown>
 

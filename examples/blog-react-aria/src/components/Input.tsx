@@ -1,6 +1,6 @@
-import React, { RefObject } from "react";
+import React, { type RefObject } from "react";
 import { useTextField } from "@react-aria/textfield";
-import { AriaTextFieldProps } from "react-aria";
+import type { AriaTextFieldProps } from "react-aria";
 
 export default function Input(props: AriaTextFieldProps) {
   // eslint-disable-next-line
