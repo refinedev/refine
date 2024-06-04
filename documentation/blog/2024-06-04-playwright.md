@@ -1,6 +1,6 @@
 ---
 title: Creating testable React applications with Playwright
-description: We'll take a look at how to create testable React applications with Playright.
+description: We'll take a look at how to create testable React applications with Playwright.
 slug: playwright-react
 authors: peter_osah
 tags: [react, dev-tools]
@@ -10,10 +10,10 @@ hide_table_of_contents: false
 
 ## Introduction
 
-As a React developer, your React applications must be thoroughly tested end to end to ensure the release of high-quality, bug-free applications that provide the best user experience and quality. End-to-end testing is accomplished using a variety of test automation tools, such as Cypress, WebdriverIO, and others, and one worthy to note is Playright.
+As a React developer, your React applications must be thoroughly tested end to end to ensure the release of high-quality, bug-free applications that provide the best user experience and quality. End-to-end testing is accomplished using a variety of test automation tools, such as Cypress, WebdriverIO, and others, and one worthy to note is Playwright.
 
 Microsoft developed [Playwright](https://playwright.dev/), a Node.js test automation framework, in 2020. It provides a high-level API for effortlessly automating current web applications and is compatible with all modern web browsers. It automates web testing end-to-end, emulating user interactions including clicks, scrolls, and keyboard inputs, as well as complicated tasks like form filling and page navigation.
-In this article, we will take a look at how to create testable React applications with Playright.
+In this article, we will take a look at how to create testable React applications with Playwright.
 
 Steps to be covered in this article include:
 
@@ -302,7 +302,7 @@ To view more on migration from React testing library to Playwright, visit [here]
 
 The basic difference between Playwright and React testing library is
 
-- Playright is an automation framework designed for end-to-end tests. It simulates how users may interact with a website or a web application.
+- Playwright is an automation framework designed for end-to-end tests. It simulates how users may interact with a website or a web application.
 - React testing library is a framework for testing a unit (a unit of code, functions, or React components). It doesn't simulate the application experience in totality.
 
 ## Conclusion
