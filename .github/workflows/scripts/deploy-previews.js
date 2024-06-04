@@ -11,6 +11,7 @@ const NETLIFY_SITES = [
   "app-crm",
   "pixels",
   "invoicer",
+  "win95",
 ];
 
 const setOutput = (output) =>
