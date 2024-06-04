@@ -106,7 +106,9 @@ export const RVCWebsitePageTitleDetails = ({ withBrowser = true }: Props) => {
             </>
           )}
           <BackButton
-            to={withBrowser ? "/browser/rvc-website" : "/rvc-website"}
+            to={
+              withBrowser ? "/browser/rvc-website" : "/rvc-website/index.html"
+            }
           >
             <img
               style={{

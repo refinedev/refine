@@ -205,18 +205,22 @@ const App = () => {
                 <Route path="rvc-website" element={<Outlet />}>
                   <Route
                     index
+                    element={<Navigate to="/rvc-website/index.html" />}
+                  />
+                  <Route
+                    path="index.html"
                     element={<RVCWebsitePageHome withBrowser={false} />}
                   />
                   <Route
-                    path="titles/:titleId"
+                    path="titles/:titleId/index.html"
                     element={<RVCWebsitePageTitleDetails withBrowser={false} />}
                   />
                   <Route
-                    path="catalog"
+                    path="catalog/index.html"
                     element={<RVCWebsiteCatalogPage withBrowser={false} />}
                   />
                   <Route
-                    path="catalog/:catalogLetter"
+                    path="catalog/:catalogLetter/index.html"
                     element={<RVCWebsiteCatalogPage withBrowser={false} />}
                   />
                 </Route>

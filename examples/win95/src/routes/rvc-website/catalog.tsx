@@ -75,7 +75,7 @@ export const RVCWebsiteCatalogPage = ({ withBrowser = true }: Props) => {
                   to={
                     withBrowser
                       ? `/browser/rvc-website/titles/${title.id}`
-                      : `/rvc-website/titles/${title.id}`
+                      : `/rvc-website/titles/${title.id}/index.html`
                   }
                 >
                   <CatalogListMarkerContainer>
@@ -117,7 +117,7 @@ export const CatalogsList = ({
               to={
                 withBrowser
                   ? `/browser/rvc-website/catalog/${letter}`
-                  : `/rvc-website/catalog/${letter}`
+                  : `/rvc-website/catalog/${letter}/index.html`
               }
             >
               {letter}

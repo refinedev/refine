@@ -17,7 +17,9 @@ export const RVCWebsiteLayout = ({
         <ContainerLinkList>
           <Link>
             <ReactRouterLink
-              to={withBrowser ? "/browser/rvc-website" : "/rvc-website"}
+              to={
+                withBrowser ? "/browser/rvc-website" : "/rvc-website/index.html"
+              }
             >
               Home
             </ReactRouterLink>
@@ -27,7 +29,7 @@ export const RVCWebsiteLayout = ({
               to={
                 withBrowser
                   ? "/browser/rvc-website/catalog"
-                  : "/rvc-website/catalog"
+                  : "/rvc-website/catalog/index.html"
               }
             >
               Our Catalog
