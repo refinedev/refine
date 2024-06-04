@@ -1,5 +1,5 @@
 import { generateFilters } from "../../src/utils/index";
-import { CrudFilter, LogicalFilter } from "@refinedev/core";
+import type { CrudFilter, LogicalFilter } from "@refinedev/core";
 
 describe("generateFilters", () => {
   it("should generate filter based on the specified operator", () => {

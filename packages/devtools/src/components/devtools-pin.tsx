@@ -19,7 +19,6 @@ export const DevtoolsPin = ({
   setSelectorActive,
 }: Props) => {
   return (
-    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div role="button" className="devtools-selector-pin-box" onClick={onClick}>
       <DevtoolsIcon />
       <DevtoolsSelector

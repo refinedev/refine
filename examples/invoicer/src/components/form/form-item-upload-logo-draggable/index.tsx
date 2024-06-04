@@ -23,7 +23,6 @@ export const FormItemUploadLogoDraggable = ({
   const form = Form.useFormInstance();
   const fieldValue = Form.useWatch(name, form) as Media | UploadResponse;
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: false positive
   const src = useMemo(() => {
     if (!fieldValue) return null;
 
