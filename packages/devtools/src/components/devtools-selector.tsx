@@ -27,7 +27,6 @@ export const DevtoolsSelector = ({
 
   return (
     <div style={style}>
-      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
         role="button"
         title="Element Selector"
