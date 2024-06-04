@@ -10071,7 +10071,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1j0qgw8-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="category"
           >
             <div
@@ -10150,7 +10150,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1j0qgw8-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="user"
           >
             <div
@@ -10373,7 +10373,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1tw9w9k-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="tags"
           >
             <div
@@ -25050,7 +25050,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1j0qgw8-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="category"
           >
             <div
@@ -25151,7 +25151,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1j0qgw8-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="user"
           >
             <div
@@ -25396,7 +25396,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
             </div>
           </div>
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-1tw9w9k-MuiAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-clttge-MuiAutocomplete-root"
             name="tags"
           >
             <div
@@ -40912,7 +40912,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
           >
-            920,557
+            920.557
           </p>
           <p
             class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
