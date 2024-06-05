@@ -184,6 +184,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
           }}
           sorter
           defaultSortOrder={getDefaultSortOrder("isActive", sorters)}
+          defaultFilteredValue={getDefaultFilter("isActive", filters, "eq")}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
               <Select
