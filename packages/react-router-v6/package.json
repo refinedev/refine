@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-router-v6",
-  "version": "4.5.10",
+  "version": "4.5.11",
   "private": false,
   "description": "refine react-router router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "repository": {
@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.50.0",
+    "@refinedev/core": "^4.51.0",
     "@types/jest": "^29.2.4",
     "@types/qs": "^6.9.7",
     "jest": "^29.3.1",
