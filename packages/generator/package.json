@@ -1,0 +1,54 @@
+{
+  "name": "@refinedev/generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "license": "MIT",
+  "author": "refine",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
+  "bin": {
+    "refine-generator": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup && tsc --project tsconfig.declarations.json",
+    "dev": "tsup --watch",
+    "prepare": "pnpm -w build --scope @refinedev/generator",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "tsc --project tsconfig.declarations.json"
+  },
+  "dependencies": {
+    "bundle-require": "^5.0.0",
+    "chalk": "^4.1.2",
+    "ejs": "^3.1.10",
+    "execa": "^5.1.1",
+    "globby": "^11.1.0",
+    "human-id": "^4.1.1",
+    "joycon": "^3.1.1",
+    "ora": "^5.4.1",
+    "prettier": "^3.2.5",
+    "simple-git": "^3.24.0",
+    "strip-json-comments": "^5.0.1",
+    "commander": "9.4.1",
+    "prompts": "2.1.0",
+    "tslib": "^2.6.2",
+    "which-pm-runs": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@types/jest": "^29.2.4",
+    "@types/prompts": "2.0.1",
+    "@types/rimraf": "3.0.0",
+    "@types/tar": "^6.1.11",
+    "@types/which-pm-runs": "^1.0.0",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.1.2",
+    "tsup": "^6.7.0",
+    "typescript": "^5.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
