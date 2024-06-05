@@ -1,1 +1,1 @@
-pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --frozen-lockfile false
+npm run changeset version && pnpm i --ignore-scripts --lockfile-only --frozen-lockfile false
