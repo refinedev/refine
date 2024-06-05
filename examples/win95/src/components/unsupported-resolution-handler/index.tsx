@@ -83,7 +83,11 @@ export const UnsupportedResolutionHandler = ({
           }}
         >
           Resolution not supported.
-          <div>
+          <div
+            style={{
+              lineHeight: "32px",
+            }}
+          >
             This website is best browsed at resolutions 1024x768 or higher.
           </div>
         </h2>
