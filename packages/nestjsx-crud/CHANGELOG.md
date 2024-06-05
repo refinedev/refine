@@ -1,5 +1,19 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.8
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: "mapOperator" test type error.
+  Some `CrudOperators` not supported in `mapOperator` type but still extended from `CrudOperators`. To fix that we use `Partial` type for `mapOperator` function.
+
 ## 5.0.7
 
 ### Patch Changes

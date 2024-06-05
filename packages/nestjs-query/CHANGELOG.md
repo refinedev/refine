@@ -1,5 +1,36 @@
 # @refinedev/nestjs-query
 
+## 1.3.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(nestjs-query): implemented getApiUrl
+
+  resolves #5606
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: implement unimplemented operators
+
+  The following filter operators have been implemented.
+
+  - `containss`
+  - `ncontainss`
+  - `startswiths`
+  - `nstartswiths`
+  - `endswiths`
+  - `nendswiths`
+  - `nbetween`
+
+  Resolves #6008
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
 ## 1.2.0
 
 ### Minor Changes
