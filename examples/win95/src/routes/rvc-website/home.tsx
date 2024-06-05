@@ -310,8 +310,9 @@ const HeroVideoTape = styled.img`
 `;
 
 const HeroTitle = styled.h1`
+  font-family: "pixelated-times-new-roman", "ms_sans_serif";
   color: #ffff00;
-  font-size: 40px;
+  font-size: 64px;
   line-height: 40px;
   margin-top: 40px;
 `;
@@ -321,6 +322,7 @@ const HeroDescription = styled.p`
   color: #ffffff;
   margin-top: 16px;
   text-align: center;
+  line-height: 20px;
 `;
 
 const SwiperContainer = styled.div`
