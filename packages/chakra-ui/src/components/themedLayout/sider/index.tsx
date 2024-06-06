@@ -97,7 +97,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,

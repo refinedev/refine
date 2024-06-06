@@ -226,7 +226,7 @@ export const CustomSider: React.FC = () => {
       const isSelected = route === selectedKey;
       const isRoute = !(parentName !== undefined && children.length === 0);
       return (
-        <CanAccess key={route} resource={name.toLowerCase()} action="list">
+        <CanAccess key={route} resource={name} action="list">
           <Menu.Item
             key={route}
             style={{
@@ -331,7 +331,7 @@ export const CustomSider: React.FC = () => {
       const isSelected = route === selectedKey;
       const isRoute = !(parentName !== undefined && children.length === 0);
       return (
-        <CanAccess key={route} resource={name.toLowerCase()} action="list">
+        <CanAccess key={route} resource={name} action="list">
           <Menu.Item
             key={route}
             style={{

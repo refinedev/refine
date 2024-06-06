@@ -74,7 +74,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         return (
           <CanAccess
             key={item.key}
-            resource={name.toLowerCase()}
+            resource={name}
             action="list"
             params={{
               resource: item,
@@ -98,7 +98,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,
