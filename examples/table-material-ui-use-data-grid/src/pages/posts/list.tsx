@@ -37,6 +37,33 @@ export const PostList: React.FC = () => {
     resource: "categories",
   });
 
+  const handleProcessRowUpdate = React.useCallback(
+    async (newRow: IPost, oldRow: IPost) => {
+      try {
+        const response = await fetch(
+          `https://api.fake-rest.refine.dev/posts/${newRow.id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newRow),
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        return newRow;
+      } catch (error) {
+        console.error("Error updating post:", error);
+        return oldRow;
+      }
+    },
+    [],
+  );
+
   const columns = React.useMemo<GridColDef<IPost>[]>(
     () => [
       {
@@ -94,6 +121,7 @@ export const PostList: React.FC = () => {
         columns={columns}
         autoHeight
         pageSizeOptions={[10, 20, 30, 50, 100]}
+        processRowUpdate={handleProcessRowUpdate}
       />
     </List>
   );
