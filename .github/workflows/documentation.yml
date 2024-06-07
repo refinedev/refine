@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - "documentation/**"
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   typos:
