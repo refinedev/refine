@@ -1,4 +1,4 @@
-import { Pixel } from "../types/pixel";
+import type { Pixel } from "../types/pixel";
 
 export const getUniqueContributorsAvatarURL = (pixels: Pixel[] | undefined) => {
   const contributorsAvatar = pixels?.map(

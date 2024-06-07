@@ -5,7 +5,7 @@ import { useCancelNotification, useNotification, useTranslate } from "@hooks";
 import { userFriendlySecond } from "@definitions/helpers";
 import {
   ActionTypes,
-  IUndoableQueue,
+  type IUndoableQueue,
 } from "../../contexts/undoableQueue/types";
 
 export const UndoableQueue: React.FC<{

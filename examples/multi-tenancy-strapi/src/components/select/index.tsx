@@ -2,7 +2,7 @@ import { useSelect } from "@refinedev/antd";
 import { Select } from "antd";
 import { useGetToPath, useGo, useParsed } from "@refinedev/core";
 
-import { IStore } from "../../interfaces";
+import type { IStore } from "../../interfaces";
 
 type SelectProps = {
   onSelect?: () => void;

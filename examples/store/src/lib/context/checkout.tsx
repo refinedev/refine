@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo } from "react";
-import {
+import type {
   Address,
   Cart,
   Customer,
@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { useCreate, useInvalidate, useOne, useUpdate } from "@refinedev/core";
 
-import { useToggleState, StateType } from "@lib/hooks";
+import { useToggleState, type StateType } from "@lib/hooks";
 import { useCartContext } from "@lib/context";
 import { Wrapper } from "@components/checkout";
 

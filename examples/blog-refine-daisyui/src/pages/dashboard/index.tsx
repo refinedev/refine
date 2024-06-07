@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { CrudFilter, useList } from "@refinedev/core";
+import { type CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
 import Stats from "../../components/dashboard/Stats";
 import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
 import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
 import { TabView } from "../../components/dashboard/TabView";
 import { RecentSales } from "../../components/dashboard/RecentSales";
-import { IChartDatum, TTab } from "../../interfaces";
+import type { IChartDatum, TTab } from "../../interfaces";
 
 const filters: CrudFilter[] = [
   {

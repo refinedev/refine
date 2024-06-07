@@ -1,6 +1,6 @@
 import { SaveButton, useDrawerForm } from "@refinedev/antd";
 import {
-  BaseKey,
+  type BaseKey,
   useApiUrl,
   useGetToPath,
   useGo,
@@ -20,7 +20,7 @@ import {
   Segmented,
   Spin,
 } from "antd";
-import { IProduct, ICategory } from "../../../interfaces";
+import type { IProduct, ICategory } from "../../../interfaces";
 import { useSearchParams } from "react-router-dom";
 import { Drawer } from "../../drawer";
 import { UploadOutlined } from "@ant-design/icons";
@@ -142,6 +142,7 @@ export const ProductDrawerForm = (props: Props) => {
                   alt="Product Image"
                 />
                 <Button
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<UploadOutlined />}
                   style={{
                     marginTop: "auto",

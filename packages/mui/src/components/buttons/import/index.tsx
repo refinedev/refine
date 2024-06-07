@@ -8,7 +8,7 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import ImportExportOutlined from "@mui/icons-material/ImportExportOutlined";
 
-import { ImportButtonProps } from "../types";
+import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.

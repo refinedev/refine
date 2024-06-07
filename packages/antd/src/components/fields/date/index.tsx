@@ -4,7 +4,7 @@ import { Typography } from "antd";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
-import { DateFieldProps } from "../types";
+import type { DateFieldProps } from "../types";
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format.

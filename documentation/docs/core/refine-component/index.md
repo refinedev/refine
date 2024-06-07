@@ -634,6 +634,84 @@ With `@refinedev/core`'s `v4.35.0`, Refine introduced new query and mutation key
 
 By default, Refine uses the legacy keys for backward compatibility and in the future versions it will switch to using the new query keys. You can easily switch to using new keys by setting `useNewQueryKeys` to `true`.
 
+### title
+
+Refine's predefined layout and auth components displays a title for the app, which consists of the app name and an icon. These values can be customized globally by passing `options.title` to the `<Refine>` component.
+
+`title` is an object that can have the following properties:
+
+- `icon`: A React Node to be used as the app icon. By default, it's Refine logo.
+- `text`: A React Node to be used as the app name. By default, it's `"Refine Project"`.
+
+```tsx title="App.tsx"
+const App = () => (
+  <Refine
+    options={{
+      // highlight-start
+      title: {
+        icon: <CustomIcon />,
+        text: "Custom App Name",
+      },
+      // highlight-end
+    }}
+  />
+);
+```
+
+If you wish to use separate values for your `<AuthPage />` and `<ThemedLayoutV2 />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitleV2 />` component from the respective package).
+
+```tsx
+import { Refine } from "@refinedev/core";
+// ThemedTitleV2 accepts `text` and `icon` props with same types as `options.title`
+// This component is used in both AuthPage and ThemedLayoutV2 components.
+import { ThemedLayoutV2, AuthPage, ThemedTitleV2 } from "@refinedev/antd";
+
+const App = () => {
+  return (
+    <Refine
+      options={{
+        // highlight-start
+        title: {
+          text: "My App",
+          icon: <IconA />,
+        },
+        // highlight-end
+      }}
+    >
+      {/* ... */}
+      <ThemedLayoutV2
+        // highlight-start
+        Title={(props) => (
+          <ThemedTitleV2
+            // These values will override the global title values
+            text="A Different Value"
+            icon={<IconB />}
+            {...props}
+          />
+        )}
+        // highlight-end
+      >
+        {/* ... */}
+      </ThemedLayoutV2>
+      {/* ... */}
+      <AuthPage
+        type="login"
+        // highlight-start
+        title={
+          <ThemedTitleV2
+            collapsed={false}
+            // These values will override the global title values
+            text="A Different Value"
+            icon={<IconC />}
+          />
+        }
+        // highlight-end
+      />
+    </Refine>
+  );
+};
+```
+
 ## onLiveEvent
 
 Callback to handle all live events.

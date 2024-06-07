@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { type HTMLAttributes, useState } from "react";
 import snarkdown from "snarkdown";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 // @ts-expect-error no types
@@ -10,7 +10,7 @@ import { useCurrentTutorial } from "../../hooks/use-current-tutorial";
 import { UnitCircle } from "../unit-circle";
 import { TutorialCircle } from "../tutorial-circle";
 import { useTutorialUIPackage } from "../../hooks/use-tutorial-ui-package";
-import { PreferredUIPackage } from "../../context/TutorialUIPackageContext";
+import type { PreferredUIPackage } from "../../context/TutorialUIPackageContext";
 
 const uiNames: Record<PreferredUIPackage, string> = {
   headless: "Headless",

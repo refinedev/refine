@@ -1,4 +1,4 @@
-import { Customer, Order } from "@medusajs/medusa";
+import type { Customer, Order } from "@medusajs/medusa";
 import Link from "next/link";
 
 import { ChevronDown, User, Package, MapPin } from "@icons";

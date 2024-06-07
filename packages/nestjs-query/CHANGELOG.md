@@ -1,5 +1,67 @@
 # @refinedev/nestjs-query
 
+## 1.3.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(nestjs-query): implemented getApiUrl
+
+  resolves #5606
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: implement unimplemented operators
+
+  The following filter operators have been implemented.
+
+  - `containss`
+  - `ncontainss`
+  - `startswiths`
+  - `nstartswiths`
+  - `endswiths`
+  - `nendswiths`
+  - `nbetween`
+
+  Resolves #6008
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 1.2.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`e154d399afbfcc560ad3e349d0f76d2701ae866e`](https://github.com/refinedev/refine/commit/e154d399afbfcc560ad3e349d0f76d2701ae866e) Thanks [@aliemir](https://github.com/aliemir)! - feat(nestjs-query): implemented getApiUrl
+
+  resolves #5606
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`216d061513b84f1b19d4a31164b2342d824a5b2d`](https://github.com/refinedev/refine/commit/216d061513b84f1b19d4a31164b2342d824a5b2d) Thanks [@aliemir](https://github.com/aliemir)! - fix: implement unimplemented operators
+
+  The following filter operators have been implemented.
+
+  - `containss`
+  - `ncontainss`
+  - `startswiths`
+  - `nstartswiths`
+  - `endswiths`
+  - `nendswiths`
+  - `nbetween`
+
+  Resolves #6008
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
 ## 1.1.5
 
 ### Patch Changes

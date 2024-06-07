@@ -11,7 +11,7 @@ import {
 
 import { Space, Typography } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 const { Title, Text } = Typography;

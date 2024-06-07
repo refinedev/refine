@@ -8,7 +8,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 export const UserList = () => {
   const { tableProps } = useTable<IUser>();

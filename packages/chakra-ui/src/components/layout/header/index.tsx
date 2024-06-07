@@ -2,7 +2,7 @@ import React from "react";
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { Box, Avatar, Text, HStack } from "@chakra-ui/react";
 
-import { RefineLayoutHeaderProps } from "../types";
+import type { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
   const authProvider = useActiveAuthProvider();

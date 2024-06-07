@@ -8,11 +8,11 @@ import {
   useResource,
   matchResourceFromRoute,
 } from "@refinedev/core";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import {
   Breadcrumb as AntdBreadcrumb,
-  BreadcrumbProps as AntdBreadcrumbProps,
+  type BreadcrumbProps as AntdBreadcrumbProps,
 } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 
@@ -70,6 +70,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           key: "breadcrumb-item-home",
           title: (
             <ActiveLink to="/">
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               {rootRouteResource?.resource?.meta?.icon ?? <HomeOutlined />}
             </ActiveLink>
           ),

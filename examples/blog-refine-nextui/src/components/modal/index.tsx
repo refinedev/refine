@@ -8,7 +8,7 @@ import {
   Button,
 } from "@nextui-org/react";
 
-import { IDeleteModalProps } from "../../interfaces";
+import type { IDeleteModalProps } from "../../interfaces";
 
 export const DeleteModal: React.FC<IDeleteModalProps> = ({
   isOpen,

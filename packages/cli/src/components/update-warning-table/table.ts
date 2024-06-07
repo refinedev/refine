@@ -1,26 +1,8 @@
-import React from "react";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
-import Table from "cli-table3";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import chalk from "chalk";
 import center from "center-align";
 import { getDependencies, getPreferedPM, getScripts } from "@utils/package";
-import { removeANSIColors } from "@utils/text";
-
-const columns = {
-  name: "name",
-  current: "current",
-  wanted: "wanted",
-  latest: "latest",
-  changelog: "changelog",
-} as const;
-
-const orderedColumns: (typeof columns)[keyof typeof columns][] = [
-  columns.name,
-  columns.current,
-  columns.wanted,
-  columns.latest,
-  columns.changelog,
-];
+import { getVersionTable } from "@components/version-table";
 
 export interface UpdateWarningTableParams {
   data: RefinePackageInstalledVersionData[];
@@ -33,52 +15,14 @@ export const printUpdateWarningTable = async (
   const tableHead = Object.keys(data?.[0] || {});
   if (!data || !tableHead.length) return;
 
-  const table = new Table({
-    head: orderedColumns,
-    style: {
-      head: ["blue"],
-    },
-  });
-
-  data.forEach((row) => {
-    table.push(
-      orderedColumns.map((column) => {
-        const columnValue = row[column];
-        if (!columnValue) return columnValue;
-
-        if (column === "latest" || column === "wanted") {
-          const installedVersion = parseVersions(row.current);
-          const latestVersion = parseVersions(columnValue);
-          const colors = getColorsByVersionDiffrence(
-            installedVersion,
-            latestVersion,
-          );
-          const textMajor = chalk[colors.major](latestVersion.major);
-          const textMinor = chalk[colors.minor](latestVersion.minor);
-          const textPatch = chalk[colors.patch](latestVersion.patch);
-          return `${textMajor}.${textMinor}.${textPatch}`;
-        }
-
-        if (column === "changelog") {
-          return chalk.blueBright.underline(columnValue);
-        }
-
-        return columnValue;
-      }),
-    );
-  });
-
-  const tableOutput = table.toString();
-  const tableWidth = removeANSIColors(
-    tableOutput.split("\n")?.[0] || "",
-  ).length;
+  const { table, width } = getVersionTable(data);
   console.log();
-  console.log(center("Update Available", tableWidth));
-  console.log(tableOutput);
+  console.log(center("Update Available", width));
+  console.log(table);
   console.log(
     center(
-      `To update ${chalk.bold("`refine`")} packages with wanted version`,
-      tableWidth,
+      `To update ${chalk.bold("`Refine`")} packages with wanted version`,
+      width,
     ),
   );
   console.log(
@@ -86,59 +30,10 @@ export const printUpdateWarningTable = async (
       ` Run the following command: ${chalk.yellowBright(
         await getInstallCommand(),
       )}`,
-      tableWidth,
+      width,
     ),
   );
   console.log();
-};
-
-const parseVersions = (text: string) => {
-  const versions = text.split(".");
-  return {
-    major: versions[0],
-    minor: versions[1],
-    patch: versions[2],
-  };
-};
-
-const getColorsByVersionDiffrence = (
-  installedVersion: ReturnType<typeof parseVersions>,
-  nextVersion: ReturnType<typeof parseVersions>,
-) => {
-  const isMajorDiffrence =
-    installedVersion.major.trim() !== nextVersion.major.trim();
-
-  if (isMajorDiffrence)
-    return {
-      major: "red",
-      minor: "red",
-      patch: "red",
-    } as const;
-
-  const isMinorDiffrence =
-    installedVersion.minor.trim() !== nextVersion.minor.trim();
-
-  if (isMinorDiffrence)
-    return {
-      major: "white",
-      minor: "yellow",
-      patch: "yellow",
-    } as const;
-
-  const isPatchDiffrence =
-    installedVersion.patch.trim() !== nextVersion.patch.trim();
-  if (isPatchDiffrence)
-    return {
-      major: "white",
-      minor: "white",
-      patch: "green",
-    } as const;
-
-  return {
-    major: "white",
-    minor: "white",
-    patch: "white",
-  } as const;
 };
 
 export const getInstallCommand = async () => {

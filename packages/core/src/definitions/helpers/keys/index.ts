@@ -1,4 +1,4 @@
-import { BaseKey } from "../../../contexts/data/types";
+import type { BaseKey } from "../../../contexts/data/types";
 
 type ParametrizedDataActions = "list" | "infinite";
 type IdRequiredDataActions = "one";

@@ -4,7 +4,7 @@ import { Create, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 export const UserCreate = () => {
   const { formProps, saveButtonProps } = useForm<IUser>();

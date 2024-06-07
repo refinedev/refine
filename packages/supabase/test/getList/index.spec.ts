@@ -1,4 +1,4 @@
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { dataProvider } from "../../src/index";
 import supabaseClient from "../supabaseClient";
 import "./index.mock";
@@ -285,6 +285,103 @@ describe("filtering", () => {
     expect(total).toBe(2);
   });
 
+  it("ina operator should work correctly with or", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          operator: "or",
+          value: [
+            {
+              field: "id",
+              operator: "eq",
+              value: "2",
+            },
+            {
+              field: "tags",
+              operator: "ina",
+              value: ["recipes", "personal", "food"],
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(data[0]["title"]).toBe("Oakwoods Prairie Clover");
+    expect(data[1]["title"]).toBe("Samsung Galaxy S21");
+    expect(data[2]["title"]).toBe("Black Psorotichia Lichen");
+    expect(total).toBe(3);
+  });
+
+  it("ina operator should work correctly", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          field: "tags",
+          operator: "ina",
+          value: ["health", "travel"],
+        },
+      ],
+    });
+
+    expect(data[0]["id"]).toBe(6);
+    expect(data[1]["id"]).toBe(2);
+    expect(data[2]["id"]).toBe(1);
+    expect(total).toBe(3);
+  });
+
+  it("nina operator should work correctly", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          field: "tags",
+          operator: "nina",
+          value: ["lifestyle", "personal"],
+        },
+      ],
+    });
+
+    expect(data[0]["id"]).toBe(7);
+    expect(data[1]["id"]).toBe(8);
+    expect(data[2]["id"]).toBe(11);
+    expect(data[3]["id"]).toBe(5);
+    expect(data[4]["id"]).toBe(2);
+    expect(total).toBe(5);
+  });
+
+  it("nina operator should work correctly with or", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          operator: "or",
+          value: [
+            {
+              field: "tags",
+              operator: "ina",
+              value: ["technology", "education"],
+            },
+            {
+              field: "tags",
+              operator: "nina",
+              value: ["lifestyle", "personal"],
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(data[0]["title"]).toBe("Sickle Island Spleenwort");
+    expect(data[1]["title"]).toBe("Oakwoods Prairie Clover");
+    expect(data[2]["title"]).toBe("Funck's Wart Lichen");
+    expect(data[3]["title"]).toBe("test");
+    expect(data[4]["title"]).toBe("Samsung Galaxy S21");
+    expect(data[5]["title"]).toBe("Black Psorotichia Lichen");
+    expect(total).toBe(6);
+  });
+
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).getList({
       resource: "posts",
@@ -297,7 +394,7 @@ describe("filtering", () => {
     expect(data.length).toBeGreaterThan(0);
 
     const promise = dataProvider(supabaseClient).getList({
-      resource: "posts",
+      resource: "products",
       meta: {
         schema: "private",
       },

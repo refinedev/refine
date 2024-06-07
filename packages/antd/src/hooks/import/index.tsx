@@ -1,13 +1,18 @@
 import React from "react";
-import { ButtonProps, notification, UploadProps, Progress } from "antd";
+import {
+  type ButtonProps,
+  notification,
+  type UploadProps,
+  Progress,
+} from "antd";
 import {
   useTranslate,
   useResource,
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useImport as useImportCore,
-  UseImportReturnType,
-  ImportOptions,
+  type UseImportReturnType,
+  type ImportOptions,
   pickNotDeprecated,
 } from "@refinedev/core";
 

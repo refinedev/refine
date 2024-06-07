@@ -1,7 +1,7 @@
 import React from "react";
-import { GetOneResponse } from "@refinedev/core";
+import type { GetOneResponse } from "@refinedev/core";
 import { dataProvider } from "@/providers/data-provider/server";
-import { Order } from "@/types";
+import type { Order } from "@/types";
 import { redirect } from "next/navigation";
 import { OrderDetail } from "@/components/orders";
 

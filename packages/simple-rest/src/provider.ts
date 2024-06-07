@@ -1,6 +1,6 @@
-import { AxiosInstance } from "axios";
+import type { AxiosInstance } from "axios";
 import { stringify } from "query-string";
-import { DataProvider } from "@refinedev/core";
+import type { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
 
 type MethodTypes = "get" | "delete" | "head" | "options";

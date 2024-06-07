@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import Image from "next/legacy/image";
-import { Product } from "@medusajs/medusa";
+import type { Product } from "@medusajs/medusa";
 
 type Props = {
   product: Product;

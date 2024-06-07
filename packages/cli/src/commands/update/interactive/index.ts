@@ -3,7 +3,7 @@ import semverDiff from "semver-diff";
 import chalk from "chalk";
 import { findDuplicates } from "@utils/array";
 import { parsePackageNameAndVersion } from "@utils/package";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 
 type UIGroup = {
   patch: {
@@ -28,7 +28,7 @@ export const promptInteractiveRefineUpdate = async (
 ) => {
   const uiGroup = createUIGroup(packages);
   if (!uiGroup) {
-    console.log("All `refine` packages are up to date. 🎉");
+    console.log("All `Refine` packages are up to date. 🎉");
     return;
   }
 

@@ -10,7 +10,7 @@ import {
 
 import { Table, Space } from "antd";
 
-import { IContact } from "interfaces";
+import type { IContact } from "interfaces";
 import { CreateContact } from "@/components/contacts";
 
 export const ContactsList: React.FC = () => {

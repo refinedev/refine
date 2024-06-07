@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import {
-  BaseKey,
-  BaseRecord,
-  FormWithSyncWithLocationParams,
-  HttpError,
+  type BaseKey,
+  type BaseRecord,
+  type FormWithSyncWithLocationParams,
+  type HttpError,
   useGo,
   useModal,
   useParsed,
@@ -14,8 +14,8 @@ import {
   useInvalidate,
 } from "@refinedev/core";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { UseFormInput } from "@mantine/form/lib/types";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
+import type { UseFormInput } from "@mantine/form/lib/types";
 import React from "react";
 
 export type UseModalFormReturnType<

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { HttpError, useIsAuthenticated, useLogin } from "@refinedev/core";
+import { type HttpError, useIsAuthenticated, useLogin } from "@refinedev/core";
 
 import { useUI } from "@lib/context";
 import { emailRegex } from "@lib/regex";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ComponentDoc, PropItem } from "react-docgen-typescript";
+import type { ComponentDoc, PropItem } from "react-docgen-typescript";
 
 export interface StringIndexedObject<T> {
   [key: string]: T;

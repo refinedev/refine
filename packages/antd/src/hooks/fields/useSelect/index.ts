@@ -1,14 +1,14 @@
-import { SelectProps } from "antd/lib/select";
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { SelectProps } from "antd/lib/select";
+import type { QueryObserverResult } from "@tanstack/react-query";
 
 import {
   useSelect as useSelectCore,
-  BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
-  BaseOption,
+  type BaseRecord,
+  type GetManyResponse,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
+  type BaseOption,
 } from "@refinedev/core";
 
 export type UseSelectReturnType<

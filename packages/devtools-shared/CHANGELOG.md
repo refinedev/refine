@@ -1,5 +1,43 @@
 # @refinedev/devtools-shared
 
+## 1.1.9
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: prevent websocket closing errors in console
+
+  When `<DevtoolsProvider />` component is mounted in apps with React's strict mode, it will try to initialize the websocket connection twice and first one will be closed immediately before the connection is established. This PR will delay closing the websocket connection until it's established properly to prevent these errors from appearing in the console.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: use same port for ws and http servers
+
+  This PR merges WebSocket and Http server ports into one (5001) to simplify the configuration and avoid port conflicts. Previously the WebSocket server was running on port 5002 and the Http server on port 5001. Now both servers are running on port 5001.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 1.1.8
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e`](https://github.com/refinedev/refine/commit/bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e) Thanks [@aliemir](https://github.com/aliemir)! - chore: prevent websocket closing errors in console
+
+  When `<DevtoolsProvider />` component is mounted in apps with React's strict mode, it will try to initialize the websocket connection twice and first one will be closed immediately before the connection is established. This PR will delay closing the websocket connection until it's established properly to prevent these errors from appearing in the console.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863) Thanks [@aliemir](https://github.com/aliemir)! - refactor: use same port for ws and http servers
+
+  This PR merges WebSocket and Http server ports into one (5001) to simplify the configuration and avoid port conflicts. Previously the WebSocket server was running on port 5002 and the Http server on port 5001. Now both servers are running on port 5001.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
 ## 1.1.7
 
 ### Patch Changes

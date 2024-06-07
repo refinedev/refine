@@ -8,7 +8,7 @@ import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { CreateButtonProps } from "../types";
+import type { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
   resource: resourceNameFromProps,

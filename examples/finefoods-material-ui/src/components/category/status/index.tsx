@@ -1,6 +1,6 @@
-import Chip, { ChipProps } from "@mui/material/Chip";
+import Chip, { type ChipProps } from "@mui/material/Chip";
 import { useTranslate } from "@refinedev/core";
-import { IProduct } from "../../../interfaces";
+import type { IProduct } from "../../../interfaces";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useTheme } from "@mui/material/styles";

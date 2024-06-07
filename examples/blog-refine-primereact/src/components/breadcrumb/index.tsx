@@ -2,7 +2,7 @@ import { useBreadcrumb } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 import { BreadCrumb } from "primereact/breadcrumb";
-import { MenuItem } from "primereact/menuitem";
+import type { MenuItem } from "primereact/menuitem";
 import { classNames } from "primereact/utils";
 
 export const Breadcrumb = () => {

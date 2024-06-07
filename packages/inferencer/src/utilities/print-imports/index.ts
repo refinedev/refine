@@ -1,4 +1,4 @@
-import { ImportElement } from "../../types";
+import type { ImportElement } from "../../types";
 
 export const printImports = (imports: Array<ImportElement>) => {
   const byModule = imports.reduce(

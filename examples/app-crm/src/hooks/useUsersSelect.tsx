@@ -1,9 +1,9 @@
 import { useSelect } from "@refinedev/antd";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import gql from "graphql-tag";
 
-import { UsersSelectQuery } from "@/graphql/types";
+import type { UsersSelectQuery } from "@/graphql/types";
 
 const USERS_SELECT_QUERY = gql`
     query UsersSelect(

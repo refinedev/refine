@@ -10,7 +10,7 @@ import {
 
 import { Table, Space, Form, Radio } from "antd";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
   const [locale, setLocale] = useState("en");

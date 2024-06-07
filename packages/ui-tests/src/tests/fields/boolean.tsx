@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldBooleanProps } from "@refinedev/ui-types";
+import type { RefineFieldBooleanProps } from "@refinedev/ui-types";
 
 import { act, fireEvent, render } from "@test";
 

@@ -44,7 +44,7 @@ export const Feed = () => {
           "re-flex-shrink-0",
         )}
       >
-        Updates from the refine team
+        Updates from the Refine team
       </div>
       <div className={clsx("re-flex-1", "re-overflow-auto")}>
         <div className={clsx("re-flex", "re-flex-col", "re-gap-8")}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { useApiUrl, useCustom } from "@refinedev/core";
-import { IChart } from "../../interfaces";
+import type { IChart } from "../../interfaces";
 
 import { KpiCard } from "../../components/kpiCard";
 import { DisplayAreaGraph, DisplayBarChart } from "../../components/charts";

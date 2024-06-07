@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import {
   List,
   useModalForm,
@@ -8,7 +8,7 @@ import {
 } from "@refinedev/antd";
 import { Space, Table } from "antd";
 
-import { ICompany } from "../../interfaces";
+import type { ICompany } from "../../interfaces";
 import { CreateCompany, EditCompany } from "../../components/company";
 import { API_URL } from "../../constants";
 

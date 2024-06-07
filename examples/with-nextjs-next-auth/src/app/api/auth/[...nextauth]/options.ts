@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import Auth0Provider from "next-auth/providers/auth0";
 import KeycloakProvider from "next-auth/providers/keycloak";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { Awaitable, User } from "next-auth";
+import type { Awaitable, User } from "next-auth";
 
 const authOptions = {
   // Configure one or more authentication providers

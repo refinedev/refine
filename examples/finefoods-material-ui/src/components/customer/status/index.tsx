@@ -1,10 +1,10 @@
-import Chip, { ChipProps } from "@mui/material/Chip";
+import Chip, { type ChipProps } from "@mui/material/Chip";
 import { useTranslate } from "@refinedev/core";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PauseCircleOutlineOutlinedIcon from "@mui/icons-material/PauseCircleOutlineOutlined";
 import { useTheme } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
-import { IUser } from "../../../interfaces";
+import type { IUser } from "../../../interfaces";
 
 type Props = {
   value: IUser["isActive"];

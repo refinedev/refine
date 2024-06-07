@@ -10,10 +10,14 @@ import {
 } from "@definitions";
 import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
 
-import { BaseRecord, HttpError, MetaQuery } from "../../contexts/data/types";
-import { UseCreateReturnType } from "../../hooks/data/useCreate";
-import { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
-import { MapDataFn } from "../export/types";
+import type {
+  BaseRecord,
+  HttpError,
+  MetaQuery,
+} from "../../contexts/data/types";
+import type { UseCreateReturnType } from "../../hooks/data/useCreate";
+import type { UseCreateManyReturnType } from "../../hooks/data/useCreateMany";
+import type { MapDataFn } from "../export/types";
 
 export type ImportSuccessResult<TVariables, TData> = {
   request: TVariables[];

@@ -1,35 +1,38 @@
 import type { Express } from "express";
 import { SERVER_PORT } from "./constants";
 import { bold, cyanBright } from "chalk";
+import http from "http";
 
-export const setupServer = (app: Express) => {
-  const server = app
-    .listen(SERVER_PORT, () => {
-      if (__DEVELOPMENT__) {
-        console.log(`Server started on PORT ${SERVER_PORT}`);
-      }
-    })
+export const setupServer = (app: Express, onError: () => void) => {
+  const server = http.createServer(app);
+
+  server
     .on("error", (error: any) => {
       if (error?.code === "EADDRINUSE") {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "refine devtools",
-          )} failed to start. Port ${SERVER_PORT} is already in use, please make sure no other devtools server is running\n`,
+            "Refine Devtools server",
+          )} (http) failed to start. Port ${SERVER_PORT} is already in use.\n`,
         );
       } else {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(
-            "error from refine devtools",
+            "error from Refine Devtools",
           )}`,
           error,
         );
       }
-      process.exit(1);
+      server.close(() => {
+        if (__DEVELOPMENT__) {
+          console.log("Process terminated");
+        }
+      });
+      onError();
     })
     .on("listening", () => {
       console.log(
         `\n${cyanBright.bold("\u2713 ")}${bold(
-          "refine devtools",
+          "Refine Devtools",
         )} is running at port ${cyanBright.bold(SERVER_PORT)}\n`,
       );
     });
@@ -41,4 +44,12 @@ export const setupServer = (app: Express) => {
       }
     });
   });
+
+  server.listen(SERVER_PORT, undefined, undefined, () => {
+    if (__DEVELOPMENT__) {
+      console.log(`Server started on PORT ${SERVER_PORT}`);
+    }
+  });
+
+  return server;
 };

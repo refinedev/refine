@@ -1,5 +1,5 @@
-import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
-import { RouterProvider } from "../../../contexts/router/types";
+import type { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import type { RouterProvider } from "../../../contexts/router/types";
 
 export const checkRouterPropMisuse = (
   value: LegacyRouterProvider | RouterProvider,

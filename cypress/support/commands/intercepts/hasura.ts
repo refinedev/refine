@@ -1,4 +1,4 @@
-import { CyHttpMessages } from "cypress/types/net-stubbing";
+import type { CyHttpMessages } from "cypress/types/net-stubbing";
 import hasuraBlogPosts from "../../../fixtures/hasura-blog-posts.json";
 import hasuraCategories from "../../../fixtures/hasura-categories.json";
 

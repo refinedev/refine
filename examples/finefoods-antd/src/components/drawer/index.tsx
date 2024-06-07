@@ -2,11 +2,11 @@ import { CloseOutlined } from "@ant-design/icons";
 import {
   Drawer as AntdDrawer,
   Button,
-  DrawerProps,
+  type DrawerProps,
   Typography,
   theme,
 } from "antd";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 type Props = {} & DrawerProps;
 
@@ -58,6 +58,7 @@ export const Drawer = (props: PropsWithChildren<Props>) => {
             padding: 0,
             color: token.colorTextTertiary,
           }}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<CloseOutlined />}
           onClick={props?.onClose}
         />

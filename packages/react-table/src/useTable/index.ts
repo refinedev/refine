@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import {
-  BaseRecord,
+  type BaseRecord,
   ConditionalFilter,
-  CrudFilter,
+  type CrudFilter,
   CrudOperators,
-  HttpError,
+  type HttpError,
   LogicalFilter,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType as useTableReturnTypeCore,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType as useTableReturnTypeCore,
 } from "@refinedev/core";
 import {
   useReactTable,
-  TableOptions,
-  Table,
+  type TableOptions,
+  type Table,
   getCoreRowModel,
   ColumnFilter,
   getSortedRowModel,

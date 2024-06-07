@@ -1,4 +1,4 @@
-import { IResourceItem, DataProvider } from "@refinedev/core";
+import type { IResourceItem, DataProvider } from "@refinedev/core";
 import React from "react";
 
 export type InferType =

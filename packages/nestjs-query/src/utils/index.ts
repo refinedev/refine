@@ -1,4 +1,4 @@
-import {
+import type {
   CrudFilter,
   CrudOperators,
   CrudSorting,
@@ -8,8 +8,8 @@ import {
 
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
-import { Client } from "graphql-ws";
+import type VariableOptions from "gql-query-builder/build/VariableOptions";
+import type { Client } from "graphql-ws";
 import set from "lodash/set";
 import { singular } from "pluralize";
 
@@ -78,6 +78,14 @@ const operatorMapper = (
     return { notILike: `%${value}%` };
   }
 
+  if (operator === "containss") {
+    return { like: `%${value}%` };
+  }
+
+  if (operator === "ncontainss") {
+    return { notLike: `%${value}%` };
+  }
+
   if (operator === "startswith") {
     return { iLike: `${value}%` };
   }
@@ -86,12 +94,28 @@ const operatorMapper = (
     return { notILike: `${value}%` };
   }
 
+  if (operator === "startswiths") {
+    return { like: `${value}%` };
+  }
+
+  if (operator === "nstartswiths") {
+    return { notLike: `${value}%` };
+  }
+
   if (operator === "endswith") {
     return { iLike: `%${value}` };
   }
 
   if (operator === "nendswith") {
     return { notILike: `%${value}` };
+  }
+
+  if (operator === "endswiths") {
+    return { like: `%${value}` };
+  }
+
+  if (operator === "nendswiths") {
+    return { notLike: `%${value}` };
   }
 
   if (operator === "null") {
@@ -112,6 +136,18 @@ const operatorMapper = (
     }
 
     return { between: { lower: value[0], upper: value[1] } };
+  }
+
+  if (operator === "nbetween") {
+    if (!Array.isArray(value)) {
+      throw new Error("NBetween operator requires an array");
+    }
+
+    if (value.length !== 2) {
+      return {};
+    }
+
+    return { notBetween: { lower: value[0], upper: value[1] } };
   }
 
   return { [operatorMap[operator]]: value };

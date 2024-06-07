@@ -1,12 +1,16 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { useState } from "react";
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, SimpleGrid, Image } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
+import {
+  Dropzone,
+  IMAGE_MIME_TYPE,
+  type FileWithPath,
+} from "@mantine/dropzone";
 
 import { convertBase64 } from "../../utils";
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 interface FormValues {
   title: string;

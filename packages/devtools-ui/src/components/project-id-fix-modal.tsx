@@ -247,7 +247,7 @@ export const ProjectIdFixModal = ({ visible, onClose, projectId }: Props) => {
           )}
         >
           {
-            "That's it! You're now ready for the upcoming features of the refine devtools!"
+            "That's it! You're now ready for the upcoming features of the Refine Devtools!"
           }
         </div>
       </div>

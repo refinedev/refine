@@ -1,5 +1,35 @@
 # @refinedev/hasura
 
+## 6.6.4
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type.
+
+  All fields in the [`CrudOperators`](https://github.com/refinedev/refine/blob/master/packages/core/src/contexts/data/types.ts#L218) interface must be used in the [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type, but some fields may not be supported by Hasura. To resolve this, the object type has been changed to partial.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.6.3
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`c6f04637a890fced05adae0a2533bb554c1de428`](https://github.com/refinedev/refine/commit/c6f04637a890fced05adae0a2533bb554c1de428) Thanks [@aliemir](https://github.com/aliemir)! - fix: [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type.
+
+  All fields in the [`CrudOperators`](https://github.com/refinedev/refine/blob/master/packages/core/src/contexts/data/types.ts#L218) interface must be used in the [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type, but some fields may not be supported by Hasura. To resolve this, the object type has been changed to partial.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
 ## 6.6.2
 
 ### Patch Changes

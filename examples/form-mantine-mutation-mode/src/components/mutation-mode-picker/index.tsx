@@ -1,5 +1,5 @@
 import React from "react";
-import { MutationMode } from "@refinedev/core";
+import type { MutationMode } from "@refinedev/core";
 import { Radio, Group, Text, Card } from "@mantine/core";
 
 interface Props {

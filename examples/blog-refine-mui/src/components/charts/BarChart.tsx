@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { IBarChartProps } from "../../interfaces";
+import type { IBarChartProps } from "../../interfaces";
 
 const formatDate = new Intl.DateTimeFormat("en-US", {
   month: "short",

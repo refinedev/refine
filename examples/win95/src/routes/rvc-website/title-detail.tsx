@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useShow } from "@refinedev/core";
 import {
   Link as ReactRouterLink,
@@ -13,9 +14,13 @@ import { MediaPlayer } from "@/components/media-player/player";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 import { getHourFromMinutes } from "@/utils/get-hour-from-minutes";
-import { VideoTitle } from "@/types";
+import type { VideoTitle } from "@/types";
 
-export const RVCWebsitePageTitleDetails = () => {
+type Props = {
+  withBrowser?: boolean;
+};
+
+export const RVCWebsitePageTitleDetails = ({ withBrowser = true }: Props) => {
   const { titleId } = useParams();
   const navigate = useNavigate();
 
@@ -29,13 +34,15 @@ export const RVCWebsitePageTitleDetails = () => {
     ? `http://www.refinevideoclub.geocities.com/catalog/${title?.title}.html`
     : "";
 
+  const Wrapper = withBrowser ? Browser : Fragment;
+
   return (
-    <Browser
+    <Wrapper
       title="RVC Website"
       onClose={() => navigate("/")}
       address={address}
     >
-      <RVCWebsiteLayout>
+      <RVCWebsiteLayout withBrowser={withBrowser}>
         <Container>
           {isLoading && !title && (
             <Hourglass
@@ -98,7 +105,11 @@ export const RVCWebsitePageTitleDetails = () => {
               <MediaPlayer youtubeKey={title.trailer_key} />
             </>
           )}
-          <BackButton to="/rvc-website/catalog">
+          <BackButton
+            to={
+              withBrowser ? "/browser/rvc-website" : "/rvc-website/index.html"
+            }
+          >
             <img
               style={{
                 width: "64px",
@@ -111,7 +122,7 @@ export const RVCWebsitePageTitleDetails = () => {
           </BackButton>
         </Container>
       </RVCWebsiteLayout>
-    </Browser>
+    </Wrapper>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { GetManyResponse, HttpError, useMany } from "@refinedev/core";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
+import { type GetManyResponse, type HttpError, useMany } from "@refinedev/core";
 import { List, EditButton, DateField } from "@refinedev/chakra-ui";
 import {
   Table,
@@ -25,7 +25,7 @@ import {
   EditPostDrawer,
 } from "../../components";
 
-import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import type { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const createDrawerFormProps = useModalForm<IPost, HttpError, IPost>({

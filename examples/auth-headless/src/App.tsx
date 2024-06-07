@@ -1,6 +1,6 @@
 import {
   AuthPage,
-  AuthProvider,
+  type AuthProvider,
   GitHubBanner,
   Refine,
   Authenticated,

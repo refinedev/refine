@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useAutocomplete } from "@refinedev/mui";
 
 import Autocomplete from "@mui/material/Autocomplete";
@@ -10,7 +10,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export default {
   title: "Hooks / Autocomplete",

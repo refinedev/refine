@@ -1,4 +1,12 @@
-import { Modal, Form, Input, Grid, ModalProps, FormProps, Upload } from "antd";
+import {
+  Modal,
+  Form,
+  Input,
+  Grid,
+  type ModalProps,
+  type FormProps,
+  Upload,
+} from "antd";
 import { getValueProps, mediaUploadMapper } from "@refinedev/strapi-v4";
 
 import { TOKEN_KEY, API_URL } from "../../constants";

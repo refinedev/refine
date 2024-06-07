@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LineItem, Region } from "@medusajs/medusa";
+import type { LineItem, Region } from "@medusajs/medusa";
 
 import { CalculatedVariant } from "src/types/medusa";
 import { useEnrichedLineItems } from "@lib/hooks";

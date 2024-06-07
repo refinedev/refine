@@ -4,7 +4,7 @@ import {
   useNavigation,
   useDelete,
   useMany,
-  CrudSort,
+  type CrudSort,
 } from "@refinedev/core";
 import {
   Table,
@@ -17,7 +17,7 @@ import {
   Input,
   Button,
   useDisclosure,
-  SortDescriptor,
+  type SortDescriptor,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
@@ -32,7 +32,7 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 
-import { ICategory, IProduct } from "../../interfaces";
+import type { ICategory, IProduct } from "../../interfaces";
 
 import { DeleteModal } from "../../components/modal";
 import { useState, useCallback } from "react";

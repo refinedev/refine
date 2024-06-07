@@ -1,8 +1,8 @@
 import React from "react";
 
-import { IResourceItem } from "../../../contexts/resource/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
 import { useRouterType } from "../../../contexts/router/picker";
-import { Action } from "../../../contexts/router/types";
+import type { Action } from "../../../contexts/router/types";
 import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
 import { composeRoute } from "../../../definitions/helpers/router/compose-route";
 import { useResource } from "../../resource";

@@ -1,4 +1,4 @@
-import { IResourceItem } from "@refinedev/core";
+import type { IResourceItem } from "@refinedev/core";
 import { translateActionTitle } from ".";
 import { prettyString } from "../pretty-string";
 import { toSingular } from "../to-singular";

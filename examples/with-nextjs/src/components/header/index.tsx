@@ -23,7 +23,7 @@ type IUser = {
 };
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-  sticky,
+  sticky = true,
 }) => {
   const { token } = useToken();
   const { data: user } = useGetIdentity<IUser>();

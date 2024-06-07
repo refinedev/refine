@@ -1,4 +1,4 @@
-import { Plugin } from "esbuild";
+import type { Plugin } from "esbuild";
 
 export const prismReactRendererThemeReplacePlugin: Plugin = {
   name: "prismReactRendererThemeReplace",

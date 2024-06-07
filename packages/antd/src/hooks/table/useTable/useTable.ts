@@ -1,16 +1,23 @@
 import React, { Children, createElement, Fragment } from "react";
-import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
+import {
+  Grid,
+  type FormProps,
+  Form,
+  type TablePaginationConfig,
+  type TableProps,
+} from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import {
   useLiveMode,
-  BaseRecord,
-  CrudFilters,
-  HttpError,
+  type BaseRecord,
+  type CrudFilters,
+  type HttpError,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType as useTableCoreReturnType,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType as useTableCoreReturnType,
   pickNotDeprecated,
+  useSyncWithLocation,
 } from "@refinedev/core";
 
 import {
@@ -18,7 +25,7 @@ import {
   mapAntdFilterToCrudFilter,
 } from "@definitions/table";
 import { PaginationLink } from "./paginationLink";
-import { FilterValue, SorterResult } from "../../../definitions/table";
+import type { FilterValue, SorterResult } from "../../../definitions/table";
 
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
@@ -122,6 +129,8 @@ export const useTable = <
     metaData: pickNotDeprecated(meta, metaData),
     dataProviderName,
   });
+  const { syncWithLocation: defaultSyncWithLocation } = useSyncWithLocation();
+  const shouldSyncWithLocation = syncWithLocation ?? defaultSyncWithLocation;
   const breakpoint = Grid.useBreakpoint();
   const [form] = Form.useForm<TSearchVariables>();
   const formSF = useFormSF<any, TSearchVariables>({
@@ -139,6 +148,33 @@ export const useTable = <
   );
 
   const { data, isFetched, isLoading } = tableQueryResult;
+
+  React.useEffect(() => {
+    if (shouldSyncWithLocation) {
+      // get registered fields of form
+      const registeredFields = formSF.form.getFieldsValue() as Record<
+        string,
+        any
+      >;
+      // map `filters` for registered fields
+      const filterFilterMap = Object.keys(registeredFields).reduce(
+        (acc, curr) => {
+          // find filter for current field
+          const filter = filters.find(
+            (filter) => "field" in filter && filter.field === curr,
+          );
+          // if filter exists, set value to filter value
+          if (filter) {
+            acc[curr] = filter?.value;
+          }
+          return acc;
+        },
+        {} as Record<string, any>,
+      );
+      // set values to form
+      formSF.form.setFieldsValue(filterFilterMap as any);
+    }
+  }, [shouldSyncWithLocation]);
 
   const onChange = (
     paginationState: TablePaginationConfig,

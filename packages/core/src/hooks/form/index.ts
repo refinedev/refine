@@ -25,7 +25,7 @@ import {
 import type { UpdateParams } from "../data/useUpdate";
 import type { UseCreateParams } from "../data/useCreate";
 import type { UseFormProps, UseFormReturnType } from "./types";
-import {
+import type {
   BaseKey,
   BaseRecord,
   CreateResponse,

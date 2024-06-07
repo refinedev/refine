@@ -1,4 +1,4 @@
-import { HttpError, useParsed } from "@refinedev/core";
+import { type HttpError, useParsed } from "@refinedev/core";
 import {
   useSimpleList,
   useModalForm,
@@ -12,7 +12,7 @@ import {
   CreateProduct,
   EditProduct,
 } from "../../components/product";
-import { IProduct } from "../../interfaces";
+import type { IProduct } from "../../interfaces";
 
 export const ProductList = () => {
   const { params } = useParsed<{ tenant: string }>();

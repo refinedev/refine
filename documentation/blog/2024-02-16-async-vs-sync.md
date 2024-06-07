@@ -1,6 +1,6 @@
 ---
 title: Synchronous vs. Asynchronous Programming
-description: This article explains the differences between the Syncronous and Asynchronous programming and when to use each.
+description: This article explains the differences between the Synchronous and Asynchronous programming and when to use each.
 slug: synchronous-vs-asynchronous
 authors: muhammad_khabbab
 tags: [javascript]

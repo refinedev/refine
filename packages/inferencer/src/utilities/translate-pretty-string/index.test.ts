@@ -1,6 +1,6 @@
-import { IResourceItem } from "@refinedev/core";
+import type { IResourceItem } from "@refinedev/core";
 import { translatePrettyString } from ".";
-import { InferField } from "@/types";
+import type { InferField } from "@/types";
 
 describe("translatePrettyString", () => {
   const resource: IResourceItem = {

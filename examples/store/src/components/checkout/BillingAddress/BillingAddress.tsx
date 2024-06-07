@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 
 import { Input, CountrySelect } from "@components";
-import { CheckoutFormValues } from "@lib/context/checkout";
+import type { CheckoutFormValues } from "@lib/context/checkout";
 
 export const BillingAddress: React.FC = () => {
   const {

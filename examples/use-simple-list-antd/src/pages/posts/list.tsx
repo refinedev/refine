@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import {
   useMany,
-  CrudFilters,
-  HttpError,
+  type CrudFilters,
+  type HttpError,
   getDefaultFilter,
 } from "@refinedev/core";
 import { List, useSimpleList, NumberField, useSelect } from "@refinedev/antd";
@@ -19,7 +19,7 @@ import dayjs from "dayjs";
 const { RangePicker } = DatePicker;
 const { Text } = Typography;
 
-import { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
+import type { IPost, ICategory, IPostFilterVariables } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { listProps, searchFormProps, filters } = useSimpleList<

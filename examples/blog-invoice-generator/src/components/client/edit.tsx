@@ -2,11 +2,11 @@ import { Edit, useSelect } from "@refinedev/antd";
 
 import {
   Drawer,
-  DrawerProps,
+  type DrawerProps,
   Form,
-  FormProps,
+  type FormProps,
   Input,
-  ButtonProps,
+  type ButtonProps,
   Grid,
   Select,
 } from "antd";

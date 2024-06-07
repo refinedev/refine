@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller, type FieldValues } from "react-hook-form";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { VideoClubPageTapeSelectTitle } from "@/routes/video-club/tapes/select-title";
@@ -21,7 +21,7 @@ import { DangerIcon, IconChevronLeft } from "@/components/icons";
 import { ArrowGreenPixelatedIcon } from "@/components/icons/arrow-green-pixelated";
 import { NIGHTLY_RENTAL_FEE } from "@/utils/app-settings";
 import { convertToUSD } from "@/utils/convert-to-usd";
-import {
+import type {
   CreateRental,
   ExtendedMember,
   ExtendedVideoTitle,

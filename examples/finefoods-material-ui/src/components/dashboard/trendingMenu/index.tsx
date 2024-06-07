@@ -6,13 +6,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-import { ITrendingProducts } from "../../../interfaces";
+import type { ITrendingProducts } from "../../../interfaces";
 import { Rank1Icon } from "../../icons/rank-1";
 import { Rank2Icon } from "../../icons/rank-2";
 import { Rank3Icon } from "../../icons/rank-3";
 import { Rank4Icon } from "../../icons/rank-4";
 import { Rank5Icon } from "../../icons/rank-5";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
   const { data } = useList<ITrendingProducts>({

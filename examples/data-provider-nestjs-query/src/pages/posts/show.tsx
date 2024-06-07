@@ -1,11 +1,11 @@
 import { useShow } from "@refinedev/core";
 import { Show, MarkdownField, RefreshButton } from "@refinedev/antd";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Typography } from "antd";
 
 import { POST_SHOW_QUERY } from "./queries";
-import { PostShowQuery } from "graphql/types";
+import type { PostShowQuery } from "graphql/types";
 
 const { Title, Text } = Typography;
 

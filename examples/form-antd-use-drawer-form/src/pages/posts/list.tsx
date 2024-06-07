@@ -15,7 +15,7 @@ import {
 
 import { Table, Form, Select, Input, Drawer, Space, Typography } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

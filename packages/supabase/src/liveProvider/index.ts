@@ -1,5 +1,5 @@
-import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
-import {
+import type { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
+import type {
   RealtimeChannel,
   RealtimePostgresChangesPayload,
   SupabaseClient,

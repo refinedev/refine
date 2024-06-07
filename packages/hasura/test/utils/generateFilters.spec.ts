@@ -1,6 +1,6 @@
 import {
-  HasuraCrudFilters,
-  HasuraCrudOperators,
+  type HasuraCrudFilters,
+  type HasuraCrudOperators,
   generateFilters,
   handleFilterValue,
 } from "../../src/utils";

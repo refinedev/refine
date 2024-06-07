@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Separator, TextInput } from "react95";
-import { CSSProperties, useState } from "react";
+import { type CSSProperties, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
 import { useNavigation } from "@refinedev/core";
-import { Controller, FieldValues } from "react-hook-form";
+import { Controller, type FieldValues } from "react-hook-form";
 import { VideoClubLayoutSubPage } from "@/components/layout";
 import { ArrowGreenPixelatedIcon } from "@/components/icons";
 import { ImagePixelated } from "@/components/image-pixelated";
 import { supabaseClient } from "@/supabase-client";
-import { Member } from "@/types";
+import type { Member } from "@/types";
 
 export const VideoClubMemberPageEdit = () => {
   const [memberPhoto, setMemberPhoto] = useState<string | null>(null);

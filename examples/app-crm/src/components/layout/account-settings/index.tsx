@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { HttpError, useOne, useUpdate } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import { type HttpError, useOne, useUpdate } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
   CloseOutlined,
@@ -25,7 +25,7 @@ import {
 } from "antd";
 
 import { TimezoneEnum } from "@/enums";
-import {
+import type {
   AccountSettingsGetUserQuery,
   AccountSettingsUpdateUserMutation,
   AccountSettingsUpdateUserMutationVariables,
@@ -130,6 +130,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         <Text strong>Account Settings</Text>
         <Button
           type="text"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<CloseOutlined />}
           onClick={() => closeModal()}
         />
@@ -164,6 +165,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                 });
               },
               triggerType: ["text", "icon"],
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <EditOutlined className={styles.titleEditIcon} />,
             }}
           >
@@ -173,6 +175,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         <Card
           title={
             <Space size={15}>
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <UserOutlined />
               <Text size="sm">User profile</Text>
             </Space>
@@ -189,6 +192,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
               },
             }}
             formProps={{ initialValues: { jobTitle } }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<IdcardOutlined className="tertiary" />}
             state={getActiveForm("jobTitle")}
             itemProps={{
@@ -211,6 +215,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
               },
             }}
             formProps={{ initialValues: { phone } }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<PhoneOutlined className="tertiary" />}
             state={getActiveForm("phone")}
             itemProps={{
@@ -234,6 +239,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
             }}
             formProps={{ initialValues: { timezone } }}
             style={{ borderBottom: "none" }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<GlobalOutlined className="tertiary" />}
             state={getActiveForm("timezone")}
             itemProps={{
@@ -251,6 +257,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         <Card
           title={
             <Space size={15}>
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <SafetyCertificateOutlined />
               <Text size="sm">Security</Text>
             </Space>
@@ -267,6 +274,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
               },
             }}
             formProps={{ initialValues: { email } }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<MailOutlined className="tertiary" />}
             state={getActiveForm("email")}
             itemProps={{

@@ -1,8 +1,8 @@
 import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
-import { Mutation, Query } from "@tanstack/react-query";
+import type { Mutation, Query } from "@tanstack/react-query";
 
 import { createIdentifier } from "./create-identifier";
-import { XRayResponse } from "./get-xray";
+import type { XRayResponse } from "./get-xray";
 
 export const createMutationListener =
   (ws: WebSocket) => (mutation?: Mutation) => {

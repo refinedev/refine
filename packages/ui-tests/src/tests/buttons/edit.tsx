@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  RefineEditButtonProps,
+  type RefineEditButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 

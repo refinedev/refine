@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import { CommonCircleChevronDown } from "./common-circle-chevron-down";
 import { CommonCircleChevronUp } from "./common-circle-chevron-up";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";

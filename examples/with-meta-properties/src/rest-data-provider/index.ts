@@ -1,4 +1,4 @@
-import { DataProvider } from "@refinedev/core";
+import type { DataProvider } from "@refinedev/core";
 import dataProvider, { stringify } from "@refinedev/simple-rest";
 
 import { axiosInstance, generateSort, generateFilter } from "./utils";

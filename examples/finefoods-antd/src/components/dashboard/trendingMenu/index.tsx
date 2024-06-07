@@ -1,6 +1,6 @@
 import { NumberField, useSimpleList } from "@refinedev/antd";
 import { Typography, Avatar, List as AntdList, Flex } from "antd";
-import { ITrendingProducts } from "../../../interfaces";
+import type { ITrendingProducts } from "../../../interfaces";
 import {
   Rank1Icon,
   Rank2Icon,
@@ -8,7 +8,7 @@ import {
   Rank4Icon,
   Rank5Icon,
 } from "../../icons";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
   const { listProps } = useSimpleList<ITrendingProducts>({

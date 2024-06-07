@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import {
   Edit,
@@ -13,12 +13,16 @@ import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import {
+import type {
   GetPostCategoriesSelectQuery,
   UpdatePostMutation,
   UpdatePostMutationVariables,
 } from "graphql/types";
-import { GetFields, GetFieldsFromList, GetVariables } from "@refinedev/hasura";
+import type {
+  GetFields,
+  GetFieldsFromList,
+  GetVariables,
+} from "@refinedev/hasura";
 import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit = () => {

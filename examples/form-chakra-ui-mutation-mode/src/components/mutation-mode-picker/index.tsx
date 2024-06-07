@@ -1,5 +1,5 @@
 import React from "react";
-import { MutationMode } from "@refinedev/core";
+import type { MutationMode } from "@refinedev/core";
 import { Radio, RadioGroup, VStack, Stack, Text, Box } from "@chakra-ui/react";
 
 interface Props {

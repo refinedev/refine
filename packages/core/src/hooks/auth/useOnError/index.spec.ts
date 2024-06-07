@@ -8,7 +8,7 @@ import {
 } from "@test";
 
 import { useOnError } from ".";
-import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import type { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
 
 const mockReplace = jest.fn();
 const mockPush = jest.fn();

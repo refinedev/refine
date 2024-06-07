@@ -1,11 +1,11 @@
 import React from "react";
-import { file2Base64, HttpError } from "@refinedev/core";
+import { file2Base64, type HttpError } from "@refinedev/core";
 
 import { Create, useForm, getValueFromEvent } from "@refinedev/antd";
 
 import { Form, Input, Upload } from "antd";
 
-import { IUser, IUserVariable } from "../../interfaces";
+import type { IUser, IUserVariable } from "../../interfaces";
 
 export const UserCreate = () => {
   const { formProps, saveButtonProps } = useForm<

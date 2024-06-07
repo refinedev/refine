@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGo, useResource, useRouterType } from "@refinedev/core";
-import { RefineErrorPageProps } from "@refinedev/ui-types";
+import type { RefineErrorPageProps } from "@refinedev/ui-types";
 import { useNavigation, useTranslate } from "@refinedev/core";
 
 import Stack from "@mui/material/Stack";

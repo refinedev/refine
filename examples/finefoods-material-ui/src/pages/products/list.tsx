@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from "react";
+import React, { type PropsWithChildren, useState } from "react";
 import { useTranslate, useGo, useNavigation, useList } from "@refinedev/core";
 import { CreateButton, useDataGrid } from "@refinedev/mui";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
@@ -12,7 +12,7 @@ import {
   ProductListCard,
   RefineListView,
 } from "../../components";
-import { ICategory, IProduct } from "../../interfaces";
+import type { ICategory, IProduct } from "../../interfaces";
 
 type View = "table" | "card";
 

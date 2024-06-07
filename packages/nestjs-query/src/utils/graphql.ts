@@ -1,4 +1,9 @@
-import { FieldNode, DocumentNode, visit, SelectionSetNode } from "graphql";
+import {
+  type FieldNode,
+  type DocumentNode,
+  visit,
+  type SelectionSetNode,
+} from "graphql";
 
 const getChildNodesField = (node: FieldNode): FieldNode | undefined => {
   return node?.selectionSet?.selections?.find(

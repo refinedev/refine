@@ -1,15 +1,15 @@
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { QueryObserverResult } from "@tanstack/react-query";
 import type { Checkbox } from "antd";
 
 import {
-  BaseRecord,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
+  type BaseRecord,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
   useSelect,
-  BaseKey,
+  type BaseKey,
   pickNotDeprecated,
-  BaseOption,
+  type BaseOption,
 } from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<

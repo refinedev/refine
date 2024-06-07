@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactNode } from "react";
+import React, { type FC, type PropsWithChildren, type ReactNode } from "react";
 import styles from "./styles.module.css";
 
 type Props = {
