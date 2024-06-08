@@ -1,5 +1,5 @@
 import {
-  HttpError,
+  type HttpError,
   useApiUrl,
   useGetToPath,
   useGo,
@@ -23,7 +23,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import FormLabel from "@mui/material/FormLabel";
 import { Drawer, DrawerHeader, ProductImageUpload } from "../../../components";
 import { useImageUpload } from "../../../utils";
-import { ICategory, IFile, IProduct, Nullable } from "../../../interfaces";
+import type { ICategory, IFile, IProduct, Nullable } from "../../../interfaces";
 
 type Props = {
   action: "create" | "edit";

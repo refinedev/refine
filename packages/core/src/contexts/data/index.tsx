@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
-import { DataProvider, DataProviders, IDataContext } from "./types";
+import type { DataProvider, DataProviders, IDataContext } from "./types";
 
 export const defaultDataProvider: DataProviders = {
   default: {} as DataProvider,

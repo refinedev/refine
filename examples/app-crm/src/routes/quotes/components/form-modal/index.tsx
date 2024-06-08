@@ -1,14 +1,18 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
-import { HttpError, RedirectAction, useNavigation } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import {
+  type HttpError,
+  type RedirectAction,
+  useNavigation,
+} from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Spin } from "antd";
 
-import {
+import type {
   QuotesCreateQuoteMutation,
   QuotesCreateQuoteMutationVariables,
 } from "@/graphql/types";
@@ -128,6 +132,7 @@ export const QuotesFormModal: FC<Props> = ({
               <Button
                 style={{ paddingLeft: 0 }}
                 type="link"
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PlusCircleOutlined />}
                 onClick={() => replace(`company-create?to=${pathname}`)}
               >

@@ -9,7 +9,7 @@ import {
   Bar,
 } from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
-import { IChartDatum } from "../../interfaces";
+import type { IChartDatum } from "../../interfaces";
 
 type TResponsiveBarChartProps = {
   kpi: string;

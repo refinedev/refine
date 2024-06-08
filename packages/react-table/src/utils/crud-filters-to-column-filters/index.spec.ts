@@ -1,6 +1,6 @@
-import { ColumnDef, ColumnFilter } from "@tanstack/react-table";
+import { type ColumnDef, ColumnFilter } from "@tanstack/react-table";
 import { crudFiltersToColumnFilters } from ".";
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 
 describe("crudFiltersToColumnFilters", () => {
   it("should return with ColumnFilter type", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { NotificationProvider } from "@refinedev/core";
+import type { NotificationProvider } from "@refinedev/core";
 import { useToast } from "@chakra-ui/react";
 
 import { UndoableNotification } from "@components/undoableNotification";

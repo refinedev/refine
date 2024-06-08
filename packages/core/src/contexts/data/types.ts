@@ -1,7 +1,7 @@
-import { QueryFunctionContext, QueryKey } from "@tanstack/react-query";
-import { DocumentNode } from "graphql";
+import type { QueryFunctionContext, QueryKey } from "@tanstack/react-query";
+import type { DocumentNode } from "graphql";
 
-import { UseListConfig } from "../../hooks/data/useList";
+import type { UseListConfig } from "../../hooks/data/useList";
 
 export type Prettify<T> = {
   [K in keyof T]: T[K];
@@ -224,6 +224,8 @@ export type CrudOperators =
   | "gte"
   | "in"
   | "nin"
+  | "ina"
+  | "nina"
   | "contains"
   | "ncontains"
   | "containss"

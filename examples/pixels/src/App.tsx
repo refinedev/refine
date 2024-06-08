@@ -82,6 +82,7 @@ function App() {
                         {
                           name: "github",
                           icon: (
+                            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                             <GithubOutlined
                               style={{
                                 fontSize: "18px",

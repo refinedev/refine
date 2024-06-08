@@ -22,7 +22,7 @@ import Dashboard from "@mui/icons-material/Dashboard";
 
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLogout,
   useTitle,
@@ -37,7 +37,7 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 
-import { RefineLayoutSiderProps } from "../types";
+import type { RefineLayoutSiderProps } from "../types";
 
 import { Title as DefaultTitle } from "@components";
 

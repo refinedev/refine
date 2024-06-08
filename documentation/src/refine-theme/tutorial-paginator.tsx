@@ -6,7 +6,7 @@ import { ArrowRightIcon } from "./icons/arrow-right";
 
 import { useDoc } from "@docusaurus/theme-common/internal";
 import {
-  DocElement,
+  type DocElement,
   getNext,
   getPathFromId,
   getPrevious,

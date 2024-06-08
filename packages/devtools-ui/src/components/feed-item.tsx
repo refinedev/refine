@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import clsx from "clsx";
 
-import { FeedSection } from "@refinedev/devtools-shared";
+import type { FeedSection } from "@refinedev/devtools-shared";
 
 type Props = {
   item: FeedSection;

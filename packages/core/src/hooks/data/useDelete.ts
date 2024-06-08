@@ -1,7 +1,7 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseMutationOptions,
-  UseMutationResult,
+  type UseMutationOptions,
+  type UseMutationResult,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
@@ -28,7 +28,7 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseKey,
   BaseRecord,
   DeleteOneResponse,
@@ -40,11 +40,11 @@ import {
   PrevContext as DeleteContext,
   PreviousQuery,
 } from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import { ActionTypes } from "../../contexts/undoableQueue/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

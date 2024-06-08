@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useWatch } from "react-hook-form";
-import {
+import type {
   Country,
   Customer,
   Region,

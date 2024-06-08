@@ -1,6 +1,6 @@
 import { useForm, useSelect } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import {
+import type { HttpError } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -11,7 +11,7 @@ import { Checkbox, Form, Select, Space } from "antd";
 
 import { AccordionHeaderSkeleton } from "@/components";
 import { TASK_STAGES_SELECT_QUERY } from "@/graphql/queries";
-import {
+import type {
   TaskStagesSelectQuery,
   UpdateTaskMutation,
   UpdateTaskMutationVariables,
@@ -76,6 +76,7 @@ export const StageForm = ({ isLoading }: Props) => {
         {...formProps}
       >
         <Space size={5}>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <FlagOutlined />
           <Form.Item
             noStyle

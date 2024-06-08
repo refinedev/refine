@@ -1,7 +1,7 @@
-import { useTranslate, HttpError } from "@refinedev/core";
+import { useTranslate, type HttpError } from "@refinedev/core";
 import { List, useTable } from "@refinedev/antd";
 import { Table } from "antd";
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 import {
   PaginationTotal,
   CategoryStatus,

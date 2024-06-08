@@ -1,4 +1,4 @@
-import { ProductVariant } from "@medusajs/medusa";
+import type { ProductVariant } from "@medusajs/medusa";
 
 export type CalculatedVariant = ProductVariant & {
   calculated_price: number;

@@ -7,7 +7,7 @@ import {
   useWarnAboutChange,
 } from "@hooks";
 
-import { LayoutProps, TitleProps } from "../../contexts/refine/types";
+import type { LayoutProps, TitleProps } from "../../contexts/refine/types";
 
 export interface LayoutWrapperProps {
   /**

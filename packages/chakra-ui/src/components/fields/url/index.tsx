@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@chakra-ui/react";
 
-import { UrlFieldProps } from "../types";
+import type { UrlFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://chakra-ui.com/docs/components/text  `<Text>` } component from Chakra UI.

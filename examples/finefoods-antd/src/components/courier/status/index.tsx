@@ -1,7 +1,7 @@
 import { Flex, Skeleton, Spin, Tag, Typography, theme } from "antd";
 import { CheckCircleOutlined, PoweroffOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
-import { ICourier } from "../../../interfaces";
+import type { ICourier } from "../../../interfaces";
 import { useConfigProvider } from "../../../context";
 import { BikeWhiteIcon } from "../../icons";
 
@@ -19,6 +19,7 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
 
   const variant = {
     Available: {
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <CheckCircleOutlined />,
       tagColor: "green",
       tagTextColor: {
@@ -32,6 +33,7 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
         dark: token.colorTextTertiary,
         light: token.colorTextTertiary,
       },
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <PoweroffOutlined />,
     },
     "On delivery": {
@@ -40,6 +42,7 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
         dark: token.blue7,
         light: token.blue5,
       },
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <BikeWhiteIcon />,
     },
   };

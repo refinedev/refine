@@ -1,8 +1,8 @@
 "use client";
 
-import { GetListResponse, useNavigation } from "@refinedev/core";
+import { type GetListResponse, useNavigation } from "@refinedev/core";
 import Link from "next/link";
-import { Category } from "@/types";
+import type { Category } from "@/types";
 import cn from "classnames";
 
 type Props = {

@@ -1,8 +1,8 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  InfiniteData,
-  InfiniteQueryObserverResult,
-  UseInfiniteQueryOptions,
+  type InfiniteData,
+  type InfiniteQueryObserverResult,
+  type UseInfiniteQueryOptions,
   useInfiniteQuery,
 } from "@tanstack/react-query";
 
@@ -26,7 +26,7 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CrudFilter,
   CrudSort,
@@ -36,11 +36,11 @@ import {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

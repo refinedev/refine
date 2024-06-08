@@ -5,7 +5,7 @@ import {
   useActiveAuthProvider,
   useGetIdentity,
 } from "@refinedev/core";
-import { RefineThemedLayoutV2HeaderProps } from "../types";
+import type { RefineThemedLayoutV2HeaderProps } from "../types";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   isSticky,

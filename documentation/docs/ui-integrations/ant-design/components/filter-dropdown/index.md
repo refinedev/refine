@@ -83,9 +83,18 @@ These are to be passed from [`<Table.Column>`'s filterDropdown](https://ant.desi
 
 ### mapValue
 
-Determines the value passed to children. `mapValue` takes `selectedKeys` as an argument.
+The `mapValue` function is a utility function used to transform the `selectedKeys` based on certain events.
 
-For example when using `useSelect` for `<Select>` component, in which case, the values must be mapped to `number`s using `mapValue`.
+```ts
+function mapValue(selectedKeys: React.Key[], event: "onChange" | "value"): any;
+```
+
+- `selectedKeys`: The selected keys from the dropdown.
+- `event`: The event that triggered the `mapValue` function. It can be either `onChange` or `value`.
+  - `onChange`: The event that is triggered when the value of the dropdown changes. It is used to map the value to the format that the Refine expects(data provider, syncWithLocation etc.).
+  - `value`: When the value needs to be mapped for the child component.
+
+For example when using [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/) for [`<Select />`](https://ant.design/components/select/) component, in which case, the values must be mapped to `number`s using `mapValue`.
 
 ```tsx
 import { getDefaultFilter } from "@refinedev/core";
@@ -135,6 +144,105 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
     defaultFilteredValue={getDefaultFilter("category.id", filters, "in")}
   />
 </Table>;
+```
+
+#### rangePickerFilterMapper
+
+A more complex example is using a filter dropdown with a date picker.
+
+Imagine you need to filter data based on a date range where Refine's data provider expects dates in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format, but Ant Design's [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker) uses Dayjs objects. To solve this, use the `mapValue` and [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/master/packages/antd/src/definitions/filter-mappers/index.ts) utility function to convert `selectedKeys` to satisfy both the data provider and `<DatePicker.RangePicker />`.
+
+```tsx
+import { getDefaultFilter } from "@refinedev/core";
+import {
+  DateField,
+  FilterDropdown,
+  rangePickerFilterMapper,
+  useTable,
+} from "@refinedev/antd";
+import { Table, DatePicker } from "antd";
+
+export const Posts = () => {
+  const { tableProps, filters } = useTable({
+    filters: {
+      initial: [
+        {
+          field: "created_at",
+          value: ["2022-01-01", "2022-01-31"],
+          operator: "between",
+        },
+      ],
+    },
+  });
+
+  return (
+    <Table {...tableProps} rowKey="id">
+      <Table.Column dataIndex="id" title="ID" />
+      <Table.Column dataIndex="title" title="Title" />
+      <Table.Column
+        dataIndex="createdAt"
+        title="Created At"
+        filterDropdown={(props) => (
+          <FilterDropdown
+            {...props}
+            mapValue={(selectedKeys, event) => {
+              return rangePickerFilterMapper(selectedKeys, event);
+            }}
+          >
+            <DatePicker.RangePicker />
+          </FilterDropdown>
+        )}
+        defaultFilteredValue={getDefaultFilter(
+          "created_at",
+          filters,
+          "between",
+        )}
+      />
+    </Table>
+  );
+};
+```
+
+Let's closer look at the [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/master/packages/antd/src/definitions/filter-mappers/index.ts) function source code to understand how it works.
+
+when the `event` is:
+
+- `"value"`: It converts the `selectedKeys` to Dayjs objects to be used in the `<DatePicker.RangePicker />` component.
+- `"onChange"`, It converts the Dayjs objects to ISO 8601 string format to be used in the Refine(data-provider, syncWithLocation etc.) filter.
+
+```ts
+import type {
+  FilterDropdownProps,
+  MapValueEvent,
+} from "@components/table/components";
+import dayjs from "dayjs";
+
+export const rangePickerFilterMapper = (
+  selectedKeys: FilterDropdownProps["selectedKeys"],
+  event: MapValueEvent,
+) => {
+  if (!selectedKeys) {
+    return selectedKeys;
+  }
+
+  if (event === "value") {
+    return selectedKeys.map((key) => {
+      if (typeof key === "string") {
+        return dayjs(key);
+      }
+
+      return key;
+    });
+  }
+
+  if (event === "onChange") {
+    if (selectedKeys.every(dayjs.isDayjs)) {
+      return selectedKeys.map((date: any) => dayjs(date).toISOString());
+    }
+  }
+
+  return selectedKeys;
+};
 ```
 
 :::simple Good to know

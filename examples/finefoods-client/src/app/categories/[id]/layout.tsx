@@ -1,9 +1,9 @@
 import { CategoriesNavLinks } from "@/components/categories";
 import { ProductsTableSkeleton } from "@/components/products/table";
 import { dataProvider } from "@/providers/data-provider/server";
-import { Category } from "@/types";
-import { GetListResponse } from "@refinedev/core";
-import { PropsWithChildren, Suspense } from "react";
+import type { Category } from "@/types";
+import type { GetListResponse } from "@refinedev/core";
+import { type PropsWithChildren, Suspense } from "react";
 
 type Props = {
   params: { id: string };

@@ -1,9 +1,18 @@
 import React from "react";
-import { AccessControlProvider } from "@refinedev/core";
+import type { AccessControlProvider } from "@refinedev/core";
 import { Route, Routes } from "react-router-dom";
-import { RefineCrudListProps, RefineButtonTestIds } from "@refinedev/ui-types";
+import {
+  type RefineCrudListProps,
+  RefineButtonTestIds,
+} from "@refinedev/ui-types";
 
-import { act, ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  type ITestWrapperProps,
+  render,
+  TestWrapper,
+  waitFor,
+} from "@test";
 
 const renderList = (
   list: React.ReactNode,

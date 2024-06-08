@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import { useList, GetListResponse } from "@refinedev/core";
-import { GetServerSideProps } from "next";
+import { useList, type GetListResponse } from "@refinedev/core";
+import type { GetServerSideProps } from "next";
 import { dataProvider } from "@refinedev/medusa";
-import { Product, ProductOption, ProductVariant } from "@medusajs/medusa";
+import type { Product, ProductOption, ProductVariant } from "@medusajs/medusa";
 
 import {
   getProductVariant,

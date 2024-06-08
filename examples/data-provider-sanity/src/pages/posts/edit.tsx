@@ -4,7 +4,7 @@ import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const { formProps, saveButtonProps, formLoading } = useForm<IPost>();

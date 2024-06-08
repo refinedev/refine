@@ -8,8 +8,11 @@ import {
   useTranslate,
 } from "@hooks";
 
-import { DivPropsType, FormPropsType } from "../..";
-import { ForgotPasswordFormTypes, ForgotPasswordPageProps } from "../../types";
+import type { DivPropsType, FormPropsType } from "../..";
+import type {
+  ForgotPasswordFormTypes,
+  ForgotPasswordPageProps,
+} from "../../types";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
   DivPropsType,

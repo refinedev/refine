@@ -2,7 +2,11 @@ import { getProjectType } from "@utils/project";
 import { getProviderPath } from "@utils/resource";
 import { copySync, mkdirSync, pathExistsSync } from "fs-extra";
 import { join } from "path";
-import { availableProviders, Provider, ProviderId } from "./providers";
+import {
+  availableProviders,
+  type Provider,
+  type ProviderId,
+} from "./providers";
 
 const baseTemplatePath = `${__dirname}/../templates/provider`;
 

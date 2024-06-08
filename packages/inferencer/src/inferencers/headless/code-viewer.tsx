@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 
 import { prettierFormat } from "../../utilities";
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 import { CodeHighlight } from "../../components";
 
 type ModalProps = {

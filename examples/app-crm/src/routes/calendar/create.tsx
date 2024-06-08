@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError, useNavigation } from "@refinedev/core";
+import { type HttpError, useNavigation } from "@refinedev/core";
 
 import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Event, EventCreateInput } from "@/graphql/schema.types";
+import type { Event, EventCreateInput } from "@/graphql/schema.types";
 
 import { CalendarForm } from "./components";
 

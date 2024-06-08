@@ -1,11 +1,11 @@
-import {
+import type {
   ConditionalFilter,
   CrudOperators,
   LogicalFilter,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
-import { NamingConvention } from "src/dataProvider";
+import type { NamingConvention } from "src/dataProvider";
 
 export type HasuraFilterCondition =
   | "_and"
@@ -47,9 +47,8 @@ export type HasuraCrudFilter = HasuraLogicalFilter | HasuraConditionalFilter;
 
 export type HasuraCrudFilters = HasuraCrudFilter[];
 
-const hasuraFilters: Record<
-  HasuraCrudOperators,
-  HasuraFilterCondition | undefined
+const hasuraFilters: Partial<
+  Record<HasuraCrudOperators, HasuraFilterCondition | undefined>
 > = {
   eq: "_eq",
   ne: "_neq",
@@ -67,8 +66,6 @@ const hasuraFilters: Record<
   or: "_or",
   and: "_and",
   not: "_not",
-  between: undefined,
-  nbetween: undefined,
   nnull: "_is_null",
   startswith: "_iregex",
   nstartswith: "_iregex",

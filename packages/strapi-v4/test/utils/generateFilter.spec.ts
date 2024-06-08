@@ -1,4 +1,4 @@
-import { CrudFilters } from "@refinedev/core";
+import type { CrudFilters } from "@refinedev/core";
 import { generateFilter, generateNestedFilterField } from "../../src/utils";
 
 describe("generateFilter", () => {

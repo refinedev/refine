@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
-import { ILiveContext } from "./types";
+import type { ILiveContext } from "./types";
 
 export const LiveContext = React.createContext<ILiveContext>({});
 

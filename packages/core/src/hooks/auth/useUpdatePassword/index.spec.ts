@@ -9,7 +9,7 @@ import {
   queryClient,
 } from "@test";
 
-import { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
+import type { LegacyRouterProvider } from "../../../contexts/router/legacy/types";
 import { useUpdatePassword } from "./";
 
 const mockFn = jest.fn();

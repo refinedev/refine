@@ -1,4 +1,4 @@
-import { Collection, JSCodeshift } from "jscodeshift";
+import type { Collection, JSCodeshift } from "jscodeshift";
 import { exported } from "../../definitions/separated-imports/react-router-v6";
 import {
   CONFIG_FILE_NAME,

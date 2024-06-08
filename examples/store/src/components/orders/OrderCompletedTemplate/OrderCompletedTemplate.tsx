@@ -1,5 +1,5 @@
 import React from "react";
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
 
 import { OrderDetails } from "../OrderDetails";
 import { Items } from "../Items";

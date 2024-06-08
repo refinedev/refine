@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Modal } from "../../components/modal";
 import { History } from "../../components/history";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { show, close, visible } = useModal();

@@ -1,4 +1,4 @@
-import { Address, ShippingMethod } from "@medusajs/medusa";
+import type { Address, ShippingMethod } from "@medusajs/medusa";
 import clsx from "clsx";
 
 interface ShippingDetailsProps {

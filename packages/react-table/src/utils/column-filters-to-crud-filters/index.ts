@@ -1,10 +1,10 @@
-import {
+import type {
   ConditionalFilter,
   CrudFilter,
   CrudOperators,
   LogicalFilter,
 } from "@refinedev/core";
-import {
+import type {
   ColumnDef,
   ColumnFilter,
   ColumnFiltersState,

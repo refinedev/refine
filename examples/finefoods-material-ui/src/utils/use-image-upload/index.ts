@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IFile } from "../../interfaces";
+import type { IFile } from "../../interfaces";
 
 type Props = {
   file: FileList[number];

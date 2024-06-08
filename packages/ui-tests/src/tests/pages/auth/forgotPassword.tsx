@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { ForgotPasswordPageProps } from "@refinedev/core";
+import React, { type FC } from "react";
+import type { ForgotPasswordPageProps } from "@refinedev/core";
 
 import {
   fireEvent,

@@ -1,7 +1,7 @@
 import { ActionIcon } from "@mantine/core";
 import { IconChevronDown, IconSelector } from "@tabler/icons-react";
 
-import { ColumnButtonProps } from "../../interfaces";
+import type { ColumnButtonProps } from "../../interfaces";
 
 export const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
   if (!column.getCanSort()) {

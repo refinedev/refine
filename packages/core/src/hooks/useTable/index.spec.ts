@@ -9,7 +9,11 @@ import {
 } from "@test";
 
 import { useTable } from ".";
-import { CrudFilter, CrudSort, Pagination } from "../../contexts/data/types";
+import type {
+  CrudFilter,
+  CrudSort,
+  Pagination,
+} from "../../contexts/data/types";
 import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {

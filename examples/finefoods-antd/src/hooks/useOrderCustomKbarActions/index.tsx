@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslate, useUpdate } from "@refinedev/core";
 import {
-  Action,
+  type Action,
   createAction,
   Priority,
   useRegisterActions,
 } from "@refinedev/kbar";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-import { IOrder } from "../../interfaces";
+import type { IOrder } from "../../interfaces";
 
 export const useOrderCustomKbarActions = (order?: IOrder): void => {
   const t = useTranslate();
@@ -45,6 +45,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
       preActions.push(
         createAction({
           name: t("buttons.accept"),
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon: <CheckCircleOutlined />,
           section: "actions",
           perform: () => {
@@ -61,6 +62,7 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
       preActions.push(
         createAction({
           name: t("buttons.reject"),
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon: <CloseCircleOutlined />,
           section: "actions",
           perform: () => {

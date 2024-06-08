@@ -8,7 +8,7 @@ import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { ListButtonProps } from "../types";
+import type { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.

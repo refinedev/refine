@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
-import { ILegacyRouterContext } from "./types";
+import type { ILegacyRouterContext } from "./types";
 
 export const defaultProvider: ILegacyRouterContext = {
   useHistory: () => false,

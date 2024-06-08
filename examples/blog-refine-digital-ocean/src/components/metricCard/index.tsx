@@ -1,7 +1,7 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { type FC, type PropsWithChildren } from "react";
 import { Card, Skeleton, Typography } from "antd";
 import { useList } from "@refinedev/core";
-import { Area, AreaConfig } from "@ant-design/plots";
+import { Area, type AreaConfig } from "@ant-design/plots";
 import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
 
 type MetricType = "companies" | "contacts" | "deals";
@@ -153,6 +153,7 @@ const variants: {
     secondaryColor: "#BAE0FF",
     icon: (
       <IconWrapper color="#E6F4FF">
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <ShopOutlined
           className="md"
           style={{
@@ -175,6 +176,7 @@ const variants: {
     secondaryColor: "#D9F7BE",
     icon: (
       <IconWrapper color="#F6FFED">
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <TeamOutlined
           className="md"
           style={{
@@ -198,6 +200,7 @@ const variants: {
     secondaryColor: "#FFD8BF",
     icon: (
       <IconWrapper color="#FFF2E8">
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <AuditOutlined
           className="md"
           style={{

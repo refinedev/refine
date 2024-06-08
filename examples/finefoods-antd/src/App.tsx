@@ -87,6 +87,7 @@ const App: React.FC = () => {
                 list: "/",
                 meta: {
                   label: "Dashboard",
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <DashboardOutlined />,
                 },
               },
@@ -95,6 +96,7 @@ const App: React.FC = () => {
                 list: "/orders",
                 show: "/orders/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <ShoppingOutlined />,
                 },
               },
@@ -103,6 +105,7 @@ const App: React.FC = () => {
                 list: "/customers",
                 show: "/customers/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <UserOutlined />,
                 },
               },
@@ -113,6 +116,7 @@ const App: React.FC = () => {
                 edit: "/products/:id/edit",
                 show: "/products/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <UnorderedListOutlined />,
                 },
               },
@@ -120,6 +124,7 @@ const App: React.FC = () => {
                 name: "categories",
                 list: "/categories",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <TagsOutlined />,
                 },
               },
@@ -129,6 +134,7 @@ const App: React.FC = () => {
                 create: "/stores/new",
                 edit: "/stores/:id/edit",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <ShopOutlined />,
                 },
               },
@@ -139,6 +145,7 @@ const App: React.FC = () => {
                 edit: "/couriers/:id/edit",
                 show: "/couriers/:id",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <BikeWhiteIcon />,
                 },
               },

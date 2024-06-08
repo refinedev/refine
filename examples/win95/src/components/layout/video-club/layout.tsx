@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { useGo, useNavigation } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";

@@ -1,4 +1,4 @@
-import { Command } from "commander";
+import type { Command } from "commander";
 
 import { addCommandPrompt } from "./prompt";
 import { IntegrationCommand } from "./sub-commands/integration/command";

@@ -1,9 +1,9 @@
-import { BaseRecord, DataProvider, LogicalFilter } from "@refinedev/core";
+import type { BaseRecord, DataProvider, LogicalFilter } from "@refinedev/core";
 
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
-import VariableOptions from "gql-query-builder/build/VariableOptions";
-import { GraphQLClient } from "graphql-request";
+import type VariableOptions from "gql-query-builder/build/VariableOptions";
+import type { GraphQLClient } from "graphql-request";
 import gqlTag from "graphql-tag";
 import { singular } from "pluralize";
 
@@ -416,7 +416,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       };
     },
     getApiUrl: () => {
-      throw Error("Not implemented on refine-nestjs-query data provider.");
+      return (client as any).url; // url field in GraphQLClient is private
     },
     custom: async ({ url, method, headers, meta }) => {
       if (url) {

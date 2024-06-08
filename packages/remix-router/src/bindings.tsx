@@ -1,13 +1,13 @@
 import {
-  GoConfig,
-  RouterBindings,
+  type GoConfig,
+  type RouterBindings,
   ResourceContext,
   matchResourceFromRoute,
-  ParseResponse,
+  type ParseResponse,
 } from "@refinedev/core";
 import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
 import qs from "qs";
-import React, { ComponentProps, useCallback, useContext } from "react";
+import React, { type ComponentProps, useCallback, useContext } from "react";
 import { paramsFromCurrentPath } from "./params-from-current-path";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 

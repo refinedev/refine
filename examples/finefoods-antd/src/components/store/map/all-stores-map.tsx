@@ -1,6 +1,6 @@
 import { useList, useNavigation, useTranslate } from "@refinedev/core";
 import { Map, AdvancedMarker } from "../../map";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { Card, Flex, List, Tag, Typography } from "antd";
 import { useRef, useState } from "react";
 import {
@@ -115,8 +115,10 @@ export const AllStoresMap = () => {
                       }}
                       icon={
                         selectedStore.isActive ? (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <CheckCircleOutlined />
                         ) : (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <StopOutlined />
                         )
                       }
@@ -135,14 +137,17 @@ export const AllStoresMap = () => {
                   <List
                     dataSource={[
                       {
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         title: <EnvironmentOutlined />,
                         value: selectedStore.address.text,
                       },
                       {
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         title: <UserOutlined />,
                         value: selectedStore.email,
                       },
                       {
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         title: <PhoneOutlined />,
                         value: selectedStore.gsm,
                       },

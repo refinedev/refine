@@ -1,5 +1,11 @@
-import { useState, useEffect, memo, useRef, PropsWithChildren } from "react";
-import { Root, createRoot } from "react-dom/client";
+import {
+  useState,
+  useEffect,
+  memo,
+  useRef,
+  type PropsWithChildren,
+} from "react";
+import { type Root, createRoot } from "react-dom/client";
 
 type AdvancedMarkerProps = {
   onClick?: (event: google.maps.FeatureMouseEvent) => void;

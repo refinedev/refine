@@ -8,7 +8,7 @@ import {
 import Button from "@mui/material/Button";
 import EditOutlined from "@mui/icons-material/EditOutlined";
 
-import { EditButtonProps } from "../types";
+import type { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.

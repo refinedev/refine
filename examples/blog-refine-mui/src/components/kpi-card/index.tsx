@@ -8,10 +8,10 @@ import Chip from "@mui/material/Chip";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import LinearProgress, {
-  LinearProgressProps,
+  type LinearProgressProps,
 } from "@mui/material/LinearProgress";
 
-import { KpiCardProps, DeltaType } from "../../interfaces";
+import type { KpiCardProps, DeltaType } from "../../interfaces";
 
 const getColor = (num: number): DeltaType => {
   switch (true) {

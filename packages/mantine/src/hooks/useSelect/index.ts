@@ -1,15 +1,15 @@
-import { SelectProps } from "@mantine/core";
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { SelectProps } from "@mantine/core";
+import type { QueryObserverResult } from "@tanstack/react-query";
 
 import {
   useSelect as useSelectCore,
-  BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
-  BaseOption,
-  Prettify,
+  type BaseRecord,
+  type GetManyResponse,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
+  type BaseOption,
+  type Prettify,
 } from "@refinedev/core";
 
 export type UseSelectReturnType<

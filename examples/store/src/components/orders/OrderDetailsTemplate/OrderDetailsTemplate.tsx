@@ -1,4 +1,4 @@
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
 
 import { Help } from "../Help";
 import { Items } from "../Items";

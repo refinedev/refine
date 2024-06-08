@@ -1,6 +1,9 @@
 import { RouterContext } from "@contexts/router";
 import React, { useContext } from "react";
-import { ParseFunction, ParseResponse } from "../../../contexts/router/types";
+import type {
+  ParseFunction,
+  ParseResponse,
+} from "../../../contexts/router/types";
 
 type UseParseType = () => <
   TParams extends Record<string, any> = Record<string, any>,

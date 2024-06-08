@@ -31,7 +31,7 @@
  * Same goes for `onError` function, it should always resolve.
  */
 
-import { RefineError } from "../data/types";
+import type { RefineError } from "../data/types";
 
 export type CheckResponse = {
   authenticated: boolean;

@@ -10,7 +10,7 @@ import { TriangleDownIcon } from "./icons/triangle-down";
 import { CommonCircleChevronLeft } from "./common-circle-chevron-left";
 import { useTutorialParameters } from "../context/tutorial-parameter-context";
 import {
-  DocElement,
+  type DocElement,
   findUnitByItemId,
   getNext,
   getPathFromId,

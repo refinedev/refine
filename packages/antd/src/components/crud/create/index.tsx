@@ -14,9 +14,9 @@ import {
   Breadcrumb,
   SaveButton,
   PageHeader,
-  SaveButtonProps,
+  type SaveButtonProps,
 } from "@components";
-import { CreateProps } from "../types";
+import type { CreateProps } from "../types";
 
 /**
  * `<Create>` provides us a layout to display the page.

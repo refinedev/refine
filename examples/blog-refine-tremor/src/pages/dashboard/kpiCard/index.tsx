@@ -5,7 +5,7 @@ import {
   Flex,
   ProgressBar,
   BadgeDelta,
-  DeltaType,
+  type DeltaType,
 } from "@tremor/react";
 
 const getDeltaType = (trend: number): DeltaType => {

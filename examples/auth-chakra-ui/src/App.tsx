@@ -1,5 +1,5 @@
 import {
-  AuthProvider,
+  type AuthProvider,
   Authenticated,
   GitHubBanner,
   Refine,

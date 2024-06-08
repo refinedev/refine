@@ -1,7 +1,7 @@
 import React from "react";
 import { Spin, Row, Col } from "antd";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const LoadingComponent: CreateInferencerConfig["loadingComponent"] =
   () => {

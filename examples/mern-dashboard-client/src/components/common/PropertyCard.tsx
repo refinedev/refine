@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 
-import { PropertyCardProps } from "interfaces/property";
+import type { PropertyCardProps } from "interfaces/property";
 
 const PropertyCard = ({
   id,

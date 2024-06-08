@@ -10,7 +10,7 @@ import {
 
 import { Table, Space } from "antd";
 
-import { IPost, ILanguage } from "../../interfaces";
+import type { IPost, ILanguage } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps } = useTable<IPost>();

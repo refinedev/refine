@@ -1,4 +1,4 @@
-import { CrudOperators } from "@refinedev/core";
+import type { CrudOperators } from "@refinedev/core";
 
 export const mapOperator = (operator: CrudOperators) => {
   switch (operator) {

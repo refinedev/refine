@@ -1,6 +1,6 @@
 import { Query } from "appwrite";
 import { generateFilter } from "../../src/utils";
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 
 describe("generateFilter", () => {
   it("should generate filter based on the specified operator", () => {

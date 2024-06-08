@@ -1,12 +1,12 @@
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import MDEditor from "@uiw/react-md-editor";
 import { Button, Form, Space } from "antd";
 
-import { Task } from "@/graphql/schema.types";
-import {
+import type { Task } from "@/graphql/schema.types";
+import type {
   UpdateTaskMutation,
   UpdateTaskMutationVariables,
 } from "@/graphql/types";

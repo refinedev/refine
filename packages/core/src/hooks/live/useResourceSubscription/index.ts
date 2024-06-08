@@ -5,15 +5,15 @@ import { RefineContext } from "@contexts/refine";
 import { useInvalidate } from "@hooks/invalidate";
 import { useResource } from "@hooks/resource";
 
-import {
+import type {
   BaseKey,
   CrudFilter,
   CrudSort,
   MetaQuery,
   Pagination,
 } from "../../../contexts/data/types";
-import { LiveEvent, LiveModeProps } from "../../../contexts/live/types";
-import { IRefineContext } from "../../../contexts/refine/types";
+import type { LiveEvent, LiveModeProps } from "../../../contexts/live/types";
+import type { IRefineContext } from "../../../contexts/refine/types";
 
 export type UseResourceSubscriptionProps = {
   channel: string;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelect, useForm, useNavigation } from "@refinedev/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
   const [formValues, setFormValues] = useState({

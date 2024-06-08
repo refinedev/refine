@@ -1,7 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -26,14 +26,14 @@ import {
   DrawerContent,
   DrawerOverlay,
   Tooltip,
-  TooltipProps,
+  type TooltipProps,
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
 import { IconList, IconDashboard, IconPower } from "@tabler/icons-react";
 
 import { ThemedTitleV2 as DefaultTitle } from "../title";
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 import { useThemedLayoutContext } from "@hooks";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({

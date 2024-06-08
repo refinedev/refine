@@ -8,12 +8,12 @@ import Stack from "@mui/material/Stack";
 import Input from "@mui/material/Input";
 import Typography from "@mui/material/Typography";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { HttpError, useApiUrl } from "@refinedev/core";
+import { type HttpError, useApiUrl } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
+import type { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);

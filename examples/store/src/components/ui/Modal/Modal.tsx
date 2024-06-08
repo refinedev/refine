@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, PropsWithChildren } from "react";
+import { useRef, useEffect, useCallback, type PropsWithChildren } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 import { Cross } from "@components/icons";

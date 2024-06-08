@@ -1,7 +1,7 @@
 import {
   GitHubBanner,
   Refine,
-  LayoutProps,
+  type LayoutProps,
   ErrorComponent,
 } from "@refinedev/core";
 import routerProvider, {

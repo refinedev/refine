@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useMemo } from "react";
+import React, { type FC, useMemo } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "../context/CommunityStats";
 import useIsBrowser from "@docusaurus/useIsBrowser";

@@ -1,5 +1,8 @@
 import React from "react";
-import HighlightPrism, { Language, defaultProps } from "prism-react-renderer";
+import HighlightPrism, {
+  type Language,
+  defaultProps,
+} from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
 
 type Props = {

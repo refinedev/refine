@@ -1,7 +1,7 @@
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 
 import { generateLogicalFilterFormula } from "../../src/utils";
-import { LogicalFilter } from "@refinedev/core";
+import type { LogicalFilter } from "@refinedev/core";
 
 describe("generateLogicalFilterFormula", () => {
   it("should generate a formula for simple operators", () => {

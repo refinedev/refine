@@ -1,5 +1,5 @@
 import { GoogleMap, MapMarker } from "../../map";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 
 type Props = {
   order?: IOrder;

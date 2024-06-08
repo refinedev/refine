@@ -1,5 +1,5 @@
 import { Card, Flex, Space, Typography } from "antd";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { useConfigProvider } from "../../context";
 
 export const CardWithContent = (

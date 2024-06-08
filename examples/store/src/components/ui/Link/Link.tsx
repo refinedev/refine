@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import type { PropsWithChildren } from "react";
+import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 
 export const Link: React.FC<PropsWithChildren<NextLinkProps>> = ({
   href,

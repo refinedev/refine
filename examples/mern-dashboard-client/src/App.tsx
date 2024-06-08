@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import {
   GitHubBanner,
-  LegacyAuthProvider as AuthProvider,
+  type LegacyAuthProvider as AuthProvider,
   Refine,
 } from "@refinedev/core";
 import {
@@ -22,7 +22,7 @@ import dataProvider from "@refinedev/simple-rest";
 import axios from "axios";
 import { Header, Layout, Sider, Title } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
-import { CredentialResponse } from "interfaces/google";
+import type { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 
 import {

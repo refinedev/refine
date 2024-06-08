@@ -10,7 +10,7 @@ import { LegacyRouterContext } from "@contexts/router/legacy";
 import { useResource } from "@hooks/resource";
 
 import { useIsExistAuthentication, useRefineContext } from "..";
-import { ITelemetryData } from "../../components/telemetry/types";
+import type { ITelemetryData } from "../../components/telemetry/types";
 
 // It reads and updates from package.json during build. ref: tsup.config.ts
 const REFINE_VERSION = "1.0.0";

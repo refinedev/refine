@@ -1,11 +1,11 @@
 import { useForm, useSelect, Edit } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Form, Input, Select } from "antd";
 
 import { API_URL } from "~/constants";
-import { IPost } from "../interfaces";
+import type { IPost } from "../interfaces";
 
 const PostEdit: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
-import { NumberField, UseDataGridReturnType } from "@refinedev/mui";
+import { NumberField, type UseDataGridReturnType } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import { useLocation } from "react-router-dom";
 import { ProductStatus } from "../status";
 import Grid from "@mui/material/Grid";

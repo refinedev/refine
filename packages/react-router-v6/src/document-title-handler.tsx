@@ -1,6 +1,6 @@
 import {
-  Action,
-  IResourceItem,
+  type Action,
+  type IResourceItem,
   useParsed,
   useTranslate,
   generateDefaultDocumentTitle,

@@ -1,5 +1,129 @@
 # @refinedev/core
 
+## 4.51.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(core): ability to pass global app title and icon
+
+  Added ability to pass global app name and icon values through `<Refine />` component's `options` prop.
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. By default these values will be accessible through `useRefineOptions` hook and will be used in `<ThemedLayoutV2 />` and `<AuthPage />` components of the UI packages.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(core): update default titles
+
+  Previously, default titles included lowercase "refine", which was not correct. This commit updates the default titles to include "Refine" instead.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: omit `to` parameter if at root when unauthenticated
+
+  If user is not authenticated, `<Authenticated />` redirects to the provided route and appends the current route to the `to` parameter. With this change, if the current route is the root (`/`), the `to` parameter will be omitted.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: `<GitHubBanner />` has `paddingLeft: 200px` by default to make space for the sidebar. This is not needed when the sidebar is not present.
+
+  From on, `<GitHubBanner />` style property can be overridden by passing `containerStyle` prop.
+
+  ```jsx
+  <GitHubBanner containerStyle={{ paddingLeft: 0 }} />
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/devtools-internal@1.1.11
+
+## 4.50.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`a39f1952554120893ea83db904037917fc293dc6`](https://github.com/refinedev/refine/commit/a39f1952554120893ea83db904037917fc293dc6) Thanks [@aliemir](https://github.com/aliemir)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772) Thanks [@aliemir](https://github.com/aliemir)! - feat(core): ability to pass global app title and icon
+
+  Added ability to pass global app name and icon values through `<Refine />` component's `options` prop.
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. By default these values will be accessible through `useRefineOptions` hook and will be used in `<ThemedLayoutV2 />` and `<AuthPage />` components of the UI packages.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`208f77177f9821ee1860ffe031e6b2a9645d1bb6`](https://github.com/refinedev/refine/commit/208f77177f9821ee1860ffe031e6b2a9645d1bb6) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): update default titles
+
+  Previously, default titles included lowercase "refine", which was not correct. This commit updates the default titles to include "Refine" instead.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`84cac61b84ab872394424ebf358eeb380f40121d`](https://github.com/refinedev/refine/commit/84cac61b84ab872394424ebf358eeb380f40121d) Thanks [@aliemir](https://github.com/aliemir)! - refactor: omit `to` parameter if at root when unauthenticated
+
+  If user is not authenticated, `<Authenticated />` redirects to the provided route and appends the current route to the `to` parameter. With this change, if the current route is the root (`/`), the `to` parameter will be omitted.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`4cc74478cbec8caa3023a50ce62f1d5b2f7158a5`](https://github.com/refinedev/refine/commit/4cc74478cbec8caa3023a50ce62f1d5b2f7158a5) Thanks [@aliemir](https://github.com/aliemir)! - feat: `<GitHubBanner />` has `paddingLeft: 200px` by default to make space for the sidebar. This is not needed when the sidebar is not present.
+
+  From on, `<GitHubBanner />` style property can be overridden by passing `containerStyle` prop.
+
+  ```jsx
+  <GitHubBanner containerStyle={{ paddingLeft: 0 }} />
+  ```
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`a1e36e6e909a91bc6218478f136b49a8e82a7e32`](https://github.com/refinedev/refine/commit/a1e36e6e909a91bc6218478f136b49a8e82a7e32), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d)]:
+  - @refinedev/devtools-internal@1.1.10
+
 ## 4.49.2
 
 ### Patch Changes

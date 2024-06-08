@@ -1,6 +1,11 @@
-import { ReactChild, ReactNode } from "react";
-import { LinkProps, TagProps, TextProps, TooltipProps } from "@chakra-ui/react";
-import {
+import type { ReactChild, ReactNode } from "react";
+import type {
+  LinkProps,
+  TagProps,
+  TextProps,
+  TooltipProps,
+} from "@chakra-ui/react";
+import type {
   RefineFieldBooleanProps,
   RefineFieldDateProps,
   RefineFieldEmailProps,
@@ -12,7 +17,7 @@ import {
   RefineFieldUrlProps,
 } from "@refinedev/ui-types";
 import type { IconProps } from "@tabler/icons-react";
-import { ConfigType } from "dayjs";
+import type { ConfigType } from "dayjs";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
   unknown,

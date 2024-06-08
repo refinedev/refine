@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import _debounce from "lodash/debounce";
 import Box from "@mui/material/Box";
 import { GoogleMap, MapMarker } from "../../map";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { convertLatLng } from "../../../utils";
 
 type Props = {
