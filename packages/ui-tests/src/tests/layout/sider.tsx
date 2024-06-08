@@ -235,5 +235,73 @@ export const layoutSiderTests = (
         return expect(postLink).toHaveStyle("pointer-events: none");
       });
     });
+
+    it("should handle lowercase resource names correctly", async () => {
+      const { getByText, getAllByText } = render(<SiderElement />, {
+        wrapper: TestWrapper({
+          resources: [
+            {
+              name: "posts",
+              list: "/posts",
+            },
+            {
+              name: "users",
+              list: "/users",
+            },
+          ],
+          accessControlProvider: {
+            can: ({ action, resource }) => {
+              if (action === "list" && resource === "posts") {
+                return Promise.resolve({ can: true });
+              }
+              if (action === "list" && resource === "users") {
+                return Promise.resolve({ can: false });
+              }
+              return Promise.resolve({ can: false });
+            },
+          },
+        }),
+      });
+
+      const postsElements = await waitFor(() => getAllByText("Posts"));
+      postsElements.forEach((element) => {
+        expect(element).toBeInTheDocument();
+      });
+      expect(() => getByText("Users")).toThrow();
+    });
+
+    it("should handle camelcased resource names correctly", async () => {
+      const { getByText, getAllByText } = render(<SiderElement />, {
+        wrapper: TestWrapper({
+          resources: [
+            {
+              name: "blogPosts",
+              list: "/blog-posts",
+            },
+            {
+              name: "userProfiles",
+              list: "/user-profiles",
+            },
+          ],
+          accessControlProvider: {
+            can: ({ action, resource }) => {
+              if (action === "list" && resource === "blogPosts") {
+                return Promise.resolve({ can: true });
+              }
+              if (action === "list" && resource === "userProfiles") {
+                return Promise.resolve({ can: false });
+              }
+              return Promise.resolve({ can: false });
+            },
+          },
+        }),
+      });
+
+      const blogPostsElements = await waitFor(() => getAllByText("Blog posts"));
+      blogPostsElements.forEach((element) => {
+        expect(element).toBeInTheDocument();
+      });
+      expect(() => getByText("User profiles")).toThrow();
+    });
   });
 };
