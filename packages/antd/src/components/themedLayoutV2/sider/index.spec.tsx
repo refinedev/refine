@@ -5,6 +5,7 @@ import type * as Grid from "antd/lib/grid";
 import { TestWrapper } from "@test/index";
 import { ThemedSiderV2 } from "./index";
 import { layoutSiderTests } from "@refinedev/ui-tests";
+import { ConfigProvider } from "antd";
 
 jest.mock("antd/lib/grid", () => {
   // Require the original module to not be mocked...
@@ -47,5 +48,44 @@ describe("Sider", () => {
       position: "fixed",
       height: "100vh",
     });
+  });
+
+  it("should render sider trigger with respect to direction from config", async () => {
+    const { rerender, container } = render(
+      <ConfigProvider>
+        <ThemedSiderV2 />
+      </ConfigProvider>,
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    expect(
+      container.querySelector(
+        ".ant-layout-sider-trigger .anticon.anticon-left",
+      ),
+    ).toBeTruthy();
+    expect(
+      container.querySelector(
+        ".ant-layout-sider-trigger .anticon.anticon-right",
+      ),
+    ).toBeFalsy();
+
+    rerender(
+      <ConfigProvider direction="rtl">
+        <ThemedSiderV2 />
+      </ConfigProvider>,
+    );
+
+    expect(
+      container.querySelector(
+        ".ant-layout-sider-trigger .anticon.anticon-right",
+      ),
+    ).toBeTruthy();
+    expect(
+      container.querySelector(
+        ".ant-layout-sider-trigger .anticon.anticon-left",
+      ),
+    ).toBeFalsy();
   });
 });
