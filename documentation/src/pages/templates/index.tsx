@@ -500,28 +500,6 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/multitenancy-appwrite",
-    title: "Multitenancy App with Appwrite",
-    description:
-      "Implementing multitenancy architecture in Refine applications.",
-    image:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-appwrite.jpg",
-    integrations: [
-      {
-        label: "Ant Design",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Antd width={16} height={16} {...props} />
-        ),
-      },
-      {
-        label: "Appwrite",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Appwrite width={16} height={16} {...props} />
-        ),
-      },
-    ],
-  },
-  {
     to: "/templates/ant-design-template",
     title: "Generic Internal Tool Template with Ant Design",
     description:
