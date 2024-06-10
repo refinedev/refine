@@ -293,22 +293,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   }
   const renderClosingIcons = () => {
     const iconProps = { style: { color: token.colorPrimary } };
-    if (direction === "rtl") {
-      return siderCollapsed ? (
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-        <LeftOutlined {...iconProps} />
-      ) : (
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-        <RightOutlined {...iconProps} />
-      );
-    }
-    return siderCollapsed ? (
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-      <RightOutlined {...iconProps} />
-    ) : (
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-      <LeftOutlined {...iconProps} />
-    );
+    const OpenIcon = direction === "rtl" ? RightOutlined : LeftOutlined;
+    const CollapsedIcon = direction === "rtl" ? LeftOutlined : RightOutlined;
+    const IconComponent = siderCollapsed ? CollapsedIcon : OpenIcon;
+
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+    return <IconComponent {...iconProps} />;
   };
 
   return (
