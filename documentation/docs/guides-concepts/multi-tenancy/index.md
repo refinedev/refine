@@ -108,12 +108,8 @@ import Selector from "./examples/selector.tsx";
 
 ## Examples
 
-Here are two examples of multi tenant apps built with Refine. You can view the source code and run the apps in your local to understand how multi tenant features are implemented.
+Here is the example of multi tenant app built with Refine. You can view the source code and run the apps in your local to understand how multi tenant features are implemented.
 
 ### Strapi
 
 <CodeSandboxExample hideSandbox path="multi-tenancy-strapi" />
-
-### Appwrite
-
-<CodeSandboxExample hideSandbox path="multi-tenancy-appwrite" />

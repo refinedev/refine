@@ -187,9 +187,8 @@ These small features lead to a huge difference in the development experience, yo
 
 **Examples**
 
-Check out the following examples of multitenant apps built with Refine:
+Check out the following example of multitenant app built with Refine:
 
-- [Multitenancy with Refine + Appwrite](/docs/guides-concepts/multi-tenancy/#appwrite)
 - [Multitenancy with Refine + Strapi](/docs/guides-concepts/multi-tenancy/#strapi)
 
 ## Differences in supported UI frameworks between Refine and react-admin,
