@@ -12,12 +12,11 @@ export type PageHeaderProps = AntdPageHeaderProps;
 export const PageHeader: FC<AntdPageHeaderProps> = ({ children, ...props }) => {
   const direction = useContext(ConfigProvider.ConfigContext)?.direction;
   const renderBackButton = () => {
-    if (direction === "rtl") {
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-      return <Button type="text" icon={<ArrowRightOutlined />} />;
-    }
+    const BackIcon =
+      direction === "rtl" ? ArrowRightOutlined : ArrowLeftOutlined;
+
     // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-    return <Button type="text" icon={<ArrowLeftOutlined />} />;
+    return <Button type="text" icon={<BackIcon />} />;
   };
   const backIcon =
     typeof props.backIcon === "undefined" ? renderBackButton() : props.backIcon;
