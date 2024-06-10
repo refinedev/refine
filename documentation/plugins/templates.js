@@ -50,7 +50,7 @@ const templates = [
     description: `
 This CRM app example, built with Refine, demonstrates a complete solution for enterprise-level CRM internal tool needs. It has a wide range of functionalities for real-use cases, which are extensively utilized by enterprise companies.
 
-The app connected to GraphQL API through Refine's Nestjs-query data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support. 
+The app connected to GraphQL API through Refine's Nestjs-query data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support.
 
 We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques.
 
@@ -109,7 +109,7 @@ This is a template that can serve as an example for building React-based storefr
 
 ### Key Features:
 
-- With Refine's headless approach, we demonstrated how to apply a style of your choice, such as Tailwind CSS. 
+- With Refine's headless approach, we demonstrated how to apply a style of your choice, such as Tailwind CSS.
 - SSR support with Next.js. Refine supports SSR with Next.js and Remix. You can use this template as a starter point for Next.js-powered Refine apps.
 - REST API implementation
 
@@ -153,7 +153,7 @@ This admin panel template can be used in for various app requirements like B2B a
 - Food Ordering Systems
 - Restaurant management Systems
 - Portfolio Management Software
-- Data Integration Tools 
+- Data Integration Tools
 - Healthcare Analytics Software
 - Telemedicine Platforms
 - Customer Support Tools
@@ -204,7 +204,7 @@ This admin panel template can be used in for various app requirements like B2B a
 - Food Ordering Systems
 - Restaurant management Systems
 - Portfolio Management Software
-- Data Integration Tools 
+- Data Integration Tools
 - Healthcare Analytics Software
 - Telemedicine Platforms
 - Customer Support Tools
@@ -270,8 +270,8 @@ This example presents the RefineWeek series - a seven-part quickfire guide to he
 The source code for this CRUD app is open-source, providing an opportunity for you to use or examine it to gain a deeper understanding of how Refine operates. The CRM application featured in this series utilizes a Supabase API through Refine's Supabase data provider, and its user interface is crafted using Ant Design.
 
 This CRM application consumes a Supabase API through Refine's Supabase data provider, and its user interface is developed using Ant Design, which Refine offers built-in UI framework support.
- 
-We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques. 
+
+We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques.
 
 ### Key Features:
 
@@ -344,7 +344,7 @@ The source code of the CRUD app is also open-source; feel free to use or inspect
     description: `
 This RealWorld app template displays a comprehensive full-stack application created using Refine, including features like CRUD operations, user authentication, routing, and pagination, among others.
 
-The RealWorld example standard, often called the "Mother of All Demo Apps," is a specification for building full-stack applications that demonstrate real-world usage of various frontend and backend technologies. This standard provides consistent requirements for creating functionally equivalent applications across different technology stacks. 
+The RealWorld example standard, often called the "Mother of All Demo Apps," is a specification for building full-stack applications that demonstrate real-world usage of various frontend and backend technologies. This standard provides consistent requirements for creating functionally equivalent applications across different technology stacks.
 
 This RealWorld example aims to demonstrate the practical use of Refine in building standards and real-world applications, providing a more authentic and useful example than the usual "to-do list" demonstrations.
 
@@ -381,30 +381,7 @@ Multitenancy is a design approach where a single software instance on a server p
 
 This template was developed to demonstrate how the Refine framework can simplify and expedite the development of apps with enterprise-level needs. It's a valuable resource that offers insights into Refine's best practices and modern development techniques.
 
-The source code of this multitenancy app is open-source, allowing you to use or inspect it to see how Refine can fulfill enterprise-grade application requirements. 
-        `,
-  },
-  {
-    slug: "multitenancy-appwrite",
-    title: "Multitenancy App with Appwrite",
-    images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-appwrite.png",
-    ],
-    runOnYourLocalPath: "multi-tenancy-appwrite",
-    liveDemo: "https://multi-tenancy-appwrite.refine.dev",
-    github:
-      "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
-    tutorial: "https://refine.dev/docs/guides-concepts/multi-tenancy/#appwrite",
-    reactPlatform: "Vite",
-    uiFramework: "Ant Design",
-    dataProvider: "Appwrite",
-    authProvider: "Appwrite",
-    description: `
-Multitenancy is a design approach where a single software instance on a server provides services to multiple clients at the same time. This CRUD app template is an excellent example of implementing multitenant architecture in Refine applications. It connects to a Appwrite API using a Appwrite data provider and features a user interface developed with Ant Design, which is natively supported by Refine.
-
-This template was developed to demonstrate how the Refine framework can simplify and expedite the development of apps with enterprise-level needs. It's a valuable resource that offers insights into Refine's best practices and modern development techniques.
-
-The source code of this multitenancy app is open-source, allowing you to use or inspect it to see how Refine can fulfill enterprise-grade application requirements. 
+The source code of this multitenancy app is open-source, allowing you to use or inspect it to see how Refine can fulfill enterprise-grade application requirements.
         `,
   },
   {
