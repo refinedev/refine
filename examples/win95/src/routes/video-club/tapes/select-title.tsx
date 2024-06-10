@@ -125,7 +125,7 @@ export const VideoClubPageTapeSelectTitle = ({
             <TableFilterInputContainer>
               <TableFilterInputLabel>Category:</TableFilterInputLabel>
               <TableFilterInputText
-                defaultValue={getDefaultFilter("genres", filters, "contains")}
+                defaultValue={getDefaultFilter("genres", filters, "ina")}
                 onChange={(e) => {
                   const value = e.target?.value?.trim();
                   setCurrent(1);
@@ -133,7 +133,7 @@ export const VideoClubPageTapeSelectTitle = ({
                     {
                       field: "genres",
                       value: value.split(",").map((v) => v.trim()),
-                      operator: "contains",
+                      operator: "ina",
                     },
                   ]);
                 }}
