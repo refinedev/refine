@@ -1,78 +1,167 @@
-import { type HttpError, useParsed } from "@refinedev/core";
-import {
-  useSimpleList,
-  useModalForm,
-  CreateButton,
-  List,
-} from "@refinedev/antd";
-import { List as AntdList } from "antd";
+import { CategoryNavigation } from "@/components/category";
+import { ProductTable, ProductCards } from "@/components/product";
+import { ProductViewToggle } from "@/components/product/product-view-toggle";
+import { useTenant } from "@/providers/tenant";
+import type { Category, Product } from "@/types";
+import { CreateButton, useTable } from "@refinedev/antd";
+import { getDefaultFilter, useGo, useParsed } from "@refinedev/core";
+import { Typography } from "antd";
+import { createStyles } from "antd-style";
+import { PlusCircle } from "lucide-react";
+import type { PropsWithChildren } from "react";
 
-import {
-  ProductItem,
-  CreateProduct,
-  EditProduct,
-} from "../../components/product";
-import type { IProduct } from "../../interfaces";
+type ProductWithCategories = Product & {
+  category: Category;
+};
 
-export const ProductList = () => {
-  const { params } = useParsed<{ tenant: string }>();
-  const { listProps } = useSimpleList<IProduct>({
-    permanentFilter: [
-      {
-        field: "stores][id]",
-        operator: "eq",
-        value: params?.tenant,
-      },
-    ],
-    metaData: { populate: ["image"] },
-  });
+export const ProductList = ({ children }: PropsWithChildren) => {
+  const { styles } = useStyles();
+  const { tenant } = useTenant();
+  const go = useGo();
+  const { params } = useParsed<{
+    view?: "table" | "card";
+    categoryId?: string;
+  }>();
 
-  const {
-    modalProps: createModalProps,
-    formProps: createModalFormProps,
-    show: createShow,
-  } = useModalForm<IProduct, HttpError, IProduct>({
-    action: "create",
-    resource: "products",
-    redirect: false,
-  });
+  const view = params?.view || "card";
 
-  const {
-    modalProps: editModalProps,
-    formProps: editFormProps,
-    show: editShow,
-  } = useModalForm<IProduct, HttpError, IProduct>({
-    action: "edit",
-    metaData: { populate: ["image"] },
-    resource: "products",
-    redirect: false,
+  const useTableResult = useTable<ProductWithCategories>({
+    sorters: {
+      initial: [
+        {
+          field: "updatedAt",
+          order: "desc",
+        },
+      ],
+    },
+    pagination: {
+      pageSize: view === "card" ? 3 : 10,
+    },
+    filters: {
+      permanent: [
+        {
+          field: "store][id]",
+          operator: "eq",
+          value: tenant.id,
+        },
+      ],
+    },
+    meta: {
+      populate: ["image", "category"],
+    },
   });
 
   return (
     <>
-      <List
-        headerProps={{
-          extra: <CreateButton onClick={() => createShow()} />,
-        }}
-      >
-        <AntdList
-          grid={{ gutter: 16, xs: 1 }}
-          style={{
-            justifyContent: "center",
-          }}
-          {...listProps}
-          renderItem={(item) => (
-            <AntdList.Item>
-              <ProductItem item={item} editShow={editShow} />
-            </AntdList.Item>
-          )}
-        />
-      </List>
-      <EditProduct modalProps={editModalProps} formProps={editFormProps} />
-      <CreateProduct
-        modalProps={createModalProps}
-        formProps={createModalFormProps}
-      />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Typography.Title level={3} className={styles.title}>
+            Products
+          </Typography.Title>
+          <div className={styles.headerActions}>
+            <ProductViewToggle
+              value={view}
+              onChange={(view) => {
+                useTableResult.setPageSize(view === "card" ? 3 : 10);
+                go({
+                  query: { view },
+                  options: { keepQuery: true },
+                });
+              }}
+            />
+            <CreateButton
+              className={styles.createButton}
+              icon={<PlusCircle />}
+              onClick={() => {
+                go({
+                  to: {
+                    resource: "products",
+                    action: "create",
+                  },
+                  options: { keepQuery: true },
+                });
+              }}
+            >
+              Add new product
+            </CreateButton>
+          </div>
+        </div>
+        {view === "card" ? (
+          <>
+            <div className={styles.categoryNavigation}>
+              <CategoryNavigation
+                selectedCategoryId={getDefaultFilter(
+                  "category][id]",
+                  useTableResult.filters,
+                )}
+                onAllClick={() => {
+                  useTableResult.setFilters([
+                    {
+                      field: "category][id]",
+                      operator: "eq",
+                      value: null,
+                    },
+                  ]);
+                }}
+                onCategoryClick={(category) => {
+                  useTableResult.setFilters([
+                    {
+                      field: "category][id]",
+                      operator: "eq",
+                      value: category.id,
+                    },
+                  ]);
+                }}
+              />
+            </div>
+            <ProductCards useTableResult={useTableResult} />
+          </>
+        ) : (
+          <ProductTable useTableResult={useTableResult} />
+        )}
+      </div>
+      {children}
     </>
   );
 };
+
+const useStyles = createStyles(() => {
+  return {
+    container: {
+      width: "100%",
+    },
+    header: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "24px",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    headerActions: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "24px",
+      marginLeft: "auto",
+    },
+    title: {
+      margin: "0 !important",
+      textTransform: "capitalize",
+    },
+    categoryNavigation: {
+      width: "100%",
+      overflowX: "auto",
+      paddingTop: "16px",
+      paddingBottom: "16px",
+      marginTop: "16px",
+      marginBottom: "24px",
+      borderTop: "1px solid #F5F5F5",
+      borderBottom: "1px solid #F5F5F5",
+    },
+    createButton: {
+      height: "48px",
+      borderRadius: "80px",
+      fontSize: "16px",
+    },
+  };
+});

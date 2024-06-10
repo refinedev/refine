@@ -1,0 +1,38 @@
+import type { PropsWithChildren } from "react";
+import { createStyles } from "antd-style";
+import { Grid } from "antd";
+import { Sider } from "@/components/layout/sider";
+
+export const Layout = ({ children }: PropsWithChildren) => {
+  const { styles } = useStyles();
+  const breakpoints = Grid.useBreakpoint();
+
+  return (
+    <div className={styles.container}>
+      <Sider mode={breakpoints.xl ? "fixed" : "drawer"} />
+      <div className={styles.content}>{children}</div>
+    </div>
+  );
+};
+
+export const useStyles = createStyles(({ responsive, css }) => {
+  return {
+    container: css`
+      display: flex;
+      width: calc(100% - 312px);
+      margin-left: 312px;
+      ${responsive({
+        lg: {
+          width: "100%",
+          marginLeft: "0",
+        },
+      })}
+    `,
+    content: {
+      width: "100%",
+      paddingTop: "80px",
+      paddingLeft: "48px",
+      paddingRight: "48px",
+    },
+  };
+});
