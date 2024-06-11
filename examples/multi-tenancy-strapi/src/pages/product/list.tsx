@@ -151,6 +151,10 @@ const useStyles = createStyles(() => {
       gap: "24px",
       justifyContent: "space-between",
       alignItems: "center",
+
+      "@media (max-width: 768px)": {
+        height: "max-content",
+      },
     },
     headerActions: {
       display: "flex",
