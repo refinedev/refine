@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-types
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on Jun 10, 2024 to add new section for ts.config and add some tips on Next.js Typescript_**
+**_This article was last updated on Jun 10, 2024 to add new section for tsconfig.json and add some tips on usage with Next.js_**
 
 ## Introduction
 
