@@ -46,6 +46,10 @@
   width: 100%;
 }
 
+.ant-page-header-heading {
+  height: 56px;
+  align-items: center;
+}
 /* 
 --ant-blue: #1677ff;
 --ant-purple: #722ED1;

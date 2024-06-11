@@ -142,6 +142,7 @@ const useStyles = createStyles(() => {
       width: "100%",
     },
     header: {
+      height: "56px",
       display: "flex",
       flexWrap: "wrap",
       gap: "24px",

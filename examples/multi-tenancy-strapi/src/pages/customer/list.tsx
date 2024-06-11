@@ -1,5 +1,6 @@
 import { CustomerStatus } from "@/components/customer";
 import { useTenant } from "@/providers/tenant";
+import { PaginationTotal } from "@/components/pagination";
 import {
   FilterDropdown,
   List,
@@ -12,7 +13,7 @@ import { Input, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
 import { EyeIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
-import type { Order, Product } from "../../types";
+import type { Order, Product } from "@/types";
 
 type CustomerExtended = Order & {
   products: Product[];
@@ -52,9 +53,6 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
   return (
     <>
       <List
-        headerProps={{
-          className: styles.header,
-        }}
         title={
           <Typography.Title level={3} className={styles.title}>
             Customers
@@ -62,7 +60,18 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         }
         headerButtons={false}
       >
-        <Table {...tableProps} rowKey="id">
+        <Table
+          {...tableProps}
+          rowKey="id"
+          size="middle"
+          pagination={{
+            ...tableProps.pagination,
+            size: "default",
+            showTotal: (total) => <PaginationTotal total={total} />,
+            pageSizeOptions: [3, 10],
+            showSizeChanger: false,
+          }}
+        >
           <Table.Column
             dataIndex="id"
             title="Order #"
@@ -151,12 +160,6 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
 
 const useStyles = createStyles(() => {
   return {
-    header: {
-      "& .ant-page-header-heading": {
-        height: "56px",
-        alignItems: "center",
-      },
-    },
     title: {
       margin: "0 !important",
       textTransform: "capitalize",

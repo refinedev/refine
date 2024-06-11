@@ -247,7 +247,10 @@ const useStyles = createStyles(({ token }) => {
       alignItems: "center",
       gap: "8px",
       padding: "16px",
-      borderBottom: `1px solid ${token.colorBorder}`,
+
+      ":not(:last-child)": {
+        borderBottom: `1px solid ${token.colorBorder}`,
+      },
     },
     infoLabelContainer: {
       display: "flex",
