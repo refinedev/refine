@@ -1,5 +1,35 @@
 # @refinedev/devtools-server
 
+## 1.1.31
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: capitalize Refine
+
+  Capitalized "Refine" in the user-facing texts
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: use same port for ws and http servers
+
+  This PR merges WebSocket and Http server ports into one (5001) to simplify the configuration and avoid port conflicts. Previously the WebSocket server was running on port 5002 and the Http server on port 5001. Now both servers are running on port 5001.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore(devtools-server): customizable exit function
+
+  This change allows you to customize the exit function of the devtools server when using it via API.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: remove annoying auth error at initial project loads
+
+  When users create a new project or their devtools token expires, their console is polluted with network errors due to missing authentication. This PR removes these errors by handling auth requests in a user-friendly way.
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/devtools-shared@1.1.9
+
 ## 1.1.30
 
 ### Patch Changes

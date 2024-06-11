@@ -17,7 +17,6 @@ import { Toaster } from "react-hot-toast";
 import { CommonLayout } from "@/components/layout";
 import { AboutWindow } from "@/components/about-window";
 import { VideoClubLayout } from "@/components/layout";
-import { RVCWebsiteCatalogPage } from "@/components/rvc-website/catalog";
 import { UnsupportedResolutionHandler } from "@/components/unsupported-resolution-handler";
 import { supabaseClient } from "@/supabase-client";
 import { HomePage } from "@/routes/home-page";
@@ -37,6 +36,7 @@ import {
   VideoClubSettingsPage,
 } from "@/routes/video-club";
 import {
+  RVCWebsiteCatalogPage,
   RVCWebsitePageHome,
   RVCWebsitePageTitleDetails,
 } from "@/routes/rvc-website";
@@ -188,7 +188,7 @@ const App = () => {
                     </Route>
                   </Route>
 
-                  <Route path="rvc-website" element={<Outlet />}>
+                  <Route path="browser/rvc-website" element={<Outlet />}>
                     <Route index element={<RVCWebsitePageHome />} />
                     <Route
                       path="titles/:titleId"
@@ -200,6 +200,29 @@ const App = () => {
                       element={<RVCWebsiteCatalogPage />}
                     />
                   </Route>
+                </Route>
+
+                <Route path="rvc-website" element={<Outlet />}>
+                  <Route
+                    index
+                    element={<Navigate to="/rvc-website/index.html" />}
+                  />
+                  <Route
+                    path="index.html"
+                    element={<RVCWebsitePageHome withBrowser={false} />}
+                  />
+                  <Route
+                    path="titles/:titleId/index.html"
+                    element={<RVCWebsitePageTitleDetails withBrowser={false} />}
+                  />
+                  <Route
+                    path="catalog/index.html"
+                    element={<RVCWebsiteCatalogPage withBrowser={false} />}
+                  />
+                  <Route
+                    path="catalog/:catalogLetter/index.html"
+                    element={<RVCWebsiteCatalogPage withBrowser={false} />}
+                  />
                 </Route>
 
                 <Route

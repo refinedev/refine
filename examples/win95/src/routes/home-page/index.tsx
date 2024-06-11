@@ -63,7 +63,7 @@ const links = [
   },
   {
     label: "RVC Website",
-    link: "/rvc-website",
+    link: "/browser/rvc-website",
     iconURL: `${getImagesUrl("/rvc-website-app-icon.png")}`,
   },
 ];

@@ -1,5 +1,115 @@
 # @refinedev/antd
 
+## 5.40.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: use global values by default for app title and app icon
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. For `<ThemedLayoutV2 />` and `<AuthPage />` components, these values will be used by default. While users can use `options.title` to pass global values for app icon and app name, option to override through `<ThemedTitleV2 />` component is still available for users to override these values in specific use cases.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+  Then, `<ThemedLayoutV2 />` and `<AuthPage />` components will display `<MyIcon />` and `"Refine App"` as app icon and app name respectively.
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - lock the `ant-design/icons` version to `5.0.1`
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: unpin `antd` version that was causing build issues
+
+  With `antd`'s `5.17.0` version, Next.js apps were stuck in the build process. To prevent this from breaking all Refine apps with Next.js, we've pinned the version to `5.16.5` as a workaround. Since then, the issue has been resolved by updating an internal dependency of `antd`, we no longer need to pin the version.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(antd): search form in useTable should work with syncWithLocation
+
+  Even though the form is managed by `useTable` hook from `@refinedev/antd`. It wasn't respecting the `syncWithLocation` prop to set values accordingly at initial render when registered fields are matching with the query params. Now it will look for matching fields and set values accordingly from synced filters.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: Filtering [`<Table />`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/) with [`<FilterDropdown />`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown) and [`<DatePicker />`](https://ant.design/components/date-picker) doesn't work with `syncWithLocation`. #5933
+
+  feat: Added [`rangePickerFilterMapper`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown/#rangepickerfiltermapper) utility function to convert `selectedKeys` to satisfy both the Refine and [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker).
+
+  Usage example:
+
+  ```tsx
+  import { getDefaultFilter } from "@refinedev/core";
+  import {
+    DateField,
+    FilterDropdown,
+    rangePickerFilterMapper,
+    useTable,
+  } from "@refinedev/antd";
+  import { Table, DatePicker } from "antd";
+
+  export const Posts = () => {
+    const { tableProps, filters } = useTable({
+      filters: {
+        initial: [
+          {
+            field: "created_at",
+            value: ["2022-01-01", "2022-01-31"],
+            operator: "between",
+          },
+        ],
+      },
+    });
+
+    return (
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex="createdAt"
+          title="Created At"
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKeys, event) => {
+                return rangePickerFilterMapper(selectedKeys, event);
+              }}
+            >
+              <DatePicker.RangePicker />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter(
+            "created_at",
+            filters,
+            "between",
+          )}
+        />
+      </Table>
+    );
+  };
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/ui-types@1.22.9
+
 ## 5.39.0
 
 ### Minor Changes

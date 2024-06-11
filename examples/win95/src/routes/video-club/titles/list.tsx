@@ -98,7 +98,7 @@ export const VideoClubPageBrowseTitles = () => {
           <FilterInputContainer>
             <FilterInputLabel>Category:</FilterInputLabel>
             <FilterInputText
-              defaultValue={getDefaultFilter("genres", filters, "contains")}
+              defaultValue={getDefaultFilter("genres", filters, "ina")}
               onChange={(e) => {
                 const value = e.target?.value?.trim();
                 setCurrent(1);
@@ -106,7 +106,7 @@ export const VideoClubPageBrowseTitles = () => {
                   {
                     field: "genres",
                     value: value.split(",").map((v) => v.trim()),
-                    operator: "contains",
+                    operator: "ina",
                   },
                 ]);
               }}

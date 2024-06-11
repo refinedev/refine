@@ -183,25 +183,4 @@ export const EXAMPLES: Examples = [
     source:
       "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
   },
-  {
-    title: "Multi-Tenancy Example with Appwrite",
-    description:
-      "Cake House application using <strong>Refine</strong> and Strapi-v4 and AppWrite.",
-    image: "/examples/multi-tenancy-appwrite.jpg",
-    image2x: "/examples/multi-tenancy-appwrite2x.jpg",
-    buttons: [
-      {
-        text: "Blog",
-        link: "https://refine.dev/docs/guides-concepts/multi-tenancy/#appwrite",
-        icon: (props) => <PageIcon {...props} />,
-      },
-      {
-        text: "Demo",
-        link: "https://multi-tenancy-appwrite.refine.dev",
-        icon: (props) => <ShareIcon {...props} />,
-      },
-    ],
-    source:
-      "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-appwrite",
-  },
 ];
