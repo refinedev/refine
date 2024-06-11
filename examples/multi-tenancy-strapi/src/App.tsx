@@ -28,7 +28,11 @@ import "./App.css";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      <GitHubBanner
+        containerStyle={{
+          paddingLeft: "312px",
+        }}
+      />
       <AntdApp>
         <Refine
           authProvider={authProvider}
