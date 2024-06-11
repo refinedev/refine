@@ -75,6 +75,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
               value={view}
               onChange={(view) => {
                 useTableResult.setPageSize(view === "card" ? 3 : 10);
+                useTableResult.setCurrent(1);
                 go({
                   query: { view },
                   options: { keepQuery: true },
@@ -113,6 +114,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
                       value: null,
                     },
                   ]);
+                  useTableResult.setCurrent(1);
                 }}
                 onCategoryClick={(category) => {
                   useTableResult.setFilters([
@@ -122,6 +124,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
                       value: category.id,
                     },
                   ]);
+                  useTableResult.setCurrent(1);
                 }}
               />
             </div>
