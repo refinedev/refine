@@ -13,11 +13,11 @@ export const ProductViewToggle = ({ onChange, ...props }: Props) => {
       onChange={onChange}
       options={[
         {
-          value: "card",
+          value: "table",
           icon: <List />,
         },
         {
-          value: "table",
+          value: "card",
           icon: <LayoutGrid />,
         },
       ]}
