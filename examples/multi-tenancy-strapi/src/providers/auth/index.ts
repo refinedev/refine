@@ -12,10 +12,6 @@ export const authProvider: AuthProvider = {
       if (status === 200) {
         localStorage.setItem(TOKEN_KEY, data.jwt);
 
-        // set header axios instance
-        axiosInstance.defaults.headers.common["Authorization"] =
-          `Bearer ${data.jwt}`;
-
         return {
           success: true,
           redirectTo: "/",
@@ -58,8 +54,6 @@ export const authProvider: AuthProvider = {
   check: async () => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
-      axiosInstance.defaults.headers.common["Authorization"] =
-        `Bearer ${token}`;
       return {
         authenticated: true,
       };

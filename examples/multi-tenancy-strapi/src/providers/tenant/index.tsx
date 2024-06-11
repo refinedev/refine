@@ -1,6 +1,7 @@
+import { TOKEN_KEY } from "@/constants";
 import { dataProvider } from "@/providers/data";
 import type { Store } from "@/types";
-import { useParsed } from "@refinedev/core";
+import { useNavigation, useParsed } from "@refinedev/core";
 import { Spin } from "antd";
 import {
   type PropsWithChildren,
@@ -23,6 +24,7 @@ type TenantContext = {
 const TenantContext = createContext<TenantContext | undefined>(undefined);
 
 export const TenantProvider = ({ children }: PropsWithChildren) => {
+  const { replace } = useNavigation();
   const { params } = useParsed<{ tenantId: string }>();
   const tenantId = Number(params?.tenantId || 1);
 
