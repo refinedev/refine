@@ -35,7 +35,7 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
     resource: "categories",
     filters: [
       {
-        field: "store][id]",
+        field: "store.id",
         operator: "eq",
         value: tenant.id,
       },

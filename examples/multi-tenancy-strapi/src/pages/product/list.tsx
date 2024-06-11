@@ -48,7 +48,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
       initial: [{ field: "title", operator: "contains", value: "" }],
       permanent: [
         {
-          field: "store][id]",
+          field: "store.id",
           operator: "eq",
           value: tenant.id,
         },

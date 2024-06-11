@@ -51,7 +51,7 @@ export const OrderList = ({ children }: PropsWithChildren) => {
       ],
       permanent: [
         {
-          field: "store][id]",
+          field: "store.id",
           operator: "eq",
           value: tenant.id,
         },

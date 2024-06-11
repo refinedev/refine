@@ -52,7 +52,7 @@ export const CategoriesList = (props: PropsWithChildren) => {
     filters: {
       permanent: [
         {
-          field: "store][id]",
+          field: "store.id",
           operator: "eq",
           value: tenant.id,
         },
