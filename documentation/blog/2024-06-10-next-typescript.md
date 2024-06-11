@@ -476,7 +476,7 @@ const add = (a: number, b: number): number => {
 
 ### Do Not Use `any`
 
-Do not use `any` at all. It is the same as using TypeScript for nothing—it is better to use some types or generics.
+Do not use `any` at all. It is the same as not using TypeScript. Better to use some types or generics.
 
 ```typescript
 const fetchData = async (): Promise<User[]> => {
