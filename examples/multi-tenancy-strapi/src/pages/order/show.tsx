@@ -2,7 +2,7 @@ import type { Customer, Order, Product } from "@/types";
 import { useGo, useShow } from "@refinedev/core";
 import { Drawer } from "@/components/drawer";
 import { createStyles } from "antd-style";
-import { Avatar, Flex, Table, Typography } from "antd";
+import { Avatar, Flex, Skeleton, Table, Typography } from "antd";
 import { User, MapPin, Tag, CalendarClock, CalendarCheck } from "lucide-react";
 import { OrderStatus } from "@/components/order/status";
 import { DateField, NumberField } from "@refinedev/antd";
@@ -66,9 +66,13 @@ export const OrderShow = () => {
                 Customer
               </Typography.Text>
             </div>
-            <Typography.Text className={styles.infoValue}>
-              {order?.customer?.name}
-            </Typography.Text>
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <Typography.Text className={styles.infoValue}>
+                {order?.customer?.name}
+              </Typography.Text>
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -77,9 +81,13 @@ export const OrderShow = () => {
                 Address
               </Typography.Text>
             </div>
-            <Typography.Text className={styles.infoValue}>
-              {order?.customer?.address}
-            </Typography.Text>
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <Typography.Text className={styles.infoValue}>
+                {order?.customer?.address}
+              </Typography.Text>
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -88,7 +96,14 @@ export const OrderShow = () => {
                 Status
               </Typography.Text>
             </div>
-            <OrderStatus value={order?.status} />
+            {isLoading ? (
+              <Skeleton.Input
+                style={{ height: "30px", borderRadius: "40px" }}
+                active
+              />
+            ) : (
+              <OrderStatus value={order?.status} />
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -97,11 +112,16 @@ export const OrderShow = () => {
                 Order Date
               </Typography.Text>
             </div>
-            <DateField
-              value={order?.order_date}
-              format="MMM DD, YYYY"
-              className={styles.infoValue}
-            />
+
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <DateField
+                value={order?.order_date}
+                format="MMM DD, YYYY"
+                className={styles.infoValue}
+              />
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -110,11 +130,15 @@ export const OrderShow = () => {
                 Delivery Date
               </Typography.Text>
             </div>
-            <DateField
-              value={order?.delivery_date}
-              format="MMM DD, YYYY"
-              className={styles.infoValue}
-            />
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <DateField
+                value={order?.delivery_date}
+                format="MMM DD, YYYY"
+                className={styles.infoValue}
+              />
+            )}
           </div>
         </div>
 
@@ -128,6 +152,19 @@ export const OrderShow = () => {
             rowKey="id"
             pagination={false}
             scroll={{ x: true }}
+            onRow={(record) => {
+              return {
+                onClick: () => {
+                  go({
+                    to: {
+                      resource: "products",
+                      action: "edit",
+                      id: record.id,
+                    },
+                  });
+                },
+              };
+            }}
             footer={() => {
               return (
                 <Flex justify="flex-end">

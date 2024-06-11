@@ -2,7 +2,15 @@ import type { Customer, Order, Product } from "@/types";
 import { useGo, useShow } from "@refinedev/core";
 import { Drawer } from "@/components/drawer";
 import { createStyles } from "antd-style";
-import { Avatar, Badge, Flex, Table, Tooltip, Typography } from "antd";
+import {
+  Avatar,
+  Badge,
+  Flex,
+  Skeleton,
+  Table,
+  Tooltip,
+  Typography,
+} from "antd";
 import { MapPin, Tag, Phone, Calendar } from "lucide-react";
 import { OrderStatus } from "@/components/order/status";
 import { DateField, NumberField } from "@refinedev/antd";
@@ -10,10 +18,10 @@ import { getUniqueProductsWithQuantity } from "@/utils/get-unique-products";
 import { CustomerStatus } from "@/components/customer";
 
 type CustomerExtended = Customer & {
-  orders: Order[] &
+  orders: (Order &
     {
       products: Product[];
-    }[];
+    }[])[];
 };
 
 export const CustomerShow = () => {
@@ -63,7 +71,14 @@ export const CustomerShow = () => {
                 Status
               </Typography.Text>
             </div>
-            <CustomerStatus value={customer?.status} />
+            {isLoading ? (
+              <Skeleton.Input
+                style={{ height: "30px", borderRadius: "40px" }}
+                active
+              />
+            ) : (
+              <CustomerStatus value={customer?.status} />
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -72,9 +87,13 @@ export const CustomerShow = () => {
                 Address
               </Typography.Text>
             </div>
-            <Typography.Text className={styles.infoValue}>
-              {customer?.address}
-            </Typography.Text>
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <Typography.Text className={styles.infoValue}>
+                {customer?.address}
+              </Typography.Text>
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -83,9 +102,13 @@ export const CustomerShow = () => {
                 Phone
               </Typography.Text>
             </div>
-            <Typography.Text className={styles.infoValue}>
-              {customer?.phone}
-            </Typography.Text>
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <Typography.Text className={styles.infoValue}>
+                {customer?.phone}
+              </Typography.Text>
+            )}
           </div>
           <div className={styles.infoRow}>
             <div className={styles.infoLabelContainer}>
@@ -94,7 +117,11 @@ export const CustomerShow = () => {
                 Joined at
               </Typography.Text>
             </div>
-            <DateField value={customer?.createdAt} format="MMM DD, YYYY" />
+            {isLoading ? (
+              <Skeleton.Input style={{ height: "22px" }} active />
+            ) : (
+              <DateField value={customer?.createdAt} format="MMM DD, YYYY" />
+            )}
           </div>
         </div>
 
@@ -108,8 +135,21 @@ export const CustomerShow = () => {
             rowKey="id"
             pagination={false}
             scroll={{ x: true }}
+            onRow={(record) => {
+              return {
+                onClick: () => {
+                  go({
+                    to: {
+                      resource: "orders",
+                      action: "show",
+                      id: record.id,
+                    },
+                  });
+                },
+              };
+            }}
           >
-            <Table.Column<CustomerExtended["orders"][number]>
+            <Table.Column
               title="Order #"
               dataIndex="id"
               render={(value) => <Typography.Text>#{value}</Typography.Text>}
@@ -158,12 +198,12 @@ export const CustomerShow = () => {
                 );
               }}
             />
-            <Table.Column<CustomerExtended["orders"][number]>
+            <Table.Column
               title="Status"
               dataIndex="status"
               render={(value) => <OrderStatus value={value} />}
             />
-            <Table.Column<CustomerExtended["orders"][number]>
+            <Table.Column<CustomerExtended["orders"][number][number]>
               title="Amount"
               dataIndex="amount"
               render={(_, record) => {

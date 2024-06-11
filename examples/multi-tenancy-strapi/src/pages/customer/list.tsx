@@ -57,7 +57,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         }}
         title={
           <Typography.Title level={3} className={styles.title}>
-            Orders
+            Customers
           </Typography.Title>
         }
         headerButtons={false}
