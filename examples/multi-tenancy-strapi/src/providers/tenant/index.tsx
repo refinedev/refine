@@ -9,6 +9,7 @@ import {
   useEffect,
   useMemo,
   useState,
+  Fragment,
 } from "react";
 
 export type Tenant = Store;
@@ -71,7 +72,7 @@ export const TenantProvider = ({ children }: PropsWithChildren) => {
       }}
     >
       {!loading ? (
-        children
+        <Fragment key={currentTenant.id}>{children}</Fragment>
       ) : (
         <div
           style={{
