@@ -1,5 +1,5 @@
-import { axiosInstance as strapiAxiosInstance } from "@refinedev/strapi-v4";
 import { TOKEN_KEY } from "@/constants";
+import { axiosInstance as strapiAxiosInstance } from "@refinedev/strapi-v4";
 
 export const axiosInstance = strapiAxiosInstance;
 

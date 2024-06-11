@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from "react";
+import { useTenant } from "@/providers/tenant";
 import { ConfigProvider as AntdConfigProvider, type ThemeConfig } from "antd";
 import { ThemeProvider as AntdStyleThemeProvider } from "antd-style";
-import { useTenant } from "@/providers/tenant";
+import type { PropsWithChildren } from "react";
 
 import "@refinedev/antd/dist/reset.css";
 import { RefineThemes } from "@refinedev/antd";

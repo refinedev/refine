@@ -1,15 +1,15 @@
-import {
-  type PropsWithChildren,
-  createContext,
-  useEffect,
-  useState,
-  useContext,
-  useMemo,
-} from "react";
-import { Spin } from "antd";
 import { dataProvider } from "@/providers/data";
 import type { Store } from "@/types";
 import { useParsed } from "@refinedev/core";
+import { Spin } from "antd";
+import {
+  type PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 export type Tenant = Store;
 

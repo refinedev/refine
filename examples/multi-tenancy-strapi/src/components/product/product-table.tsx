@@ -1,3 +1,5 @@
+import { useTenant } from "@/providers/tenant";
+import type { Category, Product } from "@/types";
 import {
   EditButton,
   FilterDropdown,
@@ -6,14 +8,12 @@ import {
   useSelect,
   type useTableReturnType,
 } from "@refinedev/antd";
+import { getDefaultFilter, useGo } from "@refinedev/core";
+import { Avatar, Input, Select, Table, Typography } from "antd";
 import { createStyles } from "antd-style";
-import { Typography, Table, Avatar, Input, Select } from "antd";
 import { EyeIcon } from "lucide-react";
 import { PaginationTotal } from "../pagination";
 import { StatusTag } from "../status-tag";
-import { getDefaultFilter, useGo } from "@refinedev/core";
-import type { Category, Product } from "@/types";
-import { useTenant } from "@/providers/tenant";
 
 type ProductWithCategories = Product & {
   category: Category;

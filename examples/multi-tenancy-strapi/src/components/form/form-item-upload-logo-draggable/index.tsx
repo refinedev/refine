@@ -1,12 +1,12 @@
-import { useMemo } from "react";
-import { Form, Typography, Upload } from "antd";
-import { getValueProps } from "@refinedev/strapi-v4";
-import type { RcFile, UploadChangeParam } from "antd/lib/upload";
-import type { Media, UploadResponse } from "@/types";
 import { API_URL, TOKEN_KEY } from "@/constants";
 import { axiosInstance } from "@/lib/axios";
+import type { Media, UploadResponse } from "@/types";
+import { getValueProps } from "@refinedev/strapi-v4";
+import { Form, Typography, Upload } from "antd";
 import { createStyles } from "antd-style";
+import type { RcFile, UploadChangeParam } from "antd/lib/upload";
 import { Image, UploadCloud } from "lucide-react";
+import { useMemo } from "react";
 
 type Props = {
   name?: string;

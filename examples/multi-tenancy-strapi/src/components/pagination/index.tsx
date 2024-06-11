@@ -1,6 +1,6 @@
-import { createStyles } from "antd-style";
-import { Pagination as AntdPagination, type PaginationProps } from "antd";
 import { useResource } from "@refinedev/core";
+import { Pagination as AntdPagination, type PaginationProps } from "antd";
+import { createStyles } from "antd-style";
 
 export const Pagination = (props: PaginationProps) => {
   const { styles } = useStyles();

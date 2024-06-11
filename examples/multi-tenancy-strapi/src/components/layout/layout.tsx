@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from "react";
-import { createStyles } from "antd-style";
-import { Grid } from "antd";
 import { Sider } from "@/components/layout/sider";
+import { Grid } from "antd";
+import { createStyles } from "antd-style";
+import type { PropsWithChildren } from "react";
 
 export const Layout = ({ children }: PropsWithChildren) => {
   const { styles } = useStyles();

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { NumberField, type useTableReturnType } from "@refinedev/antd";
-import { createStyles } from "antd-style";
-import { Card, Flex, Typography, Button, Row, Col, Skeleton } from "antd";
-import type { Category, Product } from "@/types";
 import { Pagination } from "@/components/pagination";
+import type { Category, Product } from "@/types";
+import { NumberField, type useTableReturnType } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
+import { Button, Card, Col, Flex, Row, Skeleton, Typography } from "antd";
+import { createStyles } from "antd-style";
 import { Eye, Image } from "lucide-react";
+import { useState } from "react";
 import { StatusTag } from "../status-tag";
 
 type ProductWithCategories = Product & {

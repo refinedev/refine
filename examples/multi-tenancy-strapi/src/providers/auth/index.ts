@@ -1,7 +1,7 @@
-import type { AuthProvider } from "@refinedev/core";
-import { AuthHelper } from "@refinedev/strapi-v4";
 import { API_URL, TOKEN_KEY } from "@/constants";
 import { axiosInstance } from "@/lib/axios";
+import type { AuthProvider } from "@refinedev/core";
+import { AuthHelper } from "@refinedev/strapi-v4";
 
 const strapiAuthHelper = AuthHelper(`${API_URL}/api`);
 

@@ -1,15 +1,15 @@
-import type { Customer, Order, Product } from "@/types";
-import { useGo, useShow } from "@refinedev/core";
 import { Drawer } from "@/components/drawer";
-import { createStyles } from "antd-style";
-import { Avatar, Flex, Skeleton, Table, Typography } from "antd";
-import { User, MapPin, Tag, CalendarClock, CalendarCheck } from "lucide-react";
 import { OrderStatus } from "@/components/order/status";
-import { DateField, NumberField } from "@refinedev/antd";
+import type { Customer, Order, Product } from "@/types";
 import {
   type UniqueProduct,
   getUniqueProductsWithQuantity,
 } from "@/utils/get-unique-products";
+import { DateField, NumberField } from "@refinedev/antd";
+import { useGo, useShow } from "@refinedev/core";
+import { Avatar, Flex, Skeleton, Table, Typography } from "antd";
+import { createStyles } from "antd-style";
+import { CalendarCheck, CalendarClock, MapPin, Tag, User } from "lucide-react";
 
 export const OrderShow = () => {
   const go = useGo();

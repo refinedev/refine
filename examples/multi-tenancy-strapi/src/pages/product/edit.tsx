@@ -6,7 +6,7 @@ import { DeleteButton, NumberField } from "@refinedev/antd";
 import { useGo, useShow } from "@refinedev/core";
 import { Button, Col, Divider, Flex, Row, Spin, Typography } from "antd";
 import { createStyles } from "antd-style";
-import { PenLine, Trash2, Image } from "lucide-react";
+import { Image, PenLine, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 type ProductWithCategories = Product & {

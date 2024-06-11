@@ -1,5 +1,5 @@
 import { CategoryNavigation } from "@/components/category";
-import { ProductTable, ProductCards } from "@/components/product";
+import { ProductCards, ProductTable } from "@/components/product";
 import { ProductViewToggle } from "@/components/product/product-view-toggle";
 import { useTenant } from "@/providers/tenant";
 import type { Category, Product } from "@/types";

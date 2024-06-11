@@ -1,7 +1,7 @@
-import { Tag } from "antd";
 import type { Order } from "@/types";
-import { CheckCircle, Bell, XCircle, Truck } from "lucide-react";
+import { Tag } from "antd";
 import { createStyles } from "antd-style";
+import { Bell, CheckCircle, Truck, XCircle } from "lucide-react";
 
 type Props = {
   value?: Order["status"];

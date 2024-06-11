@@ -1,7 +1,10 @@
-import type { Customer, Order, Product } from "@/types";
-import { useGo, useShow } from "@refinedev/core";
+import { CustomerStatus } from "@/components/customer";
 import { Drawer } from "@/components/drawer";
-import { createStyles } from "antd-style";
+import { OrderStatus } from "@/components/order/status";
+import type { Customer, Order, Product } from "@/types";
+import { getUniqueProductsWithQuantity } from "@/utils/get-unique-products";
+import { DateField, NumberField } from "@refinedev/antd";
+import { useGo, useShow } from "@refinedev/core";
 import {
   Avatar,
   Badge,
@@ -11,11 +14,8 @@ import {
   Tooltip,
   Typography,
 } from "antd";
-import { MapPin, Tag, Phone, Calendar } from "lucide-react";
-import { OrderStatus } from "@/components/order/status";
-import { DateField, NumberField } from "@refinedev/antd";
-import { getUniqueProductsWithQuantity } from "@/utils/get-unique-products";
-import { CustomerStatus } from "@/components/customer";
+import { createStyles } from "antd-style";
+import { Calendar, MapPin, Phone, Tag } from "lucide-react";
 
 type CustomerExtended = Customer & {
   orders: (Order &

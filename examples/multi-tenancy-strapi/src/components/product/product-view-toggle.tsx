@@ -1,6 +1,6 @@
-import { LayoutGrid, List } from "lucide-react";
 import { Segmented as AntdSegmented, type SegmentedProps } from "antd";
 import { createStyles } from "antd-style";
+import { LayoutGrid, List } from "lucide-react";
 
 type Props = {} & Omit<SegmentedProps, "options">;
 

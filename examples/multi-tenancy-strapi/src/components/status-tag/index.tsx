@@ -1,8 +1,8 @@
 import { Tag, Typography } from "antd";
 import { createStyles } from "antd-style";
+import type { ReactNode } from "react";
 import { AvailableIcon } from "../icons/available";
 import { UnavailableIcon } from "../icons/unavailable";
-import type { ReactNode } from "react";
 
 type Props = {
   status: boolean;

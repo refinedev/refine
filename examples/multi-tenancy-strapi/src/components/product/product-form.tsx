@@ -2,10 +2,10 @@ import { FormItemUploadLogoDraggable } from "@/components/form";
 import type { Product, ProductForm as ProductFormType } from "@/types";
 import { useForm, useSelect } from "@refinedev/antd";
 import {
-  useParsed,
   type CreateResponse,
   type HttpError,
   type UpdateResponse,
+  useParsed,
 } from "@refinedev/core";
 import {
   Button,

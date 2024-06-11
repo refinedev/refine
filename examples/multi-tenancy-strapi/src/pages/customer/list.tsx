@@ -1,18 +1,18 @@
-import { getDefaultFilter, useGo } from "@refinedev/core";
+import { CustomerStatus } from "@/components/customer";
+import { useTenant } from "@/providers/tenant";
 import {
+  FilterDropdown,
   List,
-  useTable,
   ShowButton,
   getDefaultSortOrder,
-  FilterDropdown,
+  useTable,
 } from "@refinedev/antd";
+import { getDefaultFilter, useGo } from "@refinedev/core";
 import { Input, Table, Typography } from "antd";
-import type { Order, Product } from "../../types";
 import { createStyles } from "antd-style";
 import { EyeIcon } from "lucide-react";
-import { useTenant } from "@/providers/tenant";
 import type { PropsWithChildren } from "react";
-import { CustomerStatus } from "@/components/customer";
+import type { Order, Product } from "../../types";
 
 type CustomerExtended = Order & {
   products: Product[];

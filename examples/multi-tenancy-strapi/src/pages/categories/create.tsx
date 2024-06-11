@@ -1,10 +1,10 @@
+import { Modal } from "@/components/modal";
+import { useTenant } from "@/providers/tenant";
+import type { Category } from "@/types";
 import { useForm } from "@refinedev/antd";
 import { useGo } from "@refinedev/core";
 import { Button, Divider, Form, Input, Segmented } from "antd";
 import { createStyles } from "antd-style";
-import { Modal } from "@/components/modal";
-import type { Category } from "@/types";
-import { useTenant } from "@/providers/tenant";
 
 export const CategoryCreate = () => {
   const { tenant } = useTenant();

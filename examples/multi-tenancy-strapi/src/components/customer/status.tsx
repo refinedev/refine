@@ -1,7 +1,7 @@
-import { Tag } from "antd";
 import type { Customer } from "@/types";
-import { CheckCircle, PauseCircle } from "lucide-react";
+import { Tag } from "antd";
 import { createStyles } from "antd-style";
+import { CheckCircle, PauseCircle } from "lucide-react";
 
 type Props = {
   value?: Customer["status"];

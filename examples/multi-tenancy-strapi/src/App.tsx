@@ -1,3 +1,12 @@
+import { Layout } from "@/components/layout";
+import { CategoriesList, CategoryCreate } from "@/pages/categories";
+import { CustomerList, CustomerShow } from "@/pages/customer";
+import { OrderList, OrderShow } from "@/pages/order";
+import { ProductCreate, ProductEdit, ProductList } from "@/pages/product";
+import { authProvider } from "@/providers/auth";
+import { ConfigProvider } from "@/providers/config";
+import { dataProvider } from "@/providers/data";
+import { TenantProvider, useTenant } from "@/providers/tenant";
 import {
   AuthPage,
   ErrorComponent,
@@ -10,18 +19,9 @@ import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { App as AntdApp } from "antd";
 import { LayoutGrid, List, ShoppingBag, UsersRound } from "lucide-react";
-import { authProvider } from "@/providers/auth";
-import { dataProvider } from "@/providers/data";
-import { ConfigProvider } from "@/providers/config";
-import { TenantProvider, useTenant } from "@/providers/tenant";
-import { Layout } from "@/components/layout";
-import { ProductCreate, ProductList, ProductEdit } from "@/pages/product";
-import { OrderList, OrderShow } from "@/pages/order";
-import { CategoriesList, CategoryCreate } from "@/pages/categories";
-import { CustomerList, CustomerShow } from "@/pages/customer";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 

@@ -1,8 +1,8 @@
 import type { DrawerProps } from "antd";
-import type { PropsWithChildren } from "react";
-import { Button, Drawer as AntdDrawer, Flex, Typography } from "antd";
+import { Drawer as AntdDrawer, Button, Flex, Typography } from "antd";
 import { createStyles } from "antd-style";
 import { XCircle } from "lucide-react";
+import type { PropsWithChildren } from "react";
 
 export const Drawer = (props: PropsWithChildren<DrawerProps>) => {
   const { styles } = useStyles();

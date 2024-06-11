@@ -1,8 +1,8 @@
 import type { ModalProps } from "antd";
-import type { PropsWithChildren } from "react";
-import { Button, Modal as AntdModal, Flex, Typography, Divider } from "antd";
+import { Modal as AntdModal, Button, Flex, Typography } from "antd";
 import { createStyles } from "antd-style";
 import { XCircle } from "lucide-react";
+import type { PropsWithChildren } from "react";
 
 export const Modal = (props: PropsWithChildren<ModalProps>) => {
   const { styles } = useStyles();
