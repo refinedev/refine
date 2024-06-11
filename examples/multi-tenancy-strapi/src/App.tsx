@@ -3,7 +3,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
 } from "@refinedev/antd";
-import { Authenticated, Refine } from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
@@ -28,6 +28,7 @@ import "./App.css";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <GitHubBanner />
       <AntdApp>
         <Refine
           authProvider={authProvider}
