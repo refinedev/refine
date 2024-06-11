@@ -31,6 +31,7 @@ export const useStyles = createStyles(({ responsive, css }) => {
     content: {
       width: "100%",
       paddingTop: "32px",
+      paddingBottom: "32px",
       paddingLeft: "48px",
       paddingRight: "48px",
     },
