@@ -4,11 +4,12 @@ import {
   useEffect,
   useState,
   useContext,
+  useMemo,
 } from "react";
-import { useLocation } from "react-router-dom";
 import { Spin } from "antd";
 import { dataProvider } from "@/providers/data";
 import type { Store } from "@/types";
+import { useParsed } from "@refinedev/core";
 
 export type Tenant = Store;
 
@@ -21,8 +22,8 @@ type TenantContext = {
 const TenantContext = createContext<TenantContext | undefined>(undefined);
 
 export const TenantProvider = ({ children }: PropsWithChildren) => {
-  const location = useLocation();
-  const tenantId = Number(location.pathname.split("/")[1] || 1);
+  const { params } = useParsed<{ tenantId: string }>();
+  const tenantId = Number(params?.tenantId || 1);
 
   const [isLoading, setIsLoading] = useState(true);
   const [tenants, setTenants] = useState<Tenant[]>([]);
@@ -47,9 +48,17 @@ export const TenantProvider = ({ children }: PropsWithChildren) => {
       });
   }, []);
 
-  const loading = isLoading || tenants.length === 0;
-  const isAuthPage = ["/login", "/register"].includes(location.pathname);
-  const shouldRenderChildren = isAuthPage ? true : !loading;
+  const currentTenant = useMemo(() => {
+    const tenant = tenants.find((tenant) => tenant.id === tenantId);
+
+    if (!tenant && tenants.length > 0) {
+      return tenants[0];
+    }
+
+    return tenant;
+  }, [tenantId, tenants]);
+
+  const loading = isLoading || !currentTenant;
 
   return (
     <TenantContext.Provider
@@ -58,10 +67,10 @@ export const TenantProvider = ({ children }: PropsWithChildren) => {
         isLoading,
         // @ts-expect-error when tenant is not found, we are not rendering the children.
         // so it's safe to return undefined
-        tenant: tenants.find((tenant) => tenant?.id === tenantId),
+        tenant: currentTenant,
       }}
     >
-      {shouldRenderChildren ? (
+      {!loading ? (
         children
       ) : (
         <div

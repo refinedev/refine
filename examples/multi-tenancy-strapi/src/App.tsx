@@ -10,13 +10,13 @@ import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { App as AntdApp } from "antd";
 import { LayoutGrid, List, ShoppingBag, UsersRound } from "lucide-react";
 import { authProvider } from "@/providers/auth";
 import { dataProvider } from "@/providers/data";
 import { ConfigProvider } from "@/providers/config";
-import { useTenant } from "@/providers/tenant";
+import { TenantProvider, useTenant } from "@/providers/tenant";
 import { Layout } from "@/components/layout";
 import { ProductCreate, ProductList, ProductEdit } from "@/pages/product";
 import { OrderList, OrderShow } from "@/pages/order";
@@ -26,10 +26,8 @@ import { CustomerList, CustomerShow } from "@/pages/customer";
 import "./App.css";
 
 const App: React.FC = () => {
-  const { tenant } = useTenant();
-
   return (
-    <ConfigProvider>
+    <BrowserRouter>
       <AntdApp>
         <Refine
           authProvider={authProvider}
@@ -84,21 +82,31 @@ const App: React.FC = () => {
                   key="authenticated-routes"
                   fallback={<CatchAllNavigate to="/login" />}
                 >
-                  <Layout>
-                    <Outlet />
-                  </Layout>
+                  <TenantProvider>
+                    <ConfigProvider>
+                      <Layout>
+                        <Outlet />
+                      </Layout>
+                    </ConfigProvider>
+                  </TenantProvider>
                 </Authenticated>
               }
             >
               <Route
                 index
-                element={
-                  <NavigateToResource
-                    meta={{
-                      tenantId: tenant?.id,
-                    }}
-                  />
-                }
+                Component={() => {
+                  const { tenant } = useTenant();
+
+                  return (
+                    <div>
+                      <NavigateToResource
+                        meta={{
+                          tenantId: tenant?.id,
+                        }}
+                      />
+                    </div>
+                  );
+                }}
               />
 
               <Route path="/:tenantId">
@@ -154,7 +162,7 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated key="auth-pages" fallback={<Outlet />}>
-                  <NavigateToResource resource="posts" />
+                  <NavigateToResource />
                 </Authenticated>
               }
             >
@@ -190,7 +198,7 @@ const App: React.FC = () => {
           <DocumentTitleHandler />
         </Refine>
       </AntdApp>
-    </ConfigProvider>
+    </BrowserRouter>
   );
 };
 

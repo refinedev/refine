@@ -10,16 +10,23 @@ import { createStyles } from "antd-style";
 import { PlusCircle } from "lucide-react";
 import type { PropsWithChildren } from "react";
 
+type View = "table" | "card";
+
 type ProductWithCategories = Product & {
   category: Category;
 };
+
+const PAGE_SIZE = {
+  card: 9,
+  table: 10,
+} as const;
 
 export const ProductList = ({ children }: PropsWithChildren) => {
   const { styles } = useStyles();
   const { tenant } = useTenant();
   const go = useGo();
   const { params } = useParsed<{
-    view?: "table" | "card";
+    view?: View;
     categoryId?: string;
   }>();
 
@@ -35,9 +42,10 @@ export const ProductList = ({ children }: PropsWithChildren) => {
       ],
     },
     pagination: {
-      pageSize: view === "card" ? 3 : 10,
+      pageSize: PAGE_SIZE[view],
     },
     filters: {
+      initial: [{ field: "title", operator: "contains", value: "" }],
       permanent: [
         {
           field: "store][id]",
@@ -50,6 +58,10 @@ export const ProductList = ({ children }: PropsWithChildren) => {
       populate: ["image", "category"],
     },
   });
+
+  if (useTableResult.pageSize !== PAGE_SIZE[view]) {
+    useTableResult.setPageSize(PAGE_SIZE[view]);
+  }
 
   return (
     <>
@@ -90,14 +102,13 @@ export const ProductList = ({ children }: PropsWithChildren) => {
           <>
             <div className={styles.categoryNavigation}>
               <CategoryNavigation
-                selectedCategoryId={getDefaultFilter(
-                  "category][id]",
-                  useTableResult.filters,
+                selectedCategoryId={Number(
+                  getDefaultFilter("category.id", useTableResult.filters),
                 )}
                 onAllClick={() => {
                   useTableResult.setFilters([
                     {
-                      field: "category][id]",
+                      field: "category.id",
                       operator: "eq",
                       value: null,
                     },
@@ -106,7 +117,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
                 onCategoryClick={(category) => {
                   useTableResult.setFilters([
                     {
-                      field: "category][id]",
+                      field: "category.id",
                       operator: "eq",
                       value: category.id,
                     },

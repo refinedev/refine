@@ -1,6 +1,12 @@
-import { useGo } from "@refinedev/core";
-import { List, useTable, NumberField, ShowButton } from "@refinedev/antd";
-import { Table, Typography, Flex, Tooltip, Avatar, Badge } from "antd";
+import { getDefaultFilter, useGo } from "@refinedev/core";
+import {
+  List,
+  useTable,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+} from "@refinedev/antd";
+import { Input, Table, Typography } from "antd";
 import type { Order, Product } from "../../types";
 import { createStyles } from "antd-style";
 import { EyeIcon } from "lucide-react";
@@ -19,14 +25,25 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
 
   const { styles } = useStyles();
 
-  const { tableProps } = useTable<CustomerExtended>({
-    permanentFilter: [
-      {
-        field: "store][id]",
-        operator: "eq",
-        value: tenant.id,
-      },
-    ],
+  const { tableProps, filters, sorters } = useTable<CustomerExtended>({
+    filters: {
+      initial: [
+        {
+          field: "address",
+          operator: "contains",
+          value: "",
+        },
+        { field: "phone", operator: "contains", value: "" },
+        { field: "name", operator: "contains", value: "" },
+      ],
+      permanent: [
+        {
+          field: "store][id]",
+          operator: "eq",
+          value: tenant.id,
+        },
+      ],
+    },
     meta: {
       populate: ["orders.products.image"],
     },
@@ -48,15 +65,55 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         <Table {...tableProps} rowKey="id">
           <Table.Column
             dataIndex="id"
-            title="Order#"
+            title="Order #"
+            defaultSortOrder={getDefaultSortOrder("id", sorters)}
+            defaultFilteredValue={getDefaultFilter("id", filters)}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search ID" />
+              </FilterDropdown>
+            )}
             render={(value) => <Typography.Text>#{value}</Typography.Text>}
           />
-          <Table.Column dataIndex="name" title="Name" />
-          <Table.Column dataIndex="address" title="Address" />
-          <Table.Column dataIndex="phone" title="GSM No" />
+          <Table.Column
+            dataIndex="name"
+            title="Name"
+            defaultFilteredValue={getDefaultFilter("name", filters, "contains")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search name" />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column
+            dataIndex="address"
+            title="Address"
+            defaultFilteredValue={getDefaultFilter(
+              "address",
+              filters,
+              "contains",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search address" />
+              </FilterDropdown>
+            )}
+          />
+          <Table.Column
+            dataIndex="phone"
+            title="GSM No"
+            defaultFilteredValue={getDefaultFilter("id", filters, "contains")}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search phone" />
+              </FilterDropdown>
+            )}
+          />
           <Table.Column
             dataIndex="status"
             title="Status"
+            sorter
+            defaultSortOrder={getDefaultSortOrder("status", sorters)}
             render={(value) => {
               return <CustomerStatus value={value} />;
             }}

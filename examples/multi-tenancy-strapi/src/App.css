@@ -31,7 +31,19 @@
 .ant-form-item-horizontal {
   .ant-form-item-row {
     align-items: center;
-  },
+  }
+}
+
+.ant-table-filter-dropdown > div > div {
+  width: 100%;
+}
+
+.ant-select {
+  width: 100%;
+}
+
+.ant-select-selector {
+  width: 100%;
 }
 
 /* 

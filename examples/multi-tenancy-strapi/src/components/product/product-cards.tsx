@@ -46,7 +46,12 @@ export const ProductCards = ({ useTableResult }: ProductCardsProps) => {
             </>
           )}
         </Row>
-        <Pagination {...useTableResult.tableProps.pagination} />
+        <Pagination
+          {...useTableResult.tableProps.pagination}
+          onChange={(page) => {
+            useTableResult.setCurrent(page);
+          }}
+        />
       </div>
     </>
   );

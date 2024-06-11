@@ -1,15 +1,19 @@
 import {
   EditButton,
+  FilterDropdown,
   NumberField,
+  getDefaultSortOrder,
+  useSelect,
   type useTableReturnType,
 } from "@refinedev/antd";
 import { createStyles } from "antd-style";
-import { Typography, Table, Avatar } from "antd";
+import { Typography, Table, Avatar, Input, Select } from "antd";
 import { EyeIcon } from "lucide-react";
 import { PaginationTotal } from "../pagination";
 import { StatusTag } from "../status-tag";
-import { useGo } from "@refinedev/core";
+import { getDefaultFilter, useGo } from "@refinedev/core";
 import type { Category, Product } from "@/types";
+import { useTenant } from "@/providers/tenant";
 
 type ProductWithCategories = Product & {
   category: Category;
@@ -20,8 +24,28 @@ type ProductTableProps = {
 };
 
 export const ProductTable = ({ useTableResult }: ProductTableProps) => {
+  const { filters, sorters } = useTableResult;
+
+  const { tenant } = useTenant();
+
   const { styles } = useStyles();
   const go = useGo();
+
+  const { selectProps: selectPropsCategories } = useSelect({
+    resource: "categories",
+    filters: [
+      {
+        field: "store][id]",
+        operator: "eq",
+        value: tenant.id,
+      },
+    ],
+    optionLabel: "title",
+    optionValue: "id",
+    pagination: {
+      mode: "off",
+    },
+  });
 
   return (
     <div className={styles.container}>
@@ -41,6 +65,14 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
           dataIndex="id"
           title="ID #"
           width={80}
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
+          defaultFilteredValue={getDefaultFilter("id", filters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Input placeholder="Search ID" />
+            </FilterDropdown>
+          )}
           render={(value) => (
             <Typography.Text
               style={{
@@ -63,7 +95,25 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
             />
           )}
         />
-        <Table.Column width={200} dataIndex="title" title="Title" />
+        <Table.Column
+          width={180}
+          dataIndex="title"
+          title="Title"
+          defaultFilteredValue={getDefaultFilter("title", filters, "contains")}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Input placeholder="Search title" />
+            </FilterDropdown>
+          )}
+          render={(value) => (
+            <Typography.Paragraph
+              ellipsis={{ rows: 1 }}
+              style={{ margin: 0, maxWidth: "180px" }}
+            >
+              {value}
+            </Typography.Paragraph>
+          )}
+        />
         <Table.Column
           width={220}
           dataIndex="description"
@@ -82,6 +132,8 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
           title="Price"
           align="end"
           width={96}
+          sorter
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
           render={(value) => (
             <NumberField
               value={value}
@@ -93,15 +145,35 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
           )}
         />
         <Table.Column<ProductWithCategories>
-          dataIndex="category"
+          dataIndex="category.id"
           title="Category"
           width={120}
-          render={(value) => (
+          defaultFilteredValue={getDefaultFilter(
+            "category.id",
+            filters,
+          ).toString()}
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(value: any) => {
+                if (Number.isNaN(Number.parseInt(value, 10))) {
+                  return null;
+                }
+                return Number(value);
+              }}
+            >
+              <Select
+                {...selectPropsCategories}
+                placeholder="Select category"
+              />
+            </FilterDropdown>
+          )}
+          render={(_, record) => (
             <Typography.Paragraph
               ellipsis={{ rows: 1 }}
               style={{ margin: 0, maxWidth: "120px" }}
             >
-              {value?.title}
+              {record?.category.title}
             </Typography.Paragraph>
           )}
         />
@@ -109,6 +181,8 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
           dataIndex="status"
           title="Status"
           width={112}
+          sorter
+          defaultSortOrder={getDefaultSortOrder("status", sorters)}
           render={(value) => <StatusTag status={value === "AVAILABLE"} />}
         />
         <Table.Column

@@ -1,6 +1,22 @@
-import { useGo } from "@refinedev/core";
-import { List, useTable, NumberField, ShowButton } from "@refinedev/antd";
-import { Table, Typography, Flex, Tooltip, Avatar, Badge } from "antd";
+import { getDefaultFilter, useGo } from "@refinedev/core";
+import {
+  List,
+  useTable,
+  NumberField,
+  ShowButton,
+  getDefaultSortOrder,
+  FilterDropdown,
+} from "@refinedev/antd";
+import {
+  Table,
+  Typography,
+  Flex,
+  Tooltip,
+  Avatar,
+  Badge,
+  Input,
+  Select,
+} from "antd";
 import type { Customer, Order, Product } from "../../types";
 import { createStyles } from "antd-style";
 import { OrderStatus } from "@/components/order";
@@ -21,14 +37,25 @@ export const OrderList = ({ children }: PropsWithChildren) => {
 
   const { styles } = useStyles();
 
-  const { tableProps } = useTable<OrderExtended>({
-    permanentFilter: [
-      {
-        field: "store][id]",
-        operator: "eq",
-        value: tenant.id,
-      },
-    ],
+  const { tableProps, filters, sorters } = useTable<OrderExtended>({
+    filters: {
+      initial: [
+        {
+          field: "status",
+          operator: "contains",
+          value: [],
+        },
+        { field: "products.title", operator: "contains", value: "" },
+        { field: "customer.name", operator: "contains", value: "" },
+      ],
+      permanent: [
+        {
+          field: "store][id]",
+          operator: "eq",
+          value: tenant.id,
+        },
+      ],
+    },
     meta: {
       populate: ["products.image", "customer"],
     },
@@ -50,19 +77,53 @@ export const OrderList = ({ children }: PropsWithChildren) => {
         <Table {...tableProps} rowKey="id">
           <Table.Column
             dataIndex="id"
-            title="Order#"
+            title="Order #"
+            width={96}
+            sorter
+            defaultSortOrder={getDefaultSortOrder("id", sorters)}
+            defaultFilteredValue={getDefaultFilter("id", filters)}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search ID" />
+              </FilterDropdown>
+            )}
             render={(value) => <Typography.Text>#{value}</Typography.Text>}
           />
           <Table.Column
             dataIndex="status"
             title="Status"
+            defaultFilteredValue={getDefaultFilter(
+              "status",
+              filters,
+              "contains",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Select mode="multiple" placeholder="Select Status">
+                  <Select.Option value="CANCELLED">Canceled</Select.Option>
+                  <Select.Option value="IN_DELIVERY">In Delivery</Select.Option>
+                  <Select.Option value="DELIVERED">Delivered</Select.Option>
+                  <Select.Option value="READY">Ready</Select.Option>
+                </Select>
+              </FilterDropdown>
+            )}
             render={(value) => {
               return <OrderStatus value={value} />;
             }}
           />
           <Table.Column<OrderExtended>
-            dataIndex="products"
+            dataIndex={["products", "title"]}
             title="Products"
+            defaultFilteredValue={getDefaultFilter(
+              "products.title",
+              filters,
+              "contains",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search products" />
+              </FilterDropdown>
+            )}
             render={(_, record) => {
               const products = record.products || [];
               const uniqueProducts = getUniqueProductsWithQuantity(products);
@@ -119,7 +180,20 @@ export const OrderList = ({ children }: PropsWithChildren) => {
               );
             }}
           />
-          <Table.Column dataIndex={["customer", "name"]} title="Customer" />
+          <Table.Column
+            dataIndex={["customer", "name"]}
+            title="Customer"
+            defaultFilteredValue={getDefaultFilter(
+              "customer.name",
+              filters,
+              "contains",
+            )}
+            filterDropdown={(props) => (
+              <FilterDropdown {...props}>
+                <Input placeholder="Search customer" />
+              </FilterDropdown>
+            )}
+          />
           <Table.Column
             dataIndex="id"
             title="Actions"
