@@ -151,7 +151,7 @@ export const ProductTable = ({ useTableResult }: ProductTableProps) => {
           defaultFilteredValue={getDefaultFilter(
             "category.id",
             filters,
-          ).toString()}
+          )?.toString()}
           filterDropdown={(props) => (
             <FilterDropdown
               {...props}
