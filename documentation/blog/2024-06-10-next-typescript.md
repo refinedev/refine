@@ -117,7 +117,7 @@ export default Profile;
 
 ### Understanding tsconfig.json in Next.js
 
-The `tsconfig.json` is the main piece of configuration for TypeScript with Next.js. This file contains all the compiler options and settings for the TypeScript compiler to know exactly how you want your code transpiled. Here's a structure, which the typical `tsconfig.json` should have:
+The `tsconfig.json` is the main piece of configuration for TypeScript. This file contains all the compiler options and settings for the TypeScript compiler to know exactly how you want your code transpiled. Here's a structure, which the typical `tsconfig.json` should have:
 
 #### Compiler Options
 
