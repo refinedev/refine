@@ -25,13 +25,13 @@ describe("getImports", () => {
         isType: false,
         statement: 'import { Button } from "antd";',
         importPath: "antd",
-        namedImports: " { Button }",
+        namedImports: "{ Button }",
       },
       {
         isType: false,
         statement: 'import { TextInput as AntTextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { TextInput as AntTextInput }",
+        namedImports: "{ TextInput as AntTextInput }",
       },
       {
         isType: false,
@@ -43,26 +43,26 @@ describe("getImports", () => {
         isType: false,
         statement: 'import { Button as AntButton, TextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { Button as AntButton, TextInput }",
+        namedImports: "{ Button as AntButton, TextInput }",
       },
       {
         isType: false,
         statement:
           'import { Button as AntButton, TextInput as AntTextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { Button as AntButton, TextInput as AntTextInput }",
+        namedImports: "{ Button as AntButton, TextInput as AntTextInput }",
       },
       {
         isType: true,
         statement: 'import type { IAuthProvider } from "@refinedev/core";',
         importPath: "@refinedev/core",
-        namedImports: " { IAuthProvider }",
+        namedImports: "{ IAuthProvider }",
       },
       {
         isType: false,
         statement: 'import { type BaseRecord } from "@refinedev/core";',
         importPath: "@refinedev/core",
-        namedImports: " { type BaseRecord }",
+        namedImports: "{ type BaseRecord }",
       },
     ];
 

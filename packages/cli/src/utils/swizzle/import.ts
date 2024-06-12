@@ -1,5 +1,5 @@
 const packageRegex =
-  /import(?:\s{1}type)?(?:(?:(?:[ \n\t]+([^ *\n\t\{\},]+)[ \n\t]*(?:,|[ \n\t]+))?([ \n\t]*\{(?:[ \n\t]*[^ \n\t"'\{\}]+[ \n\t]*,?)+\})?[ \n\t]*)|[ \n\t]*\*[ \n\t]*as[ \n\t]+([^ \n\t\{\}]+)[ \n\t]+)from[ \n\t]*(?:['"])([^'"\n]+)(?:['"])(?:;?)/g;
+  /import(?:\s+(type))?\s*(?:([^\s\{\},]+)\s*(?:,\s*)?)?(\{[^}]+\})?\s*(?:\*\s*as\s+([^\s\{\}]+)\s*)?from\s*['"]([^'"]+)['"];?/g;
 
 const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
 
@@ -27,6 +27,7 @@ export const getImports = (content: string): Array<ImportMatch> => {
   for (const match of matches) {
     const [
       statement,
+      typePrefix,
       defaultImport,
       namedImports,
       namespaceImport,
@@ -34,7 +35,7 @@ export const getImports = (content: string): Array<ImportMatch> => {
     ] = match;
 
     imports.push({
-      isType: statement.includes("import type"),
+      isType: typePrefix === "type",
       statement,
       importPath,
       ...(defaultImport && { defaultImport }),
