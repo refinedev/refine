@@ -30,6 +30,7 @@ import {
   transformFilterModelToCrudFilters,
   transformSortModelToCrudSorting,
 } from "@definitions";
+import { UseUpdateProps } from "@refinedev/core/dist/hooks/data/useUpdate";
 
 type DataGridPropsType = Required<
   Pick<
@@ -56,38 +57,44 @@ type DataGridPropsType = Required<
     | "processRowUpdate"
   >;
 
-export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
-  Omit<
-    useTablePropsCore<TQueryFnData, TError, TData>,
-    "pagination" | "filters"
-  > & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-      Omit<Pagination, "pageSize"> & {
-        /**
-         * Initial number of items per page
-         * @default 25
-         */
-        pageSize?: number;
-      }
-    >;
-    filters?: Prettify<
-      Omit<
-        NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
-        "defaultBehavior"
-      > & {
-        /**
-         * Default behavior of the `setFilters` function
-         * @default "replace"
-         */
-        defaultBehavior?: "replace" | "merge";
-      }
-    >;
-    editable?: boolean;
-    updateMutationOptions?: {
-      retry?: number;
-    };
-  };
+export type UseDataGridProps<
+  TQueryFnData,
+  TError extends HttpError,
+  TSearchVariables,
+  TData extends BaseRecord,
+> = Omit<
+  useTablePropsCore<TQueryFnData, TError, TData>,
+  "pagination" | "filters"
+> & {
+  onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+  pagination?: Prettify<
+    Omit<Pagination, "pageSize"> & {
+      /**
+       * Initial number of items per page
+       * @default 25
+       */
+      pageSize?: number;
+    }
+  >;
+  filters?: Prettify<
+    Omit<
+      NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
+      "defaultBehavior"
+    > & {
+      /**
+       * Default behavior of the `setFilters` function
+       * @default "replace"
+       */
+      defaultBehavior?: "replace" | "merge";
+    }
+  >;
+  editable?: boolean;
+  updateMutationOptions?: UseUpdateProps<
+    TData,
+    TError,
+    TData
+  >["mutationOptions"];
+};
 
 export type UseDataGridReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -272,7 +279,7 @@ export function useDataGrid<
     };
   };
 
-  const { mutate, isLoading: formLoading } = useUpdate();
+  const { mutate } = useUpdate<TData, TError, TData>();
 
   const processRowUpdate = async (newRow: TData, oldRow: TData) => {
     if (!editable) {
