@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-gr
 hide_table_of_contents: false
 ---
 
-**\_This article was last updated on Jun 13, 2024, to add new examples and use cases for CSS Grid and Flexbox**
+**This article was last updated on Jun 13, 2024, to add new examples and use cases for CSS Grid and Flexbox**
 
 ## Introduction
 
