@@ -30,7 +30,7 @@ import {
   transformFilterModelToCrudFilters,
   transformSortModelToCrudSorting,
 } from "@definitions";
-import { UseUpdateProps } from "@refinedev/core/dist/hooks/data/useUpdate";
+import type { UseUpdateProps } from "@refinedev/core/dist/hooks/data/useUpdate";
 
 type DataGridPropsType = Required<
   Pick<
