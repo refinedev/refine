@@ -4,7 +4,7 @@ import { Form, Input, Checkbox, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { ICompany } from "interfaces";
+import type { ICompany } from "interfaces";
 
 export const JobEdit = () => {
   const { formProps, saveButtonProps } = useForm<ICompany>();

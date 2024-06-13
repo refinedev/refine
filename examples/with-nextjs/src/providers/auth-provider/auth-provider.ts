@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthBindings } from "@refinedev/core";
+import type { AuthBindings } from "@refinedev/core";
 import Cookies from "js-cookie";
 
 const mockUsers = [

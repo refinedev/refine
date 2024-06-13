@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 
 const dateSuffixRegexp = /(_at|_on|At|On|AT|ON)(\[\])?$/;
 

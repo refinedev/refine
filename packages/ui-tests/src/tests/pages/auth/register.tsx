@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
 import {
   fireEvent,
@@ -8,7 +8,7 @@ import {
   TestWrapper,
   waitFor,
 } from "@test";
-import { RegisterPageProps } from "@refinedev/core";
+import type { RegisterPageProps } from "@refinedev/core";
 
 export const pageRegisterTests = (
   RegisterPage: FC<RegisterPageProps<any, any, any>>,

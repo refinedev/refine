@@ -7,7 +7,7 @@ import {
   toPlural,
   toSingular,
 } from "../utilities";
-import {
+import type {
   FieldInferencer,
   InferField,
   InferencerComponentProps,

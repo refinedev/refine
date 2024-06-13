@@ -10,7 +10,7 @@ import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { GoogleMap, AdvancedMarker } from "../../map";
 import { StoreStatus } from "../status";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 
 export const AllStoresMap = () => {
   const t = useTranslate();

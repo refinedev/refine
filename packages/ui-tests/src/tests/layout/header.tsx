@@ -1,7 +1,7 @@
 import React from "react";
 
-import { AuthProvider } from "@refinedev/core";
-import { RefineLayoutHeaderProps } from "@refinedev/ui-types";
+import type { AuthProvider } from "@refinedev/core";
+import type { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 

@@ -1,5 +1,11 @@
-import { DataProvider } from "@refinedev/core";
-import { Client as Appwrite, Databases, Permission, Role, ID } from "appwrite";
+import type { DataProvider } from "@refinedev/core";
+import {
+  type Client as Appwrite,
+  Databases,
+  Permission,
+  Role,
+  ID,
+} from "appwrite";
 import {
   getAppwriteFilters,
   getAppwritePagination,

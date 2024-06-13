@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { type PropsWithChildren, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
@@ -8,7 +8,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { User } from "@/graphql/schema.types";
+import type { User } from "@/graphql/schema.types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
 export const ContactCreatePage: React.FC<PropsWithChildren> = ({
@@ -94,6 +94,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
               <Button
                 style={{ paddingLeft: 0 }}
                 type="link"
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PlusCircleOutlined />}
                 onClick={() => {
                   replace("company-create?to=/contacts/create");

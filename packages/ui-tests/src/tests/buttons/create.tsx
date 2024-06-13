@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import {
-  RefineCreateButtonProps,
+  type RefineCreateButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 

@@ -1,14 +1,14 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ProjectOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { PieConfig } from "@ant-design/plots";
+import type { PieConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 
 import { Text } from "@/components";
-import { DashboardTasksChartQuery } from "@/graphql/types";
+import type { DashboardTasksChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_TASKS_CHART_QUERY } from "./queries";
 
@@ -95,6 +95,7 @@ export const DashboardTasksChart: React.FC = () => {
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <ProjectOutlined />
           <Text size="sm" style={{ marginLeft: ".5rem" }}>
             Tasks
@@ -102,6 +103,7 @@ export const DashboardTasksChart: React.FC = () => {
         </div>
       }
       extra={
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         <Button onClick={() => list("tasks")} icon={<RightCircleOutlined />}>
           See kanban board
         </Button>

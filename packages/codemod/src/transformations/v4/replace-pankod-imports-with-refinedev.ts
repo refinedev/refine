@@ -1,4 +1,4 @@
-import { Collection, JSCodeshift } from "jscodeshift";
+import type { Collection, JSCodeshift } from "jscodeshift";
 import { CONFIG_FILE_NAME, CodemodConfig } from "../../helpers";
 
 export const parser = "tsx";

@@ -237,7 +237,7 @@ Let's implement a simple user authorization with JWTs. Add the changes below to 
 //highlight-start
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-//highlight-ned
+//highlight-end
 const express = require("express");
 const app = express();
 

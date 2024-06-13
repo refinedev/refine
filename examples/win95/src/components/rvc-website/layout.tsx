@@ -1,13 +1,68 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import styled from "styled-components";
-import { RVCWebsiteLinks } from "@/components/rvc-website";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 
-export const RVCWebsiteLayout = ({ children }: PropsWithChildren) => {
+type Props = {
+  withBrowser?: boolean;
+};
+
+export const RVCWebsiteLayout = ({
+  withBrowser = true,
+  children,
+}: PropsWithChildren<Props>) => {
   return (
     <Page>
       <Container>
-        <RVCWebsiteLinks />
+        <ContainerLinkList>
+          <Link>
+            <ReactRouterLink
+              to={
+                withBrowser ? "/browser/rvc-website" : "/rvc-website/index.html"
+              }
+            >
+              Home
+            </ReactRouterLink>
+          </Link>
+          <Link>
+            <ReactRouterLink
+              to={
+                withBrowser
+                  ? "/browser/rvc-website/catalog"
+                  : "/rvc-website/catalog/index.html"
+              }
+            >
+              Our Catalog
+            </ReactRouterLink>
+          </Link>
+          <Link>
+            <a
+              href="https://refine.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Refine Home
+            </a>
+          </Link>
+          <Link>
+            <a
+              href="https://refine.dev/docs/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Documentation
+            </a>
+          </Link>
+          <Link>
+            <a
+              href="https://refine.dev/tutorial/essentials/intro/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tutorial
+            </a>
+          </Link>
+        </ContainerLinkList>
         {children}
       </Container>
     </Page>
@@ -28,4 +83,35 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const ContainerLinkList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px;
+  border: 2px solid;
+  gap: 2px;
+  border-top-color: #b5b5b5;
+  border-left-color: #b5b5b5;
+  border-bottom-color: #707070;
+  border-right-color: #707070;
+`;
+
+const Link = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  padding: 6px 12px;
+  color: #00ccff;
+  font-weight: bold;
+  border: 2px solid;
+  border-top-color: #707070;
+  border-left-color: #707070;
+  border-bottom-color: #b5b5b5;
+  border-right-color: #b5b5b5;
 `;

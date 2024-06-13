@@ -1,14 +1,18 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { DeleteButton, EditButton, FilterDropdown } from "@refinedev/antd";
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import {
+  type CrudFilters,
+  type CrudSorting,
+  getDefaultFilter,
+} from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { Input, Select, Space, Table, TableProps } from "antd";
+import { Input, Select, Space, Table, type TableProps } from "antd";
 
 import { CustomAvatar, PaginationTotal, Text } from "@/components";
-import { CompaniesTableQuery } from "@/graphql/types";
+import type { CompaniesTableQuery } from "@/graphql/types";
 import { useContactsSelect } from "@/hooks/useContactsSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
@@ -44,6 +48,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
         dataIndex="name"
         title="Company title"
         defaultFilteredValue={getDefaultFilter("id", filters)}
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         filterIcon={<SearchOutlined />}
         filterDropdown={(props) => (
           <FilterDropdown {...props}>
@@ -142,6 +147,7 @@ export const CompaniesTableView: FC<Props> = ({ tableProps, filters }) => {
         render={(value) => (
           <Space>
             <EditButton
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<EyeOutlined />}
               hideText
               size="small"

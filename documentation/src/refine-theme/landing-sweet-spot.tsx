@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { type FC, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { useColorMode } from "@docusaurus/theme-common";
 import {

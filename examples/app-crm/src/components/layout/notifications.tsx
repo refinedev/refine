@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 
 import { useList, useMany } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { BellOutlined } from "@ant-design/icons";
 import { Badge, Button, Divider, Popover, Space, Spin } from "antd";
 import dayjs from "dayjs";
 
-import { NotificationsDealsQuery, NotificationsQuery } from "@/graphql/types";
+import type {
+  NotificationsDealsQuery,
+  NotificationsQuery,
+} from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 import { Text } from "../text";
@@ -104,6 +107,7 @@ export const Notifications: React.FC = () => {
       overlayStyle={{ width: 400 }}
     >
       <Badge dot>
+        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <Button shape="circle" icon={<BellOutlined />} style={{ border: 0 }} />
       </Badge>
     </Popover>

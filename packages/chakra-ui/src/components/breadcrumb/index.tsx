@@ -8,10 +8,10 @@ import {
   useRouterContext,
   useRouterType,
 } from "@refinedev/core";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import {
   Breadcrumb as ChakraBreadcrumb,
-  BreadcrumbProps as ChakraBreadcrumbProps,
+  type BreadcrumbProps as ChakraBreadcrumbProps,
   BreadcrumbItem,
   BreadcrumbLink,
 } from "@chakra-ui/react";

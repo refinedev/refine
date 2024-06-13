@@ -1,4 +1,4 @@
-import { ProjectIdResponse } from "src/interfaces/api";
+import type { ProjectIdResponse } from "src/interfaces/api";
 
 export const fetchNewProjectId = async () => {
   try {

@@ -2,13 +2,13 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useDebounceValue } from "usehooks-ts";
 import {
   convertLatLng,
-  LatLng,
+  type LatLng,
   getAddressWithLatLng,
   getLatLngWithAddress,
 } from "../../../utils";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { useEffect, useState } from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 type Props = {
   action: "create" | "edit";

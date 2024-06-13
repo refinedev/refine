@@ -1,4 +1,4 @@
-import { LoginFlow } from "@ory/client";
+import type { LoginFlow } from "@ory/client";
 import {
   DevToolsContext,
   DevtoolsEvent,

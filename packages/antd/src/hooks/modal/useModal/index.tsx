@@ -1,7 +1,7 @@
-import { ModalProps } from "antd";
+import type { ModalProps } from "antd";
 import {
   useModal as useCoreModal,
-  useModalReturnType as useCoreModelReturnType,
+  type useModalReturnType as useCoreModelReturnType,
 } from "@refinedev/core";
 
 export type useModalReturnType = {

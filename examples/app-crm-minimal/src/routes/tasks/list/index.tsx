@@ -1,12 +1,17 @@
 import React from "react";
 
-import { HttpError, useList, useNavigation, useUpdate } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import {
+  type HttpError,
+  useList,
+  useNavigation,
+  useUpdate,
+} from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
-import { DragEndEvent } from "@dnd-kit/core";
+import type { DragEndEvent } from "@dnd-kit/core";
 
-import { TaskUpdateInput } from "@/graphql/schema.types";
-import { TasksQuery, TaskStagesQuery } from "@/graphql/types";
+import type { TaskUpdateInput } from "@/graphql/schema.types";
+import type { TasksQuery, TaskStagesQuery } from "@/graphql/types";
 
 import { KanbanAddCardButton } from "../components";
 import { KanbanBoard, KanbanBoardContainer } from "./kanban/board";

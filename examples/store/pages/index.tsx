@@ -1,15 +1,19 @@
 import React from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import {
-  CrudFilter,
-  GetListResponse,
+  type CrudFilter,
+  type GetListResponse,
   useGo,
   useList,
   useParsed,
   useTable,
 } from "@refinedev/core";
 import { dataProvider } from "@refinedev/medusa";
-import { Product, ProductCollection, StoreCartsRes } from "@medusajs/medusa";
+import type {
+  Product,
+  ProductCollection,
+  StoreCartsRes,
+} from "@medusajs/medusa";
 import nookies from "nookies";
 
 import { useCartContext } from "@lib/context";

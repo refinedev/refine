@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { WeekData, WeekVariants } from "./data";
+import type { WeekData, WeekVariants } from "./data";
 import { RefineWeekLogo } from "@site/src/assets/week-of-refine/icons";
 import { LetsStartButton } from "./lets-start-button";
 import { TwitterButton } from "./twitter-button";

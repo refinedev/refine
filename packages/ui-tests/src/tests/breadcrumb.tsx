@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
-import { act, ITestWrapperProps, render, TestWrapper } from "@test";
+import { act, type ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderBreadcrumb = (
   children: React.ReactNode,

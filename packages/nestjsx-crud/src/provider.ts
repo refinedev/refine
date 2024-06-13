@@ -1,6 +1,6 @@
 import { CondOperator, RequestQueryBuilder } from "@nestjsx/crud-request";
-import { DataProvider, HttpError } from "@refinedev/core";
-import { AxiosInstance } from "axios";
+import type { DataProvider, HttpError } from "@refinedev/core";
+import type { AxiosInstance } from "axios";
 import { stringify } from "query-string";
 import {
   axiosInstance,

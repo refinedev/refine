@@ -8,7 +8,7 @@ import {
 import { useLocalStorage } from "@mantine/hooks";
 import { ColorSchemeProvider } from "@mantine/styles";
 import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, ColorScheme, Global } from "@mantine/core";
+import { MantineProvider, type ColorScheme, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,

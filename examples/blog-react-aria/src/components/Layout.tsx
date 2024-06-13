@@ -1,4 +1,4 @@
-import { useMenu, useNavigation, LayoutProps } from "@refinedev/core";
+import { useMenu, useNavigation, type LayoutProps } from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { menuItems } = useMenu();

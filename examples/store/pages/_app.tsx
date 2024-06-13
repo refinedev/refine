@@ -1,13 +1,13 @@
 import React from "react";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import Script from "next/script";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
-import { GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
+import { type GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider, { authProvider } from "@refinedev/medusa";
 import NextNProgress from "nextjs-progressbar";
-import { ProductCollection } from "@medusajs/medusa";
+import type { ProductCollection } from "@medusajs/medusa";
 
 import { SEO } from "@components";
 import Layout from "@components/common/Layout";

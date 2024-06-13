@@ -1,5 +1,5 @@
 import { useModal } from "@refinedev/core";
-import { RefineThemes, RefineTheme } from "@refinedev/chakra-ui";
+import { RefineThemes, type RefineTheme } from "@refinedev/chakra-ui";
 import {
   Button,
   HStack,
@@ -11,7 +11,7 @@ import {
   ModalOverlay,
   useColorMode,
 } from "@chakra-ui/react";
-import { FC } from "react";
+import type { FC } from "react";
 
 type ThemeName = keyof typeof RefineThemes;
 

@@ -1,10 +1,10 @@
 import { getXRay } from "@refinedev/devtools-internal";
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { type UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useKeys } from "@hooks/useKeys";
 
-import { CheckResponse } from "../../../contexts/auth/types";
+import type { CheckResponse } from "../../../contexts/auth/types";
 
 export type UseIsAuthenticatedLegacyProps = {
   v3LegacyAuthProviderCompatible: true;

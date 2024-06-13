@@ -1,5 +1,5 @@
 import { Tag, Typography, theme } from "antd";
-import { IUser } from "../../../interfaces";
+import type { IUser } from "../../../interfaces";
 import { CheckCircleOutlined, PauseCircleOutlined } from "@ant-design/icons";
 import { useTranslate } from "@refinedev/core";
 import { useConfigProvider } from "../../../context";
@@ -20,6 +20,7 @@ export const UserStatus = ({ value }: Props) => {
       style={{
         color: value ? token.colorSuccess : token.colorTextTertiary,
       }}
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={value ? <CheckCircleOutlined /> : <PauseCircleOutlined />}
     >
       <Typography.Text

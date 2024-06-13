@@ -12,7 +12,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import InputMask from "react-input-mask";
-import { useStoreForm } from "./useStoreForm";
+import type { useStoreForm } from "./useStoreForm";
 
 type Props = {
   action: "create" | "edit";

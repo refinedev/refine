@@ -13,7 +13,7 @@ import {
 import { FilePdfOutlined } from "@ant-design/icons";
 import { Table, Space, Button, Modal } from "antd";
 
-import { IInvoice, IMission } from "interfaces";
+import type { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "@/components/pdf";
 
 export const InvoiceList: React.FC = () => {
@@ -92,6 +92,7 @@ export const InvoiceList: React.FC = () => {
                   {record.company && (
                     <Button
                       size="small"
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<FilePdfOutlined />}
                       onClick={() => {
                         setRecord(record);

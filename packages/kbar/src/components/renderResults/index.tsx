@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionId, KBarResults, useMatches } from "kbar";
+import { type ActionId, KBarResults, useMatches } from "kbar";
 
 import { ResultItem } from "@components";
 

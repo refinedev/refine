@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TabItem } from "./TabItem";
 import { TabPanel } from "./TabPanel";
-import { TTab } from "../../interfaces";
+import type { TTab } from "../../interfaces";
 
 type TTabViewProps = {
   tabs: TTab[];

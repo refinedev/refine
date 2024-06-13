@@ -118,7 +118,7 @@ In this section, we will explore CSS Box shadow examples. Some of them are used 
 
 **Example 1**
 
-In the example below, we are applying two box shadows seprated by commas. The first shadow effect has y-offset of `1px` and blur radius of `2px`. The x-offset and spread radius are both zero. The second box shadow has positive length values except the x-offset. Its value is zero.
+In the example below, we are applying two box shadows separated by commas. The first shadow effect has y-offset of `1px` and blur radius of `2px`. The x-offset and spread radius are both zero. The second box shadow has positive length values except the x-offset. Its value is zero.
 
 ```css
 .box {
@@ -514,7 +514,7 @@ The code above will generate a box shadow that looks like the image below.
 
 **Example 20**
 
-In the box shadow example below we have two box shadows seprated by a comma. The first box shadow has positive value for the y-offset and blur radius but a negative value for the spread radius. In the second box radius all length values are zero except the spread radius.
+In the box shadow example below we have two box shadows separated by a comma. The first box shadow has positive value for the y-offset and blur radius but a negative value for the spread radius. In the second box radius all length values are zero except the spread radius.
 
 ```css
 .box {

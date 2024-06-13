@@ -9,6 +9,7 @@ export {
   mapAntdSorterToCrudSorting,
   mapAntdFilterToCrudFilter,
 } from "./definitions/table/index.js";
+export { rangePickerFilterMapper } from "./definitions/filter-mappers/index.js";
 export { getValueFromEvent } from "./definitions/upload/index.js";
 
 export * from "./definitions/themes/index.js";

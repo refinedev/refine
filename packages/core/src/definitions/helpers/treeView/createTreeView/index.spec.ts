@@ -1,5 +1,8 @@
 import { createTreeView } from ".";
-import { IResourceItem, ITreeMenu } from "../../../../contexts/resource/types";
+import type {
+  IResourceItem,
+  ITreeMenu,
+} from "../../../../contexts/resource/types";
 
 const mockResources: IResourceItem[] = [
   {

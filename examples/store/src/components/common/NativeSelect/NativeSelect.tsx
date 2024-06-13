@@ -2,7 +2,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import cn, { clsx } from "clsx";
 import {
   forwardRef,
-  SelectHTMLAttributes,
+  type SelectHTMLAttributes,
   useEffect,
   useImperativeHandle,
   useRef,

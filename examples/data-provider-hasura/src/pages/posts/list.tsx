@@ -18,7 +18,7 @@ import type {
   GetPostCategoriesSelectQuery,
   GetPostsQuery,
 } from "graphql/types";
-import { GetFieldsFromList } from "@refinedev/hasura";
+import type { GetFieldsFromList } from "@refinedev/hasura";
 import {
   POST_CATEGORIES_SELECT_QUERY,
   POSTS_QUERY,

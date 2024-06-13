@@ -1,4 +1,9 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo } from "react";
+import React, {
+  type FC,
+  type PropsWithChildren,
+  useCallback,
+  useMemo,
+} from "react";
 import { ThemeProvider } from "next-themes";
 
 export interface State {

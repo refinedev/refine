@@ -8,8 +8,8 @@ import dayjs from "dayjs";
 
 import { CalendarForm } from "./components";
 import { CALENDAR_UPDATE_EVENT_MUTATION } from "./queries";
-import { GetFields } from "@refinedev/nestjs-query";
-import { UpdateEventMutation } from "../../graphql/types";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { UpdateEventMutation } from "../../graphql/types";
 
 type Event = GetFields<UpdateEventMutation>;
 

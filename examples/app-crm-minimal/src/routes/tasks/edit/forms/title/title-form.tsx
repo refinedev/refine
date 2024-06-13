@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError, useInvalidate } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import { type HttpError, useInvalidate } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { Form, Skeleton } from "antd";
 
 import { Text } from "@/components";
-import { Task } from "@/graphql/schema.types";
-import {
+import type { Task } from "@/graphql/schema.types";
+import type {
   UpdateTaskMutation,
   UpdateTaskMutationVariables,
 } from "@/graphql/types";

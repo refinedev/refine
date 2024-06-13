@@ -2,13 +2,13 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
 import {
-  CreateResponse,
-  HttpError,
+  type CreateResponse,
+  type HttpError,
   useCreateMany,
   useGetToPath,
   useGo,
 } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
@@ -30,7 +30,7 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import {
+import type {
   CreateCompanyMutation,
   CreateCompanyMutationVariables,
 } from "@/graphql/types";
@@ -101,6 +101,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
       }}
       title="Add new company"
       width={512}
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       closeIcon={<LeftOutlined />}
     >
       <Form
@@ -180,6 +181,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   <Col span={11}>
                     <Form.Item noStyle {...restField} name={[name, "name"]}>
                       <Input
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         addonBefore={<UserOutlined />}
                         placeholder="Contact name"
                       />
@@ -188,6 +190,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   <Col span={11}>
                     <Form.Item noStyle name={[name, "email"]}>
                       <Input
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         addonBefore={<MailOutlined />}
                         placeholder="Contact email"
                       />
@@ -195,6 +198,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   </Col>
                   <Col span={2}>
                     <Button
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<DeleteOutlined />}
                       onClick={() => remove(name)}
                     />
@@ -202,6 +206,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                 </Row>
               ))}
               <Typography.Link onClick={() => add()}>
+                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <PlusCircleOutlined /> Add new contacts
               </Typography.Link>
             </Space>

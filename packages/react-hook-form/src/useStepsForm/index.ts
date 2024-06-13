@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { FieldValues, Path } from "react-hook-form";
-import { BaseRecord, HttpError } from "@refinedev/core";
+import type { FieldValues, Path } from "react-hook-form";
+import type { BaseRecord, HttpError } from "@refinedev/core";
 import get from "lodash/get";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 
 export type UseStepsFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,

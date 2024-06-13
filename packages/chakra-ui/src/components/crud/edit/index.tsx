@@ -24,13 +24,13 @@ import {
   RefreshButton,
   SaveButton,
   Breadcrumb,
-  ListButtonProps,
-  RefreshButtonProps,
-  DeleteButtonProps,
-  SaveButtonProps,
+  type ListButtonProps,
+  type RefreshButtonProps,
+  type DeleteButtonProps,
+  type SaveButtonProps,
   AutoSaveIndicator,
 } from "@components";
-import { EditProps } from "../types";
+import type { EditProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Edit: React.FC<EditProps> = (props) => {

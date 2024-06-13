@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useCreateMany, useDelete, useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Modal, ModalProps, Popconfirm } from "antd";
+import { Button, Form, Input, Modal, type ModalProps, Popconfirm } from "antd";
 
 import { Text } from "@/components";
 import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
-import { EventCategoriesQuery } from "@/graphql/types";
+import type { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION } from "./queries";
@@ -66,6 +66,7 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
               >
                 <Button
                   type="text"
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<DeleteOutlined className="tertiary" />}
                 />
               </Popconfirm>
@@ -130,6 +131,7 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
                         onClick={() => {
                           remove(field.name);
                         }}
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<DeleteOutlined className="tertiary" />}
                       />
                     </div>
@@ -138,6 +140,7 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
                   <div className={styles.category}>
                     <Button
                       type="link"
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<PlusOutlined />}
                       onClick={() => {
                         add();

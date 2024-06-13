@@ -1,10 +1,10 @@
-import Chip, { ChipProps } from "@mui/material/Chip";
+import Chip, { type ChipProps } from "@mui/material/Chip";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import BlockOutlinedIcon from "@mui/icons-material/BlockOutlined";
 import MopedOutlined from "@mui/icons-material/MopedOutlined";
 import { useTheme } from "@mui/material/styles";
 import { blue, green } from "@mui/material/colors";
-import { ICourierStatus } from "../../../interfaces";
+import type { ICourierStatus } from "../../../interfaces";
 
 type Props = {
   value: ICourierStatus;

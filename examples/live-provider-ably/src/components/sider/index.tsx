@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  ITreeMenu,
+  type ITreeMenu,
   CanAccess,
   useIsExistAuthentication,
   useTranslate,
@@ -10,7 +10,7 @@ import {
   useSubscription,
 } from "@refinedev/core";
 import { Link } from "react-router-dom";
-import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { type Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
 import {
   LogoutOutlined,
@@ -63,6 +63,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
         return (
           <SubMenu
             key={key}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? <UnorderedListOutlined />}
             title={label}
           >
@@ -84,6 +85,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
             style={{
               textTransform: "capitalize",
             }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             {route ? <Link to={route || "/"}>{label}</Link> : label}
@@ -126,6 +128,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
   };
 
   const logout = isExistAuthentication && (
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     <Menu.Item key="logout" onClick={handleLogout} icon={<LogoutOutlined />}>
       {translate("buttons.logout", "Logout")}
     </Menu.Item>
@@ -176,12 +179,14 @@ export const CustomSider: typeof Sider = ({ render }) => {
             }}
           >
             {collapsed ? (
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <RightOutlined
                 style={{
                   color: token.colorPrimary,
                 }}
               />
             ) : (
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <LeftOutlined
                 style={{
                   color: token.colorPrimary,

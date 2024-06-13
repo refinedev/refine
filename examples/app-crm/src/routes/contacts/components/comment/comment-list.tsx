@@ -1,19 +1,19 @@
 import { DeleteButton, useForm } from "@refinedev/antd";
 import {
-  HttpError,
+  type HttpError,
   useGetIdentity,
   useInvalidate,
   useList,
   useParsed,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Button, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
-import { ContactsContactNotesListQuery } from "@/graphql/types";
+import type { User } from "@/graphql/schema.types";
+import type { ContactsContactNotesListQuery } from "@/graphql/types";
 
 import {
   CONTACTS_CONTACT_NOTES_LIST_QUERY,

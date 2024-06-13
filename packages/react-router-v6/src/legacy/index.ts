@@ -1,11 +1,11 @@
 import React from "react";
-import { handleUseParams, IRouterProvider } from "@refinedev/core";
+import { handleUseParams, type IRouterProvider } from "@refinedev/core";
 import {
   useLocation,
   useParams,
   Link,
-  RouteProps,
-  BrowserRouterProps,
+  type RouteProps,
+  type BrowserRouterProps,
   useNavigate,
 } from "react-router-dom";
 

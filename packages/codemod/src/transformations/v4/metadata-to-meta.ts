@@ -1,4 +1,4 @@
-import { JSCodeshift, Collection } from "jscodeshift";
+import type { JSCodeshift, Collection } from "jscodeshift";
 
 export const metaDataToMeta = (j: JSCodeshift, source: Collection) => {
   // find all JSX elements

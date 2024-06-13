@@ -1,7 +1,14 @@
-import { Form, FormProps, Input, Upload, ModalProps, Modal } from "antd";
+import {
+  Form,
+  type FormProps,
+  Input,
+  Upload,
+  type ModalProps,
+  Modal,
+} from "antd";
 import { Permission, Role } from "@refinedev/appwrite";
 import { useParsed } from "@refinedev/core";
-import { RcFile } from "antd/lib/upload/interface";
+import type { RcFile } from "antd/lib/upload/interface";
 
 import { normalizeFile, storage } from "../../utility";
 

@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import {
   ChangingTextElement,
-  ChangingTextElementRef,
+  type ChangingTextElementRef,
 } from "./changing-text-element";
 import { LandingCopySuccessIcon } from "./icons/landing-copy-success";
 

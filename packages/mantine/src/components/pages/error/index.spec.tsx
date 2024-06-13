@@ -1,6 +1,7 @@
 import React from "react";
 import { pageErrorTests } from "@refinedev/ui-tests";
-import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import type ReactRouterDom from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
 import { ErrorComponent } from ".";
@@ -9,7 +10,7 @@ import {
   fireEvent,
   TestWrapper as BaseTestWrapper,
   MockLegacyRouterProvider,
-  ITestWrapperProps,
+  type ITestWrapperProps,
 } from "@test";
 
 const mHistory = jest.fn();

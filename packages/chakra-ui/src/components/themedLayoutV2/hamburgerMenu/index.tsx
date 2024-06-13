@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButtonProps, IconButton } from "@chakra-ui/react";
+import { type IconButtonProps, IconButton } from "@chakra-ui/react";
 import {
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,

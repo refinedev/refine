@@ -1,4 +1,4 @@
-import { CrudFilters, LogicalFilter } from "@refinedev/core";
+import type { CrudFilters, LogicalFilter } from "@refinedev/core";
 
 export const generateFilter = (filters?: CrudFilters) => {
   const queryFilters: { [key: string]: any } = {};

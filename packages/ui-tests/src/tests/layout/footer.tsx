@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineLayoutFooterProps } from "@refinedev/ui-types";
+import type { RefineLayoutFooterProps } from "@refinedev/ui-types";
 
 import { act, render, TestWrapper } from "@test";
 

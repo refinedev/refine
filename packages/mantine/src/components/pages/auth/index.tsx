@@ -1,7 +1,7 @@
 import React from "react";
-import { AuthPageProps } from "@refinedev/core";
-import { BoxProps, CardProps } from "@mantine/core";
-import { UseFormInput } from "@mantine/form/lib/types";
+import type { AuthPageProps } from "@refinedev/core";
+import type { BoxProps, CardProps } from "@mantine/core";
+import type { UseFormInput } from "@mantine/form/lib/types";
 
 import {
   LoginPage,

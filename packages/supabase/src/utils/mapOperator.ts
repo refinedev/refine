@@ -1,4 +1,4 @@
-import { CrudOperators } from "@refinedev/core";
+import type { CrudOperators } from "@refinedev/core";
 
 export const mapOperator = (operator: CrudOperators) => {
   switch (operator) {
@@ -18,6 +18,10 @@ export const mapOperator = (operator: CrudOperators) => {
       return "is";
     case "nnull":
       return "not.is";
+    case "ina":
+      return "cs";
+    case "nina":
+      return "not.cs";
     case "between":
     case "nbetween":
       throw Error(`Operator ${operator} is not supported`);

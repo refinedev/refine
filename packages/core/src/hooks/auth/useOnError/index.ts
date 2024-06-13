@@ -1,11 +1,11 @@
 import { getXRay } from "@refinedev/devtools-internal";
-import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { type UseMutationResult, useMutation } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useGo, useLogout, useNavigation, useRouterType } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
 
-import { OnErrorResponse } from "../../../contexts/auth/types";
+import type { OnErrorResponse } from "../../../contexts/auth/types";
 
 export type UseOnErrorLegacyProps = {
   v3LegacyAuthProviderCompatible: true;

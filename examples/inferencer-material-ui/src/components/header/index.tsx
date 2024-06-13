@@ -10,7 +10,10 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
-import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
+import {
+  HamburgerMenu,
+  type RefineThemedLayoutV2HeaderProps,
+} from "@refinedev/mui";
 import i18n from "i18next";
 import React, { useContext } from "react";
 import { ColorModeContext } from "../../contexts/color-mode";

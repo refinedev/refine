@@ -9,7 +9,7 @@ import {
   useRouterContext,
   useRouterType,
 } from "@hooks";
-import { GoConfig } from "../../contexts/router/types";
+import type { GoConfig } from "../../contexts/router/types";
 
 export type AuthenticatedCommonProps = {
   /**
@@ -175,21 +175,25 @@ export function Authenticated({
         : "";
       return <RedirectLegacy to={`${appliedRedirect}${toQuery}`} />;
     }
+
+    const queryToValue: string | undefined = parsed.params?.to
+      ? parsed.params.to
+      : go({
+          to: pathname,
+          options: { keepQuery: true },
+          type: "path",
+        });
+
     return (
       <Redirect
         config={{
           to: appliedRedirect,
-          query: appendCurrentPathToQuery
-            ? {
-                to: parsed.params?.to
-                  ? parsed.params.to
-                  : go({
-                      to: pathname,
-                      options: { keepQuery: true },
-                      type: "path",
-                    }),
-              }
-            : undefined,
+          query:
+            appendCurrentPathToQuery && (queryToValue ?? "").length > 1
+              ? {
+                  to: queryToValue,
+                }
+              : undefined,
           type: "replace",
         }}
       />

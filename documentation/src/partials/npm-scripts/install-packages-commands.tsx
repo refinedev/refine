@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { type FC, type PropsWithChildren } from "react";
 
 import Tabs from "@site/src/refine-theme/common-tabs";
 import { CodeBlock } from "@site/src/theme/CodeBlock/base";

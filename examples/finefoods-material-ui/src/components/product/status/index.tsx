@@ -1,10 +1,10 @@
-import Chip, { ChipProps } from "@mui/material/Chip";
+import Chip, { type ChipProps } from "@mui/material/Chip";
 import { useTranslate } from "@refinedev/core";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import BlockOutlinedIcon from "@mui/icons-material/BlockOutlined";
 import { useTheme } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
-import { IProduct } from "../../../interfaces";
+import type { IProduct } from "../../../interfaces";
 
 type Props = {
   value: IProduct["isActive"];

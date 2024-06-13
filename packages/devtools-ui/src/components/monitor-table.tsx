@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
-import { ColumnDef, Table, flexRender } from "@tanstack/react-table";
-import { Activity } from "src/interfaces/activity";
+import { type ColumnDef, type Table, flexRender } from "@tanstack/react-table";
+import type { Activity } from "src/interfaces/activity";
 import { ChevronDownIcon } from "./icons/chevron-down";
 
 type Props = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouterContext, TitleProps } from "@refinedev/core";
+import { useRouterContext, type TitleProps } from "@refinedev/core";
 import Button from "@mui/material/Button";
 
 import { logo, yariga } from "assets";

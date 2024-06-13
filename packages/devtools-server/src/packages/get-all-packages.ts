@@ -1,4 +1,4 @@
-import { PackageType } from "@refinedev/devtools-shared";
+import type { PackageType } from "@refinedev/devtools-shared";
 import { getInstalledPackageData } from "./get-installed-package-data";
 import { getPackagesFromPackageJSON } from "./get-packages-from-package-json";
 import { getChangelog } from "./get-changelog";

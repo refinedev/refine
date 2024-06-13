@@ -3,7 +3,7 @@ import {
   Button,
   Flex,
   Form,
-  FormItemProps,
+  type FormItemProps,
   Input,
   Skeleton,
   Typography,
@@ -105,6 +105,7 @@ export const FormItemEditableInputText = ({
           />
         )}
       </Form.Item>
+      {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
       {disabled && <Button icon={<EditOutlined />} onClick={handleEdit} />}
       {!disabled && (
         <Flex

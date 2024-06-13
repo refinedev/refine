@@ -1,7 +1,7 @@
 import React from "react";
-import { GetListParams, GetListResponse } from "@refinedev/core";
+import type { GetListParams, GetListResponse } from "@refinedev/core";
 import { dataProvider } from "@/providers/data-provider/server";
-import { Product } from "@/types";
+import type { Product } from "@/types";
 import { ProductsTable } from "@/components/products/table";
 
 type CategoryShowPageProps = {

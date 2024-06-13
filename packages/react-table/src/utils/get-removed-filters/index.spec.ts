@@ -1,4 +1,4 @@
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 import { getRemovedFilters } from ".";
 
 describe("getRemovedFilters", () => {

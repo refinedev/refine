@@ -1,5 +1,5 @@
-import React, { ReactChild } from "react";
-import { RefineFieldNumberProps } from "@refinedev/ui-types";
+import React, { type ReactChild } from "react";
+import type { RefineFieldNumberProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

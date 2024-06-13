@@ -2,7 +2,7 @@ import { DeleteButton } from "@refinedev/antd";
 import { EditOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 
-import { IProduct } from "../../interfaces";
+import type { IProduct } from "../../interfaces";
 import { API_URL } from "../../constants";
 
 type ProductItemProps = {
@@ -20,6 +20,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ item, editShow }) => {
       style={{ width: 300 }}
       cover={<img alt="example" src={image} height="240" />}
       actions={[
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         <EditOutlined key="edit" onClick={() => editShow(item.id)} />,
         <DeleteButton
           key="delete"

@@ -14,7 +14,7 @@ import {
 
 import { Table, Space } from "antd";
 
-import { ICompany, IJob } from "interfaces";
+import type { ICompany, IJob } from "interfaces";
 
 export const JobList = () => {
   const { tableProps, sorter } = useTable<IJob>({

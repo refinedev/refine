@@ -23,7 +23,7 @@ import {
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text, TextIcon } from "@/components";
-import { User } from "@/graphql/schema.types";
+import type { User } from "@/graphql/schema.types";
 import { getDateColor } from "@/utilities";
 
 type ProjectCardProps = {
@@ -53,6 +53,7 @@ export const ProjectCard = ({
       {
         label: "View card",
         key: "1",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EyeOutlined />,
         onClick: () => {
           edit("tasks", id, "replace");
@@ -62,6 +63,7 @@ export const ProjectCard = ({
         danger: true,
         label: "Delete card",
         key: "2",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <DeleteOutlined />,
         onClick: () => {
           mutate({
@@ -127,6 +129,7 @@ export const ProjectCard = ({
               type="text"
               shape="circle"
               icon={
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 <MoreOutlined
                   style={{
                     transform: "rotate(90deg)",
@@ -159,6 +162,7 @@ export const ProjectCard = ({
           {dueDateOptions && (
             <Tag
               icon={
+                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 <ClockCircleOutlined
                   style={{
                     fontSize: "12px",

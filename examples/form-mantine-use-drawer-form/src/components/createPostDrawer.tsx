@@ -1,6 +1,6 @@
-import { BaseRecord, HttpError } from "@refinedev/core";
+import type { BaseRecord, HttpError } from "@refinedev/core";
 import {
-  UseModalFormReturnType as UseDrawerFormReturnType,
+  type UseModalFormReturnType as UseDrawerFormReturnType,
   useSelect,
   SaveButton,
 } from "@refinedev/mantine";

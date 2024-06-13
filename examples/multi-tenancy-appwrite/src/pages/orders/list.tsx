@@ -10,7 +10,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-import { IOrder, IProduct } from "../../interfaces";
+import type { IOrder, IProduct } from "../../interfaces";
 import { resources } from "../../utility/appwriteClient";
 
 export const OrderList = () => {

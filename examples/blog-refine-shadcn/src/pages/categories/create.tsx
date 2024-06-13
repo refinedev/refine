@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { ChevronLeft, ListIcon } from "lucide-react";
-import { Category } from "../../interfaces";
+import type { Category } from "../../interfaces";
 
 export const CategoryCreate: React.FC = () => {
   const { list } = useNavigation();

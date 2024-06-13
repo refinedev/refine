@@ -2,7 +2,7 @@ import React from "react";
 
 import { UrlField } from "@components";
 
-import { FileFieldProps } from "../types";
+import type { FileFieldProps } from "../types";
 
 /**
  * This field is used to display files and  uses Material UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>`}  and {@link https://mui.com/material-ui/react-link/#main-content `<Link>`} components.

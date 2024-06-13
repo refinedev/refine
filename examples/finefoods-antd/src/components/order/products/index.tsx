@@ -1,5 +1,5 @@
 import { Avatar, Flex, Table, Typography } from "antd";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import { getUniqueListWithCount } from "../../../utils";
 import { NumberField } from "@refinedev/antd";
 

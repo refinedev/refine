@@ -8,7 +8,7 @@ import {
   useRouterContext,
   useRouterType,
 } from "@refinedev/core";
-import { RefineBreadcrumbProps } from "@refinedev/ui-types";
+import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";

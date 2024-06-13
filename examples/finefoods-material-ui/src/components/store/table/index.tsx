@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useNavigation, useTranslate } from "@refinedev/core";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import {
   EditButton,
   ShowButton,
@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { IconButton } from "@mui/material";
 import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 import { StoreStatus } from "../../../components";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 
 export const StoreTable = () => {
   const t = useTranslate();

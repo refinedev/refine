@@ -1,31 +1,55 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Fragment } from "react";
 import styled from "styled-components";
 import { useList, useNavigation } from "@refinedev/core";
 import { Link, useNavigate } from "react-router-dom";
 import { Counter } from "react95";
 import { Controller } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as ISwiper } from "swiper/types";
+import type { Swiper as ISwiper } from "swiper/types";
 import "swiper/css";
 import { Browser } from "@/components/browser";
 import { ImagePixelated } from "@/components/image-pixelated";
-import { RVCWebsiteLayout, CatalogsList } from "@/components/rvc-website";
+import { RVCWebsiteLayout } from "@/components/rvc-website";
 import { RefineBanner } from "@/components/refine-banner";
 import { getTMDBImgLink } from "@/utils/get-tmdb-img-link";
-import { VideoTitle } from "@/types";
+import type { VideoTitle } from "@/types";
 import { getImagesUrl } from "@/utils/get-cdn-url";
+import { CatalogsList } from "./catalog";
 
-export const RVCWebsitePageHome = () => {
+type Props = {
+  withBrowser?: boolean;
+};
+
+export const RVCWebsitePageHome = ({ withBrowser = true }: Props) => {
   const navigate = useNavigate();
 
+  const Wrapper = withBrowser ? Browser : Fragment;
+
   return (
-    <Browser
+    <Wrapper
       title="RVC Website"
       onClose={() => navigate("/")}
       address="http://www.refinevideoclub.geocities.com/index.html"
     >
-      <RVCWebsiteLayout>
-        <Hero src={`${getImagesUrl("/rvc-hero-logo.png")}`} alt="rvc logo" />
+      <RVCWebsiteLayout withBrowser={withBrowser}>
+        <Hero>
+          <HeroVideoTape
+            src={`${getImagesUrl("/video-tape-1.gif")}`}
+            alt="video tape"
+          />
+          <HeroImage
+            src={`${getImagesUrl("/video-club-hero.png")}`}
+            alt="rvc logo"
+          />
+          <HeroVideoTape
+            src={`${getImagesUrl("/video-tape-2.gif")}`}
+            style={{
+              willChange: "transform",
+              transform: "scaleX(-1)",
+            }}
+            alt="video tape"
+          />
+        </Hero>
         <HeroTitle>“The best way to rent movies”</HeroTitle>
         <HeroDescription>
           We provide our members with more than 5.000 movie titles. If you want
@@ -34,10 +58,10 @@ export const RVCWebsitePageHome = () => {
         </HeroDescription>
 
         <NewGif src={`${getImagesUrl("/new.gif")}`} alt="new" />
-        <NewTitles />
+        <NewTitles withBrowser={withBrowser} />
 
         <Top10Gif src={`${getImagesUrl("/top10.gif")}`} alt="top10" />
-        <TopTitles />
+        <TopTitles withBrowser={withBrowser} />
 
         <SeparatorGif
           src={`${getImagesUrl("/separator.gif")}`}
@@ -45,7 +69,7 @@ export const RVCWebsitePageHome = () => {
           dir="left"
         />
 
-        <CatalogsList />
+        <CatalogsList withBrowser={withBrowser} />
 
         <SeparatorGif
           src={`${getImagesUrl("/separator.gif")}`}
@@ -56,11 +80,13 @@ export const RVCWebsitePageHome = () => {
         <RefineBanner banner="crm" />
         <AdvertisementBanners />
       </RVCWebsiteLayout>
-    </Browser>
+    </Wrapper>
   );
 };
 
-const NewTitles = () => {
+const NewTitles = (props: {
+  withBrowser?: boolean;
+}) => {
   const [controlledSwiper, setControlledSwiper] = useState<ISwiper | null>(
     null,
   );
@@ -89,7 +115,13 @@ const NewTitles = () => {
       >
         {titles?.map((title) => (
           <SwiperSlide key={title.id}>
-            <TitleContainer to={`/rvc-website/titles/${title.id}`}>
+            <TitleContainer
+              to={
+                props.withBrowser
+                  ? `/browser/rvc-website/titles/${title.id}`
+                  : `/rvc-website/titles/${title.id}/index.html`
+              }
+            >
               <TitleImage
                 src={getTMDBImgLink({
                   path: title.poster_path,
@@ -110,13 +142,20 @@ const NewTitles = () => {
   );
 };
 
-const TopTitles = () => {
-  const { showUrl } = useNavigation();
-
+const TopTitles = (props: {
+  withBrowser?: boolean;
+}) => {
   return (
     <TopTitlesContainer>
       {TOP_TITLES.map((title) => (
-        <TitleContainer key={title.id} to={`/rvc-website/titles/${title.id}`}>
+        <TitleContainer
+          key={title.id}
+          to={
+            props.withBrowser
+              ? `/browser/rvc-website/titles/${title.id}`
+              : `/rvc-website/titles/${title.id}/index.html`
+          }
+        >
           <TitleImage
             src={getTMDBImgLink({
               path: title.poster_path,
@@ -252,15 +291,28 @@ const AdvertisementBanners = () => {
   );
 };
 
-const Hero = styled.img`
-  display: block;
-  max-width: 872px;
+const Hero = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
   margin-top: 32px;
 `;
 
+const HeroImage = styled.img`
+  width: 376px;
+  height: 144px;
+`;
+
+const HeroVideoTape = styled.img`
+  width: 200px;
+  height: 182px;
+`;
+
 const HeroTitle = styled.h1`
+  font-family: "pixelated-times-new-roman", "ms_sans_serif";
   color: #ffff00;
-  font-size: 40px;
+  font-size: 64px;
   line-height: 40px;
   margin-top: 40px;
 `;
@@ -270,6 +322,7 @@ const HeroDescription = styled.p`
   color: #ffffff;
   margin-top: 16px;
   text-align: center;
+  line-height: 20px;
 `;
 
 const SwiperContainer = styled.div`

@@ -1,19 +1,19 @@
 import { DeleteButton, useForm } from "@refinedev/antd";
 import {
-  HttpError,
+  type HttpError,
   useGetIdentity,
   useInvalidate,
   useList,
   useParsed,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Button, Form, Input, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { CustomAvatar, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
-import { KanbanTaskCommentsQuery } from "@/graphql/types";
+import type { User } from "@/graphql/schema.types";
+import type { KanbanTaskCommentsQuery } from "@/graphql/types";
 
 import { KANBAN_TASK_COMMENTS_QUERY } from "../kanban/queries";
 

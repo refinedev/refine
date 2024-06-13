@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { RadioGroup } from "@headlessui/react";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 
 import { StepContainer, Radio, LoadingDots } from "@components";
 import { Spinner } from "@components/icons";

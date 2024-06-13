@@ -1,9 +1,13 @@
 "use client";
 
-import React, { createContext, PropsWithChildren, useReducer } from "react";
+import React, {
+  createContext,
+  type PropsWithChildren,
+  useReducer,
+} from "react";
 import { useMany } from "@refinedev/core";
 import { OrdersModalContextProvider } from "@/context";
-import { BasketOrder, Product } from "../types";
+import type { BasketOrder, Product } from "../types";
 
 export const BasketContext = createContext<{
   orders: BasketOrder[];

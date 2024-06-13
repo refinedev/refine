@@ -8,7 +8,7 @@ import {
 } from "@refinedev/antd";
 import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
 
-import { TCanvas } from "../../types/canvas";
+import type { TCanvas } from "../../types/canvas";
 import { LogList } from "../../components/logs";
 import { CanvasItem } from "../../components/canvas";
 

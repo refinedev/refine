@@ -2,8 +2,8 @@ import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
 import { UnsavedWarnContext } from "@contexts/unsavedWarn";
-import { IRefineContextOptions } from "../../../contexts/refine/types";
-import { IUnsavedWarnContext } from "../../../contexts/unsavedWarn/types";
+import type { IRefineContextOptions } from "../../../contexts/refine/types";
+import type { IUnsavedWarnContext } from "../../../contexts/unsavedWarn/types";
 
 type UseWarnAboutChangeType = () => {
   warnWhenUnsavedChanges: IRefineContextOptions["warnWhenUnsavedChanges"];

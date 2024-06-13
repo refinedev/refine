@@ -1,5 +1,5 @@
-import { TraceType } from "@refinedev/devtools-shared";
-import { MutationKey, QueryKey } from "@tanstack/react-query";
+import type { TraceType } from "@refinedev/devtools-shared";
+import type { MutationKey, QueryKey } from "@tanstack/react-query";
 
 export const createIdentifier = (
   key?: QueryKey | MutationKey,

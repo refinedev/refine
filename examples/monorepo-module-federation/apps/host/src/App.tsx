@@ -24,7 +24,7 @@ import { ColorModeContextProvider } from "./contexts/color-mode";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
-import { ExtendedWindow } from "./types";
+import type { ExtendedWindow } from "./types";
 
 const BlogPostList = React.lazy(() => import("blog_posts/BlogPostList"));
 const BlogPostShow = React.lazy(() => import("blog_posts/BlogPostShow"));

@@ -1,6 +1,6 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
-import { Command, Option } from "commander";
+import { type Command, Option } from "commander";
 import { updateNotifier } from "src/update-notifier";
 import { devtoolsRunner } from "src/commands/devtools";
 import { projectScripts } from "../projectScripts";
@@ -26,7 +26,7 @@ const dev = (program: Command) => {
     .addOption(
       new Option(
         "-d, --devtools <devtools>",
-        "Start refine's devtools server",
+        "Start Refine Devtools server",
       ).default("true", "true if devtools is installed"),
     )
     .argument("[args...]")
@@ -49,7 +49,7 @@ const action = async (
   const devtools = params.devtools === "false" ? false : devtoolsDefault;
 
   if (devtools) {
-    devtoolsRunner();
+    devtoolsRunner({ exitOnError: false });
   }
 
   runScript(binPath, command);

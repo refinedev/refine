@@ -1,4 +1,4 @@
-import { Scopes } from "@refinedev/devtools-shared";
+import type { Scopes } from "@refinedev/devtools-shared";
 import clsx from "clsx";
 import React from "react";
 

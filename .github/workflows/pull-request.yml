@@ -13,19 +13,15 @@ jobs:
       - uses: wagoid/commitlint-github-action@v5
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     name: Lint
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: "pnpm"
       - name: Install Dependencies
         run: |
@@ -40,19 +36,15 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-pr-build
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
     name: Build & Test
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: "pnpm"
       - name: Install & Build
         run: |
@@ -66,7 +58,6 @@ jobs:
       - name: Are The Types Wrong
         run: |
           pnpm attw:all
-
   tsdoc-check:
     runs-on: ubuntu-latest
     name: Check TSDoc Links

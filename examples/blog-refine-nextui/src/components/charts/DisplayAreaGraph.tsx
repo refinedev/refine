@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { IDisplayAreaGraphProps } from "../../interfaces";
+import type { IDisplayAreaGraphProps } from "../../interfaces";
 import { formatDate } from "./DisplayBarChart";
 
 export const DisplayAreaGraph: React.FC<IDisplayAreaGraphProps> = ({

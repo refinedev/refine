@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconList } from "@tabler/icons-react";
 
-import { ListButtonProps } from "../types";
+import type { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.

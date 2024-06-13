@@ -2,9 +2,9 @@ import { useDelete } from "@refinedev/core";
 import { TagField } from "@refinedev/antd";
 
 import { FormOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
-import { Card, Typography, Dropdown, MenuProps } from "antd";
+import { Card, Typography, Dropdown, type MenuProps } from "antd";
 
-import { IClient } from "interfaces";
+import type { IClient } from "interfaces";
 
 const { Title, Text } = Typography;
 
@@ -20,6 +20,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
     {
       key: "1",
       style: { fontWeight: 500 },
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <FormOutlined style={{ color: "green" }} />,
       onClick: () => editShow(item.id),
       label: "Edit Client",
@@ -27,6 +28,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
     {
       key: "2",
       style: { fontWeight: 500 },
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <DeleteOutlined style={{ color: "red" }} />,
       onClick: () =>
         mutate({
@@ -43,6 +45,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ item, editShow }) => {
     <Card style={{ width: 300, height: 300, borderColor: "black" }}>
       <div style={{ position: "absolute", top: "10px", right: "5px" }}>
         <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <MoreOutlined
             style={{
               fontSize: 24,

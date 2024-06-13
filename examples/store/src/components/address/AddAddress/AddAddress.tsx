@@ -1,7 +1,7 @@
 import React from "react";
 import { useList } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
-import { Country, Region } from "@medusajs/medusa";
+import type { Country, Region } from "@medusajs/medusa";
 
 import { Modal, Button, LoadingDots, Input, NativeSelect } from "@components";
 import { Plus } from "@icons";

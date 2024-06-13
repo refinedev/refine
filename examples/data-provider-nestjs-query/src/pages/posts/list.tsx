@@ -10,12 +10,12 @@ import {
   useSelect,
   DateField,
 } from "@refinedev/antd";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Table, Space, Select } from "antd";
 
 import { CATEGORIES_SELECT_QUERY, POSTS_LIST_QUERY } from "./queries";
-import { BlogPostsListQuery, CategoriesSelectQuery } from "graphql/types";
+import type { BlogPostsListQuery, CategoriesSelectQuery } from "graphql/types";
 
 type IPost = GetFieldsFromList<BlogPostsListQuery>;
 

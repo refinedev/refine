@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement> & {
   id?: string;

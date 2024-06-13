@@ -1,7 +1,7 @@
 import React, {
   forwardRef,
-  ButtonHTMLAttributes,
-  JSXElementConstructor,
+  type ButtonHTMLAttributes,
+  type JSXElementConstructor,
   useRef,
 } from "react";
 import cn from "clsx";

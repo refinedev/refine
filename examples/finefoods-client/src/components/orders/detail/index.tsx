@@ -1,11 +1,11 @@
 "use client";
 
-import { UseShowProps, useShow } from "@refinedev/core";
+import { type UseShowProps, useShow } from "@refinedev/core";
 import { useLayoutEffect } from "react";
 import JSConfetti from "js-confetti";
 import { FastMotocycleIcon, OrderIcon } from "@/components/icons";
 import { TRANSLATIONS_BON_APPETIT } from "@/constants";
-import { Order } from "@/types";
+import type { Order } from "@/types";
 import dayjs from "dayjs";
 
 type OrderPageProps = {

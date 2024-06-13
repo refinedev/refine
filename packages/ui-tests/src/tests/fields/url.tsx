@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineFieldUrlProps } from "@refinedev/ui-types";
+import type { RefineFieldUrlProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

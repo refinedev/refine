@@ -1,7 +1,7 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useUpdate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
 

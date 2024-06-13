@@ -8,7 +8,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 
-import { RefineThemedLayoutHeaderProps } from "../types";
+import type { RefineThemedLayoutHeaderProps } from "../types";
 
 /**
  * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/#migrate-themedlayout-to-themedlayoutv2

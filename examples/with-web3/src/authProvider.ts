@@ -1,4 +1,4 @@
-import { AuthProvider } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
