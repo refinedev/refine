@@ -1,15 +1,17 @@
 import {
+  useUpdate,
+  useLiveMode,
+  pickNotDeprecated,
+  useTable as useTableCore,
   type BaseRecord,
   type CrudFilters,
   type HttpError,
   type Pagination,
-  pickNotDeprecated,
   type Prettify,
-  useLiveMode,
-  useTable as useTableCore,
+  type UseUpdateProps,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
-  useUpdate,
+  useResourceParams,
 } from "@refinedev/core";
 import { useState } from "react";
 
@@ -30,7 +32,6 @@ import {
   transformFilterModelToCrudFilters,
   transformSortModelToCrudSorting,
 } from "@definitions";
-import type { UseUpdateProps } from "@refinedev/core/dist/hooks/data/useUpdate";
 
 type DataGridPropsType = Required<
   Pick<
@@ -150,6 +151,7 @@ export function useDataGrid<
   dataProviderName,
   overtimeOptions,
   editable = false,
+  updateMutationOptions,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -160,6 +162,8 @@ export function useDataGrid<
   const liveMode = useLiveMode(liveModeFromProp);
 
   const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+
+  const { identifier } = useResourceParams({ resource: resourceFromProp });
 
   const {
     tableQueryResult,
@@ -279,17 +283,23 @@ export function useDataGrid<
     };
   };
 
-  const { mutate } = useUpdate<TData, TError, TData>();
+  const { mutate } = useUpdate<TData, TError, TData>({
+    mutationOptions: updateMutationOptions,
+  });
 
   const processRowUpdate = async (newRow: TData, oldRow: TData) => {
     if (!editable) {
       return Promise.resolve(oldRow);
     }
 
+    if (!identifier) {
+      return Promise.reject(new Error("Resource is not defined"));
+    }
+
     return new Promise((resolve, reject) => {
       mutate(
         {
-          resource: resourceFromProp as string,
+          resource: identifier,
           id: newRow.id as string,
           values: newRow,
         },
