@@ -37,7 +37,9 @@ export const useCode = (): UseCodeReturn => {
     }
 
     if (hash) {
-      fetch(`${process.env.NEXT_PUBLIC_PREVIEW_BUCKET_URL}/${hash}`)
+      fetch(
+        `https://${process.env.NEXT_PUBLIC_PREVIEWS_BUCKET_NAME}.fra1.cdn.digitaloceanspaces.com/preview-strings/${hash}`,
+      )
         .then((body) =>
           body.text().then((data) => {
             setCompressed(data);
