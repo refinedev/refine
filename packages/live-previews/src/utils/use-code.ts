@@ -10,16 +10,47 @@ type UseCodeReturn = {
   hasQuery: boolean;
   disableScroll: boolean;
   useTailwind: boolean;
+  isLoading: boolean;
 };
 
 export const useCode = (): UseCodeReturn => {
   const { query, isReady } = useRouter();
   const {
-    code: compressed,
+    code: encoded,
+    hash,
     disableScroll,
     tailwind,
     css: cssCompressed,
   } = query ?? {};
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [compressed, setCompressed] = React.useState<string | undefined>();
+
+  React.useEffect(() => {
+    if (!isReady) return;
+    if (compressed) return;
+
+    if (encoded) {
+      setCompressed(encoded as string);
+      setIsLoading(false);
+      return;
+    }
+
+    if (hash) {
+      fetch(
+        `https://${process.env.NEXT_PUBLIC_PREVIEWS_BUCKET_NAME}.fra1.cdn.digitaloceanspaces.com/preview-strings/${hash}`,
+      )
+        .then((body) =>
+          body.text().then((data) => {
+            setCompressed(data);
+            setIsLoading(false);
+          }),
+        )
+        .catch((e) => {
+          setIsLoading(false);
+        });
+    }
+  }, [isReady, compressed, encoded, hash]);
 
   const code = React.useMemo(() => {
     if (!isReady) return "";
@@ -61,8 +92,9 @@ export const useCode = (): UseCodeReturn => {
     code,
     css,
     isReady,
-    hasQuery: !!compressed,
+    hasQuery: !!encoded || !!hash,
     disableScroll: !!disableScroll,
     useTailwind: !!tailwind,
+    isLoading,
   };
 };

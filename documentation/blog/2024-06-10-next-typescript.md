@@ -4,9 +4,11 @@ description: We will explain the entire process of how to use Next.js in TypeScr
 slug: next-js-with-typescript
 authors: michael
 tags: [nextjs, typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/social-3.png
 hide_table_of_contents: false
 ---
+
+**_This article was last updated on Jun 10, 2024 to add new section for tsconfig.json and add some tips on usage with Next.js_**
 
 ## Introduction
 
@@ -20,11 +22,7 @@ Steps we'll cover:
 
 - [What is TypeScript?](#what-is-typescript)
 - [How to add TypeScript to your Next.js app](#how-to-add-typescript-to-your-nextjs-app)
-  - [`create-next-app`](#create-next-app)
-  - [Adding TypeScript to an existing project](#adding-typescript-to-an-existing-project)
-- [How to use Typescript with Next.js data fetching methods](#how-to-use-typescript-with-nextjs-data-fetching-methods)
 - [How to use Typescript in Next.js API routes](#how-to-use-typescript-in-nextjs-api-routes)
-- [How to configure absolute imports and module path aliases in tsconfig.json](#how-to-configure-absolute-imports-and-module-path-aliases-in-tsconfigjson)
 - [Disabling Typescript Errors in Production](#disabling-typescript-errors-in-production)
 
 ## What is TypeScript?
@@ -116,6 +114,105 @@ const Profile: React.FunctionComponent<ProfileProps> = ({
 
 export default Profile;
 ```
+
+### Understanding tsconfig.json in Typescript
+
+The `tsconfig.json` is the main piece of configuration for TypeScript. This file contains all the compiler options and settings for the TypeScript compiler to know exactly how you want your code transpiled. Here's a structure, which the typical `tsconfig.json` should have:
+
+#### Compiler Options
+
+1. ** ` target` :** It points to the version of JavaScript that the TypeScript code compiles into. Standard settings are "es5" and "es6".
+
+```json
+"target": "es5"
+```
+
+2. **` lib`:** This specifies the list of library files to include in the compilation. Most of the time, this will be "dom," "dom. iterable", and "next" together for a web project.
+
+```json
+"lib": ["dom", "dom.iterable", "esnext"]
+```
+
+3. **`allowJs`:** Allows JavaScript file compilation. This may be helpful in introducing TypeScript gradually into an existing JavaScript codebase.
+
+```json
+"allowJs": true
+```
+
+4. `skipLibCheck`: This will avoid the checking of declaration files (`.d.ts`) and would consequently help in faster compiling.
+
+```json
+"skipLibCheck": true
+```
+
+5. **`strict`**: Enable strict option checking. This option, if true, will enable strict rules by which your code will become more resilient.
+
+```json
+"strict": false
+```
+
+6. **`forceConsistentCasingInFileNames`:** Ensures that filenames are consistently cased const.
+
+```json
+"forceConsistentCasingInFileNames": true
+```
+
+7. **`noEmit`:** The output files are not emitted by the compiler. This is a pretty useful option for projects where we are only concerned with type checking and do not want to take a look at the final JavaScript file.
+
+```json
+"noEmit": true
+```
+
+8. **`esModuleInterop`:** This sets up interoperability between CommonJS and ES Modules; thus, one can import files in CommonJS format with the ES Module syntax.
+
+```json
+"esModuleInterop": true
+```
+
+9. **`module`:** Defines how the module code should be generated. The most common values, appropriate for modern projects, are these, which include `esnext`.
+
+```json
+"module": "esnext"
+```
+
+10. ** `moduleResolution`:** Defines module resolution strategy: The preferred value for a Node.js application is "node."
+
+```json
+"moduleResolution": "node"
+```
+
+11. **`resolveJsonModule`:** Enables import for JSON modules in some scenarios, e.g., while working with the configuration file or in a different manner.
+
+```json
+"resolveJsonModule": true
+```
+
+12. **`isolatedModules`:** Treat each file as a standalone module. This is likely to help in making the build faster. ```json
+
+```
+"isolatedModules": true
+
+```
+
+13. ** `jsx`:** Code generation method of the JSX. When set to `preserve`, JSX is kept as is and not rounded on Next.js to handle it.
+
+```json
+
+"jsx": "preserve"
+```
+
+14. Include and Exclude
+
+- **`include`:** Specifies the files or directories to include in the compilation. Typically, this includes `next-env.d.ts` and all `.ts` and `.tsx` files.
+
+  ```json
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  ```
+
+- **`exclude`:** Specifies the files or directories to exclude from the compilation. This typically includes `node_modules` to avoid unnecessary type checking of external libraries.
+  ```json
+  "exclude": ["node_modules"]
+  ```
 
 ## How to use Typescript with Next.js data fetching methods
 
@@ -316,6 +413,98 @@ module.exports = {
 Make sure you really know what you're doing before using this option.
 
 :::
+
+### Common Next.js TypeScript Issues and Workarounds
+
+#### Debug TypeScript Errors
+
+When you run into a TypeScript error, the first thing you should do is read very carefully what the error message is telling you. Many times, it explains well what has gone wrong and where. Use this to pinpoint and fix issues in your code. Here are a few tips:
+
+- **Check Type Definitions**: Ensure all your types are well defined and imported.
+- **Use Type Assertions:** Use type assertions to tell TypeScript, "trust me, I know what I'm doing."
+- **Update Dependencies**: Sometimes updating TypeScript or your type definitions (`@types/react` for example) will make the errors go away.
+
+### Best practices of TypeScript using Next.js
+
+### Project Organization
+
+A well-structured project allows you to actually manage and scale your application correctly. Here are some bunch of tips on how to structure your Next.js app using TypeScript:
+
+1. **Sorting Files by Attribute:**
+   When organizing the directories, group the files that relate to a given feature/module together. For example: elements, modules, and templates. This makes code management much easier and file retrieval more convenient.
+
+   ```
+   /src
+     /parts
+     /pages
+     /helpers
+     /styles
+     /services
+   ```
+
+2. **Use a Common Naming Convention:**
+   Follow the file and folder naming convention. One such example is the naming of files in camelCase and React component names in PascalCase.
+
+   ```
+   /components
+     header.ts
+     Profile.ts
+   ```
+
+3. **Make it Human:**
+   Modularize your code by separation of concerns. Put your business logic in service files and keep your components' functionality focused on the presentation.
+   ```
+   /services
+     userService.ts
+   /parts
+     UserProfile.tsx
+   ```
+
+#### Writing Clean, Maintainable Code
+
+Clean and maintainable code ensures better readability and less technical debt. Here are some of the best practices for writing clean TypeScript code in Next.js:
+
+### Type Annotations
+
+Types should be declared expressly when declaring function parameters, return values, and variables. This makes your code predictable and more accessible to follow.
+
+```typescript
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+```
+
+### Do Not Use `any`
+
+Do not use `any` at all. It is the same as not using TypeScript. Better to use some types or generics.
+
+```typescript
+const fetchData = async (): Promise<User[]> => {
+  // Fetch user data
+};
+```
+
+### Implement Interfaces and Types
+
+Use interfaces and type aliases to write object shapes and function signatures. This will bring you higher reusability and readability in only one place within your code.
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+```
+
+### Make Functions Small
+
+The key is that the small functions become easily reusable, making it a breeze to test and maintain.
+
+```typescript
+const calculateTotal = (prices: number[]): number => {
+  return prices.reduce((total, price) => total + price, 0);
+};
+```
 
 ## Conclusion
 

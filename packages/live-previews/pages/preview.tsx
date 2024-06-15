@@ -14,8 +14,15 @@ import { checkPackage } from "@/src/utils/check-package";
 
 const Preview: NextPage = () => {
   const [ready, setReady] = React.useState(false);
-  const { code, css, hasQuery, isReady, disableScroll, useTailwind } =
-    useCode();
+  const {
+    code,
+    css,
+    hasQuery,
+    isReady,
+    disableScroll,
+    useTailwind,
+    isLoading,
+  } = useCode();
   const [scope, setScope] = React.useState({ ...RefineCommonScope });
   const [scopeSettled, setScopeSettled] = React.useState(false);
 
@@ -60,7 +67,7 @@ const Preview: NextPage = () => {
     return <Error statusCode={404} />;
   }
 
-  if (isReady && hasQuery && !code) {
+  if (isReady && hasQuery && !code && !isLoading) {
     return <Error statusCode={400} />;
   }
 
