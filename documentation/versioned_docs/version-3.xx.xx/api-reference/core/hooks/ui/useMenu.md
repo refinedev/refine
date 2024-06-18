@@ -75,7 +75,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const renderMenuItems = (items: ITreeMenu[]) => {
     return (
       <>
-        {menuItems.map(({ name, label, icon, route }) => {
+        {items.map(({ name, label, icon, route }) => {
           const isSelected = route === selectedKey;
           return (
             <li key={name}>
@@ -163,7 +163,7 @@ We created `<Layout>` with a header with a logo and a list of links to all menu 
 
 :::tip
 
-[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/docs/3.xx.xx/advanced-tutorials/custom-layout/)  
+[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/docs/3.xx.xx/advanced-tutorials/custom-layout/)
 :::
 
 After creating the `<Layout/>` component, we can use it in our application. We need to pass it to the `<Refine/>` component as a prop.
