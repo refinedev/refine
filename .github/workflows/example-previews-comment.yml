@@ -36,8 +36,8 @@ jobs:
           head_sha="$(echo "$pr" | jq -r .head.sha)"
           updated_at="$(echo "$pr" | jq -r .updated_at)"
 
-          if [[ $(date -d $updated_at) > $(date -d $COMMENT_AT) ]]; exit 1; fi
-          
+          if [[ $(date -d $updated_at) > $(date -d $COMMENT_AT) ]]; then exit 1; fi
+
           echo "head_sha=$head_sha" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v4
         with:
