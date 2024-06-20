@@ -8,9 +8,13 @@ export const getMe = async () => {
   try {
     const response = await fetch("/api/.refine/users/me");
 
-    const data = (await response.json()) as MeResponse;
+    if (response.ok) {
+      const data = (await response.json()) as MeResponse;
 
-    return data;
+      return data;
+    }
+
+    return null;
   } catch (_) {
     //
   }
