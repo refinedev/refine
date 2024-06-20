@@ -69,7 +69,7 @@ jobs:
           cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview pnpm run deploy
+          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm run deploy
       - name: Wait for Netlify Deploy (Live Previews)
         uses: probablyup/wait-for-netlify-action@3.2.0
         id: waitForDeployment
