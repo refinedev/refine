@@ -52,7 +52,7 @@ importers:
         version: 8.0.3
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -94,7 +94,7 @@ importers:
         version: 12.3.2(typescript@5.4.5)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -108,7 +108,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -175,7 +175,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -227,7 +227,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -312,13 +312,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
         specifier: ^1.3.0
@@ -455,7 +455,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -470,7 +470,7 @@ importers:
         version: 2.8.8
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -505,13 +505,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
         specifier: ^1.3.0
@@ -614,7 +614,7 @@ importers:
   examples/audit-log-provider:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -666,7 +666,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -724,7 +724,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -785,7 +785,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -843,7 +843,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -898,7 +898,7 @@ importers:
   examples/auth-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -956,7 +956,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1020,7 +1020,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1084,7 +1084,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1157,7 +1157,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1215,7 +1215,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1267,13 +1267,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -1328,7 +1328,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1383,7 +1383,7 @@ importers:
   examples/base-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1450,7 +1450,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1523,7 +1523,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1593,7 +1593,7 @@ importers:
         specifier: ^11.8.1
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1697,7 +1697,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1759,13 +1759,13 @@ importers:
         version: 7.0.3
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1791,7 +1791,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1855,7 +1855,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -1925,7 +1925,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2010,7 +2010,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2089,7 +2089,7 @@ importers:
   examples/blog-next-refine-pwa:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2150,7 +2150,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2217,7 +2217,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2317,7 +2317,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2384,13 +2384,13 @@ importers:
   examples/blog-react-hot-toast:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^4.6.4
@@ -2493,7 +2493,7 @@ importers:
   examples/blog-react-toastify:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2581,7 +2581,7 @@ importers:
         specifier: ^4.4.11
         version: link:../../packages/airtable
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2663,7 +2663,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2727,7 +2727,7 @@ importers:
         specifier: ^2.0.18
         version: 2.1.3(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2806,7 +2806,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2876,7 +2876,7 @@ importers:
   examples/blog-refine-filtering:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -2955,7 +2955,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3037,7 +3037,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3125,13 +3125,13 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^4.6.4
@@ -3225,7 +3225,7 @@ importers:
         specifier: ^2.1.5
         version: 2.3.6(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(tailwind-variants@0.1.20(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3328,7 +3328,7 @@ importers:
   examples/blog-refine-primereact:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3431,7 +3431,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3510,13 +3510,13 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.3.0)(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3607,7 +3607,7 @@ importers:
   examples/blog-refine-supabase-auth:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3680,7 +3680,7 @@ importers:
         specifier: ^2.0.18
         version: 2.1.3(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3780,7 +3780,7 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@types/node@18.19.31)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.4.5)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3841,7 +3841,7 @@ importers:
   examples/blog-win95:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3929,7 +3929,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -3981,7 +3981,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4033,7 +4033,7 @@ importers:
   examples/core-use-import:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4076,7 +4076,7 @@ importers:
   examples/core-use-menu:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4119,7 +4119,7 @@ importers:
   examples/core-use-modal:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4162,7 +4162,7 @@ importers:
   examples/core-use-select:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4202,7 +4202,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4254,7 +4254,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4309,7 +4309,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4358,7 +4358,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4410,7 +4410,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4459,7 +4459,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4514,7 +4514,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4581,7 +4581,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4651,7 +4651,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4706,7 +4706,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4758,7 +4758,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4810,7 +4810,7 @@ importers:
         specifier: ^6.5.3
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4862,7 +4862,7 @@ importers:
         specifier: ^6.5.3
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4917,7 +4917,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -4987,7 +4987,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5039,7 +5039,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5112,7 +5112,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5164,13 +5164,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -5228,7 +5228,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5301,7 +5301,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5368,7 +5368,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5423,7 +5423,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5475,7 +5475,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5527,7 +5527,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5579,7 +5579,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5643,7 +5643,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5719,7 +5719,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5819,7 +5819,7 @@ importers:
   examples/finefoods-client:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -5901,7 +5901,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6010,7 +6010,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6065,7 +6065,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6120,7 +6120,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6172,7 +6172,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6227,7 +6227,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6279,7 +6279,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6337,7 +6337,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6398,7 +6398,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6459,7 +6459,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6520,7 +6520,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6575,7 +6575,7 @@ importers:
   examples/form-core-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6648,7 +6648,7 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6721,7 +6721,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6797,7 +6797,7 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6870,7 +6870,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -6946,7 +6946,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7022,7 +7022,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7095,7 +7095,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7165,7 +7165,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7235,7 +7235,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7305,7 +7305,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7360,7 +7360,7 @@ importers:
   examples/form-react-hook-form-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7412,7 +7412,7 @@ importers:
   examples/form-react-hook-form-use-modal-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7464,7 +7464,7 @@ importers:
   examples/form-react-hook-form-use-steps-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7519,7 +7519,7 @@ importers:
   examples/form-save-and-continue:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7583,13 +7583,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -7674,7 +7674,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7738,7 +7738,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7802,7 +7802,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7869,7 +7869,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -7924,7 +7924,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8009,7 +8009,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8103,7 +8103,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8176,7 +8176,7 @@ importers:
   examples/inferencer-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8273,7 +8273,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8376,7 +8376,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8464,7 +8464,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8516,7 +8516,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8568,13 +8568,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -8641,7 +8641,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8693,7 +8693,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8766,7 +8766,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8869,7 +8869,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8924,7 +8924,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -8976,7 +8976,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9031,7 +9031,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9086,7 +9086,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9156,7 +9156,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9217,7 +9217,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9275,7 +9275,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9333,7 +9333,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9403,7 +9403,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9476,7 +9476,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9534,7 +9534,7 @@ importers:
   examples/starter-vite:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9598,7 +9598,7 @@ importers:
         specifier: ^9.4.1
         version: 9.7.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9728,7 +9728,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9786,7 +9786,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9844,7 +9844,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9899,7 +9899,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -9951,7 +9951,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10003,7 +10003,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10061,7 +10061,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10122,7 +10122,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10180,7 +10180,7 @@ importers:
         specifier: ^12.1.2
         version: 12.4.0(handsontable@12.4.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10247,7 +10247,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10320,7 +10320,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10390,7 +10390,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10469,7 +10469,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10536,7 +10536,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10606,7 +10606,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10676,7 +10676,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10743,7 +10743,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10810,7 +10810,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10865,7 +10865,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10926,7 +10926,7 @@ importers:
   examples/table-react-table-basic:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -10981,7 +10981,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11045,7 +11045,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11115,7 +11115,7 @@ importers:
   examples/template-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11197,7 +11197,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11285,7 +11285,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11352,7 +11352,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11407,7 +11407,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11474,7 +11474,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11544,7 +11544,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11602,7 +11602,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11672,7 +11672,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11745,7 +11745,7 @@ importers:
   examples/tutorial-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11830,7 +11830,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11921,7 +11921,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -11994,7 +11994,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12043,7 +12043,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12098,7 +12098,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12159,7 +12159,7 @@ importers:
         specifier: ^2.31.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12232,7 +12232,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12305,7 +12305,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12375,7 +12375,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12442,7 +12442,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12494,7 +12494,7 @@ importers:
   examples/use-infinite-list:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12549,7 +12549,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12598,7 +12598,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12647,13 +12647,13 @@ importers:
   examples/win95:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
         specifier: ^4.8.20
@@ -12738,7 +12738,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12790,7 +12790,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12845,13 +12845,13 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -12921,7 +12921,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -12973,13 +12973,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -13046,13 +13046,13 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^4.6.4
@@ -13113,7 +13113,7 @@ importers:
   examples/with-persist-query:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13174,7 +13174,7 @@ importers:
   examples/with-react-toastify:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13232,7 +13232,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13293,7 +13293,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13366,7 +13366,7 @@ importers:
   examples/with-remix-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13448,7 +13448,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13515,7 +13515,7 @@ importers:
   examples/with-remix-vite-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13588,7 +13588,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13638,7 +13638,7 @@ importers:
         version: 6.5.16
       '@storybook/preset-create-react-app':
         specifier: ^4.1.0
-        version: 4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
+        version: 4.1.2(syckn67yfq64ghb6dhaxk2jqjq)
       '@storybook/react':
         specifier: ^6.4.20
         version: 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
@@ -13685,7 +13685,7 @@ importers:
         specifier: ^6.6.0
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13735,7 +13735,7 @@ importers:
         version: 6.5.16
       '@storybook/preset-create-react-app':
         specifier: ^4.1.0
-        version: 4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
+        version: 4.1.2(ros7hgbatorp3umtvmej4zzkkm)
       '@storybook/react':
         specifier: ^6.4.20
         version: 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
@@ -13773,7 +13773,7 @@ importers:
         specifier: ^5.40.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.33
+        specifier: ^2.16.34
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.51.0
@@ -13854,7 +13854,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -13863,13 +13863,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13891,7 +13891,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: 4.51.0
         version: link:../core
@@ -13900,7 +13900,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -13909,13 +13909,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13961,7 +13961,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14009,7 +14009,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14021,10 +14021,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14037,7 +14037,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14049,7 +14049,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14058,13 +14058,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14119,7 +14119,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14164,7 +14164,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14173,10 +14173,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14184,7 +14184,7 @@ importers:
   packages/cli:
     dependencies:
       '@refinedev/devtools-server':
-        specifier: 1.1.31
+        specifier: 1.1.32
         version: link:../devtools-server
       boxen:
         specifier: ^5.1.2
@@ -14294,7 +14294,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@types/center-align':
         specifier: ^1.0.0
         version: 1.0.2
@@ -14348,13 +14348,13 @@ importers:
         version: 0.9.4
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14406,10 +14406,10 @@ importers:
         version: 0.11.11
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14455,7 +14455,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@testing-library/dom':
         specifier: ^8.5.0
         version: 8.20.1
@@ -14506,16 +14506,16 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14564,7 +14564,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
@@ -14582,13 +14582,13 @@ importers:
         version: 1.0.2
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14599,13 +14599,13 @@ importers:
         specifier: ^0.4.0
         version: 0.4.1
       '@refinedev/cli':
-        specifier: 2.16.33
+        specifier: 2.16.34
         version: link:../cli
       '@refinedev/core':
         specifier: ^4.46.1
         version: link:../core
       '@refinedev/devtools-server':
-        specifier: 1.1.31
+        specifier: 1.1.32
         version: link:../devtools-server
       '@refinedev/devtools-shared':
         specifier: 1.1.9
@@ -14634,7 +14634,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14652,7 +14652,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14661,7 +14661,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14698,7 +14698,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14713,7 +14713,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14722,7 +14722,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14813,9 +14813,9 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/devtools-ui':
-        specifier: 1.1.24
+        specifier: 1.1.25
         version: link:../devtools-ui
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -14861,7 +14861,7 @@ importers:
         version: 0.1.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14870,7 +14870,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14907,7 +14907,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14919,7 +14919,7 @@ importers:
         version: 18.19.31
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14928,7 +14928,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14998,7 +14998,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@tailwindcss/typography':
         specifier: ^0.5.9
         version: 0.5.12(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))
@@ -15031,7 +15031,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15043,7 +15043,7 @@ importers:
         version: 3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -15080,7 +15080,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15095,7 +15095,7 @@ importers:
         version: 0.0.29
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15104,13 +15104,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15144,7 +15144,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15159,7 +15159,7 @@ importers:
         version: 4.17.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15168,13 +15168,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15274,7 +15274,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/antd':
         specifier: ^5.40.0
         version: link:../antd
@@ -15340,7 +15340,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15352,10 +15352,10 @@ importers:
         version: 18.3.0(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15374,7 +15374,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -15395,7 +15395,7 @@ importers:
         version: 18.3.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15404,13 +15404,13 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15609,7 +15609,7 @@ importers:
         version: 9.0.8
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15618,7 +15618,7 @@ importers:
         version: 2.0.22
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15676,7 +15676,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15724,7 +15724,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15733,10 +15733,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15752,7 +15752,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15764,7 +15764,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15773,13 +15773,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15849,7 +15849,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15897,7 +15897,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15909,10 +15909,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15949,7 +15949,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15967,7 +15967,7 @@ importers:
         version: 0.0.29
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15976,13 +15976,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16001,7 +16001,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16013,7 +16013,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16022,13 +16022,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16056,7 +16056,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16065,7 +16065,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16074,13 +16074,13 @@ importers:
         version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16111,7 +16111,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16138,7 +16138,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16147,7 +16147,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -16181,7 +16181,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16193,19 +16193,19 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16224,7 +16224,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16233,7 +16233,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16242,13 +16242,13 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16273,7 +16273,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16291,7 +16291,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16300,13 +16300,13 @@ importers:
         version: 2.9.1
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16322,7 +16322,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16334,7 +16334,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16343,13 +16343,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16380,7 +16380,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16389,7 +16389,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16398,13 +16398,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16432,7 +16432,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16447,7 +16447,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16456,13 +16456,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16475,7 +16475,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16487,7 +16487,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16496,13 +16496,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16527,7 +16527,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@testing-library/dom':
         specifier: ^8.5.0
         version: 8.20.1
@@ -16560,7 +16560,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16569,10 +16569,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16597,7 +16597,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.20.2)
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.0
@@ -16606,7 +16606,7 @@ importers:
         version: 18.3.0
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -33471,6 +33471,10 @@ packages:
   q@1.5.1:
     resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
+    deprecated: |-
+      You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
+      (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qrcode.react@3.1.0:
     resolution: {integrity: sha512-oyF+Urr3oAMUG/OiOuONL3HXM+53wvuH3mtIWQrYmsXoAq0DkvZp2RYUWFSMFtbdOpuS++9v+WAkzNVkMlNW6Q==}
@@ -41255,7 +41259,7 @@ snapshots:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - '@swc/core'
@@ -41684,6 +41688,16 @@ snapshots:
       '@types/resolve': 1.20.6
       debug: 4.3.4(supports-color@5.5.0)
       esbuild: 0.17.19
+      escape-string-regexp: 4.0.0
+      resolve: 1.22.8
+    transitivePeerDependencies:
+      - supports-color
+
+  '@esbuild-plugins/node-resolve@0.1.4(esbuild@0.20.2)':
+    dependencies:
+      '@types/resolve': 1.20.6
+      debug: 4.3.4(supports-color@5.5.0)
+      esbuild: 0.20.2
       escape-string-regexp: 4.0.0
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -43363,6 +43377,41 @@ snapshots:
       - ts-node
       - utf-8-validate
 
+  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))':
+    dependencies:
+      '@jest/console': 29.7.0
+      '@jest/reporters': 29.7.0
+      '@jest/test-result': 29.7.0
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      '@types/node': 18.19.31
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-changed-files: 29.7.0
+      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      jest-haste-map: 29.7.0
+      jest-message-util: 29.7.0
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-resolve-dependencies: 29.7.0
+      jest-runner: 29.7.0
+      jest-runtime: 29.7.0
+      jest-snapshot: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      jest-watcher: 29.7.0
+      micromatch: 4.0.5
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-ansi: 6.0.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))':
     dependencies:
       '@jest/console': 29.7.0
@@ -44371,7 +44420,7 @@ snapshots:
       reflect-metadata: 0.1.13
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
@@ -44410,6 +44459,20 @@ snapshots:
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.5
+    transitivePeerDependencies:
+      - pg-native
+      - supports-color
+      - tedious
+
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
+    dependencies:
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      fs-extra: 11.1.1
+      knex: 2.5.1(pg@8.11.3)
+      sqlstring: 2.3.3
+    optionalDependencies:
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      pg: 8.11.3
     transitivePeerDependencies:
       - pg-native
       - supports-color
@@ -44469,6 +44532,23 @@ snapshots:
       - supports-color
       - tedious
 
+  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
+    dependencies:
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      pg: 8.11.3
+    optionalDependencies:
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+    transitivePeerDependencies:
+      - better-sqlite3
+      - mssql
+      - mysql
+      - mysql2
+      - pg-native
+      - sqlite3
+      - supports-color
+      - tedious
+
   '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
@@ -44489,10 +44569,10 @@ snapshots:
   '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -46251,6 +46331,25 @@ snapshots:
       html-entities: 2.5.2
       loader-utils: 2.0.4
       react-refresh: 0.11.0
+      schema-utils: 3.3.0
+      source-map: 0.7.4
+      webpack: 5.91.0
+    optionalDependencies:
+      '@types/webpack': 4.41.38
+      type-fest: 3.13.1
+      webpack-dev-server: 4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0)
+      webpack-hot-middleware: 2.26.1
+
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.11(@types/webpack@4.41.38)(react-refresh@0.14.1)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)':
+    dependencies:
+      ansi-html-community: 0.0.8
+      common-path-prefix: 3.0.0
+      core-js-pure: 3.37.0
+      error-stack-parser: 2.1.4
+      find-up: 5.0.0
+      html-entities: 2.5.2
+      loader-utils: 2.0.4
+      react-refresh: 0.14.1
       schema-utils: 3.3.0
       source-map: 0.7.4
       webpack: 5.91.0
@@ -48668,7 +48767,7 @@ snapshots:
       case-sensitive-paths-webpack-plugin: 2.4.0
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
-      file-loader: 6.2.0(webpack@4.47.0)
+      file-loader: 6.2.0(webpack@5.91.0)
       find-up: 5.0.0
       fork-ts-checker-webpack-plugin: 4.1.6(eslint@8.57.0)(typescript@5.4.5)(webpack@4.47.0)
       glob: 7.2.3
@@ -49135,7 +49234,7 @@ snapshots:
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
       express: 4.19.2
-      file-loader: 6.2.0(webpack@5.91.0)
+      file-loader: 6.2.0(webpack@4.47.0)
       find-up: 5.0.0
       fs-extra: 9.1.0
       html-webpack-plugin: 4.5.2(webpack@4.47.0)
@@ -49245,8 +49344,32 @@ snapshots:
     dependencies:
       core-js: 3.37.0
 
-  ? '@storybook/preset-create-react-app@4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)'
-  : dependencies:
+  '@storybook/preset-create-react-app@4.1.2(ros7hgbatorp3umtvmej4zzkkm)':
+    dependencies:
+      '@babel/core': 7.24.4
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.11(@types/webpack@4.41.38)(react-refresh@0.14.1)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
+      '@storybook/node-logger': 6.5.16
+      '@storybook/react': 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
+      '@storybook/react-docgen-typescript-plugin': 1.0.2--canary.12.cf35881ff63bf958b8998e8dd1dfd5626ee868c2.0(typescript@5.4.5)(webpack@5.91.0)
+      '@types/babel__core': 7.20.5
+      babel-plugin-react-docgen: 4.2.1
+      pnp-webpack-plugin: 1.7.0(typescript@5.4.5)
+      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1)
+      semver: 7.5.2
+    transitivePeerDependencies:
+      - '@types/webpack'
+      - react-refresh
+      - sockjs-client
+      - supports-color
+      - type-fest
+      - typescript
+      - webpack
+      - webpack-dev-server
+      - webpack-hot-middleware
+      - webpack-plugin-serve
+
+  '@storybook/preset-create-react-app@4.1.2(syckn67yfq64ghb6dhaxk2jqjq)':
+    dependencies:
       '@babel/core': 7.24.4
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.11(@types/webpack@4.41.38)(react-refresh@0.11.0)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
       '@storybook/node-logger': 6.5.16
@@ -53184,7 +53307,7 @@ snapshots:
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.4.5)
-      ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
       typescript: 5.4.5
 
   cosmiconfig@6.0.0:
@@ -53278,13 +53401,28 @@ snapshots:
       safe-buffer: 5.2.1
       sha.js: 2.4.11
 
-  create-jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+  create-jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      jest-util: 29.7.0
+      prompts: 2.1.0
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  create-jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+    dependencies:
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      exit: 0.1.2
+      graceful-fs: 4.2.11
+      jest-config: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-util: 29.7.0
       prompts: 2.1.0
     transitivePeerDependencies:
@@ -57623,16 +57761,35 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-cli@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+  jest-cli@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      exit: 0.1.2
+      import-local: 3.1.0
+      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  jest-cli@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
     dependencies:
       '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      create-jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest-config: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -57710,7 +57867,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  jest-config@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+  jest-config@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
     dependencies:
       '@babel/core': 7.24.4
       '@jest/test-sequencer': 29.7.0
@@ -57737,6 +57894,68 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.19.31
       ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+    dependencies:
+      '@babel/core': 7.24.4
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.24.4)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 18.19.31
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+    dependencies:
+      '@babel/core': 7.24.4
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.24.4)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 20.5.1
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -58361,12 +58580,24 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+  jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      '@jest/types': 29.6.3
+      import-local: 3.1.0
+      jest-cli: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
     dependencies:
       '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       '@jest/types': 29.6.3
       import-local: 3.1.0
-      jest-cli: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest-cli: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -59728,7 +59959,7 @@ snapshots:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:
@@ -62022,6 +62253,14 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.38
       ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
+
+  postcss-load-config@3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
+    dependencies:
+      lilconfig: 2.1.0
+      yaml: 1.10.2
+    optionalDependencies:
+      postcss: 8.4.38
+      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
 
   postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
     dependencies:
@@ -66549,11 +66788,11 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5):
+  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -66567,11 +66806,11 @@ snapshots:
       babel-jest: 29.7.0(@babel/core@7.24.4)
       esbuild: 0.17.19
 
-  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
+  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -66583,6 +66822,25 @@ snapshots:
       '@babel/core': 7.24.4
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.4)
+      esbuild: 0.20.2
+
+  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
+    dependencies:
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest-util: 29.7.0
+      json5: 2.2.3
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
+      semver: 7.6.0
+      typescript: 5.4.5
+      yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.24.4
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.24.4)
+      esbuild: 0.20.2
 
   ts-log@2.2.5: {}
 
@@ -66666,6 +66924,29 @@ snapshots:
       globby: 11.1.0
       joycon: 3.1.1
       postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
+      resolve-from: 5.0.0
+      rollup: 3.29.4
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tree-kill: 1.2.2
+    optionalDependencies:
+      postcss: 8.4.38
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+
+  tsup@6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
+    dependencies:
+      bundle-require: 4.0.3(esbuild@0.17.19)
+      cac: 6.7.14
+      chokidar: 3.6.0
+      debug: 4.3.4(supports-color@5.5.0)
+      esbuild: 0.17.19
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       resolve-from: 5.0.0
       rollup: 3.29.4
       source-map: 0.8.0-beta.0
