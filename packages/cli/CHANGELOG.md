@@ -1,5 +1,18 @@
 # @refinedev/cli
 
+## 2.16.34
+
+### Patch Changes
+
+- [#6059](https://github.com/refinedev/refine/pull/6059) [`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools): failing authentication checks
+
+  Devtools was failing on determining the auth status and always ended up redirecting to the login page or the onboarding step regardless of the actual authentication status.
+
+  Resolves [#6047](https://github.com/refinedev/refine/issues/6047)
+
+- Updated dependencies [[`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0)]:
+  - @refinedev/devtools-server@1.1.32
+
 ## 2.16.33
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @refinedev/devtools-ui
 
+## 1.1.25
+
+### Patch Changes
+
+- [#6059](https://github.com/refinedev/refine/pull/6059) [`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools-server): missing header check on auth requests
+
+  Devtools was failing to determine the auth status and always end up redirecting to the login page regardless of the actual auth status. This was due to the missing check on the auth request that was causing all valid responses treated as unauthenticated.
+
+  Resolves [#6047](https://github.com/refinedev/refine/issues/6047)
+
 ## 1.1.24
 
 ### Patch Changes
