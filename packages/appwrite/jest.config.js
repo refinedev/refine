@@ -4,4 +4,7 @@ module.exports = {
   displayName: "appwrite",
   setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
   resetMocks: true,
+  moduleNameMapper: {
+    "^(..?/.+).js?$": "$1",
+  },
 };

@@ -1,11 +1,11 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip } from "antd";
 
-import { UsersSelectQuery } from "@/graphql/types";
+import type { UsersSelectQuery } from "@/graphql/types";
 
 import { CustomAvatar } from "../custom-avatar";
 
@@ -29,6 +29,7 @@ export const Participants: FC<Props> = ({ userOne, userTwo }) => {
           name={userOne.name}
         />
       </Tooltip>
+      {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
       <PlusCircleOutlined className="xs tertiary" />
       <Tooltip title={userTwo.name}>
         <CustomAvatar

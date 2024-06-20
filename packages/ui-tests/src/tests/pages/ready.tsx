@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineReadyPageProps } from "@refinedev/ui-types";
+import type { RefineReadyPageProps } from "@refinedev/ui-types";
 
 import { render, TestWrapper } from "@test";
 

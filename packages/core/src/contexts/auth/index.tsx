@@ -1,8 +1,8 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 
 import { useNavigation } from "@hooks";
 
-import { IAuthContext, ILegacyAuthContext } from "./types";
+import type { IAuthContext, ILegacyAuthContext } from "./types";
 
 /**
  * @deprecated `LegacyAuthContext` is deprecated with refine@4, use `AuthBindingsContext` instead, however, we still support `LegacyAuthContext` for backward compatibility.

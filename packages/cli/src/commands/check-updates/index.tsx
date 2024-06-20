@@ -1,9 +1,9 @@
-import { Command } from "commander";
+import type { Command } from "commander";
 import { printUpdateWarningTable } from "@components/update-warning-table";
 import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
-import {
+import type {
   NpmOutdatedResponse,
   RefinePackageInstalledVersionData,
 } from "@definitions/package";
@@ -12,14 +12,14 @@ import semverDiff from "semver-diff";
 const load = (program: Command) => {
   return program
     .command("check-updates")
-    .description("Check all installed `refine` packages are up to date")
+    .description("Check all installed `Refine` packages are up to date")
     .action(action);
 };
 
 const action = async () => {
   const packages = await spinner(isRefineUptoDate, "Checking for updates...");
   if (!packages.length) {
-    console.log("All `refine` packages are up to date 🎉\n");
+    console.log("All `Refine` packages are up to date 🎉\n");
     return;
   }
 
@@ -28,9 +28,9 @@ const action = async () => {
 
 /**
  *
- * @returns `refine` packages that have updates.
- * @returns `[]` if no refine package found.
- * @returns `[]` if all `refine` packages are up to date.
+ * @returns `Refine` packages that have updates.
+ * @returns `[]` if no Refine package found.
+ * @returns `[]` if all `Refine` packages are up to date.
  */
 export const isRefineUptoDate = async () => {
   const refinePackages = await getOutdatedRefinePackages();

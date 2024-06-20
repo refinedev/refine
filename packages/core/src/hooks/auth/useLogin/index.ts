@@ -2,8 +2,8 @@ import React from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseMutationOptions,
-  UseMutationResult,
+  type UseMutationOptions,
+  type UseMutationResult,
   useMutation,
 } from "@tanstack/react-query";
 import qs from "qs";
@@ -19,13 +19,13 @@ import {
   useRouterType,
 } from "@hooks";
 
-import {
+import type {
   AuthActionResponse,
   SuccessNotificationResponse,
   TLoginData,
 } from "../../../contexts/auth/types";
-import { RefineError } from "../../../contexts/data/types";
-import { OpenNotificationParams } from "../../../contexts/notification/types";
+import type { RefineError } from "../../../contexts/data/types";
+import type { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
 export type UseLoginLegacyProps<TVariables> = {

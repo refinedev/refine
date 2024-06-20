@@ -1,6 +1,6 @@
 import { getPreferedPM, getScripts } from "@utils/package";
 import chalk from "chalk";
-import { Command } from "commander";
+import type { Command } from "commander";
 import { runScript } from "../runScript";
 
 const run = (program: Command) => {

@@ -1,5 +1,6 @@
 {
   "name": "with-remix-auth",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -9,16 +10,16 @@
     "start:prod": "refine start"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.37.6",
-    "@refinedev/cli": "^2.16.29",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/inferencer": "^4.6.0",
-    "@refinedev/remix-router": "^3.0.2",
-    "@refinedev/simple-rest": "^5.0.4",
+    "@refinedev/antd": "^5.40.0",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/inferencer": "^4.6.4",
+    "@refinedev/remix-router": "^3.0.6",
+    "@refinedev/simple-rest": "^5.0.8",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
-    "antd": "^5.0.5",
+    "antd": "^5.17.0",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",

@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from "react";
-import { PaymentSession } from "@medusajs/medusa";
+import React, { type PropsWithChildren } from "react";
+import type { PaymentSession } from "@medusajs/medusa";
 import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
+import { loadStripe, type StripeElementsOptions } from "@stripe/stripe-js";
 
 interface WrapperProps {
   paymentSession?: PaymentSession | null;

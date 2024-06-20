@@ -179,7 +179,7 @@ export const installPackages = async (packages: string[]) => {
 
     execution.on("exit", (exitCode) => {
       if (exitCode === 0) {
-        console.log("All `refine` packages updated  🎉");
+        console.log("All `Refine` packages updated  🎉");
         return;
       }
 

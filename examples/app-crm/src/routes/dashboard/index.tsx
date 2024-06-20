@@ -5,7 +5,7 @@ import { useCustom } from "@refinedev/core";
 import { Col, Row } from "antd";
 
 import { CalendarUpcomingEvents } from "@/components";
-import { DashboardTotalCountsQuery } from "@/graphql/types";
+import type { DashboardTotalCountsQuery } from "@/graphql/types";
 
 import {
   CompaniesMap,

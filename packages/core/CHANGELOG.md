@@ -1,5 +1,171 @@
 # @refinedev/core
 
+## 4.51.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(core): ability to pass global app title and icon
+
+  Added ability to pass global app name and icon values through `<Refine />` component's `options` prop.
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. By default these values will be accessible through `useRefineOptions` hook and will be used in `<ThemedLayoutV2 />` and `<AuthPage />` components of the UI packages.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(core): update default titles
+
+  Previously, default titles included lowercase "refine", which was not correct. This commit updates the default titles to include "Refine" instead.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: omit `to` parameter if at root when unauthenticated
+
+  If user is not authenticated, `<Authenticated />` redirects to the provided route and appends the current route to the `to` parameter. With this change, if the current route is the root (`/`), the `to` parameter will be omitted.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: `<GitHubBanner />` has `paddingLeft: 200px` by default to make space for the sidebar. This is not needed when the sidebar is not present.
+
+  From on, `<GitHubBanner />` style property can be overridden by passing `containerStyle` prop.
+
+  ```jsx
+  <GitHubBanner containerStyle={{ paddingLeft: 0 }} />
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/devtools-internal@1.1.11
+
+## 4.50.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`a39f1952554120893ea83db904037917fc293dc6`](https://github.com/refinedev/refine/commit/a39f1952554120893ea83db904037917fc293dc6) Thanks [@aliemir](https://github.com/aliemir)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772) Thanks [@aliemir](https://github.com/aliemir)! - feat(core): ability to pass global app title and icon
+
+  Added ability to pass global app name and icon values through `<Refine />` component's `options` prop.
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. By default these values will be accessible through `useRefineOptions` hook and will be used in `<ThemedLayoutV2 />` and `<AuthPage />` components of the UI packages.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`208f77177f9821ee1860ffe031e6b2a9645d1bb6`](https://github.com/refinedev/refine/commit/208f77177f9821ee1860ffe031e6b2a9645d1bb6) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): update default titles
+
+  Previously, default titles included lowercase "refine", which was not correct. This commit updates the default titles to include "Refine" instead.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`84cac61b84ab872394424ebf358eeb380f40121d`](https://github.com/refinedev/refine/commit/84cac61b84ab872394424ebf358eeb380f40121d) Thanks [@aliemir](https://github.com/aliemir)! - refactor: omit `to` parameter if at root when unauthenticated
+
+  If user is not authenticated, `<Authenticated />` redirects to the provided route and appends the current route to the `to` parameter. With this change, if the current route is the root (`/`), the `to` parameter will be omitted.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`4cc74478cbec8caa3023a50ce62f1d5b2f7158a5`](https://github.com/refinedev/refine/commit/4cc74478cbec8caa3023a50ce62f1d5b2f7158a5) Thanks [@aliemir](https://github.com/aliemir)! - feat: `<GitHubBanner />` has `paddingLeft: 200px` by default to make space for the sidebar. This is not needed when the sidebar is not present.
+
+  From on, `<GitHubBanner />` style property can be overridden by passing `containerStyle` prop.
+
+  ```jsx
+  <GitHubBanner containerStyle={{ paddingLeft: 0 }} />
+  ```
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`a1e36e6e909a91bc6218478f136b49a8e82a7e32`](https://github.com/refinedev/refine/commit/a1e36e6e909a91bc6218478f136b49a8e82a7e32), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d)]:
+  - @refinedev/devtools-internal@1.1.10
+
+## 4.49.2
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/devtools-internal@1.1.9
+
+## 4.49.1
+
+### Patch Changes
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - refactor: add resource name to devtools xray calls
+
+  Added the resource name to the devtools xray calls to allow resource names to be displayed in the devtools even with custom query keys.
+
+- [#5883](https://github.com/refinedev/refine/pull/5883) [`0a76576da0f`](https://github.com/refinedev/refine/commit/0a76576da0f18c6db372e737c610ad462b56ff21) Thanks [@aliemir](https://github.com/aliemir)! - fix: development errors being logged when `useOnError` is called without an auth provider
+
+  When there's no `authProvider` set, the `useOnError` hook will log `"no mutationFn found"` to the console in development because of missing `onError` property. This PR fixes the issue by providing a dummy `onError` function when `authProvider` is not set.
+
+- [#5851](https://github.com/refinedev/refine/pull/5851) [`8d2dd4376f6`](https://github.com/refinedev/refine/commit/8d2dd4376f672786d4722d3dee09e6344f1002e4) Thanks [@aliemir](https://github.com/aliemir)! - refactor: prevented early accessing `signal` from `useQuery` of `@tanstack/react-query`
+
+  In query hooks, `signal` was accessed directly by destructuring which was causing issues in development mode with duplicated requests. This change accesses `queryContext` instead of destructured `signal` properly to prevent `@tanstack/react-query` from setting `abortSignalConsumed` flag unexpectedly.
+
+  Resolves [#5843](https://github.com/refinedev/refine/issues/5843)
+
+- [#5875](https://github.com/refinedev/refine/pull/5875) [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf) Thanks [@aliemir](https://github.com/aliemir)! - fix: exclude internal button hook calls from devtools trace
+
+  Removed internal button hook calls from devtools trace to avoid crowding the trace with unnecessary information.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- [#5884](https://github.com/refinedev/refine/pull/5884) [`9a0c1c8414a`](https://github.com/refinedev/refine/commit/9a0c1c8414a7b228378c234468396e6288cdb6f0) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): `useMenu` `hideOnMissingParameter` prop default value set to `true`
+
+  There was an error in the `useMenu` hook's `hideOnMissingParameter` prop. Its default value should be `true` but it was missed when props are passed partially. This PR fixes the issue by setting the default value to `true`.
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/devtools-internal@1.1.8
+
 ## 4.49.0
 
 ### Minor Changes

@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { type FC, type PropsWithChildren, useState } from "react";
 
 import { List, useTable } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   AppstoreOutlined,
@@ -13,7 +13,7 @@ import { Form, Grid, Input, Radio, Space, Spin } from "antd";
 import debounce from "lodash/debounce";
 
 import { ListTitleButton } from "@/components";
-import { CompaniesTableQuery } from "@/graphql/types";
+import type { CompaniesTableQuery } from "@/graphql/types";
 
 import { CompaniesCardView, CompaniesTableView } from "./components";
 import { COMPANIES_TABLE_QUERY } from "./queries";
@@ -107,6 +107,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                 <Form.Item name="name" noStyle>
                   <Input
                     size="large"
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
                       <Spin
@@ -126,9 +127,11 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
                   onChange={(e) => onViewChange(e.target.value)}
                 >
                   <Radio.Button value="table">
+                    {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                     <UnorderedListOutlined />
                   </Radio.Button>
                   <Radio.Button value="card">
+                    {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                     <AppstoreOutlined />
                   </Radio.Button>
                 </Radio.Group>

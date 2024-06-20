@@ -2,7 +2,7 @@ import {
   useTranslate,
   useExport,
   useNavigation,
-  HttpError,
+  type HttpError,
   getDefaultFilter,
 } from "@refinedev/core";
 
@@ -25,7 +25,11 @@ import {
   PaginationTotal,
   OrderTableColumnProducts,
 } from "../../components";
-import { IOrder, IOrderFilterVariables, IOrderStatus } from "../../interfaces";
+import type {
+  IOrder,
+  IOrderFilterVariables,
+  IOrderStatus,
+} from "../../interfaces";
 
 export const OrderList = () => {
   const { token } = theme.useToken();
@@ -118,6 +122,7 @@ export const OrderList = () => {
             </Typography.Text>
           )}
           filterIcon={(filtered) => (
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
@@ -179,7 +184,7 @@ export const OrderList = () => {
                   currency: "USD",
                   style: "currency",
                 }}
-                value={value / 100}
+                value={value}
               />
             );
           }}
@@ -189,6 +194,7 @@ export const OrderList = () => {
           dataIndex={["store", "title"]}
           title={t("orders.fields.store")}
           filterIcon={(filtered) => (
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
@@ -211,6 +217,7 @@ export const OrderList = () => {
           dataIndex={["user", "fullName"]}
           title={t("orders.fields.customer")}
           filterIcon={(filtered) => (
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,

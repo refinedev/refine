@@ -1,8 +1,10 @@
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 
-export interface MapDataFn<TItem, TVariables> {
-  (item: TItem, index?: number, items?: TItem[]): TVariables;
-}
+export type MapDataFn<TItem, TVariables> = (
+  item: TItem,
+  index?: number,
+  items?: TItem[],
+) => TVariables;
 
 export interface LabelKeyObject {
   label: string;

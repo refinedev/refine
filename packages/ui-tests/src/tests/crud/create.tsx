@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import {
-  RefineCrudCreateProps,
+  type RefineCrudCreateProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ITestWrapperProps, render, TestWrapper } from "@test";
+import { type ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderCreate = (
   create: React.ReactNode,

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useModal } from "@refinedev/antd";
 import { useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { FlagOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Skeleton, theme } from "antd";
@@ -10,7 +10,7 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 import { Text } from "@/components";
 import { EVENT_CATEGORIES_QUERY } from "@/graphql/queries";
-import { EventCategoriesQuery } from "@/graphql/types";
+import type { EventCategoriesQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { CalendarManageCategories } from "./manage-categories";
@@ -37,6 +37,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
       <Card
         title={
           <span>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <FlagOutlined style={{ color: token.colorPrimary }} />
             <Text size="sm" style={{ marginLeft: ".5rem" }}>
               Categories
@@ -47,6 +48,7 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
           <Button
             shape="circle"
             onClick={() => show()}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<SettingOutlined />}
           />
         }

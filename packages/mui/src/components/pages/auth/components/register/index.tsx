@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-  RegisterFormTypes,
-  RegisterPageProps,
+  type RegisterFormTypes,
+  type RegisterPageProps,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
@@ -21,8 +21,8 @@ import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
 
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useTranslate,
   useRouterContext,
   useRouterType,
@@ -31,7 +31,7 @@ import {
 } from "@refinedev/core";
 
 import { layoutStyles, titleStyles } from "../styles";
-import { FormPropsType } from "../../index";
+import type { FormPropsType } from "../../index";
 import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
@@ -167,7 +167,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
           >
             <TextField
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -190,7 +193,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             />
             <TextField
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
               id="password"
               margin="normal"

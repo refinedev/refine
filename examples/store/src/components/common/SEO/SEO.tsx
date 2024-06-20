@@ -1,9 +1,8 @@
 import Head from "next/head";
-import { Fragment, ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import config from "@config/seo_meta.json";
 
-const storeUrl =
-  process.env.NEXT_PUBLIC_STORE_URL || process.env.NEXT_PUBLIC_VERCEL_URL;
+const storeUrl = "store.refine.dev";
 const storeBaseUrl = storeUrl ? `https://${storeUrl}` : null;
 
 interface OgImage {

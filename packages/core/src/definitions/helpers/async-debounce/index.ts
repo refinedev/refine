@@ -1,13 +1,10 @@
 import debounce from "lodash/debounce";
 
-// biome-ignore lint/suspicious/noExplicitAny: any is used to accept any function
 type Callbacks<T extends (...args: any) => any> = {
   resolve?: (value: Awaited<ReturnType<T>>) => void;
-  // biome-ignore lint/suspicious/noExplicitAny: any is used to match the type of Promise.reject
   reject?: (reason?: any) => void;
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: any is used to accept any function
 type DebouncedFunction<T extends (...args: any) => any> = {
   (...args: Parameters<T>): Promise<Awaited<ReturnType<T>>>;
   flush: () => void;
@@ -24,7 +21,6 @@ type DebouncedFunction<T extends (...args: any) => any> = {
  * This will always return a promise to handle and await the result.
  * Previous calls will be rejected immediately after a new call made.
  */
-// biome-ignore lint/suspicious/noExplicitAny: any is used to accept any function
 export const asyncDebounce = <T extends (...args: any[]) => any>(
   func: T,
   wait = 1000,

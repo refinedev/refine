@@ -1,4 +1,4 @@
-import { CrudFilter, CrudSort } from "../../contexts/data/types";
+import type { CrudFilter, CrudSort } from "../../contexts/data/types";
 import {
   compareFilters,
   compareSorters,

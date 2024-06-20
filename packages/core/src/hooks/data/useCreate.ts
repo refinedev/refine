@@ -5,8 +5,8 @@ import {
 } from "@definitions/helpers";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseMutationOptions,
-  UseMutationResult,
+  type UseMutationOptions,
+  type UseMutationResult,
   useMutation,
 } from "@tanstack/react-query";
 
@@ -24,17 +24,17 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CreateResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
 } from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 

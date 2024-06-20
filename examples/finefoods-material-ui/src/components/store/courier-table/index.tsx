@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { useNavigation, useTranslate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { ICourier, IStore } from "../../../interfaces";
+import type { ICourier, IStore } from "../../../interfaces";
 import { CourierRating, CourierStatus } from "../../courier";
 
 type Props = {

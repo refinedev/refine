@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/chakra-ui",
-  "version": "2.28.0",
+  "version": "2.31.0",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -23,19 +23,20 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/chakra-ui",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
+    "@chakra-ui/theme-tools": "^2.1.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@refinedev/react-hook-form": "^4.8.16",
-    "@refinedev/ui-types": "^1.22.5",
+    "@refinedev/react-hook-form": "^4.8.20",
+    "@refinedev/ui-types": "^1.22.9",
     "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^7.5.3",
@@ -46,9 +47,9 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.28",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/ui-tests": "^1.14.3",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/ui-tests": "^1.14.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
@@ -78,6 +79,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

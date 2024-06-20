@@ -24,11 +24,19 @@ extend-ignore-re = [
     "\"refine\"",
     "\"refine",
     "refineTheme",
-    "exitt"
+    "exitt",
+    "refine\\:",
+    "refine devtools",
+    "const [a-zA-Z0-9_]+ = .*",
+    "Example: .*",
+    "RGBa",
+    "Abd",
+    '.*/refine.*\.jpg',
+    '.*/refine.*\.png'
 ]
 
 [files]
-extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*", "packages", "examples", "*.js", "*.json", "*.svg"]
+extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*", "packages", "examples", "*.js", "*.json", "*.svg", "*.png", "*.jpg", "*.jpeg"]
 ignore-vcs = true
 
 [default.extend-words]
@@ -47,5 +55,4 @@ DAA = "DAA"
 bare = "bare"
 inovice = "invoice"
 refine = "Refine"
-
 

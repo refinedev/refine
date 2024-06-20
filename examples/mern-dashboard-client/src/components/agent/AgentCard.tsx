@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-import { AgentCardProp, InfoBarProps } from "interfaces/agent";
+import type { AgentCardProp, InfoBarProps } from "interfaces/agent";
 
 function checkImage(url: any) {
   const img = new Image();

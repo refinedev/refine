@@ -7,7 +7,7 @@ import {
 import { Button, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { CreateButtonProps } from "../types";
+import type { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
   resource: resourceNameFromProps,

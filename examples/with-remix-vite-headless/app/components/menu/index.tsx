@@ -1,5 +1,5 @@
 import { useLogout, useMenu } from "@refinedev/core";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "@remix-run/react";
 
 export const Menu = () => {
   const { mutate: logout } = useLogout();

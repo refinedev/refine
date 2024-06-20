@@ -1,8 +1,8 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
-import { IPost, IPostVariables } from "../../interfaces";
+import type { IPost, IPostVariables } from "../../interfaces";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<

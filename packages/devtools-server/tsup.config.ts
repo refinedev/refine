@@ -31,5 +31,5 @@ export default defineConfig((tsupOptions) => ({
       },
     }),
   ],
-  onSuccess: "npm run types",
+  onSuccess: tsupOptions.watch ? "pnpm types" : undefined,
 }));

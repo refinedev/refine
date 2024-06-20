@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useRef, useState } from "react";
+import React, { type FC, Fragment, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { LandingRainbowButton } from "@site/src/refine-theme/landing-rainbow-button";
 import { ArrowRightIcon } from "@site/src/refine-theme/icons/arrow-right";

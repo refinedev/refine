@@ -2,15 +2,15 @@ import React from "react";
 import {
   useTranslate,
   useUpdatePassword,
-  UpdatePasswordFormTypes,
-  UpdatePasswordPageProps,
-  BaseRecord,
-  HttpError,
+  type UpdatePasswordFormTypes,
+  type UpdatePasswordPageProps,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   FormControl,
   FormErrorMessage,
@@ -22,7 +22,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
@@ -104,7 +104,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             type="password"
             placeholder="Password"
             {...register("password", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password required",
+              ),
             })}
           />
           <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>
@@ -122,7 +125,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm password is required",
+              ),
               validate: (val: any) => {
                 if (watch("password") !== val) {
                   return translate(

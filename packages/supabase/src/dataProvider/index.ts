@@ -1,5 +1,5 @@
-import { DataProvider } from "@refinedev/core";
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { DataProvider } from "@refinedev/core";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { generateFilter, handleError } from "../utils";
 
 export const dataProvider = (
@@ -85,9 +85,7 @@ export const dataProvider = (
 
       const query = client.from(resource).insert(variables);
 
-      if (meta?.select) {
-        query.select(meta.select);
-      }
+      query.select(meta?.select ?? "*");
 
       const { data, error } = await query;
 
@@ -107,9 +105,7 @@ export const dataProvider = (
 
       const query = client.from(resource).insert(variables);
 
-      if (meta?.select) {
-        query.select(meta.select);
-      }
+      query.select(meta?.select ?? "*");
 
       const { data, error } = await query;
 
@@ -135,9 +131,7 @@ export const dataProvider = (
         query.match({ id });
       }
 
-      if (meta?.select) {
-        query.select(meta.select);
-      }
+      query.select(meta?.select ?? "*");
 
       const { data, error } = await query;
       if (error) {
@@ -164,9 +158,7 @@ export const dataProvider = (
             query.match({ id });
           }
 
-          if (meta?.select) {
-            query.select(meta.select);
-          }
+          query.select(meta?.select ?? "*");
 
           const { data, error } = await query;
           if (error) {

@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
-import { KBarProvider, KBarProviderProps } from "kbar";
+import { KBarProvider, type KBarProviderProps } from "kbar";
 
-import { CommandBar } from "@components";
+import type { CommandBar } from "./components/index.js";
 
 interface IKBarProviderProps extends KBarProviderProps {
   commandBarProps?: React.ComponentProps<typeof CommandBar>;
@@ -58,5 +58,5 @@ export {
   useRegisterActions,
 } from "kbar";
 
-export { useRefineKbar } from "@hooks";
-export { RefineKbar } from "@components";
+export { useRefineKbar } from "./hooks/index.js";
+export { RefineKbar } from "./components/index.js";

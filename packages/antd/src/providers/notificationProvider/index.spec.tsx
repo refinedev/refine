@@ -1,5 +1,5 @@
 import React from "react";
-import { OpenNotificationParams } from "@refinedev/core";
+import type { OpenNotificationParams } from "@refinedev/core";
 import { renderHook, waitFor } from "@testing-library/react";
 import { notification, App } from "antd";
 import { UndoableNotification } from "@components/undoableNotification";

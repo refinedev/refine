@@ -1,4 +1,4 @@
-import { LiveEvent } from "@refinedev/core";
+import type { LiveEvent } from "@refinedev/core";
 
 export const getRefineEvent = (
   event: string,

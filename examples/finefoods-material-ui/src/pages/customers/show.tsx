@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  HttpError,
+  type HttpError,
   useGetToPath,
   useGo,
   useShow,
   useTranslate,
 } from "@refinedev/core";
 import { useSearchParams } from "react-router-dom";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { DateField, NumberField, useDataGrid } from "@refinedev/mui";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
@@ -18,7 +18,7 @@ import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
-import { IOrder, IOrderFilterVariables, IUser } from "../../interfaces";
+import type { IOrder, IOrderFilterVariables, IUser } from "../../interfaces";
 import {
   OrderStatus,
   CustomerStatus,

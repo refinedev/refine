@@ -1,5 +1,5 @@
-export * from "./dataProvider";
-export * from "./liveProvider";
+export * from "./dataProvider.js";
+export * from "./liveProvider.js";
 
 export {
   Account,

@@ -1,14 +1,14 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Create, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import {
+import type {
   CreateCategoryMutation,
   CreateCategoryMutationVariables,
 } from "graphql/types";
-import { GetFields, GetVariables } from "@refinedev/hasura";
+import type { GetFields, GetVariables } from "@refinedev/hasura";
 import { CATEGORY_CREATE_MUTATION } from "./queries";
 
 export const CategoryCreate = () => {

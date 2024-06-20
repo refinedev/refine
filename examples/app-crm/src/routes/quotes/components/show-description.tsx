@@ -2,11 +2,11 @@ import { lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Form, Spin } from "antd";
 
-import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import type { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 import { QUOTES_UPDATE_QUOTE_MUTATION } from "../queries";
 

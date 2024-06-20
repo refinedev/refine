@@ -1,10 +1,13 @@
-import { AccessControlProvider } from "../src/contexts/accessControl/types";
-import { AuthProvider, LegacyAuthProvider } from "../src/contexts/auth/types";
-import { DataProviders } from "../src/contexts/data/types";
-import { LiveProvider } from "../src/contexts/live/types";
-import { IResourceItem } from "../src/contexts/resource/types";
-import { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
-import {
+import type { AccessControlProvider } from "../src/contexts/accessControl/types";
+import type {
+  AuthProvider,
+  LegacyAuthProvider,
+} from "../src/contexts/auth/types";
+import type { DataProviders } from "../src/contexts/data/types";
+import type { LiveProvider } from "../src/contexts/live/types";
+import type { IResourceItem } from "../src/contexts/resource/types";
+import type { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
+import type {
   Action,
   ParsedParams,
   RouterProvider,

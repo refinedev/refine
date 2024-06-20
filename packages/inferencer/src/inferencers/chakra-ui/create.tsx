@@ -30,7 +30,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
-import {
+import type {
   InferencerResultComponent,
   InferField,
   ImportElement,

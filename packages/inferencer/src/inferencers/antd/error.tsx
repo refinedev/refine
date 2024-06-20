@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, Row, Col } from "antd";
 
-import { CreateInferencerConfig } from "../../types";
+import type { CreateInferencerConfig } from "../../types";
 
 export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
   error,

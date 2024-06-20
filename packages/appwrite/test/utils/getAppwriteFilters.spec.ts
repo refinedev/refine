@@ -1,4 +1,4 @@
-import { CrudFilter } from "@refinedev/core";
+import type { CrudFilter } from "@refinedev/core";
 import { generateFilter, getAppwriteFilters } from "../../src/utils";
 
 jest.mock("../../src/utils/generateFilter", () => ({

@@ -1,7 +1,7 @@
 import {
   Avatar,
   Box,
-  BoxProps,
+  type BoxProps,
   HStack,
   Icon,
   IconButton,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {
   HamburgerMenu,
-  RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/chakra-ui";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import { IconLanguage, IconMoon, IconSun } from "@tabler/icons-react";

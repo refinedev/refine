@@ -8,7 +8,7 @@ import {
 import Button from "@mui/material/Button";
 import ListOutlined from "@mui/icons-material/ListOutlined";
 
-import { ListButtonProps } from "../types";
+import type { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.

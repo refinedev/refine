@@ -4,7 +4,12 @@
     "enabled": false
   },
   "files": {
-    "ignore": ["theme.d.ts", "documentation/plugins", "documentation/static"]
+    "ignore": [
+      "theme.d.ts",
+      "documentation/plugins",
+      "documentation/static",
+      "package.json"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -13,6 +18,7 @@
     "lineWidth": 80
   },
   "javascript": {
+    "jsxRuntime": "reactClassic",
     "formatter": {
       "arrowParentheses": "always",
       "quoteStyle": "double",
@@ -31,23 +37,23 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "noAriaHiddenOnFocusable": "warn",
-        "noAutofocus": "warn",
+        "noAriaHiddenOnFocusable": "off",
+        "noAutofocus": "off",
         "noBlankTarget": "error",
-        "noNoninteractiveElementToInteractiveRole": "warn",
-        "noNoninteractiveTabindex": "warn",
-        "noPositiveTabindex": "warn",
-        "noSvgWithoutTitle": "warn",
-        "useAltText": "warn",
-        "useButtonType": "warn",
-        "useHtmlLang": "warn",
-        "useIframeTitle": "warn",
-        "useKeyWithClickEvents": "warn",
-        "useKeyWithMouseEvents": "warn",
-        "useValidAnchor": "warn"
+        "noNoninteractiveElementToInteractiveRole": "off",
+        "noNoninteractiveTabindex": "off",
+        "noPositiveTabindex": "off",
+        "noSvgWithoutTitle": "off",
+        "useAltText": "off",
+        "useButtonType": "off",
+        "useHtmlLang": "off",
+        "useIframeTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "useKeyWithMouseEvents": "off",
+        "useValidAnchor": "off"
       },
       "complexity": {
-        "noBannedTypes": "warn",
+        "noBannedTypes": "off",
         "noExtraBooleanCast": "error",
         "noForEach": "off",
         "noStaticOnlyClass": "error",
@@ -57,8 +63,9 @@
         "noUselessRename": "error",
         "noUselessSwitchCase": "error",
         "useArrowFunction": "error",
-        "useLiteralKeys": "warn",
-        "useOptionalChain": "error"
+        "useLiteralKeys": "off",
+        "useOptionalChain": "error",
+        "noExcessiveNestedTestSuites": "off"
       },
       "correctness": {
         "noConstantCondition": "error",
@@ -66,51 +73,67 @@
         "noSwitchDeclarations": "error",
         "noUnreachable": "error",
         "noUnsafeOptionalChaining": "error",
-        "useExhaustiveDependencies": "warn"
+        "useExhaustiveDependencies": "off",
+        "useJsxKeyInIterable": "off"
       },
       "performance": {
-        "noAccumulatingSpread": "warn",
-        "noDelete": "warn"
+        "noAccumulatingSpread": "off",
+        "noDelete": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "error"
       },
       "style": {
         "noCommaOperator": "error",
-        "noNonNullAssertion": "warn",
-        "noParameterAssign": "warn",
+        "noNonNullAssertion": "off",
+        "noParameterAssign": "off",
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
         "useConst": "error",
-        "useDefaultParameterLast": "warn",
+        "useDefaultParameterLast": "off",
         "useSelfClosingElements": "error",
         "useSingleVarDeclarator": "error",
-        "useTemplate": "error"
+        "useTemplate": "error",
+        "useImportType": "error",
+        "useNodejsImportProtocol": "off"
       },
       "suspicious": {
-        "noArrayIndexKey": "warn",
+        "noArrayIndexKey": "off",
         "noAssignInExpressions": "error",
         "noAsyncPromiseExecutor": "error",
-        "noConfusingVoidType": "warn",
+        "noConfusingVoidType": "off",
         "noControlCharactersInRegex": "error",
         "noDoubleEquals": "error",
         "noDuplicateJsxProps": "error",
         "noDuplicateObjectKeys": "error",
         "noEmptyInterface": "error",
-        "noExplicitAny": "warn",
+        "noExplicitAny": "off",
         "noFallthroughSwitchClause": "error",
         "noGlobalIsNan": "error",
-        "noImplicitAnyLet": "warn",
+        "noImplicitAnyLet": "off",
         "noPrototypeBuiltins": "error",
         "noRedeclare": "error",
         "noRedundantUseStrict": "error",
         "noSelfCompare": "error",
-        "noShadowRestrictedNames": "warn",
+        "noShadowRestrictedNames": "off",
         "useDefaultSwitchClauseLast": "error",
         "useValidTypeof": "error"
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["packages/ui-tests"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExportsInTest": "off",
+            "useDefaultSwitchClauseLast": "error"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "defaultBranch": "master",

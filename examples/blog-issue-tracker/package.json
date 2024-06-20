@@ -24,11 +24,19 @@
     "@ant-design/charts": "^1.2.0",
     "@ant-design/icons": "5.0.1",
     "@craco/craco": "^7.1.0",
-    "@refinedev/antd": "^5.37.6",
-    "@refinedev/cli": "^2.16.29",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/react-router-v6": "^4.5.7",
-    "@refinedev/supabase": "^5.7.8",
+    "@refinedev/antd": "^5.40.0",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/react-router-v6": "^4.5.11",
+    "@refinedev/supabase": "^5.9.0",
+    "antd": "^5.17.0",
+    "cross-env": "^7.0.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "^5.0.0"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
@@ -36,12 +44,6 @@
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "antd": "^5.0.5",
-    "cross-env": "^7.0.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
-    "react-scripts": "^5.0.0",
     "typescript": "^5.4.2"
   }
 }

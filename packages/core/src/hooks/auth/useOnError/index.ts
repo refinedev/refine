@@ -1,11 +1,11 @@
 import { getXRay } from "@refinedev/devtools-internal";
-import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { type UseMutationResult, useMutation } from "@tanstack/react-query";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import { useGo, useLogout, useNavigation, useRouterType } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
 
-import { OnErrorResponse } from "../../../contexts/auth/types";
+import type { OnErrorResponse } from "../../../contexts/auth/types";
 
 export type UseOnErrorLegacyProps = {
   v3LegacyAuthProviderCompatible: true;
@@ -76,24 +76,30 @@ export function useOnError({
     v3LegacyAuthProviderCompatible: Boolean(v3LegacyAuthProviderCompatible),
   });
 
-  const mutation = useMutation({
+  const mutation = useMutation<OnErrorResponse, unknown, unknown, unknown>({
     mutationKey: keys().auth().action("onError").get(preferLegacyKeys),
-    mutationFn: onErrorFromContext,
-    onSuccess: ({ logout: shouldLogout, redirectTo }) => {
-      if (shouldLogout) {
-        logout({ redirectPath: redirectTo });
-        return;
-      }
+    ...(onErrorFromContext
+      ? {
+          mutationFn: onErrorFromContext,
+          onSuccess: ({ logout: shouldLogout, redirectTo }) => {
+            if (shouldLogout) {
+              logout({ redirectPath: redirectTo });
+              return;
+            }
 
-      if (redirectTo) {
-        if (routerType === "legacy") {
-          replace(redirectTo);
-        } else {
-          go({ to: redirectTo, type: "replace" });
+            if (redirectTo) {
+              if (routerType === "legacy") {
+                replace(redirectTo);
+              } else {
+                go({ to: redirectTo, type: "replace" });
+              }
+              return;
+            }
+          },
         }
-        return;
-      }
-    },
+      : {
+          mutationFn: () => ({}) as Promise<OnErrorResponse>,
+        }),
     meta: {
       ...getXRay("useOnError", preferLegacyKeys),
     },

@@ -9,7 +9,7 @@ import {
 
 import { defaultRefineOptions } from "@contexts/refine";
 
-import { IRefineContextProvider } from "../../contexts/refine/types";
+import type { IRefineContextProvider } from "../../contexts/refine/types";
 import { useList } from "./useList";
 
 const mockRefineProvider: IRefineContextProvider = {

@@ -1,7 +1,7 @@
 import { Space, Typography } from "antd";
 
 import { UserTag } from "@/components";
-import { Task } from "@/graphql/schema.types";
+import type { Task } from "@/graphql/schema.types";
 
 type Props = {
   users?: Task["users"];

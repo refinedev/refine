@@ -1,14 +1,15 @@
-import React, { useEffect, useState, PropsWithChildren } from "react";
-import { Region, StoreCartsRes, Cart } from "@medusajs/medusa";
+import React, { useEffect, useState, type PropsWithChildren } from "react";
+import type { Region, StoreCartsRes, Cart } from "@medusajs/medusa";
 import {
   useCreate,
   useDelete,
   useUpdate,
   useInvalidate,
+  useOne,
 } from "@refinedev/core";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 
-import { useCart } from "@lib/hooks";
+import { CART_COOKIE_KEY, REGION_COOKIE_KEY } from "src/contants";
 
 interface VariantInfoProps {
   variantId: string;
@@ -43,7 +44,6 @@ export const useCartContext = (): CartContext => {
 };
 
 const IS_SERVER = typeof window === "undefined";
-export const CART_KEY = "medusa_cart_id";
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { mutateAsync: createMutateAsync, mutate: createMutate } =
@@ -57,7 +57,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const getCart = () => {
     if (!IS_SERVER) {
       const cookies = parseCookies();
-      return cookies[CART_KEY];
+      return cookies[CART_COOKIE_KEY];
     }
     return null;
   };
@@ -66,14 +66,27 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     getCart() || undefined,
   );
 
-  const { cart, isFetching: cartIsFetching } = useCart({ id: cartId });
+  const {
+    data: {
+      data: { cart = undefined } = {},
+    } = {},
+    isFetching: cartIsFetching,
+  } = useOne<StoreCartsRes>({
+    resource: "carts",
+    // eslint-disable-next-line
+    id: cartId!,
+    queryOptions: {
+      enabled: !!cartId,
+    },
+  });
+
   const invalidate = useInvalidate();
 
   const storeRegion = (regionId: string, countryCode: string) => {
     if (!IS_SERVER) {
       setCookie(
         null,
-        "medusa_region",
+        REGION_COOKIE_KEY,
         JSON.stringify({ regionId, countryCode }),
       );
 
@@ -84,7 +97,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     if (!IS_SERVER) {
       const cookies = parseCookies();
-      const storedRegion = cookies["medusa_region"];
+      const storedRegion = cookies[REGION_COOKIE_KEY];
 
       if (storedRegion) {
         const { countryCode } = JSON.parse(storedRegion);
@@ -96,7 +109,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const getRegion = () => {
     if (!IS_SERVER) {
       const cookies = parseCookies();
-      const region = cookies["medusa_region"];
+      const region = cookies[REGION_COOKIE_KEY];
 
       if (region) {
         return JSON.parse(region) as {
@@ -150,7 +163,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const storeCart = (id: string) => {
     if (!IS_SERVER) {
-      setCookie(null, CART_KEY, id, {
+      setCookie(null, CART_COOKIE_KEY, id, {
         path: "/",
       });
     }
@@ -158,7 +171,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const deleteCart = () => {
     if (!IS_SERVER) {
-      destroyCookie(null, CART_KEY, {
+      destroyCookie(null, CART_COOKIE_KEY, {
         path: "/",
       });
     }

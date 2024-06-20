@@ -8,7 +8,7 @@ import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { CloneButtonProps } from "../types";
+import type { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> component`}.

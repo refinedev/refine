@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { RefineFieldTagProps } from "@refinedev/ui-types";
+import React, { type ReactNode } from "react";
+import type { RefineFieldTagProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

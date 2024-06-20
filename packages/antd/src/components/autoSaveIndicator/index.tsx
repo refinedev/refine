@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  AutoSaveIndicatorProps,
+  type AutoSaveIndicatorProps,
   useTranslate,
   AutoSaveIndicator as AutoSaveIndicatorCore,
 } from "@refinedev/core";
@@ -19,6 +19,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       <Message
         key="autoSave.success"
         defaultMessage="saved"
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<CheckCircleOutlined />}
       />
     ),
@@ -26,6 +27,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       <Message
         key="autoSave.error"
         defaultMessage="auto save failure"
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<ExclamationCircleOutlined />}
       />
     ),
@@ -33,6 +35,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       <Message
         key="autoSave.loading"
         defaultMessage="saving..."
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<SyncOutlined />}
       />
     ),
@@ -40,6 +43,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       <Message
         key="autoSave.idle"
         defaultMessage="waiting for changes"
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<EllipsisOutlined />}
       />
     ),

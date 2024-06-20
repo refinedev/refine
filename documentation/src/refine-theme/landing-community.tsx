@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useMemo } from "react";
+import React, { type FC, useMemo } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "../context/CommunityStats";
 import useIsBrowser from "@docusaurus/useIsBrowser";
@@ -136,7 +136,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           {isBrowser && (
             <img
               className={clsx("w-full", "object-cover")}
-              src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors${
+              src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors-2${
                 colorMode === "dark" ? "-dark" : ""
               }.png`}
               style={{
@@ -149,7 +149,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           <div
             className={clsx(
               "mt-6",
-              "landing-lg:w-[260px]",
               "px-0 landing-sm:px-6",
               "text-base",
               "not-prose",
@@ -166,8 +165,8 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               )}
             >
               Y Combinator
-            </a>{" "}
-            and{" "}
+            </a>
+            {" (YC S23), "}
             <a
               href="https://ee.500.co/"
               target="_blank"
@@ -177,6 +176,17 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               )}
             >
               500 Emerging Europe
+            </a>
+            {" and "}
+            <a
+              href="https://senovo.vc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx(
+                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
+              )}
+            >
+              Senovo
             </a>
             .
           </div>

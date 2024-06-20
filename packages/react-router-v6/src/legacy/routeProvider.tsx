@@ -8,11 +8,11 @@ import {
   useRefineContext,
   useRouterContext,
   CanAccess,
-  ResourceRouterParams,
+  type ResourceRouterParams,
   useActiveAuthProvider,
   useIsAuthenticated,
 } from "@refinedev/core";
-import { RefineRouteProps } from "./index";
+import type { RefineRouteProps } from "./index";
 
 const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
   const { catchAll } = useRefineContext();
@@ -214,7 +214,7 @@ export const RouteProvider = ({
     if (authProvider?.isProvided) {
       if (authProvider?.isLegacy) {
         const hasAuthError = isError || authData?.error;
-        return hasAuthError ? false : true;
+        return !hasAuthError;
       }
 
       return authData?.authenticated;

@@ -21,13 +21,13 @@ import {
   SaveButton,
   Breadcrumb,
   PageHeader,
-  ListButtonProps,
-  RefreshButtonProps,
-  DeleteButtonProps,
-  SaveButtonProps,
+  type ListButtonProps,
+  type RefreshButtonProps,
+  type DeleteButtonProps,
+  type SaveButtonProps,
   AutoSaveIndicator,
 } from "@components";
-import { EditProps } from "../types";
+import type { EditProps } from "../types";
 
 /**
  * `<Edit>` provides us a layout for displaying the page.

@@ -1,6 +1,6 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 import { getProjectType } from "@utils/project";
-import { Command, Option } from "commander";
+import { type Command, Option } from "commander";
 import { updateNotifier } from "src/update-notifier";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";

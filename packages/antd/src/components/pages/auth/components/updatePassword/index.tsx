@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  UpdatePasswordPageProps,
-  UpdatePasswordFormTypes,
+  type UpdatePasswordPageProps,
+  type UpdatePasswordFormTypes,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
@@ -13,9 +13,9 @@ import {
   Form,
   Input,
   Button,
-  LayoutProps,
-  CardProps,
-  FormProps,
+  type LayoutProps,
+  type CardProps,
+  type FormProps,
   theme,
 } from "antd";
 import { useTranslate, useUpdatePassword } from "@refinedev/core";
@@ -106,7 +106,15 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             "pages.updatePassword.fields.password",
             "New Password",
           )}
-          rules={[{ required: true }]}
+          rules={[
+            {
+              required: true,
+              message: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password is required",
+              ),
+            },
+          ]}
           style={{ marginBottom: "12px" }}
         >
           <Input type="password" placeholder="●●●●●●●●" size="large" />
@@ -122,6 +130,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
           rules={[
             {
               required: true,
+              message: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm password is required",
+              ),
             },
             ({ getFieldValue }) => ({
               validator(_, value) {

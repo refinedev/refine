@@ -2,7 +2,7 @@ import React from "react";
 import InputMask from "react-input-mask";
 import {
   useTranslate,
-  HttpError,
+  type HttpError,
   useApiUrl,
   useNavigation,
 } from "@refinedev/core";
@@ -22,7 +22,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { useTheme } from "@mui/material/styles";
-import { ICourier, IFile, IStore, Nullable } from "../../interfaces";
+import type { ICourier, IFile, IStore, Nullable } from "../../interfaces";
 import { CourierImageUpload, CourierTableReviews } from "../../components";
 import { useImageUpload } from "../../utils";
 

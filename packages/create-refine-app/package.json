@@ -1,6 +1,6 @@
 {
   "name": "create-refine-app",
-  "version": "1.12.5",
+  "version": "1.12.6",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -10,10 +10,11 @@
   "typings": "dist/index.d.ts",
   "bin": "./dist/index.js",
   "scripts": {
-    "build": "tsup --format esm,cjs,iife --minify --legacy-output",
-    "dev": "tsup --watch --format esm,cjs,iife --legacy-output",
-    "prepare": "npm run build",
-    "test": "jest --passWithNoTests --runInBand"
+    "build": "tsup && tsc --project tsconfig.declarations.json",
+    "dev": "tsup --watch",
+    "prepare": "pnpm -w build --scope create-refine-app",
+    "test": "jest --passWithNoTests --runInBand",
+    "types": "tsc --project tsconfig.declarations.json"
   },
   "dependencies": {
     "boxen": "^5.1.2",
@@ -25,7 +26,7 @@
     "ora": "^5.4.1",
     "prompts": "2.1.0",
     "rimraf": "3.0.2",
-    "superplate-cli": "^1.19.0",
+    "superplate-cli": "^1.20.0",
     "tar": "^6.2.0",
     "tslib": "^2.6.2",
     "which-pm-runs": "^1.1.0"
@@ -44,6 +45,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

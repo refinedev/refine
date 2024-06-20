@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanFilePath } from "src/utils/clean-file-path";
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 import clsx from "clsx";
 import { getOwners } from "src/utils/get-owners";
 import { DevToolsContext } from "@refinedev/devtools-shared";

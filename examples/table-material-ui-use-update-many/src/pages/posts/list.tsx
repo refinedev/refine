@@ -1,18 +1,20 @@
-import { Option, useSelect, useUpdateMany } from "@refinedev/core";
+import { type Option, useSelect, useUpdateMany } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import Button from "@mui/material/Button";
 import {
   DataGrid,
-  GridValueFormatterParams,
-  GridColDef,
+  type GridValueFormatterParams,
+  type GridColDef,
+  type GridRowSelectionModel,
 } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] =
+    React.useState<GridRowSelectionModel>([]);
   const hasSelected = selectedRowKeys.length > 0;
 
   const { mutate } = useUpdateMany<IPost>();
@@ -110,7 +112,7 @@ export const PostList: React.FC = () => {
         autoHeight
         checkboxSelection
         onRowSelectionModelChange={(newSelectionModel) => {
-          setSelectedRowKeys(newSelectionModel as React.Key[]);
+          setSelectedRowKeys(newSelectionModel);
         }}
         pageSizeOptions={[10, 20, 50, 100]}
         rowSelectionModel={selectedRowKeys}

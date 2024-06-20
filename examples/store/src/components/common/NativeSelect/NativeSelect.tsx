@@ -1,8 +1,8 @@
 import { ErrorMessage } from "@hookform/error-message";
-import cn from "clsx";
+import cn, { clsx } from "clsx";
 import {
   forwardRef,
-  SelectHTMLAttributes,
+  type SelectHTMLAttributes,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -11,6 +11,7 @@ import {
 import { get } from "react-hook-form";
 
 import s from "./NativeSelect.module.css";
+import { ChevronDown } from "@components/icons";
 
 export type NativeSelectProps = {
   placeholder?: string;
@@ -64,23 +65,50 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         <label
           htmlFor={props.name}
           onClick={() => innerRef.current?.focus()}
-          className={cn(s.label, {
-            "!text-rose-500": hasError,
-          })}
+          className={cn(
+            {
+              "!text-rose-500": hasError,
+            },
+            "text-base",
+            "leading-6",
+            "capitalize",
+            "text-gray-darkest",
+            "pb-2",
+          )}
         >
           {label}
           {required && <span className="text-rose-500">*</span>}
         </label>
-        <select
-          ref={innerRef}
-          className={cn(s.select, {
-            "!border-rose-500 focus:!border-rose-500": hasError,
-          })}
-          {...props}
-        >
-          <option value="">{placeholder}</option>
-          {children}
-        </select>
+        <div className={clsx("relative")}>
+          <select
+            ref={innerRef}
+            className={cn(
+              s.select,
+              {
+                "!border-rose-500 focus:!border-rose-500": hasError,
+              },
+              "rounded-lg",
+            )}
+            {...props}
+          >
+            <option value="">{placeholder}</option>
+            {children}
+          </select>
+          <div
+            className={clsx(
+              "absolute",
+              "right-0",
+              "top-0",
+              "h-full",
+              "flex",
+              "items-center",
+              "justify-center",
+              "right-2",
+            )}
+          >
+            <ChevronDown className={clsx("w-5", "h-5", "text-gray-dark")} />
+          </div>
+        </div>
         {hasError && props.name && (
           <ErrorMessage
             errors={errors}

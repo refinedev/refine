@@ -8,7 +8,7 @@ import {
   send,
 } from "@refinedev/devtools-shared";
 
-import { Placement } from "./interfaces/placement";
+import type { Placement } from "./interfaces/placement";
 
 export const DevtoolsPanel =
   __DEV_CONDITION__ !== "development"
@@ -19,6 +19,7 @@ export const DevtoolsPanel =
         const [placement] = React.useState<Placement>("bottom");
         const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
         const [width, setWidth] = React.useState<number>(0);
+        const [selectorActive, setSelectorActive] = React.useState(false);
 
         const onSelectorHighlight = React.useCallback(
           (name: string) => {
@@ -35,6 +36,12 @@ export const DevtoolsPanel =
         const onSelectorOpen = React.useCallback(() => {
           setVisible(false);
         }, []);
+
+        React.useEffect(() => {
+          if (selectorActive) {
+            setVisible(false);
+          }
+        }, [selectorActive]);
 
         React.useEffect(() => {
           if (typeof window !== "undefined") {
@@ -76,9 +83,13 @@ export const DevtoolsPanel =
             }}
           >
             <DevtoolsPin
-              onClick={() => setVisible((v) => !v)}
+              onClick={() => {
+                setVisible((v) => !v);
+                setSelectorActive(false);
+              }}
               onSelectorHighlight={onSelectorHighlight}
-              onSelectorOpen={onSelectorOpen}
+              selectorActive={selectorActive}
+              setSelectorActive={setSelectorActive}
             />
             <ResizablePane visible={visible} placement={placement}>
               {({ resizing }) => (

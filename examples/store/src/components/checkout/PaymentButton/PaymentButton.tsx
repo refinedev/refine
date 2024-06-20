@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { PaymentSession } from "@medusajs/medusa";
+import type { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 
-import { Spinner } from "@components/icons";
+import { Cross, Spinner } from "@components/icons";
 import { Button } from "@components";
 import { useCartContext, useCheckout } from "@lib/context";
+import clsx from "clsx";
+import { formatAmount } from "medusa-react";
 
 interface PaymentButtonProps {
   paymentSession?: PaymentSession | null;
@@ -47,8 +49,32 @@ export const PaymentButton: React.FC<PaymentButtonProps> = ({
     onPaymentCompleted();
   };
 
+  const getAmount = (amount: number | undefined | null) => {
+    if (!cart) return "";
+
+    return formatAmount({
+      amount: amount || 0,
+      region: cart.region,
+    });
+  };
+
   if (!paymentSession && cart?.total === 0) {
-    return <Button onClick={handlePayment}>Checkout</Button>;
+    return (
+      <Button
+        onClick={handlePayment}
+        className={clsx(
+          "w-full",
+          "rounded-lg",
+          "text-base",
+          "font-normal",
+          "uppercase",
+          "py-5",
+          "px-5",
+          "text-gray-lightest",
+          "bg-gray-darkest",
+        )}
+      >{`Checkout (${getAmount(cart?.total)})`}</Button>
+    );
   }
 
   switch (paymentSession?.provider_id) {
@@ -57,7 +83,7 @@ export const PaymentButton: React.FC<PaymentButtonProps> = ({
         <StripePaymentButton session={paymentSession} notReady={notReady} />
       );
     default:
-      return <Button disabled>Select a payment method</Button>;
+      return null;
   }
 };
 
@@ -145,19 +171,51 @@ const StripePaymentButton = ({
       });
   };
 
+  const getAmount = (amount: number | undefined | null) => {
+    if (!cart) return "";
+
+    return formatAmount({
+      amount: amount || 0,
+      region: cart.region,
+    });
+  };
+
   return (
     <>
+      {errorMessage && (
+        <div
+          className={clsx(
+            "text-sm",
+            "mb-2",
+            "text-red",
+            "font-medium",
+            "flex",
+            "items-center",
+            "justify-start",
+            "gap-2",
+          )}
+        >
+          <Cross className="w-5 h-5 flex-shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
       <Button
         disabled={submitting || disabled || notReady}
         onClick={handlePayment}
+        className={clsx(
+          "w-full",
+          "rounded-lg",
+          "text-base",
+          "font-normal",
+          "uppercase",
+          "py-5",
+          "px-5",
+          "text-gray-lightest",
+          "bg-gray-darkest",
+        )}
       >
-        {submitting ? <Spinner /> : "Checkout"}
+        {submitting ? <Spinner /> : `Checkout (${getAmount(cart?.total)})`}
       </Button>
-      {errorMessage && (
-        <div className="text-small-regular mt-2 text-red-500">
-          {errorMessage}
-        </div>
-      )}
     </>
   );
 };

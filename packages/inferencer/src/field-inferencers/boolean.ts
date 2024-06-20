@@ -1,4 +1,4 @@
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 
 export const booleanInfer: FieldInferencer = (key, value) => {
   const isBoolean = typeof value === "boolean";

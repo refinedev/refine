@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-stable-release
+      cancel-in-progress: true
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - name: Workflow run cleanup action
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PANKOD_BOT_TOKEN }}
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install Dependencies & Build
+        run: pnpm install
+      - name: Lint
+        run: pnpm lint:ci
+      - name: Syncpack
+        run: pnpm sp lint
+      - name: Test
+        run: pnpm test:all
+      - name: Publint
+        run: pnpm publint:all
+      - name: Are The Types Wrong
+        run: pnpm attw:all
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: ./.github/workflows/scripts/update-lock.sh
+          publish: npm run changeset publish
+          commit: "ci(changesets): version packages"
+          title: "ci(changesets): version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

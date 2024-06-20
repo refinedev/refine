@@ -14,20 +14,9 @@ jobs:
     concurrency:
       group: ${{ github.ref }}-store-deploy
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
-      - name: Workflow run cleanup action
-        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: client docker build
         uses: docker/build-push-action@v1
         with:

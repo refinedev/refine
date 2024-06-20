@@ -101,7 +101,6 @@ const SidebarCategory = ({
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we don't want to re-run this effect when the location changes
   React.useEffect(() => {
     // find <a> elements with href attribute value equal to the current path
     const activeLink = document.querySelector(
@@ -185,7 +184,9 @@ const SidebarCategory = ({
             )}
           />
         )}
-        <span className="z-[1]">{item.label}</span>
+        <span className="z-[1] text-refine-react-6 dark:text-refine-react-3">
+          {item.label}
+        </span>
         <div
           className={clsx(
             "absolute",

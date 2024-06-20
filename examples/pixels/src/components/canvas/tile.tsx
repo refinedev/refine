@@ -4,7 +4,7 @@ import { Skeleton } from "antd";
 
 import { CanvasItem, DisplayCanvas } from "./index";
 import { Contributors } from "../../components/avatar";
-import { Canvas } from "../../types";
+import type { Canvas } from "../../types";
 
 type CanvasTileProps = {
   canvas: Canvas;

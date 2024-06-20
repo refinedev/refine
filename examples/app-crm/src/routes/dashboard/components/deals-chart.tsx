@@ -1,15 +1,15 @@
 import React, { lazy, Suspense, useMemo } from "react";
 
 import { useList, useNavigation } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
+import type { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { DashboardDealsChartQuery } from "@/graphql/types";
+import type { DashboardDealsChartQuery } from "@/graphql/types";
 
 import { DASHBOARD_DEALS_CHART_QUERY } from "./queries";
 
@@ -115,6 +115,7 @@ export const DashboardDealsChart: React.FC = () => {
             gap: "8px",
           }}
         >
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <DollarOutlined />
           <Text size="sm" style={{ marginLeft: ".5rem" }}>
             Deals
@@ -122,6 +123,7 @@ export const DashboardDealsChart: React.FC = () => {
         </div>
       }
       extra={
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         <Button onClick={() => list("deals")} icon={<RightCircleOutlined />}>
           See sales pipeline
         </Button>

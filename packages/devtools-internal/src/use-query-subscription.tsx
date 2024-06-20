@@ -1,11 +1,17 @@
-import { DevToolsContext } from "@refinedev/devtools-shared";
-import { QueryClient } from "@tanstack/react-query";
+import {
+  DevToolsContext,
+  DevtoolsEvent,
+  receive,
+} from "@refinedev/devtools-shared";
+import type { QueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { createQueryListener, createMutationListener } from "./listeners";
 
 export const useQuerySubscription =
   __DEV_CONDITION__ !== "development"
-    ? () => ({})
+    ? () => {
+        return {};
+      }
     : (queryClient: QueryClient) => {
         const { ws } = useContext(DevToolsContext);
         const queryCacheSubscription = React.useRef<() => void>();
@@ -48,6 +54,22 @@ export const useQuerySubscription =
           return () => {
             mutationCacheSubscription.current?.();
           };
+        }, [ws, queryClient]);
+
+        React.useEffect(() => {
+          if (!ws) return () => 0;
+
+          const cb = receive(
+            ws,
+            DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY_ACTION,
+            ({ queryKey }) => {
+              if (queryKey) {
+                queryClient.invalidateQueries(queryKey);
+              }
+            },
+          );
+
+          return cb;
         }, [ws, queryClient]);
 
         return {};

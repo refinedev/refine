@@ -1,9 +1,9 @@
-import { FC, useMemo } from "react";
+import { type FC, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { EditButton, FilterDropdown, useTable } from "@refinedev/antd";
 import { useNavigation, useOne } from "@refinedev/core";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
   AuditOutlined,
@@ -14,7 +14,7 @@ import {
 import { Button, Card, Input, Select, Skeleton, Space, Table, Tag } from "antd";
 
 import { Participants, Text } from "@/components";
-import {
+import type {
   CompanyDealsTableQuery,
   CompanyTotalDealsAmountQuery,
 } from "@/graphql/types";
@@ -115,6 +115,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
       bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
+          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <AuditOutlined />
           <Text>Deals</Text>
 
@@ -150,6 +151,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         >
           <Text>No deals yet</Text>
           <Link to={listUrl("deals")}>
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <PlusCircleOutlined
               style={{
                 marginRight: 4,
@@ -172,6 +174,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
           <Table.Column
             title="Deal Title"
             dataIndex="title"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
@@ -239,6 +242,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                   hideText
                   size="small"
                   resource="deals"
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<ExportOutlined />}
                 />
               );

@@ -1,6 +1,6 @@
-import { MetaQuery, pickNotDeprecated } from "@refinedev/core";
+import { type MetaQuery, pickNotDeprecated } from "@refinedev/core";
 import axios from "axios";
-import { stringify } from "qs";
+import qs from "qs";
 
 interface ILoginResponse {
   jwt: string;
@@ -57,7 +57,7 @@ export const AuthHelper = (apiUrl: string) => ({
     };
 
     return await axios.get<IUser>(
-      `${apiUrl}/users/me?${stringify(query, {
+      `${apiUrl}/users/me?${qs.stringify(query, {
         encodeValuesOnly: true,
       })}`,
       {

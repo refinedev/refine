@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import * as Grid from "antd/lib/grid";
+import type * as Grid from "antd/lib/grid";
 
 import { TestWrapper } from "@test/index";
 import { ThemedSiderV2 } from "./index";

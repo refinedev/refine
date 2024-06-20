@@ -236,7 +236,7 @@ If you don't handle unsubscription, it could lead to memory leaks.
 
 This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and the best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/docs/realtime/hooks/use-publish).
+This `publish` is used in [related hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/docs/realtime/hooks/use-publish).
 
 ```ts title="liveProvider.ts"
 export const liveProvider = (client: Ably.Realtime): LiveProvider => {

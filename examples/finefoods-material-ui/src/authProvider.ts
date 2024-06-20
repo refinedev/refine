@@ -1,4 +1,4 @@
-import { AuthProvider } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 import { disableAutoLogin, enableAutoLogin } from "./hooks";
 
 export const TOKEN_KEY = "refine-auth";

@@ -1,9 +1,10 @@
-import { useRef, useEffect, useCallback, PropsWithChildren } from "react";
+import { useRef, useEffect, useCallback, type PropsWithChildren } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 import { Cross } from "@components/icons";
 
 import s from "./Modal.module.css";
+import clsx from "clsx";
 
 interface ModalProps {
   className?: string;
@@ -40,14 +41,14 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
   }, [handleKey]);
 
   return (
-    <div className={s.root}>
-      <div className={s.modal} role="dialog" ref={ref}>
+    <div className={clsx(s.root)}>
+      <div className={clsx(s.modal, "rounded-3xl")} role="dialog" ref={ref}>
         <button
           onClick={() => onClose()}
           aria-label="Close panel"
           className={s.close}
         >
-          <Cross className="h-6 w-6" />
+          <Cross className="h-8 w-8 text-gray-dark" />
         </button>
         {children}
       </div>

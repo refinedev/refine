@@ -11,7 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
-import { RefineThemedLayoutV2HeaderProps } from "../types";
+import type { RefineThemedLayoutV2HeaderProps } from "../types";
 
 import { HamburgerMenu } from "../hamburgerMenu";
 

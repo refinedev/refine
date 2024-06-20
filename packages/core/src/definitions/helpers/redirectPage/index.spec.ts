@@ -1,6 +1,6 @@
 import { redirectPage } from ".";
-import { IRefineContextOptions } from "../../../contexts/refine/types";
-import { RedirectAction } from "../../../hooks/form/types";
+import type { IRefineContextOptions } from "../../../contexts/refine/types";
+import type { RedirectAction } from "../../../hooks/form/types";
 
 describe("redirectPath", () => {
   it.each(["edit", "list", "show", false] as RedirectAction[])(

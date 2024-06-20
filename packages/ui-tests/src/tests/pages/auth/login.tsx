@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
 import {
   fireEvent,
@@ -8,7 +8,7 @@ import {
   TestWrapper,
   waitFor,
 } from "@test";
-import { LoginPageProps } from "@refinedev/core";
+import type { LoginPageProps } from "@refinedev/core";
 
 export const pageLoginTests = (
   LoginPage: FC<LoginPageProps<any, any, any>>,

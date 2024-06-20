@@ -1,9 +1,9 @@
-import { Plugin } from "esbuild";
+import type { Plugin } from "esbuild";
 
 export const removeTestIdsPlugin: Plugin = {
   name: "react-remove-testids",
   setup(build) {
-    build.onEnd(async (args) => {
+    build.onEnd((args) => {
       // data-testid regexp
       const regexp = /("data-testid":)(.*?)(?:(,)|(})|(\n))/gi;
 

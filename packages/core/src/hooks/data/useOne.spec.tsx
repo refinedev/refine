@@ -8,7 +8,7 @@ import {
   queryClient,
 } from "@test";
 
-import { IRefineContextProvider } from "../../contexts/refine/types";
+import type { IRefineContextProvider } from "../../contexts/refine/types";
 import { useOne } from "./useOne";
 
 const mockRefineProvider: IRefineContextProvider = {

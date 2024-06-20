@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { UploadChangeParam } from "antd/lib/upload";
+import type { UploadChangeParam } from "antd/lib/upload";
 
 export type UseFileUploadStateType = () => {
   isLoading: boolean;

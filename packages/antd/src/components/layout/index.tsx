@@ -3,7 +3,7 @@ import { Grid, Layout as AntdLayout } from "antd";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
-import { RefineLayoutLayoutProps } from "./types";
+import type { RefineLayoutLayoutProps } from "./types";
 
 /**
  * @deprecated use `<ThemedLayout>` instead with 100% backward compatibility.

@@ -1,6 +1,6 @@
 import { Rate } from "antd";
 import { useList } from "@refinedev/core";
-import { ICourier, IReview } from "../../../interfaces";
+import type { ICourier, IReview } from "../../../interfaces";
 
 type Props = {
   courier?: ICourier;

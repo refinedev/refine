@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useLink,
   useRouterType,
   useActiveAuthProvider,
@@ -16,10 +16,10 @@ import {
   Input,
   Button,
   Checkbox,
-  CardProps,
-  LayoutProps,
+  type CardProps,
+  type LayoutProps,
   Divider,
-  FormProps,
+  type FormProps,
   theme,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@refinedev/core";
@@ -163,7 +163,13 @@ export const LoginPage: React.FC<LoginProps> = ({
             name="email"
             label={translate("pages.login.fields.email", "Email")}
             rules={[
-              { required: true },
+              {
+                required: true,
+                message: translate(
+                  "pages.login.errors.requiredEmail",
+                  "Email is required",
+                ),
+              },
               {
                 type: "email",
                 message: translate(
@@ -181,7 +187,15 @@ export const LoginPage: React.FC<LoginProps> = ({
           <Form.Item
             name="password"
             label={translate("pages.login.fields.password", "Password")}
-            rules={[{ required: true }]}
+            rules={[
+              {
+                required: true,
+                message: translate(
+                  "pages.login.errors.requiredPassword",
+                  "Password is required",
+                ),
+              },
+            ]}
           >
             <Input
               type="password"

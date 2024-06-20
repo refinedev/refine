@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { useModal } from "@refinedev/antd";
 import { useOne } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { FilePdfOutlined } from "@ant-design/icons";
 import {
@@ -16,7 +16,7 @@ import {
 } from "@react-pdf/renderer";
 import { Button, Modal } from "antd";
 
-import { QuotesGetQuoteQuery } from "@/graphql/types";
+import type { QuotesGetQuoteQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import { QUOTES_GET_QUOTE_QUERY } from "../queries";
@@ -61,6 +61,7 @@ const PdfExport = () => {
         loading={loading}
         onClick={pdfOpenHandler}
         type="primary"
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<FilePdfOutlined />}
       >
         Convert to PDF

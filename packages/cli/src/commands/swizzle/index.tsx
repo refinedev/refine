@@ -2,7 +2,7 @@ import React from "react";
 import path from "path";
 import chalk from "chalk";
 import inquirer from "inquirer";
-import { Command, OptionValues } from "commander";
+import type { Command, OptionValues } from "commander";
 import inquirerAutoCompletePrompt from "inquirer-autocomplete-prompt";
 import { ensureFile, pathExists, readFile, writeFile } from "fs-extra";
 
@@ -15,7 +15,7 @@ import {
 
 import { printSwizzleMessage } from "@components/swizzle-message";
 
-import { SwizzleFile } from "@definitions";
+import type { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
@@ -28,7 +28,7 @@ const swizzle = (program: Command) => {
     .command("swizzle")
     .description(
       `Export a component or a function from ${chalk.bold(
-        "refine",
+        "Refine",
       )} packages to customize it in your project`,
     )
     .action(action);
@@ -86,7 +86,7 @@ const action = async (_options: OptionValues) => {
   );
 
   if (packagesWithConfig.length === 0) {
-    console.log("No refine packages found with swizzle configuration.");
+    console.log("No Refine packages found with swizzle configuration.");
     return;
   }
 
@@ -95,7 +95,7 @@ const action = async (_options: OptionValues) => {
       `Found ${chalk.blueBright(
         packagesWithConfig.length,
       )} installed ${chalk.blueBright.bold(
-        "refine",
+        "Refine",
       )} packages with swizzle configuration.`,
       {
         padding: 1,

@@ -5,7 +5,7 @@ import { act, render, TestWrapper } from "@test";
 import { renderer, ShowInferencer } from "../show";
 
 describe("MuiShowInferencer", () => {
-  fit("should match the snapshot", async () => {
+  it("should match the snapshot", async () => {
     const Wrapper = TestWrapper({
       routerInitialEntries: ["/posts/show/11"],
       resources: [

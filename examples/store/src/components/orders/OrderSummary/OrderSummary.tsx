@@ -1,4 +1,5 @@
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
+import clsx from "clsx";
 import { formatAmount } from "medusa-react";
 
 interface OrderSummaryProps {
@@ -14,40 +15,104 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
     });
   };
 
+  const values = [
+    {
+      label: "Subtotal",
+      value: getAmount(order.subtotal),
+    },
+    ...(order.discount_total
+      ? [{ label: "Discount", value: `-${getAmount(order.discount_total)}` }]
+      : []),
+    ...(order.gift_card_total
+      ? [{ label: "Gift card", value: `-${getAmount(order.gift_card_total)}` }]
+      : []),
+    { label: "Shipping", value: getAmount(order.shipping_total) },
+    { label: "Taxes", value: getAmount(order.tax_total ?? 0) },
+  ];
+
   return (
-    <div>
-      <h2 className="text-base-semi">Order Summary</h2>
-      <div className="text-small-regular text-primary my-2">
-        <div className="text-base-regular text-primary mb-2 flex items-center justify-between">
-          <span>Subtotal</span>
-          <span>{getAmount(order.subtotal)}</span>
-        </div>
-        <div className="flex flex-col gap-y-1">
-          {order.discount_total > 0 && (
-            <div className="flex items-center justify-between">
-              <span>Discount</span>
-              <span>- {getAmount(order.discount_total)}</span>
+    <div className={clsx()}>
+      <div
+        className={clsx(
+          "py-4",
+          "font-semibold",
+          "text-base",
+          "text-gray-darkest",
+          "border-b",
+          "border-b-gray-normal",
+        )}
+      >
+        Order Summary
+      </div>
+      <div className={clsx("py-4", "flex", "flex-col", "w-full")}>
+        {values.map((v) => (
+          <div
+            className={clsx(
+              "flex",
+              "items-center",
+              "justify-between",
+              "w-full",
+              "py-2",
+            )}
+          >
+            <div
+              className={clsx(
+                "flex-1",
+                "text-base",
+                "font-normal",
+                "text-right",
+                "text-gray-darkest",
+              )}
+            >
+              {`${v.label}:`}
             </div>
-          )}
-          {order.gift_card_total > 0 && (
-            <div className="flex items-center justify-between">
-              <span>Discount</span>
-              <span>- {getAmount(order.gift_card_total)}</span>
+            <div
+              className={clsx(
+                "flex-shrink-0",
+                "w-[120px]",
+                "text-right",
+                "text-base",
+                "font-normal",
+                "text-gray-darkest",
+              )}
+            >
+              {v.value}
             </div>
+          </div>
+        ))}
+      </div>
+      <div className="bg-gray-normal h-px w-full" />
+      <div
+        className={clsx(
+          "pt-4",
+          "pb-4",
+          "flex",
+          "items-center",
+          "justify-center",
+        )}
+      >
+        <div
+          className={clsx(
+            "flex-1",
+            "text-base",
+            "font-semibold",
+            "text-right",
+            "text-gray-darkest",
           )}
-          <div className="flex items-center justify-between">
-            <span>Shipping</span>
-            <span>{getAmount(order.shipping_total)}</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span>Taxes</span>
-            <span>{getAmount(order.tax_total || 0)}</span>
-          </div>
+        >
+          TOTAL:
         </div>
-        <div className="my-4 h-px w-full border-b border-dashed border-gray-200" />
-        <div className="text-base-regular text-accent-9 mb-2 flex items-center justify-between">
-          <span>Total</span>
-          <span>{getAmount(order.total)}</span>
+        <div
+          className={clsx(
+            "flex-shrink-0",
+            "w-[120px]",
+            "text-right",
+            "text-base",
+            "font-semibold",
+            "text-gray-darkest",
+          )}
+        >
+          {getAmount(order.total)}
         </div>
       </div>
     </div>

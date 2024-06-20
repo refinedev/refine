@@ -2,7 +2,7 @@ import { Space, Tag, Typography } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { Task } from "@/graphql/schema.types";
+import type { Task } from "@/graphql/schema.types";
 import { getDateColor } from "@/utilities";
 
 type Props = {

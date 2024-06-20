@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AccessControlProvider } from "@refinedev/core";
+import type { AccessControlProvider } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
 import {
   act,
   fireEvent,
-  ITestWrapperProps,
+  type ITestWrapperProps,
   MockJSONServer,
   render,
   TestWrapper,
@@ -360,7 +360,7 @@ describe("Edit", () => {
       return (
         <Edit autoSaveProps={autoSaveProps}>
           {formLoading && <div>loading...</div>}
-          <input data-testid="title" {...register("title")} />;
+          <input data-testid="title" {...register("title")} />
         </Edit>
       );
     };

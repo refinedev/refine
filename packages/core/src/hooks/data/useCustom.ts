@@ -1,11 +1,15 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  QueryObserverResult,
-  UseQueryOptions,
+  type QueryObserverResult,
+  type UseQueryOptions,
   useQuery,
 } from "@tanstack/react-query";
 
-import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
+import {
+  pickNotDeprecated,
+  useActiveAuthProvider,
+  prepareQueryContext,
+} from "@definitions/helpers";
 import {
   useDataProvider,
   useHandleNotification,
@@ -15,7 +19,7 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CrudFilter,
   CrudSort,
@@ -24,10 +28,10 @@ import {
   MetaQuery,
   Prettify,
 } from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
@@ -156,26 +160,18 @@ export const useCustom = <
           ...(preferredMeta || {}),
         })
         .get(preferLegacyKeys),
-      queryFn: ({ queryKey, pageParam, signal }) =>
+      queryFn: (context) =>
         custom<TQueryFnData>({
           url,
           method,
           ...config,
           meta: {
             ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
+            queryContext: prepareQueryContext(context),
           },
           metaData: {
             ...combinedMeta,
-            queryContext: {
-              queryKey,
-              pageParam,
-              signal,
-            },
+            queryContext: prepareQueryContext(context),
           },
         }),
       ...queryOptions,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RefineErrorPageProps } from "@refinedev/ui-types";
+import type { RefineErrorPageProps } from "@refinedev/ui-types";
 import {
   useGo,
   useResource,

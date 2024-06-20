@@ -1,23 +1,31 @@
 import React from "react";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import Script from "next/script";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
-import { GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
+import { type GetListResponse, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider, { authProvider } from "@refinedev/medusa";
 import NextNProgress from "nextjs-progressbar";
-import { ProductCollection } from "@medusajs/medusa";
+import type { ProductCollection } from "@medusajs/medusa";
 
-import { PROXY_URL } from "@lib/constants";
 import { SEO } from "@components";
 import Layout from "@components/common/Layout";
 import { CartProvider, ManagedUIContext } from "@lib/context";
 import { useAnalytics } from "@lib/hooks";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+import clsx from "clsx";
 
 import "@assets/main.css";
 import "@assets/chrome-bug.css";
 import "keen-slider/keen-slider.min.css";
+// import { LayoutLayout } from "@components/layout-layout";
+import { API_URL } from "src/contants";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;
@@ -39,7 +47,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     }
 
     return (
-      <Layout categories={categories}>
+      <Layout>
         <Component {...pageProps} />
       </Layout>
     );
@@ -48,42 +56,44 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
   return (
     <ManagedUIContext>
       <GitHubBanner />
-      <Refine
-        routerProvider={routerProvider}
-        dataProvider={dataProvider(PROXY_URL)}
-        authProvider={authProvider(PROXY_URL)}
-        options={{
-          warnWhenUnsavedChanges: true,
-          reactQuery: {
-            clientConfig: {
-              defaultOptions: {
-                queries: {
-                  keepPreviousData: false,
+      <main className={clsx(inter.variable, "font-sans", "bg-gray-lightest")}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          authProvider={authProvider(API_URL)}
+          options={{
+            warnWhenUnsavedChanges: true,
+            reactQuery: {
+              clientConfig: {
+                defaultOptions: {
+                  queries: {
+                    keepPreviousData: false,
+                  },
                 },
               },
             },
-          },
-        }}
-      >
-        <CartProvider>
-          <SEO />
-          <NextNProgress options={{ showSpinner: false }} />
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-7BSVVDBPMB"
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
+          }}
+        >
+          <CartProvider>
+            <SEO />
+            <NextNProgress options={{ showSpinner: false }} />
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-7BSVVDBPMB"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){window.dataLayer.push(arguments);}
                         gtag('js', new Date());
 
                         gtag('config', 'G-7BSVVDBPMB');
                         `}
-          </Script>
-          {renderComponent()}
-        </CartProvider>
-      </Refine>
+            </Script>
+            {renderComponent()}
+          </CartProvider>
+        </Refine>
+      </main>
     </ManagedUIContext>
   );
 }

@@ -1,4 +1,7 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import React, {
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+} from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 

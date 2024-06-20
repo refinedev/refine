@@ -2,15 +2,15 @@ import { useContext } from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseQueryOptions,
-  UseQueryResult,
+  type UseQueryOptions,
+  type UseQueryResult,
   useQuery,
 } from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { useKeys } from "@hooks/useKeys";
 
-import { HttpError, MetaQuery } from "../../../contexts/data/types";
+import type { HttpError, MetaQuery } from "../../../contexts/data/types";
 
 export type UseLogProps<TQueryFnData, TError, TData> = {
   resource: string;
@@ -66,7 +66,7 @@ export const useLogList = <
     retry: false,
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useLogList", preferLegacyKeys),
+      ...getXRay("useLogList", preferLegacyKeys, resource),
     },
   });
 

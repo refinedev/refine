@@ -5,7 +5,7 @@ import { Button, Modal, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 import { Text } from "@/components";
-import { Audit } from "..";
+import type { Audit } from "..";
 
 export const ActionCell = ({ record }: { record: Audit }) => {
   const [opened, setOpened] = useState(false);
@@ -50,6 +50,7 @@ export const ActionCell = ({ record }: { record: Audit }) => {
       >
         <Button
           size="small"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<ZoomInOutlined />}
           onClick={() => setOpened((prev) => !prev)}
         >

@@ -2,7 +2,7 @@ import { useShow } from "@refinedev/core";
 
 import { Show, MarkdownField } from "@refinedev/antd";
 import { Typography } from "antd";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 

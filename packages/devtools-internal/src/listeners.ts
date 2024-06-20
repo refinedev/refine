@@ -1,8 +1,8 @@
 import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
-import { Mutation, Query } from "@tanstack/react-query";
+import type { Mutation, Query } from "@tanstack/react-query";
 
 import { createIdentifier } from "./create-identifier";
-import { XRayResponse } from "./get-xray";
+import type { XRayResponse } from "./get-xray";
 
 export const createMutationListener =
   (ws: WebSocket) => (mutation?: Mutation) => {
@@ -25,16 +25,6 @@ export const createMutationListener =
       });
       resolve();
     });
-
-    // console.table({
-    //     type: "mutation",
-    //     key: mutation?.options.mutationKey,
-    //     id: mutation?.mutationId,
-    //     status: mutation?.state.status,
-    //     trace: mutation?.meta?.trace,
-    //     state: mutation?.state,
-    //     variables: mutation?.state?.variables,
-    // });
   };
 
 export const createQueryListener = (ws: WebSocket) => (query: Query) => {
@@ -53,12 +43,4 @@ export const createQueryListener = (ws: WebSocket) => (query: Query) => {
     });
     resolve();
   });
-
-  // console.table({
-  //     type: "query",
-  //     key: query.queryKey,
-  //     status: query.state.status,
-  //     trace: query.meta?.trace,
-  //     state: query.state,
-  // });
 };

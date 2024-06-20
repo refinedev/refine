@@ -12,7 +12,7 @@ import { Form, Input, Upload, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory, ITags } from "../../interfaces";
+import type { IPost, ICategory, ITags } from "../../interfaces";
 import { normalizeFile } from "../../utility/normalize";
 
 export const PostCreate = () => {

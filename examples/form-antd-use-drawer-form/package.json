@@ -24,16 +24,15 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.37.6",
-    "@refinedev/cli": "^2.16.29",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/react-router-v6": "^4.5.7",
-    "@refinedev/simple-rest": "^5.0.4",
-    "antd": "^5.0.5",
+    "@refinedev/antd": "^5.40.0",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/react-router-v6": "^4.5.11",
+    "@refinedev/simple-rest": "^5.0.8",
+    "antd": "^5.17.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
-    "typescript": "^5.4.2"
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.2",

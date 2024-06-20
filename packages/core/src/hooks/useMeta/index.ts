@@ -1,8 +1,8 @@
 import { sanitizeResource } from "@definitions/helpers/sanitize-resource";
 import { useParsed } from "@hooks/router";
 
-import { MetaQuery } from "../../contexts/data/types";
-import { IResourceItem } from "../../contexts/resource/types";
+import type { MetaQuery } from "../../contexts/data/types";
+import type { IResourceItem } from "../../contexts/resource/types";
 
 /**
  * Hook that returns a function to get meta.

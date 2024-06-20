@@ -1,9 +1,10 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { SERVER_API_URL } from "src/contants";
 
 export default createProxyMiddleware({
-  target: "https://api.store.refine.dev",
+  target: SERVER_API_URL,
   changeOrigin: true,
-  pathRewrite: { "^/api": "/" },
+  pathRewrite: { "^/api/store": "/" },
 });
 
 export const config = {

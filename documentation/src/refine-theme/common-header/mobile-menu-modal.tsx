@@ -1,13 +1,13 @@
 import Link from "@docusaurus/Link";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import React, { FC, Fragment, PropsWithChildren } from "react";
+import React, { type FC, Fragment, type PropsWithChildren } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { openFigma } from "@site/src/utils/open-figma";
 import { CloseIcon } from "../icons/close";
 import { GithubStarIcon } from "../icons/popover";
 import { RefineLogoIcon } from "../icons/refine-logo";
-import { MENU_ITEMS, NavbarItemType } from "./constants";
+import { MENU_ITEMS, type NavbarItemType } from "./constants";
 import { MenuItem } from "./menu-item";
 import { MobileNavItem } from "./mobile-nav-item";
 import { TopAnnouncement } from "../top-announcement";

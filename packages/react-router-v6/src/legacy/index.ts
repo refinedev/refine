@@ -1,11 +1,11 @@
 import React from "react";
-import { handleUseParams, IRouterProvider } from "@refinedev/core";
+import { handleUseParams, type IRouterProvider } from "@refinedev/core";
 import {
   useLocation,
   useParams,
   Link,
-  RouteProps,
-  BrowserRouterProps,
+  type RouteProps,
+  type BrowserRouterProps,
   useNavigate,
 } from "react-router-dom";
 
@@ -13,8 +13,8 @@ import {
   BrowserRouterComponent,
   MemoryRouterComponent,
   HashRouterComponent,
-} from "./routerComponent";
-import { Prompt } from "./prompt";
+} from "./routerComponent.js";
+import { Prompt } from "./prompt.js";
 
 export type RefineRouteProps = RouteProps & {
   layout?: boolean;

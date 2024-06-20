@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Pagination from "@mui/material/Pagination";
 import dayjs from "dayjs";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -48,7 +48,7 @@ export const OrderTimeline: React.FC = () => {
           const isLast = i === data.data.length - 1;
           return (
             <ListItem
-              divider={isLast ? false : true}
+              divider={!isLast}
               key={order.id}
               secondaryAction={dayjs(order.createdAt).fromNow()}
               onClick={() => show("orders", order.id)}

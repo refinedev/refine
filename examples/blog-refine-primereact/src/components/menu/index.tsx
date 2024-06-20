@@ -2,7 +2,7 @@ import { useMenu } from "@refinedev/core";
 import { Link } from "react-router-dom";
 
 import { TabMenu } from "primereact/tabmenu";
-import { MenuItem } from "primereact/menuitem";
+import type { MenuItem } from "primereact/menuitem";
 import { classNames } from "primereact/utils";
 
 export const Menu = () => {

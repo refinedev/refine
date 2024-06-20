@@ -1,12 +1,12 @@
 import {
-  HttpError,
+  type HttpError,
   useGo,
   useList,
   useNavigation,
   useTranslate,
 } from "@refinedev/core";
 import { NumberField, useSimpleList } from "@refinedev/antd";
-import { ICategory, IProduct } from "../../../interfaces";
+import type { ICategory, IProduct } from "../../../interfaces";
 import {
   Card,
   Divider,
@@ -116,6 +116,7 @@ export const ProductListCard = () => {
         <Tag
           style={{ padding: "4px 10px 4px 10px", cursor: "pointer" }}
           color={!hasCategoryFilter ? token.colorPrimary : undefined}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<TagOutlined />}
           onClick={() => {
             setFilters([
@@ -212,6 +213,7 @@ export const ProductListCard = () => {
                       });
                     }}
                     className={cx(styles.viewButton, "viewButton")}
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<EyeOutlined />}
                   >
                     View

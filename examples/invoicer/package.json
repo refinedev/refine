@@ -1,0 +1,51 @@
+{
+  "name": "invoicer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && refine build",
+    "cypress": "cypress open -C ./cypress.config.ts",
+    "cypress:run": "cypress run -C ./cypress.config.ts",
+    "dev": "refine dev",
+    "preview": "refine start",
+    "refine": "refine"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@refinedev/antd": "^5.40.0",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/devtools": "^1.2.3",
+    "@refinedev/react-router-v6": "^4.5.11",
+    "@refinedev/strapi-v4": "^6.0.8",
+    "antd": "^5.17.0",
+    "antd-style": "^3.6.1",
+    "axios": "^1.6.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-input-mask": "^2.0.4",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-input-mask": "^3.0.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.1"
+  }
+}

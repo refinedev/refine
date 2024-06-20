@@ -1,7 +1,7 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 
 /**
- * Map `refine` cli commands to project script
+ * Map `Refine` cli commands to project script
  */
 export const projectScripts = {
   [ProjectTypes.REACT_SCRIPT]: {
@@ -47,7 +47,7 @@ export const projectScripts = {
     getBuild: (args: string[]) => ["build", ...args],
     getBin: (type?: "dev" | "start" | "build") => {
       const binName = type === "start" ? "remix-serve" : "remix";
-      return require.resolve(`${process.cwd()}/node_modules/.bin/${binName}`);
+      return require.resolve(`.bin/${binName}`);
     },
   },
   [ProjectTypes.CRACO]: {

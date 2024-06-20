@@ -2,7 +2,7 @@ import Conf from "conf";
 import chalk from "chalk";
 import { isRefineUptoDate } from "@commands/check-updates";
 import { printUpdateWarningTable } from "@components/update-warning-table";
-import { RefinePackageInstalledVersionData } from "@definitions/package";
+import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getInstalledRefinePackages } from "@utils/package";
 import { ENV } from "@utils/env";
 import { stringToBase64 } from "@utils/encode";
@@ -124,7 +124,7 @@ export const generateKeyFromPackages = async () => {
   if (!packages) {
     console.error(
       chalk.red(
-        "Something went wrong when trying to get installed `refine` packages.",
+        "Something went wrong when trying to get installed `Refine` packages.",
       ),
     );
 

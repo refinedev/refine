@@ -1,5 +1,5 @@
 import Head from "@docusaurus/Head";
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from "react";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
@@ -439,7 +439,8 @@ const dataTemplates: {
     title: "Win95 Style Admin Panel",
     description:
       "With the headless architecture of Refine, you have the flexibility to implement any custom design!",
-    image: "https://refine.ams3.cdn.digitaloceanspaces.com/templates/win95.jpg",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club.png",
     integrations: [
       {
         label: "Headless",
@@ -494,28 +495,6 @@ const dataTemplates: {
         label: "Strapi",
         icon: (props: SVGProps<SVGSVGElement>) => (
           <Strapi width={16} height={16} {...props} />
-        ),
-      },
-    ],
-  },
-  {
-    to: "/templates/multitenancy-appwrite",
-    title: "Multitenancy App with Appwrite",
-    description:
-      "Implementing multitenancy architecture in Refine applications.",
-    image:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-appwrite.jpg",
-    integrations: [
-      {
-        label: "Ant Design",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Antd width={16} height={16} {...props} />
-        ),
-      },
-      {
-        label: "Appwrite",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Appwrite width={16} height={16} {...props} />
         ),
       },
     ],

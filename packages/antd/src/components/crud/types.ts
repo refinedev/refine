@@ -1,5 +1,5 @@
-import { CardProps, SpaceProps } from "antd";
-import {
+import type { CardProps, SpaceProps } from "antd";
+import type {
   CreateButtonProps,
   DeleteButtonProps,
   EditButtonProps,
@@ -7,13 +7,13 @@ import {
   RefreshButtonProps,
   SaveButtonProps,
 } from "../buttons/types";
-import {
+import type {
   RefineCrudCreateProps,
   RefineCrudEditProps,
   RefineCrudListProps,
   RefineCrudShowProps,
 } from "@refinedev/ui-types";
-import { PageHeaderProps } from "../pageHeader";
+import type { PageHeaderProps } from "../pageHeader";
 
 export type CreateProps = RefineCrudCreateProps<
   SaveButtonProps,

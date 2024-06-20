@@ -9,10 +9,10 @@ import {
   useSelect,
 } from "@refinedev/antd";
 
-import { FilterDropdownProps } from "antd/lib/table/interface";
+import type { FilterDropdownProps } from "antd/lib/table/interface";
 import { Table, Radio, Select, Input } from "antd";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps, sorter, filters } = useTable<IPost>({

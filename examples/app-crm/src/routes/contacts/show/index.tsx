@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDelete, useNavigation, useShow, useUpdate } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import {
   CloseOutlined,
@@ -36,7 +36,7 @@ import {
 } from "@/components";
 import { TimezoneEnum } from "@/enums";
 import type { Contact } from "@/graphql/schema.types";
-import { ContactShowQuery } from "@/graphql/types";
+import type { ContactShowQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
@@ -123,6 +123,7 @@ export const ContactShowPage: React.FC = () => {
       <div className={styles.header}>
         <Button
           type="text"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<CloseOutlined />}
           onClick={() => closeModal()}
         />
@@ -155,6 +156,7 @@ export const ContactShowPage: React.FC = () => {
                 });
               },
               triggerType: ["text", "icon"],
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <EditOutlined className={styles.titleEditIcon} />,
             }}
           >
@@ -164,6 +166,7 @@ export const ContactShowPage: React.FC = () => {
 
         <div className={styles.form}>
           <SingleElementForm
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<MailOutlined className="tertiary" />}
             state={
               activeForm && activeForm === "email"
@@ -185,6 +188,7 @@ export const ContactShowPage: React.FC = () => {
           </SingleElementForm>
 
           <SingleElementForm
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<ShopOutlined className="tertiary" />}
             state={
               activeForm && activeForm === "companyId"
@@ -267,6 +271,7 @@ export const ContactShowPage: React.FC = () => {
             />
           </SingleElementForm>
           <SingleElementForm
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<IdcardOutlined className="tertiary" />}
             state={
               activeForm && activeForm === "jobTitle"
@@ -287,6 +292,7 @@ export const ContactShowPage: React.FC = () => {
             <Input defaultValue={jobTitle || ""} />
           </SingleElementForm>
           <SingleElementForm
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<PhoneOutlined className="tertiary" />}
             state={
               activeForm && activeForm === "phone"
@@ -308,6 +314,7 @@ export const ContactShowPage: React.FC = () => {
           </SingleElementForm>
           <SingleElementForm
             style={{ borderBottom: "none" }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<GlobalOutlined className="tertiary" />}
             state={
               activeForm && activeForm === "timezone"
@@ -373,6 +380,7 @@ export const ContactShowPage: React.FC = () => {
             okText="Yes"
             cancelText="No"
           >
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button type="link" danger icon={<DeleteOutlined />}>
               Delete Contact
             </Button>

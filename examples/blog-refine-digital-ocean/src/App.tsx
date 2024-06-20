@@ -69,6 +69,7 @@ function App() {
                 name: "dashboard",
                 list: "/",
                 meta: {
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <DashboardOutlined />,
                 },
               },
@@ -80,6 +81,7 @@ function App() {
                 show: "/companies/show/:id",
                 meta: {
                   canDelete: true,
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <ShopOutlined />,
                 },
               },
@@ -91,6 +93,7 @@ function App() {
                 show: "/contacts/show/:id",
                 meta: {
                   canDelete: true,
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <TeamOutlined />,
                 },
               },

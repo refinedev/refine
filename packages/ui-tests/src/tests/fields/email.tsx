@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { RefineFieldEmailProps } from "@refinedev/ui-types";
+import React, { type ReactNode } from "react";
+import type { RefineFieldEmailProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 

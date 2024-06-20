@@ -1,6 +1,6 @@
 import { readJSON, writeJSON } from "fs-extra";
 import { FrontendApi } from "@ory/client";
-import { createProxyMiddleware, Options } from "http-proxy-middleware";
+import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import path from "path";
 import { REFINE_API_URL, SERVER_PORT } from "./constants";
 import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-package-json";
@@ -137,11 +137,10 @@ export const serveProxy = async (app: Express) => {
 
   const authProxy = createProxyMiddleware({
     target: REFINE_API_URL,
-    // secure: false,
     changeOrigin: true,
     pathRewrite: { "^/api/.auth": "/.auth" },
     cookieDomainRewrite: {
-      "refine.dev": "",
+      "refine.dev": "localhost",
     },
     logLevel: __DEVELOPMENT__ ? "debug" : "silent",
     headers: {
@@ -156,6 +155,13 @@ export const serveProxy = async (app: Express) => {
       }
     },
     onProxyRes: (proxyRes, req, res) => {
+      const newSetCookie = proxyRes.headers["set-cookie"]?.map((cookie) =>
+        cookie
+          .replace("Domain=refine.dev;", "Domain=localhost;")
+          .replace(" HttpOnly; Secure; SameSite=Lax", ""),
+      );
+      if (newSetCookie) proxyRes.headers["set-cookie"] = newSetCookie;
+
       if (req.url.includes("self-service/methods/oidc/callback")) {
         return handleSignInCallbacks((_token, _jwt) => {
           token = _token;
@@ -163,7 +169,16 @@ export const serveProxy = async (app: Express) => {
           saveAuth(token, jwt);
         })(proxyRes, req, res);
       }
-      res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+
+      if (proxyRes.statusCode === 401) {
+        res.writeHead(200, {
+          ...proxyRes.headers,
+          "Access-Control-Expose-Headers": `Refine-Is-Authenticated, ${proxyRes.headers["Access-Control-Expose-Headers"]}`,
+        });
+      } else {
+        res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+      }
+
       proxyRes.pipe(res, { end: true });
     },
   });

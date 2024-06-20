@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/nextjs-router",
-  "version": "6.0.2",
+  "version": "6.0.6",
   "private": false,
   "description": "refine Next.js router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "repository": {
@@ -67,7 +67,7 @@
         "dist/pages/index.d.ts"
       ],
       "parse-table-params": [
-        "dist/parse-table-params/index.d.ts"
+        "dist/common/parse-table-params.d.ts"
       ]
     }
   },
@@ -78,9 +78,9 @@
   ],
   "scripts": {
     "attw": "attw --pack .",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/nextjs-router",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -91,14 +91,15 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.49.0",
+    "@refinedev/core": "^4.51.0",
     "@types/qs": "^6.9.7",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "next": "^14.1.0",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "tsup": "^6.7.0"
+    "tsup": "^6.7.0",
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
@@ -113,6 +114,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
+  }
 }

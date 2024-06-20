@@ -25,7 +25,7 @@ import {
 import type { UpdateParams } from "../data/useUpdate";
 import type { UseCreateParams } from "../data/useCreate";
 import type { UseFormProps, UseFormReturnType } from "./types";
-import {
+import type {
   BaseKey,
   BaseRecord,
   CreateResponse,
@@ -189,7 +189,6 @@ export const useForm = <
     onInterval: props.overtimeOptions?.onInterval,
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: This is a controlled unmounting effect.
   React.useEffect(() => {
     // After `autosaved` is set to `true`, it won't be set to `false` again.
     // Therefore, the `invalidate` function will be called only once at the end of the hooks lifecycle.
@@ -223,7 +222,6 @@ export const useForm = <
     const onSuccessRedirect = (id?: BaseKey) => redirect(redirectAction, id);
 
     const submissionPromise = new Promise<
-      // biome-ignore lint/suspicious/noConfusingVoidType: Void is an expected case for this promise.
       CreateResponse<TResponse> | UpdateResponse<TResponse> | void
     >((resolve, reject) => {
       // Reject the mutation if the resource is not defined
@@ -272,12 +270,6 @@ export const useForm = <
 
       const { mutateAsync } = isEdit ? updateMutation : createMutation;
 
-      /**
-       * biome-ignore lint/suspicious/noExplicitAny: Validity of the `variables` is checked above.
-       * For sake of having a single function call, we are using `any` here.
-       * Appropriate variables will be constructed based on the `action` and auto-save status.
-       * Then, the `mutateAsync` function will be called with the constructed variables.
-       */
       mutateAsync(variables as any, {
         // Call user-defined `onMutationSuccess` and `onMutationError` callbacks if provided
         // These callbacks will not have an effect on the submission promise

@@ -10,7 +10,7 @@ import MuiLink from "@mui/material/Link";
 import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
 
-import {
+import type {
   ForgotPasswordFormTypes,
   ForgotPasswordPageProps,
 } from "@refinedev/core";
@@ -18,8 +18,8 @@ import { useForm } from "@refinedev/react-hook-form";
 import * as React from "react";
 
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useForgotPassword,
   useLink,
   useRouterContext,
@@ -28,7 +28,7 @@ import {
 } from "@refinedev/core";
 
 import { ThemedTitleV2 } from "@components";
-import { FormPropsType } from "../../index";
+import type { FormPropsType } from "../../index";
 import { layoutStyles, titleStyles } from "../styles";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
@@ -112,7 +112,10 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
         >
           <TextField
             {...register("email", {
-              required: true,
+              required: translate(
+                "pages.forgotPassword.errors.requiredEmail",
+                "Email is required",
+              ),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: translate(

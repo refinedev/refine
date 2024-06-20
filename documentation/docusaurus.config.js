@@ -139,7 +139,6 @@ const siteConfig = {
       };
     },
     "./plugins/docgen.js",
-    "./plugins/examples.js",
     ...(process.env.DISABLE_BLOG
       ? []
       : [
@@ -160,7 +159,6 @@ const siteConfig = {
             },
           ],
         ]),
-    "./plugins/intercom.js",
     "./plugins/clarity.js",
     "./plugins/templates.js",
     "./plugins/example-redirects.js",

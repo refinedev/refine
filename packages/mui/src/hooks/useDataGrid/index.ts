@@ -1,14 +1,14 @@
 import {
-  BaseRecord,
-  CrudFilters,
-  HttpError,
-  Pagination,
+  type BaseRecord,
+  type CrudFilters,
+  type HttpError,
+  type Pagination,
   pickNotDeprecated,
-  Prettify,
+  type Prettify,
   useLiveMode,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType as useTableReturnTypeCore,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType as useTableReturnTypeCore,
 } from "@refinedev/core";
 import { useState } from "react";
 

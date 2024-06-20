@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { BaseKey, useLogList } from "@refinedev/core";
+import type { FC } from "react";
+import { type BaseKey, useLogList } from "@refinedev/core";
 
-import { ILog } from "../interfaces";
+import type { ILog } from "../interfaces";
 
 type HistoryProps = {
   resource: string;

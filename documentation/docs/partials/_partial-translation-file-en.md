@@ -11,7 +11,9 @@
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required"
       },
       "buttons": {
         "submit": "Login",
@@ -26,7 +28,8 @@
         "email": "Email"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required"
       },
       "buttons": {
         "submit": "Send reset instructions"
@@ -39,7 +42,9 @@
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required"
       },
       "buttons": {
         "submit": "Register",
@@ -53,7 +58,9 @@
         "confirmPassword": "Confirm new password"
       },
       "errors": {
-        "confirmPasswordNotMatch": "Passwords do not match"
+        "confirmPasswordNotMatch": "Passwords do not match",
+        "requiredPassword": "Password required",
+        "requiredConfirmPassword": "Confirm password is required"
       },
       "buttons": {
         "submit": "Update"

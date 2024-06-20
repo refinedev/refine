@@ -1,9 +1,8 @@
 import React from "react";
 import { Input, DatePicker, Select } from "antd";
 import dayjs from "dayjs";
-
 import { render, fireEvent } from "@test";
-import { FilterDropdown, FilterDropdownProps } from "./";
+import { FilterDropdown, type FilterDropdownProps } from "./";
 
 describe("FilterDropdown", () => {
   beforeEach(() => {
@@ -25,7 +24,7 @@ describe("FilterDropdown", () => {
     prefixCls: "",
     filters: [],
     clearFilters,
-    children: null,
+    children: <></>,
   };
 
   it("should render successfully", () => {
@@ -61,22 +60,6 @@ describe("FilterDropdown", () => {
     fireEvent.click(getByText("Clear"));
 
     expect(clearFilters).toHaveBeenCalled();
-  });
-
-  it("should not called setSelectedKeys on onChange function", async () => {
-    const { getByTestId } = render(
-      <FilterDropdown {...props}>
-        <Input data-testid="input" />
-      </FilterDropdown>,
-    );
-
-    fireEvent.change(getByTestId("input"), {
-      target: {
-        value: "test",
-      },
-    });
-
-    expect(setSelectedKeys).not.toHaveBeenCalled();
   });
 
   it("should call mapValue", async () => {
@@ -169,6 +152,50 @@ describe("FilterDropdown", () => {
     expect(mapValueFn).toHaveBeenCalled();
   });
 
+  it("should mapValue works as expected", async () => {
+    const Container = () => {
+      const [keys, setKeys] = React.useState<any>("");
+
+      return (
+        <>
+          <FilterDropdown
+            {...props}
+            visible={true}
+            selectedKeys={keys}
+            setSelectedKeys={(selectedKeys) => {
+              setKeys(selectedKeys);
+            }}
+            mapValue={(selectedKeys, event) => {
+              if (event === "onChange") {
+                return "manipulated-with-onChange";
+              }
+
+              if (event === "value") {
+                return "manipulated-with-value";
+              }
+
+              return selectedKeys;
+            }}
+          >
+            <Input data-testid="input" />
+          </FilterDropdown>
+          <div data-testid="value">{keys}</div>
+        </>
+      );
+    };
+
+    const { getByTestId } = render(<Container />);
+
+    fireEvent.change(getByTestId("input"), {
+      target: {
+        value: "123",
+      },
+    });
+
+    expect(getByTestId("value").textContent).toBe("manipulated-with-onChange");
+    expect(getByTestId("input")).toHaveValue("manipulated-with-value");
+  });
+
   it("should render Select successfully", () => {
     const { getByText } = render(
       <FilterDropdown
@@ -182,24 +209,5 @@ describe("FilterDropdown", () => {
     );
     getByText("Filter");
     getByText("Clear");
-  });
-
-  it("should render with Select called confirm function successfully if click the filter button", async () => {
-    const { getByText } = render(
-      <FilterDropdown
-        {...props}
-        selectedKeys={["1"]}
-        mapValue={(val) =>
-          Array.isArray(val) ? val.map((i) => Number(i)) : Number(val)
-        }
-      >
-        <Select />
-      </FilterDropdown>,
-    );
-
-    fireEvent.click(getByText("Filter"));
-
-    expect(confirm).toHaveBeenCalled();
-    expect(setSelectedKeys).toHaveBeenCalledWith([1]);
   });
 });

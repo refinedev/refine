@@ -1,7 +1,7 @@
 import { Create, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput, Text, MultiSelect } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { ITag } from "../../interfaces";
+import type { ITag } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
   const { saveButtonProps, getInputProps, errors } = useForm({

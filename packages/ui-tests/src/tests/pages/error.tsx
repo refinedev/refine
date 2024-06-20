@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineErrorPageProps } from "@refinedev/ui-types";
+import type { RefineErrorPageProps } from "@refinedev/ui-types";
 
 import {
   fireEvent,

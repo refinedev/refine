@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { HttpError, useIsAuthenticated, useLogin } from "@refinedev/core";
+import { type HttpError, useIsAuthenticated, useLogin } from "@refinedev/core";
 
 import { useUI } from "@lib/context";
 import { emailRegex } from "@lib/regex";
@@ -51,10 +51,10 @@ const LoginView: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="flex w-80 flex-col justify-between p-3"
+      className="flex w-80 flex-col justify-between p-3 rounded-lg"
     >
-      <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-[#2A2A42]">
-        <Logo short />
+      <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full">
+        <Logo className="text-brand" />
       </div>
       <div className="flex flex-col space-y-3">
         <div className="pt-1 text-xs text-rose-500">
@@ -63,6 +63,7 @@ const LoginView: React.FC = () => {
         <Input
           type="email"
           label="Email"
+          containerClassName="rounded-lg"
           {...register("email", {
             required: "email is required",
             pattern: emailRegex,
@@ -73,6 +74,7 @@ const LoginView: React.FC = () => {
         <Input
           type="password"
           label="Password"
+          containerClassName="rounded-lg"
           {...register("password", {
             required: {
               message: "password is required",
@@ -88,7 +90,7 @@ const LoginView: React.FC = () => {
         />
 
         <Button
-          className="font-bold"
+          className="font-bold rounded-lg"
           variant="slim"
           type="submit"
           loading={isLoading}

@@ -5,14 +5,14 @@ import {
   useRouterType,
   useRouterContext,
   useForgotPassword,
-  ForgotPasswordFormTypes,
-  ForgotPasswordPageProps,
-  BaseRecord,
-  HttpError,
+  type ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type BaseRecord,
+  type HttpError,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   FormControl,
   FormErrorMessage,
@@ -25,7 +25,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
@@ -110,7 +110,10 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             id="email"
             type="text"
             {...register("email", {
-              required: true,
+              required: translate(
+                "pages.forgotPassword.errors.requiredEmail",
+                "Email is required",
+              ),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: translate(

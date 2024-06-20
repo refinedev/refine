@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { useMemo } from "react";
 
 import IntegrationsLayout from "@site/src/components/integrations/layout";
-import { Integration } from "@site/src/types/integrations";
+import type { Integration } from "@site/src/types/integrations";
 import { integrations as integrationsData } from "../../assets/integrations";
 import Card from "../../components/integrations/card";
 

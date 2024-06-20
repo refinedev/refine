@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { ConfigType } from "dayjs";
+import type { ReactNode } from "react";
+import type { ConfigType } from "dayjs";
 
 export type RefineFieldCommonProps<T = unknown> = {
   /**

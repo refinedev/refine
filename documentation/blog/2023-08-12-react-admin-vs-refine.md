@@ -6,7 +6,7 @@ authors: ali_emir
 tags: [Refine, comparison]
 hide_table_of_contents: false
 is_featured: true
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social-2.png
 ---
 
 ## Introduction
@@ -55,9 +55,11 @@ With the start of the Refine project in 2021, it received significant interest f
 
 This traction from the open-source community led to the establishment of Refine Corp in the US in 2022. The company was dedicated to further developing the project with a skilled team of 10 individuals. Shortly after its inception, Refine Corp received pre-seed investment from 500 Global VC.
 
+The seed round, supported by investors such as Senovo, 500 Emerging Europe, Palmdrive Capital, 8vdx, STONKS, in addition to influential angel investors like David J. Phillips and Theo Brown, advances our efforts in bringing Refine to the forefront of enterprise adoption.
+
 In 2023, Refine also backed by YCombinator, solidifying its position as a promising venture.
 
-With over 30K monthly active developers using it and an impressive 21K+ GitHub stars earned in just a year and a half, Refine has gained significant popularity within the developer community.
+With over 30K monthly active developers using it and an impressive 25K+ GitHub stars earned in just a year and a half, Refine has gained significant popularity within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -185,9 +187,8 @@ These small features lead to a huge difference in the development experience, yo
 
 **Examples**
 
-Check out the following examples of multitenant apps built with Refine:
+Check out the following example of multitenant app built with Refine:
 
-- [Multitenancy with Refine + Appwrite](/docs/guides-concepts/multi-tenancy/#appwrite)
 - [Multitenancy with Refine + Strapi](/docs/guides-concepts/multi-tenancy/#strapi)
 
 ## Differences in supported UI frameworks between Refine and react-admin,
@@ -456,7 +457,7 @@ To sum it up:
 
 - Refine is not only an open-core solution but also a performance-driven framework with it's architecture.
 - Its headless nature keeps your project well within the realm of vanilla React, making integration seamless.This architecture ensures that your project remains firmly rooted in vanilla React, simplifying integration.
-- One of the most importatnt aspect is that Refine empowers you with free enterprise-level features, similar to those found in react-admin's enterprise package, without any additional financial commitment.
+- One of the most important aspect is that Refine empowers you with free enterprise-level features, similar to those found in react-admin's enterprise package, without any additional financial commitment.
 
 From our point of view, this combination of capabilities, coupled with its user-friendly nature and and remarkably small bundle size positions Refine as an perfect choice for web developers.
 

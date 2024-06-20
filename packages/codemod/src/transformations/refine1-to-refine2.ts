@@ -1,4 +1,4 @@
-import { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
+import type { API, JSCodeshift, Collection, FileInfo } from "jscodeshift";
 import fs from "fs";
 import path from "path";
 import { install } from "../helpers";

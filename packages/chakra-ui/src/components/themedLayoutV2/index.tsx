@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
-import { RefineThemedLayoutV2Props } from "./types";
+import type { RefineThemedLayoutV2Props } from "./types";
 import { ThemedLayoutContextProvider } from "../../contexts";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({

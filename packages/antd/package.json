@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/antd",
-  "version": "5.37.6",
+  "version": "5.40.0",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "repository": {
@@ -34,9 +34,9 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "attw": "attw --pack . --exclude-entrypoints dist/reset.css",
-    "build": "tsup",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm -w build --scope @refinedev/antd",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -44,9 +44,9 @@
   "dependencies": {
     "@ant-design/icons": "5.0.1",
     "@ant-design/pro-layout": "7.17.12",
-    "@refinedev/ui-types": "^1.22.5",
+    "@refinedev/ui-types": "^1.22.9",
     "@tanstack/react-query": "^4.10.1",
-    "antd": "^5.0.5",
+    "antd": "^5.17.0",
     "dayjs": "^1.10.7",
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
@@ -55,14 +55,15 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.28",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/ui-tests": "^1.14.3",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/ui-tests": "^1.14.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
+    "@types/lodash": "^4.14.171",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
@@ -81,13 +82,12 @@
     "@refinedev/core": "^4.46.1",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "antd": "^5.0.5",
+    "antd": "^5.17.0",
     "dayjs": "^1.10.7",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

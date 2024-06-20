@@ -1,6 +1,6 @@
 import { useShow, useNavigation } from "@refinedev/core";
 import { Flex, Grid } from "antd";
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 import {
   CustomerInfoList,
   CustomerInfoSummary,

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import dayjs from "dayjs";
 import { DateField } from "@refinedev/mui";
 import { useTranslate } from "@refinedev/core";
@@ -16,7 +16,7 @@ import MopedOutlinedIcon from "@mui/icons-material/MopedOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
-import { IEvent, IOrder } from "../../../interfaces";
+import type { IEvent, IOrder } from "../../../interfaces";
 import Skeleton from "@mui/material/Skeleton";
 
 type Props = {
@@ -43,7 +43,6 @@ export const OrderDetails = ({ order }: Props) => {
         )}
       >
         {order?.events.map((event: IEvent, index: number) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: order?.events has no unique key
           <Step key={index}>
             <StepLabel
               optional={

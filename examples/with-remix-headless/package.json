@@ -1,5 +1,6 @@
 {
   "name": "with-remix-headless",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -11,16 +12,17 @@
     "start:prod": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.29",
-    "@refinedev/core": "^4.49.0",
-    "@refinedev/react-hook-form": "^4.8.16",
-    "@refinedev/react-table": "^5.6.8",
-    "@refinedev/remix-router": "^3.0.2",
-    "@refinedev/simple-rest": "^5.0.4",
+    "@refinedev/cli": "^2.16.33",
+    "@refinedev/core": "^4.51.0",
+    "@refinedev/react-hook-form": "^4.8.20",
+    "@refinedev/react-table": "^5.6.12",
+    "@refinedev/remix-router": "^3.0.6",
+    "@refinedev/simple-rest": "^5.0.8",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
     "@tanstack/react-table": "^8.2.6",
+    "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

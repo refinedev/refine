@@ -1,5 +1,5 @@
 import decamelize from "decamelize";
-import {
+import type {
   API,
   Collection,
   FileInfo,

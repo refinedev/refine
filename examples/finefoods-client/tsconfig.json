@@ -16,15 +16,14 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@components": ["src/components"],
-      "@hooks/*": ["src/hooks/*"],
-      "@hooks": ["src/hooks"],
-      "@interfaces": ["src/interfaces"],
-      "@context/*": ["src/context/*"],
-      "@context": ["src/context"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

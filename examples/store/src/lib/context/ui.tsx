@@ -1,4 +1,9 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo } from "react";
+import React, {
+  type FC,
+  type PropsWithChildren,
+  useCallback,
+  useMemo,
+} from "react";
 import { ThemeProvider } from "next-themes";
 
 export interface State {
@@ -47,7 +52,7 @@ type Action =
       view: SIDEBAR_VIEWS;
     };
 
-type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW" | "FORGOT_VIEW";
+type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW";
 
 type SIDEBAR_VIEWS = "CART_VIEW" | "MOBILE_MENU_VIEW";
 
@@ -155,8 +160,5 @@ export const useUI = (): ContextType => {
 };
 
 export const ManagedUIContext: FC<PropsWithChildren> = ({ children }) => (
-  <UIProvider>
-    {/*  TODO:  enable system */}
-    <ThemeProvider enableSystem={false}>{children}</ThemeProvider>
-  </UIProvider>
+  <UIProvider>{children}</UIProvider>
 );

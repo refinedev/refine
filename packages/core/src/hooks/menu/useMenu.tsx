@@ -7,7 +7,7 @@ import { useParsed, useResource, useRouterContext, useTranslate } from "..";
 import { useRouterType } from "../../contexts/router/picker";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
 import {
-  FlatTreeItem,
+  type FlatTreeItem,
   createTree,
 } from "../../definitions/helpers/menu/create-tree";
 import { useGetToPath } from "../router/use-get-to-path/index";
@@ -46,7 +46,7 @@ const getCleanPath = (pathname: string) => {
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/ui/useMenu} for more details.
  */
 export const useMenu = (
-  { meta, hideOnMissingParameter }: UseMenuProps = {
+  { meta, hideOnMissingParameter = true }: UseMenuProps = {
     hideOnMissingParameter: true,
   },
 ): UseMenuReturnType => {

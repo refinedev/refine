@@ -1,99 +1,125 @@
-import Link from "next/link";
+import React from "react";
+import clsx from "clsx";
+import { IconRefine } from "@components/icons/icon-refine";
+import { IconSocialGithub } from "@components/icons/icon-social-github";
+import { IconSocialDiscord } from "@components/icons/icon-social-discord";
+import { IconSocialReddit } from "@components/icons/icon-social-reddit";
+import { IconSocialTwitter } from "@components/icons/icon-social-twitter";
+import { IconSocialLinkedin } from "@components/icons/icon-social-linkedin";
 
-import { Github, Twitter, Discord } from "@components/icons";
-import { Logo, Container } from "@components/ui";
-
-interface FooterProps {
-  className?: string;
-}
-
-const links = [
+const nav = [
   {
-    name: "Quickstart",
-    url: "https://refine.dev/docs/getting-started/overview/",
+    children: "Home",
+    href: "https://refine.dev",
   },
   {
-    name: "Tutorial",
-    url: "https://refine.dev/docs/",
+    children: "Documentation",
+    href: "https://refine.dev/docs",
   },
   {
-    name: "Examples",
-    url: "https://refine.dev/docs/examples/",
+    children: "Tutorial",
+    href: "https://refine.dev/tutorial",
   },
   {
-    name: "Blog",
-    url: "https://refine.dev/blog/",
+    children: "Templates",
+    href: "https://refine.dev/templates",
+  },
+  {
+    children: "Blog",
+    href: "https://refine.dev/blog",
   },
 ];
 
-export const Footer: React.FC<FooterProps> = ({ className }) => {
+const social = [
+  {
+    Icon: IconSocialGithub,
+    href: "https://github.com/refinedev/refine",
+  },
+  {
+    Icon: IconSocialDiscord,
+    href: "https://discord.gg/refine",
+  },
+  {
+    Icon: IconSocialReddit,
+    href: "https://reddit.com/r/refine",
+  },
+  {
+    Icon: IconSocialTwitter,
+    href: "https://x.com/refine_dev",
+  },
+  {
+    Icon: IconSocialLinkedin,
+    href: "https://linkedin.com/company/refine-dev",
+  },
+];
+
+export const Footer = () => {
   return (
-    <footer className={className}>
-      <Container>
-        <div className="border-accent-2 text-primary bg-primary grid grid-cols-1 gap-8 border-b py-12 transition-colors duration-150 lg:grid-cols-12">
-          <div className="col-span-1 lg:col-span-2">
-            <Link href="/">
-              <Logo />
-            </Link>
-          </div>
-          <div className="col-span-1 lg:col-span-8">
-            <div className="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-4">
-              <span className="py-3 md:py-0 md:pb-4">
-                <Link
-                  href="/"
-                  className="text-accent-9 hover:text-accent-6 transition duration-150 ease-in-out"
-                >
-                  Home
-                </Link>
-              </span>
-              {[...links].map((page) => (
-                <span key={page.url} className="py-3 md:py-0 md:pb-4">
-                  <Link
-                    target="_blank"
-                    href={page.url ?? ""}
-                    className="text-accent-9 hover:text-accent-6 transition duration-150 ease-in-out"
-                  >
-                    {page.name}
-                  </Link>
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="text-primary col-span-1 flex items-start lg:col-span-2 lg:justify-end">
-            <div className="flex h-10 items-center space-x-6">
-              <a
-                aria-label="Github Repository"
-                href="https://github.com/refinedev/refine"
-              >
-                <Github />
-              </a>
-              <a aria-label="Twitter" href="https://twitter.com/refine_dev">
-                <Twitter />
-              </a>{" "}
-              <a aria-label="Discord" href="https://discord.gg/refine">
-                <Discord />
-              </a>
-              {/* // i18n */}
-            </div>
-          </div>
-        </div>
-        <div className="text-accent-6 flex flex-col items-center justify-between  pb-10 pt-6 text-sm md:flex-row">
-          <div>
-            <span>&copy; 2022 refine, Inc. All rights reserved.</span>
-          </div>
-          <div className="text-primary flex items-center ">
-            <span className="text-primary mr-2  pt-2.5">Created by</span>
+    <footer
+      className={clsx(
+        "pt-10",
+        "pb-2",
+        "border-t",
+        "border-t-gray-dark",
+        "flex",
+        "items-center",
+        "flex-col md:flex-row",
+      )}
+    >
+      <div
+        className={clsx(
+          "w-auto md:w-[120px] lg:w-[200px]",
+          "flex-shrink-0",
+          "mb-6 md:mb-0",
+        )}
+      >
+        <a href="https://refine.dev" target="_blank" rel="noreferrer">
+          <IconRefine className="text-gray-darkest" />
+        </a>
+      </div>
+      <div className={clsx("flex-1")}>
+        <nav
+          className={clsx(
+            "flex",
+            "flex-col md:flex-row",
+            "items-center",
+            "justify-start",
+            "gap-2 lg:gap-8",
+          )}
+        >
+          {nav.map((item) => (
             <a
-              rel="noopener noreferrer"
-              href="https://refine.dev"
-              aria-label="refine Link"
+              key={item.children}
+              {...item}
+              className={clsx("text-gray-darkest", "text-base")}
+            />
+          ))}
+        </nav>
+      </div>
+      <div className={clsx("flex-shrink-0", "pt-6 md:pt-0")}>
+        <div
+          className={clsx(
+            "flex",
+            "items-center",
+            "justify-end",
+            "gap-4",
+            "text-gray-darker",
+          )}
+        >
+          <span className="hidden lg:block">Join us on</span>
+          {social.map(({ Icon, href }) => (
+            <a
+              key={href}
+              href={href}
               target="_blank"
+              rel="noreferrer"
+              className={clsx()}
             >
-              <Logo height={28} />
+              <Icon className={clsx("w-6", "h-6")} />
             </a>
-          </div>
+          ))}
         </div>
-      </Container>
+      </div>
     </footer>
   );
 };
