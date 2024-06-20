@@ -38,7 +38,7 @@
     "build": "pnpm build:client && tsup && node ../shared/generate-declarations.js",
     "build:client": "NODE_ENV=production tsc && vite build --config src/client/vite.config.ts",
     "dev": "pnpm dev:client & tsup --watch",
-    "dev:client": "vite build --watch --force --config src/client/vite.config.ts",
+    "dev:client": "vite build --watch --config src/client/vite.config.ts",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.cjs",
