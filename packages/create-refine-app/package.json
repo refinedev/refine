@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsup && tsc --project tsconfig.declarations.json",
     "dev": "tsup --watch",
-    "prepare": "pnpm -w build --scope create-refine-app",
+    "prepare": "pnpm build",
     "test": "jest --passWithNoTests --runInBand",
     "types": "tsc --project tsconfig.declarations.json"
   },

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@refinedev/antd": "^5.40.0",
-    "@refinedev/cli": "^2.16.33",
+    "@refinedev/cli": "^2.16.34",
     "@refinedev/core": "^4.51.0",
     "@refinedev/remix-router": "^3.0.6",
     "@refinedev/simple-rest": "^5.0.8",
