@@ -17,8 +17,6 @@ The goal of this article is for you to learn about an alternative and simple too
 
 Steps we’ll cover:
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
 - [What is NextAuth?](#what-is-nextauth)
 - [Why use NextAuth.js?](#why-use-nextauthjs)
 - [Project setup](#project-setup)
@@ -33,7 +31,6 @@ Steps we’ll cover:
 - [Security Considerations](#security-considerations)
 - [Error Handling](#error-handling)
 - [Some Performance Optimization Tips](#some-performance-optimization-tips)
-- [Conclusion](#conclusion)
 
 ## Prerequisites
 
