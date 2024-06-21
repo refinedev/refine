@@ -171,4 +171,52 @@ describe("table-material-ui-use-data-grid", () => {
 
     cy.url().should("include", "current=1");
   });
+
+  it("should update a cell", () => {
+    cy.getMaterialUILoadingCircular().should("not.exist");
+
+    cy.intercept("/posts/*").as("patchRequest");
+
+    cy.getMaterialUIColumnHeader(1).click();
+
+    cy.get(".MuiDataGrid-cell").eq(1).dblclick();
+
+    cy.get(
+      ".MuiDataGrid-cell--editing > .MuiInputBase-root > .MuiInputBase-input",
+    )
+      .clear()
+      .type("Lorem ipsum refine!")
+      .type("{enter}");
+
+    cy.wait("@patchRequest");
+
+    cy.get(".MuiDataGrid-cell").eq(1).should("contain", "Lorem ipsum refine!");
+  });
+
+  it("should not update a cell", () => {
+    cy.getMaterialUILoadingCircular().should("not.exist");
+
+    cy.intercept("PATCH", "/posts/*", (request) => {
+      request.reply({
+        statusCode: 500,
+      });
+    }).as("patchRequest");
+
+    cy.getMaterialUIColumnHeader(1).click();
+
+    cy.get(".MuiDataGrid-cell").eq(1).dblclick();
+
+    cy.get(
+      ".MuiDataGrid-cell--editing > .MuiInputBase-root > .MuiInputBase-input",
+    )
+      .clear()
+      .type("Lorem ipsum fail!")
+      .type("{enter}");
+
+    cy.wait("@patchRequest");
+
+    cy.get(".MuiDataGrid-cell")
+      .eq(1)
+      .should("not.contain", "Lorem ipsum fail!");
+  });
 });

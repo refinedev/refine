@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsc -d -p tsconfig.json",
     "dev": "tsc -w -d -p tsconfig.json",
-    "jscodeshift": "jscodeshift -d --transform=src/transformations/refine1-to-refine2.ts"
+    "jscodeshift": "jscodeshift -d --transform=src/transformations/refine1-to-refine2.ts",
+    "prepare": "pnpm build"
   },
   "dependencies": {
     "@npmcli/package-json": "3.0.0",

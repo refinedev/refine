@@ -29,7 +29,7 @@
     "@mui/lab": "^5.0.0-alpha.85",
     "@mui/material": "^5.14.2",
     "@mui/x-data-grid": "^6.6.0",
-    "@refinedev/cli": "^2.16.33",
+    "@refinedev/cli": "^2.16.34",
     "@refinedev/core": "^4.51.0",
     "@refinedev/inferencer": "^4.6.4",
     "@refinedev/mui": "^5.17.0",

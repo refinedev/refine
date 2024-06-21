@@ -68,6 +68,7 @@ export const HeaderAuthStatus = () => {
           <Gravatar
             email={me?.email ?? ""}
             size={32}
+            protocol="https://"
             style={{ borderRadius: "50%" }}
           />
           <div
