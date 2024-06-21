@@ -433,7 +433,7 @@ Let's look at an example of how we can use motion values to construct the classi
       Fringilla quam urna. Cras turpis elit, euismod eget ligula quis,
       imperdiet sagittis justo. In viverra fermentum ex ac vestibulum.
       Aliquam eleifend nunc a luctus porta. Mauris laoreet augue ut felis
-      blandit, at iaculis odio ultrices. Nulla facilisi. Vestibulum cursus
+      blandit, at iaculis odio ultrices. Nulla facilities. Vestibulum cursus
       ipsum tellus, eu tincidunt neque tincidunt a.
     </p>
     <h2>Sub-header</h2>
