@@ -440,6 +440,49 @@ describe("useSelect Hook", () => {
     expect(mockFunc).toBeCalledTimes(2);
   });
 
+  it("should sort default data first with selectedOptionsOrder for defaultValue", async () => {
+    const mockFunc = jest.fn();
+
+    const { result } = renderHook(
+      () =>
+        useSelect({
+          resource: "posts",
+          queryOptions: {
+            onSuccess: () => {
+              mockFunc();
+            },
+          },
+          defaultValue: [2],
+          selectedOptionsOrder: "selected-first",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    });
+
+    const { options } = result.current;
+
+    expect(options).toHaveLength(2);
+    expect(options).toEqual([
+      { label: "Recusandae consectetur aut atque est.", value: "2" },
+      {
+        label:
+          "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+        value: "1",
+      },
+    ]);
+
+    // for init call and defaultValue
+    expect(mockFunc).toBeCalledTimes(2);
+  });
+
   it("should invoke queryOptions methods for default value successfully", async () => {
     const mockFunc = jest.fn();
 
