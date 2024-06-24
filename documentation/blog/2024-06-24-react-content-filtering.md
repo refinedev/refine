@@ -4,15 +4,15 @@ description: Article about how to create Search bar and filter component in Reac
 slug: react-search-bar-and-filtering
 authors: madars_biss
 tags: [react, Refine, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/refine-filter-social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on Jun 26, 2024, to add techniques and examples for React search bar and filtering**
 
 ## Introduction
 
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
-
-<!--truncate-->
 
 You will often meet various implementations in e-commerce stores, human resource management systems, video/blogging platforms, and many other sites.
 
@@ -23,12 +23,10 @@ Steps we'll cover:
 - [Setting up the Refine](#setting-up-the-refine)
 - [Add global styling](#add-global-styling)
 - [Creating the components](#creating-the-components)
-  - [Creating a filter box](#creating-a-filter-box)
-  - [Creating a search bar](#creating-a-search-bar)
-  - [Content card](#content-card)
 - [Implementing the logic](#implementing-the-logic)
 - [Testing the app](#testing-the-app)
-- [Conclusion](#conclusion)
+- [React filtering tips](#react-filtering-tips)
+- [Bonus: Using npm Packages for React Search Bar](#bonus-using-npm-packages-for-react-search-bar)
 
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
@@ -38,7 +36,7 @@ We will use the [Refine](https://github.com/refinedev/refine) framework, which i
 
 ## Why Refine framework?
 
-Every Refine project is easy to set up since it allows users to use the interactive terminal wizard. It takes less than a minute, with complete user control and no trade-offs between speed and flexibility.
+Every [Refine](https://github.com/refinedev/refine) project is easy to set up since it allows users to use the interactive terminal wizard. It takes less than a minute, with complete user control and no trade-offs between speed and flexibility.
 
 Refine includes a built-in data provider that enables users to connect to any API. The data providers come with built-in support for pagination, sorting, filtering, and other features. Refine also provides some useful hooks and components that make it easier to build the app.
 
@@ -86,7 +84,7 @@ npm run dev
 
 After the app has started, you should see the following page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/welcome.jpeg" alt="Welcome Page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/welcome.png" alt="Welcome Page" />
 
 ## Add global styling
 
@@ -217,13 +215,6 @@ Initially, we set the flex layout for the component, along with some padding and
 Next, we implemented the hover effect, which zooms in the button when the user moves the cursor over it.
 
 We positioned the button's title to the left for the button's contents. For the color tag, we used a flex layout, added static width and height, set some margins, and described the border parameters.
-
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
 
 ### Creating a search bar
 
@@ -568,6 +559,326 @@ Finally, let's test the app on mobile screen sizes.
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="mobile" className="border border-gray-200 rounded" style={{ height: "400px" }} />
 </div>
 
+## React filtering tips
+
+### Filter Optimization for Large Data Volumes
+
+Filtering, when it has a vast data set to go over, can get kind of slow. Here are some things you can do to speed things up:
+
+1. **Debouncing Input**: The debouncing input will prevent the filtering process from triggering for every single character entered or deleted because it.
+
+```tsx
+const debounce = (func, delay) => {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+};
+
+const handleSearch = debounce((query) => {
+  // Filtering logic here
+}, 300);
+```
+
+2. **Memoizing Computations**: Memorize the results of expensive computations and reuse them when the same input occurs again.
+
+```tsx
+const memoizedFilteredPosts = useMemo(() => {
+  return posts.filter((post) => post.title.includes(searchQuery));
+}, [posts, searchQuery]);
+```
+
+3. **Using Virtualization**: Render only the items that are currently in the view instead of all the items in a list for performance.
+
+```tsx
+import { FixedSizeList as List } from "react-window";
+
+<List height={500} itemCount={filteredPosts.length} itemSize={50} width={300}>
+  {({ index, style }) => <div style={style}>{filteredPosts[index].title}</div>}
+</List>;
+```
+
+### When Do You Need a Search Bar in React?
+
+Search bars are an essential element in most web applications and will lead a person to a piece of information he is interested in quickly and effectively. The following are some of the most common cases in which a search bar becomes an irreplaceable tool:
+
+#### 1. Large Data Sets
+
+If your application contains lots of data, such as a database of products, articles, or user profiles, then a search bar helps the user find their desired item without having to scroll through many lists.
+
+**Example:**
+
+- E-commerce websites where users search for products by name, category, or brand.
+- Blogs or news sites where users search articles through keywords or tags.
+
+#### 2. Dynamic Content Filtering
+
+A search bar is used to filter dynamic content, where when a user inputs a text query, the content gets updated in real-time to represent only the relevant items, providing a more interactive and user-friendly experience.
+
+**Example:**
+
+- Job portals where users search job listings based on titles, locations, and companies.
+- Online marketplaces where users filter products based on search terms and categories.
+
+#### 3. User Directories
+
+A search bar in applications that have a large number of users will come in handy when there is a particular person or persons whom the user is in search of. This is useful in a social networking site, enterprise applications, or CRM systems.
+
+**Example:**
+
+- Social networking websites on which users seek friends or connections.
+- Firm intranets where staff lookup coworkers by name or department.
+
+#### 4. Navigation and Quick Access
+
+Another use of a search bar is for navigating an application or easily and quickly accessing some particular feature. Doing so improves the overall user experience by reducing the hassles one might go through to get certain features or parts within the app.
+
+**Example:**
+
+- Dashboard applications in which users query for specific reports, data points, or tools.
+- Content management systems through which users quickly visit specific pages or posts.
+
+#### 5. Autocomplete and Suggestions
+
+In most of the search bars, there is an implementation with autocomplete and suggestions; this provides an improvement in user experience, and in fact, instant feedback is available. In general, it shortens the work time of typing, which makes a great deal of convenience for the user. It is especially very useful for applications for which users may not know the precise term they are looking for.
+
+**Example:**
+
+- Search engines that provide suggestions on queries as the user types them.
+- Form fields with an autosuggest of options based on partial input: Address forms, tag selectors.
+
+#### 6. Filters and Sorting Options
+
+The search bar, combined with the other filter and sort functions, allows users to filter results with many different criteria. This will make the data manageable and easily accessible.
+
+**Example:**
+
+- A music and video streaming service where users search for content by a title, genre or artist.
+- Real estate listings with users performing property searches by location, price, and features.
+
+The search bar is, in essence, a flexible and powerful tool within React applications that adds to the user experience of finding, filtering, and interacting with high volumes of information. From e-commerce to content management, directories of users to navigation, this will make your applications more usable and functional.
+
+## Bonus: Using npm Packages for React Search Bar
+
+There are several npm packages available that can help you create a search bar in your React application quickly and efficiently. Here are some popular ones along with brief descriptions and examples of how to use them:
+
+### 1. `react-search-input`
+
+This is a simple and lightweight component that allows you to create a search bar with minimal configuration.
+
+**Installation:**
+
+```bash
+npm install react-search-input
+```
+
+**Usage:**
+
+```javascript
+import React, { useState } from "react";
+import SearchInput, { createFilter } from "react-search-input";
+
+const KEYS_TO_FILTERS = ["name", "description"];
+
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const data = [
+    { name: "Apple", description: "A type of fruit" },
+    { name: "Banana", description: "A type of fruit" },
+    // Add more items
+  ];
+
+  const filteredData = data.filter(createFilter(searchTerm, KEYS_TO_FILTERS));
+
+  return (
+    <div>
+      <SearchInput
+        className="search-input"
+        onChange={(term) => setSearchTerm(term)}
+        placeholder="Search..."
+      />
+      <ul>
+        {filteredData.map((item, index) => (
+          <li key={index}>
+            {item.name} - {item.description}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+```
+
+### 2. `react-select`
+
+`react-select` is a flexible and powerful package that provides a customizable select box with support for search functionality.
+
+**Installation:**
+
+```bash
+npm install react-select
+```
+
+**Usage:**
+
+```javascript
+import React from "react";
+import Select from "react-select";
+
+const options = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  // Add more options
+];
+
+const App = () => {
+  const handleChange = (selectedOption) => {
+    console.log("Selected:", selectedOption);
+  };
+
+  return (
+    <Select options={options} onChange={handleChange} placeholder="Search..." />
+  );
+};
+
+export default App;
+```
+
+### 3. `downshift`
+
+`downshift` is a flexible package for building autocomplete, combobox, dropdown, and select components.
+
+**Installation:**
+
+```bash
+npm install downshift
+```
+
+**Usage:**
+
+```javascript
+import React from "react";
+import { useCombobox } from "downshift";
+
+const items = ["Apple", "Banana", "Orange", "Grapes"];
+
+const App = () => {
+  const {
+    isOpen,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    getItemProps,
+    highlightedIndex,
+    selectedItem,
+  } = useCombobox({
+    items,
+    onSelectedItemChange: ({ selectedItem }) => {
+      console.log("Selected:", selectedItem);
+    },
+  });
+
+  return (
+    <div {...getComboboxProps()}>
+      <input {...getInputProps()} placeholder="Search..." />
+      <ul {...getMenuProps()}>
+        {isOpen &&
+          items.map((item, index) => (
+            <li
+              {...getItemProps({ item, index })}
+              key={index}
+              style={{
+                backgroundColor:
+                  highlightedIndex === index ? "lightgray" : "white",
+                fontWeight: selectedItem === item ? "bold" : "normal",
+              }}
+            >
+              {item}
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+```
+
+### 4. `react-autosuggest`
+
+`react-autosuggest` is a popular library for creating an autosuggest or autocomplete input field.
+
+**Installation:**
+
+```bash
+npm install react-autosuggest
+```
+
+**Usage:**
+
+```javascript
+import React, { useState } from "react";
+import Autosuggest from "react-autosuggest";
+
+const languages = [
+  { name: "C" },
+  { name: "C++" },
+  { name: "JavaScript" },
+  // Add more items
+];
+
+const App = () => {
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : languages.filter(
+          (lang) =>
+            lang.name.toLowerCase().slice(0, inputLength) === inputValue,
+        );
+  };
+
+  const getSuggestionValue = (suggestion) => suggestion.name;
+
+  const renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
+
+  return (
+    <Autosuggest
+      suggestions={suggestions}
+      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+      onSuggestionsClearRequested={onSuggestionsClearRequested}
+      getSuggestionValue={getSuggestionValue}
+      renderSuggestion={renderSuggestion}
+      inputProps={{
+        placeholder: "Type a programming language",
+        value,
+        onChange: (e, { newValue }) => setValue(newValue),
+      }}
+    />
+  );
+};
+
+export default App;
+```
+
+By using these npm packages, you can easily add a search bar with powerful features to your React application.
+
 ## Conclusion
 
 In this tutorial, we first designed the overall layout for the app, then set up the Refine project and created the global style rules. Then we created the individual components, put together the logic, and passed it to the Refine app.
@@ -575,13 +886,6 @@ In this tutorial, we first designed the overall layout for the app, then set up 
 Two different types of content filtering (filter buttons and search bar) were implemented. In order to improve the overall user experience, we used the Framer motion library to add some great animations.
 
 Feel free to modify the app with your own custom features. Play around with different color schemes, layouts, and font families. Also, since Refine comes with a rich data provider, feel free to extend the content card with description, author, dates, or even images.
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
 ## Example
 
