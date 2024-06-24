@@ -178,7 +178,7 @@ Send extra information or context to the target component while navigating with 
 
 #### Moving Back or Forward
 
-Programmatically navigate back and forth in the browser history; in other words, to make the programmatic equivalent of clicking back and forth in a browser. In other words, make use of the `useNavigate` whenever you must do navigation control from inside your React component programatically, especially when an event should trigger it based on conditions. It makes the navigation logic in your component very dynamic and sensitive to states within the application.
+Programmatically navigate back and forth in the browser history; in other words, to make the programmatic equivalent of clicking back and forth in a browser. In other words, make use of the `useNavigate` whenever you must do navigation control from inside your React component programmatically, especially when an event should trigger it based on conditions. It makes the navigation logic in your component very dynamic and sensitive to states within the application.
 
 ## Some common examples of how to use the `useNavigate` hook with real projects.
 
