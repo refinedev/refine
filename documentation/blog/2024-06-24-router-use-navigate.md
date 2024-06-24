@@ -4,9 +4,11 @@ description: We'll discover how to perform a redirect using useNavigate in React
 slug: usenavigate-react-router-redirect
 authors: joseph_mawa
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-19-router-use-navigate/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-19-router-use-navigate/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on Jun 24, 2024, to add new examples and use cases for React Router useNavigate hook**
 
 ## Introduction
 
@@ -150,15 +152,189 @@ Be aware that `useNavigate` is a hook. Therefore you cannot directly use it with
 
 Similarly, while using the **`useNavigate`** hook, you should remember the rules of React hooks. Do not invoke React hooks inside loops, conditions, or nested functions. Invoke them at the top level.
 
+## When to Use the `useNavigate` Hook
+
+The `useNavigate` hook inside React Router V6 is, indeed, quite empowering for programmatic navigation. You will most probably feel like reaching out for it in the following common scenarios:
+
+#### Programmatic Navigation After Actions
+
+Use `useNavigate` to redirect users once they have acted, for example, a form submission, logging in, or completing a task.
+
+#### Conditional Navigation
+
+Navigate users based on certain conditions, such as their roles or authentication status. This ensures users are directed to the appropriate sections of the application.
+
+#### Manage Navigation in Event Handlers
+
+This allows for the use of `useNavigate` in event handlers to navigate a user based on their interactions, like a button click or another interaction.
+
+#### Post-Authentication Redirection
+
+With an authentication flow, `useNavigate` should be able to redirect the user either after logging in or after logging out so that he is navigated directly to the appropriate section in the application.
+
+#### Navigating with State
+
+Send extra information or context to the target component while navigating with state and the `useNavigate` hook.
+
+#### Moving Back or Forward
+
+Programmatically navigate back and forth in the browser history; in other words, to make the programmatic equivalent of clicking back and forth in a browser. In other words, make use of the `useNavigate` whenever you must do navigation control from inside your React component programatically, especially when an event should trigger it based on conditions. It makes the navigation logic in your component very dynamic and sensitive to states within the application.
+
+## Some common examples of how to use the `useNavigate` hook with real projects.
+
+### Example: Navigation with Conditional Display Depending on the Role of the User
+
+You can use `useNavigate` for navigating users based on their roles. For example, take them to an admin dashboard or a simple user dashboard.
+
+```tsx
+import { useNavigate } from "react-router-dom";
+
+const Dashboard = () => {
+  const navigate = useNavigate();
+  const user = getUser(); // Assume this function gets the user info
+
+  if (!user) {
+    navigate("/login");
+  } else if (user.role === "admin") {
+    navigate("/admin");
+  } else {
+    navigate("/user");
+  }
+
+  return (
+    <div>
+      <h1>Welcome to the Dashboard</h1>
+    </div>
+  );
+};
+```
+
+### Example: Redirection After Login
+
+You can redirect the user after successfully logging in to their dashboard by using `useNavigate`, or in the case of an error in the login process, throw that error to show some excellent and readable error messages.
+
+```tsx
+import { useNavigate } from "react-router-dom";
+
+const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    const isAuthenticated = await authenticateUser(); // Assume this function authenticates the user
+
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login", { state: { error: "Invalid credentials" } });
+    }
+  };
+
+  return <button onClick={handleLogin}>Login</button>;
+};
+```
+
+### Example: Error Page
+
+You can use `useNavigate` to send the user to an error page upon an error occurring and display a custom error message.
+
+```tsx
+import { useNavigate } from "react-router-dom";
+
+const SubmitForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await submitForm(); // Assume this function submits the form
+      navigate("/success");
+    } catch (error) {
+      navigate("/error", { state: { message: error.message } });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+Some examples in the list indicate how the `useNavigate` hook can be applied in varying cases to make an app more dynamic and responsive to user actions.
+
+With a custom hook for navigation, you will be able to reuse the navigation logic across your app. This means you are writing an immaculate and maintainable code. Here's how you create and use custom hooks:.
+
+### Example: Building a Custom Hook
+
+Let's build a custom hook called `useAuthNavigate`, that will share navigation functions for several authentication-related routes.
+
+```tsx
+import { useNavigate } from "react-router-dom";
+
+const useAuthNavigate = () => {
+  const navigate = useNavigate();
+
+  const goToLogin = () => navigate("/login");
+  const goToLogout = () => navigate("/logout");
+  const goToDashboard = () => navigate("/dashboard");
+
+  return { goToLogin, goToLogout, goToDashboard };
+};
+
+// Usage in a component
+const AuthButtons = () => {
+  const { goToLogin, goToLogout, goToDashboard } = useAuthNavigate();
+
+  return (
+    <div>
+      <button onClick={goToLogin}>Go to Login</button>
+      <button onClick={goToLogout}>Logout</button>
+      <button onClick={goToDashboard}>Go to Dashboard</button>
+    </div>
+  );
+};
+
+export default AuthButtons;
+```
+
+For example, `useAuthNavigate` would wrap around the `useNavigate` hook and provide three methods: `goToLogin`, `goToLogout`, and `goToDashboard`. We can use these methods in any component to go to the respective routes.
+
+### Example: Custom Hook with Parameters
+
+You may also make hooks accepting parameters to navigate to dynamic routes.
+
+```tsx
+const useUserNavigate = () => {
+  const navigate = useNavigate();
+
+  const goToUserProfile = (userId) => navigate(`/users/${userId}`);
+  const goToUserSettings = (userId) => navigate(`/users/${userId}/settings`);
+
+  return { goToUserProfile, goToUserSettings };
+};
+
+// Usage in a component
+const UserActions = () => {
+  const { goToUserProfile, goToUserSettings } = useUserNavigate();
+  const userId = 123; // Assume this comes from props or context
+
+  return (
+    <div>
+      <button onClick={() => goToUserProfile(userId)}>View Profile</button>
+      <button onClick={() => goToUserSettings(userId)}>View Settings</button>
+    </div>
+  );
+};
+
+export default UserActions;
+```
+
+The `useUserNavigate` in this example provides functions that accept `userId` as an argument for going to the user's profile or settings page. Custom hooks for navigating can encapsulate navigation logic, making it easier to manage and reuse in other parts of your React application. Thus, components will stay clean and focus on their primary responsibilities with this approach.
+
 ## Conclusion
 
 The `useNavigate` hook shipped with React Router version 6. It comes in handy if you want an imperative API for navigation and returns a function you can invoke in two ways. When invoking the function returned, you either pass the path you want to navigate to as the first argument and an optional object as the second argument or the delta you want to navigate in the history stack.
 
 The **`useNavigate`** hook is functionally similar to the `Navigate` component. Since you can't directly use hooks with ES6 classes, the `Navigate` component comes in handy when working with class-based components.
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
