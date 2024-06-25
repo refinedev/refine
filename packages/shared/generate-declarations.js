@@ -7,7 +7,7 @@ const generateDeclarations = () => {
 };
 
 const getAllDtsFiles = (outDir) => {
-  const files = execSync(`find ${outDir} -name "*.d.ts"`)
+  const files = execSync(`shx find "${outDir}/*.d.ts"`)
     .toString()
     .split("\n")
     .filter((file) => file.length > 0);
@@ -24,11 +24,11 @@ const organizeExtensionsForDts = (dtsFile) => {
   const mtsFile = dtsFile.replace(".d.ts", ".d.mts");
   const mtsMapFile = mapFile.replace(".d.ts.map", ".d.mts.map");
 
-  execSync(`cp ${dtsFile} ${ctsFile}`);
-  execSync(`cp ${mapFile} ${ctsMapFile}`);
+  execSync(`shx cp ${dtsFile} ${ctsFile}`);
+  execSync(`shx cp ${mapFile} ${ctsMapFile}`);
 
-  execSync(`cp ${dtsFile} ${mtsFile}`);
-  execSync(`cp ${mapFile} ${mtsMapFile}`);
+  execSync(`shx cp ${dtsFile} ${mtsFile}`);
+  execSync(`shx cp ${mapFile} ${mtsMapFile}`);
 };
 
 const main = () => {
