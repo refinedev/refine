@@ -65,7 +65,7 @@ Unlike actual native applications, PWAs are not difficult to develop. With just 
 
 ### Benefits of PWA
 
-I wanted to share some thoughts on why Progressive Web Apps (PWAs) are usefull for our projects. These are the reasons:
+I wanted to share some thoughts on why Progressive Web Apps (PWAs) are useful for our projects. These are the reasons:
 
 **Performance**: PWAs are blistering fast. Once loaded, they cache resources and run well in case of a poor Internet connection.
 
