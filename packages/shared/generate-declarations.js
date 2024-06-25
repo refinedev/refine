@@ -9,7 +9,7 @@ const generateDeclarations = () => {
 };
 
 const getAllDtsFiles = (outDir) => {
-  const files = globSync(`${outDir}/*.d.ts`);
+  const files = globSync(`${outDir}/**/*.d.ts`);
 
   return files;
 };
