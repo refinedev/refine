@@ -24,8 +24,8 @@ We follow a [code of conduct](https://github.com/refinedev/refine/blob/master/CO
 - [Node.js](https://nodejs.org/en/) version 18 or higher
 - [Git](https://git-scm.com/) and [GitHub](https://github.com) account
 - [pnpm](https://pnpm.io/) version 9 or higher
-
-:::
+- [Latest Microsoft Visual C++ Redistributable Version](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
+  :::
 
 If your environment is ready, you can [fork the Refine repository](https://github.com/refinedev/refine/fork) and clone it to your local machine.
 
@@ -39,16 +39,16 @@ git clone https://github.com/refinedev/refine.git
 
 ### Installing dependencies
 
-After you clone the repository, you need to install the dependencies. We use pnpm as package manager with workspaces feature. You can run the following command to install, link dependencies and build packages:
+After you clone the repository, you need to install the dependencies. We use pnpm as package manager with workspaces feature. You can run the following command to install root dependencies:
+
+```sh title="Terminal"
+pnpm install -w --ignore-scripts
+```
+
+Then you can run this command to install, build and link packages and their dependencies:
 
 ```sh title="Terminal"
 pnpm install
-```
-
-If you don't want to wait for building packages, you can use
-
-```sh title="Terminal"
-pnpm install --ignore-scripts
 ```
 
 ### Building packages
