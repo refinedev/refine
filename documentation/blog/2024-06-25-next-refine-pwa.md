@@ -4,10 +4,11 @@ description: We will walk you through the entire process of building a PWA using
 slug: next-js-pwa
 authors: david_omotayo
 tags: [nextjs, tutorial, Refine]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social.png
-featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/featured.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on Jun 25, 2024, to add new SEO considerations, accesibility, and configuring Service Worker for Next PWA apps**
 
 ## Introduction
 
@@ -26,16 +27,13 @@ Steps we'll cover:
 - [What is a PWA?](#what-is-a-pwa)
 - [Project Setup](#project-setup)
 - [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
-- [Refine core setup](#refine-core-setup)
-- [Adding a Data provider](#adding-a-data-provider)
-- [Adding a Layout component](#adding-a-layout-component)
-- [Adding Resources](#adding-resources)
 - [Using Next.js SSR](#using-nextjs-ssr)
 - [Creating product cards](#creating-product-cards)
-- [Creating ProductList](#creating-productlist)
-  - [Using the useTable hook](#using-the-usetable-hook)
 - [Generating PWA manifest](#generating-pwa-manifest)
 - [Configuring PWA](#configuring-pwa)
+- [SEO Considerations for PWAs](#seo-considerations-for-pwas)
+- [Advance techniques: Customizing the Service Worker](#advance-techniques-customizing-the-service-worker)
+- [Accessibility Considerations for PWAs](#accessibility-considerations-for-pwas)
 
 ## Prerequisites
 
@@ -49,7 +47,7 @@ So to follow along with this tutorial, you should have a fundamental knowledge o
 
 ## What is Refine?
 
-[Refine](https://github.com/refinedev/refine) is an open-source React-based headless framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. **Refine**'s use-case includes **admin panels**.
+[Refine](https://github.com/refinedev/refine) is an open-source React headless meta-framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. **Refine**'s use-case includes **admin panels**.
 
 At its core, **Refine** is a collection of helper hooks, components, and providers that give you complete control over your application's user interface. These hooks are similar to what you'd find in [TanStack Query](https://tanstack.com/query/latest), meaning **Refine** will automatically handle your data-fetching logic, authorizations, state management, and internalization out of the box.
 
@@ -64,6 +62,26 @@ PWAs offer features that make them operate both as a web page and a mobile appli
 Unlike actual native applications, PWAs are not difficult to develop. With just an addition of a service worker and a manifest to an existing web page, you can create an application that not only lives on the but also serve as a native application that is platform-agnostic without having to learn programming languages that are specific to such platforms.
 
 **PWA** is a good choice for e-commerce operators that want to get on the mobile-first e-commerce bandwagon without having to go through the troubles of integrating with different app stores. While also retaining the perks a web page has to offer, such as discoverability via search engines and Responsiveness.
+
+### Benefits of PWA
+
+I wanted to share some thoughts on why Progressive Web Apps (PWAs) are usefull for our projects. These are the reasons:
+
+**Performance**: PWAs are blistering fast. Once loaded, they cache resources and run well in case of a poor Internet connection.
+
+**User Experience**: They feel native in many ways, e.g., push notifications and offline access.
+
+**Easy Updates**: Considering they run using a web browser, updating is updated at the server, and the user gets the latest version without any downloads.
+
+**Cross-Platform**: PWAs work across all devices with a web browser. We need not develop different apps for platforms like iOS, Android, etc.
+
+**Cost-Effective**: Generally, developing and maintaining separate apps for different platforms costs more and takes longer compared to building a PWA.
+
+**Discoverability**: Contrastingly, with native apps, PWAs can be indexed by search engines, making them, therefore more easily discoverable.
+
+**No app store hassles**: We can bypass all of the app store submission processes and restrictions, allowing more flexibility in updates and releases.
+
+PWAs are, overall, the best combination of both web and mobile app features for our purposes.
 
 ## Project Setup
 
@@ -263,13 +281,6 @@ Next, we’ll create a layout component for our app and pass it as a prop to the
 
 [Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/core/providers/data-provider/)
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
-
 ## Adding a Layout component
 
 A Layout component is a component that Refine uses to create a template for our app. The template is independent of the app’s default UI, thus giving us the option to design as many templates as possible.
@@ -285,11 +296,11 @@ import { LayoutProps } from "@refinedev/core";
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="bg-red">
-      <div className="py-8 px-24 sticky top-0 z-50 bg-[#fff] relative flex justify-between items-center">
+      <div className="relative sticky top-0 z-50 flex items-center justify-between bg-[#fff] px-24 py-8">
         <a href="https://refine.dev">
           <img src="./refine_logo.png" alt="refine logo" />
         </a>
-        <button className="outline outline-[#D6D58E] outline-offset-2 py-2 px-8 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+        <button className="mb-2 mt-2 w-fit rounded bg-[#042940] px-8 py-2 text-white outline outline-offset-2 outline-[#D6D58E]">
           Cart
         </button>
       </div>
@@ -483,26 +494,26 @@ const ProductCards: React.FC<Props> = ({
   cardImage,
 }) => {
   return (
-    <div className="max-w-xs pb-2 outline outline-[#042940] relative">
-      <div className="bg-[#fff] flex justify-center items-center py-4 relative">
+    <div className="relative max-w-xs pb-2 outline outline-[#042940]">
+      <div className="relative flex items-center justify-center bg-[#fff] py-4">
         <img
           src={cardImage}
           alt={`${title}`}
-          className="max-w-xs h-56 transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 z-30"
+          className="z-30 h-56 max-w-xs transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
         />
       </div>
       <div className="px-4">
-        <p className="text-lg text-black font-semibold mb-1">{title}</p>
+        <p className="mb-1 text-lg font-semibold text-black">{title}</p>
         <div className="flex justify-between">
-          <p className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+          <p className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
             ${price}
           </p>
-          <button className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+          <button className="mb-2 mt-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
             Add to cart
           </button>
         </div>
         <p>{`${(description || []).slice(0, 100)}`}...</p>
-        <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">
+        <p className=" py mt-2 w-fit rounded-3xl bg-[#D6D58E] px-2 py-0.5 text-sm text-gray-600">
           {category}
         </p>
       </div>
@@ -557,7 +568,7 @@ const ProductList: React.FC<ItemProp> = ({ products }) => {
 
   return (
     //highlight-start
-    <div className="grid grid-cols-4 gap-6 px-24 my-8">
+    <div className="my-8 grid grid-cols-4 gap-6 px-24">
       {tableQueryResult.data?.data.map((product) => {
         return (
           <ProductCards
@@ -722,6 +733,87 @@ After starting the server, head over to your browser and visit `http://localhost
 
 This is the installation icon for our PWA app. Click on the icon to install the app and use it as a standalone application.
 
+## SEO Considerations for PWAs
+
+I would like to share a few thoughts on the SEO considerations for our PWA. Here is what we should bear in mind:
+
+Firstly, ensure our HTML has meta tags for a title, description, and keywords. This is for search engines to make sense of the content better. Implement canonical tags in order not to run into issues such as duplicate content. Define which version of a URL is preferred. Use Schema.org, together with structured data, to enable the search engines to understand more content for greater visibility. PWAs are built for speed, but we can optimize our images, use lazy loading, and minify CSS and JavaScript so that they load with a bang.
+
+By configuring to serve cached content without SEO interference, we ensure the service worker does not block essential resources for crawlers. We must make our content crawlable by the search engines and easily indexed using server-side rendering (SSR) or static site generation (SSG) with Next.js.
+
+PWAs are mobile-friendly by design, but it is imperative to validate that using Google's Mobile-Friendly Test to ensure optimal user experience on mobile. A clean and readable URL structure is friendly; avoid complex query strings. It will make URLs meaningful and user-friendly.
+Lastly, make sure our PWA is served over HTTPS. That's important for many reasons, with security at the top of the list, but search engines also look more favorably upon secure sites. Create an XML sitemap.
+
+These are some of the SEO considerations to keep in mind at all times so that we can ensure our PWA takes pride in the ranks it achieves and in its visibility to the public at large.
+
+## Advance techniques: Customizing the Service Worker
+
+I wanted to briefly give you a rundown on how to go about customizing the service worker for our PWA. You'd do this as follows:
+
+1. **Create Service Worker**: First, we will create a file called `service-worker. js` in our project, which will be responsible for caching and managing other background tasks.
+2. **Register the Service Worker**: You register a service worker in your main JavaScript file so the browser can find out where it lives and what it does. Very simplistically:
+
+```tsx
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log(
+          "Service Worker registered with scope:",
+          registration.scope,
+        );
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  });
+}
+```
+
+3. **Caching Strategies**: We can define caching strategies that our app is supposed to adhere to. For instance, we may be required to cache static assets (images and stylesheets) differently than the API responses. Let me show a basic one:
+
+```tsx
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open("my-cache-v1").then((cache) => {
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/styles.css",
+        "/script.js",
+        "/images/logo.png",
+      ]);
+    }),
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    }),
+  );
+});
+```
+
+4. **Update Handling**: We can make service worker update gracefully. For instance, on a new version, we might like to have this make the user see a prompt to reload the page.
+
+5. **Push Notifications**: Also, if needed, we may develop the code for push notifications, with the help of which any update or message can be directly sent to a user's device.
+
+By modifying the service worker, we can ensure that our PWA does just what we wish whenever the user goes offline. We can, therefore, efficiently manage resource caching toward a better user experience.
+
+## Accessibility Considerations for PWAs
+
+There are some essential things concerning accessibility in our PWA, and I would like to share them with you. Here is what we should have in mind:
+
+Our images should have alt text so that screen readers can easily describe those images to visually impaired people. Use semantic HTML elements: `<header>`, `<main>`, `<footer>`, etc., as appropriate so that more context and structure can be given to the document. Ensure full keyboard navigability by using appropriate tab indexing and focus management.
+
+Then, make sure there is sufficient contrast between text and background so that someone with a visual impairment can read it. Use ARIA attributes to convey the information better to AT. Make all interactive elements—buttons, links, etc.—distinctive, and, of course, ensure easily seen and clear focus states.
+
+Multimedia features should have captions and transcripts so that users who are hard of hearing can be facilitated. The PWA should also be tested on screen readers like NVDA or VoiceOver to ensure experience is suitable for using those tools. Frequently audit our site using accessibility evaluation tools such as Lighthouse or axe to find and fix issues.
+Therefore, through these accesses, our PWA will be user-friendly and inclusive to all kinds of users, regardless of their abilities.
+
 ## Conclusion
 
 In this article, we demonstrated how to set up a Next.js Refine project from scratch and how to fetch and render data from an external API using the Refine's REST data provider. Then we looked at how to turn our application into a **PWA** using a JSON manifest.
@@ -731,10 +823,3 @@ The purpose of this tutorial is to give you a headstart with Refine and its ecos
 ## Project source code
 
 https://github.com/refinedev/refine/tree/master/examples/blog-next-refine-pwa
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
