@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refin
 hide_table_of_contents: false
 ---
 
-**This article was last updated on Jun 25, 2024, to add new SEO considerations, accesibility, and configuring Service Worker for Next PWA apps**
+**This article was last updated on Jun 25, 2024, to add new SEO considerations, accessibility, and configuring Service Worker for Next PWA apps**
 
 ## Introduction
 
