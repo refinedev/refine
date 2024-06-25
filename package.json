@@ -26,7 +26,7 @@
     "nuke:node_modules": "lerna clean --yes",
     "nuke:nx": "rm -rf .nx/cache",
     "nx": "nx",
-    "pnpm:devPreinstall": "shx mkdir -p packages/cli/dist packages/devtools-server/dist && shx echo \"#! /usr/bin/env node\" > packages/cli/dist/cli.cjs && shx echo \"#! /usr/bin/env node\" > packages/devtools-server/dist/cli.cjs",
+    "pnpm:devPreinstall": "node scripts/fix-pnpm-symlinks.js",
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
