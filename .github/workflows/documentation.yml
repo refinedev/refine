@@ -52,7 +52,9 @@ jobs:
           HostName github.com
           IdentityFile ~/.ssh/id_rsa
           EOT
-      - name: Install & build dependencies
+      - name: Install dependencies
+        run: pnpm install -w --ignore-scripts
+      - name: Build dependencies
         run: pnpm install
       - name: Install dependencies (Docs)
         run: |
